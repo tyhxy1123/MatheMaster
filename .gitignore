@@ -1,0 +1,20 @@
+# ignore these files
+*.bak
+*.log
+*.aux
+*.blg
+*.dvi
+*.out
+*.lot
+*.toc
+*.lof
+*.bbl
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
