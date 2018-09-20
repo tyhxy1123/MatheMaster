@@ -9,6 +9,8 @@
 *.toc
 *.lof
 *.bbl
+*.fls
+*.fdb_latexmk
 
 *.7z
 *.dmg
