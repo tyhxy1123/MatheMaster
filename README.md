@@ -8,5 +8,6 @@ Module des Wintersemesters 2018/2019:
 - WTHM bei Prof. Keller-Ressel
 - VMRM bei Prof. Behme
 - MSTAT bei Prof. Ferger
+- PDEANA bei Prof. Hornung
 
 Du willst uns unterstützen und mitmachen? Kein Problem! Je mehr desto besser :)
