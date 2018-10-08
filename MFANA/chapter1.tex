@@ -1,5 +1,28 @@
-\chapter{Einführung}
-\section{Gewöhnliche Differentialgleichungen}
-Gewöhnliche Differentialgleichungen (GDGL) bzw. ordinary differential
-equations (ODE) suchen Funktionen $x : [t_0, t_1] \to \real^d$, die die
-Bedingung 
+\chapter{Akkretive Operatoren}
+Im Folgenden sei $X$ ein Banachraum mit Norm $\Vert\cdot\Vert$ und $H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$.
+
+\begin{definition}
+Ein \textbf{(nichtlinearer) Operator} auf $X$ ist eine Relation $A\subseteq X\times X$. Wir schreiben
+\begin{itemize}
+\item $Au:=\lbrace f\in X:(u,f)\in A\rbrace~\forall u\in X$
+\item $\dom(A):=\lbrace u\in X:Au\neq\emptyset\rbrace$ \textbf{Definitionsbereich} von $A$
+\item $\rg(A):=\lbrace f\in X:\exists u\in X:(u,f)\in A\rbrace$ \textbf{Bild} von $A$
+\item $A^{-1}:=\lbrace (f,u)\in X\times X:(u,f)\in A\rbrace$ \textbf{inverser Operator}
+\item $I:=\lbrace(u,u)\in X\times X:u\in X\rbrace$ \textbf{identischer Operator}
+\item Offenbar gilt $\dom(A^{-1})=\rg(A)$
+\item Sind $A,B\subseteq X\times X$ zwei Operatoren, $\lambda\in\K\in\lbrace\R,\C\rbrace$, dann ist
+\begin{align*}
+A+B&:=\lbrace(u,f_1+f_2):f_1\in A,f_2\in B\rbrace\\
+&:=\lbrace(u,f)\in X\times X:\exists f_1,f_2\in X:(u,f_1)\in A\wedge(u,f_2)\in B\wedge f=f_1+f_2\rbrace\\
+\lambda\cdot A&:=\lbrace(u,\lambda\cdot f:(u,f)\in \rbrace:=\lbrace(u,f)\in X\times X:\exists f_1\in X:(u,f_1)\in X\wedge f=\lambda\cdot f_1\rbrace
+\end{align*}
+\end{itemize}
+\end{definition}
+
+\section{Das ``Bracket''}
+Sei $(X,\Vert\cdot\Vert)$ ein Banachraum. Für alle $u,v\in X$ und alle $\lambda\in\R_{>0}$ sei
+\begin{align*}
+[u,v]_\lambda&:=\frac{\Vert u+\lambda\cdot v\Vert-\Vert u\Vert}{\lambda}\text{ und}\\
+[u,v]&:=\inf\limits_{\lambda>0}[u,v]_\lambda.
+\end{align*}
+Die A
