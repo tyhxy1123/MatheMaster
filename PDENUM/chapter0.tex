@@ -46,8 +46,7 @@ Es entsteht die Variationsaufgabe: Finde $u(t)$ so, dass
 \int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~~~\forall v\in V.
 \end{align*}
 
-%Robert-ToDo
-Durch partielle Integration erhält man aus dem linken Integral
+Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man aus dem linken Integral
 \begin{align*}
 \int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y
 \stackeq{?}-\int\limits_\Omega\left(u_{xx}+u_{yy}\right)\cdot v
@@ -106,7 +105,13 @@ Behauptung: $\varphi'(x)=\left\lbrace\begin{array}{cl}
 \end{array}\right.$\\
 Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist egal.
 \begin{proof}
-Robert-ToDo
+	Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
+	\begin{align*}
+		\int_{-1}^1 \varphi v' dx &= \int_{-1}^0 \varphi v' dx + \int_{0}^1 \varphi v' dx \\
+															&\stackeq{part. Int.} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v dx + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v dx \\
+															&\stackeq{v \equiv 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v dx - \int_{0}^1 (1) v dx \\
+															&\stackeq{Def} - \int_{-1}^1 \varphi'(x)vdx
+	\end{align*}
 \end{proof}
 \end{beisp}
 
