@@ -1,0 +1,52 @@
+\chapter{Notation}
+\renewcommand{\|}{~|~}
+\begin{definition}
+    Seien $P,R$ Mengen. Wir nennen $\mathscr{R} = (P,R)$ ein \textbf{binäres Relat}, 
+    wenn $R \subseteq P \times P$.
+
+    Beachte, dass das Kartesische Produkt wie folgt definiert ist:
+    $$ P \times Q := \{(p,q) \| p \in P \textrm{ und } q \in Q\}.$$
+\end{definition}
+
+\begin{definition}
+    Sei $\mathscr{R} = (P,R)$ ein binäres Relat. Es seien $p,t,q \in P$ beliebig.
+    Wir nennen $\mathscr{R}$:
+    \begin{enumerate}[label=(\arabic*)]
+        \item \textbf{reflexiv}, falls $(pRp)$,
+        \item \textbf{transitiv}, falls $pRt \land tRq \implies pRq$,
+        \item \textbf{antisymmetrisch}, falls $pRq \land qRp \implies p=q$ und
+        \item \textbf{symmetrisch}, falls $pRq \implies qRp$.
+    \end{enumerate}
+
+    Beachte, dass $pRq$ für $(p,q) \in R$ steht.
+\end{definition}
+
+\begin{definition}
+    Eine \textbf{Präordnung} ist ein reflexives und transitives binäres Relat. \\
+    Eine \textbf{partielle Ordnung} ist eine antisymmetrische Präordnung. \\
+    Eine partielle Ordnung $\mathscr{R} = (P,R)$ heißt \textbf{lineare} Ordnung (oder \textbf{Totalordnung}),\\
+    falls für alle $p,q \in P$: $$pRq \textrm{ oder } qRp.$$
+\end{definition}
+
+\begin{notation}
+    Wenn $A,B$ Mengen, so bezeichnet $B^A$ die Menge aller Abbildungen von $A$ nach $B$.
+\end{notation}
+
+\begin{aufgabe}
+    Sei $N$ eine endliche Menge und 
+    sei $\R^N$ mit der \textbf{Dominanzordnung}, d.h. für alle $u,v \in \R^N$ gilt
+    $$u \leq v :\iff \forall i \in N (u_i \leq v_i),$$
+    gegeben.
+    
+    Wie lässt sich $\R^N$ linear erweitern?
+\end{aufgabe}
+\begin{lösung}
+    Zunächst wähle eine Totalordnung auf $ N $ und benenne die Elemente so um, dass
+    $N = \{1,2,...,n\}$, wobei $n \in \N$.
+    Definiere für alle $u,v \in \R^N$:
+    $$ I^v_u := \{i \in N \| u_i \leq v_i\}.$$
+
+    Nun definiere die lineare Ordnung wie folgt:
+    $$ u \leq_l v :\iff \min I^v_u \leq \min I^u_v.$$
+\end{lösung}
+ 
