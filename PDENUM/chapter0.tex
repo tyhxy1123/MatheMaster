@@ -1,0 +1,146 @@
+\chapter{Die Finite-Elemente-Methode}
+\setcounter{section}{-1}
+\section{Einleitung}
+In diesem Dokument werden folgende Notationen verwendet:
+\begin{itemize}
+\item $u_x:=\frac{\partial u(x)}{\partial x}$ für eine diffbare Funktion $u, x\mapsto u(x)$
+\item $\frac{\partial u}{\partial n}:=\nabla u\cdot n$ wobei $n$ die Normale an $u$ ist
+\end{itemize}
+
+\subsection{Durchbiegung einer Membran}
+\begin{itemize}
+\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$
+\item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional durch Flächenänderung ist. Die Flächenänderung ist
+\begin{align*}
+\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y
+\end{align*}
+\item Die Energie des Systems ist 
+\begin{align*}
+\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y-\int\limits_\Omega f\cdot u\d x\d y
+\end{align*}
+wobei $f$ eine von außen einwirkende Kraft ist
+\item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d. h. das System strebt stets einen Zustand minimaler Gesamtenergie an. Gesucht ist also eine Funktion $u$ derart, dass 
+\begin{align*}
+E(u)\leq E(v)~\forall v\in\tilde{V}\\
+\gdw E(u)\leq E(u+t\cdot v)~\forall t\in\R,~\forall v\in V
+\end{align*}
+Dabei ist $V$ ein Funktionenraum, dessen Funktionen auf dem Rand verschwinden.
+\item Setze $\varphi(v,t):=E(u+t\cdot v)$, wobei $v$ als Parameter und $t$ als Variable aufgefasst wird. Somit lautet die notwendige Bedingung an das Energieminimum
+\begin{align*}
+\frac{\d\varphi}{\d t}(v,0)=0
+\end{align*}
+\end{itemize}
+Nachrechnen:
+\begin{align*}
+\frac{\d\varphi}{\d t}(v,t)
+&=\frac{\d}{\d t}E(u+t\cdot v)\\
+&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v_y^2\right)-f(u+t\cdot v)\right)\d x\d y\\
+&=\int\limits_\Omega\left((u+t\cdot v)_x\cdot v_x+(u+t\cdot v)_y\cdot v_y-f\cdot v\right)\d x\d y
+\end{align*}
+Setze nun $t:=0$. Dann folgt aus der notwendigen Bedingung
+\begin{align*}
+0=\int\limits_\Omega\left(u_x\cdot v_x+u_y\cdot v_y-f\cdot v\right)\d x\d y
+\end{align*}
+Es entsteht die Variationsaufgabe: Finde $u(t)$ so, dass 
+\begin{align*}
+\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~~~\forall v\in V.
+\end{align*}
+
+Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man aus dem linken Integral
+\begin{align*}
+\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y
+\stackeq{?}-\int\limits_\Omega\left(u_{xx}+u_{yy}\right)\cdot v
++\int\limits_{\partial\Omega}\underbrace{u_x\cdot v\cdot n_x+u_y\cdot v\cdot n_y}_{=(\nabla u\cdot n)\cdot v=0\text{, da $v=0$ auf }\partial\Omega}\d\gamma
+\end{align*}
+Somit folgt:
+\begin{align*}
+-\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\Delta u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
+\Longrightarrow-\Delta u\equiv v\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
+\end{align*}
+
+\section{Sobolev-Räume}
+Bezeichnungen für dieses Kapitel:
+
+\begin{itemize}
+\item $d\geq1$ sei die Raumdimension
+\item $\Omega\subseteq\R^d$ sei offen und beschränkt
+\item $p\in[1,\infty)$ reelle Zahl
+\item $q\in(1,\infty]\mit\frac{1}{p}+\frac{1}{q}=1$ \textbf{konjungierter / dualer Exponent}
+\item $\alpha=(\alpha_1,\ldots,\alpha_d)\in\N_0^d$ Multiindex mit
+\begin{align*}
+|\alpha|:=\alpha_1+\ldots+\alpha_d\\
+D^\alpha\varphi:=\frac{\partial^{|\alpha|}\varphi}{\partial x_1^{\alpha_1}\hdots\partial x_d^{\alpha_d}}
+\end{align*}
+\item $L^p(\Omega):=\left\lbrace f:\Omega\to\R:f\text{ messbar und }\int\limits_\Omega |f(x)|^p\d\mathcal{L}(x)<\infty\right\rbrace$ Lebesgue-Räume
+\end{itemize}
+
+\textbf{Bemerkungen.}
+\begin{enumerate}
+\item Da $\Omega$ beschränkt ist, gilt $L^p(\Omega)\subseteq L^1(\Omega)$ und die kanonische Injektion ist stetig.
+\item Es gilt die Gauß-Formel:
+\begin{align}\label{GaussFormel}
+\int\limits_\Omega\varphi\cdot D^\alpha\psi\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot D^\alpha\varphi\d x~~~\forall \varphi,\psi\in C_0^\infty(\Omega)
+\end{align}
+\end{enumerate}
+
+\begin{definition}[schwache Ableitung]
+Seien $\varphi,\psi\in L^1(\Omega)$ und sei $\alpha\in\N_0^\alpha$ ein Multiindex. Dann heißt $\psi$ die \textbf{schwache Ableitung} von $\varphi:\gdw$
+\begin{align*}
+\forall v\in C_0^\infty(\Omega):\int\limits_\Omega\varphi\cdot D^\alpha v\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot v\d x
+\end{align*}
+Kurzschreibweise: $\psi=D^\alpha\varphi$
+\end{definition}
+
+\textbf{Bemerkungen.}
+\begin{enumerate}
+\item Die $\alpha$-te schwache Ableitung ist eindeutig bestimmt im Sinne des $L^1$ (also bis auf Lebesgue-Nullmengen).
+\item Ist $\varphi\in C^{|\alpha|}(\Omega)$, dann existiert die schwache $\alpha$-te 	Ableitung, die mit der klassischen Ableistung übereinstimmt.
+\end{enumerate}
+
+\begin{beisp}
+$d=1$, $\Omega=(-1,1)$, $\varphi(x):=|x|$\\
+Behauptung: $\varphi'(x)=\left\lbrace\begin{array}{cl}
+-1, & \falls -1<x<0\\
+1, & \falls 0\leq x<1
+\end{array}\right.$\\
+Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist egal.
+\begin{proof}
+	Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
+	\begin{align*}
+		\int_{-1}^1 \varphi v' dx &= \int_{-1}^0 \varphi v' dx + \int_{0}^1 \varphi v' dx \\
+															&\stackeq{part. Int.} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v dx + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v dx \\
+															&\stackeq{v \equiv 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v dx - \int_{0}^1 (1) v dx \\
+															&\stackeq{Def} - \int_{-1}^1 \varphi'(x)vdx
+	\end{align*}
+\end{proof}
+\end{beisp}
+
+\begin{definition}[Sobolev-Räume]
+Für $k\in\N_0$, $p\in[1,\infty)$ definieren wir den \textbf{Sobolev-Raum}
+\begin{align}
+W^{k,p}(\Omega):=\Big\lbrace\varphi\in L^p(\Omega):D^\alpha\varphi\text{ (schwache Ableitung) existiert und erfüllt }D^\alpha\varphi\in L^p(\Omega)~\forall|\alpha|\leq k\Big\rbrace
+\end{align}
+Als Norm vereinbaren wir
+\begin{align*}
+\Vert\varphi\Vert_{k,p,\Omega}:=\left(\sum\limits_{|\alpha|\leq k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
+=\left(\sum\limits_{|\alpha|\leq k}\int\limits_\Omega\left| D^\alpha\varphi(x)\right|^p\d x\right)^{\frac{1}{p}}
+\end{align*}
+Durch
+\begin{align*}
+|\varphi|_{k,p,\Omega}:=\left(\sum\limits_{|\alpha|= k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
+\end{align*}
+wird eine Halbnorm definiert.\\
+Für $p=2$ schreiben wir $H^k(\Omega):=W^{k,2}(\Omega)$.
+\end{definition}
+
+\begin{satz}[Eigenschaften der Sobolev-Räume]
+\begin{enumerate}
+\item $\left(W^{k,p}(\Omega),\Vert\cdot\Vert_{k,p,\Omega}\right)$ ist ein Banachraum.
+\item $C^\infty(\overline{\Omega})$ liegt dicht in $W^{k,p}(\Omega)$.
+\item $H^k(\Omega)$ ist ein Hilbertraum mit dem Skalarprodukt
+\begin{align*}
+\langle \varphi,\psi\rangle_k:=\sum\limits_{|\alpha|\leq k}\int\limits_\Omega D^\alpha\varphi\cdot D^\alpha\psi\d x.
+\end{align*}
+\end{enumerate}
+\end{satz}
+
