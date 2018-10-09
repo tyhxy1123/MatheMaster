@@ -10,7 +10,7 @@ In diesem Dokument werden folgende Notationen verwendet:
 \subsection{Durchbiegung einer Membran}
 \begin{itemize}
 \item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$
-\item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional durch Flächenänderung ist. Die Flächenänderung ist
+\item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist. Die Flächenänderung ist
 \begin{align*}
 \frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y
 \end{align*}
@@ -21,8 +21,8 @@ In diesem Dokument werden folgende Notationen verwendet:
 wobei $f$ eine von außen einwirkende Kraft ist
 \item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d. h. das System strebt stets einen Zustand minimaler Gesamtenergie an. Gesucht ist also eine Funktion $u$ derart, dass 
 \begin{align*}
-E(u)\leq E(v)~\forall v\in\tilde{V}\\
-\gdw E(u)\leq E(u+t\cdot v)~\forall t\in\R,~\forall v\in V
+	E(u)&\leq E(v)&\forall v\in\tilde{V}\\
+	\gdw ~ E(u)&\leq E(u+t\cdot v)\forall t\in\R,~&\forall v\in V
 \end{align*}
 Dabei ist $V$ ein Funktionenraum, dessen Funktionen auf dem Rand verschwinden.
 \item Setze $\varphi(v,t):=E(u+t\cdot v)$, wobei $v$ als Parameter und $t$ als Variable aufgefasst wird. Somit lautet die notwendige Bedingung an das Energieminimum
@@ -49,7 +49,7 @@ Es entsteht die Variationsaufgabe: Finde $u(t)$ so, dass
 Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man aus dem linken Integral
 \begin{align*}
 \int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y
-\stackeq{?}-\int\limits_\Omega\left(u_{xx}+u_{yy}\right)\cdot v
+=-\int\limits_\Omega\left(u_{xx}+u_{yy}\right)\cdot v
 +\int\limits_{\partial\Omega}\underbrace{u_x\cdot v\cdot n_x+u_y\cdot v\cdot n_y}_{=(\nabla u\cdot n)\cdot v=0\text{, da $v=0$ auf }\partial\Omega}\d\gamma
 \end{align*}
 Somit folgt:
@@ -107,10 +107,10 @@ Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist egal.
 \begin{proof}
 	Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
 	\begin{align*}
-		\int_{-1}^1 \varphi v' dx &= \int_{-1}^0 \varphi v' dx + \int_{0}^1 \varphi v' dx \\
-															&\stackeq{part. Int.} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v dx + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v dx \\
-															&\stackeq{v \equiv 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v dx - \int_{0}^1 (1) v dx \\
-															&\stackeq{Def} - \int_{-1}^1 \varphi'(x)vdx
+		\int_{-1}^1 \varphi v' \d x &= \int_{-1}^0 \varphi v' \d x + \int_{0}^1 \varphi v' \d x \\
+															&\stackeq{part. Int.} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v \d x + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v \d x \\
+															&\stackeq{v = 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
+															&\stackeq{Def} - \int_{-1}^1 \varphi'(x)v\d x
 	\end{align*}
 \end{proof}
 \end{beisp}
