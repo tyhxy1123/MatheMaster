@@ -3,13 +3,13 @@
 \section{Einleitung}
 In diesem Dokument werden folgende Notationen verwendet:
 \begin{itemize}
-\item $u_x:=\frac{\partial u(x)}{\partial x}$ für eine diffbare Funktion $u, x\mapsto u(x)$
+\item $u_x:=\frac{\partial u(x)}{\partial x}$ für die Ableitung einer diffbaren Funktion $u, x\mapsto u(x)$
 \item $\frac{\partial u}{\partial n}:=\nabla u\cdot n$ wobei $n$ die Normale an $u$ ist
 \end{itemize}
 
 \subsection{Durchbiegung einer Membran}
 \begin{itemize}
-\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$
+\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\to\R$ wobei $\Omega\subseteq\R^2$
 \item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist. Die Flächenänderung ist
 \begin{align*}
 \frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y
@@ -19,10 +19,10 @@ In diesem Dokument werden folgende Notationen verwendet:
 \frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y-\int\limits_\Omega f\cdot u\d x\d y
 \end{align*}
 wobei $f$ eine von außen einwirkende Kraft ist
-\item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d. h. das System strebt stets einen Zustand minimaler Gesamtenergie an. Gesucht ist also eine Funktion $u$ derart, dass 
+\item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d.h. das System strebt stets einen Zustand minimaler Gesamtenergie an. Gesucht ist also eine Funktion $u$ derart, dass 
 \begin{align*}
 	E(u)&\leq E(v)&\forall v\in\tilde{V}\\
-	\gdw ~ E(u)&\leq E(u+t\cdot v)\forall t\in\R,~&\forall v\in V
+	\gdw ~ E(u)&\leq E(u+t\cdot v) \quad\forall t\in\R,~&\forall v\in V
 \end{align*}
 Dabei ist $V$ ein Funktionenraum, dessen Funktionen auf dem Rand verschwinden.
 \item Setze $\varphi(v,t):=E(u+t\cdot v)$, wobei $v$ als Parameter und $t$ als Variable aufgefasst wird. Somit lautet die notwendige Bedingung an das Energieminimum
@@ -34,7 +34,7 @@ Nachrechnen:
 \begin{align*}
 \frac{\d\varphi}{\d t}(v,t)
 &=\frac{\d}{\d t}E(u+t\cdot v)\\
-&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v_y^2\right)-f(u+t\cdot v)\right)\d x\d y\\
+&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v)_y^2-f(u+t\cdot v)\right)\d x\d y\\
 &=\int\limits_\Omega\left((u+t\cdot v)_x\cdot v_x+(u+t\cdot v)_y\cdot v_y-f\cdot v\right)\d x\d y
 \end{align*}
 Setze nun $t:=0$. Dann folgt aus der notwendigen Bedingung
@@ -94,7 +94,7 @@ Kurzschreibweise: $\psi=D^\alpha\varphi$
 \textbf{Bemerkungen.}
 \begin{enumerate}
 \item Die $\alpha$-te schwache Ableitung ist eindeutig bestimmt im Sinne des $L^1$ (also bis auf Lebesgue-Nullmengen).
-\item Ist $\varphi\in C^{|\alpha|}(\Omega)$, dann existiert die schwache $\alpha$-te 	Ableitung, die mit der klassischen Ableistung übereinstimmt.
+\item Ist $\varphi\in C^{|\alpha|}(\Omega)$, dann existiert die schwache $\alpha$-te 	Ableitung, die mit der klassischen Ableitung übereinstimmt.
 \end{enumerate}
 
 \begin{beisp}
@@ -103,20 +103,20 @@ Behauptung: $\varphi'(x)=\left\lbrace\begin{array}{cl}
 -1, & \falls -1<x<0\\
 1, & \falls 0\leq x<1
 \end{array}\right.$\\
-Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist egal.
+Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist nicht relevant.
 \begin{proof}
 	Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
 	\begin{align*}
 		\int_{-1}^1 \varphi v' \d x &= \int_{-1}^0 \varphi v' \d x + \int_{0}^1 \varphi v' \d x \\
 															&\stackeq{part. Int.} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v \d x + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v \d x \\
 															&\stackeq{v = 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
-															&\stackeq{Def} - \int_{-1}^1 \varphi'(x)v\d x
+															&\stackeq{Def.} - \int_{-1}^1 \varphi'(x)v\d x
 	\end{align*}
 \end{proof}
 \end{beisp}
 
 \begin{definition}[Sobolev-Räume]
-Für $k\in\N_0$, $p\in[1,\infty)$ definieren wir den \textbf{Sobolev-Raum}
+Für $k\in\N_0$, $p\in[1,\infty)$ definieren wir den \textbf{Sobolev-Raum} wie folgt;
 \begin{align}
 W^{k,p}(\Omega):=\Big\lbrace\varphi\in L^p(\Omega):D^\alpha\varphi\text{ (schwache Ableitung) existiert und erfüllt }D^\alpha\varphi\in L^p(\Omega)~\forall|\alpha|\leq k\Big\rbrace
 \end{align}
@@ -146,7 +146,7 @@ Es gilt:
 \end{satz}
 
 \begin{satz}[Glätte von stückweise glatten Funktionen]
-Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte und disjunkte Teilmengen von $\Omega$ mit stückweise glattem Rand. Gelte $\overline{\Omega}=\overline{\Omega_1}\cup\overline{\Omega_2}$.
+Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte und disjunkte Teilmengen mit stückweise glattem Rand. Gelte $\overline{\Omega}=\overline{\Omega}_1\cup\overline{\Omega}_2$.
 Weiterhin sei $\varphi\in L^p(\Omega)$ so, dass 
 \begin{align*}
 \exists k\geq 1:\forall i\in\lbrace1,2\rbrace:\varphi|_{\Omega_i}\in C^k(\Omega_i).
@@ -162,7 +162,7 @@ Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_
 \end{definition}
 
 \begin{definition}[Lipschitz-Rand]
-$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\\\exists N\in\N,\exists U_1,\ldots,U_N\subseteq\R^d:$
+$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\\\exists N\in\N$ und es offene Mengen $U_1,\ldots,U_N\subseteq\R^d:$ gibt, sodass
 \begin{enumerate}
 \item $
 \begin{aligned}
@@ -172,7 +172,7 @@ $\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\\\exists N\in\N,\exists U_1,\l
 \begin{aligned}
 \forall i\in\lbrace1,\ldots,N\rbrace:\partial\Omega\cap U_i
 \end{aligned}$
- ist darstellbar als Graoh einer Lipschitz-stetigen Funktion
+ ist darstellbar als Graph einer Lipschitz-stetigen Funktion
 \end{enumerate}
 Das Gebiet $\Omega$ wird dann \textbf{Lipschitz-Gebiet} genannt.
 \end{definition}
@@ -185,7 +185,7 @@ Für Lipschitz-Gebiete existiert fast überall auf $\partial\Omega$ der äußere
 Seien $\Omega$ eine Lipschitz-Gebiet, $k\in\N$, $l\in\lbrace 0,\ldots,k-1\rbrace$.\\
 Dann gibt es eine stetige lineare Abbildung
 \begin{align*}
-\gamma_l:W	{k,p}(\Omega)-L^p(\partial\Omega)
+\gamma_l:W^{k,p}(\Omega)-L^p(\partial\Omega)
 \end{align*}
 mit der Eigenschaft
 \begin{align*}
@@ -215,9 +215,9 @@ W_0^{k,p}(\Omega)=\left\lbrace\varphi\in W^{k,p}(\Omega):
 \begin{definition}
 Seien $(X,\Vert\cdot\Vert_X)$ und $(Y,\Vert\cdot\Vert_Y)$ zwei normierte Vektorräume.
 \begin{enumerate}
-\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ im Raum $Y$ abgeschlossen ist.
-\item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ stetig ist.
-\item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ kompakt ist.
+\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ ist im Raum $Y$ abgeschlossen.
+\item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$, stetig ist.
+\item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$, kompakt ist.
 \end{enumerate}
 \end{definition}
 
@@ -279,8 +279,8 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 	\[\|u\|^2_{1,2,\Omega}\leq 8\pi + \frac{2\pi}{\ln(4)}< \infty\]
 	\[\implies u \in H^1(\Omega)\]
 	\begin{proof}
-	\[\|u\|^2_{1,2,\Omega} = \underbrace{\int_\Omega |u|^2 \d x \d y}_{:=\text{I}} +
-	\underbrace{\int_\Omega |u_x|^2 + |u_y|^2 \d x \d y}_{:=\text{II}}\]
+	\[\|u\|^2_{1,2,\Omega} = \underbrace{\int_\Omega |u|^2 \d x \d y}_{:=\text{ I}} +
+	\underbrace{\int_\Omega |u_x|^2 + |u_y|^2 \d x \d y}_{:=\text{ II}}\]
 	Es gilt für alle $z\geq 4$:
 	\[\ln(\ln(z))\leq \sqrt{z}\]
 	Mit der Koflächenformel erhalten wir:
