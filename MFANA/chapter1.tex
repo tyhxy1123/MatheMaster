@@ -25,4 +25,39 @@ Sei $(X,\Vert\cdot\Vert)$ ein Banachraum. Für alle $u,v\in X$ und alle $\lambda
 [u,v]_\lambda&:=\frac{\Vert u+\lambda\cdot v\Vert-\Vert u\Vert}{\lambda}\text{ und}\\
 [u,v]&:=\inf\limits_{\lambda>0}[u,v]_\lambda.
 \end{align*}
-Die A
+Die Abbildung $[\cdot,\cdot]:X\times X\to\R\cup\lbrace-\infty\rbrace$ heißt \textbf{Bracket}. Das Bracket $[u,v]$ ist eine Richtungsableitung der Norm $\Vert\cdot\Vert$ im Punkt $u$ in Richtung $v$.
+
+\begin{lemma}[Eigenschaften des Brackets]
+Seien $u,v\in X,~\mu>0$. Dann gilt:
+\begin{enumerate}
+\item $\left[\cdot,\cdot\right]\colon X\times X\to\R\cup\lbrace-\infty\rbrace$ ist \textbf{oberhalbstetig}, d.h. 
+\begin{align*}
+(u_n,v_u)_{n\in\N}\to(u,v)\text{ in }X\times X\Longrightarrow\left[u,v\right]\geq\limsup_{n\to\infty}\left[u_n,v_n\right]
+\end{align*}
+
+	\item Die Funktion $\left]0,\infty\right[\to\R$, $\lambda\mapsto\left[u,v\right]_\lambda$ ist monoton wachsend und beschränkt durch $\Vert v\Vert$.
+	\item $\left[u,v\right]=\lim_{\lambda>0}\left[u,v\right]_\lambda$.
+	\item Die Funktion $X\to\R\cup\lbrace-\infty\rbrace$, $v\mapsto\left[u,v\right]$ ist sublinear.
+	\item $\left[\mu\cdot u,v\right]=\left[u,v\right]$.
+	\item $\left[u,0\right]=0$.
+	\item $\left[0,v\right]=\Vert v\Vert$.
+	\item $\left[u,u\right]=\Vert u\Vert$.
+\end{enumerate}
+\end{lemma}
+
+\begin{definition}
+Eine Funktion $f\colon M\to\R\cup\lbrace+\infty\rbrace$ auf einem metrischen Raum $M$ heißt \textbf{unterhalbstetig} $:\gdw$
+\begin{align*}
+\forall(u_n)_{n\in\N}\subseteq M:u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M\text{ und }\forall u\in M\\
+\Longrightarrow f(u)\leq\liminf_{n\to\infty} f(u_n)
+\end{align*}
+$f$ heißt \textbf{oberhalbstetig}, falls $-f$ unterhalbstetig ist.
+\end{definition}
+
+\begin{lemma}
+Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funktion. Dann sind äquivalent: \begin{enumerate}
+	\item $f$ ist unterhalbstetig.
+	\item $\forall c\in\R\colon\lbrace f\leq c\rbrace:=\lbrace u\in M\mid f(u)\leq c\rbrace$ ist abgeschlossen.
+	\item $\lbrace(u,f)\in M\times\R\mid f(u)\leq\lambda\rbrace=:\operatorname{epi}(f)$ ist abgeschlossen.
+\end{enumerate}
+\end{lemma}
