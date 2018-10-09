@@ -129,6 +129,7 @@ Für $p=2$ schreiben wir $H^k(\Omega):=W^{k,2}(\Omega)$.
 \end{definition}
 
 \begin{satz}[Eigenschaften der Sobolev-Räume]
+Es gilt:
 \begin{enumerate}
 \item $\left(W^{k,p}(\Omega),\Vert\cdot\Vert_{k,p,\Omega}\right)$ ist ein Banachraum.
 \item $C^\infty(\overline{\Omega})$ liegt dicht in $W^{k,p}(\Omega)$.
@@ -139,3 +140,131 @@ Für $p=2$ schreiben wir $H^k(\Omega):=W^{k,2}(\Omega)$.
 \end{enumerate}
 \end{satz}
 
+\begin{satz}[Glätte von stückweise glatten Funktionen]
+Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte und disjunkte Teilmengen von $\Omega$ mit stückweise glattem Rand. Gelte $\overline{\Omega}=\overline{\Omega_1}\cup\overline{\Omega_2}$.
+Weiterhin sei $\varphi\in L^p(\Omega)$ so, dass 
+\begin{align*}
+\exists k\geq 1:\forall i\in\lbrace1,2\rbrace:\varphi|_{\Omega_i}\in C^k(\Omega_i).
+\end{align*}
+Dann gilt:
+\begin{align*}
+\varphi\in W^{k,p}(\Omega)\Longleftrightarrow\varphi\in C^{k-1}(\Omega)
+\end{align*}
+\end{satz}
+
+\begin{definition}
+Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ wird mit $W_0^{k,p}(\Omega)$ bezeichnet. Außerdem setze $H_0^k(\Omega):=W_0^{k,2}(\Omega)$.
+\end{definition}
+
+\begin{definition}[Lipschitz-Rand]
+$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\\\exists N\in\N,\exists U_1,\ldots,U_N\subseteq\R^d:$
+\begin{enumerate}
+\item $
+\begin{aligned}
+\partial\Omega\subseteq\bigcup\limits^N_{i=1} U_i
+\end{aligned}$
+\item $
+\begin{aligned}
+\forall i\in\lbrace1,\ldots,N\rbrace:\partial\Omega\cap U_i
+\end{aligned}$
+ ist darstellbar als Graoh einer Lipschitz-stetigen Funktion
+\end{enumerate}
+Das Gebiet $\Omega$ wird dann \textbf{Lipschitz-Gebiet} genannt.
+\end{definition}
+
+\begin{bemerkung}
+Für Lipschitz-Gebiete existiert fast überall auf $\partial\Omega$ der äußere Normalenvektor.
+\end{bemerkung}
+
+\begin{satz}[Spursatz]
+Seien $\Omega$ eine Lipschitz-Gebiet, $k\in\N$, $l\in\lbrace 0,\ldots,k-1\rbrace$.\\
+Dann gibt es eine stetige lineare Abbildung
+\begin{align*}
+\gamma_l:W	{k,p}(\Omega)-L^p(\partial\Omega)
+\end{align*}
+mit der Eigenschaft
+\begin{align*}
+\gamma_l(\varphi)=\frac{\partial^l}{\partial u^l}\varphi|_{\partial\Omega}\qquad\forall\varphi\in C^k(\overline{\Omega}).
+\end{align*}
+\end{satz}
+
+\begin{bemerkung}\
+\begin{itemize}
+\item $\gamma_0$ bildet die Funktion $\varphi$, die auf $\Omega$ lebt, auf ihre Randdaten ab.
+\item  $\gamma_1$ gibt die Normalenableitung zurück.
+\item Dass Bild von $W^{k,p}(\Omega)$ unter $\gamma_l$ ist ein abgeschlossener Unterraum von $L^p(\partial\Omega)$, genauer:
+\begin{align*}
+\gamma_l\left(W^{k,p}(\Omega)\right)=W^{k-l-\frac{1}{p},p}(\partial\Omega)
+\end{align*}
+\end{itemize}
+\end{bemerkung}
+
+\begin{satz}
+Sei $\Omega$ ein Lipschitz-Gebiet. Dann gilt:
+\begin{align*}
+W_0^{k,p}(\Omega)=\left\lbrace\varphi\in W^{k,p}(\Omega):
+\forall l\in\lbrace0,\ldots,k-1\rbrace:\gamma_l(\varphi)=0\right\rbrace
+\end{align*}
+\end{satz}
+
+\begin{definition}
+Seien $(X,\Vert\cdot\Vert_X)$ und $(Y,\Vert\cdot\Vert_Y)$ zwei normierte Vektorräume.
+\begin{enumerate}
+\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ im Raum $Y$ abgeschlossen ist.
+\item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ stetig ist.
+\item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ kompakt ist.
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}\
+\begin{enumerate}
+\item $X\hookrightarrow Y\Longrightarrow\exists c>0:\forall\varphi\in X:\Vert\varphi\Vert_Y\leq c\cdot\Vert\varphi\Vert_X$
+\item $X\stackrel{C}{\hookrightarrow} Y\Longrightarrow X\hookrightarrow Y$
+\item Ist $\stackrel{C}{\hookrightarrow} Y$ und $(\varphi_n)_{n\in\N}\subseteq X$ eine beschränkte Folge in $X$, so besitzt $(\varphi_n)_{n\in\N}\subseteq Y$ eine konvergente Teilfolge.
+\end{enumerate}
+\end{bemerkung}
+
+\begin{satz}[Einbettung]\
+\begin{enumerate}
+\item Sei $p<d$. Dann gilt:
+\begin{align*}
+W^{k,p}(\Omega)\hookrightarrow W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\frac{p\cdot d}{d-p}\right]\\
+W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\frac{p\cdot d}{d-p}\right)
+\end{align*}
+\item Sei $p=d$. Dann gilt:
+\begin{align*}
+W^{k,p}(\Omega)\hookrightarrow W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\infty\right)
+\end{align*}
+\item Sei $k>\frac{d}{p}$. Dann gilt:
+\begin{align*}
+W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} C^l(\overline{\Omega})\qquad\forall 0\leq l\leq k-\frac{d}{p}
+\end{align*}
+\end{enumerate}
+\end{satz}
+
+\begin{bemerkung}\
+\begin{itemize}
+\item Es gilt stets
+\begin{align*}
+W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)
+\end{align*}
+\item Falls $p=2$, $d\in\lbrace2,3\rbrace$: 
+\begin{align*}
+H^2(\Omega\hookrightarrow C(\overline{\Omega})
+\end{align*}
+Für $H^(\Omega)$-Funktionen sind Punkte weiter nicht sinnvoll.
+\item Falls $p=2,~d=2$: 
+\begin{align*}
+H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
+\end{align*}
+\item Falls $p=2,~d=3$: 
+\begin{align*}
+&H^1(\Omega)\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,6)\\
+&H^1(\Omega)\stackrel{C}{\hookrightarrow} L^6(\Omega)
+\end{align*}
+\end{itemize}
+\end{bemerkung}
+
+\begin{beispiel}
+RobertToDo
+\end{beispiel}
