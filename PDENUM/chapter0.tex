@@ -266,5 +266,39 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 \end{bemerkung}
 
 \begin{beispiel}
-RobertToDo
+	Für $d=2$ gibt es $H^1(\Omega)$-Funktionen, die nicht stetig sind:
+	\enter\enter
+	Sei $\Omega=$ Einheitskreis, $u(x,y):=\ln\left(\ln\left(\frac{4}{\sqrt{x^2+y^2}}\right)\right)$ \enter
+	u hat einen Pol im Ursprung, d.h. $u\not\in C(\overline{\Omega})$, aber:\enter
+	\underline{Behauptung:} 
+	\[\|u\|^2_{1,2,\Omega}\leq 8\pi + \frac{2\pi}{\ln(4)}< \infty\]
+	\[\implies u \in H^1(\Omega)\]
+	\begin{proof}
+	\[\|u\|^2_{1,2,\Omega} = \underbrace{\int_\Omega |u|^2 \d x \d y}_{:=\text{I}} +
+	\underbrace{\int_\Omega |u_x|^2 + |u_y|^2 \d x \d y}_{:=\text{II}}\]
+	Es gilt für alle $z\geq 4$:
+	\[\ln(\ln(z))\leq \sqrt{z}\]
+	Mit der Koflächenformel erhalten wir:
+	\begin{align*}
+		\text{I} &= \int_\Omega |u|^2 \d x \d y \\
+			&\leq \int_\Omega \left(\frac{4}{\sqrt{x^2 + y^2}}\right)^2 \d x \d y \\
+			&\stackeq{Koflä.} \int_0^{2\pi}\int_0^1\left(\frac{4}{r}\right)^2 r \d r \d \varphi \\
+			&= 8 \pi
+	\end{align*}
+	Als nächstes betrachten wir II. Dafür schauen wir uns zunächst die partiellen Ableitungen von $u$ an:
+	\begin{align*}
+		u_x &= \frac{1}{\ln\left(\frac{4}{r}\right)}\frac{r}{4}\left(-\frac{4}{r^2}\right)\frac{x}{r} = - \frac{x}{r^2\ln\left(\frac{4}{r}\right)} \\
+		u_y &= - \frac{y}{r^2\ln\left(\frac{4}{r}\right)} \\
+		\implies u_x^2 + u_y^2 &= \frac{x^2+y^2}{\left(r^2\ln\left(\frac{4}{r}\right)\right)^2} \\
+		&= \frac{r^2}{\left(r^2\ln\left(\frac{4}{r}\right)\right)^2} \\
+		&= \frac{1}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \\
+	\end{align*}
+	Also schlussendlich:
+	\begin{align*}
+		\text{II} ~~ &\stackeq{vgl. I} \int_0^{2\pi}\int_0^1\frac{r}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \d \varphi \\
+			 &= 2\pi \int_0^1 \frac{1}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \\
+			 &=\left[2\pi\left(\frac{1}{\ln\left(\frac{4}{r}\right)}\right)\right]_{r=0}^1 \\
+			 &= \frac{2\pi}{\ln(4)}
+	\end{align*}
+\end{proof}
 \end{beispiel}
