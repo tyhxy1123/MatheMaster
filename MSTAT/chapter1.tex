@@ -1,5 +1,93 @@
 \chapter{Einführung}
-\section{Gewöhnliche Differentialgleichungen}
-Gewöhnliche Differentialgleichungen (GDGL) bzw. ordinary differential
-equations (ODE) suchen Funktionen $x : [t_0, t_1] \to \real^d$, die die
-Bedingung 
+Viele Schätzer in der Statistik sind definiert als Minimal- oder Maximalstelle von bestimmten \textit{Kriteriumsfunktionen}, z. B. der \textit{Maximum-Likelihood-Schätzer (MLS)} oder \textit{Minimum-Qudrat-Schätzer (MQS, KQS)} oder \textit{Bayes-Schätzer}. Allgemein nennt man solche Schätzer \textbf{M-Schätzer}.\\
+Ziel: Untersuchung des asymptotischen Verhaltens ($n\to\infty$) von M-Schätzern über einen \textit{funktionalen Ansatz}. Als Beispiel:
+
+\section{Der Median}
+Sei $X:(\Omega,\A,\P)\to\R$ eine reelle Zufallsvariable mit Verteilungsfunktion $F_X$, also $X\sim F$. Definiere
+
+\begin{align*}
+Y_F(t)&:=\E\left(|X-t|\right)\\
+&=\int\limits_\Omega |X(\omega)-t|\d\P(\omega)\\
+&\stackeq{Trafo}\int\limits_\R|x-t|\cdot\P\circ X^{-1}\d x\\
+&=\int\limits_\R|x-t|\cdot F\d x
+\qquad\forall t\in\R\\
+m&:=\arg\min\limits_{t\in\R}Y(t):=\text{ (irgendeine) Minimalstelle der Funktion}
+\end{align*} 
+
+Charakterisierung der Menge aller Mediane in folgendem kleinen Lemma:
+
+\begin{notation}
+$F(m-):=F(m-0):=\lim\limits_{t\uparrow m} F(t)$
+\end{notation}
+
+\begin{lemma}\label{lemmaMedian}
+Sei $X\sim F_X$ integrierbar und $m\in\R$. Dann äquivalent:
+\begin{enumerate}
+\item $F(m-)\leq\frac{1}{2}\leq F(m)$
+\item $\E[|X-t|]\geq\E[|X-m|]\qquad\forall t\in\R$
+\item $m$ ist Median
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\underline{Zeige 1. $\Rightarrow$ 2.:}\\
+Setze $h(t):=\E[|X-t|-|X-m|]\stackeq{Lin}Y(t)-Y(m)$. Dann ist 2. äquivalent zu $h(t)\geq0~\forall t\in\R$. Dies ist noch zu zeigen.\\
+
+\underline{Fall 1: $t<m$}
+\begin{align*}
+h(t)&\stackeq{Trafo}\int\limits_{\R}|x-t|-|x-m| Q_F(\d x)\\
+&=\int\limits_{(-\infty,t]}\underbrace{|x-t|-|x-m|}_{=t-x-(m-x)=-(m-t)} F(\d x)
++\int\limits_{(t,m)}\underbrace{\underbrace{|x-t|-|x-m|}_{\underbrace{x-t}_{\geq0}-\underbrace{(m-x)}_{\leq m-t}}}_{\geq-(m-t)} F(\d x)
++\int\limits_{[m,\infty)}\underbrace{|x-t|-|x-m|}_{x-t-(x-m)=m-t} F(\d x)\\
+&\geq-(m-t)\cdot \underbrace{Q((-\infty,t])}_{F(t)}+
+\Big(-(m-t)\cdot F(m-)-F(t)\Big)
++(m-t)\cdot\underbrace{Q([m,\infty))}_{1-\underbrace{Q((-m,m)}_{F(m-)}}\\
+&=-\underbrace{(m-t)}_{\geq0}\cdot(\underbrace{1-2\cdot F(m-)}_{\stackrel{1.}{\geq}0})\\
+&\geq0
+\end{align*}
+
+\underline{Fall 2: $t> m$}
+\begin{align*}
+h(t)&=\int\limits_{(-\infty,m]}\ldots F(\d x)+\int\limits_{(m,t]}\ldots+\int\limits_{(t,\infty)}\ldots F(\d x)\\
+&\ldots\\
+&\geq(t-m)\cdot(\underbrace{2\cdot F(m)-1}_{\stackrel{1.}{\geq}0})\\
+&\geq0
+\end{align*}
+
+\underline{Fall 3: $t=m$} ist trivial. $\#$
+
+\underline{Zeige 2. $\Rightarrow$ 1:}\\
+Nach Annahme ist $h(t)\geq0~\forall t\in\R$.\\
+
+\underline{Fall 1: $t<m$} Die obige Rechnung im Fall 1 bei 1. $\Rightarrow$ 2. zeigt:
+\begin{align*}
+0\leq h(t)&=-(m-t)\cdot F(t)+\int\limits_{(t,m)}\underbrace{\underbrace{x}_{<m}-t-(m-x) }_{=2x-t-m\leq m-t}F(\d x)+(m-t)\cdot(1-F(m-))\\
+&\leq-(m-t)\cdot\Big(F(t)-1\underbrace{+F(m-)-F(m-)}_{=0}+F(t)\Big)\\
+&=\underbrace{(m-t)}_{>0}\cdot(1-2\cdot F(t))\\
+&\Longrightarrow\forall t<m:0\leq(m-t)\cdot(1-2\cdot F(t))\\
+&\Longrightarrow\forall t<m:0\leq 1-2\cdot F(t)\\
+&\Longrightarrow\forall t<m:F(t)\leq\frac{1}{2}\\
+&\stackrel{t\uparrow m}{\Longrightarrow}F(m-)\leq\frac{1}{2}
+\end{align*}
+\underline{Fall 2: $t> m$} Siehe 2. Fall, analog.
+\end{proof}
+
+\begin{bemerkung} TODO Nr 1.2\\
+\begin{enumerate}
+\item Lemma \ref{lemmaMedian} 1. besagt, dass $\lbrace m\in\R: m\text{ erfüllt } 1.\rbrace$ = Menge aller Mediane von $F$.
+\item Im Allgemeinen gibt es mehrere Mediane. Üblicherweise \underline{wählt} man $m:=F^{-1}(\frac{1}{2})$, wobei
+\begin{align*}
+F^{-1}(u):=\inf\left\lbrace x\in\R:F(x)\geq u\right\rbrace\quad\forall u\in (0,1)
+\end{align*}
+die \textbf{Quantilfuntion / die verallgemeinerte Inverse} ist. Da
+\begin{align*}
+F\left(F^{-1}(u)-\right)\leq u\leq F\left(F^{-1}(u)\right)\qquad\forall u\in (0,1),
+\end{align*}
+erfüllt $m=F^{-1}\left(\frac{1}{2}\right)$ die Bedingung 1. in Lemma \ref{lemmaMedian} und ist somit ein Median, nämlich der kleinste.
+\item Die Funktion 
+\begin{align*}
+Y:\R\to\R,\qquad Y(t)=\int\limits|x-t|~F(\d x)\qquad\forall t\in\R
+\end{align*}
+TODO die obige; ist stetig (nutze Folgenkriterium + dominierte Konvergenz bzw. Satz von Lebesgue), aber im Allgemeinen nicht differenzierbar, z. B. falls $F\sim X$ eine diskrete Zufallsvariable ist. In diesem Fall ist somit die Minimierungüber Differentiation nicht möglich!
+\end{enumerate}
+\end{bemerkung}
