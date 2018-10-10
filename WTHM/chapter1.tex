@@ -1,5 +1,100 @@
-\chapter{Einführung}
-\section{Gewöhnliche Differentialgleichungen}
-Gewöhnliche Differentialgleichungen (GDGL) bzw. ordinary differential
-equations (ODE) suchen Funktionen $x : [t_0, t_1] \to \real^d$, die die
-Bedingung 
+\chapter{Bedingter Erwartungswert}
+\section{Bedingtet Erwartungswert als $L_2$-Projektion}
+Betrachte den Wahrscheinlichkeitsraum $(\Omega,\A,\P)$.\\
+Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-Norm
+\begin{align*}
+\Vert X\Vert_p:=\E\left[|X|^p\right]=\left(\int\limits_\Omega|X(\omega)|^p\d\P(\omega)\right)^{\frac{1}{p}}
+\end{align*}
+und die Räume
+\begin{align*}
+\mathcal{L}_p(\Omega,\A,\P):=\Big\lbrace X:\Omega\to\R\Big|X\text{ ist $\A$-messbar und }\Vert X\Vert_p<\infty\Big\rbrace
+\end{align*}.
+Aufgrund der Minkowski-Ungleichung
+\begin{align*}
+\Vert X+Y\Vert_p\leq\Vert X\Vert_p+\Vert Y\Vert_p
+\end{align*}
+und der Homogenität
+\begin{align*}
+\Vert c\cdot X\Vert_p=c\cdot\Vert X\Vert_p\qquad\forall c\geq0
+\end{align*}
+ist 
+\begin{align*}
+\mathcal{L}_p(\Omega,\A,\P)
+\end{align*}
+Vektorraum mit Halbnorm $\Vert\cdot\Vert_p$. Es fehlt die Definitheit.\\
+Wir identifizieren Zufallsvariablen $X,\tilde{X}$, welche $\P$-fast sicher übereinstimmen, d. h. $\P[X\neq\tilde{X}]=0$. Formal betrachten wir den Unterraum
+\begin{align*}
+\mathcal{N}:=\lbrace N:\Omega\to\R:N=0\text{ $\P$-fast sicher}\rbrace
+\end{align*}
+und bilden den Quotientenraum
+\begin{align*}
+L_p(\Omega,\A,\P):=\mathcal{L}_p(\Omega,\A,\P)/\mathcal{N}=\left\lbrace[X+\mathcal{N}]:X\in\mathcal{L}_p(\Omega,\A,\P)\right\rbrace.
+\end{align*}
+Wir schreiben auch kurz $L_p(\A)$ oder $L_p(\P)$, wenn wir Abhängigkeit von $\A$ oder $\P$ betonen wollen.\\
+Aus der Maßtheorie ist bekannt:
+
+\begin{theorem}
+Sei $p\in[1,\infty)$. Dann ist $L_p(\Omega,\A,\P)$ mit Norm $\Vert\cdot\Vert_p$ ein Banachraum.\\
+Für $p=2$ ist $L_2(\Omega,\A,\P)$ ein Hilbertraum mit Skalarprodukt
+\begin{align*}
+\langle X,Y\rangle:=\E[X\cdot Y]=\int\limits_\Omega X(\omega)\cdot Y(\omega)\d\P(\omega)
+\end{align*}
+\end{theorem}
+
+\begin{bemerkung}
+Zwei Zufallsvariablen $X,Y\in L_2$ heißen \textbf{orthogonal} $:\gdw\langle X,Y\rangle=0$.
+\end{bemerkung}
+
+\begin{proposition}
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$ und $p\in[1,\infty)$.\\
+Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Omega,\A,\P)$.
+
+\end{proposition}
+
+\begin{proof}
+RobertToDo
+\end{proof}
+
+\begin{defi}[Bedingte Erwartung in $L_2$]\enter
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\\
+Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$. Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben $\E[X~|~\mathcal{F}]:=Y$.\\
+Die bedingte Erwartung ist also eine Zufallsgröße und nur bis auf $\P$-Nullmengen eindeutig bestimmt.
+\end{defi}
+
+\begin{bemerkung}
+Als Orthogonalprojektion gilt
+\begin{align*}
+\Vert X-\E[X~|~\mathcal{F}]\Vert_2=\inf\left\lbrace\Vert X-Y\Vert_2:Y\in L_2(\Omega,\mathcal{F},\P)\right\rbrace.
+\end{align*}
+Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zufallsvariablen\\ $Y\in L_2(\Omega,\mathcal{F},\P)$.
+\end{bemerkung}
+
+\begin{proposition}
+$Y$ ist die Orthogonalprojektion von $X$ auf $L_2(\Omega,\mathcal{F},\P)\\\Longleftrightarrow\forall F\in\mathcal{F}\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
+\end{proposition}
+\begin{proof}
+RobertToDo
+\end{proof}
+
+\begin{proposition}[Eigenschaften der bedingten Erwartung]\
+Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. Dann gilt:
+\begin{enumerate}
+\item $X\in L_2(\mathcal{F})\Longrightarrow\E[X~|~\mathcal{F}]=X$
+\item $\E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot\E[X~|~\mathcal{F}]+b\cdot\E[Y~|~\mathcal{F}]~\forall a,b\in\R$ ``Linearität''
+\item $\langle\E[X~|~\mathcal{F}],Y\rangle
+=\langle X,\E[Y~|~\mathcal{F}]\rangle
+=\langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle$ ``Symmetrie''
+\item Für jede Unter-$\sigma$-Algebra $\mathcal{H}\subseteq\mathcal{F}$ von $\mathcal{F}$ gilt die \textbf{Turmregel / tower law}:
+\begin{align}\label{Turmregel}
+\E\big[\E[X~|~\mathcal{F}]~\big|~\mathcal{H}\big]=\E[X~|~\mathcal{H}]
+\end{align}
+\item $\E[Z\cdot X~|~\mathcal{F}]=Z\cdot\E[X~|~\mathcal{F}]\qquad\forall Z$ beschränkt und $\mathcal{F}$-messbar ``Pull-out-property''
+\item $X\leq Y\Longrightarrow\E[X~|~\mathcal{F}]\leq\E[Y~|~\mathcal{F}]$ ``Monotonie''
+\item $\big|\E[X~|~\mathcal{F}]\big|\leq\E\big[|X|~\big|~\mathcal{F}\big]$ ``Dreiecksungleichung''
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Nächste Vorlesung
+\end{proof}
+
