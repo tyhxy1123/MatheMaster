@@ -48,8 +48,10 @@ Seien $u,v\in X,~\mu>0$. Dann gilt:
 \begin{definition}
 Eine Funktion $f\colon M\to\R\cup\lbrace+\infty\rbrace$ auf einem metrischen Raum $M$ heißt \textbf{unterhalbstetig} $:\gdw$
 \begin{align*}
-\forall(u_n)_{n\in\N}\subseteq M:u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M\text{ und }\forall u\in M\\
-\Longrightarrow f(u)\leq\liminf_{n\to\infty} f(u_n)
+\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M:
+u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M
+\Longrightarrow
+f(u)\leq\liminf_{n\to\infty} f(u_n)
 \end{align*}
 $f$ heißt \textbf{oberhalbstetig}, falls $-f$ unterhalbstetig ist.
 \end{definition}
@@ -58,6 +60,6 @@ $f$ heißt \textbf{oberhalbstetig}, falls $-f$ unterhalbstetig ist.
 Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funktion. Dann sind äquivalent: \begin{enumerate}
 	\item $f$ ist unterhalbstetig.
 	\item $\forall c\in\R\colon\lbrace f\leq c\rbrace:=\lbrace u\in M\mid f(u)\leq c\rbrace$ ist abgeschlossen.
-	\item $\lbrace(u,f)\in M\times\R\mid f(u)\leq\lambda\rbrace=:\operatorname{epi}(f)$ ist abgeschlossen.
+	\item $\lbrace(u,\lambda)\in M\times\R\mid f(u)\leq\lambda\rbrace=:\operatorname{epi}(f)$ ist abgeschlossen.
 \end{enumerate}
 \end{lemma}
