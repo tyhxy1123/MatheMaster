@@ -1,0 +1,13 @@
+% Commands für WTHM
+\newcommand{\F}{\mathcal{F}}				% Standard-Unter-Sigma-Algebra / Filtration
+
+% independent symbol from:
+% https://tex.stackexchange.com/questions/79434/double-perpendicular-symbol-for-independence
+\newcommand{\unab}{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\newcommand{\BedE}[2]{\E\left[{#1}~|~{#2}]} % Bedingte Erwartung
+
+
+
+
