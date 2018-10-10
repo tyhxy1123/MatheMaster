@@ -9,7 +9,7 @@ In diesem Dokument werden folgende Notationen verwendet:
 
 \subsection{Durchbiegung einer Membran}
 \begin{itemize}
-\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\to\R$ wobei $\Omega\subseteq\R^2$
+\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$.
 \item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist. Die Flächenänderung ist
 \begin{align*}
 \frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y
@@ -22,7 +22,7 @@ wobei $f$ eine von außen einwirkende Kraft ist
 \item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d.h. das System strebt stets einen Zustand minimaler Gesamtenergie an. Gesucht ist also eine Funktion $u$ derart, dass 
 \begin{align*}
 	E(u)&\leq E(v)&\forall v\in\tilde{V}\\
-	\gdw ~ E(u)&\leq E(u+t\cdot v) \quad\forall t\in\R,~&\forall v\in V
+	\gdw ~ E(u)&\leq E(u+t\cdot v)\forall t\in\R,~&\forall v\in V
 \end{align*}
 Dabei ist $V$ ein Funktionenraum, dessen Funktionen auf dem Rand verschwinden.
 \item Setze $\varphi(v,t):=E(u+t\cdot v)$, wobei $v$ als Parameter und $t$ als Variable aufgefasst wird. Somit lautet die notwendige Bedingung an das Energieminimum
@@ -34,7 +34,7 @@ Nachrechnen:
 \begin{align*}
 \frac{\d\varphi}{\d t}(v,t)
 &=\frac{\d}{\d t}E(u+t\cdot v)\\
-&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v)_y^2-f(u+t\cdot v)\right)\d x\d y\\
+&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v)_y^2\right)-f(u+t\cdot v)\right)\d x\d y\\
 &=\int\limits_\Omega\left((u+t\cdot v)_x\cdot v_x+(u+t\cdot v)_y\cdot v_y-f\cdot v\right)\d x\d y
 \end{align*}
 Setze nun $t:=0$. Dann folgt aus der notwendigen Bedingung
@@ -110,7 +110,7 @@ Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist nicht rel
 		\int_{-1}^1 \varphi v' \d x &= \int_{-1}^0 \varphi v' \d x + \int_{0}^1 \varphi v' \d x \\
 															&\stackeq{part. Int.} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v \d x + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v \d x \\
 															&\stackeq{v = 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
-															&\stackeq{Def.} - \int_{-1}^1 \varphi'(x)v\d x
+															&\stackeq{Def} - \int_{-1}^1 \varphi'(x)v\d x
 	\end{align*}
 \end{proof}
 \end{beisp}
@@ -145,8 +145,9 @@ Es gilt:
 \end{enumerate}
 \end{satz}
 
-\begin{satz}[Glätte von stückweise glatten Funktionen]
-Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte und disjunkte Teilmengen mit stückweise glattem Rand. Gelte $\overline{\Omega}=\overline{\Omega}_1\cup\overline{\Omega}_2$.
+\begin{satz}[Glätte von stückweise glatten Funktionen]\enter
+Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte und disjunkte Teilmengen mit stückweise glattem Rand. Gelte
+$\overline{\Omega}=\overline{\Omega_1}\cup\overline{\Omega_2}$.
 Weiterhin sei $\varphi\in L^p(\Omega)$ so, dass 
 \begin{align*}
 \exists k\geq 1:\forall i\in\lbrace1,2\rbrace:\varphi|_{\Omega_i}\in C^k(\Omega_i).
@@ -162,7 +163,7 @@ Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_
 \end{definition}
 
 \begin{definition}[Lipschitz-Rand]
-$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\\\exists N\in\N$ und es offene Mengen $U_1,\ldots,U_N\subseteq\R^d:$ gibt, sodass
+$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\\\exists N\in\N,\exists U_1,\ldots,U_N\subseteq\R^d$ offen, sodass
 \begin{enumerate}
 \item $
 \begin{aligned}
@@ -215,9 +216,9 @@ W_0^{k,p}(\Omega)=\left\lbrace\varphi\in W^{k,p}(\Omega):
 \begin{definition}
 Seien $(X,\Vert\cdot\Vert_X)$ und $(Y,\Vert\cdot\Vert_Y)$ zwei normierte Vektorräume.
 \begin{enumerate}
-\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ ist im Raum $Y$ abgeschlossen.
-\item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$, stetig ist.
-\item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$, kompakt ist.
+\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ im Raum $Y$ abgeschlossen ist.
+\item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ stetig ist.
+\item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ kompakt ist.
 \end{enumerate}
 \end{definition}
 
