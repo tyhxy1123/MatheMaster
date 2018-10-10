@@ -1,0 +1,207 @@
+\chapter{Lie algebras}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\liebracket}{[\cdot,\cdot]}
+\newcommand{\End}{\textrm{End}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\GL}{\textrm{GL}}
+\begin{definition}
+    A \textbf{Lie algebra} over a field $\F$ 
+    is a vector space $L$ together with a bilinear binary operator 
+    $$ \liebracket : L \times L \to L $$ satisfying for all $x,y,z \in L$:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $[x,x] = 0$ "' skew symmetry "'\label{item:skew}
+        \item $[[x,y],z] + [[y,z],x] + [[z,x],y] = 0$ "'jacobi identity"'.
+    \end{enumerate}
+
+    The binary operator $\liebracket$ is called \textbf{Lie bracket} or \textbf{commutator}.
+\end{definition}
+
+\begin{remark}
+    Note that with property \labelcref{item:skew} and the bilinearity we get
+    \begin{align*}
+        [(x+y),(x+y)] = [x,x] + [x,y] + [y,x] + [y,y] = 0 \\
+        \implies [x,y] = -[y,x].
+    \end{align*}
+    Conversely, if $\liebracket$ is bilinear and $[x,y] = -[y,x]$, we get
+    \begin{align*}
+        \implies 2 [x,x] = 0\\
+        \implies [x,x] = 0,
+    \end{align*}
+    unless $\textrm{char } \F = 2$.
+\end{remark}
+
+\begin{notation}
+    If we just write $\F$ we mean an algebraically closed field with $\Q \subseteq \F$.
+    Or equivalently, $\F$ is algebraically closed and has characteristic $0$.
+\end{notation}
+
+\begin{example}
+    Let $A$ be any associative algebra over $\F$, e.g. $A = \textrm{End}(V)$, 
+    where $V$ is a vector field over $\F$.
+
+    Let $L = A$ as a vector space and $[X,Y] = XY -YX$ the "'commutator"', 
+    then $(L, \liebracket)$ form a Lie algebra.
+\end{example}
+\begin{proof} We skip the jacobi identity, as it would lead to 12 different terms, which had to cancel out.
+    \begin{itemize}
+        \item \underline{bilinearity}:
+        \begin{align*}
+            [X + Y, Z] &= (X + Y)Z - Z(X + Y) \\
+                       &= XZ + YZ - ZX - ZY \\
+                       &= [X,Z] + [Y,Z] \\
+            [\lambda X, Y] &= \lambda XY - Y\lambda X \\
+                           &= \lambda (XY -YX) \\
+                           &= \lambda [X,Y]
+        \end{align*}
+
+        \item \underline{skew symmetry}:
+        $$ [X,X] = XX - XX = 0 $$
+    \end{itemize}
+\end{proof}
+
+\begin{definition}
+    If we consider $\textrm{End}(V)$ as Lie algebra in this way, we write $\gl (V)$, and call it
+    "'general linear algebra"'.
+\end{definition}
+
+\begin{remark}
+    We stick to finite dimensional vector spaces.\\
+    If we pick a basis of $V$, this induces an isomorphism of associative algebras
+    $$ \textrm{End}(V) \cong M_d(\F), $$ where $d := \dim V$, 
+    hence
+    $$ \dim \textrm{End}(V) = d^2. $$
+\end{remark}
+
+\begin{definition}
+    Any Lie subalgebra $L \subseteq \gl(V)$ is called \textbf{linear}, i.e.
+    if it is closed under the Lie bracket. 
+\end{definition}
+
+\begin{remark}
+    Write $e_{ij}$ for the matrix with only zeros, but one $1$ on the $i$-th row and the $j$-th column.
+    These form a basis for $\gl(d,\F)$.
+
+    Consider
+    $$e_{ij} e_{kl} = \delta_{jk}e_{il}, $$ 
+    hence
+    $$[e_{ij}, e_{kl}] = \delta_{jk}e_{il} - \delta_{li} e_{kj}.$$
+    Note the coeffitients in front of each $e_{rs}$ are 1,0 or  $-1$.
+\end{remark}
+
+\begin{example}
+    The "'classical algebras"' are for $l \in \N$:
+    $$A_l, B_l, C_l, D_l. $$
+
+    \begin{itemize}[label=]
+        \renewcommand{\sl}{\mathfrak{sl}}
+        \newcommand{\tr}{\textrm{tr}}
+        \item \underline{"special linear algebra" $A_l$}:
+        Let $\dim V = l+1$. $A_l$ is the set of all linear maps on $V$ with trace 0
+        $$ A_l := \sl(V) := \sl(l+1, \F) := \{f \in \textrm{End}(V) \| \tr(f) = 0\}.$$
+
+        Note the trace is defined as follows:
+        $$ \tr : \begin{cases}
+            \End(V) \to \F \\
+            (a_{ij}) \mapsto \sum\limits_{i=1}^{l+1} a_{ii}             
+        \end{cases}. $$
+        Note also that this does not depend on the chosen basis, 
+        as one may show that for all $g \in \GL(V)$:
+        $$ \tr(gag^{-1}) = \tr(a). $$
+
+        If now $a,b \in \sl$ we get
+        \begin{align*}
+            \tr(ab) = \tr(ba) \implies \tr [a,b] = \tr (ab - ba) = \tr(ab) - \tr(ba) = 0. 
+        \end{align*}
+        So $\sl(V)$ is linear subalgebra.
+        We can pick the following basis for $\sl(V)$
+        $$\begin{cases}
+            e_{ij}, & i \ne j \\
+            e_{ii} - e_{(i+1) (i+1)}, & i=1,...,l. 
+        \end{cases}$$
+        Hence
+        \begin{align*}
+            \dim \sl(l+1, \F) &= (l+1)^2 - (l+1) + l\\ 
+                              &= l^2 +2l +1 -l -1 + l\\
+                              &= l^2 +2l
+        \end{align*}
+        Note the $\dim \gl(l+1,\F) = l^2 + 2l +1 = (l+1)^2 $.
+
+        \item \underline{"symplectic algebra" $C_l$}:
+        \renewcommand{\sp}{\mathfrak{sp}} 
+        Note a bilinear form $B$ is called \textbf{nondegenerate}, if 
+        \begin{enumerate}
+            \item $\forall x: B(x,y) = 0 \implies y = 0$ and
+            \item $\forall y: B(x,y) = 0 \implies x = 0$.
+        \end{enumerate}
+
+        First we define a nondegenerate bilinear skew symmetric form 
+        $$ f: V \times V \to \F,$$
+        corresponding to the matrix
+        $$ S := \begin{pmatrix}
+            0 & E \\
+            -E & 0
+        \end{pmatrix}$$, that means for all $v,w \in V$
+        $$ f(v,w) := v^TSw.$$
+        (One can show that the dimension of $V$ has to be even in order to find 
+        such an $f$.)
+        Such an $f$ satisfies $$f(v,w) = -f(w,v)$$ for all $v,w \in V$.
+        
+        Define
+        \begin{align*}
+            C_l &:= \sp(V) := \sp(2l, \F) \\
+                &:= \{x \in \End(V) \| \forall v,w \in V: f(x(v),w) = f(v, x(w))\}, 
+        \end{align*}
+        where $\dim V = 2l$.
+
+        The following equivalences hold:
+        \begin{align*}
+            x = \begin{pmatrix}
+                m & n \\
+                p & q
+            \end{pmatrix} \in \sp(V) &\iff n^T = n, p^T = p, m^T=-q \\
+                                     &\iff Sx = -x^TS.
+        \end{align*}
+        Hence for a basis we can choose:
+        \begin{align*}
+            \begin{cases}
+                e_{ii} - e_{(l+i)(l+i)}, & \text{if } i=1,...,l\\
+                e_{ij} - e_{(j+l)(i+l)}, & \text{if } 1 \leq i\ne j \leq l\\
+                e_{i (l+j)} + e_{j (l+i)}, & \text{if } 1 \leq i < j \leq l \\
+                e_{(l+i) j} + e_{(l+j) i}, & \text{if } 1 \leq i < j \leq l \\
+                e_{i(l+1)}, & \text{if } i=1,...,l \\
+                e_{(l+1)i}, & \text{if } i=1,...,l.
+            \end{cases}
+        \end{align*}
+            This leads to $$\dim \sp(2l, \F) = 2l^2 +l.$$
+
+        \item \underline{"orthogonal algebras"} $B_l,D_l$:
+        \renewcommand{\o}{\mathfrak{o}}
+        Let $f$ be a nondegenerate \underline{symmetric} form corresponding to
+        $$ S := \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 0 & E_l \\
+            1 & E_l & 0
+        \end{pmatrix}.$$
+        We define
+        $$B_l := \o(2l+1, \F) := \{x \in \End(V) \| \forall v,w \in V: f(x(v),w) = f(v, x(w))\}.$$
+        
+        For $D_l$ let $f$ be a nondegenerate \underline{symmetric} form corresponding to
+        $$ S := \begin{pmatrix}
+            0 & E_l \\
+            E_l & 0
+        \end{pmatrix}.$$
+        We define
+        $$D_l := \o(2l, \F) := \{x \in \End(V) \| \forall v,w \in V: f(x(v),w) = f(v, x(w))\}.$$
+        
+        Other Examples of linear Lie algebras we will use are:
+        \begin{itemize}
+            \item $\mathfrak{t}(d,\F)$ upper triangualar matrices
+            \item $\mathfrak{n}(d,\F)$ strictly upper triangualar matrices, i.e. 0 on diagonal
+            \item $\mathfrak{d}(d,\F) \subseteq \mathfrak{t}(d,\F)$ diagonal matrices, here we have $\liebracket = 0$.
+        \end{itemize}
+        Note $ \mathfrak{n}(d, \F) = [L,L]$, where $L:= \mathfrak{t}(d,\F)$.
+        Warning for $H,K \subseteq L$ sub spaces we define
+        $$ [H,K] := \text{span} \{[x,y] \| x\in H,y \in K\}. $$
+    \end{itemize}
+\end{example}
