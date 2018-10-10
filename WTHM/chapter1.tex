@@ -11,20 +11,24 @@ und die Räume
 \end{align*}.
 Aufgrund der Minkowski-Ungleichung
 \begin{align*}
-\Vert X+Y\Vert_p\leq\Vert_p+\Vert Y\Vert_p
+\Vert X+Y\Vert_p\leq\Vert X\Vert_p+\Vert Y\Vert_p
 \end{align*}
 und der Homogenität
 \begin{align*}
 \Vert c\cdot X\Vert_p=c\cdot\Vert X\Vert_p\qquad\forall c\geq0
 \end{align*}
-ist $\mathcal{L}_p(\Omega,\A,\P)$ Vektorraum mit Halbnorm $\Vert\cdot\Vert_p$. Es fehlt die Definitheit.\\
+ist 
+\begin{align*}
+\mathcal{L}_p(\Omega,\A,\P)
+\end{align*}
+Vektorraum mit Halbnorm $\Vert\cdot\Vert_p$. Es fehlt die Definitheit.\\
 Wir identifizieren Zufallsvariablen $X,\tilde{X}$, welche $\P$-fast sicher übereinstimmen, d. h. $\P[X\neq\tilde{X}]=0$. Formal betrachten wir den Unterraum
 \begin{align*}
 \mathcal{N}:=\lbrace N:\Omega\to\R:N=0\text{ $\P$-fast sicher}\rbrace
 \end{align*}
 und bilden den Quotientenraum
 \begin{align*}
-L_p(\Omega,\A,\P):=\mathcal{L}_P(\Omega,\A,\P)/\mathcal{N}=\left\lbrace[X+\mathcal{N}]:X\in\mathcal{L}_p(\Omega,\A,\P)\right\rbrace.
+L_p(\Omega,\A,\P):=\mathcal{L}_p(\Omega,\A,\P)/\mathcal{N}=\left\lbrace[X+\mathcal{N}]:X\in\mathcal{L}_p(\Omega,\A,\P)\right\rbrace.
 \end{align*}
 Wir schreiben auch kurz $L_p(\A)$ oder $L_p(\P)$, wenn wir Abhängigkeit von $\A$ oder $\P$ betonen wollen.\\
 Aus der Maßtheorie ist bekannt:
@@ -42,7 +46,7 @@ Zwei Zufallsvariablen $X,Y\in L_2$ heißen \textbf{orthogonal} $:\gdw\langle X,Y
 \end{bemerkung}
 
 \begin{proposition}
-Sei $\mathcal{F}\subseteq\A$ enie Unter-$\sigma$-Algebra von $\A$ und $p\in[1,\infty)$.\\
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$ und $p\in[1,\infty)$.\\
 Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Omega,\A,\P)$.
 
 \end{proposition}
@@ -62,7 +66,7 @@ Als Orthogonalprojektion gilt
 \begin{align*}
 \Vert X-\E[X~|~\mathcal{F}]\Vert_2=\inf\left\lbrace\Vert X-Y\Vert_2:Y\in L_2(\Omega,\mathcal{F},\P)\right\rbrace.
 \end{align*}
-Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zufallsvariablen $Y\in L_2(\Omega,\mathcal{F},\P)$.
+Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zufallsvariablen\\ $Y\in L_2(\Omega,\mathcal{F},\P)$.
 \end{bemerkung}
 
 \begin{proposition}
