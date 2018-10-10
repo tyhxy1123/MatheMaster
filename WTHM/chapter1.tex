@@ -48,7 +48,11 @@ Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Om
 \end{proposition}
 
 \begin{proof}
-RobertToDo
+	Es gilt:
+	\[ X \text{ ist } \A-\text{messbar} \implies X \text{ ist } \F-\text{messbar}\]
+	Daraus können wir folgende Inklusion schlussfolgern:
+	\[\mathcal{L}_p(\Omega,\F,\P) \subseteq \mathcal{L}_p(\Omega,\A,\P)\]
+	$\mathcal{L}_p(\Omega,\F,\P)$ selbst ist Banachraum und damit abgeschlossener Unterraum.
 \end{proof}
 
 \begin{defi}[Bedingte Erwartung in $L_2$]\enter
@@ -69,7 +73,33 @@ Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zuf
 $Y$ ist die Orthogonalprojektion von $X$ auf $L_2(\Omega,\mathcal{F},\P)\\\Longleftrightarrow\forall F\in\mathcal{F}\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
 \end{proposition}
 \begin{proof}
-RobertToDo
+	$\dq \implies \dq{}$ \enter
+	Wähle $F \in L_2(\F)$ beliebig. Dann gilt
+	\[Y + tF \in L_2(\F) \qquad \forall t \in \R\]
+	Der Abstand wird für $t=0$ minimiert, also gilt:
+\[\|X-(Y+tF)\|_2^2 \geq \|X-Y\|_2^2 \qquad \forall t \in \R\]
+Nun nehmen wir an, dass $t>0$ auf der rechten Seite gilt und multiplizieren die Norm als Produkt von Skalarprodukten aus.
+\begin{align*}
+	&&\|X-(Y+tF)\|_2^2 &\geq \|X-Y\|_2^2 \\
+	\implies	&&\|X-Y\|_2^2 + t^2\|F\|_2^2 - 2t\langle X-Y, F \rangle &\geq \|X-Y\|_2^2 \\
+	\implies	&&t^2\|F\|_2^2 - 2t\langle X-Y, F \rangle &\geq 0 \\
+	\implies	&&t\|F\|_2^2 - 2\langle X-Y, F \rangle &\geq 0 \\
+\end{align*}
+Für $t\rightarrow0$ erhalten wir.
+\[\langle X-Y, F \rangle \leq 0\]
+Analog erhält man mit der Annahme $t<0$ die Ungleichung
+\[\langle X-Y, F \rangle \geq 0\]
+Also folgt
+\[\langle X-Y, F \rangle = 0 \qquad \forall \F \in L_2(\F)\]
+da $F$ beliebig gewählt war.\enter\enter
+Jetzt: $\dq \Longleftarrow \dq{}$ \enter
+Sei $F\in L_2(\F)$ und $\langle X-Y, F \rangle = 0$. Dann
+\[\implies \|X-Y\|_2^2 + \underbrace{t^2\|F\|_2^2}_{\geq 0} - \underbrace{2t\langle X-Y, F \rangle}_{=0} \geq \|X-Y\|_2^2\]
+Und damit 
+\[\|X-(Y+tF)\|_2^2 \geq \|X-Y\|_2^2 \qquad \forall t\in\R, \forall F\inL_2(\F)\]
+Somit ist $\|X-Y\|_2^2$ Minimierer der rechten Seite, in Zeichen:
+\[\|X-Y\|_2^2 \leq \inf\{\|X-\tilde{F}\|_2^2 : \tilde{F}\in L_2(\F)\}\]
+und damit ist $Y$ die orthogonale Projektion von $X$ auf $\F$
 \end{proof}
 
 \begin{proposition}[Eigenschaften der bedingten Erwartung]\enter\label{Prop1.4}
@@ -200,12 +230,12 @@ n, & \falls X>n\\
 \end{align*}
 Mit dominanter Konvergenz gilt 
 \begin{align*}
-\limn\E[X_n-X|]=\E\left[\limn|X_n-X|\right]=0.
+\limn\E[|X_n-X|]=\E\left[\limn|X_n-X|\right]=0.
 \end{align*}
 Mit Kontraktionseigenschaft gilt:
 \begin{align*}
 &\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
-\leq\E\Big[\E\big[|X-M-X_n|~|~\big|~\F\Big]
+	\leq\E\Big[\E\big[|X-M-X_n|\big]~\big|~\F\Big]
 \stackeq{Turm}~
 \E\big[|X_n-X_n|\big]
 \stackrel{m,n\to\infty}{\longrightarrow}
@@ -297,28 +327,29 @@ Analog erhält man $\P(F^-)=0$. Also folgt insgesamt $\E[X~|~\F]=Y$ fast sicher.
 \end{proof}
 
 \begin{bemerkung}
-Die ``unbedingte Erwartung'' $\E[X]$ können wir als Spezialfall der bedingten Erwratung $\E[X~|~\F]$ für die triviale $\sigma$-Algebra $\F:=\lbrace\emptyset,\Omega\rbrace\subseteq\A$ auffassen.\\
+Die ``unbedingte Erwartung'' $\E[X]$ können wir als Spezialfall der bedingten Erwartung $\E[X~|~\F]$ für die triviale $\sigma$-Algebra $\F:=\lbrace\emptyset,\Omega\rbrace\subseteq\A$ auffassen.\\
 Denn es gilt:
 \begin{align*}
 \E[X\cdot\indi_\Omega]&=\E[X]=\E\big[\E[X]\cdot\indi_\Omega\big]\\
-\E[X\cdot\indi_\Omega]&=0=\E\big[\E[X]\cdot\indi_\emptyset\big]\\
+\E[X\cdot\indi_\emptyset]&=0=\E\big[\E[X]\cdot\indi_\emptyset\big]\\
 &\stackrel{\text{Thm 1.8}}{\Longrightarrow}
 \E[X]=\E[X~|~\F]\text{, da $\F$ trivial.}
 \end{align*}
 \end{bemerkung}
 
 \section*{Bedingter Erwartungungswert + Unabhängigkeit} %keine Nummer
+Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar }\}$
 \begin{defi}
 Sei $X:\Omega\to\R$ eine Zufallsvariable auf $(\Omega,\A,\P)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. Dann heißt $X$ \textbf{unabhängig} von $\F$, in Zeichen $X\unab\F$
 \begin{align}\label{sigmaAlgebraUnabhaengig}
 :\Longleftrightarrow
 \E[f(X)\cdot\indi_A]
 =
-\E[f(X)]\cdot\P(A)\qquad\forall A\in\F\text{ und $f:\R\to\R$ beschränkt, Borel-messbar}
+\E[f(X)]\cdot\P(A)\qquad\forall A\in\F\text{ und $f\in B_b(\R)$}
 \end{align}
 $X$ heißt \textbf{unabhängig} von einer Zufallsvariablen $Y$, in Zeichen $X\unab Y$ wenn eine der folgenden äquivalenten Bedingungen gilt:
 \begin{enumerate}[label=(\alph*)]
-\item $X\amalg\sigma(Y)$
+\item $X\unab\sigma(Y)$
 \item 
 $\begin{aligned}
 \E[f(X)\cdot g(Y)]
