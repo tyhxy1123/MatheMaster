@@ -3,26 +3,26 @@ Viele Schätzer in der Statistik sind definiert als Minimal- oder Maximalstelle 
 Ziel: Untersuchung des asymptotischen Verhaltens ($n\to\infty$) von M-Schätzern über einen \textit{funktionalen Ansatz}. Als Beispiel:
 
 \section{Der Median}
-Sei $X:(\Omega,\A,\P)\to\R$ eine reelle Zufallsvariable mit Verteilungsfunktion $F_X$, also $X\sim F$. Definiere
+Sei $X:(\Omega,\A,\P)\to\R$ eine reelle Zufallsvariable mit Verteilungsfunktion\\ $F_X:\R\to[0,1],~F_X(x):=\P[X\leq x]$, also $X\sim F_X$. Definiere
 
-\begin{align*}
-Y_F(t)&:=\E\left(|X-t|\right)\\
-&=\int\limits_\Omega |X(\omega)-t|\d\P(\omega)\\
-&\stackeq{Trafo}\int\limits_\R|x-t|\cdot\P\circ X^{-1}\d x\\
-&=\int\limits_\R|x-t|\cdot F\d x
+\begin{align}
+Y(t)&:=\E\left(|X-t|\right)\label{DefY}\\ \nonumber
+&=\int\limits_\Omega |X(\omega)-t|\d\P(\omega)\\ \nonumber
+&\stackeq{Trafo}\int\limits_\R|x-t|\cdot\P(X^{-1}(x))\d x\\ \nonumber
+&=\int\limits_\R|x-t|\cdot F\d x \nonumber
 \qquad\forall t\in\R\\
-m&:=\arg\min\limits_{t\in\R}Y(t):=\text{ (irgendeine) Minimalstelle der Funktion}
-\end{align*} 
-
-Charakterisierung der Menge aller Mediane in folgendem kleinen Lemma:
+m&:=\arg\min\limits_{t\in\R}Y(t):=\text{ (irgendeine) Minimalstelle der Funktion}\nonumber
+\end{align} 
 
 \begin{notation}
 $F(m-):=F(m-0):=\lim\limits_{t\uparrow m} F(t)$
 \end{notation}
 
+Charakterisierung der Menge aller Mediane in folgendem kleinen Lemma:
+
 \begin{lemma}\label{lemmaMedian}
 Sei $X\sim F_X$ integrierbar und $m\in\R$. Dann äquivalent:
-\begin{enumerate}
+\begin{enumerate}[label=(\alph*)]
 \item $F(m-)\leq\frac{1}{2}\leq F(m)$
 \item $\E[|X-t|]\geq\E[|X-m|]\qquad\forall t\in\R$
 \item $m$ ist Median
@@ -30,7 +30,7 @@ Sei $X\sim F_X$ integrierbar und $m\in\R$. Dann äquivalent:
 \end{lemma}
 
 \begin{proof}
-\underline{Zeige 1. $\Rightarrow$ 2.:}\\
+\underline{Zeige (a) $\Rightarrow$ (b):}\\
 Setze $h(t):=\E[|X-t|-|X-m|]\stackeq{Lin}Y(t)-Y(m)$. Dann ist 2. äquivalent zu $h(t)\geq0~\forall t\in\R$. Dies ist noch zu zeigen.\\
 
 \underline{Fall 1: $t<m$}
@@ -56,7 +56,7 @@ h(t)&=\int\limits_{(-\infty,m]}\ldots F(\d x)+\int\limits_{(m,t]}\ldots+\int\lim
 
 \underline{Fall 3: $t=m$} ist trivial. $\#$
 
-\underline{Zeige 2. $\Rightarrow$ 1:}\\
+\underline{Zeige (b) $\Rightarrow$ (a):}\\
 Nach Annahme ist $h(t)\geq0~\forall t\in\R$.\\
 
 \underline{Fall 1: $t<m$} Die obige Rechnung im Fall 1 bei 1. $\Rightarrow$ 2. zeigt:
@@ -69,12 +69,15 @@ Nach Annahme ist $h(t)\geq0~\forall t\in\R$.\\
 &\Longrightarrow\forall t<m:F(t)\leq\frac{1}{2}\\
 &\stackrel{t\uparrow m}{\Longrightarrow}F(m-)\leq\frac{1}{2}
 \end{align*}
-\underline{Fall 2: $t> m$} Siehe 2. Fall, analog.
+\underline{Fall 2: $t> m$} Siehe 2. Fall, analog.\\
+
+\underline{Zeige (a) $\gdw$ (c):}
+(b) ist offensichtlich äquivalent zur Definition des Medians.
 \end{proof}
 
-\begin{bemerkung} TODO Nr 1.2\\
+\begin{bemerkungnr}\
 \begin{enumerate}
-\item Lemma \ref{lemmaMedian} 1. besagt, dass $\lbrace m\in\R: m\text{ erfüllt } 1.\rbrace$ = Menge aller Mediane von $F$.
+\item Lemma \ref{lemmaMedian} (a) besagt, dass $\lbrace m\in\R: m\text{ erfüllt } 1.\rbrace$ die Menge aller Mediane von $F$ ist.
 \item Im Allgemeinen gibt es mehrere Mediane. Üblicherweise \underline{wählt} man $m:=F^{-1}(\frac{1}{2})$, wobei
 \begin{align*}
 F^{-1}(u):=\inf\left\lbrace x\in\R:F(x)\geq u\right\rbrace\quad\forall u\in (0,1)
@@ -83,11 +86,11 @@ die \textbf{Quantilfuntion / die verallgemeinerte Inverse} ist. Da
 \begin{align*}
 F\left(F^{-1}(u)-\right)\leq u\leq F\left(F^{-1}(u)\right)\qquad\forall u\in (0,1),
 \end{align*}
-erfüllt $m=F^{-1}\left(\frac{1}{2}\right)$ die Bedingung 1. in Lemma \ref{lemmaMedian} und ist somit ein Median, nämlich der kleinste.
-\item Die Funktion 
+erfüllt $m=F^{-1}\left(\frac{1}{2}\right)$ die Bedingung (a) in Lemma \ref{lemmaMedian} und ist somit ein Median, nämlich der kleinste.
+\item Die obige Funktion \eqref{DefY}, also
 \begin{align*}
-Y:\R\to\R,\qquad Y(t)=\int\limits|x-t|~F(\d x)\qquad\forall t\in\R
+Y:\R\to\R,\qquad Y(t)=\int\limits|x-t|~F(\d x)\qquad\forall t\in\R,
 \end{align*}
-TODO die obige; ist stetig (nutze Folgenkriterium + dominierte Konvergenz bzw. Satz von Lebesgue), aber im Allgemeinen nicht differenzierbar, z. B. falls $F\sim X$ eine diskrete Zufallsvariable ist. In diesem Fall ist somit die Minimierungüber Differentiation nicht möglich!
+ist stetig (nutze Folgenkriterium + dominierte Konvergenz bzw. Satz von Lebesgue), aber im Allgemeinen nicht differenzierbar, z. B. falls $F\sim X$ eine diskrete Zufallsvariable ist. In diesem Fall ist somit die Minimierungüber Differentiation nicht möglich!
 \end{enumerate}
-\end{bemerkung}
+\end{bemerkungnr}
