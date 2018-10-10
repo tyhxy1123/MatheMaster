@@ -1,5 +1,5 @@
 \chapter{Bedingter Erwartungswert}
-\section{Bedingtet Erwartungswert als $L_2$-Projektion}
+\section{Bedingter Erwartungswert als $L_2$-Projektion}
 Betrachte den Wahrscheinlichkeitsraum $(\Omega,\A,\P)$.\\
 Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-Norm
 \begin{align*}
@@ -91,6 +91,236 @@ Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Alg
 \end{proposition}
 
 \begin{proof}
-Nächste Vorlesung
+\underline{Zu 1.:} Klar.\\
+
+\underline{Zu 2.:} Aus Proposition 1.1.3 folgt
+\begin{align*}
+%\left.
+\begin{matrix}
+\langle X-\E[X~|~\mathcal{F}],F\rangle\\
+\langle Y-\E[Y~|~\mathcal{F}],F\rangle
+\end{matrix}
+%\right\rbrace\forall F\in L_2(\Omega,\mathcal{F},\P)
+%\\
+%\Longrightarrow\langle a\cdot X+b\cdot Y-(a\cdot\E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}],F\rangle=0~\forall F\in L_2(\Omega,\mathcal{F},\P)\\
+%\stackrel{Prop 1.3}{\Longrightarrow}\E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot \E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]
+\end{align*}
+\underline{Zu 3.:} Aus Proposition 1.3 folgt wieder
+\begin{align}
+\langle X-\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle\label{proofProp114_1}\\
+\langle Y-\E[Y~|~\mathcal{F}],\E[X~|~\mathcal{F}]\rangle\label{proofProp114_2}
+\end{align}
+Und damit
+\begin{align*}
+\langle X,\E[Y~|~\mathcal{F}]\rangle
+&=\langle \E[X~|~\mathcal{F}]+(X-\E[X~|~\mathcal{F}]),\E[Y~|~\mathcal{F}]\rangle\\
+\stackeq{\ref{proofProp114_1}}
+\langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle\\
+&=\langle\E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}]-Y)\rangle\\
+&\stackeq{\ref{proofProp114_2}}
+\langle\E[X~|~\mathcal{F}],Y\rangle
+\end{align*}
+\underline{Zu 4.:} 
+Aus Proposition 1.3 folgt wieder
+\begin{align}
+\langle X-\E[X~|~\mathcal{F}],F\rangle\qquad\forall F\in L_2(\mathcal{F})\supseteq L_2(\mathcal{H})\\
+\langle \E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}-Y)]\rangle\qquad\forall H\in L_2(\mathcal{H})\\
+\Longrightarrow\langle X-\E[\E[X~|~\mathcal{F}]~|~\mathcal{H}],H\rangle=\qquad\forall H\in L_2(\mathcal{H})\\
+\stackrel{Prop 1.3}{\Longrightarrow}\E[X~|~\mathcal{H}]=\E[\E[X~|~\mathcal{F}]~|~\mathcal{H}]
+\end{align}
+\underline{Zu 5.:} 
+\begin{align*}
+broken
+%\langle X\cdot Z-\E[X~|~\mathcal{F}]\cdot Z,F\rangle
+%&=\E[(X\cdot Z-\E[X~|~\mathcal{F}]\cdot Z)~|~\mathcal{F}]\\
+%&=\langle X-\E[X~|~\mathcal{F}],Z\cdot F\rangle=0\qquad\forall F\in L_2(\mathcal{F})\text{ da auch }Z\cdot F\in L_2(\mathcal{F})\\
+%&\Longrightarrow\E[X\cdot Z~|~\mathcal{F}]
+%=Z\cdot \E[X~|~\mathcal{F}]
+%=Z\cdot\E[X~|~\mathcal{F}]
+\end{align*}
+\underline{Zu 6.:} Sei $X\geq0$. Setze
+\begin{align*}
+A:=\lbrace\omega\in\Omega:\E[X~|~\mathcal{F}]<0\rbrace\in\mathcal{F}.
+\end{align*}
+Außerdem ist gilt für die Indikatorfunktion $\indi_A\in L_2(\mathcal{F})$.
+Einerseits gilt
+\begin{align*}
+\E[X\cdot\indi_A~|~\mathcal{F}]\geq0\text{ weil }X\geq0
+\end{align*}
+und andererseits
+\begin{align*}
+\E[X\cdot\indi_A]
+&=\E[\E[X~|~\mathcal{F}]\cdot\indi_A]\\
+&=\E\left[\E[X~|~\mathcal{F}]\cdot\indi_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace}\right]\\
+&=\int\limits_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace} \E[X~|~\mathcal{F}]\d\P\leq0\\
+&\Longrightarrow\E[X\cdot\indi_A]=0\\
+&\Longrightarrow\int\limits_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace} \E[X~|~\mathcal{F}]\d\P=0\\\\
+&\Longrightarrow \P(\E[X~|~\mathcal{F}]<0)=0\\
+&\Longrightarrow\E[X~|~\mathcal{F}]\geq0\text { fast sicher}
+\end{align*}
+Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\\
+\underline{Zu 7.:}
+\begin{align*}
+\pm X\leq<|X|
+\stackrel{6.}{\Longrightarrow}
+\pm\E[X~|~\mathcal{F}]\leq\E[|X|~|~\mathcal{F}]\\
+\Longrightarrow\Big|\E[X~|~\mathcal{F}]\Big|\leq\E[|X|~|~\mathcal{F}]
+\end{align*}
+\end{proof}
+ 
+\section{Bedingte Erwartung in $L_1$}
+Prinzip: stetige Fortsetzung
+
+\begin{proposition} %1.6
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$. Die bedingte Erwartung hat eine eindeutige stetige Fortsetzung von $L_2(\Omega,\A,\P)$ auf $L_1(\Omega,\A,\P)$. Diese bezeichnen wir ebenfalls mit $\E[\cdot~|~\mathcal{F}]$.
+\end{proposition}
+\begin{proof}
+\underline{Existenz:}\\
+Sei $X\in L_1$. Dann existiert eine Approximationsfolge $(X_n)_{n\in\N}\subseteq L_2$ mit $\E[|X_n-X|]\stackrel{n\to\infty}{\longrightarrow}0$, in Zeichen $X_n\stackrel{L_1}{\longrightarrow} X$.\\
+Wähle z. B.
+\begin{align*}
+X_n:=\left\lbrace\begin{array}{cl}
+X, & \falls |X|\leq n\\
+n, & \falls X>n\\
+-n, & \falls X<-n
+\end{array}\right.
+\end{align*}
+Mit dominanter Konvergenz gilt 
+\begin{align*}
+\limn\E[X_n-X|]=\E\left[\limn|X_n-X|\right]=0.
+\end{align*}
+Mit Kontraktionseigenschaft gilt:
+\begin{align*}
+\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
+\leq\E\Big[\E\big[|X-M-X_n|~|~\big|~\F\Big]\\
+stackeq{Turm}\E\big[|X_n-X_n|\big]\stackrel{m,n\to\infty}{\longrightarrow}0\\
+\Longrightarrow\left(\E[X_n~|~\F]\right)_{n\in\N}\text{ ist Cauchy-Folge in }L_2(\Omega,\A,\P)\\
+&\Longrightarrow\exists Z\in L_1(\Omega,\A,\P)\mit\E[X_n~|~\F]\stackrel{L_1}{\longrightarrow} Z=:\E[X~|~\F]
+\end{align*}
+\underline{Eindeutigkeit:} Sei $(\tilde{X}_n)_{n\in\N}$ eine weitere Approximationsfolge für $X$, d. h. 
+\begin{align*}
+\E[|\tilde{X}_n-X|]
+\stackrel{n\to\infty}{\longrightarrow}
+0
+\end{align*}
+Dann gilt
+\begin{align*}
+\Vert Z-\E[\tilde{X}_n~|~\F]\Vert_1
+\leq
+\Vert Z-\E[X_n~|~\F]\Vert_1+\underbrace{\Vert\E[X_n~|~\F-\E[\tilde{X}_n~|~\F]\Vert_1}_{=\E[|\E[X_n~|~\F-\E[\tilde{X}_n~|~\F|]}\\
+&\stackrel{Kontr}{\leq}
+\Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X_n-\tilde{X}_n\Vert_1\\
+&\leq\Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X-X_n\Vert_1+\Vert X-\tilde{X}_n\Vert_1\\
+&\longrightarrow0\\
+&\Longrightarrow\E[\tilde{X}_n~|~\F]\stackrel{L_1}{\longrightarrow} Z
+\end{align*}
+Also ist der Limes unabhängig von der Approximationsfolge.
 \end{proof}
 
+\begin{korollar} %1.7
+Alle Eigenschaften aus Proposition 1.4 (außer Symmetrie) gelten weiterhin für alle $X,Y\in L_1(\Omega,\A,\P)$.
+\end{korollar}
+\begin{proof}
+Beweis durch Approximation.
+\end{proof}
+
+\begin{theorem}%1.8
+Sei $\F$ Unter-$\sigma$-Algebra von $\A$ und seien
+\begin{align*}
+X\in L_1(\Omega,\A,\P),\qquad Y\in L_1(\Omega,\F,\P)
+\end{align*}
+Dann sind äquivalent:
+\begin{enumerate}
+\item $Y=\E[X~|~\F]$ fast sicher
+\item $\E[X\cdot\indi_F]=\E[Y\cdot\indi_F]\qquad\forall F\in\F$\\
+(Beachte $X,Y\in L_2\Longrightarrow\langle X-Y,\indi_F\rangle=0$)
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\underline{Zeige $(a)\Longrightarrow (b)$:}\\
+Sei $(X_n)_{n\in\N}\subseteq L_2(\A)$ eine Approximationsfolge für $X$, d.h. $X_n\stackrel{L_1}{\longrightarrow} X$. Mit Proposition 1.6 folgt
+\begin{align*}
+\E[X_n~|~\F]\stackrel{L_1}{\longrightarrow}\E[X~|~\F]=Y\\
+\E\left[(X-Y)\cdot\indi_F\right]
+=
+\limn\E[(X_n-\E[X_n~|~\F]),\indi_F]\\
+=
+\limn\langle X_n-\E[X_n~|~\F],\indi_F\rangle
+\stackeq{Prop 1.3}
+0\qquad\forall F\in\F
+\end{align*}
+\underline{Zeige $(b)\Longrightarrow (a)$:}\\
+Setze 
+\begin{align*}
+F^{+}:=\left\lbrace\E[X~|~\F]-Y>0\right\rbrace\in\F\\
+F^{-}:=\left\lbrace-(\E[X~|~\F]-Y)>0\right\rbrace\in\F
+\end{align*}
+Dann gilt:
+\begin{align*}
+0
+\leq
+\E\Big[\underbrace{(\E[X~|~\F]-Y)\cdot\indi_{F^+}}_{\geq0}\Big]
+=
+\E[\E[X~|~\F]\cdot\indi_{F^+}]-\E[Y\cdot\indi_{F^+}\\
+&\stackeq{Pull-out + Turm}
+\E[X\cdot\indi_{F^+}]-\E[Y\cdot\indi_{F^+}]\\
+&\stackeq{(b)}
+0\\
+&\Longrightarrow\P(F^+)=0
+\end{align*}
+Analog erhält man $\P(F^-)=0$. Also folgt insgesamt $\E[X~|~\F]=Y$ fast sicher.
+\end{proof}
+
+\begin{bemerkung}
+Die ``unbedingte Erwartung'' $\E[X]$ können wir als Spezialfall der bedingten Erwratung $\E[X~|~\F]$ für die triviale $\sigma$-Algebra $\F:=\lbrace\emptyset,\Omega\rbrace$ auffassen.\\
+Denn es gilt:
+\begin{align*}
+\E[X\cdot\indi_\Omega]=\E[X]=\E[\E[X]\cdot\indi_\Omega]\\
+\E[X\cdot\indi_\Omega]=0=\E[\E[X]\cdot\indi_\emptyset]\\
+\stackrel{\text{Thm 1.8}}{\Longrightarrow}
+\E[X]=\E[X~|~\F]\text{, da $\F$ trivial}
+\end{align*}
+\end{bemerkung}
+
+\section{Bedingter Erwartungungswert + Unabhängigkeit} %keine Nummer
+Sei $X$ eine Zufallsvariable auf $(\Omega,\A,\P)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$ heißt \textbf{unabhängig} von $\F$, in Zeichen $X\amalg Y$
+\begin{align}\label{sigmaAlgebraUnabhängig}
+:\Longleftrightarrow
+\E[f(X)\cdot\indi_A]
+=
+\E[f(X)]\cdot\P(A)\qquad\forall A\in\F\text{ und $f$ beschränkt, Borel-messbar und $\R$-wertig}
+\end{align}
+$X$ heißt \textbf{unabhängig} von einer Zufallsvariablen $Y:\gdw X\amalg\sigma(Y)$. Äquivalent:
+\begin{align*}
+\gdw\E[f(X)\cdot g(Y)]
+=
+\E[f(X)]\cdot\E[g(Y)]\qquad\forall f,g\in B_b(\R)
+\end{align*}
+
+\begin{theorem} %1.9
+Sei $X\in L_1(\Omega,\A,\P)$ unabhängig von $\F$. Dann gilt:
+\begin{align*}
+\E[X~|~\F]=\E[X]
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Wegen $X\amalg Y$ gilt:
+\begin{align*}
+\forall F\in\F:\E[X\cdot\indi_X]
+\stackeq{\ref{sigmaAlgebraUnabhängig}}
+\E[X]\cdot\P(F)=\E[X]\cdot\P(F)=\E[\E[X]\cdot\indi_F]\\
+\stackrel{\text{Thm 1.8}}{\Longrightarrow}
+\E[X]=\E[X~|~\F]
+\end{align*}
+\end{proof}
+
+\begin{bemerkung}
+Merke die beiden Extremfälle:
+\begin{itemize}
+\item Wenn $X$ $\F$-messbar ist, dann ist $\E[X~|~\F]=X$.\\
+Die bedingte Erwartung verändert also $X$ nicht.
+\item Wenn $X$ von $\F$ unabhängig ist, dann ist $\E[X~|~\F]=\E[X]$.\\
+Die bedingte Erwartung reduziert $X$ auf den unbedingten Erwartungswert $\E[X]$.
+\end{itemize}
+\end{bemerkung}
