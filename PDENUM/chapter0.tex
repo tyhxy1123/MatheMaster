@@ -84,7 +84,7 @@ D^\alpha\varphi:=\frac{\partial^{|\alpha|}\varphi}{\partial x_1^{\alpha_1}\hdots
 \end{enumerate}
 
 \begin{definition}[schwache Ableitung]
-Seien $\varphi,\psi\in L^1(\Omega)$ und sei $\alpha\in\N_0^\alpha$ ein Multiindex. Dann heißt $\psi$ die \textbf{schwache Ableitung} von $\varphi:\gdw$
+Seien $\varphi,\psi\in L^1(\Omega)$ und sei $\alpha\in\N_0^\alpha$ ein Multiindex. Dann heißt $\psi$ die \textbf{$\alpha$-te schwache Ableitung} von $\varphi:\gdw$
 \begin{align*}
 \forall v\in C_0^\infty(\Omega):\int\limits_\Omega\varphi\cdot D^\alpha v\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot v\d x
 \end{align*}
@@ -108,9 +108,9 @@ Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist nicht rel
 	Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
 	\begin{align*}
 		\int_{-1}^1 \varphi v' \d x &= \int_{-1}^0 \varphi v' \d x + \int_{0}^1 \varphi v' \d x \\
-															&\stackeq{part. Int.} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v \d x + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v \d x \\
+															&\stackeq{\text{part}} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v \d x + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v \d x \\
 															&\stackeq{v = 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
-															&\stackeq{Def} - \int_{-1}^1 \varphi'(x)v\d x
+															&\stackeq{\text{Def}} - \int_{-1}^1 \varphi'(x)v\d x
 	\end{align*}
 \end{proof}
 \end{beisp}
