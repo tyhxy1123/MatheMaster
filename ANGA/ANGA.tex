@@ -1,0 +1,37 @@
+\documentclass[]{scrreprt}
+
+\input{../latex/packages}
+\input{../latex/theoremenvironments}
+\input{../latex/font}
+\input{../latex/commands}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\X}{\mathfrak{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\renewcommand{\|}{~|~}
+% \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
+
+\title{%
+  Vorlesung\\
+  Angewandte Algebra \\
+  }
+\subtitle{Wintersemester 2018/2019}
+\author{Vorlesung: Prof. Dr. Arno Fehm\\Mitschrift: Lukas Zenner}
+
+
+\begin{document}
+\pagenumbering{gobble}	% disable pagenumbering
+
+\maketitle
+\tableofcontents % Inhaltsverzeichnis
+\pagenumbering{arabic}	%enable pagenumbering
+
+{\input{chapter1}}
+
+%\listoffigures 
+%\listoftables
+%\bibliography{literatur}
+
+
+\end{document}

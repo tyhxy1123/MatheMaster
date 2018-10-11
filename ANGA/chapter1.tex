@@ -1,0 +1,174 @@
+\chapter{Algebraische Funktionenkörper}
+\section{Transzendente Körpererweiterungen}
+Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
+
+\begin{definition}
+    Der \textbf{rationale Funktionenkörper} über $K$ ist
+    $$ K(T) := \text{Quot}(K[T]). $$
+\end{definition}
+
+\begin{bemerkungnr}
+    Ist $t \in F$ transzendent über $K$, so ist $K(t) \cong K(T)$.
+    
+    Umgekehrt ist $T$ als Element von $K(T)$ transzendent über $K$.
+\end{bemerkungnr}
+
+\begin{definition}
+    $F$ ist ein \textbf{algebraischer Funktionenkörper einer Variablen} über $K$, 
+    wenn es $t \in F$ transzendent über $K$ gibt mit $[F:K(t)] < \infty$.
+\end{definition}
+
+\begin{bemerkungnr}
+    \begin{enumerate}[label=\alph*)]
+        \item Ein Funktionenkörper über $K$ ist also $K$-isomorph zu einer endlichen Erweiterung des $K(T)$.
+        
+        \item Ist $F$ ein Funktionenkörper über $K$ und $E|F$ eine endliche Körpererweiterung von $F$, 
+        so ist auch $E$ ein Funktionenkörper über $K$.
+
+        \item Ist $F$ ein Funktionenkörper über $K$ und $K \subseteq L \subseteq F$ ein Zwischenkörper mit 
+        $L|K$ algebraisch, so ist $F$ auch Funktionenkörper über $L$.
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{beispiel}
+    \begin{enumerate}[label=\alph*)]
+        \item $\Q(T)(\sqrt{-1}) = \Q(\sqrt{-1})(T)$\\
+        ist ein rationaler Funktionenkörper über $\Q(\sqrt{-1})$. 
+        
+        \item $\Q(T)(\sqrt{T^2+1})$ ist ein Funktionenkörper über $\Q$.
+
+        \item $\Q(T)(\sqrt{T+1}) = \Q(\sqrt{T+1})$ ist ein rationaler Funktionenkörper über $\Q$ 
+    \end{enumerate}
+\end{beispiel}
+
+\begin{definition}
+    Ist $F$ Funktionenkörper über $K$, 
+    so ist der relative algebraische Abschluss $\tilde{K}$ von $K$ in $F$ der 
+    \textbf{Konstantenkörper} von $F$, d.h.
+    $$ \tilde{K} := \{\alpha \in F \| \alpha \text{ algebraisch  über } K\}.$$
+\end{definition}
+
+\begin{beispiel}
+    Der Konstantenkörper des rationalen Funktionenkörpers $K(T)$ ist $K$:
+
+    Ist $f(T) = \frac{g(T)}{h(T)} \in K(T) \setminus K$, mit $g,h \in K[T]$, algebraisch über $K$,
+    so existiert $p(X) \in K[X]$ mit $p(f(T)) = 0$. Dann gilt für alle $a_i \in K$
+    \begin{align*}
+        p(f(T)) &= \sum\limits_{i=0}^n a_i f(T)^i = 0\\
+        & \implies \sum\limits_{i=0}^n a_i \frac{g(T)^i}{h(T)^i} = 0\\
+        & \implies \sum\limits_{i=0}^n a_i g(T)^i h(T)^{n-i} = 0 \\
+        & \implies T \text{ algebraisch über } K.
+    \end{align*}
+    Was aber im Widerspruch dazu steht, dass $T$ transzendent über $K$.
+\end{beispiel}
+
+\begin{lemma}\label{lemma:finiteExp}
+    Ist $L|K$ eine endliche Körpererweiterung,
+    so ist $$ [L(T):K(T)] = [L:K]. $$
+\end{lemma}
+\begin{proof}
+    Zunächst folgt aus $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig, dass
+    $x_1,...,x_n \in L$ $K$-linear unabhängig. 
+    Daraus folgt$$ [L(T):K(T)] \leq [L:K]. $$
+
+    Sei also $x_1,...,x_n \in L$ $K$-linear unabhängig. Wir zeigen nun, dass dann
+    $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig ist.
+    
+    Angenommen $$ \sum\limits_{i=1}^n f_i(T)x_i = 0$$ mit $f_i(T) \in K(T)$, nicht alle 0.
+    O.E. seien $f_i(T) \in K[T]$ und es gibt keinen nicht-konstanten Teiler aller $f_i$.
+    Dann folgt es existiert $i$ und $\tau \in K$ mit $f_i(\tau) \neq 0$. 
+    Damit gilt also $$ \sum\limits_{i=1}^n f_i(\tau)x_i = 0.$$
+    Da $x_1,...,x_n$ $K$-linear unabhängig folgt aber $f_i(\tau) = 0$ für alle $i$.
+
+\end{proof}
+
+\begin{satz}
+    Ist $F$ ein Funktionenkörper über $K$ mit Konstantenkörper $\tilde{K}$,
+    so ist $\tilde{K}|K$ endlich.
+\end{satz}
+\begin{proof}
+    Ist $t\in F$ transzendent über $K$ mit $F|K(t)$ endlich,
+    so ist wegen \cref{lemma:finiteExp} 
+    $$ [\tilde{K}:K] = [\tilde{K}(t):K(t)] \leq [F:K(t)] \leq \infty.$$
+\end{proof}
+
+\begin{definition}
+    \begin{enumerate}[label=\arabic*)]
+        \item $a_1,...,a_n \in F$ \textbf{algebraisch unabhängig} über $K$,\\
+        wenn für alle $f \in K[X_1,...,X_n]$:
+        $$ f(a_1,...,a_n) = 0 \implies f=0. $$
+
+        \item $(a_i)_{i \in I}$ Familie in $F$ ist \textbf{algebraisch unabhängig},
+        wenn für alle endlichen Teilmengen $J \subseteq I$:
+        $ (a_i)_{i \in J}$ algebraisch unabhängig über $K$.
+    \end{enumerate}
+\end{definition}
+
+\begin{beispiel}
+    $a$ ist algebraisch unabhängig über $K$ genau dann, wenn $a$ ist transzendent über $K$.
+\end{beispiel}
+
+\begin{definition}
+    $\X = (x_i)_{i \in I}$ ist \textbf{Transzendenzbasis} von $F|K$, 
+    wenn $\X$ algebraisch unabhängig über $K$ ist und $F|K(\X)$ algebraisch.
+\end{definition}
+
+\begin{satz}
+    $\X = (x_i)_{i \in I}$ ist genau dann Transzendenzbasis von $F|K$,
+    wenn $\X$ maximal algebraisch unabhängig in $F$ über $K$ ist.
+    
+    Insbesondere existiert ein Transzendenzbasis von $F|K$.
+\end{satz}
+
+\begin{proof}
+    \begin{itemize}[label=]
+        \item \underline{$\Leftarrow$:} $x \in F \setminus K(\X) \implies \X \cup \{x\}$ ist algebraisch abhängig, 
+        d.h es existieren $i_1,...,i_n$ und $f \in K[X_1,...,X_n, X] \setminus \{0\}$ mit 
+        $$ f(x_{i_1},...,x_{i_n},x) = 0. $$
+        Da $x_{i_1},...,x_{i_n}$ algebraisch unabhängig ist $\deg_X f > 0$ 
+        und somit ist $x$ algebraisch über $K(x_{i_1},...,x_{i_n})$.
+        
+        \item \underline{$\Rightarrow$:} $x \in F \setminus \X \implies x$ algebraisch über $K(\X)$,
+        d.h. es gibt $0 \neq f \in K(\X)[X]$ mit $f(x) = 0$. 
+        $\implies$ es existiert $0\neq g \in K[X_1,...,X_n,X]$ und $i_1,...,i_n \in I$ mit
+        $g(x_{i_1},...,x_{i_n},x) = 0$ somit sind $x_{i_1},...,x_{i_n},x$ algebraisch abhängig.
+    \end{itemize}
+\end{proof}
+
+\begin{lemma}[Austauschlemma]\label{lemma:exchange}
+    Ist $\Y=(y_j)_{j \in J}$ mit $F|K(\Y)$ algebraisch und \\
+    $\X = (x_i)_{i \in I}$ algebraisch unabhängig,
+    so existiert $J_0 \subseteq J$ mit $\X \cup (y_j)_{j\in J_0}$ Transzendenzbasis von $F|K$.
+\end{lemma}
+\begin{proof}
+    Nach dem Lemma von Zorn existiert $J_0 \subseteq J$ maximal mit 
+    $\X^{'} := \X \cup (y_j)_{j \in J_0}$ algebraisch unabhängig.
+    Für jedes $j \in J$ ist dann $y_j$ algebraisch über $K(\X^{'})$\\
+    $\implies K(\X\cup \Y)$ algebraisch über $K(\X^{'})$
+    Somit ist $\X^{'}$ Transzendenzbasis.
+\end{proof}
+
+\begin{satz}[Steinitz, 1910]
+    Je zwei Transzendenzbasen von $F|K$ haben die gleiche Kardinalität.
+\end{satz}
+
+\begin{proof}[Beweis nur für den endlichen Fall]
+    Seien $\X=(x_i)_{i \in I}$ und $\Y = (y_j)_{j \in J}$ Transzendenzbasen von $F|K$.\\
+    Wegen Symmetrie ist nur zu zeigen
+    $$ |I| \leq |J|. $$
+    Induktion nach $n = |J|$:
+    \begin{itemize}[label=]
+        \item \underline{$n=0$:} klar, $F|K$ algebraisch.
+        \item  \underline{$n-1 \to n$:} $F|K$ ist nicht algebraisch 
+        $\implies |I| > 0$, O.E. $1 \in I$. Nach \cref{lemma:exchange} existiert $J_0 \subseteq J$ mit
+        $\{x_1\} \cup (y_j)_{j\in J_0}$ Transzendenzbasis. 
+        Da $\Y$ maximal algebraisch unabhängig ist, ist $|J_0| \leq |J| -1$.
+        Sowohl $\X$ als auch $\{x_1\} \cup (y_j)_{j \in J_0}$ sind Transzendenzbasen von $F|K$, die $x_1$ enthalten.
+        Somit sind sowohl $\X^{'}:= (x_i)_{i \in I\setminus \{1\}}$ als auch $(y_j)_{j \in J_0}$ Transzendenzbasen von $F|K(x_1)$.
+        \begin{align*}
+            &\implies |I \setminus\{1\}| \leq |J_0| \\
+            &\implies |I| -1 \leq |J| -1 \\
+            &\implies |I| \leq |J|            
+        \end{align*}
+    \end{itemize}
+\end{proof}
