@@ -1,0 +1,66 @@
+
+
+\subsection{Forster}
+
+Die folgenden S\"atze sind aus \textit{Analysis 3} von \textit{Otto Forster} und werden hier zur Wiederholung und Übersicht kurz beleuchtet.
+\enter
+
+\begin{satz}
+	Sei $p > 1$ und $f \in L^p(\Omega)$ mit $\Omega \subset \R$. 
+	\begin{itemize}
+		\item Sei $q$ konjugierter Exponent zu $p$ (d.h. $\frac{1}{q} + \frac{1}{p}=1$)
+			$\implies fg \in L^q(\Omega)$.
+		\item Falls $|\Omega| < \infty$ gilt $f \in L^1(\Omega)$
+		\item $ L^1(\Omega) \cap L^{\infty}(\Omega) \subset L^p(\Omega) \quad \forall p\in [1,\inf) $
+	\end{itemize}
+\end{satz}
+
+\begin{proof}
+	\enter
+	\begin{itemize}
+		\item H\"older
+		\item a mit $g=1$
+		\item $ L^1(\Omega) \cap L^{\infty}(\Omega) \subset L^p(\Omega) \quad \forall p\in [1,\inf) $
+	\end{itemize}
+
+\end{proof}
+
+\begin{satz}{majorierte Konvergenz für $L^p$}
+	\\
+	Sei $p \geq 1$ und $f_k \in L^p(\Omega)$ sodass eine Funktion $f:\Omega\to [-\infty,\infty]$ ex. sd. $f_k \to f$ punktweise f.\"u.\\
+	Zudem ex. $F: \Omega \to [0,\infty]$ mit $F \in L^p(\Omega)$ sd. 
+	$|f_k| \subset F$ f.\"u. f\"ur alle k.\\
+	Dann ist $f\in L^p(\Omega)$ und $f_k \to f $ in $L^p(\Omega)$.
+\end{satz}
+
+\begin{satz}
+	Sei $p \geq 1$ und $(f_m) \subset L^p(\Omega)$ eine $L^p$-Cauchy-Folge(d.h. bzgl. $L^p-Norm$). Dann ex. eine Teilfolge ($f_{m_k}$) und eine Funktion $f:\Omega\to \R$ sd. $f_{m_k} \overset{k\to \infty}{\longrightarrow} f$ f.\"u. und $f_m \to f$ in $L^p(\Omega)$
+	\\
+	\\
+	M.a.W \quad $\left(L^p(\Omega), ||\cdot||_{L^p(\Omega)}\right)$ ist vollst\"andig $\implies$ also Banachraum
+\end{satz}
+
+\begin{satz}
+	F\"ur jedes $p \geq 1$ liegt $C_c(\R^n)$ dicht in $L^p(\R^n)$.
+	D.h. $\forall f \in L^p(\R^n) \forall \varepsilon > 0 $ ex. $\varphi \in C^0_c(\R^n)$ sd. $||f-\varphi||_{ L^p(\R^n)} < \varepsilon$
+\end{satz}
+
+\begin{proof}
+	Approximiere $f$ durch eine Treppenfunktion mit endlich vielen Werten und \glqq sch\"onen\grqq\ Urbildmengen. Dann approximiere diese Treppenfunktionen durch stetige Funktionen
+\end{proof}
+
+\begin{satz}
+	Dasselbe mit $C^\infty_c(\R^n)$ statt $C^0_c(\R^n)$.
+\end{satz}
+
+\begin{proof}
+	s. Forster oder Evans via \glqq mollification\grqq
+\end{proof}
+
+
+\subsection{Evans Appendix C}
+
+\begin{itemize}
+	\item Faltung und Gl\"attung
+	\item Eigenschaften von Gl\"attungskernen
+\end{itemize}
