@@ -11,8 +11,7 @@
 *.bbl
 *.fls
 *.fdb_latexmk
-*.pdf
-!/PDFs/*.pdf
+**/*.pdf
 
 *.7z
 *.dmg
