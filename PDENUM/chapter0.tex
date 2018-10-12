@@ -162,8 +162,8 @@ Dann gilt:
 Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ wird mit $W_0^{k,p}(\Omega)$ bezeichnet. Außerdem setze $H_0^k(\Omega):=W_0^{k,2}(\Omega)$.
 \end{definition}
 
-\begin{definition}[Lipschitz-Rand]
-$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\\\exists N\in\N,\exists U_1,\ldots,U_N\subseteq\R^d$ offen, sodass
+\begin{definition}[Lipschitz-Rand]\enter
+$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\exists N\in\N,\exists U_1,\ldots,U_N\subseteq\R^d$ offen, sodass
 \begin{enumerate}
 \item $
 \begin{aligned}
@@ -182,7 +182,7 @@ Das Gebiet $\Omega$ wird dann \textbf{Lipschitz-Gebiet} genannt.
 Für Lipschitz-Gebiete existiert fast überall auf $\partial\Omega$ der äußere Normalenvektor.
 \end{bemerkung}
 
-\begin{satz}[Spursatz]
+\begin{satz}[Spursatz]\enter
 Seien $\Omega$ eine Lipschitz-Gebiet, $k\in\N$, $l\in\lbrace 0,\ldots,k-1\rbrace$.\\
 Dann gibt es eine stetige lineare Abbildung
 \begin{align*}
@@ -273,10 +273,12 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 
 \begin{beispiel}
 	Für $d=2$ gibt es $H^1(\Omega)$-Funktionen, die nicht stetig sind:
-	\enter\enter
-	Sei $\Omega=$ Einheitskreis, $u(x,y):=\ln\left(\ln\left(\frac{4}{\sqrt{x^2+y^2}}\right)\right)$ \enter
-	u hat einen Pol im Ursprung, d.h. $u\not\in C(\overline{\Omega})$, aber:\enter
-	\underline{Behauptung:} 
+	\begin{itemize}
+		\item Sei $\Omega=$ Einheitskreis
+		\item $u(x,y):=\ln\left(\ln\left(\frac{4}{\sqrt{x^2+y^2}}\right)\right)$
+	\end{itemize}
+	$u$ hat einen Pol im Ursprung, d.h. $u\not\in C(\overline{\Omega})$, aber:\enter
+	\ul{Behauptung:} 
 	\[\|u\|^2_{1,2,\Omega}\leq 8\pi + \frac{2\pi}{\ln(4)}< \infty\]
 	\[\implies u \in H^1(\Omega)\]
 	\begin{proof}
