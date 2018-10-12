@@ -19,5 +19,58 @@ Differential Equations} nachgelesen werden.
 \end{itemize}
 \item Differentiationstheoreme:\enter
 Für fast alle $x_0 \in \R$ gelten:
-\[\avint\]
+\[\aveint{B(x_0,r)}{} f(x) \d x \stacksymbol{r\rightarrow 0}{\longrightarrow} f(x_0)\]
+und
+\[\aveint{B(x_0,r)}{} |f(x) - f(x_0)| \d x \stacksymbol{r\rightarrow 0}{\longrightarrow} 0\]
+	$x_0$ heißt dann Lebesgue-Punkt
+\end{itemize}
+Als nächstes folgt Theorie zu den $L1p$-Räumen. Siehe dafür
+\textit{Forster, Analysis 3}
+\section{Forster § 12}
+\begin{itemize}
+	\item \textbf{Definition $L^p$ Norm}\enter
+		Für $p\in[1,\infty]$ und messbare Funktionen
+\[f:\Omega \rightarrow [-\infty,\infty]\]
+definiert man
+\[\|f\|_{L^p(\Omega)}:=\left(\int_\Omega |f|^p\right)^{\frac{1}{p}}\]
+($\Omega$ ist Maßraum, bei uns offene Teilmenge des $\R^n$)
+\item \textbf{Minkowski-Ungleichung}\enter
+	Seien $f,g:\Omega\rightarrow[-\infty,\infty]$ messbar, dann
+	\[\|f+g\|_{L^p(\Omega)} \leq \|f\|_{L^p(\Omega)} + \|g\|_{L^p(\Omega)}\]
+	Dies ist eine Folgerung aus der Hölder-Ungleichung (siehe Forster): \enter
+	für $p\in[1,\infty]$ und $q$ mit $\frac{1}{p} + \frac{1}{q} = 1$:
+	\[\|fg\|_{L^1(\Omega)} \leq \|f\|_{L^p(\Omega)}\|g\|_{L^q(\Omega)}\]
+\item \textbf{Definition $\mathcal{L}^p$ und $L^p$} \enter
+	Definiere:
+	\[\mathcal{L}^p(\Omega):=\{f:\Omega\rightarrow \R \text{ messbar mit } \|f\|_{L^p(\Omega)}<\infty\}\]
+	Auf $\mathcal{L}^p(\Omega)$ ist $\|\cdot\|_{L^p(\Omega)}$ eine Seminorm bzw. Halbnorm wegen der Minkowski-Ungleichung und 
+	\[\|cf\|_{L^p(\Omega)}=|c|\cdot\|f\|_{L^p(\Omega)}\]
+	aber keine Norm, da 
+	\[\|f\|_{L^p(\Omega)}= 0 \nRightarrow f(x) = 0 \qquad \forall x \in \Omega\]
+	Um aus $\|\cdot\|_{L^p(\Omega)}$ eine Norm zu erhalten, bilden wir den Quotientenraum
+	\[L^p(\Omega) := \mathcal{L}^p(\Omega)/\sim\]
+	für die Relation $\sim$, die definiert wird über
+	\[f\sim g :\iff f=g \text{ fast überall}\]
+	Insbesondere gelten zum Beispiel punktweise Aussagen über $f$ für jeden Repräsentanten oder für einen Repräsentanten. Im Zweifelsfall wähle immer den Repräsentanten
+	\[f^*(x):=\begin{cases}
+			\lim\limits_{r\downarrow 0}\aveint{B(0,r)}{}f & \text{, falls $\lim$ ex.} \\
+			0 & \text{, sonst}
+	\end{cases}\]
+	Dies nutzt unter anderem aus, dass für jedes $p\in[1,\infty]$ gilt
+	\[\|f\|_{L^p(\Omega)}=0 \iff f = 0 \text{ fast überall}\]
+	\item \textbf{Beziehung zwischen $L^p$ und $L^1$ für $p>1$} \enter
+		\begin{itemize}
+			\item wenn $|\Omega| < \infty$, dann $L^p(\Omega) \subset L^1(\Omega)$
+			\item i.A. ist $L^1(\Omega) \neq L^p(\Omega)$
+		\end{itemize}
+
+		\beisp \enter
+		Für $\Omega=\R^n$ und $f(x)=\đrac{1}{1+|x|^n}$ gilt
+		\[f \in L^p(\R^n) \quad \forall p>1, \text{ aber } f\not\in L^1(R^n)\]
+		Umgekehrt sei nun $\Omega = B(0,1)$ und $g:B(0,1)\rightarrow \R$ definiert durch
+		\[g(x)=\begin{cases}
+				\frac{1}{|x|^{\frac{n}{p}}} & ,\forall x \neq 0 \\
+				0 & ,x=0 
+		\end{cases}\]
+		Dann gilt $g\in(L^1\setminus L^p)(\Omega)$
 \end{itemize}
