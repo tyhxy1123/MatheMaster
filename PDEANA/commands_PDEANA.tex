@@ -1,0 +1,31 @@
+\newcommand*{\avint}{\LARGE\mathop{\ooalign{$\int$\cr$-$}}\normalsize}
+\def\vint_#1{\mathchoice%
+      {\mathop{\kern 0.2em\vrule width 0.6em height 0.69678ex depth -0.58065ex
+              \kern -0.8em \intop}\nolimits_{\kern -0.4em#1}}%
+      {\mathop{\kern 0.1em\vrule width 0.5em height 0.69678ex depth -0.60387ex
+              \kern -0.6em \intop}\nolimits_{#1}}%
+      {\mathop{\kern 0.1em\vrule width 0.5em height 0.69678ex depth -0.60387ex
+              \kern -0.6em \intop}\nolimits_{#1}}%
+      {\mathop{\kern 0.1em\vrule width 0.5em height 0.69678ex depth -0.60387ex
+              \kern -0.6em \intop}\nolimits_{#1}}}
+\def\vintslides_#1{\mathchoice%
+      {\mathop{\kern 0.1em\vrule width 0.5em height 0.697ex depth -0.581ex
+              \kern -0.6em \intop}\nolimits_{\kern -0.4em#1}}%
+      {\mathop{\kern 0.1em\vrule width 0.3em height 0.697ex depth -0.604ex
+              \kern -0.4em \intop}\nolimits_{#1}}%
+      {\mathop{\kern 0.1em\vrule width 0.3em height 0.697ex depth -0.604ex
+              \kern -0.4em \intop}\nolimits_{#1}}%
+      {\mathop{\kern 0.1em\vrule width 0.3em height 0.697ex depth -0.604ex
+              \kern -0.4em \intop}\nolimits_{#1}}}
+
+\newcommand{\kint}{\vint}
+\newcommand{\intav}{\vint}
+\newcommand{\aveint}[2]{\mathchoice%
+      {\mathop{\kern 0.2em\vrule width 0.6em height 0.69678ex depth -0.58065ex
+              \kern -0.8em \intop}\nolimits_{\kern -0.45em#1}^{#2}}%
+      {\mathop{\kern 0.1em\vrule width 0.5em height 0.69678ex depth -0.60387ex
+              \kern -0.6em \intop}\nolimits_{#1}^{#2}}%
+      {\mathop{\kern 0.1em\vrule width 0.5em height 0.69678ex depth -0.60387ex
+              \kern -0.6em \intop}\nolimits_{#1}^{#2}}%
+      {\mathop{\kern 0.1em\vrule width 0.5em height 0.69678ex depth -0.60387ex
+              \kern -0.6em \intop}\nolimits_{#1}^{#2}}}

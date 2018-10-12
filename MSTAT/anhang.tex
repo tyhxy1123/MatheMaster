@@ -1,0 +1,113 @@
+\setcounter{chapter}{0}
+\renewcommand{\thechapter}{\Alph{chapter}}
+\chapter{Anhang}
+\setcounter{equation}{1}
+\section{Grundlagen, die man kennen sollen}
+\begin{itemize}
+\item $f:\R\to\R$ heißt \textbf{Borel-messbar} $:\gdw\forall M\in\B(\R):f^{-1}(M)\in\B(\R)$
+\item Sei $(\Omega,\A, \P)$ WRaum und $(S,\B)$ Messraum. Eine \textbf{Zufallsvariable (ZV)} $X$ ist eine $(\A,\B)$-messbare Abbildung $X:\Omega\to S$\\
+Wenn $S=\R$, dann heißt $X$ \textbf{Zufallsgröße (ZG)}
+\item Die \textbf{Verteilung} einer ZG $X$ ist W-Maß auf $\B$:
+\begin{align*}
+\mu_X:\B\to[0,1],\quad
+\mu_X(B):=\P[X\in B]:=\P(X^{-1}(B))=\P(\lbrace w\in\Omega:X(w)\in B\rbrace)\quad\forall B\in\B
+\end{align*}
+\item Die \textbf{Dichte} ist
+\begin{align*}
+p:\Rn\to[0,\infty]\mit \mu_X(A)=\int\limits_A p(x)\d\mathcal{L}(x)\qquad\forall A\in\B(\Rn)
+\end{align*}
+\item \textbf{Verteilungsfunktion} von $X$ ist
+\begin{align*}
+F_X:\R\to[0,1],\qquad F_X(x)=\P[X<x]=\mu_X(]-\infty,x[)=\int\limits_{-\infty}^x p(t)\d t
+\end{align*}
+mit der Eigenschaft
+\begin{align*}
+F'(x)=p(x)\qquad\forall x\in\R~~~\mathcal{L}\text{fast überall}
+\end{align*}
+\item Zwei Zufallsvariablen $X_1:\Omega\to S_1$ und $X_2:\Omega\to S_2$ heißen \textbf{unabhängig} 
+\begin{align*}
+:\Longleftrightarrow
+\forall B_1\in\B_1,\forall B_2\in\B_2:
+\P[X_1\in B_1]\cdot \P[X_2\in B_2]
+&=
+\P[X_1\in B_1, X_2\in B_2]\\
+&:=\P\big(\lbrace\omega\in\Omega:X_1(\omega)\in B_1\wedge X_2(\omega)\in B_2\rbrace\big)
+\end{align*}
+\item Sei $X$ eine $\P$-integrierbare oder nichtnegative Zufallsgröße. Dann ist der \textbf{Erwartungswert von $X$} definiert als
+\begin{align*}
+\E(X):=\int\limits_\Omega X(\omega)\d\P(\omega)
+\stackeq{\text{\ref{eqTrafo}}}
+\int\limits_\R x\d\mu_X (x)
+\stackeq{p\text{ Dichte}}
+\int\limits_\R x\cdot p(x)\d x
+\end{align*}
+und hat folgende Eigenschaften ($X,Y$ seien Zufallsgrößen):
+\begin{enumerate}
+\item Linearität: $\forall a,b\in\R:\E(a\cdot X+b\cdot Y)=a\cdot \E(X)+b\cdot\E(Y)$
+\item $X=c\in\R$ fast sicher konstant $\Longrightarrow\E(X)=c$
+\item $a\leq X\leq b$ fast sicher konstant $\Longrightarrow a\leq\E(X)\leq b$
+\item $|\E(X)|\leq\E(|X|)$
+\item $X\geq0$ fast sicher und $\E(X)=0\Rightarrow X=0$ fast sicher
+\item $X,Y$ unabhängig $\Longrightarrow\E(X\cdot Y)=\E(X)\cdot E(Y)$
+\end{enumerate}
+\item Zwei ZG heißen \textbf{unkorreliert} $:\gdw\E[X\cdot Y]=\E[X]\cdot\E[Y]$
+\item Für $X\in L^2(\P)$ ist die \textbf{Varianz} 
+\begin{align*}
+\Var(X):=\E[(X-\E[X])^2]=\int\limits_\Omega(X-\E[X])^2\d\P=E[X^2]-(\E[X])^2
+\end{align*}
+mit den Eigenschaften
+\begin{align*}
+\Var(a\cdot X+b)&=a^2\cdot\Var(X)\\
+\Var(X)&=0\Longleftrightarrow X\text{ ist konstant fast sicher}\\
+\Var(X+Y)&=\Var(X)+\Var(Y)+\underbrace{2\E[(X-\E[X])\cdot(Y-\E[Y])]}_{=0\text{, falls $X,Y$ unkorreliert}}
+\end{align*}
+\end{itemize}
+
+\section{Wichtige Sätze}
+\begin{satz}[Korrespondenzsatz]\label{satzKorrespondenzsatz}\enter
+Jede Verteilungsfunktion $F$ ist Verteilungsfunktion eines eindeutigen Wahrscheinlichkeitsmaßes $\P$. Dieses Maß $\P$ ist durch
+\begin{align*}
+\P_F((-\infty,x]):=F_(x)
+\end{align*}
+eindeutig bestimmt.\\
+Umgekehrt bestimmt jedes Wahrscheinlichkeitsmaß eine eindeutige Verteilungsfunktion über
+\begin{align*}
+F_{\P}(x):=\P((-\infty,x])
+\end{align*}
+
+Somit ist die Zuordnung der Verteilungsfunktionen zu den Wahrscheinlichkeitsverteilungen bijektiv. 
+\end{satz}
+
+\begin{notation}
+$\P(\d x):=:\d\P(x)$. Außerdem bedeutet $F(\d x)$ oftmals auch, dass man bzgl. dem Maß $Q$ integriert, was durch $F$ eindeutig festgelegt ist.
+\end{notation}
+
+\begin{satz}[Transformationssatz]\label{satzTransformationssatz}\enter
+Seien $(\Omega,\A,\P)$ ein Wahrscheinlichkeitsraum und $(S,\mathcal{F})$ ein Messraum.
+Sei $u:S\to\R$ eine messbare Funktion und $X:\Omega\to S$ eine Zufallsvariable. Dann gilt:
+\begin{align}\label{eqTrafo}\tag{Trafo}
+\int\limits_\Omega u(X(\omega))~\P(d\omega)=\int\limits_S u(s)~\P_X(\d s)
+\end{align}
+\end{satz}
+
+\begin{satz}[Lebesgue / dominierte Konvergenz / majorisierte Konvergenz]\label{satzMajorisierteKonvergenz}\enter
+Sei $(\Omega,\A,\P)$ ein Maßraum und sei $(f_n)_{n\in\N}$ eine Folge von $\P$-mesbaren Funktionen (z. B. ZV) $f_n:\Omega\to\R\cup\lbrace\infty\rbrace$. Die Folge $(f_n)_{n\in\N}$ konvergiere $\P$-fast überall gegen eine $\P$-messbare Funktion $f$ und es gilt $|f_n|\leq g$ $\P$-fast überall für alle $n\in\N$ für eine $\P$-integrierbare Funktion $g:\Omega\to\R$.\\
+Dann sind $f_n$ und $f$ $\P$-integrierbar und es gilt
+\begin{align*}
+\int\limits_\Omega f(\omega)\d\P(\omega)=\int\limits_\Omega \limn f_n(\omega)\d\P(\omega)
+=\limn\int\limits_\Omega f_n(\omega)\d\P(\omega)
+\end{align*}
+\end{satz}
+
+\begin{satz}[Monotone Konvergenz]\label{satzMonotoneKonvergenz}\enter
+Sei $(\Omega,\A,\P)$ ein Maßraum. Ist $(f_n)_{n\in\N}$ eine Folge nichtnegativer, messbarer Funktionen $f_n:\Omega\to[0,\infty]$, die $\P$-fast-überall monoton wachsend gegen eine messbare Funktion $f:\Omega\to[0,\infty]$ konvergiert, so gilt:
+\begin{align*}
+\int\limits_\Omega f(\omega)\d\P(\omega)=\int\limits_\Omega \limn f_n(\omega)\d\P(\omega)
+=\limn\int\limits_\Omega f_n(\omega)\d\P(\omega)
+\end{align*}
+\end{satz}
+
+%\begin{satz}[Gliwenko-Cantelli]\enter
+
+%\end{satz}
+

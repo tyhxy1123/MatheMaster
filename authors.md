@@ -5,10 +5,9 @@ Die folgende Tabelle zeigt wer an welchen Modulen mitarbeitet. So kann man sich 
 | Modul  | Autoren              |
 | ------ | ------               |
 | PDENM  | Willi, Robert        |
-| ORDSTR | Willi                |
-| MFANA  | Willi                |
+| ORDSTR | Willi, Lukas, Phillip|
+| MFANA  | Willi, Lukas, Phillip|
 | WTHM   | Willi, Robert        |
-| VMRM   | Willi                |
 | MSTAT  | Willi                |
 | PDEANA | Robert               |
 | AMGEO  | Lukas                |

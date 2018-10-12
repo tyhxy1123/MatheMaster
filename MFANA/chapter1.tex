@@ -25,6 +25,7 @@ Sei $(X,\Vert\cdot\Vert)$ ein Banachraum. Für alle $u,v\in X$ und alle $\lambda
 [u,v]_\lambda&:=\frac{\Vert u+\lambda\cdot v\Vert-\Vert u\Vert}{\lambda}\text{ und}\\
 [u,v]&:=\inf\limits_{\lambda>0}[u,v]_\lambda.
 \end{align*}
+
 Die Abbildung $[\cdot,\cdot]:X\times X\to\R\cup\lbrace-\infty\rbrace$ heißt \textbf{Bracket}. Das Bracket $[u,v]$ ist eine Richtungsableitung der Norm $\Vert\cdot\Vert_X$ im Punkt $u$ in Richtung $v$.
 
 \begin{lemma}[Eigenschaften des Brackets]
@@ -57,7 +58,8 @@ $f$ heißt \textbf{oberhalbstetig}, falls $-f$ unterhalbstetig ist.
 \end{definition}
 
 \begin{lemma}
-Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funktion. Dann sind äquivalent: \begin{enumerate}[label=(\roman*)]
+Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funktion. Dann sind äquivalent: 
+\begin{enumerate}[label=(\roman*)]
 	\item $f$ ist unterhalbstetig.
 	\item $\forall c\in\R\colon\lbrace f\leq c\rbrace:=\lbrace u\in M\mid f(u)\leq c\rbrace$ ist abgeschlossen.
 	\item $\lbrace(u,\lambda)\in M\times\R\mid f(u)\leq\lambda\rbrace=:\operatorname{epi}(f)$ ist abgeschlossen.
@@ -269,3 +271,4 @@ D_t^R\Vert u(t)\Vert=\left[u(t),D_t^R u(t)\right\Vert.
 \item
 \end{enumerate}
 \end{lemma}
+
