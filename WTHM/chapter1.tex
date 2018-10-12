@@ -22,7 +22,11 @@ ist
 \mathcal{L}_p(\Omega,\A,\P)
 \end{align*}
 Vektorraum mit Halbnorm $\Vert\cdot\Vert_p$. Es fehlt die Definitheit.\\
-Wir identifizieren Zufallsvariablen $X,\tilde{X}$, welche $\P$-fast sicher übereinstimmen, d. h. \[\P[X\neq\tilde{X}]=0\] Formal betrachten wir den Unterraum
+Wir identifizieren Zufallsvariablen $X,\tilde{X}$, welche $\P$-fast sicher übereinstimmen, d. h. 
+\begin{align*}
+\P[X\neq\tilde{X}]=0.
+\end{align*}
+Formal betrachten wir den Unterraum
 \begin{align*}
 \mathcal{N}:=\lbrace N:\Omega\to\R:N=0\text{ $\P$-fast sicher}\rbrace
 \end{align*}
@@ -62,7 +66,9 @@ Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Om
 \begin{defi}[Bedingte Erwartung in $L_2$]\enter
 Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\enter\enter
 Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$. Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
-\[\E[X~|~\mathcal{F}]:=Y\]
+\begin{align*}
+\E[X~|~\mathcal{F}]:=Y.
+\end{align*}
 Die bedingte Erwartung ist also eine Zufallsgröße und nur bis auf $\P$-Nullmengen eindeutig bestimmt.
 \end{defi}
 
@@ -80,6 +86,7 @@ Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zuf
 	\begin{enumerate}
 		\item $Y$ ist die Orthogonalprojektion von $X$ auf $L_2(\Omega,\mathcal{F},\P)$ 
 		\item $\forall F\in\mathcal{F}\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
+	\end{enumerate}
 \end{proposition}
 \begin{proof}
 	$\dq (a) \implies (b) \dq{}$ \enter
@@ -96,7 +103,7 @@ Nun nehmen wir an, dass $t>0$ auf der rechten Seite gilt und multiplizieren die 
 \end{align*}
 Für $t\rightarrow0$ erhalten wir.
 \[\langle X-Y, F \rangle \leq 0\]
-Analog erhält man mit der Annahme $t<0$ die Ungleichung die umgekehrte Ungleichung.
+Analog erhält man mit der Annahme $t<0$ die umgekehrte Ungleichung.
 Also folgt
 \[\langle X-Y, F \rangle = 0 \qquad \forall \F \in L_2(\F)\]
 da $F$ beliebig gewählt war.\enter
@@ -247,7 +254,7 @@ Mit dominanter Konvergenz gilt
 Mit Kontraktionseigenschaft gilt:
 \[\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
 	\leq\E\Big[\E\big[|X-M-X_n|\big]~\big|~\F\Big]
-\stackeq{Turm}~
+\stackeq{\text{Turm}}~
 \E\big[|X_n-X_n|\big]
 \stackrel{m,n\to\infty}{\longrightarrow}
 0\]
