@@ -1,102 +1,44 @@
+\chapter{Sobolev-Räume}
+\section{Hölder-Räume}
 
+\begin{definition} \textbf{(Hölder-Stetigkeit)}\enter
+	Sei $u:U\rightarrow\R$. Diese Funktion heißt Hölder-stetig zum Exponenten $\gamma$, wenn eine Konstante $C$, sowie $\gamma\in(0,1]$ existieren, sodass für alle $x,y\in U$ gilt:
+	\[|u(x)-u(y)| \leq C|x-y|^\gamma\]
+\end{definition}
 
-\subsection{Forster}
+ Auf diesen Begriff aufbauend können wir eine Seminorm und eine Norm definieren:
 
-Die folgenden S\"atze sind aus \textit{Analysis 3} von \textit{Otto Forster} und werden hier zur Wiederholung und Übersicht kurz beleuchtet.
-\enter
+ \begin{definition} \textbf{(Hölder Normen)}\enter
+	 Sei $u:U\rightarrow\R$ beschränkt und stetig, dann existiert die $C^\infty(U)$ Norm für $u$:
+	 \[\|u\|_{C(\overline{U})}:=\|u\|_\infty\]
+	 Die Hölder Seminorm für $u$ zum Exponenten $\gamma$ ist
+	 \[\left[u\right]_{C^{0,\gamma}(\overline{U})}:=
+	 \sup\limits_{\substack{x,y\in U \\ x\neq y}}\left\{ \frac{|u(x)-u(y)|}{|x-y|^\gamma}\right\}\]
+	und durch das Zusammenführen dieser beiden Normen erhalten wir die Hölder Norm zum Exponenten $\gamma$:
+	\[\|u\|_{C^{0,\gamma}(\overline{U})}:=\|u\|_{C(\overline{U})}+\left[u\right]_{C^{0,\gamma}(\overline{U})}\]
+\end{definition}
+
+\begin{definition}\textbf{(Hölder Räume)}\enter
+	Die Hölder Räume 
+	\[C^{k,\gamma}(\overline{U})\]
+	bestehen aus allen Funktionen $u\in C^k(\overline{U})$ mit
+	\[\|u\|_{C^{k,\gamma}(\overline{U})}<\infty\]
+	wobei
+	\[\|u\|_{C^{k,\gamma}(\overline{U})}:=
+		\sum\limits_{|\alpha|\leq k}\|D^\alpha u\|_{C(\overline{U})}
+	+\sum\limits_{|\alpha|=k}\left[D^\alpha u\right]_{C^{0,\gamma}(\overline{U})}\]
+\end{definition}
 
 \begin{satz}
-	Sei $p > 1$ und $f \in L^p(\Omega)$ mit $\Omega \subset \R^n$. 
-	\renewcommand{\labelenumi}{(\alph{enumi})}
-	\begin{enumerate}
-		\item Sei $q$ konjugierter Exponent zu $p$ (d.h. $\frac{1}{q} + \frac{1}{p}=1$)
-			$\implies fg \in L^q(\Omega)$.
-		\item Falls $|\Omega| < \infty$ gilt $f \in L^1(\Omega)$
-		\item $ L^1(\Omega) \cap L^{\infty}(\Omega) \subset L^p(\Omega) \quad \forall p\in [1,\infty) $
-	\end{enumerate}
+	Die Hölder Räume $C^{k,\gamma}(\overline{U})$ sind Banachräume.
 \end{satz}
-
 \begin{proof}
-	\enter
-	\renewcommand{\labelenumi}{(\alph{enumi})}
-	\begin{enumerate}
-		\item H\"older
-		\item folgt aus (a) mit $g\equiv1$
-		\item
-			\begin{align*}
-				\int |g|^p &= \int |g|^{p-1}|g| \\
-									 &\leq \|g\|^{p-1}_{L^\infty(\Omega)}\int |g| \\
-									 &= \|g\|^{p-1}_{L^\infty(\Omega)}\|g\|_{L^1}(\Omega)
-			\end{align*}
-	\end{enumerate}
-
+	Aufgabe aus Evans
 \end{proof}
 
-\begin{satz}\textbf{(Majorierte Konvergenz für $L^p$)} \enter
-	Sei $p \geq 1$ und $f_k \in L^p(\Omega)$, sodass eine Funktion $f:\Omega\to [-\infty,\infty]$ ex. mit
-	\[f_k \to f\text{ punktweise f.\"u.}\]
-	Zudem ex. $F: \Omega \to [0,\infty]$ mit $F \in L^p(\Omega)$ sd. 
-	\[|f_k| \subset F \quad \text{ f.\"u. } \quad \forall k\]
-	Dann ist $f\in L^p(\Omega)$ und 
-	\[f_k \to f \text{ in }L^p(\Omega)\]
-\end{satz}
+Leider sind die Hölder Räume zu restriktiv, um sie für PDEs zu nutzen. Die Funktionen in diesen Räumen haben meist zu hohe Differenzierbarkeitsvoraussetzungen. Deshalb führen wir die etwas allgemeineren Sobolev Räume ein. Dazu brauchen wir jedoch zunächst ein paar andere Begriffe:
 
-\begin{proof}
-	Forster
-\end{proof}
-
-\begin{satz} \enter
-	Sei $p \geq 1$ und $(f_m) \subset L^p(\Omega)$ eine $L^p$-Cauchy-Folge(d.h.
-	bzgl. $L^p$-Norm).\enter
-	Dann ex. eine Teilfolge ($f_{m_k}$) und eine Funktion
-	$f:\Omega\to \R$ sd. 
-	\[f_{m_k} \overset{k\to \infty}{\longrightarrow} f \quad \text{ f.ü.}\]
-	Zudem ist $f\in L^p(\Omega)$ und
-	\[f_m \stackrel{m\rightarrow \infty}{\longrightarrow} f \quad \text{ in }
-	L^p(\Omega)\]
-	M.a.W. ist $\left(L^p(\Omega), ||\cdot||_{L^p(\Omega)}\right)$ vollst\"andig 
-	\[\implies \text{ also ein Banachraum } \]
-\end{satz}
-
-\begin{proof}
-	Forster
-\end{proof}
-
-\begin{satz} \enter
-	Für jedes $p \geq 1$ liegt $C_c(\R^n)$ dicht in $L^p(\R^n)$. \enter
-	D.h. für alle $f \in L^p(\R^n)$ und für alle $\varepsilon > 0$ ex. ein
-	$\varphi \in C^0_c(\R^n)$ mit 
-	\[||f-\varphi||_{ L^p(\R^n)} < \varepsilon\]
-\end{satz}
-
-\begin{proof}
-	Approximiere $f$ durch eine Treppenfunktion mit endlich vielen Werten und \glqq sch\"onen\grqq\ Urbildmengen. Dann approximiere diese Treppenfunktionen durch stetige Funktionen
-\end{proof}
-
-\begin{satz}\enter
-	Der vorherige Satz gilt auch mit $C^\infty_c(\R^n)$ statt $C^0_c(\R^n)$.
-\end{satz}
-
-\begin{proof}
-	siehe Forster oder Evans via \glqq mollification\grqq = Faltung mit Glättungskern
-\end{proof}
-
-
-\subsection{Evans Appendix C}
-
-\begin{itemize}
-	\item \textbf{Definition Glättungskerne} \enter
-		zum Beispiel:
-		\[\eta(x):= \frac{1}{|x|^2-1}\]
-		\[\rightarrow \eta_\epsilon(x):=\frac{1}{\epsilon^n}\eta\left(\frac{x}{\epsilon}\right)\]
-			(vgl. PDF-Vertiefungslorlesung)
-		\item \textbf{Glättung von $f$} \enter
-			Die Glättung von $f$ wird definiert durch:
-			\[f^\epsilon:=f\ast\eta_\epsilon\]
-		\item \textbf{Eigenschaften von Glättungen}
-			\newpage
-		\item \textbf{lokale $L^p$-Konvergenz}\enter
-			\[f_k \rightarrow f \text{ in } L^p_{loc}(\Omega)\]
-			($:\iff$ für alle $V$ offen und $\overline{V}\subset\Omega$ gilt
-				$f_k\rightarrow f \text{ in } L^p(V)$)
-\end{itemize}
+\begin{definition}\textbf{(schwache Ableitung)}\enter
+	Sei $\varphi\in C^\infty_c(U)$ und $u$ zunächst nur in $C^1(\overline{U})$. Dann hat $u$ eine schwache Ableitung, wenn für beliebiges $\varphi$ gilt:
+	\[\int_U\partial_{x_1}u\cdot \varphi \stackrel{\text{part. Int.}}{=}
+	\underbrace{-\int_U u\partial_{x_1}\varphi}_{\substack{\text{wohldef. sogar,}\\\text{wenn } u\in L^1_{loc}(U)}}\]
