@@ -5,7 +5,6 @@
 \input{../latex/font}
 \input{../latex/commands}
 % \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
-\renewcommand{\|}{~|~}
 
 \title{%
   Lecture\\
@@ -23,7 +22,14 @@
 \maketitle
 \tableofcontents % Inhaltsverzeichnis
 \pagenumbering{arabic}	%enable pagenumbering
-
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\End}{\textrm{End}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\GL}{\textrm{GL}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\ad}{\text{ad}}
+\newcommand{\Der}{\text{Der}}
 {\input{chapter1}}
 
 %\listoffigures 
