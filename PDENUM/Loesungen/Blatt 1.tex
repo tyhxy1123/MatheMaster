@@ -1,0 +1,77 @@
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../PDENUM/PDENM_commands}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{color}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{PDENM WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 1}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 1.1}
+Die Funktion
+\begin{align*}
+H:(-1,1)\to\R,\qquad H(x):=\left\lbrace\begin{array}{cl}
+0, & \falls x<0\\
+1, & \falls x\geq0
+\end{array}\right.
+\end{align*}
+besitzt keine schwache Ableitung $f\in L^1((-1,1))$.
+\begin{proof}
+Offenbar ist die Funktion
+\begin{align*}
+\tilde{H}:\equiv H|_{(-1,0)\cup(0,1)}.
+\end{align*}
+beliebig oft stetig differenzierbar mit $\tilde{H}'\equiv0$. Somit ist die schwache Ableitung von $\tilde{H}$ bereits die Nullfunktion und es gilt nach Definition ($\alpha=(0)$) für alle $v\in C_0^\infty((-1,1))$:
+\begin{align*}
+\int\limits_{(-1,0)\cup(0,1)}\tilde{H}(x)\cdot v'(x)\d x=-1\cdot\int\limits_{(-1,0)\cup(0,1)} 0\cdot v\d x=0
+\end{align*}
+
+\textcolor{red}{Das kann doch nicht stimmen. Dann würde hier analog zu unten folgen, dass $v(0)=0$ gelten muss, was ja nicht gilt, oder?}\\
+
+Nehmen wir nun an, dass $H$ eine schwache Ableitung $f\in L^1((-1,1))$ besitzt. Dann gilt per Definition ($\alpha:=(0)$) für alle $v\in C_0^\infty((-1,1))$:
+\begin{align*}
+-1\cdot\int\limits_{(-1,1)} f(x)\cdot v(x)\d x
+&\stackeq{\text{Def}}
+\int\limits_{(-1,1)} H(x)\cdot v'(x)\d x\\
+&\stackeq{\text{Def }H}
+\int\limits_{[0,1)} v'(x)\d x\\
+&\stackeq{\text{HS}}
+\lim\limits_{k\uparrow 1} v(k)-v(0)\\
+&\stackeq{\text{komp. T}}
+-v(0)
+\end{align*}
+\end{proof}
+
+\section*{Aufgabe 1.2}
+
+\section*{Aufgabe 1.3}
+
+
+\section*{Aufgabe 1.4}
+
+
+\section*{Aufgabe 1.5}
+
+\section*{Aufgabe 1.6}
+
+
+\end{document}
