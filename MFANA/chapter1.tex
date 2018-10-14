@@ -68,6 +68,19 @@ Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funk
 
 \begin{proof}
 \underline{Zeige (i) $\Rightarrow$ (iii):}\\
+Sei $\big((u_n,\lambda_n)\big)_{n\in\N}$ eine konvergente Folge in $\epi(f)\mit(u,\lambda):=\limn(u_n,\lambda_n)$ in $M\times\R$. Dann gilt:
+\begin{align*}
+f(u)
+\stackrel{\text{(i)}}{\leq}
+\liminf\limits_{n\to\infty} f(u_n)
+\stackrel{f(u_n)\leq\lambda_n}{\leq}
+\liminf\limits_{n\to\infty} \lambda_n
+=\lambda\\
+\implies
+(u,\lambda)\in\epi(f)
+\end{align*}
+
+\underline{Zeige (iii) $\Rightarrow$ (ii):}\\
 Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Dann ist
 \begin{align*}
 \limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
@@ -129,9 +142,9 @@ Sei $f:\R\to\R\cup\lbrace\infty\rbrace$ konvex. Dann gilt
 monoton wachsend.
 \item $\forall x\in\R\mit f(x)<\infty$ existieren die Grenzwerte
 \begin{align*}
-\lim\limits_{\lambda\to0^+}\frac{f(x+\lambda\cdot y)-f(x)}{\lambda}\in\R\cup\lbrace\pm\infty\rbrace
+\lim\limits_{\lambda\to0^+}\frac{f(x+\lambda)-f(x)}{\lambda}\in\R\cup\lbrace\pm\infty\rbrace
 \text{ und }
-\lim\limits_{\lambda\to0^+}\frac{f(x-\lambda\cdot y)-f(x)}{-\lambda}\in\R\cup\lbrace\pm\infty\rbrace.
+\lim\limits_{\lambda\to0^+}\frac{f(x-\lambda)-f(x)}{-\lambda}\in\R\cup\lbrace\pm\infty\rbrace.
 \end{align*}
 \item 
 $\begin{aligned}
@@ -149,7 +162,7 @@ Sei $0<\lambda_1<\lambda_2$. Dann ist
 \end{align*}
 und somit
 \begin{align*}
-f(x_1)
+f(\lambda_1)
 =
 f\Big((1-\lambda)\cdot0+\lambda\cdot\lambda_2\Big)
 \stackrel{f\text{ konv}}{\leq}
@@ -188,16 +201,18 @@ $v\mapsto[u,v]$ ist sublinear, denn
 &=
 \inf\limits_{\lambda>0}[u,\mu\cdot v]_\lambda\\
 &=\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot\mu\cdot v\Vert-\Vert u\Vert}{\lambda}\cdot\frac{\mu}{\mu}\\
-&=\inf\limits_{\lambda>0}\mu\cdot[u,v]_{\lambda\cdot\mu}\\
+&\stackeq{Def}
+\inf\limits_{\lambda>0}\mu\cdot[u,v]_{\lambda\cdot\mu}\\
 &=\mu\cdot[u,v]
 \end{align*}
 und für alle $\mu\in(0,1)$ gilt
 \begin{align*}
 [u,v_1+v_2]
 &=
-\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot(v_1+v_2)\Vert-\Vert u\Vert}{\lambda}\cdot\frac{\mu}{\mu}\\
+\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot(v_1+v_2)\Vert-\Vert u\Vert}{\lambda}\\
 &\stackrel{\mu\in(0,1)}{\leq}
-\underbrace{\inf\limits_{\lambda>0}}_{=\lim\limits_{\lambda\to0}}\Vert\mu\cdot u+\lambda\cdot v_1\Vert+\Vert(1-\mu)\cdot u+\lambda\cdot v_2\Vert-\mu\cdot\Vert u\Vert-(1-\mu)\cdot\Vert u\Vert\\
+\underbrace{\inf\limits_{\lambda>0}}_{=\lim\limits_{\lambda\to0}}
+\frac{\Vert\mu\cdot u+\lambda\cdot v_1\Vert+\Vert(1-\mu)\cdot u+\lambda\cdot v_2\Vert-\mu\cdot\Vert u\Vert-(1-\mu)\cdot\Vert u\Vert}{\lambda}\\
 &=\lim\limits_{\lambda\to0}\frac{\left\Vert u+\frac{\lambda}{\mu}\cdot v_1\right\Vert-\Vert u\Vert}{\frac{\lambda}{\mu}}+\frac{\left\Vert u+\frac{\lambda}{1-\mu}\cdot v_2\right\Vert-\Vert u\Vert}{\frac{\lambda}{1-\mu}}\\
 &=[u,v_1]+[u,v_2]
 \end{align*}
@@ -245,9 +260,9 @@ Falls $X=H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$ ist, d
 \begin{align*}
 [u,v] 
 &=
-\lim\limits_{\lambda\to0^+}\sqrt{\langle u+\lambda\cdot v,u+\lambda\cdot v\rangle}-\sqrt{\langle u,u\rangle}\\
+\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u+\lambda\cdot v,u+\lambda\cdot v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
 &=\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u,u\rangle+2\cdot\lambda\cdot\langle u,v\rangle+\lambda^2\cdot\langle v,v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
-\stackeq{u\neq0}
+&\stackeq{u\neq0}
 \frac{1}{2\cdot\Vert u\Vert}\cdot 2\cdot\langle u,v\rangle\\
 &=\left\langle\frac{u}{\Vert u\Vert},v\right\rangle
 \end{align*}
