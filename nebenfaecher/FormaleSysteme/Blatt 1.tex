@@ -1,0 +1,185 @@
+\documentclass[12pt,a4paper]{article} %Schriftgröße = 12, Pappier = A4, Stil = Artikel
+\usepackage[utf8]{inputenc} % Zeichensatzkodierung = UTF8, 
+\usepackage[german]{babel} %Babel-Paket 7 Sprache = Deutsch
+\usepackage[T1]{fontenc}
+\usepackage{amsmath} % Irgendein Mathe-Paket
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} % Randeinstellungen
+\usepackage{hyperref}
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale System WiSe 18 19}
+\ohead{Version: \today}
+\ifoot{Blatt 1}
+\cfoot{willi\_sontopski@arcor.de}
+\ofoot{Seite \pagemark}
+
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\gdw}{\Leftrightarrow}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\renewcommand{\d}{\text{ d}}
+\newcommand{\falls}{\text{falls }}
+\renewcommand{\mit}{\text{ mit }}
+\newcommand{\sonst}{\text{sonst }}
+
+\newcommand{\myeq}[1]{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny #1}}}{=}}}
+\newcommand{\myrel}[2]{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny #1}}}{#2}}}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\usepackage{enumerate}
+\newcommand{\ok}{\text{öK}}
+\newcommand{\sk}{\text{sK}}
+\renewcommand{\k}{\text{K}}
+\newcommand{\bj}{\text{bJ}}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 1.1}
+\subsection*{Aufgabe 1.1 (a)}
+\begin{enumerate}[{(1)}]
+\item  Nein, da, Klammern fehlen. Richtig wäre: $(3-2)+(1-(3\times 4))$ oder $((3-2)+1)-(3\times 4)$
+\item Nein, da rationale Zahlen nicht geklammert werden dürfen. Und ein unäres Minus ist auch nicht definiert.
+\item Nein, da das Gleichheitszeichen nicht Teil des Alphabets ist.
+\item Nein, da es kein unäres Minuszeichen gibt.
+\item Nein. Nur falls $p,q\in\Q$.
+\end{enumerate}
+
+\subsection*{Aufgabe 1.1 (b)}
+Das ist Abhängig von der Wahl des Alphabets $(\mathcal{R},\mathcal{J},\mathcal{S})$.
+\begin{enumerate}[{(1)}]
+\item Ja.
+\item Ja.
+\item Ja.
+\item Nein, weil Klammern fehlen. Richtig wäre $((p\wedge p)\wedge(p\wedge p))$
+\item Nein, weil Klammern zu viel sind und fehlen.
+\item Ja.
+\end{enumerate}
+
+\section*{Aufgabe 1.2}
+Induktionsanfang: $n=0:~0\leq0=0^2$
+Induktionsvoraussetzung: Gelte $n\leq n^2$ für beliebiges aber festes $n\in\N$.
+Induktionsschritt: 
+$n+1\leq
+n+\underbrace{2\cdot n}_{\geq0}+1
+\myrel{IV}{\leq} n^2+2\cdot n+1=(n+1)^2\qquad\square$
+
+\section*{Aufgabe 1.3}
+\subsection*{Aufgabe 1.3 (a)}
+Beweis durch Induktion, Induktionsanfang: $n=1:$ $p$ ist Formel (wenn aussagenlogische Variable)\\
+Induktionsvoraussetzung: Für ein beliebiges aber festes $n\in\N$ gibt es eine aussagenlogische Formel der Länge $n$.\\
+Induktionsschritt: Nach IV ist $x$ aussagenlogische Formel der Länge $n$. Dann ist $\neg x$ nach Def. 3.5.2 auch aussagenlogische Formel. $\square$
+
+\subsection*{Aufgabe 1.3 (b)}
+k.A.
+
+\section*{Aufgabe 1.4}
+\subsection*{Aufgabe 1.4 (a)}
+Betrachte die Funktionen, die aufgehende bzw. schließende Klammern zählen:
+\begin{align*}
+sk\equiv\ok:\mathcal{L}(\mathcal{R})\to\N,\qquad
+x\mapsto\left\lbrace\begin{array}{cl}
+0, & \falls x\in\mathcal{R}\text{ (ist Atom)}\\
+\ok(y), & \falls x=\neg y\\
+1+\ok(y)+\ok(z), & \falls x=(y\circ z)
+\end{array}\right.
+\end{align*}
+Man sieht schon, dass beide Funktionen für alle $x\in\mathcal{L}(\mathcal{R})$ übereinstimmen. Aber man kann das Offensichtliche natürlich noch induktiv zeigen:\\
+
+Induktionsanfang: Sei $a\in\mathcal{R}$ Atom. Dann gilt: $\ok(a)=0=\sk(a)$.\\
+Induktionsvoraussetzung: Gelte für beliebiges aber festes $x\in\mathcal{L}(\mathcal{R})$ $\ok(x)=\sk(x)$.\\ 
+Induktionsschritt:
+\begin{align*}
+\ok(\neg x)\myeq{Def}\ok(x)\myeq{IV}\sk(x)\myeq{Def}\sk(\neg x)\\
+\ok((a\circ b))\myeq{Def}1+\ok(a)+\ok(b)\myeq{IV}1+\sk(a)+\sk(b)\myeq{Def}\sk((a\circ b))
+\end{align*}
+
+\subsection*{Aufgabe 1.4 (b)}
+Betrachte die Funktion, die Klammern bzw. binäre Junktoren zählt:
+\begin{align*}
+\k:\mathcal{L}(\mathcal{R})\to\N,\qquad
+x\mapsto\left\lbrace\begin{array}{cl}
+0, & \falls x\in\mathcal{R}\text{ (ist Atom)}\\
+\k(y), & \falls x=\neg y\\
+2+\k(y)+\k(z), & \falls x=(y\circ z)
+\end{array}\right.\qquad \bj:\equiv ok\equiv\sk
+\end{align*}
+
+Induktionsanfang: Sei $a\in\mathcal{R}$ Atom. Dann gilt: $\k(a)=0=2\cdot 0=\bj(a)$.\\
+Induktionsvoraussetzung: Gelte für beliebiges aber festes $x\in\mathcal{L}(\mathcal{R})$ $\k(x)=2\cdot\bj(x)$.\\ 
+Induktionsschritt:
+\begin{align*}
+\k(\neg x)\myeq{Def}\k(x)\myeq{IV}2\cdot\bj(x)\myeq{Def}\bj(\neg x)\\
+\k((a\circ b))\myeq{Def}2+\k(a)+\k(b)\myeq{IV}2+2\cdot\bj(a)+2\cdot\bj(b)=2\cdot(1+\bj(a)+\bj(b))\myeq{Def}2\cdot\bj((a\circ b))
+\end{align*}
+
+\subsection*{Aufgabe 1.4 (c)}
+Nein, Gegenbeispiel: $\neg\neg\neg p$ wobei  $p$ aussagenlogische Variable ist und $\neg$ unärer Junktor.
+
+\section*{Aufgabe 1.5}
+strukturelle Rekursion?
+\subsection*{Aufgabe 1.5 (a)}
+Sei $A\in\mathcal{R}$ aussagenlogische Variable. Setze
+\begin{align*}
+h:\mathcal{L}(\mathcal{R})\to\N_0,\qquad x\mapsto \left\lbrace\begin{array}{cl}
+0, & \falls x\in\mathcal{R}\wedge x\neq A\\
+1, & \falls x\in\mathcal{R}\wedge x=A\\
+h(y), & \falls x=\neg y\\
+h(y)+h(z), & \falls x=(y\circ z)
+\end{array}\right.
+\end{align*}
+
+\subsection*{Aufgabe 1.5 (b)}
+\begin{align*}
+\text{laenge}:\mathcal{L}(\mathcal{R})\to\N_0,\qquad x\mapsto \left\lbrace\begin{array}{cl}
+1, & \falls x\in\mathcal{R}\\
+1+\text{laenge}(y), & \falls x=\neg y\\
+3+\text{laenge}(y)+\text{laenge}(z), & \falls x=(y\circ z)
+\end{array}\right.
+\end{align*}
+Und damit:
+\begin{align*}
+\text{laenge}((ü\vee(q\wedge\neg p))) 
+&=3+\text{laenge}(p)+\text{laenge}((q\wedge\neg p))\
+&=3+1+3+\text{laenge}(q)+\text{laenge}(\neg p)\\
+&=7 + 1 + 1+ \text{laenge}(p)\\
+&=9+1=10
+\end{align*}
+
+\subsection*{Aufgabe 1.5 (c)}
+\begin{align*}
+\text{du}:\mathcal{L}(\mathcal{R})\to\N_0,\qquad x\mapsto \left\lbrace\begin{array}{cl}
+\neg x, & \falls x\in\mathcal{R}\\
+\text{du}(G), & \falls x=\neg G\\
+(\text{du}(G)\vee\text{du}(H)), & \falls x=(G\wedge H)\\
+(\text{du}(G)\wedge\text{du}(H)), & \falls x=(G\vee H)\\
+(\text{du}(H)\wedge\neg\text{du}(G)), & \falls x=(H\to G)\\
+((\text{du}(H)\wedge\neg \text{du}(G))\vee(\text{du}(G)\wedge\neg\text{du}(H))), & \falls x=(H\leftrightarrow G)\\
+\end{array}\right.
+\end{align*}
+Und damit:
+\begin{align*}
+\text{du}((p\to(p\wedge\neg q)))
+&=(\text{du}(p)\wedge\neg\text{du}((p\wedge\neg q)))\\
+&=\neg p\wedge\neg(\text{du}(p)\vee\text{du}(\neg q))\\
+&=\neg p\wedge\neg\neg p\vee\neg\text{du}(q)\\
+&=\neg p\wedge\neg\neg p\vee\neg\neg q\\
+\end{align*}
+Vielleicht sollte die Funktion noch ein paar Klammern setzen :D
+
+\end{document}
