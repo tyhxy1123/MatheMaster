@@ -24,3 +24,15 @@ Nun können wir (A.2) beweisen:
 																		 &\stackeq{\text{Def}} \int_{\partial\Omega} u_x v n_x + u_y v n_y \d\gamma - \int_{\Omega} (u_{xx} + u_{yy})v\d x\d y 
 \end{align*}
 \end{proof}
+
+\section{Koflächenformel}
+\begin{satz}\enter
+	Sei $f:B(0,R)\rightarrow \R$ integrierbar. Dann ist $f$ für fast alle $r>0$ über der Sphäre $S_r := \partial B(0,r)$ integrierbar und es gilt:
+	\begin{align*}
+		\int_{B(0,R)}f(x) \d\lambda(x) &= \int_0^R \left(\int_{S_r} f(x) \d\gamma(x)\right) \d r \\
+																	 &= \int_0^R \left(\int_{S_1} f(rx) \d\gamma(x)\right)r^{n-1} \d r
+	\end{align*}
+\end{satz}
+	\begin{proof}
+		siehe Forster 2 (wenn nicht, bitte melden)
+	\end{proof}

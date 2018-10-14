@@ -1,0 +1,45 @@
+\chapter{Sobolev-Räume}
+\section{Hölder-Räume}
+
+\begin{definition} \textbf{(Hölder-Stetigkeit)}\enter
+	Sei $u:U\rightarrow\R$. Diese Funktion heißt Hölder-stetig zum Exponenten $\gamma$, wenn eine Konstante $C$, sowie $\gamma\in(0,1]$ existieren, sodass für alle $x,y\in U$ gilt:
+	\[|u(x)-u(y)| \leq C|x-y|^\gamma\]
+\end{definition}
+
+ Auf diesen Begriff aufbauend können wir eine Seminorm und eine Norm definieren:
+
+ \begin{definition} \textbf{(Hölder Normen)}\enter
+	 Sei $u:U\rightarrow\R$ beschränkt und stetig, dann existiert die $C^\infty(U)$ Norm für $u$:
+	 \[\|u\|_{C(\overline{U})}:=\|u\|_\infty\]
+	 Die Hölder Seminorm für $u$ zum Exponenten $\gamma$ ist
+	 \[\left[u\right]_{C^{0,\gamma}(\overline{U})}:=
+	 \sup\limits_{\substack{x,y\in U \\ x\neq y}}\left\{ \frac{|u(x)-u(y)|}{|x-y|^\gamma}\right\}\]
+	und durch das Zusammenführen dieser beiden Normen erhalten wir die Hölder Norm zum Exponenten $\gamma$:
+	\[\|u\|_{C^{0,\gamma}(\overline{U})}:=\|u\|_{C(\overline{U})}+\left[u\right]_{C^{0,\gamma}(\overline{U})}\]
+\end{definition}
+
+\begin{definition}\textbf{(Hölder Räume)}\enter
+	Die Hölder Räume 
+	\[C^{k,\gamma}(\overline{U})\]
+	bestehen aus allen Funktionen $u\in C^k(\overline{U})$ mit
+	\[\|u\|_{C^{k,\gamma}(\overline{U})}<\infty\]
+	wobei
+	\[\|u\|_{C^{k,\gamma}(\overline{U})}:=
+		\sum\limits_{|\alpha|\leq k}\|D^\alpha u\|_{C(\overline{U})}
+	+\sum\limits_{|\alpha|=k}\left[D^\alpha u\right]_{C^{0,\gamma}(\overline{U})}\]
+\end{definition}
+
+\begin{satz}
+	Die Hölder Räume $C^{k,\gamma}(\overline{U})$ sind Banachräume.
+\end{satz}
+\begin{proof}
+	Aufgabe aus Evans
+\end{proof}
+
+Leider sind die Hölder Räume zu restriktiv, um sie für PDEs zu nutzen. Die Funktionen in diesen Räumen haben meist zu hohe Differenzierbarkeitsvoraussetzungen. Deshalb führen wir die etwas allgemeineren Sobolev Räume ein. Dazu brauchen wir jedoch zunächst ein paar andere Begriffe:
+
+\begin{definition}\textbf{(schwache Ableitung)}\enter
+	Sei $\varphi\in C^\infty_c(U)$ und $u$ zunächst nur in $C^1(\overline{U})$. Dann hat $u$ eine schwache Ableitung, wenn für beliebiges $\varphi$ gilt:
+	\[\int_U\partial_{x_1}u\cdot \varphi \stackrel{\text{part. Int.}}{=}
+	\underbrace{-\int_U u\partial_{x_1}\varphi}_{\substack{\text{wohldef. sogar,}\\\text{wenn } u\in L^1_{loc}(U)}}\]
+\end{definition}

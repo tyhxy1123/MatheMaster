@@ -22,7 +22,11 @@ ist
 \mathcal{L}_p(\Omega,\A,\P)
 \end{align*}
 Vektorraum mit Halbnorm $\Vert\cdot\Vert_p$. Es fehlt die Definitheit.\\
-Wir identifizieren Zufallsvariablen $X,\tilde{X}$, welche $\P$-fast sicher übereinstimmen, d. h. $\P[X\neq\tilde{X}]=0$. Formal betrachten wir den Unterraum
+Wir identifizieren Zufallsvariablen $X,\tilde{X}$, welche $\P$-fast sicher übereinstimmen, d. h. 
+\begin{align*}
+\P[X\neq\tilde{X}]=0.
+\end{align*}
+Formal betrachten wir den Unterraum
 \begin{align*}
 \mathcal{N}:=\lbrace N:\Omega\to\R:N=0\text{ $\P$-fast sicher}\rbrace
 \end{align*}
@@ -60,8 +64,11 @@ Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Om
 \end{proof}
 
 \begin{defi}[Bedingte Erwartung in $L_2$]\enter
-Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\\
-Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$. Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben $\E[X~|~\mathcal{F}]:=Y$.\\
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\enter\enter
+Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$. Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
+\begin{align*}
+\E[X~|~\mathcal{F}]:=Y.
+\end{align*}
 Die bedingte Erwartung ist also eine Zufallsgröße und nur bis auf $\P$-Nullmengen eindeutig bestimmt.
 \end{defi}
 
@@ -74,10 +81,15 @@ Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zuf
 \end{bemerkung}
 
 \begin{proposition}\label{Prop1.3}
-$Y$ ist die Orthogonalprojektion von $X$ auf $L_2(\Omega,\mathcal{F},\P)\\\Longleftrightarrow\forall F\in\mathcal{F}\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
+	Folgende Aussagen sind äquivalent:
+	\renewcommand{\labelenumi}{(\alph{enumi})}
+	\begin{enumerate}
+		\item $Y$ ist die Orthogonalprojektion von $X$ auf $L_2(\Omega,\mathcal{F},\P)$ 
+		\item $\forall F\in\mathcal{F}\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
+	\end{enumerate}
 \end{proposition}
 \begin{proof}
-	$\dq \implies \dq{}$ \enter
+	$\dq (a) \implies (b) \dq{}$ \enter
 	Wähle $F \in L_2(\F)$ beliebig. Dann gilt
 	\[Y + tF \in L_2(\F) \qquad \forall t \in \R\]
 	Der Abstand wird für $t=0$ minimiert, also gilt:
@@ -91,12 +103,12 @@ Nun nehmen wir an, dass $t>0$ auf der rechten Seite gilt und multiplizieren die 
 \end{align*}
 Für $t\rightarrow0$ erhalten wir.
 \[\langle X-Y, F \rangle \leq 0\]
-Analog erhält man mit der Annahme $t<0$ die Ungleichung
-\[\langle X-Y, F \rangle \geq 0\]
+Analog erhält man mit der Annahme $t<0$ die umgekehrte Ungleichung.
 Also folgt
 \[\langle X-Y, F \rangle = 0 \qquad \forall \F \in L_2(\F)\]
-da $F$ beliebig gewählt war.\enter\enter
-Jetzt: $\dq \Longleftarrow \dq{}$ \enter
+da $F$ beliebig gewählt war.\enter
+
+Jetzt: $\dq (b) \implies (a) \dq{}$ \enter
 Sei $F\in L_2(\F)$ und $\langle X-Y, F \rangle = 0$. Dann
 \[\implies \|X-Y\|_2^2 + \underbrace{t^2\|F\|_2^2}_{\geq 0} - \underbrace{2t\langle X-Y, F \rangle}_{=0} \geq \|X-Y\|_2^2\]
 Und damit 
@@ -137,9 +149,9 @@ Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Alg
 \end{matrix}
 \right\rbrace\forall F\in L_2(\Omega,\mathcal{F},\P)\\
 &~~~\Longrightarrow
-a\cdot\langle X-\E[X~|~\mathcal{F}],F\rangle+b\cdot\langle Y-\E[Y~|~\mathcal{F}],F\rangle=0\qquad\forall F\in L_2(\Omega,\mathcal{F},\P)\\
-&~~~\stackrel{\text{Bilin}}{\Longrightarrow}
-\Big\langle a\cdot X+b\cdot Y-\big(a\cdot\E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]\big),F\Big\rangle=0\qquad\forall F\in L_2(\Omega,\mathcal{F},\P)\\
+a\cdot\langle X-\E[X~|~\mathcal{F}],F\rangle+b\cdot\langle Y-\E[Y~|~\mathcal{F}],F\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
+&~\,\stackrel{\text{Bilinear}}{\Longrightarrow}
+\Big\langle a\cdot X+b\cdot Y-\big(a\cdot\E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]\big),F\Big\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
 &\stackrel{\text{Prop }\ref{Prop1.3}}{\Longrightarrow}
 \E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot \E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]
 \end{align*}
@@ -187,7 +199,7 @@ Aus Proposition 1.3 folgt wieder:
 \begin{align*}
 A:=\lbrace\omega\in\Omega:\E[X~|~\mathcal{F}](\omega)<0\rbrace\in\mathcal{F}.
 \end{align*}
-Außerdem ist gilt für die Indikatorfunktion $\indi_A\in L_2(\mathcal{F})$.
+Außerdem gilt für die Indikatorfunktion $\indi_A\in L_2(\mathcal{F})$.
 Einerseits gilt
 \begin{align*}
 \E[X\cdot\indi_A~|~\mathcal{F}]\geq0\text{ weil }X\geq0
@@ -219,11 +231,14 @@ Prinzip: stetige Fortsetzung.
 
 \setcounter{satz}{5} %Nr. 1.5 fehlt!?
 \begin{proposition}\label{Prop1.6} %1.6
-Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$. Die bedingte Erwartung hat eine eindeutige stetige Fortsetzung von $L_2(\Omega,\F,\P)$ auf $L_1(\Omega,\A,\P)$. Diese bezeichnen wir ebenfalls mit $\E[~\cdot~|~\mathcal{F}]$.
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\enter
+Die bedingte Erwartung hat eine eindeutige stetige Fortsetzung von $L_2(\Omega,\F,\P)$ auf $L_1(\Omega,\A,\P)$. Diese bezeichnen wir ebenfalls mit $\E[~\cdot~|~\mathcal{F}]$.
 \end{proposition}
 \begin{proof}
 \underline{Existenz:}\\
-Sei $X\in L_1$. Dann existiert eine Approximationsfolge $(X_n)_{n\in\N}\subseteq L_2$ mit\\ $\E\big[|X_n-X|\big]\stackrel{n\to\infty}{\longrightarrow}0$, in Zeichen $X_n\stackrel{L_1}{\longrightarrow} X$.\\
+Sei $X\in L_1$. Dann existiert eine Approximationsfolge $(X_n)_{n\in\N}\subseteq L_2$ mit 
+\[\E\big[|X_n-X|\big]\stackrel{n\to\infty}{\longrightarrow}0\] 
+(in Zeichen $X_n\stackrel{L_1}{\longrightarrow} X$).\\
 Wähle z. B.
 \begin{align*}
 X_n:=\left\lbrace\begin{array}{cl}
@@ -237,13 +252,13 @@ Mit dominanter Konvergenz gilt
 \limn\E[|X_n-X|]=\E\left[\limn|X_n-X|\right]=0.
 \end{align*}
 Mit Kontraktionseigenschaft gilt:
-\begin{align*}
-&\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
+\[\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
 	\leq\E\Big[\E\big[|X-M-X_n|\big]~\big|~\F\Big]
-\stackeq{Turm}~
+\stackeq{\text{Turm}}~
 \E\big[|X_n-X_n|\big]
 \stackrel{m,n\to\infty}{\longrightarrow}
-0\\
+0\]
+\begin{align*}
 &\Longrightarrow\left(\E[X_n~|~\F]\right)_{n\in\N}\text{ ist Cauchy-Folge in }L_2(\Omega,\A,\P)\\
 &\Longrightarrow\exists Z\in L_1(\Omega,\A,\P)\mit\E[X_n~|~\F]\stackrel{L_1}{\longrightarrow} Z=:\E[X~|~\F]
 \end{align*}
@@ -341,7 +356,7 @@ Denn es gilt:
 \end{align*}
 \end{bemerkung}
 
-\section*{Bedingter Erwartungungswert + Unabhängigkeit} %keine Nummer
+\section*{Bedingter Erwartungungswert und Unabhängigkeit} %keine Nummer
 Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar }\}$
 \begin{defi}
 Sei $X:\Omega\to\R$ eine Zufallsvariable auf $(\Omega,\A,\P)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. Dann heißt $X$ \textbf{unabhängig} von $\F$, in Zeichen $X\unab\F$
@@ -374,11 +389,11 @@ Sei $X\in L_1(\Omega,\A,\P)$ unabhängig von $\F$. Dann gilt:
 Wegen $X\unab\F$ gilt:
 \begin{align*}
 \forall F\in\F:\E[X\cdot\indi_X]
-\stackeq{\ref{sigmaAlgebraUnabhaengig}}
-\E[X]\cdot\P(F)=\E\big[\E[X]\cdot\indi_F\big]\\
-\stackrel{\text{Thm 1.8}}{\Longrightarrow}
-\E[X]=\E[X~|~\F]
+&\stackeq{\ref{sigmaAlgebraUnabhaengig}}
+\E[X]\cdot\P(F)\\
+&=\E\big[\E[X]\cdot\indi_F\big]
 \end{align*}
+\[\stackrel{\text{Thm 1.8}}{\Longrightarrow} \E[X]=\E[X~|~\F]\]
 \end{proof}
 
 \begin{bemerkung}
