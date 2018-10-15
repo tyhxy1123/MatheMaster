@@ -25,11 +25,12 @@ Sei $(X,\Vert\cdot\Vert)$ ein Banachraum. Für alle $u,v\in X$ und alle $\lambda
 [u,v]_\lambda&:=\frac{\Vert u+\lambda\cdot v\Vert-\Vert u\Vert}{\lambda}\text{ und}\\
 [u,v]&:=\inf\limits_{\lambda>0}[u,v]_\lambda.
 \end{align*}
-Die Abbildung $[\cdot,\cdot]:X\times X\to\R\cup\lbrace-\infty\rbrace$ heißt \textbf{Bracket}. Das Bracket $[u,v]$ ist eine Richtungsableitung der Norm $\Vert\cdot\Vert$ im Punkt $u$ in Richtung $v$.
+
+Die Abbildung $[\cdot,\cdot]:X\times X\to\R\cup\lbrace-\infty\rbrace$ heißt \textbf{Bracket}. Das Bracket $[u,v]$ ist eine Richtungsableitung der Norm $\Vert\cdot\Vert_X$ im Punkt $u$ in Richtung $v$.
 
 \begin{lemma}[Eigenschaften des Brackets]
 Seien $u,v\in X,~\mu>0$. Dann gilt:
-\begin{enumerate}
+\begin{enumerate}[label=(\roman*)]
 \item $\left[\cdot,\cdot\right]\colon X\times X\to\R\cup\lbrace-\infty\rbrace$ ist \textbf{oberhalbstetig}, d.h. 
 \begin{align*}
 (u_n,v_u)_{n\in\N}\to(u,v)\text{ in }X\times X\Longrightarrow\left[u,v\right]\geq\limsup_{n\to\infty}\left[u_n,v_n\right]
@@ -57,9 +58,232 @@ $f$ heißt \textbf{oberhalbstetig}, falls $-f$ unterhalbstetig ist.
 \end{definition}
 
 \begin{lemma}
-Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funktion. Dann sind äquivalent: \begin{enumerate}
+Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funktion. Dann sind äquivalent: 
+\begin{enumerate}[label=(\roman*)]
 	\item $f$ ist unterhalbstetig.
 	\item $\forall c\in\R\colon\lbrace f\leq c\rbrace:=\lbrace u\in M\mid f(u)\leq c\rbrace$ ist abgeschlossen.
 	\item $\lbrace(u,\lambda)\in M\times\R\mid f(u)\leq\lambda\rbrace=:\operatorname{epi}(f)$ ist abgeschlossen.
 \end{enumerate}
 \end{lemma}
+
+\begin{proof}
+\underline{Zeige (i) $\Rightarrow$ (iii):}\\
+Sei $\big((u_n,\lambda_n)\big)_{n\in\N}$ eine konvergente Folge in $\epi(f)\mit(u,\lambda):=\limn(u_n,\lambda_n)$ in $M\times\R$. Dann gilt:
+\begin{align*}
+f(u)
+\stackrel{\text{(i)}}{\leq}
+\liminf\limits_{n\to\infty} f(u_n)
+\stackrel{f(u_n)\leq\lambda_n}{\leq}
+\liminf\limits_{n\to\infty} \lambda_n
+=\lambda\\
+\implies
+(u,\lambda)\in\epi(f)
+\end{align*}
+
+\underline{Zeige (iii) $\Rightarrow$ (ii):}\\
+Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Dann ist
+\begin{align*}
+\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
+\end{align*}
+Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$\\
+
+\underline{Zeige (ii) $\Rightarrow$ (i):}\\
+Sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Setze
+\begin{align*}
+c:=\liminf\limits_{n\to\infty} f(u_n)\in\R\cup\lbrace\pm\infty\rbrace.
+\end{align*}
+Falls $c>-\infty$, dann enthält $\lbrace f\leq c+\varepsilon\rbrace$ für $\varepsilon>0$ unendlich viele $u_n$. Weil $\lbrace f\leq c+\varepsilon\rbrace$ abgeschlossen ist, ist
+\begin{align*}
+u=\limn u_n\in\lbrace f\leq c+\varepsilon\rbrace\text{ d.h. } f(u)\leq c+\varepsilon.
+\end{align*}
+Da $\varepsilon>0$ beliebig ist, ist $f(u)\leq c=\liminf\limits\limits_{n\to\infty} f(u_n)$.\\
+Falls $c=-\infty$, dann enthält $\lbrace f\leq K\rbrace\mit K\in\R$ beliebig unendlich viele $u_n$. Und weil $\lbrace f\leq K\rbrace$ abgeschlossen ist, ist $u=\limn u_n\in\lbrace f\leq K\rbrace$, d.h. $f(u)\leq K$.\\
+Da $K\in\R$ beliebig ist, ist $f(u)\leq=-\infty$. Dies ist aber ein Widerspruch zur Annahme.
+\end{proof}
+
+\begin{lemma}
+Sei $M$ ein metrischer Raum und sei $(f_i)_{i\in I}$ eine Familie von unterhalbstetigen Funktionen $f_i:M\to\R\cup\lbrace+\infty\rbrace,~i\in I$.\\
+Dann ist das Supremum $f:=\sup\limits_{i\in I} f_i$ unterhalbstetig.
+\end{lemma}
+\begin{proof}
+Es gilt
+\begin{align*}
+\epi(f)=\epi\left(\sup\limits_{i\in I} f_i\right)=\bigcap\limits_{i\in I}\epi(f_i)
+\end{align*}
+und beliebige Schnitte abgeschlossener Mengen sind abgeschlossen.
+\end{proof}
+
+\begin{definition}
+Sei $X$ ein reeller oder komplexer Vektorraum. Eine Funktion $f:X\to\R\cup\lbrace\infty\rbrace$ heißt \textbf{konvex}
+\begin{align*}
+:\Longleftrightarrow
+\forall x,y\in X,\forall\lambda\in[0,1]:f\big(\lambda\cdot x+(1-\lambda)\cdot y\big)
+\leq\lambda\cdot f(x)+(1-\lambda)\cdot f(y) 
+\end{align*}
+Eine Teilmenge $C\subseteq X$ heißt \textbf{konvex}
+\begin{align*}
+:\Longleftrightarrow
+\forall x,y\in C,\forall\lambda\in[0,1]:\lambda\cdot x+(1-\lambda)\cdot y\in C
+\end{align*}
+\end{definition}
+
+\begin{lemma}
+$f$ ist konvex $\Longleftrightarrow\epi(f)$ ist konvex.
+\end{lemma}
+
+\begin{lemma}
+Sei $f:\R\to\R\cup\lbrace\infty\rbrace$ konvex. Dann gilt
+\begin{enumerate}[label=(\alph*)]
+\item Für alle $x\in\R\mit f(x)<\infty$ und für alle $y\in\R$ ist
+\begin{align*}
+(0,\infty)\to\R\cup\lbrace +\infty\rbrace,\qquad
+\lambda\mapsto\frac{f(x+\lambda\cdot y)-f(x)}{\lambda}
+\end{align*}
+monoton wachsend.
+\item $\forall x\in\R\mit f(x)<\infty$ existieren die Grenzwerte
+\begin{align*}
+\lim\limits_{\lambda\to0^+}\frac{f(x+\lambda)-f(x)}{\lambda}\in\R\cup\lbrace\pm\infty\rbrace
+\text{ und }
+\lim\limits_{\lambda\to0^+}\frac{f(x-\lambda)-f(x)}{-\lambda}\in\R\cup\lbrace\pm\infty\rbrace.
+\end{align*}
+\item 
+$\begin{aligned}
+\dom(f):=\lbrace r\in\R:f(r)<\infty\rbrace
+\end{aligned}$ 
+ist ein Intervall und $f$ ist stetig auf $\dom(f)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\underline{Zeige (a):} O.B.d.A. sei $x=0,~f(x)=0$ und $y=1$.\\
+Zu zeigen ist, dass $\lambda\mapsto\frac{f(\lambda)}{\lambda}$ monoton wachsend auf $(0,\infty)$ ist.\\
+Sei $0<\lambda_1<\lambda_2$. Dann ist 
+\begin{align*}
+\lambda_1=(1-\lambda)\cdot 0+\lambda\cdot\lambda_2\text{ für }\lambda:=\frac{\lambda_1}{\lambda_2}\in[0,1]
+\end{align*}
+und somit
+\begin{align*}
+f(\lambda_1)
+=
+f\Big((1-\lambda)\cdot0+\lambda\cdot\lambda_2\Big)
+\stackrel{f\text{ konv}}{\leq}
+\underbrace{(1-\lambda)\cdot f(0)}_{=0}+\lambda\cdot f(\lambda_2)
+=
+\frac{\lambda_1}{\lambda_2}\cdot f(\lambda_2).
+\end{align*}
+Behauptung (c) folgt dann aus (b), welche aus (a) folgt.
+\end{proof}
+
+\begin{proof}[Beweis des Lemmas über die Eigenschaften des Brackets]\enter
+\underline{Zeige (a):} Das Bracket ist oberhalbstetig, denn
+\begin{align*}
+[\cdot,\cdot]_\lambda:X\times X\to\R,~(u,v)\mapsto[u,v]_\lambda:=\frac{\Vert u+\lambda\cdot v\Vert - \Vert u\Vert}{\lambda}
+\end{align*}
+ist stetig (da jede Norm stetig ist) und damit auch oberhalbstetig für alle $\lambda>0$. Das Infimum von oberhalbstetiger Funktion ist wieder oberhalbstetig.\\
+
+\underline{Zeige (b):}\\
+Die Funktion $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend auf $(0,\infty)$, weil $\lambda\mapsto\Vert u+\lambda\cdot v\Vert$ konvex ist, denn jede Norm ist konvex (dies folgt aus der Dreiecksungleichung).\\
+
+\underline{Zeige (c):}\\
+$\begin{aligned}[]
+[u,v]=\lim\limits_{\lambda\to0^+}[u,v]_\lambda
+\end{aligned}$ folgt aus (b) und aus
+\begin{align*}
+[u,v]_\lambda:=\frac{\Vert u+\lambda\cdot v\Vert-\Vert u\Vert}{\lambda}
+\stackrel{\Delta\text{Ungl}}{\leq}
+\frac{\Vert u\Vert+\lambda\cdot\Vert v\Vert-\Vert u\Vert}{\lambda}
+=\Vert v\Vert.
+\end{align*}
+
+\underline{Zeige (d):}\\
+$v\mapsto[u,v]$ ist sublinear, denn
+\begin{align*}
+[u,\mu\cdot v]
+&=
+\inf\limits_{\lambda>0}[u,\mu\cdot v]_\lambda\\
+&=\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot\mu\cdot v\Vert-\Vert u\Vert}{\lambda}\cdot\frac{\mu}{\mu}\\
+&\stackeq{Def}
+\inf\limits_{\lambda>0}\mu\cdot[u,v]_{\lambda\cdot\mu}\\
+&=\mu\cdot[u,v]
+\end{align*}
+und für alle $\mu\in(0,1)$ gilt
+\begin{align*}
+[u,v_1+v_2]
+&=
+\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot(v_1+v_2)\Vert-\Vert u\Vert}{\lambda}\\
+&\stackrel{\mu\in(0,1)}{\leq}
+\underbrace{\inf\limits_{\lambda>0}}_{=\lim\limits_{\lambda\to0}}
+\frac{\Vert\mu\cdot u+\lambda\cdot v_1\Vert+\Vert(1-\mu)\cdot u+\lambda\cdot v_2\Vert-\mu\cdot\Vert u\Vert-(1-\mu)\cdot\Vert u\Vert}{\lambda}\\
+&=\lim\limits_{\lambda\to0}\frac{\left\Vert u+\frac{\lambda}{\mu}\cdot v_1\right\Vert-\Vert u\Vert}{\frac{\lambda}{\mu}}+\frac{\left\Vert u+\frac{\lambda}{1-\mu}\cdot v_2\right\Vert-\Vert u\Vert}{\frac{\lambda}{1-\mu}}\\
+&=[u,v_1]+[u,v_2]
+\end{align*}
+
+\underline{Zeige (e):}\\
+Es gilt $[\mu\cdot u,v]=[u,v]$, denn
+\begin{align*}
+[\mu\cdot u,v]
+&=
+\inf\limits_{\lambda>0}\frac{\Vert\mu\cdot u+\lambda\cdot v\Vert-\Vert\mu\cdot u\Vert}{\lambda}\\
+&=\inf\limits_{\lambda>0}\frac{\left\Vert u+\frac{\lambda}{\mu}\cdot v\right\Vert-\Vert u\Vert}{\frac{\lambda}{\mu}}\\
+&=
+[u,v]
+\end{align*}
+
+\underline{Zeige (f):}
+\begin{align*}
+[u,0]
+&=
+\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot0\Vert-\Vert u\Vert}{\lambda}
+=0
+\end{align*}
+
+\underline{Zeige (g):}
+\begin{align*}
+[0,v]
+&=
+\inf\limits_{\lambda>0}\frac{\Vert 0+\lambda\cdot v\Vert-\Vert 0\Vert}{\lambda}
+=\Vert v\Vert
+\end{align*}
+
+\underline{Zeige (h):}
+\begin{align*}
+[u,u]
+&=
+\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot u\Vert-\Vert u\Vert}{\lambda}
+=
+\inf\limits_{\lambda>0}\frac{(1+\lambda)\cdot\Vert u\Vert-\Vert u\Vert}{\lambda}
+=\Vert u\Vert
+\end{align*}
+\end{proof}
+
+\begin{bemerkung}
+Falls $X=H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$ ist, dann ist
+\begin{align*}
+[u,v] 
+&=
+\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u+\lambda\cdot v,u+\lambda\cdot v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
+&=\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u,u\rangle+2\cdot\lambda\cdot\langle u,v\rangle+\lambda^2\cdot\langle v,v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
+&\stackeq{u\neq0}
+\frac{1}{2\cdot\Vert u\Vert}\cdot 2\cdot\langle u,v\rangle\\
+&=\left\langle\frac{u}{\Vert u\Vert},v\right\rangle
+\end{align*}
+\end{bemerkung}
+
+\begin{lemma}
+Sei $X$ ein Banachraum, $I\subseteq\R$ ein Intervall und sei $u:I\to X$ eine Funktion. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item Wenn die \textbf{rechtsseitige Ableitung} von $u$, 
+\begin{align*}
+D_t^R u(t):=\dot{u}(t+):=\lim\limits_{h\to 0^+}\frac{u(t+h)-u(t)}{h},
+\end{align*}
+existiert, dann existiert
+\begin{align*}
+D_t^R \Vert u(t)\Vert:=\dot{u}(t+):=\lim\limits_{h\to 0^+}\frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
+\end{align*}
+und es gilt
+\begin{align*}
+D_t^R\Vert u(t)\Vert=\left[u(t),D_t^R u(t)\right\Vert.
+\end{align*}
+\item
+\end{enumerate}
+\end{lemma}
+
