@@ -261,7 +261,7 @@ Falls $X=H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$ ist, d
 [u,v] 
 &=
 \lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u+\lambda\cdot v,u+\lambda\cdot v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
-&=\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u,u\rangle+2\cdot\lambda\cdot\langle u,v\rangle+\lambda^2\cdot\langle v,v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
+&=\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u,u\rangle+2\cdot\lambda\cdot\Re(\langle u,v\rangle)+\lambda^2\cdot\langle v,v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
 &\stackeq{u\neq0}
 \frac{1}{2\cdot\Vert u\Vert}\cdot 2\cdot\langle u,v\rangle\\
 &=\left\langle\frac{u}{\Vert u\Vert},v\right\rangle
@@ -269,21 +269,173 @@ Falls $X=H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$ ist, d
 \end{bemerkung}
 
 \begin{lemma}
-Sei $X$ ein Banachraum, $I\subseteq\R$ ein Intervall und sei $u:I\to X$ eine Funktion. Dann gilt:
+Sei $(X,\Vert\cdot\Vert)$ ein Banachraum, $I\subseteq\R$ ein Intervall und sei $u:I\to X$ eine Funktion. Dann gilt:
 \begin{enumerate}[label=(\alph*)]
 \item Wenn die \textbf{rechtsseitige Ableitung} von $u$, 
 \begin{align*}
 D_t^R u(t):=\dot{u}(t+):=\lim\limits_{h\to 0^+}\frac{u(t+h)-u(t)}{h},
 \end{align*}
-existiert, dann existiert
+existiert, dann existiert die rechtsseitige Ableitung von $\Vert\cdot\Vert\circ u$, also
 \begin{align*}
 D_t^R \Vert u(t)\Vert:=\dot{u}(t+):=\lim\limits_{h\to 0^+}\frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
 \end{align*}
 und es gilt
 \begin{align*}
-D_t^R\Vert u(t)\Vert=\left[u(t),D_t^R u(t)\right\Vert.
+D_t^R\Vert u(t)\Vert=\left[u(t),D_t^R u(t)\right].
 \end{align*}
-\item
+\item Falls die \textbf{linksseitige Ableitung} von $u$,
+\begin{align*}
+D_t^L u(t):=\lim\limits_{h\to 0^+}\frac{u(t-h)-u(t)}{-h},
+\end{align*}
+existiert, dann existiert
+\begin{align*}
+D_t^L \Vert u(t)\Vert:=\lim\limits_{h\to 0^+}\frac{\Vert u(t-h)\Vert-\Vert u(t)\Vert}{-h}
+\end{align*}
+und es gilt
+\begin{align*}
+D_t^R\Vert u(t)\Vert=-\left[u(t),-D_t^R u(t)\right].
+\end{align*}
+\item Falls die herkömmliche Ableitung von $u$
+\begin{align*}
+\lim\limits_{h\to0}\frac{u(t+h)-u(t)}{h}=:\dot{u}(t)
+\end{align*}
+existiert, dann existiert
+\begin{align*}
+\lim\limits_{h\to0}\frac{\Vert u(t+h)\Vert-\Vert u\Vert}{h}=:D_t\Vert u(t)\Vert
+\end{align*}
+und es gilt
+\begin{align*}
+D_t\Vert u(t)\Vert_\lambda=\left[ u(t),\dot{u}(t)\right]=-\big[u(t),-\dot{u}(t)\big]
+\end{align*}
 \end{enumerate}
 \end{lemma}
+\begin{proof}
+\underline{Zeige (a):}\\
+Für $h>0$ gilt die \textit{Weierstraß'sche Zerlegungsformel}
+\begin{align*}
+u(t+h)=u(t)+h\cdot D_t^R u(t)+o(h)\mit\lim\limits_{h\to0^+}\frac{o(h)}{h}=0
+\end{align*}
+und somit
+\begin{align*}
+\frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
+&=
+\frac{\Vert u(t)+h\cdot D_t^R u(t)+ o(h)\Vert-\Vert u(t)\Vert}{h}\\
+&\stackeq{\geq\&\leq\mit\Delta\text{-Ungl}}
+\frac{\Vert u(t)+h\cdot D_t^R u(t)\Vert-\Vert u(t)\Vert}{h}+\frac{o(h)}{h}\\
+&\stackrel{h\to0^+}{\longrightarrow} \left[ u(t), D_t^R u(t)\right]
+\end{align*}
+Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtung abzuschätzen und Gleichheit zu erzielen.
 
+\underline{Zeige (b):}\\
+Analog zu (a) mit $h<0$.\\
+
+\underline{Zeige (c):}\\
+Folgt direkt aus (a) und (b).
+\end{proof}
+
+\section{Akkretive Operatoren}
+\begin{definition}
+Sei $(X,\Vert\cdot\Vert)$ ein Banachraum. Ein Operator $A\subseteq X\times X$ heißt \textbf{akkretiv vom Typ $\omega\in\R$}
+\begin{align*}
+:\Longleftrightarrow\forall (u,v),(\hat{u},\hat{v})\in A:\left[ u-\hat{u},v-\hat{v}\right]+\omega\cdot\left\Vert u-\hat{u}\right\Vert\geq0
+\end{align*}
+Ein \textbf{akkretiver} Operator  ist ein akkretiver Operator vom Typ $0$.\\
+Ein akkretiver Operator vom Typ $\omega$ ist auch ein akkretiver Operator vom Typ $\omega'$ für alle $\omega'\geq\omega$.
+\end{definition}
+
+\begin{lemma}
+Sei $X$ Banachraum. Für einen Operator $A\subseteq X\times X$ und $\omega\in\R$ sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $A$ ist akkretiv vom Typ $\omega$
+\item $A+\omega\cdot I$ ist akkretiv
+\item $\begin{aligned}\forall (u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0:\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert
+\end{aligned}$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\underline{Zeige (i) $\gdw$ (iii):}\\
+$A$ ist akkretiv vom Typ $\omega$
+\begin{align*}
+&\gdw\underbrace{[u-\hat{u},v-\hat{v}]}_{=\int\limits_{\lambda>0}[\ldots]_\lambda}
++ \omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A\\
+&\gdw\frac{u-\hat{u}+\lambda\cdot(v-\hat{v}\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\\
+&\gdw(iii)
+\end{align*}
+\underline{Zeige (iii) $\gdw$ (ii):}
+\begin{align*}
+(iii) &\Rightarrow\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\text{ klein, d. h. }1+\lambda\cdot\omega>0):
+(1+\lambda\cdot\omega)\cdot\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert\cdot(1+\lambda\cdot\omega)\\
+&\gdw\forall\ldots:\Big\Vert u-\hat{u}+\lambda\cdot\big((1+\lambda\cdot\omega)\cdot v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert
+\geq
+\left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
+&\gdw\forall\ldots:
+\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)+\lambda^2\cdot\omega\cdot(v-\hat{v})\Big\Vert
+\geq
+\left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
+&\gdw\forall\ldots:
+\frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\mathcal{O}(\lambda)\geq0\\
+&\stackrel{\lambda\to0}{\Rightarrow}
+\forall(u,v),(\hat{u},\hat{v})\in A:\Big[ u-\hat{u},\underbrace{v}_{=Au}-\hat{v}+\omega\cdot(u-\hat{u})\Big]\geq0\\
+&\gdw A+\omega\cdot I\text{ ist akkretiv}
+\end{align*}
+Das die Rückrichtung auch gilt muss man sich überlegen.
+\end{proof}
+
+\begin{lemma}
+Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\R$.\\
+Dann ist der Abschluss $\overline{A}$ akkretiv vom Typ $\omega$.
+\end{lemma}
+\begin{proof}
+Seien $(u,v),(\hat{u},\hat{v})\in\overline{A}$. Dann existieren Folgen 
+\begin{align*}
+&(u_n,v_n)_{n\in\N},(\hat{u}_n,\hat{v}_n)_{n\in\N}\subseteq A\mit\\
+&(u_n,v_n)
+\stackrel{n\to\infty}{\longrightarrow}
+(u,v)\text{ in } X\times X\\
+&(\hat{u}_n,\hat{v}_n)
+\stackrel{n\to\infty}{\longrightarrow}
+(\hat{u},\hat{v})\text{ in } X\times X
+\end{align*}
+und wegen der Oberhalbstetigkeit des Brackets gilt
+\begin{align*}
+[u-\hat{u},v-\hat{v}]+\omega\cdot\Vert u-\hat{u}\Vert
+\stackrel{\text{oberhalb stetig}}{\geq}
+\limsup\limits_{n\to\infty}\Big(\underbrace{\big[ u_n-\hat{u}_n,v_n-\hat{v}_n\big]+\omega\cdot\Vert u_n-\hat{u}_n\Vert}_{\geq0}\Big)
+\geq0
+\end{align*}
+\end{proof}
+
+\begin{beispiel}\
+\begin{enumerate}[label=(\alph*)]
+\item In einem Hilbertraum $H$ ist ein Operator $A\subseteq H\times H$ akkretiv vom Typ $\omega\in\R$
+\begin{align*}
+\Longleftrightarrow\forall(u,v),(\hat{u},\hat{v})\in A:
+ \Re\big(\langle u-\hat{u},v-\hat{v}\rangle\big)+\omega\cdot\Vert u-\hat{u}\Vert^2\geq0
+\end{align*}
+Operatoren $A\subseteq H\times H$, die diese Bedingung erfüllen, heißen auch \textbf{monoton vom Typ $\omega$} bzw. einfach nur \textbf{monoton}, falls $\omega=0$.\\
+Es gilt also: $A$ akkretiv vom Typ $\omega\gdw A$ monoton vom Typ $\omega$.\\
+
+Falls $A$ ein linearer (einwertiger) Operator ist, dann ist $A$ akkretiv
+\begin{align*}
+&\Longleftrightarrow\forall u\in\dom(A):\Re\big(\langle u, Au\rangle\big)\geq0\\
+&\Longleftrightarrow -A\text{ ist \textbf{dissipativ}}
+\end{align*}
+\item $H=L^2(\Omega)\mit\Omega\subseteq\R^n$ offen und 
+\begin{align*}
+A&=\big\lbrace(u,v)\in L^2\times L^2:u,v\in C_c^\infty(\Omega):v=\Delta u\big\rbrace\\
+C_c^\infty(\Omega)&:=\big\lbrace u\in C^\infty(\Omega):\supp(u)\text{ kompakt}\big\rbrace\\
+\supp(u)&:=\overline{\big\lbrace x\in\Omega:u(x)\neq0\big\rbrace}^\Omega\text{ Abschluss in }\Omega\\
+\Delta u&:=\sum\limits_{i=1}^n\frac{\partial^2 u}{\partial x_i^2}
+\end{align*}
+Dann gilt für alle $u\in\dom(A)$:
+\begin{align*}
+\Re\Big(\langle u,-\Delta u\rangle_{L^2}\Big) 
+&= \Re\left(-\int\limits_\Omega u\cdot\overline{\Delta u}\right)\\
+&\stackeq{\text{part Int}}
+\Re\left(\int\limits_{\Omega} \nabla u\cdot\overline{\nabla u}\right)\\
+%&=\int\limits_\Omega |\nabla u|^2\\
+&\geq0
+\end{align*}
+
+\end{enumerate}
+\end{beispiel}
