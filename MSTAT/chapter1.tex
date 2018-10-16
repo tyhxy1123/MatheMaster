@@ -256,7 +256,6 @@ a_n(\hat{m}_n-m)
 \section{Konzepte aus metrischen Räumen}
 Sei $(\mathcal{S},d)$ metrischer Raum.
 
-%\setcounter{section}{1}
 \begin{beispiel}[Supremums-Metrik] %2.1
 \begin{align*}
 \mathcal{S}=C([0,1]):=\big\lbrace f:[0,1]\to\R: f\text{ stetig}\big\rbrace\\
@@ -265,7 +264,7 @@ d(f,g):=\sup\limits_{t\in[0,1]}\big|f(t)-g(t)\big|,\qquad\forall f,g\in C([0,1])
 \end{beispiel}
 
 \begin{definition}\
-\begin{enumerate}[label={(1)}]
+\begin{enumerate}[label={(\arabic*)}]
 \item Für $x\in\mathcal{S},~r>0$ ist
 \begin{align*}
 B(x,r):=B_d(x,r):=\lbrace y\in\mathcal{S}:d(x,y)<r\rbrace
@@ -299,8 +298,8 @@ C^b(\mathcal{S}):=\lbrace f\in C(\mathcal{S}):f\text{ beschränkt}\rbrace\\
 \end{enumerate}
 \end{definition}
 
-\begin{lemma}\label{lemma2.3} %2.3
-\begin{enumerate}[label=(1)]
+\begin{lemma}\label{lemma2.3}\ %2.3
+\begin{enumerate}[label={(\arabic*)}]
 \item $\begin{aligned}
 x\in\overline{A}\Longleftrightarrow d(x,A)=0
 \end{aligned}$
@@ -386,13 +385,12 @@ $S_0$ ist abzählbar. Aus dem \textit{Approximationssatz von Weierstraß} und de
 \end{proof}
 \end{beispiel}
 
-%ToDo: fix enumerate (1), (2), ...
-%ToDo: Was ist \G?
 \begin{definition} %2.7
-$\G_0\subseteq\G$ heißt Basis von $\G:\Longleftrightarrow\forall G\in\G:G$ ist Vereinigung von Mengen aus $\G_0$, so genannte \textbf{$\G_0$-Mengen}.
+$\G_0\subseteq\G$ heißt \textbf{Basis} von $\G:\Longleftrightarrow\forall G\in\G:G$ ist Vereinigung von Mengen aus $\G_0$, so genannte \textbf{$\G_0$-Mengen}.
 \end{definition}
 
 \begin{beispiel} %2.8
+Die Menge
 \begin{align*}
 \big\lbrace B(x,r):x\in\S,0<r\in\Q\big\rbrace
 \end{align*}
@@ -418,7 +416,6 @@ Sei $S_0\subseteq\S$ abzählbar und dicht in $\S$. Zeige:
 \end{align*}
 Sei also $G$ offen. Dann folgt aus Beispiel 2.8:
 \begin{align}\label{proof2.9Sternchen}\tag{$\ast$}
-%ToDO: Reference
 G=\bigcup\limits_{x\in G} B(x,r_x),\qquad 0<r_x\in\Q,\forall x\in G
 \end{align}
 Da $\overline{S_0}=\S$ gilt:
@@ -428,14 +425,14 @@ Da $\overline{S_0}=\S$ gilt:
 \stackrel{\Delta\text{Ungl}}{\leq}
 d(x,y_x)+d(y_x,x)< \underbrace{\frac{r_x}{2}+\frac{r_x}{2}}_{=r_x}\qquad\forall y\in B\left(y_x,\frac{r_x}{2}\right)\\
 &\implies B\left(y_x,\frac{r_x}{2}\right)\subseteq B(x,r_x)\qquad\forall x\in G\\
-&\implies G\stackrel{\ref{proof2.9Sternchen}}{\supseteq}
+&\implies G\stackrel{\eqref{proof2.9Sternchen}}{\supseteq}
 \bigcup\limits_{x\in G}\underbrace{B\left(y_x,\frac{r_x}{2}\right)}_{\supseteq\lbrace x\rbrace}
 \supseteq\bigcup\limits_{x\in G}\lbrace x\rbrace=G\\
 &\implies G=\bigcup	\limits_{x\in G}\underbrace{B\left(y_x,\frac{r_x}{2}\right)}_{\in\G_0}
 \end{align*}
 Also ist $\G_0$ einen Basis. Da $S_0$ abzählbar ist $\G_0$ abzählbar.\\
 
-\underline{Zeige `$\Leftarrow$'':}\\
+\underline{Zeige ``$\Leftarrow$'':}\\
 Sei $\G_0$ abzählbare Basis von $\G$ und sei o.B.d.A. $\emptyset\notin\G_0$. Wähle für jedes $G\in\G_0$ ein $x_G\in G$ fest aus. Setze
 \begin{align*}
 S_0:=\lbrace x_G:G\in\G_0\rbrace.
@@ -456,7 +453,7 @@ x_G\in G\subseteq B(x,\varepsilon)
 
 \begin{satz} %2.10
 Seien $(\S,d)$ und $(\S',d')$ metrische Räume.
-\begin{enumerate}[label=(1)]
+\begin{enumerate}[label={(\arabic*)}]
 \item Auf $\S\times\S'$ sind Metriken definiert durch
 \begin{align*}
 d_1\Big((x,x'),(y,y')\Big):=\left( \big(d(x,y)\big)^2+\big(d'(x',y')\big)^2\right)^{\frac{1}{2}}\qquad\forall(x,x'),(y,y')\in \S\times\S'
