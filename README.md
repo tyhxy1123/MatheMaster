@@ -10,6 +10,7 @@ Module des Wintersemesters 2018/2019:
 - PDEANA bei Prof. Hornung
 - AMGEO bei Prof. Krähmer
 - ANGA bei Prof. Fehm
+- FEM bei Prof. Voigt
 
 Die PDF Version der Skripte wird immer am Ende der Woche aktualisiert.
 
