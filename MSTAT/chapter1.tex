@@ -243,4 +243,223 @@ Z\text{ in } \big(C(\R),d\big)
 \stackrel{\mathcal{L}}{\longrightarrow}
 \arg\min\limits_{t\in\R} Z(t)
 \end{align}
-Dazu erforderlich ist das Konzept der \textbf{Verteilungskonvergenz} von Zufallsvariablen in metrischen Räumen, damit \eqref{eqSternchen} eine wohldefinierte Bedeutung erhält. Dies folgt später. Natürlich auch hier wieder das Problem: $Z$ besitzt mit positiver Wahrscheinlichkeit mindestens 2. Minimalstellen. Und dann?
+Dazu erforderlich ist das Konzept der \textbf{Verteilungskonvergenz} von Zufallsvariablen in metrischen Räumen, damit \eqref{eqSternchen} eine wohldefinierte Bedeutung erhält. Dies folgt später. Natürlich auch hier wieder das Problem: $Z$ besitzt mit positiver Wahrscheinlichkeit mindestens 2. Minimalstellen. Und dann?\\
+
+Im Falle einer fast sicher eindeutigen Minimalstelle von $Z$ würde aber aus (1.4) und (1.5) folgen:
+\begin{align*}
+a_n(\hat{m}_n-m)
+\stackrel{\mathcal{L}}{\longrightarrow}
+\arg\min\limits_{t\in\R} Z(t)
+\end{align*}
+
+
+\section{Konzepte aus metrischen Räumen}
+Sei $(\mathcal{S},d)$ metrischer Raum.
+
+%\setcounter{section}{1}
+\begin{beispiel}[Supremums-Metrik] %2.1
+\begin{align*}
+\mathcal{S}=C([0,1]):=\big\lbrace f:[0,1]\to\R: f\text{ stetig}\big\rbrace\\
+d(f,g):=\sup\limits_{t\in[0,1]}\big|f(t)-g(t)\big|,\qquad\forall f,g\in C([0,1])
+\end{align*}
+\end{beispiel}
+
+\begin{definition}\
+\begin{enumerate}[label={(1)}]
+\item Für $x\in\mathcal{S},~r>0$ ist
+\begin{align*}
+B(x,r):=B_d(x,r):=\lbrace y\in\mathcal{S}:d(x,y)<r\rbrace
+\end{align*}
+die offene Kugel um Mittelpunkt $x$ und Radius $r$.
+\item Sei $A\subseteq\mathcal{S}$. Dann:
+\begin{align*}
+\stackrel{\circ}{A}&:=\inner(A):=\text{ das Innere von }A\\
+\overline{A}&:=\text{ Abschluss von }A\\
+\partial A&:=\overline{A}\cap\overline{A^C}=\overline{A}\setminus\stackrel{\circ}{A}\text{ ist der Rand von }A\\
+A^C&:=\mathcal{S}\setminus A
+\end{align*}
+\item \begin{align*}
+\mathcal{G}:=\mathcal{G}(\mathcal{S})&:=\big\lbrace G\subseteq\mathcal{S}: G\text{ ist offen bzgl. }d\big\rbrace\\
+&=\big\lbrace G\subseteq\mathcal{S}:\forall x\in G:\exists r>0:B_d(x,r)\subseteq G\big\rbrace
+\end{align*}
+ist die durch $d$ induzierte Topologie.
+\begin{align*}
+\mathcal{F}:=\mathcal{F}(\mathcal{S}):=\big\lbrace F\subseteq\mathcal{S}:F\text{ ist abgeschlossen}\big\rbrace
+\end{align*}
+\item Sei $\emptyset\neq A\subseteq\mathcal{S},~x\in\mathcal{S}$. Dann ist
+\begin{align*}
+d(x,A):=\inf\lbrace d(x,a):a\in A\rbrace\geq0
+\end{align*}
+der Abstand von $x$ zu $A$.
+\item $C(\mathcal{S}):=\lbrace f:S\to\R:f\text{ stetig}\rbrace$
+\begin{align*}
+C^b(\mathcal{S}):=\lbrace f\in C(\mathcal{S}):f\text{ beschränkt}\rbrace\\
+\Vert f\Vert:=\Vert f\Vert_\infty:=\sup\limits_{x\in\mathcal{S}}|f(x)|
+\end{align*}
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}\label{lemma2.3} %2.3
+\begin{enumerate}[label=(1)]
+\item $\begin{aligned}
+x\in\overline{A}\Longleftrightarrow d(x,A)=0
+\end{aligned}$
+\item $\begin{aligned}
+\big| d(x,A)-d(y,A)\big|\leq d(x,y)\qquad\forall x,y\in\mathcal{S}
+\end{aligned}$
+\item $\begin{aligned}
+d(\cdot, A):\mathcal{S}\to\R,\qquad x\mapsto d(x,A)
+\end{aligned}$ ist gleichmäßig stetig ($A\neq\emptyset$).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\underline{Zeige (1) ``$\Rightarrow$'':} Sei $x\in\overline{A}$. Dann gilt:
+\begin{align*}
+&\forall\varepsilon>0:\exists a\in A: d(x,a)<\varepsilon\\
+&\implies d(x,A)\leq d(x,a)<\varepsilon~\forall\varepsilon>0\\
+&\stackrel{\varepsilon\to0}{\implies}
+d(x,A)=0
+\end{align*}
+\underline{Zeige (1) ``$\Leftarrow$'':}
+Sei $d(x,A)=0$. Dann folgt aus der Infimumseigenschaft:
+\begin{align*}
+&\forall\varepsilon>0:\exists a\in A;0\leq d(x,a)\leq0+\varepsilon=\varepsilon\\
+&\implies x\in\overline{A}
+\end{align*}
+\underline{Zeige (2):} Seien $x,y\in\mathcal{S}$. Dann gilt:
+\begin{align*}
+&d(x,a)
+\stackrel{\Delta\text{Ungl}}{\leq}
+d(x,y)+d(y,a)\qquad\forall a\in A\\
+&\implies
+d(x,A)\leq d(x,y)+d(y,A)\implies d(x,A)-d(y,A)\leq d(x,y)
+\end{align*}
+Vertauschen von $x$ und $y$ liefert:
+\begin{align*}
+d(y,A)-d(x,A)\leq d(y,x)=d(x,y)\implies\text{ Behauptung}
+\end{align*}
+\underline{Zeige (3):} Folgt aus (2) da, die Funktion $d(\cdot,A)$ Lipschitz-stetig und damit gleichmäßig stetig ist.
+\end{proof}
+
+\begin{satz} %2.4
+Zu $A\subseteq\mathcal{S}$ und $\varepsilon>0$ existiert ein gleichmäßig stetige Funktion 
+\begin{align*}
+f:\mathcal{S}\to[0,1]\text{ mit der Eigenschaft} f(x)=\left\lbrace\begin{array}{cl}
+1, & \falls x\in A\\
+0, & \falls d(x,A)\geq\varepsilon
+\end{array}\right.
+\end{align*}
+\end{satz}
+\begin{proof}
+Setze
+\begin{align*}
+\varphi:\R\to[0,1],\qquad \varphi(t):=\left\lbrace\begin{array}{cl}
+1 , & \falls t\leq0\\
+1-t, & \falls 0<1<1\\
+0, & \falls t\geq1
+\end{array}\right.
+\end{align*}
+Dann ist $\varphi$ gleichmäßig stetig auf $\R$. Sei
+\begin{align*}
+f(x):=\varphi\left(\frac{1}{\varepsilon}\cdot d(x,A)\right)\qquad\forall x\in\S
+\end{align*}
+Dann hat dieses $f$ die gewünschte Eigenschaft wegen Lemma \ref{lemma2.3}.
+\end{proof}
+
+\begin{definition} %2.5
+Ein metrischer Raum $(\S,d)$ heißt \textbf{separabel}
+\begin{align*}
+&:\Longleftrightarrow\exists\text{ abzählbares } S_0\subseteq\S:\S\subseteq\overline{S_0}\\
+&\Longleftrightarrow\exists\text{ abzählbares } S_0\subseteq\S:\S=\overline{S_0}\\
+&\Longleftrightarrow\exists\text{ abzählbares } S_0\subseteq\S:S_0\text{ liegt dicht in }\S
+\end{align*}
+\end{definition}
+
+\begin{beispiel} %2.6
+$C([0,1])$ mit Supremums-Metrik ist separabal.
+\begin{proof}
+\begin{align*}
+S_0:=\big\lbrace P:P\text{ ist Polynom mit \underline{rationalen} Koeffizienten}\big\rbrace
+\end{align*}
+$S_0$ ist abzählbar. Aus dem \textit{Approximationssatz von Weierstraß} und der Dichtheit von $\Q$ folgt die Behauptung.
+\end{proof}
+\end{beispiel}
+
+%ToDo: fix enumerate (1), (2), ...
+%ToDo: Was ist \G?
+\begin{definition} %2.7
+$\G_0\subseteq\G$ heißt Basis von $\G:\Longleftrightarrow\forall G\in\G:G$ ist Vereinigung von Mengen aus $\G_0$, so genannte \textbf{$\G_0$-Mengen}.
+\end{definition}
+
+\begin{beispiel} %2.8
+\begin{align*}
+\big\lbrace B(x,r):x\in\S,0<r\in\Q\big\rbrace
+\end{align*}
+ist Basis von $\G$, denn:
+\begin{proof}
+Sei $G\in\G$. Dann gilt:
+\begin{align*}
+&\forall x\in G:\exists 0<r_x\in\Q:B(x,r_x)\subseteq G\\
+&\implies
+G=\bigcup\limits_{x\in G}\underbrace{\lbrace x\rbrace}_{\subseteq B(x,r_x)}\subseteq\bigcup\limits_{x\in G} \underbrace{B(x,r_x)}_{\subseteq G}\subseteq G\implies G=\bigcup\limits_{x\in G} \underbrace{B(x,r_x)}_{\in\G_0}
+\end{align*}
+\end{proof}
+\end{beispiel}
+
+\begin{satz}\label{satz2.9}
+$\S$ separabel $\Longleftrightarrow\G$ hat abzählbare Basis
+\end{satz}
+\begin{proof}
+\underline{Zeige ``$\Rightarrow$'':}\\
+Sei $S_0\subseteq\S$ abzählbar und dicht in $\S$. Zeige:
+\begin{align*}
+\G_0:=\big\lbrace B(x,r):x\in S_0,0<r\in\Q\big\rbrace\subseteq\G\text{ ist Basis.}
+\end{align*}
+Sei also $G$ offen. Dann folgt aus Beispiel 2.8:
+\begin{align}\label{proof2.9Sternchen}\tag{$\ast$}
+%ToDO: Reference
+G=\bigcup\limits_{x\in G} B(x,r_x),\qquad 0<r_x\in\Q,\forall x\in G
+\end{align}
+Da $\overline{S_0}=\S$ gilt:
+\begin{align*}
+&\forall x\in G:\exists y_x\in S_0: d(x,y_x)<\frac{r_x}{2}\\
+&\implies d(x,y)
+\stackrel{\Delta\text{Ungl}}{\leq}
+d(x,y_x)+d(y_x,x)< \underbrace{\frac{r_x}{2}+\frac{r_x}{2}}_{=r_x}\qquad\forall y\in B\left(y_x,\frac{r_x}{2}\right)\\
+&\implies B\left(y_x,\frac{r_x}{2}\right)\subseteq B(x,r_x)\qquad\forall x\in G\\
+&\implies G\stackrel{\ref{proof2.9Sternchen}}{\supseteq}
+\bigcup\limits_{x\in G}\underbrace{B\left(y_x,\frac{r_x}{2}\right)}_{\supseteq\lbrace x\rbrace}
+\supseteq\bigcup\limits_{x\in G}\lbrace x\rbrace=G\\
+&\implies G=\bigcup	\limits_{x\in G}\underbrace{B\left(y_x,\frac{r_x}{2}\right)}_{\in\G_0}
+\end{align*}
+Also ist $\G_0$ einen Basis. Da $S_0$ abzählbar ist $\G_0$ abzählbar.\\
+
+\underline{Zeige `$\Leftarrow$'':}\\
+Sei $\G_0$ abzählbare Basis von $\G$ und sei o.B.d.A. $\emptyset\notin\G_0$. Wähle für jedes $G\in\G_0$ ein $x_G\in G$ fest aus. Setze
+\begin{align*}
+S_0:=\lbrace x_G:G\in\G_0\rbrace.
+\end{align*}
+$S_0$ ist auch abzählbar. Bleibt Dichtheit zu zeigen.\\
+Sei $x\in\S$ und $\varepsilon>0$. Da $B(x,\varepsilon)$ offen und $\G_0$ Basis, gilt: 
+\begin{align*}
+&\exists\G_{x,\varepsilon}\subseteq\G_0\mit B(x,\varepsilon)=\bigcup\limits_{G\in\G_{x,\varepsilon}} G\\
+&\implies G\subseteq B(x,\varepsilon)\qquad\forall G\in\G_{x\varepsilon}
+\end{align*}
+Wähle ein $G$ von diesen aus. Dann gilt:
+\begin{align*}
+x_G\in G\subseteq B(x,\varepsilon)
+\implies x_G\in B(x,\varepsilon)
+\implies d(\underbrace{x_G}_{\in S_0},x)<\varepsilon
+\end{align*}
+\end{proof}
+
+\begin{satz} %2.10
+Seien $(\S,d)$ und $(\S',d')$ metrische Räume.
+\begin{enumerate}[label=(1)]
+\item Auf $\S\times\S'$ sind Metriken definiert durch
+\begin{align*}
+d_1\Big((x,x'),(y,y')\Big):=\left( \big(d(x,y)\big)^2+\big(d'(x',y')\big)^2\right)^{\frac{1}{2}}\qquad\forall(x,x'),(y,y')\in \S\times\S'
+\end{align*}
+\end{enumerate}
+\end{satz}
