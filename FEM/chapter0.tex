@@ -1,4 +1,4 @@
-
+Empfohlene Literatur
 \begin{itemize}
 	\item Ciarlet: the finite element method for elliptical problems (1987/2002)\\
 	\item Brenner, Scott: the mathmatical theory of finite element method (2002)\\
@@ -10,8 +10,8 @@
 \section{Beispiele}
 
 \begin{align*}
-	\Delta u &= f \quad  in\  \Omega\\
-		   u &= 0 \quad auf\ \partial\Omega
+	\Delta u &= f \quad  \text{in }  \Omega\\
+		   u &= 0 \quad \text{auf } \partial\Omega
 \end{align*}
 
 $\rightarrow$ \underline{finite Differenzen}\enter
@@ -24,14 +24,14 @@ z.B. $\Omega = (0,1) \times (0,1)$ mit der Notation
 
 -Taylorentwicklung
 \begin{align*}
-	u(x_{i+1},y_j) &= 	u(x_{i},y_j) + 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + O(h^3)\\
-	u(x_{i-1},y_j) &= 	u(x_{i},y_j) - 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + O(h^3)\\
+	u(x_{i+1},y_j) &= 	u(x_{i},y_j) + 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + \bigo(h^3)\\
+	u(x_{i-1},y_j) &= 	u(x_{i},y_j) - 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + \bigo(h^3)\\
 \end{align*}
 
 $\implies$
 \begin{align*}
-	\partial_{xx} u(x_i,y_j) &= \frac{1}{h^2}\left(	u(x_{i+1},y_j) - 2u(x_i,y_j) + 	u(x_{i-1},y_j) \right) + O(h)\\
-	\partial_{yy} u(x_i,y_j) &= \frac{1}{h^2}\left(	u(x_i,y_{j+1}) - 2u(x_i,y_j) + 	u(x_i,y_{j-1}) \right) + O(h)
+	\partial_{xx} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_{i+1},y_j) - 2u(x_i,y_j) + 	u(x_{i-1},y_j) \big) + \bigo(h)\\
+	\partial_{yy} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_i,y_{j+1}) - 2u(x_i,y_j) + 	u(x_i,y_{j-1}) \big) + \bigo(h)
 \end{align*}
 
 $\implies$
@@ -120,14 +120,14 @@ $\implies$
 
 W\"ahle nun $\varphi_j$ mit kleinem Tr\"ager.\enter
 \begin{equation*}
-	\text{spt}(\varphi_j) = \overline{\left\{  x \in \Omega: \varphi_j(x) \neq 0 \}\right}
+	\text{spt}(\varphi_j) = \overline{\Big\{  x \in \Omega: \varphi_j(x) \neq 0 \Big\}}
 \end{equation*}
 
 %  Obige schreibweise gefällt mir nicht
 
 Definiere $\varphi_j(b_i) = F_{ij}$ und $\varphi_j$ linear in allen Teilabschnitten $\tau \in T$, wobei $T$ eine Triangulierung ist und 
 \begin{equation*}
-	\overline{\Omega} = \displaystyle\cup_{\tau\in T}\ \tau
+	\overline{\Omega} = \bigcup\limits_{\tau\in T}\tau
 \end{equation*}
 gilt.
 
