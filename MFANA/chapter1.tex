@@ -359,12 +359,12 @@ $A$ ist akkretiv vom Typ $\omega$
 &\gdw\underbrace{[u-\hat{u},v-\hat{v}]}_{=\int\limits_{\lambda>0}[\ldots]_\lambda}
 + \omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A\\
 &\gdw\frac{u-\hat{u}+\lambda\cdot(v-\hat{v}\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\\
-&\gdw(iii)
+&\gdw\text{(iii)}
 \end{align*}
 \underline{Zeige (iii) $\gdw$ (ii):}
 \begin{align*}
-(iii) &\Rightarrow\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\text{ klein, d. h. }1+\lambda\cdot\omega>0):
-(1+\lambda\cdot\omega)\cdot\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert\cdot(1+\lambda\cdot\omega)\\
+\text{(iii)} &\Rightarrow\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\text{ klein, d. h. }1+\lambda\cdot\omega>0:\\
+&\qquad(1+\lambda\cdot\omega)\cdot\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert\cdot(1+\lambda\cdot\omega)\\
 &\gdw\forall\ldots:\Big\Vert u-\hat{u}+\lambda\cdot\big((1+\lambda\cdot\omega)\cdot v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert
 \geq
 \left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
@@ -436,6 +436,219 @@ Dann gilt für alle $u\in\dom(A)$:
 %&=\int\limits_\Omega |\nabla u|^2\\
 &\geq0
 \end{align*}
-
+Aus dieser partiellen Integration folgt die Akkretivität von $A$. $A$ ist hierbei der negative Laplace-Operator auf den Testfunktionen.
+\item Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\R$ und $F:X\to X$ Lipschitzstetig mit Lipschitzkonstante $L\geq0$.\\
+Dann ist $A+F$ akkretiv vom Typ $\omega+L$.
+\begin{proof}
+\begin{align*}
+&\forall (u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0:
+\big[u-\hat{u},v-\hat{v}+F(u)-F(\hat{u})\big]_\lambda
++(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
+&=\frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+F(u)-F(\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}
++(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
+&\stackrel{\Delta\text{-Ungl}}{\geq}
+\frac{\big\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\big\Vert-\Vert u-\hat{u}\Vert}{\lambda}\underbrace{-\big\Vert F(u)-F(\hat{u})\big\Vert}_{\geq -L\cdot\Vert u-\hat{u}\Vert}
++(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
+&\geq0
+\end{align*}
+\end{proof}
+\item Sei wieder $\Omega\subseteq\R^n$ offen und sei $f:\R\to\R$ lipschitzstetig mit $f(0)=0$ oder das Maß von $\Omega$ endlich, sei $H=L^2(\Omega)$ der reelle Hilbertraum und
+\begin{align*}
+A:L^2(\Omega)\supseteq C_c^\infty(\Omega)\to L^2(\Omega),\qquad
+u\mapsto Au:=-\Delta u+\underbrace{f(u)}_{f\circ u}.
+\end{align*}
+Dann ist $A$ akkretiv vom Typ $L_f$, wobei $L_f$ die Lipschitzkonstante von $f$ ist.
+\begin{proof}
+Die Abbildung
+\begin{align*}
+F: L^2(\Omega)\to L^2(\Omega),\qquad u\mapsto f(u)
+\end{align*}
+ist wohldefiniert und Lipschitzstetig.\\
+Zur Lipschitzstetigkeit: Es gilt für alle $u,\hat{u}\in L^2(\Omega)$:
+\begin{align*}
+\big\Vert F(u)-F(\hat{u})\big\Vert^2_{L^2}
+&=\int\limits_\Omega\Big|f\big(u(x)\big)-f\big(\hat{u}(x)\big)\Big|^2\d x\\
+&\leq
+\int\limits_\Omega L^2\cdot\big|u(x)-\hat{u}(x)\big|^2\d x\\
+&=L^2\cdot\Vert u-\hat{u}\Vert^2_{L^2}
+\end{align*}
+Zur Wohldefiniertheit: Für alle $u\in L^2(\Omega)$ gilt:
+\begin{align*}
+\left(\int\limits_\Omega\Big|f\big(u(x)\big)\Big|^2\d x\right)^{\frac{1}{2}}
+&=\left(\int\limits_\Omega\Big|f\big(u(x)\big)-f(0)+f(0)\Big|^2\d x\right)^{\frac{1}{2}}\\
+&\leq
+\sqrt{\int\limits_\Omega\Big|f\big(u(x)\big)-f(0)\Big|^2\d x}+|f(0)|\cdot\underbrace{|\Omega|}_{\text{Maß von }\Omega}\\
+&\leq
+L\cdot\Vert u\Vert_{L^2}+|f(0)|\cdot|\Omega|<\infty
+\end{align*}
+\end{proof}
+\item Sei $F:X\to X$ lipschitzstetig mit Lipschitzkonstante $L\geq0$.\\
+Dann ist 
+\begin{align*}
+A=L\cdot I-F
+\end{align*}
+akkretiv (vom Typ $0$).
+\begin{proof}
+\begin{align*}
+\forall u,\hat{u}\in X,\forall \lambda>0:
+&\bigg\Vert u-\hat{u}+\lambda\cdot\Big(L\cdot(u-\hat{u})-\big(F(u)-F(\hat{u})\big)\Big)\bigg\Vert-\Vert u-\hat{u}\Vert\\
+&\geq
+(1+\lambda\cdot L)\cdot\Vert u-\hat{u}\Vert-\lambda\cdot\Vert F(u)-F(\hat{u})\Vert-\Vert u-\hat{u}\Vert\\
+&\geq
+\lambda\cdot L\cdot\Vert u-\hat{u}\Vert-\lambda\cdot L\cdot\Vert u-\hat{u}\Vert\\
+&=0
+\end{align*}
+\end{proof}
 \end{enumerate}
 \end{beispiel}
+
+\begin{theorem}[Abschätzungen für akkretive Operatoren]\enter
+Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\Omega$ auf einem Banachraum $(X,\Vert\cdot\Vert)$. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item Seien $h,\hat{h}>0$ so, dass $h\cdot\omega,\hat{h}\cdot\omega<1$ und seien $(u,f),(\hat{u},\hat{f})\in X\times X$ so, dass 
+\begin{align*}
+u+h\cdot Au\ni f\qquad\text{und}\qquad\hat{u}+\hat{h}\cdot A\hat{u}\ni\hat{f}
+\end{align*}.
+Dann gilt:
+\begin{align*}
+\left(a-\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\right)\cdot\Vert u-\hat{u}\Vert
+\leq
+\left\Vert u-\hat{u}+\frac{\hat{h}}{h+\hat{h}}\cdot(f-u)-\frac{h}{h+\hat{h}}\cdot\big(\hat{f}-\hat{u}\big)\right\Vert
+\end{align*}
+Insbesondere gilt für $h=\hat{h}$ dann
+\begin{align*}
+\Vert u-\hat{u}\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\Vert f-\hat{f}\Vert.
+\end{align*}
+\item Sei $h>0\mit h\cdot \omega<1$. Für alle $f\in X$ besitzt die Inklusion
+\begin{align*}
+u+h\cdot Au\ni f
+\end{align*}
+höchstens eine Lösung $u\in\dom(A)$.
+\item Sei $h>0\mit h\cdot\omega<$ und sei $(u,f)\in X\times X$ so, dass 
+\begin{align*}
+u+h\cdot Au\ni f.
+\end{align*}
+Dann gilt:
+\begin{align*}
+\Vert u-\hat{u}\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-h\cdot\hat{f}-\hat{u}\big\Vert
+\qquad
+\forall(\hat{u},\hat{f})\in A
+\end{align*}
+Insbesondere, wenn $f\in\dom(A)$, dann ist
+\begin{align*}
+\Vert u-f\Vert
+&\leq
+\frac{h}{1-h\cdot\omega}\cdot\Vert Af\Vert
+\qquad
+\text{ wobei }
+\qquad
+\Vert Au\Vert:=\inf\big\lbrace\Vert f\Vert:(u,f)\in A\big\rbrace
+\end{align*}
+\end{enumerate}
+\end{theorem}
+
+\begin{bemerkung}
+Beachte
+\begin{align*}
+u+h\cdot Au\ni f\Longleftrightarrow\left(u,\frac{f-u}{h}\right)\in A
+\end{align*}
+\end{bemerkung}
+
+\begin{proof}
+\underline{Zeige (a):} Es ist
+\begin{align*}
+&\left[u-\hat{u},\frac{f-u}{h}-\frac{\hat{f}-\hat{u}}{\hat{h}}\right]_{\frac{h\cdot\hat{h}}{h+\hat{h}}}+\omega\cdot\Vert u-\hat{u}\Vert\geq0\\
+&\gdw
+\left\Vert u-\hat{u}+\frac{\hat{h}}{h+\hat{h}}\cdot(f-u)-\frac{h}{h+\hat{h}}\cdot(\hat{f}-\hat{u})\right\Vert
+-\Vert u-\hat{u}\Vert+\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\cdot\Vert u-\hat{u}\Vert>0\\
+&\gdw\text{ Behauptung}
+\end{align*}
+Falls $h=\hat{h}$, dann ist
+\begin{align*}
+\left(\frac{1}{2}-\frac{h\cdot\omega}{2}\right)\cdot\Vert u-\hat{u}\Vert
+&\leq
+\Big\Vert u-\hat{u}+\frac{1}{2}\cdot(f-u)-\frac{1}{2}\cdot(\hat{f}-\hat{u})\Big\Vert\\
+&=\left\Vert\frac{1}{2}\cdot(u-\hat{u})+\frac{1}{2}\cdot(f-\hat{f})\right\Vert\\
+&\leq
+\frac{1}{2}\cdot\Vert f-\hat{f}\Vert
+\end{align*}
+\underline{Zeige (b):} Dies folgt aus (a), denn:\\
+Falls $u,\hat{u}\in\dom(A)$ Lösungen von
+\begin{align*}
+u+h\cdot Au\ni f,\qquad\hat{u}+h\cdot A\hat{u}\ni f
+\end{align*}
+sind, dann ist
+\begin{align*}
+\Vert u-\hat{u}\Vert\leq\frac{1}{1-h\cdot\omega}\cdot\Vert f-f\Vert=0
+\end{align*}
+\underline{Zeige (c):} Seien $h>0\mit h\cdot\omega<1$ und $8u,f)\in X\times X$ so, dass
+\begin{align*}
+u+h\cdot Au\ni f.
+\end{align*}
+sei $(\hat{u},\hat{f})\in A$, also äquivalent $A\hat{u}\ni\hat{f}$. Nach Multiplikation beider Seiten mit $h$ und Addition beider Seiten mit $\hat{u}$ erhält man
+\begin{align*}
+h\cdot A\hat{u}+\hat{u}\ni h\cdot\hat{f}+\hat{u}.
+\end{align*}
+Dann folgt aus (a)
+\begin{align*}
+\Vert u-\hat{u}\Vert\leq\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-h\cdot\hat{f}-\hat{u}\big\Vert
+\end{align*}
+Falls $f\in\dom(A)$, dann gilt für alle $g\in Af$ (ersetze $(\hat{u},\hat{f})$ durch $(f,g)$):
+\begin{align*}
+\Vert u- f\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-h\cdot g-f\big\Vert
+=\frac{h}{1-h\cdot\omega}\cdot\Vert g\Vert
+\end{align*}
+Nehme $\inf$ über $g\in Af$:
+\begin{align*}
+\Vert u-f\Vert\leq\frac{h}{1-h\cdot\omega}\cdot\Vert Af\Vert
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\R$ auf einem Banachraum $(X,\Vert\cdot\Vert)$. Dann sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $\begin{aligned}
+\exists h>0\mit h\cdot\omega<1:I+h\cdot A
+\end{aligned}$ surjektiv
+\item $\begin{aligned}
+\forall h>0\mit h\cdot\omega<1: I+h\cdot A
+\end{aligned}$ surjektiv
+\end{enumerate}
+Falls $A$ zusätzlich abgeschlossen ist, dann sind (i) und (ii) äquivalent zu
+\begin{enumerate}[label=(iii)]
+\item $\begin{aligned}
+\exists h>0\mit h\cdot\omega<1:
+\end{aligned}$ das Bild von $I+h\cdot A$ dicht in $X$ ist.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\underline{Zeige (i) $\Rightarrow$ (ii):}\\
+Sei $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ surjektiv ist. Nach dem vorherigen Theorem, Aussage (b), ist $I+h\cdot A$ immer injektiv. Setze
+\begin{align*}
+J_h:=\big(I+h\cdot A\big)^{-1}.
+\end{align*}
+Dann ist wegen Theorem, Aussage (a), $J_h$ lipschitzstetig mit Lipschitzkonstante $\frac{1}{1-h\cdot\omega}$. Sei nun 
+\begin{align*}
+\hat{h}>\frac{h}{2-h\cdot\omega}\mit\hat{h}\cdot\omega<1
+\end{align*}
+und sei $f\in X$. Betrachte den Operator
+\begin{align*}
+T:X\to X,\qquad Tv:=T(v)
+:=\frac{h}{\hat{h}}\cdot f+\frac{\hat{h}-h}{\hat{h}}\cdot J_h\cdot v\qquad\forall v\in X
+\end{align*}
+Dann gilt für alle $v,\hat{v}\in X$:
+\begin{align*}
+\Vert T(v)-T(\hat{v})\Vert
+&\leq
+\left|\frac{\hat{h}-h}{\hat{h}}\right|\cdot\big\Vert J_h v-J_h \hat{v}\big\Vert\\
+&\leq
+\underbrace{\frac{1}{1-h\cdot\omega}\cdot\frac{|\hat{h}-h|}{|\hat{h}|}}_{<1}\cdot\Vert v-\hat{v}\Vert
+\end{align*}
+
+\end{proof}
