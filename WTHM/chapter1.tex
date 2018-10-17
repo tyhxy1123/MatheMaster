@@ -634,3 +634,62 @@ b=\frac{\P(A\cap B^C)}{\P(B^C)}=\P(A~|~B^C)\\
 &\implies
 \P(A~|~\sigma(B))=\P(A~|~B)\cdot\indi_B+\P(A~|~B^C)\cdot\indi_{B^C}
 \end{align*}
+
+Analog: Seien $B_1,\ldots,B_n\in\A$ disjunkte Ereignisse mit
+\begin{align*}
+\bigcupdot\limits_{j=1}^n B_j=\Omega.
+\end{align*}
+Dann gilt:
+\begin{align*}
+\P\big(A~\big|~\sigma(B_1,\ldots,B_n)\big)=\sum\limits_{j=1}^n\P(A~|~B_j)\cdot\indi_{B_j}
+\end{align*}
+Mit der Turmregel \eqref{Turmregel} erhalten wir das \textbf{Gesetz der totalen Wahrscheinlichkeit}:
+\begin{align*}
+\P(A)=\E[\indi_A]=\sum\limits_{j=1}^n \P(A,~|~B_j)\cdot\P(B_j)
+\end{align*}
+
+Analog zur bedingten Wahrscheinlichkeit:
+\begin{defi}[Erwartungswert bedingt auf Ereignis]\enter %noNumber
+Sei $X\in L_1(\Omega,\A,\P)$ und $B\in\A$. Dann definiere für $\P(B)>0$:
+\begin{align*}
+\E[X~|~B]:=\frac{\E[X\cdot\indi_B]}{\P(B)}
+\end{align*}
+\end{defi}
+
+Insgesamt haben wir definiert:\\
+\begin{tabular}{l|l|l|l}
+&Bedingen auf &Bedingen auf & Bedingen auf\\
+&$\sigma$-Algebra $\F$ & Zufallsvariable $Y$ & Ereignis $B$\\ \hline
+Wahrscheinlichkeit eines Ereignisses $A\in\A$ & $\P(A~|~\F)$ & --- & $\P(A~|~B)$ \\\hline
+Erwartungswert einer Zufallsvariable $X$ & $\E[X~|~\F]$ & $\E[X~|~Y]~~~(\ast)$ & $\E[X~|~B]$
+\end{tabular}\\
+
+$(\ast)$: Falls eine Dichte existiert: $\E[X~|~Y=y]$
+
+\begin{beisp}[Lebensdaueranalyse]\enter
+Die Lebensdauer $X:\Omega\to[0,\infty)$ eines Radios sei mit Dichte $f(z)$ verteilt.\\
+Wie ist die mittlere Restlaufzeit nach $a$ Jahren, d. h. 
+\begin{align*}
+\E[X-a~|~X\geq a]\qquad?
+\end{align*}
+Ausrechnen:
+\begin{align*}
+\E[X-a~|~X\geq a] 
+&=\frac{\E\left[(X-a)\cdot\indi_{X\geq a}\right]}{\P(X\geq a)}\\
+&=\frac{\int\limits_a^\infty (x-a)\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}\\
+&=\frac{\int\limits_a^\infty x\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}-a
+\end{align*}
+Sei nun $X\sim\text{Exp}(\lambda)$, d. h. $f(x)=\lambda\cdot\exp(-\lambda\cdot x)$. Dann ist:
+\begin{align*}
+\E[X-a~|~X\geq a]
+&=\frac{\int\limits_a^\infty \lambda\cdot x\cdot\exp(-\lambda\cdot x)\d x}{\int\limits_a^\infty\lambda\cdot\exp(-\lambda\cdot x)}-a\\
+\text{Zähler}&=\int\limits_0^\infty\exp(-\lambda\cdot x)\d x=-\frac{\exp(-\lambda\cdot x)}{x}\Big|_{x=a}^\infty=\frac{\exp(-\lambda\cdot a)}{\lambda}\\
+\text{Nenner} &=\int\limits_a^\infty x\cdot\exp(-\lambda\cdot x)\d x\\
+&=\frac{x\cdot\exp(-\lambda\cdot x)}{-\lambda}\Big|_{x=a}^\infty+\int\limits_a^\infty\frac{\exp(-\lambda\cdot x)}{\lambda}\d x=\frac{a\cdot\exp(-\lambda\cdot a)}{\lambda}+\frac{\exp(-\lambda\cdot a)}{\lambda^2}\\
+&\implies
+\E[X-a~|~X\geq a]=\frac{\exp(-\lambda\cdot a)\cdot\left(\frac{a}{\lambda}+\frac{1}{\lambda^2}\right)}{\exp(-\lambda\cdot a)\cdot\frac{1}{\lambda}}-a=a+\frac{1}{\lambda}-a=\frac{1}{\lambda}\\
+&\implies
+\E[X-a~|~X\geq a]=\E[X]
+\end{align*}
+Somit die die \textbf{Gedächtnislosigkeit} der Exponentialverteilung gezeigt.
+\end{beisp}
