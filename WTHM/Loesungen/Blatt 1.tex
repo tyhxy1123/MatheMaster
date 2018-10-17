@@ -1,0 +1,140 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../latex/commands_stochastik}
+\input{../../WTHM/commands_WTHM}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{color}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{WTHM WiSe 18 19}
+\ohead{}
+\ifoot{Aufgabenblatt 1}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 1}
+Sei
+\begin{align*}
+L_0^2:=\big\lbrace X\in L_2:\E[X]=0\big\rbrace
+\end{align*}
+der Raum der zentrierten quadrat-integrierbaren Zufallsvariablen. Für diesen gilt:
+\begin{enumerate}[label=\alph*)]
+\item $L_0^2$ ist ein Hilbertraum mit Skalarprodukt $\Cov(\cdot,\cdot)$.
+\item Für eine Familie $\lbrace X_j\rbrace_{j\in J}\subseteq L_0^2$ gilt
+\begin{align*}
+\Var\left[\sum\limits_{j\in J}X_j\right]=\sum\limits_{j\in J}\Var[X_j]+2\cdot\sum\limits_{j<k}\Cov[X_j,X_k]
+\end{align*}
+\item Für eine Familie $\lbrace X_j\rbrace_{j\in J}\subseteq L_0^2$ gilt
+\begin{align*}
+\sqrt{\Var\left[\sum\limits_{j\in J}X_j\right]}\leq\sum\limits_{j\in J}\sqrt{\Var[X_j]}
+\end{align*}
+\end{enumerate}
+\begin{proof}
+\underline{Zeige a):}\\
+%UVR-Kriterium + Eigenschaften des Skalarproduktes nachrechnen + Vollständigkeit
+
+\underline{Zeige b):}\\
+
+\underline{Zeige c):}\\
+\end{proof}
+
+\section*{Aufgabe 2}
+Seien $X,Y\in L_2(\A)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. \textbf{Bedingte Varianz} und \textbf{bedingte Kovarianz} von $X$ bzw. $X,Y$ unter $\F$ sind definiert als
+\begin{align*}
+\Var[X~|~\F]&:=\E\Big[\big(X-\E[X~|~\F\big)^2~\Big|~\F\Big]\\
+\Cov[X,Y~|~\F]&:=\E\Big[\big(X-\E[X~|~\F]\big)\cdot\big(Y-\E[Y~|~\F]\big)~\Big|~\F\Big]
+\end{align*}
+Dann gelten die Sätze der \textbf{totalen Varianz} bzw. \textbf{totalen Kovarianz}:
+\begin{align*}
+\Var[X]&=\E\big[\Var[X~|~\F]\big]+\Var\big[\E[X~|~\F]\big]\\
+\Cov[X,Y]&=\E\big[\Cov[X,Y~|~\F]\big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]
+\end{align*}
+\begin{proof}
+\underline{Zur ersten Gleichung:}\\
+
+\underline{Zur zweiten Gleichung:}\\
+\end{proof}
+
+\section*{Aufgabe 3}
+Sei $M=\begin{pmatrix}
+A & B\\ C & D
+\end{pmatrix}$ eine quadratische, in Blöcke unterteilte Matrix von vollem Rang, wobei $A$ und $D$ ebenfalls quadratisch und von vollem Rang seien. Die Ausdrücke
+\begin{align*}
+(M/A):=\left(D-C\cdot A^{-1}\cdot B\right),\qquad(M/D):=\left(A-B\cdot D^{-1}\cdot C\right)
+\end{align*}
+heißen \textbf{Schurkomplement} von $A$ in $M$ bzw. $D$ in $M$. Dann giltt:
+\begin{enumerate}[label=\alph*)]
+\item $\begin{aligned}
+M^{-1}=\begin{pmatrix}
+(M/D)^{-1} & -A^{-1}\cdot B\cdot(M/A)^{-1}\\
+-D^{-1}\cdot C\cdot(M/D)^{-1} & (M/A)^{-1}
+\end{pmatrix}
+\end{aligned}$
+\item Sei $M$ nun symmetrisch, d.h. $A$ und $D$ sind symmetrisch und $C=B^T$. Dann gilt:
+\begin{align*}
+(x^T,y^T)\cdot M^{-1}\cdot\begin{pmatrix}
+x\\y
+\end{pmatrix}-y^T\cdot D^{-1}\cdot y=\tilde{x}^T\cdot(M/D)^{-1}\cdot\tilde{x}
+\end{align*}
+mit $\tilde{x}=\left(x-B\cdot D^{-1}\cdot y\right)$ für alle $x,y$ mit passender Dimension.
+\item Es sei $(X,Y)$ multivariat normalverteilt mit Erwartungswert 0 und positiv definiter Kovarianzmatrix $\Sigma=\begin{pmatrix}
+\Sigma_X & \Sigma_{XY}\\ \Sigma_{XY}^T & \Sigma_Y
+\end{pmatrix}$. Dann ist $X$ bedingt auf $Y$ normalverteilt mit $\E[X~|~Y]=\Sigma_{XY}\cdot\Sigma_{Y}^{-1}$ und Kovarianzmatrix $(\Sigma/\Sigma_Y)$\\
+Hinweis: es gilt $\det(\Sigma)=\det(\Sigma_Y)\cdot\det(\Sigma/\Sigma_Y)$.
+\end{enumerate}
+\begin{proof}
+\underline{Zeige a):}\\
+
+\underline{Zeige b):}\\
+
+\underline{Zeige c):}\\
+\end{proof}
+
+\section*{Aufgabe 4}
+In einer bestimmten Population sei das Alter $X$ bei erstmaliger
+Berufsunfähigkeit exponentialverteilt mit Parameter $\lambda>0$. Für eine Versicherungsgesellschaft die gegen Berufsunfähigkeit versichert ist das mittlere Alter bei Eintritt der Berufsunfähigkeit von Bedeutung, unter der Bedingung dass die Berufsunfähigkeit zwischen den Altersgrenzen $0\leq a\leq b$ eintritt.\\
+Bestimme diesen bedingten Erwartungswert $\E[X~|~a\leq X\leq b]$
+\begin{proof}
+\begin{align*}
+\E[X~|~a\leq X\leq b]&=
+\end{align*}
+\end{proof}
+
+\section*{Aufgabe 5}
+Welche der folgenden in der Vorlesung definierten mathematischen
+Objekte sind: reelle Zahlen, Zufallsvariablen, meßbare Funktionen von
+$\R\to\R$?
+\begin{align*}
+\E[X~|~\F],\qquad\P[A~|~B],\qquad \E[X~|~Y=y],\qquad\P[A~|~\F],\qquad\E[X~|~Y]
+\end{align*}
+Wie üblich bezeichnet $\F$ eine $\sigma$-Algebra, $X,Y$  Zufallsvariablen, $y$ eine reelle Zahl und $A,B$ Ereignisse.
+\begin{lösung}
+\begin{align*}
+&\E[X~|~\F]\in L_2(\Omega,\F,\P)\text{, ist also eine Zufallsvariable}\\
+&\P[A~|~B]\in[0,1]\subseteq\R\\
+&\E[X~|~Y=y]\in?\\
+&\P[A~|~\F]\in?\\
+&\E[X~|~Y]:=\E[X~|~\sigma(Y)]\in L_2(\Omega,\F,\P)\text{, ist also ein Spezialfall der ersten Zeile}
+\end{align*}
+\end{lösung}
+\end{document}
