@@ -1,0 +1,188 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 2}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\depth}{\text{depth}}
+\newcommand{\length}{\text{length}}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 2.1}
+\subsection*{Aufgabe 2.1 (a)}
+\begin{align*}
+\depth\Big(\big(\neg p\to(\neg p\wedge q)\big)\Big)
+&=\max\Big(\depth(\neg p),\depth\big((\neg p\wedge q)\big)\Big)+1\\
+&=\max\Big(\depth(p)+1,\max\big(\depth(\neg p),\depth(q)\big)+1\Big)+1\\
+&=\max\Big(0+1,\max\big(\depth(p)+1,0\big)+1\Big)+1\\
+&=\max\Big(1,\max\big(0+1,0\big)+1\Big)+1\\
+&=3
+\end{align*}
+
+\subsection*{Aufgabe 2.1 (b)}
+\begin{align*}
+&\length:\mathcal{L}(\mathcal{R})\to\N_0,\qquad\\
+&\varphi\mapsto\left\lbrace\begin{array}{cl}
+0, & \falls \varphi=\Lambda\\
+1, & \falls \varphi=p\in\mathcal{R}\\
+\length(x) + 1, & \falls \varphi=\neg x\mit x\in\mathcal{L}(\mathcal{R})\\
+\length(x_1) + \length(x_2) + 3, & \falls \varphi=(x_1\circ x_2)\mit x_1,x_2\in\mathcal{L}(\mathcal{R})%\text{ und }\circ\in\lbrace\wedge,\vee,\to,\leftrightarrow\rbrace
+\end{array}\right.
+\end{align*}
+
+\subsection*{Aufgabe 2.1 (c)}
+Induktionsanfang: Sei $F\in\mathcal{R}$. Dann gilt:
+\begin{align*}
+\length(F)\stackeq{\text{Def}}1>0\stackeq{\text{Def}}\depth(F)
+\end{align*}
+Induktionsvoraussetzung: Seien $F_1,F_2\in\mathcal{L}(\mathcal{R})$ beliebig aber fest mit
+\begin{align*}
+\length(F_1)>\depth(F_1)\qquad\text{und}\qquad\length(F_2)>\depth(F_2).
+\end{align*}
+Induktionsschritt: Sei $\circ\in\lbrace\wedge,\vee,\to,\leftrightarrow\rbrace$. Dann gilt:
+\begin{align*}
+\length(\neg F_1)
+&\stackeq{\text{Def}}
+\length(F_1)+1\\
+&\stackrel{\text{IV}}{>}
+\depth(F_1)+1\\
+&\stackeq{\text{Def}}
+\depth(\neg F_1)\\
+%%%%%%%%%%%%%%%%%%%%
+\length((F_1\circ F_2))
+&\stackeq{\text{Def}}
+\length(F_1)+\length(F_2)+3\\
+&\stackrel{\text{IV}}{>}
+\depth(F_1)+\depth(F_2)+3\\
+&\stackrel{\text{Math}}{>}
+\max\big(\depth(F_1),\depth(F_2)\big)+1\\
+&\stackeq{\text{Def}}
+\depth((F_1\circ F_2))
+\end{align*}
+
+\section*{Aufgabe 2.2}
+\subsection*{Aufgabe 2.2 (a)}
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\big\lbrace (\neg p\wedge(q\to r)),\neg p, p, (q\to r),q,r\big\rbrace
+\end{aligned}$
+\item $\begin{aligned}
+\big\lbrace p\big\rbrace
+\end{aligned}$
+\end{enumerate}
+
+\subsection*{Aufgabe 2.2 (b)}
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}\big\lbrace
+(p\wedge q)
+\big\rbrace\end{aligned}$, da $F$ enthalten und keine Negationen drin
+\item $\begin{aligned}\big\lbrace
+(p\wedge q), p, q
+\big\rbrace\end{aligned}$
+\item $\emptyset$ Was soll denn sonst drin sein?
+\end{enumerate}
+
+\section*{Aufgabe 2.3}
+Induktionsanfang: Sei $F=p\in\mathcal{R}$. Dann gilt:\\
+
+Induktionsvoraussetzung:
+
+Induktionsschritt:
+
+\section*{Aufgabe 2.4}
+Beachte $\top:=$ wahr und $\bot:=$ falsch.
+\subsection*{Aufgabe 2.4 (a)}
+\begin{tabular}{c|c||c|c|c}
+$p$ & $q$ & $(p\vee q)$ & $(p\vee q)\to q$ & $(((p\vee q)\to q)\to q)$\\ \hline
+$\top$ & $\top$ & $\top$ & $\top$ & $\top$\\
+$\bot$ & $\top$ & $\top$ & $\top$ & $\top$\\
+$\top$ & $\bot$ & $\top$ & $\bot$ & $\top$\\
+$\bot$ & $\bot$ & $\bot$ & $\top$ & $\bot$
+\end{tabular}
+
+\subsection*{Aufgabe 2.4 (b)}
+Die Formel aus Teil (a) ist
+\begin{itemize}
+\item erfüllbar, denn sie kann wahr liefern.
+\item \underline{nicht} allgemeingültig, weil sie auch falsch liefern kann.
+\item widerlegbar, denn sie kann auch falsch liefern.
+\item \underline{nicht} unerfüllbar, denn sie kann auch wahr liefern.
+\end{itemize}
+
+\subsection*{Aufgabe 2.4 (c)}
+\begin{tabular}{c}
+$p$\\ \hline
+0\\
+1
+\end{tabular}
+
+\section*{Aufgabe 2.5}
+\subsection*{Aufgabe 2.5 (a)}
+\begin{tabular}{c|c||c|c|c}
+$p$ & $q$ & $(p\to q)$ & $(p\to q)\to q$ & $(((p\to q)\to q)\to q)$\\ \hline
+$\top$ & $\top$ & $\top$ & $\top$ & $\top$ \\
+$\bot$ & $\top$ & $\top$ & $\top$ & $\top$ \\
+$\top$ & $\bot$ & $\bot$ & $\top$ & $\bot$\\
+$\bot$ & $\bot$ & $\top$ & $\bot$ & $\top$
+\end{tabular}\\
+
+Die Formel ist \underline{nicht} allgemeingültig, erfüllbar, \underline{nicht} unerfüllbar und widerlegbar.
+\subsection*{Aufgabe 2.5 (b)}
+%\begin{sidewaystable} %Alternative zu Landscape. Ist geschmackssache was besser ist. Kann man hier umstellen, wenn man möchte.
+\begin{landscape}
+\begin{tabular}{c|c|c||c|c|c|c|c|c|c}
+$p$ & $q$ & $r$ & $(p\to q)$ & $(q\to r)$ & $((p\to q)\wedge(q\to r))$ & $(r\to q)$ & $(q\to p)$ & $((r\to q)\wedge(q\to p))$ & $F$ \\ \hline
+$\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$\\
+$\bot$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\bot$ & $\bot$ & $\top$\\
+$\top$ & $\bot$ & $\top$ & $\bot$ & $\top$ & $\bot$ & $\bot$ & $\top$ & $\bot$ & $\bot$\\
+$\bot$ & $\bot$ & $\top$ & $\top$ & $\top$ & $\top$ & $\bot$ & $\top$ & $\bot$ & $\top$\\ \hline
+$\top$ & $\top$ & $\bot$ & $\top$ & $\bot$ & $\bot$ & $\top$ & $\top$ & $\top$ & $\top$\\
+$\bot$ & $\top$ & $\bot$ & $\top$ & $\bot$ & $\bot$ & $\top$ & $\bot$ & $\bot$ & $\bot$\\
+$\top$ & $\bot$ & $\bot$ & $\bot$ & $\top$ & $\bot$ & $\top$ & $\top$ & $\top$ & $\top$\\
+$\bot$ & $\bot$ & $\bot$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\top$
+\end{tabular}
+\end{landscape}
+%\end{sidewaystable}
+
+Die Formel ist \underline{nicht} allgemeingültig, erfüllbar, \underline{nicht} unerfüllbar und widerlegbar.
+
+\subsection*{Aufgabe 2.5 (c)}
+\begin{tabular}{c|c||c|c|c|c}
+$p$ & $q$ & $(p\to q)$ & $(p\to q)\to q$ & $(((p\to q)\to q)\to q)$ & $\neg(((p\to q)\to q)\to q)$\\ \hline
+$\top$ & $\top$ & $\top$ & $\top$ & $\top$ & $\bot$\\
+$\bot$ & $\top$ & $\top$ & $\top$ & $\top$ & $\bot$\\
+$\top$ & $\bot$ & $\bot$ & $\top$ & $\bot$ & $\top$\\
+$\bot$ & $\bot$ & $\top$ & $\bot$ & $\top$ & $\bot$
+\end{tabular}\\
+
+Die Formel ist \underline{nicht} allgemeingültig, erfüllbar, \underline{nicht} unerfüllbar und widerlegbar.
+
+\subsection*{Aufgabe 2.5 (d)}
+To Do
+
+\end{document}
