@@ -132,7 +132,7 @@ Y_n(t)&:=\int\limits_\Omega |x-t|F_n(\d x)\\
 &=\frac{1}{n}\cdot\sum\limits_{i=1}^n|X_i-t|
 \end{align*} 
 
-$\hat{m}_n$ heißt \textbf{empirischer Median} von $X_1,\ldots,X_n$ mit üblicher Auswahl $\hat{m}_n=F_n^{-1}\left(\frac{1}{2}\right)$ gemäß Lemma \ref{lemmaMedian} (da empirische Verteilungsfunktion eie Verteilungsfunktion ist).
+$\hat{m}_n$ heißt \textbf{empirischer Median} von $X_1,\ldots,X_n$ mit üblicher Auswahl $\hat{m}_n=F_n^{-1}\left(\frac{1}{2}\right)$ gemäß Lemma \ref{lemmaMedian} (da empirische Verteilungsfunktion eine Verteilungsfunktion ist).
 
 %Hier wäre Abbildung 1
 
@@ -456,9 +456,9 @@ Seien $(\S,d)$ und $(\S',d')$ metrische Räume.
 \begin{enumerate}[label={(\arabic*)}]
 \item Auf $\S\times\S'$ sind Metriken definiert durch
 \begin{align*}
-d_1\Big((x,x'),(y,y')\Big)&:=\left( \big(d(x,y)\big)^2+\big(d'(x',y')\big)^2\right)^{\frac{1}{2}}\qquad\forall(x,x'),(y,y')\in \S\times\S'\\
-d_2\Big((x,x'),(y,y')\Big)&:=\max \left\lbrace d(x,y),d'(x',y')\right\rbrace\qquad\forall(x,x'),(y,y')\in \S\times\S'\\
-d_3\Big((x,x'),(y,y')\Big)&:=d(x,y)+d'(x',y')\qquad\forall(x,x'),(y,y')\in \S\times\S'
+d_1\Big((x,x'),(y,y')\Big)&:=\left( \big(d(x,y)\big)^2+\big(d'(x',y')\big)^2\right)^{\frac{1}{2}} &\forall(x,x'),(y,y')\in \S\times\S'\\
+d_2\Big((x,x'),(y,y')\Big)&:=\max \left\lbrace d(x,y),d'(x',y')\right\rbrace &\forall(x,x'),(y,y')\in \S\times\S'\\
+d_3\Big((x,x'),(y,y')\Big)&:=d(x,y)+d'(x',y') &\forall(x,x'),(y,y')\in \S\times\S'
 \end{align*}
 \item Die Metriken $d_1,d_2,d_3$ induzieren dieselbe Topologie $\mathcal{G}(\S\times \S')$ auf $\S\times\S'$, die sogenannte \textbf{Produkttopologie} von $\mathcal{G}(\S)$ und $\mathcal{G}(\S')$.
 \item $\begin{aligned}
@@ -613,13 +613,13 @@ die \textbf{Projektionsabbildungen}. Dann gilt
 \sigma(\pi_1,\pi_2)\\
 &\stackeq{\text{Def}}
 \sigma\Big(\pi_1^{-1}\big(\sigma(\mathcal{G})\big)\cup\pi_2^{-1}\big(\sigma(\mathcal{G})\big)\Big)\\
-&=
+&\stackeq{(+)}
 \sigma\Big(\sigma\big(\pi_1^{-1}(\mathcal{G})\big)\cup\sigma\big(\pi_2^{-1}(\mathcal{G})\big)\Big)\\
 &=
 \sigma\Big(\pi_1^{-1}(\mathcal{G})\big)\cup\pi_2^{-1}(\mathcal{G})\Big)\\
 &=\sigma\Big(\big\lbrace G\times S,S\times G':G,G'\in\mathcal{G}\big\rbrace\Big)\\
 &=
-\sigma\Big(\big\lbrace \overbrace{G\times G'}^{=(G\times S)\cap(S\times G')}:G,G\in\mathcal{G}\big\rbrace\Big)\\
+\sigma\Big(\big\lbrace \overbrace{G\times G'}^{=(G\times S)\cap(S\times G')}:G,G'1\in\mathcal{G}\big\rbrace\Big)\\
 &\stackeq{\text{($\ast$)}}
 \sigma\left(\left\lbrace\bigcup\limits_{\begin{subarray}{c}G\in\mathcal{O}\\G'\in\mathcal{O}'\end{subarray}}G\times G':\mathcal{O},\mathcal{O}'\subseteq\mathcal{G}\right\rbrace\right)\\
 &\stackeq{2.10~(3)}
@@ -627,6 +627,29 @@ die \textbf{Projektionsabbildungen}. Dann gilt
 &\stackeq{\text{Def}}
 \B(\S\times\S)
 \end{align*}
+Zum Nachweis von (+):\\
+Zeige ``$\supseteq$'': Setze
+\begin{align*}
+\xi&:=
+\underbrace{\sigma\big(\pi_1^{-1}(\mathcal{G})\big)}_{\supseteq \pi_1^{-1}(\mathcal{G})}\cup\underbrace{\sigma\big(\pi_2^{-1}(\mathcal{G})\big)}_{\pi_2^{-1}(\mathcal{G})}\\
+&\supseteq
+\pi_1^{-1}(\mathcal{G})\cup\pi_2^{-1}(\mathcal{G})\\
+&=:\mathcal{H}\\
+&\implies\sigma(\xi)\supseteq\sigma(\mathcal{H})
+\end{align*}
+Zeige ``$\subseteq$'': Es gilt
+\begin{align*}
+&\pi_1^{-1}(\mathcal{G})\subseteq\big(\pi_1^{-1}(\mathcal{G})\cup\pi_2^{-1}(\mathcal{G})\big)=\mathcal{H}\\
+&\implies
+\sigma\big(\pi_1^{-1}(\mathcal{G})\big)\subseteq\sigma(\mathcal{H})\text{ und analog }\\
+&\implies
+\sigma\big(\pi_2^{-1}(\mathcal{G})\big)\subseteq\sigma(\mathcal{H})\\
+&\implies
+\xi=\underbrace{\sigma\big(\pi_1^{-1}(\mathcal{G})\big)}_{\subseteq\sigma(\mathcal{H})}\cup\underbrace{\sigma\big(\pi_2^{-1}(\mathcal{G})\big)}_{\subseteq\sigma(\mathcal{H})}\subseteq\sigma(\mathcal{H})\\
+&\implies
+\sigma(\xi)\subseteq\sigma(\mathcal{H})
+\end{align*}
+
 Bleibt Nachweis von ($\ast$):\\
 ``$\subseteq$'': ist klar (gilt auch ohne Separabilität)\\
 ``$\supseteq$'': Gemäß 2.9 existiert abzählbare Basis $\mathcal{G}_0$  von $\mathcal{G}$. Sei
