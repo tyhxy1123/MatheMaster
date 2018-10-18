@@ -7,7 +7,7 @@ Empfohlene Literatur
 
 
 
-\section{Beispiele}
+\section{Beispiele und Motivation}
 
 \begin{align*}
 	\Delta u &= f \quad  \text{in }  \Omega\\
@@ -172,3 +172,90 @@ gilt.
 	
 	\end{tikzpicture}
 \end{figure}
+
+Hier beginnt der englische Teil der Vorlesung.
+
+\section{sobolev spaces}
+
+In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
+
+\underline{defintions and short explanations}
+
+\begin{itemize}
+	\item lebesque-spaces: 
+		\begin{align*}
+			L^p(\Omega) &= \big\{ u: \Omega \to \R \ \text{ measurable } , \int_\Omega |u|^p \diff x < \infty \big\}  \\
+			L^\infty(\Omega) &= \big\{ u: \Omega \to \R \ \text{ measurable, essentially bounded } \big\}
+		\end{align*}
+	\item essentially bounded: ess $ \underset{\Omega}{\text{sup}} |u| = \text{inf}\big\{ K >0 : |u|<K \text{ almost everywhere in } \Omega \big\}  $
+	
+	\item measurable functions are e.g. continuous functions, monoton functions, step-functions, riemann-integrable functions.
+	\item two functions $u,v \in L^p(\Omega)$ are equal if $u(x) = v(x)$ almost everywhere.
+	\item norm: 
+		\begin{align*}
+			\|u\|_{L^p(\Omega)} \overset{\text{short}}{=}\|u\|_{L^p} &= \Big ( \int_\Omega |u|^p \diff x < \infty \Big )^{\frac{1}{p} } & 1 \leq p&<\infty \\
+			\|u\|_{L^\infty} &= \text{ess }\underset{\Omega}{\text{sup}} |u| & p&= \infty 
+		\end{align*}
+		With this norm $L^p$ and $L^\infty$ are Banach-spaces.
+	\item $L^2(\Omega)$ with the scalar product
+		\begin{equation*}
+			(u,v) := \int_\Omega u(x)v(x) \diff x 
+		\end{equation*}
+		is a Hilbert-space.
+	\item support of function:
+	\begin{equation*}
+		\text{supp }u  = \big \{ x \in \Omega:\quad u(x)=0  \big \} 
+	\end{equation*}
+	\item space of test functions
+	\begin{equation*}
+		C^\infty_0(\Omega) = \big \{ u \in C^\infty(\Omega):\quad \text{support is compact}  \big\}
+	\end{equation*}
+\end{itemize}
+
+\subsection{weak derivative}
+
+Let $ u \in L^p(\Omega)$, $1 \leq p< \infty$, $\alpha \in \N^d_0$ (multiindex).\enter
+u has a weak derivative $ D^\alpha u \in L^p(\Omega) $ if $\forall v \in C^\infty_0(\Omega)$
+\begin{equation*}
+	(D^\alpha,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2}
+\end{equation*}
+
+\underline{example}
+\begin{align*}
+	d&= 1, \quad \alpha \in \N_0, \quad p=2, \quad \alpha=1
+\end{align*}
+
+\begin{equation*}
+	<u',v> \overset{p.I.}{=} -<u,v'>\\
+\end{equation*}
+for $u \in L^2(\Omega)\cap C^{|\alpha|}( \overline{\Omega} )$ weak and strong derivative is identical.\enter
+
+\underline{example}
+
+\begin{align*}
+	\Omega &= (-1,1),\quad u(x) = |x|\\
+	u&=  \Bigg\{
+	\begin{array}{l}
+		-1,  \text{ for } -1 < x < 0\\
+		1,  \text{ for } 0 < x <1 
+	\end{array}
+\end{align*}
+and $u' \in L^p(\Omega)$ for $1 \leq p < \infty$. $u''(x)$ does not work!\enter
+
+\underline{sobolev spaces}
+\begin{equation*}
+	W^{m,p}(\Omega) = \big\{ u\in L^p(\Omega) : D^\alpha u \in L^p(\Omega) \quad \forall \alpha:\ |\alpha|\leq m \big\}
+\end{equation*}
+with the norm
+\begin{itemize}
+	\item $\| u\|_{W^{m,p}} := \Big ( \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^p}  \Big )^{\frac{1}{p}}$ \qquad $1\leq p < \infty$
+	\item  $\| u\|_{W^{m,\infty}} :=  \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^\infty}  $ \qquad $ p = \infty$
+\end{itemize}
+
+
+%% i dont know if the last definition is correct. sum over |\alpha| \leq m ???
+ these spaces are Banach spaces.
+ 
+ 
+ 
+
