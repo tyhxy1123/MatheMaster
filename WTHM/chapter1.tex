@@ -435,9 +435,7 @@ Beste Vorhersage von $X$ gegeben $Y$. Dies ist in vielen Anwendungen relevant, z
 Wir betrachten: $(X,Y)$ sei $\R^m\times\R^n$-wertige Zufallsvariable mit gemeinsamer Dichte $f_{XY}(x,y)$.
 \begin{itemize}
 \item
-$\begin{aligned}
-f_Y(y)=\int\limits_{\R^m}f_{XY}(x,y)\d x
-\end{aligned}$ ist die \textbf{Randverteilung} (Dichte) von $Y$
+$ f_Y(y)=\int\limits_{\R^m}f_{XY}(x,y)\d x $ ist die \textbf{Randverteilung} (Dichte) von $Y$
 \item 
 $\begin{aligned}
 S_Y:=\big\lbrace y\in\R^n:f_Y(y)>0\big\rbrace\subseteq\R^n
@@ -456,7 +454,7 @@ f_{X|Y}(x,y):=\left\lbrace\begin{array}{cl}
 
 \begin{theorem} %1.10
 Sei $(X,Y)$ eine $\R^m\times\R^n$-wertige Zufallsvariable mit Dichte $f_{XY}$.\\
-Dann gilt für alle messbaren Funktionen $h:\R^m\times\R^n\to\R\mit\E\big[|h(X,Y)\big]<\infty$:
+Dann gilt für alle messbaren Funktionen $h:\R^m\times\R^n\to\R\mit\E\big[|h(X,Y)|\big]<\infty$:
 \begin{align*}
 \E\big[ h(X,Y)~\big|~Y\big]=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,Y)\d x
 \end{align*}
@@ -470,7 +468,7 @@ Dann gilt für alle messbaren Funktionen $h:\R^m\times\R^n\to\R\mit\E\big[|h(X,Y
 \end{align*}
 \item Für $y\in S_Y$ schreiben wir auch
 \begin{align*}
-\E\big[h(X,Y)~\big|~Y=y\big]:=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x\text{ messbare Funktion }\R^n\to\R
+\E\big[h(X,Y)~\big|~Y=y\big]:=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x
 \end{align*}
 Die bedingte Erwartung ist also nun ``punktweise''  als messbare Funktion $S_Y\to\R$ definiert.
 \end{itemize}
@@ -482,7 +480,7 @@ g(y):=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x.
 \end{align*}
 Offenbar ist $g:\R^n\to\R$ messbar. Zu zeigen:
 \begin{align*}
-\E\big[h(X,Y)~\big|~\sigma(Y)=g(Y)
+	\E\big[h(X,Y)~\big|~\sigma(Y)\big]=g(Y)
 \end{align*}
 Mit Theorem \ref{theorem1.8} ist dies äquivalent zu
 \begin{align*}
@@ -611,24 +609,24 @@ Was ist der Zusammenhang zur bedingten Erwartung?\\
 
 Beachte: Die erzeugte $\sigma$-Algebra 
 \begin{align*}
-\sigma(B)=\big\lbrace\emptyset,B,\Omega\setminus B,\Omega\big\rbrace.
+\sigma(B)=\big\lbrace\emptyset,B,B^C,\Omega\big\rbrace.
 \end{align*}
 Was ist nun 
 \begin{align*}
 \P\big(A~\big|~\sigma(B)\big)=\E\big[\indi_A~|~\sigma(B)\big]\text{ ?}
 \end{align*}
 \begin{align*}
-&L_2\big(\sigma(B)\big)=\Big\lbrace \alpha\cdot\indi_B+\beta\cdot\indi_{\Omega\setminus B}:\alpha,\beta\in\R\Big\rbrace\\
+&L_2\big(\sigma(B)\big)=\Big\lbrace \alpha\cdot\indi_B+\beta\cdot\indi_{B^C}:\alpha,\beta\in\R\Big\rbrace\\
 &\implies
-Y=\E\big[\indi_A~\big|~\sigma(B)\big]=a\cdot\indi_B+b\cdot\indi_{\Omega\setminus B}\mit a,b\in\R\text{ zu bestimmen}\\
+Y=\E\big[\indi_A~\big|~\sigma(B)\big]=a\cdot\indi_B+b\cdot\indi_{B^C}\mit a,b\in\R\text{ zu bestimmen}\\
 &\P(A\cap B)=\E[\indi_A\cdot\indi_B]
 \stackeq{\text{Thm \ref{theorem1.8}}}
 \E[Y\cdot\indi_B]=\E[a\cdot\indi_B]=a\cdot\P(B)\\
 &\implies
-a=\frac{\P(A\cap B}{\P(B)}=\P(A~|~B)\\
-&\P(A\cap B^C)=\E[\indi_A\cdot\indi_{\Omega\setminus B}]
+a=\frac{\P(A\cap B)}{\P(B)}=\P(A~|~B)\\
+&\P(A\cap B^C)=\E[\indi_A\cdot\indi_{B^C}]
 \stackeq{\text{Thm \ref{theorem1.8}}}
-\E[Y\cdot\indi_{\Omega\setminus B}]=b\cdot\P(B^C)\\
+\E[Y\cdot\indi_{B^C}]=b\cdot\P(B^C)\\
 &\implies
 b=\frac{\P(A\cap B^C)}{\P(B^C)}=\P(A~|~B^C)\\
 &\implies
@@ -645,7 +643,7 @@ Dann gilt:
 \end{align*}
 Mit der Turmregel \eqref{Turmregel} erhalten wir das \textbf{Gesetz der totalen Wahrscheinlichkeit}:
 \begin{align*}
-\P(A)=\E[\indi_A]=\sum\limits_{j=1}^n \P(A,~|~B_j)\cdot\P(B_j)
+\P(A)=\E[\indi_A]=\sum\limits_{j=1}^n \P(A~|~B_j)\cdot\P(B_j)
 \end{align*}
 
 Analog zur bedingten Wahrscheinlichkeit:
@@ -657,11 +655,11 @@ Sei $X\in L_1(\Omega,\A,\P)$ und $B\in\A$. Dann definiere für $\P(B)>0$:
 \end{defi}
 
 Insgesamt haben wir definiert:\\
-\begin{tabular}{l|l|l|l}
+\begin{tabular}{m{3cm}|m{3cm}|m{3cm}|m{3cm}}
 &Bedingen auf &Bedingen auf & Bedingen auf\\
 &$\sigma$-Algebra $\F$ & Zufallsvariable $Y$ & Ereignis $B$\\ \hline
-Wahrscheinlichkeit eines Ereignisses $A\in\A$ & $\P(A~|~\F)$ & --- & $\P(A~|~B)$ \\\hline
-Erwartungswert einer Zufallsvariable $X$ & $\E[X~|~\F]$ & $\E[X~|~Y]~~~(\ast)$ & $\E[X~|~B]$
+	Wahrscheinlichkeit eines Ereignisses $A\in\A$ & $\P(A~|~\F)$ & --- & $\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$ \\\hline
+	Erwartungswert einer Zufallsvariable $X$ & $\E[X~|~\F]$ siehe 1.1 und 1.2 & $\E[X~|~Y]~~~(\ast)$ & $\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$
 \end{tabular}\\
 
 $(\ast)$: Falls eine Dichte existiert: $\E[X~|~Y=y]$
@@ -675,7 +673,7 @@ Wie ist die mittlere Restlaufzeit nach $a$ Jahren, d. h.
 Ausrechnen:
 \begin{align*}
 \E[X-a~|~X\geq a] 
-&=\frac{\E\left[(X-a)\cdot\indi_{X\geq a}\right]}{\P(X\geq a)}\\
+&=\frac{\E\left[(X-a)\cdot\indi_{\{X\geq a\}}\right]}{\P(X\geq a)}\\
 &=\frac{\int\limits_a^\infty (x-a)\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}\\
 &=\frac{\int\limits_a^\infty x\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}-a
 \end{align*}
