@@ -456,7 +456,210 @@ Seien $(\S,d)$ und $(\S',d')$ metrische Räume.
 \begin{enumerate}[label={(\arabic*)}]
 \item Auf $\S\times\S'$ sind Metriken definiert durch
 \begin{align*}
-d_1\Big((x,x'),(y,y')\Big):=\left( \big(d(x,y)\big)^2+\big(d'(x',y')\big)^2\right)^{\frac{1}{2}}\qquad\forall(x,x'),(y,y')\in \S\times\S'
+d_1\Big((x,x'),(y,y')\Big)&:=\left( \big(d(x,y)\big)^2+\big(d'(x',y')\big)^2\right)^{\frac{1}{2}}\qquad\forall(x,x'),(y,y')\in \S\times\S'\\
+d_2\Big((x,x'),(y,y')\Big)&:=\max \left\lbrace d(x,y),d'(x',y')\right\rbrace\qquad\forall(x,x'),(y,y')\in \S\times\S'\\
+d_3\Big((x,x'),(y,y')\Big)&:=d(x,y)+d'(x',y')\qquad\forall(x,x'),(y,y')\in \S\times\S'
 \end{align*}
+\item Die Metriken $d_1,d_2,d_3$ induzieren dieselbe Topologie $\mathcal{G}(\S\times \S')$ auf $\S\times\S'$, die sogenannte \textbf{Produkttopologie} von $\mathcal{G}(\S)$ und $\mathcal{G}(\S')$.
+\item $\begin{aligned}
+\mathcal{G}(\S\times\S')=\left\lbrace\bigcup\limits_{\begin{subarray}{c}G\in\mathcal{O}\\ G'\in\mathcal{O}'\end{subarray}}G\times G':\mathcal{O}\subseteq\mathcal{G}(\S),\mathcal{O}'\subseteq\mathcal{G}(\S')\right\rbrace
+\end{aligned}$\\
+d.h.
+\begin{align*}
+\big\lbrace G\times G':G\in\mathcal{G}(\S),G'\in\mathcal{G}(\S')\big\rbrace
+\end{align*}
+bildet eine Basis von $\mathcal{G}(S\times\S')$.
 \end{enumerate}
 \end{satz}
+\begin{proof}\enter
+\underline{Zu (1):} Überprüfung der Eigenschaften einer Metrik (zur Übung).\\
+\underline{Zu (2):} Punktweise gelten die Beziehungen:
+\begin{align*}
+d_2\leq d_1\leq\sqrt{2}\cdot d_2,\qquad
+\frac{1}{\sqrt{2}}\cdot d_3\leq d_1\leq d_3,\qquad
+d_2\leq d_3\leq 2\cdot d_2
+\end{align*}
+Beachte beim Nachweis, dass die $d_i$'s als Metriken größer Null sind. Aus obigen Beziehungen folgt u. a.:
+\begin{align*}
+B_{d_2}\left(x,\frac{r}{\sqrt{2}}\right)\subseteq B_{d_1}(x,r)
+\end{align*}
+denn:
+\begin{align*}
+r>\sqrt{2}\cdot d_2(y,x)\geq d_1(y,x)
+\end{align*}
+\underline{Zu (3), zeige ``$\subseteq$'':}\\
+Sei $G^\ast\in\mathcal{G}(\S\times\S')$. Dann gilt:
+\begin{align*}
+\forall x^\ast=(x,y)\in G^\ast:\exists r=r_{x^\ast}>0:
+G^\ast=\bigcup\limits_{x^\ast\in G^\ast} B\big(x^\ast,r_{x^\ast}\big)
+\end{align*}
+Wegen Teil (2) sei o.B.d.A. $\S^\ast:=\S\times\S'$ versehen mit der Metrik $d_2$. Dann gilt:
+\begin{align*}
+B_{d_2}\big(x^\ast,r_{x^\ast}\big)&=\Big\lbrace(y,y')\in \S\times\S':\max\big\lbrace d(x,y),d'(x',y')\big\rbrace<r_{x^\ast}\Big\rbrace\\
+&=\Big\lbrace(y,y')\in\S\times\S':d(x,y)<r_{x^\ast}\wedge d'(x',y')<r_{x^\ast}\Big\rbrace\\
+&= \underbrace{B_d\big(x,r_{x^\ast}\big)}_{\in\mathcal{G}(\S)}\times \underbrace{B_{d'}\big(x', r_{x^\ast}\big)}_{\in\mathcal{G}(\S')}
+\end{align*}
+\underline{Zu (3), zeige ``$\supseteq$'':}\\
+Sei zunächst $G\times G'\mit G,G'$ offen und $x^\ast=(x,x')\in G\times G'$. Also ist $x\in G$ und $x'\in G'$ und somit
+\begin{align*}
+\exists r,r'>0:B_d(x,r)\subseteq G\wedge B_{d'}(x',r')\subseteq G'
+\end{align*}
+Setze $r^\ast:=\min\lbrace r,r'\rbrace>0$. Damit folgt
+
+\begin{align*}
+B_{d_2}\big( x^\ast,r^\ast\big)&\subseteq B_d(x,r)\times B_{d'}\big(x',r'\big)\\
+&\subseteq
+G\times G'=G^\ast\\
+&\implies
+G\times G'\in\mathcal{G}(\S\times\S')\\
+&\implies
+\bigcup\limits_{\begin{subarray}{c} G\in\mathcal{O}\\G'\in\mathcal{O}'\end{subarray}}G\times G'\subseteq\mathcal{G}(\S\times\S')
+\qquad\forall\mathcal{O}\subseteq\mathcal{G}(\S),\mathcal{O}'\subseteq\mathcal{G}(\S')
+\end{align*}
+da die Produkttopologie vereinigungsstabil ist.
+\end{proof}
+
+\begin{defi}
+Die Metriken $d_1,d_2,d_3$ heißen \textbf{Produktmetriken}. Daher alternative Schreibweise $d\times d'$, also z. B. 
+\begin{align*}
+d\times d':=\max\lbrace d,d'\rbrace
+\end{align*}
+usw.
+\end{defi}
+
+\begin{bemerkungnr} %2.11
+Analog lassen sich Produktmetriken für \underline{endlich viele} metrische Räume $(S_i,d_i)_{i\in\lbrace1,\ldots,k\rbrace}$ definieren, z. B.
+\begin{align*}
+d_1\times\ldots\times d_k:=\left(\sum\limits_{i=1}^k d_i^2\right)^{\frac{1}{2}},
+\end{align*}
+die wiederum dieselbe Produkttopologie induzieren.
+\end{bemerkungnr}
+
+\section{Zufallsvariablen in metrischen Räumen}
+\begin{definition} %3.1
+Die \textbf{Borel-$\sigma$-Algebra} auf dem metrischen Raum $(\S,d)$ ist %definiert als
+\begin{align*}
+\B(\S):=\sigma\big(\mathcal{G}(\S)\big).
+\end{align*}
+Elemente $B\in\B(\S)$ heißen \textbf{Borel-Mengen} in $\S$.\\
+Beachte: $\B(\S)=\B_d(\S)$ hängt i. A. von der Metrik $d$ ab.
+\end{definition}
+
+\begin{lemma} %3.2
+Es gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item 
+$\begin{aligned}
+\B(\S)=\sigma\big(\mathcal{F}(\S)\big)
+\end{aligned}$
+\item $\begin{aligned}
+f:(\S,d)\to(\S',d)
+\end{aligned}$ ist stetig und damit $\B_d(\S)-\B_d(\S')$ ToDo
+\item Sei $\mathcal{G}_0$ abzählbare Basis von $\mathcal{G}(\S)$. Dann gilt:
+\begin{align*}
+\sigma(\mathcal{G}_0)=\B(\S)
+\end{align*}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}\enter
+\underline{Zu (1), zeige ``$\subseteq$'':}
+\begin{align*}
+G^C\in\mathcal{F}(\S)\subseteq\sigma\big(\mathcal{F}(\S)\big)
+\implies
+G=\big(G^C\big)^C\in\mathcal{F}(\S)
+\end{align*}
+da $\sigma\big(\mathcal{F}(\S)\big)$ Komplement-stabil ist. Also folgt
+\begin{align*}
+\mathcal{G}\subseteq\sigma(\mathcal{F})
+\implies\sigma(\mathcal{G})\subseteq\sigma(\mathcal{F})
+\end{align*}
+\underline{Zu (1), zeige ``$\supseteq$'':} Analog.\\
+
+\underline{Zeige (2):}
+\begin{align*}
+f^{-1}\big(\B_{d'}(\S')\big)&=f^{-1}\Big(\sigma\big(\mathcal{G}(\S')\big)\Big)\\
+&=\sigma\Big(\underbrace{f^{-1}\big(\mathcal{G}(\S')\big)}_{\stackrel{f\text{ stetig}}{\subseteq}\mathcal{G}(S)}\Big)\\
+&\subseteq\sigma\big(\mathcal{G}(\S)\big)\\
+&=\B(\S)
+\end{align*}
+\underline{Zu (3), zeige ``$\subseteq$'':}\\
+Klar wegen $\mathcal{G}_0\subseteq\mathcal{G}$ und $\sigma$ monoton.\\
+\underline{Zu (3), zeige ``$\supseteq$'':} Sei $G\in\mathcal{G}$. Dann:
+\begin{align*}
+G&=\bigcup\limits_{i\in\N} G_i\mit\text{geeigneten }G_i\in\mathcal{G}_0\subseteq\sigma(\mathcal{G}_0)\\
+&\implies
+G\in\sigma(\mathcal{G}_0)
+\end{align*}
+Aus der Stabilität unter Vereinigungen folgt die Behauptung.
+\end{proof}
+
+\begin{satz} %3.3
+Sei $(\S,d)$ separabler metrischer Raum. Dann gilt:
+\begin{align*}
+\B_{d\times d}(\S\times\S)=\B(S)\otimes\B(\S)
+\end{align*}
+\end{satz}
+\begin{proof}
+Seien
+\begin{align*}
+&\pi_1:\S\times\S\to\S,\qquad \pi_1(x,y):=x\qquad\forall(x,y)\in\S\times S\\
+&\pi_2:\S\times\S\to\S,\qquad \pi_2(x,y):=y\qquad\forall(x,y)\in\S\times S
+\end{align*}
+die \textbf{Projektionsabbildungen}. Dann gilt
+\begin{align*}
+\B(\S)\otimes\B(\S) 
+&\stackeq{\text{Def}}
+\sigma(\pi_1,\pi_2)\\
+&\stackeq{\text{Def}}
+\sigma\Big(\pi_1^{-1}\big(\sigma(\mathcal{G})\big)\cup\pi_2^{-1}\big(\sigma(\mathcal{G})\big)\Big)\\
+&=
+\sigma\Big(\sigma\big(\pi_1^{-1}(\mathcal{G})\big)\cup\sigma\big(\pi_2^{-1}(\mathcal{G})\big)\Big)\\
+&=
+\sigma\Big(\pi_1^{-1}(\mathcal{G})\big)\cup\pi_2^{-1}(\mathcal{G})\Big)\\
+&=\sigma\Big(\big\lbrace G\times S,S\times G':G,G'\in\mathcal{G}\big\rbrace\Big)\\
+&=
+\sigma\Big(\big\lbrace \overbrace{G\times G'}^{=(G\times S)\cap(S\times G')}:G,G\in\mathcal{G}\big\rbrace\Big)\\
+&\stackeq{\text{($\ast$)}}
+\sigma\left(\left\lbrace\bigcup\limits_{\begin{subarray}{c}G\in\mathcal{O}\\G'\in\mathcal{O}'\end{subarray}}G\times G':\mathcal{O},\mathcal{O}'\subseteq\mathcal{G}\right\rbrace\right)\\
+&\stackeq{2.10~(3)}
+\sigma\Big(\mathcal{G}(\S\times\S)\Big)\\
+&\stackeq{\text{Def}}
+\B(\S\times\S)
+\end{align*}
+Bleibt Nachweis von ($\ast$):\\
+``$\subseteq$'': ist klar (gilt auch ohne Separabilität)\\
+``$\supseteq$'': Gemäß 2.9 existiert abzählbare Basis $\mathcal{G}_0$  von $\mathcal{G}$. Sei
+\begin{align*}
+G^\ast&=\bigcup\limits_{\begin{subarray}{c}G\in\mathcal{O}\\G'\in\mathcal{O}'\end{subarray}}G\times G'\text{ und }\mathcal{O},\mathcal{O}'\subseteq\mathcal{G}\\
+&\stackeq{(!)}
+\bigcup\limits_{\begin{subarray}{c}
+G,G'\text{ offen}\\
+G,G'\subseteq G^\ast
+\end{subarray}}
+G\times G'\\
+&\stackeq{(!)}
+\bigcup\limits_{\begin{subarray}{c}
+G_0,G_0'\in\mathcal{G}_0\\
+G\times G_0'\subseteq G^\ast
+\end{subarray}}
+G_0\times G_0'\\
+&=\text{ abzählbare Vereinigung, da $\mathcal{G}_0$ abzählbare Basis }\\
+&\implies
+G^\ast\in\sigma\Big(\big\lbrace G\times G':G,G'\in\mathcal{G}\big\rbrace\Big)
+\end{align*}
+\end{proof}
+
+\begin{definition} %3.4
+Sei $(\Omega,\A)$ ein Messraum. Eine Abbildung
+$X:\Omega\to\S$, die $\A$-$\B(\S)$-messbar ist, heißt \textbf{Zufallsvariable (ZV)} in den metrischen Raum $(\S,d)$ über $(\Omega,\A)$.\\
+
+Sei $\P$ ein Wahrscheinlichkeitsmaß auf $(\Omega,\A)$, also $(\Omega,\A,\P)$ ein Wahrscheinlichkeitsraum. Das Bildmaß
+\begin{align*}
+\P\circ X^{-1}&:=:\P_X:=:\mathcal{L}:=:\mathcal{L}(X~|~\P)\\
+\P\circ X^1(B)&:=\P\left(X^{-1}(B)\right)=\P\Big(\big\lbrace\omega\in\Omega:X(\omega)\in B\big\rbrace\Big)
+=\P[X\in B]
+\qquad\forall B\in\B(\S)
+\end{align*}
+heißt \textbf{Verteilung} von $X$ unter $\P$.
+\end{definition}
