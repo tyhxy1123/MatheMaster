@@ -7,10 +7,7 @@
 \section{Definition und Eigenschaften} %2.1
 \begin{beisp}
 Betrachte ein Glücksspiel zwischen zwei Personen.
-Die Folge $(\xi_n)_{n\in\N}$ i.i.d. und in $L_1$ beschreibe den Gewinn pro Zug $\left(\begin{cases}
-	positiv & $\to$ Gewinn für Person A \\
-	negativ & $\to$ Gewinn für Person B
-\end{cases}\right)$. Sei
+Die Folge $(\xi_n)_{n\in\N}$ i.i.d. und in $L_1$ beschreibe den Gewinn pro Zug (positiv $\to$ Person A; negativ $\to$ Person B). Sei
 \begin{align*}
 S_n:=\sum\limits_{i=1}^n\xi_i
 \end{align*}
@@ -77,14 +74,14 @@ Also lässt sich bei einem fairen Spiel auch durch variablen Einsatz nicht in ei
 
 \begin{defi}\
 \begin{enumerate}[label=(\alph*)]
-\item Eine Indexmenge $I$ heißt \textbf{aufsteigend geordnet} $:\gdw$ eine Ordnungsrelation ``$\leq$'' existiert mit $ \forall s,t\in I:\exists u\in I$
+\item Eine Indexmenge $I$ heißt \textbf{aufsteigend geordnet} $:\gdw$ eine Ordnungsrelation ``$\leq$'' existiert mit
 \begin{align*}
-s\leq u\wedge t\leq u
+\forall s,t\in I:\exists u\in I:\qquad s\leq u\wedge t\leq u\qquad 
 \end{align*}
 In den allermeisten Fällen haben wir eine Totalordnung, z. B. $(\N,\leq)$ oder $(\R_{\geq0},\leq)$. $I$ wird oft als Zeitachse interpretiert.
-\item Eine Familie $(\F_t)_{t\in I}$ von $\sigma$-Algebren $\F_t\subseteq\A$ heißt \textbf{Filtration} genau dann, wenn gilt
+\item Eine Familie $(\F_t)_{t\in I}$ von $\sigma$-Algebren $\F_t\subseteq\A$ heißt \textbf{Filtration} 
 \begin{align*}
-s\leq t\implies\F_s\subseteq\F_t
+:\Longleftrightarrow\Big( s\leq t\implies\F_s\subseteq\F_t\Big)
 \end{align*}
 Eine Filtration ist also eine aufsteigenden Folge von $\sigma$-Algebren.\\
 Interpretation: $\F_t$ beschreibt die zum Zeitpunkt $t$ verfügbare Information. Und der Informationsfluss wächst mit der Zeit an.\\
@@ -92,14 +89,14 @@ Außerdem setzen wir
 \begin{align*}
 \F_\infty:=\bigcup\limits_{t\in I}\F_t.
 \end{align*}
-\item Ein \textbf{stochastischer Prozess} ist eine Familie $(X_t)_{t\in I}$ von Zufallsvariablen.\\
-Ein stochastischer Prozess $(X_t)_{t\in I}$ heißt \textbf{adaptiert} an die Filtration $(\F_t)_{t\in I}$ genau dann, wenn für alle $t\in I$ gilt:
+\item Ein \textbf{stochastischer Prozess (SP)} ist eine Familie $(X_t)_{t\in I}$ von Zufallsvariablen.\\
+Ein stochastischer Prozess $(X_t)_{t\in I}$ heißt \textbf{adaptiert} an die Filtration $(\F_t)_{t\in I}$
 \begin{align*}
-X_t\text{ ist messbar bzgl. }\F_t
+:\Longleftrightarrow\forall t\in I: X_t\text{ ist messbar bzgl. }\F_t
 \end{align*}
-\item Eine Folge $(e_n)_{n\in\N}$ heißt \textbf{vorhersehbar} bzgl. einer Filtration $(F_t)_{n\in\N}$ genau dann, wenn für alle $n\in \N$ gilt:
+\item Eine Folge $(e_n)_{n\in\N}$ heißt \textbf{vorhersehbar} bzgl. einer Filtration $(F_t)_{n\in\N}$
 \begin{align*}
-e_{n+1}\text{ ist messbar bzgl. }\F_n
+:\Longleftrightarrow\forall n\in\N:e_{n+1}\text{ ist messbar bzgl. }\F_n
 \end{align*}
 Vorhersehbarkeit ist stärker als Adaptiertheit.
 \end{enumerate}
@@ -110,10 +107,12 @@ Sei $X=(X_t)_{t\in I}$ ein stochastischer Prozess und $(\F_t)_{t\in I}$ eine Fil
 \begin{enumerate}[label=(\alph*)]
 \item $(X_t)_{t\in I}$ ist adaptiert an $(\F_t)_{t\in I}$
 \item $\begin{aligned}
-		X_t\in L_1(\Omega,\A,\P) \qquad \forall t\in I
+		X_t\in L_1(\Omega,\A,\P) \qquad \forall t\in I\qquad\text{ (d. h. }\E\big[|X_t|\big]<\infty)
 \end{aligned}$
-\item Für alle $s,t\in I$ mit $s\leq t$ gilt
-	\[ \E[X_t~|~\F_s]=X_s \]
+\item $\begin{aligned}
+\E[X_t~|~\F_s]=X_s\qquad\forall s,t\in I\mit s\leq t
+\end{aligned}$
+	
 \end{enumerate}
 Gilt statt (c) die Eigenschaft
 \begin{align}\label{defSubmartingal}\tag{c'}
