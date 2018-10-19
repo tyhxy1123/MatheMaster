@@ -173,7 +173,7 @@ gilt.
 	\end{tikzpicture}
 \end{figure}
 
-Hier beginnt der englische Teil der Vorlesung.
+Hier beginnt der englische Teil der Vorlesung. Die folgenden Notizen sind direkt der Vorlesung entnommen und teilweise unzusammenhängend bzw. unvorteilhaft geordnet. Ich habe hier teilweise darauf verzichtet Korrekturen oder Verbesserungen vorzunehmen.
 
 \section{sobolev spaces}
 
@@ -254,8 +254,92 @@ with the norm
 
 
 %% i dont know if the last definition is correct. sum over |\alpha| \leq m ???
- these spaces are Banach spaces.
+these spaces are Banach spaces.\enter
  
+\begin{align*}
+	H^m(\Omega) &= W^{m,2}(\Omega) \quad \text{with scalar product}\\
+	(u,v)_{H^m} &= \displaystyle \sum_{|\alpha| \leq m} (D^\alpha u, D^\alpha v)_{L^2}
+\end{align*}
  
+\underline{example}
+\begin{align*}
+ 	d&=1,\ m=1\\
+ 	(u,v)_{H^m} &= (u,v)_{L^2} + (u',v')_{L^2}
+\end{align*} 
  
+\underline{remark}: $W^{0,p}(\Omega) = L^p(\Omega)$\\
+  
+\underline{example}
+\begin{align*}
+ 	u(x_1,x_2) &= \text{ln}(x^2_1 + x^2_2)\\
+ 	\Omega &= \big \{  (x_1,x_2)\in\R^2,\ x^2_1 + x^2_2 \leq 1    \big \} \\
+ 	& \\
+ 	u &\notin C^0(\Omega) \text{ but } u \in W^{1,1}(\Omega)
+\end{align*}
+ 
+Later we will see, that if m and p are sufficiently large sobolev functions are continuous.\\
+ 
+\underline{relation to problem in motivation:}\\
+\glqq $v \in C^\infty(\Omega),\ v=0 \text{on} \partial\Omega$ \grqq \enter
+$W^{m,p}_0(\Omega)$ is the completion of $C^\infty_0(\Omega)$ in $ ??????? $. Meaning that for $u \in W^{m,p}_0(\Omega)$ there exists a sequence $(u_n) \in C^\infty_0(\Omega)$ with 
+\begin{equation*}
+	\|u_n - u\|_{W^{m,p}} \to 0
+\end{equation*}
+for $n \to \infty$.\enter
+Also the spaces $W^{m,p}_0(\Omega)$ and $H^m_0(\Omega) = W^{m,p}_0(\Omega)$ are Banach and Hilbert spaces, respectivly. The foundation in $W^{m,p}_0(\Omega)$ are functions in $W^{m,p}(\Omega)$ which satisfy \glqq $u =0$ on $\partial \Omega$ \grqq. \enter 
+\par
 
+There exists a linear operator $\gamma: W^{1,p}(\Omega) \to L^p(\partial\Omega)$ such that $u \in C^1(\overline{\Omega})$, $\gamma(u) = u|_{\partial \Omega}$. It holds 
+\begin{equation*}
+	W^{1,p}_0(\Omega) = \big \{ u \in W^{1,p}(\Omega), \gamma(u) = 0 \big \}
+\end{equation*}
+
+\underline{example}
+\begin{equation*}
+	X= \big \{ u \in C^1(\overline{\Omega}), \ u=0 \text{ on } \partial\Omega  \big \}
+\end{equation*}
+is not complete, but $V = \overline{X} = H^1_0(\Omega)$ is complete. Also holds in  generell settings.\\
+\par
+ $C^\infty(\Omega)\cap W^{m,p}(\Omega)$ is dense in $ W^{m,p}(\Omega)$.
+This is an important property of sobolev spaces in $H^1_0(\Omega)$. \enter
+If $\|\nabla u \|_{L^2}$ is bounded it follows that $\|u \|_{L^2}$ is bounded.
+
+\begin{theorem}
+	Let $\Omega \subset \R^d$ $d\geq 1$ bounded domain with $\partial \Omega \in C^{0,1}$ there exists a constant $C_p > 0$ s.t. $\forall u\in H^1_0(\Omega)$
+	\begin{equation*}
+		\|u\|_{L^2} \leq C_p \|\nabla u\|_{L^2}.
+	\end{equation*}
+	Both norms $\|\cdot\|_{H^1}$ and $ \|\cdot\|_{L^2} $????? are equivalent in $H^1_0(\Omega)$?????.
+\end{theorem}
+ 
+There are also soboloev spaces with negative index.\enter
+\underline{example}
+\begin{align*}
+	u(x) &= |x|, \ x\in \Omega = (-1,1)\\
+	\implies u&\in H^1(\Omega),\ u' \in H^0(\Omega) = L^2(\Omega)\\
+	u &\in H^{-1}(\Omega)
+\end{align*}
+%% i am not sure whether this is right. I think i'll have to ask a person who also attended the lecture.
+
+The spaces are dual spaces of $H^k_0(\Omega)$.
+\begin{equation*}
+	H^{-k}(\Omega) = \big \{ F: H^k_0(\Omega) \to \R,\  F \text{ linear and continuous} \big \}
+\end{equation*}
+
+\underline{example}
+
+\begin{align*}
+	u(x)&=|x|,\quad x \in \Omega = (-1,1), \quad v \in H^1_0(\Omega)\\
+	<u'',v>_{H^{-1} } &= -<u',v'>_{H^0 }\\
+					  &= -<u',v'>_{L^2} \\
+					  &= +\int^0_{-1} v'(x) \diff x - \int^1_0 v'(x) \diff x\\
+					  &= 2 v(0)
+\end{align*}
+
+The differential equation $u'' = f$ in $\Omega = (-1,1)$ with $u(-1)= u(1) =1$ and
+\begin{equation*}
+	<f,v>_{H^{-1} } = 2v(0)\qquad \forall v \in H^1_0(\Omega),
+\end{equation*} 
+$f \in H^1(\Omega)$, $u(x)=|x|$ is solution but is not twice differentiable in a classical or weak sense.
+
+% could be that the above sense is altered
