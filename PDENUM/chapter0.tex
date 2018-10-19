@@ -59,8 +59,8 @@ Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man a
 \end{align*}
 Somit folgt:
 \begin{align*}
--\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\Delta u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
-\Longrightarrow-\Delta u\equiv v\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
+-\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\laplace u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
+\Longrightarrow-\laplace u\equiv f\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
 \end{align*}
 
 \section{Sobolev-Räume}
@@ -191,7 +191,7 @@ Für Lipschitz-Gebiete existiert fast überall auf $\partial\Omega$ der äußere
 Seien $\Omega$ eine Lipschitz-Gebiet, $k\in\N$, $l\in\lbrace 0,\ldots,k-1\rbrace$.\\
 Dann gibt es eine stetige lineare Abbildung
 \begin{align*}
-\gamma_l:W^{k,p}(\Omega)-L^p(\partial\Omega)
+\gamma_l:W^{k,p}(\Omega)\rightarrow L^p(\partial\Omega)
 \end{align*}
 mit der Eigenschaft
 \begin{align*}
@@ -261,9 +261,9 @@ W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)
 \end{align*}
 \item Falls $p=2$, $d\in\lbrace2,3\rbrace$: 
 \begin{align*}
-H^2(\Omega\hookrightarrow C(\overline{\Omega})
+	H^2(\Omega)\hookrightarrow C(\overline{\Omega})
 \end{align*}
-Für $H^(\Omega)$-Funktionen sind Punkte weiter nicht sinnvoll.
+Für $H^1(\Omega)$-Funktionen sind Punkte weiter nicht sinnvoll.
 \item Falls $p=2,~d=2$: 
 \begin{align*}
 H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
