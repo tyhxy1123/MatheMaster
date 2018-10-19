@@ -155,13 +155,16 @@ Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte u
 $\overline{\Omega}=\overline{\Omega_1}\cup\overline{\Omega_2}$.
 Weiterhin sei $\varphi\in L^p(\Omega)$ so, dass 
 \begin{align*}
-\exists k\geq 1:\forall i\in\lbrace1,2\rbrace:\varphi|_{\Omega_i}\in C^k(\Omega_i).
+\exists k\geq 1:\forall i\in\lbrace1,2\rbrace:\varphi|_{\Omega_i}\in C^k(\overline{\Omega_i}).
 \end{align*}
 Dann gilt:
 \begin{align*}
 \varphi\in W^{k,p}(\Omega)\Longleftrightarrow\varphi\in C^{k-1}(\Omega)
 \end{align*}
 \end{satz}
+\begin{proof}
+Siehe Übung.
+\end{proof}
 
 \begin{definition}
 Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ wird mit $W_0^{k,p}(\Omega)$ bezeichnet. Außerdem setze $H_0^k(\Omega):=W_0^{k,2}(\Omega)$.
@@ -221,7 +224,7 @@ W_0^{k,p}(\Omega)=\left\lbrace\varphi\in W^{k,p}(\Omega):
 \begin{definition}
 Seien $(X,\Vert\cdot\Vert_X)$ und $(Y,\Vert\cdot\Vert_Y)$ zwei normierte Vektorräume.
 \begin{enumerate}
-\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ im Raum $Y$ abgeschlossen ist.
+\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ im Raum $Y$ relativkompakt ist.
 \item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ stetig ist.
 \item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ kompakt ist.
 \end{enumerate}
@@ -276,7 +279,7 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 \end{itemize}
 \end{bemerkung}
 
-\begin{beispiel}
+\begin{beisp}
 	Für $d=2$ gibt es $H^1(\Omega)$-Funktionen, die nicht stetig sind:
 	\begin{itemize}
 		\item Sei $\Omega=$ Einheitskreis
@@ -314,4 +317,214 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 			 &= \frac{2\pi}{\ln(4)}
 	\end{align*}
 \end{proof}
-\end{beispiel}
+\end{beisp}
+
+\newpage
+\begin{proposition}\label{prop1.11}
+Sei $\Omega\subseteq\R^d$ ein beschränktes Lipschitz-Gebiet und sei $F$ lineares, stetiges Funktional auf $H^1(\Omega)$ und $B$ eine beschränkte, symmetrische Bilinearform auf $H^1(\Omega)$ mit
+\begin{align*}
+B(u,u)\geq0\qquad\forall u\in H^1(\Omega).
+\end{align*}
+Sei $g$ eine Funktion mit $g(x)=1~\forall x\in\overline{\Omega}$ so, dass
+\begin{align*}
+|F(g)|+\sqrt{B(g,g)}>0.
+\end{align*}
+Dann gilt:\\
+Die Normen $\Vert\cdot\Vert_{1,2,\Omega}$ und
+\begin{align*}
+\Vertiii{f}:=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}
+\end{align*}
+sind äquivalent auf $H^1(\Omega)$, d. h. es existieren $c_1,c_2>0$ so, dass
+\begin{align*}
+c_1\cdot\Vert f\Vert_{1,2,\Omega}\leq\Vertiii{f}
+\leq
+c_2\cdot\Vert f\Vert_{1,2,\Omega}
+\qquad\forall f\in H^1(\Omega)
+\end{align*}
+\end{proposition}
+\begin{proof}\enter
+	\underline{Zeige $\Vertiii{\cdot}$ ist eine Norm:}
+Dies wird in der Übung gezeigt.\enter \enter
+\underline{Zeige $\Vertiii{f}\leq c_2\cdot\Vert f\Vert_{1,2,\Omega}$:}
+\begin{align*}
+\Vertiii{f} &=
+|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
+&\leq
+\Vert f\Vert_{1,2,\Omega} +c_F\cdot\Vert f\Vert_{1,2,\Omega}+\sqrt{c_B\cdot\Vert f\Vert^2_{1,2,\Omega}}\\
+&\leq
+(1+c_F+\sqrt{c_B})\cdot\Vert f\Vert_{1,2,\Omega}
+\end{align*}
+
+%(iii)
+\underline{Zeige $\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}$ indirekt:}
+Angenommen es gibt eine Folge $(f_n)_{n\in\N}\subseteq H^1(\Omega)$ mit
+\begin{align}\label{proof1.9}\tag{$\ast$}
+\Vert f_n\Vert_{0,2,\Omega}=1\text{ und }\Vertiii{f_n}<\frac{1}{n}~\forall n\in\N
+\end{align}
+Dann gilt für alle $n\in\N$:
+\begin{align*}
+|f_n|_{1,2,\Omega}<\frac{1}{n}
+\implies
+\Vert f_n\Vert^2_{1,2,\Omega}\leq 2\
+\end{align*}
+Deshalb ist $(f_n)_{n\in\N}$ eine beschränkte Folge in $H^1(\Omega)$. Wegen $H^1(\Omega)\stackrel{C}{\hookrightarrow} L^2(\Omega)$ gibt eine Teilfolge $(f_m)_{m\in\N}$, die in $L^2(H)$ konvergiert.
+\begin{align*}
+&\stackrel{\eqref{proof1.9}}{\implies}
+(f_m)_{m\in\N}\text{ ist eine Cauchy-Folge in }H^1(\Omega)\\
+&\implies
+ f_m\stackrel{m\to\infty}{\longrightarrow} f\in H^1(\Omega)\\
+ &\implies
+ \Vert f\Vert_{0,2,\Omega}=1\text{ und } |f|_{1,2,\Omega}=0\\
+ &\implies
+ f\text{ ist konstant, also } f\equiv \lambda\cdot g\mit\lambda\in\R
+\end{align*}
+Mit $\Vertiii{f}=0$ erhalten wir
+\begin{align*}
+\Vertiii{f} = 0 
+&=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
+&=0+|\lambda|\cdot|F(g)|+|\lambda|\cdot\sqrt{B(g,g)}\\
+&=|\lambda|\cdot\underbrace{\Big(|F(g)|+\sqrt{B(g,g)}\Big)}_{>0}\\
+&\implies\lambda=0\implies f\equiv 0
+\end{align*}
+Das ist ein Widerspruch zur Annahme $\Vert f\Vert_{0,2,\Omega}=1$. Also folgt
+\begin{align*}
+\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega).
+\end{align*}
+
+\underline{Zeige $\|f\|_{1,2,\Omega}\leq c_1 \Vertiii{f}$}
+
+\begin{align*}
+\Vert f\Vert_{1,2,\Omega}
+&\leq
+|f|_{1,2,\Omega}+\Vert f\Vert_{0,2,\Omega}\\
+&\leq
+\Vertiii{f}+c\cdot\Vertiii{f}\\
+&=c_1\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega)
+\end{align*}
+\end{proof}
+
+\begin{korollar}[Poincaré-Ungleichung]\enter %1.12
+Aus Proposition \ref{prop1.11} folgt mit
+\begin{align*}
+B(u,v)=0\quad\text{ und }\quad F(u)=\int\limits_\Omega u(x)\d x
+\qquad\forall u,v\in H^1(\Omega)
+\end{align*}
+die Äquivalenz der Normen
+\begin{align*}
+\Vert\cdot\Vert_{1,2,\Omega}\text{ und } |\cdot|_{1,2,\Omega}+|F(\cdot)|.
+\end{align*}
+Setze
+\begin{align*}
+V:=\left\lbrace\varphi\in H^1(\Omega):\int\limits_\Omega u(x)\d x=0\right\rbrace.
+\end{align*}
+Dann sind sogar $\Vert\cdot\Vert_{1,2,\Omega}$ und $|\cdot|_{1,2,\Omega}$ äquivalent auf $V$.
+\end{korollar}
+\begin{proof}
+Es ist zu zeigen, dass $F$ ein lineares stetiges Funktional auf $H^1(\Omega)$  ist. Das ist einfach.
+\end{proof}
+
+\begin{proposition}[Friedrichs Ungleichung]\label{prop1.13FriedrichsUngleichung}\enter
+$|\cdot|_{k,p,\Omega}$ ist eine Norm auf $W_0^{k,p}(\Omega)$, welche äquivalent zu der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ ist.\\
+
+Bemerkung: Für $k=1,~p=2$ ist das eine direkte Folgerung auf Proposition \ref{prop1.11} mit 
+\begin{align*}
+B(u,v)\equiv0\text{ und } F(u)=\int\limits_{\partial\Omega} u\d \gamma.
+\end{align*}
+\end{proposition}
+
+\section{Abstrakte Variations-Analysis}
+Die \textbf{Poissongleichung} ist
+\begin{align}
+	\left\{
+	\begin{array}{r l l}\label{PoissonEquation}\tag{Poi}
+		-\laplace u &\equiv f &\text{ auf }\Omega \\
+		u &\equiv 0 &\text{ auf }\partial\Omega=:\Gamma.
+	\end{array}\right.
+\end{align}
+Durch Multiplikation mit $v$ und Integration erhalten wir
+\begin{align*}
+&\stackrel{ v|_{\partial\Omega}\equiv0}{\implies}
+\int\limits_\Omega f\cdot v\d x
+=\int\limits_\Omega-\laplace u\cdot v\d x
+=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\underbrace{\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x}_{=0}
+\end{align*}
+Definiere:
+\begin{align*}
+\text{Bilinearform } a(u,v)&:=\int\limits_\Omega\nabla u\cdot\nabla v\d x\\
+\text{Linearform } l(v)&:=\int\limits_\Omega f\cdot v\d x
+\end{align*}
+$a$ und $l$ sind wohldefiniert für $f\in L^2(\Omega),~u,v\in H^1(\Omega)$. Um $v|_{\partial\Omega}=0$ und $u|_{\partial\Omega}=0$ sicherzustellen, muss $u,v\in H^1_0(\Omega)$ gelten.\\
+
+\textbf{Variationsformulierung der Poissongleichung:}\\
+Finde $u\in H_0^1(\Omega)$ so, dass
+\begin{align*}
+a(u,v)=l(v)\qquad\forall v\in H^1_0(\Omega).
+\end{align*}
+Dieses Problem gilt es zu lösen. Allgemeiner formuliert erhält man das folgende Problem:\\
+Sei $V$ ein Hilbertraum. Finde $u\in V$ so, dass
+\begin{align*}
+a(u,v)=l(v)\qquad\forall v\in V.
+\end{align*}
+
+\defi
+(Eigenschaften)\enter
+Eigenschaften einer Bilinearform $a$:
+\begin{itemize}
+\item $a$ ist stetig auf $V$, d. h.
+\begin{align*}
+\exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V
+\end{align*}
+\item $a$ ist \textbf{koerziv}, d. h.
+\begin{align*}
+\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V
+\end{align*} 
+\end{itemize}
+Eigenschaften einer Linearform $l$:
+\begin{itemize}
+\item $l$ ist stetig auf $V$, d. h.
+\begin{align*}
+\exists M^\ast>0:\forall v\in V: \big|l(v)\big|\leq M^\ast\cdot\Vert v\Vert_V
+\end{align*}
+\end{itemize}
+
+\begin{theorem}[Lax-Milgram]\label{theorem2.1}\enter
+Sei $V$ ein Hilbertraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $b$ eine stetige Linearform auf $V$.\\
+Dann hat das Variationsproblem
+\begin{align*}
+\text{Bestimme $u\in V$ so, dass }a(u,v)=b(v)\qquad\forall v\in V.
+\end{align*}
+eine eindeutige Lösung.
+\end{theorem}
+\begin{proof}
+Nächste Vorlesung.
+\end{proof}
+
+%Beispiel? Oder was ist das Folgende?
+Wähle normierten Raum $V:=H_0^1(\Omega)$ mit Norm $\Vert\cdot\Vert_V:=\Vert\cdot\Vert_{1,2,\Omega}$.
+\begin{itemize}
+\item $l$ ist stetig, denn:
+\begin{align*}
+\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
+\stackrel{\text{CS}}{\leq}
+\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
+\stackrel{\text{CS}}{\leq}
+\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
+\end{align*}
+\item $a$ ist stetig, denn:
+\begin{align*}
+\big| a(u,v)\big|=\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
+\leq
+|u|_{1,2,\Omega}\cdot|v|_{1,2,\Omega}
+\leq
+\underbrace{1}_{=:M}\cdot\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
+\end{align*}
+\item $a$ ist koerziv, denn:
+\begin{align*}
+a(v,v)
+=\int\limits_\Omega\nabla v\cdot\nabla v\d x
+=\int\limits_\Omega\sum\limits_{i=1}^d\left(\frac{\partial v}{\partial x_i}\right)^2\d x
+=|v|^2_{1,2,\Omega}
+\stackrel{\text{Fried}}{\geq}
+\frac{1}{c_F^2}\cdot\Vert v\Vert^2_{1,2,\Omega}
+\end{align*}
+\end{itemize}
