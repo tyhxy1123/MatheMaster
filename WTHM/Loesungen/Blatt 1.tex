@@ -52,6 +52,71 @@ der Raum der zentrierten quadrat-integrierbaren Zufallsvariablen. Für diesen gi
 \begin{proof}
 \underline{Zeige a):}\\
 %UVR-Kriterium + Eigenschaften des Skalarproduktes nachrechnen + Vollständigkeit
+Nutze Untervektorraumkriterium:
+\begin{itemize}
+\item $0\in L_0^2$ ist klar.
+\item Sei $X\in L_0^2$ und $\lambda\in\R$. Dann ist $X\in L_0^2$ wegen
+\begin{align*}
+\E[\lambda\cdot X]\stackeq{\text{Lin}}\lambda\cdot\E[X]\stackeq{X\in L_2^0}0
+\end{align*}
+\item Seien $X,Y\in L_0^2$. Dann ist $X+Y\in L_0^2$ wegen
+\begin{align*}
+\E[X+Y]\stackeq{\text{Lin}}\E[X]+\E[Y]\stackeq{X,Y\in L_0^2}0+0=0
+\end{align*}
+\end{itemize}
+Somit ist $L_0^2$ ein Untervektorraum von $L_2$. Nun zeigen wir, dass
+\begin{align*}
+\langle X,Y\rangle:=\Cov(X,Y):=
+\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
+=\E[X\cdot Y]
+\qquad\forall X,Y\in L_0^2
+\end{align*}
+ein Skalarprodukt auf $L_0^2$ ist. Gleich vorweg: Die Kovarianz erfüllt sogar auf $L^2$ alle Eigenschaften bis auf positive Definitheit. Diese gilt nur auf $L_0^2$. Deswegen werden im Folgenden die Eigenschaften der Kovarianz allgemeiner gezeigt.
+\begin{itemize}
+\item Die Kovarianz ist Bilinear, denn für $\lambda\in\R$ und $X,Y,Z\in L_0^2$ gilt
+\begin{align*}
+\Cov(\lambda\cdot X,Y)
+&=\E\Big[\big(\lambda\cdot X-\E[ \lambda\cdot X]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+&=\E\Big[\big(\lambda\cdot\big(X-\E[X]\big)\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+&=\lambda\cdot\Cov(X,Y)\\
+\Cov(X,\lambda\cdot Y)
+&=\E\Big[\big(X-\E[X]\big)\cdot\big(\lambda\cdot Y-\E[\lambda\cdot Y]\big)\Big]\\
+&=\E\Big[\big(X-\E[X]\big)\cdot\big(\lambda\cdot\big(Y-\E[Y]\big)\big)\Big]\\
+&=\lambda\cdot\Cov(X,Y)\\
+\Cov(X+Z,Y)
+&=\E\Big[\big(X+Z-\E[X+Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)+\big(Z-\E[Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
++\E\Big[\big(Z-\E[Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+&=\Cov(X,Y)+\Cov(Z,Y)\\
+\Cov(X,Y+Z)
+&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y+Z-\E[Y+Z]\big)\Big]\\
+&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)+\big(X-\E[X]\big)\cdot\big(Z-\E[Z]\big)\Big]\\
+&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
++\E\Big[\big(X-\E[X]\big)\cdot\big(Z-\E[Z]\big)\Big]\\
+&=\Cov(X,Y)+\Cov(X,Z)
+\end{align*}
+\item Die Kovarianz ist symmetrisch, was man schon an der Definition erkennt: $\Cov(X,Y)=\Cov(Y,X)$
+\item Die Kovarianz ist positiv definit:
+\begin{align*}
+\Cov(X,X)&=\E\Big[\underbrace{\big(X-\E[X]\big)^2}_{\geq0}\Big]\geq0\text{ und}\\
+\Cov(X,X)&=0\stackrel{\E[X]=0}{\gdw} X=0\text{ fast sicher}
+\end{align*}
+\end{itemize}
+Bleibt noch zu zeigen, dass $L_0^2$ bzgl. der die die Kovarianz induzierten Norm
+\begin{align*}
+\Vert X\Vert:=\sqrt{\Cov(X,X)}
+=\sqrt{\E\Big[\big(X-\E[X]\big)^2\Big]}
+=\sqrt{\E\Big[X^2\Big]}
+\qquad\forall X,Y\in L_0^2
+\end{align*}
+vollständig ist. Diese Norm stimmt auf $L_0^2$ mit der bekannten $L^2$-Norm überein. Und da bekannt ist, dass $\big(L^2,\Vert\cdot\Vert_{L^2}\big)$ ein Banachraum ist, genügt es noch zu zeigen, dass $L_0^2$ abgeschlossen ist.
+Sei also $(X_n)_{n\in\N}\subseteq L_0^2$ eine Folge mit
+$X_n\stackrel{n\to\infty}{\longrightarrow}X\in L^2$.
+Dann gilt schon $X\in L_0^2$, denn: TODO\\
+
+
+
 
 \underline{Zeige b):}\\
 
