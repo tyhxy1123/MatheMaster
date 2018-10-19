@@ -38,6 +38,7 @@ H:(-1,1)\to\R,\qquad H(x):=\left\lbrace\begin{array}{cl}
 \end{array}\right.
 \end{align*}
 besitzt keine schwache Ableitung $f\in L^1((-1,1))$.
+
 \begin{proof}[Beweis. (Kurz)]
 Folgt aus Aufgabe 1.3 da, $H$ nicht stetig ist.
 \end{proof}
@@ -65,7 +66,26 @@ Nehmen wir nun an, dass $H$ eine schwache Ableitung $f\in L^1((-1,1))$ besitzt. 
 -v(0)\\
 &\implies v(0)=\int\limits_{(-1,1)}f(x)\cdot v(x)\d x
 \end{align*}
-Die schwache Ableitung von $H$ muss mit der schwachen Ableitung von $\tilde{H}$ übereinstimmen (warum?) und damit $H'\equiv0$. Dies liefert einen Widerspruch für z. B. eine Glockenkurve mit $v(0)=1$.
+
+Wählen wir jetzt $v_n\in C^\infty_c((-1,1))$ mit den folgenden Eigenschaften:
+\begin{itemize}
+	\item $v_n(x)\in[0,1]\quad \forall x\in (-1,1)$
+	\item $v_n(0)=1$
+	\item $v_n(x)\stackrel{n\rightarrow\infty}{\longrightarrow}0\quad\forall x\neq 0$
+\end{itemize}
+Dies ist eine Folge von $C^\infty_c((-1,1))$-Funktionen, die sich auf den Nullpunkt zusammenziehen
+und beschränkt ist.
+Dann erhalten wir
+\begin{align*}
+	1 &=\lim\limits_{n\rightarrow\infty} v_n(0) \\
+	&=\lim\limits_{n\rightarrow\infty}-\int\limits_{(-1,1)} f(x)\cdot v_n(x)\d x \\
+	&=-\int\limits_{(-1,1)} f(x)\cdot\lim\limits_{n\rightarrow\infty} v_n(x)\d x \\
+	&=-\int\limits_{\{0\}} f(x)\cdot\lim\limits_{n\rightarrow\infty} v_n(x)\d x 
+	-\int\limits_{(-1,1)\setminus\{0\}} f(x)\cdot\lim\limits_{n\rightarrow\infty} v_n(x)\d x \\
+	&= 0 -\int\limits_{(-1,1)\setminus\{0\}} f(x)\cdot 0\d x \\
+	&= 0
+\end{align*}
+Demnach kann $f(x)$ nicht existieren.
 \end{proof}
 
 \section*{Aufgabe 1.2}
