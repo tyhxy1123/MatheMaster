@@ -40,18 +40,18 @@ L_0^2:=\big\lbrace X\in L_2:\E[X]=0\big\rbrace
 der Raum der zentrierten quadrat-integrierbaren Zufallsvariablen. Für diesen gilt:
 \begin{enumerate}[label=\alph*)]
 \item $L_0^2$ ist ein Hilbertraum mit Skalarprodukt $\Cov(\cdot,\cdot)$.
-\item Für eine Familie $\lbrace X_j\rbrace_{j\in J}\subseteq L_0^2$ gilt
+\item Seien $X_1,...,X_n\in L_0^2$. Dann gilt:
 \begin{align*}
-\Var\left[\sum\limits_{j\in J}X_j\right]=\sum\limits_{j\in J}\Var[X_j]+2\cdot\sum\limits_{j<k}\Cov[X_j,X_k]
+\Var\left[\sum\limits_{j=1}^n X_j\right]
+=\sum\limits_{j=1}^n\left(\Var[X_j]+2\cdot\sum\limits_{k>j}\Cov[X_j,X_k]\right)
 \end{align*}
-\item Für eine Familie $\lbrace X_j\rbrace_{j\in J}\subseteq L_0^2$ gilt
+\item Seien $X_1,...,X_n\in L_0^2$. Dann gilt:
 \begin{align*}
-\sqrt{\Var\left[\sum\limits_{j\in J}X_j\right]}\leq\sum\limits_{j\in J}\sqrt{\Var[X_j]}
+\sqrt{\Var\left[\sum\limits_{j=1}^n X_j\right]}\leq\sum\limits_{j=1}^n\sqrt{\Var[X_j]}
 \end{align*}
 \end{enumerate}
 \begin{proof}
 \underline{Zeige a):}\\
-%UVR-Kriterium + Eigenschaften des Skalarproduktes nachrechnen + Vollständigkeit
 Nutze Untervektorraumkriterium:
 \begin{itemize}
 \item $0\in L_0^2$ ist klar.
@@ -118,15 +118,33 @@ Dann gilt schon $X\in L_0^2$, denn: TODO\\
 
 
 
-\underline{Zeige b):}\\
+\underline{Zeige b):} Für $X,Y\in L_0^2$ gilt $\Var[X]=\E\big[X^2\big]$ und $\Cov[X,Y]=\E[X\cdot Y]$. Damit folgt
+\begin{align*}
+\Var\left[\sum\limits_{j=1}^n X_j\right]
+&=\E\left[\left(\sum\limits_{j=1}^n X_j\right)^2\right]\\
+&=\E\left[\sum\limits_{j=1}^n\sum\limits_{k=1}^n X_j\cdot X_k\right]\\
+&=\sum\limits_{j=1}^n\sum\limits_{k=1}^n \E[X_j\cdot X_k]\\
+&=\sum\limits_{j=1}^n\left(
+\sum\limits_{\begin{subarray}{c}k=1\\ k=j\end{subarray}}^n \E[X_j\cdot X_k]
++\sum\limits_{\begin{subarray}{c}k=1\\ k\neq j\end{subarray}}^n \E[X_j\cdot X_k]\right)\\
+&=\sum\limits_{j=1}^n\left(\underbrace{\E\big[X_j^2\big]}_{=\Var[X]}+2\cdot\sum\limits_{k>j}\underbrace{\E[X_j\cdot X_k]}_{=\Cov(X_j,Y_k)}\right)
+\end{align*}
 
 \underline{Zeige c):}\\
+\begin{align*}
+\sqrt{\Var\left[\sum\limits_{j=1}^n X_j\right]}
+=\sqrt{\E\left[\left(\sum\limits_{j=1}^n\right)^2\right]}
+=\left\Vert\sum\limits_{j=1}^n X_i\right\Vert
+\stackrel{\Delta\text{-Ungl}}{\leq}
+\sum\limits_{j=1}^n\Vert X_j\Vert
+=\sum\limits_{j=1}^n\sqrt{\Var[X_j]}
+\end{align*}
 \end{proof}
 
 \section*{Aufgabe 2}
 Seien $X,Y\in L_2(\A)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. \textbf{Bedingte Varianz} und \textbf{bedingte Kovarianz} von $X$ bzw. $X,Y$ unter $\F$ sind definiert als
 \begin{align*}
-\Var[X~|~\F]&:=\E\Big[\big(X-\E[X~|~\F\big)^2~\Big|~\F\Big]\\
+\Var[X~|~\F]&:=\E\Big[\big(X-\E[X~|~\F]\big)^2~\Big|~\F\Big]\\
 \Cov[X,Y~|~\F]&:=\E\Big[\big(X-\E[X~|~\F]\big)\cdot\big(Y-\E[Y~|~\F]\big)~\Big|~\F\Big]
 \end{align*}
 Dann gelten die Sätze der \textbf{totalen Varianz} bzw. \textbf{totalen Kovarianz}:
