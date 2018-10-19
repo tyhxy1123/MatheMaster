@@ -113,10 +113,18 @@ Bleibt noch zu zeigen, dass $L_0^2$ bzgl. der die die Kovarianz induzierten Norm
 vollständig ist. Diese Norm stimmt auf $L_0^2$ mit der bekannten $L^2$-Norm überein. Und da bekannt ist, dass $\big(L^2,\Vert\cdot\Vert_{L^2}\big)$ ein Banachraum ist, genügt es noch zu zeigen, dass $L_0^2$ abgeschlossen ist.
 Sei also $(X_n)_{n\in\N}\subseteq L_0^2$ eine Folge mit
 $X_n\stackrel{n\to\infty}{\longrightarrow}X\in L^2$.
-Dann gilt schon $X\in L_0^2$, denn: TODO\\
-
-
-
+Dann gilt schon $X\in L_0^2$, denn:
+\begin{align*}
+&\exists\left(X_{n_m}\right)_{m\in\N}\subseteq\left(X_n\right)_{n\in\N}:X_{n_m}\stackrel{\text{fast sicher}}{\longrightarrow}X\\
+&\implies\E\left[\lim\limits_{m\to\infty}X_{n_m}-X\right]=0\\
+&\implies
+\E[X]=\E\left[X-X_{n_m}\right]+\underbrace{\E\left[X_{n_m}\right]}_{=0}\\
+&\implies
+\E[X]=\lim\limits_{m\to\infty}\E\left[X-X_{n_m}\right]
+\stackeq{\text{dom Konv}}
+\E\left[\lim\limits_{m\to\infty}\left(X-X_{n_m}\right)\right]
+=0
+\end{align*}
 
 \underline{Zeige b):} Für $X,Y\in L_0^2$ gilt $\Var[X]=\E\big[X^2\big]$ und $\Cov[X,Y]=\E[X\cdot Y]$. Damit folgt
 \begin{align*}
@@ -153,9 +161,19 @@ Dann gelten die Sätze der \textbf{totalen Varianz} bzw. \textbf{totalen Kovaria
 \Cov[X,Y]&=\E\big[\Cov[X,Y~|~\F]\big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]
 \end{align*}
 \begin{proof}
-\underline{Zur ersten Gleichung:}\\
+\underline{Zur ersten Gleichung:}
+\begin{align*}
+\E\big[\Var[X~|~\F]\big]+\Var\big[\E[X~|~\F]\big]
+&=\E\Big[\E\big[\big(X-\E[X~|~\F]\big)^2~\big|~\F\big]\Big]+\Var\big[\E[X~|~\F]\big]\\
+&=ToDo
+\end{align*}
 
-\underline{Zur zweiten Gleichung:}\\
+\underline{Zur zweiten Gleichung:}
+\begin{align*}
+&\E\big[\Cov[X,Y~|~\F]\big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]\\
+&=\E\Big[\E\big[\big(X-\E[X~|~\F]\big)\cdot\big(Y-\E[Y~|~\F]\big)~\big|~\F\big]\Big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]\\
+&=ToDo
+\end{align*}
 \end{proof}
 
 \section*{Aufgabe 3}
@@ -186,7 +204,7 @@ mit $\tilde{x}=\left(x-B\cdot D^{-1}\cdot y\right)$ für alle $x,y$ mit passende
 Hinweis: es gilt $\det(\Sigma)=\det(\Sigma_Y)\cdot\det(\Sigma/\Sigma_Y)$.
 \end{enumerate}
 \begin{proof}
-\underline{Zeige a):}\\
+\underline{Zeige a):}\\ ToDo
 
 \underline{Zeige b):}\\
 
@@ -199,7 +217,23 @@ Berufsunfähigkeit exponentialverteilt mit Parameter $\lambda>0$. Für eine Vers
 Bestimme diesen bedingten Erwartungswert $\E[X~|~a\leq X\leq b]$
 \begin{proof}
 \begin{align*}
-\E[X~|~a\leq X\leq b]&=
+\E[X~|~a\leq X\leq b]
+&=\frac{\E\left[X\cdot\indi_{\lbrace a\leq X\leq b\rbrace}\right]}{\P[a\leq X\leq b]}\\
+&=\frac{\int\limits_a^b \lambda\cdot x\cdot\exp(-\lambda\cdot x)\d x}{\int\limits_a^b\lambda\cdot\exp(-\lambda\cdot x)\d x}\\
+&=\frac{\int\limits_a^b x\cdot\exp(-\lambda\cdot x)\d x}{\int\limits_a^b\exp(-\lambda\cdot x)\d x}\\
+&=\frac{\left[\left(-\frac{x}{\lambda}-\frac{1}{\lambda^2}\right)\cdot\exp(-\lambda\cdot x)\right]_{x=a}^b}
+{\left[-\frac{\exp(-\lambda\cdot x)}{\lambda}\right]_{x=a}^b}\\
+%&=\frac{
+%\frac{b\cdot\exp(-\lambda\cdot b)}{\lambda}
+%+\frac{\exp(-\lambda\cdot b)}{\lambda^2}
+%-\frac{a\cdot\exp(-\lambda\cdot a)}{\lambda}
+%-\frac{\exp(-\lambda)\cdot a)}{\lambda^2}
+%}{
+%\frac{\exp(-\lambda\cdot b)}{\lambda}
+%-\frac{\exp(-\lambda\cdot a)}{\lambda}}\\
+%&=\frac{\left(b+\frac{1}{\lambda}\right)\cdot\exp(-\lambda\cdot b)-\left(a+\frac{1}{\lambda}\right)\cdot\exp(-\lambda\cdot a)}{\exp(-\lambda\cdot b)-\exp(-\lambda\cdot a)}
+&=\frac{\frac{(a\cdot\lambda+1)\cdot\exp(-\lambda\cdot a)}{\lambda^2}-\frac{(b\cdot\lambda+1)\cdot\exp(-\lambda\cdot b)}{\lambda^2}}{\frac{\exp(-\lambda\cdot a)}{\lambda}-\frac{\exp(-\lambda\cdot b)}{\lambda}}\\
+&=\frac{(b\cdot\lambda+1)\cdot\exp(a\cdot\lambda)-(a\cdot\lambda+1)\cdot\exp(b\cdot\lambda)}{\big(\exp(a\cdot\lambda)-\exp(b\cdot\lambda)\big)\cdot\lambda}
 \end{align*}
 \end{proof}
 
@@ -215,8 +249,8 @@ Wie üblich bezeichnet $\F$ eine $\sigma$-Algebra, $X,Y$  Zufallsvariablen, $y$ 
 \begin{align*}
 &\E[X~|~\F]\in L_2(\Omega,\F,\P)\text{, ist also eine Zufallsvariable}\\
 &\P[A~|~B]\in[0,1]\subseteq\R\\
-&\E[X~|~Y=y]\in?\\
-&\P[A~|~\F]\in?\\
+&\E[X~|~Y=y]:=\int\limits_{\R^m}x\cdot f_{X|Y}(x,y)\d x\in\R\\
+&\P[A~|~\F]:=\E[\indi_A~|~\F]\in L_2(\Omega,\F,P)\text{ bzw. }\in(0,1)\text{ für festes }\omega\in\Omega\\
 &\E[X~|~Y]:=\E[X~|~\sigma(Y)]\in L_2(\Omega,\F,\P)\text{, ist also ein Spezialfall der ersten Zeile}
 \end{align*}
 \end{lösung}
