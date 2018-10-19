@@ -231,10 +231,11 @@ Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\\
 \end{align*}
 \end{proof}
  
-\subsection*{Bedingte Erwartung in $L_1$}
+\section{Bedingte Erwartung in $L_1$}
+\setcounter{section}{1}
 Prinzip: stetige Fortsetzung.
 
-\setcounter{satz}{5} %Nr. 1.5 fehlt!?
+\setcounter{satz}{5} %Nr. 1.5 fehlt wurde ausgelassen vom Prof.
 \begin{proposition}\label{Prop1.6} %1.6
 Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\enter
 Die bedingte Erwartung hat eine eindeutige stetige Fortsetzung von $L_2(\Omega,\F,\P)$ auf $L_1(\Omega,\A,\P)$. Diese bezeichnen wir ebenfalls mit $\E[~\cdot~|~\mathcal{F}]$.
@@ -297,7 +298,7 @@ Alle Eigenschaften aus Proposition \ref{Prop1.4} (außer Symmetrie) gelten weite
 Beweis durch Approximation.
 \end{proof}
 
-\begin{theorem}%1.8
+\begin{theorem}\label{theorem1.8}%1.8
 Sei $\F$ Unter-$\sigma$-Algebra von $\A$ und seien
 \begin{align*}
 X\in L_1(\Omega,\A,\P),\qquad Y\in L_1(\Omega,\F,\P).
@@ -398,7 +399,7 @@ Wegen $X\unab\F$ gilt:
 \E[X]\cdot\P(F)\\
 &=\E\big[\E[X]\cdot\indi_F\big]
 \end{align*}
-\[\stackrel{\text{Thm 1.8}}{\Longrightarrow} \E[X]=\E[X~|~\F]\]
+\[\stackrel{\text{Thm \ref{theorem1.8}}}{\Longrightarrow} \E[X]=\E[X~|~\F]\]
 \end{proof}
 
 \begin{bemerkung}
@@ -410,3 +411,283 @@ Die bedingte Erwartung verändert also $X$ nicht.
 Die bedingte Erwartung reduziert $X$ auf den unbedingten Erwartungswert $\E[X]$.
 \end{itemize}
 \end{bemerkung}
+
+\setcounter{section}{2}
+\section{Spezialfälle und weitere Eigenschaften} %1.3
+\setcounter{section}{1}
+\setcounter{satz}{9}
+
+\textbf{Bedingen auf Zufallsvariablen}:\\
+Wir nehmen nun an, dass $\F$ von einer oder mehreren Zufallsvariablen $Y$ bzw. $Y_1,\ldots, Y_n$ erzeugt wird, d.h.
+\begin{align*}
+\F=\sigma(Y)\text{ oder }\F=\sigma(Y_1,\ldots Y_n).
+\end{align*}
+In diesen Fällen schreiben wir 
+\begin{align*}
+\E[X~|~Y]&:=\E[X~|~\sigma(Y)]\\
+\E[X~|~Y_1,\ldots,Y_n]&:=\E\big[X~|~\sigma(Y_1,\ldots,Y_n)\big]
+\end{align*}
+Die beiden Fälle stimmen überein, wenn wir $Y$ als Zufallsvektor $Y=(Y_1,\ldots,Y_n)$ definieren.\\
+
+\textbf{Interpretation / Bedeutung:}\\
+Beste Vorhersage von $X$ gegeben $Y$. Dies ist in vielen Anwendungen relevant, z. B. $X$ sei das Einkommen einer zufällig ausgewählten Person und $Y$ der höchste Bildungsabschluss dieser Person. \\
+
+Wir betrachten: $(X,Y)$ sei $\R^m\times\R^n$-wertige Zufallsvariable mit gemeinsamer Dichte $f_{XY}(x,y)$.
+\begin{itemize}
+\item
+$ f_Y(y)=\int\limits_{\R^m}f_{XY}(x,y)\d x $ ist die \textbf{Randverteilung} (Dichte) von $Y$
+\item 
+$\begin{aligned}
+S_Y:=\big\lbrace y\in\R^n:f_Y(y)>0\big\rbrace\subseteq\R^n
+\end{aligned}$ \textbf{Träger} von $Y$
+\end{itemize}
+
+\begin{defi} %noNumber
+\textbf{Die bedingte Dichte} von $X$ bzw. $Y$ ist gegeben durch 
+\begin{align*}
+f_{X|Y}(x,y):=\left\lbrace\begin{array}{cl}
+\frac{f_{XY}(x,y)}{f_Y(y)}, &\falls y\in S_y\\
+0, &\falls y\not\in S_y
+\end{array}\right.
+\end{align*}
+\end{defi}
+
+\begin{theorem} %1.10
+Sei $(X,Y)$ eine $\R^m\times\R^n$-wertige Zufallsvariable mit Dichte $f_{XY}$.\\
+Dann gilt für alle messbaren Funktionen $h:\R^m\times\R^n\to\R\mit\E\big[|h(X,Y)|\big]<\infty$:
+\begin{align*}
+\E\big[ h(X,Y)~\big|~Y\big]=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,Y)\d x
+\end{align*}
+\end{theorem}
+
+\begin{bemerkung}\
+\begin{itemize}
+\item Insbesondere gilt
+\begin{align*}
+\E[X~|~Y]=\int\limits_{\R^m} x\cdot f_{X|Y}(x,Y)\d x
+\end{align*}
+\item Für $y\in S_Y$ schreiben wir auch
+\begin{align*}
+\E\big[h(X,Y)~\big|~Y=y\big]:=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x
+\end{align*}
+Die bedingte Erwartung ist also nun ``punktweise''  als messbare Funktion $S_Y\to\R$ definiert.
+\end{itemize}
+\end{bemerkung}
+\begin{proof}[Beweis von Theorem 1.10]
+Setze
+\begin{align*}
+g(y):=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x.
+\end{align*}
+Offenbar ist $g:\R^n\to\R$ messbar. Zu zeigen:
+\begin{align*}
+	\E\big[h(X,Y)~\big|~\sigma(Y)\big]=g(Y)
+\end{align*}
+Mit Theorem \ref{theorem1.8} ist dies äquivalent zu
+\begin{align*}
+\E\big[ h(X,Y)\cdot\indi_F\big]=\E\big[g(Y)\cdot\indi_F\big]\qquad\forall F\in\sigma(Y)
+\end{align*}
+Jedes $F\in\sigma(Y)$ lässt sich darstellen als 
+\begin{align*}
+F=\big\lbrace\omega\in\Omega:Y(\omega)\in B\big\rbrace\mit B\in\B(\R^n)
+\end{align*}
+D. h. ist äquivalent zu
+\begin{align*}
+\int\limits_{\R^m\times\R^n} h(x,y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot f_{XY}(x,y)\d (x,y)
+&=
+\int\limits_{\R^n} g(y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot f_Y(y)\d y\qquad\forall B\in\B(\R^n)
+\end{align*}
+Doch diese Gleichheit ist leicht zu zeigen:
+\begin{align*}
+\text{rechte Seite }&=\int\limits_{\R^n}\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x\cdot\indi_{\lbrace y\in B\rbrace} \cdot f_Y(y)\\
+&\stackeq{\text{Fubini}}
+\int\limits_{\R^m\times\R^n} h(x,y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot\underbrace{f_{X|Y}(x,y)\cdot f_Y(y)}_{=f_{XY}(x,y)}\d (x,y)\\
+&=\text{ linke Seite}
+\end{align*}
+\end{proof}
+
+Insbesondere gilt: Sei $m=1$. Das Minimierungsproblem 
+\begin{align*}
+\min\left\lbrace\E\Big[\big(X-g(Y)\big)^2\Big]:g:\R^n\to\R\text{  messbar}\right\rbrace
+\end{align*}
+wird gelöst durch
+\begin{align*}
+g(y)=\E[X~|~Y=y]=\int\limits_{\R^m} x\cdot f_{X|Y}(x,y)\d x.
+\end{align*}
+
+\begin{beisp}
+Sei $(X,Y)$ normalverteilt auf $\R^2$ mit Mittelwert
+\begin{align*}
+\mu=\begin{pmatrix}
+\mu_x\\ \mu_y
+\end{pmatrix}\text{ und Kovarianzmatrix }
+\Sigma=\begin{pmatrix}
+\sigma_x^2 & \rho\sigma_x\sigma_y\\
+\rho\sigma_x\sigma_y & \sigma_y^2
+\end{pmatrix}\mit|\rho|<1
+\end{align*}
+Was ist $f_{X|Y}$?
+\begin{enumerate}
+\item Normierter Fall: $\mu_x=\mu_y=0$ und $\sigma_x=\sigma_y=1$.
+\begin{align*}
+\implies \mu=\begin{pmatrix}
+0\\ 0
+\end{pmatrix},\quad\Sigma=\begin{pmatrix}
+1 & \rho\\
+\rho & 1
+\end{pmatrix}
+\end{align*}
+Nebenrechnung:
+\begin{align*}
+\det(\Sigma)&=1-\rho^2\qquad\Sigma^{-1}=\frac{1}{1-\rho^2}\cdot\begin{pmatrix}
+1 & -\rho\\
+-\rho & 1
+\end{pmatrix}\\
+f_{XY}(x,y)&=\frac{1}{2\cdot\pi\cdot\det(\Sigma)}\cdot\exp\left(-\frac{1}{2}\cdot\begin{pmatrix}
+x\\ y
+\end{pmatrix}^T\cdot\Sigma^{-1}\cdot\begin{pmatrix}
+x\\ y
+\end{pmatrix}\right)\\
+&=\frac{1}{2\cdot\pi\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho)^2}\cdot\big(x^2-2\cdot\rho\cdot x\cdot y+y^2\big)\right)\\
+f_Y(y) &=\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{y^2}{2}\right)\\
+f_{X|Y}(x,y)&=\frac{f_{XY}(x,y)}{f_Y(y)}\\
+&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\Bigg(-\frac{1}{2\cdot(1-\rho^2)}\cdot\big(\underbrace{x^2-2\cdot\rho\cdot x\cdot y+y^2-(1-\rho^2)\cdot y^2}_{=x^2-2\cdot\rho\cdot x\cdot y+\rho^2\cdot y^2}\big)\Bigg)\\
+&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho^2)}\cdot(x-\rho\cdot y)^2\right)
+\end{align*}
+Letzteres ist die Dichte von $\mathcal{N}(\rho\cdot y,1-\rho^2)$. Insbesondere gilt
+\begin{align*}
+\E[X~|~Y=y]&=\rho\cdot y\\
+\Var(X~|~Y=y)=1-\rho^2.
+\end{align*}
+\item Allgemeiner Fall:
+\begin{align*}
+\begin{matrix}
+X=\sigma_x\cdot\tilde{X}+\mu_x\\
+Y=\sigma_y\cdot\tilde{Y}+\mu_y
+\end{matrix}\mit(\tilde{X},\tilde{Y})\text{ normiert in Fall 1.}
+\end{align*}
+Damit gilt:
+\begin{align*}
+f_{XY}(x,y) 
+&=\frac{1}{\sigma_x\cdot\sigma_y}\cdot f_{\tilde{X}\tilde{Y}}\left(\frac{x-\mu_x}{\sigma_x},~\frac{y-\mu_y}{\sigma_y}\right)\\
+f_Y(y) &= \frac{1}{\sigma_y}\cdot f_{\tilde{Y}}\left(\frac{y-\mu_y}{\sigma_y}\right)
+\end{align*}
+Die Bedingte Dichte ist:
+\begin{align*}
+f_{X|Y}(x,y) 
+&=\frac{f_{XY}(x,y)}{f_Y(y)}
+=\frac{1}{\sigma_x}\cdot f_{\tilde{X}|\tilde{Y}}\left(\frac{x-\mu_x}{\sigma_x},~\frac{y-\mu_y}{\sigma_y}\right)\\
+&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho^2)}\cdot\left(\frac{x-\mu_x}{\sigma_x}-\frac{\rho}{\sigma_y}\cdot(y-\mu_y)\right)^2\right)\\
+&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot\sigma_x^2\cdot(1-\rho^2)}\cdot\left(x-\left(\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)\right)\right)^2\right)
+\end{align*}
+Dies ist die Dichte von
+\begin{align*}
+\mathcal{N}\left(\mu_y+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y),~\sigma_x^2\cdot(1-\rho^2)\right)
+\end{align*}
+Insbesondere gilt
+\begin{align*}
+\E[X~|~Y=y]&=\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)\\
+\Var(X~|~Y=y)&=\sigma_x^2\cdot(1-\rho^2)
+\end{align*}
+\end{enumerate}
+\end{beisp}
+
+\begin{bemerkung}
+Die Funktion
+\begin{align*}
+y\mapsto\E[X~|~Y=y]=\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)
+\end{align*}
+heißt \textbf{Regressionsgerade} für $X$ gegeben $Y$.
+%Abbilung fehlt. RobertToDo
+\end{bemerkung}
+
+\subsection*{Bedingte Wahrscheinlichkeit}
+Seien $A,B\in\A$ Ereignisse. Die \textbf{elementare bedingte Wahrscheinlichkeit} ist 
+\begin{align*}
+\P(A~|~B)=\frac{\P(A\cap B)}{\P(B)}\text{ für }\P(B)>0
+\end{align*}
+Was ist der Zusammenhang zur bedingten Erwartung?\\
+
+Beachte: Die erzeugte $\sigma$-Algebra 
+\begin{align*}
+\sigma(B)=\big\lbrace\emptyset,B,B^C,\Omega\big\rbrace.
+\end{align*}
+Was ist nun 
+\begin{align*}
+\P\big(A~\big|~\sigma(B)\big)=\E\big[\indi_A~|~\sigma(B)\big]\text{ ?}
+\end{align*}
+\begin{align*}
+&L_2\big(\sigma(B)\big)=\Big\lbrace \alpha\cdot\indi_B+\beta\cdot\indi_{B^C}:\alpha,\beta\in\R\Big\rbrace\\
+&\implies
+Y=\E\big[\indi_A~\big|~\sigma(B)\big]=a\cdot\indi_B+b\cdot\indi_{B^C}\mit a,b\in\R\text{ zu bestimmen}\\
+&\P(A\cap B)=\E[\indi_A\cdot\indi_B]
+\stackeq{\text{Thm \ref{theorem1.8}}}
+\E[Y\cdot\indi_B]=\E[a\cdot\indi_B]=a\cdot\P(B)\\
+&\implies
+a=\frac{\P(A\cap B)}{\P(B)}=\P(A~|~B)\\
+&\P(A\cap B^C)=\E[\indi_A\cdot\indi_{B^C}]
+\stackeq{\text{Thm \ref{theorem1.8}}}
+\E[Y\cdot\indi_{B^C}]=b\cdot\P(B^C)\\
+&\implies
+b=\frac{\P(A\cap B^C)}{\P(B^C)}=\P(A~|~B^C)\\
+&\implies
+\P(A~|~\sigma(B))=\P(A~|~B)\cdot\indi_B+\P(A~|~B^C)\cdot\indi_{B^C}
+\end{align*}
+
+Analog: Seien $B_1,\ldots,B_n\in\A$ disjunkte Ereignisse mit
+\begin{align*}
+\bigcupdot\limits_{j=1}^n B_j=\Omega.
+\end{align*}
+Dann gilt:
+\begin{align*}
+\P\big(A~\big|~\sigma(B_1,\ldots,B_n)\big)=\sum\limits_{j=1}^n\P(A~|~B_j)\cdot\indi_{B_j}
+\end{align*}
+Mit der Turmregel \eqref{Turmregel} erhalten wir das \textbf{Gesetz der totalen Wahrscheinlichkeit}:
+\begin{align*}
+\P(A)=\E[\indi_A]=\sum\limits_{j=1}^n \P(A~|~B_j)\cdot\P(B_j)
+\end{align*}
+
+Analog zur bedingten Wahrscheinlichkeit:
+\begin{defi}[Erwartungswert bedingt auf Ereignis]\enter %noNumber
+Sei $X\in L_1(\Omega,\A,\P)$ und $B\in\A$. Dann definiere für $\P(B)>0$:
+\begin{align*}
+\E[X~|~B]:=\frac{\E[X\cdot\indi_B]}{\P(B)}
+\end{align*}
+\end{defi}
+
+Insgesamt haben wir definiert:\\
+\begin{tabular}{m{3cm}|m{3cm}|m{3cm}|m{3cm}}
+&Bedingen auf &Bedingen auf & Bedingen auf\\
+&$\sigma$-Algebra $\F$ & Zufallsvariable $Y$ & Ereignis $B$\\ \hline
+	Wahrscheinlichkeit eines Ereignisses $A\in\A$ & $\P(A~|~\F)$ & --- & $\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$ \\\hline
+	Erwartungswert einer Zufallsvariable $X$ & $\E[X~|~\F]$ siehe 1.1 und 1.2 & $\E[X~|~Y]~~~(\ast)$ & $\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$
+\end{tabular}\\
+
+$(\ast)$: Falls eine Dichte existiert: $\E[X~|~Y=y]$
+
+\begin{beisp}[Lebensdaueranalyse]\enter
+Die Lebensdauer $X:\Omega\to[0,\infty)$ eines Radios sei mit Dichte $f(z)$ verteilt.\\
+Wie ist die mittlere Restlaufzeit nach $a$ Jahren, d. h. 
+\begin{align*}
+\E[X-a~|~X\geq a]\qquad?
+\end{align*}
+Ausrechnen:
+\begin{align*}
+\E[X-a~|~X\geq a] 
+&=\frac{\E\left[(X-a)\cdot\indi_{\{X\geq a\}}\right]}{\P(X\geq a)}\\
+&=\frac{\int\limits_a^\infty (x-a)\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}\\
+&=\frac{\int\limits_a^\infty x\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}-a
+\end{align*}
+Sei nun $X\sim\text{Exp}(\lambda)$, d. h. $f(x)=\lambda\cdot\exp(-\lambda\cdot x)$. Dann ist:
+\begin{align*}
+\E[X-a~|~X\geq a]
+&=\frac{\int\limits_a^\infty \lambda\cdot x\cdot\exp(-\lambda\cdot x)\d x}{\int\limits_a^\infty\lambda\cdot\exp(-\lambda\cdot x)}-a\\
+\text{Zähler}&=\int\limits_0^\infty\exp(-\lambda\cdot x)\d x=-\frac{\exp(-\lambda\cdot x)}{x}\Big|_{x=a}^\infty=\frac{\exp(-\lambda\cdot a)}{\lambda}\\
+\text{Nenner} &=\int\limits_a^\infty x\cdot\exp(-\lambda\cdot x)\d x\\
+&=\frac{x\cdot\exp(-\lambda\cdot x)}{-\lambda}\Big|_{x=a}^\infty+\int\limits_a^\infty\frac{\exp(-\lambda\cdot x)}{\lambda}\d x=\frac{a\cdot\exp(-\lambda\cdot a)}{\lambda}+\frac{\exp(-\lambda\cdot a)}{\lambda^2}\\
+&\implies
+\E[X-a~|~X\geq a]=\frac{\exp(-\lambda\cdot a)\cdot\left(\frac{a}{\lambda}+\frac{1}{\lambda^2}\right)}{\exp(-\lambda\cdot a)\cdot\frac{1}{\lambda}}-a=a+\frac{1}{\lambda}-a=\frac{1}{\lambda}\\
+&\implies
+\E[X-a~|~X\geq a]=\E[X]
+\end{align*}
+Somit die die \textbf{Gedächtnislosigkeit} der Exponentialverteilung gezeigt.
+\end{beisp}
