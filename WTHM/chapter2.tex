@@ -1,0 +1,136 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Martingale} %2
+\section{Definition und Eigenschaften} %2.1
+\begin{beisp}
+Betrachte ein Glücksspiel zwischen zwei Personen.
+Die Folge $(\xi_n)_{n\in\N}$ i.i.d. und in $L_1$ beschreibe den Gewinn pro Zug (positiv $\to$ Person A; negativ $\to$ Person B). Sei
+\begin{align*}
+S_n:=\sum\limits_{i=1}^n\xi_i
+\end{align*}
+der Gesamtgewinn nach dem $n$-ten Zug und 
+\begin{align*}
+\F_n:=\sigma\big(\xi_1,\ldots,\xi_n\big)
+\end{align*}
+die Information aus dem Spiel bis zum $n$-ten Zug. Somit ist er bedingte Erwartungswert
+\begin{align*}
+\E\big[S_{n+k}~|~\F_n\big]
+\end{align*}
+die Vorhersage für Gewinn nach $(n+k)$-ten Zug basierend auf den ersten $n$ Zügen.\\
+Berechnung:
+\begin{align*}
+\E\big[S_{n+k}~\big|~\F_n\big] 
+&=\E\Big[S_n+\xi_{n+1}+\ldots+\xi_{n+k}~\Big|~\F_n\Big]\\
+&=\E[S_n~|~\F_n]+\sum\limits_{i=1}^k\E\big[\underbrace{\xi_{n+i}~\big|~\F_n}_{\unab}\big]\\
+&=S_n+\sum\limits_{i=1}^k\E\big[\xi_{n+i}\big]\\
+&\stackrel{\text{iid.}}{=}S_n+k\cdot\E[\xi_1]\\
+&=\left\lbrace\begin{array}{cll}
+> S_n, & \falls \E[\xi_1]>0 & \text{vorteilhaftes Spiel für A}\\
+= S_n, & \falls \E[\xi_1]=0 & \text{faires Spiel}\\
+< S_n, & \falls \E[\xi_1]<0 & \text{nachteiliges Spiel für A}
+\end{array}\right.
+\end{align*}
+\underline{Variante:} Variabler Einsatz erlaubt.
+Der Einsatz im $(n+1)-k$-ten Zug wird durch 
+\begin{align*}
+e_{n+1}:=:e_{n+1}\big(\xi_1,\ldots,\xi_n\big)
+\end{align*}
+definiert und hängt von $\F_n$ ab. Man spricht hier von einer vorhersehbaren Zufallsvariable.
+Der neue Gesamtgewinn unter diesem Einsatz beträgt
+\begin{align*}
+\tilde{S}_n:=\sum\limits_{i=1}^n e_i\cdot\xi_i.
+\end{align*}
+Achtung! 
+\begin{align*}
+\tilde{S}_n-\tilde{S}_{n-1}=e_n\cdot\xi_n
+\end{align*}
+ist \underline{nicht mehr iid}.\\
+
+Nun ergibt sich durch eine beliebige Einsatzstrategie mit Informationen aus $\F_n$ die Vorhersage der nächsten Runde des Spiels:
+\begin{align*}
+\E[\tilde{S}_{n+1}~|~\F_n] 
+&=\E\big[\tilde{S}_n+ e_{n+1}\cdot\xi_{n+1}~\big|~\F_n\big]\\
+&=\tilde{S}_n+\E\big[\underbrace{e_{n+1}}_{\in\F_n}\cdot\xi_{n+1}~\big|~\F_n\big]\\
+&=\tilde{S}_n+e_{n+1}\cdot\E\big[\underbrace{\xi_{n+1}~\big|~\F_n}_{\unab}\big]\\
+&=\tilde{S}_n+e_{n+1}\cdot\E[\xi_1]
+\end{align*}
+Nehmen wir ein faires Spiel an, also $\E[\xi_1]=0$, dann erhalten wir:
+\begin{align*}
+\E\big[\tilde{S}_{n+1}~\big|~\F_n\big]=\tilde{S}_n
+\end{align*}
+Durch Iteration dieser Gleichung folgt für $k>0$:
+\begin{align*}
+\E\big[\tilde{S}_{n+k}~\big|~\F_n\big]
+&\stackeq{\eqref{Turmregel}}
+\E\Big[\underbrace{\E\big[\tilde{S}_{n+k}~\big|~\F_{n+k-1}\big]}_{=\tilde{S}_{n+k-1}}~\Big|~\F_n\Big]\\
+&=\E\big[\tilde{S}_{n+1}~\big|~\F_n\big]\\
+&=\tilde{S}_n
+\end{align*}
+Also lässt sich bei einem fairen Spiel auch durch variablen Einsatz nicht in ein vorteilhaftes Spiel verwandeln. Dies ist ein Prototyp für das Martingal.
+\end{beisp}
+
+\begin{defi}\
+\begin{enumerate}[label=(\alph*)]
+\item Eine Indexmenge $I$ heißt \textbf{aufsteigend geordnet} $:\gdw$ eine Ordnungsrelation ``$\leq$'' existiert mit
+\begin{align*}
+\forall s,t\in I:\exists u\in I:\qquad s\leq u\wedge t\leq u\qquad 
+\end{align*}
+In den allermeisten Fällen haben wir eine Totalordnung, z. B. $(\N,\leq)$ oder $(\R_{\geq0},\leq)$. $I$ wird oft als Zeitachse interpretiert.
+\item Eine Familie $(\F_t)_{t\in I}$ von $\sigma$-Algebren $\F_t\subseteq\A$ heißt \textbf{Filtration} 
+\begin{align*}
+:\Longleftrightarrow\Big( s\leq t\implies\F_s\subseteq\F_t\Big)
+\end{align*}
+Eine Filtration ist also eine aufsteigenden Folge von $\sigma$-Algebren.\\
+Interpretation: $\F_t$ beschreibt die zum Zeitpunkt $t$ verfügbare Information. Und der Informationsfluss wächst mit der Zeit an.\\
+Außerdem setzen wir
+\begin{align*}
+\F_\infty:=\bigcup\limits_{t\in I}\F_t.
+\end{align*}
+\item Ein \textbf{stochastischer Prozess (SP)} ist eine Familie $(X_t)_{t\in I}$ von Zufallsvariablen.\\
+Ein stochastischer Prozess $(X_t)_{t\in I}$ heißt \textbf{adaptiert} an die Filtration $(\F_t)_{t\in I}$
+\begin{align*}
+:\Longleftrightarrow\forall t\in I: X_t\text{ ist messbar bzgl. }\F_t
+\end{align*}
+\item Eine Folge $(e_n)_{n\in\N}$ heißt \textbf{vorhersehbar} bzgl. einer Filtration $(F_t)_{n\in\N}$
+\begin{align*}
+:\Longleftrightarrow\forall n\in\N:e_{n+1}\text{ ist messbar bzgl. }\F_n
+\end{align*}
+Vorhersehbarkeit ist stärker als Adaptiertheit.
+\end{enumerate}
+\end{defi}
+
+\begin{defi}[Martingal]\enter
+Sei $X=(X_t)_{t\in I}$ ein stochastischer Prozess und $(\F_t)_{t\in I}$ eine Filtration. $X$ heißt \textbf{Martingal} $:\gdw$ folgende drei Eigenschaften gelten:
+\begin{enumerate}[label=(\alph*)]
+\item $(X_t)_{t\in I}$ ist adaptiert an $(\F_t)_{t\in I}$
+\item $\begin{aligned}
+		X_t\in L_1(\Omega,\A,\P) \qquad \forall t\in I\qquad\text{ (d. h. }\E\big[|X_t|\big]<\infty)
+\end{aligned}$
+\item $\begin{aligned}
+\E[X_t~|~\F_s]=X_s\qquad\forall s,t\in I\mit s\leq t
+\end{aligned}$
+	
+\end{enumerate}
+Gilt statt (c) die Eigenschaft
+\begin{align}\label{defSubmartingal}\tag{c'}
+\E[X_t~|~\F_s]\geq X_s
+\end{align}
+so heißt $X$ \textbf{Submartingal}. (Der zukünftige Wert wird unterschätzt) \enter Gilt statt (c) die Eigenschaft
+\begin{align}\label{defSupermartingal}\tag{c''}
+\E[X_t~|~\F_s]\leq X_s
+\end{align}
+so heißt $X$ \textbf{Supermartingal}. (Der zukünftige Wert wird überschätzt)\\
+\end{defi}
+
+\begin{bemerkung}
+Beim Submartingal steigt der Erwartungswert $\E[X_t]$ mit der Zeit und beim Supermartingal fällt der Erwartungswert mit der Zeit.\\
+Begründung für Submartingal:
+\begin{align*}
+\E[X_t]\stackeq{\eqref{Turmregel}}
+\E\big[\E[X_t~|~\F_s]~\big|~]\stackrel{\text{Mono}}{\geq}\E[X_s]\qquad s\in I
+\end{align*}
+``\textit{Das Leben ist ein Supermartingal - die Erwartung fällt mit der Zeit.}''
+\end{bemerkung}

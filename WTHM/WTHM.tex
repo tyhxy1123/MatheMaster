@@ -1,4 +1,11 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 \documentclass[]{scrreprt}
+
+\usepackage{array}
 
 \input{../latex/packages}
 \input{../latex/theoremenvironments}
@@ -22,11 +29,14 @@
 \pagenumbering{gobble}	% disable pagenumbering
 
 \maketitle
+\doclicenseThis
+\epigraph{Das Leben ist ein Supermartingal - die Erwartung fällt mit der Zeit.}{\textit{Unbekannt}}
 \tableofcontents % Inhaltsverzeichnis
 \pagenumbering{arabic}	%enable pagenumbering
 
 \input{chapter0}
 \input{chapter1}
+\input{chapter2}
 
 %\listoffigures 
 %\listoftables
