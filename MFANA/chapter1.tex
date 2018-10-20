@@ -59,7 +59,12 @@ u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M
 \Longrightarrow
 f(u)\leq\liminf_{n\to\infty} f(u_n)
 \end{align*}
-$f$ heißt \textbf{oberhalbstetig}, falls $-f$ unterhalbstetig ist.
+$f$ heißt \textbf{oberhalbstetig}
+\begin{align*}
+:&\Longleftrightarrow -f\text{ unterhalbstetig}\\
+&\Longleftrightarrow -f(u)\leq\liminf\limits_{n\to\infty}\big(-f(u_n)\big)&\forall...\\
+&\Longleftrightarrow f(u)\geq\limsup\limits_{n\to\infty} f(u_n)&\forall...
+\end{align*}
 \end{definition}
 
 \begin{lemma}
@@ -410,7 +415,7 @@ und wegen der Oberhalbstetigkeit des Brackets gilt
 \begin{align*}
 [u-\hat{u},v-\hat{v}]+\omega\cdot\Vert u-\hat{u}\Vert
 \stackrel{\text{oberhalb stetig}}{\geq}
-\limsup\limits_{n\to\infty}\Big(\underbrace{\big[ u_n-\hat{u}_n,v_n-\hat{v}_n\big]+\omega\cdot\Vert u_n-\hat{u}_n\Vert}_{\geq0}\Big)
+\limsup\limits_{n\to\infty}\Big(\underbrace{\big[ u_n-\hat{u}_n,v_n-\hat{v}_n\big]+\omega\cdot\Vert u_n-\hat{u}_n\Vert}_{\geq0,\text{ da $A$ akkretiv ist}}\Big)
 \geq0
 \end{align*}
 \end{proof}
@@ -517,8 +522,8 @@ Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\Omega$ auf einem Banachra
 \begin{enumerate}[label=(\alph*)]
 \item Seien $h,\hat{h}>0$ so, dass $h\cdot\omega,\hat{h}\cdot\omega<1$ und seien $(u,f),(\hat{u},\hat{f})\in X\times X$ so, dass 
 \begin{align*}
-u+h\cdot Au\ni f\qquad\text{und}\qquad\hat{u}+\hat{h}\cdot A\hat{u}\ni\hat{f}
-\end{align*}.
+u+h\cdot Au\ni f\qquad\text{und}\qquad\hat{u}+\hat{h}\cdot A\hat{u}\ni\hat{f}.
+\end{align*}
 Dann gilt:
 \begin{align*}
 \left(a-\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\right)\cdot\Vert u-\hat{u}\Vert
