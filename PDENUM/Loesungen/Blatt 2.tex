@@ -1,0 +1,167 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../PDENUM/PDENM_commands}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{PDENM WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 2}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 2.1}
+Seien $V$ ein normierter Raum, $a(\cdot,\cdot)$ eine symmetrische Bilinearform auf $V$ mit
+\begin{align*}
+a(v,v)>0\qquad\forall v\in V\setminus\lbrace0\rbrace
+\end{align*}
+und $f$ ein lineares Funktional auf $V$, Dann sind für $u\in V$ äquivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $u$ minimiert das Funktional 
+\begin{align}\label{Variationsproblem}\tag{Variationsproblem}
+J(v):=\frac{1}{2}\cdot a(v,v)-f(v)
+\end{align}
+\item \begin{align}\label{Variationsgleichung}\tag{Variationsgleichung}
+a(u,v)=f(v)\qquad\forall v\in V
+\end{align}
+\end{enumerate}
+
+\begin{proof}
+\underline{Zeige (i) $\implies$ (ii):}\\
+
+\underline{Zeige (ii) $\implies$ (i):}\\
+
+\end{proof}
+
+\section*{Aufgabe 2.2}
+Seien $V$ linearer Raum und $a:V\times V\to\R$ eine symmetrische Bilinearform mit
+\begin{align*}
+a(v,v)>0\qquad\forall v\in V\setminus\lbrace0\rbrace.
+\end{align*}
+Ferner seien $l:V\to\R$ ein lineares Funktional und $W\subseteq V$ eine konvexe Teilmenge. Dann sind äquivalent:
+\begin{enumerate}[label=(\roman*)]
+\item Die Größe
+\begin{align}\label{eq1}
+J(v):=\frac{1}{2}\cdot a(v,v)-f(v)
+\end{align}
+nimmt ihr Minimum in $W$ bei $u\in W$ an.
+\item Es gilt:
+\begin{align}\label{eq2}
+au,w-u)\geq l(w-u)\qquad\forall w\in W
+\end{align}
+\end{enumerate}
+Außerdem ist das Minimum $u\in W$ von \eqref{eq1} eindeutig.
+
+\begin{proof}
+\underline{Zeige (i) $\implies$ (ii):}\\
+
+\underline{Zeige (ii) $\implies$ (i):}\\
+
+\end{proof}
+
+\section*{Aufgabe 2.3}
+Seien $V$ ein Vektorraum und $a(\cdot,\cdot)$ eine Bilinearform auf $V$ mit
+\begin{align*}
+a(v,v)>0\qquad\forall v\in V\setminus\lbrace0\rbrace.
+\end{align*}
+Dann gilt: Sind $u_1,u_2$ Lösungen von
+\begin{align}\label{eq3}
+a(u,v)=g(v)\qquad\forall v\in V
+\end{align}
+so gilt $u_1=u_2$.
+
+\begin{proof}
+Seien also $u_1,u_2\in V$ Lösungen von \eqref{eq3}. 
+
+
+\end{proof}
+
+
+\section*{Aufgabe 2.4}
+Seien $V$ ein Hilbertraum, $a(\cdot,\cdot)$ eine symmetrische, stetige, $V$-elliptische Bilinearform auf $V$ und $f$ ein lineares, stetiges Funktional auf $V$. Dann gilt:
+
+\begin{enumerate}[label=(\alph*)]
+\item $a(\cdot,\cdot)$ ist ein Skalaprodukt auf $V$ und daher
+\begin{align*}
+\Vert v\in\Vert_E:=\sqrt{a(v,v)}\qquad\forall v\in V
+\end{align*}
+eine Norm auf $V$.
+\item Die Variationsgleichung
+\begin{align*}
+a(u,v)=g(v)\qquad\forall v\in V
+\end{align*}
+besitzt eine eindeutige Lösung.
+\end{enumerate}
+\begin{proof}
+\underline{Zeige (a):}\\
+$a$ ist nach Voraussetzung schon mal bilinear.
+
+\underline{Zeige (b):}\\
+Nutze Lax-Milgram...
+
+\end{proof}
+
+\section*{Aufgabe 2.5}
+Seien $\Omega=(0,1)$ und $V:=\big(L^2(\Omega)\big)^2$. Als Norm für $v=(v_1,v_2)\in V$ verwenden wir
+\begin{align*}
+\Vert u\Vert_V:=\left(\Vert v_1\Vert_{0,2}^2+\Vert v_2\Vert^2_{0,2}\right)^{\frac{1}{2}}
+\end{align*}
+Dann ist die auf $V$ definierte Bilinearform
+\begin{align*}
+a(v,w):=\int\limits_0^1 v_1(x)\cdot w_1(x)+\Big(\big(v_2(x)-v_1(x)\big)\cdot\big(w_2(x)-w_1(x)\big)\Big)\d x
+\end{align*}
+koerziv. Bestimmen Sie auch die möglichst große Koerzivitätskonstante $\alpha$.
+
+\begin{proof}
+Betrachte die Abschätzung
+\begin{align}\label{Hinweis2.5}
+2\cdot a\cdot b\leq\gamma\cdot a^2+\frac{b^2}{\gamma}\qquad\forall a,b\in\R,\forall\gamma>0
+\end{align}
+als gegeben.
+
+
+\end{proof}
+
+\section*{Aufgabe 2.6}
+Sei $a(\cdot,\cdot)$ eine stetige
+\begin{align*}
+a(v,w)\leq M\cdot\Vert v\Vert_v\cdot\Vert w\Vert_W,
+\end{align*}
+$V$-elliptische
+\begin{align*}
+\alpha\cdot\Vert v\Vert^2_V\leq a(v,v)
+\end{align*}
+und symmetrische Bilinearform.\\
+Dann ist
+\begin{align*}
+\Vert e\Vert_E:=\sqrt{a(v,v)}\qquad\forall v\in V
+\end{align*}
+eine Norm. Seien außerdem $V^N\subseteq V$ ein endlichdimensionaler Teilraum von $V$ und $u\in V,u^N\in V^N$ Lösungen von
+\begin{align*}
+a(u,v)=f(v)\quad\forall v\in V,\qquad a(u^N,v^N)=f(v^N)\quad\forall v^N\in V^N\subseteq V
+\end{align*}
+Außerdem gilt für den Fehler des \textit{Ritz-Galerkin-Verfahrens}:
+\begin{enumerate}[label=(\alph*)]
+\item
+\end{enumerate}
+
+\end{document}
