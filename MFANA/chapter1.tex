@@ -52,18 +52,24 @@ Seien $u,v\in X,~\mu>0$. Dann gilt:
 \end{lemma}
 
 \begin{definition}
-Eine Funktion $f\colon M\to\R\cup\lbrace+\infty\rbrace$ auf einem metrischen Raum $M$ heißt \textbf{unterhalbstetig} $:\gdw$
+Eine Funktion $f\colon M\to\R\cup\lbrace+\infty\rbrace$ auf einem metrischen Raum $M$ heißt \textbf{unterhalbstetig}
 \begin{align*}
-\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M:
-u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M
-\Longrightarrow
+:\Longleftrightarrow
+\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M\mit
+u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M:
 f(u)\leq\liminf_{n\to\infty} f(u_n)
 \end{align*}
 $f$ heißt \textbf{oberhalbstetig}
 \begin{align*}
-:&\Longleftrightarrow -f\text{ unterhalbstetig}\\
-&\Longleftrightarrow -f(u)\leq\liminf\limits_{n\to\infty}\big(-f(u_n)\big)&\forall...\\
-&\Longleftrightarrow f(u)\geq\limsup\limits_{n\to\infty} f(u_n)&\forall...
+&:\Longleftrightarrow -f\text{ unterhalbstetig}\\
+&\Longleftrightarrow
+\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M\mit
+u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M:
+-f(u)\leq\liminf\limits_{n\to\infty}\big(-f(u_n)\big)\\
+&\Longleftrightarrow
+\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M\mit
+u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M:
+f(u)\geq\limsup\limits_{n\to\infty} f(u_n)
 \end{align*}
 \end{definition}
 
