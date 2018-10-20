@@ -42,7 +42,7 @@ Seien $u,v\in X,~\mu>0$. Dann gilt:
 \end{align*}
 
 	\item Die Funktion $\left]0,\infty\right[\to\R$, $\lambda\mapsto\left[u,v\right]_\lambda$ ist monoton wachsend und beschränkt durch $\Vert v\Vert$.
-	\item $\left[u,v\right]=\lim_{\lambda>0}\left[u,v\right]_\lambda$.
+	\item $\left[u,v\right]=\lim\limits_{\lambda\to0}\left[u,v\right]_\lambda$.
 	\item Die Funktion $X\to\R\cup\lbrace-\infty\rbrace$, $v\mapsto\left[u,v\right]$ ist sublinear.
 	\item $\left[\mu\cdot u,v\right]=\left[u,v\right]$.
 	\item $\left[u,0\right]=0$.
@@ -70,6 +70,10 @@ Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funk
 	\item $\lbrace(u,\lambda)\in M\times\R\mid f(u)\leq\lambda\rbrace=:\operatorname{epi}(f)$ ist abgeschlossen.
 \end{enumerate}
 \end{lemma}
+
+\begin{bemerkung}
+Der Epigraph ist die Menge aller Punkte über dem Graphen.
+\end{bemerkung}
 
 \begin{proof}
 \underline{Zeige (i) $\Rightarrow$ (iii):}\\
