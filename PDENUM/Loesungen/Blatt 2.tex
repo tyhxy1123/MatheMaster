@@ -161,7 +161,19 @@ a(u,v)=f(v)\quad\forall v\in V,\qquad a(u^N,v^N)=f(v^N)\quad\forall v^N\in V^N\s
 \end{align*}
 Außerdem gilt für den Fehler des \textit{Ritz-Galerkin-Verfahrens}:
 \begin{enumerate}[label=(\alph*)]
-\item
+\item $\begin{aligned}
+\vert u-u^N\Vert_E=\min\limits_{v^n\in V^n}\Vert u-v^N\Vert_E
+\end{aligned}$
+\item $\begin{aligned}
+\Vert u-u^N\Vert-V\leq\left(\frac{M}{\alpha}\right)^{\frac{1}{2}}\cdot\min\limits_{v^N\in V^N}\Vert u-v^N\Vert_V
+\end{aligned}$
 \end{enumerate}
+\begin{proof}
+\underline{Zeige, dass $\Vert\cdot\Vert_E$ eine Norm auf $V$ ist:}\\
+
+\underline{Zeige (a):}\\
+
+\underline{Zeige (b):}\
+\end{proof}
 
 \end{document}
