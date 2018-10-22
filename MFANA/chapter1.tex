@@ -650,13 +650,13 @@ Falls $A$ zusätzlich abgeschlossen ist, dann sind (i) und (ii) äquivalent zu
 \end{theorem}
 \begin{proof}
 \underline{Zeige (i) $\Rightarrow$ (ii):}\\
-Sei $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ surjektiv ist. Nach dem vorherigen Theorem, Aussage (b), ist $I+h\cdot A$ immer injektiv. Setze
+Sei $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ surjektiv ist. Nach dem vorherigen Theorem, Aussage (b), ist $I+h\cdot A$ immer injektiv, also bijektiv. Setze
 \begin{align*}
 J_h:=\big(I+h\cdot A\big)^{-1}.
 \end{align*}
 Dann ist wegen Theorem, Aussage (a), $J_h$ lipschitzstetig mit Lipschitzkonstante $\frac{1}{1-h\cdot\omega}$. Sei nun 
 \begin{align*}
-\hat{h}>\frac{h}{2-h\cdot\omega}\mit\hat{h}\cdot\omega<1
+\hat{h}>\frac{h}{2-h\cdot\omega}>0\mit\hat{h}\cdot\omega<1
 \end{align*}
 und sei $f\in X$. Betrachte den Operator
 \begin{align*}
@@ -665,11 +665,160 @@ T:X\to X,\qquad Tv:=T(v)
 \end{align*}
 Dann gilt für alle $v,\hat{v}\in X$:
 \begin{align*}
-\Vert T(v)-T(\hat{v})\Vert
+\big\Vert T(v)-T(\hat{v})\big\Vert_X
 &\leq
 \left|\frac{\hat{h}-h}{\hat{h}}\right|\cdot\big\Vert J_h v-J_h \hat{v}\big\Vert\\
 &\leq
 \underbrace{\frac{1}{1-h\cdot\omega}\cdot\frac{|\hat{h}-h|}{|\hat{h}|}}_{<1}\cdot\Vert v-\hat{v}\Vert
 \end{align*}
+Also ist $T$ Lipschitz-stetig mit Lipschitzkonstante 
+\begin{align*}
+L_T:=\left|\frac{\hat{h}-h}{\hat{h}}\right|
+\cdot\frac{1}{1-h\cdot\omega}.
+\end{align*}
+Falls $\hat{h}\leq h$ gilt:
+\begin{align*}
+L_T=\left(\frac{h}{\hat{h}}-1\right)\cdot\frac{1}{1-h\cdot\omega}
+<
+(2-h\cdot\omega-1)\cdot\frac{1}{1-h\cdot\omega}
+=1
+\end{align*}
+Falls $\hat{h}>h$ gilt hingegen:
+\begin{align*}
+L_T=\left(1-\frac{h}{\hat{h}}\right)\cdot\frac{1}{1-h\cdot\omega}
+\stackrel{-\frac{1}{\hat{h}}<-\omega}{<}
+(1-h\cdot\omega)\cdot\frac{1}{1-h\cdot\omega}
+=1
+\end{align*}
+Also ist $T$ eine strikte Kontraktion, da $L_T<1$. Aus dem Banach'schen Fixpunktsatz folgt, dass $T$ (genau) einen Fixpunkt $u\in X$ besitzt. Somit gilt
+\begin{align*}
+u\stackeq{\text{Fix}}T(u)
+=\frac{h}{\hat{h}}\cdot f+\frac{\hat{h}-h}{\hat{h}}\cdot J_h u
+\end{align*}
+bzw. 
+\begin{align*}
+f&=\frac{\hat{h}}{h}\cdot u-\frac{\hat{h}-h}{h}\cdot J_h u\\
+&=J_h u+\frac{\hat{h}}{h}\cdot\left(u-J_j u\right)\\
+&\in J_h u+\hat{h}\cdot A J_h u
+\end{align*}
+d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.\\
 
+\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.\\
+
+\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.\\
+
+\underline{Zeige (iii) $\implies$ (i):}\\
+Sei $A$ abgeschlossen, $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ dichtes Bild hat. Die Inverse Relation
+\begin{align*}
+J_h:=(I+h\cdot A)^{-1}
+\end{align*}
+ist dann Lipschitz-stetig vom Bild $\underbrace{\rg(I+h\cdot A)}_{\text{dicht in }X}$ in $X$. Damit besitzt $J_h$ eine (eindeutige) Lipschitz-stetige Fortsetzung auf ganz $X$ (Eine gleichmäßige Abbildung lässt sich stets eindeutig auf die Vervollständigung fortsetzen). Aber mit $A$ ist $I+h\cdot A$ abgeschlossen in $X\times X$ und somit auch $J_h$. Also stimmen $J_h$ und die Lipschitz-stetige Fortsetzung überein, d. h. $\rg(I+h\cdot A)=X$. Damit ist Surjektivität gezeigt.
 \end{proof}
+
+\begin{definition}
+Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.\\
+
+Ist $A\subseteq X\times X$  $m$-akkretiv vom Typ $\omega\in\R$, dann ist $I+h\cdot A$ bijektiv für alle $h>0\mit h\cdot\omega<1$. Wir schreiben in diesem Fall
+\begin{align*}
+J_h:=(I+h\cdot A)^{-1}.
+\end{align*}
+$J_h$ ist einwertiger Operator mit $\dom(J_h)=X$.
+\end{definition}
+
+\begin{beispiel}[Beispiele für $X=\R$]\
+\begin{enumerate}[label=(\alph*)]
+% Hier Abbildung einfügen
+\item $\begin{aligned}
+A:=\big([-\infty,0]\times\lbrace-1\rbrace\big)\cup\big([0,\infty)\times\lbrace 1\rbrace\big)\cup\big(\lbrace0\rbrace\times[-1,1]\big)
+\end{aligned}$
+ist akkretiv (``monoton wachsend''). Damit gilt
+\begin{align*}
+h\cdot A&=\big([-\infty,0]\times\lbrace-h\rbrace\big)\cup\big([0,\infty)\times\lbrace h\rbrace\big)\cup\big(\lbrace0\rbrace\times[-h,h]\big)\\
+I+h\cdot A&=\graph\big(\R_{\leq0}\to\R_{\leq0},~x\mapsto x-1\big)\cup\big(\lbrace 0\rbrace\times [-h,h]\big)\cup\graph\big(\R_{\geq0}\to\R_{\geq0},x\mapsto x+1\big)
+\end{align*}
+Hierbei ist $I+h\cdot A$ $m$-akkretiv (also $m$-akkretiv vom Typ 0).
+\begin{align*}
+(I+h\cdot A)^{-1}=\graph\left(R\to\R,~x\mapsto\left\lbrace\begin{array}{cl}
+x+h, & \falls x\leq -h\\
+0, & \falls x\in(-h,h)\\
+x-h, & \falls x\geq h
+\end{array}\right.\right)
+\end{align*}
+\item $\begin{aligned}
+A=\big(\lbrace a\rbrace\times (-\infty,0]\big)\cup\big(\lbrace b\rbrace\times[0,\infty)\big)
+\end{aligned}$
+Damit gilt
+\begin{align*}
+h\cdot A=A\text{ WARUM???}
+\end{align*}
+und $I+h\cdot A$ ist surjektiv, also ist $A$ akkretiv. $J_h=(I+h\cdot A)^{-1}$ ist eine Funktion.
+\end{enumerate}
+\end{beispiel}
+
+\begin{theorem}
+Sei $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item $\begin{aligned}
+\forall h,\hat{h}>0\mit h\cdot\omega,\hat{h}\cdot\omega<1,\forall f,\hat{f}\in X:\end{aligned}$
+\begin{align*}
+\left(1-\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\right)\cdot\Big\Vert J_h f-J_{\hat{h}}\hat{f}\Big\Vert
+\leq
+\left\Vert f-\hat{f}-\frac{h}{h+\hat{h}}\cdot\big(f-J_h f\big)+\frac{\hat{h}}{h+\hat{h}}\cdot\big(\hat{f}-J_h \hat{f}\big)\right\Vert
+\end{align*}
+\item Die \textbf{Resolvente} $J_h$ ist Lipschitz-stetig mit Lipschitzkonstante $\frac{1}{1-h\cdot\omega}$, d. h.
+\begin{align*}
+\forall h>0\mit h\cdot \omega<1,\forall f,\hat{f}\in X:
+\Big\Vert J_h f- J_h\hat{f}\Big\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-\hat{f}\big\Vert
+\end{align*}
+\item $\begin{aligned}
+\forall f\in\dom(A),\forall h>0\mit h\cdot\omega<1:
+\big\Vert J_h f-f\big\Vert
+\leq
+h\cdot\Vert A f\Vert\mit\Vert A f\Vert=\inf\big\lbrace\Vert g\Vert:g\in A f\big\rbrace
+\end{aligned}$
+\item $\begin{aligned}
+\forall f\in\dom(A):\lim\limits_{h\to0^+} J_h f=f
+\end{aligned}$
+\item Falls $X$ ein Hilbertraum ist, dann ist $\overline{\dom(A)}$ konvex und
+\begin{align*}
+\lim\limits_{h\to0^+} J_h f=P(f)\qquad\forall f\in X
+\end{align*}
+wobei $P:H\to H$ die orthogonale Projektion auf $\overline{\dom(A)}$ ist.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+Sei $H$ ein Hilbertraum und $C\subseteq H$ eine nichtleere, abgeschlossene, konvexe Teilmenge. Dann gilt:
+\begin{align*}
+\forall u\in H:\exists! u_0\in C:\Vert u-u_0\Vert
+=\dist(u,C)
+:=\inf\limits_{v\in C}\Vert u-v\Vert
+\end{align*}
+Dieses $u_0\in C$ ist das eindeutige Element in $C$ so, dass 
+\begin{align*}
+\forall v\in C:\Re\big(\langle u-u_0,v-u_0\rangle\big)\leq0
+\end{align*}
+Die Abbildung
+\begin{align*}
+P:H\to H,\qquad u\mapsto u_0
+\end{align*}
+heißt \textbf{orthogonale Projektion} auf $C$. Es gilt $\rg(P)=C$ und $P\circ P=P$.
+\end{lemma}
+\begin{proof}
+\underline{Existenz von $u_0$:}\\
+Sei $(v_n)_{n\in\N}\subseteq\C$ so, dass
+\begin{align*}
+\Vert u-v_n\Vert\stackrel{n\to\infty}{\longrightarrow}\dist(u,C).
+\end{align*}
+(Diese Folge existiert nach Definition des Infimums.) Mit der Parallelogrammidentität gilt:
+\begin{align*}
+\forall x,y\in H:\Vert x\Vert+\Vert y\Vert^2\stackeq{Parallelo}\frac{1}{2}\cdot\left(\Vert x+y\Vert^2+\Vert x-y\Vert^2\right)
+\end{align*}
+Setze $x:=u-v_n$ und $y=u-v_n$. To be continued...
+
+\underline{Eindeutigkeit:}
+\end{proof}
+
+
