@@ -474,43 +474,7 @@ Eigenschaften einer Bilinearform $a$:
 \begin{align*}
 \exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V
 \end{align*}
-\item $a$ ist \textbf{koerziv}, d. h.
-\begin{align*}
-\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V
-\end{align*} 
-\end{itemize}
-Eigenschaften einer Linearform $l$:
-\begin{itemize}
-\item $l$ ist stetig auf $V$, d. h.
-\begin{align*}
-\exists M^\ast>0:\forall v\in V: \big|l(v)\big|\leq M^\ast\cdot\Vert v\Vert_V
-\end{align*}
-\end{itemize}
-
-\begin{theorem}[Lax-Milgram]\label{theorem2.1}\enter
-Sei $V$ ein Hilbertraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $b$ eine stetige Linearform auf $V$.\\
-Dann hat das Variationsproblem
-\begin{align*}
-\text{Bestimme $u\in V$ so, dass }a(u,v)=b(v)\qquad\forall v\in V.
-\end{align*}
-eine eindeutige Lösung.
-\end{theorem}
-\begin{proof}
-Nächste Vorlesung.
-\end{proof}
-
-%Beispiel? Oder was ist das Folgende?
-Wähle normierten Raum $V:=H_0^1(\Omega)$ mit Norm $\Vert\cdot\Vert_V:=\Vert\cdot\Vert_{1,2,\Omega}$.
-\begin{itemize}
-\item $l$ ist stetig, denn:
-\begin{align*}
-\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
-\stackrel{\text{CS}}{\leq}
-\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
-\stackrel{\text{CS}}{\leq}
-\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
-\end{align*}
-\item $a$ ist stetig, denn:
+denn:
 \begin{align*}
 \big| a(u,v)\big|=\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
 \leq
@@ -518,7 +482,11 @@ Wähle normierten Raum $V:=H_0^1(\Omega)$ mit Norm $\Vert\cdot\Vert_V:=\Vert\cdo
 \leq
 \underbrace{1}_{=:M}\cdot\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
 \end{align*}
-\item $a$ ist koerziv, denn:
+\item $a$ ist \textbf{koerziv}, d. h.
+\begin{align*}
+\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V
+\end{align*} 
+denn:
 \begin{align*}
 a(v,v)
 =\int\limits_\Omega\nabla v\cdot\nabla v\d x
@@ -528,3 +496,178 @@ a(v,v)
 \frac{1}{c_F^2}\cdot\Vert v\Vert^2_{1,2,\Omega}
 \end{align*}
 \end{itemize}
+Eigenschaften einer Linearform $l$:
+\begin{itemize}
+\item $l$ ist stetig auf $V$, d. h.
+\begin{align*}
+\exists M^\ast>0:\forall v\in V: \big|l(v)\big|\leq M^\ast\cdot\Vert v\Vert_V
+\end{align*}
+denn:
+\begin{align*}
+\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
+\stackrel{\text{CS}}{\leq}
+\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
+\stackrel{\text{CS}}{\leq}
+\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
+\end{align*}
+\end{itemize}
+
+\begin{theorem}[Lax-Milgram]\label{theorem2.1LaxMilgram}\enter
+Sei $V$ ein Hilbertraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $b$ eine stetige Linearform auf $V$.\\
+Dann hat das Variationsproblem
+\begin{align*}
+\text{Bestimme $u\in V$ so, dass }a(u,v)=b(v)\qquad\forall v\in V.
+\end{align*}
+eine eindeutige Lösung.
+\end{theorem}
+\begin{proof}
+\underline{Schritt 1:}\\ Transformation in einen dualen Operator über dem Dualraum $V^\ast$ von $V$. Die Abbildung $v\mapsto a(u,v)$ definiert für alle festen $u\in V$ eine stetige Linearform auf $V$. Wir bezeichnen diese mit $Au\in V^\ast$
+\begin{align*}
+\langle Au,v\rangle=(Au)(v):=a(u,v)\qquad\forall u,v\in V
+\end{align*}
+$b\in V^\ast$: $\langle b,v\rangle=b(v)$ Damit folgt:
+\begin{align*}
+\text{Variationsproblem}&\Longleftrightarrow\langle Au,v\rangle=\langle b,v\rangle\qquad\forall v\in V\\
+&\Longleftrightarrow Au=b\text{ in }V^\ast
+\end{align*}
+\underline{Schritt 2:}\\
+Die Abbildung $V\to V^\ast$ kann auch als Abbildung $A:V\to V$ aufgefasst werden. Eigenschaften von $A$:
+\begin{enumerate}[label=(\alph*)]
+\item $A$ ist linear auf $V$
+\begin{align*}
+\big\langle A(\alpha u+\beta v),w\big\rangle
+&=a(\alpha u+\beta v,w)\\
+&=\alpha a(u,w)+\beta a(v,w)\\
+&=\alpha\langle Au,w\rangle+\beta\langle Av,w\rangle\qquad\forall u,v,w,\in V
+\end{align*}
+\item $A$ ist stetig auf $V$:
+\begin{align*}
+\Vert A v\Vert_{V}
+&=\Vert A u\Vert_{V^\ast}\\
+&=\sup\limits_{v\neq0}\frac{\big|\langle Au,v\rangle\big|}{\Vert v\Vert_V}\\
+&=\sup\limits_{v\neq0}\frac{\big|a(u,v)\big|}{\Vert v\Vert_V}\\
+&\leq
+\sup\limits_{v\neq0}\frac{M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V}{\Vert v\Vert_V}\\
+&=M\cdot\Vert u\Vert_V
+\end{align*}
+\end{enumerate}
+\underline{Schritt 3:} Setze
+\begin{align*}
+u^{n+1}:=P(u^n):=u^n+\tau\cdot(b-A u^n)\qquad\forall\tau\in\R_{\neq0}
+\end{align*}
+$u^0$ ist eine beliebiger Startwert.
+\begin{align*}
+P:V\to V,\qquad v\mapsto u+\tau\cdot(b-Au)
+\end{align*}
+Jeder Fixpunkt von $P$ ist eine Lösung von $Au=b$ und umgekehrt.\\
+Es bleibt also zu zeigen, das $P$ einen eindeutigen Fixpunkt hat.\\
+
+\textbf{Banach'scher Fixpunktsatz}\\
+\textit{Sei $W$ ein Banachraum, $Q:N\to N$ mit $N\subseteq W$ sei eine Kontraktion, d. h.
+\begin{align*}
+\exists\gamma<1:\forall u,v\in N:\Vert Q(u)-Q(v)\Vert_V\leq\gamma\cdot\Vert u-v\Vert_V.
+\end{align*}
+Dann hat $Q$ genau einen Fixpunkt.}\\
+
+Wähle also $N=V$. $P$ ist eine Kontraktion, wenn $\tau$ richtig gewählt wird.
+\begin{align*}
+\Vert P(u)-P)v)\Vert^2_V
+&=\big\langle P(u)-P(v),P(u)-P(v)\big\rangle_V\\
+&=\big\langle u-v-\tau\cdot A(u-v),u-v-\tau\cdot A(u-v)\big\rangle_V\\
+&=\langle u-v,u-v\rangle_V-2\cdot\tau\cdot\underbrace{\big\langle A(u-v),u-v\big\rangle_V}_{=a(u-v,u-v)\stackrel{\text{koerz}}{\geq}\alpha\cdot\Vert u-v\Vert^2_V}+\tau^2\cdot\underbrace{\big\langle A(u-v),A(u-v)\big\rangle_V}_{=\Vert A(u-v)\Vert^2_V\leq M^2\cdot\Vert u-v\Vert^2_V}\\
+&\stackrel{\tau>0}{\leq}
+\Vert u-v\Vert^2_V\cdot\big(1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2\big)
+\end{align*}
+Wähle $\tau:=\frac{\alpha}{M^2}>0$. Dann gilt:
+\begin{align*}
+1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2=1-\frac{\alpha^2}{M^2}>0
+\end{align*}
+$P$ ist eine Kontraktion, also $P$ nach dem Banachschen Fixpunktsatz einen eindeutigen Fixpunkt und damit hat $Au=b$ eine eindeutige Lösung.
+\end{proof}
+
+Schwierigkeit:
+\begin{align*}
+a(u,v)=b(v)\qquad\forall v\in V
+\end{align*}
+ist ein unendlichdimensionales Problem.\\
+\underline{Idee:} Approximation in einem endlich-dimensionalen Unterraum\\
+Sei $V_n\subseteq V$ ein endlich-dimensionaler Unterraum von $V$. Betrachte
+\begin{align*}
+\text{Finde }u_n\in V_n \text{ so, dass }\qquad
+a(u_n,v_n)=l(v_n)\qquad\forall v_n\in V_n
+\end{align*}
+Da $a$ und $l$ auf $V_n$ die Voraussetzungen des Satzes von Lax-Milgram auf $V_n$ erfüllen, gibt es ein eindeutiges $u_n\in V_n$.\\
+
+Sei $\lbrace\varphi_i\rbrace_{i=1}^n$ eine Basis von $V_n$.
+\begin{align*}
+\Big(a(u_n,v_n)=l(v_n)\qquad\forall v_n\in V_n\Big)\Longleftrightarrow
+\Big(a(u_n,\varphi_i)=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\Big)
+\end{align*}
+und 
+\begin{align*}
+u_n=\sum\limits_{j=1}^n u_j\cdot\varphi_j,\qquad u_1,\ldots,u_n\in\R,j\\
+\sum\limits_{j=1}^n a(\varphi_j,\varphi_i)\cdot u_j=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\\
+\left.\begin{array}{ll}
+A:=(a_{i,j})_{i,j=1,\ldots,n} &a_{i,j}:=a\big(\varphi_j,\varphi_i\big)\\
+b:=(b_i)_{i=1,\ldots,n} &b_i:=l(\varphi_i)\\
+u:=(u_j)_{j=1,\ldots,n}
+\end{array}\right\rbrace A\cdot u=b\qquad\text{ LGS}
+\end{align*}
+
+\begin{theorem}[Céa's Lemma]\enter
+Sei $V$ ein Hilbertraum, $V_n\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $l$ eine stetige Linearform. Dann gilt:
+\begin{align*}
+\exists C=\frac{M}{\alpha}>0:\Vert u-u_n\Vert_V\leq C\cdot\inf\limits_{v_n\in V_n}\Vert u-v_n\Vert_V
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+a(u,v)&=l(v) &\forall v\in V\\
+a(u_n,v_n)&= l(v_n) &\forall v_n\in V_n\subseteq V
+\end{align*}
+Differenz: 
+\begin{align*}
+a(u-u_n,v_n)=\qquad v_n\in V_n
+\end{align*}
+Also:
+\begin{align*}
+\alpha\cdot\Vert u-u_n\Vert^2_V
+&\leq
+a(u-u_n,u-u_n)\\
+&=a(u-u_n,u-v_v+v_n- u_n)\\
+&=a(u-u_n,u-v_n)+\underbrace{a(u-u_n,\underbrace{v_n-u_n}_{\in V_n})}_{=0}\\
+&\stackrel{\text{stetig}}{\leq}
+M\cdot\Vert u-u_n\Vert_V\cdot\Vert u-v_n\Vert_V\\
+\implies
+\Vert u-u_n\Vert_V&\leq\frac{M}{\alpha}\cdot\Vert u-v_n\Vert_V\qquad\forall v_n\in V_n\\
+\implies
+\Vert u-u_n\Vert_V&\leq \frac{M}{\alpha}\cdot\inf\limits_{v_n\in V_n}\Vert u-v_n\Vert_V
+\end{align*}
+%ToDo: v_n ist eigentlich v_h -.- Das habe ich beim Abschreiben verkackt.
+\end{proof}
+
+\begin{theorem}[Dualitätsargument, Aubin-Nietsche]\enter
+Sei $V$ ein Hilbertraum, $V_n\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform und $l$ eine stetige Linearform. Sei weiterhin $H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle_H$ und Norm $\Vert\cdot\Vert_H$ so, dass $V\hookrightarrow H$ und $V$ liegt dicht in $H$ bzgl. $\Vert\cdot\Vert_H$. Sei zusätzlich $u_\varphi\in V$ für jedes feste $\varphi\in H$ die eindeutige Lösung von
+\begin{align}\label{Dtheorem2.3}\tag{D}
+a(v,u_\varphi)=\langle\varphi,v\rangle_H\qquad\forall v\in V
+\end{align}
+Dann gilt:
+\begin{align*}
+\Vert u-u_h\Vert_H\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert_H\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+$v\mapsto\langle\varphi,v\rangle_H$ ist eine stetige Linearform auf $V$. Aus Lax-Milgram \ref{theorem2.1LaxMilgram} folgt, dass es eine eindeutige Lösung $u_\varphi\in V$ gibt.
+ 
+\begin{align*}
+\langle u-u_h,\varphi\rangle_H
+&=\langle\varphi,u-u_h\rangle_H\\
+&=a(u-u_h,u_\varphi)\\
+&=a(u-u_h,u_\varphi-v_h)\mit v_h\in V\text{ beliebig}\\
+&\leq M\cdot\Vert u-u_h\Vert_V\cdot\Vert u_\varphi-v_n\Vert_V\\
+\Vert u-u_h\Vert_H
+&=\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\langle u-u_h,\varphi\rangle_H\\
+&\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert_H=1\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_n\Vert_V
+\end{align*}
+\end{proof}
