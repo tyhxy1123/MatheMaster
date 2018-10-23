@@ -683,7 +683,7 @@ die Ungleichung
 \begin{align*}
 a(v,v)>0\qquad\forall v\in X\setminus\lbrace0\rbrace.
 \end{align*}
-Dann haben die beiden Probleme
+Dann sind die beiden Probleme
 \begin{align*}
 \text{Finde }u\in X\text{ so, dass }
 a(u,v)=l(v)\qquad\forall v\in X\\
@@ -708,7 +708,7 @@ eindeutig lösbar für jede feste stetige Linearform $l$. Zusätzlich gilt
 unter der Voraussetzung
 \begin{align*}
 a(v,v)&\geq\beta\cdot\Vert v\Vert^2_X &\forall v\in X\\
-\big|a(u,v)\big|&\leq M\cdot\Vert u\Vert_X\cdot\Vert v\Vert_X &\forall u,v\in X
+\big|a(u,v)\big|&\leq M\cdot\Vert u\Vert_X\cdot\Vert v\Vert_Y &\forall u,v\in X
 \end{align*}
 \end{theorem}
 
@@ -717,14 +717,14 @@ Hier: skalare, lineare, elliptische partielle Differentialgleichungen zweiter Or
 \begin{align*}
 -\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u=f(x)\text{ in }\Omega
 \end{align*}
-Vereinfachende Annahmen:
+Vereinfachende Annahmen: \enter\enter
 %RobertToDo:
-\begin{align*}
-f\in L^2(\Omega),\alpha \in C(\Omega), a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace\\
-A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace, A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace\\
-a=\big(a_1,\ldots a_d\big)^T, A=\big(A_{i,j}\big)^d_{i,j=1}\\
-0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
-\end{align*}
+\begin{array}{ll}
+	f\in L^2(\Omega)&\alpha \in C(\Omega)\\
+	a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace\\
+	A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots a_d\big)^T\\
+	A=\big(A_{i,j}\big)^d_{i,j=1},& 0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
+\end{array}
 
 \subsection*{Einige Spezialfälle}
 \begin{itemize}
@@ -753,7 +753,8 @@ wobei $n$ der äußere Normalenvektor ist.
 \end{itemize}
 
 %Was ist das hier?
-Sei $v\in C_0^\infty(\Omega)$. Dann gilt:
+Nun bringen wir die allgemeine Form der Gleichung von oben in eine lesbare Form.
+Sei dazu $v\in C_0^\infty(\Omega)$. Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$. Dann gilt:
 \begin{align*}
 \int\limits_\Omega f(x)\cdot v\d x
 &\stackeq{\text{Def}}
@@ -766,7 +767,7 @@ Sei $v\in C_0^\infty(\Omega)$. Dann gilt:
 \int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
 \end{align*}
 
-\begin{definition}\ %3.1
+\begin{definition}[Schwache Lösung]\ %3.1
 \begin{enumerate}[label=(\roman*)]
 \item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
 \begin{align*}
@@ -796,14 +797,14 @@ heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung  mit gemi
 \end{enumerate}
 \end{definition}
 
-\begin{bemerkung} %NoNumber
+\begin{bemerkung}\ %NoNumber
 \begin{itemize}
 \item Jede ``klassische'' Lösung ist auch eine schwache Lösung. 
 \item Jede schwache Lösung, welche glatt genug ist ($C^2$) ist auch eine ``klassische'' Lösung.
 \item schwächere Annahmen an die Problemdaten:
 \begin{align*}
-&\alpha\in L^\infty(\Omega), &\alpha\geq0\\
-&a_i\in L^\infty(\Omega), &\div(a)=\sum\limits_{i=1}^d\frac{\partial a_i}{\partial x_i}\in L^\infty(\Omega)\\
+	&\alpha\in L^\infty(\Omega), &&\alpha\geq0\\
+	&a_i\in L^\infty(\Omega), &&\div(a)=\sum\limits_{i=1}^d\frac{\partial a_i}{\partial x_i}\in L^\infty(\Omega)\\
 &A_{i,j}\in L^\infty(\Omega)
 \end{align*}
 \item Unter der inhomogenen Dirichletbedingung
@@ -838,7 +839,10 @@ Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine ein
 \item Sei
 \begin{align*}
 \alpha=0,\qquad-\frac{1}{2}\cdot\div(a)=0\qquad\text{und}\qquad a\cdot n\geq 0\text{ auf }\Gamma\\
-\text{und gelte}\qquad\int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma=0.
+\end{align*}
+und gelte
+\begin{align*}
+	\int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma=0.
 \end{align*}
 Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige schwache Lösung $u$, welche 
 \begin{align*}
