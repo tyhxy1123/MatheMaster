@@ -341,7 +341,7 @@ d(y,A)-d(x,A)\leq d(y,x)=d(x,y)\implies\text{ Behauptung}
 \underline{Zeige (3):} Folgt aus (2) da, die Funktion $d(\cdot,A)$ Lipschitz-stetig und damit gleichmäßig stetig ist.
 \end{proof}
 
-\begin{satz} %2.4
+\begin{satz}\label{Satz2.4} %2.4
 Zu $A\subseteq\mathcal{S}$ und $\varepsilon>0$ existiert ein gleichmäßig stetige Funktion 
 \begin{align*}
 f:\mathcal{S}\to[0,1]\text{ mit der Eigenschaft} f(x)=\left\lbrace\begin{array}{cl}
@@ -451,7 +451,7 @@ x_G\in G\subseteq B(x,\varepsilon)
 \end{align*}
 \end{proof}
 
-\begin{satz} %2.10
+\begin{satz}\label{Satz2.10} %2.10
 Seien $(\S,d)$ und $(\S',d')$ metrische Räume.
 \begin{enumerate}[label={(\arabic*)}]
 \item Auf $\S\times\S'$ sind Metriken definiert durch
@@ -545,7 +545,7 @@ Elemente $B\in\B(\S)$ heißen \textbf{Borel-Mengen} in $\S$.\\
 Beachte: $\B(\S)=\B_d(\S)$ hängt i. A. von der Metrik $d$ ab.
 \end{definition}
 
-\begin{lemma} %3.2
+\begin{lemma}\label{Lemma3.2} %3.2
 Es gilt:
 \begin{enumerate}[label=(\arabic*)]
 \item 
@@ -594,7 +594,7 @@ G\in\sigma(\mathcal{G}_0)
 Aus der Stabilität unter Vereinigungen folgt die Behauptung.
 \end{proof}
 
-\begin{satz} %3.3
+\begin{satz}\label{satz3.3} %3.3
 Sei $(\S,d)$ separabler metrischer Raum. Dann gilt:
 \begin{align*}
 \B_{d\times d}(\S\times\S)=\B(S)\otimes\B(\S)
@@ -686,3 +686,232 @@ Sei $\P$ ein Wahrscheinlichkeitsmaß auf $(\Omega,\A)$, also $(\Omega,\A,\P)$ ei
 \end{align*}
 heißt \textbf{Verteilung} von $X$ unter $\P$.
 \end{definition}
+
+\begin{satz}\label{Satz3.5} %3.5
+Sei $(\S,d)$ separabler metrischer Raum und seien $X,Y$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A)$.\\
+Dann ist $d(X,Y)$ eine reelle Zufallsvariable.
+\end{satz}
+
+\begin{proof}
+\begin{align*}
+X,Y:(\Omega,\A)\to(\S,\B(\S))\text{ sind messbar }\\
+\stackrel{\text{MINT}}{\Longleftrightarrow}
+(X,Y):(\Omega,\A)\to\big(\S\times\S,\underbrace{\B(\S)\otimes\B(\S)}_{\stackeq{\ref{satz3.3}}\B(\S\times\S)}\big)\text{ ist messbar}\\
+\end{align*}
+Jede Metrik ist bekanntlich stetig, also auch
+\begin{align*}
+d:\big(\S\times\S,\G(\S\times\S)\big)\to\R.
+\end{align*}
+Dann folgt aus Lemma \ref{Lemma3.2}, dass
+\begin{align*}
+d:\B(\S\times\S)\to\B(\R)
+\end{align*}
+messbar ist. Damit folgt die Behauptung, denn $d(X,Y)=d\circ(X,Y)$ ist messbar als Komposition von messbaren Abbildungen.
+\end{proof}
+
+\subsection*{Fast sichere Konvergenz} %NoNumber
+\begin{definition} %3.6
+Seien $X,X_n,n\in\N$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A,\P)$. Dann:
+\begin{align*}
+X_n\stackrel{n\to\infty}{\longrightarrow} X\quad\P\text{-fast sicher }:\Longleftrightarrow
+\P\Big(\underbrace{\big\lbrace\omega\in\Omega:d\big(X_n(\omega),X(\omega)\big)\stackrel{n\to\infty}{\longrightarrow} 0\big\rbrace}_{=:M}\Big)=1
+\end{align*}
+Beachte: Die Definition von Konvergenz mengentheoretisch aufgeschrieben (Schnitt $\hat{=}$ ``für alle''; Vereinigung $\hat{=}$ ``Es gibt''):
+\begin{align*}
+\bigcap\limits_{0<\varepsilon\in\Q}
+\bigcup\limits_{m\in\N}
+\bigcap\limits_{n\geq m}
+\big\lbrace\underbrace{d(X_n,X)}_{=:\xi_n}<\varepsilon\big\rbrace\stackrel{\ref{Satz3.5}}{\in}\A\\
+\text{denn }\xi^{-1}\big((-\infty,\varepsilon)\big)\in\A
+\end{align*}
+\end{definition}
+
+Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lassen sich mühelos verallgemeinern. Dazu z. B.:
+
+\begin{satz}\label{Satz3.7} %3.7
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher }\wedge
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X'\quad\P\text{-fast sicher }
+\implies
+X=X'\quad\P\text{-fast sicher}
+\end{align*}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\lbrace X\neq X'\rbrace
+&\subseteq\lbrace X_n
+\stackrel{n\to\infty}{\not\longrightarrow}
+X\rbrace
+\cup\lbrace X_n
+\stackrel{n\to\infty}{\not\longrightarrow}
+X'\rbrace\\
+\P[X_n\not\to X]+\P[X_n\not\to X']=0+0\\
+\implies
+\P[X\neq X']=0
+\end{align*}
+\end{proof}
+
+\begin{satz}\label{Satz3.8} %3.8
+Seien $X,X_n,n\in\N$ Zufallsvariablen im metrischen Raum $(\S,d)$ und sei $f:(\S,d)\to(\S',d')$ messbar und stetig in $X$ $\P$-fast sicher.
+Dann gilt:
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher }
+\implies
+f(X_n)
+\stackrel{n\to\infty}{\longrightarrow}
+f(X)\quad\P\text{-fast sicher}
+\end{align*}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\lbrace X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\rbrace\cap\lbrace f\text{ stetig in }X\rbrace\rbrace
+\stackrel{\text{Folgen-Stetigkeit}}{\subseteq}
+\lbrace f(X_n)
+\stackrel{n\to\infty}{\longrightarrow}
+f(X)\rbrace
+\end{align*}
+Damit folgt die Behauptung, denn zur Erinnerung:
+\begin{align*}
+\big(\forall i\in\N:\P(E_i)=1\big)\implies\P\left(\bigcap\limits_{i\in\N} E_i\right)=1
+\end{align*}
+\end{proof}
+
+\begin{satz}[Konvergenz-Kriterium]\label{Satz3.9} %3.9
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher}
+\Longleftrightarrow
+\forall\varepsilon>0:\limn\P\left(\sup\limits_{m\geq n} d(X_m,X)>\varepsilon\right)=0
+\end{align*}
+\end{satz}
+\begin{proof}
+Man ersetze im Beweis für den Fall reeller Zufallsvariablen $|X_n-X|$ durch $d(X_n,X)$. Und beachte, dass alle Schlussfolgerungen bestehen bleiben.
+\end{proof}
+
+Ein sehr nützliches Kriterium ist Folgendes:
+\begin{satz}\label{Satz3.10} %3.10
+\begin{align*}
+\sum\limits_{n\in\N_{>0}}\P\big(d(X_n,X)>\varepsilon\big)<\infty\qquad\forall\varepsilon>0
+\implies
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher}
+\end{align*}
+\end{satz}
+\begin{proof}
+Setze
+\begin{align*}
+A_n(\varepsilon):=\big\lbrace d(X_n,X)>\varepsilon\big\rbrace\stackrel{\ref{Satz3.5}}{\in}\A
+\end{align*}
+Dann folgt aus dem \textit{ersten Borel-Cantelli-Lemma}:
+\begin{align*}
+&\P\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)=0\qquad\forall\varepsilon>0\\
+&\implies
+1=\P\left(\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)^C\right)
+=\P\left(\underbrace{\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)}_{\stackeq{\text{Def}}\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big(A_n(\varepsilon)\big)^C=\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace}\right)\forall\varepsilon>0\\
+&\stackrel{\text{abzählbarer Durchschnitt von Eins-Mengen}}{\implies}
+\P\left(\underbrace{\bigcap\limits_{0<\varepsilon\in\Q}\bigcup\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace}_{\lbrace X_n\to X\rbrace=\lbrace d(X_n,X)\to0\rbrace}\right)=1
+\end{align*}
+\end{proof}
+Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metrischen Räumen finden sich z. B. in \textit{``Wahrscheinlichkeitstheorie'' Gäussler u. Stute (1977), Kapitel 8.2}
+
+\subsection*{Stochastische Konvergenz} %NoNumber
+\begin{definition} %3.11
+\begin{align*}
+X_n\stackrel{\P,~n\to\infty}{\longrightarrow}X:\Longleftrightarrow\forall\varepsilon>0:
+\P\left(\left\lbrace d((X_n,X)>\varepsilon\right\rbrace\right)
+\stackrel{n\to\infty}{\longrightarrow}
+0
+\end{align*}
+\end{definition}
+
+\begin{satz}\label{Satz3.12} %3.12
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher }
+\implies X_n
+\stackrel{\P,~n\to\infty}{\longrightarrow}
+X
+\end{align*}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\forall\varepsilon>0:0\geq\P\big(d(X_n,X)>\varepsilon\big)
+\leq\P\left(\sup\limits_{m\geq n}d(X_m,X)>\varepsilon\right)
+\stackrel{\P,~n\to\infty}{\longrightarrow} 0
+\end{align*}
+gemäß Satz \ref{Satz3.9}.
+\end{proof}
+
+Die Umkehrung in 3.12 gilt i. A. \underline{nicht}, aber es gilt das folgende Teilfolgenkriterium:
+
+\begin{satz}[Teilfolgenkriterium für stochastische Konvergenz]\label{satz3.13}\enter
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n
+\stackrel{\P,~n\to\infty}{\longrightarrow}
+X\end{aligned}$
+\item Zu jeder Teilfolge (TF) $(X_{n'})$ von $(X_n)_{n\in\N}$ existiert eine Teilfolge $(X_{n''})$ von $(X_{n'})$ derart, dass $X_{n''}
+\stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+Wie im Reellen.
+\end{proof}
+
+%\mathop{} für \P-Konvergenz
+
+Mit dem Teilfolgenkriterium lassen sich Rechenregeln für fast sichere Konvergenz auf stochastische Konvergenz übertragen.
+
+\begin{korollar}\label{Korollar3.14}\
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n
+\stackrel{\P,~n\to\infty}{\longrightarrow}
+X\wedge X_n
+\stackrel{\P,~n\to\infty}{\longrightarrow}
+X'
+\implies X=X'\quad\P\text{-fast sicher}
+\end{aligned}$
+\item $\begin{aligned}
+X_n
+\stackrel{\P,~n\to\infty}{\longrightarrow}
+X\text{ in }(\S,d),~f:(\S,d)\to(S',d')\text{ messbar mit $f$ stetig in $X$ $\P$-fast sicher }\\
+\implies f(X_n)
+\stackrel{\P,~n\to\infty}{\longrightarrow}
+f(X)
+\end{aligned}$
+\end{enumerate}
+\end{korollar}
+\begin{proof}
+\underline{Zeige (1):}
+\begin{align*}
+X_n
+\stackrel{\P,~n\to\infty}{\longrightarrow}
+X
+\stackrel{\ref{satz3.13}}{\implies}
+\exists\text{ TF }(X_{n'})\subseteq(X_n)_{n\in\N}\mit X_{n'}
+\stackrel{n'\to\infty}{\longrightarrow}
+X\text{ fast sicher}
+\end{align*}
+Zu $(X_{n'})$ existiert (wegen $X_n\stackrel{\P,~n\to\infty}{\longrightarrow} X'$ und \ref{satz3.3}) eine Teilfolge $(X_{n''})\subseteq(X_{n'})\mit:$
+\begin{align*}
+X_{n''}
+\stackrel{n\to\infty}{\longrightarrow} X'\text{ fast sicher}\\
+\stackrel{\ref{Satz3.7}}{\implies}
+X=X'\text{ fast sicher }
+\end{align*}
+
+\underline{Zeige (2):} Zur Übung.
+\end{proof}
