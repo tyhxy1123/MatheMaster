@@ -114,16 +114,29 @@ vollständig ist. Diese Norm stimmt auf $L_0^2$ mit der bekannten $L^2$-Norm üb
 Sei also $(X_n)_{n\in\N}\subseteq L_0^2$ eine Folge mit
 $X_n\stackrel{n\to\infty}{\longrightarrow}X\in L^2$.
 Dann gilt schon $X\in L_0^2$, denn:
+
+Angenommen $\E[X]\neq0$. Dann gibt es $c>0$ so, dass
 \begin{align*}
-&\exists\left(X_{n_m}\right)_{m\in\N}\subseteq\left(X_n\right)_{n\in\N}:X_{n_m}\stackrel{\text{fast sicher}}{\longrightarrow}X\\
-&\implies\E\left[\lim\limits_{m\to\infty}X_{n_m}-X\right]=0\\
-&\implies
-\E[X]=\E\left[X-X_{n_m}\right]+\underbrace{\E\left[X_{n_m}\right]}_{=0}\\
-&\implies
-\E[X]=\lim\limits_{m\to\infty}\E\left[X-X_{n_m}\right]
-\stackeq{\text{dom Konv}}
-\E\left[\lim\limits_{m\to\infty}\left(X-X_{n_m}\right)\right]
-=0
+0<c\leq \big(\E[X]\big)^2&=\Big(\E[X]\cdot\big(\E[X-X_n+X_n]\big)\Big)\\
+&=\big(\E[X]\cdot\E[X-X_n]+\E[X]\cdot\underbrace{\E[X_n]}_{=0}\big)\\
+&=\E[X]\cdot\E[X-X_n]\\
+&\leq\E\big[|X|\big]\cdot\E\big[|X-X_n|\big]
+\stackrel{n\to\infty}{\longrightarrow}0
+\end{align*}
+Dies ist ein Widerspruch. Folglich $\E[X]=0$ und somit $X\in L_0^2(\Omega)$.\\
+
+Direkter Beweis für Abgeschlossenheit:
+\begin{align*}
+E[X]
+&=\E[X-X_n+X_n]\\ 
+&=\E[X-X_n]+\underbrace{\E[X_n]}_{=0}\\
+\implies
+\big|\E[X]\big|&\leq \E\big[|X-X_n|\big]
+\stackrel{\text{Jensen}}{\leq}
+\sqrt{\E\big[(X_n-X)^2\big]}
+\stackrel{n\to\infty}{\longrightarrow} 0\\
+\implies
+\E[X]&=0
 \end{align*}
 
 \underline{Zeige b):} Für $X,Y\in L_0^2$ gilt $\Var[X]=\E\big[X^2\big]$ und $\Cov[X,Y]=\E[X\cdot Y]$. Damit folgt
@@ -136,6 +149,12 @@ Dann gilt schon $X\in L_0^2$, denn:
 \sum\limits_{\begin{subarray}{c}k=1\\ k=j\end{subarray}}^n \E[X_j\cdot X_k]
 +\sum\limits_{\begin{subarray}{c}k=1\\ k\neq j\end{subarray}}^n \E[X_j\cdot X_k]\right)\\
 &=\sum\limits_{j=1}^n\left(\underbrace{\E\big[X_j^2\big]}_{=\Var[X]}+2\cdot\sum\limits_{k>j}\underbrace{\E[X_j\cdot X_k]}_{=\Cov(X_j,Y_k)}\right)
+\end{align*}
+
+Abstrakt als Hilbertraum aufgefasst:
+\begin{align*}
+\left\langle\sum\limits_{k},\sum\limits_{k} X_k\right\rangle
+=\sum\limits_k\left\langle X_k,X_k\right\rangle+2\cdot\sum\limits_{i<j}\left\langle X_i,X_j\right\rangle
 \end{align*}
 
 \underline{Zeige c):}\\
@@ -165,7 +184,29 @@ Dann gelten die Sätze der \textbf{totalen Varianz} bzw. \textbf{totalen Kovaria
 \begin{align*}
 \E\big[\Var[X~|~\F]\big]+\Var\big[\E[X~|~\F]\big]
 &=\E\Big[\E\big[\big(X-\E[X~|~\F]\big)^2~\big|~\F\big]\Big]+\Var\big[\E[X~|~\F]\big]\\
-&=ToDo
+&=...\\
+&=\E\big[\E[X^2~|~\F]\big]-\Big(\E\big[\E[X~|~\F]\big]\Big)^2\\
+&\stackeq{\text{Tower}}
+\E[X^2]-\big(\E[X]\big)^2\\
+&=\Var[X]
+\end{align*}
+
+%Hier die Live-Mitschrift:
+\begin{align*} %(*)
+\Var[X~|~\F]&=\E[X^2~|~\F]-2\E[X\cdot\E[X~|~F]~|~\F]+\underbrace{\E[\E[X~|~\F]^2~|~\F]}_{=\E[X~|~\F]^2}\\
+&\stackeq{Pull-out}
+\E[X^2~|~\F]-2\cdot\E[X~|~\F]\cdot\E[X~|~\F]+\E[X~|~\F]^2\\
+&=\E[X^2~|~\F]-\E[X~|~\F]^2 
+\end{align*}
+\begin{align*}
+\Var[X]&=\E[X^2]-(\E[X])^2\\
+&\stackeq{Tower}
+\E[\E[X^2~|~\F]]-(\E[\E[X~|~\F]])^2\\
+&\stackeq{(*)}
+\E[\Var[X~Y~\F]+\E[X~|~\F]^2]-(\E[\E[X~|~\F]])^2\\
+&=
+\E[\Var[X~|~\F]]+\underbrace{\E[\E[X~|~\F]-\E[\E[X~|~\F]]^2}_{=\E[X~|~\F]}\\
+&=\E[\Var[X~|~\F]]+\Var[\E[X~|~\F]]
 \end{align*}
 
 \underline{Zur zweiten Gleichung:}
@@ -174,6 +215,37 @@ Dann gelten die Sätze der \textbf{totalen Varianz} bzw. \textbf{totalen Kovaria
 &=\E\Big[\E\big[\big(X-\E[X~|~\F]\big)\cdot\big(Y-\E[Y~|~\F]\big)~\big|~\F\big]\Big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]\\
 &=ToDo
 \end{align*}
+
+Live-Mitschrift:
+\begin{align*}
+\Var[X~|~\F]
+&=\E[\Var[X~|~\F]]+\Var[\E[X~|~\F]]\\
+\Var[X]&=\Cov[X,X]\\
+\Cov[X,X~|~\F]&=
+\E[\Cov[X,X]~|~\F]]+\Cov[\E[X~|~F],\E[X~|~\F]]
+\end{align*}
+
+Prof meint:\\
+\textit{Polarisation:} 
+\begin{align*}
+\Cov(X,Y)=\frac{1}{2}\cdot\big(\underbrace{\Var(X+Y)}_{=\langle X+Y,X+Y\rangle}-\underbrace{\Var[X]}_{=\langle X,X\rangle}-\underbrace{\Var[Y]}_{=\langle Y,Y\rangle}\big)
+\end{align*}
+Setze der Kürze halber $X_F:=\E[X~|~\F], Y_F:=\E[Y~|~\F]$. Dann gilt:
+\begin{align*}
+\E[\Cov(X,y~|~\F)]
+&=\E[\E[(X-X_F)\cdot(Y-Y_F)~|~\F]]\\
+&\stackeq{Tower}
+\E[(X-X_F)\cdot(Y-Y_F)]\\
+&=\E[X\cdot Y]-\E[\E[X~|~F]\cdot Y]
+-\E[X\cdot\E[Y~|~\F]]+\E[\E[X~|~\F]\cdot\E[Y~|~\F]]\\
+&\stackeq{Sym}
+\E[X\cdot Y]-\E[X_F\cdot Y_F]\\
+&=\Cov(X,Y)+\E[X]\cdot\E[Y]-\E[X_F\cdot Y_F]\\
+&\stackeq{Tower}
+\Cov(X,Y)+\E[X_F]\cdot\E[Y_F]-\E[X_F\cdot Y_F]\\
+&=\Cov(X,Y)-\Cov(\E[X~|~\F],\E[Y~|~\F]]
+\end{align*}
+Umstellen impliziert die Behauptung.
 \end{proof}
 
 \section*{Aufgabe 3}
@@ -201,14 +273,102 @@ mit $\tilde{x}=\left(x-B\cdot D^{-1}\cdot y\right)$ für alle $x,y$ mit passende
 \item Es sei $(X,Y)$ multivariat normalverteilt mit Erwartungswert 0 und positiv definiter Kovarianzmatrix $\Sigma=\begin{pmatrix}
 \Sigma_X & \Sigma_{XY}\\ \Sigma_{XY}^T & \Sigma_Y
 \end{pmatrix}$. Dann ist $X$ bedingt auf $Y$ normalverteilt mit $\E[X~|~Y]=\Sigma_{XY}\cdot\Sigma_{Y}^{-1}$ und Kovarianzmatrix $(\Sigma/\Sigma_Y)$\\
-Hinweis: es gilt $\det(\Sigma)=\det(\Sigma_Y)\cdot\det(\Sigma/\Sigma_Y)$.
+Hinweis: Es gilt $\det(\Sigma)=\det(\Sigma_Y)\cdot\det(\Sigma/\Sigma_Y)$.
 \end{enumerate}
 \begin{proof}
-\underline{Zeige a):}\\ ToDo
+\underline{Zeige a):}\\
+Beachte: Matrixmultiplikation gilt Blockweise.
+\begin{align*}
+M\cdot M^{-1}
+&=\begin{pmatrix}
+A & B\\ C & D
+\end{pmatrix}\cdot\begin{pmatrix}
+(A-B\cdot D^{-1}\cdot C)^{-1} & -A^{-1}\cdot B\cdot(D-A\cdot C^{-1}\cdot B)^{-1}\\
+-D^{-1}\cdot C\cdot(A-B\cdot D^{-1}\cdot C)^{-1} & (D-C\cdot A^{-1}\cdot B)^{-1}
+\end{pmatrix}\\
+&=\begin{pmatrix}
+(\ast) & 0\\
+0 & (\ast\ast)
+\end{pmatrix}\\
+(\ast)
+&=A\cdot(A-B\cdot D^{-1}\cdot C)^{-1}-B\cdot D^{-1}\cdot C(A-B\cdot D{-1}\cdot C)^{-1}\\
+&=(A-B\cdot D^{-1}\cdot C)\cdot(A-B\cdot D^{-1}\cdot C)^{-1}\\
+&=I\\
+(\ast\ast)
+&=(-C\cdot A^{-1}\cdot B+D)\cdot(D-C\cdot A^{-1}\cdot B)^{-1}\\
+&=I
+\end{align*}
 
 \underline{Zeige b):}\\
+\begin{align}\label{3b1}\tag{$\ast$} 
+&-D^{-1}\cdot B^T\cdot(M/D)^{-1}
+=-(M/A)^{-1}\cdot B^T\cdot A^{-1}\\\nonumber
+&\implies
+(M/A)\cdot D^{-1}\cdot B^T=B^T\cdot A^{-1}\cdot(M/D)\\\nonumber
+&\implies
+(D-B^T\cdot A^{-1}\cdot B)\cdot D^{-1}\cdot B^T=B^T\cdot A^{-1}\cdot(A-B\cdot D^{-1}\cdot B^T)\\\nonumber
+&\implies
+B^T-B^T\cdot A^{-1}\cdot B\cdot D^{-1}\cdot B^T
+=B^T-B^T\cdot A^{-1}\cdot B\cdot D^{-1}\cdot B^T
+\end{align}
 
-\underline{Zeige c):}\\
+\begin{align*}
+M^{-1}
+&=\begin{pmatrix}
+(M/D)^{-1} & -A^{-1}\cdot B\cdot(M/A)^{-1}\\
+-D^{-1}\cdot B^T\cdot(M/D)^{-1} & (M/A)^{-1}
+\end{pmatrix}\\
+&\stackeq{\eqref{3b1}}
+\begin{pmatrix}
+(M/D)^{-1} & -A^{-1}\cdot B\cdot(M/A)^{-1}\\
+-(M/A)^{-1}\cdot B^T\cdot A^{-1} & (M/A)^{-1}
+\end{pmatrix}
+\end{align*}
+Zu zeigen:
+\begin{align*}
+\begin{pmatrix}
+x\\ y
+\end{pmatrix}\cdot M^{-1}\cdot\begin{pmatrix}
+x\\ y
+\end{pmatrix}-y^T\cdot D^{-1}\cdot y=\tilde{x}^T\cdot (M/D)^{-1}\cdot\tilde{x}
+\mit\tilde{x}=x-B\cdot D^{-1}\cdot y
+\end{align*}
+Linke Seite:
+\begin{align*}
+x^T\cdot(M/D)^{-1}\cdot x-2 y^T\cdot\underbrace{(M/A)^{-1}\cdot B^T\cdot x}_{\text{wegen \eqref{3b1}}}\cdot x+y^T\cdot(M/A)^{-1}\cdot y-y^T\cdot D^{-1}\cdot y
+\end{align*}
+Rechte Seite:
+\begin{align*}
+x^T\cdot(M/D)^{-1}\cdot x-2 y^T\cdot D^{-1}\cdot B^T\cdot(M/D)^{-1}\cdot x+y^T\cdot D^{-1}\cdot B^T\cdot(M/D)^{-1}\cdot B\cdot D^{-1}\cdot y
+\end{align*}
+Noch zu zeigen
+\begin{align*}
+(M/A)^{-1}-D^{-1}
+&=D^{-1}\cdot B^T\cdot(M/D)^{-1}\cdot B\cdot D^{-1}\\
+&\implies %von links \cdot(M/A) und von rechts \cdot D
+D-(M/A)=(M/A)\cdot\underbrace{ D^{-1}\cdot B^T\cdot(M/D)^{-1}}_{\stackrel{\eqref{3b1}}(M/A)^{-1}\cdot B^T\cdot A^{-1}}\cdot B
+\\
+&\implies
+B^T\cdot A^{-1}\cdot B=B^T\cdot A^{-1}\cdot B
+\end{align*}
+\underline{Zeige c):}
+\begin{align*}
+f_{X|Y}(x,y)
+&=\frac{f_{XY}(x,y)}{f_Y(y)}\\
+&=\frac{(2\cdot\pi)^{-\frac{m+n}{2}}\cdot\det(\Sigma_Y)}{\det(\Sigma)\cdot(2\cdot\pi)^{-\frac{n}{2}}}
+\cdot\exp\left(-\frac{1}{2}\cdot\left(\begin{pmatrix}
+x\\ y
+\end{pmatrix}^T\cdot\Sigma^{-1}\cdot\begin{pmatrix}
+x\\ y
+\end{pmatrix}-y^T\cdot\Sigma_Y\cdot y\right)\right)\\
+&\stackeq{\text{(b)}}
+\frac{(2\cdot\pi)^{-\frac{m}{2}}}{\det(\Sigma/\Sigma_Y}\cdot\exp\left(-\frac{1}{2}\cdot\tilde{x}^T\cdot(\Sigma/\Sigma_Y)^{-1}\cdot\tilde{x}\right)
+\mit\tilde{x}=x-\Sigma_{XY}\cdot\Sigma_{Y}^{-1}\cdot y
+\end{align*}
+ist Dichte von 
+\begin{align*}
+\mathcal{N}\Big(\Sigma_{XY}\cdot\Sigma_Y^{-1}\cdot y,(\Sigma/\Sigma_Y)\Big)
+\end{align*}
 \end{proof}
 
 \section*{Aufgabe 4}
@@ -216,6 +376,7 @@ In einer bestimmten Population sei das Alter $X$ bei erstmaliger
 Berufsunfähigkeit exponentialverteilt mit Parameter $\lambda>0$. Für eine Versicherungsgesellschaft die gegen Berufsunfähigkeit versichert ist das mittlere Alter bei Eintritt der Berufsunfähigkeit von Bedeutung, unter der Bedingung dass die Berufsunfähigkeit zwischen den Altersgrenzen $0\leq a\leq b$ eintritt.\\
 Bestimme diesen bedingten Erwartungswert $\E[X~|~a\leq X\leq b]$
 \begin{proof}
+Die Zufallsgröße $X\colon\Omega\to\R$ hat Dichte $f_X(x)=\lambda\cdot\exp(-\lambda\cdot x)$
 \begin{align*}
 \E[X~|~a\leq X\leq b]
 &=\frac{\E\left[X\cdot\indi_{\lbrace a\leq X\leq b\rbrace}\right]}{\P[a\leq X\leq b]}\\
@@ -233,7 +394,9 @@ Bestimme diesen bedingten Erwartungswert $\E[X~|~a\leq X\leq b]$
 %-\frac{\exp(-\lambda\cdot a)}{\lambda}}\\
 %&=\frac{\left(b+\frac{1}{\lambda}\right)\cdot\exp(-\lambda\cdot b)-\left(a+\frac{1}{\lambda}\right)\cdot\exp(-\lambda\cdot a)}{\exp(-\lambda\cdot b)-\exp(-\lambda\cdot a)}
 &=\frac{\frac{(a\cdot\lambda+1)\cdot\exp(-\lambda\cdot a)}{\lambda^2}-\frac{(b\cdot\lambda+1)\cdot\exp(-\lambda\cdot b)}{\lambda^2}}{\frac{\exp(-\lambda\cdot a)}{\lambda}-\frac{\exp(-\lambda\cdot b)}{\lambda}}\\
-&=\frac{(b\cdot\lambda+1)\cdot\exp(a\cdot\lambda)-(a\cdot\lambda+1)\cdot\exp(b\cdot\lambda)}{\big(\exp(a\cdot\lambda)-\exp(b\cdot\lambda)\big)\cdot\lambda}
+&=\frac{(b\cdot\lambda+1)\cdot\exp(a\cdot\lambda)-(a\cdot\lambda+1)\cdot\exp(b\cdot\lambda)}{\big(\exp(a\cdot\lambda)-\exp(b\cdot\lambda)\big)\cdot\lambda}\\
+&\stackeq{\text{Prof}}
+\frac{1}{\lambda}+\frac{a\cdot\exp(-\lambda\cdot a)-b\cdot\exp(-\lambda\cdot b)}{\exp(-\lambda\cdot a)-\exp(-\lambda\cdot b)}
 \end{align*}
 \end{proof}
 
