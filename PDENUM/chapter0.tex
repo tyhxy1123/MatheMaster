@@ -717,14 +717,15 @@ Hier: skalare, lineare, elliptische partielle Differentialgleichungen zweiter Or
 \begin{align*}
 -\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u=f(x)\text{ in }\Omega
 \end{align*}
-Vereinfachende Annahmen: \enter\enter
-%RobertToDo:
+Vereinfachende Annahmen:
+\begin{align*}
 \begin{array}{ll}
 	f\in L^2(\Omega)&\alpha \in C(\Omega)\\
 	a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace\\
 	A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots a_d\big)^T\\
 	A=\big(A_{i,j}\big)^d_{i,j=1},& 0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
 \end{array}
+\end{align*}
 
 \subsection*{Einige Spezialfälle}
 \begin{itemize}
