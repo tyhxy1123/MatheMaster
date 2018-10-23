@@ -722,7 +722,7 @@ Beachte: Die Definition von Konvergenz mengentheoretisch aufgeschrieben (Schnitt
 \bigcup\limits_{m\in\N}
 \bigcap\limits_{n\geq m}
 \big\lbrace\underbrace{d(X_n,X)}_{=:\xi_n}<\varepsilon\big\rbrace\stackrel{\ref{Satz3.5}}{\in}\A\\
-\text{denn }\xi^{-1}\big((-\infty,\varepsilon)\big)\in\A
+\text{denn }\xi_n^{-1}\big((-\infty,\varepsilon)\big)\in\A
 \end{align*}
 \end{definition}
 
@@ -749,8 +749,9 @@ X\rbrace
 \cup\lbrace X_n
 \stackrel{n\to\infty}{\not\longrightarrow}
 X'\rbrace\\
+&\implies
 \P[X_n\not\to X]+\P[X_n\not\to X']=0+0\\
-\implies
+&\implies
 \P[X\neq X']=0
 \end{align*}
 \end{proof}
@@ -814,12 +815,24 @@ A_n(\varepsilon):=\big\lbrace d(X_n,X)>\varepsilon\big\rbrace\stackrel{\ref{Satz
 \end{align*}
 Dann folgt aus dem \textit{ersten Borel-Cantelli-Lemma}:
 \begin{align*}
-&\P\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)=0\qquad\forall\varepsilon>0\\
-&\implies
+&\P\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)=0\qquad\forall\varepsilon>0
+\end{align*}
+Mit
+\begin{align*}
+\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)
+\stackeq{\text{Def}}
+\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big(A_n(\varepsilon)\big)^C
+=
+\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace
+\end{align*}
+folgt dann
+\begin{align*}
 1=\P\left(\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)^C\right)
-=\P\left(\underbrace{\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)}_{\stackeq{\text{Def}}\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big(A_n(\varepsilon)\big)^C=\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace}\right)\forall\varepsilon>0\\
-&\stackrel{\text{abzählbarer Durchschnitt von Eins-Mengen}}{\implies}
-\P\left(\underbrace{\bigcap\limits_{0<\varepsilon\in\Q}\bigcup\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace}_{\lbrace X_n\to X\rbrace=\lbrace d(X_n,X)\to0\rbrace}\right)=1
+=\P\left(\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)\right)\qquad\forall\varepsilon>0
+\end{align*}
+Da Abzählbare Durchschnitte von Eins-Mengen (also Mengen mit $\P$-Maß 1) wieder Eins-Mengen sind, folgt schließlich:
+\begin{align*}
+\P\Bigg(\underbrace{\bigcap\limits_{0<\varepsilon\in\Q}\bigcup\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace}_{\lbrace X_n\to X\rbrace=\lbrace d(X_n,X)\to0\rbrace}\Bigg)=1
 \end{align*}
 \end{proof}
 Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metrischen Räumen finden sich z. B. in \textit{``Wahrscheinlichkeitstheorie'' Gäussler u. Stute (1977), Kapitel 8.2}
@@ -827,28 +840,32 @@ Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metri
 \subsection*{Stochastische Konvergenz} %NoNumber
 \begin{definition} %3.11
 \begin{align*}
-X_n\stackrel{\P,~n\to\infty}{\longrightarrow}X:\Longleftrightarrow\forall\varepsilon>0:
-\P\left(\left\lbrace d((X_n,X)>\varepsilon\right\rbrace\right)
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X:\Longleftrightarrow\forall\varepsilon>0:
+\P\Big(\big\lbrace d(X_n,X)>\varepsilon\big\rbrace\Big)
 \stackrel{n\to\infty}{\longrightarrow}
 0
 \end{align*}
 \end{definition}
 
-\begin{satz}\label{Satz3.12} %3.12
+\begin{satz}\label{Satz3.12}
 \begin{align*}
 X_n
 \stackrel{n\to\infty}{\longrightarrow}
 X\quad\P\text{-fast sicher }
 \implies X_n
-\stackrel{\P,~n\to\infty}{\longrightarrow}
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
 X
 \end{align*}
 \end{satz}
 \begin{proof}
 \begin{align*}
-\forall\varepsilon>0:0\geq\P\big(d(X_n,X)>\varepsilon\big)
+\forall\varepsilon>0:
+0\leq\P\big(d(X_n,X)>\varepsilon\big)
 \leq\P\left(\sup\limits_{m\geq n}d(X_m,X)>\varepsilon\right)
-\stackrel{\P,~n\to\infty}{\longrightarrow} 0
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+0
 \end{align*}
 gemäß Satz \ref{Satz3.9}.
 \end{proof}
@@ -860,7 +877,7 @@ Folgende Aussagen sind äquivalent:
 \begin{enumerate}[label=(\arabic*)]
 \item $\begin{aligned}
 X_n
-\stackrel{\P,~n\to\infty}{\longrightarrow}
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
 X\end{aligned}$
 \item Zu jeder Teilfolge (TF) $(X_{n'})$ von $(X_n)_{n\in\N}$ existiert eine Teilfolge $(X_{n''})$ von $(X_{n'})$ derart, dass $X_{n''}
 \stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
@@ -870,45 +887,45 @@ X\end{aligned}$
 Wie im Reellen.
 \end{proof}
 
-%\mathop{} für \P-Konvergenz
-
 Mit dem Teilfolgenkriterium lassen sich Rechenregeln für fast sichere Konvergenz auf stochastische Konvergenz übertragen.
 
 \begin{korollar}\label{Korollar3.14}\
 \begin{enumerate}[label=(\arabic*)]
 \item $\begin{aligned}
 X_n
-\stackrel{\P,~n\to\infty}{\longrightarrow}
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
 X\wedge X_n
-\stackrel{\P,~n\to\infty}{\longrightarrow}
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
 X'
 \implies X=X'\quad\P\text{-fast sicher}
 \end{aligned}$
 \item $\begin{aligned}
 X_n
-\stackrel{\P,~n\to\infty}{\longrightarrow}
-X\text{ in }(\S,d),~f:(\S,d)\to(S',d')\text{ messbar mit $f$ stetig in $X$ $\P$-fast sicher }\\
-\implies f(X_n)
-\stackrel{\P,~n\to\infty}{\longrightarrow}
-f(X)
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X\text{ in }(\S,d),~f:(\S,d)\to(S',d')\text{ messbar mit $f$ stetig in $X$ $\P$-fast sicher }
 \end{aligned}$
+\begin{align*}
+\implies f(X_n)
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+f(X)
+\end{align*}
 \end{enumerate}
 \end{korollar}
 \begin{proof}
 \underline{Zeige (1):}
 \begin{align*}
 X_n
-\stackrel{\P,~n\to\infty}{\longrightarrow}
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
 X
 \stackrel{\ref{satz3.13}}{\implies}
 \exists\text{ TF }(X_{n'})\subseteq(X_n)_{n\in\N}\mit X_{n'}
 \stackrel{n'\to\infty}{\longrightarrow}
 X\text{ fast sicher}
 \end{align*}
-Zu $(X_{n'})$ existiert (wegen $X_n\stackrel{\P,~n\to\infty}{\longrightarrow} X'$ und \ref{satz3.3}) eine Teilfolge $(X_{n''})\subseteq(X_{n'})\mit:$
+Zu $(X_{n'})$ existiert (wegen $X_n\stackrelnew{n\to\infty}{\P}{\longrightarrow} X'$ und Satz \ref{satz3.3}) eine Teilfolge $(X_{n''})\subseteq(X_{n'})\mit$
 \begin{align*}
 X_{n''}
-\stackrel{n\to\infty}{\longrightarrow} X'\text{ fast sicher}\\
+\stackrel{n\to\infty}{\longrightarrow} X'\text{ fast sicher}
 \stackrel{\ref{Satz3.7}}{\implies}
 X=X'\text{ fast sicher }
 \end{align*}
