@@ -755,7 +755,7 @@ und $I+h\cdot A$ ist surjektiv, also ist $A$ akkretiv. $J_h=(I+h\cdot A)^{-1}$ i
 \end{enumerate}
 \end{beispiel}
 
-\begin{theorem}
+\begin{theorem}\label{Theorem1.2.9}
 Sei $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$. Dann gilt:
 \begin{enumerate}[label=(\alph*)]
 \item $\begin{aligned}
@@ -810,15 +810,168 @@ heißt \textbf{orthogonale Projektion} auf $C$. Es gilt $\rg(P)=C$ und $P\circ P
 \underline{Existenz von $u_0$:}\\
 Sei $(v_n)_{n\in\N}\subseteq\C$ so, dass
 \begin{align*}
-\Vert u-v_n\Vert\stackrel{n\to\infty}{\longrightarrow}\dist(u,C).
+\limn\Vert u-v_n\Vert
+%\stackrel{n\to\infty}{\longrightarrow}
+=\dist(u,C).
 \end{align*}
 (Diese Folge existiert nach Definition des Infimums.) Mit der Parallelogrammidentität gilt:
 \begin{align*}
-\forall x,y\in H:\Vert x\Vert+\Vert y\Vert^2\stackeq{Parallelo}\frac{1}{2}\cdot\left(\Vert x+y\Vert^2+\Vert x-y\Vert^2\right)
+\forall x,y\in H:\Vert x\Vert^2+\Vert y\Vert^2\stackeq{\text{Parallelo}}\frac{1}{2}\cdot\left(\Vert x+y\Vert^2+\Vert x-y\Vert^2\right)
 \end{align*}
-Setze $x:=u-v_n$ und $y=u-v_n$. To be continued...
+Setze $x:=u-v_n$ und $y:=u-v_n$. Dann folgt:
+\begin{align*}
+\Vert u-v_n\Vert^2+\Vert u-v_m\Vert^2
+&=2\cdot\left\Vert u-\frac{v_n+v_m}{2}\right\Vert^2+\frac{1}{2}\cdot\Vert v_n-v_m\Vert^2
+\qquad\forall n,m\in\N\\
+\implies
+\limsup\limits_{m,n\to\infty}\frac{1}{2}\cdot\Vert v_n-v_m\Vert^2
+&=\limsup\limits_{m,n\to\infty}\left(\Vert u-v_n\Vert^2+\Vert u-v_m\Vert^2\right)\\
+&\qquad-\liminf\limits_{m,n\to\infty} \underbrace{2\cdot\Bigg\Vert u-\underbrace{\frac{v_n+v_m}{2}}_{\in C}\Bigg\Vert^2}_{\geq2\cdot\big(\dist(u,C)\big)^2}\\
+&\leq2\cdot\dist\big((u,C)\big)^2-2\cdot\dist\big((u,C)\big)^2\\
+&=0
+\end{align*}
+Also ist $(v_n)_{n\in\N}$ eine Cauchy-Folge in $H$. Setze $u_0:=\limn v_n$. Weil $C$ abgeschlossen ist, ist $u_0\in C$. Nach Wahl von $(v_n)_{n\in\N}$ ist
+\begin{align*}
+\Vert u-u_0\Vert=\dist(u,C).
+\end{align*}
 
-\underline{Eindeutigkeit:}
+\underline{Eindeutigkeit:}\\
+Seien $u_0,u_1\in C$ mit
+\begin{align*}
+\Vert u-u_0\Vert=\Vert u-u_1\Vert=\dist(u,C).
+\end{align*}
+Dann ist 
+\begin{align*}
+\Bigg\Vert u-\underbrace{\frac{u_0+u_1}{2}}_{\in C}\Bigg\Vert^2
+&=
+\left\Vert\frac{u-u_0}{2}+\frac{u-u_1}{2}\right\Vert^2\\
+&=\left\Vert\frac{u-u_0}{2}\right\Vert^2+2\cdot\Re\left(\left\langle\frac{u-u_0}{2},\frac{u-u_1}{2}\right\rangle\right)+\left\Vert\frac{u-u_1}{2}\right\Vert^2\\
+&\stackrel{\text{C.S.; }u_0\neq u_1}{<}
+\left\Vert\frac{u-u_0}{2}\right\Vert^2+2\cdot\left\Vert\frac{u-u_0}{2}\right\Vert\cdot\left\Vert\frac{u-u_1}{2}\right\Vert+\left\Vert\frac{u-u_1}{2}\right\Vert^2\\
+&=
+\left(\left\Vert\frac{u-u_0}{2}\right\Vert+\left\Vert\frac{u-u_1}{2}\right\Vert\right)^2\\
+&=
+\big(\dist(u,C)\big)^2
+\end{align*}
+Dies ist aber ein Widerspruch zur Annahme. Somit folgt Eindeutigkeit.\\
+\underline{Zum zweiten Teil, zeige ``$\implies$'':}\\
+Sei $u\in C_0$ so, dass 
+\begin{align*}
+\Vert u-u_0\Vert=\dist(u,C).
+\end{align*}
+Dann gilt für alle $v\in C$:
+\begin{align*}
+\Vert u-u_0\Vert^2 
+&\leq
+\Vert u-v\Vert^2\\
+&=\Vert u-u_0+u_0-v\Vert^2\\
+&=\Vert u-u_0\Vert^2+2\cdot\Re\big(\langle u-u_0, u_0-v\rangle\big)+\Vert u_0-v\Vert^2\\
+&\implies
+2\cdot\Re\big(\langle u-u_0, v-u_0\rangle\big)+\Vert u_0-v\Vert^2
+\leq\Vert u_0-v\Vert^2
+\end{align*}
+Ersetze $v$ durch
+\begin{align*}
+&u_0+t\cdot(v-u_0)\in C,\qquad\mit t\in]0,1]\
+&\implies
+2\cdot\Re\big(\langle u-u_0,v-u_0\rangle\leq t\cdot\Vert v-u_0\Vert^2\\
+&\stackrel{t\to 0^+}{\implies}
+\Re\big(\langle u-u_0,v-u_0\rangle\big)\leq0
+\end{align*}
+\underline{Zum zweiten Teil, zeige ``$\Longrightarrow$'':}\\
+Sei $u_0\in C$ so, dass 
+\begin{align*}
+\Re\big(\langle u-u_0,v-u_0\rangle\big)\leq\qquad\forall v\in C.
+\end{align*}
+Dann gilt für alle $v\in C$:
+\begin{align*}
+\Vert u-v\Vert^2
+&=\Vert u-u_0\Vert^2+\underbrace{2\cdot\Re\big(\langle u-u_0,u_0,v\rangle\big)}_{\geq0}+\underbrace{\Vert u_0-v\Vert^2}_{\geq0}\\
+&\geq
+\Vert u-u_0\Vert^2
+\end{align*}
+\end{proof}
+
+\begin{proof}[Beweis von Theorem \ref{Theorem1.2.9}]\enter
+Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).\\
+
+\underline{Zu (e):}\\
+Sei $D:=\overline{\dom(A)}\neq\emptyset$  und $C:=\overline{\conv(D)}$ der Abschluss der konvexen Hülle. Sei $P$ die orthogonale Projektion  auf $C$ (!). Sei $f\in X$, $h>0\mit h\cdot\omega<1$. Dann gilt nach Definition der Resolvente
+\begin{align*}
+\left( J_h f,\frac{f-J_h f}{h}\right)\in A.
+\end{align*}
+Also gilt für alle $(\hat{u},\hat{f})\in A$:
+\begin{align*}
+\Re\left(\left\langle J_h f-\hat{u},\frac{f-J_h f}{h}-\hat{f}\right\rangle\right)+\omega\cdot\big\Vert J_h f-\hat{u}\big\Vert^2\geq0
+\end{align*}
+(Beachte: $A$ akkretiv $\gdw A$ monoton)\\
+Multiplikation mit $h>0$ und Addition von $\hat{u}$ auf beiden Seiten  liefert:
+\begin{align*}
+(1-h\cdot\omega)\cdot\big\Vert J_h f-\hat{u}\big\Vert^2
+&\leq
+\Re\left(\left\langle J_h f-\hat{u},f-\hat{u}-h\cdot \hat{f}\right\rangle\right)\\
+&\stackrel{\text{C.S.}}{\leq}
+\big\Vert J_h f-\hat{u}\big\Vert\cdot\Vert f-\hat{u}-h\cdot\hat{f}\big\Vert\\
+&\implies
+\limsup\limits_{h\to 0^+}\big\Vert J_h f-\hat{u}\big\Vert<\infty
+\end{align*}
+Außerdem folgt aus dieser Ungleichung
+\begin{align*}
+&(1-h\cdot\omega)\cdot\big\Vert J_h f- P(f)\big\Vert^2\\
+&=(1-h\cdot\omega)\cdot\left(\big\Vert J_h f-\hat{u}\big\Vert^2+2\cdot\Re\Big(\big\langle J_h f-\hat{u},\hat{u}-P(f)\big\rangle\Big)+\big\Vert\hat{u}-P(f)\big\Vert^2\right)\\
+&\leq
+\Re\Big(\big\langle J_h f-\hat{u},f-\hat{u}\big\rangle\Big)+\O(h)
++2\cdot\Re\Big(\big\langle J_h f-\hat{u}\underbrace{-P(f)+P(f)}_{=0},\hat{u}-P(f)\big\rangle\Big)
++\big\Vert\hat{u}-P(f)\big\Vert^2\\
+&=
+\Re\Big(\big\langle J_h f-P(f),f-\hat{u}\big\rangle\Big)
++\Re\Big(\big\langle P(f)-\hat{u},f-\hat{u}\big\rangle\Big)
++2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)\\
+&\qquad-2\cdot\big\Vert\hat{u}-P(f)\big\Vert^2+\big\Vert\hat{u}-P(f)\big\Vert^2+\O(h)\\
+&=\Re\Big(\big\langle J_h h-P(f),f-\hat{u}\big\rangle\Big)
++\underbrace{\Re\Big(\big\langle P(f)-\hat{u},f-P(f)\big\rangle\Big)}_{\leq0}
++2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)+\O(h)\\
+&\leq
+\Re\Big(\big\langle J_h f-P(f),f-\hat{u}\big\rangle\Big)
++2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)+\O(h)
+\end{align*}
+Sei $v\in C$ ein schwacher Häufungspunkt von $(J_h f)_{h\searrow 0}$, d. h.
+\begin{align*}
+\exists (h_n)_{n\in\N}\mit \limn h_n0:\weaklim\limits_{n\to\infty} J_{h_n} f=v
+\end{align*}
+Dann gilt:
+\begin{align*}
+\Vert v-P(f)\Vert^2 
+&\leq\liminf\limits_{n\to\infty}\big\Vert J_{h_n} f-P(f)\big\Vert^2\\
+&\leq
+2\cdot\Re\Big(\big\langle v-P(f),f-\hat{u}\big\rangle\Big)
++2\cdot\Re\Big(\big\langle v-P(f),\hat{u}-P(f)\big\rangle\Big)
+\qquad\forall \hat{u}\in\overline{\dom(A)}=D
+\end{align*}
+Wegen Linearität des Skalarproduktes in der zweiten Komponente gilt diese Ungleichung schließlich für alle $\hat{u}\in\overline{\conv(D)}=C$. Insbesondere auch für $\hat{u}=P(f)$. Somit folgt:
+\begin{align*}
+\big\Vert v-P(f)\big\Vert^2
+\leq
+\Re\Big(\big\langle v-P(f),f-P(f)\big\rangle\Big)
+\leq0\\
+\implies
+v=P(f)
+\end{align*}
+Da $v$ ein beliebiger Häufungspunkt von $(J_h f)_{h\searrow 0}$ war, gilt 
+\begin{align*}
+\weaklim\limits_{h\to0^+} J_h f=P(f)
+\end{align*}
+und aus der Abschätzung oben folgt 
+\begin{align*}
+\limsup\limits_{h\to 0^+}\big\Vert J_h f-P(f)\big\Vert^2
+\leq
+0,
+\end{align*}
+d.h. 
+\begin{align*}
+\lim\limits_{h\to 0^+} J_h f=P(f)
+\end{align*}
+in Norm. Wegen $J_h f\in\dom(A)$ folgt damit $P(f)\in D=\overline{\dom(A)}\subseteq C$ für alle $f\in X$. Also ist $D=C$ und somit ist $D$ konvex.
 \end{proof}
 
 
