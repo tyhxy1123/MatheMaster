@@ -130,7 +130,267 @@ Beim Submartingal steigt der Erwartungswert $\E[X_t]$ mit der Zeit und beim Supe
 Begründung für Submartingal:
 \begin{align*}
 \E[X_t]\stackeq{\eqref{Turmregel}}
-\E\big[\E[X_t~|~\F_s]~\big|~]\stackrel{\text{Mono}}{\geq}\E[X_s]\qquad s\in I
+\E\big[\E[X_t~|~\F_s]\big]\stackrel{\text{Mono}}{\geq}\E[X_s]\qquad s\leq t
 \end{align*}
 ``\textit{Das Leben ist ein Supermartingal - die Erwartung fällt mit der Zeit.}''
 \end{bemerkung}
+
+\begin{defi}[Random Walk / Irrfahrt]\enter %noNumber
+Sei $(\xi_n)_{n\in\N}$ eine Folge von iid $\R$-wertigen Zufallsvariablen mit $\xi_1\sim F$. Dann heißt
+\begin{align*}
+S_N:=\sum\limits_{i=1}^n\xi_i\qquad S_0:=0
+\end{align*}
+(eindimensionaler) \textbf{Random Walk (RW) mit Schrittverteilung} $F$.
+\begin{itemize}
+\item Ein Random Walk heißt \textbf{symmetrisch}
+\begin{align*}
+&:\Longleftrightarrow F\text{ symmetrisch}\\
+&\Longleftrightarrow\P(\xi_1\in B)=\P(\xi_1\in -B)\qquad\forall B\in\B(\R)
+\end{align*}
+\item Ein Random Walk heißt \textbf{einfach} $:\gdw\P(\xi_1\in\lbrace-1,1\rbrace)=1$
+\end{itemize}
+\end{defi}
+
+\begin{beisp}\
+\begin{enumerate}[label=(\alph*)]
+\item Sei $(S_n)_{n\in\N}$ ein Random Walk mit $\E\big[|\xi_1|\big]<\infty$.\\
+Dann ist $(S_n)_{n\in\N}$ bzgl. der natürlichen Filtration $\F_n=\sigma(\xi_1,\ldots,\xi_n)$ ein
+\begin{align*}
+\left\lbrace\begin{array}{cl}
+\text{Martingal}, & \falls \E[\xi_1]=0\\
+\text{Submartingal}, & \falls \E[\xi_1]\geq0\\
+\text{Supermartingal}, & \falls \E[\xi_1]\leq0\\
+\end{array}\right.
+\end{align*}
+(siehe Anfang des Kapitels)
+\item Sei $(S_n)_{n\in\N}$ ein Random Walk mit $\E[\xi_1]=0$ und $\Var[\xi_1]=\sigma^2$.\\
+Dann ist 
+\begin{align*}
+(M_n)_{n\in\N}\mit M_n:=S_n^2-n\cdot\sigma^2,n\in\N
+\end{align*}
+ein Martingal bzgl. $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$. Dabei ist der Term $-n\cdot\sigma^2$ ein \textbf{Kompensator}-Term, denn ohne diesen wäre $M_n$ kein Martingal. Überprüfen der Eigenschaften:
+\begin{itemize}
+\item adaptiert: $M_n$ ist messbare Funktion von $\xi_1,\ldots,\xi_n\implies(M_n)_{n\in\N}$ ist $(\F_n)_{n\in\N}$-adaptiert
+\item integrierbar: $\begin{aligned}
+\sqrt{\E[S_n^2]}=\Vert\xi_1+\ldots\xi_n\Vert_2\stackrel{\Delta}{\leq}\Vert\xi_1\Vert_2+\ldots+\Vert\xi_n\Vert_2\leq n\cdot\sigma<\infty
+\end{aligned}$
+\item Martingaleigenschaft:
+\begin{align*}
+\E[M_n~|~\F_{n-1}]
+&=\E[S_n^2-n\cdot\sigma^2~|~\F_{n-1}]\\
+&=\E\big[(S_{n-1}+\xi_n)^2~|~\F_{n-1}\big]-n\cdot\sigma^2\\
+&=\E\big[S_{n-1}^2~|~\F_{n-1}\big]+2\cdot\E\big[S_{n-1}\cdot\xi_n~|~\F_{n-1}\big]+\E\big[\underbrace{\xi_n^2~|~\F_{n-1}}_{\unab}\big]-n\cdot\sigma^2\\
+&=S_{n-1}^2+2\cdot S_{n-1}\cdot \underbrace{\E\big[\underbrace{\xi_n~|~\F_{n-1}}_{\unab}\big]}_{=\E[\xi_n]=0}+\underbrace{\E[\xi_n^2]}_{=\Var(\xi_n)=\sigma^2}-n\cdot\sigma^2\\
+&=S_{n-1}^2-(n-1)\cdot\sigma^2\\
+&=M_{n-1}
+\end{align*}
+\end{itemize}
+\item Sei $X_n=a_n$ mit $(a_n)_{n\in\N}$ eine deterministische aufsteigende Folge.\\
+Dann ist $(X_n)_{n\in\N}$ Submartingal (bei jeder Filtration $(\F_n)_{n\in\N}$).
+\item Seien $(\xi_n)_{n\in\N}$ mit $\xi_1\geq0$ und $\E[\xi_1]=1$. Dann ist
+\begin{align*}
+M_n:=\prod\limits_{i=1}^n\xi_i,\qquad M_0:=1
+\end{align*}
+ein Martingal bzgl. $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ (geometrischer Random Walk).
+\item Sei $X\in L_1(\Omega,\A,\P)$ eind $(\F_t)_{t\in\N_0}$ eine Filtration.\\
+Dann ist
+\begin{align*}
+X_t:=\E[X~|~\F_t]
+\end{align*}
+ein Martingal bzgl. $(\F_t)_{t\in\N_0}$, denn:
+\begin{itemize}
+\item Adaptiertheit: Klar.
+\item Integrierbarkeit:
+\begin{align*}
+\E\big[|X_t|\big]
+=\E\Big[\big|\E[X~|~\F_t]\big|\Big]
+&\stackrel{\Delta\text{-Ungl}}{\leq}
+\E\Big[\E\big[|X|~|~\F_t \big]\Big]
+\stackeq{\text{Turm}}
+\E\big[|X|\big]
+<\infty
+\end{align*}
+\item Martingaleigenschaft:
+\begin{align*}
+\E[X_t~|~\F_a]
+=\E\Big[\E\big[X~|~\F_t\big]~\Big|~ \F_s\Big]
+\stackeq{\text{Turm}}
+\E[X~|~\F_s]
+=X_s
+\qquad\forall s\leq t
+\end{align*}
+\end{itemize}
+\end{enumerate}
+\end{beisp}
+
+\begin{notation}
+\begin{align*}
+X\wedge Y:=\min(X,Y)\qquad X\vee Y:=\max(X,Y)\qquad\forall X,Y\text{ ZV}
+\end{align*}
+\end{notation}
+
+\begin{proposition}[Elementare Eigenschaften]\label{Prop2.1}\enter
+Sei $(\F_t)_{t\in I}$ eine Filtration. Dann gilt:
+\begin{enumerate}[label=\alph*)]
+\item $\begin{aligned}
+(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Martingale }
+\implies\forall a,b\in\R: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Martingal}
+\end{aligned}$
+\item $\begin{aligned}
+(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Submartingale }
+&\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Submartingal}\\
+(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Supermartingale }
+&\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Supermartingal}
+\end{aligned}$
+\item $\begin{aligned}
+(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Supermartingale }
+\implies (X_t\wedge Y_t)_{t\in I}\text{ ist Supermartingal}
+\end{aligned}$
+\item $\begin{aligned}
+(X_t)_{t\in I}\text{ Martingal, $\phi$ konvex und }\E\big[\phi(X_t)\big]<\infty
+\implies \big(\phi(X_t)\big)_{t\in I}\text{ ist Submartingal}
+\end{aligned}$
+\item $\begin{aligned}
+(X_t)_{t\in I}\text{ Submartingal, $\phi$ konvex und monoton steigend und }\E\big[\phi(X_t)\big]<\infty\\
+\implies \big(\phi(X_t)\big)_{t\in I}\text{ ist Submartingal}
+\end{aligned}$
+\item $\begin{aligned}
+(X_t)_{t\in I}\text{ Martingal}
+\Longleftrightarrow
+(X_t)_{t\in I}\text{ ist Sub- und Supermartingal}
+\end{aligned}$
+\end{enumerate}
+\end{proposition}
+
+Für den Beweis benötigen wir die bedingte Jensensche Ungleichung:
+
+\begin{lemma}[Bedingte Jensensche Ungleichung]\label{lemma2.2BedingteJensenscheUngleichung}\enter
+Sei $X\in L_1(\Omega,\A,\P),~\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$, $\phi:\R\to\R$ konvex und\\ $\E\big[\phi(X)\big]<\infty$. Dann gilt:
+\begin{align*}
+\phi\big(\E[X~|~\F]\big)\leq\E\big[\phi(X)~\big|~\F\big]
+\end{align*}
+\end{lemma}
+\begin{proof}
+%Hier könnte man eine Skizze einfügen
+Da $\phi$ konvex ist, ist $\phi$ Supremum aller linearen Trägerfunktionen, d. h.
+\begin{align*}
+\phi(x)=\sup\Big\lbrace a\cdot x+b:\forall y\in \R: a\cdot y+b\leq\phi(y)\Big\rbrace
+\end{align*}
+Daraus folgt:
+\begin{align*}
+\phi\big(\E[X~|~\F]\big)
+\leq\sup\limits_{\begin{subarray}{c}a\cdot y+b\leq\phi(y)\\y\in\R\end{subarray}}\big(a\cdot\E[X~|~\F]+b\big)
+=\sup\limits_{\begin{subarray}{c}a\cdot y+b\leq\phi(y)\\y\in\R\end{subarray}}
+\E[a\cdot X+b~|~\F]
+\leq
+\E\big[\phi(x)~\big|~\F\big]
+\end{align*}
+\end{proof}
+
+\begin{proof}[Beweis von Proposition \ref{Prop2.1}]\enter
+a) und b) folgen aus Linearität und Monotoni der bedingten Erwartung. f) ist klar.\\
+
+\underline{Zeige c):}
+\begin{align*}
+\E\big[(X_t\wedge Y_t)~\big|~\F_s\big]
+\stackrel{\text{Mono}}{\leq}
+\left\lbrace\begin{array}{c}
+\E[X_t~|~\F_s]=X_s\\
+\E[Y_t~|~\F_s]=Y_s\\
+\end{array}\right\rbrace
+\leq X_s\wedge Y_s
+\end{align*}
+\underline{Zeige (d):}
+\begin{align*}
+\E\big[\phi(X_t)~\big|~\F_s\big]
+\stackrel{\text{Jensen}}{\geq}
+\phi\big(\E[X_t~|~\F_s]\big)
+\stackeq{\text{Marting}}
+\phi(X_s)
+\end{align*}
+
+\underline{Zeige (e):}
+\begin{align*}
+\E\big[\phi(X_t)~\big|~\F_s\big]
+\stackrel{\text{Jensen}}{\geq}
+\phi\big(\underbrace{\E[X_t~|~\F_s]}_{\geq X_s}\big)
+\stackrel{\text{Mono}}{\geq}
+\phi(X_s)
+\end{align*}
+\end{proof}
+
+\begin{theorem}[Doob-Zerlegung]\label{Theorem2.3DoobZerlegung}\enter
+Sei $(X_n)_{n\in\N}\subseteq L_1(\Omega,\A,\P)$ ein adaptierter stochastischer Prozess. Dann gilt:
+\begin{align}\label{eqDoobZerlegung}\tag{DZ}
+X_n=X_0+M_n+A_n
+\end{align}
+mit $(M_n)_{n\in\N}$ Martingal mit $M_0=0$ und $(A_n)_{n\in\N}$ mit $A_0=0$ vorhersehbar.\\
+Die Zerlegung \eqref{eqDoobZerlegung} ist eindeutig bis auf Ununterscheidbarkeit, d. h.
+\begin{align*}
+\P\big(M_n=M_n'\text{ und }A_n=A_n'\quad\forall n\in\N\big)=1
+\end{align*}
+für jede andere Zerlegung $X_n=X_0+M_n'+A_n'$.\\
+Außerdem gilt:
+\begin{itemize}
+\item $(X_n)_{n\in\N}$ Submartingal $\implies (A_n)_{n\in\N}$ fast sicher wachsend
+\item $(X_n)_{n\in\N}$ Supermartingal $\implies (A_n)_{n\in\N}$ fast sicher fallend
+\end{itemize}
+\end{theorem}
+
+\begin{bemerkung}
+Für Sub-/Supermartingale auf $I=\R_{\geq0}$ heißt die analoge Zerlegung \textbf{Doob-Meyer-Zerlegung} und ist wesentlich schwieriger zu zeigen.
+\end{bemerkung}
+
+\begin{proof}
+\underline{Vorüberlegung:}\\
+Angenommen \eqref{eqDoobZerlegung} gilt, dann folgt
+\begin{align*}
+\E[X_n-X_{n-1}~|~\F_{n-1}]
+=\underbrace{\E[M_n-M_{n-1}~|~\F_{n-1}]}{=0\text{, da Martingal}}
++\E[\underbrace{A_n-A_{n-1}}_{\F_{n-1}\text{-messbar}}~|~\F_{n-1}]\\
+&=A_n-A_{n-1}\\
+&\implies
+A_n=\sum\limits_{j=1}^n\underbrace{\E\big[X_j-X_{j-1}~|~\F_j\big]}_{\F_{j-1}\text{-messbar}\implies\F_{n-1}\text{-messbar}}
+\end{align*}
+\underline{Zur Existenz:}\\
+Wähle also $A_n$ genau so. Dann ist $A_n$ vorhersehbar und $\E\big[|A_n|\big]<\infty$ (folgt aus Dreiecksungleichung). Setze
+\begin{align*}
+M_n:=X_n-X_0-A_n.
+\end{align*}
+Zu zeigen: $(M_n)_{n\in\N}$ ist Martingal.\\
+Adaptiertheit und Integrierbarkeit ist klar. Zu zeigen ist also noch die Martingaleigschaft bzw. deren Äquivalenz:
+\begin{align*}
+\text{Martingaleigenschaft }\E[M_n~|~\F_{n-1}]=M_{n-1}\Longleftrightarrow
+\E[M_n-M_{n-1}~|~\F_{n-1}]=0
+\end{align*}
+Also:
+\begin{align*}
+\E[M_{n}-M_{n-1}~|~\F_{n-1}]
+&=\E[ X_n-X_{n-1}~|~\F_{n-1}]
+-\E[A_n-A_{n-1}~|~\F_{n-1}]\\
+&=\E[ X_n-X_{n-1}~|~\F_{n-1}]
+-(A_n-A_{n-1})\\
+\stackeq{\text{Def }A}
+0
+\end{align*}
+\underline{Zur Eindeutigkeit:}\\
+Laut Vorüberlegung ist die Wahl $A_n$ auch notwendig, also 
+\begin{align*}
+A_n'=A_n\text{ fast sicher}\qquad\forall n\in\N
+\end{align*}
+Wegen
+\begin{align*}
+M_n'=X_n-X_0-A_n'
+\end{align*}
+gilt
+\begin{align*}
+M_n'=M_n\text{ fast sicher}\qquad\forall n\in\N\\
+\P\Big((M_n'=M_n)\wedge(A_n'=A_n)~\forall n\in\N\Big)
+=\P\left(\bigcap\limits_{n=1}^\infty(M_n=M_n')\cap(A_n=A_n')\right)
+=1
+\end{align*}
+Die Aussagen zu Sub-/Supermartingalen folgt aus
+\begin{align*}
+\E[X_n-X_{n-1}~|~\F_{n-1}]=A_n-A_{n-1}.
+\end{align*}
+\end{proof}
