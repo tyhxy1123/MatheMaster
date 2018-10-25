@@ -64,45 +64,47 @@ Nutze Untervektorraumkriterium:
 \E[X+Y]\stackeq{\text{Lin}}\E[X]+\E[Y]\stackeq{X,Y\in L_0^2}0+0=0
 \end{align*}
 \end{itemize}
-Somit ist $L_0^2$ ein Untervektorraum von $L_2$. Nun zeigen wir, dass
+Somit ist $L_0^2$ ein Untervektorraum von $L_2$. Dass
 \begin{align*}
 \langle X,Y\rangle:=\Cov(X,Y):=
 \E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
 =\E[X\cdot Y]
 \qquad\forall X,Y\in L_0^2
 \end{align*}
-ein Skalarprodukt auf $L_0^2$ ist. Gleich vorweg: Die Kovarianz erfüllt sogar auf $L^2$ alle Eigenschaften bis auf positive Definitheit. Diese gilt nur auf $L_0^2$. Deswegen werden im Folgenden die Eigenschaften der Kovarianz allgemeiner gezeigt.
-\begin{itemize}
-\item Die Kovarianz ist Bilinear, denn für $\lambda\in\R$ und $X,Y,Z\in L_0^2$ gilt
-\begin{align*}
-\Cov(\lambda\cdot X,Y)
-&=\E\Big[\big(\lambda\cdot X-\E[ \lambda\cdot X]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
-&=\E\Big[\big(\lambda\cdot\big(X-\E[X]\big)\big)\cdot\big(Y-\E[Y]\big)\Big]\\
-&=\lambda\cdot\Cov(X,Y)\\
-\Cov(X,\lambda\cdot Y)
-&=\E\Big[\big(X-\E[X]\big)\cdot\big(\lambda\cdot Y-\E[\lambda\cdot Y]\big)\Big]\\
-&=\E\Big[\big(X-\E[X]\big)\cdot\big(\lambda\cdot\big(Y-\E[Y]\big)\big)\Big]\\
-&=\lambda\cdot\Cov(X,Y)\\
-\Cov(X+Z,Y)
-&=\E\Big[\big(X+Z-\E[X+Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
-&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)+\big(Z-\E[Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
-&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
-+\E\Big[\big(Z-\E[Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
-&=\Cov(X,Y)+\Cov(Z,Y)\\
-\Cov(X,Y+Z)
-&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y+Z-\E[Y+Z]\big)\Big]\\
-&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)+\big(X-\E[X]\big)\cdot\big(Z-\E[Z]\big)\Big]\\
-&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
-+\E\Big[\big(X-\E[X]\big)\cdot\big(Z-\E[Z]\big)\Big]\\
-&=\Cov(X,Y)+\Cov(X,Z)
-\end{align*}
-\item Die Kovarianz ist symmetrisch, was man schon an der Definition erkennt: $\Cov(X,Y)=\Cov(Y,X)$
-\item Die Kovarianz ist positiv definit:
-\begin{align*}
-\Cov(X,X)&=\E\Big[\underbrace{\big(X-\E[X]\big)^2}_{\geq0}\Big]\geq0\text{ und}\\
-\Cov(X,X)&=0\stackrel{\E[X]=0}{\gdw} X=0\text{ fast sicher}
-\end{align*}
-\end{itemize}
+ein Skalarprodukt auf $L_0^2$ ist, ist klar, das es mit dem $L^2$-Skalarprodukt des Oberraumes $L^2$ übereinstimmt.
+
+%Gleich vorweg: Die Kovarianz erfüllt sogar auf $L^2$ alle Eigenschaften bis auf positive Definitheit. Diese gilt nur auf $L_0^2$. Deswegen werden im Folgenden die Eigenschaften der Kovarianz allgemeiner gezeigt.
+%\begin{itemize}
+%\item Die Kovarianz ist Bilinear, denn für $\lambda\in\R$ und $X,Y,Z\in L_0^2$ gilt
+%\begin{align*}
+%\Cov(\lambda\cdot X,Y)
+%&=\E\Big[\big(\lambda\cdot X-\E[ \lambda\cdot X]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+%&=\E\Big[\big(\lambda\cdot\big(X-\E[X]\big)\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+%&=\lambda\cdot\Cov(X,Y)\\
+%\Cov(X,\lambda\cdot Y)
+%&=\E\Big[\big(X-\E[X]\big)\cdot\big(\lambda\cdot Y-\E[\lambda\cdot Y]\big)\Big]\\
+%&=\E\Big[\big(X-\E[X]\big)\cdot\big(\lambda\cdot\big(Y-\E[Y]\big)\big)\Big]\\
+%&=\lambda\cdot\Cov(X,Y)\\
+%\Cov(X+Z,Y)
+%&=\E\Big[\big(X+Z-\E[X+Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+%&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)+\big(Z-\E[Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+%&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
+%+\E\Big[\big(Z-\E[Z]\big)\cdot\big(Y-\E[Y]\big)\Big]\\
+%&=\Cov(X,Y)+\Cov(Z,Y)\\
+%\Cov(X,Y+Z)
+%&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y+Z-\E[Y+Z]\big)\Big]\\
+%&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)+\big(X-\E[X]\big)\cdot\big(Z-\E[Z]\big)\Big]\\
+%&=\E\Big[\big(X-\E[X]\big)\cdot\big(Y-\E[Y]\big)\Big]
+%+\E\Big[\big(X-\E[X]\big)\cdot\big(Z-\E[Z]\big)\Big]\\
+%&=\Cov(X,Y)+\Cov(X,Z)
+%\end{align*}
+%\item Die Kovarianz ist symmetrisch, was man schon an der Definition erkennt: $\Cov(X,Y)=\Cov(Y,X)$
+%\item Die Kovarianz ist positiv definit:
+%\begin{align*}
+%\Cov(X,X)&=\E\Big[\underbrace{\big(X-\E[X]\big)^2}_{\geq0}\Big]\geq0\text{ und}\\
+%\Cov(X,X)&=0\stackrel{\E[X]=0}{\gdw} X=0\text{ fast sicher}
+%\end{align*}
+%\end{itemize}
 Bleibt noch zu zeigen, dass $L_0^2$ bzgl. der die die Kovarianz induzierten Norm
 \begin{align*}
 \Vert X\Vert:=\sqrt{\Cov(X,X)}
@@ -115,17 +117,16 @@ Sei also $(X_n)_{n\in\N}\subseteq L_0^2$ eine Folge mit
 $X_n\stackrel{n\to\infty}{\longrightarrow}X\in L^2$.
 Dann gilt schon $X\in L_0^2$, denn:
 
-Angenommen $\E[X]\neq0$. Dann gibt es $c>0$ so, dass
-\begin{align*}
-0<c\leq \big(\E[X]\big)^2&=\Big(\E[X]\cdot\big(\E[X-X_n+X_n]\big)\Big)\\
-&=\big(\E[X]\cdot\E[X-X_n]+\E[X]\cdot\underbrace{\E[X_n]}_{=0}\big)\\
-&=\E[X]\cdot\E[X-X_n]\\
-&\leq\E\big[|X|\big]\cdot\E\big[|X-X_n|\big]
-\stackrel{n\to\infty}{\longrightarrow}0
-\end{align*}
-Dies ist ein Widerspruch. Folglich $\E[X]=0$ und somit $X\in L_0^2(\Omega)$.\\
+%Angenommen $\E[X]\neq0$. Dann gibt es $c>0$ so, dass
+%\begin{align*}
+%0<c\leq \big(\E[X]\big)^2&=\Big(\E[X]\cdot\big(\E[X-X_n+X_n]\big)\Big)\\
+%&=\big(\E[X]\cdot\E[X-X_n]+\E[X]\cdot\underbrace{\E[X_n]}_{=0}\big)\\
+%&=\E[X]\cdot\E[X-X_n]\\
+%&\leq\E\big[|X|\big]\cdot\E\big[|X-X_n|\big]
+%\stackrel{n\to\infty}{\longrightarrow}0
+%\end{align*}
+%Dies ist ein Widerspruch. Folglich $\E[X]=0$ und somit $X\in L_0^2(\Omega)$.\\
 
-Direkter Beweis für Abgeschlossenheit:
 \begin{align*}
 E[X]
 &=\E[X-X_n+X_n]\\ 
@@ -234,14 +235,14 @@ Setze der Kürze halber $X_F:=\E[X~|~\F], Y_F:=\E[Y~|~\F]$. Dann gilt:
 \begin{align*}
 \E[\Cov(X,y~|~\F)]
 &=\E[\E[(X-X_F)\cdot(Y-Y_F)~|~\F]]\\
-&\stackeq{Tower}
+&\stackeq{\text{Tower}}
 \E[(X-X_F)\cdot(Y-Y_F)]\\
 &=\E[X\cdot Y]-\E[\E[X~|~F]\cdot Y]
 -\E[X\cdot\E[Y~|~\F]]+\E[\E[X~|~\F]\cdot\E[Y~|~\F]]\\
-&\stackeq{Sym}
+&\stackeq{\text{Sym}}
 \E[X\cdot Y]-\E[X_F\cdot Y_F]\\
 &=\Cov(X,Y)+\E[X]\cdot\E[Y]-\E[X_F\cdot Y_F]\\
-&\stackeq{Tower}
+&\stackeq{\text{Tower}}
 \Cov(X,Y)+\E[X_F]\cdot\E[Y_F]-\E[X_F\cdot Y_F]\\
 &=\Cov(X,Y)-\Cov(\E[X~|~\F],\E[Y~|~\F]]
 \end{align*}
