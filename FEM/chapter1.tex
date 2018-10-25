@@ -1,0 +1,101 @@
+
+\section{weak solutions of elliptic pde}
+
+\begin{example}
+	\begin{align}\label{poisson}
+	-\laplace u &= f \qquad \text{in } \Omega \\
+	u &= 0 \qquad \text{on } \partial \Omega \nonumber
+	\end{align}
+	
+	$\Omega \subset \R^d $ ($d \geq 1$), $\partial \Omega \in C^{0,1}$
+\end{example}
+
+If $f \in L^2(\Omega)$, $u \in C^2(\Omega)\cap C(\overline{\Omega})$ is solution of (\ref{poisson}). Now multiply with $v \in C^\infty_0 (\Omega)$ and integrate by parts.
+
+\begin{align*}
+	\int \limits_\Omega fv \diff x &= \int \limits_\Omega \laplace uv \diff x\\
+								   &= \int \limits_\Omega \nabla u \cdot \nabla v \diff x - \underbrace{\int \limits_{\partial \Omega} \left( \nabla uv\right)\cdot \vartheta \diff x}_{=0,\ v|_{\partial \Omega} = 0} \\
+								   &= \int \limits_\Omega \nabla u \cdot \nabla v \diff x
+\end{align*}
+Because $C^\infty_0(\Omega)$ is dense in $H^1_0(\Omega)$ this also holds for all $v \in H^1_0(\Omega)$. Now define the Hilbert form
+\begin{equation*}
+	a(u,v) = \int \limits_\Omega \nabla u \cdot \nabla v \diff x \qquad u,v\in H^1_0(\Omega)
+\end{equation*}
+and linear functional
+
+\begin{equation*}
+	F(v) = \int \limits_\Omega fv \diff x \qquad v \in H^1_0(\Omega).
+\end{equation*}
+
+Now we call 
+\begin{equation}\label{weak_form}
+	a(u,v) = F(v) \qquad \forall v \in  H^1_0(\Omega)
+\end{equation}
+\textbf{weak formulation} of (\ref{poisson}).\enter
+
+
+We call u
+\begin{enumerate}[(a)]
+	\item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of (\ref{weak_form})\\
+	\item \textbf{classical solution} of (\ref{poisson}), if \textbf{?missing part?} a weak solution of (\ref{weak_form}). 
+\end{enumerate}
+
+If $u$ is a weak solution of (\ref{weak_form}) and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \ in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
+\begin{equation*}
+	\int \limits_\Omega \left( f + \laplace u \right) v \diff x = \int \limits_\Omega  fv - \nabla u \cdot \nabla v \diff x = 0
+\end{equation*}
+
+$\implies \forall v\in L^2(\Omega):$ 
+\begin{equation*}
+	\int \limits_\Omega \left( f + \laplace u \right) v \diff x = 0.
+\end{equation*}
+
+$\implies f + \laplace u = 0$ almost everywhere in $\Omega$.\enter
+Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega}$.
+
+\begin{definition_}
+	$V$ is a real Hilbert space, $a: V \times V \to \R$ bilinearform
+	\begin{enumerate}[(a)]
+		\item $a$ is \textbf{continuous} in $V$ if there exists $K > 0$ s.t. $\forall u,v \in V:$ 
+		\begin{equation*}
+			|a(u,v)| \leq K \|u\| \|v\|.
+		\end{equation*} 
+		\item $a$ is \textbf{coercive} (or elliptic) in $V$ if there exists $\lambda > 0$ s.t. $\forall u \in V:$
+		\begin{equation*}
+			a(u,u)  \geq \lambda \|u\|^2_v
+		\end{equation*}
+	\end{enumerate}
+\end{definition_}
+
+\begin{thrm}
+	(Lax-Milgram )\enter
+	$V$ real Hilbert space, $a: V \times V \to \R$ is continuous and coercive, $F:V \to \R$. Then there exists a unique solution $u \in V$, s.t.
+	\begin{equation*}
+		a(u,v) = F(v) \qquad \forall v \in V
+	\end{equation*}
+	and it holds $\|u\|_V \leq \lambda^{-1}\|F\|_{V'}$.
+	%%i think F has to be linear 	
+\end{thrm}
+
+\begin{reminder}
+	(Representation theorem by Riesz)\enter
+	$V$ is a real Hilbertspace with $(\cdot,\cdot)$ scalar product and $F \in \textbf{F} \in V'$. It exists a unique $u \in V$ s.t.
+	\begin{equation*}
+		(u,v) = F(v) \qquad \forall v\in V
+	\end{equation*} 
+	and $\|u\|_V = \|F\|_{V'}$.
+\end{reminder}
+
+\begin{proof_}
+	of Lax-Milgram \enter
+	$w \in V$. We have $a(w,\cdot) \in V'$ with Riesz there exists $T(w) \in V$ with 
+	\begin{equation}\label{lm_proof}
+		(T(w),v) = a(w,v) \qquad \forall v \in V
+	\end{equation}
+	and 
+	\begin{equation*}
+		\|T(w)\|_V = \|a(w,\cdot)\|_{V'} \leq K \|w\|_V.
+	\end{equation*}
+	This shows $T: V \to V$ is continuous and because $a(\cdot,\cdot)$ is bilinear also linear.
+\end{proof_}
+
