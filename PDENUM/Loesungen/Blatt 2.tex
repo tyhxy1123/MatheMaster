@@ -66,7 +66,7 @@ J(v):=\frac{1}{2}\cdot a(v,v)-f(v)
 nimmt ihr Minimum in $W$ bei $u\in W$ an.
 \item Es gilt:
 \begin{align}\label{eq2}
-au,w-u)\geq l(w-u)\qquad\forall w\in W
+a(u,w-u)\geq l(w-u)\qquad\forall w\in W
 \end{align}
 \end{enumerate}
 Außerdem ist das Minimum $u\in W$ von \eqref{eq1} eindeutig.
@@ -100,9 +100,9 @@ Seien also $u_1,u_2\in V$ Lösungen von \eqref{eq3}.
 Seien $V$ ein Hilbertraum, $a(\cdot,\cdot)$ eine symmetrische, stetige, $V$-elliptische Bilinearform auf $V$ und $f$ ein lineares, stetiges Funktional auf $V$. Dann gilt:
 
 \begin{enumerate}[label=(\alph*)]
-\item $a(\cdot,\cdot)$ ist ein Skalaprodukt auf $V$ und daher
+\item $a(\cdot,\cdot)$ ist ein Skalarprodukt auf $V$ und daher
 \begin{align*}
-\Vert v\in\Vert_E:=\sqrt{a(v,v)}\qquad\forall v\in V
+\Vert v\Vert_E:=\sqrt{a(v,v)}\qquad\forall v\in V
 \end{align*}
 eine Norm auf $V$.
 \item Die Variationsgleichung
@@ -113,7 +113,12 @@ besitzt eine eindeutige Lösung.
 \end{enumerate}
 \begin{proof}
 \underline{Zeige (a):}\\
-$a$ ist nach Voraussetzung schon mal bilinear.
+$a$ ist nach Voraussetzung schon mal bilinear und symmetrisch. Fehlt nur noch positive Definitiheit. Aus der Eigenschaft, dass $a$ $V$-elliptisch ist, folgt
+\begin{align*}
+a(v,v)\stackrel{V\text{-ell}}{\geq}
+\alpha\cdot\Vert v\Vert^2_V\geq0
+\end{align*}
+TODO: Das ist die falsche Definition von V-elliptisch. Und hier fehlt wohl eine Eigenschaft, denn so gilt das nicht
 
 \underline{Zeige (b):}\\
 Nutze Lax-Milgram...
@@ -144,7 +149,7 @@ als gegeben.
 \section*{Aufgabe 2.6}
 Sei $a(\cdot,\cdot)$ eine stetige
 \begin{align*}
-a(v,w)\leq M\cdot\Vert v\Vert_v\cdot\Vert w\Vert_W,
+a(v,w)\leq M\cdot\Vert v\Vert_V\cdot\Vert w\Vert_V,
 \end{align*}
 $V$-elliptische
 \begin{align*}
