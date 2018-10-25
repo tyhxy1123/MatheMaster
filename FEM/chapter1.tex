@@ -99,3 +99,153 @@ Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega
 	This shows $T: V \to V$ is continuous and because $a(\cdot,\cdot)$ is bilinear also linear.
 \end{proof_}
 
+\par
+\underline{\textbf{goal}:}
+Show $T^{-1}$ exists and is continuous and linear.\enter
+
+\begin{enumerate}[(a)]
+	\item \textbf{existence}:\enter If $g \in V$ is a unique solution of 
+	\begin{equation*}
+	(g,v) = F(v) \qquad \forall v \in V
+	\end{equation*}
+	with $\|g\|_V = \|F\|_V$ we obtain with (\ref{lm_proof}) 
+	\begin{equation*}
+	a(T^{-1}(g),v) = (g,v) = F(v) \qquad \forall v \in V
+	\end{equation*}
+	and therefor $u = T^{-1}(g)$. It also holds that it is unique, as for $u_1, u_2 \in V$ two solutions $u$ have 
+	\begin{equation*}
+	a(u_1 - u_2,v) = 0 \qquad \forall v \in V
+	\end{equation*}
+	and thus for $v = u_1 - u_2$
+	\begin{equation*}
+	\lambda \|u_1 - u_2\|^2_V \leq a(u_1 -u_2, u_1 -u_2) = 0
+	\end{equation*}
+	and therefor $u_1 = u_2$.
+	
+	\item  $T^{-1}$\textbf{ injectiv}: \enter
+	$a(\cdot, \cdot)$ is coercive $\implies \forall u \in V$
+	\begin{equation*}
+		\lambda \|u\|^2_V \leq (T(u),u) \leq \|T(u)\|_V\|u\|_V
+	\end{equation*}
+	and thus 
+	\begin{equation}\label{inverse}
+		\lambda \|u\|_V \leq \|T(u)\|_V
+	\end{equation}
+	$\implies T^{-1}$ is injective and $T^{-1}: T(V) \to V$ is continuous with
+	\begin{equation*}
+		\|T^{-1}(v)\|_V \leq \lambda^{-1}\|v\|_V \qquad \forall v \in T(V). 
+	\end{equation*}
+	We need to show
+	\begin{equation*}
+		T(V) = V.
+	\end{equation*}
+	\item $T(V)$ \textbf{is closed}:\enter
+	 $(v_n) \subset T(V)$ with $v_n \to v$ for $n \to \infty$ and $v \in V$. To show $v \in T(V)$. By definition of $v_n$ exists a sequence $(u_n) \subset V$ with $v_n = T(u_n) \to v$. With (\ref{inverse}) $(u_n)$ is a Cauchy sequence in $V$ and $V$ \textbf{??missing??} follows $u_n \to u \in V$ because $T$ continuous, $T(u_n) \to T(w)$ and thus $T(w)=v$ and $v \in T(V)$\enter
+	\item $T(V) = V$:\enter
+	 Assume $T(V) \neq V$, as $T(V)$ is a closed linear subspace of $V$, it holds 
+	\begin{equation*}
+		V = T(V) \oplus T(V)^\perp
+	\end{equation*}
+	with $T(V)^\perp \neq \emptyset$. If $z \in T(V)^\perp $ with $z \neq 0$
+	\begin{equation*}
+		(T(v),z) = 0 \qquad \forall v \in V,
+	\end{equation*}
+	it holds with (\ref{lm_proof}) 
+	\begin{equation*}
+		0 = (T(z),z) = a(z,z) \geq \alpha \|z\|^2_V
+	\end{equation*}
+	and thus $z = 0$. \marvosymLightning\enter
+	Now (\ref{inverse}) implies
+	\begin{equation*}
+		\|u\|_V = \|T^{-1}(g)\|_V \leq \lambda^{-1}\|J\|_V = \lambda^{-1}\|F\|_{V'}.
+	\end{equation*}
+	\textbf{?? J ??}
+\end{enumerate}
+
+\textbf{\underline{consider}}
+\begin{itemize}
+	\item Dirichlet boundary conditions(short BC)\enter
+	\item Neumann BC\enter
+	\item Robin BC
+\end{itemize}
+
+
+\begin{enumerate}[(a)]
+	\item \textbf{Dirichlet BC}:\enter
+	look for weak solutions of 
+	\begin{align*}
+		Lu &= f \qquad \text{in } \Omega\enter
+		 u &= g \qquad \text{on } \partial \Omega
+	\end{align*}
+	with 
+	\begin{equation*}
+		Lu = - \displaystyle \sum^d_{i,j} \frac{\partial}{\partial x_i} \left(  a_ij(x) \frac{\partial u}{\partial x_j} \right) + c(x)u.
+	\end{equation*}
+	\begin{example}
+		\begin{align*}
+			d &= 1,&   a_{11}(x)&=1,              & c(x)&=0 \\
+			  &    &            &				  &     &  \\
+			d &= 2,&   a_{11}(x)&= a_{22}(x) = 1, & c(x)&=0 \\ 
+			  &    &   a_{12}(x)&= a_{21}(x) = 0  &     &   \\
+		  	  &    &         Lu &= -\laplace      &     &   \\
+		\end{align*}
+	\end{example}
+	\begin{definition_}
+		$L$ is \textbf{elliptic} in $\Omega$ if $\lambda > 0$ exists, s.t. $\forall \xi \in \R^d$ and \textbf{?? missing ??} $x \in \Omega$
+		\begin{equation*}
+			\displaystyle \sum^d_{i,j} a_{ij}(x)\xi_i\xi_j \geq \lambda |\xi|^2
+		\end{equation*}
+	\end{definition_}
+	weak form 
+	\begin{align*}
+		a(u,v) &= \displaystyle \sum_{i,j} \int \limits_\Omega a_{ij}(x)\frac{\partial u}{\partial x_j} \frac{\partial v}{\partial x_j} \diff x + \int \limits_\Omega cuv \diff x \\
+		F(v)&= \int \limits_\Omega fv \diff x
+	\end{align*}
+	Look for $u$ with $u = g \in H^1_0(\Omega)$ and transform equation to homogenous BC. $w = u = g \in H^1_0(\Omega)$ is solution of 
+	\begin{align*}
+		Lw &= f -Lg \qquad \text{in } \Omega\\
+		 w &= 0 \qquad \qquad \ \,\text{on } \partial\Omega.
+	\end{align*}
+	Define right hand side
+	\begin{equation*}
+		G(v) = F(v) - \displaystyle \sum^d_{i,j} \int \limits_\Omega a_{ij} \frac{\partial g}{\partial x_j}\frac{\partial v}{\partial x_i} \diff x - \int \limits_\Omega cgv \diff x \quad \forall v\in H^1_0(\Omega).
+	\end{equation*}
+	Weak formulation: find $w\in H^1_0(\Omega)$ 
+	\begin{equation*}
+		a(w,v) = G(v) \qquad \forall v \in H^1_0(\Omega)
+	\end{equation*}
+	$\implies u = w +g$ is weak solution of original problem.
+	\begin{comment_}
+		$u = g $ on $\partial \Omega$ means $\gamma(u-g) = 0$
+	\end{comment_}
+
+	\begin{thrm}
+		If $\Omega \subset \R^d\ (d\geq1)$ bounded, $a_{ij},c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g\in H^(\Omega),\ L$ is elliptic, then there exists a unique solution $u \in H^1(\Omega)$ of $Lu=f$ with \textbf{minus or =? } $u-g \in H^1_0(\Omega)$ and 
+		\begin{equation*}
+			\|u\|_{H^1} \leq C\left( \|f\|_{L^2} \|g\|_{H^1} \right)
+		\end{equation*}  
+		with $C = C(\lambda, \Omega,a_{ij},c)>0$.
+	\end{thrm}
+
+	\begin{proof_}
+		Use Lax-Milgram with $V = H^1_0$
+		\begin{itemize}
+			\item a is continuous:\enter
+			Cauchy-Schwartz inequality
+			\begin{align*}
+				|a(u,v)| &\leq \displaystyle \sum^d_{i,j=1} \int \limits_\Omega |a_{ij}| |\frac{\partial u}{\partial x_i}| |\frac{\partial v}{\partial x_j}| \diff x + \int \limits_\Omega |c||u||v| \diff x \\
+				& \leq \underset{i,j = 1,\dots,d}{\text{max}} \Big\{ \|a_{ij}\|_{L^\infty}, \|c\|_{L^\infty} \Big\}\left( \displaystyle \sum^d_{i,j=1} \|\frac{\partial u}{\partial x_j}\| \|\frac{\partial v}{\partial x_i}\| + \|u\|\|v\| \right)\\
+				&= K \Big( \|\nabla u\|_{L^2}\|\nabla v\|_{L^2} + \|u\|_{L^2}\|v\|_{L^2} \Big)\\
+				&\leq K \|u\|_{H^1}\|v\|_{H^1}
+			\end{align*}
+			\item a is coercive: \enter
+			
+		\end{itemize}
+	\end{proof_}
+\end{enumerate}
+
+
+
+
+
+

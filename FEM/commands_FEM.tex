@@ -5,8 +5,13 @@
 
 % for roman letters lists, i am not so familiar with all the packages
 \usepackage{enumerate}
+\usepackage{marvosym}
+\let\marvosymLightning\Lightning
 
 \newenvironment{proof_}{\begin{proof}[Proof]}{\end{proof}}
+
+
+
 
 %% adopted environments to englisch
 \newtheorem{thrm}{Theorem}[section]
@@ -18,6 +23,7 @@
 \newtheorem{remark}[thrm]{Remark}
 
 \newtheorem*{reminder}{Reminder.}
+\newtheorem*{comment_}{Comment.}
 
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
 \newcommand*\bigo{\mathcal{O}}
