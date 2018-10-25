@@ -932,3 +932,244 @@ X=X'\text{ fast sicher }
 
 \underline{Zeige (2):} Zur Übung.
 \end{proof}
+
+\subsection*{Konvergenz in Produkträumen} %noNumber
+Seien $(\S,d)$ und $(\S',d')$ separable metrische Räume. Dann ist auch $(\S\times\S',d\times d')$ ein metrischer Raum. Dies folgt z. B. aus dem \textit{Satz von der koordinatenweise Konvergenz}:
+
+\begin{align}\label{eq3.1KoordinatenweissKonvergenz}\tag{3.1}
+\big(a_n,a_n'\big)
+\stackrelnew{d\times d'}{n\to\infty}{\longrightarrow}
+(a,a')
+\Longleftrightarrow
+(a_n)
+\stackrelnew{d}{n\to\infty}{\longrightarrow}
+a
+\wedge
+(a_n')
+\stackrelnew{d'}{n\to\infty}{\longrightarrow}
+(a')
+\end{align}
+
+Es ``stochastische Versionen'' dieses Satzes.
+
+\begin{satz}\label{satz3.15}\
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+(X_n,X_n')
+\stackrelnew{}{n\to\infty}{\longrightarrow}
+(X,X')~\P\text{-fast sicher}
+\Longleftrightarrow
+X_n
+\stackrelnew{}{n\to\infty}{\longrightarrow}
+X~\P\text{-fast sicher }\wedge
+X_n'
+\stackrelnew{}{n\to\infty}{\longrightarrow}
+X'~\P\text{-fast sicher}
+\end{aligned}$
+\item $\begin{aligned}
+(X_n,X_n')
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+(X,X')
+\Longleftrightarrow
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X\wedge
+X_n'
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X'
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zu (1):}
+\begin{align*}
+(1)\text{, linke Seite }
+&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+X_n\to X,~X_n'\to X'\quad\P\text{-fast sicher}\\
+&\stackrel{\cap\text{ Eins-Mengen}}{\Longleftrightarrow}
+(1),\text{ rechte Seite}
+\end{align*}
+
+\underline{Zu (2):}
+\begin{align*}
+(2)\text{, linke Seite}
+&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+\forall\text{ TF }(X_{n'},X_{n'}')\subseteq(X_n,X_n'):\\
+&\qquad\exists\text{ TTF }(X_{n''},X_{n''}')\subseteq(X_{n'},X_{n'}'):
+(X_{n''},X_{n''}')\stackrel{n\to\infty}{\longrightarrow}\text{ f.s.}
+\end{align*}
+Also wegen Teil (1) mit
+\begin{align*}
+X_{n''}\to X\text{ f.s. und }X_{n''}'\to X'\text{ f.s.}
+\end{align*}
+Somit:
+\begin{align*}
+\forall\text{ TF }(X_{n'})\subseteq(X_n):\exists\text{ TTF }(X_{n''})\subseteq(X_{n'}):X_{n''}\to X\text{ f.s. }
+&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+X_n\stackrelnew{n\to\infty}{\P}{\longrightarrow} X
+\end{align*}
+Und es gilt analog: $X_n'\to X'$.
+\end{proof}
+
+\subsection*{Gleichheit in Verteilung} %NoNumber
+\begin{definition}\label{def3.16} %3.16
+Zufallsvariablen $X,Y$ in $(\S,d)$ über $(\Omega,\A,\P)$ heißen \textbf{gleich in Verteilung}, in Zeichen $X\stackeq{\mathcal{L}} Y$
+\begin{align*}
+:\Longleftrightarrow \P\circ X^{-1}\equiv\P\circ Y^{-1}
+\end{align*}
+\end{definition}
+
+\begin{bemerkung} %noNomber
+Def 3.16 kann erweitert werden auf Zufallsvariablen $X:(\Omega,\A,\P)\to(\S,d)$ und $Y:(\tilde{\Omega},\tilde{\A},\tilde{\P})\to(\S,d)$ durch
+\begin{align*}
+X\stackeq{\mathcal{L}} Y:\Longleftrightarrow\P\circ X^{-1}\equiv\tilde{\P}\circ Y^{-1}
+\end{align*}
+\end{bemerkung}
+
+Charakterisierung von Verteilungsgleichheit in folgendem Satz:
+
+\begin{satz}\label{satz3.17}\
+\begin{enumerate}[label=(\arabic*)]
+\item Seien $\P,Q$ Wahrscheinlichkeitsmaße auf $\B(\S)$. Dann gilt:
+\begin{align*}
+\P\equiv Q\Longleftrightarrow
+\int\limits f\d\P=\int\limits f\d Q\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{align*}
+\item $\begin{aligned}
+X\stackeq{\mathcal{L}} Y\Longleftrightarrow
+\E\big[f(X)\big]=\E\big[f(Y)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zu (1) zeige ``$\implies$'':} Klar.\\
+
+\underline{Zu (1) zeige ``$\Longleftarrow$'':}
+\begin{align*}
+\B(\S)\stackeq{\text{3.2 (1)}}\sigma\big(\mathcal{F}(\S)\big)
+\end{align*}
+und $\F$ ist Durchschnittsstabil. Wegen dem Maßeindeutigkeitssatz reicht es zu zeigen:
+\begin{align*}
+\P(F)=Q(F)\qquad\forall F\in\mathcal{F}(\S)
+\end{align*}
+Sei $F\subseteq\S$ abgeschlossen. Setze
+\begin{align*}
+f_k(x):=\varphi\Big(k\cdot d(x,F)\Big)
+\end{align*}
+(vgl. Satz 2.4). Aus dem Lemma \ref{lemma2.3} folgt, dass die $f_k$ beschränkt und gleichmäßig stetig sind mit $f_k\stackrel{k\to\infty}{\downarrow}\indi_F$. Also gilt:
+\begin{align*}
+\P(F)
+&\stackeq{\text{Def}}
+\int\limits\indi_F\d\P
+=\int\limits\lim\limits_{k\to\infty} f_k\d\P
+\stackeq{\text{Mono-Konv}}
+\lim\limits_{k\to\infty}\int\limits f_k\d\P
+\stackeq{\text{Vor}}
+\lim\limits_{k\to\infty}\int\limits f_k\d Q\\
+&\stackeq{\text{Mono-Konv}}
+\int\limits\lim\limits_{k\to\infty} f_k\d Q
+=\int\limits\indi_F\d Q
+\stackeq{\text{Def}} Q(F)
+\end{align*}
+Da $F$ beliebig war, folgt die Behauptung.\\
+
+\underline{Zu (2):} folgt aus (1) mit dem Transformationssatz \eqref{eqTrafo}:
+\begin{align*}
+X\stackeq{\mathcal{L}} Y
+&\stackrel{\ref{def3.16}}{\Longleftrightarrow}
+\underbrace{\P\circ X^{-1}}_{}=\underbrace{\P\circ Y^{-1}}_{}\\
+&\stackrel{(1)}{\Longleftrightarrow}
+\int\limits_{\S} f\d(\P\circ X^{-1})=\int\limits_{\S} f\d(\P\circ Y^{-1})
+\end{align*}
+und
+\begin{align*}
+\int\limits_{\S} f\d(\P\circ X^{-1})
+\stackeq{\text{Trafo}}
+\int\limits_{\Omega}\underbrace{f\circ X}_{=:f(X)}\d\P
+\stackeq{\text{Def}}
+\E\big[f(X)\big]
+\end{align*}
+\end{proof}
+
+\section{Verteilungskonvergenz von Zufallsvariablen in metrischen Räumen}
+Seien $X,X_n,n\in\N$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A,\P)$. Dann sind
+%st die Verteilung von $X$, 
+\begin{align*}
+P:=\P\circ X^{-1},\qquad P_n:=\P\circ X_n^{-1},\qquad n\in\N
+\end{align*}
+sind Wahrscheinlichkeitsmaße auf $\B(\S)$.
+
+\begin{definition}[Verteilungskonvergenz]\label{def4.1}\
+\begin{enumerate}[label=(\arabic*)]
+\item Seien $P,P_n,n\in\N$ Wahrscheinlichkeitsmaße auf $\B(S)$. Dann \textbf{konvergiert $P_n$ schwach gegen $P$}, in Zeichen
+\begin{align*}
+P_n\stackrelnew{w}{n\to\infty}{\longrightarrow} P
+:\Longleftrightarrow
+\int\limits f\d P_n\stackrel{n\to\infty}{\longrightarrow}\int\limits f\d P\qquad\forall f\in C^b(\S)
+\end{align*}
+Das $w$ steht für ``weakly''.
+\item $X_n$ \textbf{konvergiert in Verteilung gegen $X$ in Raum $(\S,d)$}, in Zeichen
+\begin{align*}
+X_n\stackrel{\mathcal{L}}{\longrightarrow} X\text{ in }(\S,d)
+:\Longleftrightarrow
+\P\circ X_n^{-1}\stackrelnew{w}{n\to\infty}{\longrightarrow}\P\circ X^{-1}
+\end{align*}
+Alternative Schreibweise: $X_n\stackrel{\d}{\longrightarrow} X$. Das $\L$ steht für ``law''.
+\end{enumerate}
+\end{definition}
+
+Äquivalente Charakterisierung von $\stackrelnew{w}{}{\longrightarrow}$ bzw. $\stackrel{\L}{\longrightarrow}$ in folgendem Satz:
+
+\begin{satz}[Portmanteau-Theorem]\enter\label{satz4.2}
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+P_n\stackrelnew{w}{}{\longrightarrow} P
+\end{aligned}$
+\item $\begin{aligned}
+\int\limits f\d P_n\stackrel{}{\longrightarrow}\int\limits f\d P\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{aligned}$
+\item $\begin{aligned}
+\limsup\limits_{n\to\infty} P_n(F)\leq P(F)\qquad\forall F\in\F(\S)
+\end{aligned}$
+\item $\begin{aligned}
+\liminf\limits_{n\to\infty} P_n(G)\geq P(G)\qquad\forall G\in\G(\S)
+\end{aligned}$
+\item $\begin{aligned}
+\limn P_n(B)=P(B)\qquad\forall B\in\B(\S)\mit P(\underbrace{\partial B}_{\in\F(\S)})=0
+\end{aligned}$\\
+Mengen $B\in\B(\S)$ mit $P(\partial B)=0$ heißen \textbf{$P$-randlos}.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zeige (1) ``$\implies$'' (2):}\\
+Folgt aus der Definition \ref{def4.1} (1).\\
+
+\underline{Zeige (2) ``$\implies$'' (3):}\\
+Sei $F\in\F(\S)$ (also abgeschlossen), Der Beweis von Satz \ref{satz3.17} zeigt: Es gibt eine Folge $(f_k)_{k\in\N}$ von gleichmäßigen stetigen, beschränkten Funktionen auf $\S$ mit $f_k\downarrow\indi_F$. Dann gilt:
+\begin{align*}
+\limsup\limits_{n\to\infty} P_n(F)
+=\limsup\limits_{n\to\infty}\int\limits\underbrace{\indi_F}_{\leq f_k~\forall k\in\N}\d P_n
+&\stackrel{\text{Mono}}{\leq}
+\limsup\limits_{n\to\infty}\int\limits f_k\d P_n
+\stackrel{\text{Vor (2)}}{=}
+\int\limits f_k\d P\quad\forall k\in\N\\
+&\stackrel{\text{Mono Konv}}{\implies}
+\int\limits f_k\d P\stackrel{k\to\infty}{\longrightarrow}
+\int\limits\indi_F\d P=P(F)\\
+&\stackrel{k\to\infty}{\implies}~(3)
+\end{align*}
+
+\underline{Zeige (3) ``$\Longleftrightarrow$'' (4):}\\
+Nutze Übergang zum Komplement sowie Rechenregeln für $\liminf$ und $\limsup$:
+\begin{align*}
+\liminf\limits_{n\to\infty} P_n(G)
+&=\liminf\limits_{n\to\infty} \big(1-P_n(G^C)\big)\\
+&=1-\underbrace{\limsup\limits_{n\to\infty} P_n(\underbrace{G^C}_{\in\F})}_{\leq P(G^C)}\\
+&\geq 1-P(G^C)\\
+&=P(G)
+\end{align*}
+
+\end{proof}
+
+
