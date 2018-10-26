@@ -149,7 +149,7 @@ S_N:=\sum\limits_{i=1}^n\xi_i\qquad S_0:=0
 \end{align*}
 \item Ein Random Walk heißt \textbf{einfach} 
 $\begin{aligned}
-	:\gdw\P(\xi_1\in\lbrace-1,1\rbrace)=1
+	:\Longleftrightarrow\P(\xi_1\in\lbrace-1,1\rbrace)=1
 \end{aligned}$
 \end{itemize}
 \end{defi}
@@ -178,7 +178,7 @@ ein Martingal bzgl. $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$. Dabei ist der Term $n\cd
 	\implies(M_n)_{n\in\N} \text{ ist } (\F_n)_{n\in\N}\text{-adaptiert}
 \end{align*}
 \item integrierbar: \begin{align*}
-\sqrt{\E[S_n^2]}=\Vert\xi_1+\ldots\xi_n\Vert_2\stackrel{\Delta}{\leq}\Vert\xi_1\Vert_2+\ldots+\Vert\xi_n\Vert_2\leq n\cdot\sigma<\infty
+\sqrt{\E[S_n^2]}=\Vert\xi_1+\ldots\xi_n\Vert_2\stackrel{\Delta\text{-Ungl}}{\leq}\Vert\xi_1\Vert_2+\ldots+\Vert\xi_n\Vert_2\leq n\cdot\sigma<\infty
 \end{align*}
 \item Martingaleigenschaft:
 \begin{align*}
@@ -219,7 +219,7 @@ ein Martingal bzgl. $(\F_t)_{t\in\N_0}$, denn:
 \item Martingaleigenschaft:
 \begin{align*}
 \E[X_t~|~\F_s]
-\stackeq{\text{def}}\E\Big[\E\big[X~|~\F_t\big]~\Big|~ \F_s\Big]
+\stackeq{\text{Def}}\E\Big[\E\big[X~|~\F_t\big]~\Big|~ \F_s\Big]
 \stackeq{\text{Turm}}
 \E[X~|~\F_s]
 =X_s
@@ -256,8 +256,10 @@ Sei $(\F_t)_{t\in I}$ eine Filtration. Dann gilt:
 (X_t)_{t\in I}\text{ Martingal, $\phi$ konvex und }\E\big[\phi(X_t)\big]<\infty
 \implies \big(\phi(X_t)\big)_{t\in I}\text{ ist Submartingal}
 \end{aligned}$
-\item $(X_t)_{t\in I}\text{ Submartingal, $\phi$ konvex und monoton steigend und }\E\big[\phi(X_t)\big]<\infty$
-	\begin{align*}
+\item $\begin{aligned}
+(X_t)_{t\in I}\text{ Submartingal, $\phi$ konvex und monoton steigend und }\E\big[\phi(X_t)\big]<\infty
+\end{aligned}$
+\begin{align*}
 \implies \big(\phi(X_t)\big)_{t\in I}\text{ ist Submartingal}
 \end{align*}
 \item $\begin{aligned}
@@ -351,21 +353,21 @@ Für Sub-/Supermartingale auf $I=\R_{\geq0}$ heißt die analoge Zerlegung \textb
 Angenommen \eqref{eqDoobZerlegung} gilt, dann folgt
 \begin{align*}
 \E[X_n-X_{n-1}~|~\F_{n-1}]
-&=\underbrace{\E[M_n-M_{n-1}~|~\F_{n-1}]}{=0\text{, da Martingal}} \\
-&+\E[\underbrace{A_n-A_{n-1}}_{\F_{n-1}\text{-messbar}}~|~\F_{n-1}]\\
+&=\underbrace{\E[M_n-M_{n-1}~|~\F_{n-1}]}_{=0\text{, da Martingal}}
++\E[\underbrace{A_n-A_{n-1}}_{\F_{n-1}\text{-messbar}}~|~\F_{n-1}]\\
 &=A_n-A_{n-1}\\
+\implies
+A_n&=\sum\limits_{j=1}^n\underbrace{\E\big[X_j-X_{j-1}~|~\F_j\big]}_{\F_{j-1}\text{-messbar}\implies\F_{n-1}\text{-messbar}}
 \end{align*}
-\[\implies
-A_n=\sum\limits_{j=1}^n\underbrace{\E\big[X_j-X_{j-1}~|~\F_j\big]}_{\F_{j-1}\text{-messbar}\implies\F_{n-1}\text{-messbar}}\]
 \underline{Zur Existenz:}\\
 Wähle also $A_n$ genau so. Dann ist $A_n$ vorhersehbar und $\E\big[|A_n|\big]<\infty$ (folgt aus Dreiecksungleichung). Setze
 \begin{align*}
 M_n:=X_n-X_0-A_n.
 \end{align*}
 Zu zeigen: $(M_n)_{n\in\N}$ ist Martingal.\\
-Adaptiertheit und Integrierbarkeit ist klar. Zu zeigen ist also noch die Martingaleigschaft bzw. deren Äquivalenz: \enter
-\ul{Martingaleigenschaft}:\enter
+Adaptiertheit und Integrierbarkeit ist klar. Zu zeigen ist also noch die Martingaleigschaft bzw. deren Äquivalenz:
 \begin{align*}
+\text{Martingaleigenschaft }\Longleftrightarrow
 \E[M_n~|~\F_{n-1}]=M_{n-1}\Longleftrightarrow
 \E[M_n-M_{n-1}~|~\F_{n-1}]=0
 \end{align*}
@@ -389,8 +391,7 @@ Wegen
 M_n'=X_n-X_0-A_n'
 \end{align*}
 gilt
-$M_n'=M_n\text{ fast sicher}\qquad\forall n\in\N$\\
-Also
+$M_n'=M_n\text{ fast sicher}$ für alle $n\in\N$. Also
 \begin{align*}
 \P\Big((M_n'=M_n)\wedge(A_n'=A_n)~\forall n\in\N\Big)
 =\P\left(\bigcap\limits_{n=1}^\infty(M_n=M_n')\cap(A_n=A_n')\right)
