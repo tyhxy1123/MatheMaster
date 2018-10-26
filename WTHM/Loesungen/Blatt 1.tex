@@ -181,55 +181,57 @@ Dann gelten die Sätze der \textbf{totalen Varianz} bzw. \textbf{totalen Kovaria
 \Cov[X,Y]&=\E\big[\Cov[X,Y~|~\F]\big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]
 \end{align*}
 \begin{proof}
-\underline{Zur ersten Gleichung:}
+\underline{Zur ersten Gleichung:}\\
+Aus der Nebenrechnung
+\begin{align}\label{eqTotaleVarianz}
+\Var[X~|~\F]
+&\stackeq{\text{Def}}
+\E\Big[\big(X-\E[X~|~\F]\big)^2~\Big|~\F\Big]\\\nonumber
+&\stackeq{\text{}}
+\E\Big[X^2-2\cdot X\cdot \E[X~|~\F]+\big(\E[X~|~\F]\big)^2~\Big|~\F\Big]\\\nonumber
+&\stackeq{\text{Lin}}
+\E\big[X^2~\big|~\F\big]-2\cdot\E\big[X\cdot\E[X~|~\F]\big]+\E\Big[\big(\E[X~|~\F]\big)^2~\Big|~\Big]\\\nonumber
+&\stackeq{\text{Pull-out}}
+\E\big[X^2~\big|~\F\big]-2\cdot\E[X~|~\F]\cdot\E[X~|~\F]+
+\E[X~|~\F]\cdot\underbrace{\E\big[\E[X~|~\F]~\big|~\F\big]}_{\stackeq{\text{Tower}}\E[X~|~\F]}\\\nonumber
+&=
+\E\big[X^2~\big|~\F\big]-\big(\E[X~|~\F]\big)^2 
+\end{align}
+folgt
 \begin{align*}
-\E\big[\Var[X~|~\F]\big]+\Var\big[\E[X~|~\F]\big]
-&=\E\Big[\E\big[\big(X-\E[X~|~\F]\big)^2~\big|~\F\big]\Big]+\Var\big[\E[X~|~\F]\big]\\
-&=...\\
-&=\E\big[\E[X^2~|~\F]\big]-\Big(\E\big[\E[X~|~\F]\big]\Big)^2\\
+&~~~~\E\big[\Var[X~|~\F]\big]+\Var\big[\E[X~|~\F]\big]\\
+&=\E\big[\Var[X~|~\F]\big]+\E\Big[\big(\E[X~|~\F]\big)^2\Big]-\Big(\E\big[\E[X~|~\F]\big]\Big)^2\\
+&\stackeq{\eqref{eqTotaleVarianz}}
+\E\Big[\E\big[X^2~\big|~\F\big]-\big(\E[X~|~\F]\big)^2 \Big]+
+\E\Big[\big(\E[X~|~\F]\big)^2\Big]-\Big(\E\big[\E[X~|~\F]\big]\Big)^2\\
+&\stackeq{\text{Lin}}
+\E\Big[\E\big[X^2~\big|~\F\big]\Big]\underbrace{-\E\Big[\big(\E[X~|~\F]\big)^2 \Big]+
+\E\Big[\big(\E[X~|~\F]\big)^2\Big]}_{=0}-\Big(\E\big[\E[X~|~\F]\big]\Big)^2\\
+&=\E\Big[\E\big[X^2~\big|~\F\big]\Big]-\Big(\E\big[\E[X~|~\F]\big]\Big)^2\\
 &\stackeq{\text{Tower}}
 \E[X^2]-\big(\E[X]\big)^2\\
 &=\Var[X]
 \end{align*}
 
-%Hier die Live-Mitschrift:
-\begin{align*} %(*)
-\Var[X~|~\F]&=\E[X^2~|~\F]-2\E[X\cdot\E[X~|~F]~|~\F]+\underbrace{\E[\E[X~|~\F]^2~|~\F]}_{=\E[X~|~\F]^2}\\
-&\stackeq{Pull-out}
-\E[X^2~|~\F]-2\cdot\E[X~|~\F]\cdot\E[X~|~\F]+\E[X~|~\F]^2\\
-&=\E[X^2~|~\F]-\E[X~|~\F]^2 
-\end{align*}
-\begin{align*}
-\Var[X]&=\E[X^2]-(\E[X])^2\\
-&\stackeq{Tower}
-\E[\E[X^2~|~\F]]-(\E[\E[X~|~\F]])^2\\
-&\stackeq{(*)}
-\E[\Var[X~Y~\F]+\E[X~|~\F]^2]-(\E[\E[X~|~\F]])^2\\
-&=
-\E[\Var[X~|~\F]]+\underbrace{\E[\E[X~|~\F]-\E[\E[X~|~\F]]^2}_{=\E[X~|~\F]}\\
-&=\E[\Var[X~|~\F]]+\Var[\E[X~|~\F]]
-\end{align*}
+\underline{Zur zweiten Gleichung:} 
 
-\underline{Zur zweiten Gleichung:}
-\begin{align*}
-&\E\big[\Cov[X,Y~|~\F]\big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]\\
-&=\E\Big[\E\big[\big(X-\E[X~|~\F]\big)\cdot\big(Y-\E[Y~|~\F]\big)~\big|~\F\big]\Big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]\\
-&=ToDo
-\end{align*}
+%\begin{align*}
+%&\E\big[\Cov[X,Y~|~\F]\big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]\\
+%&=\E\Big[\E\big[\big(X-\E[X~|~\F]\big)\cdot\big(Y-\E[Y~|~\F]\big)~\big|~\F\big]\Big]+\Cov\big[\E[X~|~F],\E[Y~|~\F]\big]\\
+%&=ToDo
+%\end{align*}
 
-Live-Mitschrift:
-\begin{align*}
-\Var[X~|~\F]
-&=\E[\Var[X~|~\F]]+\Var[\E[X~|~\F]]\\
-\Var[X]&=\Cov[X,X]\\
-\Cov[X,X~|~\F]&=
-\E[\Cov[X,X]~|~\F]]+\Cov[\E[X~|~F],\E[X~|~\F]]
-\end{align*}
+%\begin{align*}
+%\Var[X~|~\F]
+%&=\E[\Var[X~|~\F]]+\Var[\E[X~|~\F]]\\
+%\Var[X]&=\Cov[X,X]\\
+%\Cov[X,X~|~\F]&=
+%\E[\Cov[X,X]~|~\F]]+\Cov[\E[X~|~F],\E[X~|~\F]]
+%\end{align*}
 
-Prof meint:\\
-\textit{Polarisation:} 
+Zunächst gilt die \textit{Polarisation:} 
 \begin{align*}
-\Cov(X,Y)=\frac{1}{2}\cdot\big(\underbrace{\Var(X+Y)}_{=\langle X+Y,X+Y\rangle}-\underbrace{\Var[X]}_{=\langle X,X\rangle}-\underbrace{\Var[Y]}_{=\langle Y,Y\rangle}\big)
+\Cov(X,Y)=\frac{1}{2}\cdot\big(\underbrace{\Var[X+Y]}_{=\langle X+Y,X+Y\rangle}-\underbrace{\Var[X]}_{=\langle X,X\rangle}-\underbrace{\Var[Y]}_{=\langle Y,Y\rangle}\big)
 \end{align*}
 Setze der Kürze halber $X_F:=\E[X~|~\F], Y_F:=\E[Y~|~\F]$. Dann gilt:
 \begin{align*}
