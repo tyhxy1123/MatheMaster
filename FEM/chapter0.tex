@@ -33,13 +33,13 @@ z.B. $\Omega = (0,1) \times (0,1)$ mit der Notation
 	u(x_{i-1},y_j) &= 	u(x_{i},y_j) - 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + \bigo(h^3)\\
 \end{align*}
 
-$\implies$
+$\stackrel{\text{adding together}}{\implies}$
 \begin{align*}
 	\partial_{xx} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_{i+1},y_j) - 2u(x_i,y_j) + 	u(x_{i-1},y_j) \big) + \bigo(h)\\
 	\partial_{yy} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_i,y_{j+1}) - 2u(x_i,y_j) + 	u(x_i,y_{j-1}) \big) + \bigo(h)
 \end{align*}
 
-$\implies$
+$\stackrel{\text{adding together}}{\implies}$
 \begin{equation*}
 	\laplace u(x_i,y_j) = \frac{1}{h^2} \left( u_{i+1 j} + u_{i-1 j} + u_{i j+1} + u_{i j-1} - 4u_{i j} \right)
 \end{equation*}
@@ -86,13 +86,13 @@ $\rightarrow$ \underline{finite Elemente}\enter
 \end{align*}
 
 \begin{equation*}
-	\int_\Omega \laplace u v \diff x = \int_\Omega fv \diff x \text { f\"ur } v\in C^1(\overline{\Omega}), \; v=0 \text{ auf } \partial \Omega
+	\int_\Omega (\laplace u) v \diff x = \int_\Omega fv \diff x \text { f\"ur } v\in C^1(\overline{\Omega}), \; v=0 \text{ auf } \partial \Omega
 \end{equation*}
 
 \begin{align*}
 	\int_\Omega \text{div}( \nabla u) v \diff x
-	 &= \int_\Omega \text{div}( v \nabla u ) \diff x -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
-	&=  \underbrace{\int_{\partial\Omega}  v \nabla u  \cdot \vartheta \diff x}_{=0\text{ s. Def. v}} -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
+	&\stackeq{\text{par. Int.}} \int_\Omega \text{div}( v \nabla u ) \diff x -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
+	&\stackeq{\text{Gauß}}  \underbrace{\int_{\partial\Omega}  v \nabla u  \cdot \vartheta \diff x}_{=0\text{ s. Def. v}} -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
 	&=  \int_\Omega fv \diff x
 \end{align*}
 
@@ -202,7 +202,7 @@ In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
 		\item two functions $u,v \in L^p(\Omega)$ are equal if $u(x) = v(x)$ almost everywhere.
 		\item norm: 
 		\begin{align*}
-		\|u\|_{L^p(\Omega)} \overset{\text{short}}{=}\|u\|_{L^p} &= \Big ( \int_\Omega |u|^p \diff x < \infty \Big )^{\frac{1}{p} } & 1 \leq p&<\infty \\
+			\|u\|_{L^p(\Omega)} \overset{\text{short}}{=}\|u\|_{L^p} &= \Big (\underbrace{ \int_\Omega |u|^p \diff x}_{ < \infty} \Big )^{\frac{1}{p} } & 1 \leq p&<\infty \\
 		\|u\|_{L^\infty} &= \text{ess }\underset{\Omega}{\text{sup}} |u| & p&= \infty 
 		\end{align*}
 		With this norm $L^p$ and $L^\infty$ are Banach-spaces.
@@ -213,7 +213,7 @@ In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
 		is a Hilbert-space.
 		\item support of function:
 		\begin{equation*}
-		\text{supp }u  = \big \{ x \in \Omega:\quad u(x)=0  \big \} 
+		\text{supp }u  = \big \{ x \in \Omega:\quad u(x)\neq0  \big \} 
 		\end{equation*}
 		\item space of test functions
 		\begin{equation*}
@@ -224,11 +224,13 @@ In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
 
 
 
+\begin{defi}
 Let $ u \in L^p(\Omega)$, $1 \leq p< \infty$, $\alpha \in \N^d_0$ (multiindex).\enter
-u has a weak derivative $ D^\alpha u \in L^p(\Omega) $ if $\forall v \in C^\infty_0(\Omega)$
+The function u has a \textbf{weak derivative} $ D^\alpha u \in L^p(\Omega) $ 
 \begin{equation*}
-	(D^\alpha,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2}
+	:\iff (D^\alpha,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2} \qquad $\forall v \in C^\infty_0(\Omega)$
 \end{equation*}
+\end{defi}
 
 \begin{example}
 	\begin{align*}
@@ -236,11 +238,10 @@ u has a weak derivative $ D^\alpha u \in L^p(\Omega) $ if $\forall v \in C^\inft
 	\end{align*}
 	
 	\begin{equation*}
-	<u',v> \overset{\text{p.I} }{=} -<u,v'>\\
+	\langle u',v \rangle\overset{\text{p.I} }{=} -\langle u,v'\rangle\\
 	\end{equation*}
-	for $u \in L^2(\Omega)\cap C^{|\alpha|}( \overline{\Omega} )$ weak and strong derivative is identical.
+	for $u \in L^2(\Omega)\cap C^{|\alpha|}( \overline{\Omega} )$ the weak derivative and strong derivative are identical.
 \end{example}
-\enter
 
 \begin{example}
 
@@ -296,7 +297,7 @@ these spaces are Banach spaces.
 	\end{align*}
 \end{example}
  
-Later we will see, that if m and p are sufficiently large sobolev functions are continuous.\\
+Later we will see, that if m and p are sufficiently large, then sobolev functions are continuous.\\
  
 \underline{relation to problem in motivation:}\\
 
@@ -363,15 +364,16 @@ The spaces are dual spaces of $H^k_0(\Omega)$.
 \begin{example}
 	\begin{align*}
 	u(x)&=|x|,\quad x \in \Omega = (-1,1), \quad v \in H^1_0(\Omega)\\
-	<u'',v>_{H^{-1} } &= -<u',v'>_{H^0 }\\
-	&= -<u',v'>_{L^2} \\
+	\langle u'',v\rangle_{H^{-1} } 
+	&= -\langle u',v'\rangle_{H^0 }\\
+	&= -\langle u',v'\rangle_{L^2} \\
 	&= +\int^0_{-1} v'(x) \diff x - \int^1_0 v'(x) \diff x\\
 	&= 2 v(0)
 	\end{align*}
 	
 	The differential equation $u'' = f$ in $\Omega = (-1,1)$ with $u(-1)= u(1) =1$ and
 	\begin{equation*}
-	<f,v>_{H^{-1} } = 2v(0)\qquad \forall v \in H^1_0(\Omega),
+	\langle f,v\rangle_{H^{-1} } = 2v(0)\qquad \forall v \in H^1_0(\Omega),
 	\end{equation*} 
 	$f \in H^1(\Omega)$, $u(x)=|x|$ is solution, but is not twice differentiable in a classical or weak sense.
 \end{example}

@@ -35,12 +35,11 @@ Now we call
 
 We call u
 \begin{enumerate}[label=(\alph*)]
-\item test
 \item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of \eqref{weak_form}
 \item \textbf{classical solution} of (\ref{poisson}), if \textbf{?missing part?} a weak solution of \eqref{weak_form}. 
 \end{enumerate}
 
-If $u$ is a weak solution of \eqref{weak_form} and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \ in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
+If $u$ is a weak solution of \eqref{weak_form} and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
 \begin{equation*}
 	\int \limits_\Omega \left( f + \laplace u \right) v \diff x = \int \limits_\Omega  fv - \nabla u \cdot \nabla v \diff x = 0
 \end{equation*}
@@ -112,7 +111,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\begin{equation*}
 	a(T^{-1}(g),v) = (g,v) = F(v) \qquad \forall v \in V
 	\end{equation*}
-	and therefor $u = T^{-1}(g)$. It also holds that it is unique, as for $u_1, u_2 \in V$ two solutions $u$ have 
+	and therefore $u = T^{-1}(g)$. It also holds that it is unique, as for $u_1, u_2 \in V$ two solutions $u$ have 
 	\begin{equation*}
 	a(u_1 - u_2,v) = 0 \qquad \forall v \in V
 	\end{equation*}
@@ -120,7 +119,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\begin{equation*}
 	\lambda \|u_1 - u_2\|^2_V \leq a(u_1 -u_2, u_1 -u_2) = 0
 	\end{equation*}
-	and therefor $u_1 = u_2$.
+	and therefore $u_1 = u_2$.
 	
 	\item  $T^{-1}$\textbf{ injectiv}: \enter
 	$a(\cdot, \cdot)$ is coercive $\implies \forall u \in V$
@@ -318,7 +317,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 			\|u\|_{H^1} \leq C \big ( \|f\|_{L^2} + \|g\|_{H^1} \big )	
 		\end{equation*}
 	\end{thrm}
-	\begin{proof_}
+	\begin{proof_}\enter
 		\begin{itemize}
 			\item Part (I): \enter
 				$a$ is continuous in $V = H^1(\Omega)$: see Dirichlet BC.\enter
