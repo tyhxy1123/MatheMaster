@@ -1,4 +1,3 @@
-
 \section{weak solutions of elliptic pde}
 
 \begin{example}
@@ -17,6 +16,7 @@ If $f \in L^2(\Omega)$, $u \in C^2(\Omega)\cap C(\overline{\Omega})$ is solution
 								   &= \int \limits_\Omega \nabla u \cdot \nabla v \diff x - \underbrace{\int \limits_{\partial \Omega} \left( \nabla uv\right)\cdot \vartheta \diff x}_{=0,\ v|_{\partial \Omega} = 0} \\
 								   &= \int \limits_\Omega \nabla u \cdot \nabla v \diff x
 \end{align*}
+
 Because $C^\infty_0(\Omega)$ is dense in $H^1_0(\Omega)$ this also holds for all $v \in H^1_0(\Omega)$. Now define the Hilbert form
 \begin{equation*}
 	a(u,v) = \int \limits_\Omega \nabla u \cdot \nabla v \diff x \qquad u,v\in H^1_0(\Omega)
@@ -31,16 +31,16 @@ Now we call
 \begin{equation}\label{weak_form}
 	a(u,v) = F(v) \qquad \forall v \in  H^1_0(\Omega)
 \end{equation}
-\textbf{weak formulation} of (\ref{poisson}).\enter
-
+\textbf{weak formulation} of (\ref{poisson}).\\
 
 We call u
-\begin{enumerate}[(a)]
-	\item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of (\ref{weak_form})\\
-	\item \textbf{classical solution} of (\ref{poisson}), if \textbf{?missing part?} a weak solution of (\ref{weak_form}). 
+\begin{enumerate}[label=(\alph*)]
+\item test
+\item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of \eqref{weak_form}
+\item \textbf{classical solution} of (\ref{poisson}), if \textbf{?missing part?} a weak solution of \eqref{weak_form}. 
 \end{enumerate}
 
-If $u$ is a weak solution of (\ref{weak_form}) and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \ in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
+If $u$ is a weak solution of \eqref{weak_form} and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \ in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
 \begin{equation*}
 	\int \limits_\Omega \left( f + \laplace u \right) v \diff x = \int \limits_\Omega  fv - \nabla u \cdot \nabla v \diff x = 0
 \end{equation*}
@@ -55,7 +55,7 @@ Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega
 
 \begin{definition_}
 	$V$ is a real Hilbert space, $a: V \times V \to \R$ bilinearform
-	\begin{enumerate}[(a)]
+	\begin{enumerate}[label=(\alph*)]
 		\item $a$ is \textbf{continuous} in $V$ if there exists $K > 0$ s.t. $\forall u,v \in V:$ 
 		\begin{equation*}
 			|a(u,v)| \leq K \|u\| \|v\|.
@@ -103,7 +103,7 @@ Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega
 \underline{\textbf{goal}:}
 Show $T^{-1}$ exists and is continuous and linear.\enter
 
-\begin{enumerate}[(a)]
+\begin{enumerate}[=label=(\alph*)]
 	\item \textbf{existence}:\enter If $g \in V$ is a unique solution of 
 	\begin{equation*}
 	(g,v) = F(v) \qquad \forall v \in V
@@ -170,11 +170,11 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 \end{itemize}
 
 
-\begin{enumerate}[(a)]
+\begin{enumerate}[=(\alph*)]
 	\item \textbf{Dirichlet BC}:\enter
 	look for weak solutions of 
 	\begin{align*}
-		Lu &= f \qquad \text{in } \Omega\enter
+		Lu &= f \qquad \text{in } \Omega\\
 		 u &= g \qquad \text{on } \partial \Omega
 	\end{align*}
 	with 
@@ -309,7 +309,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 		and thus coercive.
 	\end{comment_}
 	\begin{thrm}\enter
-		\begin{enumerate}[(I)]
+		\begin{enumerate}[label=(\Roman*)]
 			\item If $\underset{\Omega}{\text{inf}}\ c > 0$, there exists a unique solution $u \in H^1(\Omega)$.
 			\item If $c \equiv 0$ and $F(1)=0$ there exists a unique solution $u \in \{ u \in H^1(\Omega): \int \limits_\Omega u \diff x =0 \}$.
 		\end{enumerate}
