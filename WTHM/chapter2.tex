@@ -107,7 +107,7 @@ Sei $X=(X_t)_{t\in I}$ ein stochastischer Prozess und $(\F_t)_{t\in I}$ eine Fil
 \begin{enumerate}[label=(\alph*)]
 \item $(X_t)_{t\in I}$ ist adaptiert an $(\F_t)_{t\in I}$
 \item $\begin{aligned}
-		X_t\in L_1(\Omega,\A,\P) \qquad \forall t\in I\qquad\text{ (d. h. }\E\big[|X_t|\big]<\infty)
+		X_t\in L_1(\Omega,\A,\P) \qquad \forall t\in I\qquad(\text{ d. h. } \E\big[|X_t|\big]<\infty)
 \end{aligned}$
 \item $\begin{aligned}
 \E[X_t~|~\F_s]=X_s\qquad\forall s,t\in I\mit s\leq t
@@ -144,10 +144,13 @@ S_N:=\sum\limits_{i=1}^n\xi_i\qquad S_0:=0
 \begin{itemize}
 \item Ein Random Walk heißt \textbf{symmetrisch}
 \begin{align*}
-&:\Longleftrightarrow F\text{ symmetrisch}\\
+:&\Longleftrightarrow F\text{ symmetrisch}\\
 &\Longleftrightarrow\P(\xi_1\in B)=\P(\xi_1\in -B)\qquad\forall B\in\B(\R)
 \end{align*}
-\item Ein Random Walk heißt \textbf{einfach} $:\gdw\P(\xi_1\in\lbrace-1,1\rbrace)=1$
+\item Ein Random Walk heißt \textbf{einfach} 
+$\begin{aligned}
+	:\gdw\P(\xi_1\in\lbrace-1,1\rbrace)=1
+\end{aligned}$
 \end{itemize}
 \end{defi}
 
@@ -168,12 +171,15 @@ Dann ist
 \begin{align*}
 (M_n)_{n\in\N}\mit M_n:=S_n^2-n\cdot\sigma^2,n\in\N
 \end{align*}
-ein Martingal bzgl. $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$. Dabei ist der Term $-n\cdot\sigma^2$ ein \textbf{Kompensator}-Term, denn ohne diesen wäre $M_n$ kein Martingal. Überprüfen der Eigenschaften:
+ein Martingal bzgl. $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$. Dabei ist der Term $n\cdot\sigma^2$ ein \textbf{Kompensator}-Term, der $M_n$ Martingal erst zum Martingal macht. Überprüfen der Eigenschaften:
 \begin{itemize}
-\item adaptiert: $M_n$ ist messbare Funktion von $\xi_1,\ldots,\xi_n\implies(M_n)_{n\in\N}$ ist $(\F_n)_{n\in\N}$-adaptiert
-\item integrierbar: $\begin{aligned}
+\item adaptiert: $M_n$ ist messbare Funktion von $\xi_1,\ldots,\xi_n$
+\begin{align*}
+	\implies(M_n)_{n\in\N} \text{ ist } (\F_n)_{n\in\N}\text{-adaptiert}
+\end{align*}
+\item integrierbar: \begin{align*}
 \sqrt{\E[S_n^2]}=\Vert\xi_1+\ldots\xi_n\Vert_2\stackrel{\Delta}{\leq}\Vert\xi_1\Vert_2+\ldots+\Vert\xi_n\Vert_2\leq n\cdot\sigma<\infty
-\end{aligned}$
+\end{align*}
 \item Martingaleigenschaft:
 \begin{align*}
 \E[M_n~|~\F_{n-1}]
@@ -212,8 +218,8 @@ ein Martingal bzgl. $(\F_t)_{t\in\N_0}$, denn:
 \end{align*}
 \item Martingaleigenschaft:
 \begin{align*}
-\E[X_t~|~\F_a]
-=\E\Big[\E\big[X~|~\F_t\big]~\Big|~ \F_s\Big]
+\E[X_t~|~\F_s]
+\stackeq{\text{def}}\E\Big[\E\big[X~|~\F_t\big]~\Big|~ \F_s\Big]
 \stackeq{\text{Turm}}
 \E[X~|~\F_s]
 =X_s
@@ -237,9 +243,9 @@ Sei $(\F_t)_{t\in I}$ eine Filtration. Dann gilt:
 \implies\forall a,b\in\R: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Martingal}
 \end{aligned}$
 \item $\begin{aligned}
-(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Submartingale }
+		&(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Submartingale }&
 &\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Submartingal}\\
-(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Supermartingale }
+&(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Supermartingale }&
 &\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Supermartingal}
 \end{aligned}$
 \item $\begin{aligned}
@@ -250,10 +256,10 @@ Sei $(\F_t)_{t\in I}$ eine Filtration. Dann gilt:
 (X_t)_{t\in I}\text{ Martingal, $\phi$ konvex und }\E\big[\phi(X_t)\big]<\infty
 \implies \big(\phi(X_t)\big)_{t\in I}\text{ ist Submartingal}
 \end{aligned}$
-\item $\begin{aligned}
-(X_t)_{t\in I}\text{ Submartingal, $\phi$ konvex und monoton steigend und }\E\big[\phi(X_t)\big]<\infty\\
+\item $(X_t)_{t\in I}\text{ Submartingal, $\phi$ konvex und monoton steigend und }\E\big[\phi(X_t)\big]<\infty$
+	\begin{align*}
 \implies \big(\phi(X_t)\big)_{t\in I}\text{ ist Submartingal}
-\end{aligned}$
+\end{align*}
 \item $\begin{aligned}
 (X_t)_{t\in I}\text{ Martingal}
 \Longleftrightarrow
@@ -279,11 +285,10 @@ Da $\phi$ konvex ist, ist $\phi$ Supremum aller linearen Trägerfunktionen, d. h
 Daraus folgt:
 \begin{align*}
 \phi\big(\E[X~|~\F]\big)
-\leq\sup\limits_{\begin{subarray}{c}a\cdot y+b\leq\phi(y)\\y\in\R\end{subarray}}\big(a\cdot\E[X~|~\F]+b\big)
-=\sup\limits_{\begin{subarray}{c}a\cdot y+b\leq\phi(y)\\y\in\R\end{subarray}}
-\E[a\cdot X+b~|~\F]
-\leq
-\E\big[\phi(x)~\big|~\F\big]
+&\leq\sup\limits_{\begin{subarray}{c}a\cdot y+b\leq\phi(y)\\y\in\R\end{subarray}}\big(a\cdot\E[X~|~\F]+b\big) \\
+&=\sup\limits_{\begin{subarray}{c}a\cdot y+b\leq\phi(y)\\y\in\R\end{subarray}}
+\E[a\cdot X+b~|~\F] \\
+&\leq \E\big[\phi(x)~\big|~\F\big]
 \end{align*}
 \end{proof}
 
@@ -305,7 +310,7 @@ a) und b) folgen aus Linearität und Monotoni der bedingten Erwartung. f) ist kl
 \E\big[\phi(X_t)~\big|~\F_s\big]
 \stackrel{\text{Jensen}}{\geq}
 \phi\big(\E[X_t~|~\F_s]\big)
-\stackeq{\text{Marting}}
+\stackeq{\text{MG}}
 \phi(X_s)
 \end{align*}
 
@@ -346,21 +351,22 @@ Für Sub-/Supermartingale auf $I=\R_{\geq0}$ heißt die analoge Zerlegung \textb
 Angenommen \eqref{eqDoobZerlegung} gilt, dann folgt
 \begin{align*}
 \E[X_n-X_{n-1}~|~\F_{n-1}]
-=\underbrace{\E[M_n-M_{n-1}~|~\F_{n-1}]}{=0\text{, da Martingal}}
-+\E[\underbrace{A_n-A_{n-1}}_{\F_{n-1}\text{-messbar}}~|~\F_{n-1}]\\
+&=\underbrace{\E[M_n-M_{n-1}~|~\F_{n-1}]}{=0\text{, da Martingal}} \\
+&+\E[\underbrace{A_n-A_{n-1}}_{\F_{n-1}\text{-messbar}}~|~\F_{n-1}]\\
 &=A_n-A_{n-1}\\
-&\implies
-A_n=\sum\limits_{j=1}^n\underbrace{\E\big[X_j-X_{j-1}~|~\F_j\big]}_{\F_{j-1}\text{-messbar}\implies\F_{n-1}\text{-messbar}}
 \end{align*}
+\[\implies
+A_n=\sum\limits_{j=1}^n\underbrace{\E\big[X_j-X_{j-1}~|~\F_j\big]}_{\F_{j-1}\text{-messbar}\implies\F_{n-1}\text{-messbar}}\]
 \underline{Zur Existenz:}\\
 Wähle also $A_n$ genau so. Dann ist $A_n$ vorhersehbar und $\E\big[|A_n|\big]<\infty$ (folgt aus Dreiecksungleichung). Setze
 \begin{align*}
 M_n:=X_n-X_0-A_n.
 \end{align*}
 Zu zeigen: $(M_n)_{n\in\N}$ ist Martingal.\\
-Adaptiertheit und Integrierbarkeit ist klar. Zu zeigen ist also noch die Martingaleigschaft bzw. deren Äquivalenz:
+Adaptiertheit und Integrierbarkeit ist klar. Zu zeigen ist also noch die Martingaleigschaft bzw. deren Äquivalenz: \enter
+\ul{Martingaleigenschaft}:\enter
 \begin{align*}
-\text{Martingaleigenschaft }\E[M_n~|~\F_{n-1}]=M_{n-1}\Longleftrightarrow
+\E[M_n~|~\F_{n-1}]=M_{n-1}\Longleftrightarrow
 \E[M_n-M_{n-1}~|~\F_{n-1}]=0
 \end{align*}
 Also:
@@ -370,7 +376,7 @@ Also:
 -\E[A_n-A_{n-1}~|~\F_{n-1}]\\
 &=\E[ X_n-X_{n-1}~|~\F_{n-1}]
 -(A_n-A_{n-1})\\
-\stackeq{\text{Def }A}
+&\stackeq{\text{Def }A}
 0
 \end{align*}
 \underline{Zur Eindeutigkeit:}\\
@@ -383,8 +389,9 @@ Wegen
 M_n'=X_n-X_0-A_n'
 \end{align*}
 gilt
+$M_n'=M_n\text{ fast sicher}\qquad\forall n\in\N$\\
+Also
 \begin{align*}
-M_n'=M_n\text{ fast sicher}\qquad\forall n\in\N\\
 \P\Big((M_n'=M_n)\wedge(A_n'=A_n)~\forall n\in\N\Big)
 =\P\left(\bigcap\limits_{n=1}^\infty(M_n=M_n')\cap(A_n=A_n')\right)
 =1
