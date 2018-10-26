@@ -466,51 +466,13 @@ Sei $V$ ein Hilbertraum. Finde $u\in V$ so, dass
 a(u,v)=l(v)\qquad\forall v\in V.
 \end{align*}
 
-\defi
-(Eigenschaften)\enter
-Eigenschaften einer Bilinearform $a$:
+Eigenschaften der oben definieren Bilinearform $a$:
 \begin{itemize}
 \item $a$ ist stetig auf $V$, d. h.
 \begin{align*}
 \exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V
 \end{align*}
-\item $a$ ist \textbf{koerziv}, d. h.
-\begin{align*}
-\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V
-\end{align*} 
-\end{itemize}
-Eigenschaften einer Linearform $l$:
-\begin{itemize}
-\item $l$ ist stetig auf $V$, d. h.
-\begin{align*}
-\exists M^\ast>0:\forall v\in V: \big|l(v)\big|\leq M^\ast\cdot\Vert v\Vert_V
-\end{align*}
-\end{itemize}
-
-\begin{theorem}[Lax-Milgram]\label{theorem2.1}\enter
-Sei $V$ ein Hilbertraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $b$ eine stetige Linearform auf $V$.\\
-Dann hat das Variationsproblem
-\begin{align*}
-\text{Bestimme $u\in V$ so, dass }a(u,v)=b(v)\qquad\forall v\in V.
-\end{align*}
-eine eindeutige Lösung.
-\end{theorem}
-\begin{proof}
-Nächste Vorlesung.
-\end{proof}
-
-%Beispiel? Oder was ist das Folgende?
-Wähle normierten Raum $V:=H_0^1(\Omega)$ mit Norm $\Vert\cdot\Vert_V:=\Vert\cdot\Vert_{1,2,\Omega}$.
-\begin{itemize}
-\item $l$ ist stetig, denn:
-\begin{align*}
-\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
-\stackrel{\text{CS}}{\leq}
-\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
-\stackrel{\text{CS}}{\leq}
-\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
-\end{align*}
-\item $a$ ist stetig, denn:
+denn:
 \begin{align*}
 \big| a(u,v)\big|=\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
 \leq
@@ -518,7 +480,11 @@ Wähle normierten Raum $V:=H_0^1(\Omega)$ mit Norm $\Vert\cdot\Vert_V:=\Vert\cdo
 \leq
 \underbrace{1}_{=:M}\cdot\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
 \end{align*}
-\item $a$ ist koerziv, denn:
+\item $a$ ist \textbf{koerziv}, d. h.
+\begin{align*}
+\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V
+\end{align*} 
+denn:
 \begin{align*}
 a(v,v)
 =\int\limits_\Omega\nabla v\cdot\nabla v\d x
@@ -528,3 +494,361 @@ a(v,v)
 \frac{1}{c_F^2}\cdot\Vert v\Vert^2_{1,2,\Omega}
 \end{align*}
 \end{itemize}
+Eigenschaften der oben definierten Linearform $l$:
+\begin{itemize}
+\item $l$ ist stetig auf $V$, d. h.
+\begin{align*}
+\exists M^\ast>0:\forall v\in V: \big|l(v)\big|\leq M^\ast\cdot\Vert v\Vert_V
+\end{align*}
+denn:
+\begin{align*}
+\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
+\stackrel{\text{CS}}{\leq}
+\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
+\stackrel{\text{CS}}{\leq}
+\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
+\end{align*}
+\end{itemize}
+
+\begin{theorem}[Lax-Milgram]\label{theorem2.1LaxMilgram}\enter
+Sei $V$ ein Hilbertraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $b$ eine stetige Linearform auf $V$.\\
+Dann hat das Variationsproblem
+\begin{align*}
+\text{Bestimme $u\in V$ so, dass }a(u,v)=b(v)\qquad\forall v\in V.
+\end{align*}
+eine eindeutige Lösung.
+\end{theorem}
+\begin{proof}
+\underline{Schritt 1:}\\ Transformation in einen dualen Operator über dem Dualraum $V^\ast$ von $V$. Die Abbildung $v\mapsto a(u,v)$ definiert für alle festen $u\in V$ eine stetige Linearform auf $V$. Wir bezeichnen diese mit $Au\in V^\ast$
+\begin{align*}
+	\langle Au,v\rangle=(Au)(v):&=a(u,v)\qquad\forall u,v\in V \\
+	b\in V^\ast: \langle b,v\rangle&=b(v)
+\end{align*}
+Damit folgt:
+\begin{align*}
+\text{Variationsproblem}&\Longleftrightarrow\langle Au,v\rangle=\langle b,v\rangle\qquad\forall v\in V\\
+&\Longleftrightarrow Au=b\text{ in }V^\ast
+\end{align*}
+\underline{Schritt 2:}\\
+Die Abbildung $V\to V^\ast$ kann auch als Abbildung $A:V\to V$ aufgefasst werden. Eigenschaften von $A$:
+\begin{enumerate}[label=(\alph*)]
+\item $A$ ist linear auf $V$
+\begin{align*}
+\big\langle A(\alpha u+\beta v),w\big\rangle
+&=a(\alpha u+\beta v,w)\\
+&=\alpha a(u,w)+\beta a(v,w)\\
+&=\alpha\langle Au,w\rangle+\beta\langle Av,w\rangle\qquad\forall u,v,w,\in V
+\end{align*}
+\item $A$ ist stetig auf $V$:
+\begin{align*}
+\Vert A v\Vert_{V}
+&=\Vert A u\Vert_{V^\ast}\\
+&=\sup\limits_{v\neq0}\frac{\big|\langle Au,v\rangle\big|}{\Vert v\Vert_V}\\
+&=\sup\limits_{v\neq0}\frac{\big|a(u,v)\big|}{\Vert v\Vert_V}\\
+&\leq
+\sup\limits_{v\neq0}\frac{M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V}{\Vert v\Vert_V}\\
+&=M\cdot\Vert u\Vert_V
+\end{align*}
+\end{enumerate}
+\underline{Schritt 3:} Setze
+\begin{align*}
+u^{n+1}:=P(u^n):=u^n+\tau\cdot(b-A u^n)\qquad\forall\tau\in\R_{\neq0}
+\end{align*}
+$u^0$ ist eine beliebiger Startwert.
+\begin{align*}
+P:V\to V,\qquad u\mapsto u+\tau\cdot(b-Au)
+\end{align*}
+Jeder Fixpunkt von $P$ ist eine Lösung von $Au=b$ und umgekehrt.\\
+Es bleibt also zu zeigen, das $P$ einen eindeutigen Fixpunkt hat. Dafür nutzen wir den \textit{Banach'schen Fixpunktsatz} \ref{BanachscherFixpunktsatz}.\\
+
+Wähle also $N=V$. $P$ ist eine Kontraktion, wenn $\tau$ richtig gewählt wird.
+\begin{align*}
+\Vert P(u)-P)v)\Vert^2_V
+&=\big\langle P(u)-P(v),P(u)-P(v)\big\rangle_V\\
+&=\big\langle u-v-\tau\cdot A(u-v),u-v-\tau\cdot A(u-v)\big\rangle_V\\
+&=\langle u-v,u-v\rangle_V-2\cdot\tau\cdot\underbrace{\big\langle A(u-v),u-v\big\rangle_V}_{\stackrel{\text{Def.}}{=}a(u-v,u-v)\stackrel{\text{koerz}}{\geq}\alpha\cdot\Vert u-v\Vert^2_V}+\tau^2\cdot\underbrace{\big\langle A(u-v),A(u-v)\big\rangle_V}_{=\Vert A(u-v)\Vert^2_V\leq M^2\cdot\Vert u-v\Vert^2_V}\\
+&\stackrel{\tau>0}{\leq}
+\Vert u-v\Vert^2_V\cdot\big(1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2\big)
+\end{align*}
+Wähle $\tau:=\frac{\alpha}{M^2}>0$. Dann gilt:
+\begin{align*}
+1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2=1-\frac{\alpha^2}{M^2}>0
+\end{align*}
+$P$ ist eine Kontraktion, also hat $P$ nach dem Banachschen Fixpunktsatz einen eindeutigen Fixpunkt und damit hat auch $Au=b$ eine eindeutige Lösung.
+\end{proof}
+
+Schwierigkeit:
+\begin{align*}
+a(u,v)=b(v)\qquad\forall v\in V
+\end{align*}
+ist ein unendlichdimensionales Problem.\\
+\underline{Idee:} Approximation in einem endlich-dimensionalen Unterraum\\
+Sei $V_h\subseteq V$ ein endlich-dimensionaler Unterraum von $V$. Betrachte das Problem
+\begin{align*}
+\text{Finde }u_n\in V_h \text{ so, dass }\qquad \\
+a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h
+\end{align*}
+Da $a$ und $l$ auf $V_h$ die Voraussetzungen des Satzes von Lax-Milgram auf $V_h$ erfüllen, gibt es ein eindeutiges $u_n\in V_h$, das das Problem löst.\\
+
+Sei $\lbrace\varphi_i\rbrace_{i=1}^n$ eine Basis von $V_h$.
+\begin{align*}
+\Big(a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h\Big)\Longleftrightarrow
+\Big(a(u_n,\varphi_i)=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\Big)
+\end{align*}
+und 
+\begin{align*}
+u_n=\sum\limits_{j=1}^n u_j\cdot\varphi_j,\qquad u_1,\ldots,u_n\in\R,j\\
+\sum\limits_{j=1}^n a(\varphi_j,\varphi_i)\cdot u_j=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\\
+\end{align*}
+Daraus ergibt sich ein lineares Gleichungssystem:
+\begin{align*}
+\left.\begin{array}{ll}
+A:=(a_{i,j})_{i,j=1,\ldots,n} &a_{i,j}:=a\big(\varphi_j,\varphi_i\big)\\
+b:=(b_i)_{i=1,\ldots,n} &b_i:=l(\varphi_i)\\
+u:=(u_j)_{j=1,\ldots,n}
+\end{array}\right\rbrace A\cdot u=b\qquad\text{ LGS}
+\end{align*}
+
+\begin{theorem}[Céa's Lemma]\enter
+Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $l$ eine stetige Linearform. Dann gilt:
+\begin{align*}
+\exists C=\frac{M}{\alpha}>0:\Vert u-u_n\Vert_V\leq C\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+a(u,v)&=l(v) &\forall v\in V\\
+a(u_n,v_h)&= l(v_h) &\forall v_h\in V_h\subseteq V
+\end{align*}
+Differenz: 
+\begin{align*}
+a(u-u_n,v_h)=\qquad v_h\in V_h
+\end{align*}
+Also:
+\begin{align*}
+\alpha\cdot\Vert u-u_n\Vert^2_V
+&\leq
+a(u-u_n,u-u_n)\\
+&=a(u-u_n,u-v_v+v_h- u_n)\\
+&=a(u-u_n,u-v_h)+\underbrace{a(u-u_n,\underbrace{v_h-u_n}_{\in V_h})}_{=0}\\
+&\stackrel{\text{stetig}}{\leq}
+M\cdot\Vert u-u_n\Vert_V\cdot\Vert u-v_h\Vert_V\\
+\implies
+\Vert u-u_n\Vert_V&\leq\frac{M}{\alpha}\cdot\Vert u-v_h\Vert_V\qquad\forall v_h\in V_h\\
+\implies
+\Vert u-u_n\Vert_V&\leq \frac{M}{\alpha}\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
+\end{align*}
+%ToDo: v_h ist eigentlich v_h -.- Das habe ich beim Abschreiben verkackt.
+\end{proof}
+
+\begin{theorem}[Dualitätsargument, Aubin-Nietsche]\enter
+Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform und $l$ eine stetige Linearform. Sei weiterhin $H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle_H$ und Norm $\Vert\cdot\Vert_H$ so, dass $V\hookrightarrow H$ und $V$ liegt dicht in $H$ bzgl. $\Vert\cdot\Vert_H$. Sei zusätzlich $u_\varphi\in V$ für jedes feste $\varphi\in H$ die eindeutige Lösung von
+\begin{align}\label{Dtheorem2.3}\tag{D}
+a(v,u_\varphi)=\langle\varphi,v\rangle_H\qquad\forall v\in V
+\end{align}
+Dann gilt:
+\begin{align*}
+\Vert u-u_h\Vert_H\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert_H=1\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+$v\mapsto\langle\varphi,v\rangle_H$ ist eine stetige Linearform auf $V$. Aus Lax-Milgram \ref{theorem2.1LaxMilgram} folgt, dass es eine eindeutige Lösung $u_\varphi\in V$ gibt.
+ 
+\begin{align*}
+\langle u-u_h,\varphi\rangle_H
+&=\langle\varphi,u-u_h\rangle_H\\
+&=a(u-u_h,u_\varphi)\\
+&=a(u-u_h,u_\varphi-v_h)\mit v_h\in V\text{ beliebig}\\
+&\leq M\cdot\Vert u-u_h\Vert_V\cdot\Vert u_\varphi-v_h\Vert_V\\
+\Vert u-u_h\Vert_H
+&=\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\langle u-u_h,\varphi\rangle_H\\
+&\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{theorem2.4} %2.4
+Seien $(X,\Vert\cdot\Vert_X)$, $(Y,\Vert\cdot\Vert_Y)$ Banachräume  mit $X\stackrel{C}{\hookrightarrow} Y$ und $a_0,a_1$ stetige Bilinearformen auf $X$. Gelte weiterhin:
+\begin{itemize}
+\item $a_0$ ist symmetrisch und koerziv auf $X$
+\item $\begin{aligned}
+\exists A>0:\forall u,v\in X:\big|a_1(u,v)\big|\leq A\cdot\Vert u\Vert_X\cdot\Vert v\Vert_Y
+\end{aligned}$
+\end{itemize}
+Erfülle
+\begin{align*}
+a(u,v):=a_0(u,v)+a_1(u,v)\qquad\forall u,v\in X
+\end{align*}
+die Ungleichung
+\begin{align*}
+a(v,v)>0\qquad\forall v\in X\setminus\lbrace0\rbrace.
+\end{align*}
+Dann sind die beiden Probleme
+\begin{align*}
+\text{Finde }u\in X\text{ so, dass }
+a(u,v)=l(v)\qquad\forall v\in X\\
+\text{Finde }\tilde{u}\in X\text{ so, dass }
+a(v,\tilde{u})=l(v)\qquad\forall v\in X
+\end{align*}
+jeweils eindeutig lösbar für alle stetigen Linearformen $l$.
+\end{theorem}
+
+\begin{theorem} %2.5
+Gleiche Voraussetzungen wie Theorem \ref{theorem2.4}.\\
+Sei zusätzlich $X_h\subseteq X$ ein endlich-dimensionaler Unterraum von $X$.\\
+Dann ist das Problem
+\begin{align*}
+\text{Finde }u_h\in X_h\text{ so, dass }
+a(u_h,v_h)=l(v_h)\qquad\forall v_h\in X_h
+\end{align*}
+eindeutig lösbar für jede feste stetige Linearform $l$. Zusätzlich gilt
+\begin{align*}
+\Vert u-u_h\Vert_X\leq\frac{M}{\alpha}\cdot\inf\limits_{v_h\in X_h}\Vert u-u_h\Vert_X
+\end{align*}
+unter der Voraussetzung
+\begin{align*}
+a(v,v)&\geq\beta\cdot\Vert v\Vert^2_X &\forall v\in X\\
+\big|a(u,v)\big|&\leq M\cdot\Vert u\Vert_X\cdot\Vert v\Vert_Y &\forall u,v\in X
+\end{align*}
+\end{theorem}
+
+\section{Schwache Lösungen} %3.
+Hier: skalare, lineare, elliptische partielle Differentialgleichungen zweiter Ordnung, also
+\begin{align*}
+-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u=f(x)\text{ in }\Omega
+\end{align*}
+Vereinfachende Annahmen:
+\begin{align*}
+\begin{array}{ll}
+	f\in L^2(\Omega)&\alpha \in C(\Omega)\\
+	a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace\\
+	A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots a_d\big)^T\\
+	A=\big(A_{i,j}\big)^d_{i,j=1},& 0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
+\end{array}
+\end{align*}
+
+\subsection*{Einige Spezialfälle}
+\begin{itemize}
+\item Poisson-Gleichung: $\alpha\equiv 0,~a\equiv0,~A=I$
+\item Membran-Gleichung: $\alpha\equiv0,~a\equiv 0$
+\item Reaktionsdiffusionsgleichung: $a\equiv 0$
+\item Konvektions-Diffusions-Gleichung: ist der allgemeine Fall
+\end{itemize}
+
+\subsection*{Randbedingungen}
+\begin{itemize}
+\item Die \textbf{homogene Dirichlet-Randbedingung} ist
+\begin{align*}
+u\equiv0\qquad\text{auf}\qquad\Gamma:=\partial\Omega
+\end{align*}
+\item Die \textbf{Neumann-Randbedingung} ist
+\begin{align*}
+n^T\cdot A\cdot\nabla u\equiv q\qquad\text{auf}\qquad\Gamma,\qquad\forall g\in L^2(\Gamma)
+\end{align*}
+wobei $n$ der äußere Normalenvektor ist.
+\item Mischform: Dirichlet-Randbegingung auf $\Gamma_D$ und Neumann-Randbedingung auf $\Gamma_N$ für $\Gamma=\Gamma_D\stackrel{\cdot}{\cup}\Gamma_N,~\Gamma_D\cap\Gamma_N=\emptyset$
+\item Die \textbf{Robin-Randbedingung} ist
+\begin{align*}
+\gamma\cdot u+n^T\cdot A\cdot\nabla u\equiv h\qquad\text{auf}\qquad\Gamma
+\end{align*}
+\end{itemize}
+
+%Was ist das hier?
+Nun bringen wir die allgemeine Form der Gleichung von oben in eine lesbare Form.
+Sei dazu $v\in C_0^\infty(\Omega)$. Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$. Dann gilt:
+\begin{align*}
+\int\limits_\Omega f(x)\cdot v\d x
+&\stackeq{\text{Def}}
+\int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\ 
+&\stackeq{\text{partGauß}}
+\int\limits_\Omega\sum\limits_{i,j=1}^d A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\cdot\frac{\partial v}{\partial x_i}\d x+\int\limits_\Omega\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
+&\qquad
+-\underbrace{\int\limits_\Gamma\underbrace{\sum\limits_{i,j=1}^d n_i\cdot A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}}_{=n^T\cdot A\cdot\nabla u}\cdot v\d\gamma}_{=0}\\
+&=
+\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+\end{align*}
+
+\begin{definition}[Schwache Lösung]\ %3.1
+\begin{enumerate}[label=(\roman*)]
+\item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
+\begin{align*}
+:\Longleftrightarrow
+\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+=\int\limits_\Omega f(x)\cdot v\d x
+\qquad\forall v\in H_0^1(\Omega)
+\end{align*}
+\item Eine Funktion 
+\begin{align*}
+u\in H_D^1(\Omega):=\big\lbrace\varphi\in H^1(\Omega):\varphi|_{\Gamma_D}\equiv 0\big\rbrace
+\end{align*}
+heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung  mit gemischten Randbedingungen}
+\begin{align*}
+:\Longleftrightarrow
+\int\limits_\Omega \nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma
+\qquad\forall v\in H^1_D(\Omega)
+\end{align*}
+\item Eine Funktion $u\in H^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung}
+\begin{align*}
+:\Longleftrightarrow
+\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma} g\cdot v\d\gamma
+\qquad\forall v\in H^1(\Omega)
+\end{align*}
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}\ %NoNumber
+\begin{itemize}
+\item Jede ``klassische'' Lösung ist auch eine schwache Lösung. 
+\item Jede schwache Lösung, welche glatt genug ist ($C^2$) ist auch eine ``klassische'' Lösung.
+\item schwächere Annahmen an die Problemdaten:
+\begin{align*}
+	&\alpha\in L^\infty(\Omega), &&\alpha\geq0\\
+	&a_i\in L^\infty(\Omega), &&\div(a)=\sum\limits_{i=1}^d\frac{\partial a_i}{\partial x_i}\in L^\infty(\Omega)\\
+&A_{i,j}\in L^\infty(\Omega)
+\end{align*}
+\item Unter der inhomogenen Dirichletbedingung
+\begin{align*}
+u|_\Gamma\equiv u_D
+\end{align*}
+gehört die schwache Lösung zu
+\begin{align*}
+u_D+H_0^1(\Omega)=\big\lbrace v\in H^1(\Omega):v|_\Gamma\equiv u_D\big\rbrace
+\end{align*}
+Der Testraum ist immer $H^1_0(\Omega)$.
+\end{itemize}
+\end{bemerkung}
+
+\begin{theorem}[Existenz und Eindeutigkeit von schwachen Lösungen]\ 
+\begin{enumerate}[label=(\roman*)]
+\item Sei 
+\begin{align*}
+\alpha-\frac{1}{2}\cdot\div(a)\geq0.
+\end{align*}
+Dann hat die Konvektions-Diffusions-Gleichung mit homogenen Dirichlet-Randbedingungen eine eindeutige schwache Lösung.
+\item Sei 
+\begin{align*}
+\alpha-\frac{1}{2}\cdot\div(a)\geq0\qquad\text{ und }\qquad a\cdot n\geq0\text{ auf }\Gamma_N.
+\end{align*}
+Dann hat die Konvektions-Diffusions-Gleichung mit gemischten Randbedingungen eine eindeutige Lösung.
+\item Sei 
+\begin{align*}
+\alpha-\frac{1}{2}\cdot\div(a)\geq0,\qquad \alpha\geq\alpha_0>0\qquad\text{ und }\qquad a\cdot n\geq 0\text{ auf }\Gamma.
+\end{align*}
+Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige Lösung.
+\item Sei
+\begin{align*}
+\alpha=0,\qquad-\frac{1}{2}\cdot\div(a)=0\qquad\text{und}\qquad a\cdot n\geq 0\text{ auf }\Gamma\\
+\end{align*}
+und gelte
+\begin{align*}
+	\int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma=0.
+\end{align*}
+Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige schwache Lösung $u$, welche 
+\begin{align*}
+\int\limits_\Omega u(x)\d x=0
+\end{align*}
+erfüllt.
+\end{enumerate}
+\end{theorem}

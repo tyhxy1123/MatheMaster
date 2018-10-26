@@ -15,8 +15,10 @@ Empfohlene Literatur
 \section{Beispiele und Motivation}
 
 \begin{align*}
+
 	\laplace u &= f \quad  \text{in }  \Omega\\
 		  	 u &= 0 \quad \text{auf } \partial\Omega
+
 \end{align*}
 
 $\rightarrow$ \underline{finite Differenzen}\enter
@@ -81,8 +83,8 @@ mit
 $\rightarrow$ \underline{finite Elemente}\enter
 \enter
 \begin{align*}
-\laplace u &= f \quad  \text{in}\  \Omega\\
-u &= 0 \quad \text{auf}\ \partial\Omega
+  \laplace u &= f \quad  \text{in}\  \Omega\\
+  u &= 0 \quad \text{auf}\ \partial\Omega
 \end{align*}
 
 \begin{equation*}
@@ -178,11 +180,14 @@ gilt.
 	\end{tikzpicture}
 \end{figure}
 
+
 Hier beginnt der englische Teil der Vorlesung. Die folgenden Notizen sind direkt der Vorlesung entnommen. 
+
 
 \section{sobolev spaces}
 
 In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
+
 
 \subsection{defintions and short explanations}
 
@@ -220,12 +225,12 @@ In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
 %\end{definition_}
 
 
+
 Let $ u \in L^p(\Omega)$, $1 \leq p< \infty$, $\alpha \in \N^d_0$ (multiindex).\enter
 u has a weak derivative $ D^\alpha u \in L^p(\Omega) $ if $\forall v \in C^\infty_0(\Omega)$
 \begin{equation*}
 	(D^\alpha,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2}
 \end{equation*}
-
 
 \begin{example}
 	\begin{align*}
@@ -240,6 +245,7 @@ u has a weak derivative $ D^\alpha u \in L^p(\Omega) $ if $\forall v \in C^\inft
 \enter
 
 \begin{example}
+
 \begin{align*}
 	\Omega &= (-1,1),\quad u(x) = |x|\\
 	u&=  \Bigg\{
@@ -251,17 +257,18 @@ u has a weak derivative $ D^\alpha u \in L^p(\Omega) $ if $\forall v \in C^\inft
 and $u' \in L^p(\Omega)$ for $1 \leq p < \infty$. $u''(x)$ does not work!\enter
 \end{example}
 
-
 \subsection{sobolev spaces}
 
 \begin{equation*}
 	W^{m,p}(\Omega) = \big\{ u\in L^p(\Omega) : D^\alpha u \in L^p(\Omega) \quad \forall \alpha:\ |\alpha|\leq m \big\}
 \end{equation*}
 With the norm
+
 \begin{itemize}
 	\item $\| u\|_{W^{m,p}} := \Big ( \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^p}  \Big )^{\frac{1}{p}}$ \qquad $1\leq p < \infty$
 	\item  $\| u\|_{W^{m,\infty}} :=  \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^\infty}  $ \qquad $ p = \infty$
 \end{itemize}
+
 these spaces are Banach spaces.
 
 %% i dont know if the last definition is correct. sum over |\alpha| \leq m ???
@@ -270,7 +277,6 @@ these spaces are Banach spaces.
 	H^m(\Omega) &= W^{m,2}(\Omega) \quad \text{with scalar product}\\
 	(u,v)_{H^m} &= \displaystyle \sum_{|\alpha| \leq m} (D^\alpha u, D^\alpha v)_{L^2}
 \end{align*}
- 
 
 \begin{example}
 	\begin{align*}
@@ -291,17 +297,18 @@ these spaces are Banach spaces.
 	u &\notin C^0(\Omega) \text{ but } u \in W^{1,1}(\Omega)
 	\end{align*}
 \end{example}
-
  
 Later we will see, that if m and p are sufficiently large sobolev functions are continuous.\\
  
 \underline{relation to problem in motivation:}\\
+
 %
 %
 %	Formatting
 %
 %
 %
+
 \par
 \glqq $v \in C^\infty(\Omega),\ v=0 \text{ on } \partial\Omega$ \grqq \enter
 $W^{m,p}_0(\Omega)$ is the completion of $C^\infty_0(\Omega)$ in $ W^{m,p} $. Meaning that for $u \in W^{m,p}_0(\Omega)$ there exists a sequence $(u_n) \in C^\infty_0(\Omega)$ with 
@@ -323,6 +330,7 @@ There exists a linear operator $\gamma: W^{1,p}(\Omega) \to L^p(\partial\Omega)$
 	\end{equation*}
 	is not complete, but $V = \overline{X} = H^1_0(\Omega)$ is complete. Also holds in  generell settings.\\
 \end{example}
+
 \par
  $C^\infty(\Omega)\cap W^{m,p}(\Omega)$ is dense in $ W^{m,p}(\Omega)$.
 This is an important property of sobolev spaces in $H^1_0(\Omega)$. \enter
@@ -337,6 +345,7 @@ If $\|\nabla u \|_{L^2}$ is bounded it follows that $\|u \|_{L^2}$ is bounded.
 \end{theorem}
  
 There are also soboloev spaces with negative index.\enter
+
 \begin{example}
 	\begin{align*}
 	u(x) &= |x|, \ x\in \Omega = (-1,1)\\
@@ -351,6 +360,7 @@ The spaces are dual spaces of $H^k_0(\Omega)$.
 \begin{equation*}
 	H^{-k}(\Omega) = \big \{ F: H^k_0(\Omega) \to \R,\  F \text{ linear and continuous} \big \}
 \end{equation*}
+
 
 \begin{example}
 	\begin{align*}
@@ -367,5 +377,6 @@ The spaces are dual spaces of $H^k_0(\Omega)$.
 	\end{equation*} 
 	$f \in H^1(\Omega)$, $u(x)=|x|$ is solution, but is not twice differentiable in a classical or weak sense.
 \end{example}
+
 
 % could be that the above sense is altered
