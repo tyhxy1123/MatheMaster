@@ -19,7 +19,8 @@ Ein \textbf{(nichtlinearer) Operator} auf $X$ ist eine Relation $A\subseteq X\ti
 \begin{align*}
 A+B&:=\lbrace(u,f_1+f_2):f_1\in A,f_2\in B\rbrace\\
 &:=\lbrace(u,f)\in X\times X:\exists f_1,f_2\in X:(u,f_1)\in A\wedge(u,f_2)\in B\wedge f=f_1+f_2\rbrace\\
-\lambda\cdot A&:=\lbrace(u,\lambda\cdot f:(u,f)\in \rbrace:=\lbrace(u,f)\in X\times X:\exists f_1\in X:(u,f_1)\in X\wedge f=\lambda\cdot f_1\rbrace
+\lambda\cdot A&:=\lbrace(u,\lambda\cdot f:(u,f)\in \rbrace\\
+&:=\lbrace(u,f)\in X\times X:\exists f_1\in X:(u,f_1)\in X\wedge f=\lambda\cdot f_1\rbrace
 \end{align*}
 \end{itemize}
 \end{definition}
@@ -101,12 +102,13 @@ f(u)
 \end{align*}
 
 \underline{Zeige (iii) $\Rightarrow$ (ii):}\\
-Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Dann ist
+Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. 
+Dann ist
 \begin{align*}
-\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
+	\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
 \end{align*}
-Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$\\
 
+Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$
 \underline{Zeige (ii) $\Rightarrow$ (i):}\\
 Sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Setze
 \begin{align*}
@@ -198,10 +200,10 @@ Behauptung (c) folgt dann aus (b), welche aus (a) folgt.
 \begin{align*}
 [\cdot,\cdot]_\lambda:X\times X\to\R,~(u,v)\mapsto[u,v]_\lambda:=\frac{\Vert u+\lambda\cdot v\Vert - \Vert u\Vert}{\lambda}
 \end{align*}
-ist stetig (da jede Norm stetig ist) und damit auch oberhalbstetig für alle $\lambda>0$. Das Infimum von oberhalbstetiger Funktion ist wieder oberhalbstetig.\\
+ist stetig (da jede Norm stetig ist) und damit auch oberhalbstetig für alle $\lambda>0$. Das Infimum von oberhalbstetiger Funktion ist wieder oberhalbstetig.
 
 \underline{Zeige (b):}\\
-Die Funktion $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend auf $(0,\infty)$, weil $\lambda\mapsto\Vert u+\lambda\cdot v\Vert$ konvex ist, denn jede Norm ist konvex (dies folgt aus der Dreiecksungleichung).\\
+Die Funktion $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend auf $(0,\infty)$, weil $\lambda\mapsto\Vert u+\lambda\cdot v\Vert$ konvex ist, denn jede Norm ist konvex (dies folgt aus der Dreiecksungleichung).
 
 \underline{Zeige (c):}\\
 $\begin{aligned}[]
@@ -345,10 +347,10 @@ und somit
 \frac{\Vert u(t)+h\cdot D_t^R u(t)\Vert-\Vert u(t)\Vert}{h}+\frac{o(h)}{h}\\
 &\stackrel{h\to0^+}{\longrightarrow} \left[ u(t), D_t^R u(t)\right]
 \end{align*}
-Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtung abzuschätzen und Gleichheit zu erzielen.
+Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtungen abzuschätzen und Gleichheit zu erzielen.
 
 \underline{Zeige (b):}\\
-Analog zu (a) mit $h<0$.\\
+Analog zu (a) mit $h<0$.
 
 \underline{Zeige (c):}\\
 Folgt direkt aus (a) und (b).
@@ -377,21 +379,21 @@ Sei $X$ Banachraum. Für einen Operator $A\subseteq X\times X$ und $\omega\in\R$
 \underline{Zeige (i) $\gdw$ (iii):}\\
 $A$ ist akkretiv vom Typ $\omega$
 \begin{align*}
-&\gdw\underbrace{[u-\hat{u},v-\hat{v}]}_{=\int\limits_{\lambda>0}[\ldots]_\lambda}
+&\gdw\underbrace{[u-\hat{u},v-\hat{v}]}_{=\inf\limits_{\lambda>0}[\ldots]_\lambda}
 + \omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A\\
-&\gdw\frac{u-\hat{u}+\lambda\cdot(v-\hat{v}\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\\
+&\gdw\frac{\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\\
 &\gdw\text{(iii)}
 \end{align*}
 \underline{Zeige (iii) $\gdw$ (ii):}
 \begin{align*}
 \text{(iii)} &\Rightarrow\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\text{ klein, d. h. }1+\lambda\cdot\omega>0:\\
 &\qquad(1+\lambda\cdot\omega)\cdot\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert\cdot(1+\lambda\cdot\omega)\\
-&\gdw\forall\ldots:\Big\Vert u-\hat{u}+\lambda\cdot\big((1+\lambda\cdot\omega)\cdot v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert
+&\gdw\forall\ldots:\Big\Vert u-\hat{u}+\lambda\cdot\big((1+\lambda\cdot\omega)\cdot (v-\hat{v})+\omega\cdot(u-\hat{u})\big)\Big\Vert
 \geq
 \left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
 &\gdw\forall\ldots:
-\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)+\lambda^2\cdot\omega\cdot(v-\hat{v})\Big\Vert
-\geq
+\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)+\lambda^2\cdot\omega\cdot(v-\hat{v})\Big\Vert\\
+&\geq
 \left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
 &\gdw\forall\ldots:
 \frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\mathcal{O}(\lambda)\geq0\\
@@ -412,16 +414,16 @@ Seien $(u,v),(\hat{u},\hat{v})\in\overline{A}$. Dann existieren Folgen
 &(u_n,v_n)_{n\in\N},(\hat{u}_n,\hat{v}_n)_{n\in\N}\subseteq A\mit\\
 &(u_n,v_n)
 \stackrel{n\to\infty}{\longrightarrow}
-(u,v)\text{ in } X\times X\\
+(u,v)\text{ in } \overline{A} \subseteq X\times X\\
 &(\hat{u}_n,\hat{v}_n)
 \stackrel{n\to\infty}{\longrightarrow}
-(\hat{u},\hat{v})\text{ in } X\times X
+(\hat{u},\hat{v})\text{ in } \overline{A} \subseteq X\times X
 \end{align*}
 und wegen der Oberhalbstetigkeit des Brackets gilt
 \begin{align*}
 [u-\hat{u},v-\hat{v}]+\omega\cdot\Vert u-\hat{u}\Vert
-\stackrel{\text{oberhalb stetig}}{\geq}
-\limsup\limits_{n\to\infty}\Big(\underbrace{\big[ u_n-\hat{u}_n,v_n-\hat{v}_n\big]+\omega\cdot\Vert u_n-\hat{u}_n\Vert}_{\geq0,\text{ da $A$ akkretiv ist}}\Big)
+\geq
+\limsup\limits_{n\to\infty}\Big(\underbrace{\big[ u_n-\hat{u}_n,v_n-\hat{v}_n\big]+\omega\cdot\Vert u_n-\hat{u}_n\Vert}_{\geq0,\text{ da $A$ akkretiv vom Typ $\omega$}}\Big)
 \geq0
 \end{align*}
 \end{proof}
@@ -434,12 +436,12 @@ und wegen der Oberhalbstetigkeit des Brackets gilt
  \Re\big(\langle u-\hat{u},v-\hat{v}\rangle\big)+\omega\cdot\Vert u-\hat{u}\Vert^2\geq0
 \end{align*}
 Operatoren $A\subseteq H\times H$, die diese Bedingung erfüllen, heißen auch \textbf{monoton vom Typ $\omega$} bzw. einfach nur \textbf{monoton}, falls $\omega=0$.\\
-Es gilt also: $A$ akkretiv vom Typ $\omega\gdw A$ monoton vom Typ $\omega$.\\
+Es gilt also: $A$ akkretiv vom Typ $\omega\gdw A$ monoton vom Typ $\omega$.
 
 Falls $A$ ein linearer (einwertiger) Operator ist, dann ist $A$ akkretiv
 \begin{align*}
 &\Longleftrightarrow\forall u\in\dom(A):\Re\big(\langle u, Au\rangle\big)\geq0\\
-&\Longleftrightarrow -A\text{ ist \textbf{dissipativ}}
+&\Longleftrightarrow: -A\text{ ist \textbf{dissipativ}}
 \end{align*}
 \item $H=L^2(\Omega)\mit\Omega\subseteq\R^n$ offen und 
 \begin{align*}
@@ -451,13 +453,17 @@ C_c^\infty(\Omega)&:=\big\lbrace u\in C^\infty(\Omega):\supp(u)\text{ kompakt}\b
 Dann gilt für alle $u\in\dom(A)$:
 \begin{align*}
 \Re\Big(\langle u,-\Delta u\rangle_{L^2}\Big) 
-&= \Re\left(-\int\limits_\Omega u\cdot\overline{\Delta u}\right)\\
-&\stackeq{\text{part Int}}
-\Re\left(\int\limits_{\Omega} \nabla u\cdot\overline{\nabla u}\right)\\
+&= \Re\left(-\int\limits_\Omega u\cdot\overline{\Delta u}\right) = \Re\left(-\int\limits_\Omega u\cdot\overline{\nabla \Div u}\right)\\
+&= -\int\limits_\Omega \Re \left(u\cdot\overline{\nabla \Div u}\right) = -\int\limits_\Omega \Re \left(u\cdot\nabla \Div u\right)\\
+&= -\int\limits_{\supp(u)} \Re \left(u\cdot\nabla \Div u\right)\\
+&\stackeq{\text{Gauß}}
+-\int\limits_{\partial\supp(u)} \Re \left(u\cdot\nabla u\right) + \int\limits_{\supp(u)} \Re \left(\nabla u\cdot\nabla u\right)\\
+&=\Re\left(\int\limits_{\Omega} \nabla u\cdot\overline{\nabla u}\right)\\
 %&=\int\limits_\Omega |\nabla u|^2\\
 &\geq0
 \end{align*}
-Aus dieser partiellen Integration folgt die Akkretivität von $A$. $A$ ist hierbei der negative Laplace-Operator auf den Testfunktionen.
+Mithilfe des Gauß'schen Integralsatzes (partielle Integration) folgt die Akkretivität von $A$. $A$ ist hierbei der negative Laplace-Operator auf den Testfunktionen.
+Beachte, dass der $u$ auf $\partial \supp(u)$, $0$ sein muss, da $u$ glatt.
 \item Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\R$ und $F:X\to X$ Lipschitzstetig mit Lipschitzkonstante $L\geq0$.\\
 Dann ist $A+F$ akkretiv vom Typ $\omega+L$.
 \begin{proof}
@@ -701,11 +707,11 @@ f&=\frac{\hat{h}}{h}\cdot u-\frac{\hat{h}-h}{h}\cdot J_h u\\
 &=J_h u+\frac{\hat{h}}{h}\cdot\left(u-J_j u\right)\\
 &\in J_h u+\hat{h}\cdot A J_h u
 \end{align*}
-d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.\\
+d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.
 
-\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.\\
+\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.
 
-\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.\\
+\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.
 
 \underline{Zeige (iii) $\implies$ (i):}\\
 Sei $A$ abgeschlossen, $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ dichtes Bild hat. Die Inverse Relation
@@ -716,7 +722,7 @@ ist dann Lipschitz-stetig vom Bild $\underbrace{\rg(I+h\cdot A)}_{\text{dicht in
 \end{proof}
 
 \begin{definition}
-Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.\\
+Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.
 
 Ist $A\subseteq X\times X$  $m$-akkretiv vom Typ $\omega\in\R$, dann ist $I+h\cdot A$ bijektiv für alle $h>0\mit h\cdot\omega<1$. Wir schreiben in diesem Fall
 \begin{align*}
@@ -893,7 +899,7 @@ Dann gilt für alle $v\in C$:
 \end{proof}
 
 \begin{proof}[Beweis von Theorem \ref{Theorem1.2.9}]\enter
-Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).\\
+Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).
 
 \underline{Zu (e):}\\
 Sei $D:=\overline{\dom(A)}\neq\emptyset$  und $C:=\overline{\conv(D)}$ der Abschluss der konvexen Hülle. Sei $P$ die orthogonale Projektion  auf $C$ (!). Sei $f\in X$, $h>0\mit h\cdot\omega<1$. Dann gilt nach Definition der Resolvente
@@ -1015,7 +1021,7 @@ Sei $X$ ein Banachraum, $A\subseteq X\times X$ ein Operator. Dann gilt:
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-Die Teile (a)(i) und (a)(iii) sind Übung.\\
+Die Teile (a)(i) und (a)(iii) sind Übung.
 
 \underline{Zu (a)(ii):}\\
 Sei $A$ $m$-akkretiv ($\omega=0$) und sei $B$ akkretiv mit $A\subseteq B$. Sei $(u,f)\in B$. Aus der Injektivität folgt:
@@ -1027,16 +1033,16 @@ Andererseits gilt
 u+Bu\ni u+f.
 \end{align*}
 Weil $B$ eine Erweiterung von $A$ ist, folgt aus den Abschätzungen für akkretive Operatoren (Injektivität von $I+B$) schon $u=v$.\\
-Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.\\
+Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.
 
 \underline{Zeige (a)(iv):}\\
-Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.\\
+Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.
 
 \underline{Zu (b), zeige ``$\implies$'':}\\
-Dies folgt aus der Definiton von akkretiv.\\
+Dies folgt aus der Definiton von akkretiv.
 
 \underline{Zu (b), zeige ``$\Longleftarrow$'':}\\
-Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.\\
+Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.
 
 \underline{Zu (c):}\\
 Der erste Teil der Aussage folgt aus (a). Sei außerdem $X$ ein Hilbertraum, $f_0,f_1\in Au$. Dann gilt für alle $(\hat{u},\hat{f})\in A$:
@@ -1079,14 +1085,14 @@ Jedes Element $u\in K_n$ ist Minimierer von $F$.
 \end{proof}
 
 \begin{theorem}[Minty]\enter
-Ein Operator $A\subseteq H\times H$ auf einem Hilbertraum $H$ ist $m$-akkretiv (vom Typ $\omega$) $\Longleftrightarrow A$ ist maximal akkretiv (vom Typ $\omega$).
+Ein Operator $A\subseteq H\times H$ auf einem Hilbertraum $H$ ist $m$-akkretiv (vom Typ $\omega$) $\Longleftrightarrow\\ A$ ist maximal akkretiv (vom Typ $\omega$).
 \end{theorem}
 \begin{proof}[Beweis (hier nur der Fall, dass $H$ reeller Hilbertraum ist)]\enter
 \underline{Zeige ``$\implies$'':}\\
 Folgt aus Lemma oben.\
 
 \underline{Zeige ``$\Longleftarrow$'':}\\
-Sei $A$ maximal akkretiv ($\omega:=0$) (insbesondere ist $A\neq\emptyset$). Betrachte die Funktion 
+Sei $A\subseteq H\times H$ maximal akkretiv ($\omega:=0$) (insbesondere ist $A\neq\emptyset$). Betrachte die Funktion 
 \begin{align*}
 &F_A:H\times H\to\R\cup\lbrace+\infty\rbrace\\
 &F_A(u,f):=\sup\Big\lbrace\langle u,\hat{f}\rangle+\langle\hat{u},f\rangle-\langle\hat{u},\hat{f}\rangle:(\hat{u},\hat{f})\in A\Big\rbrace>-\infty
@@ -1110,5 +1116,123 @@ mit Gleichheit genau dann, wenn $(u,f)\in A$. Verwende hierbei, dass $A$ \ul{max
 F&:=F_a+\Vert(\cdot,\cdot)\Vert^2_{H\times H}\text{ d. h. }\\
 F(u,f)&:=F(u,f)+\Vert u\Vert^2+\Vert f\Vert^2
 \end{align*}
-ist damit unterhalbstetig, konvex und koerziv.
+ist damit unterhalbstetig, konvex. Außerdem koerziv, denn: Sei $(u,f)\in\lbrace F\leq c\rbrace$. Dann ist
+\begin{align*}
+c\geq F(u,f)
+&\geq\langle u,f\rangle+\Vert u\Vert^2+\Vert f\Vert^2\\
+&\stackrel{\text{C.S.}}{\geq}-\Vert u\Vert\cdot\Vert f\Vert+\Vert u\Vert^2+\Vert f\Vert^2\\
+&=\frac{1}{2}\cdot\big(\Vert u\Vert^2-2\cdot\Vert u\Vert\cdot\Vert f\Vert+\Vert f\Vert^2\big)+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
+&=\frac{1}{2}\cdot\big(\underbrace{\Vert u\Vert-\Vert f\Vert}_{}\big)^2+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
+&\geq\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
+&=\frac{1}{2}\cdot\big\Vert (u,f)\big\Vert^2_{H\times H}
+\end{align*}
+Also ist $\lbrace F\leq c\rbrace$ beschränkt. Aus dem Theorem über Minimierung konvexer Funktionen folgt die Existenz eines Elements $(u_0,f_0)\in H\times H$ mit
+\begin{align*}
+F(u_0,f_0)=\inf\limits_{x\in H\times H}F(x)<\infty
+\end{align*}
+Da $F_A$ konvex ist, ist 
+\begin{align*}
+[0,\infty)\to\R\cup\lbrace+\infty\rbrace,\qquad
+\lambda\mapsto F_A\big(u_0+\lambda\cdot(u-u_0)\big)
+\end{align*}
+konvex. Somit ist 
+\begin{align*}
+\lambda\mapsto\frac{F_A\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F_A(u_0,f_0)}{\lambda}
+\end{align*}
+monoton wachsend. Also gilt für diesen Quotienten für $\lambda=1$:
+\begin{align*}
+&F_A(u,f)-F_A(u_0,f_0)\\
+&\geq\lim\limits_{\lambda\to 0^+}\frac{F_A\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F_A(u_0,f_0)}{\lambda}\\
+&=\lim\limits_{\lambda\to 0^+}\Bigg(\underbrace{\frac{F\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F(u_0,f_0)}{\lambda}}_{\geq0}\\
+&\qquad+\frac{1}{2}\cdot\frac{\Vert u_0\Vert^2+\Vert f_0\Vert^2-\Vert u_0+\lambda\cdot(u-u_0)\Vert^2-\Vert f_0+\lambda\cdot(f-f_0)\Vert^2}{\lambda}\Bigg)\\
+&\geq\frac{1}{2}\cdot\lim\limits_{\lambda\to 0^+}\frac{-2\cdot\big\langle u_0,\lambda\cdot(u-u_0)\big\rangle-\lambda^2\cdot\Vert u-u_0\Vert^2-2\cdot\big\langle f_0,\lambda\cdot(f-f_0)\big\rangle-\lambda^2\cdot\Vert f-f_0\Vert^2}{\lambda}\\
+&=-\big\langle u_0,u-u_0\big\rangle-\big\langle f_0,f-f_0\big\rangle\qquad\forall (u,f)\in H\times H\\
+&\implies
+\forall(u,f)\in A:
+F_A(u,f)\stackeq{(u,f)\in A}\langle u,f\rangle\geq\langle u_0,f_0\rangle-\langle u_0,u-u_0\rangle-\langle f_0,f-f_0\rangle\\
+&\implies
+\langle u,f\rangle +\langle u_0,f_0\rangle+\langle u_0,u\rangle+\langle f_0,f\rangle\geq\Vert u_0+f_0\Vert^2\geq0\\
+&\implies
+\big\langle u-(-f_0),f-(-u_0)\big\rangle=
+\big\langle u+f_0,f+u_0\big\rangle\geq\big\Vert u_0+f_0\Vert^2\geq0
+\end{align*}
+Aus der Maximalität von $A$ folgt $(-f_0,u_0)\in A$ und dann auch $u_0=-f_0$, d.h.\\ $(u_0,-u_0)\in A$.
+\begin{align*}
+(u_0,-u_0)\in A
+&\Longleftrightarrow Au_0\ni -u_0\\
+&\Longleftrightarrow u_0+Au_0\ni 0
+\end{align*}
+Also ist $0\in\rg(I+A)$. Ersetzt man nun den Operator $A$ durch
+\begin{align*}
+A-\hat{f}=\big\lbrace(u,f-\hat{f}):(u,f)\in A\big\rbrace\qquad\forall \hat{f}\in H,
+\end{align*}
+dann erhält man
+\begin{align*}
+u_0+Au_0\ni\hat{f}\text{ (für ein anderes $u_0$)},
+\end{align*}
+d.h. $\hat{f}\in\rg(I+A)~\forall\hat{f}\in H$. Damit ist $A$ $m$-akkretiv.
 \end{proof}
+
+\begin{bemerkung}
+Der Satz von Minty ist falsch in Banachräumen. Es gibt ein Gegenbeispiel im $\R^2$ mit der $p$-Norm, $p\in(1,\infty)\setminus\lbrace2\rbrace$ (Grandall-Liggest 1973).
+\end{bemerkung}
+
+\section{Subgradienten}
+In diesem Abschnitt sei $H$ ein reeller Hilbertraum und $\E:H\to\R\cup\lbrace+\infty\rbrace$ eine konvexe, unterhalbstetige Funktion $\E\not\equiv+\infty$ mit
+\begin{align*}
+\dom(\E):=\big\lbrace\E<+\infty\big\rbrace=\big\lbrace u\in H:\E(u)<+\infty\big\rbrace
+\end{align*}
+bezeichnen wir den \textbf{effektiven} Definitionsbereich ($\dom(\E)\neq\emptyset$).\\
+Der \textbf{Subgradient} von $\E$ ist der Operator
+\begin{align*}
+\partial\E&:=\left\lbrace (u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\lim\limits_{\lambda\to0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\langle f,v\rangle\right\rbrace\\
+&=\Big\lbrace(u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\E(u+v)-\E(u)\geq\langle f,v\rangle\Big\rbrace
+\end{align*}
+Bei der Gleichheit wird verwendet, dass die Funktion $\lambda\mapsto\frac{\E(u\lambda\cdot v)-\E(u)}{\lambda}$ monoton wachsend ist.\\
+Ziel: $\partial\E$ ist $m$-akkretiv.
+
+\begin{lemma}
+$\partial\E$ ist akkretiv ( = monoton).
+\end{lemma}
+\begin{proof}
+Sieen $(u,f),(\hat{u},\hat{f})\in\partial\E$. Dann gilt $u,\hat{u}\in\dom(\E)$ und 
+\begin{align*}
+\E(\hat{u})-\E(u)&\geq\big\langle f,\hat{u}-u\big\rbrace\\
+\E(u)-\E(\hat{u})&\geq\big\langle \hat{f},u-\hat{u}\big\rbrace=\big\langle-\hat{f},\hat{u}-u\big\rbrace\\
+&\stackrel{\text{addieren}}{\implies}
+0\geq\big\langle f-\hat{f},\hat{u}-u\big\rangle
+\text{ bzw. }
+\big\langle u-\hat{u},f-\hat{f}\big\rangle\geq0
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+\begin{align*}
+\exists c\geq0:\forall u\in H:\E(u)\geq -c\cdot\big(1+\Vert u\Vert\big)
+\end{align*}
+\end{lemma}
+\begin{proof}[Beweis (durch Widerspruch).]\enter
+O.B.d.A. $0\in\dom(\E)$ und $\E(0)=0$. Angenommen es gibt eine Folge $(u_n)_{n\in\N}$ in $H$ mit
+\begin{align*}
+\E(u)\leq -n\cdot\big(1+\Vert u_n\Vert\big)\leq -n\cdot\Vert u_n\Vert.
+\end{align*}
+Insbesondere ist $u_n\in\dom(\E)$. Für $\lambda_n\in]0,1]$ gilt wegen Konvexität,
+\begin{align*}
+\E(\lambda_n\cdot u_n)
+&=\E\big(\lambda_n\cdot u_n+(1-\lambda_n)\cdot 0\big)\\
+&\leq\lambda_n\cdot\E(u_n)+\underbrace{(1-\lambda_n)\cdot\E(0)}_{=0}\\
+&\leq- n\cdot\Vert\lambda_n\cdot u_n\Vert
+\end{align*}
+Wähle $\lambda_n$ so, dass $\limn\lambda_n\cdot u_n=0$ und $\limn\big(-n\cdot\Vert\lambda_n\cdot u_n\Vert\big)=-\infty$. Dies liefert einen Widerspruch zur Unterhalbstetigkeit von $\E$, denn
+\begin{align*}
+0=\E(0)\leq\liminf\limits_{n\to\infty}\E(\lambda_n\cdot u_n)=-\infty
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+Für alle $\lambda\geq0$ und alle $f\in H$ ist
+\begin{align*}
+H\to\R\cup\lbrace+\infty\rbrace,\qquad u\mapsto\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2
+\end{align*}
+konvex, unterhalbstetig und koerziv.
+\end{lemma}
