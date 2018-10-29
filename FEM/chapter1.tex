@@ -62,7 +62,7 @@ Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega
 		\end{equation*} 
 		\item $a$ is \textbf{coercive} (or elliptic) in $V$ if there exists $\lambda > 0$ s.t. $\forall u \in V:$
 		\begin{equation*}
-			a(u,u)  \geq \lambda \|u\|^2_v
+			a(u,u)  \geq \lambda \|u\|^2_V
 		\end{equation*}
 	\end{enumerate}
 \end{definition_}
@@ -108,7 +108,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\begin{equation*}
 	(g,v) = F(v) \qquad \forall v \in V
 	\end{equation*}
-	with $\|g\|_V = \|F\|_V$ we obtain with (\ref{lm_proof}) 
+	with $\|g\|_V = \|F\|_V$ we obtain with \eqref{lm_proof} 
 	\begin{equation*}
 	a(T^{-1}(g),v) = (g,v) = F(v) \qquad \forall v \in V
 	\end{equation*}
@@ -255,7 +255,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 				|G(v)| & \leq \|f\|_{L^2}\|v\|_{L^2} + \underset{i,j=1, \dots, d}{max} \|a_{ij}\|_{L^\infty} \|\nabla v\|_{L^2} \|\nabla g\|_{L^2} + \|c\|_{L^\infty}\|g\|_{L^2}\|v\|_{L^2}\\
 					   & \leq \left(  \|f\|_{L^1} + C_i\|g\|_{H^1} \right) \|v\|_{H^1}\\ 
 			\end{align*}
-			with $C_i =  \underset{i,j=1, \dots, d}{max} \|a_{ij}\|_{L^\infty} + \|c\|_{L^\infty}$
+			with $C_i =  \underset{i,j=1, \dots, d}{\text{max}} \|a_{ij}\|_{L^\infty} + \|c\|_{L^\infty}$
 			\begin{equation*}
 				\implies  \|G\|_{H^{-1}} \leq \|f\|_{L^2} +  C_i\|g\|_{H^1}
 			\end{equation*}
@@ -273,7 +273,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 		\end{itemize}
 	\end{proof_}
 	\item \textbf{Neumann BC}:\enter
-	consider special case  \textbf{c depends on u?} 
+	consider special case  \textbf{c depends on u??? should depend on x} 
 	\begin{align*}
 		- \laplace u + c(u)u &= f \qquad \text{in }\Omega\\
 		\nabla u \cdot \vartheta &=g \qquad \text{on } \partial\Omega
