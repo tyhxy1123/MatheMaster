@@ -620,9 +620,9 @@ Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ ein
 a(u,v)&=l(v) &\forall v\in V\\
 a(u_n,v_h)&= l(v_h) &\forall v_h\in V_h\subseteq V
 \end{align*}
-Differenz: 
+Wir erhalten die sogenannte Galerkin Orthogonalität, indem wir die Differenz dieser beiden Gleichungen bilden: (nutze $v=v_h$ in der ersten Gleichung!) 
 \begin{align*}
-a(u-u_n,v_h)=\qquad v_h\in V_h
+a(u-u_n,v_h)=0\qquad v_h\in V_h
 \end{align*}
 Also:
 \begin{align*}
@@ -638,7 +638,6 @@ M\cdot\Vert u-u_n\Vert_V\cdot\Vert u-v_h\Vert_V\\
 \implies
 \Vert u-u_n\Vert_V&\leq \frac{M}{\alpha}\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
 \end{align*}
-%ToDo: v_h ist eigentlich v_h -.- Das habe ich beim Abschreiben verkackt.
 \end{proof}
 
 \begin{theorem}[Dualitätsargument, Aubin-Nietsche]\enter
