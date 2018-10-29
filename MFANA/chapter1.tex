@@ -974,4 +974,141 @@ d.h.
 in Norm. Wegen $J_h f\in\dom(A)$ folgt damit $P(f)\in D=\overline{\dom(A)}\subseteq C$ für alle $f\in X$. Also ist $D=C$ und somit ist $D$ konvex.
 \end{proof}
 
+\begin{definition}
+Ein Operator $A\subseteq X\times X$ auf einem Banachraum $X$ ist \textbf{maximal akkretiv vom Typ $\omega\in\R$} $:\Longleftrightarrow A$ ist akkretiv vom Typ $\omega$ und $A$ besitzt keine echte akkretive Erweiterung, d. h.
+\begin{align*}
+B\subseteq X\times X\text{ akkretiv vom Typ $\omega$ und }A\subseteq B
+\implies A=B
+\end{align*}
+$A$ heißt \textbf{maximal akkretiv} $:\Longleftrightarrow A$ ist maximal akkretiv vom Typ 0.
+\end{definition}
 
+Aus einer Standardanwendung des Lemmas von Zorn folgt:
+
+\begin{lemma}
+Ist $A\subseteq X\times X$ akkretiv vom Typ $\omega$, dann gilt:
+\begin{align*}
+\exists B\subseteq X\times X: B\text{ maximal akkretiv vom Typ }\omega\mit A\subseteq B
+\end{align*}
+\end{lemma}
+\begin{proof}
+Betrachte die Menge aller akkretiven Operatoren, die $A$ enthalten. Diese Menge ist nicht leer. Die Inklusion definiert eine Teilordnung. Aus dem Lemma von Zorn folgt dann die Behauptung.
+\end{proof}
+
+\begin{lemma}
+Sei $X$ ein Banachraum, $A\subseteq X\times X$ ein Operator. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item Es gilt %To Do: Diagramm
+\begin{enumerate}[label=(\roman*)]
+\item $A$ ist $m$-akkretiv vom Typ $\omega\Longleftrightarrow A+\omega\cdot I$ ist $m$-akkretiv
+\item $A$ ist $m$-akkretiv vom Typ $\omega\implies A$ ist maximal akkretiv vom Typ $\omega$
+\item $A$ ist maximal akkretiv vom Typ $\omega\Longleftrightarrow A+\omega\cdot I$ ist maximal akkretiv
+\item $A$ ist maximal akkretiv vom Typ $\omega\implies A$ ist abgeschlossen
+ \end{enumerate}
+ \item Ist $A$ maximal akkretiv vom Typ $\omega$ und $(u,f)\in X\times X$, dann gilt:
+ \begin{align*}
+ (u,f)\in A&\Longleftrightarrow\forall(\hat{u},\hat{f})\in A:\big[u-\hat{u},f-\hat{f}\big]+\omega\cdot\Vert u-\hat{u}\Vert\geq0\\
+ &\stackrel{X\text{ HilbertR}}{\Longleftrightarrow}
+ \forall(\hat{u},\hat{f})\in A:\big\langle u-\hat{u},f-\hat{f}\big\rangle+\omega\cdot\Vert u-\hat{u}\Vert^2\geq0
+ \end{align*}
+ \item Sei $A$ maximal akkretiv vom Typ $\omega$. Dann ist $Au\subseteq X$ abgeschlossen für alle $u\in X$. Wenn $X$ ein Hilbertraum ist, dann ist $Au$ auch konvex.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Die Teile (a)(i) und (a)(iii) sind Übung.\\
+
+\underline{Zu (a)(ii):}\\
+Sei $A$ $m$-akkretiv ($\omega=0$) und sei $B$ akkretiv mit $A\subseteq B$. Sei $(u,f)\in B$. Aus der Injektivität folgt:
+\begin{align}\label{proof1.2.13}\tag{$\ast$}
+\exists v\in\dom(A):v+Bv\supseteq v+Av\ni u+f.
+\end{align}
+Andererseits gilt
+\begin{align*}
+u+Bu\ni u+f.
+\end{align*}
+Weil $B$ eine Erweiterung von $A$ ist, folgt aus den Abschätzungen für akkretive Operatoren (Injektivität von $I+B$) schon $u=v$.\\
+Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.\\
+
+\underline{Zeige (a)(iv):}\\
+Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.\\
+
+\underline{Zu (b), zeige ``$\implies$'':}\\
+Dies folgt aus der Definiton von akkretiv.\\
+
+\underline{Zu (b), zeige ``$\Longleftarrow$'':}\\
+Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.\\
+
+\underline{Zu (c):}\\
+Der erste Teil der Aussage folgt aus (a). Sei außerdem $X$ ein Hilbertraum, $f_0,f_1\in Au$. Dann gilt für alle $(\hat{u},\hat{f})\in A$:
+\begin{align*}
+\big\langle u-\hat{u},f_0-\hat{f}\big\rangle+\omega\cdot\Vert u-\hat{u}\Vert^2&\geq0\\
+\big\langle u-\hat{u},f_1-\hat{f}\big\rangle+\omega\cdot\Vert u-\hat{u}\Vert^2&\geq0
+\end{align*}
+Multiplikation der ersten Zeile mit $\lambda\in[0,1]$ und der zweiten Zeile mit $(-\lambda)$ und anschließende Addition der beiden Zeilen liefert für alle $(\hat{u},\hat{f})\in A:$
+\begin{align*}
+\big\langle u-\hat{u},f_\lambda-\hat{f}\big\rangle +\omega\cdot\Vert u-\hat{u}\Vert^2\geq0\mit f_\lambda:=(1-\lambda)\cdot f_0+\lambda\cdot f_1
+\end{align*}
+Aus (b) folgt $\big(u,f_{\lambda}\big)\in A$, d.h. $f_\lambda\in Au$ Also ist $Au$ konvex.
+\end{proof}
+
+\begin{erinnerung}
+Sei $X$ Banachraum. Eine Funktion $F:X\to\R\cup\lbrace\infty\rbrace$ heißt \textbf{koerziv}
+\begin{align*}
+&:\Longleftrightarrow\forall c\in R:\big\lbrace F\leq c\big\rbrace:=\big\lbrace x\in X:F(x)\leq c\big\rbrace\text{ ist beschränkt}\\
+&\Longleftrightarrow\lim\limits_{\Vert u\Vert\to\infty} F(u)=+\infty
+\end{align*}
+\end{erinnerung}
+
+\begin{theorem}[Minimierung konvexer Funktionen]\enter
+Sei $X$ ein reflexiver Banachraum und sei $F:X\to\R\cup\lbrace\infty\rbrace$ konvex, unterhalbstetig und koerziv. Dann gilt:
+\begin{align*}
+\exists u_0\in X:F(u_0)=\inf\limits_{x\in X}F(x)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Sei $(c_n)_{n\in\N}\subseteq\R$ monoton fallende Folge in $\R$ mit
+\begin{align*}
+c_n &> \inf\limits_{x\in X} F(x) \qquad \forall n\in\N\\
+c_n &\searrow \inf\limits_{x\in X}F(x)
+\end{align*}
+Sei $K_n:=\big\lbrace F\leq c_n\big\rbrace$. Dann ist $K_n$ nach Voraussetzung konvex, abgeschlossen und beschränkt. Aus Hahn-Banach folgt, dass $K_n$ abgeschlossen in der schwachen Topologie ist. Weil $X$ reflexiv und $K_n$ beschränkt ist, ist $K_n$ schwach kompakt ( = kompakt bzgl. der schwachen Topologie, siehe Banach-Alaoglu). Schließlich ist $K_n$ nichtleer und $K_{n+1}\subseteq K_n$. Damit ist 
+\begin{align*}
+\bigcap\limits_{n\in\N}K_n\neq\emptyset.
+\end{align*}
+Jedes Element $u\in K_n$ ist Minimierer von $F$.
+\end{proof}
+
+\begin{theorem}[Minty]\enter
+Ein Operator $A\subseteq H\times H$ auf einem Hilbertraum $H$ ist $m$-akkretiv (vom Typ $\omega$) $\Longleftrightarrow A$ ist maximal akkretiv (vom Typ $\omega$).
+\end{theorem}
+\begin{proof}[Beweis (hier nur der Fall, dass $H$ reeller Hilbertraum ist)]\enter
+\underline{Zeige ``$\implies$'':}\\
+Folgt aus Lemma oben.\
+
+\underline{Zeige ``$\Longleftarrow$'':}\\
+Sei $A$ maximal akkretiv ($\omega:=0$) (insbesondere ist $A\neq\emptyset$). Betrachte die Funktion 
+\begin{align*}
+&F_A:H\times H\to\R\cup\lbrace+\infty\rbrace\\
+&F_A(u,f):=\sup\Big\lbrace\langle u,\hat{f}\rangle+\langle\hat{u},f\rangle-\langle\hat{u},\hat{f}\rangle:(\hat{u},\hat{f})\in A\Big\rbrace>-\infty
+\end{align*}
+Beobachtung: 
+\begin{align*}
+\forall (u,f),(\hat{u},\hat{f})\in A:
+&\big\langle u-\hat{u},f-\hat{f}\big\rangle\geq0\\
+&\langle u,f\rangle-\Big(\big\langle u,\hat{f}\big\rangle+\big\langle\hat{u},f\big\rangle-\big\langle\hat{u},\hat{f}\big\rangle\Big)\geq0
+\end{align*}
+Als punktweises Supremum von stetigen, affinen Funktionen (nämlich 
+\begin{align*}
+(u,f)\mapsto\big\langle u,\hat{f}\big\rangle+\big\langle\hat{u},f\big\rangle-\big\langle\hat{u},\hat{f}\big\rangle~\big)
+\end{align*}
+ist $F_A$ unterhalbstetig und konvex. Außerdem gilt:
+\begin{align*}
+\forall (u,f)\in H\times H:F_A(u,f)\geq\langle u,f\rangle
+\end{align*}
+mit Gleichheit genau dann, wenn $(u,f)\in A$. Verwende hierbei, dass $A$ \ul{maximal} monoton ist und Lemma (b) oben. Die Funktion
+\begin{align*}
+F&:=F_a+\Vert(\cdot,\cdot)\Vert^2_{H\times H}\text{ d. h. }\\
+F(u,f)&:=F(u,f)+\Vert u\Vert^2+\Vert f\Vert^2
+\end{align*}
+ist damit unterhalbstetig, konvex und koerziv.
+\end{proof}
