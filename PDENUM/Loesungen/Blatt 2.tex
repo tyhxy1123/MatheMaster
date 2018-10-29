@@ -164,9 +164,9 @@ Subtrahieren voneinander liefert
 &\stackrel{\text{Lin}}{\implies}
 a(u_1-u_2,v)=0
 \end{align*}
-Da die Aussage für alle $v\in V$, gilt sie insbesondere für $v:=u_1-u_2\in V$, also:
+Da die Aussage für alle $v\in V$, gilt sie insbesondere für $v:=u_1-u_2\in V$, also mit Elliptizität:
 \begin{align*}
-a(u_1-u_2,u_1-u_2)=0\implies u_1-u_2=0\implies u_1=u_2
+0=a(u_1-u_2,u_1-u_2)\geq \alpha \|u_1-u_2\|^2_V\implies u_1-u_2=0\implies u_1=u_2
 \end{align*}
 \end{proof}
 
@@ -237,7 +237,7 @@ a(v,v)&:=\int\limits_0^1 \big(v_1(x)\big)^2+\big(v_2(x)-v_1(x)\big)^2\d x\\
 \int\limits_0^1 2\cdot\big(v_1(x)\big)^2+\big(v_2(x)\big)^2-\left(\frac{1}{\gamma}\cdot\big(v_1(x)\big)^2+\gamma\cdot\big(v_2(x)\big)^2\right)\d x\\
 &\stackeq{(\ast)}
 \left(1-\frac{-1+\sqrt{5}}{2}\right)\cdot\int\limits_0^1 \big(v_1(x)\big)^2+\big(v_2(x)\big)^2\d x\\
-&=\frac{3\cdot\sqrt{5}}{2}\cdot\Vert v\Vert^2_V
+&=\frac{3-\sqrt{5}}{2}\cdot\Vert v\Vert^2_V
 \end{align*}
 Zu ($\ast$): Finde $\gamma$ so, dass $2-\frac{1}{\gamma}=1-\gamma$, also
 \begin{align*}
@@ -269,7 +269,7 @@ Außerdem gilt für den Fehler des \textit{Ritz-Galerkin-Verfahrens}:
 \Vert u-u^N\Vert_E=\min\limits_{v^n\in V^n}\Vert u-v^N\Vert_E
 \end{aligned}$
 \item $\begin{aligned}
-\Vert u-u^N\Vert-V\leq\left(\frac{M}{\alpha}\right)^{\frac{1}{2}}\cdot\min\limits_{v^N\in V^N}\Vert u-v^N\Vert_V
+\Vert u-u^N\Vert_V\leq\left(\frac{M}{\alpha}\right)^{\frac{1}{2}}\cdot\min\limits_{v^N\in V^N}\Vert u-v^N\Vert_V
 \end{aligned}$
 \end{enumerate}
 \begin{proof}
@@ -288,7 +288,7 @@ Die Energienorm $\Vert\cdot\Vert_E$ ist eine Norm auf $V$ wie in Aufgabe 2.4 gez
 
 \underline{Zeige (b):}
 \begin{align*}
-\Vert u-u^N\Vert_V
+\alpha\Vert u-u^N\Vert_V
 &\stackrel{V\text{-ell}}{\leq}
 a\big(u-u^N,u-u^N\big)\\
 &=\big\Vert u-u^N\big\Vert^2_E\\
@@ -296,7 +296,7 @@ a\big(u-u^N,u-u^N\big)\\
 \big\Vert u-v^N\big\Vert^2_E\\
 &=a\big(u-v^N,u-v^N\big)\\
 &\stackrel{\text{stetig}}{\leq}
-M\cdot\big\Vert u-v^n\big\Vert^2
+M\cdot\big\Vert u-v^n\big\Vert^2_V
 \end{align*}
 \end{proof}
 
