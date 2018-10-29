@@ -117,10 +117,11 @@ J(w)=\frac{1}{2}\cdot a(w,w)-l(w)\geq\frac{1}{2}\cdot a(u,u)-l(u)=J(u)
 \end{align*}
 Die Richtungsableitung
 \begin{align*}
-\left.\frac{\d J\big(u+\alpha\cdot (w-u)\big)}{\d\alpha}\right|_{\alpha=x}\geq0\qquad\forall x\in\big[0,\underbrace{\alpha^\ast(w)}_{>0}\big]\implies x=0\\
-\left.\frac{\d J(u+\alpha\cdot(w-u))}{\d\alpha}\right|_{\alpha=0}
+	&\left.\frac{\d J\big(u+\alpha\cdot (w-u)\big)}{\d\alpha}\right|_{\alpha=x}\geq0\qquad\forall x\in\big[0,\underbrace{\alpha^\ast(w)}_{>0}\big] \\
+	\stackrel{x=0}{\implies}
+	&\left.\frac{\d J(u+\alpha\cdot(w-u))}{\d\alpha}\right|_{\alpha=0}
 =a(u,w-u)+\underbrace{\alpha\cdot a(w-u,w-u)}_{\stackeq{\alpha=0}0}-l(w-u)\\
-\implies a(u,w-u)\geq l(w-u)
+&\implies a(u,w-u)\geq l(w-u)
 \end{align*}
 
 \underline{Zeige Eindeutigkeit des Minimums}\\
@@ -154,8 +155,8 @@ so gilt $u_1=u_2$.
 \begin{proof}
 Seien also $u_1,u_2\in V$ Lösungen von \eqref{eq3}. Dann gilt:
 \begin{align*}
-a(u_1,v) &=f(v) &\forall v\in V\\
-a(u_2,v)=f(v) &\forall v\in V
+a(u_1,v)=f(v) \quad&\forall v\in V\\
+a(u_2,v)=f(v) \quad&\forall v\in V
 \end{align*}
 Subtrahieren voneinander liefert
 \begin{align*}
@@ -187,7 +188,7 @@ besitzt eine eindeutige Lösung.
 \end{enumerate}
 \begin{proof}
 \underline{Zeige (a):}\\
-$a$ ist nach Voraussetzung schon mal bilinear und symmetrisch. Fehlt nur noch positive Definitiheit. Aus der Eigenschaft, dass $a$ $V$-elliptisch ist, folgt
+Nach Voraussetzung ist $a$ bereits bilinear und symmetrisch. Außerdem ist $a$ positiv definit, da $a$ $V$-elliptisch ist. Das sieht man durch
 \begin{align*}
 |a(v,v)|=a(v,v)\stackrel{V\text{-ell}}{\geq}
 \alpha\cdot\Vert v\Vert^2_V\geq0
@@ -207,7 +208,7 @@ Die Normen $\Vert\cdot\Vert_E$ und $\Vert\cdot\Vert_V$ sind also äquivalent. So
 
 Aus dem Riesz'schen Darstellungssatz folgt:
 \begin{align*}
-\exists u\in V:a(u,v)=f(v)\qquad\forall v\in V
+\exists! u\in V:a(u,v)=f(v)\qquad\forall v\in V
 \end{align*}
 \end{proof}
 
@@ -277,10 +278,11 @@ Die Energienorm $\Vert\cdot\Vert_E$ ist eine Norm auf $V$ wie in Aufgabe 2.4 gez
 \underline{Zeige (a):}
 \begin{align*}
 \Vert u-u^N\Vert_E^2
-&=a\big(u-u^N,u-u^N\big)
-\stackeq{\text{To Do}}
-a(u-u^N,u-v^N)
-\stackrel{\text{CS}}{\leq}
+&=a\big(u-u^N,u-u^N\big) \\
+&=a\big(u-u^N,u\big) - \underbrace{a\big(u-u^N,u^N\big)}_{=0~(\text{Galerkin O.})} \\
+&=a\big(u-u^N,u\big) - \underbrace{a\big(u-u^N,v^N\big)}_{=0~(\text{Galerkin O.})} \\
+&=a(u-u^N,u-v^N)\\
+&\stackrel{\text{CS}}{\leq}
 \Vert u-u^N\Vert_E\cdot\Vert u-v^N\Vert_E
 \end{align*}
 
