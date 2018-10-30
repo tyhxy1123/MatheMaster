@@ -1170,6 +1170,177 @@ Nutze Übergang zum Komplement sowie Rechenregeln für $\liminf$ und $\limsup$:
 &=P(G)
 \end{align*}
 
+\underline{Zeige (3) `$\implies$'' (1):}\\
+Sei $f\in C^b(\S)$ beliebig. Zu zeigen:
+\begin{align}\label{eqProof1.4.2Sternchen}
+\limsup\limits_{n\to\infty}\int\limits f\d P_n\leq\int\limits f\d P
+\end{align}
+\underline{1. Schritt:} Sei $0\leq f<1$. Setze
+\begin{align*}
+F_i:=\left\lbrace f\geq\frac{i}{k}\right\rbrace=\left\lbrace x\in\S:f(x)\geq\frac{i}{k}\right\rbrace,\qquad \forall 0\leq i\leq k,k\in\N
+\end{align*}
+Dann gilt $F_i\in\F~\forall i$, da $f$ stetig. Da 
+\begin{align*}
+\int\limits_{\S}f\d P
+\stackeq{\text{Lin}}
+\sum\limits_{i=1}^k\int\limits\indi_{\left\lbrace\frac{i-1}{k}\leq f<\frac{i}{k}\right\rbrace}\cdot f\d P
+\end{align*}
+folgt wegen Monotonie
+\begin{align}\label{eqProof1.4.2Plus}
+\sum\limits_{i=1}^k\underbrace{\frac{i-1}{k}}_{=\frac{i}{k}-\frac{1}{k}}\cdot P\left(\frac{i-1}{k}\leq f<\frac{i}{k}\right)
+\leq
+\int\limits f\d P
+\leq
+\sum\limits_{i=1}^k \frac{1}{k}\cdot P\Big(\underbrace{\frac{i-1}{k}\leq f<\frac{i}{k}}_{F_{i-1}\setminus F_i}\Big)
+\end{align}
+Die rechte SUumme in \eqref{eqProof1.4.2Plus} ist gleich
+\begin{align*}
+&\frac{1}{k}\cdot\sum\limits_{i=1}^k i\cdot\big( P(F_{i-1}-P(F_i)\big)\\
+&=\frac{1}{k}\cdot\Big(P(F_0)-P(F_1)+2\cdot P(F_1-2\cdot P(F_2)+3\cdot P(F_2)-3\cdot P(F_3)+\\
+&\qquad+\ldots+(k-1)\cdot P(F_{k-2})-(k-1)\cdot P(F_{k-1})+k\cdot P(F_{k-1})-k\cdot P(F_k)\Big)\\
+&=\frac{1}{k}\cdot\Big(\underbrace{P(F_0)}_{=1}+P(F_1)+P(F_2)+\ldots+P(F_{k-1})-k\cdot k\cdot \underbrace{P(F_k)}_{=0}\Big)\\
+&=\frac{1}{k}+\frac{1}{k}\cdot\sum\limits_{i=1}^{k-1} P(F_i)
+\end{align*}
+Da die linke Summe in \eqref{eqProof1.4.2Plus} gleich der rechten Summe minus $\frac{1}{k}$, folgt
+\begin{align}\label{eqProof1.4.2DoppelSternchen}
+\sum\limits_{i=1}^{k-1} P(F_i)
+\leq\int\limits f\d P
+\leq\frac{1}{k}+\sum\limits_{i=1}^{k-1} P(F_i)
+\end{align}
+Beachte, \eqref{eqProof1.4.2DoppelSternchen} gilt für \ul{jedes} Wahrscheinlichkeitsmaß $P$, also auch für $P_n$. Damit folgt:
+\begin{align*}
+\limsup\limits_{n\to\infty}\int\limits f\d P_n
+&\leq\frac{1}{k}+\sum\limits_{i=1}^{k-1}\underbrace{\limsup\limits_{n\to\infty} P_n(F_i)}_{\stackrel{(3)}{\leq}P(F_i)~\forall i}\\
+&\leq\frac{1}{k}+\underbrace{\sum\limits_{i=1}^{k-1} P(F_i)}_{\stackrel{\eqref{eqProof1.4.2DoppelSternchen}}{\leq}\int\limits f\d P}\\
+&\leq\frac{1}{k}+\int\limits f\d P\qquad\forall k\in\N
+\end{align*}
+Grenzwertbildung $k\to\infty$ liefert \eqref{eqProof1.4.2Sternchen}.\\
+
+\ul{2. Schritt:} Da $f\in C^b(\S)$ beliebig, gilt:
+\begin{align*}
+\exists a<b:a\leq f<b
+\implies g(x):=\frac{f(x)-a}{b-a}\text{ ist stetig und } 0\leq g<1
+\end{align*}
+Daraus folgt
+\begin{align*}
+\limsup\limits_{n\to\infty}\int\limits f\d P_n
+&=\limsup\limits_{n\to\infty}\int\limits (b-a)\cdot g+a\d P_n\\
+&=\limsup\limits_{n\to\infty}\left((b-a)\cdot\int\limits g\d P_n+a\right)\\
+&\leq(b-a)\cdot\underbrace{\limsup\limits_{n\to\infty}\int\limits g\d P_n}_{\leq\int\limits g\d P\text{, wg. 1. Schritt}}+a\\
+&\leq(b-a)\cdot\int\limits g\d P+0\\
+&\stackeq{\text{Lin}}
+\int\limits f\d P
+\end{align*}
+Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqProof1.4.2Sternchen} liefert
+\begin{align*}
+\int\limits f\d P
+&\leq
+\liminf\limits_{n\to\infty}\int\limits f\d P_n\\
+&=\liminf\limits_{n\to\infty}-\int\limits -f\d P_n\\
+&=-\limsup\limits_{n\to\infty}-\int\limits \underbrace{-f}_{\in C^b(\S)}\d P\\
+&\stackrel{\eqref{eqProof1.4.2Sternchen}}{\geq}
+-\int\limits -f\d P\\
+&\stackeq{\text{Lin}}
+\int\limits f\d P
+\qquad\forall f\in C^b(\S)\\
+&\implies(1)
+\end{align*}
+
+\underline{Zeige (3) ``$\implies$ (5):}\\
+Sei $B\in\B(\S)\mit P(\partial B)=0$. Dann gilt:
+\begin{align*}
+P(\overline{B})
+&\stackrel{(3)}{\geq}
+\limsup\limits_{n\to\infty} \underbrace{P_n(\overbrace{\overline{B}}^{\supseteq B})}_{\geq P_n(B)}\\
+&\geq\limsup\limits_{n\to\infty} P_n(B)\\
+&\stackrel{\text{stetig}}{\geq}
+\liminf\limits_{n\to\infty} \underbrace{P_n(\overbrace{B}^{\supseteq\stackrel{\circ}{B}})}_{P_n(\stackrel{\circ}{B}}\\
+\stackrel{(3)\gdw(4)}{\geq}
+P(\stackrel{\circ}{B})\\
+&=P(\overline{B})\\
+&=P(B)
+\end{align*}, denn:
+\begin{align}\label{eqProof1.4.2SternchenZwei}
+0
+=P(\overbrace{\partial B}^{\overline{B}\setminus\stackrel{\circ}{B}}
+)=P(\overline{B})-P(\stackrel{\circ}{B})
+\implies
+P(\stackrel{\circ}{B})\leq P(B)\leq P(\overline{B})=P(\stackrel{\circ}{B})
+\end{align}
+Da $\liminf=\limsup$ folgt $\limn P_n(B)=P(B)$.\\
+
+\underline{Zeige (5) ``$\implies$ (3):}\\
+Sei $F\in\F$ (abgeschlossen) beliebig. Dann gilt $\forall\varepsilon>0:$
+\begin{align}\label{eqProof1.4.2SternchenUnten}
+\partial\Big(\big\lbrace x\in\S:d(x,F)\leq\varepsilon\big\rbrace\Big)
+\subseteq\big\lbrace x\in\S:d(x,F)=\varepsilon\big\rbrace
+\end{align}
+denn: Sei $x\in\partial\Big(\big\lbrace x\in\S:d(x,F)\leq\varepsilon\big\rbrace\Big)$. Dann gilt:
+\begin{align*}
+&\exists (x_n)_{n\in\N}:\forall n\in\N:d(x_n,F)\leq\varepsilon\wedge \limn x_n=x\\
+&\exists (\xi_n)_{n\in\N}:\forall n\in\N:d(\xi_n,F)>\varepsilon\wedge\limn\xi_n=x
+\end{align*}
+Da $d(\cdot,F)$ stetig gemäß \ref{lemma2.3} (3), folgt
+\begin{align*}
+\varepsilon\leq d(x,F)\leq\varepsilon.
+\end{align*}
+Wegen \eqref{eqProof1.4.2SternchenUnten} sind 
+\begin{align*}
+A_\varepsilon:=\partial\Big(\big\lbrace x\in\S:d(x,F)\leq\varepsilon\big\rbrace\Big)\qquad\forall\varepsilon>0
+\end{align*}
+paarweise disjunkt, da bereits die Obermengen paarweise disjunkt sind. Dann folgt
+\begin{align}\label{eqProof1.4.2DoppelSternchenUnten}
+E:=\big\lbrace\varepsilon>0:P(A_\varepsilon)>0\big\rbrace\text{ ist höchstens abzählbar},
+\end{align}
+denn:
+\begin{align*}
+E=\bigcup\limits_{n\in\N}\underbrace{\left\lbrace\varepsilon>0:P(A_\varepsilon)\geq\frac{1}{m}\right\rbrace}_{=:E_m}
+\end{align*}
+Es gilt $|E_m|\leq m$, weil: Angenommen es existieren $0<\varepsilon_1<\ldots<\varepsilon_{m+1}$ mit 
+\begin{align*}
+&P(A_{\varepsilon_i})\geq\frac{1}{m}\qquad\forall 1\leq i\leq m+1\\
+&\implies
+1\geq P\left(\bigcup\limits_{i=1}^{m+1} A_{\varepsilon_i}\right)
+\stackeq{\text{pw. disj.}}
+\sum\limits_{i=1}^{m+1}\underbrace{P\big(A_{\varepsilon_i}\big)}_{\geq\frac{1}{m}}\geq(m+1)\cdot\frac{1}{m}>1
+\end{align*}
+Das ist ein Widerspruch. Damit ist $E$ höchstens abzählbar unendlich. Damit liegt das Komplement
+\begin{align*}
+E^C=\big\lbrace\varepsilon>0: P(A_\varepsilon)=0\big\rbrace
+\end{align*}
+dicht in $[0,\infty)$. (dies kann man auch durch Widerspruch zeigen)\\
+Daraus folgt insbesondere:
+\begin{align*}
+\exists(\varepsilon_k)_{k\in\N}\subseteq\R\mit\varepsilon_k\downarrow0:\forall	 k\in\N: F_k:=\big\lbrace x\in\S:d(x,F)\leq\varepsilon_k\big\rbrace\text{ ist $P$-randlos}
+\end{align*}
+Beachte $A_{\varepsilon_k}=\partial F_k$. Da $F\subseteq F_k~\forall k\in\N$,gilt:
+\begin{align*}
+&\limsup\limits_{n\to\infty} P_n(F)
+\leq\limsup\limits_{n\to\infty} \underbrace{P_n(F_k)}_{\text{konv.}}
+\stackeq{(5)}
+P(F_k)\qquad\forall k\in\N\\
+&\stackrel{k\to\infty}{\implies}
+\limsup\limits_{n\to\N} P_n(F)
+\leq\lim\limits_{k\to\infty} P(F_k)
+=P(F)
+\end{align*}
+Die letzte Gleichheit gilt, weil $P$ $\sigma$-stetig von oben ist und $F_k\downarrow F$. $F_k\downarrow F$, denn $F_1\supseteq F_2\supseteq\ldots$, da $\varepsilon_k$ monoton fallende Folge ist und
+\begin{align*}
+\bigcap\limits_{k\in\N}F_k=F, 
+\end{align*}
+denn: 
+\begin{align*}
+x\in\bigcap\limits_{k\in\N}F_k
+&\Longleftrightarrow
+x\in F_k\qquad\forall k\in\N\\
+&\Longleftrightarrow
+d(x,F)\leq\varepsilon_k\qquad\forall k\in\N\\
+&\implies
+d(x,F)=0\\
+&\stackrel{\ref{lemma2.3}~(1)}{\Longleftrightarrow}
+x\in \overline{F}\stackeq{F\in\F}F
+\end{align*}
 \end{proof}
+
 
 
