@@ -51,7 +51,7 @@ fi
 mkdir $OUT_DIR
 
 # compile a .pdf file for each lecture
-for lecture in MFANA MSTAT ORDSTR PDENUM WTHM
+for lecture in MFANA MSTAT ORDSTR PDENUM WTHM FEM ANGA AMGEO
 do
     pushd $lecture
     msg "compiling lecture $lecture..."
