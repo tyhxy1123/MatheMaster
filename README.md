@@ -16,6 +16,8 @@ Die PDF Version der Skripte wird immer am Ende der Woche aktualisiert.
 
 Du willst uns unterstützen und mitmachen? Kein Problem! Je mehr desto besser :)
 
+Kontakt: willi.sontopski@mailbox.tu-dresden.de
+
 # License
 
 ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
