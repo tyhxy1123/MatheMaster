@@ -403,7 +403,7 @@ Die Aussagen zu Sub-/Supermartingalen folgt aus
 \end{align*}
 \end{proof}
 
-\begin{beispiel}
+\begin{beisp}
 Einfacher symmetrischer Random Walk 
 \begin{align*}
 S_n&:=\xi_1+\ldots+\xi_n\mit\P(\xi_1=+1)=\P(\xi_1=-1)=\frac{1}{2}\\
@@ -460,9 +460,10 @@ Was ist $P(S_i=0)$? Nullstellen können nur zu \ul{geraden} Zeitpunkten auftrete
 \end{pmatrix}\cdot 2^{-2\cdot k}\sim\sqrt{n}
 \end{align*}
 Mit der \textit{Stirling-Approximation} erkennt man, dass sich der Erwartungswert $\E\big[|S_n|\big]$ wie $\sqrt{n}$ verhält.
-\end{beispiel}
+\end{beisp}
 
 \section{Kompensator und Martingaltransformation} %2.2
+\setcounter{satz}{3}
 \begin{lemma}\label{lemma2.4}
 Sei $(M_n)_{n\in\N}$ ein Martingal bzgl. $(F_n)_{n\in\N}$ mit $\E[M_n^2]<\infty$.\\
 Dann ist $M_n^2$ ein Submartingal und es existiert ein eindeutiger steigender vorhersehbarer Prozess $\big(\langle M\rangle_n\big)_{n\in\N}$, sodass $\big(M_n^2-\langle M\rangle_n\big)_{n\in\N}$ ein Martingal ist. $\langle M\rangle_n$ heißt \textbf{Kompensator} von $(M_n)_{n\in\N}$ und es gilt
@@ -481,33 +482,31 @@ M_n^2=M_0^2+\underbrace{\big(M_n^2-\langle M\rangle_n-M_0^2\big)}_{\text{Marting
 \end{itemize}
 \end{bemerkung}
 
-\begin{beispiel} %NoNumber
-(Siehe Beispiel des Kapitels.) Sei $S_n:=\xi_1+\ldots+\xi_n$ Random Walk mit $\E[\xi_i]=0$ und $\Var(\xi_i)=\sigma^2$. Dann ist
+\begin{beisp} %NoNumber
+(Siehe Beispiel des Kapitels.) Sei $S_n:=\xi_1+\ldots+\xi_n$ ein Random Walk mit $\E[\xi_i]=0$ und $\Var(\xi_i)=\sigma^2$. Dann ist
 $\big(S_n^2-n\cdot\sigma^2\big)_{n\in\N}$ ein Martingal mit $\langle S\rangle_n=n\cdot\sigma^2$
-\end{beispiel}
+\end{beisp}
 
-\begin{proof}[Beweis von Lemma \ref{lemma2.4}\enter
+\begin{proof}[Beweis von Lemma \ref{lemma2.4}]\enter
 Erster Teil des Lemmas folgt aus der Doob-Zerlegung des Submartingals $M_n^2$. Zu zeigen bleibt \eqref{eqLemma2.4}:
 
 \begin{align*}
-ToDo
-%\E\Big[\big(M_n-M_{n-1}\big)^2~\Big|~\F_{n-1}\Big]
-%&=\E\big[M_n^2~\big|~\F_{n-1}\big]-2\cdot M_{n-1}\cdot\underbrace{\E[M_n~|~\F_{n-1}]}_{=M_{n-1}}+M^2_{n-1}\\
-%&=\E\big[M_n^2~\big|~\F_{n-1}\big]
+\E\Big[\big(M_n-M_{n-1}\big)^2~\Big|~\F_{n-1}\Big]
+&=\E\big[M_n^2~\big|~\F_{n-1}\big]-2\cdot M_{n-1}\cdot\underbrace{\E[M_n~|~\F_{n-1}]}_{=M_{n-1}}+M^2_{n-1}\\
+&=\E\big[M_n^2~\big|~\F_{n-1}\big]
 \end{align*}
 Da $M_n^2-\langle M\rangle_n$ ein Martingal ist, folgt
 \begin{align*}
-TO Do
-%\E\big[M_n^2-M_{n-1}^2~\big|~\F_{n-1}\big]
-%=\E\big[\langle M\rangle_n-\langle M\rangle_{n-1}~\big|~\F_{n-1}\big]
-%\stackeq{\langle M\rangle_n\text{ ist vorhersehbar}}\langle M\rangle_n-\langle M\rangle_{n-1}
+\E\big[M_n^2-M_{n-1}^2~\big|~\F_{n-1}\big]
+=\E\big[\langle M\rangle_n-\langle M\rangle_{n-1}~\big|~\F_{n-1}\big]
+\stackeq{\langle M\rangle_n\text{ ist vorhersehbar}}\langle M\rangle_n-\langle M\rangle_{n-1}
 \end{align*}
 \end{proof}
 
 \begin{defi} %noNumber
 Sei $(M_n)_{n\in\N}$ ein (Sub-/Super-)Martingal und $(\vartheta_n)_{n\in\N}$ ein vorhersehbarer Prozess. Dann heißt der stochastische Prozess
 \begin{align*}
-(\vartheta\cdot M)_n:=\sum\limits_{i=1}^n\vartheta_i\cdot(M_i-M_{i-1},\qquad(\vartheta\cdot M)_0:=0
+(\vartheta\bullet M)_n:=\sum\limits_{i=1}^n\vartheta_i\cdot(M_i-M_{i-1}),\qquad(\vartheta\bullet M)_0:=0
 \end{align*} 
 Martingaltransformation von $M$ bzgl. $\vartheta$.
 \end{defi}
@@ -518,21 +517,21 @@ Martingaltransformation von $M$ bzgl. $\vartheta$.
 \begin{itemize}
 \item $(M_n-M_{n-1})$ ist der Gewinn in der $n$-ten Runde
 \item $\vartheta_n$ ist Einsatz in der $n$-ten Runde
-\item $(\vartheta\cdot M)_n$ ist der Gesamtgewinn nach der $n$-ten Runde mit Einsatz $\vartheta_n)_{n\in\N}$
+\item $(\vartheta\bullet M)_n$ ist der Gesamtgewinn nach der $n$-ten Runde mit Einsatz $\vartheta_n)_{n\in\N}$
 \end{itemize}
 \item Analogie zur Riemann-Summe:
 \begin{itemize}
 \item $\vartheta$ ist der Integrand
 \item $M$ ist der Integrator im Riemann-Stiltjes-Integral
 \end{itemize}
-Deswegen heißt $(\vartheta\cdot M)_n$ auch \textbf{diskretes stochastisches Integral}
+Deswegen heißt $(\vartheta\bullet M)_n$ auch \textbf{diskretes stochastisches Integral}
 \end{itemize}
 \end{bemerkung}
 
 \begin{defi} %noNumber
 Ein stochastischer Prozess heißt \textbf{lokal beschränkt}
 \begin{align*}
-:\Longleftrightarrow\exists(K_n)_{n\in\N}\subseteq\R:\forall k\in\lbrace1,\ldots,n\rbrace:|\vartheta_k|\leq K_n TODO
+:\Longleftrightarrow\exists(K_n)_{n\in\N}\subseteq\R:\forall n\in\N:\forall k\in\lbrace1,\ldots,n\rbrace:|\vartheta_k|\leq K_n
 \end{align*}
 \end{defi}
 
@@ -540,16 +539,16 @@ Ein stochastischer Prozess heißt \textbf{lokal beschränkt}
 Sei $(M_n)_{n\in\N}\subseteq L_1$ adaptiert bzgl. $(\F_n)_{n\in\N}$ und $(\vartheta_n)_{n\in\N}$ vorhersehbar. Dann gilt:
 
 \begin{enumerate}[label=(\alph*)]
-\item ToDo
-%\item $M\mapsto(\vartheta\cdot M)$ und $\vartheta\mapsto(\vartheta\cdot M)$ sind lineare Abbildungen
-%\item $M$ Martingal und $\vartheta$ lokal beschränkt $\implies(\vartheta\cdot M)$ ist Martingal
-%\item $M$ Sub-/Supermartingal und $\vartheta\geq0$ lokal beschränkt $\implies(\vartheta\cdot M)$ ist Sub-/Supermartingal
-%\item $M\subseteq L_2,~M$ Martingal, $\vartheta\subseteq l_2\implies(\vartheta\cdot M)$ ist Martingal
-%\item $M\subseteq L_2,~M$ Sub-/Supermartingal und $\vartheta\subseteq L_2\mit\vartheta\geq0\implies(\vartheta\cdot M)$ ist Sub-/Supermartingal
+\item $M\mapsto(\vartheta\bullet M)$ und $\vartheta\mapsto(\vartheta\bullet M)$ sind lineare Abbildungen
+\item $M$ Martingal und $\vartheta$ lokal beschränkt $\implies(\vartheta\bullet M)$ ist Martingal
+\item $M$ Sub-/Supermartingal und $\vartheta\geq0$ lokal beschränkt\\ $\implies(\vartheta\bullet M)$ ist Sub-/Supermartingal
+\item $M\subseteq L_2,~M$ Martingal, $\vartheta\subseteq l_2\implies(\vartheta\bullet M)$ ist Martingal
+\item $M\subseteq L_2,~M$ Sub-/Supermartingal und $\vartheta\subseteq L_2\mit\vartheta\geq0\\\implies(\vartheta\bullet M)$ ist Sub-/Supermartingal
 \end{enumerate}
 \end{theorem}
+
 \begin{proof}
-\underline{Zeige (a):} Ist trivial.\\
+(a) ist trivial.\\
 
 \underline{Zeige (b) - (e):}
 \begin{itemize}
@@ -561,14 +560,14 @@ Sei $(M_n)_{n\in\N}\subseteq L_1$ adaptiert bzgl. $(\F_n)_{n\in\N}$ und $(\varth
 mit $X=\vartheta_i$ und $Y=M_i$ oder $M_{i-1}$. Die Fälle (b) und (c) mit $p=\infty$ und $q=1$. Die Fälle (d) und (e) mit $p=2$ und $q=2$.
 \item Martingaleigenschaft:
 \begin{align*}
-\E\big[(\vartheta\cdot M)_n-(\vartheta\cdot M)_{n-1}~\big|~\F_{n-1}\big]
+\E\big[(\vartheta\bullet M)_n-(\vartheta\bullet M)_{n-1}~\big|~\F_{n-1}\big]
 &=\E\big[\vartheta_n\cdot(M_n-M_{n-1})~\big|~\F_{n-1}\big]\\
 &=\vartheta_n\cdot\underbrace{\E[M_n-M_{n-1}~|~\F_{n-1}]}_{=0}\\
 &=0
 \end{align*}
 Submartingal:
 \begin{align*}
-\E\big[(\vartheta\cdot M)_n-(\vartheta\cdot M)_{n-1}~\big|~\F_{n-1}\big]
+\E\big[(\vartheta\bullet M)_n-(\vartheta\bullet M)_{n-1}~\big|~\F_{n-1}\big]
 &=\E\big[\vartheta_n\cdot(M_n-M_{n-1})~\big|~\F_{n-1}\big]\\
 &=\underbrace{\vartheta_n}_{\geq0}\cdot\underbrace{\E[M_n-M_{n-1}~|~\F_{n-1}]}_{\geq0}\\
 &\geq0
@@ -593,12 +592,14 @@ für den Raum der quadratintegrierbaren Martingale. Dann gilt:
 Dies kann auch als $L_2$-Norm auf geeigneten Hilberträumen interpretiert werden.
 \end{enumerate}
 \end{proposition}
+
+
 \begin{proof}
 \underline{Zeige (a):}\\
-Aus Theorem \ref{theorem2.5} folgt Martingaleigenschaft von $(\vartheta\cdot M)_n$:
+Aus Theorem \ref{theorem2.5} folgt Martingaleigenschaft von $(\vartheta\bullet M)_n$:
 \begin{align*}
 \E\big[(\vartheta M_k)^2\big]\leq K_n^2\cdot\E\big[M_k^2\big]<\infty\qquad\forall j,k\leq n\\
-\implies(\vartheta\cdot M)\in M_2
+\implies(\vartheta\bullet M)\in M_2
 \end{align*}
 \underline{Zeige (b):}
 \begin{align*}
@@ -614,7 +615,7 @@ Aus Theorem \ref{theorem2.5} folgt Martingaleigenschaft von $(\vartheta\cdot M)_
 &\implies(\vartheta\cdot M)^2_n-\vartheta^2\cdot\langle M\rangle_n\text{ ist Martingal}\\
 &\implies\langle\vartheta\cdot M\rangle_n=\vartheta^2\cdot\langle M\rangle_n\qquad\forall n\in\N
 \end{align*}
-%ToDo: better \cdot for difference between both notations
+
 \underline{Zeige (c):} Bilden von Erwartungswerten von oben:
 \begin{align*}
 \E\big[(\vartheta\cdot M)^2_n\big]=\E\big[\vartheta^2\cdot\langle M\rangle_n\big]
