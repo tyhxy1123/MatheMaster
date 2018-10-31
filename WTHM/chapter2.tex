@@ -406,7 +406,7 @@ Die Aussagen zu Sub-/Supermartingalen folgt aus
 \begin{beisp}
 Einfacher symmetrischer Random Walk 
 \begin{align*}
-S_n&:=\xi_1+\ldots+\xi_n\mit\P(\xi_1=+1)=\P(\xi_1=-1)=\frac{1}{2}\\
+S_n&:=\xi_1+\ldots+\xi_n \qquad\mit\P(\xi_1=+1)=\P(\xi_1=-1)=\frac{1}{2}\\
 X_n&:=|S_n|
 \end{align*}
 $X_n$ heißt auch \textbf{reflektierter} Random Walk\\
@@ -416,14 +416,14 @@ $|S_n|$ ist ein Submartingal, weil Betragsfunktion konvex ist (Proposition \ref{
 \begin{align*}
 |S_n|=M_n+A_n
 \end{align*}
-mit $A$ vorhersehbar und steigend. Somit gilt nach Theorem \ref{Theorem2.3DoobZerlegung}:
+mit $A_n$ vorhersehbar und steigend. Somit gilt nach Theorem \ref{Theorem2.3DoobZerlegung}:
 \begin{align*}
-A_n=\sum\limits_{i=1}^n \E\big[|S_i|~\big|~\F_{i-1}\big]-S_{i-1}
+A_n=\sum\limits_{i=1}^n \E\big[|S_i|~\big|~\F_{i-1}\big]-|S_{i-1}|
 \end{align*}
 Es gilt:
 \begin{align*}
 |S_i|=\left\lbrace\begin{array}{cl}
-S_{i-1}+\xi, & \falls S_{i-1}>0\\
+|S_{i-1}|+\xi, & \falls S_{i-1}>0\\
 1, &\falls S_{i-1}=0\\
 |S_{i-1}|-\xi_i, &\falls S_{i-1}<0
 \end{array}\right.
@@ -433,7 +433,10 @@ d.h.
 \E\big[|S_i|~\big|~\F_{i-1}\big]&=\left\lbrace\begin{array}{cl}
 |S_{i-1}|+0, &\falls S_{i-1}\neq0\\
 1, &\falls S_{i-1}=0
-\end{array}\right.\\
+\end{array}\right.
+\end{align*}
+Also
+\begin{align*}
 A_n&=\sum\limits_{i=1}^n\indi_{\lbrace S_{i-1}=0\rbrace}=\sum\limits_{i=0}^{n-1}\indi_{\lbrace S_i=0\rbrace}
 \end{align*}
 $A_n$ zählt die Nullstellen von $S$ und heißt \textbf{Lokalzeit bei 0}.
@@ -445,7 +448,10 @@ $A_n$ zählt die Nullstellen von $S$ und heißt \textbf{Lokalzeit bei 0}.
 \end{align*}
 Was ist $P(S_i=0)$? Nullstellen können nur zu \ul{geraden} Zeitpunkten auftreten, d.h.
 \begin{align*}
-\P\left(S_{2\cdot k+1}=0\right)&=0\qquad\forall k\in\N_0\\
+\P\left(S_{2\cdot k+1}=0\right)&=0\qquad\forall k\in\N_0
+\end{align*}
+und
+\begin{align*}
 \P\left(S_{2\cdot k}=0\right)&=\text{ ``$k$-mal Schritt nach oben, $k$-mal Schritt nach unten''}\\
 &=[\text{Binomialverteilung]}\\
 &=\begin{pmatrix}
@@ -457,15 +463,15 @@ Was ist $P(S_i=0)$? Nullstellen können nur zu \ul{geraden} Zeitpunkten auftrete
 \implies
 \E\big[|S_n|\big]&=\E[A_n]=\sum\limits_{k=0}^{\left\lfloor\frac{n-1}{2}\right\rfloor}\begin{pmatrix}
 2\cdot k\\ k
-\end{pmatrix}\cdot 2^{-2\cdot k}\sim\sqrt{n}
+\end{pmatrix}\cdot 2^{-2\cdot k}\stackrel{(\ast)}{\sim}\sqrt{n}
 \end{align*}
-Mit der \textit{Stirling-Approximation} erkennt man, dass sich der Erwartungswert $\E\big[|S_n|\big]$ wie $\sqrt{n}$ verhält.
+$(\ast)$ Mit der \textit{Stirling-Approximation} erkennt man, dass sich der Erwartungswert $\E\big[|S_n|\big]$ wie $\sqrt{n}$ verhält.
 \end{beisp}
 
 \section{Kompensator und Martingaltransformation} %2.2
 \setcounter{satz}{3}
 \begin{lemma}\label{lemma2.4}
-Sei $(M_n)_{n\in\N}$ ein Martingal bzgl. $(F_n)_{n\in\N}$ mit $\E[M_n^2]<\infty$.\\
+Sei $(M_n)_{n\in\N}$ ein Martingal bzgl. $(\F_n)_{n\in\N}$ mit $\E[M_n^2]<\infty$.\\
 Dann ist $M_n^2$ ein Submartingal und es existiert ein eindeutiger steigender vorhersehbarer Prozess $\big(\langle M\rangle_n\big)_{n\in\N}$, sodass $\big(M_n^2-\langle M\rangle_n\big)_{n\in\N}$ ein Martingal ist. $\langle M\rangle_n$ heißt \textbf{Kompensator} von $(M_n)_{n\in\N}$ und es gilt
 \begin{align}\label{eqLemma2.4}
 \E\left[(M_n-M_{n-1})^2~\big|~\F_{n-1}\right]=\langle M\rangle_n-\langle M\rangle_{n-1}\qquad\forall n\in\N
@@ -493,7 +499,7 @@ Erster Teil des Lemmas folgt aus der Doob-Zerlegung des Submartingals $M_n^2$. Z
 \begin{align*}
 \E\Big[\big(M_n-M_{n-1}\big)^2~\Big|~\F_{n-1}\Big]
 &=\E\big[M_n^2~\big|~\F_{n-1}\big]-2\cdot M_{n-1}\cdot\underbrace{\E[M_n~|~\F_{n-1}]}_{=M_{n-1}}+M^2_{n-1}\\
-&=\E\big[M_n^2~\big|~\F_{n-1}\big]
+&=\E\big[M_n^2~\big|~\F_{n-1}\big] - M_{n-1}^2
 \end{align*}
 Da $M_n^2-\langle M\rangle_n$ ein Martingal ist, folgt
 \begin{align*}
@@ -508,7 +514,7 @@ Sei $(M_n)_{n\in\N}$ ein (Sub-/Super-)Martingal und $(\vartheta_n)_{n\in\N}$ ein
 \begin{align*}
 (\vartheta\bullet M)_n:=\sum\limits_{i=1}^n\vartheta_i\cdot(M_i-M_{i-1}),\qquad(\vartheta\bullet M)_0:=0
 \end{align*} 
-Martingaltransformation von $M$ bzgl. $\vartheta$.
+\textbf{Martingaltransformation} von $M$ bzgl. $\vartheta$.
 \end{defi}
 
 \begin{bemerkung}\ %NoNumber
@@ -517,7 +523,7 @@ Martingaltransformation von $M$ bzgl. $\vartheta$.
 \begin{itemize}
 \item $(M_n-M_{n-1})$ ist der Gewinn in der $n$-ten Runde
 \item $\vartheta_n$ ist Einsatz in der $n$-ten Runde
-\item $(\vartheta\bullet M)_n$ ist der Gesamtgewinn nach der $n$-ten Runde mit Einsatz $\vartheta_n)_{n\in\N}$
+\item $(\vartheta\bullet M)_n$ ist der Gesamtgewinn nach der $n$-ten Runde mit Einsatz $(\vartheta_n)_{n\in\N}$
 \end{itemize}
 \item Analogie zur Riemann-Summe:
 \begin{itemize}
@@ -542,7 +548,7 @@ Sei $(M_n)_{n\in\N}\subseteq L_1$ adaptiert bzgl. $(\F_n)_{n\in\N}$ und $(\varth
 \item $M\mapsto(\vartheta\bullet M)$ und $\vartheta\mapsto(\vartheta\bullet M)$ sind lineare Abbildungen
 \item $M$ Martingal und $\vartheta$ lokal beschränkt $\implies(\vartheta\bullet M)$ ist Martingal
 \item $M$ Sub-/Supermartingal und $\vartheta\geq0$ lokal beschränkt\\ $\implies(\vartheta\bullet M)$ ist Sub-/Supermartingal
-\item $M\subseteq L_2,~M$ Martingal, $\vartheta\subseteq l_2\implies(\vartheta\bullet M)$ ist Martingal
+\item $M\subseteq L_2,~M$ Martingal, $\vartheta\subseteq L_2\implies(\vartheta\bullet M)$ ist Martingal
 \item $M\subseteq L_2,~M$ Sub-/Supermartingal und $\vartheta\subseteq L_2\mit\vartheta\geq0\\\implies(\vartheta\bullet M)$ ist Sub-/Supermartingal
 \end{enumerate}
 \end{theorem}
@@ -578,17 +584,17 @@ Submartingal:
 \begin{proposition}\label{prop2.6}
 Sei $(\vartheta_n)_{n\in\N}$ vorhersehbar und lokal beschränkt. Wir setzen
 \begin{align*}
-M_2:=\big\lbrace (X_n)_{n\in\N}:(X_n)_{n\in\N}\text{ Martingal und }(X_n)_{n\in\N}\subseteq L_2\big\rbrace
+	\mathcal{M}_2:=\big\lbrace (X_n)_{n\in\N}:(X_n)_{n\in\N}\text{ Martingal und }(X_n)_{n\in\N}\subseteq L_2\big\rbrace
 \end{align*}
 für den Raum der quadratintegrierbaren Martingale. Dann gilt:
 \begin{enumerate}[label=(\alph*)]
-\item $M\mapsto(\vartheta\cdot M)$ bildet $M_2$ auf $M_2$ ab.
+	\item $M\mapsto(\vartheta\bullet M)$ bildet $\mathcal{M}_2$ auf $\mathcal{M}_2$ ab.
 \item $\begin{aligned}
-\langle\vartheta\cdot M\rangle_n=\big(\vartheta^2\cdot\langle M\rangle\big)_n
+\langle\vartheta\bullet M\rangle_n=\big(\vartheta^2\bullet\langle M\rangle\big)_n
 \end{aligned}$
 \item $\begin{aligned}
-\E\big[(\vartheta\cdot M)^2\big]=\E\Big[\big(\vartheta^2\cdot\langle M\rangle\big)_n\Big]
-\end{aligned}$ (\textbf{Ho-Isometrie})\\
+\E\big[(\vartheta\bullet M)^2\big]=\E\Big[\big(\vartheta^2\bullet\langle M\rangle\big)_n\Big]
+\end{aligned}$ (\textbf{It\^o-Isometrie})\\
 Dies kann auch als $L_2$-Norm auf geeigneten Hilberträumen interpretiert werden.
 \end{enumerate}
 \end{proposition}
@@ -598,26 +604,43 @@ Dies kann auch als $L_2$-Norm auf geeigneten Hilberträumen interpretiert werden
 \underline{Zeige (a):}\\
 Aus Theorem \ref{theorem2.5} folgt Martingaleigenschaft von $(\vartheta\bullet M)_n$:
 \begin{align*}
-\E\big[(\vartheta M_k)^2\big]\leq K_n^2\cdot\E\big[M_k^2\big]<\infty\qquad\forall j,k\leq n\\
-\implies(\vartheta\bullet M)\in M_2
+	&\E\big[(\vartheta_j M_k)^2\big]\leq K_n^2\cdot\E\big[M_k^2\big]<\infty\qquad\forall j,k\leq n\\
+	\implies&(\vartheta\bullet M)\in \mathcal{M}_2
 \end{align*}
 \underline{Zeige (b):}
 \begin{align*}
-\big(\vartheta^2\cdot\langle M\rangle\big)_n
-&=\sum\limits_{j=1}^n\underbrace{\vartheta_j}_{\F_{n-1}\text{-messbar}}\cdot\underbrace{\big(\langle M\rangle_j-\langle M\rangle_{j-1}\big)}_{\F_{n-1}\text{-messbar}}\\
-&\implies\vartheta^2\cdot\langle M\rangle\text{ ist vorhersehbar}\\
-\E\Big[(\vartheta\cdot M)^2_n-(\vartheta\cdot M)^2_{n-1}~\Big|~\F_{n-1}\Big]
-&=\E\Big[\big((\vartheta\cdot M)_n-(\vartheta\cdot M)_{n-1}\big)^2~\Big|~\F_{n-1}\Big]\\
-&=\E\big[\vartheta^2\cdot(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
-&=\vartheta^2_n\cdot\E\big[(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
-&\stackeq{\ref{lemma2.4}}
-\vartheta_n^2\cdot\big(\langle M\rangle-\langle M\rangle_{n-1}\big)\\
-&\implies(\vartheta\cdot M)^2_n-\vartheta^2\cdot\langle M\rangle_n\text{ ist Martingal}\\
-&\implies\langle\vartheta\cdot M\rangle_n=\vartheta^2\cdot\langle M\rangle_n\qquad\forall n\in\N
+&\big(\vartheta^2\bullet\langle M\rangle\big)_n
+=\sum\limits_{j=1}^n\underbrace{\vartheta_j}_{\F_{n-1}\text{-messbar}}\cdot\underbrace{\big(\langle M\rangle_j-\langle M\rangle_{j-1}\big)}_{\F_{n-1}\text{-messbar}}\\
+&\implies\vartheta^2\bullet\langle M\rangle\text{ ist vorhersehbar}
 \end{align*}
 
-\underline{Zeige (c):} Bilden von Erwartungswerten von oben:
+Wir nutzen hier wieder die Vorüberlegung aus dem Beweis der Doob Zerlegung:
 \begin{align*}
-\E\big[(\vartheta\cdot M)^2_n\big]=\E\big[\vartheta^2\cdot\langle M\rangle_n\big]
+	\langle \vartheta \bullet M \rangle_n 
+	&=\sum_{i=1}^n\E\Big[(\vartheta\bullet M)^2_i-(\vartheta\bullet M)^2_{i-1}~\Big|~\F_{i-1}\Big]\\
+	&=\sum_{i=1}^n\E\Big[(\vartheta\bullet M)^2_i-2\cdot(\vartheta\bullet M)_i(\vartheta\bullet M)_{i-1} +(\vartheta\bullet M)^2_{i-1}~\Big|~\F_{i-1}\Big]\\
+&=\sum_{i=1}^n\E\Big[\big((\vartheta\bullet M)_i-(\vartheta\bullet M)_{i-1}\big)^2~\Big|~\F_{n-1}\Big]\\
+&=\sum_{i=1}^n\E\big[\vartheta^2\cdot(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
+&=\sum_{i=1}^n\vartheta^2_n\cdot\E\big[(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
+&\stackeq{\ref{lemma2.4}}
+\sum_{i=1}^n\vartheta_n^2\cdot\big(\langle M_n\rangle-\langle M\rangle_{n-1}\big) \\
+&= \vartheta^2 \bullet \langle M \rangle_n \qquad \forall n \in \N
+\end{align*}
+
+\underline{Zeige (c):}
+Da
+\begin{align*}
+	(\vartheta \bullet M)^2_n - \vartheta^2 \bullet \langle M \rangle_n
+\end{align*}
+Martingal ist und laut Definition gilt
+\begin{align*}
+	(\vartheta \bullet M)^2_0 - \vartheta^2 \bullet \langle M \rangle_0 = 0
+\end{align*} folgt
+\begin{align*}
+	\E\left[(\vartheta \bullet M)^2_n - \vartheta^2 \bullet \langle M \rangle_n\right] = 0 \qquad \forall n\in\N
+\end{align*}
+Umordnen der obigen Gleichung ergibt
+\begin{align*}
+\E\big[(\vartheta\bullet M)^2_n\big]=\E\big[\vartheta^2\bullet\langle M\rangle_n\big]
 \end{align*}
 \end{proof}
