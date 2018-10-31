@@ -853,7 +853,7 @@ erfüllt.
 \end{theorem}
 
 \begin{proof}
-\underline{Zeige (i):}
+\underline{Zeige (i):}\\
 $V=H_0^1(\Omega)$, $\Vert\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\sim\vert\cdot\vert_{1,2,\Omega}$. 
 Zeige zunächst, dass $l(v)$ stetig ist. %Zuerst die rechte Seite: <- steht bei mir ursprünglich auch so im Skript, aber ich versteh es nicht. Macht wenig Sinn an der Stelle.
 \begin{align*}
@@ -870,8 +870,8 @@ Stetigkeit:
 \big|a(v,w)\big|&=\left|\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x\right|\\
 &\leq
 \Vert A\Vert_{L^\infty}\cdot\Vert\nabla v\Vert_{0,2}\cdot\Vert\nabla w\Vert_{0,2}\\
-&+\Vert a\Vert_{L^\infty} \cdot\Vert\nabla v\Vert_{0}\cdot\Vert w\Vert_{0,2}\\
-&+\Vert\alpha\Vert_{L^\infty}\cdot\Vert v\Vert_{0,2}\cdot\Vert w\Vert_{0,2}\\
+&\quad+\Vert a\Vert_{L^\infty} \cdot\Vert\nabla v\Vert_{0}\cdot\Vert w\Vert_{0,2}\\
+&\quad+\Vert\alpha\Vert_{L^\infty}\cdot\Vert v\Vert_{0,2}\cdot\Vert w\Vert_{0,2}\\
 &\leq
 \left(\Vert A\Vert_{L^\infty}+\Vert a\Vert_{L^\infty}+\Vert\alpha\Vert_{L^\infty}\right)\cdot\Vert v\Vert_{1,2}\cdot\Vert w\Vert_{1,2}
 \end{align*}
@@ -879,10 +879,10 @@ Koerzivität:
 \begin{align*}
 a(v,v)&\geq\underbrace{\beta}_{>0}\cdot\Vert v\Vert^2_{1,2}\qquad\forall v\in V=H_0^1(\Omega)\\
 a(v,v)&=
-\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+(a\cdot\nabla v+\alpha\cdot v)\cdot v\d x\\
-&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+(a\cdot\nabla v)v+\alpha\cdot v^2\d x\\
-&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\frac{a}{2}\nabla (v^2)+\alpha\cdot v^2\d x\\
-&=\int\limits_\Omega\underbrace{\nabla v^T\cdot A\cdot\nabla v}_{\geq\lambda_0\cdot|\nabla v(x)|^2\geq0}+\underbrace{\big(\alpha-\frac{1}{2}\cdot\div(a)\big)}_{\stackrel{\text{Vor}}{\geq}0}\cdot v^2\d x+\underbrace{\int\limits_{\Gamma}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}\\
+\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot v\d x\\
+&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v\big) v+\alpha\cdot v^2\d x\\
+&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\frac{a}{2}\nabla \left(v^2\right)+\alpha\cdot v^2\d x\\
+&=\int\limits_\Omega\underbrace{\nabla v^T\cdot A\cdot\nabla v}_{\geq\lambda_0\cdot|\nabla v(x)|^2\geq0}+\underbrace{\left(\alpha-\frac{1}{2}\cdot\div(a)\right)}_{\stackrel{\text{Vor}}{\geq}0}\cdot v^2\d x+\underbrace{\int\limits_{\Gamma}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}\\
 &\geq
 \lambda_0\cdot |v|^2_{1,2}\\
 &\stackrel{\text{Fried}}{\geq}
