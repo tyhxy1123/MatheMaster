@@ -12,7 +12,8 @@ Module des Wintersemesters 2018/2019:
 - ANGA bei Prof. Fehm
 - FEM bei Prof. Voigt
 
-Die PDF Version der Skripte wird immer am Ende der Woche aktualisiert.
+Die PDF Version der Skripte wird immer am Ende der Woche aktualisiert und können heruntergeladen werden:
+https://github.com/LostInDarkMath/MatheMaster/releases
 
 Du willst uns unterstützen und mitmachen? Kein Problem! Je mehr desto besser :)
 
