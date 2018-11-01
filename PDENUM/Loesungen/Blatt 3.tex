@@ -1,0 +1,133 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../PDENUM/PDENM_commands}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{PDENM WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 3}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 3.1}
+Gegeben sei die Differentialgleichung 
+\begin{align*}
+\frac{\d^4 u(x)}{\d x^4}=f(x)\qquad\forall x\in(0,1)
+\end{align*}
+mit den Randbedingungen
+\begin{enumerate}[label=(\alph*)]
+\item $\begin{aligned}
+u(0)=u'(0)=u(1)=u'(1)=0
+\end{aligned}$
+\item $\begin{aligned}
+u(0)=u''(0)=u(1)=u''(1)=0
+\end{aligned}$
+\item $\begin{aligned}
+u(0)=u''(0)=u'(1)=u'''(1)=0
+\end{aligned}$
+\end{enumerate}
+Geben Sie jeweils eine schwache Formulierung an.
+
+\begin{lösung}
+\underline{Zu (a):}\\
+
+\underline{Zu (b):}\\
+
+\underline{Zu (c):}\\
+
+\end{lösung}
+
+\section*{Aufgabe 3.2}
+Sei $\Omega=(0,1)^2$. Wie sieht eine schwache Formulierung des Problems
+\begin{align*}
+-5\cdot\frac{\partial^2 u(x,y)}{\partial x^2}+6\cdot\frac{\partial^2 u(x,y)}{\partial x\partial y}-8\cdot\frac{\partial^2 u(x)}{\partial y^2}+4\cdot\frac{\partial u(x,y)}{\partial y}+u(x,y)&=f(x,y) \text{ in }\Omega\\
+u&\equiv 0\text{ auf }\partial\Omega
+\end{align*}
+aus?
+
+\begin{lösung}
+Sei $A=(a_{i,j})_{i,j\in\lbrace1,2\rbrace}\in\R^{2\times 2}$. Dann gilt:
+\begin{align*}
+A\cdot\nabla u&=\begin{pmatrix}
+ a_{1,1} & a_{1,2}\\
+ a_{2,1} & a_{2,2}
+\end{pmatrix}\cdot\begin{pmatrix}
+\frac{\partial u}{\partial x}\\
+\frac{\partial u}{\partial y}
+\end{pmatrix}=\begin{pmatrix}
+a_{1,1}\cdot\frac{\partial u}{\partial x}+a_{1,2}\cdot\frac{\partial u}{\partial y}\\
+a_{2,1}\cdot\frac{\partial u}{\partial x}+a_{2,2}\cdot\frac{\partial u}{\partial y}
+\end{pmatrix}\\
+\implies
+\div(A\cdot\nabla u)&=\frac{\partial}{\partial x}\left(a_{1,1}\cdot\frac{\partial u}{\partial x}+a_{1,2}\cdot\frac{\partial u}{\partial y}\right)+\frac{\partial}{\partial y}\left(a_{2,1}\cdot\frac{\partial u}{\partial x}+a_{2,2}\cdot\frac{\partial u}{\partial y}\right)\\
+&=a_{1,1}\cdot\frac{\partial^2 u}{\partial x^2}+\big(a_{1,2}+a_{2,1}\big)\cdot\frac{\partial^2 u}{\partial x\partial y}+a_{2,2}\cdot\frac{\partial^2 u}{\partial y^2}
+\end{align*}
+Setze also 
+\begin{align*}
+A:=\begin{pmatrix}
+5 & -3\\
+-3 & 8
+\end{pmatrix}.
+\end{align*}
+Dann lässt sich die Differentialgleichung des gegebenen Problems umschreiben zu 
+\begin{align*}
+-\div\big(A\cdot\nabla u(x,y)\big)+4\cdot\frac{\partial u(x,y)}{\partial y}+u(x,y)=f(x,y)
+\end{align*}
+\end{lösung}
+
+\section*{Aufgabe 3.3}
+Das Problem 
+\begin{align*}
+-\Delta u=1\text{ in }\Omega,\qquad\frac{\partial u}{\partial n}=0\text{ auf }\partial\Omega
+\end{align*}
+hat keine Lösung. Welche Bedingung müsste erfüllt sein, damit eine Lösung existiert?
+
+\begin{proof}
+
+\end{proof}
+
+\section*{Aufgabe 3.4}
+Wie lautet eine geeignete schache Formulierung der Randwertaufgabe
+\begin{align*}
+-\Delta u+a\cdot\nabla u+\alpha\cdot u\equiv f\text{ in }\Omega,\qquad\frac{\partial u}{\partial n}+\beta\cdot u\equiv g\text{ auf } \partial\Omega
+\end{align*}
+Geben Sie eine hinreichende Bedingung an, unter denen die eindeutige Lösbarkeit der schwachen Formulierung gesichert ist und beweisen Sie, dass Ihre Annahmen genügen.
+
+\begin{lösung}
+
+\end{lösung}
+
+\section*{Aufgabe 3.5}
+Das Differentialgleichungssystem
+\begin{align*}
+-\Delta u_1-c\cdot u_2&\equiv f_1\text{ in }\Omega\\
+-\Delta u_2+c\cdot u_1&\equiv f_2\text{ in }\Omega
+\end{align*}
+mit $u_1|_{\partial\Omega}=u_2|_{\partial\Omega}=0,c\in L^\infty(\Omega)$ sowie $f_1,f_2\in L^2(\Omega)$ besitzt eine eindeutige schwache Lösung.
+
+\begin{proof}
+
+\end{proof}
+
+
+\end{document}
