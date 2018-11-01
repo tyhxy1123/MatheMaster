@@ -1,0 +1,140 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../latex/commands_stochastik}
+\input{../../WTHM/commands_WTHM}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{color}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{WTHM WiSe 18 19}
+\ohead{}
+\ifoot{Aufgabenblatt 2}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 1}
+\subsection*{Aufgabe 1 a)}
+Sei $(X_t)_{t\in\R_{\geq0}}$ ein Super-Martingal bzgl. einer Filtration $(\F_t)_{t\in\R_{\geq0}}$ mit\\ $\E[X_t]=$ const.\\
+Dann ist $(X_t)_{t\in\R_{\geq0}}$ bereits ein Martingal.
+
+\begin{proof}
+
+\end{proof}
+
+\subsection*{Aufgabe 1 b)}
+Sei $(X_n)_{n\in\N}$ ein Martingal \underline{und} ein vorhersehbarer Prozess bzgl. der gleichen Filtration $(\F_n)_{n\in\N}$.\\
+Dann ist $X_n=X_0$ fast sicher für alle $n\in\N$.
+
+\begin{proof}
+
+\end{proof}
+
+\section*{Aufgabe 2}
+\subsection*{Aufgabe 2 a)}
+Sei $(\xi_j)_{j\in\N_{>0}}$ eine iid-Folge nichtnegativer Zufallsvariablen mit $\E[\xi_1]=1$. Dann ist der stochastische Prozess $M$ definiert durch
+\begin{align*}
+M_0:=1\qquad\text{ und }M_n=\prod\limits_{j=1}^n\xi\qquad\forall n\in\N_{>0}
+\end{align*}
+ein Martingal bzgl. der von $(\xi_j)_{j\in\N_{>0}}$ erzeugten Filtration  mit $\F_0:=\lbrace 0,\emptyset\rbrace$ und $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ für alle $n\in\N_{>0}$.
+
+\begin{proof}
+
+\end{proof}
+
+\subsection*{Aufgabe 2 b)}
+Sei $(S_n)_{n\in\N}$ der \textbf{asymmetrische} einfache Random Walk, d. h. $S_n=\xi_1+\ldots+\xi_n$ mit $\P[\xi_1=1]=p$ und $\P[\xi_1=-1]=1-p=:q$.\\
+Dann ist 
+\begin{align*}
+M_n:=\left(\frac{q}{p}\right)^{S_n}
+\end{align*}
+für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Martingal bzgl. $\F_n=\sigma(\xi_1,\ldots,\xi_n)$.
+
+\begin{proof}
+
+\end{proof}
+
+\subsection*{Aufgabe 2 c)}
+\underline{Kompensator von $M_n$ aus a):}\\
+
+\underline{Kompensator von $M_n$ aus b):}\\
+
+\section*{Aufgabe 3}
+Sei $(\xi_n)_{n\in\N}$ eine Folge von iid-Zufallsvariablen und $\xi_1$ normalverteilt mit Mittelwert 0 und Varianz $\sigma^2>0$. Weiter sei $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ und $X_n:=\xi_1+\ldots+\xi_n$
+
+\subsection*{Aufgabe 3 a)}
+\begin{align*}
+\E\big[\exp(u\cdot\xi_1)\big]=\exp\left(u^2\cdot\frac{\sigma^2}{2}\right)\qquad\forall u\in\R
+\end{align*}
+
+\begin{proof}
+Sei $u\in\R$ beliebig.
+\begin{align*}
+\E\big[\exp(u\cdot\xi_1)\big]
+&=...\\
+&=\exp\left(u^2\cdot\frac{\sigma^2}{2}\right)
+\end{align*}
+\end{proof}
+
+\subsection*{Aufgabe 3 b)}
+Sei $u\in\R$. Dann ist
+\begin{align*}
+Z_n^u:=\exp\left(u\cdot X_n-n\cdot u^2\cdot\frac{\sigma^2}{2}\right)\qquad\forall n\in\N
+\end{align*}
+ein Martingal.
+
+\begin{proof}
+
+\end{proof}
+
+\section*{Aufgabe 4}
+\begin{defi}
+Eine Zufallsvariable $\tau:\Omega\to\N_0\sup\lbrace+\infty\rbrace$ heißt \textbf{Stoppzeit} bzgl. der Filtration $(\F_n)_{n\in\N}$
+\begin{align*}
+:\Longleftrightarrow\forall n\in\N_0:\big\lbrace\tau\leq n\big\rbrace:=\big\lbrace \omega\in\Omega:\tau(\omega)\leq n\big\rbrace\in\F_n
+\end{align*}
+\end{defi}
+Seien nun Stoppzeiten $\tau,\sigma,\tau_1,\tau_2,\ldots$ gegeben. Dann gilt:
+\begin{enumerate}[label=\alph*)]
+\item $\lbrace\omega\in\Omega:\tau(\omega)=n\rbrace\in\F_n$
+\item $\lbrace\omega\in\Omega:\tau(\omega)\geq n\rbrace\in\F_{n-1}$
+\item $\begin{aligned}
+C_n(\omega):=\indi_{[0,\tau(\omega)]}(n)
+\end{aligned}$ ist messbar bzgl. $\F_{n-1}$
+\item $\sigma\wedge\tau$ und $\sigma\vee\tau$ sind Stoppzeiten (Minimum und Maximum)
+\item Sind $\sup\limits_j\tau_j$ und $\inf\limits_j\tau_j$ Stoppzeiten?
+\end{enumerate}
+
+\begin{proof}
+\underline{Zu a):}\\
+
+\underline{Zu b):}\\
+
+\underline{Zu c):}\\
+
+\underline{Zu d):}\\
+
+\underline{Zu e):}\\
+
+\end{proof}
+
+\end{document}
