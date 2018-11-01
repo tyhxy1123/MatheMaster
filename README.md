@@ -6,8 +6,10 @@ Wintersemester (winter term) 2018/2019:
 - ORDSTR bei Prof. Schmidt (deutsch)
 - WTHM bei Prof. Keller-Ressel (deutsch)
 - MSTAT bei Prof. Ferger (deutsch)
+- PDEANA bei Prof. Hornung (deutsch)
+- AMGEO bei Prof. Krähmer (englisch)
 - ANGA bei Prof. Fehm (deutsch)
-- FEM bei Prof. Voigt (english)
+- FEM bei Prof. Voigt (englisch)
 
 Dieses Repository ist für die Mitschriften ausgewählter Module des Masterstudiengangs Mathematik an der TU Dresden gedacht.
 Die PDF Version der Skripte wird immer am Ende der Woche aktualisiert und können hier heruntergeladen werden:
