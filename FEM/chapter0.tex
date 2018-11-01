@@ -32,14 +32,12 @@ z.B. $\Omega = (0,1) \times (0,1)$ mit der Notation
 	u(x_{i+1},y_j) &= 	u(x_{i},y_j) + 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + \bigo(h^3)\\
 	u(x_{i-1},y_j) &= 	u(x_{i},y_j) - 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + \bigo(h^3)\\
 \end{align*}
-
-$\stackrel{\text{adding together}}{\implies}$
+$\implies$
 \begin{align*}
 	\partial_{xx} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_{i+1},y_j) - 2u(x_i,y_j) + 	u(x_{i-1},y_j) \big) + \bigo(h)\\
 	\partial_{yy} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_i,y_{j+1}) - 2u(x_i,y_j) + 	u(x_i,y_{j-1}) \big) + \bigo(h)
 \end{align*}
 
-$\stackrel{\text{adding together}}{\implies}$
 \begin{equation*}
 	\laplace u(x_i,y_j) = \frac{1}{h^2} \left( u_{i+1 j} + u_{i-1 j} + u_{i j+1} + u_{i j-1} - 4u_{i j} \right)
 \end{equation*}
@@ -91,14 +89,14 @@ $\rightarrow$ \underline{finite Elemente}\enter
 
 \begin{align*}
 	\int_\Omega \text{div}( \nabla u) v \diff x
-	&\stackeq{\text{par. Int.}} \int_\Omega \text{div}( v \nabla u ) \diff x -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
-	&\stackeq{\text{Gauß}}  \underbrace{\int_{\partial\Omega}  v \nabla u  \cdot \vartheta \diff x}_{=0\text{ s. Def. v}} -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
+	&= \int_\Omega \text{div}( v \nabla u ) \diff x -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
+	&=  \underbrace{\int_{\partial\Omega}  v \nabla u  \cdot \vartheta \diff x}_{=0\text{ s. Def. v}} -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
 	&=  \int_\Omega fv \diff x
 \end{align*}
 
 Dies gilt für $u \in X$ s.d. $\forall v\in X$ f\"ur einen passenden Funktionenraum $X$.
-Diese Form wird schwache Formulierung oder Variationsformulierung.
-\enter
+Diese Form wird schwache Formulierung oder Variationsformulierung und nur erste Ableitungen werden benötigt.
+\\
 Gesucht wird eine Approximation $u_h$ in endlich dimensionalen Raum $X_h$ s.d. $X_h \to X$ f\"ur $h \to 0$.\enter
 $u_h$ erf\"ullt f\"ur alle $v\in X_h$ die Gleichung
 \begin{equation*}
@@ -120,17 +118,23 @@ mit
 $\implies$
 \begin{align*}
 	- \displaystyle\sum_{i=1}^N A_{ij}u_i &= F_{ij}\\
-	AU &=F
+	AU &=F\\
+	\text{mit } U &=
+	\begin{pmatrix}
+	u_1      \\
+	\vdots	 \\
+	u_n	  	 \\
+	\end{pmatrix}
 \end{align*} 
 
-W\"ahle nun $\varphi_j$ mit kleinem Tr\"ager.\enter
+W\"ahle nun die Testfunktionen $\varphi_j$ mit kleinem Tr\"ager so, dass $A$ dünnbesetzt ist.\enter
 \begin{equation*}
 	\text{spt}(\varphi_j) = \overline{\Big\{  x \in \Omega: \varphi_j(x) \neq 0 \Big\}}
 \end{equation*}
 
 %  Obige schreibweise gefällt mir nicht
 
-Definiere $\varphi_j(b_i) = F_{ij}$ und $\varphi_j$ linear in allen Teilabschnitten $\tau \in T$, wobei $T$ eine Triangulierung ist und 
+Definiere $\varphi_j(b_i) = \delta_{ij}$ und $\varphi_j$ linear in allen Teilabschnitten $\tau \in T$, wobei $T$ eine Triangulierung ist und 
 \begin{equation*}
 	\overline{\Omega} = \bigcup\limits_{\tau\in T}\tau
 \end{equation*}
@@ -213,7 +217,7 @@ In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
 		is a Hilbert-space.
 		\item support of function:
 		\begin{equation*}
-		\text{supp }u  = \big \{ x \in \Omega:\quad u(x)\neq0  \big \} 
+		\text{supp }u  = \overline{\big \{ x \in \Omega:\quad u(x)\neq0  \big \}} 
 		\end{equation*}
 		\item space of test functions
 		\begin{equation*}
@@ -285,13 +289,16 @@ these spaces are Banach spaces.
 \end{example}
 
  
-\begin{remark}: $W^{0,p}(\Omega) = L^p(\Omega)$\\
+\begin{remark}: for $m=0$:
+	\begin{align*}
+		W^{0,p}(\Omega) &= L^p(\Omega) \text{ and} \\H^0(\Omega) &= L^2(\Omega)
+	\end{align*} 
 \end{remark}
 
 \begin{example}
 	\begin{align*}
 	u(x_1,x_2) &= \text{ln}(x^2_1 + x^2_2)\\
-	\Omega &= \big \{  (x_1,x_2)\in\R^2,\ x^2_1 + x^2_2 \leq 1    \big \} \\
+	\Omega &= \big \{  (x_1,x_2)\in\R^2,\ x^2_1 + x^2_2 < 1    \big \} \\
 	& \\
 	u &\notin C^0(\Omega) \text{ but } u \in W^{1,1}(\Omega)
 	\end{align*}
@@ -315,7 +322,7 @@ $W^{m,p}_0(\Omega)$ is the completion of $C^\infty_0(\Omega)$ in $ W^{m,p} $. Me
 	\|u_n - u\|_{W^{m,p}} \to 0
 \end{equation*}
 for $n \to \infty$.\enter
-Also the spaces $W^{m,p}_0(\Omega)$ and $H^m_0(\Omega) = W^{m,p}_0(\Omega)$ are Banach and Hilbert spaces, respectively. The foundation in $W^{m,p}_0(\Omega)$ are functions in $W^{m,p}(\Omega)$ which satisfy \glqq $u =0$ on $\partial \Omega$ \grqq. \enter 
+Also the spaces $W^{m,p}_0(\Omega)$ and $H^m_0(\Omega) = W^{m,2}_0(\Omega)$ are Banach and Hilbert spaces, respectively. The functions in $W^{m,p}_0(\Omega)$ are functions in $W^{m,p}(\Omega)$ which satisfy \glqq $u =0$ on $\partial \Omega$ \grqq. \enter 
 \par
 
 There exists a linear operator $\gamma: W^{1,p}(\Omega) \to L^p(\partial\Omega)$ such that $u \in C^1(\overline{\Omega})$, $\gamma(u) = u|_{\partial \Omega}$. It holds 

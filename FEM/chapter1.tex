@@ -9,7 +9,7 @@
 	$\Omega \subset \R^d $ ($d \geq 1$), $\partial \Omega \in C^{0,1}$
 \end{example}
 
-If $f \in L^2(\Omega)$, $u \in C^2(\Omega)\cap C(\overline{\Omega})$ is solution of (\ref{poisson}). Now multiply with $v \in C^\infty_0 (\Omega)$ and integrate by parts.
+If $f \in L^2(\Omega)$, $u \in C^2(\Omega)\cap C(\overline{\Omega})$ is \glqq classical \grqq solution of (\ref{poisson}). Now multiply with $v \in C^\infty_0 (\Omega)$ and integrate by parts.
 
 \begin{align*}
 	\int \limits_\Omega fv \diff x &= \int \limits_\Omega \laplace uv \diff x\\
@@ -36,7 +36,7 @@ Now we call
 We call u
 \begin{enumerate}[label=(\alph*)]
 \item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of \eqref{weak_form}
-\item \textbf{classical solution} of (\ref{poisson}), if \textbf{?missing part?} a weak solution of \eqref{weak_form}. 
+\item \textbf{classical solution} of (\ref{poisson}), if it is also a weak solution of \eqref{weak_form}. 
 \end{enumerate}
 
 If $u$ is a weak solution of \eqref{weak_form} and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
@@ -57,7 +57,7 @@ Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega
 	\begin{enumerate}[label=(\alph*)]
 		\item $a$ is \textbf{continuous} in $V$ if there exists $K > 0$ s.t. $\forall u,v \in V:$ 
 		\begin{equation*}
-			|a(u,v)| \leq K \|u\| \|v\|.
+			|a(u,v)| \leq K \|u\|_V \|v\|_V.
 		\end{equation*} 
 		\item $a$ is \textbf{coercive} (or elliptic) in $V$ if there exists $\lambda > 0$ s.t. $\forall u \in V:$
 		\begin{equation*}
@@ -156,9 +156,8 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	and thus $z = 0$. This is a contradiction.\\
 	Now (\ref{inverse}) implies
 	\begin{equation*}
-		\|u\|_V = \|T^{-1}(g)\|_V \leq \lambda^{-1}\|J\|_V = \lambda^{-1}\|F\|_{V'}.
+		\|u\|_V = \|T^{-1}(g)\|_V \leq \lambda^{-1}\|g\|_V = \lambda^{-1}\|F\|_{V'}.
 	\end{equation*}
-	\textbf{?? J ??}
 \end{enumerate}
 
 \textbf{\underline{consider}}
@@ -190,7 +189,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 		\end{align*}
 	\end{example}
 	\begin{definition_}
-		$L$ is \textbf{elliptic} in $\Omega$ if $\lambda > 0$ exists, s.t. $\forall \xi \in \R^d$ and \textbf{?? missing ??} $x \in \Omega$
+		$L$ is \textbf{elliptic} in $\Omega$ if $\lambda > 0$ exists, s.t. $\forall \xi \in \R^d$ and  $x \in \Omega$
 		\begin{equation*}
 			\displaystyle \sum^d_{i,j} a_{ij}(x)\xi_i\xi_j \geq \lambda |\xi|^2
 		\end{equation*}
@@ -200,7 +199,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 		a(u,v) &= \displaystyle \sum_{i,j} \int \limits_\Omega a_{ij}(x)\frac{\partial u}{\partial x_j} \frac{\partial v}{\partial x_j} \diff x + \int \limits_\Omega cuv \diff x \\
 		F(v)&= \int \limits_\Omega fv \diff x
 	\end{align*}
-	Look for $u$ with $u = g \in H^1_0(\Omega)$ and transform equation to homogenous BC. $w = u = g \in H^1_0(\Omega)$ is solution of 
+	Look for $u$ with $u = g \in H^1_0(\Omega)$ and transform equation to homogenous BC. $w = u - g \in H^1_0(\Omega)$ is solution of 
 	\begin{align*}
 		Lw &= f -Lg \qquad \text{in } \Omega\\
 		 w &= 0 \qquad \qquad \ \,\text{on } \partial\Omega.
@@ -219,7 +218,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\end{comment_}
 
 	\begin{thrm}
-		If $\Omega \subset \R^d\ (d\geq1)$ bounded, $a_{ij},c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g\in H^(\Omega),\ L$ is elliptic, then there exists a unique solution $u \in H^1(\Omega)$ of $Lu=f$ with \textbf{minus or =? } $u-g \in H^1_0(\Omega)$ and 
+		If $\Omega \subset \R^d\ (d\geq1)$ bounded, $a_{ij},c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g\in H^(\Omega),\ L$ is elliptic, then there exists a unique solution $u \in H^1(\Omega)$ of $Lu=f$ with  $u-g \in H^1_0(\Omega)$ and 
 		\begin{equation*}
 			\|u\|_{H^1} \leq C\left( \|f\|_{L^2} \|g\|_{H^1} \right)
 		\end{equation*}  
@@ -252,7 +251,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 			Cauchy-Schwartz inequality
 			\begin{align*}
 				|G(v)| & \leq \|f\|_{L^2}\|v\|_{L^2} + \underset{i,j=1, \dots, d}{max} \|a_{ij}\|_{L^\infty} \|\nabla v\|_{L^2} \|\nabla g\|_{L^2} + \|c\|_{L^\infty}\|g\|_{L^2}\|v\|_{L^2}\\
-					   & \leq \left(  \|f\|_{L^1} + C_i\|g\|_{H^1} \right) \|v\|_{H^1}\\ 
+					   & \leq \big (  \|f\|_{L^1} + C_i\|g\|_{H^1} \big ) \|v\|_{H^1}\\ 
 			\end{align*}
 			with $C_i =  \underset{i,j=1, \dots, d}{\text{max}} \|a_{ij}\|_{L^\infty} + \|c\|_{L^\infty}$
 			\begin{equation*}
@@ -265,16 +264,16 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 			Lax-Milgram gives, there exists a unique solution $w \in V$ with $a(w,v) = G(v)\ \forall v \in V$ and for $u = w+g$ we have
 			\begin{align*}
 				\|u\|_{H^1} & \leq \|w\|_{H^1} + \|g\|_{H^1}\\
-							& \leq \lambda^{-1}_0 \left( C^2_p +1 \right)\left(  \|f\|_{L^2} + \textbf{?? C or G ??} C_i\|g\|_{H^1} \right) + \|g\|_{H^1}\\
-							& \leq C \left( \|f\|_{L^2} + \|g\|_{H^1} \right) 
+							& \leq \lambda^{-1}_0 \left( C^2_p +1 \right)\big (  \|f\|_{L^2} +  C_i\|g\|_{H^1} \big ) + \|g\|_{H^1}\\
+							& \leq C \big ( \|f\|_{L^2} + \|g\|_{H^1} \big ) 
 			\end{align*}
 			with $C = 1+ \lambda^{-1}(C^2_p+1)(C_i +1)$.
 		\end{itemize}
 	\end{proof_}
 	\item \textbf{Neumann BC}:\enter
-	consider special case  \textbf{c depends on u??? should depend on x} 
+	consider special case  
 	\begin{align*}
-		- \laplace u + c(u)u &= f \qquad \text{in }\Omega\\
+		- \laplace u + c(x)u &= f \qquad \text{in }\Omega\\
 		\nabla u \cdot \vartheta &=g \qquad \text{on } \partial\Omega
 	\end{align*}
 	with $c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g \in H^1(\Omega)$.
