@@ -1,14 +1,13 @@
 # MatheMaster (Work in Progress)
 
 Wintersemester (winter term) 2018/2019:
-- MFANA bei Prof. Chill
-- PDENM bei Prof. Matthies
-- ORDSTR bei Prof. Schmidt
-- WTHM bei Prof. Keller-Ressel
-- MSTAT bei Prof. Ferger
-- AMGEO bei Prof. Krähmer
-- ANGA bei Prof. Fehm
-- FEM bei Prof. Voigt
+- MFANA bei Prof. Chill (deutsch)
+- PDENM bei Prof. Matthies (deutsch)
+- ORDSTR bei Prof. Schmidt (deutsch)
+- WTHM bei Prof. Keller-Ressel (deutsch)
+- MSTAT bei Prof. Ferger (deutsch)
+- ANGA bei Prof. Fehm (deutsch)
+- FEM bei Prof. Voigt (english)
 
 Dieses Repository ist für die Mitschriften ausgewählter Module des Masterstudiengangs Mathematik an der TU Dresden gedacht.
 Die PDF Version der Skripte wird immer am Ende der Woche aktualisiert und können hier heruntergeladen werden:
