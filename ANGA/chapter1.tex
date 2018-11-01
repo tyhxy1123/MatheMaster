@@ -53,7 +53,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     $$ \tilde{K} := \{\alpha \in F \| \alpha \text{ algebraisch  über } K\}.$$
 \end{definition}
 
-\begin{beispiel}
+\begin{beispiel}\label{beispiel:1.7}
     Der Konstantenkörper des rationalen Funktionenkörpers $K(T)$ ist $K$:
 
     Ist $f(T) = \frac{g(T)}{h(T)} \in K(T) \setminus K$, mit $g,h \in K[T]$, algebraisch über $K$,
@@ -87,7 +87,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 
 \end{proof}
 
-\begin{satz}
+\begin{satz}\label{satz:1.9}
     Ist $F$ ein Funktionenkörper über $K$ mit Konstantenkörper $\tilde{K}$,
     so ist $\tilde{K}|K$ endlich.
 \end{satz}
@@ -177,3 +177,184 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
         \end{align*}
     \end{itemize}
 \end{proof}
+
+\begin{definition}
+    Der \textbf{Transzendenzgrad} von $F|K$, 
+    $$ \trdeg(F|K) $$ ist die Mächtigkeit einer Transzendenzbasis.
+\end{definition}
+
+\begin{korollar}
+    Sind $K \subseteq L \subseteq F$ Körper, so ist 
+    $$ \trdeg(F|K) = \trdeg(L|K) + \trdeg(F|L). $$
+\end{korollar}
+\begin{proof}
+    Ist $\mathfrak{X}$ Transzendenzbasis von $L|K$ und $\mathcal{Y}$ Transzendenzbasis von $F|L$, dann folgt
+    $ \mathfrak{X} \cup \mathcal{Y}$ ist Transzendenzbasis von $F|K$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+            {
+                & K(\mathfrak{X} \cup \mathcal{Y})(L) & \\
+                K(\mathfrak{X} \cup \mathcal{Y}) & L(\mathcal{Y}) & F \\
+                K(\mathfrak{X}) & L & \\
+                \mathfrak{X} & & \\
+            };
+            \path
+                (m-1-2) edge (m-2-2)
+                (m-2-1) edge node [above] {algebraisch} (m-2-2)
+                (m-2-2) edge node [above] {algebraisch} (m-2-3)
+                (m-3-1) edge node [above] {algebraisch} (m-3-2)
+                (m-4-1) edge (m-3-1)
+                (m-3-1) edge (m-2-1)
+                (m-3-2) edge (m-2-2);
+        \end{tikzpicture}
+    \end{figure}
+\end{proof}
+
+\begin{satz}
+    $F$ ist genau dann Funktionenkörper über $K$, wenn $F|K$ endlich erzeugt ist und 
+    $$ \trdeg(F|K) = 1. $$
+\end{satz}
+\begin{proof}
+    \begin{itemize}[label=]
+        \item \underline{$\implies$:}
+        \begin{align*}
+            \left[F:K(t)\right] = n < \infty \implies \trdeg(F|K) & = \trdeg(F|K(t)) + \trdeg(K(t)|K)\\
+            & = 0 + 1 = 1,
+        \end{align*}
+        denn $F|K(t)$ ist endlich, also algebraisch.
+        Sei $b_1,...,b_n$ eine Transzendenzbasis von $F|K(t)$, $\implies F=K(t, b_1,...,b_n)$ ist endlich erzeugt über $K$. 
+        \item \underline{$\Longleftarrow$:}
+        $t$ sei Transzendenzbasis von $F|K$, daraus folgt $F|K(t)$ algebraisch.
+        Aus $F|K$ endlich erzeugt, folgt $F|K(t)$ endlich erzeugt.
+        Aus $F|K(t)$ ist endlich erzeugt und algebraisch folgt $F|K(t)$ endlich.
+    \end{itemize}
+\end{proof}
+
+\begin{korollar}
+    Ist $F$ ein Funktionenkörper über $K$ und $t \in F$, so gilt:
+    $$ t \text{ ist transzendent über } K \iff F|K(t) \text{ endlich}.$$ 
+\end{korollar}
+\begin{korollar}\label{korollar:1.20}
+    Ist $F$ ein Funktionenkörper über $K$ und $K \subseteq E \subseteq F$ ein Zwischenkörper, so ist entweder
+    \begin{enumerate}[label=(\arabic*)]
+        \item $E|K$ algebraisch oder
+        \item $E|K$ ein Funktionenkörper über $K$.
+    \end{enumerate}
+    In beiden Fällen ist $F|K$ endlich erzeugt.
+\end{korollar}
+\begin{proof}
+    \begin{itemize}[label=]
+        \item \underline{$E|K$ algebraisch:}
+        folgt aus \cref{satz:1.9}
+        \item \underline{$E|K$ transzendent:}
+        \begin{align*}
+            t \in E \text{ transzendent über } K \implies [E:K(t)] \leq [F:K(t)] < \infty\\
+            \trdeg(E|K) = \trdeg(F|K) - \trdeg(F|E) = 1
+        \end{align*}
+    \end{itemize}
+\end{proof}
+
+\begin{bemerkungnr}
+    So ist zum Beispiel jedes $$ K \subsetneqq E \subseteq K(T)$$
+    nach \cref{beispiel:1.7} transzendent und nach \cref{korollar:1.20} ist $E$ Funktionenkörper
+    über $K$. Als Korollar aus dem Satz von Riemann-Hurwitz werden wir unter anderem erhalten:
+\end{bemerkungnr}
+\begin{theorem}[Lüroth, 1875]
+    Ist $K \subsetneqq E \subseteq K(T)$ ein Zwischenkörper, so ist $E$ wieder ein rationaler Funktionenkörper über $K$,
+    d.h.
+    $$ E \cong_K K(T). $$
+\end{theorem}
+
+\section{Funktionenkörper algebraischer Kurven}
+Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper.
+
+\begin{definition}
+    Eine \textbf{irreduzible, ebene, affine, algebraische Kurve} über $K$ ist eine Menge der Form
+    $$ C = \mathcal{V}(f) := \{P \in \K^2 \mid f(P) = 0\} \subseteq \K^2,$$
+    mit $f \in K[X,Y]$ irreduzibel.
+\end{definition}
+
+\begin{beispiel}\label{beispiel:2.2}
+    $K = \Q$ und $\K = \C$.
+    \begin{enumerate}[label=\alph*)]
+        \item Kreis, $C = \mathcal{V}(X^2 + Y^2 - 1)$
+        \item Neil'sche Parabel, $C = \mathcal{V}(Y^2 - X^3)$
+        \item Elliptische Kurve, $C = \mathcal{V}(Y^2 - X^3 + X)$
+    \end{enumerate}
+\end{beispiel}
+
+\begin{definition}
+    Sei $C = \mathcal{V}(f)$ eine irreduzible, ebene, affine, algebraische Kurve. 
+    Dann ist $$ K[C] := \sfrac{K[X,Y]}{(f)} $$ der \textbf{Koordinatenring von $C$} und
+    $$ K(C) := \Quot(K[C]) $$ der \textbf{Funktionenkörper von $C$}.
+\end{definition}
+
+\begin{bemerkungnr}
+    Der Koordinatenring beschreibt die polynomialen Funktionen auf $C$ und ist unabhängig von der Wahl von $f$.
+    Insbesondere gibt es zu jedem $P \in C$ einen Homomorphismus
+    $$ \begin{cases}
+        K[C] \to \K \\
+        \phi \mapsto \phi(P).
+    \end{cases}$$
+    Der Ring $K[C]$ ist nullteilerfrei, da $(f)$ prim, $K(C)$ ist also wohldefiniert und beschreibt die 
+    "rationalen Funktionen"\ auf $C$, die in fast allen Punkten auf $C$ definiert sind.
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $C = \mathcal{V}(f)$ eine irreduzible, ebene, affine, algebraische Kurve über $K$, so ist $K(C)$ ein
+    algebraischer Funktionenkörper über $K$.
+
+    Ist $\Char(K) = 0$, so gilt auch die Umkehrung, d.h. für jeden Funktionenkörper $F$ über $K$ von der Form
+    $$F \cong_K K(C),$$ ist $C$ eine irreduzible, ebene, affine, algebraische Kurve über $K$.
+\end{satz}
+\begin{proof}
+    \begin{align*}
+        &K[C] = \sfrac{K[X,Y]}{(f)} = K[x,y], \\
+        &x = X + (f), y = Y + (f)\\
+        \implies & K(C) = K(x,y) \text{ und } f(x,y) = 0
+    \end{align*}
+    Ohne Einschränkung $f \notin K[X] \implies$ $y$ ist algebraisch über $K(x)$,
+    $x$ ist transzendent über $K$, denn
+    $$ K[X] \hookrightarrow K[X,Y] \to K[x,y] $$
+    ist injektiv. Somit $K(C)$ Funktionenkörper über $K$.
+
+    Ist $\Char(K) = 0$ so gilt der Satz vom primitiven Element:
+    Ist $E|K$ endlich, so ist $E = F(\alpha)$ für ein $\alpha \in E$.
+    Wähle $x \in F$ transzendent über $K$.
+    \begin{align*}
+        \implies & K(x) \text{ endlich}\\
+        \implies & \text{es existiert } y \in F \text{ mit } F=K(x,y).
+    \end{align*} 
+    Wähle $0 \neq f \in K(x)[Y]$ mit $f(x,y) =0$, o.E. $f \in K[X,Y]$ irreduzibel.
+    Daraus folgt $F = K(x,y)=K(C)$ mit $C = \mathcal{V}(f)$.
+\end{proof}
+
+\begin{bemerkungnr}
+    In der algebraischen Geometrie hat jede irreduzible Kurve $C$ über $K$ (also jede irreduzible
+    eindiemensionale quasiprojektive $K-$Varietät) einen Funktionenkörper, der ein Funktionenkörper
+    über $K$ ist. 
+    
+    Allgemein: Funktionenkörper in $\dim C + 1$ Variablen.
+\end{bemerkungnr}
+
+\begin{theorem}
+    Ist $F$ ein algebraischer Funktionenkörper über $K$, so gibt es eine irreduzible projektive Kurve
+    $C$ mit $K(C) \cong_K F$.
+    
+    Ist $\Char(K)=0$, so gibt es sogar so ein $C$ die glatt ist, und $C$ ist dann bis auf Isomorphie eindeutig bestimmt.
+\end{theorem}
+
+\begin{definition}
+    Sei $C = \mathcal{V}(f)$ eine irreduzible, ebene, affine, algebraische Kurve. Der Punkt $P \in C$ ist
+    \textbf{glatt}(oder regulär), wenn
+    $$ \frac{\partial}{\partial X}f(P) \neq 0 \text{ oder } \frac{\partial}{\partial Y} f(P) \neq 0.$$
+    Die Kurve ist \textbf{glatt}, wenn jeder Punkt $P \in C$ glatt ist.
+\end{definition}
+
+\begin{beispiel}
+    \cref{beispiel:2.2} a) und c) sind glatt
+
+    \cref{beispiel:2.2} b) ist überall glatt außer in $(0,0)$, dort singulär
+\end{beispiel}
