@@ -614,17 +614,20 @@ Aus Theorem \ref{theorem2.5} folgt Martingaleigenschaft von $(\vartheta\bullet M
 &\implies\vartheta^2\bullet\langle M\rangle\text{ ist vorhersehbar}
 \end{align*}
 
-Wir nutzen hier wieder die Vorüberlegung aus dem Beweis der Doob Zerlegung:
 \begin{align*}
-	\langle \vartheta \bullet M \rangle_n 
-	&=\sum_{i=1}^n\E\Big[(\vartheta\bullet M)^2_i-(\vartheta\bullet M)^2_{i-1}~\Big|~\F_{i-1}\Big]\\
-	&=\sum_{i=1}^n\E\Big[(\vartheta\bullet M)^2_i-2\cdot(\vartheta\bullet M)_i(\vartheta\bullet M)_{i-1} +(\vartheta\bullet M)^2_{i-1}~\Big|~\F_{i-1}\Big]\\
-&=\sum_{i=1}^n\E\Big[\big((\vartheta\bullet M)_i-(\vartheta\bullet M)_{i-1}\big)^2~\Big|~\F_{n-1}\Big]\\
-&=\sum_{i=1}^n\E\big[\vartheta^2\cdot(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
-&=\sum_{i=1}^n\vartheta^2_n\cdot\E\big[(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
+	&\E\Big[(\vartheta\bullet M)^2_n-(\vartheta\bullet M)^2_{n-1}~\Big|~\F_{n-1}\Big] \\
+	&=\E\Big[(\vartheta\bullet M)^2_n-2\cdot(\vartheta\bullet M)_n(\vartheta\bullet M)_{n-1} +(\vartheta\bullet M)^2_{n-1}~\Big|~\F_{n-1}\Big]\\
+&=\E\Big[\big((\vartheta\bullet M)_n-(\vartheta\bullet M)_{n-1}\big)^2~\Big|~\F_{n-1}\Big]\\
+&=\E\big[\vartheta^2\cdot(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
+&=\vartheta^2_n\cdot\E\big[(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
 &\stackeq{\ref{lemma2.4}}
-\sum_{i=1}^n\vartheta_n^2\cdot\big(\langle M_n\rangle-\langle M\rangle_{n-1}\big) \\
-&= \vartheta^2 \bullet \langle M \rangle_n \qquad \forall n \in \N
+\vartheta_n^2\cdot\big(\langle M_n\rangle-\langle M\rangle_{n-1}\big) \\
+&= \vartheta^2\bullet\langle M\rangle_n - \vartheta^2\bullet\langle M\rangle_{n-1}
+\end{align*}
+
+\begin{align*}
+	&\implies (\vartheta\bullet M)^2_n - \vartheta^2\bullet\langle M\rangle_n \quad \text{ist Martingal} \\
+	&\implies \langle \vartheta \bullet M \rangle_n = \vartheta^2 \bullet \langle M \rangle_n \quad \forall n\in\N
 \end{align*}
 
 \underline{Zeige (c):}
