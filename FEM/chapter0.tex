@@ -15,8 +15,8 @@ Empfohlene Literatur
 \section{Beispiele und Motivation}
 
 \begin{align*}
-	\Delta u &= f \quad  \text{in }  \Omega\\
-		   u &= 0 \quad \text{auf } \partial\Omega
+	\laplace u &= f \quad  \text{in }  \Omega\\
+		  	 u &= 0 \quad \text{auf } \partial\Omega
 \end{align*}
 
 $\rightarrow$ \underline{finite Differenzen}\enter
@@ -32,16 +32,14 @@ z.B. $\Omega = (0,1) \times (0,1)$ mit der Notation
 	u(x_{i+1},y_j) &= 	u(x_{i},y_j) + 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + \bigo(h^3)\\
 	u(x_{i-1},y_j) &= 	u(x_{i},y_j) - 	h\partial_x u(x_{i},y_j) + \frac{1}{2}h^2 \partial_{xx}	u(x_i,y_j) + \bigo(h^3)\\
 \end{align*}
-
 $\implies$
 \begin{align*}
 	\partial_{xx} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_{i+1},y_j) - 2u(x_i,y_j) + 	u(x_{i-1},y_j) \big) + \bigo(h)\\
 	\partial_{yy} u(x_i,y_j) &= \frac{1}{h^2}\big(	u(x_i,y_{j+1}) - 2u(x_i,y_j) + 	u(x_i,y_{j-1}) \big) + \bigo(h)
 \end{align*}
 
-$\implies$
 \begin{equation*}
-	\Delta u(x_i,y_j) = \frac{1}{h^2} \left( u_{i+1 j} + u_{i-1 j} + u_{i j+1} + u_{i j-1} - 4u_{i j} \right)
+	\laplace u(x_i,y_j) = \frac{1}{h^2} \left( u_{i+1 j} + u_{i-1 j} + u_{i j+1} + u_{i j-1} - 4u_{i j} \right)
 \end{equation*}
 
 $\implies$
@@ -81,24 +79,24 @@ mit
 $\rightarrow$ \underline{finite Elemente}\enter
 \enter
 \begin{align*}
-\Delta u &= f \quad  \text{in}\  \Omega\\
-u &= 0 \quad \text{auf}\ \partial\Omega
+  \laplace u &= f \quad  \text{in}\  \Omega\\
+  u &= 0 \quad \text{auf}\ \partial\Omega
 \end{align*}
 
 \begin{equation*}
-	\int_\Omega \Delta u v \diff x = \int_\Omega fv \diff x \text { f\"ur } v\in C^1(\overline{\Omega}), \; v=0 \text{ auf } \partial \Omega
+	\int_\Omega (\laplace u) v \diff x = \int_\Omega fv \diff x \text { f\"ur } v\in C^1(\overline{\Omega}), \; v=0 \text{ auf } \partial \Omega
 \end{equation*}
 
 \begin{align*}
 	\int_\Omega \text{div}( \nabla u) v \diff x
-	 &= \int_\Omega \text{div}( v \nabla u ) \diff x -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
+	&= \int_\Omega \text{div}( v \nabla u ) \diff x -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
 	&=  \underbrace{\int_{\partial\Omega}  v \nabla u  \cdot \vartheta \diff x}_{=0\text{ s. Def. v}} -	\int_\Omega \nabla u \cdot \nabla v \diff x \\
 	&=  \int_\Omega fv \diff x
 \end{align*}
 
 Dies gilt für $u \in X$ s.d. $\forall v\in X$ f\"ur einen passenden Funktionenraum $X$.
-Diese Form wird schwache Formulierung oder Variationsformulierung.
-\enter
+Diese Form wird schwache Formulierung oder Variationsformulierung und nur erste Ableitungen werden benötigt.
+\\
 Gesucht wird eine Approximation $u_h$ in endlich dimensionalen Raum $X_h$ s.d. $X_h \to X$ f\"ur $h \to 0$.\enter
 $u_h$ erf\"ullt f\"ur alle $v\in X_h$ die Gleichung
 \begin{equation*}
@@ -120,17 +118,23 @@ mit
 $\implies$
 \begin{align*}
 	- \displaystyle\sum_{i=1}^N A_{ij}u_i &= F_{ij}\\
-	AU &=F
+	AU &=F\\
+	\text{mit } U &=
+	\begin{pmatrix}
+	u_1      \\
+	\vdots	 \\
+	u_n	  	 \\
+	\end{pmatrix}
 \end{align*} 
 
-W\"ahle nun $\varphi_j$ mit kleinem Tr\"ager.\enter
+W\"ahle nun die Testfunktionen $\varphi_j$ mit kleinem Tr\"ager so, dass $A$ dünnbesetzt ist.\enter
 \begin{equation*}
 	\text{spt}(\varphi_j) = \overline{\Big\{  x \in \Omega: \varphi_j(x) \neq 0 \Big\}}
 \end{equation*}
 
 %  Obige schreibweise gefällt mir nicht
 
-Definiere $\varphi_j(b_i) = F_{ij}$ und $\varphi_j$ linear in allen Teilabschnitten $\tau \in T$, wobei $T$ eine Triangulierung ist und 
+Definiere $\varphi_j(b_i) = \delta_{ij}$ und $\varphi_j$ linear in allen Teilabschnitten $\tau \in T$, wobei $T$ eine Triangulierung ist und 
 \begin{equation*}
 	\overline{\Omega} = \bigcup\limits_{\tau\in T}\tau
 \end{equation*}
@@ -178,64 +182,72 @@ gilt.
 	\end{tikzpicture}
 \end{figure}
 
-Hier beginnt der englische Teil der Vorlesung. Die folgenden Notizen sind direkt der Vorlesung entnommen und teilweise unzusammenhängend bzw. unvorteilhaft geordnet. Ich habe hier teilweise darauf verzichtet Korrekturen oder Verbesserungen vorzunehmen.
+
+Hier beginnt der englische Teil der Vorlesung. Die folgenden Notizen sind direkt der Vorlesung entnommen. 
+
 
 \section{sobolev spaces}
 
 In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
 
-\underline{defintions and short explanations}
 
-\begin{itemize}
-	\item lebesque-spaces: 
+\subsection{defintions and short explanations}
+
+%\begin{definition_}\enter
+	\begin{itemize}
+		\item lebesque-spaces: 
 		\begin{align*}
-			L^p(\Omega) &= \big\{ u: \Omega \to \R \ \text{ measurable } , \int_\Omega |u|^p \diff x < \infty \big\}  \\
-			L^\infty(\Omega) &= \big\{ u: \Omega \to \R \ \text{ measurable, essentially bounded } \big\}
+		L^p(\Omega) &= \big\{ u: \Omega \to \R \ \text{ measurable } , \int_\Omega |u|^p \diff x < \infty \big\}  \\
+		L^\infty(\Omega) &= \big\{ u: \Omega \to \R \ \text{ measurable, essentially bounded } \big\}
 		\end{align*}
-	\item essentially bounded: ess $ \underset{\Omega}{\text{sup}} |u| = \text{inf}\big\{ K >0 : |u|<K \text{ almost everywhere in } \Omega \big\}  $
-	
-	\item measurable functions are e.g. continuous functions, monoton functions, step-functions, riemann-integrable functions.
-	\item two functions $u,v \in L^p(\Omega)$ are equal if $u(x) = v(x)$ almost everywhere.
-	\item norm: 
+		\item essentially bounded: ess $ \underset{\Omega}{\text{sup}} |u| = \text{inf}\big\{ K >0 : |u|<K \text{ almost everywhere in } \Omega \big\}  $
+		
+		\item measurable functions are e.g. continuous functions, monoton functions, step-functions, riemann-integrable functions.
+		\item two functions $u,v \in L^p(\Omega)$ are equal if $u(x) = v(x)$ almost everywhere.
+		\item norm: 
 		\begin{align*}
-			\|u\|_{L^p(\Omega)} \overset{\text{short}}{=}\|u\|_{L^p} &= \Big ( \int_\Omega |u|^p \diff x < \infty \Big )^{\frac{1}{p} } & 1 \leq p&<\infty \\
-			\|u\|_{L^\infty} &= \text{ess }\underset{\Omega}{\text{sup}} |u| & p&= \infty 
+			\|u\|_{L^p(\Omega)} \overset{\text{short}}{=}\|u\|_{L^p} &= \Big (\underbrace{ \int_\Omega |u|^p \diff x}_{ < \infty} \Big )^{\frac{1}{p} } & 1 \leq p&<\infty \\
+		\|u\|_{L^\infty} &= \text{ess }\underset{\Omega}{\text{sup}} |u| & p&= \infty 
 		\end{align*}
 		With this norm $L^p$ and $L^\infty$ are Banach-spaces.
-	\item $L^2(\Omega)$ with the scalar product
+		\item $L^2(\Omega)$ with the scalar product
 		\begin{equation*}
-			(u,v) := \int_\Omega u(x)v(x) \diff x 
+		(u,v) := \int_\Omega u(x)v(x) \diff x 
 		\end{equation*}
 		is a Hilbert-space.
-	\item support of function:
-	\begin{equation*}
-		\text{supp }u  = \big \{ x \in \Omega:\quad u(x)=0  \big \} 
-	\end{equation*}
-	\item space of test functions
-	\begin{equation*}
+		\item support of function:
+		\begin{equation*}
+		\text{supp }u  = \overline{\big \{ x \in \Omega:\quad u(x)\neq0  \big \}} 
+		\end{equation*}
+		\item space of test functions
+		\begin{equation*}
 		C^\infty_0(\Omega) = \big \{ u \in C^\infty(\Omega):\quad \text{support is compact}  \big\}
-	\end{equation*}
-\end{itemize}
+		\end{equation*}
+	\end{itemize}
+%\end{definition_}
 
-\subsection{weak derivative}
 
+
+\begin{defi}
 Let $ u \in L^p(\Omega)$, $1 \leq p< \infty$, $\alpha \in \N^d_0$ (multiindex).\enter
-u has a weak derivative $ D^\alpha u \in L^p(\Omega) $ if $\forall v \in C^\infty_0(\Omega)$
+The function u has a \textbf{weak derivative} $ D^\alpha u \in L^p(\Omega) $ 
 \begin{equation*}
-	(D^\alpha,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2}
+	:\iff (D^\alpha,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2} \qquad \forall v \in C^\infty_0(\Omega)
 \end{equation*}
+\end{defi}
 
-\underline{example}
-\begin{align*}
+\begin{example}
+	\begin{align*}
 	d&= 1, \quad \alpha \in \N_0, \quad p=2, \quad \alpha=1
-\end{align*}
+	\end{align*}
+	
+	\begin{equation*}
+	\langle u',v \rangle\overset{\text{p.I} }{=} -\langle u,v'\rangle\\
+	\end{equation*}
+	for $u \in L^2(\Omega)\cap C^{|\alpha|}( \overline{\Omega} )$ the weak derivative and strong derivative are identical.
+\end{example}
 
-\begin{equation*}
-	<u',v> \overset{\text{p.I} }{=} -<u,v'>\\
-\end{equation*}
-for $u \in L^2(\Omega)\cap C^{|\alpha|}( \overline{\Omega} )$ weak and strong derivative is identical.\enter
-
-\underline{example}
+\begin{example}
 
 \begin{align*}
 	\Omega &= (-1,1),\quad u(x) = |x|\\
@@ -246,45 +258,63 @@ for $u \in L^2(\Omega)\cap C^{|\alpha|}( \overline{\Omega} )$ weak and strong de
 	\end{array}
 \end{align*}
 and $u' \in L^p(\Omega)$ for $1 \leq p < \infty$. $u''(x)$ does not work!\enter
+\end{example}
 
-\underline{sobolev spaces}
+\subsection{sobolev spaces}
+
 \begin{equation*}
 	W^{m,p}(\Omega) = \big\{ u\in L^p(\Omega) : D^\alpha u \in L^p(\Omega) \quad \forall \alpha:\ |\alpha|\leq m \big\}
 \end{equation*}
-with the norm
+With the norm
+
 \begin{itemize}
-	\item $\| u\|_{W^{m,p}} := \Big ( \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^p}  \Big )^{\frac{1}{p}}$ \qquad $1\leq p < \infty$
-	\item  $\| u\|_{W^{m,\infty}} :=  \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^\infty}  $ \qquad $ p = \infty$
+	\item $\| u\|_{W^{m,p}} := \Big ( \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^p}  \Big )^{\frac{1}{p}} \qquad 1\leq p < \infty$
+	\item  $\| u\|_{W^{m,\infty}} :=  \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^\infty}   \qquad  p = \infty$
 \end{itemize}
 
+these spaces are Banach spaces.
 
 %% i dont know if the last definition is correct. sum over |\alpha| \leq m ???
-these spaces are Banach spaces.\enter
- 
+
 \begin{align*}
 	H^m(\Omega) &= W^{m,2}(\Omega) \quad \text{with scalar product}\\
 	(u,v)_{H^m} &= \displaystyle \sum_{|\alpha| \leq m} (D^\alpha u, D^\alpha v)_{L^2}
 \end{align*}
+
+\begin{example}
+	\begin{align*}
+		d&=1,\ m=1\\
+		(u,v)_{H^m} &= (u,v)_{L^2} + (u',v')_{L^2}
+	\end{align*} 
+\end{example}
+
  
-\underline{example}
-\begin{align*}
- 	d&=1,\ m=1\\
- 	(u,v)_{H^m} &= (u,v)_{L^2} + (u',v')_{L^2}
-\end{align*} 
+\begin{remark}: for $m=0$:
+	\begin{align*}
+		W^{0,p}(\Omega) &= L^p(\Omega) \text{ and} \\H^0(\Omega) &= L^2(\Omega)
+	\end{align*} 
+\end{remark}
+
+\begin{example}
+	\begin{align*}
+	u(x_1,x_2) &= \text{ln}(x^2_1 + x^2_2)\\
+	\Omega &= \big \{  (x_1,x_2)\in\R^2,\ x^2_1 + x^2_2 < 1    \big \} \\
+	& \\
+	u &\notin C^0(\Omega) \text{ but } u \in W^{1,1}(\Omega)
+	\end{align*}
+\end{example}
  
-\underline{remark}: $W^{0,p}(\Omega) = L^p(\Omega)$\\
-  
-\underline{example}
-\begin{align*}
- 	u(x_1,x_2) &= \text{ln}(x^2_1 + x^2_2)\\
- 	\Omega &= \big \{  (x_1,x_2)\in\R^2,\ x^2_1 + x^2_2 \leq 1    \big \} \\
- 	& \\
- 	u &\notin C^0(\Omega) \text{ but } u \in W^{1,1}(\Omega)
-\end{align*}
- 
-Later we will see, that if m and p are sufficiently large sobolev functions are continuous.\\
+Later we will see, that if m and p are sufficiently large, then sobolev functions are continuous.\\
  
 \underline{relation to problem in motivation:}\\
+
+%
+%
+%	Formatting
+%
+%
+%
+
 \par
 \glqq $v \in C^\infty(\Omega),\ v=0 \text{ on } \partial\Omega$ \grqq \enter
 $W^{m,p}_0(\Omega)$ is the completion of $C^\infty_0(\Omega)$ in $ W^{m,p} $. Meaning that for $u \in W^{m,p}_0(\Omega)$ there exists a sequence $(u_n) \in C^\infty_0(\Omega)$ with 
@@ -292,7 +322,7 @@ $W^{m,p}_0(\Omega)$ is the completion of $C^\infty_0(\Omega)$ in $ W^{m,p} $. Me
 	\|u_n - u\|_{W^{m,p}} \to 0
 \end{equation*}
 for $n \to \infty$.\enter
-Also the spaces $W^{m,p}_0(\Omega)$ and $H^m_0(\Omega) = W^{m,p}_0(\Omega)$ are Banach and Hilbert spaces, respectively. The foundation in $W^{m,p}_0(\Omega)$ are functions in $W^{m,p}(\Omega)$ which satisfy \glqq $u =0$ on $\partial \Omega$ \grqq. \enter 
+Also the spaces $W^{m,p}_0(\Omega)$ and $H^m_0(\Omega) = W^{m,2}_0(\Omega)$ are Banach and Hilbert spaces, respectively. The functions in $W^{m,p}_0(\Omega)$ are functions in $W^{m,p}(\Omega)$ which satisfy \glqq $u =0$ on $\partial \Omega$ \grqq. \enter 
 \par
 
 There exists a linear operator $\gamma: W^{1,p}(\Omega) \to L^p(\partial\Omega)$ such that $u \in C^1(\overline{\Omega})$, $\gamma(u) = u|_{\partial \Omega}$. It holds 
@@ -300,11 +330,13 @@ There exists a linear operator $\gamma: W^{1,p}(\Omega) \to L^p(\partial\Omega)$
 	W^{1,p}_0(\Omega) = \big \{ u \in W^{1,p}(\Omega), \gamma(u) = 0 \big \}
 \end{equation*}
 
-\underline{example}
-\begin{equation*}
+\begin{example}
+	\begin{equation*}
 	X= \big \{ u \in C^1(\overline{\Omega}), \ u=0 \text{ on } \partial\Omega  \big \}
-\end{equation*}
-is not complete, but $V = \overline{X} = H^1_0(\Omega)$ is complete. Also holds in  generell settings.\\
+	\end{equation*}
+	is not complete, but $V = \overline{X} = H^1_0(\Omega)$ is complete. Also holds in  generell settings.\\
+\end{example}
+
 \par
  $C^\infty(\Omega)\cap W^{m,p}(\Omega)$ is dense in $ W^{m,p}(\Omega)$.
 This is an important property of sobolev spaces in $H^1_0(\Omega)$. \enter
@@ -319,12 +351,15 @@ If $\|\nabla u \|_{L^2}$ is bounded it follows that $\|u \|_{L^2}$ is bounded.
 \end{theorem}
  
 There are also soboloev spaces with negative index.\enter
-\underline{example}
-\begin{align*}
+
+\begin{example}
+	\begin{align*}
 	u(x) &= |x|, \ x\in \Omega = (-1,1)\\
 	\implies u&\in H^1(\Omega),\ u' \in H^0(\Omega) = L^2(\Omega)\\
 	u &\in H^{-1}(\Omega)
-\end{align*}
+	\end{align*}
+\end{example}
+
 %% i am not sure whether this is right. I think i'll have to ask a person who also attended the lecture.
 
 The spaces are dual spaces of $H^k_0(\Omega)$.
@@ -332,20 +367,23 @@ The spaces are dual spaces of $H^k_0(\Omega)$.
 	H^{-k}(\Omega) = \big \{ F: H^k_0(\Omega) \to \R,\  F \text{ linear and continuous} \big \}
 \end{equation*}
 
-\underline{example}
 
-\begin{align*}
+\begin{example}
+	\begin{align*}
 	u(x)&=|x|,\quad x \in \Omega = (-1,1), \quad v \in H^1_0(\Omega)\\
-	<u'',v>_{H^{-1} } &= -<u',v'>_{H^0 }\\
-					  &= -<u',v'>_{L^2} \\
-					  &= +\int^0_{-1} v'(x) \diff x - \int^1_0 v'(x) \diff x\\
-					  &= 2 v(0)
-\end{align*}
+	\langle u'',v\rangle_{H^{-1} } 
+	&= -\langle u',v'\rangle_{H^0 }\\
+	&= -\langle u',v'\rangle_{L^2} \\
+	&= +\int^0_{-1} v'(x) \diff x - \int^1_0 v'(x) \diff x\\
+	&= 2 v(0)
+	\end{align*}
+	
+	The differential equation $u'' = f$ in $\Omega = (-1,1)$ with $u(-1)= u(1) =1$ and
+	\begin{equation*}
+	\langle f,v\rangle_{H^{-1} } = 2v(0)\qquad \forall v \in H^1_0(\Omega),
+	\end{equation*} 
+	$f \in H^1(\Omega)$, $u(x)=|x|$ is solution, but is not twice differentiable in a classical or weak sense.
+\end{example}
 
-The differential equation $u'' = f$ in $\Omega = (-1,1)$ with $u(-1)= u(1) =1$ and
-\begin{equation*}
-	<f,v>_{H^{-1} } = 2v(0)\qquad \forall v \in H^1_0(\Omega),
-\end{equation*} 
-$f \in H^1(\Omega)$, $u(x)=|x|$ is solution, but is not twice differentiable in a classical or weak sense.
 
 % could be that the above sense is altered
