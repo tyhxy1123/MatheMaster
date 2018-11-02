@@ -177,7 +177,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\end{align*}
 	with 
 	\begin{equation*}
-		Lu = - \displaystyle \sum^d_{i,j} \frac{\partial}{\partial x_i} \left(  a_ij(x) \frac{\partial u}{\partial x_j} \right) + c(x)u.
+		Lu = - \displaystyle \sum^d_{i,j} \frac{\partial}{\partial x_i} \left(  a_{ij}(x) \frac{\partial u}{\partial x_j} \right) + c(x)u.
 	\end{equation*}
 	\begin{example}
 		\begin{align*}
@@ -196,7 +196,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\end{definition_}
 	weak form 
 	\begin{align*}
-		a(u,v) &= \displaystyle \sum_{i,j} \int \limits_\Omega a_{ij}(x)\frac{\partial u}{\partial x_j} \frac{\partial v}{\partial x_j} \diff x + \int \limits_\Omega cuv \diff x \\
+		a(u,v) &= \displaystyle \sum_{i,j} \int \limits_\Omega a_{ij}(x)\frac{\partial u}{\partial x_i} \frac{\partial v}{\partial x_j} \diff x + \int \limits_\Omega cuv \diff x \\
 		F(v)&= \int \limits_\Omega fv \diff x
 	\end{align*}
 	Look for $u$ with $u = g \in H^1_0(\Omega)$ and transform equation to homogenous BC. $w = u - g \in H^1_0(\Omega)$ is solution of 
