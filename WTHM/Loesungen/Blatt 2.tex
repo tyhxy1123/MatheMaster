@@ -221,7 +221,7 @@ Der allgemeine Fall für $k\leq n$ folgt dann induktiv.
 
 \section*{Aufgabe 4}
 \begin{defi}
-Eine Zufallsvariable $\tau:\Omega\to\N_0\sup\lbrace+\infty\rbrace$ heißt \textbf{Stoppzeit} bzgl. der Filtration $(\F_n)_{n\in\N}$
+Eine Zufallsvariable $\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace$ heißt \textbf{Stoppzeit} bzgl. der Filtration $(\F_n)_{n\in\N}$
 \begin{align*}
 :\Longleftrightarrow\forall n\in\N_0:\big\lbrace\tau\leq n\big\rbrace:=\big\lbrace \omega\in\Omega:\tau(\omega)\leq n\big\rbrace\in\F_n
 \end{align*}
@@ -233,26 +233,65 @@ Seien nun Stoppzeiten $\tau,\sigma,\tau_1,\tau_2,\ldots$ gegeben. Dann gilt:
 \item $\begin{aligned}
 C_n(\omega):=\indi_{[0,\tau(\omega)]}(n)
 \end{aligned}$ ist messbar bzgl. $\F_{n-1}$
-\item $\sigma\wedge\tau$ und $\sigma\vee\tau$ sind Stoppzeiten (Minimum und Maximum)
+\item $\sigma\wedge\tau$ und $\sigma\vee\tau$ sind Stoppzeiten. Erinnerung:
+\begin{align*}
+&\sigma\wedge\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace,&(\sigma\wedge\tau)(\omega)&:=\min\big\lbrace\sigma(\omega),\tau(\omega)\big\rbrace\\
+&\sigma\vee\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace,&(\sigma\vee\tau)(\omega)&:=\max\big\lbrace\sigma(\omega),\tau(\omega)\big\rbrace
+\end{align*}
 \item Sind $\sup\limits_j\tau_j$ und $\inf\limits_j\tau_j$ Stoppzeiten?
 \end{enumerate}
 
 \begin{proof}
-\underline{Zu a):}\\
+\underline{Zu a):} Aus der Definition folgt:
 \begin{align*}
 	&\{\tau \leq n\} \in \F_n \\
-	\implies & \{\tau > n-1\} = \{\tau \leq n-1\}^C \in \F_{n-1} \subset \F_n \\
+	\implies & \{\tau > n-1\} = \{\tau \leq n-1\}^C \in \F_{n-1} \subseteq \F_n \\
 	\implies & \{\tau = n\} = \{\tau \leq n\} \cap \{\tau > n-1\} \in \F_n
 	\end{align*}
 \underline{Zu b):}\\
 \begin{align*}
-	\{\tau \geq n \} = \Big(\{\tau \leq n-1 \} \setminus \{\tau = n-1 \} \Big)^C \in \F_{n-1}
+	\{\tau \geq n \} =\lbrace\tau <n-1\rbrace^C= \Big(\underbrace{\{\tau \leq n-1 \}}_{\in\F_{n-1}\text{, wg. (a)}} \setminus \underbrace{\{\tau = n-1 \}}_{\in\F_{n-1}} \Big)^C \in \F_{n-1}
 \end{align*}
 \underline{Zu c):}\\
 \begin{align*}
-	&\indi_{[0,\tau(\omega)]}(n)=\indi_{\underbrace{\{n\leq \tau(\omega)\}}_{(b) \implies \in\F_{n-1}}} \\
+	&\indi_{[0,\tau(\omega)]}(n)\stackeq{???}\indi_{\underbrace{\{n\leq \tau(\omega)\}}_{(b) \implies \in\F_{n-1}}} \\
 	\implies &\indi_{[0,\tau(\omega)]}(n) \in \F_{n-1}
 \end{align*}
+Mein Vorschlag:
+\begin{align*}
+C_n:\Omega\to\lbrace0,1\rbrace\text{ ist }\F_{n-1}\text{ messbar }\Longleftrightarrow\forall M\in\B(\R):C_n^{-1}(M)\in\F_{n-1}
+\end{align*}
+Betrachte
+\begin{align*}
+C_n^{-1}(M)
+&=\big\lbrace\omega\in\Omega:C_n(\omega)\in M\big\rbrace\\
+&=\left\lbrace\omega\in\Omega:\indi_{[0,\tau(\omega)]}(n)\in M\right\rbrace\\
+&=\left\lbrace\omega\in\Omega:\left\lbrace\begin{array}{cl}
+0, &\falls n\not\in[0,\tau(\omega)]\\
+1, & \falls n\in[0,\tau(\omega)]
+\end{array}\right.\in M\right\rbrace\\
+&=\left\lbrace\omega\in\Omega:\left\lbrace\begin{array}{cl}
+0, &\falls n>\tau(\omega)\\
+1, &\falls n\leq\tau(\omega)
+\end{array}\right.\in M\right\rbrace\\
+&=\big(\lbrace n>\tau(\omega)\cap\lbrace o\in M\rbrace\big)\cup\big(\lbrace n\leq\tau(\omega)\rbrace\cap\lbrace 1\in M\rbrace\big)
+\end{align*}
+Also machen wir eine Fallunterscheidung:\\
+
+\underline{Fall 1: $0,1\not\in M$}\\
+Dann gilt $C_n(M)=\emptyset\in\F_{n-1}$.\\
+
+\underline{Fall 2: $0,1\in M$}\\
+Dann gilt $C_n(M)=\lbrace n>\tau(\omega)\rbrace\cup\lbrace n\leq\tau(\omega)\rbrace=\Omega\in\F_{n-1}$.\\
+
+\underline{Fall 3: $0\in M,1\not\in M$}\\
+Dann gilt $C_n(M)=\lbrace n>\tau(\omega)\rbrace=\lbrace n\leq\tau(\omega)\rbrace^C\in\F_{n}$.\\
+
+\underline{Fall 4: $0\not\in M,1\in M$}\\
+Dann gilt $C_n(M)=\lbrace n\leq\tau(\omega)\rbrace\in\F_{n}$.\\
+
+Folglich ist $C_n$ $\F_n$ messbar. Im Allgemeinen aber leider nicht $F_{n-1}$ messbar, da $\F_{n-1}\subseteq\F_n$.\\
+
 \underline{Zu d):}\\
 \begin{align*}
 	&\{\sigma \wedge \tau \leq n \} = \underbrace{\{\sigma \leq n\}}_{\in \F_n} \cup \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
