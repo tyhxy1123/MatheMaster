@@ -38,15 +38,20 @@ Sei $(X_t)_{t\in\R_{\geq0}}$ ein Super-Martingal bzgl. einer Filtration $(\F_t)_
 Dann ist $(X_t)_{t\in\R_{\geq0}}$ bereits ein Martingal.
 
 \begin{proof}
+Da $(X_t)_{t\in\R_{\geq0}}$ bereits ein Super-Martingal ist, genügt es nur die Martingaleigenschaft zu zeigen. Dann gilt für alle $s\leq t$
 	\begin{align*}
-		X_s - \BedE{X_t}{\F_s} \stackrel{\text{Sub-MG}}{\geq} 0
+		X_s - \BedE{X_t}{\F_s} \stackrel{\text{Super-MG}}{\geq} 0
 	\end{align*}
+	und
 	\begin{align*}
-		\E\big[X_s - \BedE{X_t}{\F_s} \big]
-		&= \E[X_s - X_t] \\
-		&= c-c \\
+		\E\big[\underbrace{X_s - \BedE{X_t}{\F_s}}_{\geq0} \big]
+		&\stackeq{\text{Lin}} \E[X_s] - \E\big[\BedE{X_t}{\F_s} \big] \\		
+		&\stackeq{\text{Tow}} \E[X_s] - [X_t] \\
+		&\stackeq{\text{Lin}} \E[X_s-X_t]\\
+		&\stackeq{\text{Vor}} c-c \\
 		&= 0
 	\end{align*}
+Somit folgt $X_s=\BedE{X_t}{\F_s}$ fast sicher für alle $s\leq t$. Also ist $(X_t)_{t\in\R_{\geq0}}$ ein Martingal, denn in $\L_p$ sind (per Äquivalenzrelation) zwei Zufallsvariblen gleich, wenn sie punktweise fast sicher gleich sind.
 \end{proof}
 
 \subsection*{Aufgabe 1 b)}
@@ -54,72 +59,82 @@ Sei $(X_n)_{n\in\N}$ ein Martingal \underline{und} ein vorhersehbarer Prozess bz
 Dann ist $X_n=X_0$ fast sicher für alle $n\in\N$.
 
 \begin{proof}
-	Beweis per Induktion. 
-	Induktionsaussage:
+	Beweis per Induktion.\\
+	Induktionsanfang für $n=0$ ist klar.\\
+	Induktionsvoraussetzung: Gelte
 	\begin{align*}
 		X_n = X_0 \quad \text{f.s.}
 	\end{align*}
-	Induktionsanfang für $n=0$ ist klar.
+	für beliebiges aber festes $n\in\N$.\\
 	Induktionsschritt:
 	\begin{align*}
-		X_n-X_0
-		&= X_n - X_{n-1} \\
-		&= X_n - \BedE{X_n}{\F_{n-1}} \\
-		&= \BedE{X_n-X_n}{\F_{n-1}} \\
+		X_{n+1}-X_0
+		&\stackeq{\text{IV}} X_{n+1} - X_{n} \\
+		&= X_{n+1} - \BedE{X_{n+1}}{\F_{n}} \\
+		&\stackeq{1.1.4.a)} \BedE{X_n}{\F_{n-1}} - \BedE{X_n}{\F_{n-1}} \\
+		%&\stackeq{\text{Lin}} \BedE{X_{n+1}-X_{n+1}}{\F_{n-1}} \\
 		&= 0
 	\end{align*}
-
+Somit folgt die Behauptung.
 \end{proof}
 
 \section*{Aufgabe 2}
 \subsection*{Aufgabe 2 a)}
 Sei $(\xi_j)_{j\in\N_{>0}}$ eine iid-Folge nichtnegativer Zufallsvariablen mit $\E[\xi_1]=1$. Dann ist der stochastische Prozess $M$ definiert durch
 \begin{align*}
-M_0:=1\qquad\text{ und }M_n=\prod\limits_{j=1}^n\xi\qquad\forall n\in\N_{>0}
+M_0:=\indi_\Omega\qquad\text{ und }M_n=\prod\limits_{j=1}^n\xi_j\qquad\forall n\in\N_{>0}
 \end{align*}
-ein Martingal bzgl. der von $(\xi_j)_{j\in\N_{>0}}$ erzeugten Filtration  mit $\F_0:=\lbrace 0,\emptyset\rbrace$ und $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ für alle $n\in\N_{>0}$.
+ein Martingal bzgl. der von $(\xi_j)_{j\in\N_{>0}}$ erzeugten Filtration  mit $\F_0:=\lbrace \Omega,\emptyset\rbrace$ und $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ für alle $n\in\N_{>0}$.
 
 \begin{proof}
-	Adaptiertheit ist klar. Integrierbarkeit:
+	\underline{Adaptiertheit:}\\
+	$M_0$ ist $\F_0$ offenbar messbar und
+	$\xi_n$ ist $\F_n$-messbar für $n>0$ nach Definition von $\F_n$.	\\
+	
+	 \underline{Integrierbarkeit:}
 	\begin{align*}
 		\E[M_n]
-		&=\E\Big[\prod_{i=1}^n \xi_i\Big] \\
-		&\stackeq{\text{iid.}}\prod_{i=1}^n \E[\xi_1] \\
+		&\stackeq{\text{Def}}\E\left[\prod_{j=1}^n \xi_j\right]\cdot\underbrace{\E[M_0]}_{=1} \\
+		&\stackeq{\text{iid}}\prod_{j=1}^n \E[\xi_1] \\
 		&= 1 \\
 		&<\infty
 	\end{align*}
-	MG-Eigenschaft:
+	\underline{MG-Eigenschaft:}
 	\begin{align*}
 		\BedE{M_n}{\F_{n-1}}
-		&= \BedE{\prod_{i=1}^n \xi_i}{\F_{n-1}} \\
-		&= \BedE{M_{n-1} \cdot \xi_n}{\F_{n-1}} \\
-		&= \E[\xi_n] \BedE{M_{n-1}}{\F_{n-1}} \\
-		&= 1 \cdot M_{n-1}
+		&\stackeq{\text{Def}} \BedE{\prod_{j=1}^n \xi_j}{\F_{n-1}} \\
+		&\stackeq{} \BedE{\left(\prod_{j=k+1}^n \xi_j\right)\cdot\left(\prod_{j=1}^k \xi_j\right)}{\F_{n-1}} \\
+		&\stackeq{\text{Def}} \BedE{\left(\prod_{j=k+1}^n \xi_j\right)\cdot M_k}{\F_{n-1}} \\
+		&\stackeq{\text{Pull-out}} \E\left[\prod_{j=k+1}^n \xi_j\right]\cdot\BedE{M_{k}}{\F_{n-1}} \\
+		&\stackeq{\text{iid}} \left(\prod_{j=k+1}^n\E[\xi_j]\right) \cdot \BedE{M_{k}}{\F_{n-1}}\qquad\forall n\in\N\\
+		&= 1\cdot \BedE{M_{k}}{\F_{n-1}}\\
+		&\stackeq{\text{1.1.4(a)}} M_{k}\qquad\forall k\leq n
 	\end{align*}
-
+In die letzte Gleichheit geht auch die oben gezeigte Adaptiertheit ein: $M_k$ ist $\F_k$ messbar und wegen $\F_{k}\subseteq \F_{k+1}\subseteq\ldots\subseteq \F_{n-1}\subseteq\F_n$ auch $n-1$ messbar.
 \end{proof}
 
 \subsection*{Aufgabe 2 b)}
-Sei $(S_n)_{n\in\N}$ der \textbf{asymmetrische} einfache Random Walk, d. h. $S_n=\xi_1+\ldots+\xi_n$ mit $\P[\xi_1=1]=p$ und $\P[\xi_1=-1]=1-p=:q$.\\
+Sei $(S_n)_{n\in\N}$ der \textbf{asymmetrische} einfache Random Walk, d. h.\\ $S_n=\xi_1+\ldots+\xi_n$ mit $\P[\xi_1=1]=p$ und $\P[\xi_1=-1]=1-p=:q$.\\
 Dann ist 
 \begin{align*}
-M_n:=\left(\frac{q}{p}\right)^{S_n}
+M_n:=\left(\frac{q}{p}\right)^{S_n}\qquad\forall n\in\N
 \end{align*}
 für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Martingal bzgl. $\F_n=\sigma(\xi_1,\ldots,\xi_n)$.
 
 \begin{proof}
-	Adaptiertheit: \enter
+	\underline{Adaptiertheit:}\\
 	Betrachte die Funktion
 	\begin{align*}
 		f(x):= \exp\Big(x \log\Big(\frac{q}{p}\Big)\Big)
 	\end{align*}
-	Diese ist offensichtlich messbar und da $S_n$ offensichtlich $\F_n$ messbar ist, ist auch
-	$f(S_n)$ messbar bezüglich $\F_n$ für alle $n\in\N$.\enter
+	Diese ist messbar (weil stetig) und da $S_n$ per Definition von $\F_n$ messbar ist, ist auch
+	$f\circ S_n$ messbar bezüglich $\F_n$ für alle $n\in\N$.\\
 
-	Integrierbarkeit:
+	\underline{Integrierbarkeit:} %IST NICHT RICHTIG IMHO
 	\begin{align*}
-		\E[M_n]
-		&= \E\Big[\Big(\frac{q}{p}\Big)^{S_n}\Big] \\
+		\E\big[|M_n|\big]]
+		&=\E[M_n]\\
+		&= \E\left[\left(\frac{q}{p}\right)^{S_n}\right] \\
 		&= \E\Big[\prod_{i=1}^{S_n}\Big(\frac{q}{p}\Big)\Big] \\
 		&\leq\begin{cases}
 		\E\Big[\prod_{i=1}^{n}\Big(\frac{q}{p}\Big)\Big] &,\frac{q}{p}\geq 1 \\
@@ -135,13 +150,13 @@ für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Marting
 	MG-Eigenschaft:
 	\begin{align*}
 		\BedE{M_n}{F_{n-1}}
-		&=\E\Big[M_{n-1}\Big(\frac{q}{p}\Big)^{\xi_n}~|~\F_{n-1}\Big] \\
-		&=\E\Big[\Big(\frac{q}{p}\Big)^{\xi_1}\Big] M_{n-1} \\
-		&=\Big(\Big(\frac{q}{p}\Big)^1\cdot p + \Big(\frac{q}{p}\Big)^{-1}\cdot q\Big) M_{n-1} \\
-		&= (p+q) M_{n-1} \\
+		&=\E\left[M_{n-1}\cdot\left(\frac{q}{p}\right)^{\xi_n}~\Big|~\F_{n-1}\right] \\
+		&=\E\left[\left(\frac{q}{p}\right)^{\xi_1}\right]\cdot M_{n-1} \\
+		&=\left(\left(\frac{q}{p}\right)^1\cdot p + \left(\frac{q}{p}\right)^{-1}\cdot q\right)\cdot M_{n-1} \\
+		&= (p+q)\cdot M_{n-1} \\
 		&= M_{n-1}
 	\end{align*}
-
+Der allgemeine Fall für $k\leq n$ folgt dann induktiv.
 \end{proof}
 
 \subsection*{Aufgabe 2 c)}
@@ -150,7 +165,7 @@ für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Marting
 \underline{Kompensator von $M_n$ aus b):}\\
 
 \section*{Aufgabe 3}
-Sei $(\xi_n)_{n\in\N}$ eine Folge von iid-Zufallsvariablen und $\xi_1$ normalverteilt mit Mittelwert 0 und Varianz $\sigma^2>0$. Weiter sei $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ und $X_n:=\xi_1+\ldots+\xi_n$
+Sei $(\xi_n)_{n\in\N}$ eine Folge von iid-Zufallsvariablen und $\xi_1$ normalverteilt mit Mittelwert 0 und Varianz $\sigma^2>0$. Weiter sei $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ und\\ $X_n:=\xi_1+\ldots+\xi_n$
 
 \subsection*{Aufgabe 3 a)}
 \begin{align*}
@@ -158,13 +173,13 @@ Sei $(\xi_n)_{n\in\N}$ eine Folge von iid-Zufallsvariablen und $\xi_1$ normalver
 \end{align*}
 
 \begin{proof}
-Sei $u\in\R$ beliebig.
+Sei $u\in\R$ beliebig. Dann gilt:
 \begin{align*}
 \E\big[\exp(u\cdot\xi_1)\big]
-&=c\int_\R e^{ux} e^{-\frac{x^2}{2\sigma^2}}\d x\\
-&=c\int_\R e^{-\big(\frac{u\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\sigma}\big)^2} e^{\frac{(u\sigma)^2}{2}}\d x\\
-&=c \cdot e^{\frac{(u\sigma)^2}{2}}\int_\R e^{-\frac{(u\sigma^2-x)^2}{2\sigma^2}}\d x\\
-&\stackeq{\text{Subst.}}e^{\frac{(u\sigma)^2}{2}} \cdot \underbrace{\tilde{c} \int_\R e^{-\frac{y^2}{2\sigma^2}}\d y}_{=1 ~~~ \text{Gauß Int.}}\\
+&=c\int\limits_\R \exp\left(u\cdot x\right)\cdot \exp\left(-\frac{x^2}{2\sigma^2}\right)\d x\\
+&=c\int\limits_\R \exp\left(-\left(\frac{u\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\sigma}\right)^2\right) \cdot\exp\left(\frac{(u\sigma)^2}{2}\right)\d x\\
+&=c \cdot \exp\left(\frac{(u\sigma)^2}{2}\right)\cdot\int\limits_\R \exp\left(-\frac{(u\sigma^2-x)^2}{2\sigma^2}\right)\d x\\
+&\stackeq{\text{Subs}}\exp\left(\frac{(u\sigma)^2}{2}\right)\cdot \underbrace{\tilde{c}\cdot\int\limits_\R \exp\left(-\frac{y^2}{2\sigma^2}\right)\d y}_{=1\text{, da Gauß Int.}}\\
 &=\exp\left(u^2\cdot\frac{\sigma^2}{2}\right)
 \end{align*}
 \end{proof}
@@ -178,27 +193,30 @@ ein Martingal.
 
 \begin{proof}
 \begin{align*}
-	e^{uS_n - nu^2\frac{\sigma^2}{2}}
-	&= \frac{e^{uS_n}}{e^{nu^2\frac{\sigma^2}{2}}} \\
-	&=\prod_{i=1}^n \frac{e^{u\xi_i}}{e^{nu^2\frac{\sigma^2}{2}}} \\
-	&=\frac{1}{e^{nu^2\frac{\sigma^2}{2}}}\prod_{i=1}^n e^{u\xi_i}
+	\exp\left(u\cdot S_n-n\cdot u^2\cdot\frac{\sigma^2}{2}\right)
+	&= \frac{\exp(u\cdot S_n)}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)} \\
+	&=\prod_{i=1}^n \frac{\exp\left(u\cdot \xi_i\right)}{\exp\left(n\cdot u^2\cdot \frac{\sigma^2}{2}\right)} \\
+	&=\frac{1}{\exp\left(n\cdot u^2\cdot \frac{\sigma^2}{2}\right)}\cdot\prod_{i=1}^n \exp\left(u\cdot\xi_i\right)
 \end{align*}
-Adaptiertheit ist klar. Integrierbarkeit:
+\underline{Adaptiertheit:} ist klar.\\
+
+\underline{Integrierbarkeit:}
 \begin{align*}
-	\E[Z^u_n] 
-	&\stackrel{\text{iid.}}{=}\frac{1}{e^{nu^2\frac{\sigma^2}{2}}}\prod_{i=1}^n \E e^{u\xi_1} \\
-	&=\frac{1}{e^{nu^2\frac{\sigma^2}{2}}}\prod_{i=1}^n e^{u^2\frac{\sigma^2}{2}} \\
-	&=\frac{1}{e^{nu^2\frac{\sigma^2}{2}}} e^{u^2n\frac{\sigma^2}{2}} \\
+	\E\left[Z^u_n\right] 
+	&\stackrel{\text{iid.}}{=}\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\prod_{i=1}^n \E\big[\exp\left(u\cdot\xi_1\right)\big] \\
+	&=\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\prod_{i=1}^n \exp\left(u^2\cdot\frac{\sigma^2}{2}\right) \\
+	&=\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot \exp\left(u^2\cdot n\cdot\frac{\sigma^2}{2}\right) \\
 	&=1 \\
 	&<\infty
 \end{align*}
-MG-Eigenschaft:
+\underline{Martingaleigenschaft:}
 \begin{align*}
-	\BedE{Z_n^u}{\F_{n-1}}
-	&=\BedE{\frac{1}{e^{nu^2\frac{\sigma^2}{2}}}e^{u\xi_n}Z^u_{n-1}}{\F_{n-1}}\\
-	&=\E\left[\frac{1}{e^{nu^2\frac{\sigma^2}{2}}}e^{u\xi_n}\right]Z^u_{n-1}\\
+	\E\big[Z_n^u ~\big|~\F_{n-1}\big]
+	&=\E\left[\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\exp\left(u\cdot\xi_n\right)\cdot Z^u_{n-1}~\bigg|~\F_{n-1}\right]\\
+	&=\E\left[\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\exp\left(u\cdot\xi_n\right)\right]\cdot Z^u_{n-1}\\
 	&\stackeq{(a)} Z^u_{n-1}
 \end{align*}
+Der allgemeine Fall für $k\leq n$ folgt dann induktiv.
 \end{proof}
 
 \section*{Aufgabe 4}
@@ -246,7 +264,7 @@ Seien $\tau_{i\in\N}$ Stoppzeiten
 	\{\sup_{i\in\N} \tau_{i\in\N} \leq n\} = \bigcap_{i\in\N}\underbrace{\{\tau_i \leq n\}}_{\in\F_n} \in \F_n
 \end{align*}
 \begin{align*}
-	\{\inf_{i\in\N} \tau_{i\in\N} \leq n\} = \bigcap_{i\in\N}\underbrace{\{\tau_i \geq n\}}_{\in\F_n} \in \F_n
+\left\lbrace\inf_{i\in\N} \tau_{i} \leq n\right\rbrace = \bigcap_{i\in\N}\underbrace{\{\tau_i \geq n\}}_{\in\F_n} \in \F_n
 \end{align*}
 
 \end{proof}
