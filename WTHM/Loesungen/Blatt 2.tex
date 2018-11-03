@@ -176,6 +176,8 @@ Sei $(\xi_n)_{n\in\N}$ eine Folge von iid-Zufallsvariablen und $\xi_1$ normalver
 Sei $u\in\R$ beliebig. Dann gilt:
 \begin{align*}
 \E\big[\exp(u\cdot\xi_1)\big]
+&\stackeq{\text{Trafo}}
+\int\limits_\R\exp(u\cdot x)\P_{\xi_1}(\d x)\\
 &=c\int\limits_\R \exp\left(u\cdot x\right)\cdot \exp\left(-\frac{x^2}{2\sigma^2}\right)\d x\\
 &=c\int\limits_\R \exp\left(-\left(\frac{u\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\sigma}\right)^2\right) \cdot\exp\left(\frac{(u\sigma)^2}{2}\right)\d x\\
 &=c \cdot \exp\left(\frac{(u\sigma)^2}{2}\right)\cdot\int\limits_\R \exp\left(-\frac{(u\sigma^2-x)^2}{2\sigma^2}\right)\d x\\
@@ -292,15 +294,22 @@ Dann gilt $C_n(M)=\lbrace n\leq\tau(\omega)\rbrace\in\F_{n}$.\\
 
 Folglich ist $C_n$ $\F_n$ messbar. Im Allgemeinen aber leider nicht $F_{n-1}$ messbar, da $\F_{n-1}\subseteq\F_n$.\\
 
-\underline{Zu d):}\\
+\underline{Zu d):} Sei $n\in\N_0$ beliebig. Dann gilt
 \begin{align*}
-	&\{\sigma \wedge \tau \leq n \} = \underbrace{\{\sigma \leq n\}}_{\in \F_n} \cup \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
-	&\{\sigma \vee \tau \leq n \} = \underbrace{\{\sigma \leq n\}}_{\in \F_n} \cap \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n
+\{\sigma \wedge \tau \leq n \}
+&=\big\lbrace\omega\in\Omega:\min\lbrace\sigma(\omega),\tau(\omega)\rbrace\leq n\big\rbrace\\
+&=\big\lbrace\omega\in\Omega:\sigma(\omega)\leq n\vee\tau(\omega)\leq n\big\rbrace\\
+&=\underbrace{\{\sigma \leq n\}}_{\in \F_n} \cup \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
+\{\sigma \vee \tau \leq n \}
+&=\big\lbrace\omega\in\Omega:\max\lbrace\sigma(\omega),\tau(\omega)\rbrace\leq n\big\rbrace\\
+&=\big\lbrace\omega\in\Omega:\sigma(\omega)\leq n\wedge\tau(\omega)\leq n\big\rbrace\\
+&=\underbrace{\{\sigma \leq n\}}_{\in \F_n} \cap \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
 \end{align*}
 \underline{Zu e):}\\
-Seien $\tau_{i\in\N}$ Stoppzeiten
+Sei $(\tau_i)_{i\in\N}$ eine abzählbare Folge von Stoppzeiten und sei $n\in\N_0$ beliebig. Dann gilt:
 \begin{align*}
-	\{\sup_{i\in\N} \tau_{i\in\N} \leq n\} = \bigcap_{i\in\N}\underbrace{\{\tau_i \leq n\}}_{\in\F_n} \in \F_n
+\left\lbrace\sup_{i\in\N} \tau_{i\in\N} \leq n\right\rbrace
+= \bigcap_{i\in\N}\underbrace{\{\tau_i \leq n\}}_{\in\F_n} \in \F_n
 \end{align*}
 \begin{align*}
 \left\lbrace\inf_{i\in\N} \tau_{i} \leq n\right\rbrace = \bigcap_{i\in\N}\underbrace{\{\tau_i \geq n\}}_{\in\F_n} \in \F_n
