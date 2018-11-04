@@ -135,13 +135,12 @@ für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Marting
 		\E\big[|M_n|\big]]
 		&=\E[M_n]\\
 		&= \E\left[\left(\frac{q}{p}\right)^{S_n}\right] \\
-		&= \E\Big[\prod_{i=1}^{S_n}\Big(\frac{q}{p}\Big)\Big] \\
 		&\leq\begin{cases}
-		\E\Big[\prod_{i=1}^{n}\Big(\frac{q}{p}\Big)\Big] &,\frac{q}{p}\geq 1 \\
+		\E\Big[\prod_{i=1}^{\lfloor S_n\rfloor + 1}\Big(\frac{q}{p}\Big)\Big] &,\frac{q}{p}\geq 1 \\
 		1 &,\frac{q}{p} < 1 
 	\end{cases} \\
 		&=\begin{cases}
-		\Big(\frac{q}{p}\Big)^n &,\frac{q}{p}\geq 1 \\
+	\Big(\frac{q}{p}\Big)^{n+1} &,\frac{q}{p}\geq 1 \\
 		1 &,\frac{q}{p} < 1 
 	\end{cases} \\
 	&< \infty
@@ -255,6 +254,12 @@ C_n(\omega):=\indi_{[0,\tau(\omega)]}(n)
 	\{\tau \geq n \} =\lbrace\tau <n-1\rbrace^C= \Big(\underbrace{\{\tau \leq n-1 \}}_{\in\F_{n-1}\text{, wg. (a)}} \setminus \underbrace{\{\tau = n-1 \}}_{\in\F_{n-1}} \Big)^C \in \F_{n-1}
 \end{align*}
 \underline{Zu c):}\\
+Für festes n gilt:
+
+\begin{align*}
+	\indi_{[0,\tau(\cdot)]}(n)=\indi_{\{n\leq \tau(\cdot)\}}
+\end{align*}
+
 \begin{align*}
 	&\indi_{[0,\tau(\omega)]}(n)\stackeq{???}\indi_{\underbrace{\{n\leq \tau(\omega)\}}_{(b) \implies \in\F_{n-1}}} \\
 	\implies &\indi_{[0,\tau(\omega)]}(n) \in \F_{n-1}
