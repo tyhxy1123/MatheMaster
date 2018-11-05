@@ -1021,3 +1021,159 @@ gibt. Dann gilt:
 \end{align*}
 wobei $C$ nur von $\Omega, A,a,\alpha$ abhängt (also nicht von $f$).
 \end{theorem}
+
+\section{Finite-Elemente Räume} %4
+\begin{definition}[1D finite Elemente]\enter
+Sei $\Omega=(0,1)\subseteq\R$. Sei
+\begin{align*}
+\mathcal{T}_n:=\big\lbrace I_j:0\leq j\leq n\big\rbrace\mit I_j:=\big(t_j,t_{j+1}\big)
+\end{align*}
+und 
+\begin{align*}
+0=t_0<t_1<\ldots<t_n< t_{n+1}=1
+\end{align*}
+eine Zerlegung von $(0,1)$. Weiterhin setze
+\begin{align*}
+h_j:=t_{j+1}-t_j,\qquad h:=\max\limits_{0\leq j\leq n} h_j
+\end{align*}
+Für $k\in\N_0$ und $m\in\N_0$ definiere
+\begin{align*}
+S_n^{k,-1}&:=\Big\lbrace\varphi:[0,1]\to\R:\varphi\big|_{I_j}\in P_k,~0\leq j\leq n\Big\rbrace\\
+S_h^{k,m}&:=S_n^{k,-1}\cap C^m\big([0,1]\big)\\
+S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_n^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbrace
+\end{align*}
+Hierbei ist $P_k$ der Raum der Polynome von höchstens Grad $k$. Die Funktionen in $S_h^{k,m}$ heißen \textbf{finite-Elemente-Funktionen}.
+\end{definition}
+
+\begin{bemerkung}
+\begin{itemize}
+\item Für $m=k-1$ erhält man Splines.
+\item $\begin{aligned}
+S_h^{k,m}\subseteq H^{m+1}(\Omega)
+\end{aligned}$ wegen Proposition 1.4 %ToDo: add reference
+\item $\begin{aligned}
+S_h^{0,m}
+\end{aligned}$ sind konstante Funktionen auf $(0,1)$ für $m\geq0$
+\item Die Räume haben folgende Dimensionen:
+\begin{align*}
+\dim\left(S_h^{k,-1}\right)&=(n+1)\cdot(k+1)\\
+\dim\left(S_h^{k,m}\right)&=\dim\left(S_h^{k,-1}\right)-n\cdot(m+1)\\
+\dim\left(S_{h,0}^{k,m}\right)&=\dim\left(S_h^{k,m}\right)-2\\
+\end{align*}
+Konkrete wichtige Beispiele:
+\begin{align*}
+\dim\left(S_h^{k,0}\right)&=(n+1)\cdot(k+1)-n\\
+\dim\left(S_{h,0}^{k,0}\right)&=(n+1)\cdot(k+1)-n-2=(n+1)\cdot(k-1)+n\\
+\dim\left(S_{h,0}^{1,0}\right)&=(n+1)\cdot 2-n-2=n\\
+\dim\left(S_{h,0}^{2,0}\right)&=(n+1)\cdot 3-n-2=2\cdot n+1\\
+\end{align*}
+\end{itemize}
+\end{bemerkung}
+%RobertToDo: Polishing of the following
+Sei $\lbrace\varphi_j\rbrace_{j\in J}$ eine Basis von $S_h^{k,0}$
+%=\langle\lbrace\varphi_j\rbrace\rangle$
+und Lösung $u_h\in S_{h,0}^{k,0}: u_h=\sum\limits_j u_j\cdot\varphi_j$\\
+Diskretes Problem: Finde $u_h\in S_{h,0}^{k,0}$ so, dass 
+\begin{align*}
+a(u_h,\varphi_h)=l(\varphi_h)\qquad\forall \varphi_h\in S_{h,0}^{k,0}\\
+\Longleftrightarrow a(u_h,\varphi_i)=l(\varphi_i)\qquad\forall i
+\end{align*}
+$A=(a_{i,j}),~a_{i,j}:=a(\varphi_j,\varphi_i),~b=(b_i),~b_i=l(\varphi_i)$
+\begin{align*}
+\Longleftrightarrow A\cdot U=b,\qquad U=(u_i)
+\end{align*}
+Hierbei heißt $A$ \textbf{Stiffness-Matrix}.
+
+\begin{align*}
+S^{1,0}_{h,0}&=\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
+\varphi_i(t)=\left\lbrace\begin{array}{cl}
+\frac{t-t_{i-1}}{h_{i-1}}, &\falls t\in I_{i-1}\\
+\frac{t_{i+1}-t}{h_i}, &\falls t\in I_i\\
+0, &\sonst
+\end{array}\right.\\
+&\implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Dreiecksmatrix}
+\end{align*}
+
+\begin{align*}
+S_{h,0}^{2,0}&=\spann\big\lbrace\varphi_1,\ldots,\varphi_n,\psi_0,\ldots,\psi_n\big\rbrace,\qquad
+\psi_i(t)=\left\lbrace\begin{array}{cl}
+4\cdot\frac{(t-t_i)\cdot(t_{i+1}-t)}{h_i^2}, &\falls t\in I_i\\
+0 &\sonst
+\end{array}\right.
+\end{align*}
+
+Die Stiffness-Matrix $A$ lässt sich als Blockmatrix schreiben:
+\begin{align*}
+A=\begin{pmatrix}
+A_{LL} & A_{LQ}\\
+A_{QL} & A_{QQ}
+\end{pmatrix}
+\end{align*}
+wobei $A_{QQ}$ eine Diagonalmatrix ist. Somit:
+\begin{align*}
+\begin{pmatrix}
+A_{LL} & A_{LQ}\\
+A_{QL} & A_{QQ}
+\end{pmatrix}\cdot\begin{pmatrix}
+U_L\\ U_Q
+\end{pmatrix}=
+\begin{pmatrix}
+b_L\\ b_Q
+\end{pmatrix}\\
+\Longleftrightarrow \big(A_{LL}-A_{LQ}\cdot A^{-1}_{QQ}\cdot A_{QL}\big)\cdot U_L&= b_L-A_{LQ}\cdot A^{-1}_{QQ}\cdot b_Q\\
+A_{QQ}\cdot U_Q&= b_Q-A_{QL}\cdot U_L
+\end{align*}
+
+\begin{theorem}[Approximationseigenschaft von 1D finiten Elementen]\label{theorem4.2}\enter
+Sei $u\in H^{k+1}(\Omega)\cap H^{1}_0(\Omega)$ für ein $k\geq1$. Dann gilt:
+\begin{align*}
+\inf\limits_{v_h\in S_{h,0}^{k,0}}\big|u-v_h\big|_{1,2}\leq h^k\cdot|u|_{k+1,2}
+\end{align*}
+(Hierbei ist $h$ wie oben der Maximalabstand.)
+\end{theorem}
+\begin{proof}
+Definiere Intervallweise die Funktion auf $I_i$ durch
+\begin{align*}
+v_h^\ast(t):=L_i(t)\qquad\forall t\in I_i,~\forall i\in\lbrace1,\ldots,n\rbrace
+\end{align*}
+wobei die $L_i$ die Lagrange-Interpolationen in $P_k$ bzgl. $t_i+\frac{s}{h}\cdot h_i,~0\leq j\leq h$ sind.\\
+Offenbar gilt$v_h^\ast\in S^{k,0}_{h,0}$. \\
+$u-v_n^\ast$ in $\overline{I_i}=[t_i,t_{i+1}]$ hat $(k+1)$ Nullen wegen der Interpolation. Somit hat $\big(u-v_h)^\ast\big)^{(\mu)}$ $(k+1-\mu)$ Nullen.
+\begin{align*}
+\big|u-v_h^\ast\big|_{\mu,2,I_i}
+&=\left\Vert \big(u-v_h^\ast\big)^{(\mu)}\right\Vert_{0,2,I_i}\\
+&\stackrel{\ref{ToDO}}{\leq}
+h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu)}\right|_{1,2,I_i}\\
+&=h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu+1)}\right|_{0,2,I_i}\\
+&\leq h_i\cdot\left|u-v_h^\ast\right|_{1,2,I_i}\\
+\implies
+\big|u-v_h^\ast\big|_{1,2,I_i}
+&\leq h_i^k\cdot\big|u-v_h^\ast\big|_{k+1,2,I_i}
+=h_i^k\cdot |u|_{k+1,2,I_i}
+\end{align*}
+wegen $v_h^\ast\big|_{I_i}\in  P_k$. Somit folgt
+\begin{align*}
+\big| u-v_h^\ast\big|_{1,2,\Omega}
+&=\left(\sum\limits_{i=1}^n\big|u-v_h^\ast\big|^2_{1,2,I_i}\right)^{\frac{1}{2}}\\
+&\leq\left(\sum\limits_{i=1}^n \underbrace{h_i^{2\cdot k}}_{\leq h^{2\cdot k}} \big|u\big|^2_{k+1,2,I_i}\right)^{\frac{1}{2}}\\
+&\leq h^k\cdot |u|_{k+1,2,\Omega}
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma4.3}
+Sei $u\in H^1((a,b))$ mit der Eigenschaft
+\begin{align*}
+\exists t^\ast\in[a,b]:u(t^\ast)=0.
+\end{align*}
+Dann gilt:
+\begin{align*}
+\Vert  u\Vert_{L^\infty}:=\max\limits_{t\in [a,b]}\big|u(t)\big|&\leq(b-a)^{\frac{1}{2}}\cdot |u|_{1,2}\\
+\Vert u\Vert_{0,2}&\leq(b-a)\cdot|u|_{1,2}
+\end{align*}
+Für alle $u\in H^1_0((a,b))$ gilt:
+\begin{align*}
+\left(1+(b-a)^2\right)^{\frac{1}{2}}\cdot\Vert u\Vert_{1,2}\leq|u|_{1,2}\leq\Vert u\Vert_{1,2}
+\end{align*}
+\end{lemma}
+
+
