@@ -1038,7 +1038,7 @@ h_j:=t_{j+1}-t_j,\qquad h:=\max\limits_{0\leq j\leq n} h_j
 \end{align*}
 Für $k\in\N_0$ und $m\in\N_0$ definiere
 \begin{align*}
-S_n^{k,-1}&:=\Big\lbrace\varphi:[0,1]\to\R:\varphi\big|_{I_j}\in P_k,~0\leq j\leq n\Big\rbrace\\
+S_h^{k,-1}&:=\Big\lbrace\varphi:[0,1]\to\R:\varphi\big|_{I_j}\in P_k,~0\leq j\leq n\Big\rbrace\\
 S_h^{k,m}&:=S_n^{k,-1}\cap C^m\big([0,1]\big)\\
 S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_n^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbrace
 \end{align*}
@@ -1085,15 +1085,15 @@ $A=(a_{i,j}),~a_{i,j}:=a(\varphi_j,\varphi_i),~b=(b_i),~b_i=l(\varphi_i)$
 Hierbei heißt $A$ \textbf{Stiffness-Matrix}.
 
 \begin{align*}
-S^{1,0}_{h,0}&=\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
+S^{1,0}_{h,0}&=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
 \varphi_i(t)=\left\lbrace\begin{array}{cl}
 \frac{t-t_{i-1}}{h_{i-1}}, &\falls t\in I_{i-1}\\
 \frac{t_{i+1}-t}{h_i}, &\falls t\in I_i\\
 0, &\sonst
 \end{array}\right.\\
-&\implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Dreiecksmatrix}
+&\implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
 \end{align*}
-
+\input{plot_phi_hat}\\
 \begin{align*}
 S_{h,0}^{2,0}&=\spann\big\lbrace\varphi_1,\ldots,\varphi_n,\psi_0,\ldots,\psi_n\big\rbrace,\qquad
 \psi_i(t)=\left\lbrace\begin{array}{cl}
@@ -1145,7 +1145,7 @@ $u-v_n^\ast$ in $\overline{I_i}=[t_i,t_{i+1}]$ hat $(k+1)$ Nullen wegen der Inte
 &\stackrel{\ref{ToDO}}{\leq}
 h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu)}\right|_{1,2,I_i}\\
 &=h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu+1)}\right|_{0,2,I_i}\\
-&\leq h_i\cdot\left|u-v_h^\ast\right|_{1,2,I_i}\\
+&\leq h_i\cdot\left|u-v_h^\ast\right|_{\mu+1,2,I_i}\\
 \implies
 \big|u-v_h^\ast\big|_{1,2,I_i}
 &\leq h_i^k\cdot\big|u-v_h^\ast\big|_{k+1,2,I_i}
