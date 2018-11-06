@@ -1567,3 +1567,196 @@ und
 \end{align*}
 \end{proof}
 
+Ferner erhält man unter den jeweiligen Voraussetzungen in Theorem \ref{theorem4.3} bzw. Korollar \ref{korollar4.4}:
+\begin{align*}
+\P(X_n\in A)\stackrel{n\to\infty}{\longrightarrow}\P(X\in A)\qquad\forall A\in\U\\
+\implies X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)
+\end{align*}
+Und aus Lemma \ref{lemma4.6Einhalb}:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X,X_n\stackrel{\L}{\longrightarrow} X'\implies X\stackeq{\L}X'
+\end{align*}
+
+\subsection*{Das Continuous Mapping Theorem (CMT)}
+Sei $h:(\S,d)\to(\S',d')$ messbar.\\
+\underline{Ziel:} Finde Bedingungen an $h$, so dass gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+P_n\stackrelnew{w}{}{\longrightarrow}\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{aligned}$
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\implies h(X_n)\stackrel{\L}{\longrightarrow} h(X)\text{ in }(\S',d')
+\end{aligned}$
+\end{enumerate}
+Beachte: 
+\begin{align*}
+\P\circ\big(h(X_n)\big)^{-1}&=\P\circ(h\circ X_n)^{-1}=\big(\P\circ X_n^{-1}\big)\circ h^{-1}\\
+\P\big(h(X)\big)^{-1}&=\big(\P\circ X^{-1}\big)\circ h^{-1}
+\end{align*}
+Also folgt (2) aus (1). Zunächst gilt (1), wenn $h$ stetig auf $\S$  ist, denn: Sei $f\in C^b(\S')$ beliebig. Dann gilt:
+\begin{align*}
+\int\limits_{\S'} f\d \big(P_n\circ h^{-1}\big)
+\stackeq{\text{Trafo}}
+\int\limits_{\S} \underbrace{ f\circ h}_{\in C^b(\S)}\d P_n
+\stackrel{\ref{def4.1}}{\longrightarrow}\int\limits f\circ h\d P
+\stackeq{\text{Trafo}}
+\int\limits f\d(P\circ h^{-1})\\
+\stackrel{\ref{def4.1}}{\implies}
+P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{align*}
+Auf Stetigkeit von $h$ kann i. A. nicht verzichtet werden, denn es gilt:
+\begin{beispiel} %4.8
+Sei $\S=\S'=[0,1],~h:[0,1]\to[0,1]$ mit
+\begin{align*}
+h(x):=\left\lbrace\begin{array}{cl}
+1, &\falls x\in\lbrace 0\rbrace\cup\left\lbrace\frac{1}{2\cdot n}:n\in\N\right\rbrace\\
+0, & \sonst
+\end{array}\right.
+\end{align*}
+Sei $P_n:=\delta_{\frac{1}{n}},n\in\N,P:=\delta_{0}$ wobei $\delta_x$ das Dirac-Maß bezeichnet.\\
+Dann gilt $P_n\stackrelnew{w}{}{\longrightarrow} P$, denn
+\begin{align*}
+\int\limits f\d P_n&=f\left(\frac{1}{n}\right)\stackrel{n\to\infty}{\longrightarrow} f(0)=\int\limits f\d P\qquad\forall f\in C^b\big([0,1]\big)
+\end{align*}
+Aber wegen 
+\begin{align*}
+\delta_x\circ h^{-1}=\delta_{h(x)}
+\end{align*}
+gilt für
+\begin{align*}
+Q_n:=P_n\circ h^{-1}=\delta_{\frac{1}{n}}\circ h^{-1}=\delta_{h\left(\frac{1}{n}\right)},\qquad Q:=\P\circ h^{-1}=\delta_1
+\end{align*}
+das Folgende:
+\begin{align*}
+\int\limits f\d Q_n=f\left(h\left(\frac{1}{n}\right)\right)=\left\lbrace\begin{array}{cl}
+f(1), & \falls n\text{ gerade }\\
+0, & \falls n\text{ ungerade }
+\end{array}\right.
+\end{align*}
+Sei $f\in C^b\big([0,1]\big)$ mit $f(0)\neq f(1)$ (z. B. $f=\id$). Folglich ist die Folge $\left(\int f\d Q_n\right)_{n\in\N}$ divergent. Somit:
+\begin{align*}
+\implies\int\limits f\d Q_n\not\longrightarrow\int\limits f\d Q\implies Q_n\stackrelnew{w}{}{\not\to} Q
+\end{align*}
+\end{beispiel}
+
+Die Forderung der Stetigkeit lässt sich aber abschwächen so, dass (1) noch gilt. Dazu definiere die Menge der Unstetigkeitsstellen
+\begin{align*}
+D_h:=\big\lbrace x\in\S: h\text{ \underline{nicht} stetig in }x\big\rbrace.
+\end{align*}
+
+\begin{lemma}\label{lemma4.9}
+\begin{align*}
+D_h\in\B(\S)\qquad\forall h:\S\to\S'\text{ beliebig (nicht einmal messbar)}
+\end{align*}
+\end{lemma}
+\begin{proof}
+Kopie. %TODO Hier Beweis einfügen
+\end{proof}
+
+
+
+\begin{satz}[Continuous Mapping Theorem (CMT)]\enter\label{satz4.10ContinuousMappingTheorem}
+Sei $h:(\S,d)\to(\S',d')$ $\B(\S)$-$\B(\S)$-messbar. Dann gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+P_n\stackrelnew{w}{}{\longrightarrow} P\wedge P(D_h)=0
+\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{aligned}$
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow}\text{ in }(\S,d)\wedge\P(X\in D_h)=0
+\implies h(X_n)\stackrel{\L}{\longrightarrow} h(X)\text{ in }(\S',d') 
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zeige (1):}\\
+Sei $F\in\F(\S')$ (d. h. $F\subseteq\S'$ abgeschlossen) beliebig. Dann gilt:
+\begin{align}\label{eqProof1.4.10(i)}
+\limsup\limits_{n\to\infty} P_n\circ h^{-1}(F)
+&=\limsup\limits_{n\to\infty} P_n\big(\underbrace{h^{-1}(F)}_{\subseteq \overline{h^{-1}(F)}}\big)\\\nonumber
+&\leq \limsup\limits_{n\to\infty} P_n\big(\underbrace{\overline{h^{-1}(F)}}_{\in\F(\S)}\big)\\\nonumber
+&\stackrel{\ref{satz4.2}}{\leq}
+P\big(\overline{h^{-1}(F)}\big)
+\end{align}
+Es gilt
+\begin{align}\label{eqProof1.4.10(ii)}
+\overline{h^{-1}(F)}\subseteq h^{-1}(F)\cup D_h,
+\end{align}
+denn: Sei $x\in\overline{h^{-1}(F)}$.\\
+
+\underline{Fall 1: $x\in D_h$}
+\begin{align*}
+x\in D_h\implies x\in h^{-1}(F)\cup D_h
+\end{align*}
+\underline{Fall 2: $x\not\in D_h$}\\
+Also ist $x\in C_h$, d. h. $h$ ist stetig in $x$. Ferner existiert eine Folge $(x_n)_{n\in\N}\subseteq h^{-1}(F)$ mit $x_n\stackrel{n\to\infty}{\longrightarrow} x$. Wegen der Stetigkeit gilt
+\begin{align*}
+\underbrace{h(x_n)}_{\in F~\forall n}\stackrel{n\to\infty}{\longrightarrow} h(x)
+\implies h(x)\in\overline{F}=F\implies x\in h^{-1}(F)
+\implies x\in h^{-1}(F)\cup D_h
+\end{align*}
+Mit \eqref{eqProof1.4.10(ii)} folgt:
+\begin{align*}
+\P\Big(\overline{h^{-1}(F)}\Big)
+\stackrel{\eqref{eqProof1.4.10(ii)}}{\leq}
+P\Big(h^{-1}(F)\cup D_h\Big)
+\leq P\Big(h^{-1}(F)\Big)+\underbrace{P(D_h)}_{=0}
+=P\circ h^{-1}(F)\\
+\stackrel{\eqref{eqProof1.4.10(i)},\ref{satz4.2}(3)}{\implies} 
+P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{align*}
+\underline{Zeige (2):} folgt aus (1).
+\end{proof}
+
+\subsection*{Die Cramér'schen Sätze}
+Zusammenstellung einiger Eigenschaften der Verteilungskonvergenz.
+
+\begin{satz}[Teilfolgenprinzip für schwache Konvergenz]\label{satz4.11}\enter
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+Q_n\stackrelnew{w}{}{\longrightarrow} Q
+\Longleftrightarrow
+\text{Jede TF }(Q_{n'})\subseteq(Q_n)_{n\in\N}\text{ enthält TF }(Q_{n''})\subseteq(Q_{n'}):Q_{n''}\stackrelnew{w}{}{\longrightarrow} Q
+\end{aligned}$
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\Longleftrightarrow\text{Jede TF }(X_{n'})\subseteq(X_n)_{n\in\N}\text{ enthält TF }(X_{n''})\subseteq(X_{n'}):X_{n''}\stackrel{\L}{\longrightarrow} X
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zeige ``$\implies$'':}\\
+Folgt aus der Definition \ref{def4.1} und dem Teilfolgenprinzip für $(\int f\d Q)_{n\in\N}$ für alle $f\in C^b(\S)$.\\
+
+\underline{Zeige ``$\Longleftarrow$'':}\\
+Angenommen $Q_n\stackrelnew{w}{}{\not\longrightarrow} Q$. Dann gilt:
+\begin{align*}
+\exists f\in C^b(\S):\int\limits f\d Q_n\not\longrightarrow\int\limits f\d Q
+\end{align*}
+Also existiert ein $\varepsilon>0$ und eine TF $(X_{n'})\subseteq(X_n)_{n\in\N}$ so, dass
+\begin{align}\label{eqProof4.11Stern}
+\left|\int\limits f\d Q_{n'}-\int\limits f\d Q\right|\geq\varepsilon\qquad\forall n'
+\end{align}
+im Widerspruch zur Voraussetzung, da \eqref{eqProof4.11Stern} insbesondere für alle $n''$ gilt.
+\end{proof}
+
+\begin{satz}\label{satz4.12}
+\begin{align*}
+X_n\stackrel{\P}{\longrightarrow} X\implies X_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{satz}
+\begin{proof}
+Sei $(X_{n'})$ eine Teilfolge von $(X_n)_{n\in\N}$. Dann existiert gemäß \ref{satz3.13} eine TF $(X_{n''})$ von $(X_{n'})$ mit $X_{n''}\stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
+Damit folgt aus Satz \ref{Satz3.8}:
+\begin{align*}
+&f\big(X_{n''}\big)\stackrel{n''\to\infty}{\longrightarrow}f(X)~\P\text{-fast sicher}\qquad\forall f\in C^b(\S)\\
+&\stackrel{\text{dom Konv}}{\implies}
+\E\Big[f\big(X_{n''}\big)\Big]\stackrel{n''\to\infty}{\longrightarrow}\E\Big[f\big(X\big)\Big]\qquad\forall f\in C^b(\S)\\
+&\stackrel{\ref{satz4.7}}{\implies}
+X_{n''}\stackrel{\L}{\longrightarrow} X\\
+&\stackrel{\ref{satz4.11}(2)}{\implies}
+X_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{proof}
+
+
+
