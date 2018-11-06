@@ -1,0 +1,149 @@
+\chapter{Theorems of Lie and Cartan}
+\section{Jordan-Chevallery decomposition}
+
+\section{Cartan's critertion}
+\begin{remark}
+    If $[L,L]$ is nilpotent $\implies$ $L$ is solvable.\\
+    \underline{Engel's theorem:} $\ad_{[L,L]}x$ nilpotent $\implies$ $[L,L]$ nilpotent.
+\end{remark}
+\begin{lemma}
+    If
+    $A \subseteq B \subseteq \gl(V), \dim V < \infty$ and
+    $$ M = \{x \in \gl(V) \mid [x,y] \in A \forall y \in B\}.$$
+    Then $$\tr (xy) = 0 \forall y \in M \implies x \text{ nilpotent.}$$
+\end{lemma}
+\begin{proof}
+    Let $x=n+s$ be the Jordan decomposition of $x$. Let $v_1, \ldots, v_m$ be an Eigen basis for $s$, $sv_i = a_i v_i$ for $a_i \in F$.
+    In this basis $s= \diag(a_1,\ldots a_m)$. Recall we assume $\Q \subseteq F$.
+    Let $E := \Span_\Q\{a_1, \ldots, a_m\} \subseteq F$
+    We show that $E^{\ast} = \Hom_\Q(E,\Q) = 0$. Then 
+    \begin{align*}
+        E = 0 \implies \forall i,a_i=0 & \implies s =0\\
+        & \implies x \text{ nilpotent}
+    \end{align*}
+    So let $f: E \to \Q$ be any linear functional. Define $y := \diag(f(a_1), \ldots,f(a_m)) \subseteq \gl(V).$
+    Tricky part: Show $y \in M$. For this, let $r \in F[X]$ be a polynomial with $r(0)=0$ and $r(a_i - a_j) = f(a_i) - f(a_j)$
+    Note: Possible is $a_i -a_j = a_m - a_n$, but $f$ linear implies that $f(a_i - a_j)=f(a_i)-f(a_j)$ and
+    $a_i - a_j =$ implies $f(a_i - a_j) = 0$.
+    Recall:  $\ad s$ is diagonalizable with Eigenvalues $a_i - a_j$ with Eigenbasis given by $e_{ij}$.
+    Hence working in this basis of $\gl(V)$ (constructed using the basis $v_1, \ldots, v_m$ of $V$) we see 
+    \begin{align*}
+        r( \ad s) = \ad y
+    \end{align*}
+    (which is diagonal with entries $f(a_i) - f(a_j)$).
+    Consider
+    \begin{align*}
+        A \subseteq B \text{ and }M = \{x \in \gl(V) \mid [x,y] \in A \forall y \in B\} \implies\\
+        \ad x (A) \subseteq B.
+    \end{align*}
+    Hence $x \in M \implies y \in M$ as $\ad y = r(\ad x)$.
+    So 
+    \begin{align*}
+        \tr(xy) = 0 & = \sum\limits_{i=1}^m a_i f(a_i) \in E
+    \end{align*}
+    Appplying $f \in E^{\ast}$ yields $\sum\limits_{i=1}^m f(a_i)^2 = 0$, whence
+    $$ f(a_1) = \ldots f(a_m) = 0 \implies f= 0.$$
+\end{proof}
+
+\begin{lemma}
+    \begin{align*}\tag{$\ast$}\label{eq:ast}
+        \tr([x,y]z) = \tr(x[y,z]) \forall x,y,z \in \gl(V)   
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    $$\tr([x,y]z) = \tr(x[y,z]) \iff \tr(xyz -yxz) = \tr (xyz -xzy)$$
+\end{proof}
+
+\begin{theorem}[Cartan's critertion]
+    If $$\tr (xy) = 0 \forall x \in [L,L], y \in L \subseteq \gl(V), \dim V < \infty$$
+    then $L$ is solvable.
+\end{theorem}
+\begin{proof}
+    Recall: It suffices to show that all $\ad_{[L,L]} x$ are nilpotent.
+    Hence it also suffices to show that $x \in [L,L]$ are nilpotent (see 3.2 in Humphreys).
+    Take $A = [L,L] \subseteq B = L$ and apply the Lemma.
+    Consider
+    \begin{align*}
+        M = \{x \in \gl(V) \mid [x,y] \in [L,L] \text{ for all } y \in L\}.
+    \end{align*}
+    Obviously, $L \subseteq M$. To apply the Lemma we need to show that $ \tr (xy) = 0 \forall y \in M$ for given $x \in [L,L]$.
+    But \labelcref{eq:ast} says that for any $c \in M, a,b \in L$ (so $[a,b] \in [L,L]$) 
+    $$ \tr([a,b]c) = \tr(a[b,c]) = 0,$$
+    by assumption of the theorem.
+    So the Lemma shows $x$ is nilpotent.
+\end{proof}
+
+\begin{definition}
+    The \textbf{Killing form} of $L$ is the symmetric bilinear form
+    \begin{align*}
+        \kappa: L \tensor_F L \to , \kappa(x,y) := \tr(\ad x \compose \ad y).
+    \end{align*}
+\end{definition}
+
+\begin{corollary}
+    If 
+    \begin{align*}
+        \kappa(x,y) = 0 \forall x \in [L,L], y \in L,
+    \end{align*}
+    then $L$ is solvable.
+\end{corollary}
+\begin{proof}
+    \begin{align*}
+        \ad: L \to \gl(V), x \mapsto \ad x = [x, \cdot]
+    \end{align*}
+    is a Lie algebra homomorphism.
+    \begin{align*}
+        \ker \ad = Z(L)
+    \end{align*}
+    is a solvable ideal in $L$, so if $\im \ad \subseteq \gl(V)$ is solvable then $L$ is solvable.
+    In other words:
+    \begin{align*}
+        0 \to Z(L) \to L \to \sfrac{L}{Z(L)} \cong \im \ad = : K \subseteq \gl(V) \to 0
+    \end{align*}
+    Cartan's critertion: if $\tr (xy) = 0 \forall x \in [K,K], y \in K$, then $K$ is solvable and
+    for $x = \ad a, y = \ad b$
+    \begin{align*}
+        \kappa(a,b) = \tr (xy)
+    \end{align*}
+\end{proof}
+
+\section{The Killing form}
+We just saw: If $[L,L]=L^{(1)} \subseteq D_\kappa=\{x \in L \mid \kappa(x, \cdot)=0\}$
+then $L$ is solvable.
+
+\begin{lemma}
+    $I \ideal L$ then for $x,y \in I$
+    $$ \kappa_L(x,y) = \kappa_I(x,y).$$
+\end{lemma}
+\begin{proof}
+    Extend a basis of $I$ to a basis of $L$. Then $\ad (x)$ has for $x \in I$ the matrix form
+    $$ \begin{pmatrix}
+        A & B\\
+        0 & 0
+    \end{pmatrix},$$
+    where $A$ is the matrix of $\ad_I x: I \to I$ in the basis chosen and $B \neq 0$.
+    Argument extends to $\ad x \compose \ad y$.
+\end{proof}
+
+\begin{example}
+    \begin{align*}
+        x = \begin{pmatrix}
+            0 & 1\\
+            0 & 0
+        \end{pmatrix},
+        y = \begin{pmatrix}
+            0 & 0\\
+            1 & 0
+        \end{pmatrix},
+        h = \begin{pmatrix}
+            1 & 0\\
+            0 & -1
+        \end{pmatrix}\\
+        \implies \kappa \text{ has matrix } \begin{pmatrix}
+            0 & 0 & 4\\
+            0 & 8 & 0\\
+            4 & 0 & 0
+        \end{pmatrix}
+    \end{align*}
+    calculate $\ad x, \ad y, \ad h$.
+\end{example}
