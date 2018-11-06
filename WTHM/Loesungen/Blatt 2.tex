@@ -70,12 +70,11 @@ Dann ist $X_n=X_0$ fast sicher für alle $n\in\N$.
 	\begin{align*}
 		X_{n+1}-X_0
 		&\stackeq{\text{IV}} X_{n+1} - X_{n} \\
-		&= X_{n+1} - \BedE{X_{n+1}}{\F_{n}} \\
-		&\stackeq{1.1.4.(a)} \BedE{X_n}{\F_{n-1}} - \BedE{X_n}{\F_{n-1}} \\
+		&\stackeq{\text{MG}} X_{n+1} - \BedE{X_{n+1}}{\F_{n}} \\
+		&\stackeq{1.1.4.(a)} \BedE{X_{n+1}}{\F_{n}} - \BedE{X_{n+1}}{\F_{n}} \\
 		%&\stackeq{\text{Lin}} \BedE{X_{n+1}-X_{n+1}}{\F_{n-1}} \\
 		&= 0
 	\end{align*}
-Somit folgt die Behauptung.
 \end{proof}
 
 \section*{Aufgabe 2}
@@ -130,7 +129,7 @@ für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Marting
 	Diese ist messbar (weil stetig) und da $S_n$ per Definition von $\F_n$ messbar ist, ist auch
 	$f\circ S_n$ messbar bezüglich $\F_n$ für alle $n\in\N$.\\
 
-	\underline{Integrierbarkeit:} %IST NICHT RICHTIG IMHO
+	\underline{Integrierbarkeit:} %FALSCH IMHO, da S_n<0 möglich
 	\begin{align*}
 		\E\big[|M_n|\big]]
 		&=\E[M_n]\\
@@ -146,7 +145,7 @@ für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Marting
 	&< \infty
 	\end{align*}
 
-	MG-Eigenschaft:
+	\underline{Martingaleigenschaft:}
 	\begin{align*}
 		\BedE{M_n}{F_{n-1}}
 		&=\E\left[M_{n-1}\cdot\left(\frac{q}{p}\right)^{\xi_n}~\Big|~\F_{n-1}\right] \\
@@ -173,15 +172,29 @@ Sei $(\xi_n)_{n\in\N}$ eine Folge von iid-Zufallsvariablen und $\xi_1$ normalver
 
 \begin{proof}
 Sei $u\in\R$ beliebig. Dann gilt:
+\begin{align}\label{3a}
+u\cdot x-\frac{x^2}{2\cdot\sigma^2}
+&=-\left(\frac{u^2\cdot\sigma^2}{2}-2\cdot\frac{u\cdot\sigma\cdot x}{\sqrt{2}\cdot\sqrt{2}\cdot\sigma}+\frac{x^2}{2\cdot\sigma^2}\right)+\frac{u^2\cdot\sigma^2}{2}\\\nonumber
+&\stackeq{\text{Binom}}
+-\left(\frac{u\cdot\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\cdot\sigma}\right)^2+\frac{(u\cdot\sigma)^2}{2}
+\end{align}
+
 \begin{align*}
 \E\big[\exp(u\cdot\xi_1)\big]
 &\stackeq{\text{Trafo}}
 \int\limits_\R\exp(u\cdot x)\P_{\xi_1}(\d x)\\
-&=c\int\limits_\R \exp\left(u\cdot x\right)\cdot \exp\left(-\frac{x^2}{2\sigma^2}\right)\d x\\
-&=c\int\limits_\R \exp\left(-\left(\frac{u\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\sigma}\right)^2\right) \cdot\exp\left(\frac{(u\sigma)^2}{2}\right)\d x\\
-&=c \cdot \exp\left(\frac{(u\sigma)^2}{2}\right)\cdot\int\limits_\R \exp\left(-\frac{(u\sigma^2-x)^2}{2\sigma^2}\right)\d x\\
-&\stackeq{\text{Subs}}\exp\left(\frac{(u\sigma)^2}{2}\right)\cdot \underbrace{\tilde{c}\cdot\int\limits_\R \exp\left(-\frac{y^2}{2\sigma^2}\right)\d y}_{=1\text{, da Gauß Int.}}\\
+&\stackeq{\text{Dichte}}
+\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}}\cdot\int\limits_\R \exp\left(u\cdot x\right)\cdot \exp\left(-\frac{x^2}{2\cdot\sigma^2}\right)\d x\\
+&\stackeq{\eqref{3a}}
+\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}}\cdot\int\limits_\R \exp\left(-\left(\frac{u\cdot\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\cdot\sigma}\right)^2\right) \cdot\exp\left(\frac{(u\cdot\sigma)^2}{2}\right)\d x\\
+&=\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}} \cdot \exp\left(\frac{(u\cdot\sigma)^2}{2}\right)\cdot\int\limits_\R \exp\left(-\frac{(u\cdot\sigma^2-x)^2}{2\cdot\sigma^2}\right)\d x\\
+&\stackeq{\text{Subs}}
+\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}}\cdot\exp\left(\frac{(u\cdot\sigma)^2}{2}\right)\cdot\underbrace{\int\limits_\R \exp\left(-\frac{y^2}{2\cdot\sigma^2}\right)\d y}_{=\sqrt{2\cdot\pi\cdot\sigma^2}\text{, da Gauß Int.}}\\
 &=\exp\left(u^2\cdot\frac{\sigma^2}{2}\right)
+\end{align*}
+Für die Substitution nutze
+\begin{align*}
+f(y):=\exp\left(-\frac{y^2}{2\cdot\sigma^2}\right),\qquad\varphi(x):=-(u\cdot\sigma^2-x),\qquad\varphi'(x)=1
 \end{align*}
 \end{proof}
 
