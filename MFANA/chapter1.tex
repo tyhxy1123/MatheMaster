@@ -944,14 +944,14 @@ Außerdem folgt aus dieser Ungleichung
 \end{align*}
 Sei $v\in C$ ein schwacher Häufungspunkt von $(J_h f)_{h\searrow 0}$, d. h.
 \begin{align*}
-\exists (h_n)_{n\in\N}\mit \limn h_n0:\weaklim\limits_{n\to\infty} J_{h_n} f=v
+\exists (h_n)_{n\in\N}\mit \limn h_n=0:\weaklim\limits_{n\to\infty} J_{h_n} f=v
 \end{align*}
 Dann gilt
 \begin{align*}
 \Vert v-P(f)\Vert^2 
 &\leq\liminf\limits_{n\to\infty}\big\Vert J_{h_n} f-P(f)\big\Vert^2\\
 &\leq
-2\cdot\Re\Big(\big\langle v-P(f),f-\hat{u}\big\rangle\Big)
+\Re\Big(\big\langle v-P(f),f-\hat{u}\big\rangle\Big)
 +2\cdot\Re\Big(\big\langle v-P(f),\hat{u}-P(f)\big\rangle\Big)
 \end{align*}
 für alle $\hat{u}\in\overline{\dom(A)}=D$.
@@ -1089,8 +1089,7 @@ Jedes Element $u\in K_n$ ist Minimierer von $F$.
 Ein Operator $A\subseteq H\times H$ auf einem Hilbertraum $H$ ist $m$-akkretiv (vom Typ $\omega$) $\Longleftrightarrow\\ A$ ist maximal akkretiv (vom Typ $\omega$).
 \end{theorem}
 \begin{proof}[Beweis (hier nur der Fall, dass $H$ reeller Hilbertraum ist)]\enter
-\underline{Zeige ``$\implies$'':}\\
-Folgt aus Lemma oben.\
+\underline{Zeige ``$\implies$'':} Folgt aus Lemma oben.\\
 
 \underline{Zeige ``$\Longleftarrow$'':}\\
 Sei $A\subseteq H\times H$ maximal akkretiv ($\omega:=0$) (insbesondere ist $A\neq\emptyset$). Betrachte die Funktion 
@@ -1158,7 +1157,7 @@ F_A(u,f)\stackeq{(u,f)\in A}\langle u,f\rangle\geq\langle u_0,f_0\rangle-\langle
 \big\langle u-(-f_0),f-(-u_0)\big\rangle=
 \big\langle u+f_0,f+u_0\big\rangle\geq\big\Vert u_0+f_0\Vert^2\geq0
 \end{align*}
-Aus der Maximalität von $A$ folgt $(-f_0,u_0)\in A$ und dann auch $u_0=-f_0$, d.h.\\ $(u_0,-u_0)\in A$.
+Aus der Maximalität von $A$ folgt $(-f_0,-u_0)\in A$ und dann auch $u_0=-f_0$, d.h.\\ $(u_0,-u_0)\in A$.
 \begin{align*}
 (u_0,-u_0)\in A
 &\Longleftrightarrow Au_0\ni -u_0\\
@@ -1197,10 +1196,10 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 $\partial\E$ ist akkretiv ( = monoton).
 \end{lemma}
 \begin{proof}
-Sieen $(u,f),(\hat{u},\hat{f})\in\partial\E$. Dann gilt $u,\hat{u}\in\dom(\E)$ und 
+Seien $(u,f),(\hat{u},\hat{f})\in\partial\E$. Dann gilt $u,\hat{u}\in\dom(\E)$ und wegen der Definition von $\partial\E$ auch
 \begin{align*}
-\E(\hat{u})-\E(u)&\geq\big\langle f,\hat{u}-u\big\rbrace\\
-\E(u)-\E(\hat{u})&\geq\big\langle \hat{f},u-\hat{u}\big\rbrace=\big\langle-\hat{f},\hat{u}-u\big\rbrace\\
+\E(\hat{u})-\E(u)&\geq\big\langle f,\hat{u}-u\big\rangle\\
+\E(u)-\E(\hat{u})&\geq\big\langle \hat{f},u-\hat{u}\big\rangle=\big\langle-\hat{f},\hat{u}-u\big\rangle\\
 &\stackrel{\text{addieren}}{\implies}
 0\geq\big\langle f-\hat{f},\hat{u}-u\big\rangle
 \text{ bzw. }
