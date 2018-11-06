@@ -88,7 +88,7 @@ Der Epigraph ist die Menge aller Punkte über dem Graphen.
 \end{bemerkung}
 
 \begin{proof}
-\underline{Zeige (i) $\Rightarrow$ (iii):}\\
+\underline{Zeige (i) $\implies$ (iii):}\\
 Sei $\big((u_n,\lambda_n)\big)_{n\in\N}$ eine konvergente Folge in $\epi(f)\mit(u,\lambda):=\limn(u_n,\lambda_n)$ in $M\times\R$. Dann gilt:
 \begin{align*}
 f(u)
@@ -101,15 +101,16 @@ f(u)
 (u,\lambda)\in\epi(f)
 \end{align*}
 
-\underline{Zeige (iii) $\Rightarrow$ (ii):}\\
+\underline{Zeige (iii) $\implies$ (ii):}\\
 Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. 
 Dann ist
 \begin{align*}
 	\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
 \end{align*}
 
-Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$
-\underline{Zeige (ii) $\Rightarrow$ (i):}\\
+Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$.\\
+
+\underline{Zeige (ii) $\implies$ (i):}\\
 Sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Setze
 \begin{align*}
 c:=\liminf\limits_{n\to\infty} f(u_n)\in\R\cup\lbrace\pm\infty\rbrace.
@@ -200,10 +201,10 @@ Behauptung (c) folgt dann aus (b), welche aus (a) folgt.
 \begin{align*}
 [\cdot,\cdot]_\lambda:X\times X\to\R,~(u,v)\mapsto[u,v]_\lambda:=\frac{\Vert u+\lambda\cdot v\Vert - \Vert u\Vert}{\lambda}
 \end{align*}
-ist stetig (da jede Norm stetig ist) und damit auch oberhalbstetig für alle $\lambda>0$. Das Infimum von oberhalbstetiger Funktion ist wieder oberhalbstetig.
+ist stetig (da jede Norm stetig ist) und damit auch oberhalbstetig für alle $\lambda>0$. Das Infimum von oberhalbstetiger Funktion ist wieder oberhalbstetig.\\
 
 \underline{Zeige (b):}\\
-Die Funktion $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend auf $(0,\infty)$, weil $\lambda\mapsto\Vert u+\lambda\cdot v\Vert$ konvex ist, denn jede Norm ist konvex (dies folgt aus der Dreiecksungleichung).
+Die Funktion $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend auf $(0,\infty)$, weil $\lambda\mapsto\Vert u+\lambda\cdot v\Vert$ konvex ist, denn jede Norm ist konvex (dies folgt aus der Dreiecksungleichung).\\
 
 \underline{Zeige (c):}\\
 $\begin{aligned}[]
@@ -347,12 +348,12 @@ und somit
 \frac{\Vert u(t)+h\cdot D_t^R u(t)\Vert-\Vert u(t)\Vert}{h}+\frac{o(h)}{h}\\
 &\stackrel{h\to0^+}{\longrightarrow} \left[ u(t), D_t^R u(t)\right]
 \end{align*}
-Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtungen abzuschätzen und Gleichheit zu erzielen.
+Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtungen abzuschätzen und Gleichheit zu erzielen.\\
 
-\underline{Zeige (b):}\\
-Analog zu (a) mit $h<0$.
+\underline{Zeige (b):}
+Analog zu (a) mit $h<0$.\\
 
-\underline{Zeige (c):}\\
+\underline{Zeige (c):}
 Folgt direkt aus (a) und (b).
 \end{proof}
 
@@ -393,7 +394,7 @@ $A$ ist akkretiv vom Typ $\omega$
 \left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
 &\gdw\forall\ldots:
 \Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)+\lambda^2\cdot\omega\cdot(v-\hat{v})\Big\Vert\\
-&\geq
+&\qquad\qquad\geq
 \left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
 &\gdw\forall\ldots:
 \frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\mathcal{O}(\lambda)\geq0\\
@@ -707,11 +708,11 @@ f&=\frac{\hat{h}}{h}\cdot u-\frac{\hat{h}-h}{h}\cdot J_h u\\
 &=J_h u+\frac{\hat{h}}{h}\cdot\left(u-J_j u\right)\\
 &\in J_h u+\hat{h}\cdot A J_h u
 \end{align*}
-d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.
+d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.\\
 
-\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.
+\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.\\
 
-\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.
+\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.\\
 
 \underline{Zeige (iii) $\implies$ (i):}\\
 Sei $A$ abgeschlossen, $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ dichtes Bild hat. Die Inverse Relation
@@ -722,7 +723,7 @@ ist dann Lipschitz-stetig vom Bild $\underbrace{\rg(I+h\cdot A)}_{\text{dicht in
 \end{proof}
 
 \begin{definition}
-Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.
+Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.\\
 
 Ist $A\subseteq X\times X$  $m$-akkretiv vom Typ $\omega\in\R$, dann ist $I+h\cdot A$ bijektiv für alle $h>0\mit h\cdot\omega<1$. Wir schreiben in diesem Fall
 \begin{align*}
@@ -899,7 +900,7 @@ Dann gilt für alle $v\in C$:
 \end{proof}
 
 \begin{proof}[Beweis von Theorem \ref{Theorem1.2.9}]\enter
-Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).
+Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).\\
 
 \underline{Zu (e):}\\
 Sei $D:=\overline{\dom(A)}\neq\emptyset$  und $C:=\overline{\conv(D)}$ der Abschluss der konvexen Hülle. Sei $P$ die orthogonale Projektion  auf $C$ (!). Sei $f\in X$, $h>0\mit h\cdot\omega<1$. Dann gilt nach Definition der Resolvente
@@ -945,15 +946,15 @@ Sei $v\in C$ ein schwacher Häufungspunkt von $(J_h f)_{h\searrow 0}$, d. h.
 \begin{align*}
 \exists (h_n)_{n\in\N}\mit \limn h_n0:\weaklim\limits_{n\to\infty} J_{h_n} f=v
 \end{align*}
-Dann gilt:
+Dann gilt
 \begin{align*}
 \Vert v-P(f)\Vert^2 
 &\leq\liminf\limits_{n\to\infty}\big\Vert J_{h_n} f-P(f)\big\Vert^2\\
 &\leq
 2\cdot\Re\Big(\big\langle v-P(f),f-\hat{u}\big\rangle\Big)
 +2\cdot\Re\Big(\big\langle v-P(f),\hat{u}-P(f)\big\rangle\Big)
-\qquad\forall \hat{u}\in\overline{\dom(A)}=D
 \end{align*}
+für alle $\hat{u}\in\overline{\dom(A)}=D$.
 Wegen Linearität des Skalarproduktes in der zweiten Komponente gilt diese Ungleichung schließlich für alle $\hat{u}\in\overline{\conv(D)}=C$. Insbesondere auch für $\hat{u}=P(f)$. Somit folgt:
 \begin{align*}
 \big\Vert v-P(f)\big\Vert^2
@@ -1021,7 +1022,7 @@ Sei $X$ ein Banachraum, $A\subseteq X\times X$ ein Operator. Dann gilt:
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-Die Teile (a)(i) und (a)(iii) sind Übung.
+Die Teile (a)(i) und (a)(iii) sind Übung.\\
 
 \underline{Zu (a)(ii):}\\
 Sei $A$ $m$-akkretiv ($\omega=0$) und sei $B$ akkretiv mit $A\subseteq B$. Sei $(u,f)\in B$. Aus der Injektivität folgt:
@@ -1033,16 +1034,16 @@ Andererseits gilt
 u+Bu\ni u+f.
 \end{align*}
 Weil $B$ eine Erweiterung von $A$ ist, folgt aus den Abschätzungen für akkretive Operatoren (Injektivität von $I+B$) schon $u=v$.\\
-Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.
+Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.\\
 
 \underline{Zeige (a)(iv):}\\
-Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.
+Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.\\
 
-\underline{Zu (b), zeige ``$\implies$'':}\\
-Dies folgt aus der Definiton von akkretiv.
+\underline{Zu (b), zeige ``$\implies$'':}
+Dies folgt aus der Definiton von akkretiv.\\
 
 \underline{Zu (b), zeige ``$\Longleftarrow$'':}\\
-Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.
+Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.\\
 
 \underline{Zu (c):}\\
 Der erste Teil der Aussage folgt aus (a). Sei außerdem $X$ ein Hilbertraum, $f_0,f_1\in Au$. Dann gilt für alle $(\hat{u},\hat{f})\in A$:
@@ -1145,7 +1146,8 @@ monoton wachsend. Also gilt für diesen Quotienten für $\lambda=1$:
 &\geq\lim\limits_{\lambda\to 0^+}\frac{F_A\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F_A(u_0,f_0)}{\lambda}\\
 &=\lim\limits_{\lambda\to 0^+}\Bigg(\underbrace{\frac{F\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F(u_0,f_0)}{\lambda}}_{\geq0}\\
 &\qquad+\frac{1}{2}\cdot\frac{\Vert u_0\Vert^2+\Vert f_0\Vert^2-\Vert u_0+\lambda\cdot(u-u_0)\Vert^2-\Vert f_0+\lambda\cdot(f-f_0)\Vert^2}{\lambda}\Bigg)\\
-&\geq\frac{1}{2}\cdot\lim\limits_{\lambda\to 0^+}\frac{-2\cdot\big\langle u_0,\lambda\cdot(u-u_0)\big\rangle-\lambda^2\cdot\Vert u-u_0\Vert^2-2\cdot\big\langle f_0,\lambda\cdot(f-f_0)\big\rangle-\lambda^2\cdot\Vert f-f_0\Vert^2}{\lambda}\\
+&\geq\frac{1}{2}\cdot\lim\limits_{\lambda\to 0^+}\\
+&\qquad\qquad\frac{-2\cdot\big\langle u_0,\lambda\cdot(u-u_0)\big\rangle-\lambda^2\cdot\Vert u-u_0\Vert^2-2\cdot\big\langle f_0,\lambda\cdot(f-f_0)\big\rangle-\lambda^2\cdot\Vert f-f_0\Vert^2}{\lambda}\\
 &=-\big\langle u_0,u-u_0\big\rangle-\big\langle f_0,f-f_0\big\rangle\qquad\forall (u,f)\in H\times H\\
 &\implies
 \forall(u,f)\in A:
