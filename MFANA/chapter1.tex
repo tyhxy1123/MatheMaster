@@ -1066,7 +1066,7 @@ Sei $X$ Banachraum. Eine Funktion $F:X\to\R\cup\lbrace\infty\rbrace$ heißt \tex
 \end{align*}
 \end{erinnerung}
 
-\begin{theorem}[Minimierung konvexer Funktionen]\enter
+\begin{theorem}[Minimierung konvexer Funktionen]\label{theoremMinimieurngKonvexerFunktionen}\enter
 Sei $X$ ein reflexiver Banachraum und sei $F:X\to\R\cup\lbrace\infty\rbrace$ konvex, unterhalbstetig und koerziv. Dann gilt:
 \begin{align*}
 \exists u_0\in X:F(u_0)=\inf\limits_{x\in X}F(x)
@@ -1207,7 +1207,7 @@ Seien $(u,f),(\hat{u},\hat{f})\in\partial\E$. Dann gilt $u,\hat{u}\in\dom(\E)$ u
 \end{align*}
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lemma1.3.2}
 \begin{align*}
 \exists c\geq0:\forall u\in H:\E(u)\geq -c\cdot\big(1+\Vert u\Vert\big)
 \end{align*}
@@ -1231,9 +1231,179 @@ Wähle $\lambda_n$ so, dass $\limn\lambda_n\cdot u_n=0$ und $\limn\big(-n\cdot\V
 \end{proof}
 
 \begin{lemma}
-Für alle $\lambda\geq0$ und alle $f\in H$ ist
+Für alle $\lambda>0$ und alle $f\in H$ ist
 \begin{align*}
 H\to\R\cup\lbrace+\infty\rbrace,\qquad u\mapsto\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2
 \end{align*}
 konvex, unterhalbstetig und koerziv.
 \end{lemma}
+\begin{proof}
+\underline{Zur Konvexität:}\\
+Die Norm ist konvex und der Vorfaktor ist konvex. Da $\E$ konvex ist und die Summe konvexer Funktionen wieder konvex ist, folgt Konvexität.\\
+
+\underline{Zur Unterhalbstetigkeit:} Ist klar.\\
+
+\underline{Zur Koerzivität:}\\
+Sei $v\in\R$. Dann gilt für $u\in H$ mit
+\begin{align*}
+c\geq\E(u+\frac{1}{2\cdot \lambda}\cdot\Vert u-f\Vert^2
+\end{align*}
+schon
+\begin{align*}
+c&\stackrel{\ref{lemma1.3.2}}{\geq} -\big(1+\Vert u\Vert\big)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\\
+&\geq -r-r\cdot\big(\Vert u-f\Vert+\Vert f\Vert\big)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2
+\end{align*}
+bzw.
+\begin{align*}
+c+r+r\cdot\Vert f\Vert &\geq -r\cdot\Vert u-f\Vert+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\\
+&\stackeq{\text{Q.E.}}\left(\frac{1}{\sqrt{2\cdot\lambda}}\cdot\Vert u-f\Vert-\frac{r\cdot\sqrt{2\cdot\lambda}}{2}\right)^2-\frac{r^2\cdot 2\cdot\lambda}{4}
+\end{align*}
+Umstellen liefert
+\begin{align*}
+\Vert u-f\Vert&\leq\sqrt{2\cdot\lambda}\cdot\sqrt{c+r+r\cdot\Vert f\Vert+\frac{r^2\cdot\lambda}{2}}+r\cdot\lambda=:R(c,\Vert f\Vert,\lambda, r)
+\end{align*}
+Folglich ist $u\in\overline{B}(f,R)$ und somit $\left\lbrace\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\leq c\right\rbrace$ ist beschränkt.
+\end{proof}
+
+\begin{theorem}
+Sei $H$ ein Hilbertraum. Für jede konvexe, unterhalbstetige Funktion $\E:H\to\R\cup\lbrace+\infty\rbrace,~\E\not\equiv+\infty$ ist der Subgradient $\partial\E$ $m$-akkretiv.
+\end{theorem}
+\begin{proof}
+Das $\partial\E$ akkretiv ist, wurde in einem Lemma oben bereits gezeigt.\\
+Seien $h>0$ und $f\in H$. Damit ist die Funktion
+\begin{align*}
+v\mapsto \E(v)+\frac{1}{2\cdot h}\cdot\Vert v-f\Vert^2
+\end{align*}
+konvex, unterhalbstetig und koerziv. Aus dem Theorem über Minimieurng konvexer Funktionen \ref{theoremMinimieurngKonvexerFunktionen} folgt, dass diese Funktion ein globales Minimum $u\in H$ besitzt. Für alle $v\in H$ und alle $\lambda>0$ gilt dann
+\begin{align*}
+\E(u+\lambda\cdot v)+\frac{1}{2\cdot h}\cdot\big\Vert u+\lambda\cdot v-f\big\Vert^2
+&\geq\E(u)+\frac{1}{2\cdot h}\cdot\Vert u-f\Vert^2
+\end{align*}
+bzw. nach Umstellen 
+\begin{align*}
+\E(u+\lambda\cdot v)-\E(u)
+&\geq\frac{1}{2\cdot h}\left(\Vert u-f\Vert^2-\Vert u+\lambda\cdot v-f\Vert^2\right)\\
+&=\frac{1}{2\cdot h}\cdot\left(\Vert u-f\Vert^2-\Vert u-f\Vert^2-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)\\
+&=\frac{1}{2\cdot h}\cdot\left(-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)
+\end{align*}
+bzw.
+\begin{align*}
+\lim\limits_{\lambda\to 0^+}\frac{\E/u+\lambda\cdot v)-\E(u)}{\lambda}=\left\langle\frac{f-u}{h},v\right\rangle
+\end{align*}
+d.h. 
+\begin{align*}
+&\left( u,\frac{f-u}{h}\right)\in\partial\E\\
+&\Longleftrightarrow\partial\E(u)\ni\frac{f-u}{h}\\
+&\Longleftrightarrow u+h\cdot\partial\E(u)\ni f
+\end{align*}
+Da $h$ und $f$ beliebig waren, folgt
+\begin{align*}
+\rg(I+h\cdot\partial\E)=H\qquad\forall h>0\\
+\implies\partial\E\text{ ist $m$-akkretiv}
+\end{align*}
+\end{proof}
+
+\begin{beispiel}\
+\begin{enumerate}[label=(\arabic*)]
+\item $H=\R$ und $\E(u):=|u|$
+%TODO Hier Skizzen einfügen
+In $u=0$ ist die rechtsseitige Ableitung -1, die linksseitige Ableitung ist 1.
+\begin{align*}
+\partial\E=\big((-\infty,0]\times\lbrace-1\rbrace\big)\cup\big(\lbrace0\rbrace\times[-1,1]\big)\cup\big([0,\infty)\times\lbrace1\rbrace\big)
+\end{align*}
+\item Sei $I=[a,b]\subseteq\R$.
+%TODO Hier Skizze einfügen
+\begin{align*}
+\E(x):=\left\lbrace\begin{array}{cl}
++\infty, &\falls x\not\in I\\
+0, &\falls x\in I
+\end{array}\right.\\
+\implies
+\partial\E=\big(\lbrace a\rbrace\times[0,\infty)\big)\cup \big(I\times\lbrace 0\rbrace\big)\cup\big(\lbrace b\rbrace\times[0,\infty)\big)
+\end{align*}
+\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}[$p$-Laplace-Operator]\enter
+Sei $\Omega\subseteq\R^n$ offen. Für $u\in C(\Omega)$ deifnieren wir den \textbf{Träger}
+\begin{align*}
+\supp(u):=\overline{\big\lbrace x\in\Omega~\big|~u(x)\neq0\big\rbrace}^\Omega
+\end{align*}
+(Wichtig: Nehme den Abschluss in $\Omega$, nicht in $\R^n$.)\\
+Beispiele für $\Omega=]0,1[$
+\begin{itemize}
+\item $u_1:\Omega\to\R,~x\mapsto 1\implies\supp(u_1)=]0,1[\implies u_1\not\in C_c(\Omega)$
+\item $u_2:\Omega\to\R,~x\mapsto x^2-1\implies\supp(u_2)=]0,1[\implies u_2\not\in C_c(\Omega)$
+\end{itemize}
+\begin{align*}
+C_c(\Omega)&:=\big\lbrace u\in C(\Omega):\supp(u)\text{ kompakt}\big\rbrace\\
+C_c^k(\Omega)&:=C_c(\Omega)\cap C^k(\Omega)\qquad\forall k\in\N\cup\lbrace\infty\rbrace\\
+L^1_{\text{loc}}&:=\Big\lbrace u:\Omega\to\C\text{ messbar }~\big|~\forall K\subseteq\Omega\text{ kompakt}:u\big|_K\in L^1(K)\Big\rbrace
+\end{align*}
+Es gilt
+\begin{align*}
+C_c^\infty(\Omega)\subseteq C^1_c(\Omega)\subseteq C_c(\Omega)\begin{array}{l}
+\subseteq C(\Omega)\subseteq\\
+\subseteq L^p(\Omega)\subseteq
+\end{array} L^1_{\text{loc}}(\Omega)\qquad\forall 1\leq p\leq\infty
+\end{align*}
+Eine Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach partiell nach $x_i$ differenzierbar}
+\begin{align*}
+:\Longleftrightarrow\exists g\in L^1_{\text{loc}}:\forall\varphi\in C^\infty_c(\Omega):\int\limits_\Omega u(\omega)\cdot\frac{\partial\varphi(\omega)}{\partial x_i}\d\omega=-\int\limits_\Omega g(\omega)\cdot\varphi(\omega)\d\omega
+\end{align*}
+Schreibweise: $g=:\frac{\partial u}{\partial x_i}$ ist die schwache partielle Ableitung nach $x_i$\\
+Ohne Beweis: $g=\frac{\partial u}{\partial x_i}$ ist eindeutig bestimmt.\\
+Die Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach differenzierbar} $:\gdw$ sie für alle $i\in\lbrace1,\ldots,n\rbrace$ schwach partiell nach $x_i$ differenzierbar ist. In diesem Fall schreiben wir
+\begin{align*}
+\nabla u=\begin{pmatrix}
+\frac{\partial u}{\partial x_1}\\
+\vdots\\
+\frac{\partial u}{\partial x_n}
+\end{pmatrix}
+\end{align*}
+Betrachte nun auf dem Hilbertraum $H:=L^2(\Omega)$ und für $p\in]1,\infty[$ die Funktion
+\begin{align*}
+\E(u):=\left\lbrace\begin{array}{cl}
+\frac{1}{p}\cdot\int\limits_\Omega |\nabla u|^p,\d\omega, &\falls \nabla u\in L^p(\Omega,\R^n)\\
++\infty, &\sonst
+\end{array}\right.
+\end{align*}
+Beachte, dass $|\nabla u|$ die euklidische Norm des Gradienten meint. Außerdem ist mit $\nabla u\cdot\nabla v$ das euklidische Skalarprodukt in $\R^n$ gemeint.
+
+\begin{lemma} %innerhalb des Beispiels
+Diese Funktion $\E$ ist konvex, unterhalbstetig, $\not\equiv0$ und es gilt
+\begin{align*}
+\dom(\E)=\Big\lbrace u\in L^2(\Omega)~\Big|~\nabla u\in L^p\big(\Omega,\R^n\big)\Big\rbrace
+\end{align*}
+und der Subgradient
+\begin{align*}
+\partial\E=\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|~u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\right.\right\rbrace
+\end{align*}
+\end{lemma}
+\begin{proof}
+Die euklidische Norm $|\cdot|:\R^n\to\R_{\geq0}$ ist konvex (wegen Dreiecksungleichung) und die Funktion
+\begin{align*}
+\R_{\geq0}\to\R_{\geq0},\qquad s\mapsto s^p
+\end{align*}
+ist konvex und monoton wachsend ($p\geq1$!) und damit ist die Verknüpfung
+\begin{align*}
+\R^n\to\R_{\geq0},\qquad x\mapsto |x|^p
+\end{align*}
+konvex, und schließlich ist $\E$ konvex.\\
+$\E\not\equiv0$, denn $\E(0)=0$.\\
+\underline{Zeige $\E$ ist unterhalbstetig:}\\
+Es gelte $u_n\stackrel{n\to\infty}{\longrightarrow} u$ in $L^2(\Omega)$. Zu zeigen:
+\begin{align*}
+\E(u)\leq\liminf\limits_{n\to\infty}\E(u_n)
+\end{align*}
+Sei O.B.d.A. $\liminf\limits_{n\to\infty}\E(U-n)<+\infty$ und, nach Übergang zu Teilfolge, folgt
+\begin{align*}
+\liminf\limits_{n\to\infty}\E(u_n)=\limn\E(u_n)
+\end{align*}
+
+
+\end{proof}
+
+\end{beispiel}
+
+
