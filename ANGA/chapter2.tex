@@ -1,4 +1,125 @@
 \chapter{Satz von Riemann-Roch}
+\section{Bewertungen}
+Sei $F$ ein Körper und $R \subseteq F$ ein Ring.
+
+\begin{definition}
+    $R$ ist ein \textbf{Bewertungsring} von $F$
+    $$:\iff \forall x  \in F^{\times}: x \in R \text{ oder } x^{-1} \in R.$$
+\end{definition}
+
+\begin{beispiel}
+    Ist $R$ diskreter Bewertungsring von $F$, dann ist er ein Bewertungsring von $F$ (I.2.16).
+\end{beispiel}
+
+\begin{definition}
+    Ein \textbf{angeordnete abelsche Gruppe} ist eine abelsche Gruppe $(\Gamma, +)$ mit einer
+    Totalordnung, die mit der Addition verträglich ist.
+
+    Eine \textbf{Bewertung} auf $F$ ist eine Abbildung
+    $$ v: F \to \Gamma \cup \{\infty\}, $$
+    wobei $\Gamma$ eine angeordnete abelsche Gruppe ist und folgendes gilt
+    \begin{enumerate}[label=(\arabic*)]
+        \item $v(x) = \infty \iff x = 0$
+        \item $v(xy) = v(x) + v(y)$
+        \item $v(x+y) \geq \min\{v(x), v(y)\}$.
+    \end{enumerate}
+
+    Der \textbf{Bewertungsring} von $v$ ist $\mathcal{O}_v := \{x \in F \mid v(x) \geq 0\}$,\\
+    das \textbf{Bewertungsideal} von $v$ ist $m_v := \{x \in F \mid v(x) > 0\}$,\\
+    der \textbf{Restklassenkörper} von $v$ ist $F_v := \sfrac{\mathcal{O}_v}{m_v}$ und\\
+    die \textbf{Wertegruppe} von $v$ ist $\Gamma_v = v(F^\times)$.
+
+    Zwei Bewertungen $v_1, v_2$ auf $F$ heißen \textbf{äquivalent}, wenn es einen ordnungserhaltenden
+    Isomorphismus
+    $$ \varphi : \Gamma_{v_1} \to \Gamma_{v_2}$$ mit $v_2 = \varphi \circ v_1$ gibt.
+\end{definition}
+
+\begin{bemerkungnr}
+    \begin{enumerate}[label=\alph*)]
+        \item $\mathcal{O}_v$ ist ein lokaler Ring mit maximalem Ideal $m_v$, demnach ist 
+        $F_v$ wohldefiniert.
+
+        \item Für $x,y \in F$ mit $v(x) \ne v(y)$ ist
+        $$ v(x+y) = \min\{v(x),v(y)\}.$$
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $v$ eine Bewertung auf $F$, so ist $\mathcal{O}_v$ ein Bewertungsring von $F$.
+    Ist umgekehrt $\mathcal{O}$ ein Bewertungsring von $F$, so ist 
+    $$ v_\mathcal{O}: F^\times \to \sfrac{F^\times}{\mathcal{O}^\times}$$
+    mit
+    $$ x \mathcal{O}^\times \leq y \mathcal{O}^\times \iff \frac{y}{x} \in \mathcal{O}$$
+    eine Bewertung auf $F$ mit Bewertungsring $\mathcal{O}$, und
+    $ v \mapsto \mathcal{O}_v$ liefert eine Bijektion zwischen Äquivalenzklassen auf von 
+    Bewertungen auf $F$ und Bewertungsringen von $F$.
+\end{satz}
+\begin{proof}
+    \begin{itemize}
+        \item $\mathcal{O}_v$ Bewertungsring: nach (ii) ist $v(x^{-1}) = -v(x)$
+        \item $\leq$ ist eine Totalordnung:
+            $x \mathcal{O}^\times \leq y \mathcal{O}^\times \land y \mathcal{O}^\times \leq x \mathcal{O}^\times \implies \frac{x}{y} \in \mathcal{O} \land \frac{y}{x} \in \mathcal{O}$
+            $$\implies \frac{x}{y} \in \mathcal{O}^\times \implies x \mathcal{O}^\times = y \mathcal{O}^\times$$
+        \item $v_\mathcal{O}$ ist Bewertung: 
+            $v_\mathcal{O}(x) \leq v_\mathcal{O}(y) \implies \frac{y}{x} \in \mathcal{O} 
+            \implies 1 + \frac{y}{x} \in \mathcal{O}$
+            $$\implies \frac{x+y}{x} \in \mathcal{O} \implies v_\mathcal{O}(x+y) \geq v_\mathcal{O}(x) = \min\{v_\mathcal{O}(x), v_\mathcal{O}(y)\}$$
+        \item $\mathcal{O}_{v_\mathcal{O}} = \mathcal{O}$:
+            $v_\mathcal{O}(x) \geq 0 \iff x \mathcal{O}^\times \geq \mathcal{O}^\times
+            \iff \frac{x}{1} \in \mathcal{O}$
+        \item $v_{\mathcal{O}_v} \sim v$: $v(x) = v(y) \iff \frac{y}{x} \in \mathcal{O}_v^\times \iff x \mathcal{O}_v^\times = y \mathcal{O}_v^\times$
+        \begin{align*}
+            \iff v_{\mathcal{O}_v}(x) = v_{\mathcal{O}_v}(y)\\
+            \implies \varphi: \Gamma_v \to \Gamma_{v_{\mathcal{O}_v}}, v(x) \mapsto v_{\mathcal{O}_v}(x) = x \mathcal{O}_v^\times
+        \end{align*}
+        ist ein Isomorphismus mit $v_{\mathcal{O}_v} = \varphi \circ v$.
+    \end{itemize}
+\end{proof}
+
+\begin{korollar}
+    Ist $\mathcal{O}$ ein Bewertungsring von $F$, so ist $\mathcal{O}$ lokal, ganzabgeschlossen und $\Quot(\mathcal{O}) = F$.
+\end{korollar}
+\begin{proof}
+    \begin{itemize}
+        \item $\mathcal{O}$ lokal: $\mathcal{O} = \mathcal{O}_{v_\mathcal{O}}$ lokal nach 1.4
+        \item $\Quot(\mathcal{O}) = F$: $\checkmark$
+        \item $\mathcal{O}$ ganzabgeschlossen: $x \in F^\times, x^n + \sum\limits_{i=0}^{n-1}a_i x^i = 0, a_i \in \mathcal{O}$
+        $$x \notin \mathcal{O} \implies x^{-1} \in \mathcal{O} \implies x = - \sum\limits_{i=0}^{n-1}a_i x^{i - n +1} \in \mathcal{O} 
+        \text{ Widerspruch.}$$
+    \end{itemize}
+\end{proof}
+
+\begin{bemerkungnr}
+    Man nennt eine Bewertung \textbf{diskret}, wenn $\mathcal{O}_v$ ein diskreter Bewertungsring ist, also 
+    $\Gamma_v \cong \Z$.
+
+    Eine diskrete Bewertung heißt \textbf{normiert}, wenn $\Gamma_v = \Z$, und ein $f \in F$ mit $v(f) = 1$ heißt
+    ein \textbf{Primelement} von $v$.
+\end{bemerkungnr}
+
+\begin{theorem}[Schwacher Approximationssatz, Artin-Whaples '45]
+    Sind $v_1,\ldots,v_n$ paarweise verschiedene normierte diskrete Bewertungen auf $F$, so gibt es zu 
+    $x_1,\ldots,x_n \in F$ und $k_1, \ldots,k_n \in \Z$ ein $x \in F$, sodass für alle $i = 1, \ldots,n$
+    $$ v_i(x - x_i) > k_i$$
+    gilt.  
+\end{theorem}
+\begin{proof}
+    Wähle $k_0 > \max\{k_1, \ldots, k_n\} - \min\limits_{i,j}\{v_i(x_j)\}$.\\
+    \underline{Beh. 1:} $\forall i \forall i\ne j \exists b_{ij}$ mit $v_i(b_{ij}) > 0$ und $v_j(b_{ij}) < 0$.
+
+    \underline{Bew.:} $\mathcal{O}_{v_i} \ne \mathcal{O}_{v_j} \stackrel{I.2.15}{\implies} \mathcal{O}_{v_i} \not \subseteq \mathcal{O}_{v_j}
+    \land \mathcal{O}_{v_j} \not \subseteq \mathcal{O}_{v_i}$ 
+    \begin{align*}
+        & \implies \text{es existiert } b \in \mathcal{O}_{v_i} \setminus \mathcal{O}_{v_j} \text{ und } b' \in \mathcal{O}_{v_j} \setminus \mathcal{O}_{v_i}\\
+        & \implies v_i(\frac{b}{b'}) > 0 \land v_j(\frac{b}{b'}) < 0
+    \end{align*}
+    \underline{Beh. 2:} $\forall i \exists b_i: v_i(b_i) > k_0 \land v_j(b_i) < -k_0 \forall j \ne i$
+
+    \underline{Bew.:} Wähle für jedes $i$ ein $l_i > k_0 \land l_i > \max\limits_{j}|v_{j}(b_{i,j})|$ und setze
+    $$ b_i := \sum\limits_{j \ne i} b_{i,j}^{l_j}$$
+
+\end{proof}
+
 \section{Primstellen}
 Sei $F | K$ ein Funktionenkörper.
 
