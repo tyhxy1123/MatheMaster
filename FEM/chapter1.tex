@@ -384,8 +384,155 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\end{proof_}
 \end{enumerate}
 
+\subsection{Ritz-Galerkin-Method}
+Let $V$ be a real vector space, $a:V\times V \to \R $ continuous bilinearform and $F \in V'$. How to solve
+\begin{equation*}
+	a(u,v) = F(v) \quad \forall v \in V \text{ with }u \in V
+\end{equation*}
+approximatly?\\
+\underline{Idea:} consider finite dimensional space $V_h \subset V$ ($h > 0$, related to grid spacing)\\
+\underline{Ritz-Galerkin approximation}
+\begin{equation*}
+	a(u_h,v) = F(v) \quad \forall v \in V_h \text{ with }u \in V_h
+\end{equation*}
+Now consider $\{ \varphi_1,\dots,\varphi_N\}$ basis of $V_h$ and now
+\begin{equation*}
+	a(u_h,\varphi_i) = F(\varphi_i) \quad \forall i = 1, \dots,N.
+\end{equation*}
+In addition 
+\begin{equation*}
+	u_h = \displaystyle \sum^N_{j=1} u_j\varphi_j
+\end{equation*}
+implies
+\begin{equation*}
+	\displaystyle \sum^N_{j=1} u_ja(\varphi_j, \varphi_i) = F(\varphi_i) \quad \forall i = 1, \dots,N.
+\end{equation*}
+We have $N$ unknowns $u_1,\dots,u_N$ and with the notation
+\begin{align*}
+	A &= (A_{ij}) = (a(\varphi_j, \varphi_i))\\
+	b &= (F(\varphi_i))\\
+	u &=(u_i)
+\end{align*}
+we obtain
+\begin{equation*}
+	Au =b.
+\end{equation*}
+$A$ is called \glqq stiffness matrix\grqq\ and $b$ is called \glqq load vector\grqq.
+If $a(\cdot,\cdot)$ is coercive in $V$, then it is also coercive in $V_h \implies$ linear system has a unique solution. 
+\begin{align*}
+	\forall \xi \in \R^N, z &:= \displaystyle \sum^N_{i=1} \xi\varphi_i\\
+	\xi^TA\xi &= \displaystyle \sum^N_{i,j=1}a(\varphi_j,\varphi_i)\xi_j\xi_i\\
+	&=a(z,z)\\
+	& \geq \lambda \|z\|^2_V.
+\end{align*}
+\begin{equation*}
+	A\xi = 0 \implies z=0 \implies \xi = 0.
+\end{equation*}
+A is injectiv, invertable $\implies$ unique solution.
+\begin{lemma_}
+	(Lemma of Cea)\\
+	$V$ Hilbert space,$a(\cdot,\cdot)$ continuous, coerciv, bilinearform on $V$, $F \in V'$,$V_h \subset V$.\\
+	$u\in V$ is solution of $a(u,v) = F(v) \forall v\in V$\\
+	$u_h\in V_h$ is solution of $a(u_h,v) = F(v) \forall v\in V_h$\\
+	\begin{equation*}
+		\implies \|u-u_h\|_V \leq \frac{K}{\alpha}\underset{v \in V_h}{\text{inf}}\|u-v\|_V
+	\end{equation*} 
+	with $K,\lambda$ constants from continuity and coercivity inequalities.
+\end{lemma_}
+\begin{proof_}
+	Subtract $a(u,v) = F(v)$ and $a(u_h,v) = F(v)$ with $v \in V_h$.
+	\begin{equation*}
+		\implies a(u-u_h,v)=0\quad \forall v\in V_h
+	\end{equation*}
+	use $v-u_h \in V_h$ and we obtain
+	\begin{equation}\label{cea}
+		a(u-u_h,v-u_h)=0\quad \forall v\in V_h.
+	\end{equation}
+	Now
+	\begin{align*}
+		\lambda \|u-u_h\|^2_V &\leq a(u-u_h,u-u_h)\\
+		&= a(u-u_h,u-v) + \underbrace{a(u-u_h,v-u_h)}_{\overset{\ref{cea}}{=}0}\\
+		&= a(u-u_h,u-v)\\
+		&\leq K\|u-u_h\|_V\|u-v\|_V.
+	\end{align*}
+	\begin{equation*}
+		\implies \|u-u_h\|_V \leq \frac{K}{\alpha}\|u-v\|_V \quad \forall v\in V_h.
+	\end{equation*}
+\end{proof_}
+If $a$ is symmetric, $a(u,v) = a(v,u) \forall u,v \in V$, $a$ is a scalar product on $V$ (and $V_h$).\\
+geometric approximation of Cea-lemma: $u-u_h$ is orthogonal to $V_h,u_h$ is the element in $V_h$ \glqq closest\grqq to u. To get $u_h \to u$ for $h \to 0$ we need $V_h \to V$ if $h\to 0$. If 
+\begin{align*}
+	\underset{h\to 0}{\text{lim}} \text{ dist}(u,V_h) &= 0 \quad \forall u \in V\\
+	\implies \underset{h\to 0}{\text{lim}}\|u-u_h\|_V &=0.
+\end{align*}
+If $a(\cdot,\cdot)$ is symmetric, we can write the problem as a minimization problem.
+\begin{lemma_}
+	Same conditions as for Cea-lemma and $a$ symmetric. The following statements are equivalent:
+	\begin{enumerate}[label=(\alph*)]
+		\item \label{variation_1} $a(u,v)= F(v) \quad \forall v\in V$ 
+		\item \label{variation_2} $E(u) = \underset{v \in V}{\text{min}}E(v) $ with $E(v) = a(v,v) -2F(v)$.
+	\end{enumerate}
+\end{lemma_}
+
+\begin{proof_}
+	$v \in V$, define $e:\R \to \R$:
+	\begin{equation*}
+		e(t) = E(u+tv) \overset{taylor}{=} E(u) + 2t\big ( a(u,v) - F(v)\big ) +t^2 a(v,v)  .
+	\end{equation*}
+	\begin{itemize}
+		\item  \ref{variation_2} $\implies$  \ref{variation_1}:\\
+			$u$ is solution of \ref{variation_2}, $e$ has minimum at $t=0$
+			\begin{equation*}
+				e'(0)=0 \implies a(u,v)=F(v)
+			\end{equation*} 
+		\item \ref{variation_1} $\implies$  \ref{variation_2}:\\
+			$u$ is solution of \ref{variation_1} implies
+			\begin{equation*}
+				E(u) \leq \underbrace{E(u) + a(v,v)}_{= e(1)} = E(u,v).
+			\end{equation*}
+			with $v = v-u \implies E(u) \leq E(v)$
+	\end{itemize}
+\end{proof_}
+
+Allows to interprete the discrete problem 
+\begin{equation*}
+	a(u_h,v) = F(v)
+\end{equation*}
+as finding a minimum of $E$ not in V but in \glqq smaller\grqq space $V_h$. $E$ can be seen as energy and $a(u_h,v) = F(v)$ as the Euler-Lagrange-equation of this energy. 
+\begin{equation*}
+	Au=b \quad \text{or} \quad \text{min}E(u_h)
+\end{equation*}
+\par
+What is needed to solve the weak form or Ritz-Galerkin-approximation?
+\begin{itemize}
+	\item compute coefficients $A_{ij} = a(\varphi_j,\varphi_i)$
+	\item solve the linear system
+\end{itemize}
+
+\underline{goal}: have computation of $A_{ij}$ as simple as possible. $A$ should ontain many zeros, $A$ should be a sparse matrix.
 
 
+\textbf{is it }$\tau$ \textbf{ or } $\T$ \textbf{in the following???}
+\section{Finite-Flements}
+consists of 3 characteristics:
+\begin{itemize}
+	\item $\overline{\Omega}= \underset{\tau \in \T_h}{\bigcupdot}$ with $\T$ triangles, rectangles in $\R^2$ or tetraheder in $\R^3$
+	\item $V_h$ contains functions, which if restricted to $\T$ are polynomials
+	\item basis functions: $\varphi_i$ are simple to compute and have small support
+\end{itemize}
+\subsection{abstract finite element}
+\begin{definition_}
+	Finite elements in $R^d$ ($d\geq 1$) are triplets ($\T,P_{\T},\Sigma_{\T}$) with 
+	\begin{enumerate}[label=(\roman*)]
+		\item $\T \subset \R^d$ closed
+		\item $P_{\T}$ finite element space of functions: $\T \to \R$, $n = \text{dim}P_{\T}$
+		\item $\Sigma_{\T}$ linearly independent, continuous functions $B_1,\dots,B_n:C^s(\T) \to \R$, $s \in \N_0$ with $\forall \alpha_1, \dots, \alpha_n \in \R$ exists $p \in P_{\T}$ s.t. $B_i (P) = \alpha_i$, $i = 1, \dots,n$
+	\end{enumerate}
+\end{definition_}
+$B_i$ are the degrees of freedom (DoFs) of the finite element $p_i$ basis functions of the finite element. The space of all polynomials $\Omega \to R$ of degree $\leq k$ is $P_k$.
 
-
-
+$d$-simplex $\T \in \R^d$ is defined as convex hull of points $a_1,\dots,a_{d+1}\in R^{d+1}$.
+\begin{equation*}
+	\tau = \left\{ x\in \R^d: x= \displaystyle \sum^{d+1}_{i=1} \lambda_ia_i,\ 0 \leq \lambda_1, \dots,\lambda_{d+1}\leq 1,\ \displaystyle \sum^{d+1}_{i=1} \lambda_i =1\right\}
+\end{equation*}
+\input{unity_simplex}
