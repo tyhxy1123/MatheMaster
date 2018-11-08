@@ -1,0 +1,214 @@
+\chapter{Satz von Riemann-Roch}
+\section{Primstellen}
+Sei $F | K$ ein Funktionenkörper.
+
+\begin{definition}
+    Dies bedeute, dass $F$ ein Funktionenkörper über $K$ ist mit Konstantenkörper $\tilde{K}=K$.
+\end{definition}
+
+\begin{satz}
+    Ist $v$ eine nicht-triviale Bewertung auf $F$, die trivial auf $K$ ist,
+    so ist $\Gamma_v \cong \Z$ und der Restklassenkörper $F_v$ ist eine endliche Erweiterung von $K$.
+\end{satz}
+\begin{proof}
+    Wähle $t \in F$ transzendent über $K$ mit $[F:K(t)] < \infty$.
+    Wie im Beweis von I.3.15 sieht man, dass $w:= v|_{K(t)}$ nicht trivial ist, denn $\mathcal{O}_v$ ist ganzabgeschlossen (1.6).
+    Wie im Beweis von I.2.21 sieht man, dass $\mathcal{O}_w = \mathcal{O}_P$ für ein 
+    $P \in K[t]$ normiert irreduzibel oder $\mathcal{O}_w = \mathcal{O}_{\infty}$.
+    Somit ist $w$ diskret (d.h. $\Gamma_w \equiv \Z$) und $[K(t)_w:K] < \infty$.
+    Mit 2.6 und 2.7 folgt, dass auch $v$ diskret und $$ [F_v:K] = [F_v:K(t)_w]\cdot [K(t)_w:K] < \infty.$$
+\end{proof}
+
+\begin{definition}
+    Eine \textbf{Primstelle} von $F|K$ ist eine Äquivalenzklasse von nicht trivialen Bewertungen auf $F$, die trivial auf $K$ sind.
+
+    Wir bezeichnen mit $v_P$ den Vertreter der Primstelle $P$ mit $\Gamma_{v_P} = \Z$. 
+    Desweiteren verwenden wir folgende Notation:
+    \begin{align*}
+        \mathcal{O}_P &:= \mathcal{O}_{v_P}\\
+        F_P &:= F_{v_P}\\
+        f(P) &:= \begin{cases}
+            \overline{f} \in F_P, & f \in \mathcal{O}_P\\
+            \infty, & f \notin \mathcal{O}_P
+        \end{cases}\\
+        \deg P &:= [F_P:K] \text{ der Grad von }P\\
+        S(F|K) &:= \{P \mid P \text{ ist Primstelle von } F|K\}\\
+        S^d(F|K) &:= \{P \in S(F|K) \mid \deg P = d\}.
+    \end{align*}
+
+    Ist $E|F$ eine endliche Erweiterung mit Konstantenkörper $L$ und $ Q \in S(E|L)$, so sagt man, $Q$ liegt über $P \in S(F|K)$, falls
+    $\mathcal{O}_Q \cap F = \mathcal{O}_P$, i.Z. $Q|_F = P$.
+\end{definition}
+
+\begin{beispiel}
+    Die Primstellen von $K(T)|K$ sind
+    \begin{align*}
+        S(K(T)|K) = \{P \in K[T] \mid P \text{ normiert und irreduzibel}\} \cup \{\infty\}
+    \end{align*}
+    und $\deg P$ ist genau der Grad des Polynoms $P$, und $\deg(\infty) = 1.$
+\end{beispiel}
+
+\begin{lemma}
+    Ist $E|F$ endlich und $P \in S(F|K)$, so gibt es mindestens ein aber nur endlich viele $Q \in S(E|L)$ mit $Q_F = P$.
+\end{lemma}
+\begin{proof}
+    2.3 + 2.8. $K \subseteq \mathcal{O}_P$, $L|K$ ganz $\stackrel{\mathcal{O}_Q\text{ ganzabgeschlossen}}{\implies}$
+    $L \subseteq \mathcal{O}_Q$.
+\end{proof}
+
+\begin{satz}
+    $S(F|K)$ ist unendlich.
+\end{satz}
+\begin{proof}
+    Wähle $t \in F$ transzendent $\implies$ $[F:K(t)] < \infty$. 
+    $S(K(T)|K)$ unendlich (I.4.2) $\implies$ $S(F|K)$ unendlich.
+\end{proof}
+
+\begin{definition}
+    Sei $x \in F, P \in S(F|K)$. $P$ ist \textbf{Nullstelle} von $x$ $: \iff x(P) = 0 \iff v_P(x) > 0$.
+
+    $P$ ist \textbf{Polstelle} von $x$ $:\iff x(P) = \infty \iff v_P(x) < 0$..
+\end{definition}
+
+\begin{satz}
+    Sei $x \in F$. Ist $x \in K$, so hat $x$ keine Null- oder Polstellen. Ist $x \notin K$, so hat $x$ sowohl Nullstellen als auch Polstellen,
+    aber jeweils nur endlich viele.
+\end{satz}
+\begin{proof}
+    Ist $x \notin K$, so ist $x$ transzendent über $K$ und $[F:K(x)] < \infty$.
+    Dann ist 
+    \begin{align*}
+        &\{P \in S(F|K) \mid v_P(x) > 0 [\text{bzw. } < 0]\}\\
+        =& \{P \in S(F|K) \mid v_P|_{K(x)} = v_x [\text{bzw. } v_{\infty}]\}
+    \end{align*}
+    nichtleer und endlich nach 3.5.
+\end{proof}
+
+\section{Divisoren}
+Sei $F|K$ ein Funktionenkörper.
+
+\begin{definition}
+    Die Gruppe der \textbf{Divisoren} von $F|K$ ist die freie abelsche Gruppe $\Div(F|K)$ auf $S(F|K)$, d.h.
+    $$ \Div(F|K) := \bigoplus\limits_{P \in S(F|K)} \Z = \{\sum\limits_{P \in S(F|K)} n_P P \mid n_p \in \Z, \text{ fast alle }0\}.$$
+    Wir identifizieren Primstellen $P \in S(F|K)$ mit dem \textbf{Primdivisor} $P \in \Div(F|K)$.
+
+    Für $A,B \in \Div(F|K), A = \sum\limits_P n_P P$ und $x \in F^{\times}$ sei 
+    \begin{align*}
+        \supp(A) &:= \{P \in S(F|K) \mid n_P \ne 0\}, \text{ der \textbf{Träger} von }A\\
+        v_P(A) &:= n_P\\
+        \deg(A) &:= \sum\limits_P \deg(P), \text{ der \textbf{Grad} von }A\\
+        A \leq B &:\iff v_P(A) \leq v_P(B) \forall P \in S(F|K)\\
+        A \text{ ist \textbf{effektiv}} &:\iff A \geq 0\\
+        A_+ &:= \sum\limits_{v_P(A) > 0} v_P(A) P\\
+        A_- &:= \sum\limits_{v_P(A) < 0} -v_P(A) P
+    \end{align*}
+\end{definition}
+
+\begin{bemerkungnr}
+    \begin{enumerate}
+        \item Die Definitionen $\deg(P)$ für $P$ als Primstelle oder als Primdivisor stimmen überein.
+        \item Für $A \in \Div(F|K)$ ist $A = A_+ - A_-$ mit $A_+,A_-$ effektiv.
+        \item Die Abbildung
+        $$ \deg: \Div(F|K) \to \Z$$
+        ist ein Gruppenhomomorphismus.
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{beispiel}
+    Für $x \in F^{\times}$ ist $\sum\limits_P v_P(x) P$ nach 3.8 ein Divisor.
+\end{beispiel}
+
+\begin{definition}
+    Für $x \in F^{\times}$ ist
+    $$ (x) := \sum\limits_P v_P(x) P \in \Div(F|K)$$
+    der \textbf{Hauptdivisor} von $x$.
+
+    Desweiteren ist
+    \begin{align*}
+        (x)_0 := (x)_+ = \sum\limits_{v_P(x) > 0} v_P(x) P, & \text{ der \textbf{Nullstellendivisor} von } x\\
+        (x)_\infty := (x)_- = \sum\limits_{v_P(x) < 0} -v_P(x) P, & \text{ der \textbf{Polstellendivisor} von } x.\\
+    \end{align*}
+\end{definition}
+
+\begin{bemerkungnr}
+    \begin{enumerate}
+        \item Für $x \in F^{\times}$ ist $v_P((x)) = v_P(x)$.
+        \item Die Abbildung
+        $$ (\cdot): F^{\times} \to \Div(F|K)$$
+        ist ein Gruppenhomomorphismus (1.3(ii)). 
+        Insbesondere ist $\mathscr{P}(F|K) \leq \Div(F|K)$.
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{beispiel}
+    In $F=K(T)$ hat jeder Hauptdivisor Grad $0$ (\#7).
+
+    Umgekehrt ist jeder Divisor $A \in \Div(K(T)|K)$ vom Grad $0$ ein Hauptdivisor, also
+    $A = (x)$ für ein $x \in K(T)^{\times}$ (Übung).
+\end{beispiel}
+
+\begin{definition}
+    $$ \mathscr{C}(F|K) := \sfrac{\Div(F|K)}{\mathscr{P}(F|K)}$$
+    ist die \textbf{Divisorenklassengruppe} von $F|K$.
+    Für $A,B \in \Div(F|K)$ ist
+    \begin{align*}
+        [A] := A + \mathscr{P}(F|K) \in \mathscr{C}\\
+        A \sim B : \iff [A] = [B] & \text{("linear äquivalent")}.
+    \end{align*}
+\end{definition}
+
+\begin{beispiel}
+    Für $x \in F^{\times}$ ist $(x) \sim 0$, aber wenn $x \notin K$ ist $(x) \ne 0$ und sogar $(x) \not \geq 0$ und $(x) \not \leq 0$.
+\end{beispiel}
+
+\section{Der Riemann-Roch-Raum}
+Sei $F|K$ ein Funktionenkörper, $A,B \in \Div(F|K)$
+
+\begin{definition}
+    Der \textbf{Riemann-Roch-Raum} zu $A$ ist 
+    $$ \mathcal{L}(A) := \{x \in F^{\times} \mid (x) + A \geq 0\} \cap \{0\}.$$
+\end{definition}
+
+\begin{bemerkungnr}
+    $\mathcal{L}(A)$ besteht aus den Funktionen, deren Pole durch $A_+$ beschränkt sind und die mindestens die
+    durch $A_-$ vorgegebenen Nullstellen haben.
+\end{bemerkungnr}
+
+\begin{lemma}
+    \begin{enumerate}
+        \item $\mathcal{L}(A)$ ist ein $K$-Vektorraum.
+        \item $\mathcal{L}(0) = K$
+        \item $\mathcal{L}(A) \ne \{o\} \implies \text{ es existiert } A'\geq 0: A \sim A'$
+        \item $ A < 0 \implies \mathcal{L}(A) = \{0\}$
+        \item $A \leq B \implies \mathcal{L}(A) \subseteq \mathcal{L}(B)$
+        \item $A \sim B \implies \mathcal{L}(A) \cong \mathcal{L}(B)$ als $K$-Vektorraum
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \underline{(a):} Seien $x,y \in \mathcal{L}(A), \lambda \in K, P \in S(F|K)$.
+    \begin{align*}
+        v_P(x + y) \geq \min\{v_P(x), v_P(y)\} \geq - v_P(A)\\
+        v_P(\lambda x) = v_P(\lambda) + v_P(x) \geq - v_P(A)
+    \end{align*}
+
+    \underline{(b):} 4.8
+
+    \underline{(c):} $0 \ne x \in \mathcal{L}(A) \implies A' := (x) + A \geq 0$
+
+    \underline{(d):} $0 \ne x \in \mathcal{L}(A)$. 
+    $$x \in K \implies (x) + A = A \not \geq 0$$
+    $$ x \notin K \implies \text{ es existiert } P \text{ mit } v_P(x) < 0 \implies v_P((x) + A) \leq v_P(x) < 0,$$
+    insbesondere $(x) + A \not \geq 0$.
+
+    \underline{(e):} folgt direkt aus Definition
+
+    \underline{(f):} $B=A+(x)$ $$ \varphi: \begin{cases}
+        \mathcal{L}(A) \to \mathcal{L}(B)\\
+        z \mapsto x^{-1}z
+    \end{cases}$$
+    ist $K$-linear mit Inversem
+    $$ \varphi^{-1}: \begin{cases}
+        \mathcal{L}(B) \to \mathcal{L}(A)\\
+        z \mapsto xz
+    \end{cases}$$
+\end{proof}
