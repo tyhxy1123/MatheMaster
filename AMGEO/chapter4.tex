@@ -147,3 +147,104 @@ then $L$ is solvable.
     \end{align*}
     calculate $\ad x, \ad y, \ad h$.
 \end{example}
+
+\begin{definition}
+    Let $D_\kappa = \{a \in L \mid \kappa(a, \cdot) = 0\}$ be the radical of $\kappa$. We call
+    $\kappa$ \textbf{nondegenerate}, if and only if $ D_\kappa=0$.    
+\end{definition}
+
+% \begin{example}
+%     $V = \R^n$, $G = \SO(n)$, $\langle gx, gy \rangle = \langle x,y \rangle$
+%     $\langle \cdot, \cdot \rangle : V \tensor V \to \R$
+%     \begin{align*}
+%         \Lie(G) = \so(n) = \{X \in \M_n(\R) \mid X^T = -X\} \\
+%         \langle Xv, w \rangle &= (Xv)^Tw=v^TX^Tw\\
+%         & v^T(-X)w = - \langle v, Xw \rangle\\
+%         \langle Xv, w \rangle + \langle v, Xw \rangle = 0\\
+%         \kappa([x,a],b) + \kappa(a, [x,b])\\
+%         = \tr(\ad([x,a]) \compose \ad b) + \tr(\ad a \compose ) 
+%     \end{align*}
+% \end{example}
+
+\begin{corollary}
+    $D_\kappa \ideal L$
+\end{corollary}
+\begin{proof}
+    $x \in D_\kappa$, that is $\kappa(x, \cdot) = 0$ and $y \in L$ , s.th.
+    $$ \kappa([y,x],z)= - \kappa(x, [y,z]) = 0$$. So $[y,x] \in D_\kappa$.
+\end{proof}
+
+\begin{example}
+    $L = \sl(2, F)$ basis $x,h,y$
+    $\kappa$ is nondegenerate (see example above)
+\end{example}
+
+\begin{remark}
+    $L$ semisimple $\iff$ $\Rad(L) = 0$, or 
+    $\stackrel{\ast}{\iff}$ $L$ does not contain an nonzero abelian ideal
+\end{remark}
+\begin{proof}
+    \underline{$\Leftarrow$:} of $\ast$ is clear: an abelian ideal is a solvable ideal
+    \underline{$\implies$:} of $\ast$: $K \ideal L$, then $K^{(n)} \ideal L$. Appplying this with $K = \Rad(L)$ with the last
+    $n$ for which $K^{(n)} \neq 0$ yields $\Rad(L) \neq 0 \implies$ there is a nonzero abelian ideal $0 = K^{(n+1)}$
+\end{proof}
+
+\begin{theorem}
+    $L$ semisimple $\iff$ $\kappa$ is nondegenerate
+\end{theorem}
+\begin{proof}
+    If $\Rad(L) = 0$ and $D_\kappa$ is the radical ok $\kappa$, then we can apply Cartan's critertion to show
+    $\ad:L D_\kappa$ is solvable
+    \begin{align*}
+        \tr(\ad x \compose \ad y) = 0 \forall x \in D_\kappa, y \in L
+    \end{align*}
+    In particular for $y \in [D_\kappa, D_\kappa]$.
+    Hence $D_\kappa$ is solvable, because with
+    \begin{align*}
+        \ad_L : L \to \gl(L) \text{ and}\\
+        \ad_L |_{D_\kappa}: D_\kappa \to \gl(L)
+    \end{align*}
+    $\ker \ad_{L}|_{D_\kappa}$ is abelian, whence solvable.
+    So $D_\kappa \subseteq \Rad(L) = 0$, so $\kappa$ is nondegenerate.
+\end{proof}
+
+Conversely, assume $D_\kappa = 0$. We show that every abelian ideal $I \ideal L$ is contained in $D_\kappa$.
+If $y \in I, x \in L$ and $z \in L$ then
+\begin{align*}
+    (\ad x \compose \ad y)(z) = [x,[y,z]] \geq t\\
+    (\ad x \compose \ad y)^2(z) = [x,[y,t]]
+\end{align*}
+So if $I \ideal L$ is an abelian ideal, then 
+\begin{align*}
+    (\ad x \compose \ad y)^2 (z) = 0 \forall y \in i, x,z \in L.
+\end{align*}
+So $\ad x \compose \ad y$ is nilpotent, so its trace
+\begin{align*}
+    \kappa(x,y) = \tr(\ad x \compose \ad y) = 0
+\end{align*}
+So $I \ideal D_\kappa = 0$. So $L$ is semisimple by $\ast$.
+
+\begin{theorem}
+    $L$ ist semisimple ,if and only if
+    $$ L = L_1 \oplus \ldots \oplus L_n $$
+    for simple ideals $L_i \ideal L$. Moreover, 
+    $$ \kappa(x,y) = 0$$ for $x \in L_i, y \in L_j, i \neq j$ and
+    $$ \kappa(x,y) = \kappa_{L_i}(x,y)$$ for $x,y \in L_i$.
+\end{theorem}
+\begin{proof}
+    Let $I \ideal L$ and $I^{\bot} := \{x \in L \mid \kappa(x,y) = 0 \forall y \in I\}$. 
+    Then $I^\bot \ideal L$ by the $\ad$-invariance of $\kappa$
+    $$ \kappa(\ad(x)a, b) = - \kappa(a, \ad(x)b)$$
+    So if $y \in I^\bot$ and $z \in L, x \in I$.
+    \begin{align*}
+        \kappa(x, [z,y]) &= \kappa(x \ad (z) y)\\
+        &= - \kappa(\ad(z)x,y)\\
+        &= - \kappa([z,x],y) = 0
+    \end{align*}
+    so $[z,y] \in I^\bot$.
+
+    Cartan's critertion, applied to $I$ shows that $I \cap I^\bot$ is solvable.
+    This is a solvable ideal, hence $0$ as $L$ is simple.
+    Since $\dim I + \dim I^\bot = \dim L$, we get
+    $$ L = I \oplus I^\bot$$
+\end{proof}
