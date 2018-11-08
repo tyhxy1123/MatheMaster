@@ -1650,7 +1650,39 @@ D_h\in\B(\S)\qquad\forall h:\S\to\S'\text{ beliebig (nicht einmal messbar)}
 \end{align*}
 \end{lemma}
 \begin{proof}
-Kopie. %TODO Hier Beweis einfügen
+Mit der Dreiecksungleichung überlegt man sich leicht:
+\begin{align*}
+h\text{ stetig in }x
+\Longleftrightarrow
+\forall 0<\varepsilon\in\Q:\exists 0<\delta\in\Q:\exists y,z\in\S\mit
+d(x,y)<\delta\wedge d(x,z)<\delta
+\implies d'\big(h(y),h(z)\big)<\varepsilon
+\end{align*}
+Damit folgt:
+\begin{align}\label{eqProof4.9Plus}
+\bigcup\limits_{0<\varepsilon\in\Q}\bigcap\limits_{0<\delta\in\Q}\underbrace{\big\lbrace x\in\S:\exists y,z\in\S\mit d(x,y)<\delta\wedge d(x,y)<\delta\wedge d'\big(h(y),h(z)\big)\geq\varepsilon\big\rbrace}_{=:A_{\varepsilon,\delta}}
+\end{align}
+Zeige 
+\begin{align}\label{eqProof4.9Stern}
+A_{\varepsilon,\delta}\in\G(\S)\qquad\forall\varepsilon,\delta>0
+\end{align}
+Dazu sei $x_0\in A_{\varepsilon,\delta}$. Dann existieren $y,z\in\S$ mit $d(x_0,y)<\delta$ und $d(z_0,z)<\delta$, aber $d'\big(h(y),h(z)\big)\geq\varepsilon$. Wähle
+\begin{align*}
+\delta_0:=\min\big\lbrace\delta- d(x_0,y),\delta-d(x_0,z)\big\rbrace>0
+\end{align*}
+Ferner gilt:
+\begin{align}\label{eqProof4.9i}
+B(x_0,\delta_0)\subseteq A_{\varepsilon,\delta},
+\end{align}
+denn: Sei $x\in B(x_0,\delta_0)$. Dann gilt
+\begin{align*}
+d(x,y)\leq d(x,x_0)+d(x_0,y)<\delta_0+d(x_0,y)<\delta
+\end{align*}
+und analog
+\begin{align*}
+d(x,z)<\delta.
+\end{align*}
+Also folgt $x\in A_{\varepsilon,\delta}$, denn $d'\big((h(y),h(z)\big)\geq\varepsilon$. Wegen \eqref{eqProof4.9i} ist $x_0$ innerer Punkt von $A_{\varepsilon,\delta}$. Also folgt \eqref{eqProof4.9Stern} und mit \eqref{eqProof4.9Plus} dann die Behauptung.
 \end{proof}
 
 
@@ -1757,6 +1789,182 @@ X_{n''}\stackrel{\L}{\longrightarrow} X\\
 X_n\stackrel{\L}{\longrightarrow} X
 \end{align*}
 \end{proof}
+Einfache Beispiele zeigen, dass in \ref{satz4.12} die Umkehrung im Allgemeinen \underline{nicht} gilt. Aber:
+
+\begin{satz}\label{satz4.13}
+Sei $X_n\stackrel{\L}{\longrightarrow}X$ mit $X$ fast sicher konstant.\\
+Dann gilt $X_n\stackrel{\P}{\longrightarrow} X$.
+\end{satz}
+\begin{proof}
+Nach Voraussetzung existiert eine Konstante $x\in\S$ mit $\P(X=c)=1$. Wir verwenden das folgende Lemma:
+
+\begin{lem}[Lemma von Uryson]\enter\label{lemmaVonUryson}
+Zu $A,B\in\S(\S)$ mit $A\cap B=\emptyset$ existiert stetige 
+\begin{align*}
+f:\S\to[0,1]\qquad\mit\qquad f(x)=\left\lbrace\begin{array}{cl}
+0, &\falls x\in A\\
+1, &\falls x\in B
+\end{array}\right.
+\end{align*}
+\end{lem}
+Sei $\varepsilon>0$. Dann sind $A:=\lbrace c\rbrace, B=\big(B(c,\varepsilon)\big)^C\in\F(\S)\mit A\cap B=\emptyset$. Nun wenden wir das Lemma von Uryson an und erhalten die Existenz einer Abbildung $f:\S\to[0,1]$ stetig (also $f\in C^b(\S)$) mit der Eigenschaft
+\begin{align*}
+f(x)&=\left\lbrace\begin{array}{cl}
+0, &\falls x=c\\
+1, &\falls d(x,c)\geq\varepsilon
+\end{array}\right.\\
+\implies \P\big(d(X_n,X)>\varepsilon\big)
+&\stackeq{\text{Vor}}
+\P\big(d(X_n,c)>\varepsilon\big)\\
+&=\E\Big[\underbrace{\indi_{\lbrace d(X_n,c)\geq\varepsilon\rbrace}}_{\leq f(X_n)}\Big]\\
+&\leq\E\big[f(X_n)\big]\stackrelnew{n\to\infty}{\text{Vor}}{\longrightarrow}\E\big[\underbrace{f(X)}_{=\underbrace{f(c)}_{=0}\text{ f.s.}}\big]\\
+&=0
+\end{align*}
+Das Einschließ-Kriterium liefert
+\begin{align*}
+\P\big(d(X_n,X)\geq\varepsilon\big)\stackrel{n\to\infty}{\longrightarrow}0\qquad\forall\varepsilon>0
+\end{align*}
+\end{proof}
+
+\begin{satz}[Cramér]\enter\label{satz4.14Cramer}
+Seien $(X_n)_{n\in\N},(Y_n)_{n\in\N}$ zwei Folgen in separablen metrischen Raum $(\S,d)$, die \textbf{stochastisch äquivalent sind}, d. h.
+\begin{align}\label{eq4.14StochastischAquivalent}\tag{Ä}
+d(X_n,Y_n)\stackrel{\P}{\longrightarrow}0
+\end{align}
+Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\Longleftrightarrow Y_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{satz}
+\begin{proof}
+Sei $f\in C^b(\S)$ gleichmäßig stetig, d. h.
+\begin{align*}
+\forall\varepsilon>0:\exists\delta_\varepsilon>0:\big|f(x)-f(y)\big|\leq\varepsilon\implies\forall x,y\in\S:d(x,y)\leq\delta
+\end{align*}
+%TODO check this definition
+Damit folgt
+\begin{align*}
+&\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
+&\stackeq{\text{Lin}}
+\left|\int\limits f(X_n)-f(Y_n)\d\P\right|\\
+&\stackrel{\text{DU}}{\leq}
+\int\limits\big|f(X_n)-f(Y_n)\big|\d\P\\
+&\stackeq{\text{Lin}}
+\int\limits\underbrace{\indi_{\big\lbrace d(X_n,Y_n)\leq\delta\big\rbrace}\cdot\big|f(X_n)-f(Y_n)\big|}_{\leq\varepsilon\text{ wegen glm. Stetigkeit}}\d\P+
+\int\limits\indi_{\big\lbrace d(X_n,Y_n)>\delta\big\rbrace}\cdot\underbrace{\big|f(X_n)-f(Y_n)\big|}_{\leq\big|f(X_n)\big|+\big|f(Y_n)\big|\leq2\cdot\Vert f\Vert_\infty}\d\P\\
+&\leq\varepsilon+2\cdot\Vert f\Vert_\infty\cdot\underbrace{\P\big(d(X_n,Y_n)>\delta_\varepsilon\big)}_{\stackrel{n\to\infty}{\longrightarrow}0}\\
+\implies
+0&\leq\liminf\limits_{n\to\infty}\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
+&\leq\limsup\limits_{n\to\infty}\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
+&\leq\varepsilon+2\cdot\Vert f\Vert_\infty\cdot 0\\
+&=\varepsilon\qquad\forall\varepsilon>0\\
+&\stackrel{\varepsilon\to0}{\implies}
+\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\stackrel{n\to\infty}{\longrightarrow} 0\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{align*}
+Es folgt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X
+&\stackrel{\ref{satz4.7}}{\Longleftrightarrow}
+\E\big[f(X_n)\big]\longrightarrow\E\big[f(X)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}\\
+&\Longleftrightarrow
+\underbrace{\E\big[f(X_n)\big]}_{=\E\big[f(X_n)\big]+\Big(\E\big[f(Y_n)\big]-\E\big[ f(X_n)\big]\Big)\stackrel{\text{wg. oben}}{\longrightarrow}0}\stackrel{}{\longrightarrow}\E\big[f(X)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}\\
+&\stackrel{\ref{satz4.7}}{\Longleftrightarrow}
+Y_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{proof}
+
+\begin{satz}[Cramér-Slutsky]\label{satz4.15CramerSlutsky}\enter
+Seien $(\S,d)$, $(\S',d')$ separable metrische Räume. Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\wedge Y_n\stackrel{\L}{\longrightarrow} Y\wedge Y\text{ f.s. konstant}
+\implies (X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text{ in }(\S\times\S',d\times d')
+\end{align*}
+\end{satz}
+\begin{proof}
+Nach Voraussetzung existiert ein $c\in\S'$ mit $\P(Y=c)=1$. Mit Satz \ref{satz4.13} gilt:
+\begin{align}\label{eqProof4.15Stern}
+Y_n\stackrel{\L}{\longrightarrow} c
+\end{align}
+Ferner:
+\begin{align*}
+&d\times d'\Big((X_n,Y_n),(X_n,c)\Big)
+=\underbrace{d(X_n,X_n)}_{=0}+d'(Y_n,c)
+=d'(Y_n,c)\\
+&\implies\P\Big(d\times d'\big((X_n,Y_n),(X_n,c)\big)>\varepsilon\Big)
+=\P\big(d'(Y_n,c)>\varepsilon\big)
+\stackrel{n\to\infty}{\longrightarrow} 0\qquad\forall\varepsilon>0\text{ gemäß } \eqref{eqProof4.15Stern}\\
+&\implies
+\big((X_n,Y_n)\big)_{n\in\N}\text{ und }\big((X_n,c)\big)_{n\in\N}\text{ sind stochastisch äquivalent}
+\end{align*}
+Gemäß Satz \ref{satz4.14Cramer} reicht es zu zeigen, dass
+\begin{align}\label{eqProof4.15Plus}
+(X_n,c)\stackrel{\L}{\longrightarrow}(X,c)=\stackrelnew{\L}{\text{f.s.}}{=}(X,Y)\text{ in }(\S\times\S',d\times d')
+\end{align}
+gilt. Dazu sei $f\in C^b(\S\times\S')$ beliebig und $f_c:\S\to\R,~f_c(x):=f(x,c)$. Damit folgt $f_c\in C^b(\S)$. Somit:
+\begin{align*}
+\E\big[f(X_n,c)\big]
+&\stackeq{\text{Def}}
+\E\big[f_c(X_n)\big]
+\stackrel{n\to\infty}{\longrightarrow}\E\big[f_c(X)\big]\stackeq{\text{Def}}
+\E\big[f(X,c)\big]\\
+\stackrel{\text{Def}}{\implies}
+\eqref{eqProof4.15Plus}
+\end{align*}
+\end{proof}
+
+\begin{bemerkungnr} %4.16
+Auf die Forderung, dass $Y$ f.s. konstant ist, kann \underline{nicht} verzichtet werden. Also idt die Schlussfolgerung
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S\wedge Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S'
+\implies(X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text{ in }\S\times\S'
+\end{align*}
+ist im Allgemeinen \underline{nicht} richtig!
+\end{bemerkungnr}
+
+\begin{korollar}\label{korollar4.17}
+Seien $\S,\S'$ separable metrische Räume und sei $T$ beliebiger metrischer Raum. Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\wedge Y_n\stackrel{\P}{\longrightarrow} c\mit c\in\S'\text{ Konstante }
+\implies h(X_n,Y_n)\stackrel{\L}{\longrightarrow} h(X,c)\text{ in }T
+\end{align*}
+wobei $h:\S\times\S'\to T$ messbar mit $\P\big((X,c)\in D_h\big)=0$
+\end{korollar}
+\begin{proof}
+Folgt aus \ref{satz4.15CramerSlutsky} und Satz \ref{satz4.10ContinuousMappingTheorem}.
+\end{proof}
+
+\begin{beispiel}\label{beisp4.18}
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^k\wedge Y_n\stackrel{\P}{\longrightarrow} c\text{ in }\R^k
+\end{align*}
+Dann gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n+Y_n\stackrel{\L}{\longrightarrow} X+c\text{ in }\R^k
+\end{aligned}$
+\item $\begin{aligned}
+\langle X_n,Y_n\rangle\stackrel{\L}{\longrightarrow}\langle c,X\rangle\text{ in }\R
+\end{aligned}$
+\item Für $k=1$ speziell:
+$\begin{aligned}
+Y_n\cdot X_n\stackrel{\L}{\longrightarrow}c\cdot X\text{ in }\R
+\end{aligned}$ und für $c=0$:
+$\begin{aligned}
+Y_n\cdot X_n\stackrel{\L}{\longrightarrow}0\text{ in }\R
+\end{aligned}$
+\item $\begin{aligned}
+\frac{X_n}{Y_n}\stackrel{\L}{\longrightarrow} \frac{X}{c},&\falls c\neq0\wedge\forall n\in\N:Y_n\neq0
+\end{aligned}$
+\item Konstante (= nicht zufällige) $Y_n$, d. h.
+\begin{align*}
+Y_n(\omega)=c_n\qquad\forall\omega\in\Omega,\forall n\in\N
+\end{align*}
+sind natürlich zugelassen:
+\begin{align*}
+(X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,c)\text{ in }\R^k\times\R^k
+\end{align*}
+\end{enumerate}
+\end{beispiel}
 
 
 
