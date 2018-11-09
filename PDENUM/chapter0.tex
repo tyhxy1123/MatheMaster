@@ -1046,7 +1046,7 @@ Hierbei ist $P_k$ der Raum der Polynome von höchstens Grad $k$.\\ Die Funktione
 
 \begin{figure}[h!]
 	\begin{center}
-	\includegraphics[width=0.75\textwidth]{./pics/Sketch0.png}
+	%\includegraphics[width=0.75\textwidth]{pics/Sketch0.png}
 	\caption{Beispiel für finite-Elemente-Funktionen}
 	\label{AbbFiniteFunktionen}
 	\end{center}
@@ -1082,29 +1082,37 @@ Sei $\lbrace\varphi_j\rbrace_{j\in J}$ eine Basis von $S_h^{k,0}$
 %=\langle\lbrace\varphi_j\rbrace\rangle$
 und Lösung $u_h\in S_{h,0}^{k,0}: u_h=\sum\limits_j u_j\cdot\varphi_j$\\
 Diskretes Problem: Finde $u_h\in S_{h,0}^{k,0}$ so, dass 
+
 \begin{align*}
-a(u_h,\varphi_h)=l(\varphi_h)\qquad\forall \varphi_h\in S_{h,0}^{k,0}\\
-\Longleftrightarrow a(u_h,\varphi_i)=l(\varphi_i)\qquad\forall i
+	&a(u_h,\varphi_h)=l(\varphi_h)&\qquad&\forall \varphi_h\in S_{h,0}^{k,0}\\
+	\Longleftrightarrow &a(u_h,\varphi_i)=l(\varphi_i)&\qquad&\forall i
 \end{align*}
-$A=(a_{i,j}),~a_{i,j}:=a(\varphi_j,\varphi_i),~b=(b_i),~b_i=l(\varphi_i)$
+In Matrix-Notation ergibt dies Folgendes:
+\begin{align*}
+	&A=(a_{i,j}),&&a_{i,j}:=a(\varphi_j,\varphi_i)\\
+	&b=(b_i),&&b_i:=l(\varphi_i)
+\end{align*}
 \begin{align*}
 \Longleftrightarrow A\cdot U=b,\qquad U=(u_i)
 \end{align*}
 Hierbei heißt $A$ \textbf{Stiffness-Matrix}.
 
 \begin{align*}
-S^{1,0}_{h,0}&=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
+	&S^{1,0}_{h,0}=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
 \varphi_i(t)=\left\lbrace\begin{array}{cl}
 \frac{t-t_{i-1}}{h_{i-1}}, &\falls t\in I_{i-1}\\
 \frac{t_{i+1}-t}{h_i}, &\falls t\in I_i\\
 0, &\sonst
 \end{array}\right.\\
-&\implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
+\big(&\text{supp}(\varphi_i) = [t_{i-1}, t_{i+1}]\big)
+\end{align*}
+\begin{align*}
+\implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
 \end{align*}
 
 \begin{figure}[h!]
 	\begin{center}
-		\includegraphics[width=0.75\textwidth]{./pics/Sketch1.png}
+		%\includegraphics[width=0.75\textwidth]{pics/Sketch1.png}
 		\caption{Hut-Funktionen}
 		\label{AbbHutFunktionen}
 	\end{center}
@@ -1128,7 +1136,7 @@ S_{h,0}^{2,0}&=\spann\big\lbrace\varphi_1,\ldots,\varphi_n,\psi_0,\ldots,\psi_n\
 
 \begin{figure}[h!]
 	\begin{center}
-		\includegraphics[width=0.5\textwidth]{./pics/Sketch2.png}
+		%\includegraphics[width=0.5\textwidth]{./pics/Sketch2.png}
 		\caption{einzelne zweifach diffbare finite-Elemente-Funktion}
 		\label{AbbHutFunktionen}
 	\end{center}
@@ -1151,15 +1159,18 @@ U_L\\ U_Q
 \end{pmatrix}=
 \begin{pmatrix}
 b_L\\ b_Q
-\end{pmatrix}\\
-\Longleftrightarrow \big(A_{LL}-A_{LQ}\cdot A^{-1}_{QQ}\cdot A_{QL}\big)\cdot U_L&= b_L-A_{LQ}\cdot A^{-1}_{QQ}\cdot b_Q\\
+\end{pmatrix}
+\end{align*}
+Dieses System von Gleichungen ist äquivalent zu:
+\begin{align*}
+\big(A_{LL}-A_{LQ}\cdot A^{-1}_{QQ}\cdot A_{QL}\big)\cdot U_L&= b_L-A_{LQ}\cdot A^{-1}_{QQ}\cdot b_Q\\
 A_{QQ}\cdot U_Q&= b_Q-A_{QL}\cdot U_L
 \end{align*}
 
 \begin{theorem}[Approximationseigenschaft von 1D finiten Elementen]\label{theorem4.2}\enter
 Sei $u\in H^{k+1}(\Omega)\cap H^{1}_0(\Omega)$ für ein $k\geq1$. Dann gilt:
 \begin{align*}
-\inf\limits_{v_h\in S_{h,0}^{k,0}}\big|u-v_h\big|_{1,2}\leq h^k\cdot|u|_{k+1,2}
+	\inf\limits_{v_h\in S_{h,0}^{k,0}}\big|u-v_h\big|_{1,2}\leq h^k\cdot|u|_{k+1,2}
 \end{align*}
 (Hierbei ist $h$ wie oben der Maximalabstand.)
 \end{theorem}
@@ -1169,8 +1180,8 @@ Definiere Intervallweise die Funktion auf $I_i$ durch
 v_h^\ast(t):=L_i(t)\qquad\forall t\in I_i,~\forall i\in\lbrace1,\ldots,n\rbrace
 \end{align*}
 wobei die $L_i$ die Lagrange-Interpolationen in $P_k$ bzgl. $t_i+\frac{s}{h}\cdot h_i,~0\leq j\leq h$ sind.\\
-Offenbar gilt$v_h^\ast\in S^{k,0}_{h,0}$. \\
-$u-v_n^\ast$ in $\overline{I_i}=[t_i,t_{i+1}]$ hat $(k+1)$ Nullen wegen der Interpolation. Somit hat $\big(u-v_h)^\ast\big)^{(\mu)}$ $(k+1-\mu)$ Nullen.
+Offenbar gilt $v_h^\ast\in S^{k,0}_{h,0}$. \\
+$u-v_n^\ast$ in $\overline{I_i}=[t_i,t_{i+1}]$ hat $(k+1)$ Nullen wegen der Interpolation. Somit hat $\big(u-v_h^\ast)^{(\mu)}$ $(k+1-\mu)$ Nullen.
 \begin{align*}
 \big|u-v_h^\ast\big|_{\mu,2,I_i}
 &=\left\Vert \big(u-v_h^\ast\big)^{(\mu)}\right\Vert_{0,2,I_i}\\
@@ -1178,12 +1189,14 @@ $u-v_n^\ast$ in $\overline{I_i}=[t_i,t_{i+1}]$ hat $(k+1)$ Nullen wegen der Inte
 h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu)}\right|_{1,2,I_i}\\
 &=h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu+1)}\right|_{0,2,I_i}\\
 &\leq h_i\cdot\left|u-v_h^\ast\right|_{\mu+1,2,I_i}\\
+\end{align*}
+\begin{align*}
 \implies
 \big|u-v_h^\ast\big|_{1,2,I_i}
-&\leq h_i^k\cdot\big|u-v_h^\ast\big|_{k+1,2,I_i}
-=h_i^k\cdot |u|_{k+1,2,I_i}
-\end{align*}
-wegen $v_h^\ast\big|_{I_i}\in  P_k$. Somit folgt
+&\leq h_i^k\cdot\big|u-v_h^\ast\big|_{k+1,2,I_i} \\
+&\stackeq{v_h^\ast|_{I_i}\in P_k}h_i^k\cdot |u|_{k+1,2,I_i}
+\end{align*} 
+Somit folgt
 \begin{align*}
 \big| u-v_h^\ast\big|_{1,2,\Omega}
 &=\left(\sum\limits_{i=1}^n\big|u-v_h^\ast\big|^2_{1,2,I_i}\right)^{\frac{1}{2}}\\
@@ -1210,12 +1223,17 @@ Für alle $u\in H^1_0((a,b))$ gilt:
 
 \subsection*{Sturm-Liouville Problem}
 \begin{align}\label{eqSturmLiouvillePDE}\tag{SturmLiouville}
--\big(p(x)\cdot u(x)\big)'+q(x)\cdot u(x) &= f(x) \text{ in } (0,1)\\\nonumber
-u(0)=u(1)&=0
+	\left\lbrace\begin{array}{rll}
+		-\big(p(x)\cdot u'(x)\big)'+q(x)\cdot u(x) &= f(x) &\text{ in } (0,1)\\
+		u(0)=u(1)&=0 &
+\end{array}
+\right.
 \end{align}
 wobei
 \begin{align*}
-f\in L^2((0,1)),~q\in C\big([0,1]\big), q(x)\geq0\forall x\in[0,1], p\in C\big([0,1]\big), p(x)\geq p_0>0~\forall x\in [0,1]
+	&f\in L^2((0,1)),\\
+	&q\in C\big([0,1]\big), &&q(x)\geq0\quad\forall x\in[0,1], \\
+	&p\in C\big([0,1]\big), &&p(x)\geq p_0>0\quad\forall x\in [0,1]
 \end{align*}
 \begin{align*}
 a(v,w)=\int\limits_0^1 p(x)\cdot v'(x)\cdot w'(x)+q(x)\cdot v(x)\cdot w(x)\d x
@@ -1247,14 +1265,6 @@ Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polyg
 \overline{\Omega}=\bigcup\limits_{i=1}^N \overline{K_i}
 \end{aligned}$ 
 
-\begin{figure}[h!]
-\begin{center}
-\input{tikz/triang_example1}
-\caption{beispielhafte Triangluierung, $K_i$ disjunkt}
-\label{AbbTriangulierung}
-\end{center}
-\end{figure}
-
 \item $\begin{aligned}
 i\neq j\implies K_i\cap K_j=\emptyset
 \end{aligned}$
@@ -1267,6 +1277,15 @@ i\neq j\implies K_i\cap K_j=\emptyset
 
 \begin{figure}[h!]
 \begin{center}
+\input{tikz/triang_example1}
+\caption{beispielhafte Triangluierung, $K_i$ disjunkt}
+\label{AbbTriangulierung}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[h!]
+\begin{center}
 \input{tikz/triang_example3}
 \caption{Unzulässige Triangulierung}
 \label{AbbUnzulaessigeTriangulierung}
@@ -1276,7 +1295,12 @@ i\neq j\implies K_i\cap K_j=\emptyset
 
 \subsection*{Raum der stetigen stückweise linearen Funktionen}
 \begin{align*}
-V_h&:=\Big\lbrace v\in C(\overline{\Omega}) : v|_{K_i}\in P_1(K)~\forall i=1,\ldots,N,~v|_{\partial\Omega}=0\Big\rbrace\subseteq H^1_0(\Omega)\\
+V_h&:=\left\lbrace
+\begin{array}{rl}
+	v\in C(\overline{\Omega}) : &v|_{K_i}\in P_1(K)~\forall i=1,\ldots,N,\\
+	&v|_{\partial\Omega}=0
+\end{array}\right\rbrace
+	\subseteq H^1_0(\Omega)\\
 P_1(K_i)&=\spann(1,x,y)\\
 P_2(K)&=\spann\big( x^\alpha, |\alpha|\leq k\big)\mit K\subseteq\R^d,~ x^{\alpha}:=x_1^{\alpha_1},\ldots,x_d^{\alpha_d}\\
 Q_k(K)&=\spann\big(x^\alpha,\max\limits_i |\alpha_i|\leq k\big)\\
