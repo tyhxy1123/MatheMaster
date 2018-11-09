@@ -43,7 +43,7 @@ Siehe Übung (Blatt 2).
 \end{proof}
 
 \begin{defi}
-Sei $(X_t)_{t\in I}$ ein $(\F_t)_{t\in I}$-adaptierter stochastischer Prozess und $\tau$ eine Stoppzeit. Wir definieren die Zufallsvariable
+	Sei $(X_t)_{t\in I}$ ein $(\F_t)_{t\in I}$-adaptierter stochastischer Prozess und $\tau$ eine Stoppzeit. Wir definieren \textbf{die Zufallsvariable}
 \begin{align*}
 X_\tau(\omega):=:X_{\tau(\omega)}(\omega)\qquad\forall \omega\in\lbrace\tau<\infty\rbrace
 \end{align*} 
@@ -99,7 +99,7 @@ Sei $(X_n)_{n\in\N_0}$ ein Martingal und $\tau$ eine endliche Stoppzeit, d. h. $
 \begin{align}\label{eqTheorem3.3}
 \E\big[X_\tau\big]=\E\big[X_0\big]
 \end{align}
-in jedem der Folgenden Fälle:
+in jedem der folgenden Fälle:
 \begin{enumerate}[label=\alph*)]
 \item $\begin{aligned}
 \tau\text{ ist beschränkt, d. h. }\exists K\in\N_0:\P[\tau\leq K]=1
@@ -178,7 +178,7 @@ Andererseits:
 \begin{align*}
 \E\big[X_\tau\big]&=\E\Big[\underbrace{X_{\tau_A}}_{=A}\cdot\indi_{\lbrace\tau_A<\tau_B\rbrace}+\underbrace{X_{\tau_B}}_{=-B}\cdot\indi_{\lbrace\tau_A>\tau_B\rbrace}\Big]\\
 &=A\cdot\P\big(\tau_A<\tau_B\big)-B\cdot\P\big(\tau_A>\tau_B\big)\\
-&=A\cdot p-B\cdot(a-p)\\
+&=A\cdot p-B\cdot(1-p)\\
 &=p\cdot(A+B)-B\\
 &\implies
 p=\frac{B}{A+B}
@@ -186,7 +186,7 @@ p=\frac{B}{A+B}
 und somit:
 \begin{align*}
 \P\big(X\text{ trifft }+A\text{ vor }-B\big)&=\frac{B}{A+B}\\
-\P\big(X\text{ trifft }-B\text{ vor }+A\big)&=\frac{B}{A+B}\\
+\P\big(X\text{ trifft }-B\text{ vor }+A\big)&=\frac{A}{A+B}\\
 \end{align*}
 
 \underline{Zu Frage 2:}\\
@@ -210,9 +210,10 @@ Andererseits:
 \begin{align*}
 \E[M_\tau]
 &=\E\big[X_\tau^2-\tau\big]\\
-&=\E\Big[\underbrace{X^2_{\tau_A}}_{=A^2}\cdot\indi_{\lbrace\tau_A<\tau_B\rbrace}+\underbrace{X^2_{\tau_B}}_{=B^2}\cdot\indi_{\lbrace\tau_A>\tau_B\rbrace}\Big]\\
+&=\E\Big[\underbrace{X^2_{\tau_A}}_{=A^2}\cdot\indi_{\lbrace\tau_A<\tau_B\rbrace}+\underbrace{X^2_{\tau_B}}_{=B^2}\cdot\indi_{\lbrace\tau_A>\tau_B\rbrace}\Big] - \E[\tau]\\
 &=A^2\cdot\P\big(\tau_A<\tau_B\big)+B^2\cdot\P\big(\tau_B<\tau_A\big)-\E[\tau]\\
 &=A^2\cdot\frac{B}{A+B}+B^2\cdot\frac{A}{A+B}-\E[\tau]\\
+&=\frac{A^2\cdot B + B^2 \cdot A}{A+B}-\E[\tau]\\
 &=A\cdot B-\E[\tau]\\
 &\implies
 \E[\tau]=A\cdot B
@@ -222,7 +223,7 @@ Also ist $E\big[\text{Wartezeit bis }X\text{ den Wert }+A\text{ oder }-B\text{ e
 \underline{Überprüfen von $P(\tau<\infty)=1$:}\\
 Definiere Ereignisse
 \begin{align*}
-\E_k:=\Big\lbrace\omega\in\Omega:X(\omega)\text{ steigt monoton für }k\cdot(A+b)\leq n<(k+1)\cdot(A+B)\Big\rbrace\qquad\forall k\in\N_0
+\E_k:=\Big\lbrace\omega\in\Omega:X(\omega)\text{ steigt monoton für }k\cdot(A+B)\leq n<(k+1)\cdot(A+B)\Big\rbrace\qquad\forall k\in\N_0
 \end{align*}
 %TODO Hier Skizze einfügen
 Es gilt
@@ -239,9 +240,9 @@ Außerdem: $E_1,E_2,\ldots$ sind unabhängig mit $\P(E_1)=\P(E_2)=\ldots$ und
 \end{align*}
 Somit folgt
 \begin{align*}
-\P\big(\tau>n\cdot(A+b)\big)&=\P\left(\bigcap\limits_{k=0}^n\big\lbrace\tau > k\cdot (A+B)\big\rbrace\right)\\
+\P\big(\tau>n\cdot(A+B)\big)&=\P\left(\bigcap\limits_{k=0}^n\big\lbrace\tau > k\cdot (A+B)\big\rbrace\right)\\
 &\leq\P\left(\bigcap\limits_{k=0}^{n-1} E_k^C\right)\\
-&=\big(1-\P(E_1)\big)^n\stackrel{n\to\infty}{\longrightarrow}0\\
+&=\Big(1-\P(E_1)\Big)^n\stackrel{n\to\infty}{\longrightarrow}0\\
 \P(\tau=\infty)&\leq\underbrace{\P\big(\tau> n\cdot(A+B)\big)}_{\stackrel{n\to\infty}{\longrightarrow}0}\qquad\forall n\in\N_0\\
 &\implies
 \P(\tau<\infty)=1
