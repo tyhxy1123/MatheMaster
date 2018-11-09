@@ -1,0 +1,454 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../latex/commands_stochastik}
+\input{../../WTHM/commands_WTHM}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{color}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{WTHM WiSe 18 19}
+\ohead{}
+\ifoot{Aufgabenblatt 2}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 1}
+\subsection*{Aufgabe 1 a)}
+Sei $(X_t)_{t\in\R_{\geq0}}$ ein Super-Martingal bzgl. einer Filtration $(\F_t)_{t\in\R_{\geq0}}$ mit\\ $\E[X_t]=$ const.\\
+Dann ist $(X_t)_{t\in\R_{\geq0}}$ bereits ein Martingal.
+
+\begin{proof}
+Da $(X_t)_{t\in\R_{\geq0}}$ bereits ein Super-Martingal ist, genügt es nur die Martingaleigenschaft zu zeigen. Dann gilt für alle $s\leq t$
+	\begin{align*}
+		X_s - \BedE{X_t}{\F_s} \stackrel{\text{Super-MG}}{\geq} 0
+	\end{align*}
+	und
+	\begin{align*}
+		\E\big[\underbrace{X_s - \BedE{X_t}{\F_s}}_{\geq0} \big]
+		&\stackeq{\text{Lin}} \E[X_s] - \E\big[\BedE{X_t}{\F_s} \big] \\		
+		&\stackeq{\text{Tow}} \E[X_s] - \E[X_t] \\
+		%&\stackeq{\text{Lin}} \E[X_s-X_t]\\
+		&\stackeq{\text{Vor}} c-c \\
+		&= 0
+	\end{align*}
+Somit folgt $X_s=\BedE{X_t}{\F_s}$ fast sicher für alle $s\leq t$. Also ist $(X_t)_{t\in\R_{\geq0}}$ ein Martingal, denn in $\mathcal{L}_p$ sind (per Äquivalenzrelation) zwei Zufallsvariablen gleich, wenn sie punktweise fast sicher gleich sind.
+\end{proof}
+
+Bemerkung: Die Aussage gilt analog für Submartingale.
+
+\subsection*{Aufgabe 1 b)}
+Sei $(X_n)_{n\in\N}$ ein Martingal \underline{und} ein vorhersehbarer Prozess bzgl. der gleichen Filtration $(\F_n)_{n\in\N}$.\\
+Dann ist $X_n=X_0$ fast sicher für alle $n\in\N$.
+
+\begin{proof}
+	Beweis per Induktion.\\
+	Induktionsanfang für $n=0$ ist klar.\\
+	Induktionsvoraussetzung: Gelte
+	\begin{align*}
+		X_n = X_0 \quad \text{f.s.}
+	\end{align*}
+	für beliebiges aber festes $n\in\N$.\\
+	Induktionsschritt:
+	\begin{align*}
+		X_{n+1}-X_0
+		&\stackeq{\text{IV}} X_{n+1} - X_{n} \\
+		&\stackeq{\text{MG}} X_{n+1} - \BedE{X_{n+1}}{\F_{n}} \\
+		&\stackeq{1.1.4.(a)} \BedE{X_{n+1}}{\F_{n}} - \BedE{X_{n+1}}{\F_{n}} \\
+		%&\stackeq{\text{Lin}} \BedE{X_{n+1}-X_{n+1}}{\F_{n-1}} \\
+		&= 0
+	\end{align*}
+	
+	\textbf{Marvins Version:}\\
+	Sei $n\in\N$ beliebig. Dann gilt:
+	\begin{align*}
+		X_n\stackeq{\text{MG}} \E\big[X_{n+1}~\big|\F_n\big]\stackeq{\text{vorher}} X_{n+1}\in\F_n\\
+	\implies X_n=X_{n+1}
+	\end{align*}
+\end{proof}
+
+\section*{Aufgabe 2}
+\subsection*{Aufgabe 2 a)}
+Sei $(\xi_j)_{j\in\N_{>0}}$ eine iid-Folge nichtnegativer Zufallsvariablen mit $\E[\xi_1]=1$. Dann ist der stochastische Prozess $M$ definiert durch
+\begin{align*}
+M_0:=\indi_\Omega\qquad\text{ und }M_n=\prod\limits_{j=1}^n\xi_j\qquad\forall n\in\N_{>0}
+\end{align*}
+ein Martingal bzgl. der von $(\xi_j)_{j\in\N_{>0}}$ erzeugten Filtration  mit $\F_0:=\lbrace \Omega,\emptyset\rbrace$ und $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ für alle $n\in\N_{>0}$.
+
+\begin{proof}
+	\underline{Adaptiertheit:}\\
+	$M_0$ ist $\F_0$ offenbar messbar und
+	$\xi_n$ ist $\F_n$-messbar für $n>0$ nach Definition von $\F_n$.	\\
+	
+	 \underline{Integrierbarkeit:}
+	\begin{align*}
+		\E\big[|M_n|\big]
+		&\stackeq{\geq0}\E\big[M_n\big]\\
+		&\stackeq{\text{Def}}\E\left[\prod_{j=1}^n \xi_j\right]\cdot\underbrace{\E[M_0]}_{=1} \\
+		&\stackeq{\text{iid}}\prod_{j=1}^n \E[\xi_1] \\
+		&= 1 \\
+		&<\infty
+	\end{align*}
+	\underline{MG-Eigenschaft:}
+	\begin{align*}
+		\BedE{M_n}{\F_{n-1}}
+		&\stackeq{\text{Def}} \BedE{\prod_{j=1}^n \xi_j}{\F_{n-1}} \\
+		&\stackeq{} \BedE{\left(\prod_{j=k+1}^n \xi_j\right)\cdot\left(\prod_{j=1}^k \xi_j\right)}{\F_{n-1}} \\
+		&\stackeq{\text{Def}} \BedE{\left(\prod_{j=k+1}^n \xi_j\right)\cdot M_k}{\F_{n-1}} \\
+		&\stackeq{\text{Pull-out}} \E\left[\prod_{j=k+1}^n \xi_j\right]\cdot\BedE{M_{k}}{\F_{n-1}} \\
+		&\stackeq{\text{iid}} \left(\prod_{j=k+1}^n\E[\xi_j]\right) \cdot \BedE{M_{k}}{\F_{n-1}}\qquad\forall n\in\N\\
+		&= 1\cdot \BedE{M_{k}}{\F_{n-1}}\\
+		&\stackeq{\text{1.1.4(a)}} M_{k}\qquad\forall k\leq n
+	\end{align*}
+In die letzte Gleichheit geht auch die oben gezeigte Adaptiertheit ein: $M_k$ ist $\F_k$ messbar und wegen $\F_{k}\subseteq \F_{k+1}\subseteq\ldots\subseteq \F_{n-1}\subseteq\F_n$ auch $n-1$ messbar.
+\end{proof}
+
+\subsection*{Aufgabe 2 b)}
+Sei $(S_n)_{n\in\N}$ der \textbf{asymmetrische} einfache Random Walk, d. h.\\ $S_n=\xi_1+\ldots+\xi_n$ mit $\P[\xi_1=1]=p$ und $\P[\xi_1=-1]=1-p=:q$.\\
+Dann ist 
+\begin{align*}
+M_n:=\left(\frac{q}{p}\right)^{S_n}\qquad\forall n\in\N
+\end{align*}
+für jedes $p\in (0,1)\setminus\left\lbrace\frac{1}{2}\right\rbrace$ ein Martingal bzgl. $\F_n=\sigma(\xi_1,\ldots,\xi_n)$.
+
+\begin{proof}
+	\underline{Adaptiertheit:}\\
+	Betrachte die Funktion
+	\begin{align*}
+		f(x):= \exp\Big(x\cdot\log\Big(\frac{q}{p}\Big)\Big)
+	\end{align*}
+	Diese ist messbar (weil stetig) und da $S_n$ per Definition von $\F_n$ messbar ist, ist auch
+	$f\circ S_n$ messbar bezüglich $\F_n$ für alle $n\in\N$.\\
+
+	\underline{Integrierbarkeit:} %FALSCH IMHO, da S_n<0 möglich
+	\begin{align*}
+		\E\big[|M_n|\big]]
+		&\stackeq{\geq0}\E[M_n]\\
+		&= \E\left[\left(\frac{q}{p}\right)^{S_n}\right] \\
+		&\leq\begin{cases}
+		\E\Big[\prod_{i=1}^{\lfloor S_n\rfloor + 1}\Big(\frac{q}{p}\Big)\Big] &,\frac{q}{p}\geq 1 \\
+		1 &,\frac{q}{p} < 1 
+	\end{cases} \\
+		&=\begin{cases}
+	\Big(\frac{q}{p}\Big)^{n+1} &,\frac{q}{p}\geq 1 \\
+		1 &,\frac{q}{p} < 1 
+	\end{cases} \\
+	&< \infty
+	\end{align*}
+
+	\underline{Martingaleigenschaft:}
+	\begin{align*}
+		\BedE{M_n}{F_{n-1}}
+		&=\E\left[M_{n-1}\cdot\left(\frac{q}{p}\right)^{\xi_n}~\Big|~\F_{n-1}\right] \\
+		&\stackeq{\text{Pull}}
+	\E\left[\left.\left(\frac{q}{p}\right)^{\xi_1}~\right|~\F_{n-1}\right]\cdot M_{n-1} \\
+	&\stackeq{\text{}}
+	\E\left[\left(\frac{q}{p}\right)^{\xi_1}\right]\cdot M_{n-1} \\
+		&=\left(\left(\frac{q}{p}\right)^1\cdot p + \left(\frac{q}{p}\right)^{-1}\cdot q\right)\cdot M_{n-1} \\
+		&= (p+q)\cdot M_{n-1} \\
+		&= M_{n-1}
+	\end{align*}
+Der allgemeine Fall für $k\leq n$ folgt dann induktiv.\\
+
+\textbf{Alternative vom Prof:}\\
+Betrachte (b) als Spezialfall von (a):
+\begin{align*}
+M_n&=\prod\limits_{n=1}^n \eta_k,\qquad\eta_k:=\left(\frac{q}{p}\right)^{\xi_k}\\
+\E\big[\eta_k\big]&=\E\left[\left(\frac{q}{p}\right)^{S_k}\right]=p\cdot\frac{q}{p}+q\cdot\frac{p}{q}=1
+\end{align*}
+\end{proof}
+
+\subsection*{Aufgabe 2 c)}
+Kompensator $\langle M\rangle$ hat Eigenschaften:
+\begin{itemize}
+\item vorhersehbar
+\item $M_n^2-\langle M\rangle_N$ ist Martingal
+\end{itemize}
+Aus der Vorlesung ist bekannt:
+\begin{align*}
+\E\Big[(M_n-M_{n-1})^2~\Big|~\F_{n-1}\Big]=\langle M\rangle_n-\langle M\rangle_{n-1}
+\end{align*}
+
+\underline{Kompensator von $M_n$ aus a):} Einsetzen liefert
+\begin{align*}
+\E\Big[M_{n-1}^2\cdot(\xi_n-1)^2~\Big|~\F_{n-1}\Big]
+&\stackeq{\text{Pull}}
+M_{n-1}^2\cdot\E\Big[(\xi_{n}-1)^2~\Big|~\F_{n-1}\Big]\\
+&=M_{n-1}^2\cdot\E\Big[(\xi_n-1)^2\Big]\\
+&=M_{n-1}^2\cdot\Var(\xi_1)\\
+&\implies
+\langle M\rangle_n=\Var(\xi_1)\cdot\sum\limits_{i=1}^{n-1} M_i^2
+\end{align*}
+
+\underline{Kompensator von $M_n$ aus b):}\\
+Nutze hier, dass b) Spezialfall von a) ist. Es bleibt nur noch die Varianz der Faktoren auszurechnen:
+\begin{align*}
+\Var\left(\left(\frac{q}{p}\right)^{\xi_n}\right)
+&=p\cdot\left(\frac{q}{p}-1\right)^2+q\cdot\left(\frac{p}{q}-1\right)^2\\
+&=p\cdot\left(\frac{q^2}{p^2}-\frac{2\cdot q}{p}+1\right)+q\cdot\left(\frac{p^2}{q^2}-2\cdot\frac{p}{p}+1\right)\\
+&=\frac{q^2}{p}-2\cdot q+p+\frac{p^2}{q}-2\cdot p+q\\
+&=\frac{q^2}{p}+\frac{p^2}{q}-1
+\end{align*}
+
+
+\section*{Aufgabe 3}
+Sei $(\xi_n)_{n\in\N}$ eine Folge von iid-Zufallsvariablen und $\xi_1$ normalverteilt mit Mittelwert 0 und Varianz $\sigma^2>0$. Weiter sei $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ und\\ $X_n:=\xi_1+\ldots+\xi_n$
+
+\subsection*{Aufgabe 3 a)}
+\begin{align*}
+\E\big[\exp(u\cdot\xi_1)\big]=\exp\left(u^2\cdot\frac{\sigma^2}{2}\right)\qquad\forall u\in\R
+\end{align*}
+
+\begin{proof}
+Sei $u\in\R$ beliebig. Wegen
+\begin{align}\label{3a}
+u\cdot x-\frac{x^2}{2\cdot\sigma^2}
+&=-\left(\frac{u^2\cdot\sigma^2}{2}-2\cdot\frac{u\cdot\sigma\cdot x}{\sqrt{2}\cdot\sqrt{2}\cdot\sigma}+\frac{x^2}{2\cdot\sigma^2}\right)+\frac{u^2\cdot\sigma^2}{2}\\\nonumber
+&\stackeq{\text{Binom}}
+-\left(\frac{u\cdot\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\cdot\sigma}\right)^2+\frac{(u\cdot\sigma)^2}{2}
+\end{align}
+gilt
+\begin{align*}
+\E\big[\exp(u\cdot\xi_1)\big]
+&\stackeq{\text{Trafo}}
+\int\limits_\R\exp(u\cdot x)\P_{\xi_1}(\d x)\\
+&\stackeq{\text{Dichte}}
+\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}}\cdot\int\limits_\R \exp\left(u\cdot x\right)\cdot \exp\left(-\frac{x^2}{2\cdot\sigma^2}\right)\d x\\
+&\stackeq{\eqref{3a}}
+\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}}\cdot\int\limits_\R \exp\left(-\left(\frac{u\cdot\sigma}{\sqrt{2}}-\frac{x}{\sqrt{2}\cdot\sigma}\right)^2\right) \cdot\exp\left(\frac{(u\cdot\sigma)^2}{2}\right)\d x\\
+&=\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}} \cdot \exp\left(\frac{(u\cdot\sigma)^2}{2}\right)\cdot\int\limits_\R \exp\left(-\frac{(u\cdot\sigma^2-x)^2}{2\cdot\sigma^2}\right)\d x\\
+&\stackeq{\text{Subs}}
+\frac{1}{\sqrt{2\cdot\pi\cdot\sigma^2}}\cdot\exp\left(\frac{(u\cdot\sigma)^2}{2}\right)\cdot\underbrace{\int\limits_\R \exp\left(-\frac{y^2}{2\cdot\sigma^2}\right)\d y}_{=\sqrt{2\cdot\pi\cdot\sigma^2}\text{, da Gauß Int.}}\\
+&=\exp\left(u^2\cdot\frac{\sigma^2}{2}\right)
+\end{align*}
+Für die Substitution nutze
+\begin{align*}
+f(y):=\exp\left(-\frac{y^2}{2\cdot\sigma^2}\right),\qquad\varphi(x):=-(u\cdot\sigma^2-x),\qquad\varphi'(x)=1
+\end{align*}
+\end{proof}
+
+\subsection*{Aufgabe 3 b)}
+Sei $u\in\R$. Dann ist
+\begin{align*}
+Z_n^u:=\exp\left(u\cdot X_n-n\cdot u^2\cdot\frac{\sigma^2}{2}\right)\qquad\forall n\in\N
+\end{align*}
+ein Martingal.
+
+\begin{proof} Zunächst gilt
+\begin{align*}
+Z_n^u
+&\stackeq{\text{Def}}\exp\left(u\cdot S_n-n\cdot u^2\cdot\frac{\sigma^2}{2}\right)\\
+	&= \frac{\exp(u\cdot S_n)}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)} \\
+	&=\prod_{i=1}^n \frac{\exp\left(u\cdot \xi_i\right)}{\exp\left(n\cdot u^2\cdot \frac{\sigma^2}{2}\right)} \\
+	&=\frac{1}{\exp\left(n\cdot u^2\cdot \frac{\sigma^2}{2}\right)}\cdot\prod_{i=1}^n \exp\left(u\cdot\xi_i\right)
+\end{align*}
+\underline{Adaptiertheit:} ist klar, da Verkettung messbarer Funktionen.\\
+
+\underline{Integrierbarkeit:}
+\begin{align*}
+\E\big[|Z_n^u|\big]
+	&\stackeq{\geq0}\E\left[Z^u_n\right]\\ 
+	&\stackeq{\text{oben}}
+	\frac{1}{\exp\left(n\cdot u\cdot\frac{\sigma^2}{2}\right)}\cdot\E\left[\prod\limits_{i=1}^n \exp\big(u\cdot\xi_i\big)\right]\\
+	&\stackrel{\text{iid.}}{=}\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\prod_{i=1}^n \E\big[\exp\left(u\cdot\xi_1\right)\big] \\
+	&=\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\prod_{i=1}^n \exp\left(u^2\cdot\frac{\sigma^2}{2}\right) \\
+	&=\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot \exp\left(u^2\cdot n\cdot\frac{\sigma^2}{2}\right) \\
+	&=1 \\
+	&<\infty
+\end{align*}
+\underline{Martingaleigenschaft:}
+\begin{align*}
+	\E\big[Z_n^u ~\big|~\F_{n-1}\big]
+	&=\E\left[\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\exp\left(u\cdot\xi_n\right)\cdot Z^u_{n-1}~\bigg|~\F_{n-1}\right]\\
+	&\stackeq{\text{Pull}}
+	\E\left[\frac{1}{\exp\left(n\cdot u^2\cdot\frac{\sigma^2}{2}\right)}\cdot\exp\left(u\cdot\xi_n\right)\right]\cdot Z^u_{n-1}\cdot\exp\left(-\frac{u^2\cdot\sigma^2}{2}\right)\\
+	&\stackeq{(a)} Z^u_{n-1}
+\end{align*}
+Der allgemeine Fall für $k\leq n$ folgt dann induktiv.\\
+
+\textbf{Alternative:} Ist ein Spezialfall von 2 a) mit
+\begin{align*}
+Z_n^u&=\prod\limits_{i=1}^n\eta_i,\qquad\eta_i=\exp\left(u\cdot\xi_i-\frac{u^2\cdot\sigma^2}{2}\right)\geq0\\
+\E[\eta_i]&=\E[\exp(u\cdot\xi_i)]\cdot\exp\left(-\frac{u^2\cdot\sigma^2}{2}\right)=1
+\end{align*}
+\end{proof}
+
+\subsection*{Aufgabe 3 c)}
+Zeige, dass der Grenzwert
+\begin{align*}
+Z_\infty^u:=\limn Z^u_n=\limn\exp\left(u\cdot X_n-n\cdot u^2\cdot\frac{\sigma^2}{2}\right)
+\end{align*}
+existiert fast sicher. Bestimme diesen Grenzwert. Gibt es Werte $u\in\R$ so, dass $(Z_n^u)_{n\in\N\cup\lbrace\infty\rbrace}$ wieder ein Martingal ist, d. h. so, dass
+\begin{align*}
+\E\big[Z^u_\infty~\big|~\F_n\big]=Z^u_n
+\end{align*}
+gilt?
+
+\begin{lösung}
+Betrachte $u\neq0$, da sonst trivial.\\
+
+\underline{Vorüberlegung:}
+Aus dem Gesetz der großen Zahlen folgt
+\begin{align*}
+\limn\frac{X_n}{n}=\E[\xi_1]=0.
+\end{align*}
+Es folgt
+\begin{align*}
+\limn\left(\frac{1}{n}\cdot\left( u\cdot X_n-n\cdot u^2\cdot\frac{\sigma^2}{2}\right)\right)
+&=\limn\left(u\cdot\frac{X_n}{n}-\frac{u^2\cdot\sigma^2}{2}\right)\\
+&=-\frac{u^2\cdot\sigma^2}{2}\\
+&<0\text{ für }u\neq0\\
+\implies
+\limn\left( u\cdot X_n-n\cdot u^2\cdot\frac{\sigma^2}{2}\right)&=-\infty\text{ fast sicher }\\
+\implies
+\limn Z_n^u&=\left\lbrace\begin{array}{cl}
+1, & \falls u=0\\
+0, & \falls u\neq 0
+\end{array}\right.
+=Z_\infty^u
+\end{align*}
+\underline{Frage:} Gilt $Z_n^u=\E[Z_\infty^u~|~\F_n]$?\\
+Nein! Denn 
+\begin{align}\label{eq3cStern}
+\E\big[Z_\infty^u~\big|~\F_n\big]=0\neq Z_n^u
+\end{align}
+(Im Fall $u=0$ gilt die Aussage, ist aber trvial, denn $Z_n^0\equiv 1$.)\\
+Hierbei ist \eqref{eq3cStern} ein Beispiel für nicht ``gleichgradig integrierbare'' Martingale.
+\end{lösung}
+
+\section*{Aufgabe 4}
+\begin{defi}
+Eine Zufallsvariable $\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace$ heißt \textbf{Stoppzeit} bzgl. der Filtration $(\F_n)_{n\in\N}$
+\begin{align*}
+:\Longleftrightarrow\forall n\in\N_0:\big\lbrace\tau\leq n\big\rbrace:=\big\lbrace \omega\in\Omega:\tau(\omega)\leq n\big\rbrace\in\F_n
+\end{align*}
+\end{defi}
+Seien nun Stoppzeiten $\tau,\sigma,\tau_1,\tau_2,\ldots$ gegeben. Dann gilt:
+\begin{enumerate}[label=\alph*)]
+\item $\lbrace\omega\in\Omega:\tau(\omega)=n\rbrace\in\F_n$
+\item $\lbrace\omega\in\Omega:\tau(\omega)\geq n\rbrace\in\F_{n-1}$
+\item $\begin{aligned}
+C_n(\omega):=\indi_{[0,\tau(\omega)]}(n)
+\end{aligned}$ ist messbar bzgl. $\F_{n-1}$
+\item $\sigma\wedge\tau$ und $\sigma\vee\tau$ sind Stoppzeiten. Erinnerung:
+\begin{align*}
+&\sigma\wedge\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace,&(\sigma\wedge\tau)(\omega)&:=\min\big\lbrace\sigma(\omega),\tau(\omega)\big\rbrace\\
+&\sigma\vee\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace,&(\sigma\vee\tau)(\omega)&:=\max\big\lbrace\sigma(\omega),\tau(\omega)\big\rbrace
+\end{align*}
+\item Sind $\sup\limits_j\tau_j$ und $\inf\limits_j\tau_j$ Stoppzeiten?
+\end{enumerate}
+
+\begin{proof}
+\underline{Zu a):} Aus der Definition folgt:
+\begin{align*}
+	&\{\tau \leq n\} \in \F_n \\
+	\implies & \{\tau > n-1\} = \{\tau \leq n-1\}^C \in \F_{n-1} \subseteq \F_n \\
+	\implies & \{\tau = n\} = \{\tau \leq n\} \cap \{\tau > n-1\} \in \F_n
+	\end{align*}
+\underline{Zu b):}\\
+\begin{align*}
+	\{\tau \geq n \} =\lbrace\tau <n-1\rbrace^C= \Big(\underbrace{\{\tau \leq n-1 \}}_{\in\F_{n-1}\text{, wg. (a)}} \setminus \underbrace{\{\tau = n-1 \}}_{\in\F_{n-1}} \Big)^C \in \F_{n-1}
+\end{align*}
+\underline{Zu c):}\\
+%Live-Mitschrift:
+\begin{align*}
+C_n(\omega)&=1\Longleftrightarrow n\leq\tau(\omega)\Longleftrightarrow
+\omega\in\lbrace\tau\geq n\rbrace\stackeq{(b)}{\in}\F_{n-1}\\
+C_n(\omega)&=0\Longleftrightarrow
+n>\tau(\omega)\Longleftrightarrow
+\omega\in\lbrace\tau<n\rbrace=\lbrace\tau\leq n-1\rbrace\in\F_{n-1}
+\end{align*}
+
+
+
+
+
+%Für festes n gilt:
+
+%\begin{align*}
+%	\indi_{[0,\tau(\cdot)]}(n)=\indi_{\{n\leq \tau(\cdot)\}}
+%\end{align*}
+
+%\begin{align*}
+%	&\indi_{[0,\tau(\omega)]}(n)\stackeq{???}\indi_{\underbrace{\{n\leq \tau(\omega)\}}_{(b) \implies \in\F_{n-1}}} \\
+%	\implies &\indi_{[0,\tau(\omega)]}(n) \in \F_{n-1}
+%\end{align*}
+%Mein Vorschlag:
+%\begin{align*}
+%C_n:\Omega\to\lbrace0,1\rbrace\text{ ist }\F_{n-1}\text{ messbar }\Longleftrightarrow\forall M\in\B(\R):C_n^{-1}(M)\in\F_{n-1}
+%\end{align*}
+%Betrachte
+%\begin{align*}
+%C_n^{-1}(M)
+%&=\big\lbrace\omega\in\Omega:C_n(\omega)\in M\big\rbrace\\
+%&=\left\lbrace\omega\in\Omega:\indi_{[0,\tau(\omega)]}(n)\in M\right\rbrace\\
+%&=\left\lbrace\omega\in\Omega:\left\lbrace\begin{array}{cl}
+%0, &\falls n\not\in[0,\tau(\omega)]\\
+%1, & \falls n\in[0,\tau(\omega)]
+%\end{array}\right.\in M\right\rbrace\\
+%&=\left\lbrace\omega\in\Omega:\left\lbrace\begin{array}{cl}
+%0, &\falls n>\tau(\omega)\\
+%1, &\falls n\leq\tau(\omega)
+%\end{array}\right.\in M\right\rbrace\\
+%&=\big(\lbrace n>\tau(\omega)\cap\lbrace o\in M\rbrace\big)\cup\big(\lbrace n\leq\tau(\omega)\rbrace\cap\lbrace 1\in M\rbrace\big)
+%\end{align*}
+%Also machen wir eine Fallunterscheidung:\\
+
+%\underline{Fall 1: $0,1\not\in M$}\\
+%Dann gilt $C_n(M)=\emptyset\in\F_{n-1}$.\\
+
+%\underline{Fall 2: $0,1\in M$}\\
+%Dann gilt $C_n(M)=\lbrace n>\tau(\omega)\rbrace\cup\lbrace n\leq\tau(\omega)\rbrace=\Omega\in\F_{n-1}$.\\
+
+%\underline{Fall 3: $0\in M,1\not\in M$}\\
+%Dann gilt $C_n(M)=\lbrace n>\tau(\omega)\rbrace=\lbrace n\leq\tau(\omega)\rbrace^C\in\F_{n}$.\\
+
+%\underline{Fall 4: $0\not\in M,1\in M$}\\
+%Dann gilt $C_n(M)=\lbrace n\leq\tau(\omega)\rbrace\in\F_{n}$.\\
+
+%Folglich ist $C_n$ $\F_n$ messbar. Im Allgemeinen aber leider nicht $F_{n-1}$ messbar, da $\F_{n-1}\subseteq\F_n$.\\
+
+\underline{Zu d):} Sei $n\in\N_0$ beliebig. Dann gilt
+\begin{align*}
+\{\sigma \wedge \tau \leq n \}
+&=\big\lbrace\omega\in\Omega:\min\lbrace\sigma(\omega),\tau(\omega)\rbrace\leq n\big\rbrace\\
+&=\big\lbrace\omega\in\Omega:\sigma(\omega)\leq n\vee\tau(\omega)\leq n\big\rbrace\\
+&=\underbrace{\{\sigma \leq n\}}_{\in \F_n} \cup \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
+\{\sigma \vee \tau \leq n \}
+&=\big\lbrace\omega\in\Omega:\max\lbrace\sigma(\omega),\tau(\omega)\rbrace\leq n\big\rbrace\\
+&=\big\lbrace\omega\in\Omega:\sigma(\omega)\leq n\wedge\tau(\omega)\leq n\big\rbrace\\
+&=\underbrace{\{\sigma \leq n\}}_{\in \F_n} \cap \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
+\end{align*}
+\underline{Zu e):}\\
+Sei $(\tau_i)_{i\in\N}$ eine abzählbare Folge von Stoppzeiten und sei $n\in\N_0$ beliebig. Dann gilt:
+\begin{align*}
+\left\lbrace\sup_{i\in\N} \tau_{i} \leq n\right\rbrace
+= \bigcap_{i\in\N}\underbrace{\{\tau_i \leq n\}}_{\in\F_n} \in \F_n
+\end{align*}
+\begin{align*}
+\left\lbrace\inf_{i\in\N} \tau_{i} \leq n\right\rbrace =
+\left\lbrace\inf_{i\in\N} \tau_{i} \geq n+1\right\rbrace^C = \left\lbrace\bigcap_{i\in\N}\underbrace{\{\tau_i \geq n+1\}}_{\in\F_n}\right\rbrace^C \in \F_n
+\end{align*}
+
+\end{proof}
+
+\end{document}
