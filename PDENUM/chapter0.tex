@@ -1043,6 +1043,14 @@ S_h^{k,m}&:=S_n^{k,-1}\cap C^m\big([0,1]\big)\\
 S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_n^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbrace
 \end{align*}
 Hierbei ist $P_k$ der Raum der Polynome von höchstens Grad $k$.\\ Die Funktionen in $S_h^{k,m}$ heißen \textbf{finite-Elemente-Funktionen}.
+
+\begin{figure}[h!]
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{./pics/Sketch0.png}
+	\caption{Beispiel für finite-Elemente-Funktionen}
+	\label{AbbFiniteFunktionen}
+	\end{center}
+\end{figure}
 \end{definition}
 
 \begin{bemerkung}\
@@ -1095,9 +1103,17 @@ S^{1,0}_{h,0}&=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
 \end{align*}
 
 \begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{./pics/Sketch1.png}
+		\caption{Hut-Funktionen}
+		\label{AbbHutFunktionen}
+	\end{center}
+\end{figure}
+
+\begin{figure}[h!]
 \begin{center}
 \input{tikz/plot_phi_hat}
-\caption{besipsielhafterPlot}
+\caption{einzelne Hut-Funktione}
 \label{AbbPhiHat}
 \end{center}
 \end{figure}
@@ -1109,6 +1125,14 @@ S_{h,0}^{2,0}&=\spann\big\lbrace\varphi_1,\ldots,\varphi_n,\psi_0,\ldots,\psi_n\
 0 &\sonst
 \end{array}\right.
 \end{align*}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{./pics/Sketch2.png}
+		\caption{einzelne zweifach diffbare finite-Elemente-Funktion}
+		\label{AbbHutFunktionen}
+	\end{center}
+\end{figure}
 
 Die Stiffness-Matrix $A$ lässt sich als Blockmatrix schreiben:
 \begin{align*}
