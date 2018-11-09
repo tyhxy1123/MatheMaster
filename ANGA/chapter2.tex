@@ -333,3 +333,166 @@ Sei $F|K$ ein Funktionenkörper, $A,B \in \Div(F|K)$
         z \mapsto xz
     \end{cases}$$
 \end{proof}
+
+\begin{lemma}
+    $A \leq B \implies \dim_K \sfrac{\mathcal{L}(B)}{\mathcal{L}(A)} \leq \deg B - \deg A$
+\end{lemma}
+\begin{proof}
+    o.E. $B=A+P$ mit $P \in S(F|K)$.
+    Wähle $t \in F$ mit $v_P(t) = v_P(B) = v_P(A) +1$
+    Definiere
+    $$ \psi : \begin{cases}
+        \mathcal{L}(B) \to F_P\\
+        x \mapsto (tx)(P) := tx + m_{v_P} \in F_P
+    \end{cases}$$
+    \begin{itemize}
+        \item $\psi$ ist wohldefiniert: $v_P(tx) = v_P(B) + v_P(x) \geq 0$
+        \item $\psi$ ist $K$-linear: $\checkmark$
+        \item $\ker \psi = \mathcal{L}(A)$: $x \in \ker \psi \iff v_P(tx) > 0$
+        \begin{align*}
+            & \iff v_P(x) + v_P(A) \geq 0\\
+            & \iff x \in \mathcal{L}(A)\\
+            & \implies \dim_K \sfrac{\mathcal{L}(B)}{\mathcal{L}(A)} = \dim_K \im (\psi) \leq \dim_K F_P\\
+            & \qquad = \deg P = \deg B - \deg A
+        \end{align*}
+    \end{itemize}
+\end{proof}
+
+\begin{satz}
+    $\dim_K \mathcal{L}(A) \leq \deg A_+ + 1$
+\end{satz}
+\begin{proof}
+    \begin{align*}
+        \dim_K \mathcal{L}(A) &\leq \dim_K \mathcal{L}(A_+)\\
+        & = \dim_K \sfrac{\mathcal{L}(A_+)}{\mathcal{L}(0)} + \dim_K \mathcal{L}(0)\\
+        & \leq \deg A_+ - \deg 0 + 1
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Die \textbf{Dimension} des Divisors $A$ ist definiert durch
+    $$ \dim A := \dim_K \mathcal{L}(A) \in \Z_{\geq 0}.$$
+\end{definition}
+
+\begin{satz}
+    Für $x \in F \setminus K$ ist 
+    $$ \deg (x)_0 = \deg (x)_\infty = [F:K(x)].$$
+\end{satz}
+\begin{proof}
+    Sei $ A := (x)_\infty, n := [F:K(x)]$.\\
+    \underline{Teil 1:} $\deg (x)_\infty \leq n$.
+
+    Die Polstellen $P_1,\ldots, P_r$ von  $x$ sind genau die Fortsetzungen von $P_\infty \in S(K(x)|K)$
+    auf $F$ mit Primelement $x^{-1}$.
+    \begin{align*}
+        \implies \deg A &= \deg \left(\sum\limits_{i=1}^r -v_{P_i}(x)P_i\right)\\
+        &= \sum\limits_{i=1}^r v_{P_i}(x) \deg P_i\\
+        &= \sum\limits_{i=1}^r e(P_i | P_\infty)v_{P_\infty}(x^{-1})\cdot f(P_i|P_\infty)\deg P_\infty\\
+        &= \sum\limits_{i=1}^r e(P_i | P_\infty)f(P_i|P_\infty)\\
+        \stackrel{2.7}{\leq} [F: K(x)] = n
+    \end{align*}
+    \underline{Teil 2:} $\deg (x)_\infty \geq n$
+
+    Wähle Basis $b_1,\ldots,b_n$ von $F|K(x)$, $B \in \Div(F|K)$ mit $B \geq 0$ und $B \geq (b_j)_\infty \forall j$.
+    Für $l \in \N$ ist $x^i b_j \in \mathcal{L}(lA+B)$ mit $i=0,\ldots,l$ und $j=1,\ldots,n$.
+    Da $b_1,\ldots,b_n$ linear unabhängig über $K(x)$ sind und $x^0, \ldots, x^l$ linear unabhängig über $K$ sind,
+    ist $$ \{x^i b_j \mid i=0, \ldots,l, j=1, \ldots,n\}$$ linear unabhängig über $K$.
+    \begin{align*}
+        &\implies \dim_K \mathcal{L}(lA + B) \geq (l + 1) \cdot n\\
+        &\implies (l + 1) \cdot n \leq \dim (lA + B) \stackrel{5.5}{\leq} \deg (lA + B) + 1\\
+        &\qquad = l \cdot \deg A + \deg B + 1\\
+        & \implies l(\deg A - n) \geq n - \deg B - 1 \forall l\\
+        &\implies \deg A - n \geq 0 \\
+        &\implies \deg (x)_\infty \geq n
+    \end{align*}
+    \underline{Teil 3:} $\deg (x)_0 = \deg (x^{-1})_\infty \stackrel{\text{Teil 1 + 2}}{=} [F: K(x^{-1})] = [F:K(x)]$
+\end{proof}
+
+\begin{korollar}
+    \begin{enumerate}[label=(\alph*)]
+        \item Für $x \in F^\times$ ist $\deg ((x)) = 0$
+        \item $A \sim A' \implies \dim A = \dim A'$ und $\deg A = \deg A'$
+        \item $\deg A < 0 \implies \dim A = 0$
+        \item Für $\deg (A) = 0$ gilt:
+        $$ A \in \mathscr{P}(F|K) \iff \dim A \geq 1 \iff \dim A =1.$$
+    \end{enumerate}
+\end{korollar}
+\begin{proof}
+    \underline{(a):} $\deg (x) = \deg (x)_0 - \deg (x)_\infty \stackrel{5.7}{=} 0$\\
+    \underline{(b):} $\dim A \stackrel{5.3(f)}{=} \dim A'$ 
+    \begin{align*}
+        A' = A + (x) \implies \deg A' = \deg A + \deg (x) \stackrel{(a)}{=} \deg A
+    \end{align*}
+    \underline{(c):} $\dim A > 0 \implies$ ex $A' \sim A$, $A' \geq 0$
+    \begin{align*}
+        & \implies \deg A' \geq \deg 0 = 0\\
+        & \implies \deg A \stackrel{(b)}{=} \deg A' \geq 0
+    \end{align*}
+    \underline{(d):}$A=(x) \implies 0 \ne x^{-1} \in \mathcal{L}(A) \implies \dim A \geq 1$
+    \begin{align*}
+        & \implies A \sim A' \geq 0, \text{ da } \deg A' = \deg A =0, \text{ also } A'=0\\
+        &\stackrel{(b)}{\implies} \dim A = \dim 0 = 1
+    \end{align*}
+    \begin{align*}
+        \dim A = 1, 0 \ne x \in \mathcal{L}(A) \implies A + (x) \geq 0, \deg (A+ (x)) = 0 \\
+        \implies A + (x) = 0, \text{ also } A = (x^{-1})
+    \end{align*}
+\end{proof}
+
+\begin{bemerkungnr}
+    (a) sagt, dass Funktionen immer gleich viele Null- und Polstellen haben (mit Vielfachheit gezählt).
+    Wegen (b) induzieren $\dim$ und $\deg$ Abbildungen
+    $$ \mathscr{C}(F|K) \to \Z,$$
+    die wir wieder so bezeichnen.
+\end{bemerkungnr}
+
+\section{Das Geschlecht}
+Sei $F|K$ ein Funktionenkörper.
+
+\begin{bemerkungnr}
+    Nach 5.5. $ \deg A - \dim A + 1 \geq 0$ für alle $A \geq 0$, nach 5.3(c) und 5.8 somit auch für alle
+    $A$ mit $\dim A > 0$. Nach 5.4 ist 
+    $$ \deg A - \dim A +1 $$
+    zudem monoton in $A$.
+\end{bemerkungnr}
+
+\begin{satz}
+    Es gibt ein $g \geq 0$ mit
+    $$ \deg A - \dim A + 1 \leq g$$
+    für alle $A \in \Div(F|K)$.
+\end{satz}
+\begin{proof}
+    Wähle $x \in F|K$, setze $A = (x)_\infty$
+    $$ \stackrel{5.7}{\implies} n := \deg (A) = [F : K(x)].$$
+    Wähle Basis $b_1,\ldots,b_n$ von $F|K(x)$, $B \geq 0$ mit $B \geq (b_j)_\infty \forall j$.
+    $$ \implies \dim (lA + B) \geq (l+1)n \forall l \in \N$$
+    Nach 5.4 ist 
+    \begin{align*}
+        &\dim (lA+B) - \dim lA \leq \deg (lA + B) - \deg lA = \deg B\\
+        \implies& \dim lA \geq (l+1)n - \deg B = \deg lA + n - \deg B\\
+        \implies& \deg lA - \dim lA \leq \deg B - n \forall l.
+    \end{align*}
+    Sei nun $D \in \Div(F|K)$ beliebig.
+    \begin{align*}
+        \dim (lA - D_+) &\stackrel{5.4}{\geq} \dim lA - \deg D_+\\
+        & \geq l \deg A + n - \deg B - \deg D_+\\
+        &> 0 \text{ für } l \text{ groß genug.}
+    \end{align*}
+    Ist $0 \ne z \in \mathcal{L}(lA - D_+)$ ist
+    \begin{align*}
+        D \leq& D_+ \sim D_+ + (z^{-1}) \leq lA \\
+        \implies& \deg D - \dim D \leq \deg D_+ - \dim D_+\\
+        &= \deg (D_+ + z^{-1})) - \dim (D_+ + (z^{-1})) \leq \deg lA - \dim lA \leq \deg B -n.
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Das \textbf{Geschlecht} von $F|K$ ist
+    $$ g := g_{F|K} := \sup \{\deg A - \dim A + 1 \mid A \in \Div(F|K)\} \in \Z_{\geq 0}.$$
+\end{definition}
+
+\begin{bemerkungnr}
+    Nach Definition gilt also 
+    $$ \dim A \geq \deg A + 1 -g $$
+    für alle $A$ mit Gleichheit für mindestens ein $A$.
+\end{bemerkungnr}
