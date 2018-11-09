@@ -140,60 +140,22 @@ Definiere $\varphi_j(b_i) = \delta_{ij}$ und $\varphi_j$ linear in allen Teilabs
 \end{equation*}
 gilt.
 
-\begin{figure}[!h]
-	\centering
-	\begin{tikzpicture}[scale=1]
-
-	
-	%\fill[black!20!white] (2.15,0) -- ++(0,0.35) -- ++(0.65,0.26) -- ++(0,-0.61) -- cycle;
-	%\draw (2.15,0) 
-	\draw (0,0) -- ++(0,1.2);
-	\draw (0,0) -- ++(4,0);
-
-	\draw[red] (0,0) -- ++(2.5,0) -- ++(0.5,1) -- ++(0.5,-1) -- ++(0.5,0);
-	%\filldraw (2.15,0.35) circle (0.4pt);
-	
-	\draw (-0.1,1) -- ++(0.2,0);
-	
-	\draw (0.5,-0.1) -- ++(0,0.2);
-	\draw (1  ,-0.1) -- ++(0,0.2);
-	\draw (1.5,-0.1) -- ++(0,0.2);
-	\draw (2  ,-0.1) -- ++(0,0.2);
-	\draw (2.5,-0.1) -- ++(0,0.2);
-	\draw (3  ,-0.1) -- ++(0,0.2);
-	\draw (3.5,-0.1) -- ++(0,0.2);
-	
-	
-	\filldraw[red] (0.5,0) circle (1.5pt);
-	\filldraw[red] (1  ,0) circle (1.5pt);
-	\filldraw[red] (1.5,0) circle (1.5pt);
-	\filldraw[red] (2  ,0) circle (1.5pt);
-	\filldraw[red] (2.5,0) circle (1.5pt);
-	\filldraw[red] (3  ,1) circle (1.5pt);
-	\filldraw[red] (3.5,0) circle (1.5pt);
-	
-	
-	\node at (-0.3,1) {1};
-	\node at (3.5,1) {$\varphi_j$};
-	%\node at (2.8,-0.1) {b};
-	%\node at (2.15,0.53) {f(a)};
-	%\node at (2.77,0.71) {f(b)};
-	
-	\end{tikzpicture}
+\begin{figure}[h!]
+\begin{center}
+\input{tikz/tikzChapter0}
+\caption{Ein Plot}
+\label{AbbChapter0}
+\end{center}
 \end{figure}
-
 
 Hier beginnt der englische Teil der Vorlesung. Die folgenden Notizen sind direkt der Vorlesung entnommen. 
 
-
 \section{sobolev spaces}
-
-In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
-
+In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.
 
 \subsection{defintions and short explanations}
 
-%\begin{definition_}\enter
+%\begin{definition_}\
 	\begin{itemize}
 		\item lebesque-spaces: 
 		\begin{align*}
@@ -225,8 +187,6 @@ In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.\enter
 		\end{equation*}
 	\end{itemize}
 %\end{definition_}
-
-
 
 \begin{defi}
 Let $ u \in L^p(\Omega)$, $1 \leq p< \infty$, $\alpha \in \N^d_0$ (multiindex).\enter

@@ -517,7 +517,15 @@ What is needed to solve the weak form or Ritz-Galerkin-approximation?
 consists of 3 characteristics:
 \begin{itemize}
 	\item $\overline{\Omega}= \underset{\tau \in \T_h}{\bigcupdot}$ with $\T$ triangles, rectangles in $\R^2$ or tetraheder in $\R^3$
-	\input{tikz/example_triangulation}
+	
+\begin{figure}[h!]
+\begin{center}
+\input{tikz/example_triangulation}
+\caption{example of triangulation}
+\label{AbbExampleTriangulation}
+\end{center}
+\end{figure}	
+	
 	\item $V_h$ contains functions, which if restricted to $\T$ are polynomials
 	\item basis functions: $\varphi_i$ are simple to compute and have small support
 \end{itemize}
@@ -536,4 +544,11 @@ $d$-simplex $\T \in \R^d$ is defined as convex hull of points $a_1,\dots,a_{d+1}
 \begin{equation*}
 	\tau = \left\{ x\in \R^d: x= \displaystyle \sum^{d+1}_{i=1} \lambda_ia_i,\ 0 \leq \lambda_1, \dots,\lambda_{d+1}\leq 1,\ \displaystyle \sum^{d+1}_{i=1} \lambda_i =1\right\}
 \end{equation*}
+
+\begin{figure}[h!]
+\begin{center}
 \input{tikz/unity_simplex}
+\caption{unity simplex}
+\label{AbbUnitySimplex}
+\end{center}
+\end{figure}
