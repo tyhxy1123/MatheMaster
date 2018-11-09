@@ -1,0 +1,26 @@
+\centering
+\begin{tikzpicture}[scale=2]
+
+
+\draw[thick] (0,0) -- ++(0,1) -- ++(1,-1)--cycle;
+\filldraw (0,0)         circle (0.8pt);
+\filldraw (0,0) ++(1,0) circle (0.8pt);
+\filldraw (0,0) ++(0,1) circle (0.8pt);
+\fill[black,font=\footnotesize] (0,0) node[below] {1 $(0,0)$}
+								(0,0) ++(1,0) node[below] {2 $(1,0)$}
+								(0,0) ++(0,1) node[above] {3 $(0,1)$};
+								
+\draw[thick] (2.2,0) -- ++(2,0) -- ++(-1,1)--cycle;
+\filldraw (2.2,0)         circle (0.8pt);
+\filldraw (2.2,0) ++(2,0) circle (0.8pt);
+\filldraw (2.2,0) ++(1,1) circle (0.8pt);
+\fill[black,font=\footnotesize] (2.2,0) node[below] {1 $(a_1,a_2)$}
+								(2.2,0) ++(2,0) node[below] {2 $(b_1,b_2)$}
+								(2.2,0) ++(1,1) node[above] {3 $(c_1,c_2)$};								
+								
+												
+\node at (1.5,1) {$F$};				
+\draw[thick,-to] (1.2,0.5) .. controls (1.4,0.8) and (1.9,0.9) .. (2.2, 0.8);
+\draw[thick] (0,0) -- ++(0,1) -- ++(1,-1)--cycle;
+
+\end{tikzpicture}
