@@ -117,8 +117,171 @@ Sei $F$ ein Körper und $R \subseteq F$ ein Ring.
 
     \underline{Bew.:} Wähle für jedes $i$ ein $l_i > k_0 \land l_i > \max\limits_{j}|v_{j}(b_{i,j})|$ und setze
     $$ b_i := \sum\limits_{j \ne i} b_{i,j}^{l_j}$$
+    \underline{Beh. 3:} $ x = \sum\limits_{k=1}^n (1-b_k)^{-1}$ erfüllt die Behauptung
+    \begin{align*}
+        x - x_i &= x_i \left(\frac{1}{1-b_i} - 1\right) + \sum\limits_{k\ne i} x_k (1-b_k)^{-1}\\
+        v_i\left(\frac{b_i}{1-b_i}\right) &= v_i(b_i) > k_0 > k_i - v_i(x_i) \implies v_i\left(x_i\left(\frac{1}{1-b_i} - 1\right)\right) > k_i\\
+        v_i\left(\frac{1}{1-b_k}\right) &= - v_i(b_k) > k_0 > k_i - v_i(x_k) \implies v_i(x_k(1-b_k)^{-1}) > k_i\\
+        & \implies v_i(x-x_i) > k_i
+    \end{align*}
 
 \end{proof}
+
+\begin{korollar}
+    Sind $v_1,\ldots,v_n$ paarweise verschiedene normierte diskrete Bewertungen auf $F$, so gibt es für $k_1,\ldots,k_n \in \Z$
+    ein $x \in F$ mit
+    $$ v_i(x) = k_i$$
+    für $i= 1,\ldots,n$.
+\end{korollar}
+\begin{proof}
+    Wähle für jedes $i$ ein $x_i$ mit $v_i(x_i)=k_i$. 
+    Nach 1.8 existiert ein $x \in F$ mit $$v_i(x-x_i) > k_i \forall i,$$
+    woraus $$ v_i(x) = v_i(x_i) = k_i$$
+    folgt.
+\end{proof}
+
+\section{Fortsetzungen von Bewertungen}
+Sei $E|F$ eine Körpererweiterung.
+
+\begin{lemma}
+    Für Bewertungsringe $\mathcal{O}=\mathcal{O}_v$ von $F$ und $\mathcal{O}' = \mathcal{O}_w$ von $E$ sind äquivalent:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $m_w \cap \mathcal{O}_v = m_v$
+        \item $\mathcal{O}_w \cap F = \mathcal{O}_v$
+        \item $w$ ist äquivalent zu einer Fortsetzung von $v$ zu einer Bewertung von $E$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \underline{$(1) \implies (2)$: $\subseteq$:} $x \in \mathcal{O}_w \cap F \implies x^{-1} \notin m_w$
+    $$ \stackrel{(1)}{\implies} x^{-1} \notin m_v \implies x \in \mathcal{O}_v$$
+    \underline{$\supseteq$:} $x \in \mathcal{O}_v \implies x^{-1} \notin m_v \stackrel{(1)}{\implies} x^{-1} \notin m_w \lor x^{-1} \notin \mathcal{O}_v$
+    $$ \implies x \in \mathcal{O}_w \lor x \in m_v \stackrel{(1)}{\subseteq} m_w \subseteq \mathcal{O}_w.$$ 
+    \underline{$(2) \implies (3)$:} $ w|_F = v$\\
+    \underline{$(3) \implies (1)$:} $\checkmark$
+\end{proof}
+
+\begin{theorem}[Chevalley]
+    Sei $\mathfrak{p} \in \Spec(R)$ und $R \subseteq F$ ein Ring. Dann gibt es einen Bewertungsring $\mathcal{O}$ von $F$ mit 
+    maximalem Ideal $m$, das $$m \cap R = \mathfrak{p}$$ erfüllt.
+\end{theorem}
+\begin{proof}
+    Sei 
+    \begin{align*}
+        \mathfrak{X}=\{(A,I) \mid R_\mathfrak{p} \subseteq A \subseteq F \text{ Ring, } \mathfrak{p}R_\mathfrak{p} \subseteq I \properideal A\}\\
+        (A,I) \leq (A',I') : \iff A \subseteq A' \land I \subseteq I'.
+    \end{align*}
+    Nach dem Lemma von Zorn existiert ein maximales Element $(\mathcal{O}, m) \in \mathfrak{X}$.
+    \begin{itemize}
+        \item $m$ ist maximales Ideal von $\mathcal{O}$: $\checkmark$
+        \item $\mathcal{O}$ ist lokal: $(\mathcal{O}, m) \leq (\mathcal{O}_m,m\mathcal{O}_m) \checkmark$
+        \item $m \cap R = \mathfrak{p}$: $m \cap R_\mathfrak{p} = \mathfrak{p}R_\mathfrak{p}$
+        $$ \implies m \cap R = \mathfrak{p}R_\mathfrak{p} \cap R = \mathfrak{p}.$$
+        \item $\mathcal{O}$ ist ein Bewertungsring von $F$:
+        
+        Sei $x \in F^\times$ mit $x \notin \mathcal{O}$ und $x^{-1} \notin \mathcal{O}$
+        \begin{align*}
+            \implies & \mathcal{O}[x] \supsetneqq \mathcal{O},\quad \mathcal{O}[x^{-1}] \supsetneqq \mathcal{O}\\
+            \stackrel{(\mathcal{O},m) \text{ max.}}{\implies}& m\mathcal{O}[x] = \mathcal{O}[x], \quad m\mathcal{O}[x^{-1}]= \mathcal{O}[x^{-1}]\\
+            \implies & 1 = \sum\limits_{i=1}^n a_ix^i, \quad 1 = \sum\limits_{j=0}^m b_jx^{-j} \text{ mit } a_i,b_j \in m\\
+            &\text{o. E. } n\leq m \text{ minimal}\\
+            \implies & \sum\limits_{i=1}^n a_ix^i = 1 - a_0 \in \mathcal{O}^\times \\
+            \implies & 1 = \sum\limits_{i=1}^n \frac{a_i}{1 - a_0} x^i\\
+            \implies & x^{-m} = \sum\limits_{i=1}^n \frac{a_i}{1-a_0} x ^{-(m-i)}\\
+            \implies & 1 = \sum\limits_{j=0}^{m-1} b_j x^{-j} + \sum\limits_{i=1}^n \frac{b_ma_i}{1-a_0}x^{-(m-i)}
+        \end{align*}
+        Widerspruch zur Minimalität von $m$.
+    \end{itemize}
+\end{proof}
+
+\begin{korollar}
+    Ist $v$ eine Bewertung auf $F$, so gibt es eine Fortsetzung von $v$ zu einer Bewertung auf $E$.
+\end{korollar}
+\begin{proof}
+    Nach 2.2 existiert ein Bewertungsring $\mathcal{O}$ von $E$ mit maximalem Ideal $m$ mit
+    $m \cap \mathcal{O}_v = m_v$. Mit 2.1 folgt die Behauptung.
+\end{proof}
+
+\begin{definition}
+    Ist $v$ eine Bewertung auf $F$ und $w$ eine Fortsetzung von $v$ auf $E$, so heißt
+    $$ e(w|v) := (\Gamma_w: \Gamma_v) = (w(E^\times):w(F^\times))$$
+    der \textbf{Verzweigungsindex} von $w$ über $v$, und 
+    $$ f(w|v) := [E_w : F_v]$$
+    der \textbf{Restklassengrad} von $w$ über $v$ (\textbf{Trägheitsgrad}). 
+    
+    
+    \begin{figure}[H]
+        \centering
+        \begin{tikzcd}
+            \mathcal{O}_w \arrow[r] & E_w\\
+            \mathcal{O}_v \arrow[u,hookrightarrow] \arrow[r] & F_v \arrow[u,hookrightarrow]\\
+        \end{tikzcd}
+    \end{figure}
+\end{definition}
+
+\begin{lemma}
+    Ist $v$ eine Bewertung auf $F$ und $w$ eine Fortsetzung von $v$ auf $E$, so ist
+    $$ e(w|v) \leq [E:F].$$
+\end{lemma}
+\begin{proof}
+    Seien $x_1,\ldots,x_n \in E^\times$ mit $w(x_i) + \Gamma_v$ paarweise verschieden.\\
+    \underline{Beh.:} $x_1,\ldots,x_n$ sind linear unabhängig über $F$.\\
+    \underline{Bew.:} $\sum\limits a_i x_i = 0, a_i \in F \implies w(a_ix_i) \in (w(x_i)+\Gamma_v)\cup \{\infty\}$
+    \begin{align*}
+        \implies & \infty = w(0) = w\left(\sum\limits_{i=1}^na_ix_i\right) = \min\limits_{i=1,\ldots,n}\{w(x_i)+w(a_i)\}\\
+        \implies & a_1,\ldots,a_n = 0.
+    \end{align*}
+\end{proof}
+
+\begin{satz}
+    Ist $v$ eine diskrete Bewertung auf $F$ und $[E:F] < \infty$, so ist auch jede Fortsetzung von $v$ auf $E$ disktret.
+\end{satz}
+\begin{proof}
+    o.E. $\Gamma_v = \Z$. Sei $w$ Fortsetzung von $v$ auf $E$.
+    Nach 2.5 ist $e:=(\Gamma_w:\Z) \leq n := [E:F]$.
+    Da $\Gamma_w$ als angeordnete abelsche Gruppe torsionsfrei ist, gilt
+    $$ \Gamma_w \cong e \cdot \Gamma_w \stackrel{\text{kleiner Satz von Fermat}}{\leq} \Z
+    \stackrel{\Gamma_w \ne \{0\}}{\implies} \Gamma_w \cong \Z.$$
+\end{proof}
+
+\begin{theorem}[Fundamentale Ungleichung]
+    Ist $v$ eine Bewertung auf $F$ und \\$w_1,\ldots,w_n$ paarweise inäquivalente Fortsetzungen von $v$ auf $E$,
+    so ist 
+    $$ \sum\limits_{i=1}^n e(w_i|v)f(w_i|v) \leq [E:F].$$
+\end{theorem}
+\begin{proof}
+    \underline{$v$ diskret:} Nach 2.6 sind alle $w_i$ diskret.
+    Schreibe $e_i=e(w_i|v), f_i=f(w_i|v)$.
+    O.E. $v(F^\times) = \Z$. Setze $v_i := e_iw_i$.
+    nach 1.9 existiert $x_i \in E$, sodass für alle $j \ne i$ 
+    $$v_i(x_i)=1, v_j(x_i)=0.$$
+    Wähle $y_{i,1},\ldots y_{i,f_i} \in \mathcal{O}_{w_i}^\times$ mit $\overline{y_{i,1}}, \ldots \overline{y_{i,f_i}} \in E_{w_i}$
+    linear unabhängig über $F_v$.
+    Nach 1.8 existiert $z_{i,j} \in E$ mit 
+    \begin{align*}
+        v_i(z_{i,j}-y_{i,j})>0 \\
+        v_{i'}(z_{i,j}) \geq e_i \quad \text{für } i' \neq i.
+    \end{align*}
+    \underline{Beh.:} $x_i^kz_{i,j}$ sind für $i=1,\ldots,n,j=1,\ldots,f_i,k=0,\ldots,e_i -1$ linear unabhängig über $F$.
+
+    Bew.: Sei $$ \sum\limits_{i=1}^n\sum\limits_{j=1}^{f_i}\sum\limits_{k=0}^{e_i-1} a_{ijk}x_i^kz_{ij}=0,$$
+    wobei $a_{ijk} \in F$ nicht alle $=0$.\\
+    O.E. $\min v(a_{ijk})=0$.
+    Wähle $i_0,j_0,k_0$ mit $v(a_{i_0j_0k_0})=0$, $k_0$ minimal.
+    $$ \implies \sum\limits_{i=1}^n\sum\limits_{j=1}^{f_i}\sum\limits_{k=0}^{e_i-1} a_{ijk}x_i^kx_{i_0}^{-k_0}z_{ij}=0.$$
+    Für $i\ne i_0$ ist $v_{i_0}(a_{ijk}x_i^kx_{i_0}^{-k_0}z_{ij}) \geq 0 + -k_0 + e_{i_0} > 0$.\\
+    Für $i = i_0, k < k_0$ ist $v_{i_0}(a_{i_0jk}x_{i_0}^{k-k_0}z_{ij}) \geq e_{i_0} + k - k_0 > 0$.\\
+    Für $i=i_0, k > k_0$ ist $v_{i_0}(a_{i_0jk}x_{i_0}^{k-k_0}z_{ij}) \geq k - k_0 > 0$
+    \begin{align*}
+        \implies & v_{i_0}(\sum\limits_{j=1}^{f_i}a_{i_0jk_0}z_{i_0j}) > 0\\
+        \implies & \overline{\sum\limits_{j=1}^{f_i}a_{i_0jk_0}z_{i_0j}} = \sum\limits_{j=1}^{f_i}\overline{a_{i_0jk_0}}\cdot \overline{z_{i_0j}} \text{ in } E_{w_{i_0}}
+    \end{align*}
+    Aus $ \overline{a_{i_0j_0k_0}}\in F_v^\times$ erhalten wir einen Widerspruch zu $y_{i_01},\ldots,y_{i_0f_{i_0}}$ linear unabhängig.
+\end{proof}
+
+\begin{korollar}
+    Ist $v$ eine Bewertung auf $F$ und $[E:F] = n < \infty$, so hat $v$ höchstens $n$ paarweise inäquivalente
+    Fortsetzungen auf $E$.
+\end{korollar}
 
 \section{Primstellen}
 Sei $F | K$ ein Funktionenkörper.
@@ -496,3 +659,337 @@ Sei $F|K$ ein Funktionenkörper.
     $$ \dim A \geq \deg A + 1 -g $$
     für alle $A$ mit Gleichheit für mindestens ein $A$.
 \end{bemerkungnr}
+
+\begin{theorem}[Riemann]
+    Es gibt ein $c \in \N$ mit $$ \dim A = \deg A +1 -g$$
+    für alle $A \in \Div(F|K)$ mit $\deg A \geq c$.
+\end{theorem}
+\begin{proof}
+    Wähle $D \in \Div(F|K)$ mit $\dim D = \deg D + 1 - g$.
+    Und setze $c := g + \deg D$. Sei $\deg A \geq c$.
+    Dann ist 
+    $$\dim (A-D) \geq \deg(A-D) + 1 -g \geq 1.$$
+    Somit existiert $0 \ne x \in \mathcal{L}(A-D)$. 
+    Für dieses $x$ ist $A + (x) \geq D$.
+    \begin{align*}
+        \implies \deg A - \dim A &= \deg (A + (x)) - \dim (A + (x))\\
+        & \geq \deg D - \dim D = g - 1\\
+        \implies \dim A &\leq \deg A + 1 - g
+    \end{align*} 
+\end{proof}
+
+\begin{beispiel}
+    $g_{K(T)|K} = 0$
+    \begin{align*}
+        (T) = P_0 - P_\infty&\\
+        (T^r) = r P_0 - r P_\infty&\\
+        \deg(rP_\infty) = r&\\
+        1,T,\ldots,T^r \in \mathcal{L}(rP_\infty) &\implies \dim(rP_\infty) \geq r +1
+    \end{align*}
+    Für $r \geq c$ ist $\deg(rP_\infty) = r \geq c$ ist
+    \begin{align*}
+        & g = \deg rP_\infty - \dim rP_\infty + 1 \geq r - (r+1) + 1 = 0\\
+        \implies & g=0.
+    \end{align*}
+\end{beispiel}
+
+\section{Der Raum der Adele}
+Sei $F|K$ ein Funktionenkörper, $g = g_{F|K}, A \in Div(F|K)$.
+
+\begin{definition}
+    De Divisor $A$ heißt \textbf{speziell}, wenn 
+    $$ \dim A > A + 1 - g,$$
+    und wir setzen $i(A) := \dim A - \deg A - 1 +g$.
+\end{definition}
+
+\begin{bemerkungnr}
+    Es ist $i(A) \geq 0$ für alle $A \in Div(F|K)$,
+    $i$ ist antiton, d.h. für $A \leq B$ ist $i(A) \geq i(B)$, und
+    $i(A) = 0$ für $\deg A \geq c$.
+\end{bemerkungnr}
+
+\begin{definition}
+    Der \textbf{Raum der Adele} von $F|K$ ist
+    \begin{align*} 
+        \A := \A_F := \A_{F|K} := \Big\{(\alpha_P)_{P \in S(F|K)} \in \prod\limits_{P \in S(F|K)} F &\mid \alpha_P \in \mathcal{O}_P\\\
+        &\text{ für fast alle } P \in S(F|K)\Big\}.
+    \end{align*}
+    Für $(\alpha_P)_P \in \A$ und $P_0 \in S(F|K)$ setzen wir $v_{P_0}(\alpha) = v_{P_0}(\alpha_{P_0})$.
+    Wir identifizieren $x \in F$ mit $$(x)_P \in \prod\limits_{P \in S(F|K)} F.$$
+\end{definition}
+
+\begin{bemerkungnr}
+    $\A$ ist Unterring von $\prod\limits_{P \in S(F|K)} F$, und $F \subseteq \A$.
+    Dadurch wird $\A$ zu einer $K$-Algebra, und $F$ eine $K$-Unteralgebra, d.h.
+    $\A$ ist Ring und $K$-Vektorraum.
+    Die Abbildung $v_P$ auf $\A$ setzt $v_P$ auf $F$ fort.
+\end{bemerkungnr}
+
+\begin{definition}
+    $$\A(A) := \A_{F|K}(A) := \{\alpha \in \A \mid v_P(\alpha) + v_P(A) \geq 0\}$$
+\end{definition}
+
+\begin{bemerkungnr}
+    $\A(A) \cap F = \mathcal{L}(A)$, und $\A(A)$ ist Untervektorraum von $\A$.
+\end{bemerkungnr}
+
+\begin{lemma}
+    $$ \A = \bigcup\limits_{D \in \Div(F|K)}\A(D) $$
+\end{lemma}
+\begin{proof}
+    Für $\alpha = (\alpha_P)_P$ ist $\alpha \in \A\left(\sum\limits_{v_P(\alpha_P)<0}-v_P(\alpha_P)P\right)$.
+\end{proof}
+
+\begin{lemma}
+    Sind $W \leq V$ und $U$ Untervektorraum eines $K$-Vektorraums so ist
+    $$\begin{tikzcd}
+        0 \ar[r] &\sfrac{V\cap U}{W \cap U} \ar[r] & \sfrac{V}{W} \ar[r] & \sfrac{V + U}{W +U} \ar[r] & 0
+    \end{tikzcd}$$
+    exakt.
+\end{lemma}
+\begin{proof}
+    $ V \cap U \to \sfrac{V}{W}$ hat Kern $(V \cap U) \cap W = W \cap U$.\\
+    $ \sfrac{V}{W} \to \sfrac{V+U}{W+U}$ ist surjektiv mit Kern 
+    $$ \sfrac{V \cap (W+U)}{W} = \sfrac{(V \cap U) +W}{W} = \im\left(\sfrac{V \cap U}{W \cap U} \to \sfrac{V}{W}\right)$$
+    denn $v \in V,w \in W$ und $u \in U$ gilt
+    $$ v=w+u \implies v - w = u \in V \cap U.$$
+\end{proof}
+
+\begin{satz}
+    $$ i(A) = \dim_K \sfrac{\A}{\A(A)+F}$$
+\end{satz}
+\begin{proof}
+    Seien $D,D_1,D_2 \in \Div(F|K)$.\\
+    \underline{Beh. 1:} $D_1 \leq D_2 \implies \dim_K \sfrac{\A(D_2)}{\A(D_1)} = \deg D_2 - \deg D_1$.
+
+    Bew.: o.E. $D_2 = D_1 + P$ mit $P \in S(F|K)$. Wähle $t \in F$ mit $v_P(t) = v_P(D_2) = v_P(D_1) + 1$.
+    Definiere $$ \varphi : \begin{cases}
+        \A(D_2) \to F_P\\
+        \alpha \mapsto (t\alpha_P)(P)
+    \end{cases}.$$
+    \begin{itemize}
+        \item $\varphi$ ist wohldefiniert und $K$-linear: $\checkmark$
+        \item $\ker(\varphi) = \A(D_1)$:
+        \begin{align*}
+            v_P(t \alpha_P) > 0 & \iff v_P(\alpha_P) + v_P(D_1) + 1 > 0\\
+            &\iff v_P(\alpha_P) + v_P(D_1) \geq 0
+        \end{align*}
+        \item $\varphi$ ist surjektiv: Für $x \in \mathcal{O}_P$ setze
+        $$ \alpha_Q := \begin{cases}
+            xt^{-1}, & Q=P\\
+            0, & Q \ne P
+        \end{cases} \implies \alpha = (\alpha_Q)_Q \in \A(D_2)$$
+        und $ \varphi(\alpha) = x(P)$.
+    \end{itemize}
+    \underline{Beh. 2:} $D_1 \leq D_2 \implies \dim_K \sfrac{\A(D_2) + F)}{\A(D_1) + F} = i(D_1) - I(D_2)$
+
+    Bew.: Nach 7.8 ist
+    $$\begin{tikzcd}
+        0 \ar[r] &\sfrac{\mathcal{L}(D_2)}{\mathcal{L}(D_1)} \ar[r] &\sfrac{\A(D_2)}{\A(D_1)} \ar[r] &\sfrac{\A(D_2)+F}{\A(D_1)+F} \ar[r] &0 
+    \end{tikzcd}$$
+    exakt. Daraus folgt
+    \begin{align*}
+        \dim_K \sfrac{\A(D_2)+F}{\A(D_1)+F} &= \dim_K \sfrac{\A(D_2)}{\A(D_1)} - \dim_K \sfrac{\mathcal{L}(D_2)}{\mathcal{L}(D_1)}\\
+        &\stackrel{Beh. 1}{=} \deg(D_2) - \deg(D_1) - \dim(D_2) + \dim(D_1)\\
+        &=i(D_1) - i(D_2)
+    \end{align*}
+    \underline{Beh. 3:} $i(D) = 0 \implies \A(D) + F = \A$
+
+    Bew.: Sei $\alpha \in \A$. $\implies \alpha \in \A(D_1)$ für ein $D_1 \in \Div(F|K)$
+    \begin{align*}
+        \text{o.E. } D_1 \geq D \stackrel{7.2}{\implies} i(D_1) = 0\\
+        \stackrel{Beh. 2}{\implies} \dim_K \sfrac{\A(D_1)+F}{\A(D) + F} = i(D)- i(D_1) = 0\\
+        \implies \alpha \in \A(D_1) \subseteq \A(D_1)+F = \A(D) +F
+    \end{align*}
+    \underline{Ende des Beweises:}
+    
+    Wähle $D \geq A$ mit $\deg D \geq c$. Es folgt
+    \begin{align*}
+        i(D) = 0 &\stackrel{Beh. 3}{\implies} \A = \A(D) + F\\
+        & \implies \dim_K \sfrac{\A}{\A(A)+F} 0 \dim_K \sfrac{\A(D)+F}{\A(A)+F} \\
+        & \stackeq{Beh. 2} i(A) - i(D) = i(A).
+    \end{align*}
+\end{proof}
+
+\begin{bemerkungnr}
+    Es gilt also
+    $$ \dim A = \deg A + 1 - g + \dim_K \sfrac{\A}{\A(A) + F}.$$
+\end{bemerkungnr}
+
+\begin{korollar}
+    $$ g_{F|K} = \dim_K \sfrac{\A}{\A(0) + F}$$
+\end{korollar}
+\begin{proof}
+    $$ g = \deg 0 + 1 - \dim 0 + \dim_K \sfrac{\A}{\A(0) + F}$$
+\end{proof}
+
+\begin{satz}[Starker Approximationssatz]
+    Seien $S_0 \subsetneqq S(F|K)$,\\ $P_1,\ldots,P_n \in S_0$, $x_1,\ldots,x_n \in F$ und 
+    $k_1, \ldots,k_n \in \Z$. Dann existiert $x \in F$ mit 
+    $$ v_{P_i}(x-x_i) = k_i $$
+    für $i=1,\ldots,n$ und
+    $$ v_P (x) \geq 0 $$
+    für $P \in S_0\setminus\{P_1, \ldots,P_n\}$.
+\end{satz}
+\begin{proof}
+    Wähle $Q \in S(F|K)\setminus S_0$. Nach 7.9 (hier haben wir verwendet, dass F Funktionenkörper) und 7.2 ist
+    $$ \A = \A(mQ - \sum\limits_{i=1}^n(k_i + 1)P_i) +F$$
+    für alle $m$ groß genug.
+    Setze
+    $$ \alpha_P = \begin{cases}
+        x_i, & \text{für } P=P_i\\
+        0, & \text{für } P \notin \{P_1, \ldots, P_n\}.
+    \end{cases}$$
+    Somit existiert $z \in F$ mit 
+    $$ \alpha - z \in \A(mQ - \sum\limits_{i=1}^n(k_i + 1)P_i)$$
+    für $m$ groß genug, also
+    $$v_{P_i}(z-x_i) \geq k_i + 1$$ für $i = 1, \ldots, n$ und
+    $$v_P(z) \geq 0$$ für $P \in S_0\setminus\{P_1,\ldots,P_n\}$.
+    Wähle $y_1,\ldots,y_n \in F$ mit $v_{P_i}(y_i) = k_i$ für $i=1,\ldots,n$.
+    Wie oben findet man $y \in F$ mit
+    \begin{align*}
+        v_{P_i}(y-y_i) \geq k_i + 1 \quad \text{für } i=1,\ldots,n\\
+        v_P(y) \geq 0 \quad \text{für } P \in S(F|K)\setminus\{P_1,\ldots,P_n\}.
+    \end{align*}
+    Für $x := y+z$ ist
+    \begin{align*}
+        v_{P_i}(x-x_i) = v_{P_i}(y-y_i + y_i + z - x_i) = k_i \quad \text{für } i = 1, \ldots,n\\
+        v_P(x) = v_P(y+z) \geq 0 \quad \text{für } P \in S_0\setminus\{P_1,\ldots,P_n\}.
+    \end{align*}
+\end{proof}
+
+\section{Weil-Differentiale}
+Sei $F|K$ ein Funktionenkörper vom Geschlecht $g$, und sei $A \in \Div(F|K)$.
+
+\begin{definition}
+    Der \textbf{Raum der Weil-Differentiale} von $F|K$ ist
+    $$ \Omega := \Omega_F := \Omega_{F|K} := \bigcup_{A \in \Div(F|K)}\Omega(A) \subseteq \A^\ast := \Hom_K(\A,K),$$
+    wobei
+    $$ \Omega(A) := \{\omega \in \A^\ast \mid \omega|_{\A(A)+F}=0\}.$$
+\end{definition}
+
+\begin{lemma}
+    Seien $A,B \in \Div(F|K)$.
+    \begin{enumerate}[label=(\alph*)]
+        \item $A \leq B \implies \Omega(B) \subseteq \Omega(A)$
+        \item $\Omega,\Omega(A)$ sind Untervektorräume des $K$-Vektorraums $\A^\ast$
+        \item $\dim_K\Omega(A) = i(A)$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \underline{(a):} $\checkmark$\\
+    \underline{(b):} $\Omega(A)$ ist Untervektorraum, denn
+    \begin{align*}
+        \omega_i \in \Omega(A_i) \implies & \omega_1 + \omega_2 \in \Omega(\inf\{A_1,A_2\})\\
+        x \in K \implies & x\omega_1 \in \Omega(A_1)
+    \end{align*}
+    \underline{(c):}
+    \begin{align*}
+        \Omega(A) \cong \left(\sfrac{\A}{\A(A) + F}\right)^\ast &\stackrel{7.9}{\implies} \dim_K \Omega(A)\\
+        & = \dim_K\left(\sfrac{\A}{\A(A)+F}\right)^\ast = i(A)
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    $\Omega \ne 0$
+\end{lemma}
+\begin{proof}
+    Für $D\in\Div(F|K)$ mit $\deg D \leq - 2$ ist
+    \begin{align*}
+        &i(D) = \dim D - \deg D - 1 + g \geq 1\\
+        \implies & \Omega \supseteq \Omega(D) \stackrel{8.2(c)}{\ne}0
+    \end{align*} 
+\end{proof}
+
+\begin{definition}
+    Für $\omega \in \Omega, x \in F$ sei 
+    $$ x\omega: \begin{cases}
+        \A \to K\\
+        \alpha \mapsto \omega(x\alpha)
+    \end{cases}$$
+\end{definition}
+
+\begin{lemma}
+    Für $\omega\in\Omega(A), x \in F$ ist $x\omega\in \Omega(A+(x))$.
+\end{lemma}
+\begin{proof}
+    $z \in F \implies xz \in F \implies x\omega(z)=\omega(xz)=0$
+    \begin{align*}
+        \alpha \in \A(A+(x)) &\implies x\alpha \in \A(A)\\
+        &\implies x\omega(\alpha) = \omega(x\alpha) = 0
+    \end{align*}
+\end{proof}
+
+\begin{bemerkungnr}
+    Auf diese Weise wird $\Omega$ zu einem $F$-Vektorraum.
+\end{bemerkungnr}
+
+\begin{satz}
+    $\dim_F \Omega=1$
+\end{satz}
+\begin{proof}
+    Nach 8.3 existiert ein $0 \neq \omega_1 \in \Omega$.\\
+    \underline{Zu zeigen:} Für $\omega_2 \in \Omega$ existiert $x \in F$ mit $\omega_2 = x\omega_1$.
+
+    O.E. $\omega_2 \ne 0$. Wähle $D_1,D_2$ mit $\omega_i \in \Omega(D_i)$ für $i=1,2$.
+    Nach 6.5 ist für $\deg D$ groß genug
+    \begin{align*}
+        \dim (D+D_i) = \deg (D+D_i) + 1 - g \quad \text{für } i = 1,2.
+    \end{align*}
+    Die Abbildung
+    $$ \varphi_i : \begin{cases}
+        \mathcal{L}(D+D_i) \to \Omega(-D)\\
+        x \mapsto x\omega_i
+    \end{cases} \quad \text{für } i=1,2$$
+    ist 
+    \begin{itemize}
+        \item wohldefiniert: $D+D_i + (x) \geq 0 \stackrel{8.5}{\implies} x \omega_i \in \Omega(D_i + (x)) \subseteq \Omega(-D)$
+        \item $K$-linear: $\checkmark$
+        \item injektiv: $\checkmark$.
+    \end{itemize}
+    Setze $U_i := \varphi_i(\mathcal{L}(D+D_i)) \subseteq \Omega(-D)$.
+    \begin{align*}
+        &\dim_K \Omega(-D) = i(-D) = \dim(-D) + \deg D - 1 + g\\
+        \implies & \dim_K U_1 + \dim_K U_2 - \dim_K \Omega(-D)\\
+        &=\deg(D+D_1) + 1 - g + \deg(D+D_2) + 1 -g - \deg D + 1 - g\\
+        &= \deg D + \deg D_1 + \deg D_2 + 3(1-g) > 0
+    \end{align*}
+    für $\deg D$ groß genug.
+    Für so ein $D$ folgt $U_1 \cap U_2 \ne 0$. Für $\varphi_1(x_1) = \varphi_2(x_2)$ mit $x_1\ne 0, x_2 \ne 0$
+    ist dann $x\omega_1 = x_2 \omega_2$, also $\omega_2 = x_1 x_2^{-1}\omega_1$.
+\end{proof}
+
+\section{Der Satz von Riemann-Roch}
+Sei $F|K$ ein Funktionenkörper vom Geschlecht $g$, und $0 \ne \omega \in \Omega_{F|K}$.
+
+\begin{lemma}
+    Es gibt ein größtes $W \in \Div(F|K)$ mit $\omega\in\Omega(W)$.
+\end{lemma}
+\begin{proof}
+    Für $D \in \Div(F|K)$ mit $\deg D$ groß genug, ist
+    \begin{align*}
+        & \dim_K \Omega(D) = i(D) = 0\\
+        \implies & \text{existiert } W\in\Div(F|K) \text{ mit } \omega \in \Omega(W) \text{ und } \deg W \text{ maximal.}    
+    \end{align*}
+    Für $D \in \Div(F|K)$ mit $\omega \in \Omega(D)$ setze $W' := \sup\{W,D\}$.
+    Für $\alpha \in \A(W')$ setze
+    \begin{align*}
+        &\alpha_P' := \begin{cases}
+            \alpha_P, & \text{falls } v_P(W) \geq v_P(D)\\
+            0, & \text{sonst}
+        \end{cases}\\
+        &\alpha_P'' := \begin{cases}
+            0, & \text{falls } v_P(W) \geq v_P(D)\\
+            \alpha_P, & \text{sonst}.
+        \end{cases}\\
+        \implies & \alpha = \alpha' + \alpha'', \alpha' \in \A(W)\\
+        \forall P: v_P(\alpha) + v_P(W') \geq 0\\
+        \alpha_P' \ne 0 \implies & \alpha_P' = \alpha_P \text{ und } v_P(W) \geq v_P(D)\\
+        \implies & v_P(\alpha') + v_P(W) = v_P(\alpha_P) + v_P(W') \geq 0\\
+        \alpha_P'' \neq 0 \implies & \alpha_P'' = \alpha_P \text{ und } v_P(W)< v_P(D) \\
+        \implies & v_P(\alpha'') + v_P(D) = v_P(\alpha_P) + v_P(W') \geq 0\\
+        \implies & \omega(\alpha) = \omega(\alpha' + \alpha'') = \omega(\alpha') + \omega(\alpha'') = 0 + 0 = 0\\
+        \implies & \omega \in \Omega(W')\\
+        \stackrel{\deg W \text{ maximal}}{\implies}& W' =W, \text{d.h. } D \leq W
+    \end{align*}
+\end{proof}
