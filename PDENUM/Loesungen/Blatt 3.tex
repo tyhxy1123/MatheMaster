@@ -11,6 +11,8 @@
 \input{../../latex/commands_Willi}
 \input{../../PDENUM/PDENM_commands}
 
+%Passwort für Online-Lösugen: Login: PDENM18 PW: weak
+
 \author{Willi Sontopski}
 
 \parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
@@ -50,11 +52,57 @@ Geben Sie jeweils eine schwache Formulierung an.
 
 \begin{lösung}
 \underline{Zu (a):}\\
+Multiplikation mit Testfunktion $v$ und Integration über $\Omega$ liefert
+\begin{align*}
+\int\limits_0^1 \frac{\d^4 u(x)}{\d x^4}\cdot v\d x=\int\limits_0^1 f(x)\cdot v(x)\d x
+\end{align*}
+mit $v\in C_c^\infty\big((0,1)\big)$. Partielle Integration liefert
+\begin{align*}
+\left[\frac{\d^3 u(x)}{\d x^3}\cdot v\right]_{x=0}^1
+-\int\limits_0^1 \frac{\d^3 u(x)}{\d x^3}\cdot\frac{\d v}{\d x}\d x=\int\limits_0^1 f\cdot v\d x\\
+\implies
+\int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v(x)}{\d x^2}\d x= f\cdot v\d x
+\end{align*}
+Finde $u\in H^2_0\big((0,1)\big)$ so, dass
+\begin{align*}
+\int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v(x)}{\d x^2}\d x=\int\limits_0^1 f\cdot v\d x\qquad\forall v\in H_0^2\big((0,1)\big)
+\end{align*}
 
-\underline{Zu (b):}\\
+\underline{Zu (b):}
+\begin{align*}
+\int\limits_0^1 \frac{\d^4 u(x)}{\d x^4}\d x
+&\stackeq{\text{p.I.}}
+\left[\frac{\d^3 u(x)}{\d x^3}\right]_{x=0}^1-\int\limits_0^1 \frac{\d^3 u(x)}{\d x^3}\cdot\frac{\d v(x)}{\d x}\d x\\
+&\stackeq{\text{p.I.}}
+\left[\frac{\d^3 u(x)}{\d x^3}\cdot v(x)\right]_{x=0}^1- 
+\left[\frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d v(x)}{\d x}\right]_{x=0}^1
++\int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v(x)}{\d x^2}\d x\\
+\end{align*}
+Finde $u\in H^2(0,1)\cap H^1_0(\Omega)$ so, dass
+\begin{align*}
+\int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v(x)}{\d x^2}\d x=\int\limits_0^1 f(x)\cdot v(x)\d x\qquad\forall v\in H^1((0,1))\cap H^1_0(\Omega)
+\end{align*}
+Angenommen $u\in C^4(\Omega)$. Dann gilt
+\begin{align*}
+\int\limits_0^1 \frac{\d^4 u(x)}{\d x^4}\cdot v\d x-\left[\frac{\d^3 u(x)}{\d x^3}\cdot v(x)\right]_{x=0}^1+\left[\frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d v(x)}{\d x}\right]_{x=0}^1=\int\limits_0^1 f(x)\cdot v(x)\d x
+\qquad\forall v\in H^2((0,1))\cap H_0^1((0,1))\\
+\int\limits_0^1 \frac{\d^4 u(x)}{\d x^4}\cdot v\d x
+=\int\limits_0^1 f(x)\cdot v(x)\d x\qquad\forall v\in C_c^\infty(0,1)\\
+\stackrel{\text{Fundamentallemma}}{\implies}
+\frac{\d^4 u(x)}{\d x^4}\equiv f\text{ in }(0,1)\\
+\implies
+\left(\frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d v(x)}{\d x}\right)(1)-\left(\frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d v(x)}{\d x}\right)(0)=0\qquad\forall v\in H^2((0,1))\cap H^1_0((0,1))
+\end{align*}
 
 \underline{Zu (c):}\\
-
+Finde
+\begin{align*}
+u\in V:=\big\lbrace w\in H^2(\Omega):w(0)=w'(1)=0\big\rbrace
+\end{align*}
+so, dass
+\begin{align*}
+\int\limits_0^1 f(x)\cdot v(x)\d x=\int\limits_0^1\frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v(x)}{\d x^2}\d x\qquad\forall v\in V.
+\end{align*}
 \end{lösung}
 
 \section*{Aufgabe 3.2}
@@ -114,7 +162,89 @@ Wie lautet eine geeignete schache Formulierung der Randwertaufgabe
 Geben Sie eine hinreichende Bedingung an, unter denen die eindeutige Lösbarkeit der schwachen Formulierung gesichert ist und beweisen Sie, dass Ihre Annahmen genügen.
 
 \begin{lösung}
+Zuerst werden beide Seiten mit einer Testfunktion $v$ multipliziert. Anschließend wird über $\Omega$ integriert:
+\begin{align*}
+\int\limits_\Omega -nabla u\cdot v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x=\int\limits_\Omega f\cdot v\d x
+\end{align*}
+ Mit dem Satz von Gauß 
+ \begin{align*}
+ \int\limits_\Omega\div(v)\d x=-\int\limits_{\partial\Omega} v\cdot n\d s
+ \end{align*}
+ und mit
+ \begin{align*}
+ \Delta u=\div(\nabla u)
+ \end{align*}
+ erhält man:
+ Sei $\lambda:\R^d\to\R$ eine skalare Funktion und $w:\R^d\to\R^d$ Vektorfeld. Dann gilt:
+ \begin{align*}
+ \div(\lambda w)=(\nabla\lambda)\cdot w+\lambda\cdot\div(w)\\
+ \implies
+ \lambda\cdot\div(w)=\div(\lambda\cdot w)-(\nabla\cdot\lambda)-(\nabla\lambda)\cdot w
+ \end{align*}
+ Somit folgt 
+ \begin{align*}
+ \underbrace{\int\limits_\Omega -\nabla u\cdot v}_{=-\int\limits_\Omega\div(\underbrace{\nabla u}_{\hat{=}w})\underbrace{v}_{=\lambda}}+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+ &=+\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_\Omega\div(v\cdot\nabla u)\d x
+ \end{align*}
+ \begin{align*}
+ \int\limits_\Omega -\nabla u\cdot v\d x
+ &=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega}\underbrace{(\nabla u\cdot n)}_{=g-\beta\cdot u\text{ laut RB}}\\
+ &=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega} g\cdot v\d s+\int\limits_{\partial\Omega}\beta\cdot u\cdot v\d s
+ \end{align*}
+ \begin{align*}
+\underbrace{\int\limits_\Omega\nabla u\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x+\int\limits_{\partial\Omega}\beta\cdot u\cdot v\d s}_{=:b(u,v)}
+=\underbrace{\int\limits_\Omega f\cdot v\d x+\int\limits_{\partial\Omega} g\cdot v\d s}_{=:l(v)}
+ \end{align*}
+mit $u,v\in H^1(\Omega)$. Finde also $u\in H^1(\Omega)$ so, dass
+\begin{align*}
+b(u,v)=l(v)\qquad v\in H^1(\Omega)
+\end{align*} 
+gilt. Wir nutzen Lax-Milgram um zu zeigen, dass eine eindeutige Lösung existiert. Wir überprüfen also nun die Voraussetzungen dafür. Offenbar ist $l$ linear und $b$ bilinear. Zur Stetigkeit von $l$:
+\begin{align*}
+\big|l(v)\big|&\stackrel{\text{C.S.}}{\leq}\Vert f\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)}+\Vert g\Vert_{L^2(\Omega)}\cdot\underbrace{\Vert v\Vert_{L^2(\Omega)}}_{\stackrel{\text{Spurungl.}}{\leq} c\cdot\Vert v\Vert_{H^1(\Omega)}}
+\end{align*}
+Damit das gilt, muss $f\in L^2(\Omega)$ und $g\in L^2(\partial\Omega)$ vorausgesetzt werden. Damit ist $l$ stetig.\\
 
+Zur Stetigkeit von $b$ (ziemlich analog):
+\begin{align*}
+&\qquad\big| b(u,v)\big|\stackrel{\text{C.S.}}{\leq}\\
+&\Vert\nabla u\Vert_{L^2(\Omega)}\cdot\Vert\nabla v\Vert_{L^2(\Omega)}+\Vert a\Vert_{L^\infty(\Omega)}\cdot\Vert\nabla u\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)}
++\Vert\alpha\Vert_{L^\infty}\cdot\Vert u\Vert_{L^2(\Omega)}\cdot\Vert u\Vert_{L^2(\Omega)}+\Vert\beta\Vert_{L^\infty(\Omega)}\cdot\Vert u\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)}\\
+&\leq
+\left(1+\Vert a\Vert_{L^\infty(\infty)}+\Vert\alpha\Vert_{L^\infty(\Omega)}+c^2\cdot\Vert\beta\Vert_{L^\infty(\partial\Omega)}\right)\cdot\Vert u\Vert_{H^1(\Omega)}\cdot\Vert v\Vert_{H^1(\Omega)}
+\end{align*}
+ Also ist $b$ stetig. Das prinzipielle Vorgehen dabei ist immer Cauchy-Schwarz-Ungleichung + Spurungleichung.\\
+ 
+Zeige Koerzivität, also $b(v,v)\geq c\cdot\Vert v\Vert^2_{H^1(\Omega)}=c\cdot\left(\Vert v\Vert^2_{L^2(\Omega)}+\Vert \nabla v\Vert_{L^2(\Omega)}\right)$:
+\begin{align*}
+b(v,v)&=\int\limits_\Omega\frac{\nabla v\cdot\nabla v}{\Vert \nabla v\Vert^2_{L^2(\Omega)}}\d x+\int\limits_\Omega a\cdot\nabla v\cdot v\d x+\underbrace{\int\limits_\Omega\alpha\cdot v\cdot v\d x 0}_{=\int\limits_\Omega a\cdot\frac{1}{2}\cdot\nabla(v^2)}+\int\limits_{\partial\Omega}\beta\cdot v\cdot v\d s\\
+&=\frac{1}{2}\cdot\int\limits_\Omega\div(a\cdot v^2)-\div(a)\cdot v^2\d x\\
+&\stackeq{\text{Gauß}}
+\frac{1}{2}\cdot\int\limits_{\partial\Omega}(a\cdot u)\cdot(v\cdot v)\d s-\frac{1}{2}\cdot\int\limits\div(a)\cdot(v\cdot v)\d x\\
+\implies
+b(v,v)&=\Vert\nabla v\Vert^2_{L^2(\Omega)}+\int\limits_\Omega\left(\alpha-\frac{1}{2}\cdot\div(a)\right)\cdot(v\cdot v)\d x
++\int\limits_{\partial\Omega}\left(\beta+\frac{1}{2}\cdot a\cdot u\right)\cdot(v\cdot v)\d s
+\end{align*}
+Wir benötigen also die zusätzlichen Voraussetzungen, dass $\div(a)\in L^\infty(\Omega)$ und $a\cdot u\in L^\infty(\partial\Omega)$.\\
+
+Um die Voraussetzungen noch weiter abzuschwächen, können wir Theorem 1.11 aus der Vorlesung verwenden. Die Norm
+\begin{align*}
+\Vertiii{f}:=|f|_{1,2,\Omega}+\big|F(f)\big|+\sqrt{B(f,f)}
+\end{align*}
+ist äquivalent zu $\Vert f\Vert_{1,2,\Omega}$, wenn:
+\begin{enumerate}
+\item $B$ stetig, symmetrisch, bilinear auf $H^1(\Omega)$, $B(v,v)\geq0~\forall v\in V$
+\item $F$ linear, stetig auf $H^1(\Omega)$
+\item $\big|F(1)\big|+\sqrt{B(1,1)}>0$ für $f\equiv1$
+\end{enumerate}
+\begin{align*}
+F\equiv 0,\qquad B(v,w):=\int\limits_\Omega\left(\alpha-\frac{1}{2}\cdot\div(a)\right)\cdot(v\cdot q)\d x+\int\limits_{\partial\Omega}\left(\beta+\frac{1}{2}\cdot a\cdot u\right)\cdot(v\cdot w)\d s
+\end{align*}
+Es folgt die Stetigkeit von $B$ wieder aus der Cauchy-Schwarz-Ungleichung und der Spurungleichung. Für $B(v,v)\geq0$ brauchen wir
+\begin{align*}
+\left(\alpha-\frac{1}{2}\cdot\div(a)\right)\geq 0,\qquad
+\left(\beta-\frac{1}{2}\cdot a\cdot u\right)\geq 0
+\end{align*}
 \end{lösung}
 
 \section*{Aufgabe 3.5}
@@ -126,6 +256,15 @@ Das Differentialgleichungssystem
 mit $u_1|_{\partial\Omega}=u_2|_{\partial\Omega}=0,c\in L^\infty(\Omega)$ sowie $f_1,f_2\in L^2(\Omega)$ besitzt eine eindeutige schwache Lösung.
 
 \begin{proof}
+Idee: Fasse die beiden Gleichungen als eine auf.\\
+Multipliziere die obere mit Testfunktion $v_1$ und die untere mit Testfunktion $v_2$ und integriere anschließend:
+\begin{align*}
+\int\limits_\Omega(-\Delta u_1-c\cdot u_2)\cdot v_1\d x=\int\limits_\Omega f_1(x)\cdot v_1(x)\d x\\
+\int\limits_\Omega(-\Delta u_2+c\cdot u_1)\cdot v_2\d x=\int\limits_\Omega f_2(x)\cdot v_2(x)\d x\\
+\implies
+\int\limits_\Omega -\Delta u_1\cdot v_1-\Delta u_2\cdot v_2-c\cdot u_2\cdot v_1+c\cdot u_1\cdot v_2\d x=\int\limits_\Omega f_1\cdot v_1+f_2\cdot v_2\d x
+\end{align*}
+Man kann die Gleichungen addieren, weil die Testfunktionen unabhängig voneinander sind.
 
 \end{proof}
 
