@@ -1351,7 +1351,7 @@ Eine Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach partiell na
 \begin{align*}
 :\Longleftrightarrow\exists g\in L^1_{\text{loc}}:\forall\varphi\in C^\infty_c(\Omega):\int\limits_\Omega u(\omega)\cdot\frac{\partial\varphi(\omega)}{\partial x_i}\d\omega=-\int\limits_\Omega g(\omega)\cdot\varphi(\omega)\d\omega
 \end{align*}
-Schreibweise: $g=:\frac{\partial u}{\partial x_i}$ ist die schwache partielle Ableitung nach $x_i$\\
+Schreibweise: $g=:\frac{\partial u}{\partial x_i}$ ist die \textbf{schwache partielle Ableitung} nach $x_i$\\
 Ohne Beweis: $g=\frac{\partial u}{\partial x_i}$ ist eindeutig bestimmt.\\
 Die Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach differenzierbar} $:\gdw$ sie für alle $i\in\lbrace1,\ldots,n\rbrace$ schwach partiell nach $x_i$ differenzierbar ist. In diesem Fall schreiben wir
 \begin{align*}
@@ -1391,19 +1391,180 @@ ist konvex und monoton wachsend ($p\geq1$!) und damit ist die Verknüpfung
 \end{align*}
 konvex, und schließlich ist $\E$ konvex.\\
 $\E\not\equiv0$, denn $\E(0)=0$.\\
+
 \underline{Zeige $\E$ ist unterhalbstetig:}\\
-Es gelte $u_n\stackrel{n\to\infty}{\longrightarrow} u$ in $L^2(\Omega)$. Zu zeigen:
+Sei $(u_n)_{n\in\N}\subseteq L^2(\Omega)\mit u:=\limn u_n$ in $L^2(\Omega)$. Zu zeigen:
 \begin{align*}
 \E(u)\leq\liminf\limits_{n\to\infty}\E(u_n)
 \end{align*}
-Sei O.B.d.A. $\liminf\limits_{n\to\infty}\E(U-n)<+\infty$ und, nach Übergang zu Teilfolge, folgt
+Sei O.B.d.A. (nach Auswahl von Teilfolge):
 \begin{align*}
+\liminf\limits_{n\to\infty}\E(u_n)<+\infty
+\quad\text{und}\quad
 \liminf\limits_{n\to\infty}\E(u_n)=\limn\E(u_n)
+\quad\text{und}\quad
+\E(u_n)\leq C\quad\forall n\in\N
 \end{align*}
-
-
+Dann ist $(\nabla u_n)_{n\in\N}$ beschränkte Folge in $L^p(\Omega,\R^n)$. Der Raum $L^p(\Omega,\R^n)$ ist reflexiv (beachte $1<p<\infty$). Die Folge $(u_n)_{n\in\N}$ besitzt also eine Teilfolge (wieder mit $(u_n)_{n\in\N}$ bezeichnet), sodass $(\nabla u_n)_{n\in\N}$ schwach in $L^p(\Omega,\R^n)$ konvergiert. Sei
+\begin{align*}
+&g=\begin{pmatrix}
+g_1\\ \vdots\\ g_n
+\end{pmatrix}:=\weaklim\limits_{n\to\infty}\nabla u_n\\
+\Longleftrightarrow\forall i\in\lbrace1,\ldots,n\rbrace,\forall v\in L^{p'}(\Omega)\mit\frac{1}{p}+\frac{1}{p'}=1:
+\limn\int\limits_\Omega\frac{\partial u_n}{\partial x_i}\cdot v=\int\limits_\Omega g_i\cdot v
+\end{align*}
+Zu Erinnerung (schwache Ableitung):
+\begin{align*}
+\forall i\in\lbrace 1,\ldots,n\rbrace,\forall\varphi\in C_c^\infty(\Omega),\forall n\in\N:
+\int\limits_\Omega u_n\cdot\frac{\partial\varphi}{\partial x_i}=-\int\limits_\Omega\frac{\partial u_n}{\partial x_i}\cdot\varphi
+\end{align*}
+Daraus folgt wegen $C_c^\infty(\Omega)\subseteq L^{p'}(\Omega)$ dann
+\begin{align*}
+\forall i\in\lbrace1,\ldots,n\rbrace,\forall\varphi\in C_c ^\infty(\Omega):
+\int\limits_\Omega u\cdot\frac{\partial\varphi}{\partial x_i}
+&=\limn\int\limits_\Omega u_n\cdot\frac{\partial\varphi}{\varphi x_i}\\
+&=\limn\left(-\int\limits_\Omega\frac{\partial u_n}{\partial x_i}\cdot\varphi\right)\\
+&=-\int\limits_\Omega g_i\cdot\varphi
+\end{align*}
+Damit ist $u$ schwach differenzierbar und 
+\begin{align*}
+\nabla u=g\in L^p(\Omega,\R^n)
+\end{align*}
+Also ist $u\in\dom(\E)$. Allgemein gilt:\\
+Ist $X$ ein Banachraum und sei $x_n,x\in X,n\in\N$, dann gilt:
+\begin{align*}
+x=\weaklim\limits_{n\to\infty} x_n\implies\Vert x\Vert\leq\liminf\limits_{n\to\infty}\Vert x_n\Vert=:c
+\end{align*}
+\begin{proof}
+Die Kugel $\overline{B}(0,c+\varepsilon)$ ist normabgeschlossen und konvex. Nach Hahn-Banach ist diese Kugel dann auch schwach abgeschlossen.
+%TODO Hier Skizze einfügen
+Damit ist $x\in\overline{B}(0,c+\varepsilon)$ für alle $\varepsilon>0$ (also $\Vert x\Vert\leq c+\varepsilon$) und schließlich ist $\Vert x\Vert\leq c$.
 \end{proof}
-
+Aus diesem allgemeinen Prinzip folgt:
+\begin{align*}
+\Vert\nabla u\Vert_{L^p}&=\Vert g\Vert_{L^p}\leq\liminf\limits_{n\to\infty}\Vert \nabla u_n\Vert_{L^p}\\
+\implies
+\E(u)=\frac{1}{p}\cdot\Vert\nabla u\Vert_{L^p}^p&=\frac{1}{p}\cdot\Vert g\Vert_{L^p}^p\leq\liminf\limits_{n\to\infty}\underbrace{\frac{1}{p}\cdot\Vert \nabla u_n\Vert_{L^p}^p}_{=\E(u_n)}
+\end{align*}
+\underline{Charakterisierung von $\partial\E$:} 
+Für alle $u,v\in\dom(\E)$ gilt:
+\begin{align*}
+\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}&=\lim\limits_{\lambda\to 0^+}\int\limits_\Omega\frac{\big|\nabla(u+\lambda\cdot v)\big|^p-\big|\nabla u\big|^p}{\lambda}\\
+&\stackeq{!!}
+\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v
+\end{align*}
+Ist $(u,f)\in\partial\E$, dann ist $u\in\dom(\E)$ und für alle $v\in L^2(\Omega)$ gilt
+\begin{align*}
+\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}&\geq\langle f,u\rangle_{L^2}
+=\int\limits_\Omega f\cdot v\d x
+\end{align*}
+Ist $v\not\in\dom(\E)$, dann ist $u+vnot\in\dom(\E)$ für alle $\lambda>0$, d. h.
+\begin{align*}
+\E(u+\lambda\cdot v)=+\infty\qquad\forall\lambda>0
+\end{align*}
+und somit immer
+\begin{align*}
++\infty=\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\langle f,v\rangle
+\end{align*}
+(dieser Fall ist damit uninteressant). Ist $v\in\dom(\E)$, dann ist 
+\begin{align*}
+\int\limits_\Omega |\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v\geq\int\limits_\Omega f\cdot v
+\end{align*}
+Ersetze hier $v$ durch $-v$:
+\begin{align*}
+-\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v&\geq-\int\limits f\cdot v\\
+\implies
+-\int\limits_\Omega |\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v&=\int\limits_\Omega f\cdot v
+\end{align*}
+Damit ist 
+\begin{align*}
+\partial\E\subseteq\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|~u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\right.\right\rbrace
+\end{align*}
+Da die Inklusion ``$\supseteq$'' klar ist, folgt die Behauptung.
+\end{proof}
+Spezialfälle:\\
+$\Omega=(0,1)$ (offenes Intervall, $n=1$) und $p=2$, d. h. $H=L^2((0,1))$ und 
+\begin{align*}
+\E(u)&=\left\lbrace\begin{array}{cl}
+\frac{1}{2}\cdot\int\limits_0^1|u'|^2,&\falls u'\in L^2((0,1))\\
++\infty, &\sonst
+\end{array}\right.\\
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\left|~ u\in H^1(0,1)\wedge\forall v\in H^1(0,1):\int\limits_0^1 u'\cdot v'=\int\limits_0^1 f\cdot v\right.\right\rbrace\\
+&\text{wobei } H^1(0,1):=H^1((0,1)):=\dom(\E)=\big\lbrace u\in L^2(0,1)~\big|~u'\in L^2(0,1)\big\rbrace
+\end{align*}
+Erinnerung (schwache Ableitung)\\
+$u\in L^1_{\text{loc}}\big((0,1)\big)$ ist schwach differenzierbar
+\begin{align*}
+:\Longleftrightarrow\exists g\in L^1_{\text{loc}}\big((0,1)\big):\forall\varphi\in C_c^\infty\big((0,1)\big):
+\int\limits_0^1 u(x)\cdot\varphi'(x)\d x=-\int\limits_0^1 g(x)\cdot\varphi(x)\d x
+\end{align*}
+Im diesem Fall heißt $g=:u'$ \textbf{schwache Ableitung} von $u$. Damit ist für $(u,f)\in\partial\E$ die Ableitung $u'\in L^2(0,1)$ schwach differenzierbar und $u'':=(u')'=-f\in L^2(0,1)$ ($u$ ist zweimal schwach differenzierbar und $u,u',u''\in L^2(0,1)$).
+\begin{align*}
+\partial\E(u)\hat{=}-u''
+\end{align*}
+Ohne Beweis: Jede Funktion $u\in H^1(0,1)$ besitzt genau einen stetigen Repräsentanten ($H^1(0,1)\subseteq C\big([0,1]\big)$ !!!) und für alle $u,v\in H^1(0,1)$ gilt:
+\begin{align*}
+\int\limits_0^1 u\cdot v'=u(1)\cdot v(1)-u(0)\cdot v(0)-\int\limits_0^1 u'\cdot v
+\end{align*} 
+(Hauptsatz für Differential und Integralrechnung (HDI) für schwach differenzierbare Funktionen)\\
+Angewandt auf $u'\in H^1(0,1)$ ergibt sich 
+\begin{align*}
+\int\limits_0^1 u'\cdot v'=u'(1)\cdot v'(1)-u'(0)\cdot v'(0)\underbrace{-\int\limits_0^1 u''\cdot v}_{=+\int\limits_0^1 f\cdot v}\qquad\forall v\in H^1(0,1)
+\end{align*}
+Es gilt nach Charakterisierung des Subgradienten auch 
+\begin{align*}
+u'\cdot v'=\int\limits_0^1 f\cdot v
+\end{align*}
+Also gilt für $(u,f)\in \partial\E$:
+\begin{align*}
+u'(1)\cdot v'(1)-u'(0)\cdot v'(0)=0\quad\text{und}\quad -u''\equiv f
+\qquad\forall v\in H^1(0,1)
+\end{align*}
+Betrachte nun die Funktion $v(x):=x$ oder $v(x):=1-x$. Dann erhält man 
+\begin{align*}
+\left\lbrace\begin{array}{rll}
+-u'' &\equiv f &\text{ auf }(0,1)\\
+u'(0)&=0\\
+u'(1)&=0
+\end{array}\right.
+\end{align*}
+Schließlich gilt:
+\begin{align*}
+\partial\E=\big\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\big|~u\in H^1(0,1),u'\in H^1(0,1)\wedge -u''\equiv f\wedge \underbrace{u'(0)=u'(1)=0}_{\text{(hom.) Neumann-RB}}\big\rbrace
+\end{align*}
+(negativer Laplace-Operator mit Neumann-Randbedingungen)\\
+Der Fall $\Omega=(0,1)$ und $p\in(1,\infty)$:
+\begin{align*}
+H&=L^2(0,1)\text{ und }\\
+\E(u)&=\left\lbrace\begin{array}{cl}
+\frac{1}{p}\cdot\int\limits_0^1 |u'|^p, &\falls u'\in L^p(0,1)\\
++\infty, &\sonst
+\end{array}\right.\\
+\dom(\E)&=\big\lbrace u\in L^2(0,1)~\big|~u'\in L^p(0,1)\big\rbrace\\
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)\left|u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_0^1|u'|^{p-2}\cdot u'\cdot v'=\int\limits_0^1 f\cdot v\right.\right\rbrace
+\end{align*}
+Aus $(u,f)\in\partial\E$ folgt wie oben, dass $|u'|^{p-2}\cdot u'$ schwach differenzierbar ist und\\ $\left(|u'|^{p-2}\cdot u'\right)'\equiv -f$. Außerdem folgt mit HDI:
+\begin{align*}
+\int\limits_0^1 f\cdot v
+&=\int\limits_0^1|u'|^{p-2}\cdot u'\cdot v'\\
+&\stackeq{\text{HDI}}
+\big| u'(1)\big|^{p-2}\cdot u'(1)\cdot v(1)-
+\big| u'(0)\big|^{p-2}\cdot u'(0)\cdot v(0)+\int\limits_0^1 f\cdot v
+\end{align*}
+d.h. $\big|u'(1)\big|^{p-2}\cdot u'(1)=0$ und $\big|u'(0)\big|^{p-2}\cdot u'(0)=0$ bzw. $u'(0)=u'(1)=0$.
+\begin{align*}
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)\left|u\in\dom(\E),|u'|^{p-2}\cdot u'\text{ schwach diffbar und }-\left(|u'|^{p-2}\cdot u'\right)\equiv f\wedge u'(0)=u'(1)=0\right.\right\rbrace
+\end{align*}
+Dies ist wieder die (homogene) Neumann-Randbedingung (negativer $p$-Laplace-Operator mit Neumann-Randbedingungen).\\
+Der Fall $\Omega\subseteq\R^n$ offen und $p=2$
+\begin{align*}
+\partial\E=\Bigg\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)\Bigg|\overbrace{\nabla u\in L^2(\Omega,\R^n)}^{\gdw u\in H^1(\Omega)}\wedge\forall v\in H^1(\Omega):\underbrace{\int\limits_\Omega\nabla u\cdot \nabla v}_{=\sum\limits_{i=1}^n\int\limits_\Omega\frac{\partial u}{\partial x_i}\cdot\frac{\partial v}{\partial x_i}}=\int\limits_\Omega f\cdot v\Bigg\rbrace
+\end{align*}
+\underline{Falls} partielle Integration möglich und $v\in C^\infty_c(\Omega)$:
+\begin{align*}
+\int\limits_\Omega\nabla u\cdot \nabla v=\sum\limits_{i=1}^n\int\limits_\Omega\frac{\partial u}{\partial x_i}\cdot\frac{\partial v}{\partial x_i}=-\int\limits_\Omega\sum\limits_{i=1}^n\frac{\partial^2 u}{\partial x_i^2}\cdot v
+=\int\limits_\Omega-\Delta u\cdot v
+\end{align*}
 \end{beispiel}
 
 
