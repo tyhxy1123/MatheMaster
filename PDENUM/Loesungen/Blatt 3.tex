@@ -60,9 +60,17 @@ mit $v\in C_c^\infty\big((0,1)\big)$. Partielle Integration liefert
 \begin{align*}
 \left[\frac{\d^3 u(x)}{\d x^3}\cdot v\right]_{x=0}^1
 -\int\limits_0^1 \frac{\d^3 u(x)}{\d x^3}\cdot\frac{\d v}{\d x}\d x=\int\limits_0^1 f\cdot v\d x\\
-\implies
-\int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v(x)}{\d x^2}\d x= f\cdot v\d x
+\left[\frac{\d^3 u(x)}{\d x^3}\cdot v\right]_{x=0}^1 -
+\left[\frac{\d^2 u(x)}{\d x^2}\cdot \frac{\d v(x)}{\d x}\right]_{x=0}^1
++\int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v}{\d x^2}\d x=\int\limits_0^1 f\cdot v\d x\\
 \end{align*}
+Für $v$ gelten dieselben Randbedingungen, wie für $u$, da beide aus dem selben Raum $V$ kommen müssen, den es noch zu bestimmen gilt. Dementsprechend, sind die beiden Randintegrale Null und wir erhalten
+\begin{align*}
+	\underbrace{\left[\frac{\d^3 u(x)}{\d x^3}\cdot v\right]_{x=0}^1}_{=0} -
+\underbrace{\left[\frac{\d^2 u(x)}{\d x^2}\cdot \frac{\d v(x)}{\d x}\right]_{x=0}^1}_{=0}
++\int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v}{\d x^2}\d x=\int\limits_0^1 f\cdot v\d x\\
+\end{align*}
+Wir hören an dieser Stelle auf partiell zu integrieren, da die beiden Funktionen unter dem Integral minimale Anforderungen an den Raum $V$ stellen. Nach weiterer Betrachtung ergibt sich $H^2_0((0,1))$ als geeignetes $V$ und wir erhalten die Problemstellung \enter
 Finde $u\in H^2_0\big((0,1)\big)$ so, dass
 \begin{align*}
 \int\limits_0^1 \frac{\d^2 u(x)}{\d x^2}\cdot\frac{\d^2 v(x)}{\d x^2}\d x=\int\limits_0^1 f\cdot v\d x\qquad\forall v\in H_0^2\big((0,1)\big)
