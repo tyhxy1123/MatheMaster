@@ -164,7 +164,7 @@ Geben Sie eine hinreichende Bedingung an, unter denen die eindeutige Lösbarkeit
 \begin{lösung}
 Zuerst werden beide Seiten mit einer Testfunktion $v$ multipliziert. Anschließend wird über $\Omega$ integriert:
 \begin{align*}
-\int\limits_\Omega -nabla u\cdot v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x=\int\limits_\Omega f\cdot v\d x
+\int\limits_\Omega -\nabla u\cdot v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x=\int\limits_\Omega f\cdot v\d x
 \end{align*}
  Mit dem Satz von Gauß 
  \begin{align*}
@@ -179,18 +179,22 @@ Zuerst werden beide Seiten mit einer Testfunktion $v$ multipliziert. Anschließe
  \begin{align*}
  \div(\lambda w)=(\nabla\lambda)\cdot w+\lambda\cdot\div(w)\\
  \implies
- \lambda\cdot\div(w)=\div(\lambda\cdot w)-(\nabla\cdot\lambda)-(\nabla\lambda)\cdot w
+ \lambda\cdot\div(w)=\div(\lambda w)-(\nabla\lambda)\cdot w
  \end{align*}
- Somit folgt 
+ Nun wenden wir dies auf unsere PDE an
  \begin{align*}
- \underbrace{\int\limits_\Omega -\nabla u\cdot v}_{=-\int\limits_\Omega\div(\underbrace{\nabla u}_{\hat{=}w})\underbrace{v}_{=\lambda}}+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
- &=+\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_\Omega\div(v\cdot\nabla u)\d x
+ \underbrace{\int\limits_\Omega -\laplace u\cdot v}_{=-\int\limits_\Omega\div(\underbrace{\nabla u}_{\hat{=}w})\underbrace{v}_{=\lambda}}+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+ &=\int\limits_\Omega f\cdot v \d x
  \end{align*}
+ Wir betrachten hier zunächst den ersten Summanden näher
  \begin{align*}
- \int\limits_\Omega -\nabla u\cdot v\d x
- &=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega}\underbrace{(\nabla u\cdot n)}_{=g-\beta\cdot u\text{ laut RB}}\\
- &=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega} g\cdot v\d s+\int\limits_{\partial\Omega}\beta\cdot u\cdot v\d s
+ \int\limits_\Omega -\laplace u\cdot v\d x
+ &\stackeq{\text{def.} \laplace}\int\limits_\Omega - \div(\nabla u) \cdot v \d x \\
+ &\stackeq{\text{part. I.}}\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\Omega}\div(\nabla u \cdot v)\\
+ &\stackeq{\text{Gauß}}\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega}\underbrace{(\nabla u\cdot n)}_{=g-\beta\cdot u\text{ laut RB}}\\
+ &\stackeq{\text{RB}}\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega} g\cdot v\d s+\int\limits_{\partial\Omega}\beta\cdot u\cdot v\d s
  \end{align*}
+ Setzen wir dies für den ersten Summanden ein und ordnen die resultierende Gleichung etwas um, so erhalten wir
  \begin{align*}
 \underbrace{\int\limits_\Omega\nabla u\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x+\int\limits_{\partial\Omega}\beta\cdot u\cdot v\d s}_{=:b(u,v)}
 =\underbrace{\int\limits_\Omega f\cdot v\d x+\int\limits_{\partial\Omega} g\cdot v\d s}_{=:l(v)}
@@ -201,29 +205,37 @@ b(u,v)=l(v)\qquad v\in H^1(\Omega)
 \end{align*} 
 gilt. Wir nutzen Lax-Milgram um zu zeigen, dass eine eindeutige Lösung existiert. Wir überprüfen also nun die Voraussetzungen dafür. Offenbar ist $l$ linear und $b$ bilinear. Zur Stetigkeit von $l$:
 \begin{align*}
-\big|l(v)\big|&\stackrel{\text{C.S.}}{\leq}\Vert f\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)}+\Vert g\Vert_{L^2(\Omega)}\cdot\underbrace{\Vert v\Vert_{L^2(\Omega)}}_{\stackrel{\text{Spurungl.}}{\leq} c\cdot\Vert v\Vert_{H^1(\Omega)}}
+\big|l(v)\big|&\stackrel{\text{C.S.}}{\leq}\Vert f\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)}+\Vert g\Vert_{L^2(\partial\Omega)}\cdot\underbrace{\Vert v\Vert_{L^2(\partial\Omega)}}_{\stackrel{\text{Spur-Theorem}}{\leq} c\cdot\Vert v\Vert_{H^1(\Omega)}}
 \end{align*}
 Damit das gilt, muss $f\in L^2(\Omega)$ und $g\in L^2(\partial\Omega)$ vorausgesetzt werden. Damit ist $l$ stetig.\\
 
 Zur Stetigkeit von $b$ (ziemlich analog):
 \begin{align*}
-&\qquad\big| b(u,v)\big|\stackrel{\text{C.S.}}{\leq}\\
-&\Vert\nabla u\Vert_{L^2(\Omega)}\cdot\Vert\nabla v\Vert_{L^2(\Omega)}+\Vert a\Vert_{L^\infty(\Omega)}\cdot\Vert\nabla u\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)}
-+\Vert\alpha\Vert_{L^\infty}\cdot\Vert u\Vert_{L^2(\Omega)}\cdot\Vert u\Vert_{L^2(\Omega)}+\Vert\beta\Vert_{L^\infty(\Omega)}\cdot\Vert u\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)}\\
+\qquad\big| b(u,v)\big|\stackrel{\text{C.S.}}{\leq}
+&\Vert\nabla u\Vert_{L^2(\Omega)}\cdot\Vert\nabla v\Vert_{L^2(\Omega)}\\
+&+\Vert a\Vert_{L^\infty(\Omega)}\cdot\Vert\nabla u\Vert_{L^2(\Omega)}\cdot\Vert v\Vert_{L^2(\Omega)} \\
+&+\Vert\alpha\Vert_{L^\infty(\Omega)}\cdot\Vert u\Vert_{L^2(\Omega)}\cdot\Vert u\Vert_{L^2(\Omega)}\\
+&+\Vert\beta\Vert_{L^\infty(\partial\Omega)}\cdot\Vert u\Vert_{L^2(\partial\Omega)}\cdot\Vert v\Vert_{L^2(\partial\Omega)}\\
 &\leq
-\left(1+\Vert a\Vert_{L^\infty(\infty)}+\Vert\alpha\Vert_{L^\infty(\Omega)}+c^2\cdot\Vert\beta\Vert_{L^\infty(\partial\Omega)}\right)\cdot\Vert u\Vert_{H^1(\Omega)}\cdot\Vert v\Vert_{H^1(\Omega)}
+\left(1+\Vert a\Vert_{L^\infty(\Omega)}+\Vert\alpha\Vert_{L^\infty(\Omega)}+c^2\cdot\Vert\beta\Vert_{L^\infty(\partial\Omega)}\right)\cdot\Vert u\Vert_{H^1(\Omega)}\cdot\Vert v\Vert_{H^1(\Omega)}
 \end{align*}
- Also ist $b$ stetig. Das prinzipielle Vorgehen dabei ist immer Cauchy-Schwarz-Ungleichung + Spurungleichung.\\
+Also ist $b$ stetig unter der Annahme, dass $a, \alpha \in L^\infty(\Omega); \beta \in L^\infty(\partial\Omega)$ sind. Das prinzipielle Vorgehen dabei ist immer Cauchy-Schwarz-Ungleichung + Spurungleichung, sowie die Abschätzung der $H^1$ Norm durch ihre Definition als Summe.\\
  
 Zeige Koerzivität, also $b(v,v)\geq c\cdot\Vert v\Vert^2_{H^1(\Omega)}=c\cdot\left(\Vert v\Vert^2_{L^2(\Omega)}+\Vert \nabla v\Vert_{L^2(\Omega)}\right)$:
 \begin{align*}
-b(v,v)&=\int\limits_\Omega\frac{\nabla v\cdot\nabla v}{\Vert \nabla v\Vert^2_{L^2(\Omega)}}\d x+\int\limits_\Omega a\cdot\nabla v\cdot v\d x+\underbrace{\int\limits_\Omega\alpha\cdot v\cdot v\d x 0}_{=\int\limits_\Omega a\cdot\frac{1}{2}\cdot\nabla(v^2)}+\int\limits_{\partial\Omega}\beta\cdot v\cdot v\d s\\
-&=\frac{1}{2}\cdot\int\limits_\Omega\div(a\cdot v^2)-\div(a)\cdot v^2\d x\\
+b(v,v)&=\underbrace{\int\limits_\Omega\nabla v\cdot\nabla v \d x}_{\Vert \nabla v\Vert^2_{L^2(\Omega)}}+\underbrace{\int\limits_\Omega a\cdot\nabla v\cdot v\d x}_{=\int\limits_\Omega a\cdot\frac{1}{2}\cdot\nabla(v^2)}+\int\limits_\Omega\alpha\cdot v\cdot v\d x +\int\limits_{\partial\Omega}\beta\cdot v\cdot v\d s\\
+\end{align*}
+Wende nun wieder partielle Integration von oben mit $\lambda=v^2$ und $w=a$ an:
+\begin{align*}
+	\int\limits_\Omega a \cdot \nabla (v^2) \d x
+&=\int\limits_\Omega\div(a\cdot v^2)-\div(a)\cdot v^2\d x\\
 &\stackeq{\text{Gauß}}
-\frac{1}{2}\cdot\int\limits_{\partial\Omega}(a\cdot u)\cdot(v\cdot v)\d s-\frac{1}{2}\cdot\int\limits\div(a)\cdot(v\cdot v)\d x\\
-\implies
-b(v,v)&=\Vert\nabla v\Vert^2_{L^2(\Omega)}+\int\limits_\Omega\left(\alpha-\frac{1}{2}\cdot\div(a)\right)\cdot(v\cdot v)\d x
-+\int\limits_{\partial\Omega}\left(\beta+\frac{1}{2}\cdot a\cdot u\right)\cdot(v\cdot v)\d s
+\int\limits_{\partial\Omega}(a\cdot n)\cdot(v\cdot v)\d s-\cdot\int\limits\div(a)\cdot(v\cdot v)\d x\\
+\end{align*}
+Einsetzen ergibt
+\begin{align*}
+&b(v,v)=\Vert\nabla v\Vert^2_{L^2(\Omega)}+\int\limits_\Omega\left(\alpha-\frac{1}{2}\cdot\div(a)\right)\cdot(v\cdot v)\d x
++\int\limits_{\partial\Omega}\left(\beta+\frac{1}{2}\cdot a\cdot n\right)\cdot(v\cdot v)\d s
 \end{align*}
 Wir benötigen also die zusätzlichen Voraussetzungen, dass $\div(a)\in L^\infty(\Omega)$ und $a\cdot u\in L^\infty(\partial\Omega)$.\\
 
@@ -238,12 +250,16 @@ ist äquivalent zu $\Vert f\Vert_{1,2,\Omega}$, wenn:
 \item $\big|F(1)\big|+\sqrt{B(1,1)}>0$ für $f\equiv1$
 \end{enumerate}
 \begin{align*}
-F\equiv 0,\qquad B(v,w):=\int\limits_\Omega\left(\alpha-\frac{1}{2}\cdot\div(a)\right)\cdot(v\cdot q)\d x+\int\limits_{\partial\Omega}\left(\beta+\frac{1}{2}\cdot a\cdot u\right)\cdot(v\cdot w)\d s
+F\equiv 0,\qquad B(v,w):=\int\limits_\Omega\left(\alpha-\frac{1}{2}\cdot\div(a)\right)\cdot(v\cdot q)\d x+\int\limits_{\partial\Omega}\left(\beta+\frac{1}{2}\cdot a\cdot n\right)\cdot(v\cdot w)\d s
 \end{align*}
-Es folgt die Stetigkeit von $B$ wieder aus der Cauchy-Schwarz-Ungleichung und der Spurungleichung. Für $B(v,v)\geq0$ brauchen wir
+Es folgt die Stetigkeit von $B$ wieder aus der Cauchy-Schwarz-Ungleichung und der Spurungleichung. Für $B(v,v)\geq0$ brauchen wir 
 \begin{align*}
 \left(\alpha-\frac{1}{2}\cdot\div(a)\right)\geq 0,\qquad
-\left(\beta-\frac{1}{2}\cdot a\cdot u\right)\geq 0
+\left(\beta-\frac{1}{2}\cdot a\cdot n\right)\geq 0
+\end{align*}
+Für $\big|F(1)\big|+\sqrt{B(1,1)}=\sqrt{B(1,1)}>0$ brauchen wir
+\begin{align*}
+	\int\limits_\Omega(\alpha-\frac{1}{2}\div(a)) \d x + \int\limits_{\partial\Omega} (\beta + \frac{1}{2}a\cdot n) \d s > 0$
 \end{align*}
 \end{lösung}
 
