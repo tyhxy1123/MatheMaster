@@ -44,11 +44,12 @@ Setze $h(t):=\E[|X-t|-|X-m|]\stackeq{\text{Lin}}Y(t)-Y(m)$. Dann ist 2. äquival
 h(t)&\stackeq{\text{Trafo}}
 \int\limits_{\R}|x-t|-|x-m| Q_F(\d x)\\
 &=\int\limits_{(-\infty,t]}\underbrace{|x-t|-|x-m|}_{=t-x-(m-x)=-(m-t)} F(\d x)
-+\int\limits_{(t,m)}\underbrace{\underbrace{|x-t|-|x-m|}_{\underbrace{x-t}_{\geq0}-\underbrace{(m-x)}_{\leq m-t}}}_{\geq-(m-t)} F(\d x)
++\int\limits_{(t,m)}\underbrace{\underbrace{|x-t|-|x-m|}_{\underbrace{x-t}_{\geq0}-\underbrace{(m-x)}_{\leq m-t}}}_{\geq-(m-t)} F(\d x)\\
+&\qquad
 +\int\limits_{[m,\infty)}\underbrace{|x-t|-|x-m|}_{x-t-(x-m)=m-t} F(\d x)\\
 &\geq-(m-t)\cdot \underbrace{Q((-\infty,t])}_{F(t)}+
 \Big(-(m-t)\cdot F(m-)-F(t)\Big)
-+(m-t)\cdot\underbrace{Q([m,\infty))}_{1-\underbrace{Q((-m,m)}_{F(m-)}}\\
++(m-t)\cdot\underbrace{Q([m,\infty))}_{1-\underbrace{Q((-m,m))}_{F(m-)}}\\
 &=-\underbrace{(m-t)}_{\geq0}\cdot(\underbrace{1-2\cdot F(m-)}_{\stackrel{1.}{\geq}0})\\
 &\geq0
 \end{align*}
@@ -1396,7 +1397,7 @@ Sei $\U$ endlich Durschnittsstabil mit
 Ist $(\S,d)$ separabel, so gilt
 \begin{align*}
 \Big(\forall A\in\U:P_n(A)\stackrel{n\to\infty}{\longrightarrow} P(A)\Big)
-\implies P_n-P
+\implies P_n\stackrelnew{w}{}{\longrightarrow} P
 \end{align*}
 \end{korollar}
 
@@ -1912,7 +1913,7 @@ gilt. Dazu sei $f\in C^b(\S\times\S')$ beliebig und $f_c:\S\to\R,~f_c(x):=f(x,c)
 \end{align*}
 \end{proof}
 
-\begin{bemerkungnr} %4.16
+\begin{bemerkungnr}\label{bemerkung4.16} %4.16
 Auf die Forderung, dass $Y$ f.s. konstant ist, kann \underline{nicht} verzichtet werden. Also idt die Schlussfolgerung
 \begin{align*}
 X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S\wedge Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S'
@@ -1966,5 +1967,153 @@ sind natürlich zugelassen:
 \end{enumerate}
 \end{beispiel}
 
+Es gilt:
+\begin{align}\label{eqUnder4.18}
+(X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text { in }\S\times S'
+\implies X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S\wedge
+Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S'
+\end{align}
+denn:
+\begin{align*}
+X_n=\pi_1(X_n,Y_n)\stackrelnew{n\to\infty}{\L}{\longrightarrow}\pi_1(X,Y)=X
+\end{align*}
+wobei die \textbf{Projektion}
+\begin{align*}
+\pi_1:\S\times\S'\to\S,~\pi_1(x,y):=x\qquad\forall (x,y)\in\S\times\S'
+\end{align*}
+stetig ist (wegen CMT). Analog: $Y_n\stackrel{\L}{\longrightarrow} Y$.\\
+Die Umkehrung in \eqref{eqUnder4.18} gilt im Allgemeinen \underline{nicht}! Vergleiche \ref{bemerkung4.16}. Sie gilt tatsächlich, falls $Y$ fast sicher konstant ist, vergleiche Satz \ref{satz4.15CramerSlutsky}.\\
+Ziel: Finde eine andere zusätzliche Forderungen neben der linken Seite von \eqref{eqUnder4.18}, die die umgekehrte Implikation gestattet. Dazu:\\
+Seien $(\S_1,d_1)$ und $(\S_2,d_2)$ zwei separable metrische Räume und $\S:=S_1\times\S_2$ mit $d:=d_1\times d_2$ der zugehörige Produktraum. (Es folgt, dass $(\S,d)$ separabel ist.) Eine geringfügige Modifikation  des Beweises von \ref{satz3.3} zeigt:
+\begin{align*}
+\B_d(\S_1\times\S_2)=\B_{d_1}(\S_1)\otimes\B_{d_2}(\S_2)
+\end{align*}
+Für ein Wahrscheinlichkeitsmaß $\P$ auf $\B(\S_1\times\S_2)$ definiere 
+\begin{align*}
+\P_1(A_1)&:P(A_1\times\S_2) &\forall A_1\in\B(\S_1)\\
+\P_2(A_2)&:=P(\S_1\times A_2) &\forall A_2\in\B(\S_2)
+\end{align*}
+$\P_1$ und $\P_2$ heißen \textbf{Randverteilungen von $\P$}.
+
+\begin{theorem}\label{theorem4.19}
+Sei $(\S,d)$ separabel. Dann sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\P_n\stackrelnew{\omega}{}{\longrightarrow} \P 
+\end{aligned}$
+\item $\begin{aligned}
+\P_n(A_1\times A_2)\stackrel{n\to\infty}{\longrightarrow} \P(A_1\times A_2)\qquad\forall A_i\in\B(\S_i)~\P_1,\P_2\text{-randlos}
+\end{aligned}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Seien $\partial,\partial_1,\partial_2$ die Randoperatoren in $(\S,d),(\S_1,d_1),(\S_2,d_2)$, respektive.\\
+
+\underline{Zeige (1) $\implies$ (2):}\\
+Sei $A:=A_1\times A_2$ mit $A_i\in(2)$. Es gilt
+\begin{align}\label{eqProof4.19Stern}\tag{$\ast$}
+\partial A\subseteq((\partial_1 A_1)\times\S_2)\cup(\S_1\times(\partial_2 A_2))
+\end{align}
+%TODO Hier Skizze einfügen
+Daraus folgt
+\begin{align*}
+&\P(\partial A)\leq \underbrace{\P((\partial A_1)\times\S_2)}{=\P_1(\partial A_1)=0}+\underbrace{\P(\S_1\times(\partial_2 A_2))}_ {=\P_2(\partial_2 A_2)=0}=0\\
+&\implies
+A\in\B(\S_1\times\S_2)\text{ ist $\P$-randlos}\\
+&\stackrel{\ref{satz4.2}(5)}{\implies}(2)
+\end{align*}
+
+\underline{Zeige (2) $\implies$ (1):}\\
+Wir wollen Korollar \ref{korollar4.4} anwenden. Dazu:\\
+Wähle $d$ wie folgt aus:
+\begin{align}\label{eqProof4.19Plus}\tag{+}
+d\big((x_1,x_2),(y_1,y_2)\big)&:=\max\big\lbrace d_1(x_1,y_1),d_2(x_2,y_2)\big\rbrace
+\end{align}
+Sei
+\begin{align*}
+\U:=\big\lbrace A_1\times A_2:A_i\in\B(\S_i)~\P_i\text{-randlos}, i\in\lbrace1,2\rbrace\big\rbrace 
+\end{align*}
+$\U$ ist durchschnittsstabil, denn: Seien $A:=A_1\times A_2,B=B_1\times B_2\in\U$. Dann gilt
+\begin{align}\label{eqProof4.19.1}\tag{1}
+A\cap B=(A_1\cap B_1)\times(A_2\times B_2)
+\end{align}
+Ferner gilt
+\begin{align}\label{eqProof4.19.2}\tag{2}
+\partial_i(A_i\cap B_i)\subseteq(\partial_i A_i)\cup(\partial_i B_i)\qquad\forall i\in\lbrace1,2\rbrace
+\end{align}
+Aus \eqref{eqProof4.19.1} und \eqref{eqProof4.19.2} folgt: $\U$ ist durchschnittsstabil. Sei nun $x=(x_1,x_2)\in\S=\S_1\times\S_2$ und $\varepsilon>0$ beliebig. Aus \eqref{eqProof4.19Plus} folgt:
+\begin{align*}
+B_d(x,\varepsilon)=B_{d_1}(x_1,\varepsilon)\times B_{d_2}(x_2,\varepsilon)
+\end{align*}
+Sei 
+\begin{align*}
+A_\delta:=B_{d_1}(x_1,\delta)\times B_{d_2}(x_2,\delta)
+\stackeq{\eqref{eqProof4.19Plus}} B_d(x,\delta)\qquad\forall\delta>0
+\end{align*}
+Somit gilt (vgl. Beweis von \ref{satz4.2})
+\begin{align*}
+\partial_i B_{d_i}(x_i,\delta)\subseteq\big\lbrace y\in\S_i:d(y,x_i)=\delta\big\rbrace\qquad\forall i\in\lbrace1,2\rbrace
+\end{align*}
+Folglich sind die Mengen $\partial_i B_{d_i}(x_i,\delta),\delta>0$ sind paarweise disjunkt. Die Mengen
+\begin{align*}
+E_i:=\Big\lbrace\delta>0:\P_i\big(\partial_i B_{d_i}(x_i,\delta)\big)>0\Big\rbrace\qquad\forall i\in\lbrace1,2\rbrace
+\end{align*}
+sind höchstens abzählbar (vgl. Beweis von \ref{satz4.2}). Folglich ist die Vereinigung $E_1\cup E_2$ höchstens abzählbar und somit liegt $(E_1\cup E_2)^C$ dicht in $[0,\infty)$. Mit
+\begin{align*}
+(E_1\cup E_2)^C&=E_1^C\cap E_2^C=\big\lbrace\delta>0:B_{d_i}(x_i,\delta)\text{ ist $\P_i$-randlos},i\in\lbrace1,2\rbrace\big\rbrace\\
+\implies\exists\delta&\in(0,\varepsilon):B_{d_1}(x_1,\delta)~\P_1\text{-randlos und }B_{d_2}(x_2,\delta)~\P_2\text{-randlos}\\
+\implies A_\delta&=B_{d_1}(x_1,\delta)\times B_{d_2}(x_2,\delta)\in\U\\
+&\stackeq{\eqref{eqProof4.19Plus}} B_d(x,\delta)\subseteq B_d(x,\varepsilon)
+\end{align*}
+Also offene Kugel ist $A_\delta$ offen, also $\stackrel{\circ}{A_\delta}=A_\delta$. Schließlich folgt
+\begin{align*}
+x\in\stackrel{\circ}{A_\delta}=A_\delta\subseteq B_d(x,\varepsilon)
+\end{align*}
+Also erfüllt $\U$ die Voraussetzungen von Korollar \ref{korollar4.4}. Daraus folgt nun die Behauptung.
+\end{proof}
+
+Theorem \ref{theorem4.19} liefert ein nützliches Resultat für Produktmaße. Seien $\P^{(i)},\P_n^{(i)},n\in\N$ Wahrscheinlichkeitsmaße auf $\B(\S_i)$ mit $i\in\lbrace1,2\rbrace$. Dann sind
+\begin{align*}
+\P:=\P^{(1)}\otimes\P^{(2)},\qquad\P_n:=\P_n^{(1)}\otimes\P_n^{(2)}\qquad\forall n\in\N
+\end{align*}
+Produktmaße auf $\B(\S_1)\otimes\B(\S_2)=\B(\S_1\times\S_2)$ bei Separabilität.
+
+\begin{theorem}\label{thoerem4.20}
+Sei $\S=\S_1\times\S_2$ separabler Produktraum. Dann sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\P_n\stackrelnew{w}{}{\longrightarrow}\P
+\end{aligned}$
+\item $\begin{aligned}
+\P_n^{(1)}\stackrelnew{w}{}{\longrightarrow}\P^{(1)}\wedge
+\P_n^{(2)}\stackrelnew{w}{}{\longrightarrow}\P^{(2)}
+\end{aligned}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Gemäß Definition gilt:
+\begin{align*}
+\P(A_1\times A_2)&\stackeq{\text{Def}}\P^{(1)}(A_1)\cdot\P^{(2)}(A_2)\\
+\P_n(A_1\times A_2)&\stackeq{\text{Def}}\P_n^{(1)}(A_1)\cdot\P_n^{(2)}(A_2)\\
+\end{align*}
+\underline{Zeige (1) $\implies$ (2):}
+\begin{align*}
+\P_n^{(1)}(A_1)&=\P_n(A_1\times\S_2)\stackrel{}{\longrightarrow}\P(A_1\times\S_2)=\P^{(1)}(A_1)
+\qquad\forall A_1\in\B(\S_1)~\P^{(1)}\text{-randlos}
+\end{align*}
+gemäßig \ref{theorem4.19}, denn $\partial\S_2=\emptyset$. Also ist $\S_2\in\B(\S_2)~\P^{(2)}$-randlos. Also folgt aus \ref{satz4.2}(5):
+\begin{align*}
+\P_n^{(1)}\stackrelnew{w}{}{\longrightarrow}\P_n^{(2)}
+\end{align*}
+Analog zeigt man: $\P_n^{(2)}\stackrelnew{w}{}{\longrightarrow}\P^{(2)}$.\\
+
+\underline{Zeige (2) $\implies$ (1):}
+\begin{align*}
+&\P_n(A_1\times A_2)=\underbrace{\P_n^{(1)}(A_1)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(1)}(A_1)}\cdot\underbrace{\P_n^{(2)}(A_2)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(2)}(A_2)}\qquad\forall A_i~\P_i\text{-randlos },i=1,2\\
+&\implies
+\P^{(1)}(A_1)\cdot\P^{(2)}(A_2)=\P(A_1\times A_2)\qquad\forall A_i~\P_i\text{-randlos},i\in\lbrace1,2\rbrace\\
+&\stackrel{\ref{theorem4.19}}{\implies}\P_n\stackrel{n\to\infty}{\longrightarrow}\P
+\end{align*}
 
 
+\end{proof}
