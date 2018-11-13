@@ -32,10 +32,13 @@ wobei $U[p,q]$ die \textbf{upcrossings} (aufsteigende Überquerungen) des Streif
 %TODO (für Robert oder Henrik): Hier Skizze einfügen
 
 \begin{defi}
-Sei $(X_n)_{n\in\N}$ ein adaptierter stochastischer Prozess und $p,q\in\R, p<q,N\in\N$. Setze
+Sei $(X_n)_{n\in\N}$ ein adaptierter stochastischer Prozess und $p,q\in\R$ , $p<q$ , $N\in\N$. Setze % Die einzelnen $..$ Umgebungen sind hier wichtig, sonst passiert ein Zeilenumbruch inmitten der Matheumgebung
 \begin{align*}
-U_N[p,q]&:=\max\Big\lbrace k\in\N_0~\Big|~\exists\text{ Stoppzeiten }0<\sigma_1<\tau_1<\sigma_2<\tau_2<\ldots<\tau_k\le n:\\
-&\qquad\qquad\qquad\qquad\forall i\in\lbrace 1,\ldots,k\rbrace: x_{\sigma_i}<p\wedge X_{\tau_i}>q\Big\rbrace
+	U_N[p,q]&:=\max\left\{ k\in\N_0\left|
+\begin{array}{c}
+	\exists\text{ Stoppzeiten }0<\sigma_1<\tau_1<\sigma_2<\tau_2<\ldots<\tau_k\le N\\
+	&\forall i\in\lbrace 1,\ldots,k\rbrace: X_{\sigma_i}<p \text{ und } X_{\tau_i}>q
+\end{array}\right.\right\} % hier Wort "und" da sonst Verwirrung mit minimum
 \end{align*}
 $U_N[p,q]$ ist die Anzahl der \textbf{Upcrossings} von $[p,q]\times\lbrace0,1,\ldots,N\rbrace$ durch $(X_n)_{n\in\N}$ und 
 \begin{align*}
@@ -71,11 +74,11 @@ Setze der Kürze halber $k(\omega):=U_N[p,q](\omega)$. Klarerweise ist $k\leq N$
 d. h. $\tau_0<\overbrace{\sigma_1<\tau_1}^{\text{1. Upcrossing}}<\overbrace{\sigma_2<\ldots}^{\text{2. Upcrossing}}\ldots<\tau_k$ und $\tau_{k+1}=\sigma_{k+1}=\tau_{k+2}=\ldots=\tau_N=N$. Es gilt:
 \begin{align}\label{eqProof4.1.1Stern}\tag{$\ast$}
 (q-p)\cdot U_N[p,q] &\leq
-\overbrace{\underbrace{(X_{\tau_1}-p)}_{>q-p}+\underbrace{(X_{\tau_2}-X_{\sigma_2})}_{>q-p}+\ldots+\underbrace{(X_{\tau_k}-X_{\tau_k}-X_{\sigma_k})}_{>q-p}}^{U_N[p,q]\text{ Stück}}
+\overbrace{\underbrace{(X_{\tau_1}-p)}_{>q-p}+\underbrace{(X_{\tau_2}-X_{\sigma_2})}_{>q-p}+\ldots+\underbrace{(X_{\tau_k}-X_{\tau_k}-X_{\sigma_k})}_{>q-p}}^{U_N[p,q]\text{ Summanden}}
 \end{align}
 Außerdem gilt
 \begin{align}\label{eqProof4.1.1ZweiStern}\tag{$\ast\ast$}
-\min\lbrace X_n-p,0\rbrace&\leq x_n-X_{\sigma_{k+1}},
+\min\lbrace X_n-p,0\rbrace&\leq X_n-X_{\sigma_{k+1}},
 \end{align}
 denn: 
 \begin{align*}
