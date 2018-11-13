@@ -1,0 +1,116 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Martingalkonvergenz und gleichgradige Integrierbarkeit} %4
+%\setcounter{section}{4} %kleiner Hack
+
+\section{Martingalkonvergenz}
+\underline{Vorüberlegung:} Sei $(a_n)_{n\in\N}\subseteq\R$ deterministische Folge in $\R$.
+\begin{itemize}
+\item $\liminf\limits_{n\to\infty} a_n$ und $\limsup\limits_{n\to\infty} a_n$ immer wohldefiniert mit Werten in $\overline{\R}:=\R\cup\lbrace\pm\infty\rbrace$
+\item Grenzwert $\limn a_n$ existiert in $\overline{\R}$
+\begin{align*}
+\Longleftrightarrow\liminf\limits_{n\to\infty} a_n=\limsup\limits_{n\to\infty} a_n
+\end{align*}
+\item Mit Kontraposition gilt also 
+\begin{align*}
+&\lim a_n\text{ existiert \ul{nicht} in }\overline{\R}\\
+&\Longleftrightarrow\liminf\limits_{n\to\infty} a_n<\limsup\limits_{n\to\infty} a_n\\
+&\Longleftrightarrow
+\exists p,q\in\Q\mit p<q:\liminf\limits_{n\to\infty} a_n<p<q<\limsup\limits_{n\to\infty} a_n\\
+&\Longleftrightarrow
+\exists p,q\in\Q\mit p<q:\\
+&\qquad(a_n)_{n\in\N}\text{ unendlich oft den Streifen }[p,q]\times\N\text{ ``aufsteigend'' überquert}\\
+&\Longleftrightarrow
+\exists p,q\in\Q\mit p<q:U[p,q]=\infty
+\end{align*}
+wobei $U[p,q]$ die \textbf{upcrossings} (aufsteigende Überquerungen) des Streifens $[p,q]\times\N$ bezeichnet.
+\end{itemize}
+
+%TODO (für Robert oder Henrik): Hier Skizze einfügen
+
+\begin{defi}
+Sei $(X_n)_{n\in\N}$ ein adaptierter stochastischer Prozess und $p,q\in\R, p<q,N\in\N$. Setze
+\begin{align*}
+U_N[p,q]&:=\max\Big\lbrace k\in\N_0~\Big|~\exists\text{ Stoppzeiten }0<\sigma_1<\tau_1<\sigma_2<\tau_2<\ldots<\tau_k\le n:\\
+&\qquad\qquad\qquad\qquad\forall i\in\lbrace 1,\ldots,k\rbrace: x_{\sigma_i}<p\wedge X_{\tau_i}>q\Big\rbrace
+\end{align*}
+$U_N[p,q]$ ist die Anzahl der \textbf{Upcrossings} von $[p,q]\times\lbrace0,1,\ldots,N\rbrace$ durch $(X_n)_{n\in\N}$ und 
+\begin{align*}
+U[p,q]=\limsup\limits_{n\to\infty} U_n[p,q]
+\end{align*}
+die Anzahl der \textbf{Upcrossings} von $[p,q]\times\N$.
+\end{defi}
+
+\begin{lemma}[Doob's Upcrossing Lemma]\enter\label{lemma4.1DoobsUpcrossingLemma}
+Sei $(X_n)_{n\in\N}$ Sub-Martingal und $p,q\in\R\mit p<q$. Dann gilt:
+\begin{align*}
+\E\big[U_N[p,q]\big]&\leq\frac{\E\big[(X_N-p)^+\big]}{q-p}\qquad\forall N\in\N
+\end{align*}
+\end{lemma}
+
+\begin{bemerkung}
+\textbf{Positivteil} und \textbf{Negativteil} einer Zufallsvariblen $X$ ist definiert als
+\begin{align*}
+X^+(\omega):=\max\big\lbrace X(\omega),0\big\rbrace
+\qquad\text{ und }\qquad
+X^-(\omega):=-\min\big\lbrace X(\omega),0\big\rbrace
+\end{align*}
+Es gilt $X=X^+-X^-$ und $|X|=X^++X^-$.
+\end{bemerkung}
+
+\begin{proof}
+Setze der Kürze halber $k(\omega):=U_N[p,q](\omega)$. Klarerweise ist $k\leq N$. Definiere
+\begin{align*}
+\tau_0&:=0\\
+\sigma_j&:=\min\big\lbrace k\geq \tau_{j-1}:X_k<p\big\rbrace\wedge N\text{ ``Erstaustrittszeit''}\\
+\tau_j&:=\max\big\lbrace k\geq\sigma_j:X_k>q\big\rbrace\wedge N
+\end{align*}
+d. h. $\tau_0<\overbrace{\sigma_1<\tau_1}^{\text{1. Upcrossing}}<\overbrace{\sigma_2<\ldots}^{\text{2. Upcrossing}}\ldots<\tau_k$ und $\tau_{k+1}=\sigma_{k+1}=\tau_{k+2}=\ldots=\tau_N=N$. Es gilt:
+\begin{align}\label{eqProof4.1.1Stern}\tag{$\ast$}
+(q-p)\cdot U_N[p,q] &\leq
+\overbrace{\underbrace{(X_{\tau_1}-p)}_{>q-p}+\underbrace{(X_{\tau_2}-X_{\sigma_2})}_{>q-p}+\ldots+\underbrace{(X_{\tau_k}-X_{\tau_k}-X_{\sigma_k})}_{>q-p}}^{U_N[p,q]\text{ Stück}}
+\end{align}
+Außerdem gilt
+\begin{align}\label{eqProof4.1.1ZweiStern}\tag{$\ast\ast$}
+\min\lbrace X_n-p,0\rbrace&\leq x_n-X_{\sigma_{k+1}},
+\end{align}
+denn: 
+\begin{align*}
+X_n-p<0&\implies X_{\sigma_{k+1}}<p&\implies X_N-p\leq X_{\sigma_{k+1}}-p\\
+X_n-p\geq0&\implies \sigma_{k+1}=N&\implies X_N-p- X_{\sigma_{k+1}}=0
+\end{align*}
+Addiere von \eqref{eqProof4.1.1Stern} auf \eqref{eqProof4.1.1ZweiStern}
+\begin{align*}
+(q-p)\cdot U_N[p,q]+\min\lbrace X_N-p,0\rbrace\leq (X_{\tau_1}-p)
+\end{align*}
+Bilden von Erwartungswert und Umordnen der Summe liefert
+\begin{align*}
+(q-p)\cdot\E\big[U_N[p,q]\big]-\E\big[(X_N-p)^-\big]
+&\leq-p+\sum\limits_{j=1}^{N-1}\Big(\underbrace{\E\big[X_{\sigma_{j+1}}\big]-\E\big[X_{\tau_j}\big]}_{\leq 0\text{, wegen Theorem \ref{theorem3.4}}}\Big)+\E[X_n]\\
+&\leq\E\big[(X_n-p)\big]\\
+\implies
+(q-p)\cdot\E\big[U_N[p,q]\big]&\leq\E\big[(X_n-p)+(X_n-p)^-\big]\\
+&=\E\big[(X_n-p)^+\big]
+\end{align*}
+\end{proof}
+
+\begin{theorem}[Martingalkonvergenz]\label{theorem4.2Martingalkonvergenz}\enter
+Sei $(X_n)_{n\in\N}$ ein Submartingal mit $\sup\limits_{n\in\N}\E[X_n^+]<\infty$. Dann gilt:
+\begin{align*}
+\exists X_\infty\in L_1(\Omega,\A,\P):\limn X_n=X_\infty\text{ fast sicher}
+\end{align*}
+\end{theorem}
+\begin{proof}
+nächste VL.
+\end{proof}
+
+
+
+
+%%%%%%%%%%
+%Abschließbar: $X_n=\E[X_\infty~|~\F_n]$?
+
+

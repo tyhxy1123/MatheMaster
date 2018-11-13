@@ -255,6 +255,88 @@ Somit folgt
 \end{align*}
 \end{beisp}
 
+\begin{defi}
+Sei $(\F_n)_{t\in I}$ eine Filtration und $\tau$ eine Stoppzeit bgzl. dieser. Wir definieren 
+\begin{align*}
+\F_\tau:=\big\lbrace A\in\A~\big|~\forall t\in I:A\cap\lbrace\tau\leq t\rbrace\in\F_t\big\rbrace
+\end{align*}
+Dann ist $\F_\tau$ eine Sub-$\sigma$-Algebra von $\A$ und heißt die \textbf{zu $\tau$ assoziierte $\sigma$-Algebra}.
+\end{defi}
+
+\begin{bemerkung}
+$\F_\tau$ ist deterministisches Objekt: Die Konstruktion ist nicht vergleichbar mit dem Stoppen von stochastischen Prozessen.
+\end{bemerkung}
+
+\setcounter{satz}{2} %Das ist notwendig. In der Vorlesung wurde tatsächlich so nummeriert und das Skript soll konsistent bleiben.
+\begin{lemma}\label{lemma3.3}
+Sei $\F$ Filtration und $\sigma,\tau$ Stoppzeiten. Dann gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\big(\forall\omega\in\Omega:\sigma(\omega)\leq\tau(\omega)\big)\implies\F_\sigma\subseteq\F_\tau
+\end{aligned}$
+%Das was im alten Skript dazu steht, gilt NICHT.
+\item $\begin{aligned}
+\lbrace\sigma<\tau\rbrace\in\F_\sigma\cap\F_\tau
+\end{aligned}$
+\item $\begin{aligned}
+\F_\sigma\cap\F_\tau=\F_{\sigma\wedge\tau}
+\end{aligned}$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Übungsaufgabe.
+\end{proof}
+
+\begin{theorem}[Doob's optional sampling]\enter\label{theorem3.4}
+Sei $(X_n)_{n\in\N}\subseteq L^1(\P)$ adaptierter stochastischer Prozess. Dann sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $(X_n)_{n\in\N}$ ist Martingal
+\item $\begin{aligned}
+\E[X_\sigma]=\E[X_\tau]\qquad\forall
+\end{aligned}$ beschränkten Stoppzeiten $\sigma,\tau$
+\item $\begin{aligned}
+\E[X_\sigma]=\E[X_\tau~|~\F_\sigma]\qquad\forall
+\end{aligned}$  beschränkten Stoppzeiten $\sigma\leq\tau$
+\end{enumerate}
+\end{theorem}
+
+\begin{bemerkung}
+Der Satz gilt auch mit 
+\begin{enumerate}[label=(\arabic*')]
+\item $(X_n)_{n\in\N}$ ist Submartingal
+\item $[X_\sigma]\leq\E[X_\tau]$ für alle beschränkten Stoppzeiten $\sigma\leq\tau$
+\item $X_\sigma\leq\E[X_\tau~|~\F_\sigma]$ für alle beschränkten Stoppzeiten $\sigma\leq\tau$
+\end{enumerate}
+und analog für Supermartingale.
+\end{bemerkung}
+
+\begin{proof}
+\underline{Zeige (a) $\implies$ (b):} 
+Folgt aus Theorem \ref{theorem3.3} (a)\\
+
+\underline{Zeige (c) $\implies$ (a):}\\
+Setze $\tau:=t$,$\sigma:=s$ mit $s,t\in\N\mit s\leq t$.\\
+
+\underline{Zeige (b) $\implies$ (c):}\\
+Sei $A\in\F_\sigma$. Dann gilt $\stackrel{\ref{lemma3.3}}{\implies} A\in\F_\tau$. Definiere
+\begin{align*}
+\rho:=\sigma\cdot\indi_A+\tau\cdot\indi_{A^C}
+\end{align*}
+Es gilt:
+\begin{align*}
+\lbrace\rho\leq\tau\rbrace=\big(\underbrace{\lbrace\sigma\leq k\rbrace\cap \overbrace{A}^{\in\F_\sigma}}_{\in\F_k}\big)\cup\big(\underbrace{\lbrace\rho\leq k\rbrace\cap \overbrace{A^C}^{\in\F_\tau}}_{\in\F_k}\big)\in\F_k\qquad\forall k\in\N_0
+\end{align*}
+Also ist $\rho$ auch eine Stoppzeit. Aus Voraussetzung (b) folgt einerseits $\E[X_\rho]=\E[X_\tau]$ und anderseits
+\begin{align*}
+\E[X_\rho]
+&=\E\big[X_\sigma\cdot\indi_A+X_\tau\cdot\indi_{A^C}\big]\\
+&\implies
+\E[X_\sigma\cdot\indi_A]
+=\E[X_\tau\cdot\indi_A]\qquad\forall A\in\F_\sigma\\
+&\implies
+X=\E[X_\tau~|~\F_\sigma]
+\end{align*}
+\end{proof}
 
 
 
