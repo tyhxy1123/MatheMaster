@@ -4,6 +4,10 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \newenvironment{proof_}{\begin{proof}[Proof]}{\end{proof}}
+\newenvironment{rcases}
+{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
+
 
 %% adopted environments to english
 \newtheorem{thrm}{Theorem}[section]
@@ -19,6 +23,7 @@
 
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
 \newcommand*\bigo{\mathcal{O}}
+\newcommand{\T}{\mathcal{T}}				 % Triangulierung
 
 %\newcommand*\laplace{\mathop{}\!\mathbin\bigtriangleup}
 \newcommand*\laplace{\Delta}
