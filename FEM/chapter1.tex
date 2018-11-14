@@ -1,0 +1,391 @@
+\section{weak solutions of elliptic pde}
+
+\begin{example}
+	\begin{align}\label{poisson}
+	-\laplace u &= f \qquad \text{in } \Omega \\
+	u &= 0 \qquad \text{on } \partial \Omega \nonumber
+	\end{align}
+	
+	$\Omega \subset \R^d $ ($d \geq 1$), $\partial \Omega \in C^{0,1}$
+\end{example}
+
+If $f \in L^2(\Omega)$, $u \in C^2(\Omega)\cap C(\overline{\Omega})$ is \glqq classical \grqq solution of (\ref{poisson}). Now multiply with $v \in C^\infty_0 (\Omega)$ and integrate by parts.
+
+\begin{align*}
+	\int \limits_\Omega fv \diff x &= \int \limits_\Omega \laplace uv \diff x\\
+								   &= \int \limits_\Omega \nabla u \cdot \nabla v \diff x - \underbrace{\int \limits_{\partial \Omega} \left( \nabla uv\right)\cdot \vartheta \diff x}_{=0,\ v|_{\partial \Omega} = 0} \\
+								   &= \int \limits_\Omega \nabla u \cdot \nabla v \diff x
+\end{align*}
+
+Because $C^\infty_0(\Omega)$ is dense in $H^1_0(\Omega)$ this also holds for all $v \in H^1_0(\Omega)$. Now define the Hilbert form
+\begin{equation*}
+	a(u,v) = \int \limits_\Omega \nabla u \cdot \nabla v \diff x \qquad u,v\in H^1_0(\Omega)
+\end{equation*}
+and linear functional
+
+\begin{equation*}
+	F(v) = \int \limits_\Omega fv \diff x \qquad v \in H^1_0(\Omega).
+\end{equation*}
+
+Now we call 
+\begin{equation}\label{weak_form}
+	a(u,v) = F(v) \qquad \forall v \in  H^1_0(\Omega)
+\end{equation}
+\textbf{weak formulation} of (\ref{poisson}).\\
+
+We call u
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of \eqref{weak_form}
+\item \textbf{classical solution} of (\ref{poisson}), if it is also a weak solution of \eqref{weak_form}. 
+\end{enumerate}
+
+If $u$ is a weak solution of \eqref{weak_form} and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
+\begin{equation*}
+	\int \limits_\Omega \left( f + \laplace u \right) v \diff x = \int \limits_\Omega  fv - \nabla u \cdot \nabla v \diff x = 0
+\end{equation*}
+
+$\implies \forall v\in L^2(\Omega):$ 
+\begin{equation*}
+	\int \limits_\Omega \left( f + \laplace u \right) v \diff x = 0.
+\end{equation*}
+
+$\implies f + \laplace u = 0$ almost everywhere in $\Omega$.\enter
+Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega}$.
+
+\begin{definition_}
+	$V$ is a real Hilbert space, $a: V \times V \to \R$ bilinearform
+	\begin{enumerate}[label=(\alph*)]
+		\item $a$ is \textbf{continuous} in $V$ if there exists $K > 0$ s.t. $\forall u,v \in V:$ 
+		\begin{equation*}
+			|a(u,v)| \leq K \|u\|_V \|v\|_V.
+		\end{equation*} 
+		\item $a$ is \textbf{coercive} (or elliptic) in $V$ if there exists $\lambda > 0$ s.t. $\forall u \in V:$
+		\begin{equation*}
+			a(u,u)  \geq \lambda \|u\|^2_V
+		\end{equation*}
+	\end{enumerate}
+\end{definition_}
+
+\begin{thrm}
+	(Lax-Milgram )\enter
+	$V$ real Hilbert space, $a: V \times V \to \R$ is continuous and coercive, $F:V \to \R$. Then there exists a unique solution $u \in V$, s.t.
+	\begin{equation*}
+		a(u,v) = F(v) \qquad \forall v \in V
+	\end{equation*}
+	and it holds $\|u\|_V \leq \lambda^{-1}\|F\|_{V'}$.
+	%%i think F has to be linear 	
+\end{thrm}
+
+\begin{reminder}
+	(Representation theorem by Riesz)\enter
+	$V$ is a real Hilbertspace with $(\cdot,\cdot)$ scalar product and $F \in \textbf{F} \in V'$. It exists a unique $u \in V$ s.t.
+	\begin{equation*}
+		(u,v) = F(v) \qquad \forall v\in V
+	\end{equation*} 
+	and $\|u\|_V = \|F\|_{V'}$.
+\end{reminder}
+
+\begin{proof_}
+	of Lax-Milgram \enter
+	$w \in V$. We have $a(w,\cdot) \in V'$ with Riesz there exists $T(w) \in V$ with 
+	\begin{equation}\label{lm_proof}
+		(T(w),v) = a(w,v) \qquad \forall v \in V
+	\end{equation}
+	and 
+	\begin{equation*}
+		\|T(w)\|_V = \|a(w,\cdot)\|_{V'} \leq K \|w\|_V.
+	\end{equation*}
+	This shows $T: V \to V$ is continuous and because $a(\cdot,\cdot)$ is bilinear also linear.
+\end{proof_}
+
+\par
+\underline{\textbf{goal}:}
+Show $T^{-1}$ exists and is continuous and linear.\enter
+
+\begin{enumerate}[=label=(\alph*)]
+	\item \textbf{existence}:\enter If $g \in V$ is a unique solution of 
+	\begin{equation*}
+	(g,v) = F(v) \qquad \forall v \in V
+	\end{equation*}
+	with $\|g\|_V = \|F\|_V$ we obtain with \eqref{lm_proof} 
+	\begin{equation*}
+	a(T^{-1}(g),v) = (g,v) = F(v) \qquad \forall v \in V
+	\end{equation*}
+	and therefore $u = T^{-1}(g)$. It also holds that it is unique, as for $u_1, u_2 \in V$ two solutions $u$ have 
+	\begin{equation*}
+	a(u_1 - u_2,v) = 0 \qquad \forall v \in V
+	\end{equation*}
+	and thus for $v = u_1 - u_2$
+	\begin{equation*}
+	\lambda \|u_1 - u_2\|^2_V \leq a(u_1 -u_2, u_1 -u_2) = 0
+	\end{equation*}
+	and therefore $u_1 = u_2$.
+	
+	\item  $T^{-1}$\textbf{ injectiv}: \enter
+	$a(\cdot, \cdot)$ is coercive $\implies \forall u \in V$
+	\begin{equation*}
+		\lambda \|u\|^2_V \leq (T(u),u) \leq \|T(u)\|_V\|u\|_V
+	\end{equation*}
+	and thus 
+	\begin{equation}\label{inverse}
+		\lambda \|u\|_V \leq \|T(u)\|_V
+	\end{equation}
+	$\implies T^{-1}$ is injective and $T^{-1}: T(V) \to V$ is continuous with
+	\begin{equation*}
+		\|T^{-1}(v)\|_V \leq \lambda^{-1}\|v\|_V \qquad \forall v \in T(V). 
+	\end{equation*}
+	We need to show
+	\begin{equation*}
+		T(V) = V.
+	\end{equation*}
+	\item $T(V)$ \textbf{is closed}:\enter
+	 $(v_n) \subset T(V)$ with $v_n \to v$ for $n \to \infty$ and $v \in V$. To show $v \in T(V)$. By definition of $v_n$ exists a sequence $(u_n) \subset V$ with $v_n = T(u_n) \to v$. With (\ref{inverse}) $(u_n)$ is a Cauchy sequence in $V$ and $V$ complete follows $u_n \to u \in V$ because $T$ continuous, $T(u_n) \to T(w)$ and thus $T(w)=v$ and $v \in T(V)$\enter
+	\item $T(V) = V$:\enter
+	 Assume $T(V) \neq V$, as $T(V)$ is a closed linear subspace of $V$, it holds 
+	\begin{equation*}
+		V = T(V) \oplus T(V)^\perp
+	\end{equation*}
+	with $T(V)^\perp \neq \emptyset$. If $z \in T(V)^\perp $ with $z \neq 0$
+	\begin{equation*}
+		(T(v),z) = 0 \qquad \forall v \in V,
+	\end{equation*}
+	it holds with (\ref{lm_proof}) 
+	\begin{equation*}
+		0 = (T(z),z) = a(z,z) \geq \alpha \|z\|^2_V
+	\end{equation*}
+	and thus $z = 0$. This is a contradiction.\\
+	Now (\ref{inverse}) implies
+	\begin{equation*}
+		\|u\|_V = \|T^{-1}(g)\|_V \leq \lambda^{-1}\|g\|_V = \lambda^{-1}\|F\|_{V'}.
+	\end{equation*}
+\end{enumerate}
+
+\textbf{\underline{consider}}
+\begin{itemize}
+	\item Dirichlet boundary conditions(short BC)\enter
+	\item Neumann BC\enter
+	\item Robin BC
+\end{itemize}
+
+
+\begin{enumerate}[=(\alph*)]
+	\item \textbf{Dirichlet BC}:\enter
+	look for weak solutions of 
+	\begin{align*}
+		Lu &= f \qquad \text{in } \Omega\\
+		 u &= g \qquad \text{on } \partial \Omega
+	\end{align*}
+	with 
+	\begin{equation*}
+		Lu = - \displaystyle \sum^d_{i,j} \frac{\partial}{\partial x_i} \left(  a_ij(x) \frac{\partial u}{\partial x_j} \right) + c(x)u.
+	\end{equation*}
+	\begin{example}
+		\begin{align*}
+			d &= 1,&   a_{11}(x)&=1,              & c(x)&=0 \\
+			  &    &            &				  &     &  \\
+			d &= 2,&   a_{11}(x)&= a_{22}(x) = 1, & c(x)&=0 \\ 
+			  &    &   a_{12}(x)&= a_{21}(x) = 0  &     &   \\
+		  	  &    &         Lu &= -\laplace      &     &   \\
+		\end{align*}
+	\end{example}
+	\begin{definition_}
+		$L$ is \textbf{elliptic} in $\Omega$ if $\lambda > 0$ exists, s.t. $\forall \xi \in \R^d$ and  $x \in \Omega$
+		\begin{equation*}
+			\displaystyle \sum^d_{i,j} a_{ij}(x)\xi_i\xi_j \geq \lambda |\xi|^2
+		\end{equation*}
+	\end{definition_}
+	weak form 
+	\begin{align*}
+		a(u,v) &= \displaystyle \sum_{i,j} \int \limits_\Omega a_{ij}(x)\frac{\partial u}{\partial x_j} \frac{\partial v}{\partial x_j} \diff x + \int \limits_\Omega cuv \diff x \\
+		F(v)&= \int \limits_\Omega fv \diff x
+	\end{align*}
+	Look for $u$ with $u = g \in H^1_0(\Omega)$ and transform equation to homogenous BC. $w = u - g \in H^1_0(\Omega)$ is solution of 
+	\begin{align*}
+		Lw &= f -Lg \qquad \text{in } \Omega\\
+		 w &= 0 \qquad \qquad \ \,\text{on } \partial\Omega.
+	\end{align*}
+	Define right hand side
+	\begin{equation*}
+		G(v) = F(v) - \displaystyle \sum^d_{i,j} \int \limits_\Omega a_{ij} \frac{\partial g}{\partial x_j}\frac{\partial v}{\partial x_i} \diff x - \int \limits_\Omega cgv \diff x \quad \forall v\in H^1_0(\Omega).
+	\end{equation*}
+	Weak formulation: find $w\in H^1_0(\Omega)$ 
+	\begin{equation*}
+		a(w,v) = G(v) \qquad \forall v \in H^1_0(\Omega)
+	\end{equation*}
+	$\implies u = w +g$ is weak solution of original problem.
+	\begin{comment_}
+		$u = g $ on $\partial \Omega$ means $\gamma(u-g) = 0$
+	\end{comment_}
+
+	\begin{thrm}
+		If $\Omega \subset \R^d\ (d\geq1)$ bounded, $a_{ij},c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g\in H^(\Omega),\ L$ is elliptic, then there exists a unique solution $u \in H^1(\Omega)$ of $Lu=f$ with  $u-g \in H^1_0(\Omega)$ and 
+		\begin{equation*}
+			\|u\|_{H^1} \leq C\left( \|f\|_{L^2} \|g\|_{H^1} \right)
+		\end{equation*}  
+		with $C = C(\lambda, \Omega,a_{ij},c)>0$.
+	\end{thrm}
+
+	\begin{proof_}
+		Use Lax-Milgram with $V = H^1_0$
+		\begin{itemize}
+			\item a is continuous:\enter
+			Cauchy-Schwartz inequality
+			\begin{align*}
+				|a(u,v)| &\leq \displaystyle \sum^d_{i,j=1} \int \limits_\Omega |a_{ij}| |\frac{\partial u}{\partial x_i}| |\frac{\partial v}{\partial x_j}| \diff x + \int \limits_\Omega |c||u||v| \diff x \\
+				& \leq \underset{i,j = 1,\dots,d}{\text{max}} \Big\{ \|a_{ij}\|_{L^\infty}, \|c\|_{L^\infty} \Big\}\left( \displaystyle \sum^d_{i,j=1} \|\frac{\partial u}{\partial x_j}\| \|\frac{\partial v}{\partial x_i}\| + \|u\|\|v\| \right)\\
+				&= K \Big ( \|\nabla u\|_{L^2}\|\nabla v\|_{L^2} + \|u\|_{L^2}\|v\|_{L^2} \Big )\\
+				&\leq K \|u\|_{H^1}\|v\|_{H^1}
+			\end{align*}
+			\item a is coercive: \enter
+			$ u \in H^1_0(\Omega), L$ elliptic, $c \geq 0$
+			\begin{align*}
+				a(u,u) &\geq \lambda \displaystyle\sum^d_{i=1} \int \limits_\Omega |\frac{\partial u}{\partial x_i}|^2 \diff x\\
+					   &= \lambda\|\nabla u\|_{L^2}\\
+					   &\geq \lambda_0 \|u\|^2_{H^1}
+			\end{align*}
+			with $\lambda_0 = \frac{\lambda}{C^2_p +1}$ and with poincaré-inequality follows
+			\begin{equation*}
+				\|u\|^2_{H^1} = \|u\|^2_{L^2} + \|\nabla u\|^2_{L^2} \leq \left( 1 + C^2_p \right)\|\nabla u\|^2_{L^2}.
+			\end{equation*}
+			\item $G \in V' = H^{-1}(\Omega)$:\enter
+			Cauchy-Schwartz inequality
+			\begin{align*}
+				|G(v)| & \leq \|f\|_{L^2}\|v\|_{L^2} + \underset{i,j=1, \dots, d}{max} \|a_{ij}\|_{L^\infty} \|\nabla v\|_{L^2} \|\nabla g\|_{L^2} + \|c\|_{L^\infty}\|g\|_{L^2}\|v\|_{L^2}\\
+					   & \leq \big (  \|f\|_{L^1} + C_i\|g\|_{H^1} \big ) \|v\|_{H^1}\\ 
+			\end{align*}
+			with $C_i =  \underset{i,j=1, \dots, d}{\text{max}} \|a_{ij}\|_{L^\infty} + \|c\|_{L^\infty}$
+			\begin{equation*}
+				\implies  \|G\|_{H^{-1}} \leq \|f\|_{L^2} +  C_i\|g\|_{H^1}
+			\end{equation*}
+			and because $G \in H^{-1}(\Omega)$ we also have
+			\begin{equation*}
+				<G,v>_{H^{-1}} = <f-Lg,v>_{H^{-1}} \qquad \forall v \in H^1_0(\Omega).
+			\end{equation*}
+			Lax-Milgram gives, there exists a unique solution $w \in V$ with $a(w,v) = G(v)\ \forall v \in V$ and for $u = w+g$ we have
+			\begin{align*}
+				\|u\|_{H^1} & \leq \|w\|_{H^1} + \|g\|_{H^1}\\
+							& \leq \lambda^{-1}_0 \left( C^2_p +1 \right)\big (  \|f\|_{L^2} +  C_i\|g\|_{H^1} \big ) + \|g\|_{H^1}\\
+							& \leq C \big ( \|f\|_{L^2} + \|g\|_{H^1} \big ) 
+			\end{align*}
+			with $C = 1+ \lambda^{-1}(C^2_p+1)(C_i +1)$.
+		\end{itemize}
+	\end{proof_}
+	\item \textbf{Neumann BC}:\enter
+	consider special case  
+	\begin{align*}
+		- \laplace u + c(x)u &= f \qquad \text{in }\Omega\\
+		\nabla u \cdot \vartheta &=g \qquad \text{on } \partial\Omega
+	\end{align*}
+	with $c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g \in H^1(\Omega)$.
+	If $u \in C^2(\Omega)\cap C(\overline{\Omega})$ is a classical solution and $c \in C^\infty(\Omega)$.
+	\begin{align*}
+		\int \limits_\Omega fv \diff x &= \int \limits_\Omega \nabla u \cdot  \nabla v + cuv \diff x - \int \limits_{\partial\Omega} (\nabla u \cdot \vartheta)v \diff s\\
+		&= \int \limits_\Omega \nabla u \cdot  \nabla v + cuv \diff x - \int \limits_{\partial\Omega} gv \diff s.
+	\end{align*}
+	Define 
+	\begin{align*}
+		a(u,v) &= \int \limits_\Omega \nabla u \cdot  \nabla v + cuv \diff x \qquad \forall u,v\in H^1(\Omega)\\
+		F(v) &= \int \limits_\Omega fv \diff x + \int \limits_{\partial\Omega} gv \diff s \qquad \forall v \in H^1(\Omega).
+	\end{align*}
+	Weak formulation: Find $u \in H^1(\Omega)$, s.t.
+	\begin{equation*}
+		a(u,v) = F(v) \qquad \forall v \in H^1(\Omega).
+	\end{equation*}
+	\begin{comment_}
+		If $c \equiv 0, -\laplace u=f$ in $\Omega$, $\nabla u\cdot\vartheta = g$ on $\partial \Omega$.
+		\begin{align*}
+			\int \limits_\Omega f \diff x &= \int \limits_\Omega \text{div}(\nabla u) \diff x\\
+			&= -\int \limits_{\partial \Omega} \nabla u \cdot  \vartheta \diff s\\
+			&= -\int \limits_{\partial \Omega} g \diff s.
+		\end{align*}
+		The problem is only solvable if $F(1)=0$. If $u$ is a solution, also $u +$ constant is a solution.\enter
+		Lax-Milgram with space $V = H^1(\Omega)$ does not work as $a(u,u)=0$ for constant functions $u \implies a$ is not coercive.\enter
+		Use $V = \{ u \in H^1(\Omega), \int \limits_\Omega u \diff x =0 \}$ guarantees uniqueness and excludes constant functions. For $c \neq 0$ it holds 
+		\begin{equation*}
+			a(u,u) \geq \text{min}\left( \underset{\Omega}{\text{inf}}\ c \right)\|u\|^2_{H^1} 
+		\end{equation*}
+		and thus coercive.
+	\end{comment_}
+	\begin{thrm}\enter
+		\begin{enumerate}[label=(\Roman*)]
+			\item If $\underset{\Omega}{\text{inf}}\ c > 0$, there exists a unique solution $u \in H^1(\Omega)$.
+			\item If $c \equiv 0$ and $F(1)=0$ there exists a unique solution $u \in \{ u \in H^1(\Omega): \int \limits_\Omega u \diff x =0 \}$.
+		\end{enumerate}
+		In both cases there exists $C > 0$ s.t. 
+		\begin{equation*}
+			\|u\|_{H^1} \leq C \big ( \|f\|_{L^2} + \|g\|_{H^1} \big )	
+		\end{equation*}
+	\end{thrm}
+	\begin{proof_}\enter
+		\begin{itemize}
+			\item Part (I): \enter
+				$a$ is continuous in $V = H^1(\Omega)$: see Dirichlet BC.\enter
+				$a$ is coercive:
+				\begin{equation*}
+					a(u,u) \geq \lambda \|u\|^2_{L^2}
+				\end{equation*}
+				with $\lambda = \text{min}(1, \underset{\Omega}{\text{inf}}\ c )$.\enter
+				$F$ is linear functional
+				\begin{align*}
+					|F(v)| & \leq \|f\|_{L^2} \|v\|_{L^2} + \|\gamma(g)\|_{L^2(\partial \Omega) } \|\gamma(v)\|_{L^2(\partial \Omega) }\\
+					& \overset{*}{\leq} \|f\|_{L^2} \|v\|_{L^2} +C_\gamma \|g\|_{H^1(\Omega)}\|v\|_{H^1(\Omega)}\\
+					& \leq \left( \|f\|_{L^2} + +C_\gamma \|g\|_{H^1(\Omega)} \right)\|v\|_{H^1(\Omega)}
+				\end{align*}
+				$(*)$ holds because of the continuity of the boundary operator. Thus $F \in V'$.\enter
+				Lax-Milgram gives existance and uniqueness and also 
+				\begin{equation*}
+					 \|u\|_{H^1} \leq \lambda^{-1} \|F\|_{V'} \leq \lambda^{-1} \text{max}(1, \C_\gamma)\big (  \|f\|_{L^2} + \|g\|_{H^1} \big )
+				\end{equation*}
+			\item Part (II): \enter
+				we need to prove that $ V = \{ u \in H^1(\Omega): \int \limits_\Omega u \diff x =0 \}$ is Hilbert space and $\|u\|_V = \|\nabla u \|_{L^2}$.\enter
+				$a$ is coercive:
+				\begin{equation*}
+					a(u,u) \geq \|\nabla u\|^2_{L^2} = \|u\|^2_V
+				\end{equation*}
+				with $\lambda = 1$.\enter
+				$a$ is continuous:
+				\begin{align*}
+					|a(u,v)| &\leq \|\nabla u\|_{L^2}\|\nabla v\|_{L^2} + \|c\|_{L^\infty} \| u\|_{L^2} \|v\|_{L^2}\\
+					& \leq \| u\|_{V}\| v\|_{V} + \|c\|_{L^\infty} \| u\|_{H^1} \|v\|_{H^1}\\
+					& \leq \| u\|_{V}\| v\|_{V} + C^2_V\|c\|_{L^\infty} \| u\|_{V} \|v\|_{V}\\
+					&= \left( 1 + C^2_V \|c\|_{V^\infty} \right) \|u\|_V \|v\|_V.
+				\end{align*}
+				$F$ is a linear functional: see case above\enter
+				Lax-Milgram: existence and uniqueness and continuous dependency on data.
+		\end{itemize}
+	\end{proof_}
+	\item \textbf{Neumann BC}:
+	\begin{align*}
+				   	  -\laplace u &= f \qquad \text{in }\Omega\\
+			 				    u &= 0 \qquad \text{on }\Gamma_D\\
+		 \nabla u \cdot \vartheta &= 0 \qquad \text{on }\Gamma_N
+	\end{align*}
+	with $\partial \Omega = \Gamma_D \cup \Gamma_N$, $ \Gamma_D \cap \Gamma_N = \emptyset$ and meas$(\Gamma_D) >0$.\enter If  meas$(\Gamma_N)>0$ the space $H^1_0(\Omega)$ does not work. $H^1_0(\Omega \cup \Gamma_N)$ = completness of $C^\infty_0(\Omega \cup \Gamma_N)$ in $\|\cdot\|_{H^1}$ with 
+	\begin{equation*}
+		C^\infty_0(\Omega \cup \Gamma_N) = \{ u \in C^\infty(\overline{\Omega}), \text{supp }u \subset \Omega \cup \Gamma_N  \}.
+	\end{equation*}
+	Define $\gamma_D: H^1(\Omega) \to L^2(\Gamma_D)$ with $\gamma_D(u) = u|_{\Gamma_D}$ and now use it to represent 
+	\begin{equation*}
+		H^1_0(\Omega \cup \Gamma_N) = \{ u \in H^1(\Omega): \gamma(u) = 0 \}.
+	\end{equation*}
+	If $u \in C^2(\Omega) \cap C^1(\overline{\Omega})$ is classical solution and $v \in C^\infty_0(\Omega \cup \Gamma_N)$ then
+	\begin{align*}
+		\int \limits_\Omega fv \diff x &= \int \limits_\Omega \nabla u \cdot  \nabla v + cuv \diff x - \int \limits_{\partial\Omega} (\nabla u \cdot \vartheta)v \diff s\\
+		 &= \int \limits_\Omega \nabla u \cdot  \nabla v + cuv \diff x -   \underbrace{\int \limits_{\Gamma_N} (\nabla u \cdot \vartheta)v \diff s}_{=0,\ \nabla u \cdot \vartheta =0 } - \underbrace{\int \limits_{\Gamma_D} (\nabla u \cdot \vartheta)v \diff s}_{=0,\ v=0 \text{ on } \Gamma_D} \\
+	\end{align*}
+	\begin{thrm}
+		$f \in L^2$, there exists a unique solution $u\in V$ and $\|u\|_{H^1} \leq C\|f\|_{L^2}$ with $C>0$ and
+		\begin{equation*}
+			V = H^1_0(\Omega \cup \Gamma_N).
+		\end{equation*}
+	\end{thrm}
+	\begin{proof_}
+		Use Lax-Milgram.
+	\end{proof_}
+\end{enumerate}
+
+
+
+
+
+

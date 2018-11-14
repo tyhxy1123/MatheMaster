@@ -5,42 +5,39 @@
 
 \documentclass[]{scrreprt}
 
-\usepackage{array}
-
 \input{../latex/packages}
+\input{../latex/counters}
 \input{../latex/theoremenvironments}
 \input{../latex/font}
 \input{../latex/commands}
-\input{../latex/commands_Willi}
-\input{../latex/commands_stochastik}
-\input{commands_WTHM}
+\input{commands_FEM}
 
-\setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
+\setlength{\parindent}{0px} % dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 
 \title{%
-  Vorlesung\\
-  Wahrscheinlichkeitstheorie mit Martingalen\\
-  }
+	Vorlesung\\
+	FEM}
 \subtitle{Wintersemester 2018/2019}
-\author{Vorlesung: Prof. Dr. Martin Keller-Ressel\\Mitschrift: Willi Sontopski}
+\author{Vorlesung: Prof. Dr. Axel Voigt}% \\Mitschrift: Henrik Stolzmann}
 
 
 \begin{document}
 \pagenumbering{gobble}	% disable pagenumbering
-
+	
 \maketitle
 \doclicenseThis
-\epigraph{Das Leben ist ein Supermartingal - die Erwartung fällt mit der Zeit.}{\textit{Unbekannt}}
 \tableofcontents % Inhaltsverzeichnis
-\pagenumbering{arabic}	%enable pagenumbering
+\pagenumbering{arabic}	% enable pagenumbering
 
+\newpage
+	
 \input{chapter0}
 \input{chapter1}
-\input{chapter2}
-\input{chapter3}
+
+	
 %\listoffigures 
 %\listoftables
 %\bibliography{literatur}
-
-
+	
+	
 \end{document}

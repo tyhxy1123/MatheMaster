@@ -1,0 +1,295 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 3}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\F}{\mathcal{F}}
+
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 3.1}
+\subsection*{Aufgabe 3.1 (a)}
+Die Aussage stimmt, denn:
+\begin{align*}
+\F_1\cup\F_2\text{ erfüllbar }
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\exists\text{ Modell für }\F_1\cup\F_2\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\exists\text{ Interpretation }I:\forall F\in\F_1\cup\F_2:I\text{ ist Modell für }F\\
+&\implies
+\exists\text{ Interpretation }I:\forall F\in\F_1:I\text{ ist Modell für }F\text{ und}\\
+&\qquad~~\exists\text{ Interpretation }I:\forall F\in\F_2:I\text{ ist Modell für }F\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\exists\text{ Modelle für }\F_1,\F_2\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\F_1,\F_2\text{ sind erfüllbar}
+\end{align*}
+
+\subsection*{Aufgabe 3.1 (b)}
+Die Aussage stimmt nicht, Gegenbeispiel:
+$\F_1:=\lbrace p\rbrace$ und $\F_2:=\lbrace\neg p\rbrace$ sind erfüllbar, aber $\F_1\cup\F_2=\lbrace p ,\neg p\rbrace$ ist nicht erfüllbar.\\
+
+%TODO: das folgende ist falsch.
+%\begin{align*}
+%&\F_1\text{ erfüllbar }
+%\stackrel{\text{Def}}{\implies}
+%\exists\text{ Modell für }\F_1
+%\stackrel{\text{Def}}{\implies}
+%\exists\text{ Interpretation }I:\forall F\in\F_1:I\text{ ist Modell für }F\\
+%&F_2\text{ hat Modell }
+%\stackrel{\text{Def}}{\implies}
+%\exists\text{ Interpretation }\tilde{I}:\forall G\in\F_2:I\text{ ist Modell für }G\\
+%\end{align*}
+%Dann ist 
+%\begin{align*}
+%\hat{I}(F):=\left\lbrace\begin{array}{cl}
+%I(F), &\falls F\in\F_1\\
+%\tilde{I}(F), &\falls F\in\F_2
+%\end{array}\right.
+%\end{align*}
+%eine Interpretation mit der Eigenschaft
+%\begin{align*}
+%\forall F\in \F_1\cup\F_2:\hat{I}\text{ ist Modell für }F.
+%\end{align*}
+%Folglich ist $\hat{I}$ ein Modell für $\F_1\cup\F_2$ und somit ist  $\F_1\cup\F_2$ per Definition erfüllbar.
+
+\subsection*{Aufgabe 3.1 (c)}
+Nein, denn die Teilmenge $\lbrace p,\neg p\rbrace \subseteq\lbrace p\neq p\rbrace$ ist nicht erfüllbar, da sich die Elemente $p$ und $\neg p$ dieser Teilmenge sich gegenseitig ausschließen.
+
+\section*{Aufgabe 3.2}
+\subsection*{Aufgabe 3.2 (a)}
+Die Aussage stimmt, denn:
+\begin{align*}
+F\text{ unerfüllbar }
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\forall\text{ Interpretationen } I:[F]^I=\bot\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretationen } I:\neg^\ast([F]^I)=\neg^\ast(\top)\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretationen } I:[\neg F]^I=\top\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\forall\text{ Interpretationen } I:I\text{ ist Modell für } \neg F
+\end{align*}
+
+\subsection*{Aufgabe 3.2 (b)}
+Die Aussage stimmt nicht, denn:
+\begin{align*}
+\F\text{ nicht erfüllbar }
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\nexists\text{ Modell für }\F\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\nexists\text{ Interpretation }I:\forall F\in\F:I\text{ ist Modell für }F\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:\exists F\in\F:I\text{ ist kein Modell für } F\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:\exists F\in\F:[F]^I=\bot\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:\exists F\in\F:[\neg F]^I=\top\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:\exists F\in\F:I\text{ ist Modell für }\neg F\\
+&\Longleftarrow
+\forall\text{ Interpretation } I,\forall F\in\F:I\text{ ist Modell für }\neg F
+\end{align*}
+Der letzte Schritt ist aber keine Äquivalenz und somit gilt die Behauptung nicht. Gegenbeispiel:\\
+$\F:=\lbrace\neg p,p\rbrace$ ist nicht erfüllbar und $\neg p$ bzw. $p$ ist nicht allgemeingültig.
+
+\section*{Aufgabe 3.3}
+Erfüllungsrelation: $I\models F:\Longleftrightarrow F^I=\top$ ``Interpretation $I$ erfüllt Formel $F$''\\
+Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:(I\models\mathcal{G}\implies I\models F)$
+
+\subsection*{Aufgabe 3.3 (a)}
+\begin{enumerate}[label=(\arabic*)]
+\item $F$ ist erfüllbar $\Longleftarrow I\models\top$, die Umkehrung gilt nicht.
+\item $F^I=\top\stackrel{\text{Def}}{\Longleftrightarrow} I\models F$
+\item $\big(\forall\text{ Interpreation }I:F^I=\top\big)\implies I\models F$
+\item $\Big(\exists\text{ Modell für }F \Big)
+\stackrel{\text{Def}}{\Longleftrightarrow}
+\Big(\exists\text{ Interpretation }\tilde{I}:F^{\tilde{I}}=F\big)\not\Longleftrightarrow I\models F$\\
+(gilt g.d.w. $I=\tilde{I}$)
+\item $\begin{aligned}
+\lbrace F\rbrace\models F
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\big(\forall\text{ Interpretation }I:I\models\lbrace F\rbrace\Rightarrow I\models F\big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\big(\forall\text{ Interpretation }I:I\models F\Rightarrow I\models F\big)\\
+&\Longleftrightarrow\top
+\end{aligned}$\\
+Die Aussage ist also nur äquivalent, g.d.w. $I\models F$ wahr ist.
+\item $F$ ist unter $I$ wahr $\Longleftrightarrow F^I=\top\stackrel{\text{Def}}{\Longleftrightarrow} I\models F$
+\end{enumerate}
+
+\subsection*{Aufgabe 3.3 (b)}
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\Big(\forall I\mit (\forall F\in\F:F^I=\top):G^I=\top\Big)
+&\Longleftrightarrow
+\Big(\forall I:(\forall F\in\F:F^I=\top)\Rightarrow G^I=\top\Big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\Big(\forall I:(\forall F\in\F:I\models F)\Rightarrow I\models G\Big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\Big(\forall I:I\models\F\Rightarrow I\models G\Big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\F\models G
+\end{aligned}$
+\item $\F,G$ haben gleiche Modell\\
+$\stackrel{\text{Def}}{\Longleftrightarrow}
+\exists\text{ Interpretation } I:\forall F\in\F:I\models G\wedge I\models F$\\
+
+Es gibt hier keinen Grund für die Äquivalenz. Es sollte in beide Richtungen Gegenbeispiele geben.
+\item $\begin{aligned} 
+\Big(\big(\F\text{ erfüllbar }\implies G\text{ erfüllbar }\big)
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\Big(\big(\exists I:I\models\F\big)\implies\exists\tilde{I}:\tilde{I}\models G\Big)\\
+&\Longleftarrow
+\Big(\forall I:I\models\F\Rightarrow I\models G\Big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\F\models G
+\end{aligned}$\\
+
+Also keine Äquivalenz.
+\item $\begin{aligned}
+\text{Modelle von $\F$ sind Modelle von $G$ }
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\big(I\models\F\implies I\models G\big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\F\models G
+\end{aligned}$
+\item Betrachte die logische Äquivalenz
+\begin{align}\label{eqLogicIndirect}
+(A\implies B)\Longleftrightarrow(\neg B\implies\neg A)
+\end{align}
+für logische Aussagen $A,B$. Damit gilt:
+\begin{align*}
+&~~\qquad\Big(\forall I:\big(G^I=\bot\implies\exists F\in\F:F^I=\bot\big)\Big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\Big(\forall I:\big(I\not\models G\implies\exists F\in\F:I\not\models F\big)\Big)\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\Big(\forall I:\big(\neg(I\models G)\implies\neg(\forall F\in\F:I\models F)\big)\Big)\\
+&\stackrel{\eqref{eqLogicIndirect}}{\Longleftrightarrow}
+\Big(\forall I:\big((\forall F\in\F:I\models F)\implies I\models G\big)\Big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\Big(\forall I:\big(I\models \F\implies I\models G\big)\Big)\\
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\F\models G
+\end{align*}
+Somit ist (5)$\Longleftrightarrow\F\models G$.
+\item $\begin{aligned}
+\Big(\forall\text{ Modell $I$ von }G:\exists F\in\F:F^I=\top\Big)
+&\stackrel{}{\Longleftrightarrow}
+\Big(\forall I:\big(I\models G\implies \exists F\in\F:I\models F\big)\Big)\\
+%&\stackrel{}{\Longleftrightarrow}
+\end{aligned}$
+ist nicht äquivalent. 
+\end{enumerate}
+
+\section*{Aufgabe 3.4}
+Seien $F,F_1,\ldots F_n\in\mathcal{L}(\mathcal{R}),n\in\N$ aussagenlogische Formeln. Dann gilt:
+\begin{align*}
+\lbrace F_1,\ldots, F_n\rbrace\models F\Longleftrightarrow\models(((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)\to F)
+\end{align*}
+
+\begin{proof}
+\underline{Zeige ``$\implies$'':}\\
+Sei also 
+\begin{align}\label{3.4Hinrichtung}
+\lbrace F_1,\ldots, F_n\rbrace\models F
+\end{align}
+und sei $I$ eine beliebige, aber feste, Interpretation für Formeln aus $\mathcal{L}(\mathcal{R})$. Dann gilt:\\
+
+\underline{Fall 1: $I\not\models\lbrace F_1,\ldots,F_n\rbrace$}\\
+Diese Aussage ist äquivalent zu
+\begin{align*}
+I\not\models((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)
+\end{align*}
+(wird hier angenommen, nicht bewiesen). Dann ist dies auch äquivalent zu 
+\begin{align*}
+[((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)]^I=\bot
+\end{align*}
+Aus der Definition von $\to^\ast$,\\
+\begin{tabular}{c|c||c}
+$p$ & $q$ & $p\to^\ast q$\\ \hline
+$\bot$ & $\bot$ & $\top$\\
+$\bot$ & $\top$ & $\top$\\
+$\top$ & $\bot$ & $\bot$\\
+$\top$ & $\top$ & $\top$
+\end{tabular}, 
+folgt damit
+\begin{align*}
+(((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)^I\to^\ast F^I)=\top
+\end{align*}
+und damit ebenso
+\begin{align*}
+I\models(((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)\to F)
+\end{align*}
+
+\underline{Fall 2: $I\models\lbrace F_1,\ldots,F_n\rbrace$}\\
+Das ist äquivalent zu $I\models((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)$ und damit auch zu $((\ldots (F_1^I\wedge^\ast F_2^I)\ldots)\wedge^\ast F_n^I)=\top$. Nach \eqref{3.4Hinrichtung} gilt auch $F^I=\top$. Aus der Definition von $\to^\ast$ folgt dann 
+\begin{align*}
+(((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)^I\to^\ast F^I)=\top
+\end{align*}
+und damit
+\begin{align*}
+I\models(((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)\to F).
+\end{align*}
+
+\underline{Zeige ``$\Longleftarrow$'':} Entfällt.
+\end{proof}
+
+\section*{Aufgabe 3.5}
+\begin{proof}
+Mit
+\begin{align}\label{3.5}
+(A\implies B)\Longleftrightarrow \neg A\vee B
+\end{align}
+gilt
+\begin{align*}
+\F\models G 
+&\stackrel{\text{Def}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:(I\models \F\implies I\models G)\\
+&\stackrel{\eqref{3.5}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:
+\neg(I\models \F)\vee I\models G\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:
+I\not\models \F\vee I\not\models \lbrace\neg G\rbrace\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\forall\text{ Interpretation }I:
+I\not\models \F\cup\lbrace\neg G\rbrace\\
+&\stackrel{\text{}}{\Longleftrightarrow}
+\F\cup\lbrace\neg G\rbrace\text{ ist unerfüllbar}
+\end{align*}
+\end{proof}
+
+\section*{Aufgabe 3.6}
+\textit{``Aus Falschem folgt beliebiges.''}\\
+\begin{proof}
+Da $F,\neg F\in\F$, ist $\F$ unerfüllbar. Somit gibt es keine Modell für $\F$. Somit sind alle Modelle von $\F$ (da es keine gibt) auch Modelle von $G$. Damit folgt $F\models G$.
+\end{proof}
+
+\end{document}
