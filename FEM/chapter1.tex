@@ -232,7 +232,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 			Cauchy-Schwartz inequality
 			\begin{align*}
 				|a(u,v)| &\leq \displaystyle \sum^d_{i,j=1} \int \limits_\Omega |a_{ij}| |\frac{\partial u}{\partial x_i}| |\frac{\partial v}{\partial x_j}| \diff x + \int \limits_\Omega |c||u||v| \diff x \\
-				& \leq \underset{i,j = 1,\dots,d}{\text{max}} \Big\{ \|a_{ij}\|_{L^\infty}, \|c\|_{L^\infty} \Big\}\left( \displaystyle \sum^d_{i,j=1} \|\frac{\partial u}{\partial x_j}\| \|\frac{\partial v}{\partial x_i}\| + \|u\|\|v\| \right)\\
+				& \leq \underset{i,j = 1,\dots,d}{\max} \Big\{ \|a_{ij}\|_{L^\infty}, \|c\|_{L^\infty} \Big\}\left( \displaystyle \sum^d_{i,j=1} \|\frac{\partial u}{\partial x_j}\| \|\frac{\partial v}{\partial x_i}\| + \|u\|\|v\| \right)\\
 				&= K \Big ( \|\nabla u\|_{L^2}\|\nabla v\|_{L^2} + \|u\|_{L^2}\|v\|_{L^2} \Big )\\
 				&\leq K \|u\|_{H^1}\|v\|_{H^1}
 			\end{align*}
@@ -250,10 +250,10 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 			\item $G \in V' = H^{-1}(\Omega)$:\enter
 			Cauchy-Schwartz inequality
 			\begin{align*}
-				|G(v)| & \leq \|f\|_{L^2}\|v\|_{L^2} + \underset{i,j=1, \dots, d}{max} \|a_{ij}\|_{L^\infty} \|\nabla v\|_{L^2} \|\nabla g\|_{L^2} + \|c\|_{L^\infty}\|g\|_{L^2}\|v\|_{L^2}\\
+				|G(v)| & \leq \|f\|_{L^2}\|v\|_{L^2} + \underset{i,j=1, \dots, d}{\max} \|a_{ij}\|_{L^\infty} \|\nabla v\|_{L^2} \|\nabla g\|_{L^2} + \|c\|_{L^\infty}\|g\|_{L^2}\|v\|_{L^2}\\
 					   & \leq \big (  \|f\|_{L^1} + C_i\|g\|_{H^1} \big ) \|v\|_{H^1}\\ 
 			\end{align*}
-			with $C_i =  \underset{i,j=1, \dots, d}{\text{max}} \|a_{ij}\|_{L^\infty} + \|c\|_{L^\infty}$
+			with $C_i =  \underset{i,j=1, \dots, d}{\max} \|a_{ij}\|_{L^\infty} + \|c\|_{L^\infty}$
 			\begin{equation*}
 				\implies  \|G\|_{H^{-1}} \leq \|f\|_{L^2} +  C_i\|g\|_{H^1}
 			\end{equation*}
@@ -302,13 +302,13 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 		Lax-Milgram with space $V = H^1(\Omega)$ does not work as $a(u,u)=0$ for constant functions $u \implies a$ is not coercive.\enter
 		Use $V = \{ u \in H^1(\Omega), \int \limits_\Omega u \diff x =0 \}$ guarantees uniqueness and excludes constant functions. For $c \neq 0$ it holds 
 		\begin{equation*}
-			a(u,u) \geq \text{min}\left( \underset{\Omega}{\text{inf}}\ c \right)\|u\|^2_{H^1} 
+			a(u,u) \geq \min\left( \underset{\Omega}{\inf}\ c \right)\|u\|^2_{H^1} 
 		\end{equation*}
 		and thus coercive.
 	\end{comment_}
 	\begin{thrm}\enter
 		\begin{enumerate}[label=(\Roman*)]
-			\item If $\underset{\Omega}{\text{inf}}\ c > 0$, there exists a unique solution $u \in H^1(\Omega)$.
+			\item If $\underset{\Omega}{\inf}\ c > 0$, there exists a unique solution $u \in H^1(\Omega)$.
 			\item If $c \equiv 0$ and $F(1)=0$ there exists a unique solution $u \in \{ u \in H^1(\Omega): \int \limits_\Omega u \diff x =0 \}$.
 		\end{enumerate}
 		In both cases there exists $C > 0$ s.t. 
@@ -324,7 +324,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 				\begin{equation*}
 					a(u,u) \geq \lambda \|u\|^2_{L^2}
 				\end{equation*}
-				with $\lambda = \text{min}(1, \underset{\Omega}{\text{inf}}\ c )$.\enter
+				with $\lambda = \min(1, \underset{\Omega}{\inf}\ c )$.\enter
 				$F$ is linear functional
 				\begin{align*}
 					|F(v)| & \leq \|f\|_{L^2} \|v\|_{L^2} + \|\gamma(g)\|_{L^2(\partial \Omega) } \|\gamma(v)\|_{L^2(\partial \Omega) }\\
@@ -334,7 +334,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 				$(*)$ holds because of the continuity of the boundary operator. Thus $F \in V'$.\enter
 				Lax-Milgram gives existance and uniqueness and also 
 				\begin{equation*}
-					 \|u\|_{H^1} \leq \lambda^{-1} \|F\|_{V'} \leq \lambda^{-1} \text{max}(1, \C_\gamma)\big (  \|f\|_{L^2} + \|g\|_{H^1} \big )
+					 \|u\|_{H^1} \leq \lambda^{-1} \|F\|_{V'} \leq \lambda^{-1} \max(1, \C_\gamma)\big (  \|f\|_{L^2} + \|g\|_{H^1} \big )
 				\end{equation*}
 			\item Part (II): \enter
 				we need to prove that $ V = \{ u \in H^1(\Omega): \int \limits_\Omega u \diff x =0 \}$ is Hilbert space and $\|u\|_V = \|\nabla u \|_{L^2}$.\enter
@@ -435,7 +435,7 @@ A is injectiv, invertable $\implies$ unique solution.
 	$u\in V$ is solution of $a(u,v) = F(v) \forall v\in V$\\
 	$u_h\in V_h$ is solution of $a(u_h,v) = F(v) \forall v\in V_h$\\
 	\begin{equation*}
-		\implies \|u-u_h\|_V \leq \frac{K}{\alpha}\underset{v \in V_h}{\text{inf}}\|u-v\|_V
+		\implies \|u-u_h\|_V \leq \frac{K}{\alpha}\underset{v \in V_h}{\inf}\|u-v\|_V
 	\end{equation*} 
 	with $K,\lambda$ constants from continuity and coercivity inequalities.
 \end{lemma_}
@@ -470,7 +470,7 @@ If $a(\cdot,\cdot)$ is symmetric, we can write the problem as a minimization pro
 	Same conditions as for Cea-lemma and $a$ symmetric. The following statements are equivalent:
 	\begin{enumerate}[label=(\alph*)]
 		\item \label{variation_1} $a(u,v)= F(v) \quad \forall v\in V$ 
-		\item \label{variation_2} $E(u) = \underset{v \in V}{\text{min}}E(v) $ with $E(v) = a(v,v) -2F(v)$.
+		\item \label{variation_2} $E(u) = \underset{v \in V}{\min}E(v) $ with $E(v) = a(v,v) -2F(v)$.
 	\end{enumerate}
 \end{lemma_}
 
@@ -500,7 +500,7 @@ Allows to interprete the discrete problem
 \end{equation*}
 as finding a minimum of $E$ not in V but in \glqq smaller\grqq space $V_h$. $E$ can be seen as energy and $a(u_h,v) = F(v)$ as the Euler-Lagrange-equation of this energy. 
 \begin{equation*}
-	Au=b \quad \text{or} \quad \text{min}E(u_h)
+	Au=b \quad \text{or} \quad \min E(u_h)
 \end{equation*}
 \par
 What is needed to solve the weak form or Ritz-Galerkin-approximation?
@@ -511,12 +511,10 @@ What is needed to solve the weak form or Ritz-Galerkin-approximation?
 
 \underline{goal}: have computation of $A_{ij}$ as simple as possible. $A$ should ontain many zeros, $A$ should be a sparse matrix.
 
-
-\textbf{is it }$\tau$ \textbf{ or } $\T$ \textbf{in the following???}
 \section{Finite-Flements}
 consists of 3 characteristics:
 \begin{itemize}
-	\item $\overline{\Omega}= \underset{\tau \in \T_h}{\bigcupdot}$ with $\T$ triangles, rectangles in $\R^2$ or tetraheder in $\R^3$
+	\item $\overline{\Omega}= \underset{\tau \in \T_h}{\bigcupdot} \tau$\quad  with $\tau$ triangles, rectangles in $\R^2$ or tetraheder in $\R^3$
 	\input{tikz/example_triangulation}
 
 %\begin{figure}[h!]
@@ -526,30 +524,147 @@ consists of 3 characteristics:
 %\label{AbbExampleTriangulation}
 %\end{figure}	
 	
-	\item $V_h$ contains functions, which if restricted to $\T$ are polynomials
+	\item $V_h$ contains functions, which if restricted to $\tau$ are polynomials
 	\item basis functions: $\varphi_i$ are simple to compute and have small support
 \end{itemize}
 \subsection{abstract finite element}
 \begin{definition_}
-	Finite elements in $R^d$ ($d\geq 1$) are triplets ($\T,P_{\T},\Sigma_{\T}$) with 
+	Finite elements in $R^d$ ($d\geq 1$) are triplets ($\tau,P_{\tau},\Sigma_{\tau}$) with 
 	\begin{enumerate}[label=(\roman*)]
-		\item $\T \subset \R^d$ closed
-		\item $P_{\T}$ finite element space of functions: $\T \to \R$, $n = \text{dim}P_{\T}$
-		\item $\Sigma_{\T}$ linearly independent, continuous functions $B_1,\dots,B_n:C^s(\T) \to \R$, $s \in \N_0$ with $\forall \alpha_1, \dots, \alpha_n \in \R$ exists $p \in P_{\T}$ s.t. $B_i (P) = \alpha_i$, $i = 1, \dots,n$
+		\item $\tau \subset \R^d$ closed
+		\item $P_{\tau}$ finite element space of functions: $\tau \to \R$, $n = \dim P_{\tau}$
+		\item $\Sigma_{\tau}$ linearly independent, continuous functions $B_1,\dots,B_n:C^s(\tau) \to \R$, $s \in \N_0$ with $\forall \alpha_1, \dots, \alpha_n \in \R$ exists $p \in P_{\tau}$ s.t. $B_i (P) = \alpha_i$, $i = 1, \dots,n$
 	\end{enumerate}
 \end{definition_}
 $B_i$ are the degrees of freedom (DoFs) of the finite element $p_i$ basis functions of the finite element. The space of all polynomials $\Omega \to R$ of degree $\leq k$ is $P_k$.
 
-$d$-simplex $\T \in \R^d$ is defined as convex hull of points $a_1,\dots,a_{d+1}\in R^{d+1}$.
+$d$-simplex $\tau \in \R^d$ is defined as convex hull of points $a_1,\dots,a_{d+1}\in R^{d+1}$.
 \begin{equation*}
 	\tau = \left\{ x\in \R^d: x= \displaystyle \sum^{d+1}_{i=1} \lambda_ia_i,\ 0 \leq \lambda_1, \dots,\lambda_{d+1}\leq 1,\ \displaystyle \sum^{d+1}_{i=1} \lambda_i =1\right\}
 \end{equation*}
-
-\begin{figure}[h!]
-\center
-%\begin{center}
+The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 \input{tikz/unity_simplex}
-\caption{unity simplex}
-\label{AbbUnitySimplex}
-%\end{center}
-\end{figure}
+
+\begin{example}
+	\begin{enumerate}[label=(\roman*)]
+		\item linear lagrange elements in $\R^d$
+		\begin{equation*}
+			P_{\tau} = P_1(\tau) = \left\{ p:\tau \to \R: p \text{ affin(=linear) in }\tau \right\} 
+		\end{equation*}
+		$\implies \dim P_{\tau} = d+1$.
+		\begin{equation*}
+			B_i(p) = p(a_i)\quad i = 1, \dots,d+1,\ p \in P_{\tau}
+		\end{equation*}
+		The basisfunctions are defined through
+		\begin{equation*}
+			p_j(a_i) = \delta_{ij} \quad i,j = 1,\dots ,d+1.
+		\end{equation*}
+		for \underline{$d=2$}, $\hat{\tau} \in \R^2$:
+		\begin{equation*}
+			a_1= (0,0),\ a_2 = (1,0),\ a_3 = (0,1)
+		\end{equation*}
+		see \eqref{tikz_unity_simplex}. This implies
+		\begin{equation*}
+			\begin{rcases}
+			p_1(x,y) &= 1-x-y\\
+			p_2(x,y) &= x\\
+			p_3(x,y) &= y
+			\end{rcases}
+			(x,y) \in \hat{\tau}.
+		\end{equation*} 
+		\item quadratic lagrange elements in $\R^d$\\
+		for \underline{$d=2$}, $\hat{\tau} \in \R^2$: $a_1,a_2,a_3$, vertices with midpoints $a_{ij} = \frac{1}{2}(a_i +a_j),\ i < j$.\\
+		\textbf{insert picture here}
+		\begin{equation*}
+			P_{\tau} = P_2(\tau) = \Big\{ p:\tau \to \R,\ p(x,y) = \alpha_1 + \alpha_2 x + \alpha_3 y + \alpha_4 xy + \alpha_5 x^2 + \alpha_6 y^2 \Big\}
+		\end{equation*}
+		$\implies  \dim P_{\tau} = 6$.
+		\begin{equation*}
+			\begin{rcases}
+			B_i(p) &= p(a_i)\\
+			B_{i+j+1}(p) &= p(a_{ij})
+			\end{rcases}
+			i,j = 1,2,3 \quad i<j
+		\end{equation*}
+		The basisfunctions are defined through 
+		\begin{align*}
+			p_j(a_i) &= \delta_{ij} &  i &=1,2,3, &  j&= 1,\dots,6\\
+			p_j(a_{kl}) &= \delta_{k+l+1,j} &  k,l&=1,2,3\quad k<l &  j&=1,\dots,6 
+		\end{align*}
+		for $\hat{\tau} = \Big ( (0,0),(1,0),(0,1) \Big )$ we obtain e.g. for $p_2$:
+		\begin{align*}
+			p_2(0,0) &= 0 &  p_2(0,1) &= 0 &  p_2(0,\frac{1}{2})&= 0\\
+			p_2(1,0) &= 1 &  p_2(\frac{1}{2},0) &= 0 &  p_2(\frac{1}{2},\frac{1}{2})&= 0.
+		\end{align*}
+		This gives a linear system to determine $\alpha_1,\dots,\alpha_6$.
+		\begin{equation*}
+			\implies p_2(x,y) = x(2x-1) \quad (x,y)\in \hat{\tau}.
+		\end{equation*}
+		\item cubic Hermite elements\\
+		for \underline{$d=2$}, $\hat{\tau} \in \R^2$: $a_1,a_2,a_3, a_{123} = \frac{1}{3}(a_1+a_2+a_3)$
+		\begin{align*}
+		P_{\tau} = P_2(\tau) = \Big\{ p:\tau \to \R,\ p(x,y) &= \alpha_1 + \alpha_2 x + \alpha_3 y + \alpha_4 xy + \alpha_5 x^2 + \alpha_6 y^2 
+		\\&\quad + \alpha_7x^2y +\alpha_8xy^2 +\alpha_9x^3 + \alpha_{10}y^3\Big\}
+		\end{align*}
+		$\implies \dim P_{\tau}= 10$
+		\begin{equation*}
+			\begin{rcases}
+			B_i(p) &= p(a_i)\\
+			B_4(p) &= p(a_{123})\\
+			B_{i+4}(p) &= p_x(a_i)\\
+			B_{i+7}(p) &= p_y(a_i)
+			\end{rcases}
+			i = 1,2,3
+		\end{equation*}
+		with $ p_x(a_i) =: \frac{\partial p}{\partial x}(a_i) $\\
+		for $\hat{\tau} = \Big ( (0,0),(1,0),(0,1) \Big )$, $a_{123} = (\frac{1}{3},\frac{1}{3})$ we obtain e.g. for $p_5$ 
+		\begin{align*}
+			p_5(0,0) &= p_5(1,0) = p_5(0,1) = p_5(\frac{1}{3},\frac{1}{3}) = 0\\
+			(p_5)_x(0,0) &= 1\\
+			(p_5)_x(1,0) &= (p_5)_x(0,1) = 0\\
+			(p_5)_y(0,0) &= (p_5)_y(0,0) = (p_5)_y(0,0) = 0
+		\end{align*}
+		$\implies$ $p_5(x,y) = x \left( 1 -3y -2x +3xy +x^2+2y^2 \right)$
+	\end{enumerate}
+\end{example}
+\par
+computation on $\hat{\tau}$ is relativly simple\\
+\underline{idea}: transform each element $\tau$ to $\hat{\tau}$(reference element), also computation (integration) on $\hat{\tau}$ and transform back.\\
+\textbf{insert PDENM pic here}
+\begin{align*}
+	&F_{\tau}: \hat{\tau} \to \tau\\
+	&F_{\tau}(a) = Ba +b \quad B\in \R^{d\times d},\ b \in \R^d
+\end{align*}
+If $\hat{p}_i$ are basisfunctions on $\hat{\tau}$ we obtain 
+\begin{equation*}
+	p_i = \hat{p}_i \circ F^{-1}_{\tau},
+\end{equation*}
+$\tau = F_{\tau}(\hat{\tau})$ the basisfunctions on $\tau$.
+\begin{align*}
+	F_{\tau}(e_i) &= a_i, \qquad i=1,2,3\\
+	F_{\tau}(a) &= (a_2-a_1,a_3-a_1)a + a_1\\
+	B &=
+	\begin{pmatrix}
+	a_2-a_1\\
+	a_3-a_1
+	\end{pmatrix}
+	,\quad a \in \hat{\tau}
+\end{align*}
+\begin{equation*}
+	|\det B| = (a_2-a_1)(a_3-a_1)\sin \Theta
+\end{equation*}
+$\implies$
+\begin{equation*}
+	B(u,v) = 
+	\begin{pmatrix}
+	u_1 & v_1\\
+	u_2 & v_2
+	\end{pmatrix}
+\end{equation*}
+\begin{align*}
+	(\det B)^2 & = (u_1v_2 - u_2v_1)^2\\
+	& = (u^2_1+ u^2_2)(v^2_1+v^2_2)-(u_1v_1-u_2v_2)^2\\
+	& = |u|^2|v|^2 - |u\cdot v|^2\\
+	& = |u|^2|v|^2 (1- \cos \Theta)\\
+	& = |u|^2|v|^2 \sin^2\Theta
+\end{align*}
