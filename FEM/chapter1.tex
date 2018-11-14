@@ -515,14 +515,8 @@ What is needed to solve the weak form or Ritz-Galerkin-approximation?
 consists of 3 characteristics:
 \begin{itemize}
 	\item $\overline{\Omega}= \underset{\tau \in \T_h}{\bigcupdot} \tau$\quad  with $\tau$ triangles, rectangles in $\R^2$ or tetraheder in $\R^3$
-	\input{tikz/example_triangulation}
-
-%\begin{figure}[h!]
-%\center
-%\input{tikz/example_triangulation}
-%\caption{example of triangulation}
-%\label{AbbExampleTriangulation}
-%\end{figure}	
+	\input{tikz/chapter1/example_triang}
+	\input{tikz/chapter1/triang_not_allowed}	
 	
 	\item $V_h$ contains functions, which if restricted to $\tau$ are polynomials
 	\item basis functions: $\varphi_i$ are simple to compute and have small support
@@ -543,7 +537,7 @@ $d$-simplex $\tau \in \R^d$ is defined as convex hull of points $a_1,\dots,a_{d+
 	\tau = \left\{ x\in \R^d: x= \displaystyle \sum^{d+1}_{i=1} \lambda_ia_i,\ 0 \leq \lambda_1, \dots,\lambda_{d+1}\leq 1,\ \displaystyle \sum^{d+1}_{i=1} \lambda_i =1\right\}
 \end{equation*}
 The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
-\input{tikz/unity_simplex}
+\input{tikz/chapter1/unity_simplex}
 
 \begin{example}
 	\begin{enumerate}[label=(\roman*)]
@@ -574,7 +568,6 @@ The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 		\end{equation*} 
 		\item quadratic lagrange elements in $\R^d$\\
 		for \underline{$d=2$}, $\hat{\tau} \in \R^2$: $a_1,a_2,a_3$, vertices with midpoints $a_{ij} = \frac{1}{2}(a_i +a_j),\ i < j$.\\
-		\textbf{insert picture here}
 		\begin{equation*}
 			P_{\tau} = P_2(\tau) = \Big\{ p:\tau \to \R,\ p(x,y) = \alpha_1 + \alpha_2 x + \alpha_3 y + \alpha_4 xy + \alpha_5 x^2 + \alpha_6 y^2 \Big\}
 		\end{equation*}
@@ -600,8 +593,11 @@ The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 		\begin{equation*}
 			\implies p_2(x,y) = x(2x-1) \quad (x,y)\in \hat{\tau}.
 		\end{equation*}
+		\input{tikz/chapter1/quadratic_basisfunction}
+		note that $p_2(x,\cdot)$ is constant. 
 		\item cubic Hermite elements\\
 		for \underline{$d=2$}, $\hat{\tau} \in \R^2$: $a_1,a_2,a_3, a_{123} = \frac{1}{3}(a_1+a_2+a_3)$
+		\input{tikz/chapter1/hermite_element}
 		\begin{align*}
 		P_{\tau} = P_2(\tau) = \Big\{ p:\tau \to \R,\ p(x,y) &= \alpha_1 + \alpha_2 x + \alpha_3 y + \alpha_4 xy + \alpha_5 x^2 + \alpha_6 y^2 
 		\\&\quad + \alpha_7x^2y +\alpha_8xy^2 +\alpha_9x^3 + \alpha_{10}y^3\Big\}
@@ -630,7 +626,7 @@ The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 \par
 computation on $\hat{\tau}$ is relativly simple\\
 \underline{idea}: transform each element $\tau$ to $\hat{\tau}$(reference element), also computation (integration) on $\hat{\tau}$ and transform back.\\
-\textbf{insert PDENM pic here}
+\input{tikz/chapter1/plot_affin_equiv_triang}
 \begin{align*}
 	&F_{\tau}: \hat{\tau} \to \tau\\
 	&F_{\tau}(a) = Ba +b \quad B\in \R^{d\times d},\ b \in \R^d
