@@ -47,6 +47,7 @@ U[p,q]=\limsup\limits_{n\to\infty} U_n[p,q]
 die Anzahl der \textbf{Upcrossings} von $[p,q]\times\N$.
 \end{defi}
 
+\setcounter{section}{4} %fix numbering
 \begin{lemma}[Doob's Upcrossing Lemma]\enter\label{lemma4.1DoobsUpcrossingLemma}
 Sei $(X_n)_{n\in\N}$ Sub-Martingal und $p,q\in\R\mit p<q$. Dann gilt:
 \begin{align*}
@@ -107,13 +108,155 @@ Sei $(X_n)_{n\in\N}$ ein Submartingal mit $\sup\limits_{n\in\N}\E[X_n^+]<\infty$
 \end{align*}
 \end{theorem}
 \begin{proof}
-nächste VL.
+Zunächst zeigen wir den Satz für $X_\infty$ mit Werten in $\overline{\R}$. Mit Vorüberlegung (zu Beginn des Kapitels) reicht es zu zeigen:
+\begin{align*}
+\P\big(U[p,q]=\infty\big)=0\qquad\forall p,q\in\Q\mit p<q
+\end{align*}
+denn:
+\begin{align*}
+\P\left(\limn X_n\text{ exisitiert nicht in }\overline{\R}\right)
+&=\P\left(\bigcup\limits_{\begin{subarray}{c}p,q\in\Q\\ p<q\end{subarray}}\big\lbrace U[p,q]=\infty\big\rbrace\right)\\
+&\leq\sum\limits_{p,q\in\Q}\P\big(U[p,q]=\infty\big)\\
+&=0
+\end{align*}
+Mit Lemma \ref{lemma4.1DoobsUpcrossingLemma} gilt:
+\begin{align*}
+\E\big[U[p,q]\big]&\stackeq{\text{Mono}}\limsup\limits_{N\to\infty}\E\big[U_n[p,q]\big]\\
+&\stackrel{\ref{lemma4.1DoobsUpcrossingLemma}}{\leq}
+\limsup\limits_{N\to\infty}\frac{\E\big[(X_N-p)^+\big]}{q-p}\\
+&\leq\limsup\limits_{N\to\infty}\frac{\E[X_n^+]+p}{q-p}\\
+&\stackrel{\text{Vor}}{<}
+\infty\qquad\forall p,q\in\Q\mit p<q\\
+\implies
+\P\big(U[p,q]<\infty\big)&=1
+\end{align*}
+Also existiert $X_\infty$ mit Werten in $\overline{\R}$ und $\limn X_n=X_\infty$ fast sicher.\\
+Noch zu zeigen: $X_\infty\in(-\infty,\infty)$ fast sicher und $\E\big[|X_\infty|\big]<\infty$.\\
+Mit $|X|=2\cdot X^+-X$ gilt
+\begin{align*}
+\E\left[\limn|X_n|\right]
+&\stackrel{\text{Fatou}}{\leq}
+\liminf\limits_{n\to\infty}\E\big[|X_n|\big]\\
+&=\liminf\limits_{n\to\infty}\Big(2\cdot\E[X_n^+]-\underbrace{\E[X_n]}_{\stackrel{\text{SubM}}{\geq}\E[X_0]}\Big)\\
+&\leq
+2\cdot\underbrace{\sup\limits_{n\in\N}\E[X_n^+]}_{\stackrel{\text{Vor}}{<}\infty}-\E[X_0]\\
+&<\infty\\
+\implies\E\big[|X_\infty|\big]&<\infty
+\end{align*}
+Insbesondere gilt $X_\infty(-\infty,\infty)$.
 \end{proof}
 
+\begin{bemerkung}
+Aus Theorem \ref{theorem4.2Martingalkonvergenz} folgt \ul{nicht} die stärkere $L_1$-Konvergenz\\ $\E\big[|X_n-X_\infty|\big]\longrightarrow0$.\\
+Gegenbeispiel: siehe Übungsblatt 2, Aufgabe 3
+\begin{align*}
+M_n^u:=\exp\left(u\cdot X_n-\frac{n\cdot\sigma^2\cdot u^2}{2}\right)\mit X_n=\xi_1+\ldots+\xi_n\text{ Random-Walk},\xi\sim\mathcal{N}(0,\sigma^2)
+\end{align*}
+In der Übung wurde gezeigt:
+\begin{align*}
+\limn M_n=0\text{ fast sicher}\qquad\forall u\neq0
+\end{align*}
+aber
+\begin{align*}
+\E\big[|M_n^u-0|\big]=\E[M_n^u]=1 \text{ keine $L_1$-Konvergenz!}
+\end{align*}
+\end{bemerkung}
+
+\begin{beisp}[Wählermodell]\enter
+Wähle $L,d\in\N$. Betrachte $L^d$ Individuen auf dem regelmäßigen Gitter\\ $\Lambda:=\lbrace 0,1,\ldots,L-1\rbrace^d$
+%TODO Hier Skizze einfügen für d=2 und L=4
+Jedes Individuum hat (Schwarz-Weiß-)Meinung in $\lbrace0,1\rbrace$, also dafür oder dagegen. Zustand des Kollektivs: $x\in\lbrace0,1\rbrace^{\Lambda}=\big\lbrace f:\Lambda\to\lbrace 0,1\rbrace\big\rbrace=\lbrace0,1\rbrace^{L^d}$\\
+
+\ul{Meinungsbildungsprozess:} Zu jedem Zeitpunkt $n\in\N_0$ übernimmt ein (zufällig ausgewähltes) Individuum $I_n$ die Meinung eines (zufällig ausgewählten) Nachbarn $I_n+N_n$. (Konvention: Es gibt keinen Rand, es wird modulo $L$ gerechnet.)\\
+
+\ul{Mathematische Formulierung}: $(I_n,N_n)_{n\in\N_0}$ iid mit 
+\begin{itemize}
+\item $I_n$ gleichverteilt auf dem Gitter $\Lambda$ und $N$
+\item $N_n$ gleichverteilt auf $(\pm e_i)_{i\in\lbrace1,\ldots,d\rbrace}$
+\end{itemize}
+\ul{Meinungsprozess:} $X_n$ ist eine Folge von Zufallsvariablen mit Werten in Zustandsraum $\lbrace0,1\rbrace^\Lambda$ mit
+\begin{align*}
+X_n(i)=\left\lbrace\begin{array}{cl}
+X_{n-1}(i), &\falls i\neq I_n\\
+X_{n-1}(i+N_n),&\falls i=I_n
+\end{array}\right.\qquad\forall i\in\Lambda
+\end{align*}
+\ul{Fragen:} Langzeitverhalten? Tritt Konsens ein?
+\\
+Definiere das Martingal $M_n:=$ ``Anzahl der Individuen mit Meinung 1``, also
+\begin{align*}
+M_n:=\sum\limits_{i\in\Lambda} X_n(i),\qquad \F_n:=\sigma\Big((I_k,N_k))_{k\in\lbrace1,\ldots,n\rbrace}\Big)
+\end{align*}
+\ul{Behauptung:} $M_n$ ist Martingal.
+\begin{itemize}
+\item Adaptiertheit: Klar nach Definition von $\F_n$
+\item Integrierbarkeit: $M_n$ ist sogar beschränkt: $0\leq M_n\leq L^d$
+\item Martingal-Eigenschaft:
+\begin{align*}
+M_n-M_{n-1}
+&=\underbrace{X_{n-1}(I_n+N_n)}_{\text{vom Nachbarn übernommen}}-\underbrace{X_{n-1}(I_n)}_{\text{alte Meinung}}\\
+\implies&\E\big[M_n-M_{n-1}~\big|~\F_{n-1}\big]\\
+&=\E\big[X_{n-1}(I_n+N_n)-X_{n-1}(I_n)~\big|~\F_{n-1}\big]\\
+&=\sum\limits_{i\in\Lambda} X_{n-1}(i)\cdot\P\big(i=\underbrace{I_n+N_n)~\big|~\F_{n-1}}_{\unab}\big)-X_{n-1}(i)\cdot\P\big(\underbrace{i=I_n~\big|~\F_{n-1}}_{\unab}\big)\\
+&=\sum\limits_{i\in\Lambda} X_{n-1}(i)\cdot\Big(\underbrace{\P(i=I_n+N_n)}_{=L^{-d}}-\underbrace{\P(I_n=i)}_{=L^{-d}}\Big)\\
+&=0
+\end{align*}
+\end{itemize}
+Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß Theorem \ref{theorem4.2Martingalkonvergenz} $M_\infty\mit\limn M_n=M_\infty$ (und in $L_1\implies\E[M_\infty]=\E[M_0]$).\\
+
+\ul{Weitere Behauptung:} $M_\infty\in\lbrace 0,L^d\rbrace$, d.h. im Grenzwert gibt es nur extreme Zustände (konsens).\\
+
+\ul{Vorüberlegung:} Sei $x\in\lbrace0,1\rbrace^{\Lambda}$ \ul{kein} extremer Zustand, d. h. es existieren Nachbarn $i,j$ mit $X_n(i)\neq X_n(j)$.
+\begin{align}
+\P(X_n\neq X_{n-1}~|~X_{n-1}=x)\nonumber
+&\geq \P\big(I_n=i\wedge I_n+N_n=j~(\text{mod } L)\big)\\
+&=\P\big(\underbrace{I_n=i\wedge N_n=i-j}_{\unab}~(\text{mod  }L)\big)\nonumber\\
+&=L^{-d}\cdot\frac{1}{2\cdot d}\label{eqExampleWaehlermodellStern}\tag{$\ast$}
+\end{align}
+Der Kompensator $\langle M\rangle_n$ erfüllt
+\begin{align*}
+(M_n-M_0)^2-\langle M\rangle_n\text{ ist Martingal}\\
+\implies
+\E\big[\langle M\rangle_n\big]=\E\left(M_n-M_0)^2\right]
+\end{align*}
+Andererseits gilt:
+\begin{align*}
+\langle M\rangle_n 
+&=\sum\limits_{k=1}^n\E\left(\left.\underbrace{(M_m-M_{k-1})}_{\in\lbrace0,1\rbrace}^2~\right|~\F_{k-1}\right]\\
+&=\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}~\big|~\F_{k-1}\big)\\
+\implies
+\E\big[\langle M\rangle_n\big]
+&=\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}\big)\\
+&\stackrel{\eqref{eqExampleWaehlermodellStern}}{\geq}
+\sum\limits_{k=1}^n L^{-d}\cdot\frac{1}{2\cdot d}\cdot\P\big(\underbrace{M_{k-1}\not\in\lbrace0,L^d\rbrace}_{=:A_{k-1}\text{ (kein extremer Zustand)}}\Big)
+\end{align*}
+Außerdem:
+
+\begin{align*}
+L^{2\cdot d}
+&\leq \E\left[(M_n-M_0)^2\right]\\
+&=\E\big[\langle M\rangle_n\big]\\
+&\geq L^{-d}\cdot\frac{1}{2\cdot d}\cdot\sum\limits_{k=1}^n\P(A_{k-1})\\
+\implies
+\sum\limits_{k=1}^n\P(A_{k-1})&\leq L^{3\cdot d}\cdot 2\cdot d<\infty
+\end{align*}
+
+Satz von Borel-Cantelli: Nur endlich viele Ereignisse $(A_k)_{k\in\N}$ treten ein, d.h.
+\begin{align*}
+&\exists N_0:\Omega\to\N:\forall n\geq N_0(\omega):\omega\not\in A_n\\
+&\implies M_n(\omega)\in\lbrace0,\Lambda^d\rbrace\qquad\forall N_0(\omega)\\
+&\implies M_\infty:=\limn M_n\text{ nimmt nur extreme Werte $\lbrace0,\Lambda^d\rbrace$ an!}
+\end{align*}
+Im Grenzwert tritt perfekter Konsens auf!
+\begin{align*}
+\P\big(M_\infty=L^d\big)&=L^{-d}\cdot\E[M_\infty]\stackeq{L_1\text{-Konv}} L^{-d}\cdot\E[M_0]\\
+\P(M_\infty=0)&=1-L^{-d}\cdot\E[M_0]
+\end{align*}
+\end{beisp}
 
 
 
-%%%%%%%%%%
+
 %Abschließbar: $X_n=\E[X_\infty~|~\F_n]$?
 
 
