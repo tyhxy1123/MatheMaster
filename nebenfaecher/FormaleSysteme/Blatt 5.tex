@@ -1,0 +1,168 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 3}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\pos}{\text{pos}}
+
+\usepackage{tikz-qtree}
+\usetikzlibrary{positioning,automata}
+
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 5.1}
+\textbf{Negationsnormalform:} ``Negation immer nur vor Variablen''\\
+\begin{align}
+&\frac{\neg\neg H}{H}\label{Neg1}\\
+&\frac{\neg(G_1\wedge G_2)}{(\neg G_1\vee G_2)}\label{Neg2}\\
+&\frac{\neg(G_1\vee G_2)}{(\neg G_1\wedge G_2)}\label{Neg3}
+\end{align}
+Die Symbole $\to, \leftrightarrow$ müssen zuerst umgeschrieben werden.\\
+
+\textbf{Klauselform / konjunktive Normalform /CNF:}\\
+\begin{align}
+&\frac{\neg\neg D}{D}\label{KNF1}\\
+&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\\
+&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{KNF3}\\
+&\frac{(D_1\vee D_2)}{D_1, D_2}\label{KNF4}\\
+&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{KNF5}\\
+\end{align}
+
+\subsection*{Aufgabe 5.1 (a)}
+Negationsnormalform:
+\begin{align*}
+(\underline{\neg (( p\wedge q)\vee p)}\vee p)
+&\stackrel{\ref{Neg3}}{\equiv}
+((\underline{\neg(p\wedge q)}\wedge\neg p)\vee q)\\
+&\stackrel{\ref{Neg2}}{\equiv}
+(((\neg p\vee \neg q)\wedge\neg p)\vee p)
+\end{align*}
+Disjunktive Normalform:
+\begin{align*}
+\langle[(\neg (( p\wedge q)\vee p)\underline{\vee} p)]\rangle
+&\stackrel{\ref{KNF4}}{\equiv}
+\langle[(\underline{\neg} (( p\wedge q)\vee p), p)]\rangle\\
+&\stackrel{\ref{KNF5}}{\equiv}
+\langle[(\neg (( p\wedge q)\vee p)],[\neg p,p)]\rangle\\
+&\stackrel{\ref{KNF3}}{\equiv}
+\langle[(\neg p,\neg, p)],[\neg p,p)]\rangle\\
+\end{align*}
+Dies entspricht der Formel
+\begin{align*}
+(((\neg p\vee\neg q)\vee p)\wedge(\neg p\vee p)))
+\end{align*}
+
+\subsection*{Aufgabe 5.1 (b)}
+Negationsnormalform:
+\begin{align*}
+&~~~~\underline{\neg}(((p\vee q)\wedge(q\wedge r))\vee\neg((r\wedge q)\wedge(q\vee p)))\\
+&\stackrel{\ref{Neg3}}{\equiv}
+(\underline{\neg}((p\vee q)\wedge(q\wedge r))\wedge\neg\neg((r\wedge q)\wedge(q\vee p)))\\
+&\stackrel{\ref{Neg2}}{\equiv}
+((\underline{\neg}(p\vee q)\vee\underline{\neg}(q\wedge r))\wedge\neg\neg((r\wedge q)\wedge(q\vee p)))\\
+&\stackrel{\ref{Neg2},\ref{Neg3}}{\equiv}
+(((\neg p\wedge\neg q)\vee(\neg q\vee\neg r))\wedge\underline{\neg\neg}((r\wedge q)\wedge(q\vee p)))\\
+&\stackrel{\ref{Neg1}}{\equiv}
+(((\neg p\wedge\neg q)\vee(\neg q\vee\neg r))\wedge((r\wedge q)\wedge(q\vee p)))
+\end{align*}
+
+Disjunktive Normalform:
+\begin{align*}
+&~~~~\langle[\underline{\neg}(((p\vee q)\wedge(q\wedge r))\underline{\vee}\neg((r\wedge q)\wedge(q\vee p)))]\rangle\\
+&\stackrel{\ref{KNF5}}{\equiv}
+\langle[\neg((p\vee q)\wedge(q\wedge r))],[\underline{\neg\neg}((r\wedge q)\wedge(q\vee p))]\rangle\\
+&\stackrel{\ref{KNF1}}{\equiv}
+\langle[\underline{\neg}((p\vee q)\underline{\wedge}(q\wedge r))],[((r\wedge q)\wedge(q\vee p))]\rangle\\
+&\stackrel{\ref{KNF3}}{\equiv}
+\langle[\neg(p\vee q),\underline{\neg}(q\wedge r)],[((r\wedge q)\wedge(q\vee p))]\rangle\\
+&\stackrel{\ref{KNF3}}{\equiv}
+\langle[\neg(p\vee q),\neg q, \neg r)],[((r\wedge q)\underline{\wedge}(q\vee p))]\rangle\\
+&\stackrel{\ref{KNF2}}{\equiv}
+\langle[\neg(p\vee q),\neg q, \neg r)],[((r\wedge q)],[(q\vee p)]\rangle\\
+&\stackrel{\ref{KNF5},\ref{KNF2},\ref{KNF4}}{\equiv}
+\langle[\neg p,\neg q,\neg r],[\neg q,,\neg q, \neg r],[r],[q],[q,p]\rangle\\
+\end{align*}
+
+\section*{Sudoku $n^2\times n^2$}
+Problem: Existiert eine Zuweisung, welche jeder Zelle einen Wert von 1 bis $n^2$ zuweist so, dass in jeder Zeile, in jeder  Spalte und in jedem Block jede Zahl aus $\lbrace1,2,\ldots,n^2\rbrace$ genau einmal vorkommt?
+
+\begin{aufgabe}
+Finde eiene Formel (in CNF) für ein gegebenes Sudoku, sodass diese Formel genau dann erfüllbar ist, wenn das Soduku lösbar ist. Aus dem (erfüllenden) Modell soll dann eine konkrete Lösung abgeleitet werden.\\
+Variablen: $R=\big\lbrace s_{x,y,z}\in\mathbb{B}^3\mid x,y,z\in\lbrace 1,\ldots,n\rbrace\big\rbrace$. Dabei soll $s_{x,y,z}$ auf wahr abgebildet wird g.d.w. in Zeile $x$, Spalte $y$ die Zahl $z$ steht.\\
+Formeln (für $n=3$):
+\begin{itemize}
+\item ``Jede Zelle bekommt (mindestens) einen Wert zugewiesen.''
+\begin{align*}
+\bigwedge\limits_{x=1}^{3^2}\bigwedge\limits_{y=1}^{3^2}\bigvee\limits_{z=1}^{3^2} s_{x,y,z}
+\end{align*}
+\item ``Jede Zelle bekommt höchstens einen Wert zugewiesen.''\\
+Meine Lösung (vielleicht richtig:)
+\begin{align*}
+\bigwedge\limits_{x=1}^{3^2}\bigwedge\limits_{y=1}^{3^2}\bigvee\limits_{z=1}^{3^2}\bigwedge\limits_{\hat{z}\in\lbrace1,2,\ldots,3^2\rbrace\setminus\lbrace z\rbrace} \neg s_{x,y,\hat{z}}
+\end{align*}
+Tutor-Lösung:
+\begin{align*}
+\bigwedge\limits_{x=1}^{3^2}
+\bigwedge\limits_{y=1}^{3^2}
+\bigwedge\limits_{z=1}^{3^2-1}
+\bigwedge\limits_{i=z+1}^{3^2}
+(\neg s_{x,y,z}\vee\neg s_{x,y,i})
+\end{align*}
+
+\item ``Jede Spalte enthält jede Zahl (mindestens) einmal.''
+\begin{align*}
+\bigwedge\limits_{y=1}^{3^2}\bigwedge\limits_{z=1}^{3^2}\bigvee\limits_{x=1}^{3^2} s_{x,y,z}
+\end{align*}
+\item ``Jede Zeile enthält jede Zahl (mindestens) einmal.''
+\begin{align*}
+\bigwedge\limits_{x=1}^{3^2}\bigwedge\limits_{z=1}^{3^2}\bigvee\limits_{y=1}^{3^2} s_{x,y,z}
+\end{align*}
+\item ``Jeder Block enthält jede Zahl (mindestens) einmal.''\\
+Die Menge aller Blöcke ist
+\begin{align*}
+B:=\left\lbrace 3\cdot(i,j)+\lbrace1,2,\ldots,n\rbrace^2\right\rbrace_{i,j=0}^{n-1}.
+\end{align*}
+Somit (meine Lösung, k. A: ob es stimmt):
+\begin{align*}
+\bigwedge\limits_{x\in B}\bigwedge\limits_{z=1}^{3^2}\bigvee\limits_{y=1}^{3^2} s_{x,y,z}
+\end{align*}
+Richtige Lösung anderer Gruppe:
+\begin{align*}
+\bigwedge\limits_{n_x=1}^n\bigwedge\limits_{n_y=1}^n\bigwedge\limits_{z=1}^{n^2}\bigvee\limits_{x=n_x\cdot n}^{(n_x\cdot(n+1))}\bigvee\limits_{y=n_y\cdot n}^{(n_y\cdot(n+1))-1} s_{x,y,z}
+\end{align*}
+Tutor-Lösung:
+\begin{align*}
+\bigwedge\limits_{z=1}^{3^2}\bigwedge\limits_{i=0}^{2}\bigwedge\limits_{j=1}^2\bigvee\limits_{x=1}^{3}\bigvee\limits_{y=1}^3 s_{3\cdot i+x,3\cdot j+y,z}
+\end{align*}
+\end{itemize}
+\end{aufgabe}
+
+
+\end{document}
