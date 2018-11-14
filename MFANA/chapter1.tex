@@ -19,7 +19,8 @@ Ein \textbf{(nichtlinearer) Operator} auf $X$ ist eine Relation $A\subseteq X\ti
 \begin{align*}
 A+B&:=\lbrace(u,f_1+f_2):f_1\in A,f_2\in B\rbrace\\
 &:=\lbrace(u,f)\in X\times X:\exists f_1,f_2\in X:(u,f_1)\in A\wedge(u,f_2)\in B\wedge f=f_1+f_2\rbrace\\
-\lambda\cdot A&:=\lbrace(u,\lambda\cdot f:(u,f)\in \rbrace:=\lbrace(u,f)\in X\times X:\exists f_1\in X:(u,f_1)\in X\wedge f=\lambda\cdot f_1\rbrace
+\lambda\cdot A&:=\lbrace(u,\lambda\cdot f:(u,f)\in \rbrace\\
+&:=\lbrace(u,f)\in X\times X:\exists f_1\in X:(u,f_1)\in X\wedge f=\lambda\cdot f_1\rbrace
 \end{align*}
 \end{itemize}
 \end{definition}
@@ -42,7 +43,7 @@ Seien $u,v\in X,~\mu>0$. Dann gilt:
 \end{align*}
 
 	\item Die Funktion $\left]0,\infty\right[\to\R$, $\lambda\mapsto\left[u,v\right]_\lambda$ ist monoton wachsend und beschränkt durch $\Vert v\Vert$.
-	\item $\left[u,v\right]=\lim_{\lambda>0}\left[u,v\right]_\lambda$.
+	\item $\left[u,v\right]=\lim\limits_{\lambda\to0}\left[u,v\right]_\lambda$.
 	\item Die Funktion $X\to\R\cup\lbrace-\infty\rbrace$, $v\mapsto\left[u,v\right]$ ist sublinear.
 	\item $\left[\mu\cdot u,v\right]=\left[u,v\right]$.
 	\item $\left[u,0\right]=0$.
@@ -52,14 +53,25 @@ Seien $u,v\in X,~\mu>0$. Dann gilt:
 \end{lemma}
 
 \begin{definition}
-Eine Funktion $f\colon M\to\R\cup\lbrace+\infty\rbrace$ auf einem metrischen Raum $M$ heißt \textbf{unterhalbstetig} $:\gdw$
+Eine Funktion $f\colon M\to\R\cup\lbrace+\infty\rbrace$ auf einem metrischen Raum $M$ heißt \textbf{unterhalbstetig}
 \begin{align*}
-\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M:
-u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M
-\Longrightarrow
+:\Longleftrightarrow
+\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M\mit
+u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M:
 f(u)\leq\liminf_{n\to\infty} f(u_n)
 \end{align*}
-$f$ heißt \textbf{oberhalbstetig}, falls $-f$ unterhalbstetig ist.
+$f$ heißt \textbf{oberhalbstetig}
+\begin{align*}
+&:\Longleftrightarrow -f\text{ unterhalbstetig}\\
+&\Longleftrightarrow
+\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M\mit
+u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M:
+-f(u)\leq\liminf\limits_{n\to\infty}\big(-f(u_n)\big)\\
+&\Longleftrightarrow
+\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M\mit
+u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M:
+f(u)\geq\limsup\limits_{n\to\infty} f(u_n)
+\end{align*}
 \end{definition}
 
 \begin{lemma}
@@ -71,8 +83,12 @@ Sei $M$ ein metrischer Raum, $f\colon M\to\R\cup\lbrace+\infty\rbrace$ eine Funk
 \end{enumerate}
 \end{lemma}
 
+\begin{bemerkung}
+Der Epigraph ist die Menge aller Punkte über dem Graphen.
+\end{bemerkung}
+
 \begin{proof}
-\underline{Zeige (i) $\Rightarrow$ (iii):}\\
+\underline{Zeige (i) $\implies$ (iii):}\\
 Sei $\big((u_n,\lambda_n)\big)_{n\in\N}$ eine konvergente Folge in $\epi(f)\mit(u,\lambda):=\limn(u_n,\lambda_n)$ in $M\times\R$. Dann gilt:
 \begin{align*}
 f(u)
@@ -85,14 +101,16 @@ f(u)
 (u,\lambda)\in\epi(f)
 \end{align*}
 
-\underline{Zeige (iii) $\Rightarrow$ (ii):}\\
-Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Dann ist
+\underline{Zeige (iii) $\implies$ (ii):}\\
+Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. 
+Dann ist
 \begin{align*}
-\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
+	\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
 \end{align*}
-Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$\\
 
-\underline{Zeige (ii) $\Rightarrow$ (i):}\\
+Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$.\\
+
+\underline{Zeige (ii) $\implies$ (i):}\\
 Sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Setze
 \begin{align*}
 c:=\liminf\limits_{n\to\infty} f(u_n)\in\R\cup\lbrace\pm\infty\rbrace.
@@ -266,7 +284,7 @@ Falls $X=H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$ ist, d
 [u,v] 
 &=
 \lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u+\lambda\cdot v,u+\lambda\cdot v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
-&=\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u,u\rangle+2\cdot\lambda\cdot\langle u,v\rangle+\lambda^2\cdot\langle v,v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
+&=\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u,u\rangle+2\cdot\lambda\cdot\Re(\langle u,v\rangle)+\lambda^2\cdot\langle v,v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
 &\stackeq{u\neq0}
 \frac{1}{2\cdot\Vert u\Vert}\cdot 2\cdot\langle u,v\rangle\\
 &=\left\langle\frac{u}{\Vert u\Vert},v\right\rangle
@@ -274,20 +292,1279 @@ Falls $X=H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$ ist, d
 \end{bemerkung}
 
 \begin{lemma}
-Sei $X$ ein Banachraum, $I\subseteq\R$ ein Intervall und sei $u:I\to X$ eine Funktion. Dann gilt:
+Sei $(X,\Vert\cdot\Vert)$ ein Banachraum, $I\subseteq\R$ ein Intervall und sei $u:I\to X$ eine Funktion. Dann gilt:
 \begin{enumerate}[label=(\alph*)]
 \item Wenn die \textbf{rechtsseitige Ableitung} von $u$, 
 \begin{align*}
 D_t^R u(t):=\dot{u}(t+):=\lim\limits_{h\to 0^+}\frac{u(t+h)-u(t)}{h},
 \end{align*}
-existiert, dann existiert
+existiert, dann existiert die rechtsseitige Ableitung von $\Vert\cdot\Vert\circ u$, also
 \begin{align*}
 D_t^R \Vert u(t)\Vert:=\dot{u}(t+):=\lim\limits_{h\to 0^+}\frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
 \end{align*}
 und es gilt
 \begin{align*}
-D_t^R\Vert u(t)\Vert=\left[u(t),D_t^R u(t)\right\Vert.
+D_t^R\Vert u(t)\Vert=\left[u(t),D_t^R u(t)\right].
 \end{align*}
-\item
+\item Falls die \textbf{linksseitige Ableitung} von $u$,
+\begin{align*}
+D_t^L u(t):=\lim\limits_{h\to 0^+}\frac{u(t-h)-u(t)}{-h},
+\end{align*}
+existiert, dann existiert
+\begin{align*}
+D_t^L \Vert u(t)\Vert:=\lim\limits_{h\to 0^+}\frac{\Vert u(t-h)\Vert-\Vert u(t)\Vert}{-h}
+\end{align*}
+und es gilt
+\begin{align*}
+D_t^R\Vert u(t)\Vert=-\left[u(t),-D_t^R u(t)\right].
+\end{align*}
+\item Falls die herkömmliche Ableitung von $u$
+\begin{align*}
+\lim\limits_{h\to0}\frac{u(t+h)-u(t)}{h}=:\dot{u}(t)
+\end{align*}
+existiert, dann existiert
+\begin{align*}
+\lim\limits_{h\to0}\frac{\Vert u(t+h)\Vert-\Vert u\Vert}{h}=:D_t\Vert u(t)\Vert
+\end{align*}
+und es gilt
+\begin{align*}
+D_t\Vert u(t)\Vert_\lambda=\left[ u(t),\dot{u}(t)\right]=-\big[u(t),-\dot{u}(t)\big]
+\end{align*}
 \end{enumerate}
 \end{lemma}
+
+\begin{proof}
+\underline{Zeige (a):}\\
+Für $h>0$ gilt die \textit{Weierstraß'sche Zerlegungsformel}
+\begin{align*}
+u(t+h)=u(t)+h\cdot D_t^R u(t)+o(h)\mit\lim\limits_{h\to0^+}\frac{o(h)}{h}=0
+\end{align*}
+und somit
+\begin{align*}
+\frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
+&=
+\frac{\Vert u(t)+h\cdot D_t^R u(t)+ o(h)\Vert-\Vert u(t)\Vert}{h}\\
+&\stackeq{\geq\&\leq\mit\Delta\text{-Ungl}}
+\frac{\Vert u(t)+h\cdot D_t^R u(t)\Vert-\Vert u(t)\Vert}{h}+\frac{o(h)}{h}\\
+&\stackrel{h\to0^+}{\longrightarrow} \left[ u(t), D_t^R u(t)\right]
+\end{align*}
+Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtungen abzuschätzen und Gleichheit zu erzielen.\\
+
+\underline{Zeige (b):}
+Analog zu (a) mit $h<0$.\\
+
+\underline{Zeige (c):}
+Folgt direkt aus (a) und (b).
+\end{proof}
+
+\section{Akkretive Operatoren}
+\begin{definition}
+Sei $(X,\Vert\cdot\Vert)$ ein Banachraum. Ein Operator $A\subseteq X\times X$ heißt \textbf{akkretiv vom Typ $\omega\in\R$}
+\begin{align*}
+:\Longleftrightarrow\forall (u,v),(\hat{u},\hat{v})\in A:\left[ u-\hat{u},v-\hat{v}\right]+\omega\cdot\left\Vert u-\hat{u}\right\Vert\geq0
+\end{align*}
+Ein \textbf{akkretiver} Operator  ist ein akkretiver Operator vom Typ $0$.\\
+Ein akkretiver Operator vom Typ $\omega$ ist auch ein akkretiver Operator vom Typ $\omega'$ für alle $\omega'\geq\omega$.
+\end{definition}
+
+\begin{lemma}
+Sei $X$ Banachraum. Für einen Operator $A\subseteq X\times X$ und $\omega\in\R$ sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $A$ ist akkretiv vom Typ $\omega$
+\item $A+\omega\cdot I$ ist akkretiv
+\item $\begin{aligned}\forall (u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0:\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert
+\end{aligned}$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\underline{Zeige (i) $\gdw$ (iii):}\\
+$A$ ist akkretiv vom Typ $\omega$
+\begin{align*}
+&\gdw\underbrace{[u-\hat{u},v-\hat{v}]}_{=\inf\limits_{\lambda>0}[\ldots]_\lambda}
++ \omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A\\
+&\gdw\frac{\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\\
+&\gdw\text{(iii)}
+\end{align*}
+\underline{Zeige (iii) $\gdw$ (ii):}
+\begin{align*}
+\text{(iii)} &\Rightarrow\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\text{ klein, d. h. }1+\lambda\cdot\omega>0:\\
+&\qquad(1+\lambda\cdot\omega)\cdot\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert\cdot(1+\lambda\cdot\omega)\\
+&\gdw\forall\ldots:\Big\Vert u-\hat{u}+\lambda\cdot\big((1+\lambda\cdot\omega)\cdot (v-\hat{v})+\omega\cdot(u-\hat{u})\big)\Big\Vert
+\geq
+\left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
+&\gdw\forall\ldots:
+\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)+\lambda^2\cdot\omega\cdot(v-\hat{v})\Big\Vert\\
+&\qquad\qquad\geq
+\left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
+&\gdw\forall\ldots:
+\frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\mathcal{O}(\lambda)\geq0\\
+&\stackrel{\lambda\to0}{\Rightarrow}
+\forall(u,v),(\hat{u},\hat{v})\in A:\Big[ u-\hat{u},\underbrace{v}_{=Au}-\hat{v}+\omega\cdot(u-\hat{u})\Big]\geq0\\
+&\gdw A+\omega\cdot I\text{ ist akkretiv}
+\end{align*}
+Das die Rückrichtung auch gilt muss man sich überlegen.
+\end{proof}
+
+\begin{lemma}
+Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\R$.\\
+Dann ist der Abschluss $\overline{A}$ akkretiv vom Typ $\omega$.
+\end{lemma}
+\begin{proof}
+Seien $(u,v),(\hat{u},\hat{v})\in\overline{A}$. Dann existieren Folgen 
+\begin{align*}
+&(u_n,v_n)_{n\in\N},(\hat{u}_n,\hat{v}_n)_{n\in\N}\subseteq A\mit\\
+&(u_n,v_n)
+\stackrel{n\to\infty}{\longrightarrow}
+(u,v)\text{ in } \overline{A} \subseteq X\times X\\
+&(\hat{u}_n,\hat{v}_n)
+\stackrel{n\to\infty}{\longrightarrow}
+(\hat{u},\hat{v})\text{ in } \overline{A} \subseteq X\times X
+\end{align*}
+und wegen der Oberhalbstetigkeit des Brackets gilt
+\begin{align*}
+[u-\hat{u},v-\hat{v}]+\omega\cdot\Vert u-\hat{u}\Vert
+\geq
+\limsup\limits_{n\to\infty}\Big(\underbrace{\big[ u_n-\hat{u}_n,v_n-\hat{v}_n\big]+\omega\cdot\Vert u_n-\hat{u}_n\Vert}_{\geq0,\text{ da $A$ akkretiv vom Typ $\omega$}}\Big)
+\geq0
+\end{align*}
+\end{proof}
+
+\begin{beispiel}\
+\begin{enumerate}[label=(\alph*)]
+\item In einem Hilbertraum $H$ ist ein Operator $A\subseteq H\times H$ akkretiv vom Typ $\omega\in\R$
+\begin{align*}
+\Longleftrightarrow\forall(u,v),(\hat{u},\hat{v})\in A:
+ \Re\big(\langle u-\hat{u},v-\hat{v}\rangle\big)+\omega\cdot\Vert u-\hat{u}\Vert^2\geq0.
+\end{align*}
+Operatoren $A\subseteq H\times H$, die diese Bedingung erfüllen, heißen auch \textbf{monoton vom Typ $\omega$} bzw. einfach nur \textbf{monoton}, falls $\omega=0$.\\
+Es gilt also: $A$ akkretiv vom Typ $\omega\gdw A$ monoton vom Typ $\omega$.
+
+Falls $A$ ein linearer (einwertiger) Operator ist, dann ist $A$ akkretiv
+\begin{align*}
+&\Longleftrightarrow\forall u\in\dom(A):\Re\big(\langle u, Au\rangle\big)\geq0\\
+&\Longleftrightarrow: -A\text{ ist \textbf{dissipativ}}
+\end{align*}
+\item $H=L^2(\Omega)\mit\Omega\subseteq\R^n$ offen und 
+\begin{align*}
+A&=\big\lbrace(u,v)\in L^2\times L^2:u,v\in C_c^\infty(\Omega):v=\Delta u\big\rbrace\\
+C_c^\infty(\Omega)&:=\big\lbrace u\in C^\infty(\Omega):\supp(u)\text{ kompakt}\big\rbrace\\
+\supp(u)&:=\overline{\big\lbrace x\in\Omega:u(x)\neq0\big\rbrace}^\Omega\text{ Abschluss in }\Omega\\
+\Delta u&:=\sum\limits_{i=1}^n\frac{\partial^2 u}{\partial x_i^2}
+\end{align*}
+Dann gilt für alle $u\in\dom(A)$:
+\begin{align*}
+\Re\Big(\langle u,-\Delta u\rangle_{L^2}\Big) 
+&= \Re\left(-\int\limits_\Omega u\cdot\overline{\Delta u}\right) = \Re\left(-\int\limits_\Omega u\cdot\overline{\nabla \Div u}\right)\\
+&= -\int\limits_\Omega \Re \left(u\cdot\overline{\nabla \Div u}\right) = -\int\limits_\Omega \Re \left(u\cdot\nabla \Div u\right)\\
+&= -\int\limits_{\supp(u)} \Re \left(u\cdot\nabla \Div u\right)\\
+&\stackeq{\text{Gauß}}
+-\int\limits_{\partial\supp(u)} \Re \left(u\cdot\nabla u\right) + \int\limits_{\supp(u)} \Re \left(\nabla u\cdot\nabla u\right)\\
+&=\Re\left(\int\limits_{\Omega} \nabla u\cdot\overline{\nabla u}\right)\\
+%&=\int\limits_\Omega |\nabla u|^2\\
+&\geq0
+\end{align*}
+Mithilfe des Gauß'schen Integralsatzes (partielle Integration) folgt die Akkretivität von $A$. $A$ ist hierbei der negative Laplace-Operator auf den Testfunktionen.
+Beachte, dass $u$ auf $\partial \supp(u)$ Null sein muss, da $u$ glatt.
+\item Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\R$ und $F:X\to X$ Lipschitzstetig mit Lipschitzkonstante $L\geq0$.\\
+Dann ist $A+F$ akkretiv vom Typ $\omega+L$.
+\begin{proof}
+\begin{align*}
+&\forall (u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0:
+\big[u-\hat{u},v-\hat{v}+F(u)-F(\hat{u})\big]_\lambda
++(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
+&=\frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+F(u)-F(\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}
++(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
+&\stackrel{\Delta\text{-Ungl}}{\geq}
+\frac{\big\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\big\Vert-\Vert u-\hat{u}\Vert}{\lambda}\underbrace{-\big\Vert F(u)-F(\hat{u})\big\Vert}_{\geq -L\cdot\Vert u-\hat{u}\Vert}
++(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
+&\geq0
+\end{align*}
+\end{proof}
+\item Sei wieder $\Omega\subseteq\R^n$ offen und sei $f:\R\to\R$ lipschitzstetig mit $f(0)=0$ oder das Maß von $\Omega$ endlich, sei $H=L^2(\Omega)$ der reelle Hilbertraum und
+\begin{align*}
+A:L^2(\Omega)\supseteq C_c^\infty(\Omega)\to L^2(\Omega),\qquad
+u\mapsto Au:=-\Delta u+\underbrace{f(u)}_{f\circ u}.
+\end{align*}
+Dann ist $A$ akkretiv vom Typ $L_f$, wobei $L_f$ die Lipschitzkonstante von $f$ ist.
+\begin{proof}
+Die Abbildung
+\begin{align*}
+F: L^2(\Omega)\to L^2(\Omega),\qquad u\mapsto f(u)
+\end{align*}
+ist wohldefiniert und Lipschitzstetig.\\
+Zur Lipschitzstetigkeit: Es gilt für alle $u,\hat{u}\in L^2(\Omega)$:
+\begin{align*}
+\big\Vert F(u)-F(\hat{u})\big\Vert^2_{L^2}
+&=\int\limits_\Omega\Big|f\big(u(x)\big)-f\big(\hat{u}(x)\big)\Big|^2\d x\\
+&\leq
+\int\limits_\Omega L^2\cdot\big|u(x)-\hat{u}(x)\big|^2\d x\\
+&=L^2\cdot\Vert u-\hat{u}\Vert^2_{L^2}
+\end{align*}
+Zur Wohldefiniertheit: Für alle $u\in L^2(\Omega)$ gilt:
+\begin{align*}
+\left(\int\limits_\Omega\Big|f\big(u(x)\big)\Big|^2\d x\right)^{\frac{1}{2}}
+&=\left(\int\limits_\Omega\Big|f\big(u(x)\big)-f(0)+f(0)\Big|^2\d x\right)^{\frac{1}{2}}\\
+&\leq
+\sqrt{\int\limits_\Omega\Big|f\big(u(x)\big)-f(0)\Big|^2\d x}+|f(0)|\cdot\underbrace{|\Omega|}_{\text{Maß von }\Omega}\\
+&\leq
+L\cdot\Vert u\Vert_{L^2}+|f(0)|\cdot|\Omega|<\infty
+\end{align*}
+\end{proof}
+\item Sei $F:X\to X$ lipschitzstetig mit Lipschitzkonstante $L\geq0$.\\
+Dann ist 
+\begin{align*}
+A=L\cdot I-F
+\end{align*}
+akkretiv (vom Typ $0$).
+\begin{proof}
+\begin{align*}
+\forall u,\hat{u}\in X,\forall \lambda>0:
+&\bigg\Vert u-\hat{u}+\lambda\cdot\Big(L\cdot(u-\hat{u})-\big(F(u)-F(\hat{u})\big)\Big)\bigg\Vert-\Vert u-\hat{u}\Vert\\
+&\geq
+(1+\lambda\cdot L)\cdot\Vert u-\hat{u}\Vert-\lambda\cdot\Vert F(u)-F(\hat{u})\Vert-\Vert u-\hat{u}\Vert\\
+&\geq
+\lambda\cdot L\cdot\Vert u-\hat{u}\Vert-\lambda\cdot L\cdot\Vert u-\hat{u}\Vert\\
+&=0
+\end{align*}
+\end{proof}
+\end{enumerate}
+\end{beispiel}
+
+\begin{theorem}[Abschätzungen für akkretive Operatoren]\enter
+Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\Omega$ auf einem Banachraum $(X,\Vert\cdot\Vert)$. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item Seien $h,\hat{h}>0$ so, dass $h\cdot\omega,\hat{h}\cdot\omega<1$ und seien $(u,f),(\hat{u},\hat{f})\in X\times X$ so, dass 
+\begin{align*}
+u+h\cdot Au\ni f\qquad\text{und}\qquad\hat{u}+\hat{h}\cdot A\hat{u}\ni\hat{f}.
+\end{align*}
+Dann gilt:
+\begin{align*}
+\left(a-\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\right)\cdot\Vert u-\hat{u}\Vert
+\leq
+\left\Vert u-\hat{u}+\frac{\hat{h}}{h+\hat{h}}\cdot(f-u)-\frac{h}{h+\hat{h}}\cdot\big(\hat{f}-\hat{u}\big)\right\Vert
+\end{align*}
+Insbesondere gilt für $h=\hat{h}$ dann
+\begin{align*}
+\Vert u-\hat{u}\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\Vert f-\hat{f}\Vert.
+\end{align*}
+\item Sei $h>0\mit h\cdot \omega<1$. Für alle $f\in X$ besitzt die Inklusion
+\begin{align*}
+u+h\cdot Au\ni f
+\end{align*}
+höchstens eine Lösung $u\in\dom(A)$.
+\item Sei $h>0\mit h\cdot\omega<$ und sei $(u,f)\in X\times X$ so, dass 
+\begin{align*}
+u+h\cdot Au\ni f.
+\end{align*}
+Dann gilt:
+\begin{align*}
+\Vert u-\hat{u}\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-h\cdot\hat{f}-\hat{u}\big\Vert
+\qquad
+\forall(\hat{u},\hat{f})\in A
+\end{align*}
+Insbesondere, wenn $f\in\dom(A)$, dann ist
+\begin{align*}
+\Vert u-f\Vert
+&\leq
+\frac{h}{1-h\cdot\omega}\cdot\Vert Af\Vert
+\qquad
+\text{ wobei }
+\qquad
+\Vert Au\Vert:=\inf\big\lbrace\Vert f\Vert:(u,f)\in A\big\rbrace
+\end{align*}
+\end{enumerate}
+\end{theorem}
+
+\begin{bemerkung}
+Beachte
+\begin{align*}
+u+h\cdot Au\ni f\Longleftrightarrow\left(u,\frac{f-u}{h}\right)\in A
+\end{align*}
+\end{bemerkung}
+
+\begin{proof}
+\underline{Zeige (a):} Es ist
+\begin{align*}
+&\left[u-\hat{u},\frac{f-u}{h}-\frac{\hat{f}-\hat{u}}{\hat{h}}\right]_{\frac{h\cdot\hat{h}}{h+\hat{h}}}+\omega\cdot\Vert u-\hat{u}\Vert\geq0\\
+&\gdw
+\left\Vert u-\hat{u}+\frac{\hat{h}}{h+\hat{h}}\cdot(f-u)-\frac{h}{h+\hat{h}}\cdot(\hat{f}-\hat{u})\right\Vert
+-\Vert u-\hat{u}\Vert+\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\cdot\Vert u-\hat{u}\Vert>0\\
+&\gdw\text{ Behauptung}
+\end{align*}
+Falls $h=\hat{h}$, dann ist
+\begin{align*}
+\left(\frac{1}{2}-\frac{h\cdot\omega}{2}\right)\cdot\Vert u-\hat{u}\Vert
+&\leq
+\Big\Vert u-\hat{u}+\frac{1}{2}\cdot(f-u)-\frac{1}{2}\cdot(\hat{f}-\hat{u})\Big\Vert\\
+&=\left\Vert\frac{1}{2}\cdot(u-\hat{u})+\frac{1}{2}\cdot(f-\hat{f})\right\Vert\\
+&\leq
+\frac{1}{2}\cdot\Vert f-\hat{f}\Vert
+\end{align*}
+\underline{Zeige (b):} Dies folgt aus (a), denn:\\
+Falls $u,\hat{u}\in\dom(A)$ Lösungen von
+\begin{align*}
+u+h\cdot Au\ni f,\qquad\hat{u}+h\cdot A\hat{u}\ni f
+\end{align*}
+sind, dann ist
+\begin{align*}
+\Vert u-\hat{u}\Vert\leq\frac{1}{1-h\cdot\omega}\cdot\Vert f-f\Vert=0
+\end{align*}
+\underline{Zeige (c):} Seien $h>0\mit h\cdot\omega<1$ und $8u,f)\in X\times X$ so, dass
+\begin{align*}
+u+h\cdot Au\ni f.
+\end{align*}
+sei $(\hat{u},\hat{f})\in A$, also äquivalent $A\hat{u}\ni\hat{f}$. Nach Multiplikation beider Seiten mit $h$ und Addition beider Seiten mit $\hat{u}$ erhält man
+\begin{align*}
+h\cdot A\hat{u}+\hat{u}\ni h\cdot\hat{f}+\hat{u}.
+\end{align*}
+Dann folgt aus (a)
+\begin{align*}
+\Vert u-\hat{u}\Vert\leq\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-h\cdot\hat{f}-\hat{u}\big\Vert
+\end{align*}
+Falls $f\in\dom(A)$, dann gilt für alle $g\in Af$ (ersetze $(\hat{u},\hat{f})$ durch $(f,g)$):
+\begin{align*}
+\Vert u- f\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-h\cdot g-f\big\Vert
+=\frac{h}{1-h\cdot\omega}\cdot\Vert g\Vert
+\end{align*}
+Nehme $\inf$ über $g\in Af$:
+\begin{align*}
+\Vert u-f\Vert\leq\frac{h}{1-h\cdot\omega}\cdot\Vert Af\Vert
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+Sei $A\subseteq X\times X$ akkretiv vom Typ $\omega\in\R$ auf einem Banachraum $(X,\Vert\cdot\Vert)$. Dann sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=(\roman*)]
+\item $\begin{aligned}
+\exists h>0\mit h\cdot\omega<1:I+h\cdot A
+\end{aligned}$ surjektiv
+\item $\begin{aligned}
+\forall h>0\mit h\cdot\omega<1: I+h\cdot A
+\end{aligned}$ surjektiv
+\end{enumerate}
+Falls $A$ zusätzlich abgeschlossen ist, dann sind (i) und (ii) äquivalent zu
+\begin{enumerate}[label=(iii)]
+\item $\begin{aligned}
+\exists h>0\mit h\cdot\omega<1:
+\end{aligned}$ das Bild von $I+h\cdot A$ dicht in $X$ ist.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\underline{Zeige (i) $\Rightarrow$ (ii):}\\
+Sei $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ surjektiv ist. Nach dem vorherigen Theorem, Aussage (b), ist $I+h\cdot A$ immer injektiv, also bijektiv. Setze
+\begin{align*}
+J_h:=\big(I+h\cdot A\big)^{-1}.
+\end{align*}
+Dann ist wegen Theorem, Aussage (a), $J_h$ lipschitzstetig mit Lipschitzkonstante $\frac{1}{1-h\cdot\omega}$. Sei nun 
+\begin{align*}
+\hat{h}>\frac{h}{2-h\cdot\omega}>0\mit\hat{h}\cdot\omega<1
+\end{align*}
+und sei $f\in X$. Betrachte den Operator
+\begin{align*}
+T:X\to X,\qquad Tv:=T(v)
+:=\frac{h}{\hat{h}}\cdot f+\frac{\hat{h}-h}{\hat{h}}\cdot J_h\cdot v\qquad\forall v\in X
+\end{align*}
+Dann gilt für alle $v,\hat{v}\in X$:
+\begin{align*}
+\big\Vert T(v)-T(\hat{v})\big\Vert_X
+&\leq
+\left|\frac{\hat{h}-h}{\hat{h}}\right|\cdot\big\Vert J_h v-J_h \hat{v}\big\Vert\\
+&\leq
+\underbrace{\frac{1}{1-h\cdot\omega}\cdot\frac{|\hat{h}-h|}{|\hat{h}|}}_{<1}\cdot\Vert v-\hat{v}\Vert
+\end{align*}
+Also ist $T$ Lipschitz-stetig mit Lipschitzkonstante 
+\begin{align*}
+L_T:=\left|\frac{\hat{h}-h}{\hat{h}}\right|
+\cdot\frac{1}{1-h\cdot\omega}.
+\end{align*}
+Falls $\hat{h}\leq h$ gilt:
+\begin{align*}
+L_T=\left(\frac{h}{\hat{h}}-1\right)\cdot\frac{1}{1-h\cdot\omega}
+<
+(2-h\cdot\omega-1)\cdot\frac{1}{1-h\cdot\omega}
+=1
+\end{align*}
+Falls $\hat{h}>h$ gilt hingegen:
+\begin{align*}
+L_T=\left(1-\frac{h}{\hat{h}}\right)\cdot\frac{1}{1-h\cdot\omega}
+\stackrel{-\frac{1}{\hat{h}}<-\omega}{<}
+(1-h\cdot\omega)\cdot\frac{1}{1-h\cdot\omega}
+=1
+\end{align*}
+Also ist $T$ eine strikte Kontraktion, da $L_T<1$. Aus dem Banach'schen Fixpunktsatz folgt, dass $T$ (genau) einen Fixpunkt $u\in X$ besitzt. Somit gilt
+\begin{align*}
+u\stackeq{\text{Fix}}T(u)
+=\frac{h}{\hat{h}}\cdot f+\frac{\hat{h}-h}{\hat{h}}\cdot J_h u
+\end{align*}
+bzw. 
+\begin{align*}
+f&=\frac{\hat{h}}{h}\cdot u-\frac{\hat{h}-h}{h}\cdot J_h u\\
+&=J_h u+\frac{\hat{h}}{h}\cdot\left(u-J_j u\right)\\
+&\in J_h u+\hat{h}\cdot A J_h u
+\end{align*}
+d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.\\
+
+\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.\\
+
+\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.\\
+
+\underline{Zeige (iii) $\implies$ (i):}\\
+Sei $A$ abgeschlossen, $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ dichtes Bild hat. Die Inverse Relation
+\begin{align*}
+J_h:=(I+h\cdot A)^{-1}
+\end{align*}
+ist dann Lipschitz-stetig vom Bild $\underbrace{\rg(I+h\cdot A)}_{\text{dicht in }X}$ in $X$. Damit besitzt $J_h$ eine (eindeutige) Lipschitz-stetige Fortsetzung auf ganz $X$ (Eine gleichmäßige Abbildung lässt sich stets eindeutig auf die Vervollständigung fortsetzen). Aber mit $A$ ist $I+h\cdot A$ abgeschlossen in $X\times X$ und somit auch $J_h$. Also stimmen $J_h$ und die Lipschitz-stetige Fortsetzung überein, d. h. $\rg(I+h\cdot A)=X$. Damit ist Surjektivität gezeigt.
+\end{proof}
+
+\begin{definition}
+Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.\\
+
+Ist $A\subseteq X\times X$  $m$-akkretiv vom Typ $\omega\in\R$, dann ist $I+h\cdot A$ bijektiv für alle $h>0\mit h\cdot\omega<1$. Wir schreiben in diesem Fall
+\begin{align*}
+J_h:=(I+h\cdot A)^{-1}.
+\end{align*}
+$J_h$ ist einwertiger Operator mit $\dom(J_h)=X$.
+\end{definition}
+
+\begin{beispiel}[Beispiele für $X=\R$]\
+\begin{enumerate}[label=(\alph*)]
+% Hier Abbildung einfügen
+\item $\begin{aligned}
+A:=\big([-\infty,0]\times\lbrace-1\rbrace\big)\cup\big([0,\infty)\times\lbrace 1\rbrace\big)\cup\big(\lbrace0\rbrace\times[-1,1]\big)
+\end{aligned}$
+ist akkretiv (``monoton wachsend''). Damit gilt
+\begin{align*}
+h\cdot A&=\big([-\infty,0]\times\lbrace-h\rbrace\big)\cup\big([0,\infty)\times\lbrace h\rbrace\big)\cup\big(\lbrace0\rbrace\times[-h,h]\big)\\
+I+h\cdot A&=\graph\big(\R_{\leq0}\to\R_{\leq0},~x\mapsto x-1\big)\cup\big(\lbrace 0\rbrace\times [-h,h]\big)\cup\graph\big(\R_{\geq0}\to\R_{\geq0},x\mapsto x+1\big)
+\end{align*}
+Hierbei ist $I+h\cdot A$ $m$-akkretiv (also $m$-akkretiv vom Typ 0).
+\begin{align*}
+(I+h\cdot A)^{-1}=\graph\left(R\to\R,~x\mapsto\left\lbrace\begin{array}{cl}
+x+h, & \falls x\leq -h\\
+0, & \falls x\in(-h,h)\\
+x-h, & \falls x\geq h
+\end{array}\right.\right)
+\end{align*}
+\item $\begin{aligned}
+A=\big(\lbrace a\rbrace\times (-\infty,0]\big)\cup\big(\lbrace b\rbrace\times[0,\infty)\big)
+\end{aligned}$
+Damit gilt
+\begin{align*}
+h\cdot A=A\text{ WARUM???}
+\end{align*}
+und $I+h\cdot A$ ist surjektiv, also ist $A$ akkretiv. $J_h=(I+h\cdot A)^{-1}$ ist eine Funktion.
+\end{enumerate}
+\end{beispiel}
+
+\begin{theorem}\label{Theorem1.2.9}
+Sei $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item $\begin{aligned}
+\forall h,\hat{h}>0\mit h\cdot\omega,\hat{h}\cdot\omega<1,\forall f,\hat{f}\in X:\end{aligned}$
+\begin{align*}
+\left(1-\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\right)\cdot\Big\Vert J_h f-J_{\hat{h}}\hat{f}\Big\Vert
+\leq
+\left\Vert f-\hat{f}-\frac{h}{h+\hat{h}}\cdot\big(f-J_h f\big)+\frac{\hat{h}}{h+\hat{h}}\cdot\big(\hat{f}-J_h \hat{f}\big)\right\Vert
+\end{align*}
+\item Die \textbf{Resolvente} $J_h$ ist Lipschitz-stetig mit Lipschitzkonstante $\frac{1}{1-h\cdot\omega}$, d. h.
+\begin{align*}
+\forall h>0\mit h\cdot \omega<1,\forall f,\hat{f}\in X:
+\Big\Vert J_h f- J_h\hat{f}\Big\Vert
+\leq
+\frac{1}{1-h\cdot\omega}\cdot\big\Vert f-\hat{f}\big\Vert
+\end{align*}
+\item $\begin{aligned}
+\forall f\in\dom(A),\forall h>0\mit h\cdot\omega<1:
+\big\Vert J_h f-f\big\Vert
+\leq
+h\cdot\Vert A f\Vert\mit\Vert A f\Vert=\inf\big\lbrace\Vert g\Vert:g\in A f\big\rbrace
+\end{aligned}$
+\item $\begin{aligned}
+\forall f\in\dom(A):\lim\limits_{h\to0^+} J_h f=f
+\end{aligned}$
+\item Falls $X$ ein Hilbertraum ist, dann ist $\overline{\dom(A)}$ konvex und
+\begin{align*}
+\lim\limits_{h\to0^+} J_h f=P(f)\qquad\forall f\in X
+\end{align*}
+wobei $P:H\to H$ die orthogonale Projektion auf $\overline{\dom(A)}$ ist.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+Sei $H$ ein Hilbertraum und $C\subseteq H$ eine nichtleere, abgeschlossene, konvexe Teilmenge. Dann gilt:
+\begin{align*}
+\forall u\in H:\exists! u_0\in C:\Vert u-u_0\Vert
+=\dist(u,C)
+:=\inf\limits_{v\in C}\Vert u-v\Vert
+\end{align*}
+Dieses $u_0\in C$ ist das eindeutige Element in $C$ so, dass 
+\begin{align*}
+\forall v\in C:\Re\big(\langle u-u_0,v-u_0\rangle\big)\leq0
+\end{align*}
+Die Abbildung
+\begin{align*}
+P:H\to H,\qquad u\mapsto u_0
+\end{align*}
+heißt \textbf{orthogonale Projektion} auf $C$. Es gilt $\rg(P)=C$ und $P\circ P=P$.
+\end{lemma}
+\begin{proof}
+\underline{Existenz von $u_0$:}\\
+Sei $(v_n)_{n\in\N}\subseteq\C$ so, dass
+\begin{align*}
+\limn\Vert u-v_n\Vert
+%\stackrel{n\to\infty}{\longrightarrow}
+=\dist(u,C).
+\end{align*}
+(Diese Folge existiert nach Definition des Infimums.) Mit der Parallelogrammidentität gilt:
+\begin{align*}
+\forall x,y\in H:\Vert x\Vert^2+\Vert y\Vert^2\stackeq{\text{Parallelo}}\frac{1}{2}\cdot\left(\Vert x+y\Vert^2+\Vert x-y\Vert^2\right)
+\end{align*}
+Setze $x:=u-v_n$ und $y:=u-v_n$. Dann folgt:
+\begin{align*}
+\Vert u-v_n\Vert^2+\Vert u-v_m\Vert^2
+&=2\cdot\left\Vert u-\frac{v_n+v_m}{2}\right\Vert^2+\frac{1}{2}\cdot\Vert v_n-v_m\Vert^2
+\qquad\forall n,m\in\N\\
+\implies
+\limsup\limits_{m,n\to\infty}\frac{1}{2}\cdot\Vert v_n-v_m\Vert^2
+&=\limsup\limits_{m,n\to\infty}\left(\Vert u-v_n\Vert^2+\Vert u-v_m\Vert^2\right)\\
+&\qquad-\liminf\limits_{m,n\to\infty} \underbrace{2\cdot\Bigg\Vert u-\underbrace{\frac{v_n+v_m}{2}}_{\in C}\Bigg\Vert^2}_{\geq2\cdot\big(\dist(u,C)\big)^2}\\
+&\leq2\cdot\dist\big((u,C)\big)^2-2\cdot\dist\big((u,C)\big)^2\\
+&=0
+\end{align*}
+Also ist $(v_n)_{n\in\N}$ eine Cauchy-Folge in $H$. Setze $u_0:=\limn v_n$. Weil $C$ abgeschlossen ist, ist $u_0\in C$. Nach Wahl von $(v_n)_{n\in\N}$ ist
+\begin{align*}
+\Vert u-u_0\Vert=\dist(u,C).
+\end{align*}
+
+\underline{Eindeutigkeit:}\\
+Seien $u_0,u_1\in C$ mit
+\begin{align*}
+\Vert u-u_0\Vert=\Vert u-u_1\Vert=\dist(u,C).
+\end{align*}
+Dann ist 
+\begin{align*}
+\Bigg\Vert u-\underbrace{\frac{u_0+u_1}{2}}_{\in C}\Bigg\Vert^2
+&=
+\left\Vert\frac{u-u_0}{2}+\frac{u-u_1}{2}\right\Vert^2\\
+&=\left\Vert\frac{u-u_0}{2}\right\Vert^2+2\cdot\Re\left(\left\langle\frac{u-u_0}{2},\frac{u-u_1}{2}\right\rangle\right)+\left\Vert\frac{u-u_1}{2}\right\Vert^2\\
+&\stackrel{\text{C.S.; }u_0\neq u_1}{<}
+\left\Vert\frac{u-u_0}{2}\right\Vert^2+2\cdot\left\Vert\frac{u-u_0}{2}\right\Vert\cdot\left\Vert\frac{u-u_1}{2}\right\Vert+\left\Vert\frac{u-u_1}{2}\right\Vert^2\\
+&=
+\left(\left\Vert\frac{u-u_0}{2}\right\Vert+\left\Vert\frac{u-u_1}{2}\right\Vert\right)^2\\
+&=
+\big(\dist(u,C)\big)^2
+\end{align*}
+Dies ist aber ein Widerspruch zur Annahme. Somit folgt Eindeutigkeit.\\
+\underline{Zum zweiten Teil, zeige ``$\implies$'':}\\
+Sei $u\in C_0$ so, dass 
+\begin{align*}
+\Vert u-u_0\Vert=\dist(u,C).
+\end{align*}
+Dann gilt für alle $v\in C$:
+\begin{align*}
+\Vert u-u_0\Vert^2 
+&\leq
+\Vert u-v\Vert^2\\
+&=\Vert u-u_0+u_0-v\Vert^2\\
+&=\Vert u-u_0\Vert^2+2\cdot\Re\big(\langle u-u_0, u_0-v\rangle\big)+\Vert u_0-v\Vert^2\\
+&\implies
+2\cdot\Re\big(\langle u-u_0, v-u_0\rangle\big)+\Vert u_0-v\Vert^2
+\leq\Vert u_0-v\Vert^2
+\end{align*}
+Ersetze $v$ durch
+\begin{align*}
+&u_0+t\cdot(v-u_0)\in C,\qquad\mit t\in]0,1]\
+&\implies
+2\cdot\Re\big(\langle u-u_0,v-u_0\rangle\leq t\cdot\Vert v-u_0\Vert^2\\
+&\stackrel{t\to 0^+}{\implies}
+\Re\big(\langle u-u_0,v-u_0\rangle\big)\leq0
+\end{align*}
+\underline{Zum zweiten Teil, zeige ``$\Longrightarrow$'':}\\
+Sei $u_0\in C$ so, dass 
+\begin{align*}
+\Re\big(\langle u-u_0,v-u_0\rangle\big)\leq\qquad\forall v\in C.
+\end{align*}
+Dann gilt für alle $v\in C$:
+\begin{align*}
+\Vert u-v\Vert^2
+&=\Vert u-u_0\Vert^2+\underbrace{2\cdot\Re\big(\langle u-u_0,u_0,v\rangle\big)}_{\geq0}+\underbrace{\Vert u_0-v\Vert^2}_{\geq0}\\
+&\geq
+\Vert u-u_0\Vert^2
+\end{align*}
+\end{proof}
+
+\begin{proof}[Beweis von Theorem \ref{Theorem1.2.9}]\enter
+Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).\\
+
+\underline{Zu (e):}\\
+Sei $D:=\overline{\dom(A)}\neq\emptyset$  und $C:=\overline{\conv(D)}$ der Abschluss der konvexen Hülle. Sei $P$ die orthogonale Projektion  auf $C$ (!). Sei $f\in X$, $h>0\mit h\cdot\omega<1$. Dann gilt nach Definition der Resolvente
+\begin{align*}
+\left( J_h f,\frac{f-J_h f}{h}\right)\in A.
+\end{align*}
+Also gilt für alle $(\hat{u},\hat{f})\in A$:
+\begin{align*}
+\Re\left(\left\langle J_h f-\hat{u},\frac{f-J_h f}{h}-\hat{f}\right\rangle\right)+\omega\cdot\big\Vert J_h f-\hat{u}\big\Vert^2\geq0
+\end{align*}
+(Beachte: $A$ akkretiv $\gdw A$ monoton)\\
+Multiplikation mit $h>0$ und Addition von $\hat{u}$ auf beiden Seiten  liefert:
+\begin{align*}
+(1-h\cdot\omega)\cdot\big\Vert J_h f-\hat{u}\big\Vert^2
+&\leq
+\Re\left(\left\langle J_h f-\hat{u},f-\hat{u}-h\cdot \hat{f}\right\rangle\right)\\
+&\stackrel{\text{C.S.}}{\leq}
+\big\Vert J_h f-\hat{u}\big\Vert\cdot\Vert f-\hat{u}-h\cdot\hat{f}\big\Vert\\
+&\implies
+\limsup\limits_{h\to 0^+}\big\Vert J_h f-\hat{u}\big\Vert<\infty
+\end{align*}
+Außerdem folgt aus dieser Ungleichung
+\begin{align*}
+&(1-h\cdot\omega)\cdot\big\Vert J_h f- P(f)\big\Vert^2\\
+&=(1-h\cdot\omega)\cdot\left(\big\Vert J_h f-\hat{u}\big\Vert^2+2\cdot\Re\Big(\big\langle J_h f-\hat{u},\hat{u}-P(f)\big\rangle\Big)+\big\Vert\hat{u}-P(f)\big\Vert^2\right)\\
+&\leq
+\Re\Big(\big\langle J_h f-\hat{u},f-\hat{u}\big\rangle\Big)+\O(h)
++2\cdot\Re\Big(\big\langle J_h f-\hat{u}\underbrace{-P(f)+P(f)}_{=0},\hat{u}-P(f)\big\rangle\Big)
++\big\Vert\hat{u}-P(f)\big\Vert^2\\
+&=
+\Re\Big(\big\langle J_h f-P(f),f-\hat{u}\big\rangle\Big)
++\Re\Big(\big\langle P(f)-\hat{u},f-\hat{u}\big\rangle\Big)
++2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)\\
+&\qquad-2\cdot\big\Vert\hat{u}-P(f)\big\Vert^2+\big\Vert\hat{u}-P(f)\big\Vert^2+\O(h)\\
+&=\Re\Big(\big\langle J_h h-P(f),f-\hat{u}\big\rangle\Big)
++\underbrace{\Re\Big(\big\langle P(f)-\hat{u},f-P(f)\big\rangle\Big)}_{\leq0}
++2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)+\O(h)\\
+&\leq
+\Re\Big(\big\langle J_h f-P(f),f-\hat{u}\big\rangle\Big)
++2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)+\O(h)
+\end{align*}
+Sei $v\in C$ ein schwacher Häufungspunkt von $(J_h f)_{h\searrow 0}$, d. h.
+\begin{align*}
+\exists (h_n)_{n\in\N}\mit \limn h_n=0:\weaklim\limits_{n\to\infty} J_{h_n} f=v
+\end{align*}
+Dann gilt
+\begin{align*}
+\Vert v-P(f)\Vert^2 
+&\leq\liminf\limits_{n\to\infty}\big\Vert J_{h_n} f-P(f)\big\Vert^2\\
+&\leq
+\Re\Big(\big\langle v-P(f),f-\hat{u}\big\rangle\Big)
++2\cdot\Re\Big(\big\langle v-P(f),\hat{u}-P(f)\big\rangle\Big)
+\end{align*}
+für alle $\hat{u}\in\overline{\dom(A)}=D$.
+Wegen Linearität des Skalarproduktes in der zweiten Komponente gilt diese Ungleichung schließlich für alle $\hat{u}\in\overline{\conv(D)}=C$. Insbesondere auch für $\hat{u}=P(f)$. Somit folgt:
+\begin{align*}
+\big\Vert v-P(f)\big\Vert^2
+\leq
+\Re\Big(\big\langle v-P(f),f-P(f)\big\rangle\Big)
+\leq0\\
+\implies
+v=P(f)
+\end{align*}
+Da $v$ ein beliebiger Häufungspunkt von $(J_h f)_{h\searrow 0}$ war, gilt 
+\begin{align*}
+\weaklim\limits_{h\to0^+} J_h f=P(f)
+\end{align*}
+und aus der Abschätzung oben folgt 
+\begin{align*}
+\limsup\limits_{h\to 0^+}\big\Vert J_h f-P(f)\big\Vert^2
+\leq
+0,
+\end{align*}
+d.h. 
+\begin{align*}
+\lim\limits_{h\to 0^+} J_h f=P(f)
+\end{align*}
+in Norm. Wegen $J_h f\in\dom(A)$ folgt damit $P(f)\in D=\overline{\dom(A)}\subseteq C$ für alle $f\in X$. Also ist $D=C$ und somit ist $D$ konvex.
+\end{proof}
+
+\begin{definition}
+Ein Operator $A\subseteq X\times X$ auf einem Banachraum $X$ ist \textbf{maximal akkretiv vom Typ $\omega\in\R$} $:\Longleftrightarrow A$ ist akkretiv vom Typ $\omega$ und $A$ besitzt keine echte akkretive Erweiterung, d. h.
+\begin{align*}
+B\subseteq X\times X\text{ akkretiv vom Typ $\omega$ und }A\subseteq B
+\implies A=B
+\end{align*}
+$A$ heißt \textbf{maximal akkretiv} $:\Longleftrightarrow A$ ist maximal akkretiv vom Typ 0.
+\end{definition}
+
+Aus einer Standardanwendung des Lemmas von Zorn folgt:
+
+\begin{lemma}
+Ist $A\subseteq X\times X$ akkretiv vom Typ $\omega$, dann gilt:
+\begin{align*}
+\exists B\subseteq X\times X: B\text{ maximal akkretiv vom Typ }\omega\mit A\subseteq B
+\end{align*}
+\end{lemma}
+\begin{proof}
+Betrachte die Menge aller akkretiven Operatoren, die $A$ enthalten. Diese Menge ist nicht leer. Die Inklusion definiert eine Teilordnung. Aus dem Lemma von Zorn folgt dann die Behauptung.
+\end{proof}
+
+\begin{lemma}
+Sei $X$ ein Banachraum, $A\subseteq X\times X$ ein Operator. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item Es gilt %To Do: Diagramm
+\begin{enumerate}[label=(\roman*)]
+\item $A$ ist $m$-akkretiv vom Typ $\omega\Longleftrightarrow A+\omega\cdot I$ ist $m$-akkretiv
+\item $A$ ist $m$-akkretiv vom Typ $\omega\implies A$ ist maximal akkretiv vom Typ $\omega$
+\item $A$ ist maximal akkretiv vom Typ $\omega\Longleftrightarrow A+\omega\cdot I$ ist maximal akkretiv
+\item $A$ ist maximal akkretiv vom Typ $\omega\implies A$ ist abgeschlossen
+ \end{enumerate}
+ \item Ist $A$ maximal akkretiv vom Typ $\omega$ und $(u,f)\in X\times X$, dann gilt:
+ \begin{align*}
+ (u,f)\in A&\Longleftrightarrow\forall(\hat{u},\hat{f})\in A:\big[u-\hat{u},f-\hat{f}\big]+\omega\cdot\Vert u-\hat{u}\Vert\geq0\\
+ &\stackrel{X\text{ HilbertR}}{\Longleftrightarrow}
+ \forall(\hat{u},\hat{f})\in A:\big\langle u-\hat{u},f-\hat{f}\big\rangle+\omega\cdot\Vert u-\hat{u}\Vert^2\geq0
+ \end{align*}
+ \item Sei $A$ maximal akkretiv vom Typ $\omega$. Dann ist $Au\subseteq X$ abgeschlossen für alle $u\in X$. Wenn $X$ ein Hilbertraum ist, dann ist $Au$ auch konvex.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Die Teile (a)(i) und (a)(iii) sind Übung.\\
+
+\underline{Zu (a)(ii):}\\
+Sei $A$ $m$-akkretiv ($\omega=0$) und sei $B$ akkretiv mit $A\subseteq B$. Sei $(u,f)\in B$. Aus der Injektivität folgt:
+\begin{align}\label{proof1.2.13}\tag{$\ast$}
+\exists v\in\dom(A):v+Bv\supseteq v+Av\ni u+f.
+\end{align}
+Andererseits gilt
+\begin{align*}
+u+Bu\ni u+f.
+\end{align*}
+Weil $B$ eine Erweiterung von $A$ ist, folgt aus den Abschätzungen für akkretive Operatoren (Injektivität von $I+B$) schon $u=v$.\\
+Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.\\
+
+\underline{Zeige (a)(iv):}\\
+Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.\\
+
+\underline{Zu (b), zeige ``$\implies$'':}
+Dies folgt aus der Definiton von akkretiv.\\
+
+\underline{Zu (b), zeige ``$\Longleftarrow$'':}\\
+Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.\\
+
+\underline{Zu (c):}\\
+Der erste Teil der Aussage folgt aus (a). Sei außerdem $X$ ein Hilbertraum, $f_0,f_1\in Au$. Dann gilt für alle $(\hat{u},\hat{f})\in A$:
+\begin{align*}
+\big\langle u-\hat{u},f_0-\hat{f}\big\rangle+\omega\cdot\Vert u-\hat{u}\Vert^2&\geq0\\
+\big\langle u-\hat{u},f_1-\hat{f}\big\rangle+\omega\cdot\Vert u-\hat{u}\Vert^2&\geq0
+\end{align*}
+Multiplikation der ersten Zeile mit $\lambda\in[0,1]$ und der zweiten Zeile mit $(-\lambda)$ und anschließende Addition der beiden Zeilen liefert für alle $(\hat{u},\hat{f})\in A:$
+\begin{align*}
+\big\langle u-\hat{u},f_\lambda-\hat{f}\big\rangle +\omega\cdot\Vert u-\hat{u}\Vert^2\geq0\mit f_\lambda:=(1-\lambda)\cdot f_0+\lambda\cdot f_1
+\end{align*}
+Aus (b) folgt $\big(u,f_{\lambda}\big)\in A$, d.h. $f_\lambda\in Au$ Also ist $Au$ konvex.
+\end{proof}
+
+\begin{erinnerung}
+Sei $X$ Banachraum. Eine Funktion $F:X\to\R\cup\lbrace\infty\rbrace$ heißt \textbf{koerziv}
+\begin{align*}
+&:\Longleftrightarrow\forall c\in R:\big\lbrace F\leq c\big\rbrace:=\big\lbrace x\in X:F(x)\leq c\big\rbrace\text{ ist beschränkt}\\
+&\Longleftrightarrow\lim\limits_{\Vert u\Vert\to\infty} F(u)=+\infty
+\end{align*}
+\end{erinnerung}
+
+\begin{theorem}[Minimierung konvexer Funktionen]\label{theoremMinimieurngKonvexerFunktionen}\enter
+Sei $X$ ein reflexiver Banachraum und sei $F:X\to\R\cup\lbrace\infty\rbrace$ konvex, unterhalbstetig und koerziv. Dann gilt:
+\begin{align*}
+\exists u_0\in X:F(u_0)=\inf\limits_{x\in X}F(x)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Sei $(c_n)_{n\in\N}\subseteq\R$ monoton fallende Folge in $\R$ mit
+\begin{align*}
+c_n &> \inf\limits_{x\in X} F(x) \qquad \forall n\in\N\\
+c_n &\searrow \inf\limits_{x\in X}F(x)
+\end{align*}
+Sei $K_n:=\big\lbrace F\leq c_n\big\rbrace$. Dann ist $K_n$ nach Voraussetzung konvex, abgeschlossen und beschränkt. Aus Hahn-Banach folgt, dass $K_n$ abgeschlossen in der schwachen Topologie ist. Weil $X$ reflexiv und $K_n$ beschränkt ist, ist $K_n$ schwach kompakt ( = kompakt bzgl. der schwachen Topologie, siehe Banach-Alaoglu). Schließlich ist $K_n$ nichtleer und $K_{n+1}\subseteq K_n$. Damit ist 
+\begin{align*}
+\bigcap\limits_{n\in\N}K_n\neq\emptyset.
+\end{align*}
+Jedes Element $u\in K_n$ ist Minimierer von $F$.
+\end{proof}
+
+\begin{theorem}[Minty]\enter
+Ein Operator $A\subseteq H\times H$ auf einem Hilbertraum $H$ ist $m$-akkretiv (vom Typ $\omega$) $\Longleftrightarrow\\ A$ ist maximal akkretiv (vom Typ $\omega$).
+\end{theorem}
+\begin{proof}[Beweis (hier nur der Fall, dass $H$ reeller Hilbertraum ist)]\enter
+\underline{Zeige ``$\implies$'':} Folgt aus Lemma oben.\\
+
+\underline{Zeige ``$\Longleftarrow$'':}\\
+Sei $A\subseteq H\times H$ maximal akkretiv ($\omega:=0$) (insbesondere ist $A\neq\emptyset$). Betrachte die Funktion 
+\begin{align*}
+&F_A:H\times H\to\R\cup\lbrace+\infty\rbrace\\
+&F_A(u,f):=\sup\Big\lbrace\langle u,\hat{f}\rangle+\langle\hat{u},f\rangle-\langle\hat{u},\hat{f}\rangle:(\hat{u},\hat{f})\in A\Big\rbrace>-\infty
+\end{align*}
+Beobachtung: 
+\begin{align*}
+\forall (u,f),(\hat{u},\hat{f})\in A:
+&\big\langle u-\hat{u},f-\hat{f}\big\rangle\geq0\\
+&\langle u,f\rangle-\Big(\big\langle u,\hat{f}\big\rangle+\big\langle\hat{u},f\big\rangle-\big\langle\hat{u},\hat{f}\big\rangle\Big)\geq0
+\end{align*}
+Als punktweises Supremum von stetigen, affinen Funktionen (nämlich 
+\begin{align*}
+(u,f)\mapsto\big\langle u,\hat{f}\big\rangle+\big\langle\hat{u},f\big\rangle-\big\langle\hat{u},\hat{f}\big\rangle~\big)
+\end{align*}
+ist $F_A$ unterhalbstetig und konvex. Außerdem gilt:
+\begin{align*}
+\forall (u,f)\in H\times H:F_A(u,f)\geq\langle u,f\rangle
+\end{align*}
+mit Gleichheit genau dann, wenn $(u,f)\in A$. Verwende hierbei, dass $A$ \ul{maximal} monoton ist und Lemma (b) oben. Die Funktion
+\begin{align*}
+F&:=F_a+\Vert(\cdot,\cdot)\Vert^2_{H\times H}\text{ d. h. }\\
+F(u,f)&:=F(u,f)+\Vert u\Vert^2+\Vert f\Vert^2
+\end{align*}
+ist damit unterhalbstetig, konvex. Außerdem koerziv, denn: Sei $(u,f)\in\lbrace F\leq c\rbrace$. Dann ist
+\begin{align*}
+c\geq F(u,f)
+&\geq\langle u,f\rangle+\Vert u\Vert^2+\Vert f\Vert^2\\
+&\stackrel{\text{C.S.}}{\geq}-\Vert u\Vert\cdot\Vert f\Vert+\Vert u\Vert^2+\Vert f\Vert^2\\
+&=\frac{1}{2}\cdot\big(\Vert u\Vert^2-2\cdot\Vert u\Vert\cdot\Vert f\Vert+\Vert f\Vert^2\big)+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
+&=\frac{1}{2}\cdot\big(\underbrace{\Vert u\Vert-\Vert f\Vert}_{}\big)^2+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
+&\geq\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
+&=\frac{1}{2}\cdot\big\Vert (u,f)\big\Vert^2_{H\times H}
+\end{align*}
+Also ist $\lbrace F\leq c\rbrace$ beschränkt. Aus dem Theorem über Minimierung konvexer Funktionen folgt die Existenz eines Elements $(u_0,f_0)\in H\times H$ mit
+\begin{align*}
+F(u_0,f_0)=\inf\limits_{x\in H\times H}F(x)<\infty
+\end{align*}
+Da $F_A$ konvex ist, ist 
+\begin{align*}
+[0,\infty)\to\R\cup\lbrace+\infty\rbrace,\qquad
+\lambda\mapsto F_A\big(u_0+\lambda\cdot(u-u_0)\big)
+\end{align*}
+konvex. Somit ist 
+\begin{align*}
+\lambda\mapsto\frac{F_A\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F_A(u_0,f_0)}{\lambda}
+\end{align*}
+monoton wachsend. Also gilt für diesen Quotienten für $\lambda=1$:
+\begin{align*}
+&F_A(u,f)-F_A(u_0,f_0)\\
+&\geq\lim\limits_{\lambda\to 0^+}\frac{F_A\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F_A(u_0,f_0)}{\lambda}\\
+&=\lim\limits_{\lambda\to 0^+}\Bigg(\underbrace{\frac{F\big(u_0+\lambda\cdot(u-u_0),f_0+\lambda\cdot(f-f_0)\big)-F(u_0,f_0)}{\lambda}}_{\geq0}\\
+&\qquad+\frac{1}{2}\cdot\frac{\Vert u_0\Vert^2+\Vert f_0\Vert^2-\Vert u_0+\lambda\cdot(u-u_0)\Vert^2-\Vert f_0+\lambda\cdot(f-f_0)\Vert^2}{\lambda}\Bigg)\\
+&\geq\frac{1}{2}\cdot\lim\limits_{\lambda\to 0^+}\\
+&\qquad\qquad\frac{-2\cdot\big\langle u_0,\lambda\cdot(u-u_0)\big\rangle-\lambda^2\cdot\Vert u-u_0\Vert^2-2\cdot\big\langle f_0,\lambda\cdot(f-f_0)\big\rangle-\lambda^2\cdot\Vert f-f_0\Vert^2}{\lambda}\\
+&=-\big\langle u_0,u-u_0\big\rangle-\big\langle f_0,f-f_0\big\rangle\qquad\forall (u,f)\in H\times H\\
+&\implies
+\forall(u,f)\in A:
+F_A(u,f)\stackeq{(u,f)\in A}\langle u,f\rangle\geq\langle u_0,f_0\rangle-\langle u_0,u-u_0\rangle-\langle f_0,f-f_0\rangle\\
+&\implies
+\langle u,f\rangle +\langle u_0,f_0\rangle+\langle u_0,u\rangle+\langle f_0,f\rangle\geq\Vert u_0+f_0\Vert^2\geq0\\
+&\implies
+\big\langle u-(-f_0),f-(-u_0)\big\rangle=
+\big\langle u+f_0,f+u_0\big\rangle\geq\big\Vert u_0+f_0\Vert^2\geq0
+\end{align*}
+Aus der Maximalität von $A$ folgt $(-f_0,-u_0)\in A$ und dann auch $u_0=-f_0$, d.h.\\ $(u_0,-u_0)\in A$.
+\begin{align*}
+(u_0,-u_0)\in A
+&\Longleftrightarrow Au_0\ni -u_0\\
+&\Longleftrightarrow u_0+Au_0\ni 0
+\end{align*}
+Also ist $0\in\rg(I+A)$. Ersetzt man nun den Operator $A$ durch
+\begin{align*}
+A-\hat{f}=\big\lbrace(u,f-\hat{f}):(u,f)\in A\big\rbrace\qquad\forall \hat{f}\in H,
+\end{align*}
+dann erhält man
+\begin{align*}
+u_0+Au_0\ni\hat{f}\text{ (für ein anderes $u_0$)},
+\end{align*}
+d.h. $\hat{f}\in\rg(I+A)~\forall\hat{f}\in H$. Damit ist $A$ $m$-akkretiv.
+\end{proof}
+
+\begin{bemerkung}
+Der Satz von Minty ist falsch in Banachräumen. Es gibt ein Gegenbeispiel im $\R^2$ mit der $p$-Norm, $p\in(1,\infty)\setminus\lbrace2\rbrace$ (Grandall-Liggest 1973).
+\end{bemerkung}
+
+\section{Subgradienten}
+In diesem Abschnitt sei $H$ ein reeller Hilbertraum und $\E:H\to\R\cup\lbrace+\infty\rbrace$ eine konvexe, unterhalbstetige Funktion $\E\not\equiv+\infty$ mit
+\begin{align*}
+\dom(\E):=\big\lbrace\E<+\infty\big\rbrace=\big\lbrace u\in H:\E(u)<+\infty\big\rbrace
+\end{align*}
+bezeichnen wir den \textbf{effektiven} Definitionsbereich ($\dom(\E)\neq\emptyset$).\\
+Der \textbf{Subgradient} von $\E$ ist der Operator
+\begin{align*}
+\partial\E&:=\left\lbrace (u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\lim\limits_{\lambda\to0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\langle f,v\rangle\right\rbrace\\
+&=\Big\lbrace(u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\E(u+v)-\E(u)\geq\langle f,v\rangle\Big\rbrace
+\end{align*}
+Bei der Gleichheit wird verwendet, dass die Funktion $\lambda\mapsto\frac{\E(u\lambda\cdot v)-\E(u)}{\lambda}$ monoton wachsend ist.\\
+Ziel: $\partial\E$ ist $m$-akkretiv.
+
+\begin{lemma}
+$\partial\E$ ist akkretiv ( = monoton).
+\end{lemma}
+\begin{proof}
+Seien $(u,f),(\hat{u},\hat{f})\in\partial\E$. Dann gilt $u,\hat{u}\in\dom(\E)$ und wegen der Definition von $\partial\E$ auch
+\begin{align*}
+\E(\hat{u})-\E(u)&\geq\big\langle f,\hat{u}-u\big\rangle\\
+\E(u)-\E(\hat{u})&\geq\big\langle \hat{f},u-\hat{u}\big\rangle=\big\langle-\hat{f},\hat{u}-u\big\rangle\\
+&\stackrel{\text{addieren}}{\implies}
+0\geq\big\langle f-\hat{f},\hat{u}-u\big\rangle
+\text{ bzw. }
+\big\langle u-\hat{u},f-\hat{f}\big\rangle\geq0
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma1.3.2}
+\begin{align*}
+\exists c\geq0:\forall u\in H:\E(u)\geq -c\cdot\big(1+\Vert u\Vert\big)
+\end{align*}
+\end{lemma}
+\begin{proof}[Beweis (durch Widerspruch).]\enter
+O.B.d.A. $0\in\dom(\E)$ und $\E(0)=0$. Angenommen es gibt eine Folge $(u_n)_{n\in\N}$ in $H$ mit
+\begin{align*}
+\E(u)\leq -n\cdot\big(1+\Vert u_n\Vert\big)\leq -n\cdot\Vert u_n\Vert.
+\end{align*}
+Insbesondere ist $u_n\in\dom(\E)$. Für $\lambda_n\in]0,1]$ gilt wegen Konvexität,
+\begin{align*}
+\E(\lambda_n\cdot u_n)
+&=\E\big(\lambda_n\cdot u_n+(1-\lambda_n)\cdot 0\big)\\
+&\leq\lambda_n\cdot\E(u_n)+\underbrace{(1-\lambda_n)\cdot\E(0)}_{=0}\\
+&\leq- n\cdot\Vert\lambda_n\cdot u_n\Vert
+\end{align*}
+Wähle $\lambda_n$ so, dass $\limn\lambda_n\cdot u_n=0$ und $\limn\big(-n\cdot\Vert\lambda_n\cdot u_n\Vert\big)=-\infty$. Dies liefert einen Widerspruch zur Unterhalbstetigkeit von $\E$, denn
+\begin{align*}
+0=\E(0)\leq\liminf\limits_{n\to\infty}\E(\lambda_n\cdot u_n)=-\infty
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+Für alle $\lambda>0$ und alle $f\in H$ ist
+\begin{align*}
+H\to\R\cup\lbrace+\infty\rbrace,\qquad u\mapsto\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2
+\end{align*}
+konvex, unterhalbstetig und koerziv.
+\end{lemma}
+\begin{proof}
+\underline{Zur Konvexität:}\\
+Die Norm ist konvex und der Vorfaktor ist konvex. Da $\E$ konvex ist und die Summe konvexer Funktionen wieder konvex ist, folgt Konvexität.\\
+
+\underline{Zur Unterhalbstetigkeit:} Ist klar.\\
+
+\underline{Zur Koerzivität:}\\
+Sei $v\in\R$. Dann gilt für $u\in H$ mit
+\begin{align*}
+c\geq\E(u+\frac{1}{2\cdot \lambda}\cdot\Vert u-f\Vert^2
+\end{align*}
+schon
+\begin{align*}
+c&\stackrel{\ref{lemma1.3.2}}{\geq} -\big(1+\Vert u\Vert\big)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\\
+&\geq -r-r\cdot\big(\Vert u-f\Vert+\Vert f\Vert\big)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2
+\end{align*}
+bzw.
+\begin{align*}
+c+r+r\cdot\Vert f\Vert &\geq -r\cdot\Vert u-f\Vert+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\\
+&\stackeq{\text{Q.E.}}\left(\frac{1}{\sqrt{2\cdot\lambda}}\cdot\Vert u-f\Vert-\frac{r\cdot\sqrt{2\cdot\lambda}}{2}\right)^2-\frac{r^2\cdot 2\cdot\lambda}{4}
+\end{align*}
+Umstellen liefert
+\begin{align*}
+\Vert u-f\Vert&\leq\sqrt{2\cdot\lambda}\cdot\sqrt{c+r+r\cdot\Vert f\Vert+\frac{r^2\cdot\lambda}{2}}+r\cdot\lambda=:R(c,\Vert f\Vert,\lambda, r)
+\end{align*}
+Folglich ist $u\in\overline{B}(f,R)$ und somit $\left\lbrace\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\leq c\right\rbrace$ ist beschränkt.
+\end{proof}
+
+\begin{theorem}
+Sei $H$ ein Hilbertraum. Für jede konvexe, unterhalbstetige Funktion $\E:H\to\R\cup\lbrace+\infty\rbrace,~\E\not\equiv+\infty$ ist der Subgradient $\partial\E$ $m$-akkretiv.
+\end{theorem}
+\begin{proof}
+Das $\partial\E$ akkretiv ist, wurde in einem Lemma oben bereits gezeigt.\\
+Seien $h>0$ und $f\in H$. Damit ist die Funktion
+\begin{align*}
+v\mapsto \E(v)+\frac{1}{2\cdot h}\cdot\Vert v-f\Vert^2
+\end{align*}
+konvex, unterhalbstetig und koerziv. Aus dem Theorem über Minimieurng konvexer Funktionen \ref{theoremMinimieurngKonvexerFunktionen} folgt, dass diese Funktion ein globales Minimum $u\in H$ besitzt. Für alle $v\in H$ und alle $\lambda>0$ gilt dann
+\begin{align*}
+\E(u+\lambda\cdot v)+\frac{1}{2\cdot h}\cdot\big\Vert u+\lambda\cdot v-f\big\Vert^2
+&\geq\E(u)+\frac{1}{2\cdot h}\cdot\Vert u-f\Vert^2
+\end{align*}
+bzw. nach Umstellen 
+\begin{align*}
+\E(u+\lambda\cdot v)-\E(u)
+&\geq\frac{1}{2\cdot h}\left(\Vert u-f\Vert^2-\Vert u+\lambda\cdot v-f\Vert^2\right)\\
+&=\frac{1}{2\cdot h}\cdot\left(\Vert u-f\Vert^2-\Vert u-f\Vert^2-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)\\
+&=\frac{1}{2\cdot h}\cdot\left(-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)
+\end{align*}
+bzw.
+\begin{align*}
+\lim\limits_{\lambda\to 0^+}\frac{\E/u+\lambda\cdot v)-\E(u)}{\lambda}=\left\langle\frac{f-u}{h},v\right\rangle
+\end{align*}
+d.h. 
+\begin{align*}
+&\left( u,\frac{f-u}{h}\right)\in\partial\E\\
+&\Longleftrightarrow\partial\E(u)\ni\frac{f-u}{h}\\
+&\Longleftrightarrow u+h\cdot\partial\E(u)\ni f
+\end{align*}
+Da $h$ und $f$ beliebig waren, folgt
+\begin{align*}
+\rg(I+h\cdot\partial\E)=H\qquad\forall h>0\\
+\implies\partial\E\text{ ist $m$-akkretiv}
+\end{align*}
+\end{proof}
+
+\begin{beispiel}\
+\begin{enumerate}[label=(\arabic*)]
+\item $H=\R$ und $\E(u):=|u|$
+%TODO Hier Skizzen einfügen
+In $u=0$ ist die rechtsseitige Ableitung -1, die linksseitige Ableitung ist 1.
+\begin{align*}
+\partial\E=\big((-\infty,0]\times\lbrace-1\rbrace\big)\cup\big(\lbrace0\rbrace\times[-1,1]\big)\cup\big([0,\infty)\times\lbrace1\rbrace\big)
+\end{align*}
+\item Sei $I=[a,b]\subseteq\R$.
+%TODO Hier Skizze einfügen
+\begin{align*}
+\E(x):=\left\lbrace\begin{array}{cl}
++\infty, &\falls x\not\in I\\
+0, &\falls x\in I
+\end{array}\right.\\
+\implies
+\partial\E=\big(\lbrace a\rbrace\times[0,\infty)\big)\cup \big(I\times\lbrace 0\rbrace\big)\cup\big(\lbrace b\rbrace\times[0,\infty)\big)
+\end{align*}
+\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}[$p$-Laplace-Operator]\enter
+Sei $\Omega\subseteq\R^n$ offen. Für $u\in C(\Omega)$ deifnieren wir den \textbf{Träger}
+\begin{align*}
+\supp(u):=\overline{\big\lbrace x\in\Omega~\big|~u(x)\neq0\big\rbrace}^\Omega
+\end{align*}
+(Wichtig: Nehme den Abschluss in $\Omega$, nicht in $\R^n$.)\\
+Beispiele für $\Omega=]0,1[$
+\begin{itemize}
+\item $u_1:\Omega\to\R,~x\mapsto 1\implies\supp(u_1)=]0,1[\implies u_1\not\in C_c(\Omega)$
+\item $u_2:\Omega\to\R,~x\mapsto x^2-1\implies\supp(u_2)=]0,1[\implies u_2\not\in C_c(\Omega)$
+\end{itemize}
+\begin{align*}
+C_c(\Omega)&:=\big\lbrace u\in C(\Omega):\supp(u)\text{ kompakt}\big\rbrace\\
+C_c^k(\Omega)&:=C_c(\Omega)\cap C^k(\Omega)\qquad\forall k\in\N\cup\lbrace\infty\rbrace\\
+L^1_{\text{loc}}&:=\Big\lbrace u:\Omega\to\C\text{ messbar }~\big|~\forall K\subseteq\Omega\text{ kompakt}:u\big|_K\in L^1(K)\Big\rbrace
+\end{align*}
+Es gilt
+\begin{align*}
+C_c^\infty(\Omega)\subseteq C^1_c(\Omega)\subseteq C_c(\Omega)\begin{array}{l}
+\subseteq C(\Omega)\subseteq\\
+\subseteq L^p(\Omega)\subseteq
+\end{array} L^1_{\text{loc}}(\Omega)\qquad\forall 1\leq p\leq\infty
+\end{align*}
+Eine Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach partiell nach $x_i$ differenzierbar}
+\begin{align*}
+:\Longleftrightarrow\exists g\in L^1_{\text{loc}}:\forall\varphi\in C^\infty_c(\Omega):\int\limits_\Omega u(\omega)\cdot\frac{\partial\varphi(\omega)}{\partial x_i}\d\omega=-\int\limits_\Omega g(\omega)\cdot\varphi(\omega)\d\omega
+\end{align*}
+Schreibweise: $g=:\frac{\partial u}{\partial x_i}$ ist die \textbf{schwache partielle Ableitung} nach $x_i$\\
+Ohne Beweis: $g=\frac{\partial u}{\partial x_i}$ ist eindeutig bestimmt.\\
+Die Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach differenzierbar} $:\gdw$ sie für alle $i\in\lbrace1,\ldots,n\rbrace$ schwach partiell nach $x_i$ differenzierbar ist. In diesem Fall schreiben wir
+\begin{align*}
+\nabla u=\begin{pmatrix}
+\frac{\partial u}{\partial x_1}\\
+\vdots\\
+\frac{\partial u}{\partial x_n}
+\end{pmatrix}
+\end{align*}
+Betrachte nun auf dem Hilbertraum $H:=L^2(\Omega)$ und für $p\in]1,\infty[$ die Funktion
+\begin{align*}
+\E(u):=\left\lbrace\begin{array}{cl}
+\frac{1}{p}\cdot\int\limits_\Omega |\nabla u|^p,\d\omega, &\falls \nabla u\in L^p(\Omega,\R^n)\\
++\infty, &\sonst
+\end{array}\right.
+\end{align*}
+Beachte, dass $|\nabla u|$ die euklidische Norm des Gradienten meint. Außerdem ist mit $\nabla u\cdot\nabla v$ das euklidische Skalarprodukt in $\R^n$ gemeint.
+
+\begin{lemma} %innerhalb des Beispiels
+Diese Funktion $\E$ ist konvex, unterhalbstetig, $\not\equiv0$ und es gilt
+\begin{align*}
+\dom(\E)=\Big\lbrace u\in L^2(\Omega)~\Big|~\nabla u\in L^p\big(\Omega,\R^n\big)\Big\rbrace
+\end{align*}
+und der Subgradient
+\begin{align*}
+\partial\E=\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|~u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\right.\right\rbrace
+\end{align*}
+\end{lemma}
+\begin{proof}
+Die euklidische Norm $|\cdot|:\R^n\to\R_{\geq0}$ ist konvex (wegen Dreiecksungleichung) und die Funktion
+\begin{align*}
+\R_{\geq0}\to\R_{\geq0},\qquad s\mapsto s^p
+\end{align*}
+ist konvex und monoton wachsend ($p\geq1$!) und damit ist die Verknüpfung
+\begin{align*}
+\R^n\to\R_{\geq0},\qquad x\mapsto |x|^p
+\end{align*}
+konvex, und schließlich ist $\E$ konvex.\\
+$\E\not\equiv0$, denn $\E(0)=0$.\\
+
+\underline{Zeige $\E$ ist unterhalbstetig:}\\
+Sei $(u_n)_{n\in\N}\subseteq L^2(\Omega)\mit u:=\limn u_n$ in $L^2(\Omega)$. Zu zeigen:
+\begin{align*}
+\E(u)\leq\liminf\limits_{n\to\infty}\E(u_n)
+\end{align*}
+Sei O.B.d.A. (nach Auswahl von Teilfolge):
+\begin{align*}
+\liminf\limits_{n\to\infty}\E(u_n)<+\infty
+\quad\text{und}\quad
+\liminf\limits_{n\to\infty}\E(u_n)=\limn\E(u_n)
+\quad\text{und}\quad
+\E(u_n)\leq C\quad\forall n\in\N
+\end{align*}
+Dann ist $(\nabla u_n)_{n\in\N}$ beschränkte Folge in $L^p(\Omega,\R^n)$. Der Raum $L^p(\Omega,\R^n)$ ist reflexiv (beachte $1<p<\infty$). Die Folge $(u_n)_{n\in\N}$ besitzt also eine Teilfolge (wieder mit $(u_n)_{n\in\N}$ bezeichnet), sodass $(\nabla u_n)_{n\in\N}$ schwach in $L^p(\Omega,\R^n)$ konvergiert. Sei
+\begin{align*}
+&g=\begin{pmatrix}
+g_1\\ \vdots\\ g_n
+\end{pmatrix}:=\weaklim\limits_{n\to\infty}\nabla u_n\\
+\Longleftrightarrow\forall i\in\lbrace1,\ldots,n\rbrace,\forall v\in L^{p'}(\Omega)\mit\frac{1}{p}+\frac{1}{p'}=1:
+\limn\int\limits_\Omega\frac{\partial u_n}{\partial x_i}\cdot v=\int\limits_\Omega g_i\cdot v
+\end{align*}
+Zu Erinnerung (schwache Ableitung):
+\begin{align*}
+\forall i\in\lbrace 1,\ldots,n\rbrace,\forall\varphi\in C_c^\infty(\Omega),\forall n\in\N:
+\int\limits_\Omega u_n\cdot\frac{\partial\varphi}{\partial x_i}=-\int\limits_\Omega\frac{\partial u_n}{\partial x_i}\cdot\varphi
+\end{align*}
+Daraus folgt wegen $C_c^\infty(\Omega)\subseteq L^{p'}(\Omega)$ dann
+\begin{align*}
+\forall i\in\lbrace1,\ldots,n\rbrace,\forall\varphi\in C_c ^\infty(\Omega):
+\int\limits_\Omega u\cdot\frac{\partial\varphi}{\partial x_i}
+&=\limn\int\limits_\Omega u_n\cdot\frac{\partial\varphi}{\varphi x_i}\\
+&=\limn\left(-\int\limits_\Omega\frac{\partial u_n}{\partial x_i}\cdot\varphi\right)\\
+&=-\int\limits_\Omega g_i\cdot\varphi
+\end{align*}
+Damit ist $u$ schwach differenzierbar und 
+\begin{align*}
+\nabla u=g\in L^p(\Omega,\R^n)
+\end{align*}
+Also ist $u\in\dom(\E)$. Allgemein gilt:\\
+Ist $X$ ein Banachraum und sei $x_n,x\in X,n\in\N$, dann gilt:
+\begin{align*}
+x=\weaklim\limits_{n\to\infty} x_n\implies\Vert x\Vert\leq\liminf\limits_{n\to\infty}\Vert x_n\Vert=:c
+\end{align*}
+\begin{proof}
+Die Kugel $\overline{B}(0,c+\varepsilon)$ ist normabgeschlossen und konvex. Nach Hahn-Banach ist diese Kugel dann auch schwach abgeschlossen.
+%TODO Hier Skizze einfügen
+Damit ist $x\in\overline{B}(0,c+\varepsilon)$ für alle $\varepsilon>0$ (also $\Vert x\Vert\leq c+\varepsilon$) und schließlich ist $\Vert x\Vert\leq c$.
+\end{proof}
+Aus diesem allgemeinen Prinzip folgt:
+\begin{align*}
+\Vert\nabla u\Vert_{L^p}&=\Vert g\Vert_{L^p}\leq\liminf\limits_{n\to\infty}\Vert \nabla u_n\Vert_{L^p}\\
+\implies
+\E(u)=\frac{1}{p}\cdot\Vert\nabla u\Vert_{L^p}^p&=\frac{1}{p}\cdot\Vert g\Vert_{L^p}^p\leq\liminf\limits_{n\to\infty}\underbrace{\frac{1}{p}\cdot\Vert \nabla u_n\Vert_{L^p}^p}_{=\E(u_n)}
+\end{align*}
+\underline{Charakterisierung von $\partial\E$:} 
+Für alle $u,v\in\dom(\E)$ gilt:
+\begin{align*}
+\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}&=\lim\limits_{\lambda\to 0^+}\int\limits_\Omega\frac{\big|\nabla(u+\lambda\cdot v)\big|^p-\big|\nabla u\big|^p}{\lambda}\\
+&\stackeq{!!}
+\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v
+\end{align*}
+Ist $(u,f)\in\partial\E$, dann ist $u\in\dom(\E)$ und für alle $v\in L^2(\Omega)$ gilt
+\begin{align*}
+\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}&\geq\langle f,u\rangle_{L^2}
+=\int\limits_\Omega f\cdot v\d x
+\end{align*}
+Ist $v\not\in\dom(\E)$, dann ist $u+vnot\in\dom(\E)$ für alle $\lambda>0$, d. h.
+\begin{align*}
+\E(u+\lambda\cdot v)=+\infty\qquad\forall\lambda>0
+\end{align*}
+und somit immer
+\begin{align*}
++\infty=\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\langle f,v\rangle
+\end{align*}
+(dieser Fall ist damit uninteressant). Ist $v\in\dom(\E)$, dann ist 
+\begin{align*}
+\int\limits_\Omega |\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v\geq\int\limits_\Omega f\cdot v
+\end{align*}
+Ersetze hier $v$ durch $-v$:
+\begin{align*}
+-\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v&\geq-\int\limits f\cdot v\\
+\implies
+-\int\limits_\Omega |\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v&=\int\limits_\Omega f\cdot v
+\end{align*}
+Damit ist 
+\begin{align*}
+\partial\E\subseteq\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|~u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\right.\right\rbrace
+\end{align*}
+Da die Inklusion ``$\supseteq$'' klar ist, folgt die Behauptung.
+\end{proof}
+Spezialfälle:\\
+$\Omega=(0,1)$ (offenes Intervall, $n=1$) und $p=2$, d. h. $H=L^2((0,1))$ und 
+\begin{align*}
+\E(u)&=\left\lbrace\begin{array}{cl}
+\frac{1}{2}\cdot\int\limits_0^1|u'|^2,&\falls u'\in L^2((0,1))\\
++\infty, &\sonst
+\end{array}\right.\\
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\left|~ u\in H^1(0,1)\wedge\forall v\in H^1(0,1):\int\limits_0^1 u'\cdot v'=\int\limits_0^1 f\cdot v\right.\right\rbrace\\
+&\text{wobei } H^1(0,1):=H^1((0,1)):=\dom(\E)=\big\lbrace u\in L^2(0,1)~\big|~u'\in L^2(0,1)\big\rbrace
+\end{align*}
+Erinnerung (schwache Ableitung)\\
+$u\in L^1_{\text{loc}}\big((0,1)\big)$ ist schwach differenzierbar
+\begin{align*}
+:\Longleftrightarrow\exists g\in L^1_{\text{loc}}\big((0,1)\big):\forall\varphi\in C_c^\infty\big((0,1)\big):
+\int\limits_0^1 u(x)\cdot\varphi'(x)\d x=-\int\limits_0^1 g(x)\cdot\varphi(x)\d x
+\end{align*}
+Im diesem Fall heißt $g=:u'$ \textbf{schwache Ableitung} von $u$. Damit ist für $(u,f)\in\partial\E$ die Ableitung $u'\in L^2(0,1)$ schwach differenzierbar und $u'':=(u')'=-f\in L^2(0,1)$ ($u$ ist zweimal schwach differenzierbar und $u,u',u''\in L^2(0,1)$).
+\begin{align*}
+\partial\E(u)\hat{=}-u''
+\end{align*}
+Ohne Beweis: Jede Funktion $u\in H^1(0,1)$ besitzt genau einen stetigen Repräsentanten ($H^1(0,1)\subseteq C\big([0,1]\big)$ !!!) und für alle $u,v\in H^1(0,1)$ gilt:
+\begin{align*}
+\int\limits_0^1 u\cdot v'=u(1)\cdot v(1)-u(0)\cdot v(0)-\int\limits_0^1 u'\cdot v
+\end{align*} 
+(Hauptsatz für Differential und Integralrechnung (HDI) für schwach differenzierbare Funktionen)\\
+Angewandt auf $u'\in H^1(0,1)$ ergibt sich 
+\begin{align*}
+\int\limits_0^1 u'\cdot v'=u'(1)\cdot v'(1)-u'(0)\cdot v'(0)\underbrace{-\int\limits_0^1 u''\cdot v}_{=+\int\limits_0^1 f\cdot v}\qquad\forall v\in H^1(0,1)
+\end{align*}
+Es gilt nach Charakterisierung des Subgradienten auch 
+\begin{align*}
+u'\cdot v'=\int\limits_0^1 f\cdot v
+\end{align*}
+Also gilt für $(u,f)\in \partial\E$:
+\begin{align*}
+u'(1)\cdot v'(1)-u'(0)\cdot v'(0)=0\quad\text{und}\quad -u''\equiv f
+\qquad\forall v\in H^1(0,1)
+\end{align*}
+Betrachte nun die Funktion $v(x):=x$ oder $v(x):=1-x$. Dann erhält man 
+\begin{align*}
+\left\lbrace\begin{array}{rll}
+-u'' &\equiv f &\text{ auf }(0,1)\\
+u'(0)&=0\\
+u'(1)&=0
+\end{array}\right.
+\end{align*}
+Schließlich gilt:
+\begin{align*}
+\partial\E=\big\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\big|~u\in H^1(0,1),u'\in H^1(0,1)\wedge -u''\equiv f\wedge \underbrace{u'(0)=u'(1)=0}_{\text{(hom.) Neumann-RB}}\big\rbrace
+\end{align*}
+(negativer Laplace-Operator mit Neumann-Randbedingungen)\\
+Der Fall $\Omega=(0,1)$ und $p\in(1,\infty)$:
+\begin{align*}
+H&=L^2(0,1)\text{ und }\\
+\E(u)&=\left\lbrace\begin{array}{cl}
+\frac{1}{p}\cdot\int\limits_0^1 |u'|^p, &\falls u'\in L^p(0,1)\\
++\infty, &\sonst
+\end{array}\right.\\
+\dom(\E)&=\big\lbrace u\in L^2(0,1)~\big|~u'\in L^p(0,1)\big\rbrace\\
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)\left|u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_0^1|u'|^{p-2}\cdot u'\cdot v'=\int\limits_0^1 f\cdot v\right.\right\rbrace
+\end{align*}
+Aus $(u,f)\in\partial\E$ folgt wie oben, dass $|u'|^{p-2}\cdot u'$ schwach differenzierbar ist und\\ $\left(|u'|^{p-2}\cdot u'\right)'\equiv -f$. Außerdem folgt mit HDI:
+\begin{align*}
+\int\limits_0^1 f\cdot v
+&=\int\limits_0^1|u'|^{p-2}\cdot u'\cdot v'\\
+&\stackeq{\text{HDI}}
+\big| u'(1)\big|^{p-2}\cdot u'(1)\cdot v(1)-
+\big| u'(0)\big|^{p-2}\cdot u'(0)\cdot v(0)+\int\limits_0^1 f\cdot v
+\end{align*}
+d.h. $\big|u'(1)\big|^{p-2}\cdot u'(1)=0$ und $\big|u'(0)\big|^{p-2}\cdot u'(0)=0$ bzw. $u'(0)=u'(1)=0$.
+\begin{align*}
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)\left|u\in\dom(\E),|u'|^{p-2}\cdot u'\text{ schwach diffbar und }-\left(|u'|^{p-2}\cdot u'\right)\equiv f\wedge u'(0)=u'(1)=0\right.\right\rbrace
+\end{align*}
+Dies ist wieder die (homogene) Neumann-Randbedingung (negativer $p$-Laplace-Operator mit Neumann-Randbedingungen).\\
+Der Fall $\Omega\subseteq\R^n$ offen und $p=2$
+\begin{align*}
+\partial\E=\Bigg\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)\Bigg|\overbrace{\nabla u\in L^2(\Omega,\R^n)}^{\gdw u\in H^1(\Omega)}\wedge\forall v\in H^1(\Omega):\underbrace{\int\limits_\Omega\nabla u\cdot \nabla v}_{=\sum\limits_{i=1}^n\int\limits_\Omega\frac{\partial u}{\partial x_i}\cdot\frac{\partial v}{\partial x_i}}=\int\limits_\Omega f\cdot v\Bigg\rbrace
+\end{align*}
+\underline{Falls} partielle Integration möglich und $v\in C^\infty_c(\Omega)$:
+\begin{align*}
+\int\limits_\Omega\nabla u\cdot \nabla v=\sum\limits_{i=1}^n\int\limits_\Omega\frac{\partial u}{\partial x_i}\cdot\frac{\partial v}{\partial x_i}=-\int\limits_\Omega\sum\limits_{i=1}^n\frac{\partial^2 u}{\partial x_i^2}\cdot v
+=\int\limits_\Omega-\Delta u\cdot v
+\end{align*}
+\end{beispiel}
+
+
