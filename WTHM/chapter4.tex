@@ -34,10 +34,10 @@ wobei $U[p,q]$ die \textbf{upcrossings} (aufsteigende Überquerungen) des Streif
 \begin{defi}
 Sei $(X_n)_{n\in\N}$ ein adaptierter stochastischer Prozess und $p,q\in\R$ , $p<q$ , $N\in\N$. Setze % Die einzelnen $..$ Umgebungen sind hier wichtig, sonst passiert ein Zeilenumbruch inmitten der Matheumgebung
 \begin{align*}
-	U_N[p,q]&:=\max\left\{ k\in\N_0\left|
+	U_N[p,q]:=\max\left\{ k\in\N_0\left|
 \begin{array}{c}
 	\exists\text{ Stoppzeiten }0<\sigma_1<\tau_1<\sigma_2<\tau_2<\ldots<\tau_k\le N\\
-	&\forall i\in\lbrace 1,\ldots,k\rbrace: X_{\sigma_i}<p \text{ und } X_{\tau_i}>q
+	\forall i\in\lbrace 1,\ldots,k\rbrace: X_{\sigma_i}<p \text{ und } X_{\tau_i}>q
 \end{array}\right.\right\} % hier Wort "und" da sonst Verwirrung mit minimum
 \end{align*}
 $U_N[p,q]$ ist die Anzahl der \textbf{Upcrossings} von $[p,q]\times\lbrace0,1,\ldots,N\rbrace$ durch $(X_n)_{n\in\N}$ und 
