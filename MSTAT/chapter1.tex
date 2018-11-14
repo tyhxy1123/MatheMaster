@@ -341,7 +341,7 @@ d(y,A)-d(x,A)\leq d(y,x)=d(x,y)\implies\text{ Behauptung}
 \underline{Zeige (3):} Folgt aus (2) da, die Funktion $d(\cdot,A)$ Lipschitz-stetig und damit gleichmäßig stetig ist.
 \end{proof}
 
-\begin{satz} %2.4
+\begin{satz}\label{Satz2.4} %2.4
 Zu $A\subseteq\mathcal{S}$ und $\varepsilon>0$ existiert ein gleichmäßig stetige Funktion 
 \begin{align*}
 f:\mathcal{S}\to[0,1]\text{ mit der Eigenschaft} f(x)=\left\lbrace\begin{array}{cl}
@@ -451,7 +451,7 @@ x_G\in G\subseteq B(x,\varepsilon)
 \end{align*}
 \end{proof}
 
-\begin{satz} %2.10
+\begin{satz}\label{Satz2.10} %2.10
 Seien $(\S,d)$ und $(\S',d')$ metrische Räume.
 \begin{enumerate}[label={(\arabic*)}]
 \item Auf $\S\times\S'$ sind Metriken definiert durch
@@ -545,7 +545,7 @@ Elemente $B\in\B(\S)$ heißen \textbf{Borel-Mengen} in $\S$.\\
 Beachte: $\B(\S)=\B_d(\S)$ hängt i. A. von der Metrik $d$ ab.
 \end{definition}
 
-\begin{lemma} %3.2
+\begin{lemma}\label{Lemma3.2} %3.2
 Es gilt:
 \begin{enumerate}[label=(\arabic*)]
 \item 
@@ -594,7 +594,7 @@ G\in\sigma(\mathcal{G}_0)
 Aus der Stabilität unter Vereinigungen folgt die Behauptung.
 \end{proof}
 
-\begin{satz} %3.3
+\begin{satz}\label{satz3.3} %3.3
 Sei $(\S,d)$ separabler metrischer Raum. Dann gilt:
 \begin{align*}
 \B_{d\times d}(\S\times\S)=\B(S)\otimes\B(\S)
@@ -686,3 +686,884 @@ Sei $\P$ ein Wahrscheinlichkeitsmaß auf $(\Omega,\A)$, also $(\Omega,\A,\P)$ ei
 \end{align*}
 heißt \textbf{Verteilung} von $X$ unter $\P$.
 \end{definition}
+
+\begin{satz}\label{Satz3.5} %3.5
+Sei $(\S,d)$ separabler metrischer Raum und seien $X,Y$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A)$.\\
+Dann ist $d(X,Y)$ eine reelle Zufallsvariable.
+\end{satz}
+
+\begin{proof}
+\begin{align*}
+X,Y:(\Omega,\A)\to(\S,\B(\S))\text{ sind messbar }\\
+\stackrel{\text{MINT}}{\Longleftrightarrow}
+(X,Y):(\Omega,\A)\to\big(\S\times\S,\underbrace{\B(\S)\otimes\B(\S)}_{\stackeq{\ref{satz3.3}}\B(\S\times\S)}\big)\text{ ist messbar}\\
+\end{align*}
+Jede Metrik ist bekanntlich stetig, also auch
+\begin{align*}
+d:\big(\S\times\S,\G(\S\times\S)\big)\to\R.
+\end{align*}
+Dann folgt aus Lemma \ref{Lemma3.2}, dass
+\begin{align*}
+d:\B(\S\times\S)\to\B(\R)
+\end{align*}
+messbar ist. Damit folgt die Behauptung, denn $d(X,Y)=d\circ(X,Y)$ ist messbar als Komposition von messbaren Abbildungen.
+\end{proof}
+
+\subsection*{Fast sichere Konvergenz} %NoNumber
+\begin{definition} %3.6
+Seien $X,X_n,n\in\N$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A,\P)$. Dann:
+\begin{align*}
+X_n\stackrel{n\to\infty}{\longrightarrow} X\quad\P\text{-fast sicher }:\Longleftrightarrow
+\P\Big(\underbrace{\big\lbrace\omega\in\Omega:d\big(X_n(\omega),X(\omega)\big)\stackrel{n\to\infty}{\longrightarrow} 0\big\rbrace}_{=:M}\Big)=1
+\end{align*}
+Beachte: Die Definition von Konvergenz mengentheoretisch aufgeschrieben (Schnitt $\hat{=}$ ``für alle''; Vereinigung $\hat{=}$ ``Es gibt''):
+\begin{align*}
+\bigcap\limits_{0<\varepsilon\in\Q}
+\bigcup\limits_{m\in\N}
+\bigcap\limits_{n\geq m}
+\big\lbrace\underbrace{d(X_n,X)}_{=:\xi_n}<\varepsilon\big\rbrace\stackrel{\ref{Satz3.5}}{\in}\A\\
+\text{denn }\xi_n^{-1}\big((-\infty,\varepsilon)\big)\in\A
+\end{align*}
+\end{definition}
+
+Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lassen sich mühelos verallgemeinern. Dazu z. B.:
+
+\begin{satz}\label{Satz3.7} %3.7
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher }\wedge
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X'\quad\P\text{-fast sicher }
+\implies
+X=X'\quad\P\text{-fast sicher}
+\end{align*}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\lbrace X\neq X'\rbrace
+&\subseteq\lbrace X_n
+\stackrel{n\to\infty}{\not\longrightarrow}
+X\rbrace
+\cup\lbrace X_n
+\stackrel{n\to\infty}{\not\longrightarrow}
+X'\rbrace\\
+&\implies
+\P[X_n\not\to X]+\P[X_n\not\to X']=0+0\\
+&\implies
+\P[X\neq X']=0
+\end{align*}
+\end{proof}
+
+\begin{satz}\label{Satz3.8} %3.8
+Seien $X,X_n,n\in\N$ Zufallsvariablen im metrischen Raum $(\S,d)$ und sei $f:(\S,d)\to(\S',d')$ messbar und stetig in $X$ $\P$-fast sicher.
+Dann gilt:
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher }
+\implies
+f(X_n)
+\stackrel{n\to\infty}{\longrightarrow}
+f(X)\quad\P\text{-fast sicher}
+\end{align*}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\lbrace X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\rbrace\cap\lbrace f\text{ stetig in }X\rbrace\rbrace
+\stackrel{\text{Folgen-Stetigkeit}}{\subseteq}
+\lbrace f(X_n)
+\stackrel{n\to\infty}{\longrightarrow}
+f(X)\rbrace
+\end{align*}
+Damit folgt die Behauptung, denn zur Erinnerung:
+\begin{align*}
+\big(\forall i\in\N:\P(E_i)=1\big)\implies\P\left(\bigcap\limits_{i\in\N} E_i\right)=1
+\end{align*}
+\end{proof}
+
+\begin{satz}[Konvergenz-Kriterium]\label{Satz3.9} %3.9
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher}
+\Longleftrightarrow
+\forall\varepsilon>0:\limn\P\left(\sup\limits_{m\geq n} d(X_m,X)>\varepsilon\right)=0
+\end{align*}
+\end{satz}
+\begin{proof}
+Man ersetze im Beweis für den Fall reeller Zufallsvariablen $|X_n-X|$ durch $d(X_n,X)$. Und beachte, dass alle Schlussfolgerungen bestehen bleiben.
+\end{proof}
+
+Ein sehr nützliches Kriterium ist Folgendes:
+\begin{satz}\label{Satz3.10} %3.10
+\begin{align*}
+\sum\limits_{n\in\N_{>0}}\P\big(d(X_n,X)>\varepsilon\big)<\infty\qquad\forall\varepsilon>0
+\implies
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher}
+\end{align*}
+\end{satz}
+\begin{proof}
+Setze
+\begin{align*}
+A_n(\varepsilon):=\big\lbrace d(X_n,X)>\varepsilon\big\rbrace\stackrel{\ref{Satz3.5}}{\in}\A
+\end{align*}
+Dann folgt aus dem \textit{ersten Borel-Cantelli-Lemma}:
+\begin{align*}
+&\P\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)=0\qquad\forall\varepsilon>0
+\end{align*}
+Mit
+\begin{align*}
+\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)
+\stackeq{\text{Def}}
+\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big(A_n(\varepsilon)\big)^C
+=
+\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace
+\end{align*}
+folgt dann
+\begin{align*}
+1=\P\left(\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)^C\right)
+=\P\left(\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)\right)\qquad\forall\varepsilon>0
+\end{align*}
+Da Abzählbare Durchschnitte von Eins-Mengen (also Mengen mit $\P$-Maß 1) wieder Eins-Mengen sind, folgt schließlich:
+\begin{align*}
+\P\Bigg(\underbrace{\bigcap\limits_{0<\varepsilon\in\Q}\bigcup\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace}_{\lbrace X_n\to X\rbrace=\lbrace d(X_n,X)\to0\rbrace}\Bigg)=1
+\end{align*}
+\end{proof}
+Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metrischen Räumen finden sich z. B. in \textit{``Wahrscheinlichkeitstheorie'' Gäussler u. Stute (1977), Kapitel 8.2}
+
+\subsection*{Stochastische Konvergenz} %NoNumber
+\begin{definition} %3.11
+\begin{align*}
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X:\Longleftrightarrow\forall\varepsilon>0:
+\P\Big(\big\lbrace d(X_n,X)>\varepsilon\big\rbrace\Big)
+\stackrel{n\to\infty}{\longrightarrow}
+0
+\end{align*}
+\end{definition}
+
+\begin{satz}\label{Satz3.12}
+\begin{align*}
+X_n
+\stackrel{n\to\infty}{\longrightarrow}
+X\quad\P\text{-fast sicher }
+\implies X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X
+\end{align*}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\forall\varepsilon>0:
+0\leq\P\big(d(X_n,X)>\varepsilon\big)
+\leq\P\left(\sup\limits_{m\geq n}d(X_m,X)>\varepsilon\right)
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+0
+\end{align*}
+gemäß Satz \ref{Satz3.9}.
+\end{proof}
+
+Die Umkehrung in 3.12 gilt i. A. \underline{nicht}, aber es gilt das folgende Teilfolgenkriterium:
+
+\begin{satz}[Teilfolgenkriterium für stochastische Konvergenz]\label{satz3.13}\enter
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X\end{aligned}$
+\item Zu jeder Teilfolge (TF) $(X_{n'})$ von $(X_n)_{n\in\N}$ existiert eine Teilfolge $(X_{n''})$ von $(X_{n'})$ derart, dass $X_{n''}
+\stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+Wie im Reellen.
+\end{proof}
+
+Mit dem Teilfolgenkriterium lassen sich Rechenregeln für fast sichere Konvergenz auf stochastische Konvergenz übertragen.
+
+\begin{korollar}\label{Korollar3.14}\
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X\wedge X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X'
+\implies X=X'\quad\P\text{-fast sicher}
+\end{aligned}$
+\item $\begin{aligned}
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X\text{ in }(\S,d),~f:(\S,d)\to(\S',d')\text{ messbar mit $f$ stetig in $X$ $\P$-fast sicher }
+\end{aligned}$
+\begin{align*}
+\implies f(X_n)
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+f(X)
+\end{align*}
+\end{enumerate}
+\end{korollar}
+\begin{proof}
+\underline{Zeige (1):}
+\begin{align*}
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X
+\stackrel{\ref{satz3.13}}{\implies}
+\exists\text{ TF }(X_{n'})\subseteq(X_n)_{n\in\N}\mit X_{n'}
+\stackrel{n'\to\infty}{\longrightarrow}
+X\text{ fast sicher}
+\end{align*}
+Zu $(X_{n'})$ existiert (wegen $X_n\stackrelnew{n\to\infty}{\P}{\longrightarrow} X'$ und Satz \ref{satz3.3}) eine Teilfolge $(X_{n''})\subseteq(X_{n'})\mit$
+\begin{align*}
+X_{n''}
+\stackrel{n\to\infty}{\longrightarrow} X'\text{ fast sicher}
+\stackrel{\ref{Satz3.7}}{\implies}
+X=X'\text{ fast sicher }
+\end{align*}
+
+\underline{Zeige (2):} Zur Übung.
+\end{proof}
+
+\subsection*{Konvergenz in Produkträumen} %noNumber
+Seien $(\S,d)$ und $(\S',d')$ separable metrische Räume. Dann ist auch $(\S\times\S',d\times d')$ ein metrischer Raum. Dies folgt z. B. aus dem \textit{Satz von der koordinatenweise Konvergenz}:
+
+\begin{align}\label{eq3.1KoordinatenweissKonvergenz}\tag{3.1}
+\big(a_n,a_n'\big)
+\stackrelnew{d\times d'}{n\to\infty}{\longrightarrow}
+(a,a')
+\Longleftrightarrow
+(a_n)
+\stackrelnew{d}{n\to\infty}{\longrightarrow}
+a
+\wedge
+(a_n')
+\stackrelnew{d'}{n\to\infty}{\longrightarrow}
+(a')
+\end{align}
+
+Es ``stochastische Versionen'' dieses Satzes.
+
+\begin{satz}\label{satz3.15}\
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+(X_n,X_n')
+\stackrelnew{}{n\to\infty}{\longrightarrow}
+(X,X')~\P\text{-fast sicher}
+\Longleftrightarrow
+X_n
+\stackrelnew{}{n\to\infty}{\longrightarrow}
+X~\P\text{-fast sicher }\wedge
+X_n'
+\stackrelnew{}{n\to\infty}{\longrightarrow}
+X'~\P\text{-fast sicher}
+\end{aligned}$
+\item $\begin{aligned}
+(X_n,X_n')
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+(X,X')
+\Longleftrightarrow
+X_n
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X\wedge
+X_n'
+\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+X'
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zu (1):}
+\begin{align*}
+(1)\text{, linke Seite }
+&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+X_n\to X,~X_n'\to X'\quad\P\text{-fast sicher}\\
+&\stackrel{\cap\text{ Eins-Mengen}}{\Longleftrightarrow}
+(1),\text{ rechte Seite}
+\end{align*}
+
+\underline{Zu (2):}
+\begin{align*}
+(2)\text{, linke Seite}
+&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+\forall\text{ TF }(X_{n'},X_{n'}')\subseteq(X_n,X_n'):\\
+&\qquad\exists\text{ TTF }(X_{n''},X_{n''}')\subseteq(X_{n'},X_{n'}'):
+(X_{n''},X_{n''}')\stackrel{n\to\infty}{\longrightarrow}\text{ f.s.}
+\end{align*}
+Also wegen Teil (1) mit
+\begin{align*}
+X_{n''}\to X\text{ f.s. und }X_{n''}'\to X'\text{ f.s.}
+\end{align*}
+Somit:
+\begin{align*}
+\forall\text{ TF }(X_{n'})\subseteq(X_n):\exists\text{ TTF }(X_{n''})\subseteq(X_{n'}):X_{n''}\to X\text{ f.s. }
+&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+X_n\stackrelnew{n\to\infty}{\P}{\longrightarrow} X
+\end{align*}
+Und es gilt analog: $X_n'\to X'$.
+\end{proof}
+
+\subsection*{Gleichheit in Verteilung} %NoNumber
+\begin{definition}\label{def3.16} %3.16
+Zufallsvariablen $X,Y$ in $(\S,d)$ über $(\Omega,\A,\P)$ heißen \textbf{gleich in Verteilung}, in Zeichen $X\stackeq{\mathcal{L}} Y$
+\begin{align*}
+:\Longleftrightarrow \P\circ X^{-1}\equiv\P\circ Y^{-1}
+\end{align*}
+\end{definition}
+
+\begin{bemerkung} %noNomber
+Def 3.16 kann erweitert werden auf Zufallsvariablen $X:(\Omega,\A,\P)\to(\S,d)$ und $Y:(\tilde{\Omega},\tilde{\A},\tilde{\P})\to(\S,d)$ durch
+\begin{align*}
+X\stackeq{\mathcal{L}} Y:\Longleftrightarrow\P\circ X^{-1}\equiv\tilde{\P}\circ Y^{-1}
+\end{align*}
+\end{bemerkung}
+
+Charakterisierung von Verteilungsgleichheit in folgendem Satz:
+
+\begin{satz}\label{satz3.17}\
+\begin{enumerate}[label=(\arabic*)]
+\item Seien $\P,Q$ Wahrscheinlichkeitsmaße auf $\B(\S)$. Dann gilt:
+\begin{align*}
+\P\equiv Q\Longleftrightarrow
+\int\limits f\d\P=\int\limits f\d Q\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{align*}
+\item $\begin{aligned}
+X\stackeq{\mathcal{L}} Y\Longleftrightarrow
+\E\big[f(X)\big]=\E\big[f(Y)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zu (1) zeige ``$\implies$'':} Klar.\\
+
+\underline{Zu (1) zeige ``$\Longleftarrow$'':}
+\begin{align*}
+\B(\S)\stackeq{\text{3.2 (1)}}\sigma\big(\mathcal{F}(\S)\big)
+\end{align*}
+und $\F$ ist Durchschnittsstabil. Wegen dem Maßeindeutigkeitssatz reicht es zu zeigen:
+\begin{align*}
+\P(F)=Q(F)\qquad\forall F\in\mathcal{F}(\S)
+\end{align*}
+Sei $F\subseteq\S$ abgeschlossen. Setze
+\begin{align*}
+f_k(x):=\varphi\Big(k\cdot d(x,F)\Big)
+\end{align*}
+(vgl. Satz 2.4). Aus dem Lemma \ref{lemma2.3} folgt, dass die $f_k$ beschränkt und gleichmäßig stetig sind mit $f_k\stackrel{k\to\infty}{\downarrow}\indi_F$. Also gilt:
+\begin{align*}
+\P(F)
+&\stackeq{\text{Def}}
+\int\limits\indi_F\d\P
+=\int\limits\lim\limits_{k\to\infty} f_k\d\P
+\stackeq{\text{Mono-Konv}}
+\lim\limits_{k\to\infty}\int\limits f_k\d\P
+\stackeq{\text{Vor}}
+\lim\limits_{k\to\infty}\int\limits f_k\d Q\\
+&\stackeq{\text{Mono-Konv}}
+\int\limits\lim\limits_{k\to\infty} f_k\d Q
+=\int\limits\indi_F\d Q
+\stackeq{\text{Def}} Q(F)
+\end{align*}
+Da $F$ beliebig war, folgt die Behauptung.\\
+
+\underline{Zu (2):} folgt aus (1) mit dem Transformationssatz \eqref{eqTrafo}:
+\begin{align*}
+X\stackeq{\mathcal{L}} Y
+&\stackrel{\ref{def3.16}}{\Longleftrightarrow}
+\underbrace{\P\circ X^{-1}}_{}=\underbrace{\P\circ Y^{-1}}_{}\\
+&\stackrel{(1)}{\Longleftrightarrow}
+\int\limits_{\S} f\d(\P\circ X^{-1})=\int\limits_{\S} f\d(\P\circ Y^{-1})
+\end{align*}
+und
+\begin{align*}
+\int\limits_{\S} f\d(\P\circ X^{-1})
+\stackeq{\text{Trafo}}
+\int\limits_{\Omega}\underbrace{f\circ X}_{=:f(X)}\d\P
+\stackeq{\text{Def}}
+\E\big[f(X)\big]
+\end{align*}
+\end{proof}
+
+\section{Verteilungskonvergenz von Zufallsvariablen in metrischen Räumen}
+Seien $X,X_n,n\in\N$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A,\P)$. Dann sind
+%st die Verteilung von $X$, 
+\begin{align*}
+P:=\P\circ X^{-1},\qquad P_n:=\P\circ X_n^{-1},\qquad n\in\N
+\end{align*}
+sind Wahrscheinlichkeitsmaße auf $\B(\S)$.
+
+\begin{definition}[Verteilungskonvergenz]\label{def4.1}\
+\begin{enumerate}[label=(\arabic*)]
+\item Seien $P,P_n,n\in\N$ Wahrscheinlichkeitsmaße auf $\B(S)$. Dann \textbf{konvergiert $P_n$ schwach gegen $P$}, in Zeichen
+\begin{align*}
+P_n\stackrelnew{w}{n\to\infty}{\longrightarrow} P
+:\Longleftrightarrow
+\int\limits f\d P_n\stackrel{n\to\infty}{\longrightarrow}\int\limits f\d P\qquad\forall f\in C^b(\S)
+\end{align*}
+Das $w$ steht für ``weakly''.
+\item $X_n$ \textbf{konvergiert in Verteilung gegen $X$ in Raum $(\S,d)$}, in Zeichen
+\begin{align*}
+X_n\stackrel{\mathcal{L}}{\longrightarrow} X\text{ in }(\S,d)
+:\Longleftrightarrow
+\P\circ X_n^{-1}\stackrelnew{w}{n\to\infty}{\longrightarrow}\P\circ X^{-1}
+\end{align*}
+Alternative Schreibweise: $X_n\stackrel{\d}{\longrightarrow} X$. Das $\L$ steht für ``law''.
+\end{enumerate}
+\end{definition}
+
+Äquivalente Charakterisierung von $\stackrelnew{w}{}{\longrightarrow}$ bzw. $\stackrel{\L}{\longrightarrow}$ in folgendem Satz:
+
+\begin{satz}[Portmanteau-Theorem]\enter\label{satz4.2}
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+P_n\stackrelnew{w}{}{\longrightarrow} P
+\end{aligned}$
+\item $\begin{aligned}
+\int\limits f\d P_n\stackrel{}{\longrightarrow}\int\limits f\d P\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{aligned}$
+\item $\begin{aligned}
+\limsup\limits_{n\to\infty} P_n(F)\leq P(F)\qquad\forall F\in\F(\S)
+\end{aligned}$
+\item $\begin{aligned}
+\liminf\limits_{n\to\infty} P_n(G)\geq P(G)\qquad\forall G\in\G(\S)
+\end{aligned}$
+\item $\begin{aligned}
+\limn P_n(B)=P(B)\qquad\forall B\in\B(\S)\mit P(\underbrace{\partial B}_{\in\F(\S)})=0
+\end{aligned}$\\
+Mengen $B\in\B(\S)$ mit $P(\partial B)=0$ heißen \textbf{$P$-randlos}.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zeige (1) $\implies$ (2):}\\
+Folgt aus der Definition \ref{def4.1} (1).\\
+
+\underline{Zeige (2) $\implies$ (3):}\\
+Sei $F\in\F(\S)$ (also abgeschlossen), Der Beweis von Satz \ref{satz3.17} zeigt: Es gibt eine Folge $(f_k)_{k\in\N}$ von gleichmäßigen stetigen, beschränkten Funktionen auf $\S$ mit $f_k\downarrow\indi_F$. Dann gilt:
+\begin{align*}
+\limsup\limits_{n\to\infty} P_n(F)
+=\limsup\limits_{n\to\infty}\int\limits\underbrace{\indi_F}_{\leq f_k~\forall k\in\N}\d P_n
+&\stackrel{\text{Mono}}{\leq}
+\limsup\limits_{n\to\infty}\int\limits f_k\d P_n
+\stackrel{\text{Vor (2)}}{=}
+\int\limits f_k\d P\quad\forall k\in\N\\
+&\stackrel{\text{Mono Konv}}{\implies}
+\int\limits f_k\d P\stackrel{k\to\infty}{\longrightarrow}
+\int\limits\indi_F\d P=P(F)\\
+&\stackrel{k\to\infty}{\implies}~(3)
+\end{align*}
+
+\underline{Zeige (3) $\Longleftrightarrow$ (4):}\\
+Nutze Übergang zum Komplement sowie Rechenregeln für $\liminf$ und $\limsup$:
+\begin{align*}
+\liminf\limits_{n\to\infty} P_n(G)
+&=\liminf\limits_{n\to\infty} \big(1-P_n(G^C)\big)\\
+&=1-\underbrace{\limsup\limits_{n\to\infty} P_n(\underbrace{G^C}_{\in\F})}_{\leq P(G^C)}\\
+&\geq 1-P(G^C)\\
+&=P(G)
+\end{align*}
+
+\underline{Zeige (3) $\implies$ (1):}\\
+Sei $f\in C^b(\S)$ beliebig. Zu zeigen:
+\begin{align}\label{eqProof1.4.2Sternchen}
+\limsup\limits_{n\to\infty}\int\limits f\d P_n\leq\int\limits f\d P
+\end{align}
+\underline{1. Schritt:} Sei $0\leq f<1$. Setze
+\begin{align*}
+F_i:=\left\lbrace f\geq\frac{i}{k}\right\rbrace=\left\lbrace x\in\S:f(x)\geq\frac{i}{k}\right\rbrace,\qquad \forall 0\leq i\leq k,k\in\N
+\end{align*}
+Dann gilt $F_i\in\F~\forall i$, da $f$ stetig. Da 
+\begin{align*}
+\int\limits_{\S}f\d P
+\stackeq{\text{Lin}}
+\sum\limits_{i=1}^k\int\limits\indi_{\left\lbrace\frac{i-1}{k}\leq f<\frac{i}{k}\right\rbrace}\cdot f\d P
+\end{align*}
+folgt wegen Monotonie
+\begin{align}\label{eqProof1.4.2Plus}
+\sum\limits_{i=1}^k\underbrace{\frac{i-1}{k}}_{=\frac{i}{k}-\frac{1}{k}}\cdot P\left(\frac{i-1}{k}\leq f<\frac{i}{k}\right)
+\leq
+\int\limits f\d P
+\leq
+\sum\limits_{i=1}^k \frac{1}{k}\cdot P\Big(\underbrace{\frac{i-1}{k}\leq f<\frac{i}{k}}_{F_{i-1}\setminus F_i}\Big)
+\end{align}
+Die rechte Summe in \eqref{eqProof1.4.2Plus} ist gleich
+\begin{align*}
+&\frac{1}{k}\cdot\sum\limits_{i=1}^k i\cdot\big( P(F_{i-1}-P(F_i)\big)\\
+&=\frac{1}{k}\cdot\Big(P(F_0)-P(F_1)+2\cdot P(F_1-2\cdot P(F_2)+3\cdot P(F_2)-3\cdot P(F_3)+\\
+&\qquad+\ldots+(k-1)\cdot P(F_{k-2})-(k-1)\cdot P(F_{k-1})+k\cdot P(F_{k-1})-k\cdot P(F_k)\Big)\\
+&=\frac{1}{k}\cdot\Big(\underbrace{P(F_0)}_{=1}+P(F_1)+P(F_2)+\ldots+P(F_{k-1})-k\cdot k\cdot \underbrace{P(F_k)}_{=0}\Big)\\
+&=\frac{1}{k}+\frac{1}{k}\cdot\sum\limits_{i=1}^{k-1} P(F_i)
+\end{align*}
+Da die linke Summe in \eqref{eqProof1.4.2Plus} gleich der rechten Summe minus $\frac{1}{k}$, folgt
+\begin{align}\label{eqProof1.4.2DoppelSternchen}
+\sum\limits_{i=1}^{k-1} P(F_i)
+\leq\int\limits f\d P
+\leq\frac{1}{k}+\sum\limits_{i=1}^{k-1} P(F_i)
+\end{align}
+Beachte, \eqref{eqProof1.4.2DoppelSternchen} gilt für \ul{jedes} Wahrscheinlichkeitsmaß $P$, also auch für $P_n$. Damit folgt:
+\begin{align*}
+\limsup\limits_{n\to\infty}\int\limits f\d P_n
+&\leq\frac{1}{k}+\sum\limits_{i=1}^{k-1}\underbrace{\limsup\limits_{n\to\infty} P_n(F_i)}_{\stackrel{(3)}{\leq}P(F_i)~\forall i}\\
+&\leq\frac{1}{k}+\underbrace{\sum\limits_{i=1}^{k-1} P(F_i)}_{\stackrel{\eqref{eqProof1.4.2DoppelSternchen}}{\leq}\int\limits f\d P}\\
+&\leq\frac{1}{k}+\int\limits f\d P\qquad\forall k\in\N
+\end{align*}
+Grenzwertbildung $k\to\infty$ liefert \eqref{eqProof1.4.2Sternchen}.\\
+
+\ul{2. Schritt:} Da $f\in C^b(\S)$ beliebig, gilt:
+\begin{align*}
+\exists a<b:a\leq f<b
+\implies g(x):=\frac{f(x)-a}{b-a}\text{ ist stetig und } 0\leq g<1
+\end{align*}
+Daraus folgt
+\begin{align*}
+\limsup\limits_{n\to\infty}\int\limits f\d P_n
+&=\limsup\limits_{n\to\infty}\int\limits (b-a)\cdot g+a\d P_n\\
+&=\limsup\limits_{n\to\infty}\left((b-a)\cdot\int\limits g\d P_n+a\right)\\
+&\leq(b-a)\cdot\underbrace{\limsup\limits_{n\to\infty}\int\limits g\d P_n}_{\leq\int\limits g\d P\text{, wg. 1. Schritt}}+a\\
+&\leq(b-a)\cdot\int\limits g\d P+0\\
+&\stackeq{\text{Lin}}
+\int\limits f\d P
+\end{align*}
+Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqProof1.4.2Sternchen} liefert
+\begin{align*}
+\int\limits f\d P
+&\leq
+\liminf\limits_{n\to\infty}\int\limits f\d P_n\\
+&=\liminf\limits_{n\to\infty}-\int\limits -f\d P_n\\
+&=-\limsup\limits_{n\to\infty}-\int\limits \underbrace{-f}_{\in C^b(\S)}\d P\\
+&\stackrel{\eqref{eqProof1.4.2Sternchen}}{\geq}
+-\int\limits -f\d P\\
+&\stackeq{\text{Lin}}
+\int\limits f\d P
+\qquad\forall f\in C^b(\S)\\
+&\implies(1)
+\end{align*}
+
+\underline{Zeige (3) $\implies$ (5):}\\
+Sei $B\in\B(\S)\mit P(\partial B)=0$. Dann gilt:
+\begin{align*}
+P(\overline{B})
+&\stackrel{(3)}{\geq}
+\limsup\limits_{n\to\infty} \underbrace{P_n(\overbrace{\overline{B}}^{\supseteq B})}_{\geq P_n(B)}\\
+&\geq\limsup\limits_{n\to\infty} P_n(B)\\
+&\stackrel{\text{stetig}}{\geq}
+\liminf\limits_{n\to\infty} \underbrace{P_n(\overbrace{B}^{\supseteq\stackrel{\circ}{B}})}_{P_n(\stackrel{\circ}{B}}\\
+\stackrel{(3)\gdw(4)}{\geq}
+P(\stackrel{\circ}{B})\\
+&=P(\overline{B})\\
+&=P(B)
+\end{align*}, denn:
+\begin{align}\label{eqProof1.4.2SternchenZwei}
+0
+=P(\overbrace{\partial B}^{\overline{B}\setminus\stackrel{\circ}{B}}
+)=P(\overline{B})-P(\stackrel{\circ}{B})
+\implies
+P(\stackrel{\circ}{B})\leq P(B)\leq P(\overline{B})=P(\stackrel{\circ}{B})
+\end{align}
+Da $\liminf=\limsup$ folgt $\limn P_n(B)=P(B)$.\\
+
+\underline{Zeige (5) $\implies$ (3):}\\
+Sei $F\in\F$ (abgeschlossen) beliebig. Dann gilt $\forall\varepsilon>0:$
+\begin{align}\label{eqProof1.4.2SternchenUnten}
+\partial\Big(\big\lbrace x\in\S:d(x,F)\leq\varepsilon\big\rbrace\Big)
+\subseteq\big\lbrace x\in\S:d(x,F)=\varepsilon\big\rbrace
+\end{align}
+denn: Sei $x\in\partial\Big(\big\lbrace x\in\S:d(x,F)\leq\varepsilon\big\rbrace\Big)$. Dann gilt:
+\begin{align*}
+&\exists (x_n)_{n\in\N}:\forall n\in\N:d(x_n,F)\leq\varepsilon\wedge \limn x_n=x\\
+&\exists (\xi_n)_{n\in\N}:\forall n\in\N:d(\xi_n,F)>\varepsilon\wedge\limn\xi_n=x
+\end{align*}
+Da $d(\cdot,F)$ stetig gemäß \ref{lemma2.3} (3), folgt
+\begin{align*}
+\varepsilon\leq d(x,F)\leq\varepsilon.
+\end{align*}
+Wegen \eqref{eqProof1.4.2SternchenUnten} sind 
+\begin{align*}
+A_\varepsilon:=\partial\Big(\big\lbrace x\in\S:d(x,F)\leq\varepsilon\big\rbrace\Big)\qquad\forall\varepsilon>0
+\end{align*}
+paarweise disjunkt, da bereits die Obermengen paarweise disjunkt sind. Dann folgt
+\begin{align}\label{eqProof1.4.2DoppelSternchenUnten}
+E:=\big\lbrace\varepsilon>0:P(A_\varepsilon)>0\big\rbrace\text{ ist höchstens abzählbar},
+\end{align}
+denn:
+\begin{align*}
+E=\bigcup\limits_{n\in\N}\underbrace{\left\lbrace\varepsilon>0:P(A_\varepsilon)\geq\frac{1}{m}\right\rbrace}_{=:E_m}
+\end{align*}
+Es gilt $|E_m|\leq m$, weil: Angenommen es existieren $0<\varepsilon_1<\ldots<\varepsilon_{m+1}$ mit 
+\begin{align*}
+&P(A_{\varepsilon_i})\geq\frac{1}{m}\qquad\forall 1\leq i\leq m+1\\
+&\implies
+1\geq P\left(\bigcup\limits_{i=1}^{m+1} A_{\varepsilon_i}\right)
+\stackeq{\text{pw. disj.}}
+\sum\limits_{i=1}^{m+1}\underbrace{P\big(A_{\varepsilon_i}\big)}_{\geq\frac{1}{m}}\geq(m+1)\cdot\frac{1}{m}>1
+\end{align*}
+Das ist ein Widerspruch. Damit ist $E$ höchstens abzählbar unendlich. Damit liegt das Komplement
+\begin{align*}
+E^C=\big\lbrace\varepsilon>0: P(A_\varepsilon)=0\big\rbrace
+\end{align*}
+dicht in $[0,\infty)$. (dies kann man auch durch Widerspruch zeigen)\\
+Daraus folgt insbesondere:
+\begin{align*}
+\exists(\varepsilon_k)_{k\in\N}\subseteq\R\mit\varepsilon_k\downarrow0:\forall	 k\in\N: F_k:=\big\lbrace x\in\S:d(x,F)\leq\varepsilon_k\big\rbrace\text{ ist $P$-randlos}
+\end{align*}
+Beachte $A_{\varepsilon_k}=\partial F_k$. Da $F\subseteq F_k~\forall k\in\N$,gilt:
+\begin{align*}
+&\limsup\limits_{n\to\infty} P_n(F)
+\leq\limsup\limits_{n\to\infty} \underbrace{P_n(F_k)}_{\text{konv.}}
+\stackeq{(5)}
+P(F_k)\qquad\forall k\in\N\\
+&\stackrel{k\to\infty}{\implies}
+\limsup\limits_{n\to\N} P_n(F)
+\leq\lim\limits_{k\to\infty} P(F_k)
+=P(F)
+\end{align*}
+Die letzte Gleichheit gilt, weil $P$ $\sigma$-stetig von oben ist und $F_k\downarrow F$. $F_k\downarrow F$, denn $F_1\supseteq F_2\supseteq\ldots$, da $\varepsilon_k$ monoton fallende Folge ist und
+\begin{align*}
+\bigcap\limits_{k\in\N}F_k=F, 
+\end{align*}
+denn: 
+\begin{align*}
+x\in\bigcap\limits_{k\in\N}F_k
+&\Longleftrightarrow
+x\in F_k\qquad\forall k\in\N\\
+&\Longleftrightarrow
+d(x,F)\leq\varepsilon_k\qquad\forall k\in\N\\
+&\implies
+d(x,F)=0\\
+&\stackrel{\ref{lemma2.3}~(1)}{\Longleftrightarrow}
+x\in \overline{F}\stackeq{F\in\F}F
+\end{align*}
+\end{proof}
+
+Mitunter folgt schwache Konvergenz aus $P_n(A)\stackrel{n\to\infty}{\longrightarrow} P(A)$ für eine spezielle Klasse von Mengen $A$.
+
+\begin{theorem}\label{theorem4.3}
+Sei $\U\subseteq\B(\S)$ mit
+\begin{enumerate}[label=(\roman*)]
+\item $\begin{aligned}
+A,B\in \U\implies A\cap B\in\U
+\end{aligned}$, also $\U$ ist endlich $\cap$-stabil
+\item Jedes offene $G$ ist abzählbare Vereinigung von Mengen aus $\U$.
+\end{enumerate}
+Dann gilt:
+\begin{align*}
+\Big(\forall A\in\U:P_n(A)\stackrel{n\to\infty}{\longrightarrow} P(A)\Big)\implies P_n\stackrelnew{w}{}{\longrightarrow} P
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Seien $A_1,\ldots,A_m\in\U$. Dann gilt:
+\begin{align*}
+P_n\left(\bigcup\limits_{i=1}^m A_i\right)
+&\stackeq{\text{allg. Add-Formel}}
+\sum\limits_{k=1}^m (-1)^{k-1}\cdot\sum\limits_{1\leq i_1<\ldots<i_k\leq m}\underbrace{P_n\big(\underbrace{A_{i_1}\cap\ldots\cap A_{i_k})}_{\in\U}}_{\stackrel{n\to\infty}{\longrightarrow} P(A_{i_1}\cap\ldots\cap A_{i_k})}\\
+&\stackrel{n\to\infty}{\longrightarrow}
+\sum\limits_{k=1}^m\sum\limits_{1\leq i_1<\ldots<i_k\leq m} P\left(A_{i_1}\cap\ldots\cap A_{i_k}\right)\\
+&\stackeq{\text{all. Add.}}
+P\left(\bigcup\limits_{i=1}^m A_i\right)
+\end{align*}
+Sei $G\in\G$. Dann gilt wegen Voraussetzung (ii):
+\begin{align*}
+&\exists(A_i)_{i\in\N}\subseteq\U:G=\bigcup\limits_{i\in\N} A_i\\
+&\implies
+G_m:=\bigcup\limits_{i=1}^m A_i\uparrow G,~m\to\infty\\
+&\stackrel{P~\sigma\text{-stetig}}{\implies}
+\forall \varepsilon>0:\exists m_0\in\N:P(G)-P(G_m)\leq\varepsilon\\
+&\implies
+P(G)-\varepsilon\leq P(G_m)
+\stackeq{\text{s. o.}}
+\limn P_n(\underbrace{G_m}_{\subseteq G})\leq\liminf\limits_{n\to\infty} P_n(G)\qquad\forall\varepsilon>0\\
+&\stackrel{\varepsilon\to0}{\implies}
+\liminf\limits_{n\to\infty} P_n(G)\geq P(G)\qquad\forall G\in\G
+\end{align*}
+Nun folgt die Behauptung aus dem Theorem \ref{satz4.2}.
+\end{proof}
+
+\begin{korollar}\label{korollar4.4}
+Sei $\U$ endlich Durschnittsstabil mit
+\begin{enumerate}[label=(\roman*)]
+\item $\begin{aligned}
+\forall x\in S,\forall\varepsilon>0:\exists A\in\U:x\in\stackrel{\circ}{A}\subseteq A\subseteq B(x,\varepsilon)
+\end{aligned}$
+\end{enumerate}
+Ist $(\S,d)$ separabel, so gilt
+\begin{align*}
+\Big(\forall A\in\U:P_n(A)\stackrel{n\to\infty}{\longrightarrow} P(A)\Big)
+\implies P_n-P
+\end{align*}
+\end{korollar}
+
+\begin{proof}
+Gemäß Satz \ref{satz2.9} hat $\G$ abzählbare Basis. Dem dem Satz von Lindelöf:
+\begin{align}\label{eqSatzVonLindelöf}\tag{L}
+\text{Für jede offene Überdeckung einer beliebigen Teilmenge von $\S$ existiert}\\\nonumber\text{eine abzählbare Teilüberdeckung.}
+\end{align}
+Sei nun $G\in\G$ beliebig. Für alle $x\in G$ existiert ein $\varepsilon_x>0$ mit $B(x,\varepsilon_x)\subseteq G$ gemäß (i) findet man ein $A_x\in\U$ mit $x\in\stackrel{\circ}{A}_x\subseteq A_x\subseteq B(x,\varepsilon_x)\subseteq G$. Also folgt
+\begin{align*}
+G=\bigcup\limits_{x\in G}\lbrace x\rbrace\subseteq\bigcup\limits_{x\in G}\stackrel{\circ}{A}_x\subseteq G
+\end{align*}
+Somit ist $\left\lbrace\stackrel{\circ}{A}_x:x\in G\right\rbrace$ eine offene Teilüberdeckung von $G$. Aus \eqref{eqSatzVonLindelöf} folgt nun: Es existieren $A_{x_i}\in\U,~i\in\N$ mit
+\begin{align*}
+G\subseteq\bigcup\limits_{i\in\N}\stackrel{\circ}{A}_{x_i}\subseteq 
+\bigcup\limits_{i\in\N}A_{x_i}\subseteq 
+G
+\implies
+G=\bigcup\limits_{i\in\N}A_{x_i}
+\end{align*}
+Also erfüllt $\U$ die Voraussetzung (i) und (ii) in Theorem \ref{theorem4.3} und es folgt die Behauptung.
+\end{proof}
+
+Als Anwendung / Beschreibung der schwachen Konvergenz im $\S=\R$. Erinnere an \textbf{schwache Konvergenz von Verteilungsfunktionen (VF)} $(F_n)_{n\in\N}$ gegen $F$, in Zeichen
+\begin{align*}
+F_n\rightharpoonup F
+:\Longleftrightarrow
+F_n(x)\stackrel{n\to\infty}{\longrightarrow} F(x)\qquad\forall x\in C_F
+\mit C_F:=\big\lbrace x\in\R:F\text{ ist stetig in }x\big\rbrace
+\end{align*}
+
+\begin{korollar}\label{korollar4.5}
+Seien $P,P_n,n\in\N$ Wahrscheinlichkeitsmaße auf $\B(\R)$ mit zugehörigen Verteilungsfunktionen $F$ und $F_n,n\in\N$. Dann gilt:
+\begin{align*}
+P_n\stackrelnew{w}{}{\longrightarrow}P
+\Longleftrightarrow
+F_n\rightharpoonup F
+\end{align*}
+\end{korollar}
+\begin{proof}
+\underline{Zeige ``$\implies$'':}\\
+Sei $B:=(-\infty,x],~x\in\R$. Dann gilt:
+\begin{align*}
+P(\underbrace{\partial B}_{=\lbrace x\rbrace})=0
+&\Longleftrightarrow P(\lbrace x\rbrace)=F(x)-\underbrace{F(x-0)}{\text{Grenzwert}}=0\\
+& x\in C_F
+\end{align*}
+Somit folgt für $x\in C_F$:
+\begin{align*}
+F_n(x)&\stackeq{\text{Def}}
+P_n\big(\underbrace{(-\infty,x]}_{=B}\big)=P_n(B)\stackrel{n\to\infty}{\longrightarrow} P(B)\stackeq{\text{Def}} F(x)\qquad\forall x\in C_F
+\end{align*}
+gemäß Satz \ref{satz4.2}.\\
+
+\underline{Zeige ``$\Longleftarrow$'':} Sei
+\begin{align*}
+\U:=\big\lbrace (a,b]:a,b\in C_F\big\rbrace.
+\end{align*}
+Dann ist $\U$ endlich durchschnittsstabil. Ferner: Die Menge 
+\begin{align*}
+D_F:=\big\lbrace x\in\R: F\text{ \underline{nicht} stetig in }x\big\rbrace
+=\big\lbrace x\in\R:P(\lbrace x\rbrace)>0\big\rbrace
+\end{align*}
+ist höchstens abzählbar (vgl. \eqref{eqProof1.4.2DoppelSternchen} 
+%keine Ahnung welches DoppelSternchen er hier meint mit der Referenz To Do
+im Beweis von Satz \ref{satz4.2}). Also folgt
+\begin{align*}
+\forall x\in\R:\forall\varepsilon>0:\exists A=(a,b]\in\U:x\in (a,b)=\stackrel{\circ}{A}\subseteq A=(a,b]\subseteq B(x,\varepsilon)=(a-\varepsilon,x+\varepsilon)
+\end{align*}
+denn: In $(x-\varepsilon,x+\varepsilon)$ muss ein $a\in C_F$ existieren, denn sonst wäre $(x-\varepsilon, x)\in D_F$. Analog findet man ein $b\in(x,x+\varepsilon)$. Somit erfüllt $\U$ die Voraussetzungen von Korollar \ref{korollar4.4}. Klar: $\S=\R$ ist separabel, da $\Q$ abzählbar und dicht in $\R$. Schließlich gilt:
+\begin{align*}
+P_n\big((a,b]\big)&=
+F_n(\underbrace{b}_{\in C_F})-F_n(\underbrace{a}_{\in C_F})\stackrel{n\to\infty}{\longrightarrow} F(b)-F(a)=P\big((a,b]\big)\qquad\forall a,b\in C_F\\
+&\stackrel{\ref{korollar4.4}}{\implies}
+P_n\longrightarrow P
+\end{align*}
+\end{proof}
+
+\begin{bemerkung}\ %4.6
+\begin{enumerate}[label=(\arabic*)]
+\item Seien $X,X_n,n\in\N$ reelle Zufallsvariablen über $(\Omega,\A,\P)$. Dann:
+\begin{align}\label{eqBemerkung4.6}\tag{$\ast$} 
+X_n\stackrel{\L}{\longrightarrow} X
+\stackrel{\text{Def}}{\Longleftrightarrow}
+\underbrace{\P\circ X_n^{-1}}_{\hat{=}P_n}
+\stackrelnew{w}{}{\longrightarrow} \underbrace{\P\circ X^{-1}}_{\hat{=}P}
+\stackrel{\ref{korollar4.5}}{\Longleftrightarrow}
+\underbrace{\P(X_n\leq x)}_{\hat{=}F_n(x)}
+\stackrel{n\to\infty}{\longrightarrow}
+\underbrace{\P(X\leq x)}_{\hat{=}F(x)}
+\end{align}
+für alle $x$, die Stetigkeitsstellen der Verteilungsfunktion von $X$ sind.
+\item Es gibt Verallgemeinerung von \ref{korollar4.5} bzw \eqref{eqBemerkung4.6} auf $\S=\R$:\\
+Seien 
+\begin{align*}
+X=\left(X^{(1)},\ldots, X^{(k)}\right),X_n=\left(X^{(1)},\ldots,X^{(k)}_n\right),\qquad(\Omega,\A)\to\left(\R^k,\B(\R^k)\right)
+\end{align*}
+Zufallsvariablen in $\R^k$. Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^k
+\Longleftrightarrow
+\P(X_n\leq x)\stackrel{n\to\infty}{\longrightarrow}\P(X\leq x)\qquad\forall x=\big(x_1,\ldots,x_k\big)\in\R^k
+\end{align*}
+wobei $x_i$ Stetigkeitsstelle der Verteilungsfunktion von $X^{(i)}$ ist für alle $i\in\lbrace1,\ldots,k\rbrace$. Beweis ist analog zu \ref{korollar4.5}.
+\end{enumerate}
+\end{bemerkung}
+
+Der schwache Limes einer Folge $(P_n)_{n\in\N}$ ist eindeutig, denn es gilt:
+
+\begin{lemma}\label{lemma4.6Einhalb}
+\begin{align*}
+P_n\stackrelnew{w}{}{\longrightarrow} P,~P_n\stackrelnew{w}{}{\longrightarrow} Q\implies P=Q
+\end{align*}
+\end{lemma}
+\begin{proof}
+Gemäß Definition gilt:
+\begin{align*}
+\int\limits f\d P_n&\stackrel{}{\longrightarrow}\int\limits f\d P\qquad\forall f\in C^b(\S)\\
+\int\limits f\d P_n&\stackrel{}{\longrightarrow}\int\limits f\d Q\qquad\forall f\in C^b(\S)
+\end{align*}
+Der Grenzwert von reellen Zahlenfolgen eindeutig ist, folgt
+\begin{align*}
+\int\limits f\d P=\int\limits f\d Q\qquad\forall f\in C^b(\S)\\
+\stackrel{\ref{satz3.17}}{\implies}
+P=Q
+\end{align*}
+\end{proof}
+
+Im Folgenden ist das Ziel die Übertragung unserer Resultate auf Verteilungskonvergenz.
+
+\begin{satz}[Portmanteau-Theorem]\label{satz4.7}\enter
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)
+\end{aligned}$
+\item $\begin{aligned}
+\E\big[f(X_n)\big]\stackrel{n\to\infty}{\longrightarrow}\E\big[f(X)\big]\qquad\forall f\in C^b(\S)
+\end{aligned}$ gleichmäßig stetig
+\item $\begin{aligned}
+\limsup\limits_{n\to\infty}\P(X_n\in F)\leq\P(X\in F)\qquad\forall F\in\F
+\end{aligned}$
+\item $\begin{aligned}
+\liminf\limits_{n\to\infty}\P(X_n\in G)\geq\P(X\in G)\qquad\forall G\in\G
+\end{aligned}$
+\item $\begin{aligned}
+\P(X_n\in B)\stackrel{n\to\infty}{\longrightarrow}\P(X\in B)\qquad\forall B\in\B(\S)\mit\P(X\in\partial B)=0
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+Wende Satz \ref{satz4.2} an auf $P_n:=\P\circ X^{-1}_n,~P:=\P\circ X^{-1}$ (wegen Def $\stackrel{\L}{\longrightarrow}$). Beachte z. B.
+\begin{align*}
+P_n(f)&=\P\circ X^{-1}_n(F)
+\stackeq{\text{Def}}
+\P\left(X_n^{-1}(F)\right)
+=\P\big(\lbrace\omega\in\Omega:X_n(\omega)\in F\rbrace\big)
+=\P(X_n\in F)
+\end{align*}
+und 
+\begin{align*}
+\int\limits f\d P_n
+=
+\int\limits_{\S} f\d(\P\circ X_n^{-1})
+\stackeq{\text{Trafo}}
+\int\limits_\Omega f(X_n)\d\P
+=\E\big[f(X_n)\big]
+\end{align*}
+\end{proof}
+
