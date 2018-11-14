@@ -1553,7 +1553,11 @@ Aus $(u,f)\in\partial\E$ folgt wie oben, dass $|u'|^{p-2}\cdot u'$ schwach diffe
 \end{align*}
 d.h. $\big|u'(1)\big|^{p-2}\cdot u'(1)=0$ und $\big|u'(0)\big|^{p-2}\cdot u'(0)=0$ bzw. $u'(0)=u'(1)=0$.
 \begin{align*}
-\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)\left|u\in\dom(\E),|u'|^{p-2}\cdot u'\text{ schwach diffbar und }-\left(|u'|^{p-2}\cdot u'\right)\equiv f\wedge u'(0)=u'(1)=0\right.\right\rbrace
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\left|~
+\begin{array}{c}
+u\in\dom(\E),|u'|^{p-2}\cdot u'\text{ schwach diffbar und}\\-\left(|u'|^{p-2}\cdot u'\right)\equiv f\wedge u'(0)=u'(1)=0
+\end{array}
+\right.\right\rbrace
 \end{align*}
 Dies ist wieder die (homogene) Neumann-Randbedingung (negativer $p$-Laplace-Operator mit Neumann-Randbedingungen).\\
 Der Fall $\Omega\subseteq\R^n$ offen und $p=2$
@@ -1565,6 +1569,31 @@ Der Fall $\Omega\subseteq\R^n$ offen und $p=2$
 \int\limits_\Omega\nabla u\cdot \nabla v=\sum\limits_{i=1}^n\int\limits_\Omega\frac{\partial u}{\partial x_i}\cdot\frac{\partial v}{\partial x_i}=-\int\limits_\Omega\sum\limits_{i=1}^n\frac{\partial^2 u}{\partial x_i^2}\cdot v
 =\int\limits_\Omega-\Delta u\cdot v
 \end{align*}
+
+Falls $p\in(1,\infty)$ beliebig ist, dann gilt
+\begin{align*}
+(u,f)\in\partial\E``\Longleftrightarrow\text{''}\left\lbrace\begin{array}{rl}
+-\Delta_p u=f&\text{ in }\Omega\\
+|\nabla_p u|^{p-2}\cdot\frac{\partial u}{\partial v}=0 &\text{ auf }\partial\Omega
+\end{array}\right.\\
+\text{ wobei }\Delta_p u:=\div\left(|\nabla u|^{p-2}\nabla u\right)
+\end{align*}
+der \textbf{$p$-Laplaceoperator} ist.\\
+Wichtige Beobachtung: $\partial\E$ ist $m$-akkretiv. Insbesondere ist für alle $h>0$ und $f\in L^2(\Omega)$ die Inklusion $u+h\cdot\partial\E(u)\ni f$ (hier eigentlich eine Gleichung, da $\partial\E$ ``einwertig'' ist) eindeutig lösbar!\\
+Damit ist für alle $h>0$, $f\in L^2(\Omega)$ das Problem
+\begin{align*}
+\left\lbrace\begin{array}{rl}
+u-h\cdot\Delta_p u=f &\text{ in }\Omega\\
+|\nabla u|^{p-2}\cdot\frac{\partial u}{\partial v}=0 &\text{ auf } \partial\Omega
+\end{array}\right.
+\end{align*}
+eindeutig lösbar. Der Beweis, dass $\partial\E$ $m$-akkretiv ist, zeigt, dass die eindeutige Lösung $u$ dieses Problems genau der (eindeutige) Minimierer der Funktion
+\begin{align*}
+L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
+v\mapsto\E(v)+\frac{1}{2\cdot h}\cdot\Vert v-h\Vert_{L^2}^2
+\end{align*}
+ist!
+%TODO Den Teil von Lukas einfügen. An welche Stelle weiß ich nicht genau.
 \end{beispiel}
 
 

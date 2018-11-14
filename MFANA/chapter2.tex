@@ -1,0 +1,135 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Das Cauchyproblem}
+Sei $X$ ein Banachraum. In diesem Kapitel betrachten wir das Cauchyproblem
+\begin{align}\label{CauchyProblem}\tag{CP}
+\dot{u}+Au\ni f\text{ auf }[0,T] \qquad\Big(:\Longleftrightarrow u'(t)+A u(t)\ni f(t)\text{ für (fast) alle }t\in[0,T]\Big)
+\end{align}
+evtl. ergänzt durch eine Anfangsbedingung
+\begin{align*}
+u(0)=u_0,
+\end{align*}
+wobei $u_0\in X$, $f\in L^1(0,T;X)$ und ein Operator $A\subseteq X\times X$ gegeben sind. Die Unbekannte ist eine Funktion $u:[0,T]\to X$. Mit $\dot{u}$ bezeichnen wir die Ableitung von $u$.
+
+\section{Vektorwertige Integration und Bochner-Lebesgueräume}
+Sei $(\Omega,\mathcal{A},\mu)$ ein Maßraum und $X$ ein Banachraum. Eine Funktion $f:\Omega\to X$ heißt \textbf{Treppenfunktion}
+\begin{align*}
+:\Longleftrightarrow\exists A_1,\ldots,A_n\in\mathcal{A}\text{ messbar },\exists x_1,\ldots,x_n\in X:f(\omega)=\sum\limits_{i=1}^n\indi_{A_i}(\omega)\cdot x_i
+\end{align*}
+wobei
+\begin{align*}
+\indi_A:\Omega\to\lbrace0,1\rbrace,\qquad\omega\mapsto\left\lbrace\begin{array}{cl}
+1, & \falls \omega\in A\\
+0, & \sonst
+\end{array}\right.\qquad\forall A\in\mathcal{A}
+\end{align*}
+die \textbf{Indikatorfunktion} ist.\\
+Eine Funktion $f:\Omega\to X$ heißt \textbf{messbar}
+\begin{align*}
+:\Longleftrightarrow\exists(f_n)_{n\in\N}\text{ mit $f_n:\Omega\to X$ Treppenfunktion }:f_n\stackrel{n\to\infty}{\longrightarrow} f\text{ punktweise fast überall}
+\end{align*}
+
+\begin{bemerkung}
+Diese Definition ist äquivalent zu der Definition aus der Maßtheorie.
+\end{bemerkung}
+
+\textbf{Beobachtung:} Wenn $f:\Omega\to X$ messbar ist und $g:X\to Y$ (wobei $Y$ ein weiterer Banachraum) stetig ist, dann ist $g\circ f:\Omega\to Y$ messbar, denn:
+
+\begin{proof}
+Ist $f=\sum\limits_{i=1}^n\indi_A\cdot x_i$ eine Treppenfunktion, dann ist (O.B.d.A. sind die $A_i$ paarweise disjunkt, $\bigcup\limits_i A_i=\Omega$)
+\begin{align*}
+g\circ f\equiv\sum\limits_{i=1}^n\indi_{A_i}\cdot g(x_i)
+\end{align*}
+eine Treppenfunktion. Ist $f$ messbar, dann $f_n\longrightarrow f$ punktweise für Treppenfunktionen $f_n$, und damit ($g$ stetig!) $g\circ f_n\to g\circ f$ punktweise.
+\end{proof}
+
+Insbesondere ist für eine messbare Funktion $f:\Omega\to X$ die Funktion\\ $\Vert f\Vert=\Vert\cdot\Vert\circ f:\Omega\to\R$ messbar.
+
+\begin{theorem}[Pettis]\label{theoremPettis}\enter
+Eine Funktion $f:\Omega\to X$ ist messbar $\gdw$ das Bild $f(\Omega)$ separabel ist und sie \textbf{schwach messbar ist}, d. h.
+\begin{align*}
+:\Longleftrightarrow\forall x'\in X':x'\circ f:\Omega\to\C\text{ ist messbar}
+\end{align*}
+\end{theorem}
+\begin{proof}
+\underline{Zeige ``$\implies$'':}\\
+Sei $f$ messbar. Dann ist nach der obigen Beobachtung $x'\circ f$ für alle $x'\in X'$ messbar.\\
+Außerdem gibt es eine Folge von Treppenfunktionen mit $f_n\stackrel{n\to\infty}{\longrightarrow} f$ punktweise. Damit ist
+\begin{align*}
+f(\Omega)\subseteq\overline{\bigcup\limits_{n\in\N}\underbrace{ f_n(\Omega)}_{\text{endlich}}}
+\end{align*}
+separabel und Teilmengen von separablen Mengen sind selbst separabel.\\
+
+\underline{Zeige ``$\Longleftarrow$'':} Übung.
+\end{proof}
+
+Eine Funktion $f:\Omega\to X$ heißt \textbf{integrierbar}
+\begin{align*}
+:\Longleftrightarrow f\text{ messbar und }\int\limits_\Omega\Vert f\Vert\d\mu<+\infty
+\end{align*}
+Eine Treppenfunktion $f(\omega)=\sum\limits_{i=1}^n\indi_{A_i}(\omega)\cdot x_i$ ist integrierbar
+\begin{align*}
+\Longleftrightarrow\forall i\in\N: \mu(A_i)<+\infty\vee x_i=0
+\end{align*}
+Für eine integierbare Treppenfunktion $f(\omega)=\sum\limits_{i=1}^n\indi_{A_i}(\omega)\cdot x_i$ definieren wir das Integral
+\begin{align*}
+\int\limits_\Omega f:=\int\limits_\Omega f\d\mu:=\sum\limits_{i=1}^n\mu(A_i)\cdot x_i\in X
+\end{align*}
+(Diese Definition ist unabhängig von der Darstellung von $f$!)\\
+Ist $f:\Omega\to X$ eine allgemeine integrierbare Funktion, dann existiert eine Folge von Treppenfunktionen $(f_n)_{n\in\N}$ mit
+\begin{enumerate}
+\item $f_n\stackrel{n\to\infty}{\longrightarrow} f$ punktweise
+\item $\begin{aligned}
+\Vert f_n\Vert\leq\Vert f\Vert\qquad\forall n\in\N
+\end{aligned}$
+\end{enumerate}
+Wir definieren dann das Integral 
+\begin{align*}
+\int\limits_\Omega f:=\int\limits_\Omega f\d\mu:=\limn \int\limits_\Omega f_n\d\mu\in X
+\end{align*}
+(Grenzwert existiert und diese Definition ist unabhängig von der Wahl der Folge $(f_n)_{n\in\N}$!)
+
+\begin{align*}
+\left\Vert\int\limits_\Omega f_n-\int\limits_\Omega f_m\right\Vert\leq\int\limits_\Omega\big\Vert f_n-f_m\big\Vert\stackrel{n\to\infty}{\longrightarrow}0\text{ nach Satz von Lebesgue)}
+\end{align*}
+Es gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item Linearität des Integrals: Für alle $\alpha\in\K,f,g$ integrierbar gilt:
+\begin{align*}
+\int\limits_\Omega(\alpha\cdot f+g)=\alpha\cdot\int\limits_\Omega f+\int\limits_\Omega g
+\end{align*}
+\item Dreiecksungleichung: Für $f$ integrierbar gilt:
+\begin{align*}
+\left\Vert\int\limits_\Omega f\right\Vert\leq\int\limits_\Omega\Vert f\Vert
+\end{align*}
+\end{enumerate}
+
+\subsection*{Bochner-Lebesgueräume}
+Sei $p\in[1,\infty]$. Setze
+\begin{align*}
+\L^p(\Omega,X)&:=\left\lbrace f:\Omega\to X\text{ messbar }\left|~\int\limits_\Omega\Vert f\Vert^p<+\infty\right.\right\rbrace\qquad\forall p<\infty\\
+\L^\infty(\Omega,X)&:=\Big\lbrace f:\Omega\to X\text{ messbar }\Big|~\exists   c\geq0:\Vert f\Vert\leq c\text{ $\mu$-fast überall}\Big\rbrace
+\end{align*}
+Dann ist $\L^p(\Omega,X)$ ein $\K$-Vektorraum und 
+\begin{align*}
+\Vert f\Vert_p&:=\left(\int\limits_\Omega\Vert f\Vert^p\right)^{\frac{1}{p}}\qquad\forall p<\infty\\
+\Vert f\Vert_\infty&:=\inf\limits\big\lbrace c\geq 0~\big|~\Vert f\Vert\leq c\text{ $\mu$-fast überall}\big\rbrace
+\end{align*}
+ist eine Halbnorm auf diesem Raum (denn $\Vert f\Vert_p=0\not\Rightarrow f=0$). Sei
+\begin{align*}
+\mathcal{N}_p&:=\big\lbrace f\in \L^p(\Omega,A)~\big|~\Vert f\Vert_p=0\big\rbrace
+\end{align*}
+(linearer Unterraum) und setze
+\begin{align*}
+L^P(\Omega,X):=\L^p(\Omega,X)/\mathcal{N}_p
+=\big\lbrace \underbrace{f+\mathcal{N}_p}_{=[f]}~\big|~f\in\L^p(\Omega,X)\big\rbrace
+\end{align*}
+Dann ist
+\begin{align*}
+\big\Vert[f]\big\Vert_P:=\Vert f\Vert_p
+\end{align*}
+wohldefiniert (unabhängig von Repräsentanten $f$) und eine Norm. $\big(L^p(\Omega,X),\Vert\cdot\Vert_p\big)$ ist ein  Banachraum!
+
