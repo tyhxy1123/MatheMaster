@@ -83,8 +83,8 @@ Außerdem gilt
 \end{align}
 denn: 
 \begin{align*}
-X_n-p<0&\implies X_{\sigma_{k+1}}<p&\implies X_N-p\leq X_{\sigma_{k+1}}-p\\
-X_n-p\geq0&\implies \sigma_{k+1}=N&\implies X_N-p- X_{\sigma_{k+1}}=0
+X_N-p<0&\implies X_{\sigma_{k+1}}<p&\implies X_N-p\leq X_{\sigma_{k+1}}-p\\
+X_N-p\geq0&\implies \sigma_{k+1}=N&\implies X_N-p- X_{\sigma_{k+1}}=0
 \end{align*}
 Addiere von \eqref{eqProof4.1.1Stern} auf \eqref{eqProof4.1.1ZweiStern}
 \begin{align*}
@@ -93,11 +93,11 @@ Addiere von \eqref{eqProof4.1.1Stern} auf \eqref{eqProof4.1.1ZweiStern}
 Bilden von Erwartungswert und Umordnen der Summe liefert
 \begin{align*}
 (q-p)\cdot\E\big[U_N[p,q]\big]-\E\big[(X_N-p)^-\big]
-&\leq-p+\sum\limits_{j=1}^{N-1}\Big(\underbrace{\E\big[X_{\sigma_{j+1}}\big]-\E\big[X_{\tau_j}\big]}_{\leq 0\text{, wegen Theorem \ref{theorem3.4}}}\Big)+\E[X_n]\\
-&\leq\E\big[(X_n-p)\big]\\
+&\leq-p+\sum\limits_{j=1}^{N-1}\Big(\underbrace{\E\big[X_{\sigma_{j+1}}\big]-\E\big[X_{\tau_j}\big]}_{\leq 0\text{, wegen Theorem \ref{theorem3.4}}}\Big)+\E[X_N]\\
+&\leq\E\big[(X_N-p)\big]\\
 \implies
-(q-p)\cdot\E\big[U_N[p,q]\big]&\leq\E\big[(X_n-p)+(X_n-p)^-\big]\\
-&=\E\big[(X_n-p)^+\big]
+(q-p)\cdot\E\big[U_N[p,q]\big]&\leq\E\big[(X_N-p)+(X_N-p)^-\big]\\
+&=\E\big[(X_N-p)^+\big]
 \end{align*}
 \end{proof}
 
@@ -121,10 +121,10 @@ denn:
 \end{align*}
 Mit Lemma \ref{lemma4.1DoobsUpcrossingLemma} gilt:
 \begin{align*}
-\E\big[U[p,q]\big]&\stackeq{\text{Mono}}\limsup\limits_{N\to\infty}\E\big[U_n[p,q]\big]\\
+\E\big[U[p,q]\big]&\stackeq{\text{Mono}}\limsup\limits_{N\to\infty}\E\big[U_N[p,q]\big]\\
 &\stackrel{\ref{lemma4.1DoobsUpcrossingLemma}}{\leq}
 \limsup\limits_{N\to\infty}\frac{\E\big[(X_N-p)^+\big]}{q-p}\\
-&\leq\limsup\limits_{N\to\infty}\frac{\E[X_n^+]+p}{q-p}\\
+&\leq\limsup\limits_{N\to\infty}\frac{\E[X_N^+]+p}{q-p}\\
 &\stackrel{\text{Vor}}{<}
 \infty\qquad\forall p,q\in\Q\mit p<q\\
 \implies
@@ -143,7 +143,7 @@ Mit $|X|=2\cdot X^+-X$ gilt
 &<\infty\\
 \implies\E\big[|X_\infty|\big]&<\infty
 \end{align*}
-Insbesondere gilt $X_\infty(-\infty,\infty)$.
+Insbesondere gilt $X_\infty\in(-\infty,\infty)$.
 \end{proof}
 
 \begin{bemerkung}
@@ -165,14 +165,22 @@ aber
 \begin{beisp}[Wählermodell]\enter
 Wähle $L,d\in\N$. Betrachte $L^d$ Individuen auf dem regelmäßigen Gitter\\ $\Lambda:=\lbrace 0,1,\ldots,L-1\rbrace^d$
 %TODO Hier Skizze einfügen für d=2 und L=4
-Jedes Individuum hat (Schwarz-Weiß-)Meinung in $\lbrace0,1\rbrace$, also dafür oder dagegen. Zustand des Kollektivs: $x\in\lbrace0,1\rbrace^{\Lambda}=\big\lbrace f:\Lambda\to\lbrace 0,1\rbrace\big\rbrace=\lbrace0,1\rbrace^{L^d}$\\
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{./pics/Sketch1.png}
+		\caption{Individuen-Gitter für $d=2$ und $L=4$}
+		\label{AbbGitter}
+	\end{center}
+\end{figure}
+
+Jedes Individuum hat Meinung in $\lbrace0,1\rbrace$, also dafür oder dagegen. Zustand des Kollektivs: $x\in\lbrace0,1\rbrace^{\Lambda}$\\
 
 \ul{Meinungsbildungsprozess:} Zu jedem Zeitpunkt $n\in\N_0$ übernimmt ein (zufällig ausgewähltes) Individuum $I_n$ die Meinung eines (zufällig ausgewählten) Nachbarn $I_n+N_n$. (Konvention: Es gibt keinen Rand, es wird modulo $L$ gerechnet.)\\
 
 \ul{Mathematische Formulierung}: $(I_n,N_n)_{n\in\N_0}$ iid mit 
 \begin{itemize}
-\item $I_n$ gleichverteilt auf dem Gitter $\Lambda$ und $N$
-\item $N_n$ gleichverteilt auf $(\pm e_i)_{i\in\lbrace1,\ldots,d\rbrace}$
+\item $I_n$ $\ldots$ gleichverteilt auf dem Gitter $\Lambda$
+\item $N_n$ $\ldots$ gleichverteilt auf $(\pm e_i)_{i\in\lbrace1,\ldots,d\rbrace}$
 \end{itemize}
 \ul{Meinungsprozess:} $X_n$ ist eine Folge von Zufallsvariablen mit Werten in Zustandsraum $\lbrace0,1\rbrace^\Lambda$ mit
 \begin{align*}
@@ -181,7 +189,11 @@ X_{n-1}(i), &\falls i\neq I_n\\
 X_{n-1}(i+N_n),&\falls i=I_n
 \end{array}\right.\qquad\forall i\in\Lambda
 \end{align*}
-\ul{Fragen:} Langzeitverhalten? Tritt Konsens ein?
+\ul{Fragen:}
+\begin{itemize}
+	\item Langzeitverhalten?
+	\item Tritt Konsens ein?
+\end{itemize}
 \\
 Definiere das Martingal $M_n:=$ ``Anzahl der Individuen mit Meinung 1``, also
 \begin{align*}
@@ -202,31 +214,33 @@ M_n-M_{n-1}
 &=0
 \end{align*}
 \end{itemize}
-Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß Theorem \ref{theorem4.2Martingalkonvergenz} $M_\infty\mit\limn M_n=M_\infty$ (und in $L_1\implies\E[M_\infty]=\E[M_0]$).\\
+Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß Theorem \ref{theorem4.2Martingalkonvergenz} $M_\infty\mit\limn M_n=M_\infty$ (Achtung extra Annahme: und in $L_1\implies\E[M_\infty]=\E[M_0]$).\\
 
-\ul{Weitere Behauptung:} $M_\infty\in\lbrace 0,L^d\rbrace$, d.h. im Grenzwert gibt es nur extreme Zustände (konsens).\\
+\ul{Weitere Behauptung:} $M_\infty\in\lbrace 0,L^d\rbrace$, d.h. im Grenzwert gibt es nur extreme Zustände (Konsens).\\
 
 \ul{Vorüberlegung:} Sei $x\in\lbrace0,1\rbrace^{\Lambda}$ \ul{kein} extremer Zustand, d. h. es existieren Nachbarn $i,j$ mit $X_n(i)\neq X_n(j)$.
 \begin{align}
 \P(X_n\neq X_{n-1}~|~X_{n-1}=x)\nonumber
-&\geq \P\big(I_n=i\wedge I_n+N_n=j~(\text{mod } L)\big)\\
-&=\P\big(\underbrace{I_n=i\wedge N_n=i-j}_{\unab}~(\text{mod  }L)\big)\nonumber\\
+&\geq \P\big(I_n=i~\&~ I_n+N_n=j~(\text{mod } L)\big)\\
+&=\P\big(\underbrace{I_n=i~\&~ N_n=i-j}_{\unab}~(\text{mod  }L)\big)\nonumber\\
+&=\P\big(I_n=i\big)\cdot\P\big(N_n=i-j~(\text{mod  }L)\big)\nonumber\\
 &=L^{-d}\cdot\frac{1}{2\cdot d}\label{eqExampleWaehlermodellStern}\tag{$\ast$}
 \end{align}
 Der Kompensator $\langle M\rangle_n$ erfüllt
 \begin{align*}
 (M_n-M_0)^2-\langle M\rangle_n\text{ ist Martingal}\\
 \implies
-\E\big[\langle M\rangle_n\big]=\E\left(M_n-M_0)^2\right]
+\E\big[\langle M\rangle_n\big]=\E\left[(M_n-M_0)^2\right]
 \end{align*}
 Andererseits gilt:
 \begin{align*}
 \langle M\rangle_n 
-&=\sum\limits_{k=1}^n\E\left(\left.\underbrace{(M_m-M_{k-1})}_{\in\lbrace0,1\rbrace}^2~\right|~\F_{k-1}\right]\\
-&=\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}~\big|~\F_{k-1}\big)\\
+&=\sum\limits_{k=1}^n\E\left[\left.\underbrace{(M_k-M_{k-1})^2}_{\in\lbrace0,1\rbrace}~\right|~\F_{k-1}\right]\\
+&=\sum\limits_{k=1}^n0 \cdot \P\big(X_k= X_{k-1}~\big|~\F_{k-1}\big)+ 1 \cdot \P\big(X_k\neq X_{k-1}~\big|~\F_{k-1}\big)\\
 \implies
 \E\big[\langle M\rangle_n\big]
-&=\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}\big)\\
+&\stackeq{\text{tower}}\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}\big)\\
+&=\sum\limits_{k=1}^n\underbrace{\P\big(X_k\neq X_{k-1}~|~ M_{k-1} \in \{0,L^d\}\big)}_{\geq 0} + \P\big(\underbrace{X_k\neq X_{k-1}~|~ M_{k-1} \not\in \{0,L^d\}}_{\unab}\big)\\
 &\stackrel{\eqref{eqExampleWaehlermodellStern}}{\geq}
 \sum\limits_{k=1}^n L^{-d}\cdot\frac{1}{2\cdot d}\cdot\P\big(\underbrace{M_{k-1}\not\in\lbrace0,L^d\rbrace}_{=:A_{k-1}\text{ (kein extremer Zustand)}}\Big)
 \end{align*}
@@ -234,7 +248,7 @@ Außerdem:
 
 \begin{align*}
 L^{2\cdot d}
-&\leq \E\left[(M_n-M_0)^2\right]\\
+&\geq \E\left[(M_n-M_0)^2\right]\\
 &=\E\big[\langle M\rangle_n\big]\\
 &\geq L^{-d}\cdot\frac{1}{2\cdot d}\cdot\sum\limits_{k=1}^n\P(A_{k-1})\\
 \implies
@@ -244,7 +258,7 @@ L^{2\cdot d}
 Satz von Borel-Cantelli: Nur endlich viele Ereignisse $(A_k)_{k\in\N}$ treten ein, d.h.
 \begin{align*}
 &\exists N_0:\Omega\to\N:\forall n\geq N_0(\omega):\omega\not\in A_n\\
-&\implies M_n(\omega)\in\lbrace0,\Lambda^d\rbrace\qquad\forall N_0(\omega)\\
+&\implies M_n(\omega)\in\lbrace0,L^d\rbrace\qquad\forall N_0(\omega)\\
 &\implies M_\infty:=\limn M_n\text{ nimmt nur extreme Werte $\lbrace0,\Lambda^d\rbrace$ an!}
 \end{align*}
 Im Grenzwert tritt perfekter Konsens auf!
