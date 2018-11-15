@@ -1841,9 +1841,11 @@ X_n\stackrel{\L}{\longrightarrow} X\Longleftrightarrow Y_n\stackrel{\L}{\longrig
 \begin{proof}
 Sei $f\in C^b(\S)$ gleichmäßig stetig, d. h.
 \begin{align*}
-\forall\varepsilon>0:\exists\delta_\varepsilon>0:\big|f(x)-f(y)\big|\leq\varepsilon\implies\forall x,y\in\S:d(x,y)\leq\delta
+    \forall\varepsilon>0\colon
+        \exists\delta_\varepsilon>0\colon
+        \forall x,y\in\S:\quad
+        d(x,y) \leq \delta_\varepsilon \implies \left|f(x)-f(y)\right| \leq \varepsilon
 \end{align*}
-%TODO check this definition
 Damit folgt
 \begin{align*}
 &\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
