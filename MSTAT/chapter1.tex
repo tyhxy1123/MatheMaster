@@ -1376,11 +1376,11 @@ Sei $G\in\G$. Dann gilt wegen Voraussetzung (ii):
 &\implies
 G_m:=\bigcup\limits_{i=1}^m A_i\uparrow G,~m\to\infty\\
 &\stackrel{P~\sigma\text{-stetig}}{\implies}
-\forall \varepsilon>0:\exists m_0\in\N:P(G)-P(G_m)\leq\varepsilon\\
+\forall \varepsilon>0:\exists m_0\in\N:P(G)-P(G_{m_0})\leq\varepsilon\\
 &\implies
-P(G)-\varepsilon\leq P(G_m)
+P(G)-\varepsilon\leq P(G_{m_0})
 \stackeq{\text{s. o.}}
-\limn P_n(\underbrace{G_m}_{\subseteq G})\leq\liminf\limits_{n\to\infty} P_n(G)\qquad\forall\varepsilon>0\\
+\limn P_n(\underbrace{G_{m_0}}_{\subseteq G})\leq\liminf\limits_{n\to\infty} P_n(G)\qquad\forall\varepsilon>0\\
 &\stackrel{\varepsilon\to0}{\implies}
 \liminf\limits_{n\to\infty} P_n(G)\geq P(G)\qquad\forall G\in\G
 \end{align*}
@@ -1402,11 +1402,12 @@ Ist $(\S,d)$ separabel, so gilt
 \end{korollar}
 
 \begin{proof}
-Gemäß Satz \ref{satz2.9} hat $\G$ abzählbare Basis. Dem dem Satz von Lindelöf:
+Gemäß Satz \ref{satz2.9} hat $\G$ abzählbare Basis. Nach dem Satz von Lindelöf:
 \begin{align}\label{eqSatzVonLindelöf}\tag{L}
 \text{Für jede offene Überdeckung einer beliebigen Teilmenge von $\S$ existiert}\\\nonumber\text{eine abzählbare Teilüberdeckung.}
 \end{align}
-Sei nun $G\in\G$ beliebig. Für alle $x\in G$ existiert ein $\varepsilon_x>0$ mit $B(x,\varepsilon_x)\subseteq G$ gemäß (i) findet man ein $A_x\in\U$ mit $x\in\stackrel{\circ}{A}_x\subseteq A_x\subseteq B(x,\varepsilon_x)\subseteq G$. Also folgt
+Sei nun $G\in\G$ beliebig. Für alle $x\in G$ existiert ein $\varepsilon_x>0$ mit $B(x,\varepsilon_x)\subseteq G$.
+Gemäß (i) findet man ein $A_x\in\U$ mit $x\in\stackrel{\circ}{A}_x\subseteq A_x\subseteq B(x,\varepsilon_x)\subseteq G$. Also folgt
 \begin{align*}
 G=\bigcup\limits_{x\in G}\lbrace x\rbrace\subseteq\bigcup\limits_{x\in G}\stackrel{\circ}{A}_x\subseteq G
 \end{align*}
@@ -1465,14 +1466,14 @@ ist höchstens abzählbar (vgl. \eqref{eqProof1.4.2DoppelSternchen}
 %keine Ahnung welches DoppelSternchen er hier meint mit der Referenz To Do
 im Beweis von Satz \ref{satz4.2}). Also folgt
 \begin{align*}
-\forall x\in\R:\forall\varepsilon>0:\exists A=(a,b]\in\U:x\in (a,b)=\stackrel{\circ}{A}\subseteq A=(a,b]\subseteq B(x,\varepsilon)=(a-\varepsilon,x+\varepsilon)
+\forall x\in\R:\forall\varepsilon>0:\exists A=(a,b]\in\U:x\in (a,b)=\stackrel{\circ}{A}\subseteq A=(a,b]\subseteq B(x,\varepsilon)=(x-\varepsilon,x+\varepsilon)
 \end{align*}
-denn: In $(x-\varepsilon,x+\varepsilon)$ muss ein $a\in C_F$ existieren, denn sonst wäre $(x-\varepsilon, x)\in D_F$. Analog findet man ein $b\in(x,x+\varepsilon)$. Somit erfüllt $\U$ die Voraussetzungen von Korollar \ref{korollar4.4}. Klar: $\S=\R$ ist separabel, da $\Q$ abzählbar und dicht in $\R$. Schließlich gilt:
+denn: In $(x-\varepsilon,x+\varepsilon)$ muss ein $a\in C_F$ existieren, denn sonst wäre $(x-\varepsilon, x)\subseteq D_F$. Analog findet man ein $b\in(x,x+\varepsilon)$. Somit erfüllt $\U$ die Voraussetzungen von Korollar \ref{korollar4.4}. Klar: $\S=\R$ ist separabel, da $\Q$ abzählbar und dicht in $\R$. Schließlich gilt:
 \begin{align*}
 P_n\big((a,b]\big)&=
 F_n(\underbrace{b}_{\in C_F})-F_n(\underbrace{a}_{\in C_F})\stackrel{n\to\infty}{\longrightarrow} F(b)-F(a)=P\big((a,b]\big)\qquad\forall a,b\in C_F\\
 &\stackrel{\ref{korollar4.4}}{\implies}
-P_n\longrightarrow P
+P_n\stackrelnew{w}{}{\longrightarrow} P
 \end{align*}
 \end{proof}
 
@@ -1490,10 +1491,10 @@ X_n\stackrel{\L}{\longrightarrow} X
 \underbrace{\P(X\leq x)}_{\hat{=}F(x)}
 \end{align}
 für alle $x$, die Stetigkeitsstellen der Verteilungsfunktion von $X$ sind.
-\item Es gibt Verallgemeinerung von \ref{korollar4.5} bzw \eqref{eqBemerkung4.6} auf $\S=\R$:\\
+\item Es gibt Verallgemeinerung von \ref{korollar4.5} bzw \eqref{eqBemerkung4.6} auf $\S=\R^k$:\\
 Seien 
 \begin{align*}
-X=\left(X^{(1)},\ldots, X^{(k)}\right),X_n=\left(X^{(1)},\ldots,X^{(k)}_n\right),\qquad(\Omega,\A)\to\left(\R^k,\B(\R^k)\right)
+    X=\left(X^{(1)},\ldots, X^{(k)}\right),X_n=\left(X^{(1)}_n,\ldots,X^{(k)}_n\right),\qquad(\Omega,\A)\to\left(\R^k,\B(\R^k)\right)
 \end{align*}
 Zufallsvariablen in $\R^k$. Dann gilt:
 \begin{align*}
@@ -1551,7 +1552,7 @@ X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)
 \begin{proof}
 Wende Satz \ref{satz4.2} an auf $P_n:=\P\circ X^{-1}_n,~P:=\P\circ X^{-1}$ (wegen Def $\stackrel{\L}{\longrightarrow}$). Beachte z. B.
 \begin{align*}
-P_n(f)&=\P\circ X^{-1}_n(F)
+P_n(F)&=\P\circ X^{-1}_n(F)
 \stackeq{\text{Def}}
 \P\left(X_n^{-1}(F)\right)
 =\P\big(\lbrace\omega\in\Omega:X_n(\omega)\in F\rbrace\big)
@@ -1800,7 +1801,7 @@ Dann gilt $X_n\stackrel{\P}{\longrightarrow} X$.
 Nach Voraussetzung existiert eine Konstante $x\in\S$ mit $\P(X=c)=1$. Wir verwenden das folgende Lemma:
 
 \begin{lem}[Lemma von Uryson]\enter\label{lemmaVonUryson}
-Zu $A,B\in\S(\S)$ mit $A\cap B=\emptyset$ existiert stetige 
+Zu $A,B\in\F(\S)$ mit $A\cap B=\emptyset$ existiert stetige 
 \begin{align*}
 f:\S\to[0,1]\qquad\mit\qquad f(x)=\left\lbrace\begin{array}{cl}
 0, &\falls x\in A\\
@@ -1899,7 +1900,7 @@ Ferner:
 \end{align*}
 Gemäß Satz \ref{satz4.14Cramer} reicht es zu zeigen, dass
 \begin{align}\label{eqProof4.15Plus}
-(X_n,c)\stackrel{\L}{\longrightarrow}(X,c)=\stackrelnew{\L}{\text{f.s.}}{=}(X,Y)\text{ in }(\S\times\S',d\times d')
+(X_n,c)\stackrel{\L}{\longrightarrow}(X,c)\stackrelnew{\L}{\text{f.s.}}{=}(X,Y)\text{ in }(\S\times\S',d\times d')
 \end{align}
 gilt. Dazu sei $f\in C^b(\S\times\S')$ beliebig und $f_c:\S\to\R,~f_c(x):=f(x,c)$. Damit folgt $f_c\in C^b(\S)$. Somit:
 \begin{align*}
@@ -1914,7 +1915,7 @@ gilt. Dazu sei $f\in C^b(\S\times\S')$ beliebig und $f_c:\S\to\R,~f_c(x):=f(x,c)
 \end{proof}
 
 \begin{bemerkungnr}\label{bemerkung4.16} %4.16
-Auf die Forderung, dass $Y$ f.s. konstant ist, kann \underline{nicht} verzichtet werden. Also idt die Schlussfolgerung
+Auf die Forderung, dass $Y$ f.s. konstant ist, kann \underline{nicht} verzichtet werden. Also ist die Schlussfolgerung
 \begin{align*}
 X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S\wedge Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S'
 \implies(X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text{ in }\S\times\S'
@@ -2002,7 +2003,7 @@ Sei $(\S,d)$ separabel. Dann sind folgende Aussagen äquivalent:
 \P_n\stackrelnew{\omega}{}{\longrightarrow} \P 
 \end{aligned}$
 \item $\begin{aligned}
-\P_n(A_1\times A_2)\stackrel{n\to\infty}{\longrightarrow} \P(A_1\times A_2)\qquad\forall A_i\in\B(\S_i)~\P_1,\P_2\text{-randlos}
+\P_n(A_1\times A_2)\stackrel{n\to\infty}{\longrightarrow} \P(A_1\times A_2)\qquad\forall A_i\in\B(\S_i)~\P_i\text{-randlos mit } i=1,2
 \end{aligned}$
 \end{enumerate}
 \end{theorem}
