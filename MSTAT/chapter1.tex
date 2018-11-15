@@ -2154,12 +2154,15 @@ Seien $X_i,i\in\N$ i.i.d. über $(\Omega,\A,\P)$, quadrat-integrierbar, $\mu:=\E
 \end{align*}
 %fast sichere Konvergenz => stochastische Konvergenz => Verteilungskonvergenz?
 Folglich gilt
-\begin{align*}
+\begin{equation}
+\label{eqAnwendungInDerStatistik}
+\begin{aligned}
 \sqrt{n}\cdot\big(\overline{X}_n-\mu\big)
 &=\sqrt{n}\cdot\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\mu)\\
 &=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n(X_i-\mu)\\
 &=\sigma\cdot\underbrace{\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\left(\frac{X_i-\mu)}{\sigma}\right)}_{\stackrel{\L}{\longrightarrow}\mathcal{N}(0,1)}\stackrel{\L}{\longrightarrow}\sigma\cdot\mathcal{N}(0,1)\stackeq{\L}\mathcal{N}(0,\sigma^2)
-\end{align*}
+\end{aligned}
+\end{equation}
 wobei die linke Konvergenz aus dem zentralen Grenzwertsatz (TGWS / CLT) und die rechte Konvergenz auf dem CMT folgt (da $x\mapsto\sigma\cdot x$ stetig). Also folgt:
 \begin{align}\label{eqAnwendungInDerStatistikStern}\tag{$\ast$}
 \sqrt{n}\cdot\big(\overline{X}_n-\mu\big)\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2)
@@ -2187,7 +2190,7 @@ T_n&:=\sqrt{n}\cdot\left(S_n^2-\sigma^2\right)
 \underbrace{\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\Big((X_i-\mu)^2-\sigma^2\Big)}_{=:V_n}\underbrace{-\sqrt{n}\cdot\big(\overline{X}-\mu\big)^2}_{=:R_n}
 =V_n+R_n
 \end{align*}
-Mit CLT folgt (analog zur Herleitung von \eqref{eqAnwendungInDerStatistik}
+Mit CLT folgt (analog zur Herleitung von \eqref{eqAnwendungInDerStatistik})
 \begin{align*}
 V_n\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2),\qquad\tau^2:=\Var\Big((X_1-\mu)^2\Big)
 \end{align*}
