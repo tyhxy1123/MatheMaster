@@ -75,11 +75,11 @@ Setze der Kürze halber $k(\omega):=U_N[p,q](\omega)$. Klarerweise ist $k\leq N$
 d. h. $\tau_0<\overbrace{\sigma_1<\tau_1}^{\text{1. Upcrossing}}<\overbrace{\sigma_2<\ldots}^{\text{2. Upcrossing}}\ldots<\tau_k$ und $\tau_{k+1}=\sigma_{k+1}=\tau_{k+2}=\ldots=\tau_N=N$. Es gilt:
 \begin{align}\label{eqProof4.1.1Stern}\tag{$\ast$}
 (q-p)\cdot U_N[p,q] &\leq
-\overbrace{\underbrace{(X_{\tau_1}-p)}_{>q-p}+\underbrace{(X_{\tau_2}-X_{\sigma_2})}_{>q-p}+\ldots+\underbrace{(X_{\tau_k}-X_{\tau_k}-X_{\sigma_k})}_{>q-p}}^{U_N[p,q]\text{ Summanden}}
+\overbrace{\underbrace{(X_{\tau_1}-p)}_{>q-p}+\underbrace{(X_{\tau_2}-X_{\sigma_2})}_{>q-p}+\ldots+\underbrace{(X_{\tau_k}-X_{\sigma_k})}_{>q-p}}^{U_N[p,q]\text{ Summanden}}
 \end{align}
 Außerdem gilt
 \begin{align}\label{eqProof4.1.1ZweiStern}\tag{$\ast\ast$}
-\min\lbrace X_n-p,0\rbrace&\leq X_n-X_{\sigma_{k+1}},
+\min\lbrace X_N-p,0\rbrace&\leq X_N-X_{\sigma_{k+1}},
 \end{align}
 denn: 
 \begin{align*}
@@ -88,12 +88,12 @@ X_N-p\geq0&\implies \sigma_{k+1}=N&\implies X_N-p- X_{\sigma_{k+1}}=0
 \end{align*}
 Addiere von \eqref{eqProof4.1.1Stern} auf \eqref{eqProof4.1.1ZweiStern}
 \begin{align*}
-(q-p)\cdot U_N[p,q]+\min\lbrace X_N-p,0\rbrace\leq (X_{\tau_1}-p)
+	(q-p)\cdot U_N[p,q]+\underbrace{\min\lbrace X_N-p,0\rbrace}_{\stackeq{\text{def}}-(X_N-p)^-}\leq (X_{\tau_1}-p) + \sum_{i=2}^N (X_{\tau_i} - X_{\sigma_i})
 \end{align*}
 Bilden von Erwartungswert und Umordnen der Summe liefert
 \begin{align*}
 (q-p)\cdot\E\big[U_N[p,q]\big]-\E\big[(X_N-p)^-\big]
-&\leq-p+\sum\limits_{j=1}^{N-1}\Big(\underbrace{\E\big[X_{\sigma_{j+1}}\big]-\E\big[X_{\tau_j}\big]}_{\leq 0\text{, wegen Theorem \ref{theorem3.4}}}\Big)+\E[X_N]\\
+&\leq\E[X_N]-\left(p+\sum\limits_{j=1}^{N-1}\Big(\underbrace{\E\big[X_{\sigma_{j+1}}\big]-\E\big[X_{\tau_j}\big]}_{\geq 0\text{, wegen Theorem \ref{theorem3.4}}}\Big)\right)\\
 &\leq\E\big[(X_N-p)\big]\\
 \implies
 (q-p)\cdot\E\big[U_N[p,q]\big]&\leq\E\big[(X_N-p)+(X_N-p)^-\big]\\
