@@ -2150,7 +2150,7 @@ Die Aussage in \ref{satz4.21} lässt sich problemlos auf $\S_1\times\ldots\times
 \section*{Anwendung in der Statistik}
 Seien $X_i,i\in\N$ i.i.d. über $(\Omega,\A,\P)$, quadrat-integrierbar, $\mu:=\E[X_i]\in\R$,\\ $\sigma^2:=\Var(X_i)\in(0,\infty)$.\\ Das arithmetische Mittel konvergiert fast sicher gegen den Erwartungswert gemäß dem starken Gesetz der großen Zahlen (SGGZ / SLLN, Kolmogorov), also
 \begin{align*}
-\overline{X}=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i\stackrel{}{\longrightarrow}\mu~\P\text{-fast sicher}
+\overline{X}_n=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i\stackrel{}{\longrightarrow}\mu~\P\text{-fast sicher}
 \end{align*}
 %fast sichere Konvergenz => stochastische Konvergenz => Verteilungskonvergenz?
 Folglich gilt
@@ -2199,7 +2199,7 @@ falls $\E\big[|X-1|\big]^4<\infty$.
 &\stackrel{\ref{satz4.14Cramer}}{\implies}
 T_n\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2)
 \end{align*}
-\textbf{Zusammenfassing:}
+\textbf{Zusammenfassung:}
 \begin{align*}
 \big(\overline{X}_n,S_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\sigma^2\big)\text{ in }\R^2\text{ fast sicher}
 \end{align*}
