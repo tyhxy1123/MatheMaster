@@ -29,7 +29,13 @@
 wobei $U[p,q]$ die \textbf{upcrossings} (aufsteigende Überquerungen) des Streifens $[p,q]\times\N$ bezeichnet.
 \end{itemize}
 
-%TODO (für Robert oder Henrik): Hier Skizze einfügen
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{./pics/Sketch2.png}
+		\caption{Beispiel für Upcrossings}
+		\label{AbbUpcrossing}
+	\end{center}
+\end{figure}
 
 \begin{defi}
 Sei $(X_n)_{n\in\N}$ ein adaptierter stochastischer Prozess und $p,q\in\R$ , $p<q$ , $N\in\N$. Setze % Die einzelnen $..$ Umgebungen sind hier wichtig, sonst passiert ein Zeilenumbruch inmitten der Matheumgebung
@@ -164,7 +170,6 @@ aber
 
 \begin{beisp}[Wählermodell]\enter
 Wähle $L,d\in\N$. Betrachte $L^d$ Individuen auf dem regelmäßigen Gitter\\ $\Lambda:=\lbrace 0,1,\ldots,L-1\rbrace^d$
-%TODO Hier Skizze einfügen für d=2 und L=4
 \begin{figure}[h!]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{./pics/Sketch1.png}
@@ -194,7 +199,6 @@ X_{n-1}(i+N_n),&\falls i=I_n
 	\item Langzeitverhalten?
 	\item Tritt Konsens ein?
 \end{itemize}
-\\
 Definiere das Martingal $M_n:=$ ``Anzahl der Individuen mit Meinung 1``, also
 \begin{align*}
 M_n:=\sum\limits_{i\in\Lambda} X_n(i),\qquad \F_n:=\sigma\Big((I_k,N_k))_{k\in\lbrace1,\ldots,n\rbrace}\Big)
