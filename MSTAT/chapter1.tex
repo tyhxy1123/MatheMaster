@@ -1815,7 +1815,7 @@ f(x)&=\left\lbrace\begin{array}{cl}
 0, &\falls x=c\\
 1, &\falls d(x,c)\geq\varepsilon
 \end{array}\right.\\
-\implies \P\big(d(X_n,X)>\varepsilon\big)
+\implies 0 \leq \P\big(d(X_n,X)>\varepsilon\big)
 &\stackeq{\text{Vor}}
 \P\big(d(X_n,c)>\varepsilon\big)\\
 &=\E\Big[\underbrace{\indi_{\lbrace d(X_n,c)\geq\varepsilon\rbrace}}_{\leq f(X_n)}\Big]\\
@@ -1974,15 +1974,15 @@ Es gilt:
 \implies X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S\wedge
 Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S'
 \end{align}
-denn:
+denn aus dem CMT folgt
 \begin{align*}
-X_n=\pi_1(X_n,Y_n)\stackrelnew{n\to\infty}{\L}{\longrightarrow}\pi_1(X,Y)=X
+X_n=\pi_1(X_n,Y_n)\stackrelnew{n\to\infty}{\L}{\longrightarrow}\pi_1(X,Y)=X,
 \end{align*}
-wobei die \textbf{Projektion}
+da die \textbf{Projektion}
 \begin{align*}
 \pi_1:\S\times\S'\to\S,~\pi_1(x,y):=x\qquad\forall (x,y)\in\S\times\S'
 \end{align*}
-stetig ist (wegen CMT). Analog: $Y_n\stackrel{\L}{\longrightarrow} Y$.\\
+stetig ist. Analog: $Y_n\stackrel{\L}{\longrightarrow} Y$.\\
 Die Umkehrung in \eqref{eqUnder4.18} gilt im Allgemeinen \underline{nicht}! Vergleiche \ref{bemerkung4.16}. Sie gilt tatsächlich, falls $Y$ fast sicher konstant ist, vergleiche Satz \ref{satz4.15CramerSlutsky}.\\
 Ziel: Finde eine andere zusätzliche Forderungen neben der linken Seite von \eqref{eqUnder4.18}, die die umgekehrte Implikation gestattet. Dazu:\\
 Seien $(\S_1,d_1)$ und $(\S_2,d_2)$ zwei separable metrische Räume und $\S:=S_1\times\S_2$ mit $d:=d_1\times d_2$ der zugehörige Produktraum. (Es folgt, dass $(\S,d)$ separabel ist.) Eine geringfügige Modifikation  des Beweises von \ref{satz3.3} zeigt:
