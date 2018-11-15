@@ -2109,11 +2109,139 @@ Analog zeigt man: $\P_n^{(2)}\stackrelnew{w}{}{\longrightarrow}\P^{(2)}$.\\
 
 \underline{Zeige (2) $\implies$ (1):}
 \begin{align*}
-&\P_n(A_1\times A_2)=\underbrace{\P_n^{(1)}(A_1)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(1)}(A_1)}\cdot\underbrace{\P_n^{(2)}(A_2)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(2)}(A_2)}\qquad\forall A_i~\P_i\text{-randlos },i=1,2\\
+&\P_n(A_1\times A_2)=\underbrace{\P_n^{(1)}(A_1)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(1)}(A_1)}\cdot\underbrace{\P_n^{(2)}(A_2)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(2)}(A_2)}\qquad\forall A_i~\P_i\text{-randlos},i=1,2\\
 &\implies
 \P^{(1)}(A_1)\cdot\P^{(2)}(A_2)=\P(A_1\times A_2)\qquad\forall A_i~\P_i\text{-randlos},i\in\lbrace1,2\rbrace\\
 &\stackrel{\ref{theorem4.19}}{\implies}\P_n\stackrel{n\to\infty}{\longrightarrow}\P
 \end{align*}
-
-
 \end{proof}
+
+Mit Theorem \ref{thoerem4.20} erhalten wir neben Satz \ref{satz4.15CramerSlutsky} ein weiteres Resultat über die\\ ``\ul{koordinatenweise Verteilungskonvergenz}'' (die ja im Allgemeinen nicht gilt).
+
+\begin{satz}\label{satz4.21}
+Sei $\S=\S_1\times\S_2$ separabel, $X,X_n,n\in\N$ Zufallsvariablen in $\S_1$, $Y,Y_n,n\in\N$ Zufallsvariablen in $\S_2$ über $(\Omega,\A,\P)$ und gelte
+\begin{enumerate}
+\item $X_n$ und $Y_n$ sind unabhängig für alle $n\in\N$
+\item $X$ und $Y$ sind unabhängig
+\end{enumerate}
+Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S_1\wedge Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S_2
+\Longleftrightarrow (X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text{ in }\S_1\times\S_2
+\end{align*}
+\end{satz}
+\begin{proof}
+Da
+\begin{align*}
+\P\circ (X_n,Y_n)^{-1}&\stackeq{\text{unab}}\P\circ X_n^{-1}\otimes\P\circ Y_n^{-1}\\
+\P\circ (X,Y)^{-1}&\stackeq{\text{unab}}\P\circ X^{-1}\otimes\P\circ Y^{-1}
+\end{align*}
+folgt die Behauptung aus \ref{thoerem4.20} und Definition \ref{def4.1}.
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung4.22}
+Die Aussage in \ref{satz4.21} lässt sich problemlos auf $\S_1\times\ldots\times\S_d$ mit $d\geq2$ übertragen.
+\end{bemerkungnr}
+
+\section*{Anwendung in der Statistik}
+Seien $X_i,i\in\N$ i.i.d. über $(\Omega,\A,\P)$, quadrat-integrierbar, $\mu:=\E[X_i]\in\R$,\\ $\sigma^2:=\Var(X_i)\in(0,\infty)$.\\ Das arithmetische Mittel konvergiert fast sicher gegen den Erwartungswert gemäß dem starken Gesetz der großen Zahlen (SGGZ / SLLN, Kolmogorov), also
+\begin{align*}
+\overline{X}=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i\stackrel{}{\longrightarrow}\mu~\P\text{-fast sicher}
+\end{align*}
+%fast sichere Konvergenz => stochastische Konvergenz => Verteilungskonvergenz?
+Folglich gilt
+\begin{align*}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)
+&=\sqrt{n}\cdot\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\mu)\\
+&=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n(X_i-\mu)\\
+&=\sigma\cdot\underbrace{\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\left(\frac{X_i-\mu)}{\sigma}\right)}_{\stackrel{\L}{\longrightarrow}\mathcal{N}(0,1)}\stackrel{\L}{\longrightarrow}\sigma\cdot\mathcal{N}(0,1)\stackeq{\L}\mathcal{N}(0,\sigma^2)
+\end{align*}
+wobei die linke Konvergenz aus dem zentralen Grenzwertsatz (TGWS / CLT) und die rechte Konvergenz auf dem CMT folgt (da $x\mapsto\sigma\cdot x$ stetig). Also folgt:
+\begin{align}\label{eqAnwendungInDerStatistikStern}\tag{$\ast$}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2)
+\end{align}
+Die \textbf{empirische Varianz} ist 
+\begin{align*}
+S_n^2&:=\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\overline{X}_n)^2\\
+&=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big((X_i-\mu)-(\overline{X}_n-\mu)\big)^2\\
+&=\frac{1}{n}\cdot\sum\limits_{i=1}^n\Big((X_i-\mu)^2-2\cdot(X_i-\mu)\cdot(\overline{X}_n-\mu)+(\overline{X}_n-\mu)^2\Big)\\
+&=\frac{1}{n}\cdot\sum\limits(X_i-\mu)^2-2\cdot\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\mu)}_{=(\overline{X}_n-\mu)}\cdot(\overline{X}_n-\mu)+\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n(\overline{X}_n-\mu)^2}_{=(\overline{X}-\mu)^2}\\
+\end{align*}
+Man erhält schließlich:
+\begin{align}\label{eqEmpVarAlternativePlus}\tag{+}
+S_n^2&=\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\mu)^2}_{\stackrel{\text{SGGZ}}{\longrightarrow}\E\big[(X_1-\mu)^2\big]=\sigma^2~\P\text{-f.s.}}-\underbrace{(\overline{X}_n-\mu)^2}_{\stackrel{\text{SGGZ+\ref{Satz3.8}}}{\longrightarrow}0\text{ f.s.}}\\\nonumber
+&\implies
+S_n^2\stackrel{\ref{satz3.15}+\ref{Satz3.8}}{\longrightarrow}\sigma^2
+\end{align}
+(Hierbei wird bei der Anwendung der Sätze \ref{satz3.15} und \ref{Satz3.8} benutzt, dass $(x,y)\mapsto x+y$ stetig ist)
+
+%Skorokhod (russischer Mathematiker), cadlag, rcll (right continues with left limit), in einem Skorokhod-Raum ist die Addtion NICHT stetig. Also ist obiger Schluss i.A. nicht richtig.
+Und ähnlich: ($\sqrt{n}$ ist die \textbf{normalisierende Folge})
+\begin{align*}
+T_n&:=\sqrt{n}\cdot\left(S_n^2-\sigma^2\right)
+\stackeq{\eqref{eqEmpVarAlternativePlus}}
+\underbrace{\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\Big((X_i-\mu)^2-\sigma^2\Big)}_{=:V_n}\underbrace{-\sqrt{n}\cdot\big(\overline{X}-\mu\big)^2}_{=:R_n}
+=V_n+R_n
+\end{align*}
+Mit CLT folgt (analog zur Herleitung von \eqref{eqAnwendungInDerStatistik}
+\begin{align*}
+V_n\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2),\qquad\tau^2:=\Var\Big((X_1-\mu)^2\Big)
+\end{align*}
+falls $\E\big[|X-1|\big]^4<\infty$.
+\begin{align*}
+-R_n&=\underbrace{\Big(\sqrt{n}\cdot(\overline{X}_n-\mu)\Big)}_{\stackrelnew{\eqref{eqAnwendungInDerStatistikStern}}{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2)}\cdot\underbrace{(\overline{X}_n-\mu)}_{\stackrelnew{\ref{Satz3.12}}{\P}{\longrightarrow}0}\stackrelnew{\ref{beisp4.18}(3)}{\P}{\longrightarrow}0\\
+&\implies \underbrace{R_n}_{=|T_n-V_n|}\stackrel{\P}{\longrightarrow}0\\
+&\implies(T_n)_{n\in\N},(V_n)_{n\in\N}\text{ sind stochastisch äquivalent}\\
+&\stackrel{\ref{satz4.14Cramer}}{\implies}
+T_n\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2)
+\end{align*}
+\textbf{Zusammenfassing:}
+\begin{align*}
+\big(\overline{X}_n,S_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\sigma^2\big)\text{ in }\R^2\text{ fast sicher}
+\end{align*}
+d. h. $\big(\overline{X}_n,S_n^2\big)_{n\in\N}$ ist \textbf{stark konsistente Schätzerfolge} für den Parameter $(\mu,\sigma^2)$.
+Fernen sind $(\overline{X}_n)_{n\in\N}$ und $(S_n^2)_{n\in\N}$ \textbf{asymptotisch normal}, d.h.
+%FUN: Der persönliche Held von Ferger ist Skorokhot. Er hat ihn ca. 2000 mal auf einer Tagung und es gab sogar ein Foto von den beiden, dass aber durch Datenverlust verloren ging
+\begin{align*}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2),\qquad
+\sqrt{n}\cdot\big(S_n^2-\sigma^2\big)\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2)
+\end{align*}
+Wie sieht es aus mit dem Vektor 
+\begin{align*}
+\begin{pmatrix}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)\\
+\sqrt{n}\cdot\big(S_n^2-\sigma^2\big)
+\end{pmatrix}
+=\sqrt{n}\cdot\begin{pmatrix}
+\overline{X}_n-\mu\\
+S_n^2-\sigma^2
+\end{pmatrix}
+\stackrel{\L}{\longrightarrow}?
+\end{align*}
+
+\section{Verteilungskonvergenz in $\R^d$}
+Korollar \ref{korollar4.5} bzw. dessen Erweiterungen \ref{lemma4.6Einhalb} (2) liefern eine \textbf{analytische} Methode zum Nachweis von $X_n\stackrel{\L}{\longrightarrow}X\text{ in }\R^d$. Eine weitere Methode fußt auf
+
+\begin{definition}\label{def5.1}
+Sei $X$ Zufallsvariable in $\R^d$ über $(\Omega,\A,\P)$ und
+\begin{align*}
+\langle x,y\rangle:=:x'y:=\sum\limits_{i=1}^d x_i\cdot y_i\qquad x=(x_1,\ldots,x_d),y=(y_1,\ldots,y_d)\in\R^d
+\end{align*}
+das Standard-Skalarprodukt in $\R^d$. Dann heißt
+\begin{align*}
+\varphi_X(t):=\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]\qquad\forall t\in\R^d
+\end{align*}
+\end{definition}
+heißt \textbf{charakteristische Funktion} von $X$.
+
+\begin{satz}[Eindeutigkeitssatz]\label{satz5.2Eindeutigkeitssatz}
+\begin{align*}
+X\stackeq{\L} Y\Longleftrightarrow\varphi_X\equiv\varphi_Y
+\end{align*}
+\end{satz}
+\begin{proof}
+Siehe Buch \textit{Essentials in Probability} von Jacod und Protter (2000), Seite 107-108.
+\end{proof}
+
+
+
