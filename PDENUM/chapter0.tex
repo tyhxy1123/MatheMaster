@@ -3,7 +3,7 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Die Finite-Elemente-Methode}
+\addchap{Die Finite-Elemente-Methode}
 \setcounter{section}{-1}
 \section{Einleitung}
 In diesem Dokument werden folgende Notationen verwendet:
@@ -12,7 +12,7 @@ In diesem Dokument werden folgende Notationen verwendet:
 \item $\frac{\partial u}{\partial n}:=\nabla u\cdot n$ wobei $n$ die Normale an $u$ ist
 \end{itemize}
 
-\subsection{Durchbiegung einer Membran}
+\subsection*{Durchbiegung einer Membran}
 \begin{itemize}
 \item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$.
 \item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist. Die Flächenänderung ist
@@ -1386,11 +1386,10 @@ N_i(v)&=\alpha_i,\qquad i\in\lbrace1,\ldots,m\rbrace\\
 M\cdot c&=\alpha
 \end{align*}
 
-%TODO fix k: hier großes und kleines K? Wo kommt welches hin?
-\begin{definition}[gobales Nodal-Funktional / globale Freiheitsgrade (dof)]\enter
-Seien $N_i^k$ und $N_j^{k'}$ zwei locale Nodal-Funktionale von den finiten Elementen $(K,V,\Sigma)$ und $(K',V',\Sigma')$. Wir sagen, diese beiden lokalen Freiheitsgrade \textbf{gehören zum selben globalen Freiheitsgrad}
+\begin{definition}[globales Nodal-Funktional / globale Freiheitsgrade (dof)]\enter
+Seien $N_i^K$ und $N_j^{K'}$ zwei lokale Nodal-Funktionale von den finiten Elementen $(K,V,\Sigma)$ und $(K',V',\Sigma')$. Wir sagen, diese beiden lokalen Freiheitsgrade \textbf{gehören zum selben globalen Freiheitsgrad}
 \begin{align*}
-:\Longleftrightarrow N_i^k(\varphi|_K)=N_j^{k'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)
+:\Longleftrightarrow N_i^K(\varphi|_K)=N_j^{K'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)
 \end{align*}
 wobei $U$ eine offene Menge mit der Eigenschaft $\overline{K\cup K'}\subseteq U$ ist.\\
 Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$. Für $N\in\Sigma_h$ bezeichne $\Lambda(N)$ die Menge alle lokalen Freiheitsgrade, die zu $N$ gehören.
@@ -1398,7 +1397,6 @@ Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$. Für $N\i
 
 \begin{definition}[Raum der finiten Elemente]\enter
 Sei $\T_h$ eine Triangulierung von $\Omega$. Ein \textbf{Raum der finiten Elemente} $V_h$ ist gegeben durch 
-%TODO fix k: hier großes und kleines K? Wo kommt welches hin?
 \begin{align*}
 V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\right\rbrace
 \end{align*}
@@ -1423,16 +1421,16 @@ wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots
 \begin{theorem}\label{theorem4.9}
 Seien $K,\hat{K}\subseteq\R^d$ zwei affin äquivalente offene  Teilmengen des $\R^d$, d. h. es existiert eine affine bijektive Abbildung
 \begin{align*}
-F:\hat{K}\to K,\qquad \hat{x}\mapsto B_K\hat{x}+ b_K\qquad\mit B_k\in\R^{d\times d}\text{ invertierbar und }b_k\in\R^d
+F:\hat{K}\to K,\qquad \hat{x}\mapsto B_K\cdot\hat{x}+ b_K\qquad\mit B_K\in\R^{d\times d}\text{ invertierbar und }b_K\in\R^d
 \end{align*}
-Falls $v\in W^{m,p}(K)$ für $m\geq0,p\in[1,\infty)$, dann gehörte $\hat{v}:=v\circ F$ zu $W^{m,p}(\hat{K})$ und wir erhalten
+Falls $v\in W^{m,p}(K)$ für $m\geq0,p\in[1,\infty)$, dann gehört $\hat{v}:=v\circ F$ zu $W^{m,p}(\hat{K})$ und wir erhalten
 \begin{align*}
-\big|\hat{v}\big|_{m,p,\hat{K}}\leq c\cdot\Vert B_K\Vert^m\cdot\big|\det(B_k)\big|^{-\frac{1}{p}}\cdot|v|_{m,p,K}
+\big|\hat{v}\big|_{m,p,\hat{K}}\leq c\cdot\Vert B_K\Vert^m\cdot\big|\det(B_K)\big|^{-\frac{1}{p}}\cdot|v|_{m,p,K}
 \end{align*}
 wobei $c=c(m,d)$ eine Konstante ist und $\Vert\cdot\Vert$ eine Matrixnorm, die durch die euklidische Vektornorm induziert wird.\\
 Zusätzlich gilt:
 \begin{align*}
-|v|_{m,p,K}&\leq c\cdot\Vert B_k^{-1}\Vert^m\cdot\big|\det(B_K)\big|^{\frac{1}{p}}\cdot|\hat{v}|_{m,p,\hat{K}}\\
+|v|_{m,p,K}&\leq c\cdot\Vert B_K^{-1}\Vert^m\cdot\big|\det(B_K)\big|^{\frac{1}{p}}\cdot|\hat{v}|_{m,p,\hat{K}}\\
 F^{-1}(x)&=B_K^{-1}\cdot x-B_K^{-1}\cdot b_K
 \end{align*}
 \end{theorem}
@@ -1447,12 +1445,12 @@ h_K&:=\diam(K):=\sup\limits_{x,y\in K}\Vert x-y\Vert\\
 \end{lemma}
 \begin{proof}
 \begin{align*}
-\Vert B_K\Vert&=\sup\limits_{z\neq0}\frac{\Vert B_k z\Vert}{\Vert z\Vert}=\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert z\Vert=\hat{\rho}}\Vert B_k z\Vert
+\Vert B_K\Vert&=\sup\limits_{z\neq0}\frac{\Vert B_K \cdot z\Vert}{\Vert z\Vert}=\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert z\Vert=\hat{\rho}}\Vert B_K \cdot z\Vert
 \end{align*}
 Für alle $y$ mit $\Vert y\Vert=\hat{\rho}$ existieren zwei Punkte $\hat{x},\hat{y}\in\hat{K}$ so, dass $y=\hat{x}-\hat{y}$. Seien $x=F(\hat{x}),y=F(\hat{y})$. Dann gilt:
 \begin{align*}
-x-y&=B_k\hat{x}+b_K-\big(B_k\hat{y}+b_K\big)=B_k(\hat{x}-\hat{y})=B_K y\\
-\Vert B_K y\Vert&=\Vert x-y\Vert\leq h_K\\
-\implies \Vert h_K\Vert&\leq\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert y\Vert=\hat{\rho}}\underbrace{\Vert B_k y\Vert}_{\leq h_K}\leq\frac{h_K}{\hat{\rho}}
+x-y&=B_K\cdot\hat{x}+b_K-\big(B_K\cdot\hat{y}+b_K\big)=B_K\cdot(\hat{x}-\hat{y})=B_K \cdot y\\
+\Vert B_K\cdot y\Vert&=\Vert x-y\Vert\leq h_K\\
+\implies \Vert h_K\Vert&\leq\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert y\Vert=\hat{\rho}}\underbrace{\Vert B_K\cdot y\Vert}_{\leq h_K}\leq\frac{h_K}{\hat{\rho}}
 \end{align*}
 \end{proof}
