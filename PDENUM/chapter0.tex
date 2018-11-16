@@ -3,7 +3,7 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Die Finite-Elemente-Methode}
+\addchap{Die Finite-Elemente-Methode}
 \setcounter{section}{-1}
 \section{Einleitung}
 In diesem Dokument werden folgende Notationen verwendet:
@@ -12,7 +12,7 @@ In diesem Dokument werden folgende Notationen verwendet:
 \item $\frac{\partial u}{\partial n}:=\nabla u\cdot n$ wobei $n$ die Normale an $u$ ist
 \end{itemize}
 
-\subsection{Durchbiegung einer Membran}
+\subsection*{Durchbiegung einer Membran}
 \begin{itemize}
 \item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$.
 \item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist. Die Flächenänderung ist
@@ -123,7 +123,7 @@ Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist nicht rel
 \begin{definition}[Sobolev-Räume]
 Für $k\in\N_0$, $p\in[1,\infty)$ definieren wir den \textbf{Sobolev-Raum} wie folgt;
 \begin{align}
-W^{k,p}(\Omega):=\Big\lbrace\varphi\in L^p(\Omega):D^\alpha\varphi\text{ (schwache Ableitung) existiert und erfüllt }D^\alpha\varphi\in L^p(\Omega)~\forall|\alpha|\leq k\Big\rbrace
+W^{k,p}(\Omega):=\Big\lbrace\varphi\in L^p(\Omega):D^\alpha\varphi\text{ (schwache Abl.) existiert und }D^\alpha\varphi\in L^p(\Omega)~\forall|\alpha|\leq k\Big\rbrace
 \end{align}
 Als Norm vereinbaren wir
 \begin{align*}
@@ -563,7 +563,7 @@ Es bleibt also zu zeigen, das $P$ einen eindeutigen Fixpunkt hat. Dafür nutzen 
 
 Wähle also $N=V$. $P$ ist eine Kontraktion, wenn $\tau$ richtig gewählt wird.
 \begin{align*}
-\Vert P(u)-P)v)\Vert^2_V
+&\quad\Vert P(u)-P)v)\Vert^2_V\\
 &=\big\langle P(u)-P(v),P(u)-P(v)\big\rangle_V\\
 &=\big\langle u-v-\tau\cdot A(u-v),u-v-\tau\cdot A(u-v)\big\rangle_V\\
 &=\langle u-v,u-v\rangle_V-2\cdot\tau\cdot\underbrace{\big\langle A(u-v),u-v\big\rangle_V}_{\stackrel{\text{Def.}}{=}a(u-v,u-v)\stackrel{\text{koerz}}{\geq}\alpha\cdot\Vert u-v\Vert^2_V}+\tau^2\cdot\underbrace{\big\langle A(u-v),A(u-v)\big\rangle_V}_{=\Vert A(u-v)\Vert^2_V\leq M^2\cdot\Vert u-v\Vert^2_V}\\
@@ -756,7 +756,7 @@ wobei $n$ der äußere Normalenvektor ist.
 Nun bringen wir die allgemeine Form der Gleichung von oben in eine lesbare Form.
 Sei dazu $v\in C_0^\infty(\Omega)$. Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$. Dann gilt:
 \begin{align*}
-\int\limits_\Omega f(x)\cdot v\d x
+\int\limits_\Omega f\cdot v\d x
 &\stackeq{\text{Def}}
 \int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\ 
 &\stackeq{\text{partGauß}}
@@ -1138,7 +1138,7 @@ S_{h,0}^{2,0}&=\spann\big\lbrace\varphi_1,\ldots,\varphi_n,\psi_0,\ldots,\psi_n\
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{./pics/Sketch2.png}
 		\caption{einzelne zweifach diffbare finite-Elemente-Funktion}
-		\label{AbbHutFunktionen}
+		\label{AbbFiniteElementeFunktionZweifachDiffbar}
 	\end{center}
 \end{figure}
 
@@ -1346,7 +1346,7 @@ V=\Big\lbrace v: K\to\R:v=\hat{v}\circ F^{-1},\hat{v}\in\hat{V}\Big\rbrace
 
 \end{definition}
 
-\begin{beispiel}\
+\begin{beisp}\
 
 \begin{figure}[h!]
 \begin{center}
@@ -1369,4 +1369,88 @@ F:\left\lbrace\begin{array}{l}
 \hat{N}_3(\hat{v})&=\hat{v}(0,1) &&N_3(v)=v(c_1,c_2)
 \end{matrix}
 \end{align*}
-\end{beispiel}
+\end{beisp}
+
+Sei $V$ ein Vektorraum mit Basis $\lbrace\varphi_1,\ldots,\varphi_m\rbrace$. Setze
+\begin{align*}
+\Sigma&=\lbrace N_1,\ldots,N_m\rbrace\\
+M&=(m_{i,j}),\qquad m_{i,j}:=N_i(\varphi_j)\\
+M&\text{ invertierbar }\Longleftrightarrow \text{ unisolvent}
+\end{align*}
+Unisolvenz: Gegeben $\alpha_1,\ldots\alpha_m\in\R$. Gibt es ein eindeutiges $v\in V$
+\begin{align*}
+N_i(v)&=\alpha_i,\qquad i\in\lbrace1,\ldots,m\rbrace\\
+\stackrel{v=\sum\limits_{j=1}^m c_j\cdot\varphi_j}{\Longleftrightarrow}\quad
+\sum\limits_{j=1}^m N_i(\varphi_j)\cdot c_j&=\alpha_i\\
+\Longleftrightarrow
+M\cdot c&=\alpha
+\end{align*}
+
+\begin{definition}[globales Nodal-Funktional / globale Freiheitsgrade (dof)]\enter
+Seien $N_i^K$ und $N_j^{K'}$ zwei lokale Nodal-Funktionale von den finiten Elementen $(K,V,\Sigma)$ und $(K',V',\Sigma')$. Wir sagen, diese beiden lokalen Freiheitsgrade \textbf{gehören zum selben globalen Freiheitsgrad}
+\begin{align*}
+:\Longleftrightarrow N_i^K(\varphi|_K)=N_j^{K'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)
+\end{align*}
+wobei $U$ eine offene Menge mit der Eigenschaft $\overline{K\cup K'}\subseteq U$ ist.\\
+Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$. Für $N\in\Sigma_h$ bezeichne $\Lambda(N)$ die Menge alle lokalen Freiheitsgrade, die zu $N$ gehören.
+\end{definition}
+
+\begin{definition}[Raum der finiten Elemente]\enter
+Sei $\T_h$ eine Triangulierung von $\Omega$. Ein \textbf{Raum der finiten Elemente} $V_h$ ist gegeben durch 
+\begin{align*}
+V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\right\rbrace
+\end{align*}
+wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind. Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$ von dem globalen Freiheitsgrad.
+\end{definition}
+
+Familie aller affin äquivlenten finiten Elementen
+\begin{align*}
+\big(K,V(K),\Sigma(K)\big)\sim\big(\hat{K},\hat{V},\hat{\Sigma}\big)
+\end{align*}
+Interpolation:
+\begin{align*}
+I_h(v):=\sum\limits_{i=1}^n N_i(v)\cdot\varphi_i\in V_h
+\end{align*}
+wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots,\varphi_n\rbrace$ eine Basis von $V_h$ ist mit der Eigenschaft $N_i(\varphi_j)=\delta_{i,j}$.\\
+
+\textbf{Wichtig: }
+\begin{align*}
+\big(I_h(v)\big)\big|_K&=I_h^K\big(v|_K\big)\quad\text{wobei}\\ I_h^K(v)&=\sum\limits_{i=1}^{m_K} N_i^{(K)}(v)\cdot\varphi_i^K,\qquad N_i^K(\varphi_j^K)=\delta_{i,j}\qquad\Sigma(K)=\left\lbrace N_1^K,\ldots,N_{m_K}^K\right\rbrace
+\end{align*}
+
+\begin{theorem}\label{theorem4.9}
+Seien $K,\hat{K}\subseteq\R^d$ zwei affin äquivalente offene  Teilmengen des $\R^d$, d. h. es existiert eine affine bijektive Abbildung
+\begin{align*}
+F:\hat{K}\to K,\qquad \hat{x}\mapsto B_K\cdot\hat{x}+ b_K\qquad\mit B_K\in\R^{d\times d}\text{ invertierbar und }b_K\in\R^d
+\end{align*}
+Falls $v\in W^{m,p}(K)$ für $m\geq0,p\in[1,\infty)$, dann gehört $\hat{v}:=v\circ F$ zu $W^{m,p}(\hat{K})$ und wir erhalten
+\begin{align*}
+\big|\hat{v}\big|_{m,p,\hat{K}}\leq c\cdot\Vert B_K\Vert^m\cdot\big|\det(B_K)\big|^{-\frac{1}{p}}\cdot|v|_{m,p,K}
+\end{align*}
+wobei $c=c(m,d)$ eine Konstante ist und $\Vert\cdot\Vert$ eine Matrixnorm, die durch die euklidische Vektornorm induziert wird.\\
+Zusätzlich gilt:
+\begin{align*}
+|v|_{m,p,K}&\leq c\cdot\Vert B_K^{-1}\Vert^m\cdot\big|\det(B_K)\big|^{\frac{1}{p}}\cdot|\hat{v}|_{m,p,\hat{K}}\\
+F^{-1}(x)&=B_K^{-1}\cdot x-B_K^{-1}\cdot b_K
+\end{align*}
+\end{theorem}
+
+\begin{lemma}\label{lemma4.10}
+Seien $K,\hat{K}$ affin äquivalent mit $F(\hat{x})=B_K\cdot\hat{x}+b_K$. Dann gilt:
+\begin{align*}
+\Vert B_K\Vert&\leq\frac{h_K}{\hat{\rho}},\qquad\Vert B_K^{-1}\Vert\leq\frac{\hat{h}}{\rho_K}\qquad\text{wobei}\\
+h_K&:=\diam(K):=\sup\limits_{x,y\in K}\Vert x-y\Vert\\
+\rho_K&:=\sup\big\lbrace\diam(S):S\subseteq K\text{ Sphäre}\big\rbrace
+\end{align*}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+\Vert B_K\Vert&=\sup\limits_{z\neq0}\frac{\Vert B_K \cdot z\Vert}{\Vert z\Vert}=\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert z\Vert=\hat{\rho}}\Vert B_K \cdot z\Vert
+\end{align*}
+Für alle $y$ mit $\Vert y\Vert=\hat{\rho}$ existieren zwei Punkte $\hat{x},\hat{y}\in\hat{K}$ so, dass $y=\hat{x}-\hat{y}$. Seien $x=F(\hat{x}),y=F(\hat{y})$. Dann gilt:
+\begin{align*}
+x-y&=B_K\cdot\hat{x}+b_K-\big(B_K\cdot\hat{y}+b_K\big)=B_K\cdot(\hat{x}-\hat{y})=B_K \cdot y\\
+\Vert B_K\cdot y\Vert&=\Vert x-y\Vert\leq h_K\\
+\implies \Vert h_K\Vert&\leq\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert y\Vert=\hat{\rho}}\underbrace{\Vert B_K\cdot y\Vert}_{\leq h_K}\leq\frac{h_K}{\hat{\rho}}
+\end{align*}
+\end{proof}
