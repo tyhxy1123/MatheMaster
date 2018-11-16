@@ -1,0 +1,147 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../PDENUM/PDENM_commands}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{PDENM WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 4}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\G}{\mathcal{G}}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 4.1}
+Gegeben sei die Randwertaufgabe
+\begin{align*}
+-u''\equiv f,\qquad u(0)=0,~u(1)=0
+\end{align*}
+Dann liefert die Finite-Elemente-Methode mit linearen Elementen in den Gitterpunkten die exakten Werte der Lösung.
+
+\begin{proof}
+Setze
+\begin{align*}
+\G_\xi:\R\to\R,\qquad
+\G_\xi(x):=\left\lbrace\begin{array}{cl}
+(1-\xi)\cdot x, &\falls x<\xi\\
+\xi\cdot(1-x), &\falls x\geq\xi
+\end{array}\right.\qquad\forall\xi\in\R.
+\end{align*}
+Sei $v\in H_0^1((0,1))$ beliebig. Dann gilt:
+\begin{align*}
+\int\limits_0^1\G_\xi'(x)\cdot v'(x)\d x
+&=
+\end{align*}
+\end{proof}
+
+\section*{Aufgabe 4.2}
+Seien $\hat{K}:=(-1,1)^2$ das (große) Einheitsquadrat und $\hat{\Sigma}:=\left\lbrace\hat{N}_1,\hat{N}_2,\hat{N}_3,\hat{N}_4\right\rbrace$ mit den Knotenfunktionalen 
+\begin{align*}
+\hat{N}_1(\hat{v}):=\hat{v}(0,-1),\quad
+\hat{N}_2(\hat{v}):=\hat{v}(1,0),\quad
+\hat{N}_3(\hat{v}):=\hat{v}(0,1),\quad
+\hat{N}_4(\hat{v}):=\hat{v}(-1,0)
+\end{align*}
+gegeben. Weiterhin seien 
+\begin{align*}
+\hat{V}_1:=\hat{Q}_1:=\spann\big(1,\hat{x},\hat{y},\hat{x}\cdot\hat{y}\big)
+\end{align*}
+der Raum der bilinearen Funktionen und
+\begin{align*}
+\hat{V}_2:=\hat{Q}_1^{\text{rot}}:=\spann\big(1,\hat{x},\hat{y},\hat{x}^2-\hat{y}^2\big)
+\end{align*}
+der Raum der rotiert bilinearen Funktionen.
+\begin{enumerate}[label=(\alph*)]
+\item $\hat{\Sigma}$ ist bzgl. $\hat{V}_1$ nicht unisolvent.
+\item $\hat{\Sigma}$ ist bzgl. $\hat{V}_2$ unisolvent.
+\item Bestimmen Sie die (nodalen) Basisfunktionen $\hat{\varphi}_i,i=1,\ldots,4$ für $\hat{\Sigma}$ und $\hat{V}_2$.
+\end{enumerate}
+\begin{proof}
+\underline{Zeige (a):}\\
+
+\underline{Zeige (b):}\\
+
+\underline{Zeige (c):}\\
+
+\end{proof}
+
+\section*{Aufgabe 4.3}
+Seien $\hat{K}:=(0,1)^2$ mit den Ecken 
+\begin{align*}
+\hat{P}_1=(0,0),\qquad
+\hat{P}_2(1,0),\qquad
+\hat{P}_3(1,1),\qquad
+\hat{P}_4(0,1)
+\end{align*}
+das (kleine) Einheitsquadrat und $K$ mit den Ecken
+\begin{align*}
+P_1(x_1,y_1),\qquad
+P_2(x_2,y_2),\qquad
+P_1(x_3,y_3),\qquad
+P_1(x_4,y_4)
+\end{align*}
+ein beliebiges Viereck.
+\begin{enumerate}[label=(\alph*)]
+\item Bestimmen Sie die Koeffizienten der bilinearen Abbildung $F:\hat{K}\to K$, die $\hat{P}_i$ auf $P_i$, $i=1,\ldots,4$ abbildet. Die Abbildung $F$ heißt \textbf{bilinear} $:\gdw F\in\left(\hat{Q}_1\right)^2$.
+\item Zeigen Sie, dass die Determinante der Jacobi-Matrix $DF(\hat{x},\hat{y})$ der Abbildung $F$ eine affine Funktion ist.
+\item Unter welchen Bedingungen an die Koeffizienten von $F$ stellt $F$ eine affine Abbildung dar? Deuten Sie diese Bedingungen geometrisch.
+\end{enumerate}
+
+\begin{lösung}
+\underline{Zu (a):}\\
+
+\underline{Zeige (b):}\\
+
+\underline{Zu (c):}\\
+
+\end{lösung}
+
+\section*{Aufgabe 4.4}
+Für ein achsenparalleles Rechteck $K$ sei $Q_2$ die Menge der Polynome auf $K$, die bezüglich $x$ und $y$ höchstens zweiten Grades sind. Es seien $(e_j)_{j=1}^4$ die vier Kanten und $(x_j)_{j=1}^4$ die vier Ecken von $K$. Untersuchen Sie, ob durch die neun Freiheitsgrade
+\begin{enumerate}[label=\roman*]
+\item Funktionswerte $f(x_j)$ in den Ecken,
+\item $\int\limits_{e_j} f\d s$ und $\int\limits_K f\d\lambda$
+\end{enumerate}
+einer Funktion $f\in Q_2$ die Unisolvenz sichergestellt wird.
+
+\begin{lösung}
+\underline{Fall 1: Referenzquadrat}\\
+Wir untersuchen die Aussage zunächst für das Referenzquadrat $\hat{K}:=(0,1)^2$.\\
+
+\underline{Fall 2: Allgemeiner Fall}\\
+Wir können den allgemeinen Fall auf den Fall des Referenzquadrates (Fall 1) zurückführen.
+
+\end{lösung}
+
+\section*{Aufgabe 4.5}
+Seien $\hat{K}:=(0,1)$ und $K:=(a,a+h)$ mit $a\in\R$ und $h>0$ zwei offene Intervalle. Weiterhin sei $F:\hat{K}\to K$ die affine Abbildung, die $F(0)=1$ und $F(1)=a+h$ erfüllt.\\
+Dann besteht für $\varphi\in W^{m,p}(K),m\in\N_0,p\in[1,\infty)$ und $\hat{\varphi}:=\varphi\circ F\in W^{m,p}(\hat{K})$ der Zusammenhang
+\begin{align*}
+\big|\hat{\varphi}\big|_{m,p,\hat{K}}=h^m\cdot \left(\frac{1}{h}\right)^{\frac{1}{p}}\cdot|\varphi|_{m,p,K}.
+\end{align*}
+\begin{proof}
+
+\end{proof}
+
+
+\end{document}
