@@ -1447,10 +1447,10 @@ h_K&:=\diam(K):=\sup\limits_{x,y\in K}\Vert x-y\Vert\\
 \begin{align*}
 \Vert B_K\Vert&=\sup\limits_{z\neq0}\frac{\Vert B_K \cdot z\Vert}{\Vert z\Vert}=\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert z\Vert=\hat{\rho}}\Vert B_K \cdot z\Vert
 \end{align*}
-Für alle $y$ mit $\Vert y\Vert=\hat{\rho}$ existieren zwei Punkte $\hat{x},\hat{y}\in\hat{K}$ so, dass $y=\hat{x}-\hat{y}$. Seien $x=F(\hat{x}),y=F(\hat{y})$. Dann gilt:
+Für alle $\eta$ mit $\Vert \eta\Vert=\hat{\rho}$ existieren zwei Punkte $\hat{x},\hat{y}\in\hat{K}$ so, dass $\eta=\hat{x}-\hat{y}$. Seien $x=F(\hat{x}),y=F(\hat{y})$. Dann gilt:
 \begin{align*}
-x-y&=B_K\cdot\hat{x}+b_K-\big(B_K\cdot\hat{y}+b_K\big)=B_K\cdot(\hat{x}-\hat{y})=B_K \cdot y\\
-\Vert B_K\cdot y\Vert&=\Vert x-y\Vert\leq h_K\\
-\implies \Vert h_K\Vert&\leq\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert y\Vert=\hat{\rho}}\underbrace{\Vert B_K\cdot y\Vert}_{\leq h_K}\leq\frac{h_K}{\hat{\rho}}
+x-y&=B_K\cdot\hat{x}+b_K-\big(B_K\cdot\hat{y}+b_K\big)=B_K\cdot(\hat{x}-\hat{y})=B_K \cdot \eta\\
+\Vert B_K\cdot \eta\Vert&=\Vert x-y\Vert\leq h_K\\
+\implies \Vert h_K\Vert&\leq\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert y\Vert=\hat{\rho}}\underbrace{\Vert B_K\cdot \eta\Vert}_{\leq h_K}\leq\frac{h_K}{\hat{\rho}}
 \end{align*}
 \end{proof}
