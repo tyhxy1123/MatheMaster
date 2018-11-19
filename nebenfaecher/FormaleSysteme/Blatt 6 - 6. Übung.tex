@@ -1,0 +1,78 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 3}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\RR}{\mathcal{R}}
+
+
+\usepackage{tikz-qtree}
+\usetikzlibrary{positioning,automata}
+
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Das DIMACS CNF Dateiformat}
+\begin{itemize}
+\item mit Kommentarzeilen beginnen mit ``\texttt{c}'' und dürfen nur am Anfang der Datei stehen
+\item die erste Nicht-Kommentarzeile:\\ \texttt{p cnf <Variablen> <Klauseln>}\\ wobei man die Anzahl der Variablen und Klauseln eintragen muss
+\item jede weitere Zeile beschreibt eine Klausel, bei $n$ Variabeln $\RR=\lbrace p_1,\ldots, p_n\rbrace$ schreibe durch Leerzeichen getrennt die Literale:
+ \begin{itemize}
+ \item ``\texttt{i}'' für $i\in\lbrace1,\ldots, n\rbrace$
+ \item ``\texttt{-i}'' für $\neg p_i$
+ \end{itemize}
+ \item jede Klauselzeile muss mit ``\texttt{0}'' beendet werden.
+\item Beispiel:
+\begin{align*}
+(((( p_1\vee p_3)\vee\neg p_4)\wedge p_4)\wedge (p_2\vee\neg p_3))\\
+\rightsquigarrow
+\big\langle [p_1, p_3,\neg p_4],[p_4],[p_2,\neg p_3]\big\rangle
+\end{align*}
+\texttt{c Beispiel\\
+p cnf 4 3\\
+1 3 -4 3\\
+1 4 -4 0\\
+4 0\\
+2 -3 0}
+\item Programmaufruf: \texttt{./glucose -model <Dateiname>}, konkret heißt das:\\
+\texttt{glucose\_x64.exe -model sat1.txt}
+\end{itemize}
+\subsection*{Aufgabenstellung}
+ungelöstes Sudoku $\to$ Encoder $\to$ SAT-Solver $\to$ Decoder $\to$ gelöstes Sudoku
+\begin{itemize}
+\item Encoder konvertiert Sudoku in das DIMACS-Format (Beispiel auf Website vorhanden)
+\item SAT-Solver liefert SAT oder SAT + Model in DIMACS
+\item Decoder soll in vollständig gelöstes Sudoku ausgeben im selben Format wie die Eingabedatei
+\item Nutze Pipes und Standardein- und -ausgabe:\\
+\texttt{\$./encoder.py bsp-input.txt |./glucose -model |./deocoder.py bsp-input.txt}
+\end{itemize}
+
+
+
+
+\end{document}
