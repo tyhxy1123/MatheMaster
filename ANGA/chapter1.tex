@@ -358,3 +358,113 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 
     \cref{beispiel:2.2} b) ist überall glatt außer in $(0,0)$, dort singulär
 \end{beispiel}
+
+\begin{definition}
+    Sei $C\subseteq \K^2$ eine irreduzible affine ebene Kurve, $P \in C$. 
+    Der \textbf{lokale Ring} von $P$ auf $C$ ist
+    $$ \mathcal{O}_{C,P} := \left\{\frac{g}{h}\mid g,h\in K[C], h(P) \ne0\right\}.$$
+\end{definition}
+
+\begin{bemerkungnr}
+    $\mathcal{O}_{C,P}$ ist ein lokaler Ring, genauer
+    $$ \mathcal{O}_{C,P} = K[C]_{m_P},$$
+    wobei $m_P$ der Kern der Abbildung $\varphi \mapsto \varphi(P)$ also
+    $$ m_P := \mathcal{I}(P). $$
+    Insbesondere ist $\mathcal{O}_{C,P}$ noethersch und $\dim \mathcal{O}_{C,P} = 1$.
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $C$ eine irreduzible algebraische Kurve und $P \in C$, so ist $P$ genau dann glatt, wenn 
+    $\mathcal{O}_{C,P}$ ein Hauptidealring ist.
+\end{satz}
+
+\begin{definition}
+    Ein \textbf{diskreter Bewertungsring} von $F$ ist ein lokaler Hauptidealring $R \subseteq F$ mit $\Quot(R) = F$.
+\end{definition}
+
+\begin{bemerkungnr}
+    \begin{enumerate}[label=\alph*)]
+        \item Wie jeder lokale Ring hat ein diskreter Bewertungsring einen \textbf{Restklassenkörper}, nämlich
+        $$ \kappa_R := \sfrac{R}{m}, $$
+        wobei $m$ das maximale Ideal von $R$ ist.
+
+        \item Erinnerung:
+        $$\begin{tikzcd}
+            & euklidisch \dar& \\
+            eindiemensional & \lar Hauptidealring \dar \rar & noethersch\\
+            & faktoriell \rar & ganz abgeschlossen
+        \end{tikzcd}$$
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{theorem}
+    Sei $K = \K$. Ist $C$ eine glatte, irreduzible, projektive Kurve, so liefert
+    $ P \mapsto \mathcal{O}_{C,P}$ eine Bijektion zwischen Punkten von $C$ und diskreten
+    Bewertungsringen $K \subseteq R \subsetneqq K(C)$.
+\end{theorem}
+
+\begin{satz}
+    Ist $R$ ein diskreter Bewertungsring von $F$ mit maximalem Ideal $m = (\pi)$, so lässt sich jedes Element $x \in F^\times$ 
+    eindeutig schreiben als
+    $$ x = u \cdot \pi^{v_\pi(x)}$$
+    mit $u \in R^\times$ und $v_\pi(x) \in \Z$.
+\end{satz}
+\begin{proof}
+    $R$ ist faktoriell und $m$ ist das einzige Primideal $\ne (0)$. $\pi$ ist also bis auf Einheiten das einzige Primelement.
+\end{proof}
+
+\begin{definition}
+    Eine \textbf{diskrete Bewertung} auf $F$ ist eine Abbildung
+    $$ v: F \to \Z \cup \{\infty\},$$
+    die für $x,y \in F$ erfüllt:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $v(x) = \infty \implies x = 0$
+        \item $v(xy) = v(x) + v(y)$
+        \item $v(x+y) \geq \min\{v(x), v(y)\}$.
+    \end{enumerate}
+    (Beachte $n + \infty = \infty + n = \infty + \infty = \infty$)
+\end{definition}
+
+\begin{satz}
+    Ist $R$ ein diskreter Bewertungsring von $F$ mit maximalem Ideal $m = (\pi)$, so ist $v_\pi$ eine 
+    diskrete Bewertung auf $F$ (mit $v_\pi(0) := \infty$).
+    Umgekehrt, wenn $v$ eine diskrete Bewertung auf $F$, so ist
+    $$ \mathcal{O}_v := \{x \in F \mid v(x) \geq 0\}$$
+    ein diskreter Bewertungsring von $F$ und
+    $$ m_v := \{x \in F \mid v(x) > 0\} $$
+    das maximale Ideal von $\mathcal{O}_v$.
+\end{satz}
+\begin{proof}
+    \underline{$\mathcal{O}_v$ ist ein Ring:} $\checkmark$\\
+    \underline{$m_v$ ist Ideal von $\mathcal{O}_v$ und $\mathcal{O}_v^\times = \mathcal{O}_v\setminus m_v$:}$\checkmark$\\
+    \underline{$I \ideal \mathcal{O}_v \implies I=(a)$ für $a \in \mathcal{O}_v$ mit $v(a) = \min\{v(x) \mid x \in I\}$:}
+    \begin{align*}
+        x \in I & \implies v(a) \leq v(x) \implies v\left(\frac{x}{a}\right) \geq 0\\
+        & \implies \frac{x}{a} \in \mathcal{O}_v \implies x = \frac{x}{a}\cdot a \in \mathcal{O}_v a = (a)
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    Ist $R$ diskreter Bewertungsring von $F$, so ist $R$ ein maximaler echter Teilring von $F$, d.h. ist
+    $R \subsetneqq S \subseteq F$ ein Ring, so ist $S = F$.
+\end{lemma}
+\begin{proof}
+    Ist $x \in S \setminus R$, so ist $x = u \cdot \pi^k$ mit $u \in R^\times$, $k< 0$.
+    Sei nun $y \in F^\times$ beliebig. Schreibe
+    $$ y = w \cdot \pi^l$$
+    mit $w \in R^\times, l \in \Z$.
+
+    Ist \underline{$l \geq 0$}, so ist $y \in R \subseteq S$.
+
+    Ist \underline{$l < 0$}, so ist $yx^l=\underbrace{wu^l}_{\in R^\times} \cdot \overbrace{\pi^{l+kl}}^{\geq 0}\in R$
+    somit $y \in R[x] \subseteq S$.
+\end{proof}
+
+\begin{beispiel}
+    Sei $F = K(T) = K(\mathbb{P}^1)$. Da $K[T]$ faktoriell ist liefert jedes irreduzible normierte $p\in K[T]$ eine 
+    diskrete Bewertung $v_p$ mit zugehörigem Bewertungsring
+    $$ \mathcal{O}_p := \mathcal{O}_{v_p} = K[T]_{(p)}$$
+    mit Restklassenkörper
+    $$ \kappa_ := \kappa_{\mathcal{O}_{v_p}} = \sfrac{K[T]}{(p)}.$$
+    Desweiteren ist $\mathcal{O}_\infty := K[T^{-1}]_{(T^{-1})}$ ein diskreter Bewertungsring von $F$.
+\end{beispiel}
