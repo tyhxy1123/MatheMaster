@@ -12,7 +12,7 @@ evtl. ergänzt durch eine Anfangsbedingung
 \begin{align*}
 u(0)=u_0,
 \end{align*}
-wobei $u_0\in X$, $f\in L^1(0,T;X)$ und ein Operator $A\subseteq X\times X$ gegeben sind. Die Unbekannte ist eine Funktion $u:[0,T]\to X$. Mit $\dot{u}$ bezeichnen wir die Ableitung von $u$.
+wobei $u_0\in X$, $f\in L^1\big([0,T];X\big)$ und ein Operator $A\subseteq X\times X$ gegeben sind. Die Unbekannte ist eine Funktion $u:[0,T]\to X$. Mit $\dot{u}$ bezeichnen wir die Ableitung von $u$.
 
 \section{Vektorwertige Integration und Bochner-Lebesgueräume}
 Sei $(\Omega,\mathcal{A},\mu)$ ein Maßraum und $X$ ein Banachraum. Eine Funktion $f:\Omega\to X$ heißt \textbf{Treppenfunktion}
@@ -131,5 +131,137 @@ Dann ist
 \begin{align*}
 \big\Vert[f]\big\Vert_p:=\Vert f\Vert_p
 \end{align*}
-wohldefiniert (unabhängig von Repräsentanten $f$) und eine Norm. $\big(L^p(\Omega,X),\Vert\cdot\Vert_p\big)$ ist ein  Banachraum!
+wohldefiniert (unabhängig von Repräsentanten $f$) und eine Norm. $\big(L^p(\Omega,X),\Vert\cdot\Vert_p\big)$ ist ein  Banachraum!\\
+Wir definieren noch den \textbf{Bochner-Sobolevraum} für $I\subseteq\R$ offen:
+\begin{align*}
+W^{1,1}(I,X):=\left\lbrace u\in L^1(I,X)~\left|~\exists g\in L^1(I,X):\forall\varphi\in C_c^\infty(I):\int\limits_I u\cdot\varphi'=-\int\limits_I g\cdot\varphi\right.\right\rbrace
+\end{align*}
+(schwach differenzierbare, $X$-wertige $L^1$-Funktionen, $g:=u'$ heißt \textbf{schwache Ableitung}) mit der Norm
+\begin{align*}
+\Vert u\Vert_{W^{1,1}}:=\Vert u\Vert_{L^1}+\Vert u'\Vert_{L^1}
+\end{align*}
+Ohne Beweis: jede Funktion $u\in W^{1,1}(I,X)$ ist fast überall differenzierbar (im klassischen Sinne) und die Ableitung stimmt fast überall mit der schwachen Ableitung überein.\\
+Achtung: Es gibt stetige Funktionen, die fast überall differenzierbar sind (im klassischen Sinne) $u'=0$ f. ü., die aber nicht schwach differenzierbar sind (nicht in $W^{1,1}$). Beispiel: Die Cantorfunktion.\\
 
+Ohne Beweis. Jedes Element $u=[u]\in W^{1,1}(I,X)$ besitzt einen Repräsentanten, der auf $\overline{I}$ stetig ist.\\
+
+Ohne Beweis:
+\begin{align*}
+\forall u\in W^{1,1}\big(]a,b[,X\big),\forall\varphi\in W^{1,1}\big(]a,b[,\C\big):
+\int\limits_a^b u\cdot\varphi'=u(b)\cdot\varphi(b)-u(a)\cdot\varphi(a)-\int\limits_a^b u'\cdot\varphi
+\end{align*}
+
+\section*{Lösungsbegriffe für das Cauchyproblem} %2.2
+Wir betrachten das Cauchyproblem
+\begin{align}\label{CauchyProblem2.2}\tag{CP}
+\dot{u}+Au\ni f\text{ auf }[0,T] 
+%\qquad\Big(:\Longleftrightarrow u'(t)+A u(t)\ni f(t)\text{ für (fast) alle }t\in[0,T]\Big)
+\end{align}
+wobei $f\in L^1([0,T],X)$ und $A\subseteq X\times X$ gegeben sind. Eine Funktion $u\in C\big([0,T],X)$ heißt
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{klassische Lösung}
+\begin{align*}
+:\Longleftrightarrow u\in C^1\big([0,T],X\big)\text{ und für fast alle }t\in[0,T]:u\text{ erfüllt }\eqref{CauchyProblem2.2}
+\end{align*}
+\item \textbf{starke Lösung}
+\begin{align*}
+:\Longleftrightarrow u\in W^{1,1}\big([0,T],X\big)\text{ und für fast alle }t\in[0,T]:u\text{ erfüllt }\eqref{CauchyProblem2.2}
+\end{align*}
+\item \textbf{milde Lösung / schwache Lösung} $:\gdw\exists$ Folge $(u_n)_{n\in\N}$ von starken Lösungen von \eqref{CauchyProblem2.2} (mit Rechter Seite $f_n\in L^1\big([0,T],X\big)$!) gibt, so dass
+\begin{align*}
+\limn\Vert f_n-f\Vert_{L^1}=0\text{ und }\limn\Vert u_n-u\Vert_\infty=0
+\end{align*}
+\item \textbf{Integrallösung}
+\begin{align*}
+:\Longleftrightarrow\exists\omega\in\R:\forall(\hat{u},\hat{f})\in A,\forall 0\leq s\leq t\leq T:\\
+\big\Vert u(t)-\hat{u}\big\Vert\leq\big\Vert u(s)-\hat{u}\big\Vert+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}\big\Vert\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\hat{f}\big]\d\tau
+\end{align*}
+(hängt a priori von $\omega$ ab)
+\end{enumerate}
+Beobachtung:
+\begin{enumerate}[label=(\alph*)]
+\item Ist $(u,f)\in A\subseteq X\times X$, dann ist die konstante Funktion $\equiv u$ klassische Lösung von \eqref{CauchyProblem2.2} zur konstanten rechten Seite $\equiv f$.
+\item Im Falle von $A=\lbrace(0,0)\rbrace\subseteq\R\times\R$ ist jede stetige, monoton wachsende Funktion $u:[0,T]\to\R$ %mit $u(0)=0$ 
+Integrallösung von $\dot{u}+Au\ni 0$
+\end{enumerate}
+
+\begin{theorem}\
+\begin{enumerate}[label=(\alph*)]
+\item Jede klassische Lösung ist starke Lösung.
+\item Jede starke Lösung ist milde Lösung.
+\item Wenn $A$ akkretiv vom Typ $\omega\in\R$ ist, dann gilt für je zwei milde Lösungen $u,\hat{u}\in C\big([,T],X\big)$ zu rechten Seiten $f,\hat{f}\in L^1\big([0,T],X\big)$
+\begin{align*}
+\forall 0\leq s\leq t\leq T
+\big\Vert u(t)-\hat{u}(z)\big\Vert\leq\big\Vert u(s)-\hat{u}(s)\big\Vert+\\+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u}(\tau),f(\tau)-\hat{f}(\tau)\big]\d\tau
+\end{align*}
+und 
+\begin{align*}
+\big\Vert u(t)-\hat{u}(t)\big\Vert\leq\exp(\omega\cdot t)\cdot\big\Vert u(0)-\hat{u}(0)\big\Vert+\int\limits_0^t\exp(\omega\cdot(t-\tau))\cdot\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
+\end{align*}
+Insbesondere ist jede milde Lösung eine Integrallösung, und das Problem 
+\begin{align*}
+\left\lbrace\begin{array}{c}
+\dot{u}+Au\ni f\\
+u(0)=u_0
+\end{array}\right.
+\end{align*}
+besitzt für jede $f\in L^1\big(0,T;X),u_0\in X$ höchstens eine milde Lösung.
+\item Ist $A$ $m$-akkretiv vom Typ $\omega\in\R$, ist $u\in C\big([0,T],X)$ eine Integrallösung von \eqref{CauchyProblem2.2} (mit rechter Seite $f\in L^1\big([0,T],X\big)$) und ist $u\in W^{1,1}\big([0,T],X\big)$, dann ist $u$ starke Lösung von \eqref{CauchyProblem2.2}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) und (b) sind klar.\\
+
+\underline{Zeige (c):}\\
+Seien zuerst $u,\hat{u}\in W^{1,1}\big([0,T],X\big)$ starke Lösungen von \eqref{CauchyProblem2.2} zu rechten Seiten $f,\hat{f}\in L^1\big(0,T;X\big)$, d. h.
+\begin{align*}
+f(t)-\dot{u}(t)&\in A u(t)\\
+\hat{f}(t)-\dot{\hat{u}}(t)&\in A\hat{u}(t)\text{ f.ü.}
+\end{align*}
+$A$ akkretiv vom Typ $\omega\in\R$ impliziert
+\begin{align*}
+\Big[u(t)-&\hat{u}(t),\big(f(t)-\hat{f}(t)\big)-\big(\dot{u}(t)-\dot{\hat{u}}(t)\big)\Big]+\omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert\geq0\text{ f.ü.}\\
+\end{align*}
+und damit
+\begin{align*}
+0&\stackrel{\text{Subadd }[\cdot,\cdot]}{\leq}
+\Big[u(t)-\hat{u}(t),-\big(\hat{u}(t)-\dot{\hat{u}}(t)\big)\Big]+
+\Big[u(t)-\hat{u}(t),f(t)-\hat{f}(t)\Big]+
+\omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert\\
+&\stackrelnew{\text{z. Bracket}}{\text{2. Lemma}}{=}
+-\frac{\d}{\d t}\big\Vert u(t)-\hat{u}(t)\big\Vert+\omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert+\big[u(t)-\hat{u}(t),f(t)-\hat{f}(t)\big]\text{ f.ü.}
+\end{align*}
+Integration dieser Ungleichung liefert erste Behauptung für starke Lösungen. Durch Approximation gilt die erste Behauptung dann auch für milde Lösungen (verwende auch die Oberhalbstetigkeit des Brackets). Aus der ersten Behauptung folgt für zwei milde Lösungen:
+\begin{align*}
+\forall 0\leq t\leq T:
+\big\Vert u(t)-\hat{u}(t)\big\Vert
+&\leq\big\Vert u(0)-\hat{u}(0)\big\Vert+\omega\cdot\int\limits_0^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_0^t\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
+\end{align*}
+Die zweite Behauptung folgt daraus und aus dem Lemma von Gronwall.
+
+\begin{lemma}[Gronwall]\label{lemmaGronwall}\enter
+Seien $\varphi\in C\big([0,T]\big)^+,c\geq 0,\omega\in\R,f\in L^1(0,T)^+$ so, dass
+\begin{align*}
+\varphi(t)\leq c+\omega\cdot\int\limits_0^t\varphi(\tau)\d\tau+\int\limits_0^t f(\tau)\d\tau\qquad\forall t\in[0,T]
+\end{align*}
+Dann gilt:
+\begin{align*}
+\varphi(t)\leq\exp(\omega\cdot t)\cdot c+\int\limits_0^t\exp\big(\omega(t-\tau)\big)\cdot f(\tau)\d\tau\qquad\forall t
+\end{align*}
+\end{lemma}
+\begin{align*}
+\varphi'(t)&=-\omega\cdot\exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
++\exp(-\omega\cdot t)\cdot\frac{\d}{\d t}\big\Vert u(t)-\hat{u}(t)\big\Vert\\
+&\stackrel{}{\leq}
+\exp(-\omega\cdot t)\cdot\big\Vert f(t)-\hat{f}(t)\big\Vert\\
+&\stackrel{\text{Integrieren}}{\implies}
+\exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
+\leq\Vert u(0)-\hat{u}(0)\big\Vert+\int\limits_0^t\exp(-\omega\cdot\tau)\cdot\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
+\end{align*}
+\underline{Zeige Mild $\implies$ Integral:}\\
+Betrachte $\hat{u}(t):=\hat{u}$ konstant und $\hat{f}(t):=\hat{f}$ konstant mit $(\hat{u},\hat{f})\in A$.\\
+
+\underline{Zeige (d):}
+
+
+\end{proof}
