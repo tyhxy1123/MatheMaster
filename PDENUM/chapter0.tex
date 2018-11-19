@@ -1454,3 +1454,197 @@ x-y&=B_K\cdot\hat{x}+b_K-\big(B_K\cdot\hat{y}+b_K\big)=B_K\cdot(\hat{x}-\hat{y})
 \implies \Vert h_K\Vert&\leq\frac{1}{\hat{\rho}}\cdot\sup\limits_{\Vert y\Vert=\hat{\rho}}\underbrace{\Vert B_K\cdot \eta\Vert}_{\leq h_K}\leq\frac{h_K}{\hat{\rho}}
 \end{align*}
 \end{proof}
+
+\begin{lemma}[Deny-Lions]\label{lemma4.11DenyLions}\enter
+Sei $P_r(K)$ der Raum aller Polynome mit höchstens Grad $r$. Dann gilt:
+\begin{align*}
+\exists c(K)>0:\inf\limits_{p\in P_r(K)}\Vert v+p\Vert_{r+1,p,k}\leq c(K)\cdot |v|_{r+1,p,k}\qquad\forall v\in W^{r+1,p}(K)
+\end{align*}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+n:=\dim \big(P_r(K)\big)=\begin{pmatrix}
+r+d\\ d
+\end{pmatrix}\text{ (Binomialkoeffizient)}
+\end{align*}
+Setze  für $\alpha\in\N_0^\alpha\mit|\alpha|\leq r $:
+\begin{align*}
+N_\alpha:W^{r+1,p}(K)\to\R,\qquad v\mapsto\int\limits_K D^\alpha v\d x\\
+\alpha\longleftrightarrow x^\alpha=\prod\limits_{i=1}^d x_i^\alpha_i
+\end{align*}
+Also ist $\big\lbrace N_\alpha:|\alpha|\leq r\big\rbrace$ unisolvent auf $P_r(K)$.
+\begin{align*}
+\implies\right.\begin{array}{cl}
+N_\alpha(p)=0, &\falls\forall |\alpha|\leq r\\
+p\in P_r(K)
+\end{array}\right\rbrace\implies p\equiv 0
+\end{align*}
+Wir werden die Ungleichung
+\begin{align}\label{eqProof4.11Stern}\tag{$\ast$}
+\Vert v\Vert_{r+1,p,K}\leq c(K)\cdot\left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leqr}\big|N_\alpha (r)\big|\right)\qquad\forall v\in W^{r+1,p}(K)
+\end{align}
+indirekt zeigen. Angenommen, diese Ungleichung gilt nicht. Dann gibt es eine Folge $(v_l)_{n\in\N}$ mit 
+\begin{align}
+\Vert v_l\Vert_{r+1,p,K}=1\qquad\forall l\in\N\nonumber\\
+\lim\limits_{l\to\infty} \left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leqr}\big|N_\alpha (r)\big|\right)=0\label{eqProof4.11SternStern}\tag{$\ast\ast$}
+\end{align}
+Mit der kompakten Einbettung $W^{r+1,p}(K)\stackrel{c}{\hookrightarrow} W^{r,p}(K)$ erhalten wir:\\
+Es gibt eine Teilfolge $(v_m)_{m\in\N}\subseteq(v_l)_{l\in\N}$, die in $W^{r,p}(K)$ gegen $v\in W^{r,p}(K)$ konvergiert.\\
+Aus \eqref{eqProof4.11SternStern} folgt
+\begin{align*}
+\lim\limits_{m\to\infty}|v_m|_{r+1,p,K}=0\\
+\end{align*}
+Folglich ist $(v_m)_{m\in\N}$ eine Cauchyfolge in $W^{r+1,p}(K)$. Da $W^{r+1,p}(K)$ ein Banachraum ist, konvergiert diese Folge: $v_m\stackrel{m\to\infty}{\longrightarrow} v\in W^{r+1,p}(K)$ und somit $|v|_{r+1,p,K}=0$. Also $v\in P_r(K)$.
+\begin{align*}
+\left.\begin{array}{ll}
+\stackrel{\eqref{eqProof4.11SternStern}}{\implies}
+&N_\alpha(r)=0\qquad\forall |\alpha|\leq r\\
+& v\in P_r(K)
+\end{array}\right\rbrace\implies v=0
+\end{align*}
+Dies ist ein Widerspruch zu $\Vert v\Vert_{r+1,p,K}=1$. Also folgt \eqref{eqProof4.11Stern}.\\
+Für jedes $v\in W^{r+1,p}(K)$ gibt es ein $q\in P_r(K)$ so, dass
+\begin{align*}
+N_\alpha(v)=-N_\alpha(q)\qquad\forall|\alpha|\leq n
+\end{align*}
+Es folgt
+\begin{align*}
+\inf\limits_{p\in P_r(K)}\Vert v+p\Vert_{r+1,p,K}
+&\leq\Vert v+q\Vert_{r+1,p,K}\\
+&\stackeq{\eqref{eqProof4.11Stern}}
+c(K)\cdot\Big(\underbrace{|v+p|_{r+1,p,K}}_{=|v|_{r+1,p,K}}+\sum\limits_{|\alpha|\leq r}\underbrace{|N_\alpha(\cdot v+q)|}_{=0}\Big)
+\end{align*}
+\end{proof}
+
+\begin{lemma}[Bramble-Hilbert]\label{lemma4.12BrambleHilbert}
+Sei $(Y,\Vert\cdot\Vert_Y$ ein Banachraum und $F:W^{r+1,p}(K)\to Y$ linear mit den Eigenschaften
+\begin{enumerate}[label=(\roman*)]
+\item $\begin{aligned}
+\big\Vert F(u)\Vert_Y\leq c_1\cdot\Vert u\Vert_{r+1,p,K}\qquad\forall u\in W^{r+1,p}(K)
+\end{aligned}$ mit $c_1$ unabhängig von $u$.
+\item $\begin{aligned}
+F(p)=0\qquad\forall p\in P_r(K)
+\end{aligned}$
+\end{enumerate}
+Dann gibt es Konstanten $c,\tilde{c}>0$ so, dass
+\begin{align*}
+\big\Vert F(u)\big\Vert_Y
+\leq c\cdot\inf\limits_{p\in P_r(K)}\Vert u+p\Vert_{r+1,p,K}
+\leq
+\tilde{c}\cdot |u|_{r+1,p,K}\qquad\forall u\in W^{r+1,p}(K)
+\end{align*}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+F(u)&\stackeq{\text{Lin+(ii)}}F(u+p)\qquad\forall p\in P_r(K)\\
+\big\Vert F(u)\big\Vert&=\inf\limits_{p\in P_r(K)}\Vert F(u+p)\big\Vert_Y\\
+&\stackrel{\text{(i)}}{\leq}
+c_1\cdot\inf\limits_{p\in P_r(K)}\Vert u+p\Vert_{r+1,p,K}\\
+&\stackrel{\ref{lemma4.11DenyLions}}{\leq}
+\tilde{c}\cdot |u|_{r+1,p,K}
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma4.13}
+Seien $(\hat{K},\hat{V},\hat{\Sigma})$ und $(K,V,\Sigma)$ zwei affin-äquivalente Finite-Elemente wobei
+\begin{align*}
+F_k:\hat{K}\to K,\qquad\hat{x}\mapsto B_K\hat{x}+b_K
+\end{align*}
+Dann gilt:
+\begin{align*}
+(I_K v)\circ F_k=\hat{I}(v\circ F_K)
+\end{align*}
+wobei $\hat{I}_K$ und $I_K$ die Interpolations-Operatoren auf $\hat{K}$ bzw. $K$.
+\end{lemma}
+\begin{proof}
+\begin{align*}
+\hat{I}\hat{v}&=\sum\limits_{i=1}^m\hat{N}_i(}\hat{v})\cdot\hat{\varphi}_i\\
+I_K v&=\sum\limits_{i=1}^m N_i(v)\cdot\varphi,\qquad \varphi_i\circ F_K=\hat{\varphi},\qquad N(v)=\hat{N}(v\circ F_K)
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{theorem4.14}
+Sei
+\begin{itemize}
+\item $(\hat{K},\hat{V},\hat{Sigma})$ Finites-Element
+\item $m,r\in\N_0$
+\item $p,q\in[1,\infty]$
+\end{itemize}
+so, dass
+\begin{enumerate}[label=(\roman*)]
+\item $\begin{aligned}
+E^{r+1,p}(\hat{K})\hookrightarrow W^{m,q}(\hat{K})
+\end{aligned}$
+\item $\begin{aligned}
+p_r(\hat{K})\subseteq\hat{V}\subseteq W^{m,q}(\hat{K})
+\end{aligned}$
+\item $\begin{aligned}
+\hat{N}_i
+\end{aligned}$ lineare stetige Funktionale auf
+\begin{align*}
+W^{r+1,p}(\hat{K})\qquad\forall\hat{N}_i\in\hat{\Sigma}
+\end{align*}
+\end{enumerate}
+Dann existiert eine Konstante $c(\hat{K},\hat{V},\hat{\Sigma})$ so, dass
+\begin{align*}
+\big| v-I_K v\big|_{m,q,K}\leq c(\hat{K},\hat{V},\hat{\Sigma})\cdot\big(\meas(K)\big)^{\frac{1}{q}-\frac{1}{p}}\cdot\frac{h_K^{r+1}}{\rho_K^m}|v|_{r+1,p,K}
+\end{align*}
+für alle $v\in E^{r+1,p}(K)$ wobei $(K,V,\Sigma	)$ ist affin-äquivalent zu $(\hat{K},\hat{V},\hat{\Sigma})$ und
+\begin{itemize}
+\item $\meas(K)$ ist das $d$-dimensionale Maß von $K$
+\item $h_K:=\diam(K)$
+\item $\rho_K$ ist der Diameter der größten Kugel in $K$
+\end{itemize}
+Im Fall $p=q=2,m=1,\rho_K\sim h_K$ erhält man
+\begin{align*}
+\big|v-I_K v\big|_{1,2,K}\leq \hat{c}\cdot h_K^r\cdot |v|_{r+1,2,K}
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\big\Vert \hat{I}\hat{v}\big\Vert_{m,q,\hat{K}}
+&=\left\Vert\sum\limits_{i=1}^m\hat{N}_i(\hat{v})\cdot\hat{\varphi}_i\right\Vert_{m,q,K}\\
+&\leq
+\sum\limits_{i=1}^m\big|\hat{N}_i(\hat{v})\big|\cdot\big\Vert\hat{\varphi}_i\big\Vert_{m,q,\hat{K}}\\
+&\leq
+\underbrace{\left(\sum\limits_{i=1}^m c\cdot\big\Vert\hat{\varphi}_i\big\ Vert_{m,q,\hat{K}}\right)}_{=:c(\hat{K},\hat{V},\hat{\Sigma})}\cdot\Vert\hat{v}\Vert_{r+1,p,\hat{K}}\\
+&\implies
+\hat{I}:W^{r+1,p}(\hat{K})\to W^{m,q}(\hat{K})\text{ ist stetig}
+\end{align*}
+Auf $P_r(\hat{K})\subseteq V$ folgt $\hat{I}\hat{p}=\hat{p}$ für alle $\hat{p}\in P_r(\hat{K})$. Es folgt
+\begin{align*}
+\hat{v}-\hat{I}\hat{v}
+&=\big(\hat{v}+\hat{p}\big)-\hat{I}\big(\hat{v}+\hat{p}\big)
+=\big(\id -\hat{I}\big)\big(\hat{v}+\hat{p}\big)
+\qquad\forall \hat{v}\in W^{r+1,p}(\hat{K}),\forall \hat{p}\in P_r(\hat{K})\\
+\big|\hat{v}-\hat{I}\hat{v}\big|_{m,q,\hat{K}}
+&=\Big|\big(\id-\hat{I}\big)\big(\hat{v}+\hat{p}\big)\Big|_{m,q,\hat{K}}\qquad\forall\hat{p}\in P_r(\hat{K})\\
+&\leq
+\inf\limits_{\hat{p}\in P_r(\hat{K})}\Big|\big(\id-\hat{I}\big)\big(\hat{v}+\hat{p}\big)\Big_{m,q,\hat{K}}\\
+&\leq
+c(\hat{K},\hat{V},\hat{\Sigma})\cdot\inf\limits_{\hat{p}\in P_r(\hat{K})}\big\Vert\hat{v}+\hat{p}\big\Vert_{r+1,p,\hat{K}}
+\stackrel{\ref{lemma4.11DenyLions}}{\leq}
+c(\hat{K},\hat{V},\hat{\Sigma})\cdot\big|\hat{v}\big|_{r+1,p,\hat{K}}
+\end{align*}
+Aus dem vorherigen Lemma \ref{lemma4.13} folgt:
+\begin{align*}
+&\big(v-I_KJ v\big)\circ F_K=\underbrace{v\circ f_K}_{=:\hat{v}}-\hat{I}(v\circ F_K)=\hat{v}-\hat{I}\hat{v}\\
+\big| v-I_K v\big|_{m,q,K}
+&\stackrel{\ref{theorem4.9}}{\leq}
+c\cdot\big\Vert B_K^{-1}\big\Vert^m\cdot\big|\det(B_K)\big|^{\frac{1}{q}}\cdot\big|\underbrace{(v-I_K v)\circ F_K}_{=\hat{v}-\hat{I}\hat{v}}\big|_{m,q,K}\\
+&\leq c\cdot\big\Vert B_K^{-1}\big\Vert\cdot|\det(B_K)|^{\frac{1}{p}}\cdot\big|\hat{v}\big|_{r+1,q,\hat{K}}\\
+&\stackrel{\ref{theorem4.9}}{\leq}
+c\cdot\big\Vert B_K^{-1}\big\Vert^m\cdot\Vert B_K\Vert^{r+1}\cdot|\det(B_K)|^{\frac{1}{q}-\frac{1}{p}}\cdot |v|_{r+1,p,K}\\
+&\stackrel{\ref{lemma4.10}}{\leq}
+c\cdot\frac{\hat{h}^m}{\hat{\rho}^{r+1}}\cdot\frac{h_K^{r+1}}{\rho^m}\cdot|\det(B_K)|^{\frac{1}{q}-\frac{1}{p}}\cdot|v|_{r+1,q,K}\\
+\meas(K)&=\int\limits_K 1\d x=\int\limits_{\hat{K}}\big|\det(B_K)\big|\d\hat{x}=\big|\det(B_K)\big|\cdot\underbrace{\meas(\hat{K})}_{\longrightarrow c(\hat{K},\hat{V},\hat{\Sigma})}\\
+&\implies
+\big| v-I_K v\big|_{m,q,K}
+\leq c\cdot\frac{h_K^{r+1}}{\rho_K^m}\cdot\big|\meas(K)\big|^{\frac{1}{q}-\frac{1}{p}}\cdot|v|_{r+1,p,K}
+\end{align*} 
+\end{proof}
+
+
+
+
+
