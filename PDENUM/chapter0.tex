@@ -1470,23 +1470,26 @@ r+d\\ d
 Setze  für $\alpha\in\N_0^\alpha\mit|\alpha|\leq r $:
 \begin{align*}
 N_\alpha:W^{r+1,p}(K)\to\R,\qquad v\mapsto\int\limits_K D^\alpha v\d x\\
-\alpha\longleftrightarrow x^\alpha=\prod\limits_{i=1}^d x_i^\alpha_i
+\alpha\longleftrightarrow x^\alpha =\prod\limits_{i=1}^d x_i^{\alpha_i}
 \end{align*}
 Also ist $\big\lbrace N_\alpha:|\alpha|\leq r\big\rbrace$ unisolvent auf $P_r(K)$.
 \begin{align*}
-\implies\right.\begin{array}{cl}
-N_\alpha(p)=0, &\falls\forall |\alpha|\leq r\\
-p\in P_r(K)
-\end{array}\right\rbrace\implies p\equiv 0
+\implies\left.
+	\begin{array}{cl}
+	N_\alpha(p)=0, &\falls\forall |\alpha|\leq r \\
+	p\in P_r(K)&
+	\end{array}
+\right\rbrace
+\implies p\equiv 0
 \end{align*}
 Wir werden die Ungleichung
 \begin{align}\label{eqProof4.11Stern}\tag{$\ast$}
-\Vert v\Vert_{r+1,p,K}\leq c(K)\cdot\left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leqr}\big|N_\alpha (r)\big|\right)\qquad\forall v\in W^{r+1,p}(K)
+\Vert v\Vert_{r+1,p,K}\leq c(K)\cdot\left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leq r}\big|N_\alpha (r)\big|\right)\qquad\forall v\in W^{r+1,p}(K)
 \end{align}
 indirekt zeigen. Angenommen, diese Ungleichung gilt nicht. Dann gibt es eine Folge $(v_l)_{n\in\N}$ mit 
 \begin{align}
 \Vert v_l\Vert_{r+1,p,K}=1\qquad\forall l\in\N\nonumber\\
-\lim\limits_{l\to\infty} \left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leqr}\big|N_\alpha (r)\big|\right)=0\label{eqProof4.11SternStern}\tag{$\ast\ast$}
+\lim\limits_{l\to\infty} \left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leq r}\big|N_\alpha (r)\big|\right)=0\label{eqProof4.11SternStern}\tag{$\ast\ast$}
 \end{align}
 Mit der kompakten Einbettung $W^{r+1,p}(K)\stackrel{c}{\hookrightarrow} W^{r,p}(K)$ erhalten wir:\\
 Es gibt eine Teilfolge $(v_m)_{m\in\N}\subseteq(v_l)_{l\in\N}$, die in $W^{r,p}(K)$ gegen $v\in W^{r,p}(K)$ konvergiert.\\
@@ -1558,7 +1561,7 @@ wobei $\hat{I}_K$ und $I_K$ die Interpolations-Operatoren auf $\hat{K}$ bzw. $K$
 \end{lemma}
 \begin{proof}
 \begin{align*}
-\hat{I}\hat{v}&=\sum\limits_{i=1}^m\hat{N}_i(}\hat{v})\cdot\hat{\varphi}_i\\
+\hat{I}\hat{v}&=\sum\limits_{i=1}^m\hat{N}_i(\hat{v})\cdot\hat{\varphi}_i\\
 I_K v&=\sum\limits_{i=1}^m N_i(v)\cdot\varphi,\qquad \varphi_i\circ F_K=\hat{\varphi},\qquad N(v)=\hat{N}(v\circ F_K)
 \end{align*}
 \end{proof}
@@ -1602,34 +1605,31 @@ Im Fall $p=q=2,m=1,\rho_K\sim h_K$ erhält man
 \end{theorem}
 \begin{proof}
 \begin{align*}
-\big\Vert \hat{I}\hat{v}\big\Vert_{m,q,\hat{K}}
-&=\left\Vert\sum\limits_{i=1}^m\hat{N}_i(\hat{v})\cdot\hat{\varphi}_i\right\Vert_{m,q,K}\\
-&\leq
-\sum\limits_{i=1}^m\big|\hat{N}_i(\hat{v})\big|\cdot\big\Vert\hat{\varphi}_i\big\Vert_{m,q,\hat{K}}\\
-&\leq
-\underbrace{\left(\sum\limits_{i=1}^m c\cdot\big\Vert\hat{\varphi}_i\big\ Vert_{m,q,\hat{K}}\right)}_{=:c(\hat{K},\hat{V},\hat{\Sigma})}\cdot\Vert\hat{v}\Vert_{r+1,p,\hat{K}}\\
-&\implies
-\hat{I}:W^{r+1,p}(\hat{K})\to W^{m,q}(\hat{K})\text{ ist stetig}
+\big\Vert \hat{I} \hat{v} \big\Vert_{m,q,\hat{K}} \\
+&=\left\Vert \sum\limits_{i=1}^m \hat{N}_i(\hat{v}) \cdot \hat{\varphi}_i \right\Vert_{m,q,K} \\
+&\leq \sum\limits_{i=1}^m \big| \hat{N}_i(\hat{v}) \big| \cdot \big\Vert \hat{\varphi}_i \big\Vert_{m,q,\hat{K}} \\
+&\leq \underbrace{\left( \sum\limits_{i=1}^m c\cdot \big\Vert \hat{\varphi}_i \big\Vert_{m,q,\hat{K}}\right)}_{=:c(\hat{K},\hat{V},\hat{\Sigma})}\cdot\Vert\hat{v}\Vert_{r+1,p,\hat{K}} \\
+&\implies \hat{I}:W^{r+1,p}(\hat{K})\to W^{m,q}(\hat{K})\text{ist stetig}
 \end{align*}
 Auf $P_r(\hat{K})\subseteq V$ folgt $\hat{I}\hat{p}=\hat{p}$ für alle $\hat{p}\in P_r(\hat{K})$. Es folgt
 \begin{align*}
 \hat{v}-\hat{I}\hat{v}
-&=\big(\hat{v}+\hat{p}\big)-\hat{I}\big(\hat{v}+\hat{p}\big)
-=\big(\id -\hat{I}\big)\big(\hat{v}+\hat{p}\big)
+&=\big(\hat{v}+\hat{p}\big)-\hat{I}\big(\hat{v}+\hat{p}\big) \\
+&=\big(\id -\hat{I}\big)\big(\hat{v}+\hat{p}\big) 
 \qquad\forall \hat{v}\in W^{r+1,p}(\hat{K}),\forall \hat{p}\in P_r(\hat{K})\\
-\big|\hat{v}-\hat{I}\hat{v}\big|_{m,q,\hat{K}}
-&=\Big|\big(\id-\hat{I}\big)\big(\hat{v}+\hat{p}\big)\Big|_{m,q,\hat{K}}\qquad\forall\hat{p}\in P_r(\hat{K})\\
-&\leq
-\inf\limits_{\hat{p}\in P_r(\hat{K})}\Big|\big(\id-\hat{I}\big)\big(\hat{v}+\hat{p}\big)\Big_{m,q,\hat{K}}\\
-&\leq
-c(\hat{K},\hat{V},\hat{\Sigma})\cdot\inf\limits_{\hat{p}\in P_r(\hat{K})}\big\Vert\hat{v}+\hat{p}\big\Vert_{r+1,p,\hat{K}}
-\stackrel{\ref{lemma4.11DenyLions}}{\leq}
+\end{align*}
+\begin{align*}
+\big| \hat{v}-\hat{I} \hat{v} \big|_{m,q,\hat{K}}
+&=\Big| \big( \id - \hat{I} \big) \big( \hat{v}+\hat{p} \big) \Big|_{m,q,\hat{K}} \qquad\forall\hat{p}\in P_r(\hat{K})\\
+&\leq \inf\limits_{\hat{p}\in P_r(\hat{K})} \Big| \big(\id-\hat{I}\big) \big(\hat{v}+\hat{p}\big) \Big|_{m,q,\hat{K}}\\
+&\leq c(\hat{K},\hat{V},\hat{\Sigma})\cdot\inf\limits_{\hat{p}\in P_r(\hat{K})}\big\Vert\hat{v}+\hat{p}\big\Vert_{r+1,p,\hat{K}} \\
+&\stackrel{\ref{lemma4.11DenyLions}}{\leq}
 c(\hat{K},\hat{V},\hat{\Sigma})\cdot\big|\hat{v}\big|_{r+1,p,\hat{K}}
 \end{align*}
 Aus dem vorherigen Lemma \ref{lemma4.13} folgt:
 \begin{align*}
-&\big(v-I_KJ v\big)\circ F_K=\underbrace{v\circ f_K}_{=:\hat{v}}-\hat{I}(v\circ F_K)=\hat{v}-\hat{I}\hat{v}\\
-\big| v-I_K v\big|_{m,q,K}
+&\big(v-I_K J v\big)\circ F_K=\underbrace{v\circ f_K}_{=:\hat{v}}-\hat{I}(v\circ F_K)=\hat{v}-\hat{I}\hat{v}\\
+\big| v-I_K v\big|_{m,q,K} \\
 &\stackrel{\ref{theorem4.9}}{\leq}
 c\cdot\big\Vert B_K^{-1}\big\Vert^m\cdot\big|\det(B_K)\big|^{\frac{1}{q}}\cdot\big|\underbrace{(v-I_K v)\circ F_K}_{=\hat{v}-\hat{I}\hat{v}}\big|_{m,q,K}\\
 &\leq c\cdot\big\Vert B_K^{-1}\big\Vert\cdot|\det(B_K)|^{\frac{1}{p}}\cdot\big|\hat{v}\big|_{r+1,q,\hat{K}}\\
