@@ -1592,7 +1592,28 @@ eindeutig lösbar. Der Beweis, dass $\partial\E$ $m$-akkretiv ist, zeigt, dass d
 L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
 v\mapsto\E(v)+\frac{1}{2\cdot h}\cdot\Vert v-h\Vert_{L^2}^2
 \end{align*}
-ist!
+ist!\\
+\underline{Nachtrag:} $\partial\E$ ist einwertig.
+
+Bew.: Zur Erinnerung:
+\begin{align*}
+	\partial\E = \Big\{(u,f) \in L^2(\Omega)\times L^2(\Omega) \mid & u \in \dom \E \text{ und } \forall v \in \dom\E : \\
+	& \int\limits_{\Omega} |\nabla u|^{p-2}\nabla u \nabla v = \int\limits_{\Omega} fv\Big\}.
+\end{align*}
+Seien $(u,f),(u,g) \in \partial\E$. Dann gilt 
+\begin{align*}
+	u \in \dom \E \text{ und } \forall v \in \dom\E : &\int\limits_{\Omega} |\nabla u|^{p-2}\nabla u \nabla v = \int\limits_{\Omega} fv\\
+	& \iff \int\limits_{\Omega}(f-g)v = 0.
+\end{align*}
+Nun gilt aber
+$$ \dom\E = \{\omega \in L^2(\Omega) \mid \nabla \omega \in L^p(\Omega)\} \supseteq C_c^\infty(\Omega).$$
+Da $C_c^\infty(\Omega)$ dicht in $L^2(\Omega)$ liegt, folgt: 
+\begin{align*}
+	f-g =: v \in C_c^\infty(\Omega) & \implies \int\limits_\Omega(f-g)v = 0\\
+	& \implies \int\limits_\Omega\langle f-g, f-g \rangle = 0\\
+	& \implies \| f-g \|_{L^2(\Omega)} = 0 \implies f = g.
+\end{align*}
+Alternativ liefert auch der Fundamentalsatz der Variationsrechnung das Gewünschte.
 %TODO Den Teil von Lukas einfügen. An welche Stelle weiß ich nicht genau.
 \end{beispiel}
 
