@@ -1652,31 +1652,31 @@ c\cdot\frac{\hat{h}^m}{\hat{\rho}^{r+1}}\cdot\frac{h_K^{r+1}}{\rho^m_K}\cdot|\de
 \end{proof}
 
 \begin{definition}[Formreguläre Familie von Triangulierungen]\enter %4.15
-Eine Familie $\lbrace\T_h\rbrace_{h\in I}$ von geeigneten Triangulierungen vom $\Omega$  heißt \textbf{formregulär}
+Eine Familie $\lbrace\T_h\rbrace$ von geeigneten Triangulierungen vom $\Omega$  heißt \textbf{formregulär}
 $:\gdw$
 \begin{enumerate}[label=(\roman*)]
 \item $\begin{aligned}
-\exists\sigma>0:\forall\T_h:\forall K\in\T_h:\frac{h_K}{\rho_K}\leq\sigma
+\exists\sigma>0:\frac{h_K}{\rho_K}\leq\sigma \qquad\forall K\in\T_h\;\forall\T_h
 \end{aligned}$
-\item Der Familienparameter h geht nach 0. %TODO Formalisieren! Was bedeutet das?
+\item Der Familienparameter h geht nach 0 $\iff$ die Dreiecke werden verfeinert, siehe Bild
 \end{enumerate}
 \end{definition}
 
 \begin{theorem}\label{theorem4.16}
 Für eine formreguläre Familie von Finiten-Elementen $(K,V,\Sigma)$, alle affin-äquivalent zu $(\hat{K},\hat{V},\hat{\Sigma})$, ist die Abschätzung
 \begin{align*}
-\big| v-I_K v\big|\leq\tilde{c}\cdot\big(\meas(K)\big)^{\frac{1}{q}-\frac{1}{p}}\cdot h_K^{r+1-n}\cdot|v|_{r+1,p,K}
+\big| v-I_K v\big|\leq\tilde{c}\cdot\big(\meas(K)\big)^{\frac{1}{q}-\frac{1}{p}}\cdot h_K^{r+1-m}\cdot|v|_{r+1,p,K}
 \end{align*}
 erfüllt unter den Voraussetzungen von Theorem \ref{theorem4.14}. Außerdem gilt die Abschätzung dann für die Norm anstelle der Semi-Norm:
 \begin{align*}
-\big\Vert v-I_K v\big\Vert\leq\tilde{c}\cdot\big(\meas(K)\big)^{\frac{1}{q}-\frac{1}{p}}\cdot h_K^{r+1-n}\cdot|v|_{r+1,p,K}
+\big\Vert v-I_K v\big\Vert\leq\tilde{c}\cdot\big(\meas(K)\big)^{\frac{1}{q}-\frac{1}{p}}\cdot h_K^{r+1-m}\cdot|v|_{r+1,p,K}
 \end{align*}
 \end{theorem}
 
 \begin{theorem}\label{theorem4.17}
 Sei $V:=H_0^1(\Omega)$, $V_h\subseteq V$ ein Raum von Finiten Elementen auf $\T_h$ (gehörend zu einer formregulären Familie)  und seien $(K,V,\Sigma)$ affin-äquivalent zu $(\hat{K},\hat{V},\hat{\Sigma})$.\\
 Weiterhin sei $a$ eine koerzive, stetige Bilinearform auf $V$ und $l$ eine stetige Linearform auf $V$. Außerdem seien $u\in V$ und $u_h\in V_h$ die eindeutigen Lösungen des Variationsproblems auf $V$ bzw. $V_h$.
-Zusätzlich seien $\hat{N}_i\in\hat{\Sigma}$ stetig auf $H^{r+1}(\hat{K})$ und $P_r(\hat{K})\subseteq\hat{v}\subseteq H^1(\hat{K})$\\
+Zusätzlich seien $\hat{N}_i\in\hat{\Sigma}$ stetig auf $H^{r+1}(\hat{K})$ und $P_r(\hat{K})\subseteq\hat{V}\subseteq H^1(\hat{K})$\\
 Dann gibt es eine Konstante $c$, unabhängig von $h$ so, dass 
 \begin{align*}
 \Vert u-u_h\Vert_{1,2,\Omega}\leq c\cdot h^r\cdot|u|_{r+1,2,\Omega}
@@ -1687,7 +1687,7 @@ u\in H^1_0(\Omega)\cap H^{r+1}(\Omega).
 \end{align*}
 \end{theorem}
 \begin{proof}
-Céas Lemma \ref{theorem2.2CeasLemma} liefert
+Céa's Lemma \ref{theorem2.2CeasLemma} liefert
 \begin{align*}
 \Vert u-u_h\Vert_{1,2,\Omega}&\leq c\cdot \inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_{1,2,\Omega}
 \leq c\cdot\Vert u-I_h u\Vert_{1,2,\Omega}
@@ -1704,7 +1704,7 @@ Mit Theorem \ref{theorem4.16} folgt mit $m=1,p=q=2$ dann die Lokalisierungseigen
 &\leq
 c\cdot\sum\limits_{K\in\T_h}\underbrace{h_K^{2\cdot r}}_{\leq h^{2\cdot r}}\cdot|u|^2_{r+1,2,K}\\
 &\leq c\cdot h^{2\cdot r}\cdot\underbrace{\sum\limits_{K\in\T_h}|u|^2_{r+1,2,K}}_{=|u|^2_{r+1,2,\Omega}}\\
-&=c\cdot h^{2\cdot r}\cdot|u|^2_{1,2,\Omega}
+&=c\cdot h^{2\cdot r}\cdot|u|^2_{r+1,2,\Omega}
 \end{align*}
 \end{proof}
 
@@ -1728,31 +1728,35 @@ falls $u\in H^{r+1}(\Omega)$.
 Nutze Theorem \ref{theorem2.3AubinNietscheDualitaetsargument} mit $H=L^2(\Omega),V=H_0^1(\Omega)$:
 \begin{align*} %checked
 \Vert u-u_h\Vert_{0,2,\Omega}
-&\leq c\cdot\underbrace{\Vert u-u_h\Vert_{1,2,\Omega}}_{\leq c \cdot h^r\cdot|u|_{r+1,2,\Omega}}\cdot\sup\limits_{\begin{subarray}{c}g\in L^2(\Omega)\\\Vert g\Vert_{0,2,\Omega}=1\end{subarray}}\inf\limits_{v_h\in V_h}\Vert\varphi_g-v_h\Vert_{1,2,\Omega}\\
+&\leq c\cdot\underbrace{\Vert u-u_h\Vert_{1,2,\Omega}}_{\leq c \cdot h^r\cdot|u|_{r+1,2,\Omega}}\cdot\sup\limits_{\begin{subarray}{c}g\in L^2(\Omega)\\\Vert g\Vert_{0,2,\Omega}=1\end{subarray}}\inf\limits_{v_h\in V_h}\Vert\varphi_g-v_h\Vert_{1,2,\Omega}
+\end{align*}
+\begin{align*}
 \implies
 \inf\limits_{v_h\in V_h}\Vert\varphi_g-v_h\Vert_{1,2,\Omega}
 &\leq\big\Vert\varphi_g -I_h\varphi_g\big\Vert_{1,2,\Omega}\\
 &\leq c\cdot h\cdot|\varphi_g|_{2,2,\Omega}\\
-&\leq c\cdot h\cdot\underbrace{\Vert g\Vert_{0,2,\Omega}}_{=1}\\
-&\implies
+&\leq c\cdot h\cdot\underbrace{\Vert g\Vert_{0,2,\Omega}}_{=1}
+\end{align*}
+\begin{align*}
+\implies
 \sup\limits_{\begin{subarray}{c}g\in L^2(\Omega)\\\Vert g\Vert_{0,2,\Omega}=1\end{subarray}}\inf\limits_{v_h\in V_h}\Vert\varphi_g-v_h\Vert_{1,2,\Omega}
 \leq c\cdot h
 \end{align*}
 \end{proof}
 
-Diese Abschätzungen werden \textbf{a priori Abschätzungen} genannt.
+Diese Abschätzungen ist eine \textbf{a priori Abschätzung}, d.h. man kann ohne Berechnungen Aussagen machen.
 
 \begin{lemma}[Inverse Abschätzung]\label{lemma4.19InverseAbschaetzung}\enter
-Sei $\lbrace V_h\rbrace_{h\in I}$ eine Familie von affin-äquivalenten, formregulären Finiten-Elementen.\\
+Sei $\lbrace V_h\rbrace$ eine Familie von affin-äquivalenten, formregulären Finiten-Elementen.\\
 Dann gibt es eine konstante $c$, unabhängig von $h$, so, dass
 \begin{align*}
-|w_h|_{1,2,K}\leq c\cdot h^{-1}_K\cdot\Vert w_h\Vert_{1,2,K}\qquad\forall w\in V_h
+|w_h|_{1,2,K}\leq c\cdot h^{-1}_K\cdot\Vert w_h\Vert_{0,2,K}\qquad\forall w\in V_h
 \end{align*}
 Global erhalten wir
 \begin{align*}
-|w_h|_{1,2,\Omega}\leq c\cdot h^{-1}_{\min}\cdot\Vert w_h\Vert_{0,2,\Omega}\qquad\forall w\in V_h\\
-\text{wobei }h_{\min}:=\min\limits_{K\in\T_h} h_K
+|w_h|_{1,2,\Omega}\leq c\cdot h^{-1}_{\min}\cdot\Vert w_h\Vert_{0,2,\Omega}\qquad\forall w\in V_h
 \end{align*}
+wobei $h_{\min}:=\min\limits_{K\in\T_h} h_K$
 \end{lemma}
 \begin{proof}
 \begin{align*}
