@@ -47,11 +47,136 @@
 \end{aufgabe}
 \begin{lösung}
     Zunächst wähle eine Totalordnung auf $ N $ und benenne die Elemente so um, dass
-    $N = \{1,2,...,n\}$, wobei $n \in \N$.
+    $N = \{1,2,\ldots,n\}$, wobei $n \in \N$.
     Definiere für alle $u,v \in \R^N$:
     $$ I^v_u := \{i \in N \| u_i \leq v_i\}.$$
 
     Nun definiere die lineare Ordnung wie folgt:
     $$ u \leq_l v :\iff \min I^v_u \leq \min I^u_v.$$
 \end{lösung}
+
+
+
+%Hier die 13. Vorlesung (20.11.2018). Kannst du gern umschreiben @Lukas. 
+
+
+
+\begin{bemerkung}
+für $x,y\in[0,\infty]$ mit $<\leq y$ ist also $\delta(x,y)$ das kleinste Element $t$ in $\big([0,\infty],\leq\big)$ mit $x+t=y$, d.h. $t$ ist die kleinste ``Ergänzung'' von $x$ zu $y$ im natürlich geordneten Monoid $\big([0,\infty],+,0\big)$\\
+Man erkennt hieraus leicht, dass $\delta$ funktoriell ist:
+\begin{align*}
+\delta(x,x)=0,\qquad\delta(x,y)+\delta(y,z)=\delta x,z)\qquad\forall x\leq y\leq z
+\end{align*}
+hingegen $\overline{\delta}$ nicht. Weiterhin ist $\delta$ modular:
+\begin{align*}
+\delta(x,x\vee y)=\delta x\wedge y,y)
+\end{align*}
+genauso wie $\overline{\delta}$!\\
+Auch wenn $\overline{\delta}$ schon nicht funktoriell ist, dan ngilt zumindest die Dreiecksungleichung
+\begin{align*}
+\overline{\delta}(x,z)\leq\overline{\delta}(x,y)+\overline{\delta}(y,z)
+\end{align*}
+Definieren wir $\overline{\delta}^{\text{op}}$ als $\overline{\delta}^{\text{op}}(y,x):=\overline{\delta}(x,y)$. Dann ist
+\begin{align*}
+d:[0,\infty]^2\to[0,\infty],\qquad (x,y)\mapsto\overline{\delta}(x,y)+\overline{\delta}^{\text{op}}(x,y)
+\end{align*}
+eine Metrik mit
+\begin{align*}
+d(x,y)=\left\lbrace\begin{array}{cl}
+|x-y|, &\falls x\neq\infty,y\neq0\\
+0, &\falls x=y=\infty\\
+\infty, &\sonst
+\end{array}\right.
+\end{align*}
+\end{bemerkung}
+
+\begin{definition}
+Sei $\P=(P,R)$ eine Präordnung (d.h. reflexiv + transitiv) und sei $\mathbb{M}=(M,\ast,\varepsilon)$ ein Monoid. Dann heiße eine Abbildung
+\begin{align*}
+\Delta:R\to M
+\end{align*}
+\textbf{funktoriell} bzgl. $(\P,\mathbb{M}):\gdw\forall p~R~t,t~R~q\text{ in }P:$
+\begin{enumerate}
+\item $\Delta(p,p)=\varepsilon$
+\item $\Delta(p,t)\ast\Delta(t,q)=\Delta(p,q)$
+\end{enumerate}
+\end{definition}
  
+\begin{beispiel}
+\begin{align*}
+&\left\lbrace\begin{matrix}
+\P=\big([0,\infty],\leq\big)\\
+\mathbb{M}=\big([0,\infty],+,0\big)
+\end{matrix}\right.\implies \mit\Delta:=\delta\\
+&\left\lbrace\begin{matrix}
+\P=(P,R)\mit P:=[0,\infty]^{\N}\\
+\mathbb{M}=\big([0,\infty],+,+\big)\\
+\Delta:(\alpha,\beta)\mapsto\sum\limits_{n\in\N}\delta(\alpha n,\beta n)\cdot 2^n
+\end{matrix}\right.
+\end{align*}
+Was ist mit Modularität? Definition ist allgemein. Join $(\vee)$ und meet $(\wedge)$
+\end{beispiel}
+
+\section*{Mini-Ausflug ``MEASUREMENT SETUP''}
+\begin{definition}
+Ein MEASUREMENT SETUP ist erklärt als Tripel $\mathcal{M}=(G,\mathbb{M},\Delta)$ bestehend aus einem \textbf{Aktionsnetzwerk} $\mathbb{G}=(G,\ast,\id)$ mit zugrundeliegendem \textbf{Netzwerk} $G=(V,E,\rho)$, einem Monoid $\mathbb{M}=(M,\ast,\varepsilon)$ und einer \textbf{funktoriellen} Abbildung $\Delta:E\to M$.
+\end{definition}
+Interpreation:
+\begin{itemize}
+\item $\mathbb{G}$ ist WAS ich messe.
+\item $\mathbb{M}$ ist WORIN ich messe.
+\item $\Delta$ ist WIE ich (be)messe.
+\end{itemize}
+Weitere Einschränkungen: Ein \textbf{Netzwerk} ist definiert als Tripel $G=(V,E,\rho)$ bestehend aus Mengen $V,E$ sowie einer Abbildung $\rho:E\to V\times V$\\
+Interpretation: $V$ ist Knotenmenge / Pfeilmenge (vertex set) und $E$ ist Kantenmenge(edge set) und $\rho$ ist Strukturabbilung und wir setzen
+\begin{align*}
+(\sigma e,\tau e):=\rho e:=\rho(e)\qquad\forall e\in E\\
+\mit\sigma:=\pi_1\circ\rho,\qquad\tau:=\pi_2\circ\rho
+\end{align*}
+wobei $\pi_1,\pi_2$ die Projektionen auf die erste bzw. die zweite Komponente sind.\\
+Ein Tripel $\mathbb{G}=(G,\ast,\id)$ heißt \textbf{Aktionsnetzwerk (ANW)}, falls $G=(V,E,\rho)$ Netzwerk ist und 
+\begin{align*}
+\ast:E^{\langle 2\rangle}\to E, (a,b)\mapsto a\ast b
+\end{align*}
+Abbildung ist, wobei
+\begin{align*}
+E^{\langle 2\rangle}:=\big\lbrace (a,b)\in E\times E~\big|~\tau =\tau b\big\rbrace
+\end{align*}
+die Menge der Pfade der Länge 2 ist und $\id:V\to E$ Abbildung ist, derart, dass die \textbf{Verkettungsaxiome} gelten:
+\begin{align*}
+\rho(a\ast b)&=(\sigma a,\tau b) &\forall& (a,b)\in E^{\langle 2\rangle}\\
+(a\ast b)\ast c&=a\ast(b\ast c) &\forall& (a,b,c)\in E^{\langle 3\rangle}\text{ Assoziativität}
+\end{align*}
+wobei 
+\begin{align*}
+E^{\langle 3\rangle}:=\big\lbrace(a,b,c)\in E^3~\big|~\tau a=\sigma b\text{ und }\tau b=\sigma c\big\rbrace
+\end{align*}
+die Menge der Pfade der Länge 3 in $G$.
+\textbf{Neutralitäts-Axiome:}
+\begin{align*}
+\rho (\id p)&=(p,p) &\forall& p\in V\\
+\id(\sigma e)\ast e&=e=e\ast\id(\tau e) &\forall& e\in E
+\end{align*}
+Kanten interpretieren wir als Aktionen und Knoten als Zustände.
+
+\begin{beispiel}\
+\begin{itemize}
+\item Pfadaktionsnetzwerk zu einem Netzwerk
+\item logistisches Aktionsnetzwerk zu einer Menge $P$:
+\begin{align*}
+\mathbb{G}_P&:=(G_P,\ast,\id)\\
+\id p:=\id(p)&:=(p,p)\\
+G_P&:=(P,P\times P,\id_{P\times P})\\
+(p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
+\end{align*}
+\item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
+\end{itemize}
+\end{beispiel}
+
+Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mathbb{M}):\gdw$ 
+\begin{enumerate}
+\item $\Delta \id(p)=\varepsilon\qquad\forall p\in V$
+\item $\Delta a\ast b=\Delta a\ast\Delta b\qquad\forall(a,b)\in E^{\langle2\rangle}$
+\end{enumerate}
+
+
