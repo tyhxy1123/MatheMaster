@@ -2250,5 +2250,160 @@ X\stackeq{\L} Y\Longleftrightarrow\varphi_X\equiv\varphi_Y
 Siehe Buch \textit{Essentials in Probability} von Jacod und Protter (2000), Seite 107-108.
 \end{proof}
 
+\begin{satz}[Stetigkeitssatz]\label{satz5.3Stetigkeitssatz}
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^d\Longleftrightarrow\forall t\in\R^d: \varphi_{X_n}(t)\stackrel{n\to\infty}{\longrightarrow}\varphi_X(t)
+\end{align*}
+\end{satz}
+\begin{proof}
+Siehe Vorlesung Wahrscheinlichkeitstheorie (Bachelor) oder Jacod und Protter (2000), Seite 163 ff.
+\end{proof}
 
+Sehr nützlich ist:
+
+\begin{satz}[Cramér-Wold-Device]\label{satz5.4CramerWoldDevice}\enter
+%Device bedeutet u. A. Trick. Das ist kein Name.
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^d
+\end{aligned}$
+\item $\begin{aligned}
+\langle t, X_n\rangle\stackrel{\L}{\longrightarrow}\langle t, X\rangle\text{ in }\R\qquad\forall t\in\R^d
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\varphi_X(t)
+&\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]\qquad\forall t\in\R^d
+\stackeq{d=1}\E\big[\exp(i\cdot X\cdot t)\big]
+\end{align*}
+\underline{Zeige (1) $\implies$ (2):}\\
+Sei $t\in\R^d$. Dann ist $x\mapsto\langle t,x\rangle$ stetig auf $\R^d$. Und aus Satz \ref{satz4.10ContinuousMappingTheorem} (CMT) folgt dann (2).\\
+
+\underline{Zeige (2) $\implies$ (1):}
+\begin{align*}
+&\varphi_{X_n}(t)
+&\stackeq{\text{def}}\E\Big[\exp\big(i\cdot\langle t,X_n\rangle\cdot 1\big)\Big]
+\stackeq{\text{Def}}\varphi_{\langle t,X_n\rangle}(1)
+\stackrelnew{\ref{satz5.3Stetigkeitssatz}}{n\to\infty}{\longrightarrow}\underbrace{\varphi_{\langle t,X\rangle}(1)}_{=\varphi_X(t)}\\
+&\implies\varphi_{X_n}\stackrel{n\to\infty}{\longrightarrow}\varphi_X\text{ auf }\R^d
+\stackrel{\ref{satz5.3Stetigkeitssatz}}{\implies}(1)
+\end{align*}
+\end{proof}
+
+\section{Der multivariate zentrale Grenzwertsatz (ZGWS) für Dreiecksschemata} %6
+Wir betrachen zunächst den \underline{univariaten} Fall. es gelte
+\begin{align}\label{eq6.1}\tag{6.1}
+X_{n,1},X_{n,2},\ldots,X_{n,n}\text{ sind unabhängige \ul{reelle} ZV }\forall n\in\N
+\end{align}
+Die Kollektion
+\begin{align*}
+\big\lbrace X_{n,k}:1\leq k\leq n,n\in\N\rbrace
+\end{align*}
+heißt \textbf{Dreiecksschema / $\Delta$-Schema}.
+\begin{align*}
+\begin{matrix}
+X_{1,1}\\
+X_{2,1} & X_{2,2}\\
+X_{3,1} & X_{3,2} & X_{3,3}\\
+\vdots & \vdots & \vdots & \ddots\\
+X_{n,1} & X_{n,2} & \hdots & \hdots & X_{n,n}\\
+\vdots &&&&\vdots & \ddots
+\end{matrix}
+\end{align*}
+
+Sei 
+\begin{align}\label{eq6.2}\tag{6.2}
+\E[X_{n,k}]=0,~\sigma_{n,k}^2:=\E\left[X_{n,k}^2\right]<\infty~\forall n,k\in\N\text{ und }
+s_n^2:=\sum\limits_{k=1}^n\sigma_{n,k}^2~\forall n\in\N
+\end{align}
+
+\begin{satz}[Lindeberg, 1922]\label{satz6.1Lindeberg1922}\enter
+Es gelten \eqref{eq6.1} und \eqref{eq6.2} sowie
+\begin{align}\label{eqSatz6.1LindebergLB}\tag{LB}
+\sum\limits_{k=1}^n\E\left[X_{n,k}^2\cdot\indi_{\big\lbrace|X_{n,k}|>\varepsilon\big\rbrace}\right]\stackrel{n\to\infty}{\longrightarrow}0\qquad\forall\varepsilon>0.
+\end{align}
+Falls zusätzlich
+\begin{align*}
+s_n^2\stackrel{n\to\infty}{\longrightarrow}\sigma^2\in(0,\infty)
+\end{align*}
+gilt, so gilt:
+\begin{align*}
+\sum\limits_{k=1}^n X_{n,k}\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2)
+\end{align*}
+\end{satz}
+\begin{bemerkung}
+\begin{align*}
+s_n^2=\Var\left(\sum\limits_{k=1}^n X_{n,k}\right)
+\end{align*}
+\end{bemerkung}
+\begin{proof}
+So ähnlich wie Beweis von klassischem zentralen Grenzwertsatz in der Vorlesung Wahrscheinlichkeitstheorie (Bachelor), nur technisch etwas komplizierter. Vergleiche auch Billingsley (1995), \textit{Probability and Measure}, Seite 359 ff.
+\end{proof}
+
+Im Folgenden betrachten wir die Verallgemeinerung auf den \underline{multivariaten} Fall.\\
+Sei $\lbrace X_{n,k}:k\leq n,n\in\N\big\rbrace$ ein $\Delta$-Schema von Zufallsvariablen.
+\begin{align*}
+X_{n,k}=\left(X_{n,k}^{(1)},\ldots,X_{n,k}^{(d)}\right)\text{ in }\R^d
+\end{align*}
+Es gelte die \textbf{zeilenweise Unabhängigkeit}:
+\begin{align}\label{eq6.3}\tag{6.3}
+X_{n,1},\ldots,X_{n,n}\text{ sind unabhängig}\qquad\forall n\in\N
+\end{align}
+%Ferger arbeitet auch am Buß- und Bettag in der Uni. Er ist evangelisch getauft worden und sogar konfirmiert. 
+Also die Vektoren seien unabhängig. Daraus folgt nicht, dass deren Komponenten unabhängig sind.
+\begin{align}\label{eq6.4}\tag{6.4}
+\E\big[X_{n,k}\big]:=\left(\E\left[X_{n,k}^{(j)}\right]\right)_{1\leq j\leq d}=0:=(0,\ldots,0)\qquad\forall k,n\in\N\\
+\label{eq6.5}\tag{6.5}
+\E\left[\left(X_{n,k}^{(j)}\right)\right]<\infty\qquad\forall 1\leq j\leq d,\forall n,k\in\N
+\end{align}
+Wegen \eqref{eq6.4} und \eqref{eq6.5} ist die so genannte \textbf{Kovarianzmatrix}
+\begin{align*}
+\Cov\left(X_{n,k}\right):=\Big(\underbrace{\Cov\left(X_{n,k}^{(i)},X_{n,k}^{(j)}\right)}_{=\E\left(X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right)}\Big)_{1\leq i,j\leq d}\in\R^{d\times d}
+\end{align*}
+
+\begin{satz}[Multivariater Zentraler Grenzwertsatz (ZGWS)]\label{satz6.2MultivariaterZGWS}\enter
+Es gelten \eqref{eq6.3}, \eqref{eq6.4}, \eqref{eq6.5} sowie
+\begin{align}\label{eqSatz6.2LB}\tag{LB}
+\sum\limits_{k=1}^n\E\left[\Vert X_{n,k}\Vert^2\cdot\indi_{\big\lbrace\Vert X_{n,k}\Vert>\varepsilon\big\rbrace}\right]\stackrel{n\to\infty}{\longrightarrow}0\qquad\forall\varepsilon>0
+\end{align}
+(Hierbei ist $\Vert\cdot\Vert$ die euklidische Norm auf $\R^d$.)\\
+Falls die Normierungsbedingung
+\begin{align}\label{eqSatz6.2NB}\tag{NB}
+\sum\limits_{k=1}^n\Cov\left(X_{n,k}\right)\stackrelnew{\text{komponentenweise}}{n\to\infty}{\longrightarrow}\Gamma\qquad\mit\Gamma\in\R^{d\times d}\text{ positiv definit}
+\end{align}
+erfüllt ist, so gilt:
+\begin{align*}
+\sum\limits_{k=1}^n X_{n,k}\stackrel{\L}{\longrightarrow}\mathcal{N}_d(0,\Gamma)\text{ in }\R^d
+\end{align*}
+\end{satz}
+%Ferger kennt die Dichte die Normalverteilung im Mehrdimensionalen nicht und versucht sie trotzdem aus dem Gedächtnis an die Tafel zu schreiben. Wieder 5 Minuten weg :D
+%"Mir persönlich reicht es, das Ding hat eine Dichte!" :D
+%"Manchmal ist weniger mehr!"
+\begin{proof}
+Sei $N\sim\mathcal{N}_d(0,\Gamma)$. Mit \ref{satz5.4CramerWoldDevice} bleibt zu zeigen:
+\begin{align}
+\label{eqProof6.2Stern}\tag{$\ast$}
+\left\langle t,\sum\limits_{i=1}^n X_{n,k}\right\rangle\stackrel{\L}{\longrightarrow}\langle t,N\rangle\text{ in }\R\qquad\forall t\in\R^d
+\end{align}
+Sei $t\in\R^d\setminus\lbrace0\rbrace$ (für $t=0$ ist \eqref{eqProof6.2Stern} trivialerweise erfüllt). Es folgt
+\begin{align*}
+\left\langle t,\sum\limits_{k=1}^n X_{n,k}\right\rangle
+&\stackeq{\text{Lin}}
+\sum\limits_{k=1}^n\underbrace{\left\langle t,X_{n,k}\right\rangle}_{=:Y_{n,k}=:Y_{n,k}(t)}
+=\sum\limits_{k=1}^n Y_{n,k}\\
+Y_{n,k}
+&=\sum\limits_{k=1}^n t_j\cdot X_{n,k}^{(j)}
+\end{align*}
+Folglich erfüllt $\big\lbrace Y_{n,k}:1\leq k\leq n,n\in\N\big\rbrace$ die Bedingung \eqref{eq6.1} wegen Blockungslemma und \eqref{eq6.2} wegen \eqref{eq6.4} und Linearität sowie Cauchy-Schwarz-Ungleichung.
+%Hauptsatz des Mannschaftssport: "Jede Kombination von Nullen ist immer Null."
+\begin{align*}
+\big|Y_{n,k}^2\big|&=\big|\langle t,X_{n,k}\rangle\big|^2
+\leq\Vert t\Vert^2\cdot\Vert X_{n,k}\Vert^2
+=\Vert t\Vert^2\cdot\sum\limits_{j=1}^d\left(X_{n,k}^{(j)}\right)^2
+\end{align*}
+
+\end{proof}
 
