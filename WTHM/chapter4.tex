@@ -3,7 +3,7 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Martingalkonvergenz und gleichgradige Integrierbarkeit} %4
+\addchap{Martingalkonvergenz und gleichgradige Integrierbarkeit} %4
 %\setcounter{section}{4} %kleiner Hack
 
 \section{Martingalkonvergenz}
@@ -89,8 +89,8 @@ Außerdem gilt
 \end{align}
 denn: 
 \begin{align*}
-X_N-p<0&\implies X_{\sigma_{k+1}}<p&\implies X_N-p\leq X_{\sigma_{k+1}}-p\\
-X_N-p\geq0&\implies \sigma_{k+1}=N&\implies X_N-p- X_{\sigma_{k+1}}=0
+	X_N-p<0&\implies X_{\sigma_{k+1}}<p&&\implies X_N-p\leq X_{\sigma_{k+1}}-p\\
+	X_N-p\geq0 &\implies \sigma_{k+1}=N&&\implies X_N- X_{\sigma_{k+1}}=0
 \end{align*}
 Addiere von \eqref{eqProof4.1.1Stern} auf \eqref{eqProof4.1.1ZweiStern}
 \begin{align*}
@@ -226,8 +226,8 @@ Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß The
 \ul{Vorüberlegung:} Sei $x\in\lbrace0,1\rbrace^{\Lambda}$ \ul{kein} extremer Zustand, d. h. es existieren Nachbarn $i,j$ mit $X_n(i)\neq X_n(j)$.
 \begin{align}
 \P(X_n\neq X_{n-1}~|~X_{n-1}=x)\nonumber
-&\geq \P\big(I_n=i~\&~ I_n+N_n=j~(\text{mod } L)\big)\\
-&=\P\big(\underbrace{I_n=i~\&~ N_n=i-j}_{\unab}~(\text{mod  }L)\big)\nonumber\\
+&\geq \P\Big(\Big\lbrace I_n=i\Big\rbrace \cap \Big\lbrace I_n+N_n=j~(\text{mod } L)\Big\rbrace\Big)\\
+&=\P\Big(\underbrace{\Big\lbrace I_n=i\Big\rbrace \cap\Big\lbrace N_n=i-j~(\text{mod  }L)\Big\rbrace}_{\unab}\Big)\nonumber\\
 &=\P\big(I_n=i\big)\cdot\P\big(N_n=i-j~(\text{mod  }L)\big)\nonumber\\
 &=L^{-d}\cdot\frac{1}{2\cdot d}\label{eqExampleWaehlermodellStern}\tag{$\ast$}
 \end{align}
@@ -264,7 +264,7 @@ Satz von Borel-Cantelli: Nur endlich viele Ereignisse $(A_k)_{k\in\N}$ treten ei
 \begin{align*}
 &\exists N_0:\Omega\to\N:\forall n\geq N_0(\omega):\omega\not\in A_n\\
 &\implies M_n(\omega)\in\lbrace0,L^d\rbrace\qquad\forall N_0(\omega)\\
-&\implies M_\infty:=\limn M_n\text{ nimmt nur extreme Werte $\lbrace0,\Lambda^d\rbrace$ an!}
+&\implies M_\infty:=\limn M_n\text{ nimmt nur extreme Werte $\lbrace0,L^d\rbrace$ an!}
 \end{align*}
 Im Grenzwert tritt perfekter Konsens auf!
 \begin{align*}
