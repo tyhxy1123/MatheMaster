@@ -322,24 +322,24 @@ Daher folgt mit dominierter Konvergenz:
 \stackrel{\text{Tow}}{\leq}
 \E\left[|X|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\right]
 \end{align*}
-Sei $k\geq0$.
+Sei $K\geq0$.
 \begin{align*}
 \E\Big[|X|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\Big]
 &=\underbrace{\E\big[|X|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\cdot\indi_{\lbrace |X|>K\rbrace}\Big]}_{\leq\E\Big[|X|\cdot\indi_{\lbrace |X|\geq K\rbrace}\Big]}+
-\underbrace{\E\Big[|X|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\cdot\indi_{\lbrace|X|<K\rbrace}\Big]}_{\leq|X|\cdot\P\big(|Y|\geq R\big)\stackrel{\text{Markov}}{\leq}\frac{k}{R}\cdot\E\big[|Y|\big]\leq\frac{k}{R}\cdot\E\big[|X|\big]}
+\underbrace{\E\Big[|X|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\cdot\indi_{\lbrace|X|<K\rbrace}\Big]}_{\leq|X|\cdot\P\big(|Y|\geq R\big)\stackrel{\text{Markov}}{\leq}\frac{K}{R}\cdot\E\big[|Y|\big]\leq\frac{K}{R}\cdot\E\big[|X|\big]}
 \end{align*}
 Insgesamt:
 \begin{align*}
 \rho(R)
-&\leq\E\Big[|X|\cdot\indi_{\lbrace|X|\geq R}\Big]+\frac{k}{R}\cdot\E\big[|X|\big]\qquad\forall k\geq0\\
+&\leq\E\Big[|X|\cdot\indi_{\lbrace|X|\geq R}\Big]+\frac{K}{R}\cdot\E\big[|X|\big]\qquad\forall K\geq0\\
 \implies
 \lim\limits_{R\to\infty}\rho(R)
-&\leq\E\Big[|X|\cdot\indi_{|X|\geq k\rbrace}\Big]\stackrel{k\to\infty}{\longrightarrow}0\\
+&\leq\E\Big[|X|\cdot\indi_{|X|\geq K\rbrace}\Big]\stackrel{K\to\infty}{\longrightarrow}0\\
 \implies \lim\limits_{R\to\infty}\rho(R)&=0
 \end{align*}
 \end{proof}
 
-\begin{theorem}[Hinreichende Bedigungen für ggi)]\label{theorem4.4HinreichendeBeingungenFuerggi}\enter
+\begin{theorem}[Hinreichende Bedigungen für ggi]\label{theorem4.4HinreichendeBeingungenFuerggi}\enter
 Sei $(X_i)_{i\in I}\subseteq L_1$ eine Familie von Zufallsvariablen. Dann gilt:
 \begin{enumerate}[label=(\alph*)]
 \item $\begin{aligned}
@@ -355,15 +355,14 @@ Sei $(X_i)_{i\in I}\subseteq L_1$ eine Familie von Zufallsvariablen. Dann gilt:
 
 \underline{Zu (b):}
 \begin{align*}
-\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]
-&\leq \E\Big[|Y|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]
-\leq\E\Big[|Y|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\Big]\\
+	\rho(R)&=\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
+&\stackrel{\text{Vor.}}{\leq} \E\Big[|Y|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
+&\leq\E\Big[|Y|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\Big]\\
 &\text{denn: }\big\lbrace |X_i|\geq R\big\rbrace\subseteq\big\lbrace|Y|\geq R\big\rbrace\qquad\forall i\in I\\
 \implies
 \rho(R)
-&\leq\E\Big[|Y|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\Big]\stackrel{R\to\infty}{\longrightarrow}0
+&\leq\E\Big[|Y|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\Big]\underset{\ref{lemma4.3} (a)}{\overset{R\to\infty}{\longrightarrow}}0
 \end{align*}
-Dies folgt aus Lemma \ref{lemma4.3} (a).
 \end{proof}
 
 \begin{theorem}\label{theorem4.5}
@@ -395,18 +394,18 @@ Folglich
 Also $X\in L_1$. Nun schätzen wir noch die Differenz ab:
 \begin{align*}
 |X_n-X|
-&\stackrel{\text{DU}}{\leq}
+&\stackrel{\triangle\text{-Ungl.}}{\leq}
 \underbrace{|X_n-X|\cdot\indi_{\lbrace |X|\geq R\rbrace}}_{\leq R+|X|}+\underbrace{|X_n|\cdot\indi_{\lbrace |X_n|\geq R\rbrace}}_{\E[\cdot]\leq\rho(R)}+\underbrace{|X|\cdot\indi_{\lbrace |X_n|\geq R\rbrace}}_{\E[\cdot]\leq\rho(R)}\\
 &\implies
 \limn\E\big[|X_n-X|\big]
-\stackrel{\text{domKonv}}{\leq}
+\stackrel{\text{dom.Konv.}}{\leq}
 \underbrace{2\cdot\rho(R)}_{\stackrel{R\to\infty}{\longrightarrow}0}\qquad\forall R\geq0\\
 &\implies\limn\E\big[|X_n-X|\big]=0
 \end{align*}
 \end{proof}
 
 \begin{theorem}[$L_1$-Konvergenz von Martingalen]\label{theorem4.6L1KonvergenzVonMartingalen}\enter
-Sei $(X_n)_{n\in\N}$ ein $(\F_n)_{n\in\N}$-Martingal. Dann sind äquivalent:
+Sei $(X_n)_{n\in\N_0}$ ein $(\F_n)_{n\in\N_0}$-Martingal. Dann sind äquivalent:
 \begin{enumerate}[label=(\alph*)]
 \item $\begin{aligned}
 \exists X_\infty\in L_1(\F_\infty,\P):\E\big[|X_n-X_\infty|\big]\stackrel{n\to\infty}{\longrightarrow}0
@@ -415,7 +414,7 @@ Sei $(X_n)_{n\in\N}$ ein $(\F_n)_{n\in\N}$-Martingal. Dann sind äquivalent:
 \exists X_\infty\in L_1(\F_\infty,\P):\forall n\in\N_0: X_n=\E\big[X_\infty~\big|~\F_n\big]
 \end{aligned}$ (Abschließbarkeit)
 \item $\begin{aligned}
-(X_n)_{n\in\N}
+(X_n)_{n\in\N_0}
 \end{aligned}$ ist ggi
 \end{enumerate}
 \end{theorem}
@@ -437,7 +436,7 @@ Folgt aus Lemma \ref{lemma4.3} (b).\\
 \begin{align*}
 (X_n)_{n\in\N}\text{ ggi }&\implies\sup\limits_{n\in\N_0}\E\big[|X_n|\big]\leq R+\rho(R)<\infty\\
 &\stackrel{\ref{theorem4.2Martingalkonvergenz}}{\implies}
-\exists X_\infty\in L_1(\F_\infty,\P):\limn X_n=X_\infty\text{f.s.}\\
+\exists X_\infty\in L_1(\F_\infty,\P):\limn X_n=X_\infty\text{ f.s.}\\
 &\stackrel{\ref{theorem4.5}}{\implies}
 \limn\E\big[|X_n-X_\infty|\big]=0
 \end{align*}
