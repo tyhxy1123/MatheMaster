@@ -1,0 +1,129 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../latex/commands_stochastik}
+\input{../../WTHM/commands_WTHM}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{color}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{WTHM WiSe 18 19}
+\ohead{}
+\ifoot{Aufgabenblatt 3}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 1}
+Seien $\sigma,\tau$ Stoppzeiten und $\F_\tau$ definiert durch
+\begin{align*}
+\F_\tau:=\big\lbrace A\in\A~\big|~\forall b\in\N_0:A\cap\lbrace\tau\leq n\rbrace\in\F_n\big\rbrace
+\end{align*}
+Dann gilt:
+\begin{enumerate}[label=\alph*)]
+\item $\F_\tau$ ist eine $\sigma$-Algebra
+\item $\begin{aligned}
+\sigma\leq\tau\implies\F_\sigma\subseteq\F_\tau
+\end{aligned}$
+\item $\begin{aligned}
+\lbrace\tau\leq\sigma\rbrace\in\F_\tau\cap\F_\sigma
+\end{aligned}$
+\item $\begin{aligned}
+\F_\tau\cap\F_\sigma=\F_{\tau\wedge\sigma}
+\end{aligned}$
+\end{enumerate}
+\begin{proof}
+\underline{Zeige a):}\\
+
+\underline{Zeige b):}\\
+
+\underline{Zeige c):}\\
+
+\underline{Zeige d):}\\
+\end{proof}
+
+\section*{Aufgabe 2}
+Sei $(X_i)_{i\in I}$ eine Folge von Zufallsvariablen und $\phi:[0,\infty)\to\R$ eine konvexe, wachsende Funktion mit 
+\begin{align*}
+\frac{\phi(x)}{x}\stackrel{x\to+\infty}{\longrightarrow}+\infty
+\end{align*}
+(zum Beispiel $\phi(x):=|x|^p\mit p>1$.) Dann gilt:
+\begin{align*}
+\sup\limits_{i\in I}\E\Big[\phi\big(|X_i|\big)\Big]<\infty\implies(X_i)_{i\in I}\text{ ist ggi}
+\end{align*}
+\begin{proof}
+Sei also das Supremum beschränkt. O.B.d.A. sei $\phi(0)=0$ und damit $\frac{\phi(a)}{a}\leq\frac{\phi(b)}{b}$.
+
+
+
+\end{proof}
+\section*{Aufgabe 3}
+Sei $(X_n)_{n\in\N}$ der asymmetrische einfache Random Walk mit $\P(\xi_1=1)=p$ und $\P(\xi_1=-1)=q$, vgl. Aufgabenblatt 2, Aufgabe 2.
+\begin{enumerate}[label=\alph*)]
+\item Definiere für $A,B\in\N$ durch
+\begin{align*}
+\tau_A:=\inf\big\lbrace n\in\N_0:X_n=A\big\rbrace,\qquad \tau_B:=\inf\limits\big\lbrace n\in\N_0:X_n=-B\big\rbrace
+\end{align*}
+die ersten Treffzeiten von $A$ und $-B$.\\
+Berechnen Sie $\P[\tau_A<\tau_B]$.
+\item Zeige mit Hilfe einer geeigneten Maximalungleichung im Fall $q>p$:
+\begin{align}\label{eqAufgabe3bObere}
+\P\left[\sup\limits_{n\in\N_0} X_n\geq k\right]\leq\left(\frac{p}{q}\right)^k
+\end{align}
+und 
+\begin{align}\label{eqAufgabe3bUntere}
+\E\left[\sup\limits_{n\in\N_0} X_n\right]\leq\frac{q}{q-p}
+\end{align}
+\end{enumerate}
+\begin{proof}
+\underline{Zu a):}\\
+
+\underline{Zu b), zeige \eqref{eqAufgabe3bObere}:}\\
+
+\underline{Zu b), zeige \eqref{eqAufgabe3bUntere}:}\\
+
+\end{proof}
+
+\section*{Aufgabe 4}
+Zeige mit Hilfe der Jensenschen Ungleichung
+\begin{align}\label{eqJensenscheUngleichung}
+f\big(\E[X]\big)\leq\E\big[f(X)\big]\qquad\forall X\text{ integrierbar und $f$ konvex},
+\end{align}
+dem Martingalkonvergenzsatz in $L_1$ und Doob's Maximalungleichung den Konvergenzsatz für $L^p$-beschränkte Martingale:
+
+\begin{theorem}[Konvergenzsatz für $L^p$-beschränkte Martingale]\enter
+Sei $p>1,B>0$ und $(M_n)_{n\in\N_0}$ ein Martingal mit 
+\begin{align*}
+\E\left[|M_n|^p\right]\leq B<\infty.
+\end{align*}
+Dann existiert eine Zufallsvariable $M_\infty$ mit $\E\left[|M_\infty|^p\right]\leq B$ so, dass
+\begin{align*}
+\P\left[\limn M_n=M_\infty\right]=1
+\qquad\text{und}\qquad
+\limn\big\Vert M_n-M_\infty\big\Vert=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+
+\end{document}
