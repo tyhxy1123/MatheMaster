@@ -1455,6 +1455,7 @@ x-y&=B_K\cdot\hat{x}+b_K-\big(B_K\cdot\hat{y}+b_K\big)=B_K\cdot(\hat{x}-\hat{y})
 \end{align*}
 \end{proof}
 
+\enter
 \begin{lemma}[Deny-Lions]\label{lemma4.11DenyLions}\enter
 Sei $P_r(K)$ der Raum aller Polynome mit höchstens Grad $r$. Dann gilt:
 \begin{align*}
@@ -1467,7 +1468,7 @@ n:=\dim \big(P_r(K)\big)=\begin{pmatrix}
 r+d\\ d
 \end{pmatrix}\text{ (Binomialkoeffizient)}
 \end{align*}
-Setze  für $\alpha\in\N_0^\alpha\mit|\alpha|\leq r $:
+Setze  für $\alpha\in\N_0^d\mit|\alpha|\leq r $:
 \begin{align*}
 N_\alpha:W^{r+1,p}(K)\to\R,\qquad v\mapsto\int\limits_K D^\alpha v\d x\\
 \alpha\longleftrightarrow x^\alpha =\prod\limits_{i=1}^d x_i^{\alpha_i}
@@ -1476,7 +1477,7 @@ Also ist $\big\lbrace N_\alpha:|\alpha|\leq r\big\rbrace$ unisolvent auf $P_r(K)
 \begin{align*}
 \implies\left.
 	\begin{array}{cl}
-	N_\alpha(p)=0, &\falls\forall |\alpha|\leq r \\
+	N_\alpha(p)=0, &\forall |\alpha|\leq r \\
 	p\in P_r(K)&
 	\end{array}
 \right\rbrace
@@ -1499,8 +1500,8 @@ Aus \eqref{eqProof4.11SternStern} folgt
 \end{align*}
 Folglich ist $(v_m)_{m\in\N}$ eine Cauchyfolge in $W^{r+1,p}(K)$. Da $W^{r+1,p}(K)$ ein Banachraum und damit vollständig ist, konvergiert diese Folge: $v_m\stackrel{m\to\infty}{\longrightarrow} v\in W^{r+1,p}(K)$ und somit $|v|_{r+1,p,K}=0$. Also $v\in P_r(K)$.
 \begin{align*}
-\left.\begin{array}{ll}
 \stackrel{\eqref{eqProof4.11SternStern}}{\implies}
+\left.\begin{array}{ll}
 &N_\alpha(v)=0\qquad\forall |\alpha|\leq r\\
 & v\in P_r(K)
 \end{array}\right\rbrace\implies v \equiv 0
@@ -1508,7 +1509,7 @@ Folglich ist $(v_m)_{m\in\N}$ eine Cauchyfolge in $W^{r+1,p}(K)$. Da $W^{r+1,p}(
 Dies ist ein Widerspruch zu $\Vert v\Vert_{r+1,p,K}=1$. Also folgt \eqref{eqProof4.11Stern}.\\
 Für jedes $v\in W^{r+1,p}(K)$ gibt es ein $q\in P_r(K)$ so, dass
 \begin{align*}
-N_\alpha(v)=-N_\alpha(q)\qquad\forall|\alpha|\leq n
+N_\alpha(v)=-N_\alpha(q)\qquad\forall|\alpha|\leq r
 \end{align*}
 Es folgt
 \begin{align*}
@@ -1538,8 +1539,10 @@ Dann gibt es Konstanten $c,\tilde{c}>0$ so, dass
 \end{align*}
 \end{lemma}
 \begin{proof}
-\begin{align*}%%% das sieht scheiße aus
-F(u)&\stackeq{\text{Lin+(ii)}}F(u+p)\qquad\forall p\in P_r(K)\\
+\begin{align*}
+F(u)&\stackeq{\text{Lin+(ii)}}F(u+p)\qquad\forall p\in P_r(K)
+\end{align*}
+\begin{align*}
 \big\Vert F(u)\big\Vert&=\inf\limits_{p\in P_r(K)}\Vert F(u+p)\big\Vert_Y\\
 &\stackrel{\text{(i)}}{\leq}
 c_1\cdot\inf\limits_{p\in P_r(K)}\Vert u+p\Vert_{r+1,p,K}\\
@@ -1560,9 +1563,13 @@ Dann gilt:
 wobei $\hat{I}$ und $I_K$ die Interpolations-Operatoren auf $\hat{K}$ bzw. $K$.
 \end{lemma}
 \begin{proof}
+(Nur Beweisidee, da zu technisch.)
+Nutze:
 \begin{align*}
 \hat{I}\hat{v}&=\sum\limits_{i=1}^m\hat{N}_i(\hat{v})\cdot\hat{\varphi}_i\\
-I_K v&=\sum\limits_{i=1}^m N_i(v)\cdot\varphi,\qquad \varphi_i\circ F_K=\hat{\varphi},\qquad N(v)=\hat{N}(v\circ F_K)
+I_K v&=\sum\limits_{i=1}^m N_i(v)\cdot\varphi\\
+\varphi_i\circ F_K&=\hat{\varphi}\\
+N(v)&=\hat{N}(v\circ F_K)
 \end{align*}
 \end{proof}
 
@@ -1603,7 +1610,9 @@ Im Fall $p=q=2,m=1,\rho_K\sim h_K$ erhält man
 \big\Vert \hat{I} \hat{v} \big\Vert_{m,q,\hat{K}} 
 &=\left\Vert \sum\limits_{i=1}^m \hat{N}_i(\hat{v}) \cdot \hat{\varphi}_i \right\Vert_{m,q,\hat{K}} \\
 &\leq \sum\limits_{i=1}^m \big| \hat{N}_i(\hat{v}) \big| \cdot \big\Vert \hat{\varphi}_i \big\Vert_{m,q,\hat{K}} \\
-&\leq \underbrace{\left( \sum\limits_{i=1}^m c\cdot \big\Vert \hat{\varphi}_i \big\Vert_{m,q,\hat{K}}\right)}_{=:c(\hat{K},\hat{V},\hat{\Sigma})}\cdot\Vert\hat{v}\Vert_{r+1,p,\hat{K}} \\
+&\leq \underbrace{\left( \sum\limits_{i=1}^m c\cdot \big\Vert \hat{\varphi}_i \big\Vert_{m,q,\hat{K}}\right)}_{=:c(\hat{K},\hat{V},\hat{\Sigma})}\cdot\Vert\hat{v}\Vert_{r+1,p,\hat{K}}
+\end{align*}
+\begin{align*}
 &\implies \hat{I}:W^{r+1,p}(\hat{K})\to W^{m,q}(\hat{K})\text{ ist stetig}
 \end{align*}
 Aus $P_r(\hat{K})\subseteq \hat{V}$ folgt $\hat{I}\hat{p}=\hat{p}$ für alle $\hat{p}\in P_r(\hat{K})$. Es folgt
@@ -1611,7 +1620,7 @@ Aus $P_r(\hat{K})\subseteq \hat{V}$ folgt $\hat{I}\hat{p}=\hat{p}$ für alle $\h
 \hat{v}-\hat{I}\hat{v}
 &=\big(\hat{v}+\hat{p}\big)-\hat{I}\big(\hat{v}+\hat{p}\big) \\
 &=\big(\id -\hat{I}\big)\big(\hat{v}+\hat{p}\big) 
-\qquad\forall \hat{v}\in W^{r+1,p}(\hat{K}),\forall \hat{p}\in P_r(\hat{K})\\
+\qquad\forall \hat{v}\in W^{r+1,p}(\hat{K}),\forall \hat{p}\in P_r(\hat{K})
 \end{align*}
 \begin{align*}
 \big| \hat{v}-\hat{I} \hat{v} \big|_{m,q,\hat{K}}
@@ -1627,14 +1636,17 @@ Aus dem vorherigen Lemma \ref{lemma4.13} folgt:
 \big| v-I_K v\big|_{m,q,K} 
 &\stackrel{\ref{theorem4.9}}{\leq}
 c\cdot\big\Vert B_K^{-1}\big\Vert^m\cdot\big|\det(B_K)\big|^{\frac{1}{q}}\cdot\big|\underbrace{(v-I_K v)\circ F_K}_{=\hat{v}-\hat{I}\hat{v}}\big|_{m,q,K}\\
-&\leq c\cdot\big\Vert B_K^{-1}\big\Vert\cdot|\det(B_K)|^{\frac{1}{p}}\cdot\big|\hat{v}\big|_{r+1,q,\hat{K}}\\ %%%  \hat ?
+&\leq c\cdot\big\Vert B_K^{-1}\big\Vert\cdot|\det(B_K)|^{\frac{1}{p}}\cdot\big|\hat{v}\big|_{r+1,p,\hat{K}}\\
 &\stackrel{\ref{theorem4.9}}{\leq}
 c\cdot\big\Vert B_K^{-1}\big\Vert^m\cdot\Vert B_K\Vert^{r+1}\cdot|\det(B_K)|^{\frac{1}{q}-\frac{1}{p}}\cdot |v|_{r+1,p,K}\\
 &\stackrel{\ref{lemma4.10}}{\leq}
-c\cdot\frac{\hat{h}^m}{\hat{\rho}^{r+1}}\cdot\frac{h_K^{r+1}}{\rho^m_K}\cdot|\det(B_K)|^{\frac{1}{q}-\frac{1}{p}}\cdot|v|_{r+1,q,K}\\
-\meas(K)&=\int\limits_K 1\d x=\int\limits_{\hat{K}}\big|\det(B_K)\big|\d\hat{x}=\big|\det(B_K)\big|\cdot\underbrace{\meas(\hat{K})}_{\longrightarrow c(\hat{K},\hat{V},\hat{\Sigma})}\\
-&\implies
-\big| v-I_K v\big|_{m,q,K}
+c\cdot\frac{\hat{h}^m}{\hat{\rho}^{r+1}}\cdot\frac{h_K^{r+1}}{\rho^m_K}\cdot|\det(B_K)|^{\frac{1}{q}-\frac{1}{p}}\cdot|v|_{r+1,p,K}
+\end{align*}
+\begin{align*}
+\meas(K)=\int\limits_K 1\d x=\int\limits_{\hat{K}}\big|\det(B_K)\big|\d\hat{x}=\big|\det(B_K)\big|\cdot\underbrace{\meas(\hat{K})}_{\longrightarrow c(\hat{K},\hat{V},\hat{\Sigma})}
+\end{align*}
+\begin{align*}
+\implies \big| v-I_K v\big|_{m,q,K}
 \leq c\cdot\frac{h_K^{r+1}}{\rho_K^m}\cdot\big|\meas(K)\big|^{\frac{1}{q}-\frac{1}{p}}\cdot|v|_{r+1,p,K}
 \end{align*} 
 \end{proof}
@@ -1706,7 +1718,7 @@ für alle $g\in L^2(\Omega)$ eine eindeutige Lösung $\varphi_g\in H^2(\Omega)$ 
 \begin{align*}
 \Vert\varphi_g\Vert_{2,2,\Omega}\leq c\cdot\Vert g\Vert_{0,2,\Omega}
 \end{align*}
-erfüllt. Dann existiert eine Konstante $c$, unabhängig vo n$h$ so, dass
+erfüllt. Dann existiert eine Konstante $c$, unabhängig von $h$ so, dass
 \begin{align*}
 \Vert u-u_h\Vert_{0,2,\Omega}\leq c\cdot h^{r+1}\cdot|u|_{r+1,2,\Omega}
 \end{align*}
