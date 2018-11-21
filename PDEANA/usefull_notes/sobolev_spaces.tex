@@ -4,7 +4,7 @@
 
 \begin{enumerate}[label=(\alph*)]
 	\item \textbf{weak derivative}\\
-	Let $u,v \in L^1_{\loc}(U)$, $\alpha$ multiindex. $v$ is $\alpha$-th weak derivative of u ($D^{\alpha} = v$), iff
+	Let $u,v \in L^1_{\loc}(U)$, $\alpha$ multiindex. $v$ is $\alpha$-th weak derivative of u ($D^{\alpha} = v$), $\iff$
 	\begin{equation*}
 	\int \limits_U u D^{\alpha}\phi \d x = (-1)^{|\alpha|} \int \limits_U v\phi \d x \qquad \forall \phi \in C^\infty_0(U)
 	\end{equation*}
@@ -16,7 +16,7 @@
 	\begin{equation*}
 		W^{k,p}(U) = \{ u: U \to \R \text{ s.t. } D^{\alpha}u \in L^p(U)\  \forall \alpha: |\alpha| \leq k \}
 	\end{equation*}
-	\item $H^k(U) = W^{k,2}(U)$ fpr all $k = 0,1,\dots$. $H$ is a Hilbert space.
+	\item $H^k(U) = W^{k,2}(U)$ for all $k = 0,1,\dots$. $H$ is a Hilbert space.
 	
 	\item \textbf{sobolev norm}
 	\begin{equation*}
@@ -27,10 +27,6 @@
 		\displaystyle \sum_{|\alpha|\leq k}\  \underset{U}{\text{ess }\sup}\  |D^{\alpha}u| \qquad \quad  (p = \infty)
 		\end{cases}
 	\end{equation*}
-	\\
-	\\
-	\\
-	\\
 	
 	\item \textbf{sobolev convergence}\\
 	let $\{u_m\}_{m\in \N}$, $u \in W^{k,p}(U)$. 
@@ -46,12 +42,12 @@
 	&\underset{m \to \infty}{\lim} \|u_m -u\|_{W^{k,p}(V)} = 0 \qquad \forall V \subset\subset U
 	\end{align*}
 	
-	\item $W^{k,p}:=$ closure of $C^\infty_0(U)$ in $W^{k,p}(U)$
+	\item $W^{k,p}_0:=$ closure of $C^\infty_c(U)$ in $W^{k,p}(U)$
 	\item \textbf{properties}\\
-	$u,v \in W^{k,p}(U)$, $|\alpha| leq k$:
+	$u,v \in W^{k,p}(U)$, $|\alpha| \leq k$:
 	\begin{itemize}
 		\item $D^{\alpha} u \in W^{k-|\alpha|,p}(U)$,\quad $D^{\beta}(D^{\alpha}u) = D^{\alpha+\beta}u =  D^{\alpha}(D^{\beta}u) $, $\alpha, \beta$ multiindex and $|\alpha| + |\beta| \leq k$
-		\item $\forall \lambda_1, \lambda_2 \in \R$:\quad $\lambda_1 u +\lambda_2 v \in W^{k,p}(U)$,\quad $D^{\alpha}(\lambda_1 u +\lambda_2 v) = \lambda_1 D{\alpha}u + \lambda_2 D^{\alpha}v$
+		\item $\forall \lambda_1, \lambda_2 \in \R$:\quad $\lambda_1 u +\lambda_2 v \in W^{k,p}(U)$,\quad $D^{\alpha}(\lambda_1 u +\lambda_2 v) = \lambda_1 D^{\alpha}u + \lambda_2 D^{\alpha}v$
 		\item $V \subset U$ open $\implies u \in W^{k,p}(V)$
 		\item If $\xi \in C^\infty_c(U) \implies \xi u \in W^{k,p}(U)$\quad  and:
 		\begin{equation*}
@@ -64,7 +60,7 @@
 		\end{equation*}
 	\end{itemize}
 	
-	\item $W^{k,p}(U)$ is Banach space forall $k=1,\dots$, $1\leq p \leq \infty$
+	\item $W^{k,p}(U)$ is Banach space forall $k=1,\dots$ and $1\leq p \leq \infty$
 	
 	
 \end{enumerate}
@@ -111,7 +107,7 @@ $U$ is bounded, $\partial U$ is $C^1$. Select $V$ opem, bounded s.t. $U \subset 
 $Eu$ is called an extension of $u$ to $\R^n$. 
 
 \subsection{traces}
-In this part the following is always assumed:$U$ is bounded, $\partial U$ is $C^1$.
+In this part the following is always assumed: $U$ is bounded, $\partial U$ is $C^1$.
 
 \begin{enumerate}[label = (\alph*)]
 	\item there exists linear, bounded operator $T:W^{1,p}(U) \to L^p(\partial U)$ s.t.
