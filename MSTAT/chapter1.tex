@@ -44,11 +44,12 @@ Setze $h(t):=\E[|X-t|-|X-m|]\stackeq{\text{Lin}}Y(t)-Y(m)$. Dann ist 2. äquival
 h(t)&\stackeq{\text{Trafo}}
 \int\limits_{\R}|x-t|-|x-m| Q_F(\d x)\\
 &=\int\limits_{(-\infty,t]}\underbrace{|x-t|-|x-m|}_{=t-x-(m-x)=-(m-t)} F(\d x)
-+\int\limits_{(t,m)}\underbrace{\underbrace{|x-t|-|x-m|}_{\underbrace{x-t}_{\geq0}-\underbrace{(m-x)}_{\leq m-t}}}_{\geq-(m-t)} F(\d x)
++\int\limits_{(t,m)}\underbrace{\underbrace{|x-t|-|x-m|}_{\underbrace{x-t}_{\geq0}-\underbrace{(m-x)}_{\leq m-t}}}_{\geq-(m-t)} F(\d x)\\
+&\qquad
 +\int\limits_{[m,\infty)}\underbrace{|x-t|-|x-m|}_{x-t-(x-m)=m-t} F(\d x)\\
 &\geq-(m-t)\cdot \underbrace{Q((-\infty,t])}_{F(t)}+
 \Big(-(m-t)\cdot F(m-)-F(t)\Big)
-+(m-t)\cdot\underbrace{Q([m,\infty))}_{1-\underbrace{Q((-m,m)}_{F(m-)}}\\
++(m-t)\cdot\underbrace{Q([m,\infty))}_{1-\underbrace{Q((-m,m))}_{F(m-)}}\\
 &=-\underbrace{(m-t)}_{\geq0}\cdot(\underbrace{1-2\cdot F(m-)}_{\stackrel{1.}{\geq}0})\\
 &\geq0
 \end{align*}
@@ -1375,11 +1376,11 @@ Sei $G\in\G$. Dann gilt wegen Voraussetzung (ii):
 &\implies
 G_m:=\bigcup\limits_{i=1}^m A_i\uparrow G,~m\to\infty\\
 &\stackrel{P~\sigma\text{-stetig}}{\implies}
-\forall \varepsilon>0:\exists m_0\in\N:P(G)-P(G_m)\leq\varepsilon\\
+\forall \varepsilon>0:\exists m_0\in\N:P(G)-P(G_{m_0})\leq\varepsilon\\
 &\implies
-P(G)-\varepsilon\leq P(G_m)
+P(G)-\varepsilon\leq P(G_{m_0})
 \stackeq{\text{s. o.}}
-\limn P_n(\underbrace{G_m}_{\subseteq G})\leq\liminf\limits_{n\to\infty} P_n(G)\qquad\forall\varepsilon>0\\
+\limn P_n(\underbrace{G_{m_0}}_{\subseteq G})\leq\liminf\limits_{n\to\infty} P_n(G)\qquad\forall\varepsilon>0\\
 &\stackrel{\varepsilon\to0}{\implies}
 \liminf\limits_{n\to\infty} P_n(G)\geq P(G)\qquad\forall G\in\G
 \end{align*}
@@ -1396,16 +1397,17 @@ Sei $\U$ endlich Durschnittsstabil mit
 Ist $(\S,d)$ separabel, so gilt
 \begin{align*}
 \Big(\forall A\in\U:P_n(A)\stackrel{n\to\infty}{\longrightarrow} P(A)\Big)
-\implies P_n-P
+\implies P_n\stackrelnew{w}{}{\longrightarrow} P
 \end{align*}
 \end{korollar}
 
 \begin{proof}
-Gemäß Satz \ref{satz2.9} hat $\G$ abzählbare Basis. Dem dem Satz von Lindelöf:
+Gemäß Satz \ref{satz2.9} hat $\G$ abzählbare Basis. Nach dem Satz von Lindelöf:
 \begin{align}\label{eqSatzVonLindelöf}\tag{L}
 \text{Für jede offene Überdeckung einer beliebigen Teilmenge von $\S$ existiert}\\\nonumber\text{eine abzählbare Teilüberdeckung.}
 \end{align}
-Sei nun $G\in\G$ beliebig. Für alle $x\in G$ existiert ein $\varepsilon_x>0$ mit $B(x,\varepsilon_x)\subseteq G$ gemäß (i) findet man ein $A_x\in\U$ mit $x\in\stackrel{\circ}{A}_x\subseteq A_x\subseteq B(x,\varepsilon_x)\subseteq G$. Also folgt
+Sei nun $G\in\G$ beliebig. Für alle $x\in G$ existiert ein $\varepsilon_x>0$ mit $B(x,\varepsilon_x)\subseteq G$.
+Gemäß (i) findet man ein $A_x\in\U$ mit $x\in\stackrel{\circ}{A}_x\subseteq A_x\subseteq B(x,\varepsilon_x)\subseteq G$. Also folgt
 \begin{align*}
 G=\bigcup\limits_{x\in G}\lbrace x\rbrace\subseteq\bigcup\limits_{x\in G}\stackrel{\circ}{A}_x\subseteq G
 \end{align*}
@@ -1464,14 +1466,14 @@ ist höchstens abzählbar (vgl. \eqref{eqProof1.4.2DoppelSternchen}
 %keine Ahnung welches DoppelSternchen er hier meint mit der Referenz To Do
 im Beweis von Satz \ref{satz4.2}). Also folgt
 \begin{align*}
-\forall x\in\R:\forall\varepsilon>0:\exists A=(a,b]\in\U:x\in (a,b)=\stackrel{\circ}{A}\subseteq A=(a,b]\subseteq B(x,\varepsilon)=(a-\varepsilon,x+\varepsilon)
+\forall x\in\R:\forall\varepsilon>0:\exists A=(a,b]\in\U:x\in (a,b)=\stackrel{\circ}{A}\subseteq A=(a,b]\subseteq B(x,\varepsilon)=(x-\varepsilon,x+\varepsilon)
 \end{align*}
-denn: In $(x-\varepsilon,x+\varepsilon)$ muss ein $a\in C_F$ existieren, denn sonst wäre $(x-\varepsilon, x)\in D_F$. Analog findet man ein $b\in(x,x+\varepsilon)$. Somit erfüllt $\U$ die Voraussetzungen von Korollar \ref{korollar4.4}. Klar: $\S=\R$ ist separabel, da $\Q$ abzählbar und dicht in $\R$. Schließlich gilt:
+denn: In $(x-\varepsilon,x+\varepsilon)$ muss ein $a\in C_F$ existieren, denn sonst wäre $(x-\varepsilon, x)\subseteq D_F$. Analog findet man ein $b\in(x,x+\varepsilon)$. Somit erfüllt $\U$ die Voraussetzungen von Korollar \ref{korollar4.4}. Klar: $\S=\R$ ist separabel, da $\Q$ abzählbar und dicht in $\R$. Schließlich gilt:
 \begin{align*}
 P_n\big((a,b]\big)&=
 F_n(\underbrace{b}_{\in C_F})-F_n(\underbrace{a}_{\in C_F})\stackrel{n\to\infty}{\longrightarrow} F(b)-F(a)=P\big((a,b]\big)\qquad\forall a,b\in C_F\\
 &\stackrel{\ref{korollar4.4}}{\implies}
-P_n\longrightarrow P
+P_n\stackrelnew{w}{}{\longrightarrow} P
 \end{align*}
 \end{proof}
 
@@ -1489,10 +1491,10 @@ X_n\stackrel{\L}{\longrightarrow} X
 \underbrace{\P(X\leq x)}_{\hat{=}F(x)}
 \end{align}
 für alle $x$, die Stetigkeitsstellen der Verteilungsfunktion von $X$ sind.
-\item Es gibt Verallgemeinerung von \ref{korollar4.5} bzw \eqref{eqBemerkung4.6} auf $\S=\R$:\\
+\item Es gibt Verallgemeinerung von \ref{korollar4.5} bzw \eqref{eqBemerkung4.6} auf $\S=\R^k$:\\
 Seien 
 \begin{align*}
-X=\left(X^{(1)},\ldots, X^{(k)}\right),X_n=\left(X^{(1)},\ldots,X^{(k)}_n\right),\qquad(\Omega,\A)\to\left(\R^k,\B(\R^k)\right)
+    X=\left(X^{(1)},\ldots, X^{(k)}\right),X_n=\left(X^{(1)}_n,\ldots,X^{(k)}_n\right),\qquad(\Omega,\A)\to\left(\R^k,\B(\R^k)\right)
 \end{align*}
 Zufallsvariablen in $\R^k$. Dann gilt:
 \begin{align*}
@@ -1550,7 +1552,7 @@ X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)
 \begin{proof}
 Wende Satz \ref{satz4.2} an auf $P_n:=\P\circ X^{-1}_n,~P:=\P\circ X^{-1}$ (wegen Def $\stackrel{\L}{\longrightarrow}$). Beachte z. B.
 \begin{align*}
-P_n(f)&=\P\circ X^{-1}_n(F)
+P_n(F)&=\P\circ X^{-1}_n(F)
 \stackeq{\text{Def}}
 \P\left(X_n^{-1}(F)\right)
 =\P\big(\lbrace\omega\in\Omega:X_n(\omega)\in F\rbrace\big)
@@ -1566,4 +1568,687 @@ und
 =\E\big[f(X_n)\big]
 \end{align*}
 \end{proof}
+
+Ferner erhält man unter den jeweiligen Voraussetzungen in Theorem \ref{theorem4.3} bzw. Korollar \ref{korollar4.4}:
+\begin{align*}
+\P(X_n\in A)\stackrel{n\to\infty}{\longrightarrow}\P(X\in A)\qquad\forall A\in\U\\
+\implies X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)
+\end{align*}
+Und aus Lemma \ref{lemma4.6Einhalb}:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X,X_n\stackrel{\L}{\longrightarrow} X'\implies X\stackeq{\L}X'
+\end{align*}
+
+\subsection*{Das Continuous Mapping Theorem (CMT)}
+Sei $h:(\S,d)\to(\S',d')$ messbar.\\
+\underline{Ziel:} Finde Bedingungen an $h$, so dass gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+P_n\stackrelnew{w}{}{\longrightarrow}\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{aligned}$
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\implies h(X_n)\stackrel{\L}{\longrightarrow} h(X)\text{ in }(\S',d')
+\end{aligned}$
+\end{enumerate}
+Beachte: 
+\begin{align*}
+\P\circ\big(h(X_n)\big)^{-1}&=\P\circ(h\circ X_n)^{-1}=\big(\P\circ X_n^{-1}\big)\circ h^{-1}\\
+\P\big(h(X)\big)^{-1}&=\big(\P\circ X^{-1}\big)\circ h^{-1}
+\end{align*}
+Also folgt (2) aus (1). Zunächst gilt (1), wenn $h$ stetig auf $\S$  ist, denn: Sei $f\in C^b(\S')$ beliebig. Dann gilt:
+\begin{align*}
+\int\limits_{\S'} f\d \big(P_n\circ h^{-1}\big)
+\stackeq{\text{Trafo}}
+\int\limits_{\S} \underbrace{ f\circ h}_{\in C^b(\S)}\d P_n
+\stackrel{\ref{def4.1}}{\longrightarrow}\int\limits f\circ h\d P
+\stackeq{\text{Trafo}}
+\int\limits f\d(P\circ h^{-1})\\
+\stackrel{\ref{def4.1}}{\implies}
+P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{align*}
+Auf Stetigkeit von $h$ kann i. A. nicht verzichtet werden, denn es gilt:
+\begin{beispiel} %4.8
+Sei $\S=\S'=[0,1],~h:[0,1]\to[0,1]$ mit
+\begin{align*}
+h(x):=\left\lbrace\begin{array}{cl}
+1, &\falls x\in\lbrace 0\rbrace\cup\left\lbrace\frac{1}{2\cdot n}:n\in\N\right\rbrace\\
+0, & \sonst
+\end{array}\right.
+\end{align*}
+Sei $P_n:=\delta_{\frac{1}{n}},n\in\N,P:=\delta_{0}$ wobei $\delta_x$ das Dirac-Maß bezeichnet.\\
+Dann gilt $P_n\stackrelnew{w}{}{\longrightarrow} P$, denn
+\begin{align*}
+\int\limits f\d P_n&=f\left(\frac{1}{n}\right)\stackrel{n\to\infty}{\longrightarrow} f(0)=\int\limits f\d P\qquad\forall f\in C^b\big([0,1]\big)
+\end{align*}
+Aber wegen 
+\begin{align*}
+\delta_x\circ h^{-1}=\delta_{h(x)}
+\end{align*}
+gilt für
+\begin{align*}
+Q_n:=P_n\circ h^{-1}=\delta_{\frac{1}{n}}\circ h^{-1}=\delta_{h\left(\frac{1}{n}\right)},\qquad Q:=\P\circ h^{-1}=\delta_1
+\end{align*}
+das Folgende:
+\begin{align*}
+\int\limits f\d Q_n=f\left(h\left(\frac{1}{n}\right)\right)=\left\lbrace\begin{array}{cl}
+f(1), & \falls n\text{ gerade }\\
+0, & \falls n\text{ ungerade }
+\end{array}\right.
+\end{align*}
+Sei $f\in C^b\big([0,1]\big)$ mit $f(0)\neq f(1)$ (z. B. $f=\id$). Folglich ist die Folge $\left(\int f\d Q_n\right)_{n\in\N}$ divergent. Somit:
+\begin{align*}
+\implies\int\limits f\d Q_n\not\longrightarrow\int\limits f\d Q\implies Q_n\stackrelnew{w}{}{\not\to} Q
+\end{align*}
+\end{beispiel}
+
+Die Forderung der Stetigkeit lässt sich aber abschwächen so, dass (1) noch gilt. Dazu definiere die Menge der Unstetigkeitsstellen
+\begin{align*}
+D_h:=\big\lbrace x\in\S: h\text{ \underline{nicht} stetig in }x\big\rbrace.
+\end{align*}
+
+\begin{lemma}\label{lemma4.9}
+\begin{align*}
+D_h\in\B(\S)\qquad\forall h:\S\to\S'\text{ beliebig (nicht einmal messbar)}
+\end{align*}
+\end{lemma}
+\begin{proof}
+Mit der Dreiecksungleichung überlegt man sich leicht:
+\begin{align*}
+h\text{ stetig in }x
+\Longleftrightarrow
+\forall 0<\varepsilon\in\Q:\exists 0<\delta\in\Q:\exists y,z\in\S\mit
+d(x,y)<\delta\wedge d(x,z)<\delta
+\implies d'\big(h(y),h(z)\big)<\varepsilon
+\end{align*}
+Damit folgt:
+\begin{align}\label{eqProof4.9Plus}
+\bigcup\limits_{0<\varepsilon\in\Q}\bigcap\limits_{0<\delta\in\Q}\underbrace{\big\lbrace x\in\S:\exists y,z\in\S\mit d(x,y)<\delta\wedge d(x,y)<\delta\wedge d'\big(h(y),h(z)\big)\geq\varepsilon\big\rbrace}_{=:A_{\varepsilon,\delta}}
+\end{align}
+Zeige 
+\begin{align}\label{eqProof4.9Stern}
+A_{\varepsilon,\delta}\in\G(\S)\qquad\forall\varepsilon,\delta>0
+\end{align}
+Dazu sei $x_0\in A_{\varepsilon,\delta}$. Dann existieren $y,z\in\S$ mit $d(x_0,y)<\delta$ und $d(z_0,z)<\delta$, aber $d'\big(h(y),h(z)\big)\geq\varepsilon$. Wähle
+\begin{align*}
+\delta_0:=\min\big\lbrace\delta- d(x_0,y),\delta-d(x_0,z)\big\rbrace>0
+\end{align*}
+Ferner gilt:
+\begin{align}\label{eqProof4.9i}
+B(x_0,\delta_0)\subseteq A_{\varepsilon,\delta},
+\end{align}
+denn: Sei $x\in B(x_0,\delta_0)$. Dann gilt
+\begin{align*}
+d(x,y)\leq d(x,x_0)+d(x_0,y)<\delta_0+d(x_0,y)<\delta
+\end{align*}
+und analog
+\begin{align*}
+d(x,z)<\delta.
+\end{align*}
+Also folgt $x\in A_{\varepsilon,\delta}$, denn $d'\big((h(y),h(z)\big)\geq\varepsilon$. Wegen \eqref{eqProof4.9i} ist $x_0$ innerer Punkt von $A_{\varepsilon,\delta}$. Also folgt \eqref{eqProof4.9Stern} und mit \eqref{eqProof4.9Plus} dann die Behauptung.
+\end{proof}
+
+
+
+\begin{satz}[Continuous Mapping Theorem (CMT)]\enter\label{satz4.10ContinuousMappingTheorem}
+Sei $h:(\S,d)\to(\S',d')$ $\B(\S)$-$\B(\S)$-messbar. Dann gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+P_n\stackrelnew{w}{}{\longrightarrow} P\wedge P(D_h)=0
+\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{aligned}$
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow}\text{ in }(\S,d)\wedge\P(X\in D_h)=0
+\implies h(X_n)\stackrel{\L}{\longrightarrow} h(X)\text{ in }(\S',d') 
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zeige (1):}\\
+Sei $F\in\F(\S')$ (d. h. $F\subseteq\S'$ abgeschlossen) beliebig. Dann gilt:
+\begin{align}\label{eqProof1.4.10(i)}
+\limsup\limits_{n\to\infty} P_n\circ h^{-1}(F)
+&=\limsup\limits_{n\to\infty} P_n\big(\underbrace{h^{-1}(F)}_{\subseteq \overline{h^{-1}(F)}}\big)\\\nonumber
+&\leq \limsup\limits_{n\to\infty} P_n\big(\underbrace{\overline{h^{-1}(F)}}_{\in\F(\S)}\big)\\\nonumber
+&\stackrel{\ref{satz4.2}}{\leq}
+P\big(\overline{h^{-1}(F)}\big)
+\end{align}
+Es gilt
+\begin{align}\label{eqProof1.4.10(ii)}
+\overline{h^{-1}(F)}\subseteq h^{-1}(F)\cup D_h,
+\end{align}
+denn: Sei $x\in\overline{h^{-1}(F)}$.\\
+
+\underline{Fall 1: $x\in D_h$}
+\begin{align*}
+x\in D_h\implies x\in h^{-1}(F)\cup D_h
+\end{align*}
+\underline{Fall 2: $x\not\in D_h$}\\
+Also ist $x\in C_h$, d. h. $h$ ist stetig in $x$. Ferner existiert eine Folge $(x_n)_{n\in\N}\subseteq h^{-1}(F)$ mit $x_n\stackrel{n\to\infty}{\longrightarrow} x$. Wegen der Stetigkeit gilt
+\begin{align*}
+\underbrace{h(x_n)}_{\in F~\forall n}\stackrel{n\to\infty}{\longrightarrow} h(x)
+\implies h(x)\in\overline{F}=F\implies x\in h^{-1}(F)
+\implies x\in h^{-1}(F)\cup D_h
+\end{align*}
+Mit \eqref{eqProof1.4.10(ii)} folgt:
+\begin{align*}
+\P\Big(\overline{h^{-1}(F)}\Big)
+\stackrel{\eqref{eqProof1.4.10(ii)}}{\leq}
+P\Big(h^{-1}(F)\cup D_h\Big)
+\leq P\Big(h^{-1}(F)\Big)+\underbrace{P(D_h)}_{=0}
+=P\circ h^{-1}(F)\\
+\stackrel{\eqref{eqProof1.4.10(i)},\ref{satz4.2}(3)}{\implies} 
+P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+\end{align*}
+\underline{Zeige (2):} folgt aus (1).
+\end{proof}
+
+\subsection*{Die Cramér'schen Sätze}
+Zusammenstellung einiger Eigenschaften der Verteilungskonvergenz.
+
+\begin{satz}[Teilfolgenprinzip für schwache Konvergenz]\label{satz4.11}\enter
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+Q_n\stackrelnew{w}{}{\longrightarrow} Q
+\Longleftrightarrow
+\text{Jede TF }(Q_{n'})\subseteq(Q_n)_{n\in\N}\text{ enthält TF }(Q_{n''})\subseteq(Q_{n'}):Q_{n''}\stackrelnew{w}{}{\longrightarrow} Q
+\end{aligned}$
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\Longleftrightarrow\text{Jede TF }(X_{n'})\subseteq(X_n)_{n\in\N}\text{ enthält TF }(X_{n''})\subseteq(X_{n'}):X_{n''}\stackrel{\L}{\longrightarrow} X
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zeige ``$\implies$'':}\\
+Folgt aus der Definition \ref{def4.1} und dem Teilfolgenprinzip für $(\int f\d Q)_{n\in\N}$ für alle $f\in C^b(\S)$.\\
+
+\underline{Zeige ``$\Longleftarrow$'':}\\
+Angenommen $Q_n\stackrelnew{w}{}{\not\longrightarrow} Q$. Dann gilt:
+\begin{align*}
+\exists f\in C^b(\S):\int\limits f\d Q_n\not\longrightarrow\int\limits f\d Q
+\end{align*}
+Also existiert ein $\varepsilon>0$ und eine TF $(X_{n'})\subseteq(X_n)_{n\in\N}$ so, dass
+\begin{align}\label{eqProof4.11Stern}
+\left|\int\limits f\d Q_{n'}-\int\limits f\d Q\right|\geq\varepsilon\qquad\forall n'
+\end{align}
+im Widerspruch zur Voraussetzung, da \eqref{eqProof4.11Stern} insbesondere für alle $n''$ gilt.
+\end{proof}
+
+\begin{satz}\label{satz4.12}
+\begin{align*}
+X_n\stackrel{\P}{\longrightarrow} X\implies X_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{satz}
+\begin{proof}
+Sei $(X_{n'})$ eine Teilfolge von $(X_n)_{n\in\N}$. Dann existiert gemäß \ref{satz3.13} eine TF $(X_{n''})$ von $(X_{n'})$ mit $X_{n''}\stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
+Damit folgt aus Satz \ref{Satz3.8}:
+\begin{align*}
+&f\big(X_{n''}\big)\stackrel{n''\to\infty}{\longrightarrow}f(X)~\P\text{-fast sicher}\qquad\forall f\in C^b(\S)\\
+&\stackrel{\text{dom Konv}}{\implies}
+\E\Big[f\big(X_{n''}\big)\Big]\stackrel{n''\to\infty}{\longrightarrow}\E\Big[f\big(X\big)\Big]\qquad\forall f\in C^b(\S)\\
+&\stackrel{\ref{satz4.7}}{\implies}
+X_{n''}\stackrel{\L}{\longrightarrow} X\\
+&\stackrel{\ref{satz4.11}(2)}{\implies}
+X_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{proof}
+Einfache Beispiele zeigen, dass in \ref{satz4.12} die Umkehrung im Allgemeinen \underline{nicht} gilt. Aber:
+
+\begin{satz}\label{satz4.13}
+Sei $X_n\stackrel{\L}{\longrightarrow}X$ mit $X$ fast sicher konstant.\\
+Dann gilt $X_n\stackrel{\P}{\longrightarrow} X$.
+\end{satz}
+\begin{proof}
+Nach Voraussetzung existiert eine Konstante $x\in\S$ mit $\P(X=c)=1$. Wir verwenden das folgende Lemma:
+
+\begin{lem}[Lemma von Uryson]\enter\label{lemmaVonUryson}
+Zu $A,B\in\F(\S)$ mit $A\cap B=\emptyset$ existiert stetige 
+\begin{align*}
+f:\S\to[0,1]\qquad\mit\qquad f(x)=\left\lbrace\begin{array}{cl}
+0, &\falls x\in A\\
+1, &\falls x\in B
+\end{array}\right.
+\end{align*}
+\end{lem}
+Sei $\varepsilon>0$. Dann sind $A:=\lbrace c\rbrace, B=\big(B(c,\varepsilon)\big)^C\in\F(\S)\mit A\cap B=\emptyset$. Nun wenden wir das Lemma von Uryson an und erhalten die Existenz einer Abbildung $f:\S\to[0,1]$ stetig (also $f\in C^b(\S)$) mit der Eigenschaft
+\begin{align*}
+f(x)&=\left\lbrace\begin{array}{cl}
+0, &\falls x=c\\
+1, &\falls d(x,c)\geq\varepsilon
+\end{array}\right.\\
+\implies 0 \leq \P\big(d(X_n,X)>\varepsilon\big)
+&\stackeq{\text{Vor}}
+\P\big(d(X_n,c)>\varepsilon\big)\\
+&=\E\Big[\underbrace{\indi_{\lbrace d(X_n,c)\geq\varepsilon\rbrace}}_{\leq f(X_n)}\Big]\\
+&\leq\E\big[f(X_n)\big]\stackrelnew{n\to\infty}{\text{Vor}}{\longrightarrow}\E\big[\underbrace{f(X)}_{=\underbrace{f(c)}_{=0}\text{ f.s.}}\big]\\
+&=0
+\end{align*}
+Das Einschließ-Kriterium liefert
+\begin{align*}
+\P\big(d(X_n,X)\geq\varepsilon\big)\stackrel{n\to\infty}{\longrightarrow}0\qquad\forall\varepsilon>0
+\end{align*}
+\end{proof}
+
+\begin{satz}[Cramér]\enter\label{satz4.14Cramer}
+Seien $(X_n)_{n\in\N},(Y_n)_{n\in\N}$ zwei Folgen in separablen metrischen Raum $(\S,d)$, die \textbf{stochastisch äquivalent sind}, d. h.
+\begin{align}\label{eq4.14StochastischAquivalent}\tag{Ä}
+d(X_n,Y_n)\stackrel{\P}{\longrightarrow}0
+\end{align}
+Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\Longleftrightarrow Y_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{satz}
+\begin{proof}
+Sei $f\in C^b(\S)$ gleichmäßig stetig, d. h.
+\begin{align*}
+    \forall\varepsilon>0\colon
+        \exists\delta_\varepsilon>0\colon
+        \forall x,y\in\S:\quad
+        d(x,y) \leq \delta_\varepsilon \implies \left|f(x)-f(y)\right| \leq \varepsilon
+\end{align*}
+Damit folgt
+\begin{align*}
+&\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
+&\stackeq{\text{Lin}}
+\left|\int\limits f(X_n)-f(Y_n)\d\P\right|\\
+&\stackrel{\text{DU}}{\leq}
+\int\limits\big|f(X_n)-f(Y_n)\big|\d\P\\
+&\stackeq{\text{Lin}}
+\int\limits\underbrace{\indi_{\big\lbrace d(X_n,Y_n)\leq\delta\big\rbrace}\cdot\big|f(X_n)-f(Y_n)\big|}_{\leq\varepsilon\text{ wegen glm. Stetigkeit}}\d\P+
+\int\limits\indi_{\big\lbrace d(X_n,Y_n)>\delta\big\rbrace}\cdot\underbrace{\big|f(X_n)-f(Y_n)\big|}_{\leq\big|f(X_n)\big|+\big|f(Y_n)\big|\leq2\cdot\Vert f\Vert_\infty}\d\P\\
+&\leq\varepsilon+2\cdot\Vert f\Vert_\infty\cdot\underbrace{\P\big(d(X_n,Y_n)>\delta_\varepsilon\big)}_{\stackrel{n\to\infty}{\longrightarrow}0}\\
+\implies
+0&\leq\liminf\limits_{n\to\infty}\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
+&\leq\limsup\limits_{n\to\infty}\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
+&\leq\varepsilon+2\cdot\Vert f\Vert_\infty\cdot 0\\
+&=\varepsilon\qquad\forall\varepsilon>0\\
+&\stackrel{\varepsilon\to0}{\implies}
+\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\stackrel{n\to\infty}{\longrightarrow} 0\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+\end{align*}
+Es folgt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X
+&\stackrel{\ref{satz4.7}}{\Longleftrightarrow}
+\E\big[f(X_n)\big]\longrightarrow\E\big[f(X)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}\\
+&\Longleftrightarrow
+\underbrace{\E\big[f(X_n)\big]}_{=\E\big[f(X_n)\big]+\Big(\E\big[f(Y_n)\big]-\E\big[ f(X_n)\big]\Big)\stackrel{\text{wg. oben}}{\longrightarrow}0}\stackrel{}{\longrightarrow}\E\big[f(X)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}\\
+&\stackrel{\ref{satz4.7}}{\Longleftrightarrow}
+Y_n\stackrel{\L}{\longrightarrow} X
+\end{align*}
+\end{proof}
+
+\pagebreak[4]
+\begin{satz}[Cramér-Slutsky]\label{satz4.15CramerSlutsky}\enter
+Seien $(\S,d)$, $(\S',d')$ separable metrische Räume. Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\wedge Y_n\stackrel{\L}{\longrightarrow} Y\wedge Y\text{ f.s. konstant}
+\implies (X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text{ in }(\S\times\S',d\times d')
+\end{align*}
+\end{satz}
+\begin{proof}
+Nach Voraussetzung existiert ein $c\in\S'$ mit $\P(Y=c)=1$. Mit Satz \ref{satz4.13} gilt:
+\begin{align}\label{eqProof4.15Stern}
+Y_n\stackrel{\L}{\longrightarrow} c
+\end{align}
+Ferner:
+\begin{align*}
+&d\times d'\Big((X_n,Y_n),(X_n,c)\Big)
+=\underbrace{d(X_n,X_n)}_{=0}+d'(Y_n,c)
+=d'(Y_n,c)\\
+&\implies\P\Big(d\times d'\big((X_n,Y_n),(X_n,c)\big)>\varepsilon\Big)
+=\P\big(d'(Y_n,c)>\varepsilon\big)
+\stackrel{n\to\infty}{\longrightarrow} 0\qquad\forall\varepsilon>0\text{ gemäß } \eqref{eqProof4.15Stern}\\
+&\implies
+\big((X_n,Y_n)\big)_{n\in\N}\text{ und }\big((X_n,c)\big)_{n\in\N}\text{ sind stochastisch äquivalent}
+\end{align*}
+Gemäß Satz \ref{satz4.14Cramer} reicht es zu zeigen, dass
+\begin{align}\label{eqProof4.15Plus}
+(X_n,c)\stackrel{\L}{\longrightarrow}(X,c)\stackrelnew{\L}{\text{f.s.}}{=}(X,Y)\text{ in }(\S\times\S',d\times d')
+\end{align}
+gilt. Dazu sei $f\in C^b(\S\times\S')$ beliebig und $f_c:\S\to\R,~f_c(x):=f(x,c)$. Damit folgt $f_c\in C^b(\S)$. Somit:
+\begin{align*}
+\E\big[f(X_n,c)\big]
+&\stackeq{\text{Def}}
+\E\big[f_c(X_n)\big]
+\stackrel{n\to\infty}{\longrightarrow}\E\big[f_c(X)\big]\stackeq{\text{Def}}
+\E\big[f(X,c)\big]\\
+\stackrel{\text{Def}}{\implies}
+\eqref{eqProof4.15Plus}
+\end{align*}
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung4.16} %4.16
+Auf die Forderung, dass $Y$ f.s. konstant ist, kann \underline{nicht} verzichtet werden. Also ist die Schlussfolgerung
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S\wedge Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S'
+\implies(X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text{ in }\S\times\S'
+\end{align*}
+ist im Allgemeinen \underline{nicht} richtig!
+\end{bemerkungnr}
+
+\begin{korollar}\label{korollar4.17}
+Seien $\S,\S'$ separable metrische Räume und sei $T$ beliebiger metrischer Raum. Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\wedge Y_n\stackrel{\P}{\longrightarrow} c\mit c\in\S'\text{ Konstante }
+\implies h(X_n,Y_n)\stackrel{\L}{\longrightarrow} h(X,c)\text{ in }T
+\end{align*}
+wobei $h:\S\times\S'\to T$ messbar mit $\P\big((X,c)\in D_h\big)=0$
+\end{korollar}
+\begin{proof}
+Folgt aus \ref{satz4.15CramerSlutsky} und Satz \ref{satz4.10ContinuousMappingTheorem}.
+\end{proof}
+
+\begin{beispiel}\label{beisp4.18}
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^k\wedge Y_n\stackrel{\P}{\longrightarrow} c\text{ in }\R^k
+\end{align*}
+Dann gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n+Y_n\stackrel{\L}{\longrightarrow} X+c\text{ in }\R^k
+\end{aligned}$
+\item $\begin{aligned}
+\langle X_n,Y_n\rangle\stackrel{\L}{\longrightarrow}\langle c,X\rangle\text{ in }\R
+\end{aligned}$
+\item Für $k=1$ speziell:
+$\begin{aligned}
+Y_n\cdot X_n\stackrel{\L}{\longrightarrow}c\cdot X\text{ in }\R
+\end{aligned}$ und für $c=0$:
+$\begin{aligned}
+Y_n\cdot X_n\stackrel{\L}{\longrightarrow}0\text{ in }\R
+\end{aligned}$
+\item $\begin{aligned}
+\frac{X_n}{Y_n}\stackrel{\L}{\longrightarrow} \frac{X}{c},&\falls c\neq0\wedge\forall n\in\N:Y_n\neq0
+\end{aligned}$
+\item Konstante (= nicht zufällige) $Y_n$, d. h.
+\begin{align*}
+Y_n(\omega)=c_n\qquad\forall\omega\in\Omega,\forall n\in\N
+\end{align*}
+sind natürlich zugelassen:
+\begin{align*}
+(X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,c)\text{ in }\R^k\times\R^k
+\end{align*}
+\end{enumerate}
+\end{beispiel}
+
+Es gilt:
+\begin{align}\label{eqUnder4.18}
+(X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text { in }\S\times S'
+\implies X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S\wedge
+Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S'
+\end{align}
+denn aus dem CMT folgt
+\begin{align*}
+X_n=\pi_1(X_n,Y_n)\stackrelnew{n\to\infty}{\L}{\longrightarrow}\pi_1(X,Y)=X,
+\end{align*}
+da die \textbf{Projektion}
+\begin{align*}
+\pi_1:\S\times\S'\to\S,~\pi_1(x,y):=x\qquad\forall (x,y)\in\S\times\S'
+\end{align*}
+stetig ist. Analog: $Y_n\stackrel{\L}{\longrightarrow} Y$.\\
+Die Umkehrung in \eqref{eqUnder4.18} gilt im Allgemeinen \underline{nicht}! Vergleiche \ref{bemerkung4.16}. Sie gilt tatsächlich, falls $Y$ fast sicher konstant ist, vergleiche Satz \ref{satz4.15CramerSlutsky}.\\
+Ziel: Finde eine andere zusätzliche Forderungen neben der linken Seite von \eqref{eqUnder4.18}, die die umgekehrte Implikation gestattet. Dazu:\\
+Seien $(\S_1,d_1)$ und $(\S_2,d_2)$ zwei separable metrische Räume und $\S:=S_1\times\S_2$ mit $d:=d_1\times d_2$ der zugehörige Produktraum. (Es folgt, dass $(\S,d)$ separabel ist.) Eine geringfügige Modifikation  des Beweises von \ref{satz3.3} zeigt:
+\begin{align*}
+\B_d(\S_1\times\S_2)=\B_{d_1}(\S_1)\otimes\B_{d_2}(\S_2)
+\end{align*}
+Für ein Wahrscheinlichkeitsmaß $\P$ auf $\B(\S_1\times\S_2)$ definiere 
+\begin{align*}
+\P_1(A_1)&:P(A_1\times\S_2) &\forall A_1\in\B(\S_1)\\
+\P_2(A_2)&:=P(\S_1\times A_2) &\forall A_2\in\B(\S_2)
+\end{align*}
+$\P_1$ und $\P_2$ heißen \textbf{Randverteilungen von $\P$}.
+
+\begin{theorem}\label{theorem4.19}
+Sei $(\S,d)$ separabel. Dann sind folgende Aussagen äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\P_n\stackrelnew{\omega}{}{\longrightarrow} \P 
+\end{aligned}$
+\item $\begin{aligned}
+\P_n(A_1\times A_2)\stackrel{n\to\infty}{\longrightarrow} \P(A_1\times A_2)\qquad\forall A_i\in\B(\S_i)~\P_i\text{-randlos mit } i=1,2
+\end{aligned}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Seien $\partial,\partial_1,\partial_2$ die Randoperatoren in $(\S,d),(\S_1,d_1),(\S_2,d_2)$, respektive.\\
+
+\underline{Zeige (1) $\implies$ (2):}\\
+Sei $A:=A_1\times A_2$ mit $A_i\in(2)$. Es gilt
+\begin{align}\label{eqProof4.19Stern}\tag{$\ast$}
+\partial A\subseteq((\partial_1 A_1)\times\S_2)\cup(\S_1\times(\partial_2 A_2))
+\end{align}
+%TODO Hier Skizze einfügen
+Daraus folgt
+\begin{align*}
+&\P(\partial A)\leq \underbrace{\P((\partial A_1)\times\S_2)}{=\P_1(\partial A_1)=0}+\underbrace{\P(\S_1\times(\partial_2 A_2))}_ {=\P_2(\partial_2 A_2)=0}=0\\
+&\implies
+A\in\B(\S_1\times\S_2)\text{ ist $\P$-randlos}\\
+&\stackrel{\ref{satz4.2}(5)}{\implies}(2)
+\end{align*}
+
+\underline{Zeige (2) $\implies$ (1):}\\
+Wir wollen Korollar \ref{korollar4.4} anwenden. Dazu:\\
+Wähle $d$ wie folgt aus:
+\begin{align}\label{eqProof4.19Plus}\tag{+}
+d\big((x_1,x_2),(y_1,y_2)\big)&:=\max\big\lbrace d_1(x_1,y_1),d_2(x_2,y_2)\big\rbrace
+\end{align}
+Sei
+\begin{align*}
+\U:=\big\lbrace A_1\times A_2:A_i\in\B(\S_i)~\P_i\text{-randlos}, i\in\lbrace1,2\rbrace\big\rbrace 
+\end{align*}
+$\U$ ist durchschnittsstabil, denn: Seien $A:=A_1\times A_2,B=B_1\times B_2\in\U$. Dann gilt
+\begin{align}\label{eqProof4.19.1}\tag{1}
+A\cap B=(A_1\cap B_1)\times(A_2\times B_2)
+\end{align}
+Ferner gilt
+\begin{align}\label{eqProof4.19.2}\tag{2}
+\partial_i(A_i\cap B_i)\subseteq(\partial_i A_i)\cup(\partial_i B_i)\qquad\forall i\in\lbrace1,2\rbrace
+\end{align}
+Aus \eqref{eqProof4.19.1} und \eqref{eqProof4.19.2} folgt: $\U$ ist durchschnittsstabil. Sei nun $x=(x_1,x_2)\in\S=\S_1\times\S_2$ und $\varepsilon>0$ beliebig. Aus \eqref{eqProof4.19Plus} folgt:
+\begin{align*}
+B_d(x,\varepsilon)=B_{d_1}(x_1,\varepsilon)\times B_{d_2}(x_2,\varepsilon)
+\end{align*}
+Sei 
+\begin{align*}
+A_\delta:=B_{d_1}(x_1,\delta)\times B_{d_2}(x_2,\delta)
+\stackeq{\eqref{eqProof4.19Plus}} B_d(x,\delta)\qquad\forall\delta>0
+\end{align*}
+Somit gilt (vgl. Beweis von \ref{satz4.2})
+\begin{align*}
+\partial_i B_{d_i}(x_i,\delta)\subseteq\big\lbrace y\in\S_i:d_i(y,x_i)=\delta\big\rbrace\qquad\forall i\in\lbrace1,2\rbrace
+\end{align*}
+Folglich sind die Mengen $\partial_i B_{d_i}(x_i,\delta),\delta>0$ sind paarweise disjunkt. Die Mengen
+\begin{align*}
+E_i:=\Big\lbrace\delta>0:\P_i\big(\partial_i B_{d_i}(x_i,\delta)\big)>0\Big\rbrace\qquad\forall i\in\lbrace1,2\rbrace
+\end{align*}
+sind höchstens abzählbar (vgl. Beweis von \ref{satz4.2}). Folglich ist die Vereinigung $E_1\cup E_2$ höchstens abzählbar und somit liegt $(E_1\cup E_2)^C$ dicht in $[0,\infty)$. Mit
+\begin{align*}
+(E_1\cup E_2)^C&=E_1^C\cap E_2^C=\big\lbrace\delta>0:B_{d_i}(x_i,\delta)\text{ ist $\P_i$-randlos},i\in\lbrace1,2\rbrace\big\rbrace\\
+\implies\exists\delta&\in(0,\varepsilon):B_{d_1}(x_1,\delta)~\P_1\text{-randlos und }B_{d_2}(x_2,\delta)~\P_2\text{-randlos}\\
+\implies A_\delta&=B_{d_1}(x_1,\delta)\times B_{d_2}(x_2,\delta)\in\U\\
+&\stackeq{\eqref{eqProof4.19Plus}} B_d(x,\delta)\subseteq B_d(x,\varepsilon)
+\end{align*}
+Also offene Kugel ist $A_\delta$ offen, also $\stackrel{\circ}{A_\delta}=A_\delta$. Schließlich folgt
+\begin{align*}
+x\in\stackrel{\circ}{A_\delta}=A_\delta\subseteq B_d(x,\varepsilon)
+\end{align*}
+Also erfüllt $\U$ die Voraussetzungen von Korollar \ref{korollar4.4}. Daraus folgt nun die Behauptung.
+\end{proof}
+
+Theorem \ref{theorem4.19} liefert ein nützliches Resultat für Produktmaße. Seien $\P^{(i)},\P_n^{(i)},n\in\N$ Wahrscheinlichkeitsmaße auf $\B(\S_i)$ mit $i\in\lbrace1,2\rbrace$. Dann sind
+\begin{align*}
+\P:=\P^{(1)}\otimes\P^{(2)},\qquad\P_n:=\P_n^{(1)}\otimes\P_n^{(2)}\qquad\forall n\in\N
+\end{align*}
+Produktmaße auf $\B(\S_1)\otimes\B(\S_2)=\B(\S_1\times\S_2)$ bei Separabilität.
+
+\begin{theorem}\label{thoerem4.20}
+Sei $\S=\S_1\times\S_2$ separabler Produktraum. Dann sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\P_n\stackrelnew{w}{}{\longrightarrow}\P
+\end{aligned}$
+\item $\begin{aligned}
+\P_n^{(1)}\stackrelnew{w}{}{\longrightarrow}\P^{(1)}\wedge
+\P_n^{(2)}\stackrelnew{w}{}{\longrightarrow}\P^{(2)}
+\end{aligned}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Gemäß Definition gilt:
+\begin{align*}
+\P(A_1\times A_2)&\stackeq{\text{Def}}\P^{(1)}(A_1)\cdot\P^{(2)}(A_2)\\
+\P_n(A_1\times A_2)&\stackeq{\text{Def}}\P_n^{(1)}(A_1)\cdot\P_n^{(2)}(A_2)\\
+\end{align*}
+\underline{Zeige (1) $\implies$ (2):}
+\begin{align*}
+\P_n^{(1)}(A_1)&=\P_n(A_1\times\S_2)\stackrel{}{\longrightarrow}\P(A_1\times\S_2)=\P^{(1)}(A_1)
+\qquad\forall A_1\in\B(\S_1)~\P^{(1)}\text{-randlos}
+\end{align*}
+gemäßig \ref{theorem4.19}, denn $\partial\S_2=\emptyset$. Also ist $\S_2\in\B(\S_2)~\P^{(2)}$-randlos. Also folgt aus \ref{satz4.2}(5):
+\begin{align*}
+\P_n^{(1)}\stackrelnew{w}{}{\longrightarrow}\P_n^{(2)}
+\end{align*}
+Analog zeigt man: $\P_n^{(2)}\stackrelnew{w}{}{\longrightarrow}\P^{(2)}$.\\
+
+\underline{Zeige (2) $\implies$ (1):}
+\begin{align*}
+&\P_n(A_1\times A_2)=\underbrace{\P_n^{(1)}(A_1)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(1)}(A_1)}\cdot\underbrace{\P_n^{(2)}(A_2)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(2)}(A_2)}\qquad\forall A_i~\P_i\text{-randlos},i=1,2\\
+&\implies
+\P^{(1)}(A_1)\cdot\P^{(2)}(A_2)=\P(A_1\times A_2)\qquad\forall A_i~\P_i\text{-randlos},i\in\lbrace1,2\rbrace\\
+&\stackrel{\ref{theorem4.19}}{\implies}\P_n\stackrel{n\to\infty}{\longrightarrow}\P
+\end{align*}
+\end{proof}
+
+Mit Theorem \ref{thoerem4.20} erhalten wir neben Satz \ref{satz4.15CramerSlutsky} ein weiteres Resultat über die\\ ``\ul{koordinatenweise Verteilungskonvergenz}'' (die ja im Allgemeinen nicht gilt).
+
+\begin{satz}\label{satz4.21}
+Sei $\S=\S_1\times\S_2$ separabel, $X,X_n,n\in\N$ Zufallsvariablen in $\S_1$, $Y,Y_n,n\in\N$ Zufallsvariablen in $\S_2$ über $(\Omega,\A,\P)$ und gelte
+\begin{enumerate}
+\item $X_n$ und $Y_n$ sind unabhängig für alle $n\in\N$
+\item $X$ und $Y$ sind unabhängig
+\end{enumerate}
+Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\S_1\wedge Y_n\stackrel{\L}{\longrightarrow} Y\text{ in }\S_2
+\Longleftrightarrow (X_n,Y_n)\stackrel{\L}{\longrightarrow}(X,Y)\text{ in }\S_1\times\S_2
+\end{align*}
+\end{satz}
+\begin{proof}
+Da
+\begin{align*}
+\P\circ (X_n,Y_n)^{-1}&\stackeq{\text{unab}}\P\circ X_n^{-1}\otimes\P\circ Y_n^{-1}\\
+\P\circ (X,Y)^{-1}&\stackeq{\text{unab}}\P\circ X^{-1}\otimes\P\circ Y^{-1}
+\end{align*}
+folgt die Behauptung aus \ref{thoerem4.20} und Definition \ref{def4.1}.
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung4.22}
+Die Aussage in \ref{satz4.21} lässt sich problemlos auf $\S_1\times\ldots\times\S_d$ mit $d\geq2$ übertragen.
+\end{bemerkungnr}
+
+\section*{Anwendung in der Statistik}
+Seien $X_i,i\in\N$ i.i.d. über $(\Omega,\A,\P)$, quadrat-integrierbar, $\mu:=\E[X_i]\in\R$,\\ $\sigma^2:=\Var(X_i)\in(0,\infty)$.\\ Das arithmetische Mittel konvergiert fast sicher gegen den Erwartungswert gemäß dem starken Gesetz der großen Zahlen (SGGZ / SLLN, Kolmogorov), also
+\begin{align*}
+\overline{X}_n=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i\stackrel{}{\longrightarrow}\mu~\P\text{-fast sicher}
+\end{align*}
+%fast sichere Konvergenz => stochastische Konvergenz => Verteilungskonvergenz?
+Folglich gilt
+\begin{equation}
+\label{eqAnwendungInDerStatistik}
+\begin{aligned}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)
+&=\sqrt{n}\cdot\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\mu)\\
+&=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n(X_i-\mu)\\
+&=\sigma\cdot\underbrace{\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\left(\frac{X_i-\mu)}{\sigma}\right)}_{\stackrel{\L}{\longrightarrow}\mathcal{N}(0,1)}\stackrel{\L}{\longrightarrow}\sigma\cdot\mathcal{N}(0,1)\stackeq{\L}\mathcal{N}(0,\sigma^2)
+\end{aligned}
+\end{equation}
+wobei die linke Konvergenz aus dem zentralen Grenzwertsatz (TGWS / CLT) und die rechte Konvergenz auf dem CMT folgt (da $x\mapsto\sigma\cdot x$ stetig). Also folgt:
+\begin{align}\label{eqAnwendungInDerStatistikStern}\tag{$\ast$}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2)
+\end{align}
+Die \textbf{empirische Varianz} ist 
+\begin{align*}
+S_n^2&:=\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\overline{X}_n)^2\\
+&=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big((X_i-\mu)-(\overline{X}_n-\mu)\big)^2\\
+&=\frac{1}{n}\cdot\sum\limits_{i=1}^n\Big((X_i-\mu)^2-2\cdot(X_i-\mu)\cdot(\overline{X}_n-\mu)+(\overline{X}_n-\mu)^2\Big)\\
+&=\frac{1}{n}\cdot\sum\limits(X_i-\mu)^2-2\cdot\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\mu)}_{=(\overline{X}_n-\mu)}\cdot(\overline{X}_n-\mu)+\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n(\overline{X}_n-\mu)^2}_{=(\overline{X}-\mu)^2}\\
+\end{align*}
+Man erhält schließlich:
+\begin{align}\label{eqEmpVarAlternativePlus}\tag{+}
+S_n^2&=\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n(X_i-\mu)^2}_{\stackrel{\text{SGGZ}}{\longrightarrow}\E\big[(X_1-\mu)^2\big]=\sigma^2~\P\text{-f.s.}}-\underbrace{(\overline{X}_n-\mu)^2}_{\stackrel{\text{SGGZ+\ref{Satz3.8}}}{\longrightarrow}0\text{ f.s.}}\\\nonumber
+&\implies
+S_n^2\stackrel{\ref{satz3.15}+\ref{Satz3.8}}{\longrightarrow}\sigma^2
+\end{align}
+(Hierbei wird bei der Anwendung der Sätze \ref{satz3.15} und \ref{Satz3.8} benutzt, dass $(x,y)\mapsto x+y$ stetig ist)
+
+%Skorokhod (russischer Mathematiker), cadlag, rcll (right continues with left limit), in einem Skorokhod-Raum ist die Addtion NICHT stetig. Also ist obiger Schluss i.A. nicht richtig.
+Und ähnlich: ($\sqrt{n}$ ist die \textbf{normalisierende Folge})
+\begin{align*}
+T_n&:=\sqrt{n}\cdot\left(S_n^2-\sigma^2\right)
+\stackeq{\eqref{eqEmpVarAlternativePlus}}
+\underbrace{\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\Big((X_i-\mu)^2-\sigma^2\Big)}_{=:V_n}\underbrace{-\sqrt{n}\cdot\big(\overline{X}-\mu\big)^2}_{=:R_n}
+=V_n+R_n
+\end{align*}
+Mit CLT folgt (analog zur Herleitung von \eqref{eqAnwendungInDerStatistik})
+\begin{align*}
+V_n\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2),\qquad\tau^2:=\Var\Big((X_1-\mu)^2\Big)
+\end{align*}
+falls $\E\big[|X-1|\big]^4<\infty$.
+\begin{align*}
+-R_n&=\underbrace{\Big(\sqrt{n}\cdot(\overline{X}_n-\mu)\Big)}_{\stackrelnew{\eqref{eqAnwendungInDerStatistikStern}}{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2)}\cdot\underbrace{(\overline{X}_n-\mu)}_{\stackrelnew{\ref{Satz3.12}}{\P}{\longrightarrow}0}\stackrelnew{\ref{beisp4.18}(3)}{\P}{\longrightarrow}0\\
+&\implies \underbrace{R_n}_{=|T_n-V_n|}\stackrel{\P}{\longrightarrow}0\\
+&\implies(T_n)_{n\in\N},(V_n)_{n\in\N}\text{ sind stochastisch äquivalent}\\
+&\stackrel{\ref{satz4.14Cramer}}{\implies}
+T_n\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2)
+\end{align*}
+\textbf{Zusammenfassung:}
+\begin{align*}
+\big(\overline{X}_n,S_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\sigma^2\big)\text{ in }\R^2\text{ fast sicher}
+\end{align*}
+d. h. $\big(\overline{X}_n,S_n^2\big)_{n\in\N}$ ist \textbf{stark konsistente Schätzerfolge} für den Parameter $(\mu,\sigma^2)$.
+Fernen sind $(\overline{X}_n)_{n\in\N}$ und $(S_n^2)_{n\in\N}$ \textbf{asymptotisch normal}, d.h.
+%FUN: Der persönliche Held von Ferger ist Skorokhot. Er hat ihn ca. 2000 mal auf einer Tagung und es gab sogar ein Foto von den beiden, dass aber durch Datenverlust verloren ging
+\begin{align*}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2),\qquad
+\sqrt{n}\cdot\big(S_n^2-\sigma^2\big)\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\tau^2)
+\end{align*}
+Wie sieht es aus mit dem Vektor 
+\begin{align*}
+\begin{pmatrix}
+\sqrt{n}\cdot\big(\overline{X}_n-\mu\big)\\
+\sqrt{n}\cdot\big(S_n^2-\sigma^2\big)
+\end{pmatrix}
+=\sqrt{n}\cdot\begin{pmatrix}
+\overline{X}_n-\mu\\
+S_n^2-\sigma^2
+\end{pmatrix}
+\stackrel{\L}{\longrightarrow}?
+\end{align*}
+
+\section{Verteilungskonvergenz in $\R^d$}
+Korollar \ref{korollar4.5} bzw. dessen Erweiterungen \ref{lemma4.6Einhalb} (2) liefern eine \textbf{analytische} Methode zum Nachweis von $X_n\stackrel{\L}{\longrightarrow}X\text{ in }\R^d$. Eine weitere Methode fußt auf
+
+\begin{definition}\label{def5.1}
+Sei $X$ Zufallsvariable in $\R^d$ über $(\Omega,\A,\P)$ und
+\begin{align*}
+\langle x,y\rangle:=:x'y:=\sum\limits_{i=1}^d x_i\cdot y_i\qquad x=(x_1,\ldots,x_d),y=(y_1,\ldots,y_d)\in\R^d
+\end{align*}
+das Standard-Skalarprodukt in $\R^d$. Dann heißt
+\begin{align*}
+\varphi_X(t):=\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]\qquad\forall t\in\R^d
+\end{align*}
+\end{definition}
+heißt \textbf{charakteristische Funktion} von $X$.
+
+\begin{satz}[Eindeutigkeitssatz]\label{satz5.2Eindeutigkeitssatz}
+\begin{align*}
+X\stackeq{\L} Y\Longleftrightarrow\varphi_X\equiv\varphi_Y
+\end{align*}
+\end{satz}
+\begin{proof}
+Siehe Buch \textit{Essentials in Probability} von Jacod und Protter (2000), Seite 107-108.
+\end{proof}
+
+
 

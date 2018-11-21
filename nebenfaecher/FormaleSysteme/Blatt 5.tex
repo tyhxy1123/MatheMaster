@@ -118,9 +118,9 @@ Finde eiene Formel (in CNF) für ein gegebenes Sudoku, sodass diese Formel genau
 Variablen: $R=\big\lbrace s_{x,y,z}\in\mathbb{B}^3\mid x,y,z\in\lbrace 1,\ldots,n\rbrace\big\rbrace$. Dabei soll $s_{x,y,z}$ auf wahr abgebildet wird g.d.w. in Zeile $x$, Spalte $y$ die Zahl $z$ steht.\\
 Formeln (für $n=3$):
 \begin{itemize}
-\item ``Jede Zelle bekommt (mindestens) einen Wert zugewiesen.''
+\item ``Jede Zelle bekommt (mindestens) einen Wert zugewiesen.'' (Überflüssig!)
 \begin{align*}
-\bigwedge\limits_{x=1}^{3^2}\bigwedge\limits_{y=1}^{3^2}\bigvee\limits_{z=1}^{3^2} s_{x,y,z}
+\bigwedge\limits_{x=1}^{n^2}\bigwedge\limits_{y=1}^{n^2}\bigvee\limits_{z=1}^{n^2} s_{x,y,z}
 \end{align*}
 \item ``Jede Zelle bekommt höchstens einen Wert zugewiesen.''\\
 Meine Lösung (vielleicht richtig:)
@@ -129,20 +129,20 @@ Meine Lösung (vielleicht richtig:)
 \end{align*}
 Tutor-Lösung:
 \begin{align*}
-\bigwedge\limits_{x=1}^{3^2}
-\bigwedge\limits_{y=1}^{3^2}
-\bigwedge\limits_{z=1}^{3^2-1}
-\bigwedge\limits_{i=z+1}^{3^2}
+\bigwedge\limits_{x=1}^{n^2}
+\bigwedge\limits_{y=1}^{n^2}
+\bigwedge\limits_{z=1}^{n^2-1}
+\bigwedge\limits_{i=z+1}^{n^2}
 (\neg s_{x,y,z}\vee\neg s_{x,y,i})
 \end{align*}
 
 \item ``Jede Spalte enthält jede Zahl (mindestens) einmal.''
 \begin{align*}
-\bigwedge\limits_{y=1}^{3^2}\bigwedge\limits_{z=1}^{3^2}\bigvee\limits_{x=1}^{3^2} s_{x,y,z}
+\bigwedge\limits_{y=1}^{n^2}\bigwedge\limits_{z=1}^{n^2}\bigvee\limits_{x=1}^{n^2} s_{x,y,z}
 \end{align*}
 \item ``Jede Zeile enthält jede Zahl (mindestens) einmal.''
 \begin{align*}
-\bigwedge\limits_{x=1}^{3^2}\bigwedge\limits_{z=1}^{3^2}\bigvee\limits_{y=1}^{3^2} s_{x,y,z}
+\bigwedge\limits_{x=1}^{n^2}\bigwedge\limits_{z=1}^{n^2}\bigvee\limits_{y=1}^{n^2} s_{x,y,z}
 \end{align*}
 \item ``Jeder Block enthält jede Zahl (mindestens) einmal.''\\
 Die Menge aller Blöcke ist
@@ -159,7 +159,7 @@ Richtige Lösung anderer Gruppe:
 \end{align*}
 Tutor-Lösung:
 \begin{align*}
-\bigwedge\limits_{z=1}^{3^2}\bigwedge\limits_{i=0}^{2}\bigwedge\limits_{j=1}^2\bigvee\limits_{x=1}^{3}\bigvee\limits_{y=1}^3 s_{3\cdot i+x,3\cdot j+y,z}
+\bigwedge\limits_{z=1}^{n^2}\bigwedge\limits_{i=0}^{n-1}\bigwedge\limits_{j=1}^{n-1}\bigvee\limits_{x=1}^{n}\bigvee\limits_{y=1}^n s_{3\cdot i+x,3\cdot j+y,z}
 \end{align*}
 \end{itemize}
 \end{aufgabe}

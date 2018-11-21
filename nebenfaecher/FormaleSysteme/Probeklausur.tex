@@ -1,0 +1,166 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Probeklausur}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\renewcommand{\L}{\mathcal{L}} %sonst nicht nichtbar
+\newcommand{\RR}{\mathcal{R}} %\R sind reelle Zahlen
+\newcommand{\PP}{\mathcal{P}} %\P ist W-Maß oder Sonderzeichen
+\renewcommand{\S}{\mathcal{S}} %sonst Paragraph
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\W}{\mathcal{W}} 
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 1 (14 Punkte)}
+Geben Sie die Definitionen für folgende Begriffe:
+\begin{enumerate}
+\item (aussagenlogische) Formel (3 Punkte)
+\item (aussagenlogische) Interpretation (4 Punkte)
+\item Allgemeingültige Formel (Tautologie) (1 Punkt)
+\item Eine (aussagenlogische Konsequenz (4 Punkte)
+\item Konjunktive Normalform (CNF) (2 Punkte)
+\end{enumerate}
+\begin{lösung}\
+\begin{enumerate}
+\item Siehe Definiton 3.5.\\
+Eine (aussagenlogische) Formel ist ein Element der Menge aller (aussagenlogischen) Formeln. Diese ist die kleinste Menge $\L(\RR)$ von Zeichenreihen über $\RR$ (Menge der aussagenlogischen Variablen), den Junktoren und den Sonderzeichen, die die folgenden Eigenschaften erfüllen:
+\begin{enumerate}
+\item $F\in\RR\implies F\in\L(\RR)$
+\item $F\in\L(\RR)\implies\neg F\in\L(\RR)$
+\item $F,G\in\L(\RR)\wedge\circ/2\text{ Junktor }\implies(F\circ G)\in\L(\RR)$
+\end{enumerate}
+\textbf{Musterlösung:}\\
+Wenn $F$ ein Atom ist, dann ist $F$ eine Formel.\\
+Wenn $F$ eine Formel ist, dann ist $\neg F$ ein Formel.\\
+Wenn $F,G$ Formeln sind, dann ist $(F\circ G)$ eine Formel mit $\circ\in\lbrace\wedge, \vee,\to,\longleftrightarrow\rbrace$
+\item Siehe Definiton 3.9.\\
+Eine (aussagenlogische) Interpretation $I=(\W,\cdot^I)$ besteht aus der Menge $\W:=\lbrace\bot,\top\rbrace$ der Wahrheitswerte und einer Abbildung $\cdot^I:\L(\RR)\to\W$, welche die folgende Bedingung erfüllt:
+\begin{align*}
+[F]^I=\left\lbrace\begin{array}{cl}
+\neg^\ast[G]^I & \falls F \text{ von der Form }\neg G\\
+\big([G_1]^I\circ^\ast[G_2]^I\big), &\falls F\text{ von der Form }(G_1\circ G_2)
+\end{array}\right.
+\end{align*}
+\item Siehe Definition 3.12.\\
+Eine Formel $F\in\L(\RR)$ heißt allgemeingültig / Tautologie, wenn für alle Interpretationen $I=(\W,\cdot^I)$ gilt: $F^I=\top$.
+\item Siehe Definition 3.16.\\
+Eine aussagenlogische Formel $F\in\L(\RR)$ ist genau dann eine (aussagen-)logische Konsequenz einer Menge von Formeln $\G$, i.Z. $\G\models F$, wenn für jede Interpretation $I=(\W,\cdot^I)$ gilt:\\
+Wenn $I$ Modell für $\G$ ist, dann ist $I$ auch Modell für $F$.
+\item Siehe Definition 3.27.\\
+Eine Formel ist in konjunktiver Normalform gdw. sie von der Form verallgemeinerte Konjunktion $\langle C_1,\ldots,C_m\rangle,m\geq0$ ist und jedes $C_j,~1\leq j\leq m$ eine Klausel ist.\\
+Eine Klausel ist eine verallgemeinerte Diskunktion  $[L_1,\ldots,L_n],~n\geq0$, wobei jedes $L_i,~1\leq i\leq n$ ein Literal (aussagenlogische Variable oder dessen Negat) ist.
+\end{enumerate}
+\end{lösung}
+
+\section*{Aufgabe 2 (8 Punkte)}
+Seien $p,q,r,s$ aussagenlogische Variablen. Geben Sie für jede der genannten Aussagen an, ob diese wahr oder falsch sind.\\
+
+Hinweis: Falsche Antworten führen zu Punktabzug, wobei die gesamte Aufgabe mit mindestens 0 Punkten bewertet wird.
+
+\begin{enumerate}[label=\alph*)]
+\item $(p\to\neg p)\equiv p$
+\item $(p\to p)\equiv(q\to q)$
+\item $(\neg p\vee\neg q)\equiv \neg(p\vee q)$
+\item $(\neg p\wedge\neg q)\equiv \neg(p\vee q)$
+\item $\neg(p\wedge(\neg p\wedge q))$ ist allgemeingültig.
+\item $(p\wedge(\neg p\wedge q))$ ist erfüllbar.
+\item $\big\lbrace[p,\neg q,r],[\neg r,\neg s]\big\rbrace\models[p,\neg q,\neg s]$
+\item $\big\langle[p,q,\neg p],[r,\neg s]\big\rangle\equiv\big\langle[r,\neg s]\big\rangle$
+\end{enumerate}
+\begin{lösung}\
+\begin{enumerate}[label=\alph*)]
+\item falsch: Falls $p^I=\bot$ ist $(p\to\neg p)\equiv\top$ und $p\equiv\bot$
+\item wahr
+\item falsch (offensichtlich)
+\item richtig (De Morgan)
+\item richtig (offensichtlich)
+\item falsch (offensichtlich)
+\item wahr
+\item wahr
+\end{enumerate}
+\end{lösung}
+
+\section*{Aufgabe 3 (6 Punkte)}
+Eine \textbf{definite Klausel} ist eine Klausel mit einer beliebigen Anzahl $\geq1$ von Literalen von denen genau eines positiv ist.\\
+Beweisen Sie, dass eine Formel in Klauselform, die nur definite Klauseln enthält, erfülbar ist.
+
+\begin{proof}
+Sei $I$ eine Interpretation, die alle Variablen in $\RR$ auf $\top$ abbildet. Also ist $I$ ein Modell für jede definite Klausel.
+Sei also $F$ eine Formel in Klauselform, die nur definite Klauseln enthält. Dann gilt:
+\begin{align*}
+[A,L_1,\ldots,L_m]^I
+&=\Big[\big(A\vee[L_1,\vee,\ldots,L_m]\big)\Big]^I\\
+&=[A]^I\vee^\ast[L_1,\ldots,L_m]^I\\
+&=\top\vee^\ast[L_1,\ldots,L_m]^I\\
+&=\top
+\end{align*}
+Damit ist $I$ ein Modell für eine Konjunktion von definiten Klauseln, d. h. für eine Formel in Klauselform, die nur definite Klauseln enthält.
+\end{proof}
+
+\section*{Aufgabe 4 (4 Punkte)}
+Sei $F\in\L(\RR)$ eine aussagenlogische Formel. Sei $\S(F)$ die  \textbf{Menge aller Teilformeln} von $F$. $G$ ist eine \textbf{Teilformel} von $F:\gdw G\in \S(F)$. Sei $\mathcal{P}_F$ die \textbf{Menge aller Positionen} in $F$.
+\begin{enumerate}
+\item Bestimmen Sie, ob folgende Aussage gilt:
+\begin{align*}
+\big|\S(F)\big|=\big|\PP_F\big|
+\end{align*}
+\item Beweisen oder widerlegen Sie die Aussage schrittweise.\\
+(Zur Lösung der Aufgabe dürfen Sie alle in der Vorlesung und/oder Übung bewiesenen Resultate (Theoreme, Sätze, etc.) benutzt werden.)
+\end{enumerate}
+\begin{lösung}
+Nein, die Aussage stimmt nicht.
+\begin{proof}
+Setze $F:=(p\vee p)$. Dann gilt:
+\begin{align*}
+\big|\S(F)\big|=\big|\lbrace(p\vee p),p\rbrace\big|=2\\
+\big|\PP_F\big|=\big|\lbrace\Lambda,1\Lambda,2\Lambda\rbrace\big|=3
+\end{align*}
+\end{proof}
+\end{lösung}
+
+\section*{Aufgabe 5 (9 Punkte)}
+Im Folgenden (wie in der Vorlesung)
+\begin{itemize}
+\item sei $\RR=\big\lbrace p_1,p_2,p_3,\ldots\big\rbrace$ die Menge der aussagenlogischen Variablen und
+\item wir definieren $\L(\RR,n)\subseteq\L(\RR)$ als die Menge der aussagenlogischen Formeln, in denen höchstens die aussagenlogischen Variablen $p_1,\ldots,p_n$ vorkommen.
+\item Für eine aussagenlogische Formelmenge $\F$ sei $\G_n=\F\cap\L(\RR,n)$
+\end{itemize}
+Zeigen Sie ähnlich wie im Beweis des \textbf{Endlichkeitssatzes} in der Vorlesung, dass jede der Mengen $\G_n$ erfüllbar ist, falls jede endliche Teilmenge von $\F$ erfüllbar ist.
+
+\begin{proof}
+%Sei also $\F\in\L(\RR)$ beliebig und $n\in\N$ beliebig. Da nach Voraussetzung jede endliche Teilmenge von $\F$ erfüllbar ist, ist $\G_n$ erfüllbar, weil $\G_n$ endlich ist, denn:\\
+
+Es gibt $2^{2^n}$ verschiedene Äquivalenzklassen bzgl. $\L(\RR,n)$ erzeugt durch $\equiv$. Also gibt es maximal $k\leq2^{2^n}$ unterschiedliche Äquivalenzklassen $\G_n$.
+Es gibt ein Modell $I$ für $G_1,\ldots,G_k\in\G_n$, die die $k$ Äquivalenzklassen repräsentieren, da $\lbrace G_1,\ldots G_k\rbrace$ eine endliche Teilmenge von $F$ ist.\\
+Diese Interpretation $I$ ist also auch ein Modell für $\G_n$, da mit jedem $G_i$ auch alle anderen Formeln der gegebenen Äquivalenzklasse auf wahr unter $I$ abgebildet werden (vermöge $\equiv$).
+\end{proof}
+
+
+\end{document}
