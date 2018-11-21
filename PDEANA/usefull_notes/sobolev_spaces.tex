@@ -47,8 +47,7 @@
 	\end{align*}
 	
 	\item $W^{k,p}:=$ closure of $C^\infty_0(U)$ in $W^{k,p}(U)$
-	
-	\textbf{properties}\\
+	\item \textbf{properties}\\
 	$u,v \in W^{k,p}(U)$, $|\alpha| leq k$:
 	\begin{itemize}
 		\item $D^{\alpha} u \in W^{k-|\alpha|,p}(U)$,\quad $D^{\beta}(D^{\alpha}u) = D^{\alpha+\beta}u =  D^{\alpha}(D^{\beta}u) $, $\alpha, \beta$ multiindex and $|\alpha| + |\beta| \leq k$
@@ -100,6 +99,109 @@ $U_\eps = \{x \in U: \dist(x,\partial U ) > \eps \}$
 
 \subsection{extension}
 
+$U$ is bounded, $\partial U$ is $C^1$. Select $V$ opem, bounded s.t. $U \subset \subset V$. Then there exists linear, bounded operator $E: W^{k,p}(U) \to W^{1,p}(\R^n)$ s.t. for each $u \in W^{1,p}(U)$:
+\begin{itemize}
+	\item $Eu = u$ a.e. in $U$
+	\item $Eu$ has support in  $V$  
+	\item there is a coonstant $C$ depending only on $U,V,p$:
+	\begin{equation*}
+		\|Eu\|_{W^{1,p}(\R^n)} \leq C \|u\|_{W^{1,p}(U)}
+	\end{equation*}
+\end{itemize}
+$Eu$ is called an extension of $u$ to $\R^n$. 
+
+\subsection{traces}
+In this part the following is always assumed:$U$ is bounded, $\partial U$ is $C^1$.
+
+\begin{enumerate}[label = (\alph*)]
+	\item there exists linear, bounded operator $T:W^{1,p}(U) \to L^p(\partial U)$ s.t.
+	\begin{itemize}
+		\item $Tu = u|_{\partial U}$ if $u \in W^{1,p}(U)\cap C(\overline{U})$
+		\item  there exists a constant $C$ depending only on $p,U$: \begin{equation*}
+			\|Tu\|_{L^p(\partial U)} \leq C \|u\|_{W^{1,p}(U)}
+		\end{equation*}
+		for $u \in W^{1,p}(U)$
+	\end{itemize}
+
+	\item $u \in W^{1,p}(U)$:
+	\begin{equation*}
+		u \in W^{1,p}_0(U) \iff Tu = 0 \quad \text{on } \partial U
+	\end{equation*} 
+\end{enumerate}
+
+\subsection{inequalities}
+ for $1 \leq p < n$: sobolev conjugate of p is $p^* := \frac{np}{n-p}$ and thus $\frac{1}{p^*} = \frac{1}{p} - \frac{1}{n}$, $p^* > p$
+ 
+ \begin{enumerate}[label=(\alph*)]
+ 	\item (\textbf{Gagliardo-Nirenberg-sobolev inequality})\\
+ 	$1 \leq p <n$:\quad then there exists $C$ only dependent on $p,n$ s.t. 
+ 	\begin{equation*}
+ 		\|u\|_{L^{p^*}(\R^n)} \leq C \|Du\|_{L^p(\R^n)} \qquad \forall u \in C^1_c(\R^n)
+ 	\end{equation*}
+ 	\item (\textbf{estimate for $W^{1,p}$})\\
+ 	$1 \leq p < n$:\quad  $U \subset \R^n$ bounded, open, $\partial U$ is $C^1$. $1 \leq p < n$ and $u \in W^{1,p}(U)$ $\implies $  $u \in L^{p^*}(U)$ and 
+ 	\begin{equation*}
+ 		\|u\|_{L^{p^*}(U)} \leq C \|u\|_{W^{1,p}(U)}
+ 	\end{equation*} 
+ 	$C$ depends only on $U,p,n$.
+ 	
+ 	\item (\textbf{estimate for $W^{1,p}_0$/Poincaré inequality})\\
+ 	$1 \leq p < n$:\quad $U \subset \R^n$ bounded, open, $\partial U$ is $C^1$. $1 \leq p < n$ and $u \in W^{1,p}_0(U)$ then
+  	\begin{equation*}
+ 		\|u\|_{L^{q}(U)} \leq C \|u\|_{L^{p}(U)} \quad \forall q \in [1,p^*]
+ 	\end{equation*} 
+ 	$q = p < p^*$ is also valid. $C$ depends only on $U,p,n$. 
+ 	
+ 	\item (\textbf{Morrey})\\
+ 	$n < p <\infty$ $\implies \exists C$ depending only on $p,n$ s.t. 
+ 	\begin{equation*}
+ 		\|u\|_{C^{0,\gamma}(\R^n)} \leq C \|u\|_{W^{1,p}(\R^n)} \quad \forall u \in C^1(\R^n),
+ 	\end{equation*}
+ 	$\gamma := \frac{1-n}{p}$
+ \end{enumerate}
+
+\subsection{compactness}
+
 \begin{enumerate}[label=(\alph*)]
+	\item let $X,Y$ Banach spaces, $X \subset Y$. $X$ is \textit{compactly embedded} in $Y$ ($X \subset \subset Y$) $:\iff$
+	\begin{itemize}
+		\item $\|x\|_Y \leq C \|x\|_X$ $(x \in X)$ for a constant $C$ and
+		\item each bounded sequence in $X$ is precompact in $Y$	
+	\end{itemize}
+
+	\item (\textbf{Rellich})\\
+	$U \subset \R^n$ is bounded, open, $\partial U$ is $C^1$, $1 \leq p <n$:
+	\begin{equation*}
+		W^{1,p}(U) \subset \subset L^q(U) \quad \forall q \in [1,p^*)
+	\end{equation*}
+\end{enumerate}
+
+\subsection{difference quotient}
+in this part $u \in L(U)]$, $V \subset \subset U$
+
+\begin{enumerate}[label = (\alph*)]
+	\item $i$-th difference quotient of size $h$ is
+	\begin{equation*}
+		D^h_i(x) = \frac{u(x+he_i)-u(x)}{h} \quad i = 1,\dots,n
+	\end{equation*}
+	for $x \in V$, $h\in \R$ with $0 < |h| < \dist(V,\partial U)$.\\
+	$D^hu := \left( D^h_1 u, \dots ,D^h_n u \right)$
+	
+	\item (\textbf{relation to weak derivative})\\
+	\begin{itemize}
+		\item $1 \leq p < \infty$, $u \in W^{1,p}(U)$, then forall $V \subset \subset U$:
+		\begin{equation*}
+		\|D^h u\|_{L^p(V)} \leq C \|Du\|_{L^p(U)} 
+		\end{equation*}
+		for a constant $C$ and for all $0 < h < \frac{1}{2}\dist(V,\partial U)$.
+		\item $1 < p <\infty$, $u \in L^p(V)$and there exists a  $C$ s.t.
+		\begin{equation*}
+			\|D^hu\|_{L^p} \leq C
+		\end{equation*} 
+		for all $0 < h < \frac{1}{2}\dist(V,\partial U)$, then $u \in W^{1,p}(V)$ and 
+		\begin{equation*}
+			 \|Du\|_{L^p} \leq C
+		\end{equation*}
+	\end{itemize}
 	
 \end{enumerate}
