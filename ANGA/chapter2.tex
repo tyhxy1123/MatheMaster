@@ -450,7 +450,7 @@ Sei $F|K$ ein Funktionenkörper, $A,B \in \Div(F|K)$
 
 \begin{definition}
     Der \textbf{Riemann-Roch-Raum} zu $A$ ist 
-    $$ \mathcal{L}(A) := \{x \in F^{\times} \mid (x) + A \geq 0\} \cap \{0\}.$$
+    $$ \mathcal{L}(A) := \{x \in F^{\times} \mid (x) + A \geq 0\} \cup \{0\}.$$
 \end{definition}
 
 \begin{bemerkungnr}
@@ -993,3 +993,113 @@ Sei $F|K$ ein Funktionenkörper vom Geschlecht $g$, und $0 \ne \omega \in \Omega
         \stackrel{\deg W \text{ maximal}}{\implies}& W' =W, \text{d.h. } D \leq W
     \end{align*}
 \end{proof}
+
+\begin{definition}
+    Sei $P \in S(F|K), W \in \Div(F|K)$.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $(\omega)$ ist das größte $W \in \Div(F|K)$ mit $\omega \in \Omega(W)$
+        \item $v_P(\omega) := v_P((\omega))$
+        \item $P$ ist \textbf{Null- bzw. Polstelle} von $\omega$ $: \iff v_P(\omega) > 0$ bzw. $< 0$
+        \item $\omega$ ist \textbf{regulär} (oder \textbf{holomorph}) $: \iff (\omega) \geq 0$
+        \item $W$ ist \textbf{kanonisch} $:\iff W = (\omega)$ für ein $0 \ne \omega \in \Omega$
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    Für $x \in F^\times$ ist $(x\omega) = (x) + (\omega)$.
+\end{lemma}
+\begin{proof}
+    $\omega \in \Omega((\omega)) \stackrel{8.5}{\implies} x\omega \in \Omega((\omega)+(x)) \implies (x\omega) \geq (\omega)+(x)$
+    \begin{align*}
+        x\omega \in \Omega((x\omega)) & \stackrel{8.5}{\implies} \omega = x^{-1}x\omega\in \Omega((x\omega)-(x)) \implies (\omega) \geq (x\omega) - (x)
+    \end{align*}
+\end{proof}
+
+\begin{satz}
+    Die kanonischen Divisoren von $F|K$ bilden genau eine Divisorenklasse.
+\end{satz}
+\begin{proof}
+    $W'=(\omega)+(x) \implies W' = (x\omega)$ ist kanonisch
+    \begin{align*}
+        W=(\omega),W'=(\omega') & \stackrel{8.7}{\implies} \omega'=x\omega \text{ für ein } x \in F\\
+        & \implies W' = (x\omega) = (\omega) + (x) \sim (\omega) = W
+    \end{align*}
+\end{proof}
+
+\begin{satz}
+    Sei $A \in \Div(F|K), W = (\omega)$ ein kanonischer Divisor.
+    Dann ist
+    $$ \mu: \begin{cases}
+        \mathcal{L}(W-A) \to \Omega(A)\\
+        x \mapsto x\omega
+    \end{cases}$$
+    ein Isomorphismus von $K$-Vektorräumen.
+    Insbesondere ist $$i(A) = \dim (W-A).$$
+\end{satz}
+\begin{proof}
+    \underline{wohldefiniert:} $x \in \mathcal{L}(W-A) \implies W-A + (x) \geq 0$
+    \begin{align*}
+        \implies (x\omega) = (x) + W \geq A \text{, d.h. } x\omega\in\Omega(A)
+    \end{align*}
+    \underline{$K$-linear:} $\checkmark$\\
+    \underline{injektiv:}$\checkmark$\\
+    \underline{surjektiv:} $\omega'\in\Omega(A) \stackrel{8.7}{\implies} \omega'=x\omega$ für ein $x \in F$
+    \begin{align*}
+        \implies& W-A + (x) = (x\omega) - A = (\omega') -A \geq 0, \text{ d.h. } x \in \mathcal{L}(W-A)\\
+        \implies& \omega' = \mu(x)
+    \end{align*}
+    $$ i(A) = \dim_K\Omega(A) = \dim_K \mathcal{L}(W-A) = \dim (W-A)$$
+\end{proof}
+
+\begin{theorem}[Riemann-Roch]
+    Sei $W$ ein kanonischer Divisor von $F|K$. Dann ist
+    $$ \dim (A) = \deg (A) + 1 - g + \dim (W-A)$$
+    für jedes $A \in \Div(F|K)$.
+\end{theorem}
+\begin{proof}
+    9.5 + 7.1
+\end{proof}
+
+\begin{korollar}
+    Für $A \in \Div(F|K)$ sind äquivalent:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $A$ ist kanonisch
+        \item $\deg A = 2 g - 2$ und $\dim A = g$
+        \item $\deg A = 2 g - 2$ und $\dim A \geq g$
+    \end{enumerate}
+\end{korollar}
+\begin{proof}
+    \underline{(1) $ \implies$ (2):} Sei $W$ ein kanonischer Divisor.
+    \begin{align*}
+        1 = \dim 0 &\stackeq{9.6} \overbrace{\deg 0}^{=0} + 1 - g+ \dim(W-0) \implies \dim W = g\\
+        g = \dim W &\stackeq{9.6} \deg W + 1 - g + \underbrace{\dim (W-W)}_{=1}\\
+        & \implies \deg W = 2 g - 2
+    \end{align*}
+    \underline{(3) $ \implies$ (1):}
+    \begin{align*}
+        g &\leq \dim A \stackeq{9.6} \deg A + 1 - g + \dim(W-A)\\
+        & \implies \dim (W-A) \geq 2g -1 - (2g - 2) = 1\\
+        & \deg(W-A) = 0, \dim(W-A)>0 \stackrel{5.8(d)}{\implies}A\sim W \text{ ist kanonisch}
+    \end{align*}
+\end{proof}
+
+\begin{korollar}
+    Für jedes $A \in \Div(F|K)$ mit $\deg A \geq 2g -1$ ist
+    $$ \dim A = \deg A + 1 -g.$$
+\end{korollar}
+\begin{proof}
+    $ \dim A \stackeq{9.6} \deg A + 1 - g + \dim (W-A)$
+    \begin{align*}
+        \deg (W-A) &= \deg W - \deg A = 2g -2 - \deg A < 0\\
+        & \implies \dim(W-A) = 0
+    \end{align*}
+\end{proof}
+
+\begin{bemerkungnr}
+    Dies bedeutet, dass $c = 2g -1$ die optimale Schranke im Satz von Riemann ist, denn für $A=W$ ist 
+    $$ i(A) = \dim (W-A) = \dim 0 = 1.$$
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    $g = i(0) = \dim_K \Omega(0)$
+\end{bemerkungnr}
