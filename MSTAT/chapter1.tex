@@ -376,7 +376,7 @@ Ein metrischer Raum $(\S,d)$ heißt \textbf{separabel}
 \end{align*}
 \end{definition}
 
-\begin{beispiel} %2.6
+\begin{beispiel}\label{beisp2.6} %2.6
 $C([0,1])$ mit Supremums-Metrik ist separabal.
 \begin{proof}
 \begin{align*}
@@ -2386,7 +2386,7 @@ erfüllt ist, so gilt:
 Sei $N\sim\mathcal{N}_d(0,\Gamma)$. Mit \ref{satz5.4CramerWoldDevice} bleibt zu zeigen:
 \begin{align}
 \label{eqProof6.2Stern}\tag{$\ast$}
-\left\langle t,\sum\limits_{i=1}^n X_{n,k}\right\rangle\stackrel{\L}{\longrightarrow}\langle t,N\rangle\text{ in }\R\qquad\forall t\in\R^d
+\left\langle t,\sum\limits_{k=1}^n X_{n,k}\right\rangle\stackrel{\L}{\longrightarrow}\langle t,N\rangle\text{ in }\R\qquad\forall t\in\R^d
 \end{align}
 Sei $t\in\R^d\setminus\lbrace0\rbrace$ (für $t=0$ ist \eqref{eqProof6.2Stern} trivialerweise erfüllt). Es folgt
 \begin{align*}
@@ -2395,7 +2395,7 @@ Sei $t\in\R^d\setminus\lbrace0\rbrace$ (für $t=0$ ist \eqref{eqProof6.2Stern} t
 \sum\limits_{k=1}^n\underbrace{\left\langle t,X_{n,k}\right\rangle}_{=:Y_{n,k}=:Y_{n,k}(t)}
 =\sum\limits_{k=1}^n Y_{n,k}\\
 Y_{n,k}
-&=\sum\limits_{k=1}^n t_j\cdot X_{n,k}^{(j)}
+&=\sum\limits_{k=1}^d t_j\cdot X_{n,k}^{(j)}
 \end{align*}
 Folglich erfüllt $\big\lbrace Y_{n,k}:1\leq k\leq n,n\in\N\big\rbrace$ die Bedingung \eqref{eq6.1} wegen Blockungslemma und \eqref{eq6.2} wegen \eqref{eq6.4} und Linearität sowie Cauchy-Schwarz-Ungleichung.
 %Hauptsatz des Mannschaftssport: "Jede Kombination von Nullen ist immer Null."
@@ -2404,6 +2404,160 @@ Folglich erfüllt $\big\lbrace Y_{n,k}:1\leq k\leq n,n\in\N\big\rbrace$ die Bedi
 \leq\Vert t\Vert^2\cdot\Vert X_{n,k}\Vert^2
 =\Vert t\Vert^2\cdot\sum\limits_{j=1}^d\left(X_{n,k}^{(j)}\right)^2
 \end{align*}
-
+%Neu
+Da $\langle t,N\rangle=t\cdot N\sim\mathcal{N}(0,t\cdot\Gamma)$ (vgl. Klaus Schmidt \textit{Wahrscheinlichkeit und Maß}, Bsp. 13.2.2), folgt \eqref{eqProof6.2Stern}. Der Nachweis von 
+\begin{align}\label{eqProof6.2SternStern}\tag{$\ast\ast$}
+\sum\limits_{k=1}^n Y_{n,k}\stackrel{\L}{\longrightarrow}\mathcal{N}(0,t'\cdot\Gamma\cdot t)
+\end{align}
+erfolgt mit Satz \ref{satz6.1Lindeberg1922}. Es gilt:
+\begin{align*}
+s_n^2
+&=\sum\limits_{k=1}^n\E\left[Y_{n,k}^2\right]\\
+&=\sum\limits_{k=1}^n\E\left[\sum\limits_{i,j=1}^d t_i\cdot t_j\cdot X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right]\\
+&=\sum\limits_{k=1}^n\sum\limits_{i,j=1}^d t_i\cdot t_j\cdot\E\left[X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right]\\
+&=\sum\limits_{k=1}^n\sum\limits_{i,j=1}^d t_i\cdot\Big(\Cov(X_{n,k}\Big)_{i,j}\cdot t_j\\
+&=\sum\limits_{k=1}^n t'\cdot\Cov(X_{n,k})\cdot t\\
+&\stackeq{\text{Distri}}
+t'\cdot\underbrace{\sum\limits_{k=1}^n\Cov(X_{n,k})\cdot t}_{\stackrel{n\to\infty}{\longrightarrow}\Gamma\text{ wg. \eqref{eqSatz6.2NB}}}\stackrel{n\to\infty}{\longrightarrow} t'\cdot \Gamma\cdot t=:\sigma^2\stackrel{\Gamma\text{ p.d.}}{>}0
+\end{align*}
+Ggemäß Cauchy-Schwarz-Ungleichung (CSU) gilt:
+\begin{align}\label{eqProof6.2t}\tag{t}
+|Y_{n,k}|&=\big|\langle t,X_{n,k}\rangle\big|\stackeq{\text{CSU}}{\leq}\Vert t\Vert\cdot\Vert X_{n,k}\Vert\\\nonumber
+&\implies\sum\limits_{k=1}^n\E\Big[\underbrace{|Y_{n,k}|^2}_{\leq\Vert t\Vert\cdot\Vert X_{n,k}\Vert}\cdot\indi_{\big\lbrace\underbrace{|Y_{n,k}|}_{\leq\Vert t\Vert\cdot\Vert X_{n,k}\Vert}>\varepsilon\big\rbrace}\Big]
+\stackrel{\eqref{eqProof6.2t}}{\leq}
+\Vert t\Vert^2\cdot\sum\limits_{k=1}^n\E\Big[\Vert X_{n,k}\Vert^2\cdot\indi_{\left\lbrace\Vert X_{n,k}>\frac{\varepsilon}{\Vert t\Vert}\right\rbrace}\Big]\stackrel{n\to\infty}{\longrightarrow}0
+\end{align}
+Dies gilt gemäß \ref{satz6.1Lindeberg1922} für alle $\varepsilon>0$. Somit folgt aus Satz \ref{satz6.1Lindeberg1922} dann \eqref{eqProof6.2SternStern} und dadurch \eqref{eqProof6.2Stern} und somit die Behauptung.
 \end{proof}
 
+\begin{korollar}\label{korollar6.3}
+Sei $(X_i)_{i\in\N}$ mit $X_i$ iid Zufallsvariable in $\R^d$ mit
+\begin{align*}
+&\E\left[\left(X_1^{(j)}\right)^2\right]<\infty\qquad\forall 1\leq j\leq d\\
+\mu&:=\E\big[X_1\big]=\left(\E\left(X_1^{(1)}\right),\ldots,\E\left(X_1^{(d)}\right)\right)\in\R^d,\\
+\Gamma&:=\Cov(X_1)
+=\left(\Cov\left(X_1^{(i)},X_1^{(j)}\right)\right)_{i,j=1}^d
+=\left(\E\left[\left(X_1^{(i)}-\mu_i\right)\cdot\left(X_1^{(j)}-\mu_j\right)\right]\right)_{i,j=1}^d\text{ positiv definit}
+\end{align*}
+Dann gilt:
+\begin{align*}
+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n(X_i-\mu)\stackrel{\L}{\longrightarrow}\mathcal{N}_d(0,\Gamma)
+\end{align*}
+\end{korollar}
+\begin{proof}
+\begin{align}\label{eqProof6.3Stern}\tag{$\ast$}
+\frac{1}{\sqrt{n}}\cdot\sum\limits_{k=1}^n(X_k-\mu)
+&=\sum\limits_{k=1}^n\underbrace{\frac{1}{\sqrt{n}}\cdot(X_k-\mu)}_{=:X_{n,k}}\qquad\forall 1\leq k\leq n,\forall n\in\N
+\end{align}
+Dann sind \eqref{eq6.3}, \eqref{eq6.4} und \eqref{eq6.5} erfüllt und es gilt
+\begin{align*}
+\Cov(X_{n,k})
+&=\frac{1}{n}\cdot\Gamma\implies\sum\limits_{k=1}^n\Cov(X_{n,k})=\Gamma
+\end{align*}
+Somit ist \eqref{eqSatz6.2NB} erfüllt. Zu \eqref{eqSatz6.2LB}:
+\begin{align*}
+\sum\limits\E\Big[\Vert X_{n,k}\Vert^2\cdot\indi_{\big\lbrace\Vert X_{n,k}\Vert>\varepsilon\big\rbrace}\Big]
+&\stackeq{\eqref{eqProof6.3Stern}}
+\frac{1}{n}\cdot\sum\limits_{k=1}^n\E\Big[\Vert X_k-\mu\Vert^2\cdot\indi_{\big\lbrace\Vert X_k-\mu\Vert>\varepsilon\cdot\sqrt{n}\big\rbrace}\Big]\\
+&\stackeq{\text{iid}}
+\frac{1}{n}\cdot\sum\limits_{k=1}^n\E\Big[\Vert X_1-\mu\Vert^2\cdot\indi_{\big\lbrace\Vert X_1-\mu\Vert>\varepsilon\cdot\sqrt{n}\big\rbrace}\Big]\\
+&=\E\Big[\underbrace{\Vert X_1-\mu\Vert^2\cdot\indi_{\big\lbrace \Vert X_1-\mu\Vert>\varepsilon\cdot\sqrt{n}\big\rbrace}}_{\stackrel{n\to\infty}{\longrightarrow}0~\forall\varepsilon>0}\Big]
+\stackrelnew{\text{domKonv}}{n\to\infty}{\longrightarrow}0
+\end{align*}
+Hierbei geht der Satz der dominierten Konvergenz ein, denn $\Vert X_1-\mu\Vert^2$ ist Dominante und integrierbar, da 
+\begin{align*}
+\Vert X_1-\mu\Vert^2\leq\big(\Vert X_1\Vert+\Vert\mu\Vert\big)^2\leq 2\cdot\left(\Vert X_1\Vert^2+\Vert\mu\Vert^2\right)
+\end{align*}
+und 
+\begin{align*}
+\E\left[\Vert X_1\Vert^2\right]
+&=\E\left[\sum\limits_{j=1}^d\left(X_1^{(j)}\right)^2\right]
+=\sum\limits_{j=1}^d\underbrace{\E\left[\left(X_1^{(j)}\right)^2\right]}_{<\infty~\forall j}<\infty
+\end{align*}
+Somit ist \eqref{eqSatz6.2LB} erfüllt und es folgt mit \ref{satz6.2MultivariaterZGWS} die Behauptung.
+\end{proof}
+
+Für $d=1$ liefert Korollar \ref{korollar6.3} den klassischen ZGWS.
+
+\section{Verteilungskonvergenz im Raum stetiger Funktionen} %7
+Sei $I:=[a,b]$ mit $a<b$ und $C:=C(I):=\big\lbrace f:I\to\R\mid f\text{ stetig }\big\rbrace$ versehen mit der Supremumsmetrik
+\begin{align*}
+d(f,g)&:=\sup\limits_{t\in I}\big|f(t)-g(t)\big|\qquad\forall f,g\in C.
+\end{align*}
+Gemäß Beispiel \ref{beisp2.6} ist $(C,d)$ separabel. Die durch $d$ induzierte Borel-$\sigma$-Algebra
+%\begin{align*}
+$\B(C):=\B_d\big(C(I)\big)$
+%\end{align*}
+gestattet einfache Beschreibung. Dazu:
+
+\begin{definition}\ %7.1
+\begin{enumerate}[label=(\arabic*)]
+\item Sei $t\in I$. Die Abbildung 
+\begin{align*}
+\pi_t:C\to\R,\qquad\pi_t(f):=f(t)\qquad\forall f\in C
+\end{align*}
+heißt \textbf{Projektion in $t$}.
+\item Sei $T:=\big\lbrace t_1,\ldots,t_k\big\rbrace\subseteq I,k\in\N$. Die Abbildung
+\begin{align*}
+\pi_T:C\to\R^k,\qquad \pi_T(f):=\Big(f(t_1),\ldots,f(t_k)\Big)=:
+\Big(f(t)\Big)_{t\in T}\qquad\forall f\in C
+\end{align*}
+heißt \textbf{Projektion in $T$}.
+\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{satz7.2}
+\begin{align*}
+\B(C)=\sigma\Big(\pi_t:t\in I\Big)=\sigma\Big(\pi_T:T\subseteq I,T\text{ endlich}\Big)=\sigma\Big(\big\lbrace \pi_t^{-1}(B):t\in I,B\in\B(\R)\big\rbrace\Big)
+\end{align*}
+\end{satz}
+\begin{proof}
+Da $\pi_t=\pi_{\lbrace t\rbrace}$ und $T=\lbrace t\rbrace$, folgt
+\begin{align}\label{eqProof7.2(1)}\tag{1}
+\sigma\Big(\pi_t:t\in I\Big)
+\subseteq\sigma\Big(\pi_T:T\subseteq I\text{ endlich}\Big)
+\end{align}
+Weiterhin gilt:
+\begin{align*}
+&\big\Vert\pi_T(f)-\pi_T(g)\big\Vert_\infty
+=\max\limits_{1\leq i\leq k}\big|f(t_i)-g(t_i)\big|
+\leq d(f,g)\qquad\forall f,g\in C,\forall T=\lbrace t_1,\ldots,t_k\rbrace\subseteq I\\
+&\implies\pi_T:(C,d)\to\R^d\text{ ist stetig}
+\end{align*}
+Aus Satz \ref{Lemma3.2} (2) folgt, dass $B_T:\B(C)\to\B(\R^k)$ messbar ist für alle endlichen Teilmengen $T\subseteq I$. Da $\sigma\big(\pi_T:T\subseteq I\text{ endlich}\big)$ die \ul{kleinste} $\sigma$-Algebra auf $C$ ist, bzgl. der \ul{alle} $\pi_T,T\subseteq I$ endlich, messbar sind, folgt
+\begin{align}\label{eqProof7.2(2)}\tag{2}
+\sigma\Big(\pi_T:T\subseteq I,T\text{ endlich }\Big)\subseteq\B(C)
+\end{align}
+Wegen \eqref{eqProof7.2(1)} und \eqref{eqProof7.2(2)} bleibt zu zeigen:
+\begin{align}\label{eqProof7.2(3)}\tag{3}
+\B(C)\subseteq\sigma\Big(\pi_t:t\in I\Big)
+\end{align}
+Dazu sei $G\in\G(C)$, d.h. $G\subseteq C$ offen. Gemäß Satz \ref{satz2.9} existieren $f_i\in C$, $\varepsilon_i>0$, $i\in\N$ mit
+\begin{align}\label{eqProof7.2(4)}\tag{4}
+G=\bigcup\limits_{i\in\N}B\big(f_i,\varepsilon_i\big)\text{ (offene Kugel)}.
+\end{align}
+Für jede offene Kugel
+\begin{align}\label{eqProof7.2(5)}\tag{5}
+B(f,\varepsilon)
+&=\big\lbrace g\in C:d(g,f)<\varepsilon\big\rbrace
+=\bigcup\limits_{k\in\N}\underbrace{\left\lbrace g\in C:d(g,f)\leq\varepsilon-\frac{1}{k}\right\rbrace}_{=\text{ abgeschlossene Kugel}}
+\end{align}
+Betrachte daher eine beliebige \ul{abgeschlosssene} Kugel
+\begin{align*}
+\overline{B}(f,\delta)
+&=\Big\lbrace g\in C:\sup\limits_{t\in I}\big|g(t)-f(t)\big|\leq\delta\Big\rbrace\\
+&=\Big\lbrace g\in C:\sup\limits_{t\in I\cap\Q}\big|g(t)-f(t)\big|\leq\delta\Big\rbrace\\
+&=\bigcap\limits_{t\in I\cap\Q}\Big\lbrace g\in C:\big|g(t)-f(t)\big|\leq\delta\Big\rbrace\\
+&=\bigcap\limits_{t\in I\cap\Q}\underbrace{\Big\lbrace g\in C:f(t)-\delta\leq \overbrace{g(t)}^{=\pi_t(g)}\leq f(t)+\delta\Big\rbrace}_{\pi_t^{-1}\Big(\big[f(t)-\delta,f(t)+\delta\big]\Big)\in\tilde{\B}}\\
+&\implies
+\overline{B}(f,\delta)\in\tilde{\B}\qquad\forall f\in C,\forall\delta>0\\
+&\stackrel{\eqref{eqProof7.2(5)}}{\implies}
+B(f,\varepsilon)\in\tilde{\B}\qquad\forall f\in C,\forall\varepsilon>0\\
+&\stackrel{\eqref{eqProof7.2(4)}}{\implies}
+G\in\tilde{\B}\\
+&\implies
+\G(C)\subseteq\tilde{\B}\\
+&\implies\sigma\big(\G(C))=\B(C)\subseteq\tilde{\B}
+\end{align*}
+\end{proof}
+%Ferger hat Borel-Mengen am Anfang des Studiums gehasst, weil er sie nicht verstanden hat. Jetzt sieht er das anders.
