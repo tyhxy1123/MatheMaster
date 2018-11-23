@@ -29,15 +29,14 @@
 
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\pos}{\text{pos}}
-
-\usepackage{tikz-qtree}
-\usetikzlibrary{positioning,automata}
+\newcommand{\RR}{\mathcal{R}}
+\newcommand{\PP}{\mathcal{P}}
 
 
 \begin{document}
 %\setcounter{section}{1}
 
-\section*{Aufgabe 5.1}
+\section*{Aufgabe 5.1 (Beispiele zur NNF und KF Transformation}
 \textbf{Negationsnormalform:} ``Negation immer nur vor Variablen''\\
 \begin{align}
 &\frac{\neg\neg H}{H}\label{Neg1}\\
@@ -109,6 +108,184 @@ Disjunktive Normalform:
 &\stackrel{\ref{KNF5},\ref{KNF2},\ref{KNF4}}{\equiv}
 \langle[\neg p,\neg q,\neg r],[\neg q,,\neg q, \neg r],[r],[q],[q,p]\rangle\\
 \end{align*}
+
+\section*{Aufgabe 5.2 ((Un-)erfüllbarkeit von Klausel(-mengen))}
+Sei $F=\langle C_1,\ldots,C_n\rangle\mit n\geq1$ eine aussagenlogische Formel in Klauselform und sei $C=[L_1,\ldots,L_m]\mit m\geq0$ eine Klausel.
+
+\subsection*{Aufgabe 5.2 (a)}
+Wenn eine in $F$ vorkommende Klausel unerfüllbar ist, dann ist $F$ unerfüllbar.
+\begin{proof}
+Sei o.B.d.A. $C_1$ unerfüllbar (sonst Umnummerieren) und $I$ eine beliebige Interpretation. Dann gilt $C^I=\bot$ und damit
+\begin{align*}
+F^I
+&\stackeq{\text{Def}}
+\langle C_1,\ldots,C_n\rangle^I\\
+&\stackeq{\text{Def}}
+\left(\bigwedge\limits_{i=1}^n C_i\right)^I\\
+&\stackeq{\text{Def}}
+\stackrel{\ast}{\bigwedge\limits_{i=1}^n} (C_i)^I\\
+&=(C_1)^I\wedge \stackrel{n}{\bigwedge\limits_{i=2}^\ast} (C_i)^I\\
+&=\bot\wedge \stackrel{n}{\bigwedge\limits_{i=2}^\ast} (C_i)^I\\
+&=\bot
+\end{align*}
+Also ist $F$ unerfüllbar.
+\end{proof}
+
+\subsection*{Aufgabe 5.2 (b)}
+$F$ kann unerfüllbar sein obwohl jede in $F$ vorkommende Klausel $C_i,i=1,\ldots,n$ erfüllbar ist.
+\begin{proof}
+Betrachte
+\begin{align*}
+F:=\langle C_1,C_2\rangle=C_1\wedge C_2=p\wedge\neg p
+\end{align*}
+wobei $p\in\RR$ ein Atom ist. Hier sind die (alle) Klauseln $C_1=p$ und $C_2=\neg p$  jeweils erfüllbar, aber $F$ ist nicht erfüllbar.\\
+\end{proof}
+
+\subsection*{Aufgabe 5.2 (c)}
+$C$ ist erfüllbar gdw. es ein Literal in $C$ gibt.
+\begin{proof}
+\underline{Zeige ``$\implies$'':}\\
+Sei $C$ erfüllbar. Dann ist $C\neq[]$ per Definition der leeren Klausel. Folglich ist $m>0$, d. h. es existiert mindestens ein Literal $L_i$ in $C$.\\
+
+\underline{Zeige ``$\Longleftarrow$'':}\\
+Angenommen es gibt ein Literal in $C$, d.h. $m>0$.
+Induktion über $m$:\\
+Induktionsanfang $m=1$: $C=[L_1]=L_1$ ist erfüllbar, da offenbar jedes Literal erfüllbar ist.\\
+Induktionsvoraussetzung: Sei $C_m=[L_1,\ldots,L_m]$ für beliebiges aber festes $m\in\N$ erfüllbar.
+Induktionsschritt: 
+\begin{align*}
+C_{m+1}
+&=[L_1,\ldots,L_m,L_{m+1}]\\
+&=[L_1,\ldots,L_m]\vee L_{m+1}\\
+&= C_{m}\vee L_{m+1}
+\end{align*}
+Da nach IV $C_m$ erfüllbar ist, gibt es eine Interpretation $\tilde{I}$, die $C_m$ erfüllt. Da $L_{m+1}$ ein Literal ist, gibt es eine Interpretation $\hat{I}$, die $L_{m+1}$ erfüllt. Somit gibt es auch eine Interpretation $I$, die 
+\begin{align*}
+(C_{m+1})^I=(C_{m}\vee L_{m+1})^I=(C_{m})^I\vee^\ast (L_{m+1})^I
+\end{align*}
+erfüllt. Folglich ist $C$ erfüllbar.
+\end{proof}
+
+\section*{Aufgabe 5.3 (Beweis von Lemma 3.29)}
+\begin{proof}
+
+\end{proof}
+
+\section*{Aufgabe 5.4 (Terminierung der NNF Transformation}
+Betrachte eine \textbf{Rangfunktion}
+\begin{align*}
+r:\L(\RR)\to\N,\qquad r(F):=\left\lbrace\begin{array}{cl}
+1, &\falls F\in\RR\\
+2\cdot r(G)+1, &\falls F=\neg G\\
+r(G_1)+r(G_2)+2, &\falls F=(G_1\circ G_2)
+\end{array}\right.
+\end{align*}
+
+\subsection*{Aufgabe 5.4 (a)}
+Sei $F\in\L(\RR),\pi\in\PP_F,F\lceil\pi\rceil=G$ und $H\in\L(\RR)$ mit $r(H)<r(G)$. Dann gilt:
+\begin{align*}
+f\big(F\lceil\pi\mapsto H\rceil\big)<r(F)
+\end{align*}
+\begin{proof}
+Beweis durch strukturelle Induktion über $F\in\L(\RR)$:\\
+Induktionsanfang: Sei $F=p\in\RR$. Dann ist $\pi=\Lambda$ und $F=G$ und
+\begin{align*}
+r(F\lceil\pi\mapsto H\rceil)=r(H)\stackrel{\text{Vor}}{<}r(G)=r(F)
+%\stackeq{\text{Def}}1
+\end{align*}
+Induktionsvoraussetzung: Seien $F_1,F_2\in\L(\RR)$ beliebig aber fest so, dass sie die Voraussetzungen der zu zeigenden Aussage und
+\begin{align*}
+f\big(F_1\lceil\pi_1\mapsto H_1\rceil\big)<r(F_2)
+\qquad\text{und}\qquad
+f\big(F_1\lceil\pi_2\mapsto H_2\rceil\big)<r(F_2)
+\end{align*}
+erfüllen.\\
+
+Induktionsschritt: Sei $\circ\in\lbrace\wedge,\vee,\to,\leftrightarrow\rbrace$ beliebig.\\
+Betrachte den Fall $F=\neg F_1$:
+\begin{align*}
+To~Do
+\end{align*}
+\end{proof}
+
+\subsection*{Aufgabe 5.4 (b)}
+Der NNF Transformationsalgorithmus terminiert.
+\begin{proof}
+
+\end{proof}
+
+\section*{Aufgabe 5.5 (Dualisimus zwischen KF und DKF}
+Sei $F$ eine Formel in der nur die Junktoren $\vee,\wedge,\neg$ vorkommen.
+
+\subsection*{Aufgabe 5.5 (a)}
+\begin{align*}
+\bar{\cdot}&:\L(\RR)\to\L(\RR) &F\mapsto\overline{F}:=\left\lbrace\begin{array}{cl}
+\neg A, &\falls A\in\RR\\
+\neg\overline{G}, &\falls F=\neg G\\
+(\overline{G_1}\circ\overline{G_2}), &\falls F=(G_1\circ G_2)
+\end{array}\right.\\
+\cdot^d&:\L(\RR)\to\L(\RR) &F\mapsto F^d:=\left\lbrace\begin{array}{cl}
+A, &\falls A\in\RR\\
+\neg G^d, &\falls F=\neg G\\
+\big((G_1)^d\vee(G_2)^d\big), &\falls F=(G_1\wedge G_2)\\
+\big((G_1)^d\wedge(G_2)^d\big), &\falls F=(G_1\vee G_2)
+\end{array}\right.\\
+\end{align*}
+
+\subsection*{Aufgabe 5.5 (b)}
+Es gilt $\neg F\equiv(\overline{F})^d$ für alle $F\in\L(\RR)$.
+\begin{proof}
+Beweis durch strukturelle Induktion über $F\in\L(\RR)$:\\
+Induktionsanfang: Sei $F=p\in\RR$. Dann gilt
+\begin{align*}
+\neg F=\neg p=\neg p^d=(\neg p)^d=(\overline{p})^d=(\overline{F})^d
+\end{align*}
+Induktionsvoraussetzung: Seien $F_1,F_2\in\L(\RR)$ beliebige aber feste Formel mit den Eigenschaften
+\begin{align*}
+\neg F_1\equiv (\overline{F_1})^d
+\qquad\text{und}\qquad
+\neg F_2\equiv (\overline{F_2})^d
+\end{align*}
+Induktionsschritt:\\
+Sei $F=\neg F_1$. Dann gilt:
+\begin{align*}
+\neg F
+&=\neg\neg F_1\\
+&\stackrel{\text{IV}}{\equiv}
+\neg(\overline{F_1})^d\\
+&=(\neg\overline{F_1})^d\\
+&=(\overline{\neg F_1})^d\\
+&=(\overline{F})^d
+\end{align*}
+Sei $F=(F_1\wedge F_2)$. Dann gilt:
+\begin{align*}
+\neg F
+&=\neg(F_1\wedge F_2)\\
+&=(\neg F_1\vee\neg F_2)\\
+&\stackrel{\text{IV}}{\equiv}
+\big((\overline{F_1})^d\vee\overline{F_2})^d\big)\\
+&=\big((\overline{F_1}\wedge\overline{F_2})\big)^d\\
+&=(\overline{(F_1\wedge F_2)})^d\\
+&=(\overline{F})^d
+\end{align*}
+Sei $F=(F_1\vee F_2)$. Dann gilt:
+\begin{align*}
+\neg F
+&=\neg(F_1\vee F_2)\\
+&=(\neg F_1\wedge\neg F_2)\\
+&\stackrel{\text{IV}}{\equiv}
+\big((\overline{F_1})^d\wedge\overline{F_2})^d\big)\\
+&=\big((\overline{F_1}\vee\overline{F_2})\big)^d\\
+&=(\overline{(F_1\vee F_2)})^d\\
+&=(\overline{F})^d
+\end{align*}
+\end{proof}
+
+\subsection*{Aufgabe 5.5 (c)}
+To Do
+
+\subsection*{Aufgabe 5.5 (d)}
+To Do
 
 \section*{Sudoku $n^2\times n^2$}
 Problem: Existiert eine Zuweisung, welche jeder Zelle einen Wert von 1 bis $n^2$ zuweist so, dass in jeder Zeile, in jeder  Spalte und in jedem Block jede Zahl aus $\lbrace1,2,\ldots,n^2\rbrace$ genau einmal vorkommt?
