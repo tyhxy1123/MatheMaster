@@ -38,7 +38,7 @@ Seien $\sigma,\tau$ Stoppzeiten bzgl. der Filtration $(\F_n)_{n\in\N}$ und $\F_\
 \F_\tau:=\big\lbrace A\in\A~\big|~\forall n\in\N_0:A\cap\lbrace\tau\leq n\rbrace\in\F_n\big\rbrace
 \end{align*}
 Dann gilt:
-\begin{enumerate}[label=\alph*)]
+\begin{enumerate}[label=(\alph*)]
 \item $\F_\tau$ ist eine $\sigma$-Algebra
 \item $\begin{aligned}
 \sigma\leq\tau\implies\F_\sigma\subseteq\F_\tau
@@ -52,12 +52,48 @@ Dann gilt:
 \end{enumerate}
 \begin{proof}
 \underline{Zeige a):}\\
+\begin{itemize} 
+	\item z.z.:$\emptyset \in \F_\tau$\\
+	\begin{equation*}
+		\emptyset \in \A \text{ und } \emptyset \in \F_n\  \forall n \in \N_0 \implies \emptyset \cap \{\tau \leq n\} \in \F_n
+	\end{equation*}
+	\item z.z.: $A \in \F_\tau \implies A^C \in \F_\tau$\\
+	Sei $A \in \F_\tau$, d.h.:
+	\begin{align*}
+		&{}\qquad \quad  A \cap \{\tau \leq n\} \in \F_n \quad \forall n \in \N\\
+		&\implies	A^C \cup \{\tau > n\} \in \F_n \quad \forall n \in \N\\
+		&\implies 	\left(	A^C \cup \{\tau > n\}\right) \cap \{\tau \leq n\} \in \F_n \quad \forall n \in \N\\
+		& \iff \left(	A^C \cap \{\tau \leq n\}\right) \cup \underbrace{\big ( \{\tau > n\}\cap\{\tau \leq n\} \big )}_{= \emptyset} \in \F_n \quad \forall n \in \N\\
+		&\implies A^C \cap \{\tau \leq n\} \in \F_n \quad \forall n \in \N
+	\end{align*}
+	
+	\item z.z.: Sei $A_1, A_2,\dots \in \F_\tau \implies \bigcup\limits_{i=1}^{\infty} A_i  \in \F_\tau$\\
+	\begin{equation*}
+		\underbrace{\bigcup\limits_{i=1}^{\infty} \Big (A_i \cap \{\tau \leq n\} \Big )}_{\in \F_n} = \left( \bigcup\limits_{i=1}^{\infty} A_i \right)\cap \{\tau \leq n\} \implies  \bigcup\limits_{i=1}^{\infty} A_i \in \F_\tau
+	\end{equation*}
+	
+\end{itemize}
 
 \underline{Zeige b):}\\
+\begin{align*}
+	&{}\qquad \quad  A \cap \{\tau \leq n\}  \in \F_n \quad \forall n \in \N\\
+	&\implies A \cap \{\tau \leq n\} \cap \{\sigma \leq n\} = A \cap \underbrace{ \{\tau \land \sigma \leq n\}}_{ \overset{\sigma \leq \tau}{=} \{\sigma \leq n\} } \in \F_n \quad \forall n \in \N\\
+	&\implies A \in \F_\sigma \\
+\end{align*}
+
 
 \underline{Zeige c):}\\
+z.z.: $\ \{\tau \leq \sigma\} \in \F_\tau \cap \F_\sigma$\\
+Wir wissen $\{\tau \leq n\} \in \F_\tau$ und  $\{\sigma \geq n\} \in \F_\sigma$ (siehe Aufgabe 2.4 ). Damit gilt: $\{\tau \leq n\} \cap \{\sigma \geq n\} = \{\tau \leq \sigma\} $ ist Element von $\F_\tau \cap \F_\sigma$.\\
 
 \underline{Zeige d):}\\
+\begin{align*}
+&{} \qquad \quad  A \cap \{\tau \leq n\}\in \F_n \text{ and } A \cap\{\sigma \leq n\}\in \F_n \quad \forall n \in \N\\
+&\iff  A \cap \{\tau \leq n\} \cap \{\sigma \leq n\}\in \F_n \quad \forall n \in \N \\
+&\iff  A \cap \{\tau \land \sigma \leq n\} \in \F_n \quad \forall n \in \N\\
+&\iff A \in \F_{\tau \land \sigma} \\
+\end{align*}
+
 \end{proof}
 
 \section*{Aufgabe 2}
