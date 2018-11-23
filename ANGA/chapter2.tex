@@ -160,9 +160,9 @@ Sei $E|F$ eine Körpererweiterung.
     \underline{$(3) \implies (1)$:} $\checkmark$
 \end{proof}
 
-\begin{theorem}[Chevalley]
+\begin{theorem}[Cheralley]
     Sei $\mathfrak{p} \in \Spec(R)$ und $R \subseteq F$ ein Ring. Dann gibt es einen Bewertungsring $\mathcal{O}$ von $F$ mit 
-    maximalem Ideal $m$, das $$m \cap R = \mathfrak{p}$$ erfüllt.
+    maximalem Ideal $m$, das $$m \cap R = \mathfrak{p}$$ erfüllt und $R \subseteq \mathcal{O}$.
 \end{theorem}
 \begin{proof}
     Sei 
@@ -399,7 +399,9 @@ Sei $F|K$ ein Funktionenkörper.
 \end{bemerkungnr}
 
 \begin{beispiel}
-    Für $x \in F^{\times}$ ist $\sum\limits_P v_P(x) P$ nach 3.8 ein Divisor.
+    
+    Sei $x \in F^{\times}$. Nach 3.8 gibt es nur endlich viele $P \in S(F|K)$ mit $v_P(x) \ne 0$.
+    Also ist $\sum\limits_P v_P(x) P$ ein Divisor.
 \end{beispiel}
 
 \begin{definition}
@@ -410,7 +412,8 @@ Sei $F|K$ ein Funktionenkörper.
     Desweiteren ist
     \begin{align*}
         (x)_0 := (x)_+ = \sum\limits_{v_P(x) > 0} v_P(x) P, & \text{ der \textbf{Nullstellendivisor} von } x\\
-        (x)_\infty := (x)_- = \sum\limits_{v_P(x) < 0} -v_P(x) P, & \text{ der \textbf{Polstellendivisor} von } x.\\
+        (x)_\infty := (x)_- = \sum\limits_{v_P(x) < 0} -v_P(x) P, & \text{ der \textbf{Polstellendivisor} von } x\\
+        \mathscr{P} := \{(x) \mid x \in F^\times \}, & \text{ die \textbf{Menge der Hauptdivisoren}.}
     \end{align*}
 \end{definition}
 
@@ -428,7 +431,7 @@ Sei $F|K$ ein Funktionenkörper.
     In $F=K(T)$ hat jeder Hauptdivisor Grad $0$ (\#7).
 
     Umgekehrt ist jeder Divisor $A \in \Div(K(T)|K)$ vom Grad $0$ ein Hauptdivisor, also
-    $A = (x)$ für ein $x \in K(T)^{\times}$ (Übung).
+    $A = (x)$ für ein $x \in K(T)^{\times}$ (\#15).
 \end{beispiel}
 
 \begin{definition}
@@ -459,10 +462,10 @@ Sei $F|K$ ein Funktionenkörper, $A,B \in \Div(F|K)$
 \end{bemerkungnr}
 
 \begin{lemma}
-    \begin{enumerate}
+    \begin{enumerate}[label=(\alph*)]
         \item $\mathcal{L}(A)$ ist ein $K$-Vektorraum.
         \item $\mathcal{L}(0) = K$
-        \item $\mathcal{L}(A) \ne \{o\} \implies \text{ es existiert } A'\geq 0: A \sim A'$
+        \item $\mathcal{L}(A) \ne \{0\} \implies \text{ es existiert } A'\geq 0: A \sim A'$
         \item $ A < 0 \implies \mathcal{L}(A) = \{0\}$
         \item $A \leq B \implies \mathcal{L}(A) \subseteq \mathcal{L}(B)$
         \item $A \sim B \implies \mathcal{L}(A) \cong \mathcal{L}(B)$ als $K$-Vektorraum
