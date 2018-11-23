@@ -38,7 +38,7 @@ Seien $\sigma,\tau$ Stoppzeiten bzgl. der Filtration $(\F_n)_{n\in\N}$ und $\F_\
 \F_\tau:=\big\lbrace A\in\A~\big|~\forall n\in\N_0:A\cap\lbrace\tau\leq n\rbrace\in\F_n\big\rbrace
 \end{align*}
 Dann gilt:
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=\alph*)]
 \item $\F_\tau$ ist eine $\sigma$-Algebra
 \item $\begin{aligned}
 \sigma\leq\tau\implies\F_\sigma\subseteq\F_\tau
@@ -50,7 +50,44 @@ Dann gilt:
 \F_\tau\cap\F_\sigma=\F_{\tau\wedge\sigma}
 \end{aligned}$
 \end{enumerate}
-\begin{proof}
+\begin{proof}[Beweis von Willi.]\enter
+\underline{Zeige a):} Sei $n\in\N_0$ beliebig aber fest.
+\begin{itemize} 
+\item $\Omega\in\F_\tau$, denn $\Omega\in\A$ und 
+\begin{align*}
+\Omega\cap\lbrace\tau\leq n\rbrace=\lbrace\tau\leq n\rbrace \stackrel{\text{SZ}}{\in} \F_n
+\end{align*}
+\item Sei $A \in \F_\tau$. Dann gilt $A^C \in \F_\tau$, denn:\\
+\begin{align*}
+\lbrace\tau\leq n\rbrace &=\big(\lbrace\tau\leq n\rbrace\cap A\big)\dot{\cup}\big(\lbrace\tau\leq n\rbrace\cap A^C\big)\\
+\implies A^C\cap\lbrace\tau\leq n\rbrace&=\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n}\setminus\big(\underbrace{\lbrace\tau\leq n\rbrace\cap A\big)}_{\stackrel{\text{Vor}}{\in}\F_n}\stackrel{\sigma\text{A}}{\in}\F_n
+\end{align*}
+
+\item Sei $(A_i)_{i\in\N}\subseteq\F_\tau$. Dann gilt $\bigcup\limits_{i\in\N} A_i  \in \F_\tau$, denn:\\
+Offenbar ist $\bigcup\limits_{i\in\N} A_i  \in\A$ und nach Voraussetzung gilt $A_i\in\A$ und\\ $A_i\cap\lbrace\tau\leq n\rbrace\in\F_n~\forall i\in\N_0$. Folglich gilt:
+\begin{align*}
+\underbrace{\bigcup\limits_{i=1}^{\infty} \Big (A_i \cap \{\tau \leq n\} \Big )}_{\stackrel{\sigma\text{A}}{\in} \F_n} = \left( \bigcup\limits_{i=1}^{\infty} A_i \right)\cap \{\tau \leq n\} \implies  \bigcup\limits_{i=1}^{\infty} A_i \in \F_\tau
+\end{align*}
+\end{itemize}
+
+\underline{Zeige b):}\\
+Sei $A\in\F_\sigma$. Dann ist $A\in\A$ und $A\cap\lbrace\sigma\leq n\rbrace\in\F_n\forall n\in\N_0.$ Also gilt:
+\begin{align*}
+A \cap \lbrace\tau \leq n\rbrace
+\stackeq{}
+\big(A \cap\lbrace\tau \leq n\rbrace\big)\cap\underbrace{\lbrace\sigma\leq\tau\rbrace}_{\stackeq{\text{Vor.}}\Omega}
+=\underbrace{A\cap\lbrace\sigma\leq n\rbrace}_{\stackrel{\text{Vor}}{\in}\F_n}\cap\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n} \stackrel{\sigma\text{A}}{\in} \F_n \quad \forall n \in \N_0\\
+\implies A\in\F_\tau
+\end{align*}
+
+\underline{Zeige c):}\\
+
+
+\underline{Zeige d):}\\
+
+\end{proof}
+
+\begin{proof}[Beweis von Henrik.]\enter
 \underline{Zeige a):}\\
 \begin{itemize} 
 	\item z.z.:$\emptyset \in \F_\tau$\\
