@@ -1584,7 +1584,7 @@ Sei $h:(\S,d)\to(\S',d')$ messbar.\\
 \underline{Ziel:} Finde Bedingungen an $h$, so dass gilt:
 \begin{enumerate}[label=(\arabic*)]
 \item $\begin{aligned}
-P_n\stackrelnew{w}{}{\longrightarrow}\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+P_n\stackrelnew{w}{}{\longrightarrow}P\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
 \end{aligned}$
 \item $\begin{aligned}
 X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\implies h(X_n)\stackrel{\L}{\longrightarrow} h(X)\text{ in }(\S',d')
@@ -1758,6 +1758,8 @@ X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\Longleftrightarrow\text{Jed
 \end{enumerate}
 \end{satz}
 \begin{proof}
+Wir zeigen hier nur (1):\\
+
 \underline{Zeige ``$\implies$'':}\\
 Folgt aus der Definition \ref{def4.1} und dem Teilfolgenprinzip für $(\int f\d Q)_{n\in\N}$ für alle $f\in C^b(\S)$.\\
 
