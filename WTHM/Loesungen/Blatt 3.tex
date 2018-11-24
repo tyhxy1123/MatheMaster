@@ -81,10 +81,30 @@ A \cap \lbrace\tau \leq n\rbrace
 \end{align*}
 
 \underline{Zeige c):}\\
-
+To Do\\
 
 \underline{Zeige d):}\\
+\begin{itemize}
+\item Zeige ``$\subseteq$'':
+Sei $A\in\F_\tau\cap\F_\sigma$. Dann ist $A\in\A$ und
+\begin{align*}
+\big(A\cap\lbrace\tau\leq n\rbrace\big),\big(A\cap\lbrace\sigma\leq n\rbrace\big)\in\F_n\qquad\forall n\in\N_0
+\end{align*}
+Da $\F_n$ eine $\sigma$-Algebra ist, ist auch die Vereinigung enthalten:
+\begin{align*}
+&\big(A\cap\lbrace\tau\leq n\rbrace\big)\cup\big(A\cap\lbrace\sigma\leq n\rbrace\big)\in\F_n\\
+&\implies
+\big(A\cap\lbrace\tau\leq n\rbrace\big)\cup\big(A\cap\lbrace\sigma\leq n\rbrace\big)
+&=&A\cap\big(\lbrace\tau\leq n\rbrace\cup\lbrace\sigma\leq n\rbrace\big)\\
+&&=&A\cap\lbrace\tau\wedge\sigma\leq n\rbrace\in\F_n\\
+&\implies A\in\F_{\sigma\wedge\tau}\implies \F_\tau\cap\F_\sigma\subseteq\F_{\tau\wedge\sigma}
+\end{align*}
 
+\item Zeige ``$\supseteq$'':
+\begin{align*}
+\tau\wedge\sigma\stackrel{\text{Def}}{\leq}\tau,\sigma\stackrel{\text{(b)}}{\implies}\F_{\sigma\wedge\tau}\subseteq\F_\tau,\F_\sigma\implies\F_{\tau\wedge\sigma}\subseteq\F_\tau\cap\F_\sigma
+\end{align*}
+\end{itemize}
 \end{proof}
 
 \begin{proof}[Beweis von Henrik.]\enter
@@ -143,9 +163,43 @@ Sei $(X_i)_{i\in I}$ eine Folge von Zufallsvariablen und $\phi:[0,\infty)\to\R$ 
 \sup\limits_{i\in I}\E\Big[\phi\big(|X_i|\big)\Big]<\infty\implies(X_i)_{i\in I}\text{ ist ggi}
 \end{align*}
 \begin{proof}
-Sei also das Supremum beschränkt. O.B.d.A. sei $\phi(0)=0$ und damit $\frac{\phi(a)}{a}\leq\frac{\phi(b)}{b}$.
+Sei also das Supremum beschränkt.\\
 
+\underline{Fall 1: $\phi(0)=0$}\\
+Es gilt aus mir unbekannten Gründen $\frac{\phi(a)}{a}\leq\frac{\phi(b)}{b}$.
+Zu zeigen:
+\begin{align*}
+\lim\limits_{R\to\infty}\underbrace{\sup\limits_{i\in I}
+\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]}_{:=\rho(R)}=0
+\end{align*}
+Es gilt
+\begin{align*}
+\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]
+&\stackrel{\text{Mono}}{\leq}
+\E\bigg[|X_i|\cdot\underbrace{\frac{|X_i|^{p-1}}{R^{p-1}}}_{\geq1~\forall\omega\in\Omega}\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\bigg]\\
+&=R^{1-p}\cdot\E\Big[|X_i|^p\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]\\
+&\stackrel{\text{Mono}}{\leq}
+R^{1-p}\cdot\E\Big[|X_i|^p\Big]\\
+&\stackrel{\text{???}}{\leq}
+R^{1-p}\cdot\E\Big[\phi\big(|X_i|^p\big)\Big]\qquad\forall i\in I
+\end{align*}
+und daraus folgt durch Bildung des Supremums auf beiden Seiten:
+\begin{align*}
+\rho(R)
+\stackrel{}{\leq}
+\underbrace{R^{1-p}}_{\stackrel{R\to\infty}{\longrightarrow}0}\cdot\underbrace{\sup\limits_{i\in I}\E\Big[\phi\big(|X_i|^p\big)\Big]}_{\stackrel{\text{Vor}}{<}\infty}\stackrel{R\to\infty}{\longrightarrow}0
+\end{align*}
 
+\underline{Fall 2: $\phi(0)=r\in\R\setminus\lbrace0\rbrace$}\\
+Dann setze
+\begin{align*}
+\tilde{\phi}:[0,\infty)\to\R,\qquad\tilde{\phi}(x):=\phi(x)-r\qquad\forall x\in[0,\infty)
+\end{align*}
+Dann gilt $\tilde{\phi}(0)=0$ und außerdem ist $\tilde{\phi}$ offenbar eine konvexe, monoton wachsende Funktion mit
+\begin{align*}
+\frac{\tilde{\phi}(x)}{x}\stackrel{x\to+\infty}{\longrightarrow}+\infty.
+\end{align*}
+Somit wende Fall 1 auf $\tilde{\phi}$ an. Dann folgt die Behauptung.
 
 \end{proof}
 \section*{Aufgabe 3}
@@ -168,6 +222,28 @@ und
 \end{enumerate}
 \begin{proof}
 \underline{Zu a):}\\
+%TODO Hier wurde nur der Code aus dem Beispiel aus der Vorlesung kopiert, was ziemlich analog laufen sollte (siehe unter 3.3)
+\begin{align*}
+p:=\P\big( X\text{ erreicht }A\text{ vor }-B\big)=\P\big(\tau_A\leq\tau_B\big)
+\end{align*}
+$X$ ist Martingal, $\big|X_{\tau\wedge n}\big|\leq\max\lbrace A,B\rbrace$. Somit folgt aus Theorem 3.3:
+\begin{align*}
+\E\big[X_\tau\big]=\E\big[X_0\big]=0
+\end{align*}
+Andererseits: 
+\begin{align*}
+\E\big[X_\tau\big]&=\E\Big[\underbrace{X_{\tau_A}}_{=A}\cdot\indi_{\lbrace\tau_A<\tau_B\rbrace}+\underbrace{X_{\tau_B}}_{=-B}\cdot\indi_{\lbrace\tau_A>\tau_B\rbrace}\Big]\\
+&=A\cdot\P\big(\tau_A<\tau_B\big)-B\cdot\P\big(\tau_A>\tau_B\big)\\
+&=A\cdot p-B\cdot(1-p)\\
+&=p\cdot(A+B)-B\\
+&\implies
+p=\frac{B}{A+B}
+\end{align*}
+und somit:
+\begin{align*}
+\P\big(X\text{ trifft }+A\text{ vor }-B\big)&=\frac{B}{A+B}\\
+\P\big(X\text{ trifft }-B\text{ vor }+A\big)&=\frac{A}{A+B}\\
+\end{align*}
 
 \underline{Zu b), zeige \eqref{eqAufgabe3bObere}:}\\
 
