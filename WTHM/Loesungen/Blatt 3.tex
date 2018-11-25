@@ -62,6 +62,10 @@ Dann gilt:
 \lbrace\tau\leq n\rbrace &=\big(\lbrace\tau\leq n\rbrace\cap A\big)\dot{\cup}\big(\lbrace\tau\leq n\rbrace\cap A^C\big)\\
 \implies A^C\cap\lbrace\tau\leq n\rbrace&=\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n}\setminus\big(\underbrace{\lbrace\tau\leq n\rbrace\cap A\big)}_{\stackrel{\text{Vor}}{\in}\F_n}\stackrel{\sigma\text{A}}{\in}\F_n
 \end{align*}
+Alternative: Sei $A \in \F_\tau$
+\begin{align*}
+	A^C\cap \lbrace \tau \leq n \rbrace = \left(\underbrace{A}_{\stackrel{\text{Vor.}}{\in} \F_n} \cup \underbrace{\lbrace \tau \leq n \rbrace^C}_{\stackrel{\sigma\text{-Alg}}{\in} \F_n} \right)^C \stackrel{\sigma\text{-Alg}}{\in}\F_n
+\end{align*}
 
 \item Sei $(A_i)_{i\in\N}\subseteq\F_\tau$. Dann gilt $\bigcup\limits_{i\in\N} A_i  \in \F_\tau$, denn:\\
 Offenbar ist $\bigcup\limits_{i\in\N} A_i  \in\A$ und nach Voraussetzung gilt $A_i\in\A$ und\\ $A_i\cap\lbrace\tau\leq n\rbrace\in\F_n~\forall i\in\N_0$. Folglich gilt:
@@ -81,7 +85,30 @@ A \cap \lbrace\tau \leq n\rbrace
 \end{align*}
 
 \underline{Zeige c):}\\
-To Do\\
+Es ist ausreichend folgende zwei Aussagen zu zeigen:
+\begin{align*}
+	\lbrace \tau \leq \sigma\rbrace &\cap \lbrace \tau \leq n\rbrace \in \F_n &(\ast)&\\
+	\lbrace \tau \leq \sigma\rbrace &\cap \lbrace \sigma \leq n\rbrace \in \F_n &(\ast\ast)& \\
+\end{align*}
+
+Zu $(\ast)$:
+\begin{align*}
+	&\lbrace \tau \leq \sigma\rbrace \cap \lbrace \tau \leq n\rbrace\\
+	=&\lbrace \tau \leq \min\{\sigma, n\}\rbrace  \\
+	=&\lbrace \tau \leq \min\{\sigma, n\}, \sigma \geq n\rbrace \cup 
+	\lbrace \tau \leq \min\{\sigma, n\}, \sigma < n\rbrace \\
+	=&\underbrace{\lbrace \tau \leq n\rbrace}_{\in \F_n} \cup
+	\underbrace{\lbrace \tau \leq \sigma, \sigma < n\rbrace}_{\in \F_\sigma \subset \F_n} \in \F_n \\
+\end{align*}
+
+Zu $(\ast\ast)$:
+Verläuft ähnlich wie der letzte Schritt in $(\ast)$:
+\begin{align*}
+	&\lbrace \tau \leq \sigma\rbrace \cap \lbrace \sigma \leq n\rbrace \\
+	&=\underbrace{\lbrace \tau \leq \sigma, \sigma \leq n\rbrace}_{\F_\sigma \subset F_n} \in F_n \\
+\end{align*}
+
+
 
 \underline{Zeige d):}\\
 \begin{itemize}
