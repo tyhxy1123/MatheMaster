@@ -288,6 +288,18 @@ und somit:
 
 \underline{Zu b), zeige \eqref{eqAufgabe3bObere}:}\\
 
+\begin{align*}
+	\P(\sup\limits_{n\in N_0} X_n \geq k) &=
+	\P\left(\sup\limits_{n\in N_0} Y_n \geq \left(\frac{q}{p}\right)^k\right) \\
+	&\stackrel{\text{Max-Ung.}}{\leq}
+	\left(\frac{p}{q}\right)^k\E\left[Y_n^+\right] \\
+	&\stackeq{\text{pos.}}
+	\left(\frac{p}{q}\right)^k\E\left[Y_n\right] \\
+	&\stackeq{\text{bekannt}}
+	\frac{1}{\left(\frac{q}{p}\right)^k}\cdot1 \\
+	&=\left(\frac{p}{q}\right)^k
+\end{align*}
+
 \underline{Zu b), zeige \eqref{eqAufgabe3bUntere}:}\\
 
 \end{proof}
