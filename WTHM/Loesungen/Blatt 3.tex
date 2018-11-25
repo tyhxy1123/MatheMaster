@@ -301,6 +301,19 @@ und somit:
 \end{align*}
 
 \underline{Zu b), zeige \eqref{eqAufgabe3bUntere}:}\\
+Wir berechnen:
+\begin{align*}
+	\E\left[\sup\limits_{n\in \N_0}X_n\right] 
+	&= \sum\limits_{k=0}^\infty k\cdot \P\left[\sup\limits_{n\in \N_0}X_n = k\right] \\
+	&= \sum\limits_{k=0}^\infty k\cdot\left( \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right] - \P\left[\sup\limits_{n\in \N_0}X_n \geq k+1\right]\right)\\
+	&= \sum\limits_{k=0}^\infty k\cdot\P\left[\sup\limits_{n\in \N_0}X_n \geq k\right] - \sum\limits_{k=0}^\infty k \cdot \P\left[\sup\limits_{n\in \N_0}X_n \geq k+1\right]\\
+	&= \sum\limits_{k=1}^\infty k\cdot\P\left[\sup\limits_{n\in \N_0}X_n \geq k\right] - \sum\limits_{k=1}^\infty (k-1) \cdot \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
+	&= \sum\limits_{k=1}^\infty k - (k-1) \cdot \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
+	&= \sum\limits_{k=1}^\infty \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
+	&\stackrel{(1)}{\leq}\sum\limits_{k=1}^\infty \left(\frac{p}{q}\right)^k\\
+	&=\frac{1}{1-\left(\frac{p}{q}\right)^k} \\
+	&= \frac{q}{q-p}
+\end{align*}
 
 \end{proof}
 
