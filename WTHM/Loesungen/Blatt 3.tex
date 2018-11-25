@@ -255,26 +255,35 @@ und
 \begin{proof}
 \underline{Zu a):}\\
 %TODO Hier wurde nur der Code aus dem Beispiel aus der Vorlesung kopiert, was ziemlich analog laufen sollte (siehe unter 3.3)
+% Ups der Kommentar über dem hier hat nicht gestimmt, tut mir leid
 \begin{align*}
-p:=\P\big( X\text{ erreicht }A\text{ vor }-B\big)=\P\big(\tau_A\leq\tau_B\big)
+a:=\P\big( X\text{ erreicht }A\text{ vor }-B\big)=\P\big(\tau_A\leq\tau_B\big)
 \end{align*}
-$X$ ist Martingal, $\big|X_{\tau\wedge n}\big|\leq\max\lbrace A,B\rbrace$. Somit folgt aus Theorem 3.3:
+Wir betrachten das Martingal vom Aufgabenblatt 2 Aufgabe 2:
 \begin{align*}
-\E\big[X_\tau\big]=\E\big[X_0\big]=0
+	Y_n := \left(\frac{q}{p}\right)^{X_n}
+\end{align*}
+Wir haben bereits bewiesen, dass $Y$ Martingal ist. Außerdem gilt für \enter$\tau=\tau_A\wedge\tau_B$ der die Abschätzung
+\begin{align*}
+	\big|Y_{\tau\wedge n}\big|\leq\left(\frac{q}{p}\right)^{\max\lbrace A,B\rbrace}
+\end{align*}. Somit folgt aus Theorem 3.3:
+\begin{align*}
+\E\big[Y_\tau\big]=\E\big[Y_0\big]=1
 \end{align*}
 Andererseits: 
 \begin{align*}
-\E\big[X_\tau\big]&=\E\Big[\underbrace{X_{\tau_A}}_{=A}\cdot\indi_{\lbrace\tau_A<\tau_B\rbrace}+\underbrace{X_{\tau_B}}_{=-B}\cdot\indi_{\lbrace\tau_A>\tau_B\rbrace}\Big]\\
-&=A\cdot\P\big(\tau_A<\tau_B\big)-B\cdot\P\big(\tau_A>\tau_B\big)\\
-&=A\cdot p-B\cdot(1-p)\\
-&=p\cdot(A+B)-B\\
+	1=\E\big[Y_\tau\big]&=\E\Big[\underbrace{Y_{\tau_A}}_{=\left(\frac{q}{p}\right)^A}\cdot\indi_{\lbrace\tau_A<\tau_B\rbrace}+\underbrace{Y_{\tau_B}}_{=\left(\frac{q}{p}\right)^{-B}}\cdot\indi_{\lbrace\tau_A>\tau_B\rbrace}\Big]\\
+&=\left(\frac{q}{p}\right)^A\cdot\P\big(\tau_A<\tau_B\big)+\left(\frac{q}{p}\right)^{-B}\cdot\P\big(\tau_A>\tau_B\big)\\
+&=\left(\frac{q}{p}\right)^A\cdot a+ \left(\frac{p}{q}\right)^{B}\cdot(1-a)\\
+&=a\left[\left(\frac{q}{p}\right)^a + \left(\frac{p}{q}\right)^b\right]- \left(\frac{p}{q}\right)^b\\
 &\implies
-p=\frac{B}{A+B}
+	a=\frac{1-\left(\frac{p}{q}\right)^B}{\left(\frac{q}{p}\right)^A-\left(\frac{p}{q}\right)^B}
 \end{align*}
 und somit:
 \begin{align*}
-\P\big(X\text{ trifft }+A\text{ vor }-B\big)&=\frac{B}{A+B}\\
-\P\big(X\text{ trifft }-B\text{ vor }+A\big)&=\frac{A}{A+B}\\
+\P\big(X\text{ trifft }+A\text{ vor }-B\big)&=
+	\frac{1-\left(\frac{p}{q}\right)^B}{\left(\frac{q}{p}\right)^A-\left(\frac{p}{q}\right)^B}
+\\
 \end{align*}
 
 \underline{Zu b), zeige \eqref{eqAufgabe3bObere}:}\\
