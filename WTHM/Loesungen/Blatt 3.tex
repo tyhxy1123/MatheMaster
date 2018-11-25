@@ -337,6 +337,64 @@ Dann existiert eine Zufallsvariable $M_\infty$ mit $\E\left[|M_\infty|^p\right]\
 \end{align*}
 \end{theorem}
 \begin{proof}
+	% Geht bestimmt auch einfacher, aber habs nicht anders hinbekommen
+	Wir haben gegeben, dass gilt
+	\begin{align*}
+		\sup\limits_{n\in\N_0} \E\left[|M_n|^p\right] \leq B < \infty
+	\end{align*}
+	Daher gilt nach Theorem 4.4. bzw. Aufgabe 2, dass $M_n$ ggi. ist.
+	Mit Theorem 4.6. folgt gleich:
+	\begin{align*}
+		\exists M_\infty \in L^1 : \E\left[|M_n - M_\infty\right]\stackrel{n\rightarrow \infty}{\longrightarrow} 0
+	\end{align*}
+	Nun betrachten wir die folgende Ungleichung, die nach Doob's Maximalungleichung gilt:
+	\begin{align*}
+		\P\left[\max\limits_{j\leq n} |M_n - M_\infty| \geq r\right] \leq \frac{1}{r} \E\left[|M_n-M_\infty|\right]
+	\end{align*}
+	Als nächstes brauchen wir ein Argument, um später den Limes in das linke Wahrscheinlickeitsmaß ziehen zu können. Dazu ist es ausreichend die Monotonie der gemessenen Menge nachzuweisen. Die Mengen
+	\begin{align*}
+		\lbrace \omega : \max\limits_{j\leq n} |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace
+	\end{align*}
+	sind monoton wachsend. Dies erklärt sich wiefolgt:
+	Wenn die Differenz der beiden Prozesse zum Zeitpunkt $n^*\in\N$ die Grenze $r$ für festes $\omega$ überschritten hat, so gehört dieses $\omega$ in alle Mengen für Zeiten $n\geq n^*$.
+	Außerdem brauchen wir noch die Inklusion
+	\begin{align*}
+		\lbrace \omega : |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace
+		\subset
+		\lbrace \omega : \max\limits_{j\leq n} |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace
+	\end{align*}
+	(Es empfiehlt sich für diese mengentheoretischen Aussagen Skizzen anzufertigen) \enter
+	Nun können wir endlich folgern:
+	\begin{align*}
+		\P\left[\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq r\right] 
+		&\leq
+		\P\left[\lim\limits_{n\rightarrow\infty}\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
+		&=\lim\limits_{n\rightarrow\infty}\P\left[\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
+		&\leq\lim\limits_{n\rightarrow\infty}\frac{\E\left[|M_n-M_\infty|\right]}{r}  \\
+		&= 0 \qquad \forall r\geq 0
+	\end{align*}
+	Nun können wir die erste Aussage folgern
+	\begin{align*}
+		\P[\lim\limits_{n\rightarrow\infty}M_n \neq M_\infty]
+		&=\P\left[\bigcup\limits_{k\in\N}\left\lbrace\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq \frac{1}{k}\right\rbrace\right] \\
+		&\leq \sum\limits_{n\in\N}
+		\P\left[\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq \frac{1}{k}\right] \\
+		&\leq 0
+	\end{align*}
+	Also ist $M_\infty$ fast sicher der Grenzwert von $M_n$. Nun folgt der Rest sehr schnell mit dem Satz der dominierten Konvergenz, denn
+	\begin{align*}
+		\left.\begin{array}{c}
+				M_n \stackrel{\text{f.s.}}{\rightarrow}M_\infty \\
+				\|M_n\|_{L^p} \leq B 
+			\end{array}\right\rbrace\implies M_n \stackrel{L^p}{\rightarrow}M_\infty
+	\end{align*}
+	Und somit folgt auch schlussendlich noch
+	\begin{align*}
+		\E\left[|M_\infty|^p\right] &= 
+		\lim\limits_{n\rightarrow\infty}\E\left[|M_n|^p\right]  \\
+		&\leq \sup\limits_{n\in\N}\E\left[|M_n|^p\right] \\
+		&\leq B
+	\end{align*}
 
 \end{proof}
 
