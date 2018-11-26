@@ -3,7 +3,6 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Notation}
 \renewcommand{\|}{~|~}
 \begin{definition}
     Seien $P,R$ Mengen. Wir nennen $\mathscr{R} = (P,R)$ ein \textbf{binäres Relat}, 
@@ -116,7 +115,7 @@ Sei $(\Omega,\leq_\Omega)$ Wohlordnung und sei $(S,\leq_S)$ lineare Ordnung.\\
 Dann ist $(S^\Omega,\sqsubseteq)$ via
 \begin{align*}
 \alpha\sqsubseteq\beta:\Longleftrightarrow\alpha=\beta\vee\exists x\in\Omega:\Big(\alpha x<_S\beta x\wedge\forall t\in\Omega:\big(t<_\Omega x\implies \alpha t=\beta t\big)\Big)
-\qquad\forall\alpha,\beta\in S^\Omega
+\\&\forall\alpha,\beta\in S^\Omega
 \end{align*}
 eine lineare Ordnung definiert, die $(S,\leq_S)^\Omega$ erweitert.
 \end{satz}
@@ -130,10 +129,10 @@ $(S^\Omega,\sqsubseteq)$ ist die \textbf{lexikografische} Ordnungserweiterung vo
 \begin{align*}
 ID(\Z)=\big(\lbrace n\in\Z\mid n\in\N\rbrace,\subseteq\big)
 \end{align*}
-ist Idealverband von $\Z=(\Z,+,\cdot,0,1)$ bzw. Untergruppenverband von $(\Z,+,0)$.\\
+ist Idealverband von $\Z=(\Z,+,\cdot,0,1)$ bzw. Untergruppenverband von $(\Z,+,0)$.
 
 \textbf{ASCENDING CHAIN CONDITION (ACC) / noethersch} $\bar{\uparrow}$\\
-``Jede aufsteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein maximales Element (aufsteigende Kettenbedingung)\\
+``Jede aufsteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein maximales Element (aufsteigende Kettenbedingung)
 
 \textbf{DESCENDING CHAIN CONDITION (DCC) / artinsch} $\bar{\downarrow}$\\
 ``Jede absteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein maximales Element.\\
@@ -262,4 +261,6 @@ Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mat
 \item $\Delta a\ast b=\Delta a\ast\Delta b\qquad\forall(a,b)\in E^{\langle2\rangle}$
 \end{enumerate}
 
-
+\begin{bemerkung}
+    Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
+\end{bemerkung}
