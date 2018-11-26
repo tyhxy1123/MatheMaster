@@ -206,7 +206,7 @@ u(0)=u_0
 \end{array}\right.
 \end{align*}
 besitzt für jede $f\in L^1\big(0,T;X),u_0\in X$ höchstens eine milde Lösung.
-\item Ist $A$ $m$-akkretiv vom Typ $\omega\in\R$, ist $u\in C\big([0,T],X)$ eine Integrallösung von \eqref{CauchyProblem2.2} (mit rechter Seite $f\in L^1\big([0,T],X\big)$) und ist $u\in W^{1,1}\big([0,T],X\big)$, dann ist $u$ starke Lösung von \eqref{CauchyProblem2.2}
+\item Ist $A$ maximal-akkretiv vom Typ $\omega\in\R$, ist $u\in C\big([0,T],X)$ eine Integrallösung von \eqref{CauchyProblem2.2} (mit rechter Seite $f\in L^1\big([0,T],X\big)$) und ist $u\in W^{1,1}\big([0,T],X\big)$, dann ist $u$ starke Lösung von \eqref{CauchyProblem2.2}. $X$ sei hierbei separabel.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -250,18 +250,144 @@ Dann gilt:
 \end{align*}
 \end{lemma}
 \begin{align*}
-\varphi'(t)&=-\omega\cdot\exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
+&\varphi'(t)=-\omega\cdot\exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
 +\exp(-\omega\cdot t)\cdot\frac{\d}{\d t}\big\Vert u(t)-\hat{u}(t)\big\Vert\\
-&\stackrel{}{\leq}
+&\qquad\stackrel{}{\leq}
 \exp(-\omega\cdot t)\cdot\big\Vert f(t)-\hat{f}(t)\big\Vert\\
 &\stackrel{\text{Integrieren}}{\implies}
 \exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
 \leq\Vert u(0)-\hat{u}(0)\big\Vert+\int\limits_0^t\exp(-\omega\cdot\tau)\cdot\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
 \end{align*}
 \underline{Zeige Mild $\implies$ Integral:}\\
-Betrachte $\hat{u}(t):=\hat{u}$ konstant und $\hat{f}(t):=\hat{f}$ konstant mit $(\hat{u},\hat{f})\in A$.\\
+Betrachte $\hat{u}(t):=\hat{u}$ konstant und $\hat{f}(t):=\hat{f}$ konstant mit $(\hat{u},\hat{f})\in A$.\\ 
+%TODO Dieser Beweis ist nicht komplett.
 
-\underline{Zeige (d):}
-
-
+\underline{Zeige (d):}\\
+Sei $(\hat{u},\hat{f})\in A$ und sei $0\leq s\leq t\leq T$.
+\begin{align*}
+\int\limits_s^t\frac{\d}{\d\tau}\big[u(\tau)-\hat{u},\dot{u}(\tau)\big]\d\tau
+=\int\limits_s^t\frac{\d}{\d\tau}\big|u(\tau)-\hat{u}\big|\d\tau
+=\big|u(t)-\hat{u}\big|-\big|u(s)-\hat{u}\big|
+\end{align*}
+Da $u$ Integrallösung ist, gilt
+\begin{align*}
+\big|u(t)-\hat{u}\big|\leq\big| u(s)-\hat{u}\big|+\omega\cdot \int\limits_s^t\big|u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\hat{f}\big]\d\tau
+\end{align*}
+Folglich gilt:
+\begin{align*}
+&\int\limits_s^t\frac{\d}{\d\tau}\big[u(\tau)-\hat{u},\dot{u}(\tau)\big]\d\tau\\
+&\leq\omega\cdot\int\limits_s^t\big|u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\hat{f}+\dot{u}(\tau)-\dot{u}(\tau)\big]\d\tau\\
+&\leq\omega\cdot\int\limits_s^t\big| u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\d\tau
++\int\limits_s^t\big[u(\tau)-\hat{u},\dot{u}(\tau)\big]\d\tau\\
+&\implies
+\omega\cdot\int\limits_s^t\big|u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\d\tau\geq0
+\end{align*}
+Diese Ungleichung gilt für fast alle $\tau$. Damit folgt:
+\begin{align*}
+\omega\cdot\big|u(\tau)-\hat{u}\big|+\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\geq0
+\end{align*}
+Da $X$ nach Voraussetzung separabel ist, gibt es eine Folge $(u_n)_{n\in\N}$ mit $u_n\in\dom(A)$ und $X=\overline{\lbrace u_n:n\in\N\rbrace}\supseteq\dom(A)$. Dann gibt es eine Nullmenge $N$, so dass
+\begin{align*}
+\omega\cdot\big|u(\tau)-u_n\big|+\big[u(\tau)-u_n,f(\tau)-\dot{u}(\tau)-\hat{f}_n\big]\geq0 
+\end{align*}
+wobei $\big(u_n,\hat{f}_n\big)\in A$ für alle $\tau\in[0,T]\setminus N$ gilt.\\
+Sei $\hat{u}\in\dom(A)$. Dann gibt es eine Teilfolge $\big(u_{n_k}\big)_{k\in\N}$ mit $u_{n_k}\stackrel{k\to\infty}{\longrightarrow}\hat{u}$. Seien $(\hat{u},\hat{f})\in A$. Dann gilt:
+\begin{align*}
+0&\leq\limsup\limits_{k\to\infty}\Big(\omega\cdot\big|u(\tau)-u_{n_k}\big|+\big[u(\tau)-u_{n_k},f(\tau)-\dot{u}(\tau)-\hat{f}_{n_k}\big]\Big)\\
+&\leq\omega\cdot\big|u(\tau)-\hat{u}\big|+\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\\
+&\implies
+A\cup\Big\lbrace\big(u(\tau),f(\tau)-\dot{u}(\tau)\big)\Big\rbrace\text{ ist akkretiv}
+\end{align*}
+Da $A$ maximal ist, folgt $\big(u(\tau),f(\tau)-\dot{u}(\tau)\big)\in A$ für alle $\tau\in[0,T]\setminus N$, also fast überall. Somit folgt
+\begin{align*}
+f(\tau)-\dot{u}(\tau)\in A u(\tau)\\
+\implies f(\tau)\in A u(\tau)+\dot{u}(\tau)
+\end{align*}
 \end{proof}
+
+\begin{definition}
+Eine Partition $\pi$ sind $0=t_0<t_1<t_2<\ldots<t_N=T$
+\begin{align*}
+n_i:=t_{i+1}-t_i\qquad |\pi|:=\sup\limits_{0\leq i\leq N-1} h_i
+\end{align*}
+Sei $f\in L^1\big([0,T],X\big)$ adaptiert zu $\pi$ und konstant auf $[t_i,t_{i+1})$ für $i\leq i\leq N-1$.\\
+Wir nennen $\Theta=\big(\pi,f_\Theta,u_{\Theta,0}\big)$ eine \textbf{Diskretisierung} $:\gdw\pi$ eine Partition, $f_\Theta$ adaptiert und $u_{\Theta,0}\in X$.
+\end{definition}
+\begin{align*}
+&\dot{u}+Au(t)\ni f\\
+&\frac{u_\Theta(t_{i+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_{i+1})
+\qquad\text{ und }\qquad
+u_\Theta(0)=u_{\Theta,0}\\
+&u_\Theta(t_{i+1})+h\cdot A u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)\\
+&\Longleftrightarrow (\id+h\cdot A)u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)
+\end{align*}
+
+Im Linearen:
+\begin{align*}
+u_\Theta(t_{i+1})=J_{h_i}\big(h_i f_\Theta+u_\Theta(t_i)\big)
+\end{align*}
+Schon gezeigt:
+\begin{align*}
+A\text{ akkretiv}&\implies\text{höchstens ein $u_\Theta$ löst das diskrete Problem}\\
+A\text{ $m$-akkretiv}&\implies\text{genau ein $u_\Theta$ löst das diskrete Problem}
+\end{align*}
+Grob für $f\in L^1\big([0,T],X\big)$ und $f_{\Theta_i}\longrightarrow f$. Dann soll es $u\in X$ geben so, dass $u_{\Theta_i}\longrightarrow u$ und $u$ Integrallösung zur Rechten Seite $f$.
+
+\begin{lemma}
+Sei $A$ akkretiv vom Typ $\omega\in\R$ und $u,\hat{u},v,\hat{v},f,\hat{f}\in X$ und $\hat{h}\geq h\geq 0$ mit $\hat{h}\cdot\omega\leq 1$ und 
+\begin{align*}
+\frac{u-v}{h}+Au\ni f,\qquad\frac{\hat{u}-\hat{v}}{\hat{h}}+A\hat{u}\ni\hat{f}
+\end{align*}
+Dann gilt:
+\begin{align*}
+\big|u-\hat{u}\big|_X\leq\left|v-\left(\frac{h}{\hat{h}}\cdot\hat{v}+\left(1-\frac{h}{\hat{h}}\right)\cdot\hat{v}\right)\right|+h\cdot\omega\cdot\big|u-\hat{u}\big|+h\cdot\big[ u-\hat{u},f-\hat{f}\big]
+\end{align*}
+\end{lemma}
+\begin{proof} %Im Folgenden Beweis konnten u und v teilweise verwechselt worden sien
+\begin{align*}
+&\left[u-\hat{u},f-\frac{u-v}{h}-\hat{f}+\frac{\hat{u}-\hat{v}}{\hat{h}}\right]+\omega\cdot\big|u-\hat{u}\big|\stackrel{A\text{ akk}}{\geq} 0\\
+&\stackrel{\text{Def }[\cdot,\cdot]}{\implies}
+-\lambda\cdot\omega\cdot|u-\hat{u}|\\
+&\leq\left|(u-\hat{u})+\lambda\cdot\left(f-\frac{u-v}{h}-\hat{f}+\frac{\hat{u}-\hat{v}}{\hat{h}}\right)\right|-\big|u-\hat{u}\big|\\
+&=
+\left|\frac{h-\lambda}{h}\cdot u-\hat{u}+\lambda\cdot(f-\hat{f})+\frac{\lambda}{h}\cdot v-\frac{\lambda}{\hat{h}}\cdot(\hat{u}-\hat{v})\right|-|v-\hat{u}|\\
+&=\frac{h-\lambda}{h}\cdot\left|u-\frac{h}{h-\lambda}\cdot\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})+\frac{h}{h-\lambda}\cdot\frac{\lambda}{h}
+-\frac{h}{h-x}\cdot\frac{\lambda}{\hat{h}}\cdot(\hat{u}-\hat{v})\right|\\
+&\quad-\frac{h-\lambda}{h}\cdot|u-\hat{u}|-\frac{\lambda}{h}\cdot|u-\hat{u}|\\
+&\stackrel{\text{DU}}{\leq}
+\frac{h-\lambda}{h}\cdot\left(\left|u-\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})\right|-\big|u-\hat{u}\big|\right)\\
+&\quad+\frac{\lambda}{h}\cdot\left(\left|v-\left(\frac{h}{\hat{h}}\cdot\hat{v}+\left(1-\frac{h}{\hat{h}}\right)\cdot\hat{u}\right)\right|-\big|u-\hat{u}\big|\right)
+\end{align*}
+Dividiere durch $\frac{\lambda}{h}$:
+\begin{align*}
+-h\cdot\omega\big|u-\hat{u}\big|
+&\leq h\cdot\frac{h-\lambda}{\lambda\cdot h}\cdot\left(\left|u-\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})\right|-\big|u-\hat{u}\big|\right)
+\end{align*}
+Für $\lambda\to0$ erhält man:
+\begin{align*}
+-h\cdot\omega\cdot\big|u-\hat{u}\big|\leq h\cdot\big[u-\hat{u},f-\hat{f}\big]+\left|u-\left(\frac{h}{\hat{h}}\cdot\hat{v}+\left(1-\frac{h}{\hat{h}}\cdot\hat{u}\right)\right)\right|-\big|u-\hat{u}\big|
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+Sei $A$ akkretiv, $\pi$ Partition und Diskretisierungen 
+\begin{align*}
+\Theta=\big(\pi,0,u_{0,\Theta}\big),\qquad
+\Theta'=\big(\pi,0,u_{0,\Theta'}\big)
+\end{align*}
+Seien $u_\Theta,u_{\Theta'}$ die zugehörigen Lösungen der diskreten Probleme. Dann gilt:
+\begin{align*}
+\Big|u_\Theta(t_{i+1})-u_{\Theta'}(t_{i+1})\Big|\leq\Big| u_\Theta (t_i)+u_{\Theta'}(t_i)\Big|
+\end{align*}
+\end{lemma}
+\begin{proof}
+Für $f_\Theta=f_{\Theta'}=0$ ist das trivial, da $u_\Theta=u_{\Theta'}$.
+\end{proof}
+
+\begin{theorem}
+Sei $A$ akkretiv, $\Theta=\big(\pi_\Theta,0,u_{0,\Theta}\big)$ und $\Theta'=\big(\pi_{\Theta'},0,u_{0,\Theta'}\big)$ zwei Diskretisierungen, $u_\Theta$ und $u_{\Theta'}$ die dazugehörigen Lösungen. Dann gilt für alle $t,t'\in[0,T]$ und alle $\hat{u}\in\dom(A)$:
+\begin{align*}
+\big| u_\Theta(t)-u_{\Theta'}(t')\big|
+\leq\big|u_{0,\Theta}-\hat{u}\big|_X+\big| u_{0,\Theta'}-\hat{u}\big|_X+\sqrt{(t-t')^2+|\pi_\Theta|\cdot t+|\pi_{\Theta'}|\cdot t'}\cdot|A\hat{u}\big|^2
+\end{align*}
+\end{theorem}
