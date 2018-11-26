@@ -353,43 +353,33 @@ Dann existiert eine Zufallsvariable $M_\infty$ mit $\E\left[|M_\infty|^p\right]\
 	\end{align*}
 	Als nächstes brauchen wir ein Argument, um später den Limes in das linke Wahrscheinlickeitsmaß ziehen zu können. Dazu ist es ausreichend die Monotonie der gemessenen Menge nachzuweisen. Die Mengen
 	\begin{align*}
-		A_n:=\lbrace \omega : \max\limits_{j\leq n} |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace
+		A_n:&=\lbrace \omega : \max\limits_{j\leq n} |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace \\
+				&=\bigcup\limits_{j\leq n}\lbrace \omega : |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace
 	\end{align*}
-	sind monoton wachsend. Dies erklärt sich leichter mit der Skizze \ref{AbbUEProzess} erklären.
-	\begin{figure}
-			\caption{Die drei wesentlichen Fälle die bei einem beliebigen Schritt $n\rightarrow n+1$ des Prozesses $Z_i:=M_i(\omega)-M_\infty(\omega)$ eintreten können}
-			\includegraphics[width=0.75\textwidth]{pics/SketchUE1.png}
-			\begin{enumerate}[label=Fall \alph{*})]
-				\item \qquad $\omega_1 \in A_n \quad \rightarrow\quad \omega_1 \in A_{n+1}$
-				\item \qquad $\omega_2 \not\in A_n \quad \rightarrow \quad \omega_2 \in A_{n+1}$
-				\item \qquad $\omega_3 \not\in A_n \quad \rightarrow \quad \omega_3 \not\in A_{n+1}$
-			\end{enumerate}
-			$\omega \in A_n \quad \rightarrow \quad \omega \not\in A_{n+1} \quad$ nicht möglich $\implies A_n \subset A_{n+1} \quad\forall n\in\N$
-			\label{AbbUEProzess}
-	\end{figure}
+	sind offensichtlich monoton wachsend in $n$. Dies kann man zusätzlich mit Skizze \ref{AbbUEProzess} sehen.
 	Außerdem brauchen wir noch die triviale Inklusion
 	\begin{align*}
 		\lbrace \omega : |M_n(\omega) - M_\infty(\omega)| \geq r\rbrace
-		&\subset
-		\lbrace \omega : \max\limits_{j\leq n} |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace \\
-		(&=\bigcup\limits_{j\leq n}\lbrace \omega : |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace)
+		&\subset \lbrace \omega : \max\limits_{j\leq n} |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace \\
+		&=\bigcup\limits_{j\leq n}\lbrace \omega : |M_j(\omega) - M_\infty(\omega)| \geq r\rbrace
 	\end{align*}
 	Nun können wir endlich folgern:
 	\begin{align*}
 		\P\left[\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq r\right] 
-		&\leq
-		\P\left[\lim\limits_{n\rightarrow\infty}\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
-		&=\lim\limits_{n\rightarrow\infty}\P\left[\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
-		&\leq\lim\limits_{n\rightarrow\infty}\frac{\E\left[|M_n-M_\infty|\right]}{r}  \\
-		&= 0 \qquad \forall r\geq 0
+		&\stackrel{\text{Mono.}}{\leq}
+		\P\left[\lim\limits_{n\rightarrow\infty}\bigcup\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
+		&\stackeq{\text{s.o.}}\P\left[\lim\limits_{n\rightarrow\infty}\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
+		&\stackeq{\text{stetig}}\lim\limits_{n\rightarrow\infty}\P\left[\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
+		&\stackrel{\text{Max-Ungl.}}{\leq}\lim\limits_{n\rightarrow\infty}\frac{\E\left[|M_n-M_\infty|\right]}{r}  \\
+		&\stackeq{L^1-\lim} 0 \qquad \forall r\geq 0
 	\end{align*}
 	Nun können wir die erste Aussage folgern
 	\begin{align*}
 		\P[\lim\limits_{n\rightarrow\infty}M_n \neq M_\infty]
 		&=\P\left[\bigcup\limits_{k\in\N}\left\lbrace\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq \frac{1}{k}\right\rbrace\right] \\
-		&\leq \sum\limits_{n\in\N}
+		&\stackrel{\sigma-\text{Add.}}{\leq} \sum\limits_{k\in\N}
 		\P\left[\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq \frac{1}{k}\right] \\
-		&\leq 0
+		&\stackrel{\text{s.o.}}{\leq} 0
 	\end{align*}
 	Also ist $M_\infty$ fast sicher der Grenzwert von $M_n$. Nun folgt der Rest sehr schnell mit dem Satz der dominierten Konvergenz, denn
 	\begin{align*}
@@ -407,6 +397,18 @@ Dann existiert eine Zufallsvariable $M_\infty$ mit $\E\left[|M_\infty|^p\right]\
 	\end{align*}
 
 \end{proof}
+
+	\begin{figure}
+			\caption{Die drei wesentlichen Fälle die bei einem beliebigen Schritt $n\rightarrow n+1$ des Prozesses $Z_i:=M_i(\omega)-M_\infty(\omega)$ eintreten können}
+			\includegraphics[width=0.75\textwidth]{pics/SketchUE1.png}
+			\begin{enumerate}[label=Fall \alph{*})]
+				\item \qquad $\omega_1 \in A_n \quad \rightarrow\quad \omega_1 \in A_{n+1}$
+				\item \qquad $\omega_2 \not\in A_n \quad \rightarrow \quad \omega_2 \in A_{n+1}$
+				\item \qquad $\omega_3 \not\in A_n \quad \rightarrow \quad \omega_3 \not\in A_{n+1}$
+			\end{enumerate}
+			$\omega \in A_n \quad \rightarrow \quad \omega \not\in A_{n+1} \quad$ nicht möglich $\implies A_n \subset A_{n+1} \quad\forall n\in\N$
+			\label{AbbUEProzess}
+	\end{figure}
 
 
 \end{document}
