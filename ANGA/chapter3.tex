@@ -1,0 +1,294 @@
+\chapter{Der Satz von Riemann-Hurwitz}
+
+\section{Erweiterungen}
+Sei $F|K$ ein Funktionenkörper.
+
+\begin{definition}
+    Ein Funktionenkörper $E|L$ ist eine Erweiterung des Funktionenkörpers $F|K$, wenn $F \subseteq E$ und $K \subseteq L$.
+    Die Erweiterung $E|K$ von $F|K$ ist \textbf{algebraisch}, \textbf{separabel}, \textbf{galoisch}, oder \textbf{endlich}, falls
+    $E|F$ dies ist. Sie ist eine \textbf{Konstantenkörpererweiterung}, wenn $E = FL$, und \textbf{geometrisch}, wenn $K=L$.
+\end{definition}
+
+\begin{bemerkungnr}
+    Geometrische Erweiterungen sind stets endlich. Jede Erweiterung $E|L$ von $F|K$ lässt sich wie folgt zerlegen:
+    $$\begin{tikzcd}[column sep=10em]
+          & E\\
+        F \rar[dash]{\text{Konstantenkörpererweiterung}} & FL \uar[dash]{\text{geometrisch}}\\
+        K \rar[dash] \uar[dash] & L \uar[dash]
+    \end{tikzcd}$$
+\end{bemerkungnr}
+
+\begin{beispiel}
+    $F\overline{K}|\overline{K}$ ist eine algebraische Konstantenkörpererweiterung von $F|K$.
+    Ist $E|F$ endlich, so ist $E|(\overline{K}\cap E)$ eine endliche Erweiterung von $F|K$.
+    Ist $K \subsetneqq F_0 \subseteq F$, so ist $F|K$ eine endliche geometrische Erweiterung des Funktionenkörpers $F_0|K$.
+\end{beispiel}
+
+\begin{definition}
+    Sei $E|L$ eine endliche Erweiterung von $F|K$, $Q \in S(E|L)$, $P \in S(F|K)$, $Q$ \textbf{liegt über} $P$ 
+    (i.Z. $Q|P$, $Q|_F = P$) $: \iff$ $\mathcal{O}_{v_Q} \cap F = \mathcal{O}_{v_P}$ ($\mathcal{O}_Q \cap F = \mathcal{O}_P$).
+    \begin{align*}
+        e_{Q|P} & := e(v_Q | v_Q|_F), \text{ der \textbf{Verzweigungsindex} von } Q \text{ über } P\\
+        f_{Q|P} & := f(v_Q | v_Q|_F), \text{ der \textbf{Restklassengrad} von } Q \text{ über } P\\
+        Q|P \text{ ist \textbf{verzweigt}} & :\iff e_{Q|P} > 1.
+    \end{align*}
+\end{definition}
+
+\begin{bemerkungnr}
+    Da sowohl $v_P$ als auch $v_Q$ normiert sind, gilt
+    $$ v_Q(x) = e_{Q|P} \cdot v_P(x) \text{ für alle } x \in F^\times.$$
+    Ist $E|L$ eine endliche Erweiterung von $F|K$, so gibt es für jedes $P \in S(F|K)$ stets mindestens ein, abber immer nur
+    endlich viele $e_{Q|P}, f_{Q|P} \leq [E:F]$ (II.3.5).
+\end{bemerkungnr}
+
+\begin{theorem}[Fundamentale Gleichung]
+    Sei $E|L$ eine endliche Erweiterung von $F|K$, sei $P \in S(F|K)$ und seien $Q_1,\ldots,Q_m \in S(E|L)$ alle Stellen von
+    $E$, über $P$. Dann ist
+    $$ \sum\limits_{i=1}^m e_{Q_i|P}f_{Q_i|P} = [E:F]. $$
+\end{theorem}
+\begin{proof}
+    Wähle ein $x \in F^\times$ mit einziger Nullstelle $P$ (\#17 liefert Existenz).
+    Situation:
+    $$\begin{tikzcd}
+        & E\\
+        F \rar[dash] & FL \uar[dash]\\
+        K(x) \uar[dash] \rar[dash] & L(x) \uar[dash]\\
+        K \uar[dash] \rar[dash] & L \uar[dash]  
+    \end{tikzcd}$$
+    \begin{align*}
+        [E:K(x)] & = [E:F] \cdot [F:K(x)] \stackeq{II.5.7} \deg (x)_0^F \cdot [E:F] = v_P(x) \cdot \deg P \cdot [E:F]\\
+        [E:K(x)] & = [E:L(x)] \cdot [L(x) : K(x)] \stackeq{II.5.7 \& I.1.8} \deg (x)_0^E \cdot [L:K] \\
+        & = \sum\limits_{i=1}^m v_{Q_i}(x)\cdot \deg Q_i\cdot [L:K] = \sum\limits_{i=1}^m e_{Q_i|P} \cdot v_P(x) \cdot [E_{Q_i]:L}] \cdot [L:K]\\
+        & = v_P(x) \cdot \sum\limits_{i=1}^m e_{Q_i|P} \cdot [E_{Q_i}:F_P] \cdot [F_P : K] = v_P(x) \cdot \deg P \cdot \sum\limits_{i=1}^m e_{Q_i|P} \cdot f_{Q_i|P}
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Sei $E|L$ endliche Erweiterung von $F|K$. Für $P \in S(F|K)$ ist 
+    \begin{align*}
+        \Con_{E|F}(P) := \sum\limits_{Q|P} e_{Q|P} Q \in \Div(E|L), \text{ wobei } Q \in S(E|L)
+    \end{align*}
+    die \textbf{Konorm} von $P$. Wir setzen dies linear fort zu
+    $$ \Con_{E|L} : \Div(F|K) \to \Div(E|L).$$
+\end{definition}
+
+\begin{lemma}
+    Ist $E|L$ endliche Erweiterung von $F|K$, und $x \in F^\times$, so ist
+    \begin{align*}
+        \Con_{E|F}(x)^F = (x)^E,& \Con_{E|F} (x)_0^F = (x)_0^E,& \Con_{E|F} (x)_\infty^F = (x)_\infty^E.
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        (x)^E & = \sum\limits_Q v_Q(x) Q = \sum\limits_P \sum\limits_{Q|P} e_{Q|P} \cdot v_P(x) \cdot Q\\
+        & = \sum\limits_P v_P(x) \cdot \sum\limits_{Q|P} e_{Q|P} \cdot Q = \sum\limits_P v_P(x) \cdot \Con_{E|F} P\\
+        & = \Con_{E|F} \sum\limits_P v_P(x) \cdot P = \Con_{E|F} (x)^F.
+    \end{align*}
+    Da $e_{Q|P} > 0$ folgt $(x)^E_0 = (x)^E_+ = (\Con_{E|F} (x)^F)_+ = \Con_{E|F} (x)^F_+ = \Con_{E|F}(x)^F_0$
+    analog für $(x)_\infty$.
+
+\end{proof}
+
+\begin{bemerkungnr}
+    Der Morphismus $\Div(F|K) \to \Div(E|L)$ induziert daher einen Homomorphismus
+    $\mathscr{C}(F|K) \to \mathscr{C}(E|L)$, der aber im Allgemeinen weder injektiv noch surjektiv sein muss. 
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $E|L$ eine endliche Erweiterung von $F|K$, und $A \in \Div(F|K)$, so ist
+    $$ \deg (\Con_{E|F}A) ) \frac{[E:F]}{[L:K]} \cdot \deg (A). $$
+\end{satz}
+\begin{proof}
+    O.E. sei $A = P \in S(F|K)$.
+    \begin{align*}
+        \deg \Con_{E|F}(P) & = \deg ( \sum\limits_{Q|P} e_{Q|P}Q) = \sum\limits_{Q|P}e_{Q|P}\cdot [E_Q:L]\\
+        & = \frac{1}{[L:K]}\cdot \sum\limits_{Q|P} e_{Q|P} \cdot [E_Q: F_P] \cdot [F_P : K]\\
+        & \stackeq{1.6} \frac{1}{[L:K]} \cdot [E:F] \cdot \deg P.
+    \end{align*}
+\end{proof}
+
+\section{Holomorphieringe}
+Sei $F|K$ ein Funktionenkörper, und $S := S(F|K)$.
+
+\begin{definition}
+    Für $S_0 \subseteq S$ sei $$\mathcal{O}_{S_0} := \bigcap_{P \in S_0} \mathcal{O}_P.$$ 
+    Ein Teilring $R \subseteq F$ ist ein \textbf{Holomorphiering}, wenn $R = \mathcal{O}_{S_0}$ für ein $\emptyset \ne S_0 \subsetneqq S$.
+\end{definition}
+
+\begin{lemma}
+    Sei $\emptyset \ne S_0 \subsetneqq S$.
+    \begin{enumerate}[label=(\alph*)]
+        \item $K \subseteq \mathcal{O}_{S_0} \subsetneqq F$.
+        \item $\mathcal{O}_{S_0}$ ist ein ganzabgeschlossener Ring aber kein Körper.
+        \item $\Quot(\mathcal{O}_{S_0}) = F$
+        \item Für $P \in S$ gilt:
+        $$ \mathcal{O}_{S_0} \subseteq \mathcal{O}_P \iff P \in S_0.$$
+    \end{enumerate} 
+\end{lemma}
+\begin{proof}
+    (a) $\checkmark$ (b) Jedes $\mathcal{O}_P$ ganzabgeschlossen (II.1.6) $\implies$ $\mathcal{O}_{S_0}$ ganzabgeschlossen.
+    Wähle $P_0 \in S_0$. Da $S_0 \subsetneqq S$ existiert nach II.7.12 ein $x \in F^\times$ mit
+    $$ v_{P_0} > 0 \text{ und } v_P(x) \geq 0 \quad \forall P \in S_0 \setminus \{P_0\} \implies x \in \mathcal{O}_{S_0}, x^{-1} \notin \mathcal{O}_{S_0}.$$
+    (c) Sei $x \in F^\times$. $\stackrel{II.7.12}{\implies}$ ex. $z \in F^\times$ mit $v_P(z)$ für $P$ mit $v_P(x) < 0$
+    und $v_P(z) \geq 0$ für $P \in S_0$. $\implies$ $z \in \mathcal{O}_{S_0}$, $xz \in \mathcal{O}_{S_0}$, $\frac{xz}{z} \in \Quot(\mathcal{O}_{S_0})$.\\
+    (d) Sei $P_1 \in S \setminus S_0$. Wähle $P_0 \in S_0$.\\
+    Nach II.7.12 existiert $x \in F^\times$ mit $v_{P_0}(x) > 0, v_P(x) \geq 0 \quad \forall P \in S \setminus\{P_1\}$
+    \begin{align*}
+        & \stackrel{\deg (x) = 0}{\implies} v_{P_1} < 0\\
+        & \implies x \in \mathcal{O}_{S_0} \setminus \mathcal{O}_{P_1}.
+    \end{align*}
+\end{proof}
+
+\begin{beispiel}
+    Sei $K = \overline{K}, F = K(T), S = \{P_a \mid a \in K\} \cup \{P_\infty\}$.
+    \begin{itemize}
+        \item $S_0 = S \setminus \{P_\infty\}: \mathcal{O}_{S_0} = \{\frac{f}{g} \mid v_{P_a}(f) - v_{P_a}(g) \geq 0 \quad \forall a \in K\}$
+        \item $S_0 = S$: $\mathcal{O}_{S_0} = K$
+        \item $S_0 = S \setminus \{P_0\}$: $\mathcal{O}_{S_0}=\{\frac{f}{g} \mid v_P(f) \geq v_P(g) \quad \forall P \in S_0\}$
+        \begin{align*}
+            & = \{\frac{f}{T^k} \mid v_{P_\infty} (f) \geq v_{P_\infty}(T^k)\}\\
+            & = \{\frac{f}{T^k} \mid \deg f \leq k\}\\
+            & = K[T^{-1}]
+        \end{align*}
+    \end{itemize}
+\end{beispiel}
+
+\begin{lemma}
+    Ist $K \subseteq R \subseteq F$ ein Ring, der kein Körper ist,
+    $$ S(R) := \{P \in S \mid R \subseteq \mathcal{O}_P\},$$
+    so ist $\emptyset \ne S(R) \subsetneqq S$, und $\mathcal{O}_{S(R)}$ ist der ganze Abschluss von $R$ in $F$.
+\end{lemma}
+\begin{proof}
+    $R$ ist kein Körper $\implies$ es gibt $(0) \neq \mathfrak{p} \in \Spec R$
+    $\stackrel{II.2.2}{\implies}$ es gibt $P \in S(F|K)$ mit $R \subseteq \mathcal{O}_P$ (und $m_\mathfrak{p} \cap R = \mathfrak{p}$)
+    $\implies S(R) \ne \emptyset$.
+
+    $R$ ist kein Körper $\implies$ $R \ne K$ $\implies$ es gibt $x \in R\setminus K$ $\implies$ $x$ hat Polstelle $P_0 \in S$
+    $\implies x \notin \mathcal{O}_{P_0} \supseteq \bigcap\limits_{P \in S} \mathcal{O}_P \implies S(R) \ne S$.
+    
+    Nach \#14 ist der ganze Abschluss von $R$ in $F$ genau der Durchschnitt aller Bewertungsringe von $F$, die $R$ enthalten, also
+    $\mathcal{O}_{S(R)}$.
+\end{proof}
+
+\begin{satz}
+    Ist $\emptyset \ne S_0 \subseteq S$ endlich, so ist $\mathcal{O}_{S_0}$ ein Hauptidealring.
+\end{satz}
+\begin{proof}
+    Sei $(0) \ne \mathfrak{a} \ideal \mathcal{O}_{S_0}$. Schreibe $S_0 = \{P_1, \ldots, P_n\}$.
+    Für jedes $i$ wähle $a_i \in \mathfrak{a}$ mit
+    \begin{align*}
+        & v_{P_i}(a_i) = k_i := \min \{v_{P_i}(a) \mid a \in \mathfrak{a}\}\\
+        \stackrel{II.1.9}{\implies} & \text{es gibt } z_i \in F \text{ mit } v_{P_i}(z_i) = 0, v_{P_j}(z_i) > k_j \quad \forall j\ne i.
+    \end{align*} 
+    Setze $$x := \sum\limits_{i=1}^n z_i \cdot a_i$$
+    Dann ist $z_i \in \O_{S_0}, v_{P_i}(z_i \cdot a_i) = k_i, v_{P_j}(z_i \cdot a_i) > k_j \quad \forall j \ne i$,
+    somit $x \in \mathfrak{a}$ und $v_{P_i}(x) = v_{P_i}(x_i\cdot a_i) = k_i$.
+
+    Beh.: $\mathfrak{a} = (x)$: $a \in \mathfrak{a} \implies v_{P_i}(\frac{a}{x}) = v_{P_i}(a) - k_i \geq 0$
+    $\implies \frac{a}{x} \in \O_{S_0} \implies a = \frac{a}{x} \cdot x \in (x)$.
+\end{proof}
+
+\section{Lokale Ganzheitsbasen}
+Sei $F|K$ eine Funktionenkörper, $E|L$ eine endliche Erweiterung von $F|K$, $R \subseteq F$ ein Holomorphiering von $F$,
+$R'$ der ganze Abschluss von $R$ in $E$.
+
+\begin{definition}
+    Sei $P \in S(F|K), R = \O_P$. Eine Basis $x_1, \ldots, x_n$ von $E|F$ ist eine \textbf{Ganzheitsbasis} für $P$, wenn
+    $$ R' = \sum\limits_{i=1}^n R x_i. $$
+\end{definition}
+
+\begin{lemma}
+    Genau dann ist $x_1,\ldots,x_n\in E$ eine Ganzheitsbasis für $P$, wenn $$R' = \bigoplus\limits_{i=1}^n R x_i.$$
+\end{lemma}
+\begin{proof}
+    $\implies$: $x_1, \ldots, x_n$ $F$-linear unabhängig $\implies$ $x_1, \ldots, x_n$ $R$-linear unabhängig\\
+    $\implies$: $x_1,\ldots,x_n$ $R$-linear unabhängig, $F=\Quot R$ $\implies$ $x_1,\ldots,x_n$ $F$-linear unabhängig.
+    \begin{align*}
+        \bigoplus\limits_{i=1}^n Rx_i = R' \text{ ist ein Ring} & \implies \bigoplus\limits_{i=1}^n Fx_i \text{ ist ein Ring der }F \text{ enthält}\\
+        & \implies \bigoplus\limits_{i=1}^n Fx_i \text{ ist ein Körper} \\
+        & \implies \bigoplus\limits_{i=1}^n Fx_i \supseteq \Quot \bigoplus\limits_{i=1}^n Rx_i = \Quot R' = E.
+    \end{align*}
+\end{proof}
+
+\begin{erinnerungnr}
+    Sei $M|K$ endlich, $x \in M$. Die $M|K$-Spur $\Tr_{M|K}(x)$ von $x$ kann beschrieben werden als
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\Tr_{M|K} = \Tr(\mu_x)$, wobei
+        $$ \mu_x : \begin{cases}
+            M \to M\\
+            y \mapsto xy
+        \end{cases}$$
+
+        \item $\Tr_{M|K}(x) = - [M:K(x)] \cdot a_{m-1}$, $\MinPol (x|K) = x^m + a_{m-1}x^{m-1} + \ldots + a_0$
+        \item $\Tr_{M|K}(x) = \frac{[M:K]}{n} \cdot \sum\limits_{i=1}^n \sigma_i$, $\Hom_K (M, \overline{K}) = \{\sigma_1, \ldots, \sigma_n\}$
+    \end{enumerate}
+    Genau dann ist $\Tr_{M|K}: M \to K$ nicht die Nullabbildung, wenn $M|K$ separabel ist.
+\end{erinnerungnr}
+
+\begin{lemma}
+    Sei $M|K$ endlich und 
+    $$ \varphi : \begin{cases}
+        M \times M \to K\\
+        (x,y) \mapsto \Tr_{M|K}(xy)
+    \end{cases}$$
+    die \textbf{Spurform} von $M|K$.
+    \begin{enumerate}[label=(\alph*)]
+        \item $\varphi$ ist $K$-bilinear und symmetrisch
+        \item $\varphi$ ist genau dann nicht-ausgeartet, wenn $M|K$ separabel ist. In diesem Fall ist
+        $$ \varphi': \begin{cases}
+            M \to M^\ast\\
+            x \mapsto \varphi(x,-)
+        \end{cases}$$
+        ein Isomorphismus.
+
+        \item Ist $M|K$ separabel und $x_1,\ldots,x_n$ eine Basis von $M|K$, so gibt es eine eindeutig bestimmte Basis
+        $x_1',\ldots,x_n'$ von $M|K$ mit $\Tr_{M|K}(x_i\cdot x_j) = \delta_{ij}$ für alle $i,j$ (die \textbf{duale Basis}).
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    (a) $\checkmark$ (b) $M|K$ separabel $\implies$ $\Tr_{M|K} \not \equiv 0 \implies$ es gibt $a \in M: \Tr_{M|K}(a) \neq 0$
+    $\implies \forall 0 \ne x \in M$ ist $\varphi(x, x^{-1}a) = \Tr_{M|K}(a) \ne 0$.\\
+    (c) Sei $x_1^\ast, \ldots, x_n^\ast \in M^\ast$ die duale Basis zu $x_1,\ldots,x_n$, d.h. $x_i^\ast(x_j) = \delta_{ij} \forall i,j$.
+    Setze $x_i' := (\varphi')^{-1}(x_i^\ast) \in M$. Dann ist $x_1',\ldots,x_n'$ Basis von $M|K$ und 
+    $$ \Tr_{M|K}(x_i x_j') = \varphi(x_j',x_i) = \varphi'(x_j')(x_i) = x_j^\ast(x_i) = \delta_{ij}.$$
+    Eindeutigkeit folgt aus Eindeutigkeit der dualen Basis $x_1^\ast,\ldots,x_n^\ast$.
+\end{proof}
+
+\begin{lemma}
+    $$ \Tr_{E|F} (R') \subseteq R.$$
+\end{lemma}
+\begin{proof}
+    $x \in E$ ganz über $R$, $R$ ganzabgeschlossen $\implies$ $\Tr_{E|F}(x) \in R$\\
+    aus (2): $\MinPol(x|F) \in R[X] \stackrel{(2)}{\implies} \Tr_{E|F}(x) \in R$\\
+    aus (3): $x$ ganz über $R \implies \sigma_i(x)$ ganz über $R$
+    $ \implies \Tr_{E|F}(x) \text{ganz über }R \stackrel{R \text{ g.abg.}}{\implies} Tr {E|F} (x) \in R.$
+\end{proof}
+
+\begin{lemma}
+    Sei $E|F$ separabel.
+    \begin{enumerate}[label=(\alph*)]
+        \item Ist $x_1,\ldots,x_n$ eine Basis von $E|F$, so existieren $a_1, \ldots, a_n \in R$, \\für die 
+        $a_1 x_1,\ldots, a_n x_n$ eine Basis von $E|F$ ist, die in $R'$ enthalten ist.
+
+        \item Ist $x_1,\ldots,x_n \in R'$ eine Basis von $E|F$, so ist
+        $$ \sum\limits_{i=1}^nRx_i \subseteq R' \subseteq \sum\limits_{i=1}^n Rx_i'.$$
+
+        \item Ist $R$ ein Hauptidealring, so gibt es eine Basis $x_1,\ldots, x_n \in R'$ von $E|F$ mit 
+        $$ \sum\limits_{i=1}^n Rx_i = R'.$$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    (a): $x \in E$ $\implies$ $x$ algebraisch über $F$ $\implies$ es gibt $0 \ne a \in R$ mit $ax$ ganz über R.
+    \begin{align*}
+        \MinPol(x|F) &= X^n + \frac{a_{n-1}}{b_{n-1}}X^{n-1} + \ldots + \frac{a_0}{b_0} \quad \text{mit } a_i,b_i \in R\\
+        b &:= b_0 \cdot \ldots \cdot b_{n-1} \implies (bx)^n + \frac{b}{b_{n-1}}a_{n-1}(bx)^{n-1} + \ldots + \frac{b^n}{b_0}a_0 = 0\\
+        &\implies bx \text{ ganz über }R.
+    \end{align*}
+    (b): $x \in R' \implies x = \sum\limits_{i=1}^n \alpha_i x_i' \text{ mit } \alpha_1, \ldots, \alpha_n \in F 
+    \implies \alpha_i = \Tr_{E|F}(\underbrace{xx_i}_{\in R'}) \stackrel{3.5}{\in} R \forall i$\\
+    (c): Nach (a) und (b) existiert Basis $x_1, \ldots, x_n \in R'$ von $E|F$ mit
+    $$ \sum\limits_{i=1}^n Rx_i \subseteq R' \subseteq \sum\limits_{i=1}^n R x_i'.$$
+    Da $R$ Hauptidealring ist, ist der Untermodul $R'$ des endlich erzeugten $R$-Moduls $\sum Rx_i'$ wieder endlich erzeugt, genauer
+    sogar $R' = \sum\limits_{i=1}^m Ry_i$ mit $m \leq n$. Da $R'$ die Basis $x_1, \ldots, x_n$ von $E|F$ enthält, ist $m=n$ und $y_1, \ldots,y_n$
+    ist auch Basis von $E|F$.
+\end{proof}

@@ -190,26 +190,12 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 \begin{proof}
     Ist $\mathfrak{X}$ Transzendenzbasis von $L|K$ und $\mathcal{Y}$ Transzendenzbasis von $F|L$, dann folgt
     $ \mathfrak{X} \cup \mathcal{Y}$ ist Transzendenzbasis von $F|K$.
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
-            {
-                & K(\mathfrak{X} \cup \mathcal{Y})(L) & \\
-                K(\mathfrak{X} \cup \mathcal{Y}) & L(\mathcal{Y}) & F \\
-                K(\mathfrak{X}) & L & \\
-                \mathfrak{X} & & \\
-            };
-            \path
-                (m-1-2) edge (m-2-2)
-                (m-2-1) edge node [above] {algebraisch} (m-2-2)
-                (m-2-2) edge node [above] {algebraisch} (m-2-3)
-                (m-3-1) edge node [above] {algebraisch} (m-3-2)
-                (m-4-1) edge (m-3-1)
-                (m-3-1) edge (m-2-1)
-                (m-3-2) edge (m-2-2);
-        \end{tikzpicture}
-    \end{figure}
+    $$\begin{tikzcd}
+        & K(\mathfrak{X} \cup \mathcal{Y})(L) & \\
+        K(\mathfrak{X} \cup \mathcal{Y}) \rar[dash]{algebraisch} & L(\mathcal{Y}) \uar[dash] \rar[dash]{algebraisch} & F \\
+        K(\mathfrak{X}) \uar[dash] \rar[dash]{algebraisch}& L \uar[dash] & \\
+        \mathfrak{X} \uar[dash] & &
+    \end{tikzcd}$$
 \end{proof}
 
 \begin{satz}
@@ -333,7 +319,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 
 \begin{bemerkungnr}
     In der algebraischen Geometrie hat jede irreduzible Kurve $C$ über $K$ (also jede irreduzible
-    eindiemensionale quasiprojektive $K-$Varietät) einen Funktionenkörper, der ein Funktionenkörper
+    eindimensionale quasiprojektive $K-$Varietät) einen Funktionenkörper, der ein Funktionenkörper
     über $K$ ist. 
     
     Allgemein: Funktionenkörper in $\dim C + 1$ Variablen.
@@ -391,7 +377,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
         \item Erinnerung:
         $$\begin{tikzcd}
             & euklidisch \dar& \\
-            eindiemensional & \lar Hauptidealring \dar \rar & noethersch\\
+            eindimensional & \lar Hauptidealring \dar \rar & noethersch\\
             & faktoriell \rar & ganz abgeschlossen
         \end{tikzcd}$$
     \end{enumerate}
@@ -466,5 +452,254 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     $$ \mathcal{O}_p := \mathcal{O}_{v_p} = K[T]_{(p)}$$
     mit Restklassenkörper
     $$ \kappa_ := \kappa_{\mathcal{O}_{v_p}} = \sfrac{K[T]}{(p)}.$$
-    Desweiteren ist $\mathcal{O}_\infty := K[T^{-1}]_{(T^{-1})}$ ein diskreter Bewertungsring von $F$.
+    Desweiteren ist $\mathcal{O}_\infty := K[T^{-1}]_{(T^{-1})}$ ein diskreter Bewertungsring von $F$ mit zugehöriger diskreter Bewertung
+    $$v_\infty\left(\frac{f}{g}\right) = \deg(g) - \deg(f) \qquad (f,g \in K[T]) .$$
+    Das sind schon alle auf $\A^1 = \P^1 \cup \{\infty\}$.
 \end{beispiel}
+
+\begin{satz}
+    Die diskreten Bewertungsringe $K \subseteq R \subsetneqq K(T)$ von $K(T)$ sind genau die $\mathcal{O}_p$ mit 
+    $p \in K[T]$ normiert irreduzibel, sowie $\mathcal{O}_\infty$.
+\end{satz}
+\begin{proof}
+    Sei $m$ das maximale Ideal von $R$.\\
+    \underline{$T\in R$:} Dann ist $K[T] \subseteq R$ und $\mathfrak{p} := m \cap K[T]$ ist ein Primideal von $K[T]$ mit
+    $K[T]_\mathfrak{p} \subseteq R$. Insbesondere ist $\mathfrak{p} \ne (0)$. Somit ist $\mathfrak{p} = (p)$ für ein irreduzibeles
+    normiertes $p \in K[T]$. Nach Lemma 2.19, angewandt auf den diskreten Bewertungsring $\mathcal{O}_p = K[T]_\mathfrak{p}$,
+    folgt $\mathcal{O}_p = R$.\\
+    \underline{$T\notin R$:} Dann ist $T^{-1} \in R$, sogar $T^{-1} \in m$, dann
+    $$m=(\pi) \implies T = u \cdot \pi^k \implies k < 0 \implies T^{-1} = u^{-1}\cdot \pi^{-k} \in R.$$
+    Somit ist $K[T^{-1}] \subseteq R$ und $m \cap K[T^{-1}] = K[T^{-1}]T^{-1}$. Wie im ersten Fall folgert man daraus, dass
+    $$ \mathcal{O}_\infty = K[T^-1]_{K[T^{-1}]T^{-1}} = R.$$
+\end{proof}
+
+\begin{bemerkungnr}
+    Es bezeichne $S(F|K)$ die Menge der diskreten Bewertungsringe $K \subseteq R \subsetneqq F$ von $F$.
+    Der Restklassenkörper $\kappa_R$ eines Elements von $S(F|K)$ ist stets eine Erweiterung von $K$.
+    Im Fall $K = \K$ werden wir sehen, dass $\kappa_R = K$. Jedes $\varphi \in F$ liefert somit eine "rationale Funktion"
+    $$ S(F|K) \to \K \cup \{\infty\}. $$
+\end{bemerkungnr}
+
+\section{Riemannsch Flächen}
+\begin{definition}
+    Eine \textbf{Riemannsche Fläche} ist eine zusammenhängende eindimensionale komplexe Mannigfaltigkeit.
+    (\textit{Im rellen glatte zwei dimensionale Mannigfaltigkeit.})
+\end{definition}
+
+\begin{beispiel}
+    \begin{enumerate}[label=\alph*.)]
+        \item $\mathbb{D} = \{t \in \C \mid |z| < 1\}$.
+        \item Ist $C$ eine glatte Kurve über $K = \K = \C$, so trägt $C = C(\C)$("Menge der komplexen Punkte")
+        die Struktur einer Riemannschen Fläche.
+
+        Z.B. $$ \P^1(\C) = \overset{\wedge}{\C} = \C \cup \{\infty\}, \text{ die Riemannsche Zahlenspähre.}$$
+    \end{enumerate}
+\end{beispiel}
+
+\begin{definition}
+    Sei $X$ eine Riemannsche Fläche.
+    \begin{align*}
+        \mathcal{H} &:= \text{ Ring der holomorphen Funktionen auf }X\\
+        \mathcal{M} &:= \text{ Körper der meromorphen Funktionen auf }X \\
+        &\textit{ "Quotient 2er holomorpher Funktionen"}
+    \end{align*}
+\end{definition}
+
+\begin{beispiel}
+    \begin{align*}
+        \mathcal{H}(\mathbb{D}) & \text{"="} \left\{\sum\limits_{i=0}^\infty a_i T^i \mid a_i \in \C, 
+            \sum|a_i|\tau^i < \infty \quad \forall \tau < 1\right\}\\
+        \mathcal{H}(\overset{\wedge}{\C}) & = \C, \text{ nach Liouville}\\
+        \mathcal{M}(\overset{\wedge}{\C}) & = \C(T), \text{ da } \overset{\wedge}{\C} \text{ kompakt ist und }
+            \mathcal{H}(\overset{\wedge}{\C}) = \C
+    \end{align*}
+\end{beispiel}
+
+\begin{theorem}[Riemannscher Existenzsatz]
+    Ist $X$ eine kompakte Riemannsche Mannigfaltigkeit, so ist $\mathcal{M}(X)$ ein algebraischer Funktionenkörper über $\C$.
+\end{theorem}
+
+\begin{bemerkungnr}
+    \begin{enumerate}[label=\alph*.)]
+        \item Umgekehrt ist jeder Funktionenkörper über $\C$ isomorph zu einem Körper der Form $\mathcal{M}(X)$,
+        nämlich für ein $X = C(\C)$, siehe 2.7
+        \item Vergessen wir die komplexe Struktur auf $X$, so ist $X$ eine orientierbare, zusammenhängende topologische Fläche.
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{definition}
+    Das \textbf{Geschlecht} $g_X$ einer orientierbaren zusammenhängenden topologischen Fläche $X$ ist die maximale Anzahl von
+    möglichen Schnitten entlang disjunkter, einfach geschlossener Kurven, sodass die Fläche nach dem Schnittvorgang noch zusammenhängend ist.
+\end{definition}
+
+\begin{bemerkungnr}
+    Es gilt $\chi_X = 2 - 2g_X$, wobei
+    $$ \chi_X = \sum\limits_{i=0}^\infty (-1)^i \dim_\R (H_i, \R)$$
+    die \textbf{Eulercharakteristik} von $X$ ist.
+
+    Für orientierbare kompakte Flächen gilt 
+    $$H_0(X) = \Z, H_1(X) = \pi_1(X)^{ab}, H_2(X) = \Z,$$
+    woraus folgt
+    $$ g_X = \frac{1}{2} \rang \pi_1(X)^{ab}.$$
+\end{bemerkungnr}
+
+\begin{beispiel}
+    Ist die Fläche homöomorph zu einem simplizialen Komplex mit $E$ Ecken, $K$ Kanten und $F$ Flächen,
+    so ist
+    $$ \chi_X = E - K + F.$$
+    Spezialfall: Eulerscher Polyedersatz
+
+    Für jedes Polyeder $X \subseteq \R^3$ ist 
+    $$ E - K + F = 2.$$
+\end{beispiel}
+
+\begin{beispiel}
+    \begin{itemize}
+        \item Sphäre
+        $$g_{S^2} = 0 \implies \chi_{S^2} = 2 $$
+
+        \item Torus
+        $$g_{T^2} = 1 \implies \chi_{T^2} = 0 $$
+
+        \item Summe zweier Tori
+        $$ g = 2 \implies \chi = -2$$
+    \end{itemize}
+\end{beispiel}
+
+\begin{theorem}[Klassifikation der Flächen]
+    Zwei orientierbare kompakte zusammenhängende Flächen sind genau dann homöomorph, wenn sie das gleiche Geschlecht haben.
+\end{theorem}
+
+\begin{bemerkungnr}
+    Eine nichtkonstante holomorphe Abbildung $f: Y \to X$ zwischen Riemannschen Flächen liefert über fast allen Punkten von $X$ eine
+    \textbf{topologische Überlagerung}(d.h. für fast alle $x \in X$ gibt es offene Umgebungen $x \in U \subseteq X$ für die
+    $f^{-1}(U)=\bigsqcup U_i$ mit $f|_{U_i}: U_i \to U$ Homöomorphismus $\forall i$).
+
+    Haben fast alle Punkte von $X$ genau $n$ Urbilder, so hat $f$ \textbf{Grad} $n$, und die Punkte mit weniger als $n$ Urbilder
+    heißen \textbf{Verzweigungspunkte} von $f$.
+
+    Die Abbildung $f: Y \to X$ induziert eine Einbettung
+    $$ \begin{cases}
+            \mathcal{M}(X) \hookrightarrow \mathcal{M}(Y)\\
+            g \mapsto g \circ f.
+        \end{cases}$$
+\end{bemerkungnr}
+
+\begin{beispiel}
+    $$f : \overset{\wedge}{\C} \to \overset{\wedge}{\C}, z \mapsto z^l, l \in \N$$
+    besitzt Verzweigungspunkte bei $0$ und $\infty$.
+\end{beispiel}
+
+\begin{bemerkungnr}
+    Lokal um einen Punkt $y \in Y$ ist jede holomorphe Abbildung $f: Y \to X$ von der Form
+    $$ z \mapsto z^{e_y}, e_y \in \Z_{\geq 0}.$$
+    Hat $f$ Grad $n$, so ist für $x \in X$:
+    $$ \sum\limits_{y \in f^{-1}(x)} e_y = n. $$
+    Insbesondere ist $x$ ein Verzweigungspunkt $\iff e_y > 1$ für ein $y \in f^{-1}(x)$.
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $F$ ein Funktionenkörper über $K$ und $E|F$ endlich, so wird durch $R \mapsto R \cap F$ eine Abbildung
+    $S(E|K) \to S(F|K)$ definiert.
+\end{satz}
+\begin{proof}
+    Ist $v$ die diskrete Bewertung zu $R$, so ist $v|_F$ auch eine diskrete Bewertung und 
+    $\mathcal{O}_{v|_F}$ ist genau 
+    $$ \mathcal{O}_v \cap F = R \cap F.$$
+    Wäre $R\cap F = F$, so folgt aus $E|F$ algebraisch und $R$ ganzabgeschlossen, schon, dass $E \subseteq R$,
+    was im Widerspruch zu $R \in S(E|K)$ steht.
+\end{proof}
+
+\begin{bemerkungnr}
+    Wir werden jedem Funktionenkörper ein Geschlecht zuordnen und algebraische Analoga zweier fundamentaler Sätze über
+    Riemannsche Flächen beweisen:
+
+    Der \textbf{Satz von Riemann-Roch}, beschreibt die maximale Anzahl linear unabhängiger meromorpher Funktionen auf $X$
+    mit vorgegebenen Null- und Polstellen.
+
+    Der \textbf{Satz von Riemann-Hurwitz} beschreibt bei einer holomorphen Abbildung $f: Y \to X$ das Geschlecht von $Y$ in
+    Abhängigkeit vom Geschlecht von $X$ und dem Verzweigungsverhalten von $f$.
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    Die topologischen Überlagerungen von $X$ werden durch die Fundamentalgruppe $\pi_1(X)$ beschrieben.
+
+    Da zum Beispiel die Sphäre $\overset{\wedge}{\C} = \P^1(\overset{\wedge}{\C})$ einfach zusammenhängend ist,
+    d.h. $\pi_1(X) = 0$, ist jede holomorphe Abbildung $f: Y \to \overset{\wedge}{\C}$ vom Grad $n > 1$ verzweigt,
+    d.h. hat mindestens eine Faser mit weniger als $n$ Punkten.
+\end{bemerkungnr}
+
+Wir werden aus Riemann-Hurwitz ableiten:
+\begin{theorem}
+    Ist $K$ algebraisch abgeschlossen und $[F:K(T)] = n > 1$ so ist $F|K(T)$ verzweigt, d.h. die Abbildung
+    $S(F|K) \to S(K(T)|K)$ hat mindestens eine Faser mit weniger als $n$ Elementen.    
+\end{theorem}
+
+\begin{bemerkungnr}
+    Ist $F$ ein Zahlkörper, d.h. $[F:\Q] = n < \infty$, so ist der ganze Abschluss $\mathcal{O}_F$ von $\Z$ in $F$ ein Dedekindring,
+    d.h. noethersch, ganzabgeschlossen und eindimensional.\\
+    In einem Dedekindring $R$ hat man eine eindeutige Zerlegung in Primideale:
+    \begin{align*}
+        I \ideal R \implies I &= \mathfrak{p}_1^{e_1} \ldots \mathfrak{p}_r^{e_r} \text{ mit } \mathfrak{p}_1 \ldots \mathfrak{p}_r \in \Spec(\mathcal{O}_F)\\
+        &  \text{ paarweise verschieden und } e_i \geq 1. 
+    \end{align*}
+\end{bemerkungnr}
+
+\begin{theorem}[Minkowski 1910]
+    Ist $[F:\Q] = n > 1$, so ist $F|\Q$ verzweigt, d.h. es gibt mindestens eine Primzahl $p$, für die
+    $$ \mathcal{O}_{Fp} = \mathfrak{p}_1^{e_1} \ldots \mathfrak{p}_r^{e_r}$$
+\end{theorem}
+
+\begin{bemerkungnr}
+    "Primstellen" $S(F)$ eines Zahlkörpers $F$\\
+    \underline{endliche Stellen:} Jedes $(0) \ne \mathfrak{p} \in \Spec(\mathcal{O}_F)$ liefert eine diskrete Bewertung:
+
+    $(\mathcal{O}_F)_\mathfrak{p}$ ist ein diskreter Bewertungsring. Für $x \in F^\times$ ist 
+    $$ (\mathcal{O}_F)_\mathfrak{p}\cdot x = (\mathfrak{p}(\mathcal{O}_F)_\mathfrak{p})^{v_\mathfrak{p}(x)}.$$
+    \underline{unendliche Stellen:} Einbettungen $\sigma: F \hookrightarrow \C$.
+\end{bemerkungnr}
+
+\section{Globale Körper}
+Sei $q = p^k$ eine Primpotenz.
+
+\begin{erinnerungnr}
+    Zu jeder Primpotenz $p^k$ gibt es bis auf Isomorphie genau einen Körper $\F_{p^k}$ mit $p^k$ Elementen, und zu jedem $d$ hat
+    $\F_q$ genau eine Erweiterung $\F_{q^d}$ vom Grad $d$ in einem fixierten algebraischen Abschluss.
+\end{erinnerungnr}
+
+\begin{satz}
+    Sowohl $A = \Z$ als auch $A = \F_q[T]$ erfüllen:
+    \begin{enumerate}[label=(\alph*)]
+        \item $A$ ist ein Hauptidealring
+        \item $A^\times$ ist endlich
+        \item $A$ hat unendlich viele Primelemente
+        \item Für jedes $0 \ne x \in A$ ist $\|x\|:= |\sfrac{A}{(x)}| < \infty$
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    (d) $0 \ne f \in \F_q[T] \implies \|f\| = | \sfrac{\F_q[T]}{(f)} | = q^{\deg f}$.
+\end{proof}
+
+\begin{bemerkungnr}
+    Ein Vertretersystem der Primelemente modulo Einheiten ist
+    \begin{itemize}
+        \item $\Z=A$: positive Primzahlen
+        \item $\F_q[T]=A$: die normierten irreduziblen Polynome
+    \end{itemize}
+\end{bemerkungnr}
+
+\begin{theorem}[Primzahlsatz]
+    $$ |\{p \in \N \mid p \text{ prim }, p \leq x\}| \sim \frac{x}{\log x},\quad x \to \infty.$$
+\end{theorem}
+
+\begin{theorem}[Primpolynomsatz]
+    $$|\{P \in \F_q[T] \mid P \text{ normiert irreduzibel }, \deg P = n\}| \sim \frac{q^n}{n},\quad q^n \to \infty.$$
+\end{theorem}
+
+\begin{bemerkungnr}
+    Setzt man $x := q^n$, dann sieht man es steht auf der rechten Seite $$ \frac{x}{\log_q x}.$$
+\end{bemerkungnr}
+\begin{proof}
+    Ist $P \in \F_q[T]$ normiert irreduzibel vom Grad $n$, so hat $P$ genau $n$ viele Nullstellen in $\overline{\F_q}$.
+    Umgekehrt ist jedes $\alpha \in \F_{q^n}$ Nullstelle 
+\end{proof}
