@@ -222,7 +222,7 @@ Ein Tripel $\mathbb{G}=(G,\ast,\id)$ heißt \textbf{Aktionsnetzwerk (ANW)}, fall
 \end{align*}
 Abbildung ist, wobei
 \begin{align*}
-E^{\langle 2\rangle}:=\big\lbrace (a,b)\in E\times E~\big|~\tau =\tau b\big\rbrace
+E^{\langle 2\rangle}:=\big\lbrace (a,b)\in E\times E~\big|~\tau a =\sigma b\big\rbrace
 \end{align*}
 die Menge der Pfade der Länge 2 ist und $\id:V\to E$ Abbildung ist, derart, dass die \textbf{Verkettungsaxiome} gelten:
 \begin{align*}
@@ -264,3 +264,29 @@ Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mat
 \begin{bemerkung}
     Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
 \end{bemerkung}
+
+\begin{definition}
+    Seien $G = (V,E, \rho), G'= (V', E', \rho')$ Netzwerke.
+    Ein \textbf{Netzwerkmorphismus} von $G$ nach $G'$ ist ein Tripel $(G, G', \Phi := (\Phi_{vert}, \Phi_{edge}))$  wobei
+    \begin{align*}
+        \Phi_{vert}:& V \to V', p \mapsto p' \text{ und}\\
+        \Phi_{edge}:& E \to E', e \mapsto e',
+    \end{align*}
+    sodass für $i=1,2$ gilt:
+    \begin{align*}
+        \pi_i \circ \rho' \circ \Phi_{edge} = \Phi_{vert} \circ \pi_i \circ \rho.
+    \end{align*}
+    Als kommutatives Diagramm:
+    $$\begin{tikzcd}[column sep=huge, row sep=huge]
+        E \dar{\pi_i \circ \rho} \rar{\Phi_{edge}} & E' \dar{\pi_i \circ \rho'}\\
+        V \rar{\Phi_{vert}} & V' 
+    \end{tikzcd}$$
+\end{definition}
+
+\begin{definition}
+    Seien $\mathbb{G} = (G, \ast_\mathbb{G}, id_\mathbb{G}), \mathbb{G}' = (G', \ast_{\mathbb{G}'}, id_{\mathbb{G}'})$
+    zwei Aktionsnetzwerke über den Netzwerken $G,G'$.
+    Ein \textbf{Funktor (Aktionsnetzwerksmorphismus)} ist ein Netzwerkmorphismus $(G, G', \Phi := (\Phi_{vert}, \Phi_{edge}))$ von $G$ nach $G'$, 
+    sodass für alle $(a,b) \in E^{\langle 2 \rangle}$ gilt
+    $$ \Phi_{edge}(a \ast_{\mathbb{G}} b) = \Phi_{edge}(a) \ast_{\mathbb{G}'} \Phi_{edge}(b).$$
+\end{definition}
