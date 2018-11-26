@@ -1,0 +1,203 @@
+\section{sobolev spaces}
+
+\subsection{general stuff}
+
+\begin{enumerate}[label=(\alph*)]
+	\item \textbf{weak derivative}\\
+	Let $u,v \in L^1_{\loc}(U)$, $\alpha$ multiindex. $v$ is $\alpha$-th weak derivative of u ($D^{\alpha} = v$), $\iff$
+	\begin{equation*}
+	\int \limits_U u D^{\alpha}\phi \d x = (-1)^{|\alpha|} \int \limits_U v\phi \d x \qquad \forall \phi \in C^\infty_0(U)
+	\end{equation*}
+	
+	\item \textbf{uniqueness weak derivative}\\
+	A weak  $\alpha$-th partial derivative of $u$ is uniquely defined up to a set of measure zero.
+	
+	\item \textbf{sobolev space}\\
+	\begin{equation*}
+		W^{k,p}(U) = \{ u: U \to \R \text{ s.t. } D^{\alpha}u \in L^p(U)\  \forall \alpha: |\alpha| \leq k \}
+	\end{equation*}
+	\item $H^k(U) = W^{k,2}(U)$ for all $k = 0,1,\dots$. $H$ is a Hilbert space.
+	
+	\item \textbf{sobolev norm}
+	\begin{equation*}
+		\|u\|_{W^{k,p}} = 
+		\begin{cases}
+		\left( \displaystyle \sum_{|\alpha|\leq k}\  \int \limits_U |D^{\alpha}u|^p  \d x \right)^{\frac{1}{p}} \quad (1 \leq p< \infty)\\
+		\\
+		\displaystyle \sum_{|\alpha|\leq k}\  \underset{U}{\text{ess }\sup}\  |D^{\alpha}u| \qquad \quad  (p = \infty)
+		\end{cases}
+	\end{equation*}
+	
+	\item \textbf{sobolev convergence}\\
+	let $\{u_m\}_{m\in \N}$, $u \in W^{k,p}(U)$. 
+	\begin{align*}
+		& \quad u_m \to u \quad \text{in } W^{k,p}(U)\\
+		& \hspace{1.5cm}:\iff \\
+		&\underset{m \to \infty}{\lim} \|u_m -u\|_{W^{k,p}(U)} = 0
+	\end{align*}
+	and
+	\begin{align*}
+	& \quad u_m \to u \quad \text{in } W^{k,p}_\loc(U)\\
+	& \hspace{1.5cm}:\iff \\
+	&\underset{m \to \infty}{\lim} \|u_m -u\|_{W^{k,p}(V)} = 0 \qquad \forall V \subset\subset U
+	\end{align*}
+	
+	\item $W^{k,p}_0:=$ closure of $C^\infty_c(U)$ in $W^{k,p}(U)$
+	\item \textbf{properties}\\
+	$u,v \in W^{k,p}(U)$, $|\alpha| \leq k$:
+	\begin{itemize}
+		\item $D^{\alpha} u \in W^{k-|\alpha|,p}(U)$,\quad $D^{\beta}(D^{\alpha}u) = D^{\alpha+\beta}u =  D^{\alpha}(D^{\beta}u) $, $\alpha, \beta$ multiindex and $|\alpha| + |\beta| \leq k$
+		\item $\forall \lambda_1, \lambda_2 \in \R$:\quad $\lambda_1 u +\lambda_2 v \in W^{k,p}(U)$,\quad $D^{\alpha}(\lambda_1 u +\lambda_2 v) = \lambda_1 D^{\alpha}u + \lambda_2 D^{\alpha}v$
+		\item $V \subset U$ open $\implies u \in W^{k,p}(V)$
+		\item If $\xi \in C^\infty_c(U) \implies \xi u \in W^{k,p}(U)$\quad  and:
+		\begin{equation*}
+			D^{\alpha}(\xi u) = \displaystyle \sum_{\beta \leq \alpha}
+			\begin{pmatrix}
+			\alpha\\
+			\beta
+			\end{pmatrix} 
+			D^{\beta}\xi D^{\alpha -\beta} u
+		\end{equation*}
+	\end{itemize}
+	
+	\item $W^{k,p}(U)$ is Banach space forall $k=1,\dots$ and $1\leq p \leq \infty$
+	
+	
+\end{enumerate}
+
+\subsection{approximation by smooth functions}
+
+$U_\eps = \{x \in U: \dist(x,\partial U ) > \eps \}$
+
+\begin{enumerate}[label=(\alph*)]
+	\item \textbf{interior local}\\
+	$u \in W^{k,p}(U)$, $1 \leq p < \infty$ and $u^{\eps}:= \eta_{\eps} * u$ in $U_{\eps}$, $\eta$ mollifier:
+	\begin{itemize}
+		\item $u^\eps \in C^\infty(U_\eps) \quad \forall \eps >0$
+		\item $u^\eps \to u$ in $W^{k,p}_\loc(U)$\quad for $\eps \to 0$
+	\end{itemize}
+
+	\item \textbf{interior global}\\
+	$U$ is bounded, $u \in W^{k,p}(U)$, $1\leq p < \infty $, $\exists u_m \in C^\infty(U) \cap W^{k,p}(U)$ s.t.
+	\begin{equation*}
+		u_m \to u \quad \text{ in } W^{k,p}(U)
+	\end{equation*} 
+	
+	\item \textbf{global up to boundary}\\
+	$U$ bounded, $\partial U $ is $C^1$, $u \in W^{k,p}(U)$, $1 \leq p < \infty$\\
+	Then there ex. $u_m \in C^\infty(\overline{U})$ s.t. 
+	\begin{equation*}
+		u_m \to u \quad \text{in } W^{k,p}(U)
+	\end{equation*}
+	
+	
+\end{enumerate}
+
+\subsection{extension}
+
+$U$ is bounded, $\partial U$ is $C^1$. Select $V$ opem, bounded s.t. $U \subset \subset V$. Then there exists linear, bounded operator $E: W^{k,p}(U) \to W^{1,p}(\R^n)$ s.t. for each $u \in W^{1,p}(U)$:
+\begin{itemize}
+	\item $Eu = u$ a.e. in $U$
+	\item $Eu$ has support in  $V$  
+	\item there is a coonstant $C$ depending only on $U,V,p$:
+	\begin{equation*}
+		\|Eu\|_{W^{1,p}(\R^n)} \leq C \|u\|_{W^{1,p}(U)}
+	\end{equation*}
+\end{itemize}
+$Eu$ is called an extension of $u$ to $\R^n$. 
+
+\subsection{traces}
+In this part the following is always assumed: $U$ is bounded, $\partial U$ is $C^1$.
+
+\begin{enumerate}[label = (\alph*)]
+	\item there exists linear, bounded operator $T:W^{1,p}(U) \to L^p(\partial U)$ s.t.
+	\begin{itemize}
+		\item $Tu = u|_{\partial U}$ if $u \in W^{1,p}(U)\cap C(\overline{U})$
+		\item  there exists a constant $C$ depending only on $p,U$: \begin{equation*}
+			\|Tu\|_{L^p(\partial U)} \leq C \|u\|_{W^{1,p}(U)}
+		\end{equation*}
+		for $u \in W^{1,p}(U)$
+	\end{itemize}
+
+	\item $u \in W^{1,p}(U)$:
+	\begin{equation*}
+		u \in W^{1,p}_0(U) \iff Tu = 0 \quad \text{on } \partial U
+	\end{equation*} 
+\end{enumerate}
+
+\subsection{inequalities}
+ for $1 \leq p < n$: sobolev conjugate of p is $p^* := \frac{np}{n-p}$ and thus $\frac{1}{p^*} = \frac{1}{p} - \frac{1}{n}$, $p^* > p$
+ 
+ \begin{enumerate}[label=(\alph*)]
+ 	\item (\textbf{Gagliardo-Nirenberg-sobolev inequality})\\
+ 	$1 \leq p <n$:\quad then there exists $C$ only dependent on $p,n$ s.t. 
+ 	\begin{equation*}
+ 		\|u\|_{L^{p^*}(\R^n)} \leq C \|Du\|_{L^p(\R^n)} \qquad \forall u \in C^1_c(\R^n)
+ 	\end{equation*}
+ 	\item (\textbf{estimate for $W^{1,p}$})\\
+ 	$1 \leq p < n$:\quad  $U \subset \R^n$ bounded, open, $\partial U$ is $C^1$. $1 \leq p < n$ and $u \in W^{1,p}(U)$ $\implies $  $u \in L^{p^*}(U)$ and 
+ 	\begin{equation*}
+ 		\|u\|_{L^{p^*}(U)} \leq C \|u\|_{W^{1,p}(U)}
+ 	\end{equation*} 
+ 	$C$ depends only on $U,p,n$.
+ 	
+ 	\item (\textbf{estimate for $W^{1,p}_0$/Poincaré inequality})\\
+ 	$1 \leq p < n$:\quad $U \subset \R^n$ bounded, open, $\partial U$ is $C^1$. $1 \leq p < n$ and $u \in W^{1,p}_0(U)$ then
+  	\begin{equation*}
+ 		\|u\|_{L^{q}(U)} \leq C \|u\|_{L^{p}(U)} \quad \forall q \in [1,p^*]
+ 	\end{equation*} 
+ 	$q = p < p^*$ is also valid. $C$ depends only on $U,p,n$. 
+ 	
+ 	\item (\textbf{Morrey})\\
+ 	$n < p <\infty$ $\implies \exists C$ depending only on $p,n$ s.t. 
+ 	\begin{equation*}
+ 		\|u\|_{C^{0,\gamma}(\R^n)} \leq C \|u\|_{W^{1,p}(\R^n)} \quad \forall u \in C^1(\R^n),
+ 	\end{equation*}
+ 	$\gamma := \frac{1-n}{p}$
+ \end{enumerate}
+
+\subsection{compactness}
+
+\begin{enumerate}[label=(\alph*)]
+	\item let $X,Y$ Banach spaces, $X \subset Y$. $X$ is \textit{compactly embedded} in $Y$ ($X \subset \subset Y$) $:\iff$
+	\begin{itemize}
+		\item $\|x\|_Y \leq C \|x\|_X$ $(x \in X)$ for a constant $C$ and
+		\item each bounded sequence in $X$ is precompact in $Y$	
+	\end{itemize}
+
+	\item (\textbf{Rellich})\\
+	$U \subset \R^n$ is bounded, open, $\partial U$ is $C^1$, $1 \leq p <n$:
+	\begin{equation*}
+		W^{1,p}(U) \subset \subset L^q(U) \quad \forall q \in [1,p^*)
+	\end{equation*}
+\end{enumerate}
+
+\subsection{difference quotient}
+in this part $u \in L(U)]$, $V \subset \subset U$
+
+\begin{enumerate}[label = (\alph*)]
+	\item $i$-th difference quotient of size $h$ is
+	\begin{equation*}
+		D^h_i(x) = \frac{u(x+he_i)-u(x)}{h} \quad i = 1,\dots,n
+	\end{equation*}
+	for $x \in V$, $h\in \R$ with $0 < |h| < \dist(V,\partial U)$.\\
+	$D^hu := \left( D^h_1 u, \dots ,D^h_n u \right)$
+	
+	\item (\textbf{relation to weak derivative})\\
+	\begin{itemize}
+		\item $1 \leq p < \infty$, $u \in W^{1,p}(U)$, then forall $V \subset \subset U$:
+		\begin{equation*}
+		\|D^h u\|_{L^p(V)} \leq C \|Du\|_{L^p(U)} 
+		\end{equation*}
+		for a constant $C$ and for all $0 < h < \frac{1}{2}\dist(V,\partial U)$.
+		\item $1 < p <\infty$, $u \in L^p(V)$and there exists a  $C$ s.t.
+		\begin{equation*}
+			\|D^hu\|_{L^p} \leq C
+		\end{equation*} 
+		for all $0 < h < \frac{1}{2}\dist(V,\partial U)$, then $u \in W^{1,p}(V)$ and 
+		\begin{equation*}
+			 \|Du\|_{L^p} \leq C
+		\end{equation*}
+	\end{itemize}
+	
+\end{enumerate}

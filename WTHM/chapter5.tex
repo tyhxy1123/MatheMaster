@@ -1,0 +1,84 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Martingalungleichungen und Rückwärtsmartingale} %5
+\section{Martingalungleichungen} %5.1
+\begin{itemize}
+\item Doobs Maximalungleichung
+\item Doobs $L_p$-Ungleichung
+\item Azumas Ungleichung (Beispiel für \textit{Konzentrationsungleichung})
+\end{itemize}
+
+\setcounter{section}{5} %fix numbering
+\begin{theorem}[Doobs Maximalungleichung]\label{theorem5.1DoobMaximalungleichung}\enter
+Sei $(M_n)_{n\in\N}$ (Sub-)Martingal. Dann gilt:
+\begin{align*}
+\P\left(\max\limits_{j\leq n} M_j\geq r\right)\leq\frac{1}{r}\cdot\E\left[M_n^+\right]\qquad\forall n\in\N,\forall r\geq0
+\end{align*}
+Hierbei hängt die linke Seite vom gesamten Pfad ab, aber die rechte Seite hängt nur vom Endwert ab.
+\end{theorem}
+\begin{bemerkung}\
+\begin{enumerate}[label=(\alph*)]
+\item $(M_n)_{n\in\N}$ Martingal $\implies\big(|M_n|\big)_{n\in\N}$ Submartingal
+\begin{align*}
+\implies\P\left(\max\limits_{j\leq n} |M_j|\geq r\right)\leq\frac{\E\big[|M_n|\big]}{r}
+\end{align*}
+\item Es gilt die Zwischenabschätzung
+\begin{align*}
+\P\left(\max\limits_{j\leq n} M_j\geq r\right)
+\leq
+\frac{1}{r}\cdot\E\left[M_n\cdot\indi_{\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace}\right]
+\leq
+\frac{1}{r}\cdot\E\left[M_n^+\right]
+\end{align*}
+\end{enumerate}
+\end{bemerkung}
+
+\begin{proof}
+$(M_n)_{n\in\N}$ sei Submartingal. Für $k\leq n,A\in\F_k$ gilt wegen der Submartingaleigenschaft:
+\begin{align}
+M_k&\leq\E[M_n~|~\F_k]\nonumber\\
+\implies\indi_A\cdot M_k &\leq\E\big[\indi_A\cdot M_n~\big|~\F_k\big]\nonumber\\
+\implies\E[\indi_A\cdot M_k]&\leq\E[\indi_A\cdot M_n]\label{eqProof5.1Stern}\tag{$\ast$}
+\end{align}
+Definiere die Stoppzeit
+\begin{align*}
+\tau:=\min\big\lbrace n\in\N_0:M_n\geq r\big\rbrace.
+\end{align*}
+Es gilt
+\begin{align*}
+\tau\leq n&\implies \max\limits_{j\leq n} M_j\geq r\\
+\text{ und } \max\limits_{j\leq n} M_j\geq r&\implies\tau\leq n
+\end{align*}
+d.h.
+\begin{align}\label{eqProof5.1SternStern}\tag{$\ast\ast$}
+\lbrace\tau\leq n\rbrace=\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace
+\end{align}
+Somit
+\begin{align*}
+r\cdot\indi_{\lbrace\tau\leq n\rbrace}
+&\leq M_\tau\cdot\indi_{\lbrace\tau\leq n\rbrace}
+=\sum\limits_{k=0}^n M_k\cdot\indi_{\lbrace\tau=k\rbrace}
+\end{align*}
+Bilde Erwartungswerte:
+\begin{align*}
+r\cdot\P[\tau\leq n]
+&\leq\sum\limits_{k=0}^n\E\Big[M_k\cdot\indi_{\underbrace{\lbrace\tau=k\rbrace}_{\in\F_k}}\Big]\\
+&\stackrel{\eqref{eqProof5.1Stern}}{\leq}
+\sum\limits_{k=0}^n\E\Big[M_n\cdot\indi_{\lbrace\tau=k\rbrace}\Big]\\
+&=\E\Big[M_n\cdot\indi_{\lbrace\tau\leq n\rbrace}\Big]\\
+\stackrel{\eqref{eqProof5.1SternStern}}{\implies}
+r\cdot\P\left(\max\limits_{j\leq n} M_j\geq r\right)
+&\leq\E\Big[M_n\cdot\indi_{\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace}\Big]
+\leq\E\big[M_n^+\big]
+\end{align*}
+\end{proof}
+
+\begin{theorem}[$L_p$-Ungleichung]\label{theorem5.2LpUngleichung}\enter
+Sei $(M_n)_{n\in\N}$ Martingal (oder positives Submartingal) und $p>1$. Dann gilt:
+\begin{align*}
+\big\Vert M_n^\ast\big\Vert\leq\frac{p}{p-1}\cdot\big\Vert M_n\big\Vert_p\qquad\forall n\in\N_0\qquad\mit M_n^\ast:=\max\limits_{j\leq n}|M_j|
+\end{align*}
+\end{theorem}
