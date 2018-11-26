@@ -1780,10 +1780,166 @@ c\cdot\Vert\hat{w}_h\Vert_{0,2,\hat{K}}\\
 &\leq c\cdot h_K^{-1}\cdot\big|\det(B_K)\big|^{\frac{1}{2}}\cdot\underbrace{\Vert B_K\Vert^0}_{=1}\cdot\big|\det(B_K)\big|^{-\frac{1}{2}}\cdot\Vert w_h\Vert_{0,2,K}\\
 &= c\cdot h_K^{-1}\cdot\Vert w_h\Vert_{0,2,K}
 \end{align*}
-Bei ($\ast$) wird die Normäquivalenz auf endlichen dimensionalen $\hat{V}$	benutzt.
+Bei ($\ast$) wird die Normäquivalenz auf endlichen dimensionalen $\hat{V}$ benutzt.
 \end{proof}
 
+\section{Nichtkonforme Methoden}
+\textbf{Nichtkonform} bedeutet: $V_h\not\subseteq V$\\
+\textbf{Konform} bedeutet: $V_h\subseteq V$\\
+Warum nichtkonforme Methoden?
+\begin{enumerate}[label=(\roman*)]
+\item Probleme höherer Ordnung, z. B. von 4. Ordnung
+\begin{align*}
+V=H^2(\Omega)\qquad\qquad%\\
+\text{Konformität}\implies V_h\subseteq C^1
+\end{align*}
+%TODO Hier Skizze einfügen (muss aber nicht sein. Ist wohl nicht so wichtig)
+\item %TODO hier kurze Erklärung in Worten einfügen
+%TODO Hier Skizze einfügen (auch hier nur optional, da wohl unwichtig)
+\item Probleme mit Restriktionen / Einschränkungen
+\end{enumerate}
 
+\subsection{Das nichtkonforme $P_1$-Element}
+Alternative Bezeichnung: Crouzeix-Raviart, 1973\\
+Definition lokaler Finite-Elemente $(K,V,\Sigma)$
+\begin{align*}
+K&=\text{Dreieck oder Tetraeder}\\
+V&=P_1(K)=\spann(1,x,y)\text{ oder }\spann(1,x,y,z)\\
+\Sigma&=\big\lbrace N_1,N_2,N_3\big\rbrace\text{ oder }\big\lbrace N_1,N_2,N_3,N-4\big\rbrace\\
+N_i&:\text{ Integral-Mittelwert der Funktionen auf Kanten}\\
+&\text{(Alternative: Funktionswerte auf den Mittelpunkten)}
+\end{align*}
+
+\begin{beisp}
+%TODO Hier Skizze 1 und 2 einfügen (nebeneinander)
+\begin{align*}
+\hat{N}_i(\hat{v})=\frac{1}{|\hat{E}_i|}\cdot\int\limits_{\hat{E}_i}\hat{v}\d\gamma
+\end{align*}
+\end{beisp}
+
+Der Raum der Finiten-Elemente $V_h$ ist hierbei
+\begin{align*}
+V_h=\left\lbrace v\in L^2(\Omega):
+v|_K\in P_1(K),
+\begin{array}{c}
+\int\limits_E [v]_E\d\gamma=0~\forall
+\text{ inneren Kanten $E$ und}\\
+\frac{1}{|E|}\cdot\int\limits_E v\d\gamma=0~\forall\text{ äußeren Kanten }E
+\end{array}
+\right\rbrace
+\end{align*}
+Hierbei ist $[v]_E$ der Spring von $v$ über Kanten $E$.\\
+\ul{Beobachtung}: Raum der stetigen, stückweise linearen Funktionen ist eine Teilmenge von $V_h$ mit Nullrandbedingungen (d.h. die Funktionen verschwinden auf dem Rand). Es folgt
+\begin{align*}
+\int\limits_{v_h\in V_h}\big\Vert u-v_h\big\Vert_{0,2,\Omega}
+\leq\inf\limits_{w_h\in S_{h,0}^{1,0}}\big\Vert u-w_h\big\Vert_{0,2,\Omega}
+\leq c\cdot h^2\cdot|u|_{2,2,\Omega}
+\end{align*}
+Wegen $V_h\not\subseteq V$ brauchen wir die Verallgemeinerung von $|\cdot|_{1,2,\Omega}$ für $v\in V=H=^1(\Omega)$:
+\begin{align*}
+|v|_{1,2,\Omega}^2
+&=\sum\limits_{K\in\T_h}|v|^2_{1,2,K}
+=\sum\limits_{K\in\T_h}\Big| v|_K\Big|^2_{1,2,K}
+\end{align*}
+Definiere
+\begin{align*}
+|v|_{1,h}:=\left(\sum\limits_{K\in\T_h}|v|^2_{1,2,K}\right)^{\frac{1}{2}}
+\end{align*}
+Ist $|\cdot|_{1,h}$ eine Norm auf $V_h$? Es reicht die Null-Eigenschaft zu prüfen:
+\begin{align*}
+|v_{1,2}|=0\implies v|_K=\text{konst.}
+\stackrel{\int[v]_E\d\gamma}{\implies} 
+v=\text{konst. auf }\Omega
+\stackrel{\int\limits_{E\in\Gamma} v\d\gamma=0}{\implies}
+v\equiv 0
+\end{align*}
+Folglich ist es wirklich eine Norm. Es gilt außerdem:
+\begin{align*}
+\inf\limits_{v_h\in V_h}\big|u-v_h\big|_{1,h}
+\leq\inf\limits_{w_h\in S_{h,0}^{1,0}}\underbrace{\big|u-w_h\big|_{1,h}}_{|u-w_h|_{1,2}}
+\leq c\cdot h\cdot|u|_{2,2}
+\end{align*}
+
+\subsection{Abstrakes Framework}
+Problem:
+\begin{align*}
+\left\lbrace\begin{array}{rl}
+-\Delta u&=f\text{ in }\Omega\\
+u&=0 \text{ auf }\Gamma=\partial\Omega
+\end{array}\right.
+\end{align*}
+Variationsformulierung: Finde $u\in V=H_0^1(\Omega)$ so, dass
+\begin{align*}
+\underbrace{\int\limits_\Omega\nabla u\cdot\nabla v\d x}_{=:a(u,v)}=\underbrace{\int\limits_\Omega f\cdot v\d x}_{=:(f,v)}\qquad\forall v\in V
+\end{align*}
+Schwierigkeit: $a$ ist nicht definiert für alle Funktionen aus $V_h$. Setze
+\begin{align*}
+a_h(v_h,w_h):=\sum\limits_K\int\limits_K\nabla v_h\cdot\underbrace{\nabla w_h}_{=\nabla(w_h|_K)}\d x
+\end{align*}
+Diskretes Problem: Finde $u_h\in V_h$ so, dass
+\begin{align*}
+a_h(u_h,v_h)=(f,v_h)\qquad\forall v_h\in V_h
+\end{align*}
+
+\textbf{Annahmen:}
+\begin{itemize}
+\item $V$ sei Hilbertraum
+\item $V_h$ sei ein diskreter Finite-Elemente-Raum mit Norm $\Vert\cdot\Vert_h$
+\item $a:V\times V\to\R$ sei stetige, $V$-elliptische Bilinearform  
+\item $f\colon V\to\R$ sei linear und stetig
+\end{itemize}
+Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V$, welches das Problem löst.\\
+
+\textbf{Weitere Annahmen:}
+\begin{itemize}
+\item $a_n$ sei Bilinearform auf $V\cup V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
+\item $a_n$ sei \textbf{gleichmäßig stetig auf $V\cup V_h$}, d. h.
+\begin{align*}
+\exists M>0\text{ unabhängig von }h:\big|a_n(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V\cup V_h
+\end{align*}
+\item $f_h:V_h\cup V\to\R$ sei linear und stetig
+\item $a_h$ ist \textbf{gleichmäßig $V_h$-elliptisch}, d.h.
+\begin{align*}
+\alpha\cdot\Vert V_h\Vert^2_h\leq a_h(v_h,v_h)\qquad\forall v_h\in V_h
+\end{align*}
+wobei $\alpha$ unabhängig von $v_h$ ist.
+\end{itemize}
+Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u_h\in V_h$, welches das Problem löst. Welcher Zusammenhang besteht nun zwischen $u$ und $u_h$?
+
+\begin{theorem}[Zweites Lemma von Strang]\label{theorem5.1ZweitesLemmaStrang}\enter
+Sei $\lbrace V_h\rbrace$ eine Familie von (nichtkonformen) Finiten-Elementen-Räumen. Bezeichne $u$ und $u_h$ die schwache bzw. die diskrete Lösung. Dann gilt:
+\begin{align*}
+\big\Vert u-u_h\big\Vert_h\leq\left(1+\frac{M}{\alpha}\right)\cdot\inf\limits_{v_h\in V_h}\big\Vert u-v_h\big\Vert_h
++\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_n(u,z_h)-f_h(z_h)}{\Vert z_h\Vert_h}
+\end{align*}
+Hierbei ist erste Summand auf der rechten Seite der Approximationsfehler und der zweite Term der Konsistenzfehler.
+\end{theorem}
+
+\begin{bemerkung}
+konforme Methode: $V_h\subseteq V,~a_h=a,f_h=f$ und damit:
+\begin{align*}
+a_h(u,z_h)-f_h(z_h)=(a,z_h)-f(z_h)=0\text{ wegen } z_h\in V_h\subseteq V
+\end{align*}
+Folglich gibt es im Fall der konformen Methode keinen Konsistenzfehler.
+\end{bemerkung}
+
+\begin{proof}
+Sei $v_h\in V_h$ beliebig. Dann gilt:
+\begin{align*}
+\alpha\cdot\big\Vert\underbrace{v_h-u_h}_{=:w_h\in V_h}\big\Vert
+&\leq a_n\big(v_h-u_h,v_h-u_h\big)\\
+&=a_h\big(v_h,w_h\big)-\underbrace{a_h\big(u_h,w_h\big)}_{=f_h(w_h)}\\
+&=a_h\big(v_h-u,w_h\big)+a_h\big(u,w_h\big)-f_h\big(w_h\big)\cdot\frac{\Vert w_h\Vert_h}{\Vert w_h\Vert_h}\\
+&\leq M\cdot\big\Vert v_h-u\big\Vert_h\cdot\big\Vert w_h\big\Vert_h+\Vert w_h\Vert_h\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}\\
+\implies
+\underbrace{\Vert w_h\Vert_h}_{=\Vert v_h-u_h\Vert_h}&\leq\frac{M}{\alpha}\cdot\big\Vert v_h-u\big\Vert+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_n\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
+\end{align*}
+Mit der Dreicksungleichung folgt:
+\begin{align*}
+\Vert u-u_h\Vert\leq\Vert u-v_h\Vert+\Vert v_h-u_h\Vert_h\leq\left(1+\frac{M}{\alpha}\right)\cdot\Vert u-v_h\Vert_h+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_n\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
+\end{align*}
+Bilden des Infimums $\inf\limits_{v_h\in V_h}$ liefert die Behauptung.
+\end{proof}
 
 
 
