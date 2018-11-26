@@ -31,7 +31,7 @@
 \newcommand{\pos}{\text{pos}}
 \newcommand{\RR}{\mathcal{R}}
 \newcommand{\PP}{\mathcal{P}}
-
+\renewcommand{\L}{\mathcal{L}}
 
 \begin{document}
 %\setcounter{section}{1}
@@ -47,11 +47,11 @@ Die Symbole $\to, \leftrightarrow$ müssen zuerst umgeschrieben werden.\\
 
 \textbf{Klauselform / konjunktive Normalform /CNF:}\\
 \begin{align}
-&\frac{\neg\neg D}{D}\label{KNF1}\\
-&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\\
-&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{KNF3}\\
-&\frac{(D_1\vee D_2)}{D_1, D_2}\label{KNF4}\\
-&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{KNF5}\\
+&\frac{\neg\neg D}{D}\label{KNF1}\tag{KNF1}\\
+&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\tag{KNF2}\\
+&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{KNF3}\tag{KNF3}\\
+&\frac{(D_1\vee D_2)}{D_1, D_2}\label{KNF4}\tag{KNF4}\\
+&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{KNF5}\tag{KNF5}\\
 \end{align}
 
 \subsection*{Aufgabe 5.1 (a)}
@@ -130,13 +130,22 @@ F^I
 \end{align*}
 Also ist $F$ unerfüllbar.
 \end{proof}
+\begin{proof}[Beweis des Tutors]
+\begin{align*}
+&\text{ eine in $F$ vorkommende Klausel ist unerfüllbar}\\
+&\Longleftrightarrow\text{ es gibt $i\in\lbrace1,\ldots,n\rbrace$ sodass $C_i$ ist unerfüllbar}\\
+&\Longleftrightarrow\text{ es gibt $i\in\lbrace1,\ldots,n\rbrace$ sodass für alle Interpretationen $I$ gilt: }I\not\models C_i\\
+&\implies\text{ für alle Interp. $I$ gibt es $i\in\lbrace1,\ldots,n\rbrace$ sodass gilt: }I\not\models C_i\\
+&\Longleftrightarrow F\text{ ist unerfüllbar}
+\end{align*}
+\end{proof}
 
 \subsection*{Aufgabe 5.2 (b)}
 $F$ kann unerfüllbar sein obwohl jede in $F$ vorkommende Klausel $C_i,i=1,\ldots,n$ erfüllbar ist.
 \begin{proof}
 Betrachte
 \begin{align*}
-F:=\langle C_1,C_2\rangle=C_1\wedge C_2=p\wedge\neg p
+F:=\langle C_1,C_2\rangle=\langle[p],[\neg p]\rangle=p\wedge\neg p
 \end{align*}
 wobei $p\in\RR$ ein Atom ist. Hier sind die (alle) Klauseln $C_1=p$ und $C_2=\neg p$  jeweils erfüllbar, aber $F$ ist nicht erfüllbar.\\
 \end{proof}
@@ -145,7 +154,7 @@ wobei $p\in\RR$ ein Atom ist. Hier sind die (alle) Klauseln $C_1=p$ und $C_2=\ne
 $C$ ist erfüllbar gdw. es ein Literal in $C$ gibt.
 \begin{proof}
 \underline{Zeige ``$\implies$'':}\\
-Sei $C$ erfüllbar. Dann ist $C\neq[]$ per Definition der leeren Klausel. Folglich ist $m>0$, d. h. es existiert mindestens ein Literal $L_i$ in $C$.\\
+Sei $C$ erfüllbar. Dann ist $C\neq[]$ per Definition der leeren Klausel (folgt aus Kontraposition: Es gibt kein Literal in $C\implies C=[]\implies C$ ist unerfüllbar). Folglich ist $m>0$, d. h. es existiert mindestens ein Literal $L_i$ in $C$.\\
 
 \underline{Zeige ``$\Longleftarrow$'':}\\
 Angenommen es gibt ein Literal in $C$, d.h. $m>0$.
@@ -163,12 +172,32 @@ Da nach IV $C_m$ erfüllbar ist, gibt es eine Interpretation $\tilde{I}$, die $C
 \begin{align*}
 (C_{m+1})^I=(C_{m}\vee L_{m+1})^I=(C_{m})^I\vee^\ast (L_{m+1})^I
 \end{align*}
-erfüllt. Folglich ist $C$ erfüllbar.
+erfüllt. Folglich ist $C$ erfüllbar.\\
+
+\underline{Zeige ``$\Longleftarrow$'' (Tutor-Version):}\\
+Sei nun $C=[L_1,\ldots,L_m]$ mit $m>0$. (jedes $L_i$ steht dabei für eine aussagenlogische Variable oder die Negation einer Variablen.) Da $C$ eine verallgemeinerte Disjunktion (ODER-Verknüpfung) von Literalen ist, genügt es das Literal $L_m$ zu erfüllen. Definiere also $I$ mit
+\begin{align*}
+p^I:=\left\lbrace\begin{array}{cl}
+\top,&\falls L_m=p\\
+\bot,&\sonst
+\end{array}\right.\qquad\forall p\in\RR
+\end{align*}
+Dann gilt: $L^I=\top$. Damit folgt $C^I=\top$ und somit ist gezeigt, dass
+
 \end{proof}
 
 \section*{Aufgabe 5.3 (Beweis von Lemma 3.29)}
+Lemma 3.29 wird benötigt um zeigen, dass der Algorithmus, welcher Formeln in CNF umformt, korrekt ist.
 \begin{proof}
-
+Sei $F$ eine verallgemeinerte Konjunktion von verallgemeinerten Disjunktionen
+%, d.h. $F$ ist eine verallgemeinerte Konjunktion von Klauseln.
+Die Umformungsregeln \eqref{KNF1}, \eqref{KNF3} und \eqref{KNF4} und ersetzen / modifizieren eine einzelne verallgemeinerte Disjunktion, liefern aber auch in der ``Ausgabe'' eine verallgemeinerte Disjunktion. Die Regeln \eqref{KNF2} und \eqref{KNF5} ersetzen eine verallgemeinerte Disjunktion durch zwei verallgemeinerte Disjunktionen.\\
+Die semantische Äquivalenz von Regel \eqref{KNF1} folgt aus $\neg^\ast\circ\neg^\ast=\id$, von den Regeln \eqref{KNF3}, \eqref{KNF5} aus den De Morganschen  Regeln, sowie von den Regeln \eqref{KNF2} und \eqref{KNF4} aus 
+\begin{align*}
+(\varphi\wedge\psi)\equiv\big\langle[\varphi],[\psi]\big\rangle
+\qquad\text{bzw.}\qquad
+(\varphi\vee\psi)\equiv\big\langle[\varphi,\psi]\big\rangle
+\end{align*}
 \end{proof}
 
 \section*{Aufgabe 5.4 (Terminierung der NNF Transformation}
@@ -187,34 +216,55 @@ Sei $F\in\L(\RR),\pi\in\PP_F,F\lceil\pi\rceil=G$ und $H\in\L(\RR)$ mit $r(H)<r(G
 f\big(F\lceil\pi\mapsto H\rceil\big)<r(F)
 \end{align*}
 \begin{proof}
-Beweis durch strukturelle Induktion über $F\in\L(\RR)$:\\
-Induktionsanfang: Sei $F=p\in\RR$. Dann ist $\pi=\Lambda$ und $F=G$ und
+Sei $F\in\L(\RR)$ beliebig.
+Beweis durch strukturelle Induktion über Position $\pi$:\\
+\ul{Induktionsanfang:} $\pi=\Lambda$
 \begin{align*}
-r(F\lceil\pi\mapsto H\rceil)=r(H)\stackrel{\text{Vor}}{<}r(G)=r(F)
-%\stackeq{\text{Def}}1
+F&=F\lceil\pi\rceil=G\\
+F\lceil\pi\mapsto F\rceil]&=F\\
+r(F\lceil\pi\mapsto H\rceil)&=r(H)\stackrel{\text{Vor}}{<}r(G)=r(F)
 \end{align*}
-Induktionsvoraussetzung: Seien $F_1,F_2\in\L(\RR)$ beliebig aber fest so, dass sie die Voraussetzungen der zu zeigenden Aussage und
+\ul{Induktionshypothese:} Sei $\pi$ eine Position, sodass für alle $F,G,H\in\L(\R)$ gilt:
 \begin{align*}
-f\big(F_1\lceil\pi_1\mapsto H_1\rceil\big)<r(F_2)
-\qquad\text{und}\qquad
-f\big(F_1\lceil\pi_2\mapsto H_2\rceil\big)<r(F_2)
+\pi\in\PP_F\text{ und }F\lceil\pi\rceil=G\text{ und } r(H)<r(G)\implies r\big(F\lceil\pi\mapsto H\rceil\big)<r(F)
 \end{align*}
-erfüllen.\\
+\ul{Induktionsbhauptung:} Die Aussage gilt dann auch für die Position $1\pi$ und $2\pi$.\\
 
-Induktionsschritt: Sei $\circ\in\lbrace\wedge,\vee,\to,\leftrightarrow\rbrace$ beliebig.\\
-Betrachte den Fall $F=\neg F_1$:
+\ul{Induktionsschritt:} Falls $1\pi\in\PP_F$, dann gibt es zwei Möglichkeiten für die Struktur von $F$:
+\begin{enumerate}
+\item Falls $F=\neg F_1$:
 \begin{align*}
-To~Do
+r\big(F\lceil1\pi\mapsto H\rceil\big)
+&=r\big((\neg F_1)\lceil1\pi\mapsto H\rceil\big)\\
+&=r\big(\neg(F_1\lceil\pi\mapsto H\rceil)\big)\\
+&=2\cdot r\big(F_1\lceil\pi\mapsto H\rceil\big)+1\\
+&\stackrel{\text{IH}}{<}
+2\cdot r\big(F_1\big)+1\\
+&=r(\neg F_1)\\
+&=r(F)
 \end{align*}
+\item Falls $F=(F_1\circ F_2)$:
+\begin{align*}
+r\big(F\lceil1\pi\mapsto H\rceil\big)
+&=r\big((F_1\circ F_2)\lceil1\pi\mapsto H\rceil\big)\\
+&=r\big(F_1\lceil\pi\mapsto H\rceil\circ F_2)\big)\\
+&=r\big(F_1\lceil\pi\mapsto H\rceil\big)+r(F_2)+2\\
+&\stackrel{\text{IH}}{<}
+r\big(F_1\big)+r(F_2)+2\\
+&=r(\neg F_1\circ F_2)\\
+&=r(F)
+\end{align*}
+\end{enumerate}
+Analog zum zweiten Fall kann auch für $2\pi\in\PP_F$ argumentiert werden.
 \end{proof}
 
 \subsection*{Aufgabe 5.4 (b)}
 Der NNF Transformationsalgorithmus terminiert.
 \begin{proof}
-
+Mit jeder Regelanwendung wird der Rang der abgeleiteten Formel \underline{echt} kleiner. Da die natürlichen Zahlen nach unten (bzgl. $<$) beschränkt sind, kann ab einem gewissen Punkt keine Regel mehr angewendet werden, welche den Rang weiter verringern würde.
 \end{proof}
 
-\section*{Aufgabe 5.5 (Dualisimus zwischen KF und DKF}
+\section*{Aufgabe 5.5 (Dualisimus zwischen KF und DKF)}
 Sei $F$ eine Formel in der nur die Junktoren $\vee,\wedge,\neg$ vorkommen.
 
 \subsection*{Aufgabe 5.5 (a)}
@@ -261,7 +311,8 @@ Sei $F=(F_1\wedge F_2)$. Dann gilt:
 \begin{align*}
 \neg F
 &=\neg(F_1\wedge F_2)\\
-&=(\neg F_1\vee\neg F_2)\\
+&\stackrel{\text{DM}}{\equiv}
+(\neg F_1\vee\neg F_2)\\
 &\stackrel{\text{IV}}{\equiv}
 \big((\overline{F_1})^d\vee\overline{F_2})^d\big)\\
 &=\big((\overline{F_1}\wedge\overline{F_2})\big)^d\\
@@ -272,7 +323,8 @@ Sei $F=(F_1\vee F_2)$. Dann gilt:
 \begin{align*}
 \neg F
 &=\neg(F_1\vee F_2)\\
-&=(\neg F_1\wedge\neg F_2)\\
+&\stackrel{\text{DM}}{\equiv}
+(\neg F_1\wedge\neg F_2)\\
 &\stackrel{\text{IV}}{\equiv}
 \big((\overline{F_1})^d\wedge\overline{F_2})^d\big)\\
 &=\big((\overline{F_1}\vee\overline{F_2})\big)^d\\
@@ -282,10 +334,10 @@ Sei $F=(F_1\vee F_2)$. Dann gilt:
 \end{proof}
 
 \subsection*{Aufgabe 5.5 (c)}
-To Do
+Ersetze $\langle,\rangle$ durch $[,]$ und umgekehrt, negiere alle Atome alle aussagenlogischen Variablen und entferne Doppelnegation (zum Schluss).
 
 \subsection*{Aufgabe 5.5 (d)}
-To Do
+To Do %TODO
 
 \section*{Sudoku $n^2\times n^2$}
 Problem: Existiert eine Zuweisung, welche jeder Zelle einen Wert von 1 bis $n^2$ zuweist so, dass in jeder Zeile, in jeder  Spalte und in jedem Block jede Zahl aus $\lbrace1,2,\ldots,n^2\rbrace$ genau einmal vorkommt?
