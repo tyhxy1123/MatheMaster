@@ -193,7 +193,7 @@ Sei $(X_i)_{i\in I}$ eine Folge von Zufallsvariablen und $\phi:[0,\infty)\to\R$ 
 Sei also das Supremum beschränkt.\\
 
 \underline{Fall 1: $\phi(0)=0$}\\
-Es gilt aus mir unbekannten Gründen $\frac{\phi(a)}{a}\leq\frac{\phi(b)}{b}$.
+Es gilt $\frac{\phi(a)}{a}\leq\frac{\phi(b)}{b}$.
 Zu zeigen:
 \begin{align*}
 \lim\limits_{R\to\infty}\underbrace{\sup\limits_{i\in I}
@@ -263,7 +263,7 @@ Wir betrachten das Martingal vom Aufgabenblatt 2 Aufgabe 2:
 \begin{align*}
 	Y_n := \left(\frac{q}{p}\right)^{X_n}
 \end{align*}
-Wir haben bereits bewiesen, dass $Y$ Martingal ist. Außerdem gilt für \enter$\tau=\tau_A\wedge\tau_B$ der die Abschätzung
+Wir haben bereits bewiesen, dass $Y$ Martingal ist. Außerdem gilt für \enter$\tau=\tau_A\wedge\tau_B$ die Abschätzung
 \begin{align*}
 	\big|Y_{\tau\wedge n}\big|\leq\left(\frac{q}{p}\right)^{\max\lbrace A,B\rbrace}
 \end{align*}. Somit folgt aus Theorem 3.3:
@@ -275,7 +275,7 @@ Andererseits:
 	1=\E\big[Y_\tau\big]&=\E\Big[\underbrace{Y_{\tau_A}}_{=\left(\frac{q}{p}\right)^A}\cdot\indi_{\lbrace\tau_A<\tau_B\rbrace}+\underbrace{Y_{\tau_B}}_{=\left(\frac{q}{p}\right)^{-B}}\cdot\indi_{\lbrace\tau_A>\tau_B\rbrace}\Big]\\
 &=\left(\frac{q}{p}\right)^A\cdot\P\big(\tau_A<\tau_B\big)+\left(\frac{q}{p}\right)^{-B}\cdot\P\big(\tau_A>\tau_B\big)\\
 &=\left(\frac{q}{p}\right)^A\cdot a+ \left(\frac{p}{q}\right)^{B}\cdot(1-a)\\
-&=a\left[\left(\frac{q}{p}\right)^a + \left(\frac{p}{q}\right)^b\right]- \left(\frac{p}{q}\right)^b\\
+&=a\left[\left(\frac{q}{p}\right)^A - \left(\frac{p}{q}\right)^B\right]+ \left(\frac{p}{q}\right)^B\\
 &\implies
 	a=\frac{1-\left(\frac{p}{q}\right)^B}{\left(\frac{q}{p}\right)^A-\left(\frac{p}{q}\right)^B}
 \end{align*}
@@ -311,7 +311,7 @@ Wir berechnen:
 	&= \sum\limits_{k=1}^\infty k - (k-1) \cdot \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
 	&= \sum\limits_{k=1}^\infty \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
 	&\stackrel{(1)}{\leq}\sum\limits_{k=1}^\infty \left(\frac{p}{q}\right)^k\\
-	&=\frac{1}{1-\left(\frac{p}{q}\right)^k} \\
+	&\stackeq{q >p}\frac{1}{1-\left(\frac{p}{q}\right)^k} \\
 	&= \frac{q}{q-p}
 \end{align*}
 
