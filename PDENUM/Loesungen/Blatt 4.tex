@@ -34,7 +34,7 @@
 \section*{Aufgabe 4.1}
 Gegeben sei die Randwertaufgabe
 \begin{align*}
--u''\equiv f,\qquad u(0)=0,~u(1)=0
+-u''= f,\qquad u(0)=0,~u(1)=0
 \end{align*}
 Dann liefert die Finite-Elemente-Methode mit linearen Elementen in den Gitterpunkten die exakten Werte der Lösung.
 
@@ -119,8 +119,8 @@ der Raum der rotiert bilinearen Funktionen.
 \begin{proof}
 \underline{Zeige (a):}\\
 \begin{align*}
-N_1(\hat{x}\cdot\hat{y})=\hat{x}\cdot\hat{y}(0,-1)=0\\
-\implies N_i(\hat{x}\cdot\hat{y})=0\qquad\forall i\in\lbrace1,2,3,4\rbrace
+N_1(\hat{x}\cdot\hat{y})&=(\hat{x}\cdot\hat{y})(0,-1)=0\\
+\implies N_i(\hat{x}\cdot\hat{y})&=0\qquad\forall i\in\lbrace1,2,3,4\rbrace
 \end{align*}
 Also ist $\hat{Q}_1$ nicht unisolvent für $\hat{\Sigma}$.\\
 
@@ -161,10 +161,10 @@ Auch hier ist die Grundidee wieder
 &=\hat{b}_k\\
 \implies
 M\cdot\begin{pmatrix}
-\hat{\varphi}_1\\ \hat{\varphi}_2 & \hat{\varphi}_3 \\ \hat{\varphi}_4
+\hat{\varphi}_1\\ \hat{\varphi}_2 \\ \hat{\varphi}_3 \\ \hat{\varphi}_4
 \end{pmatrix}
 &=\begin{pmatrix}
-\hat{b}_1\\ \hat{b}_2 & \hat{b}_3 \\ \hat{b}_4
+\hat{b}_1\\ \hat{b}_2 \\ \hat{b}_3 \\ \hat{b}_4
 \end{pmatrix}
 =\begin{pmatrix}
 1\\ \hat{x} \\ \hat{y} \\\hat{x}^2-\hat{y}^2
@@ -176,9 +176,9 @@ M^{-1}&=\begin{pmatrix}
 \frac{1}{4} & -\frac{1}{2} & 0 & \frac{1}{4}
 \end{pmatrix}\\
 \implies\begin{pmatrix}
-\hat{\varphi}_1\\ \hat{\varphi}_2 & \hat{\varphi}_3 \\ \hat{\varphi}_4
+\hat{\varphi}_1\\ \hat{\varphi}_2 \\ \hat{\varphi}_3 \\ \hat{\varphi}_4
 \end{pmatrix}&=M^{-1}\cdot\begin{pmatrix}
-\hat{b}_1\\ \hat{b}_2 & \hat{b}_3 \\ \hat{b}_4
+\hat{b}_1\\ \hat{b}_2 \\ \hat{b}_3 \\ \hat{b}_4
 \end{pmatrix}
 \end{align*}
 	
@@ -237,7 +237,7 @@ x_1\\ y_1
 \end{pmatrix},\qquad\begin{pmatrix}
 b_{1,1} & b_{1,2}\\
 b_{2,1} & b_{2,2}
-\end{pmatrix}=)(P_2-P_1)
+\end{pmatrix}=\Big ( P_2-P_1\quad P_4-P_1  \Big )
 \end{align*}
 
 \underline{Zeige (b):} Nachrechnen.\\
@@ -246,7 +246,7 @@ b_{2,1} & b_{2,2}
 \begin{align*}
 F\text{ affin}&\Longrightarrow\begin{pmatrix}
 \delta_1\\\delta_2
-\end{pmatrix}=0=\big(P_1-P_2+P_3-P-4\big)\\
+\end{pmatrix}=0=\Big (P_1-P_2+P_3-P_4\Big )\\
 &\Longleftrightarrow P_1-P_2=P_4-P_3\\
 &\Longleftrightarrow P_1-P_4=P_2-P_3\\
 &\implies K\text{ ist ein Parallelogramm}
@@ -313,6 +313,7 @@ F:\hat{K}&=(0,1)\to K=(a,a+h),\qquad F(\hat{x}):=a+\hat{x}\cdot h\\
 \int\limits_K\left|\varphi^{(m)}(x)\right|^p\cdot h^{m\cdot p}\cdot\frac{1}{h}\d x\\
 &=h^{m\cdot p}\cdot\frac{1}{h}\cdot|\varphi|^p_{m,p,K}
 \end{align*}
-$(\ast)$: Integration durch Substitution: $\hat{x}=\frac{x-a}{h}$, $\d\hat{x}=\frac{1}{h}\d x$
+$(\ast)$: Integration durch Substitution: $\hat{x}=\frac{x-a}{h}$, $\d\hat{x}=\frac{1}{h}\d x$.\\
+Das Ziehen der $p$-ten Wurzel liefert die Behauptung.
 \end{proof}
 \end{document}
