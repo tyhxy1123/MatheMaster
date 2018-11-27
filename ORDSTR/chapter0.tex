@@ -243,15 +243,19 @@ Kanten interpretieren wir als Aktionen und Knoten als Zustände.
 
 \begin{beispiel}\
 \begin{itemize}
+\item Jedes Aktionsnetzwerk $(G, \ast, \id)$ lässt sich als Netzwerk interpretieren \\$(V, \im(E^{\langle 2 \rangle}), \rho)$
+Dies ist aber im Allgemeinen keine Oberstruktur von $G$!
 \item Pfadaktionsnetzwerk zu einem Netzwerk
 \item logistisches Aktionsnetzwerk zu einer Menge $P$:
 \begin{align*}
 \mathbb{G}_P&:=(G_P,\ast,\id)\\
-\id p:=\id(p)&:=(p,p)\\
+\id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
 G_P&:=(P,P\times P,\id_{P\times P})\\
 (p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
 \end{align*}
 \item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
+
+Sind bis auf Isomorphie einknotige Netzwerke.
 \end{itemize}
 \end{beispiel}
 
@@ -281,12 +285,54 @@ Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mat
         E \dar{\pi_i \circ \rho} \rar{\Phi_{edge}} & E' \dar{\pi_i \circ \rho'}\\
         V \rar{\Phi_{vert}} & V' 
     \end{tikzcd}$$
+    "\textit{Das \underline{Bild} des Anfangsknotens einer Kante ist stets der Anfangsknoten der \underline{Bildkante}.}"\\
+    Ein Netzwerkmorphismus heißt Netzwerk\textbf{isomorphismus}, falls $\Phi_{vert}$ und $\Phi_{edge}$ bijektiv sind.
 \end{definition}
 
 \begin{definition}
     Seien $\mathbb{G} = (G, \ast_\mathbb{G}, id_\mathbb{G}), \mathbb{G}' = (G', \ast_{\mathbb{G}'}, id_{\mathbb{G}'})$
     zwei Aktionsnetzwerke über den Netzwerken $G,G'$.
     Ein \textbf{Funktor (Aktionsnetzwerksmorphismus)} ist ein Netzwerkmorphismus $(G, G', \Phi := (\Phi_{vert}, \Phi_{edge}))$ von $G$ nach $G'$, 
-    sodass für alle $(a,b) \in E^{\langle 2 \rangle}$ gilt
-    $$ \Phi_{edge}(a \ast_{\mathbb{G}} b) = \Phi_{edge}(a) \ast_{\mathbb{G}'} \Phi_{edge}(b).$$
+    sodass für alle $(a,b) \in E^{\langle 2 \rangle}$ und alle $p \in V$ gilt
+    \begin{enumerate}[label=(M\arabic*)]
+        \item $\Phi_{edge}(a \ast_{\mathbb{G}} b) = \Phi_{edge}(a) \ast_{\mathbb{G}'} \Phi_{edge}(b)$
+        \item $\Phi_{edge}(\id_\mathbb{G} p) = \id_{\mathbb{G}'}(\Phi_{vert} p)$.
+    \end{enumerate}
+    Beachte dass
+    $$ E^{\langle n \rangle} = \{(e_1,\ldots,e_n) \in E^n \mid \forall i \in [n-1]: ( \tau e_i = \sigma e_{i+1})\}, $$
+    wobei $[n-1] := \{1, \ldots, n-1\}$.
 \end{definition}
+
+\begin{definition}
+    Ein Netzwerk $G=(V,E,\rho)$ heißt \textbf{dünn}, 
+    falls $\rho$ injektiv.\\
+    Das binäre Relat
+    $$ \Red G := G(V, \rho E) := (V, \rho E, i)$$
+    heißt \textbf{Reduktion} von $G$, wobei
+    $i: \rho E \to V \times V$ die identische Einbettung.
+\end{definition}
+
+\begin{beispiel}
+    Sei $\mathbb{P} := (R, R)$ ein binäres Relat.
+    Dann ist $G_P := (P, R \subseteq P \times P, i)$, wobei
+    $i: R \to P \times P$ die identische Einbettung ist,
+    ein Netzwerk.
+    Es folgt offensichtlich das es sich dabei um ein dünnes Netzwerk handelt.
+\end{beispiel}
+
+\begin{korollar}
+    Die Reduktion eines Netzwerks ist stets dünn.
+\end{korollar}
+
+\begin{bemerkungnr}
+    \underline{Der Reduktionsmorphismus:}
+
+    Sei $G = (V, E, \rho)$ ein Netzwerk.
+    Wir definieren $ \Phi^{red} := (\id_V, \rho^{red})$, wobei
+    $$ \rho^{red} : \begin{cases}
+        E \to \rho E\\ 
+        e\mapsto \rho e.\end{cases} = \rho|_{\rho E}$$
+    Dieses $ \Phi^{red} $ bildet einen Morphismus von $G$ nach $\Red G$.\\
+    Zusätzlich gilt offenbar:
+    $$ \Phi^{red} \text{ Isomorphismus } \iff G \text{ dünn}.$$
+\end{bemerkungnr}
