@@ -342,9 +342,9 @@ c_2\cdot\Vert f\Vert_{1,2,\Omega}
 \qquad\forall f\in H^1(\Omega)
 \end{align*}
 \end{proposition}
-\begin{proof}\enter
-	\underline{Zeige $\Vertiii{\cdot}$ ist eine Norm:}
-Dies wird in der Übung gezeigt.\enter \enter
+\begin{proof}
+\underline{Zeige $\Vertiii{\cdot}$ ist eine Norm:}
+Dies wird in der Übung gezeigt.\nl
 \underline{Zeige $\Vertiii{f}\leq c_2\cdot\Vert f\Vert_{1,2,\Omega}$:}
 \begin{align*}
 \Vertiii{f} &=
@@ -424,8 +424,7 @@ Es ist zu zeigen, dass $F$ ein lineares stetiges Funktional auf $H^1(\Omega)$  i
 \end{proof}
 
 \begin{proposition}[Friedrichs Ungleichung]\label{prop1.13FriedrichsUngleichung}\enter
-$|\cdot|_{k,p,\Omega}$ ist eine Norm auf $W_0^{k,p}(\Omega)$, welche äquivalent zu der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ ist.\\
-
+$|\cdot|_{k,p,\Omega}$ ist eine Norm auf $W_0^{k,p}(\Omega)$, welche äquivalent zu der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ ist.\nl
 Bemerkung: Für $k=1,~p=2$ ist das eine direkte Folgerung auf Proposition \ref{prop1.11} mit 
 \begin{align*}
 B(u,v)\equiv0\text{ und } F(u)=\int\limits_{\partial\Omega} u\d \gamma.
@@ -453,8 +452,7 @@ Definiere:
 \text{Bilinearform } a(u,v)&:=\int\limits_\Omega\nabla u\cdot\nabla v\d x\\
 \text{Linearform } l(v)&:=\int\limits_\Omega f\cdot v\d x
 \end{align*}
-$a$ und $l$ sind wohldefiniert für $f\in L^2(\Omega),~u,v\in H^1(\Omega)$. Um $v|_{\partial\Omega}=0$ und $u|_{\partial\Omega}=0$ sicherzustellen, muss $u,v\in H^1_0(\Omega)$ gelten.\\
-
+$a$ und $l$ sind wohldefiniert für $f\in L^2(\Omega),~u,v\in H^1(\Omega)$. Um $v|_{\partial\Omega}=0$ und $u|_{\partial\Omega}=0$ sicherzustellen, muss $u,v\in H^1_0(\Omega)$ gelten.\nl
 \textbf{Variationsformulierung der Poissongleichung:}\\
 Finde $u\in H_0^1(\Omega)$ so, dass
 \begin{align*}
@@ -559,8 +557,7 @@ $u^0$ ist eine beliebiger Startwert.
 P:V\to V,\qquad u\mapsto u+\tau\cdot(b-Au)
 \end{align*}
 Jeder Fixpunkt von $P$ ist eine Lösung von $Au=b$ und umgekehrt.\\
-Es bleibt also zu zeigen, das $P$ einen eindeutigen Fixpunkt hat. Dafür nutzen wir den \textit{Banach'schen Fixpunktsatz} \ref{BanachscherFixpunktsatz}.\\
-
+Es bleibt also zu zeigen, das $P$ einen eindeutigen Fixpunkt hat. Dafür nutzen wir den \textit{Banach'schen Fixpunktsatz} \ref{BanachscherFixpunktsatz}.\nl
 Wähle also $N=V$. $P$ ist eine Kontraktion, wenn $\tau$ richtig gewählt wird.
 \begin{align*}
 &\quad\Vert P(u)-P)v)\Vert^2_V\\
@@ -588,8 +585,7 @@ Sei $V_h\subseteq V$ ein endlich-dimensionaler Unterraum von $V$. Betrachte das 
 \text{Finde }u_n\in V_h \text{ so, dass }\qquad \\
 a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h
 \end{align*}
-Da $a$ und $l$ auf $V_h$ die Voraussetzungen des Satzes von Lax-Milgram auf $V_h$ erfüllen, gibt es ein eindeutiges $u_n\in V_h$, das das Problem löst.\\
-
+Da $a$ und $l$ auf $V_h$ die Voraussetzungen des Satzes von Lax-Milgram auf $V_h$ erfüllen, gibt es ein eindeutiges $u_n\in V_h$, das das Problem löst.\nl
 Sei $\lbrace\varphi_i\rbrace_{i=1}^n$ eine Basis von $V_h$.
 \begin{align*}
 \Big(a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h\Big)\Longleftrightarrow
@@ -769,7 +765,7 @@ Sei dazu $v\in C_0^\infty(\Omega)$. Wir multiplizieren auf beiden Seiten mit v u
 
 \begin{definition}[Schwache Lösung]\ %3.1
 \begin{enumerate}[label=(\roman*)]
-\item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
+\item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
 \begin{align*}
 :\Longleftrightarrow
 \int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
@@ -784,14 +780,14 @@ heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung  mit gemi
 \begin{align*}
 :\Longleftrightarrow
 \int\limits_\Omega \nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
-=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma
+=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
 \qquad\forall v\in H^1_D(\Omega)
 \end{align*}
-\item Eine Funktion $u\in H^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung}
+\item Eine Funktion $u\in H^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit Neumann-Randbedingung}
 \begin{align*}
 :\Longleftrightarrow
 \int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
-=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma} g\cdot v\d\gamma
+=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma} g\cdot v\d\gamma\\
 \qquad\forall v\in H^1(\Omega)
 \end{align*}
 \end{enumerate}
@@ -825,7 +821,7 @@ Der Testraum ist immer $H^1_0(\Omega)$.
 \begin{align*}
 \alpha-\frac{1}{2}\cdot\div(a)\geq0.
 \end{align*}
-Dann hat die Konvektions-Diffusions-Gleichung mit homogenen Dirichlet-Randbedingungen eine eindeutige schwache Lösung.
+Dann hat die Konvektions-Diffusions-Gleichung mit homogenen\\ Dirichlet-Randbedingungen eine eindeutige schwache Lösung.
 \item Sei 
 \begin{align*}
 \alpha-\frac{1}{2}\cdot\div(a)\geq0\qquad\text{ und }\qquad a\cdot n\geq0\text{ auf }\Gamma_N.
@@ -1185,7 +1181,7 @@ $u-v_n^\ast$ in $\overline{I_i}=[t_i,t_{i+1}]$ hat $(k+1)$ Nullen wegen der Inte
 \begin{align*}
 \big|u-v_h^\ast\big|_{\mu,2,I_i}
 &=\left\Vert \big(u-v_h^\ast\big)^{(\mu)}\right\Vert_{0,2,I_i}\\
-&\stackrel{\ref{TODO}}{\leq}
+&\stackrel{}{\leq}
 h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu)}\right|_{1,2,I_i}\\
 &=h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu+1)}\right|_{0,2,I_i}\\
 &\leq h_i\cdot\left|u-v_h^\ast\right|_{\mu+1,2,I_i}\\
@@ -1411,8 +1407,7 @@ Interpolation:
 \begin{align*}
 I_h(v):=\sum\limits_{i=1}^n N_i(v)\cdot\varphi_i\in V_h
 \end{align*}
-wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots,\varphi_n\rbrace$ eine Basis von $V_h$ ist mit der Eigenschaft $N_i(\varphi_j)=\delta_{i,j}$.\\
-
+wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots,\varphi_n\rbrace$ eine Basis von $V_h$ ist mit der Eigenschaft $N_i(\varphi_j)=\delta_{i,j}$.\nl
 \textbf{Wichtig: }
 \begin{align*}
 \big(I_h(v)\big)\big|_K&=I_h^K\big(v|_K\big)\quad\text{wobei}\\ I_h^K(v)&=\sum\limits_{i=1}^{m_K} N_i^{(K)}(v)\cdot\varphi_i^K,\qquad N_i^K(\varphi_j^K)=\delta_{i,j}\qquad\Sigma(K)=\left\lbrace N_1^K,\ldots,N_{m_K}^K\right\rbrace
@@ -1888,8 +1883,7 @@ a_h(u_h,v_h)=(f,v_h)\qquad\forall v_h\in V_h
 \item $a:V\times V\to\R$ sei stetige, $V$-elliptische Bilinearform  
 \item $f\colon V\to\R$ sei linear und stetig
 \end{itemize}
-Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V$, welches das Problem löst.\\
-
+Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V$, welches das Problem löst.\nl
 \textbf{Weitere Annahmen:}
 \begin{itemize}
 \item $a_n$ sei Bilinearform auf $V\cup V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
