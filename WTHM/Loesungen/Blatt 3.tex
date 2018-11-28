@@ -16,8 +16,6 @@
 
 \parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
 
-\usepackage{color}
-
 \usepackage{scrpage2}
 \pagestyle{scrheadings}
 \clearscrheadfoot
@@ -107,7 +105,7 @@ Verläuft ähnlich wie der letzte Schritt in $(\ast)$:
 	&\lbrace \tau \leq \sigma\rbrace \cap \lbrace \sigma \leq n\rbrace \\
 	&=\underbrace{\lbrace \tau \leq \sigma, \sigma \leq n\rbrace}_{\F_\sigma \subset F_n} \in F_n \\
 \end{align*}
-\textbf{Alternativ vom Prof.:}\\
+\textbf{Alternative vom Prof.:}\\
 Zu zeigen: $\lbrace\sigma\leq\tau\rbrace\in\F_\tau\cap\F_\sigma$
 \begin{align*}
 \lbrace\sigma\leq\tau\rbrace\cap\lbrace\tau\leq n\rbrace
@@ -221,11 +219,11 @@ Aus obiger Ungleichung folgt mit $b = |X_i| \geq R = a$:
 Es gilt
 \begin{align*}
 \E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]
-&\stackrel{\eqref{eq2}}{\leq}
+\overset{\eqref{eq2}}&{\leq}
 \E\bigg[\phi(|X_i|)\cdot\frac{R}{\phi(R)}\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\bigg]\\
 &=\frac{R}{\phi(R)}\cdot\E\Big[\phi(|X_i|)\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]\\
 &\leq\frac{R}{\phi(R)}\cdot\E\Big[\phi(|X_i|)\Big]\\
-&\stackrel{\text{sup}}{\leq}
+\overset{\text{sup}}&{\leq}
 \frac{R}{\phi(R)}\cdot\sup_{i\in I}\E\Big[\phi(|X_i|)\Big]\\
 \end{align*}
 und daraus folgt durch Bildung des Grenzwertes auf beiden Seiten:
@@ -312,13 +310,13 @@ und somit:
 \underline{Zu b), zeige \eqref{eqAufgabe3bObere}:}
 \begin{align*}
 	\P\left(\sup\limits_{n\in \N_0} X_n \geq k\right)
-	 &\stackeq{q>p}
+	 \overset{q>p}&{=}
 	\P\left(\sup\limits_{n\in \N_0} Y_n \geq \left(\frac{q}{p}\right)^k\right) \\
 	&=\P\left(\max\limits_{0\leq n\leq N} Y_n \geq \left(\frac{q}{p}\right)^k\right) \\
-	&\stackrel{\text{Max-Ung.}}{\leq}
+	\overset{\text{Max-Ung.}}&{\leq}
 	\frac{1}{\left(\frac{q}{p}\right)^k}\cdot\E\left[Y_N^+\right] \\
 	&=\left(\frac{p}{q}\right)^k\E\left[Y_N^+\right] \\
-	&\stackeq{\text{pos.}}
+	\overset{\text{pos.}}&{=}
 	\left(\frac{p}{q}\right)^k\underbrace{\E\left[Y_N\right]}_{=1} \\
 	%&\stackeq{\text{bekannt}}
 	%\frac{1}{\left(\frac{q}{p}\right)^k}\cdot1 \\
@@ -334,8 +332,8 @@ und somit:
 	&= \sum\limits_{k=1}^\infty k\cdot\P\left[\sup\limits_{n\in \N_0}X_n \geq k\right] - \sum\limits_{k=1}^\infty (k-1) \cdot \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
 	&= \sum\limits_{k=1}^\infty\underbrace{\big(k - (k-1)\big)}_{=1} \cdot \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
 	&= \sum\limits_{k=1}^\infty \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
-	&\stackrel{\eqref{eqAufgabe3bObere}}{\leq}\sum\limits_{k=1}^\infty \left(\frac{p}{q}\right)^k\\
-	&\stackeq{q >p}\frac{\frac{p}{q}}{1-\left(\frac{p}{q}\right)^k} \\
+	\overset{\eqref{eqAufgabe3bObere}}&{\leq}\sum\limits_{k=1}^\infty \left(\frac{p}{q}\right)^k\\
+	\overset{q>p}&{=}\frac{\frac{p}{q}}{1-\left(\frac{p}{q}\right)^k} \\
 	&= \frac{p}{q-p}
 \end{align*}
 
@@ -391,18 +389,18 @@ Dann existiert eine Zufallsvariable $M_\infty$ mit $\E\left[|M_\infty|^p\right]\
 	Nun können wir endlich folgern:
 	\begin{align*}
 		\P\left[\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq r\right] 
-		&\stackrel{\text{Mono.}}{\leq}
+		\overset{\text{Mono.}}&{\leq}
 		\P\left[\lim\limits_{n\rightarrow\infty}\bigcup\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
-		&\stackeq{\text{s.o.}}\P\left[\lim\limits_{n\rightarrow\infty}\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
-		&\stackeq{\text{stetig}}\lim\limits_{n\rightarrow\infty}\P\left[\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
-		&\stackrel{\text{Max-Ungl.}}{\leq}\lim\limits_{n\rightarrow\infty}\frac{\E\left[|M_n-M_\infty|\right]}{r}  \\
-		&\stackeq{L^1-\lim} 0 \qquad \forall r\geq 0
+		\overset{\text{s.o.}}&=\P\left[\lim\limits_{n\rightarrow\infty}\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
+		\overset{\text{stetig}}&=\lim\limits_{n\rightarrow\infty}\P\left[\max\limits_{j\leq n}|M_n-M_\infty| \geq r\right]  \\
+		\overset{\text{Max-Ungl.}}&{\leq}\lim\limits_{n\rightarrow\infty}\frac{\E\left[|M_n-M_\infty|\right]}{r}  \\
+		\overset{L^1-\lim}&= 0 \qquad \forall r\geq 0
 	\end{align*}
 	Nun können wir die erste Aussage folgern
 	\begin{align*}
 		\P[\lim\limits_{n\rightarrow\infty}M_n \neq M_\infty]
 		&=\P\left[\bigcup\limits_{k\in\N}\left\lbrace\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq \frac{1}{k}\right\rbrace\right] \\
-		&\stackrel{\sigma-\text{Add.}}{\leq} \sum\limits_{k\in\N}
+		\overset{\sigma-\text{Add.}}&{\leq} \sum\limits_{k\in\N}
 		\P\left[\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq \frac{1}{k}\right] \\
 		&\stackrel{\text{s.o.}}{\leq} 0
 	\end{align*}
