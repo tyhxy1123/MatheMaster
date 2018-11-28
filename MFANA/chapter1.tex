@@ -108,8 +108,7 @@ Dann ist
 	\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
 \end{align*}
 
-Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$.\\
-
+Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$.\nl
 \underline{Zeige (ii) $\implies$ (i):}\\
 Sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. Setze
 \begin{align*}
@@ -201,11 +200,9 @@ Behauptung (c) folgt dann aus (b), welche aus (a) folgt.
 \begin{align*}
 [\cdot,\cdot]_\lambda:X\times X\to\R,~(u,v)\mapsto[u,v]_\lambda:=\frac{\Vert u+\lambda\cdot v\Vert - \Vert u\Vert}{\lambda}
 \end{align*}
-ist stetig (da jede Norm stetig ist) und damit auch oberhalbstetig für alle $\lambda>0$. Das Infimum von oberhalbstetiger Funktion ist wieder oberhalbstetig.\\
-
+ist stetig (da jede Norm stetig ist) und damit auch oberhalbstetig für alle $\lambda>0$. Das Infimum von oberhalbstetiger Funktion ist wieder oberhalbstetig.\nl
 \underline{Zeige (b):}\\
-Die Funktion $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend auf $(0,\infty)$, weil $\lambda\mapsto\Vert u+\lambda\cdot v\Vert$ konvex ist, denn jede Norm ist konvex (dies folgt aus der Dreiecksungleichung).\\
-
+Die Funktion $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend auf $(0,\infty)$, weil $\lambda\mapsto\Vert u+\lambda\cdot v\Vert$ konvex ist, denn jede Norm ist konvex (dies folgt aus der Dreiecksungleichung).\nl
 \underline{Zeige (c):}\\
 $\begin{aligned}[]
 [u,v]=\lim\limits_{\lambda\to0^+}[u,v]_\lambda
@@ -348,11 +345,9 @@ und somit
 \frac{\Vert u(t)+h\cdot D_t^R u(t)\Vert-\Vert u(t)\Vert}{h}+\frac{o(h)}{h}\\
 &\stackrel{h\to0^+}{\longrightarrow} \left[ u(t), D_t^R u(t)\right]
 \end{align*}
-Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtungen abzuschätzen und Gleichheit zu erzielen.\\
-
+Hierbei wird die Dreiecksungleichung und die umgekehrte Dreiecksungleichung benutzt, um in beide Richtungen abzuschätzen und Gleichheit zu erzielen.\nl
 \underline{Zeige (b):}
-Analog zu (a) mit $h<0$.\\
-
+Analog zu (a) mit $h<0$.\nl
 \underline{Zeige (c):}
 Folgt direkt aus (a) und (b).
 \end{proof}
@@ -708,12 +703,9 @@ f&=\frac{\hat{h}}{h}\cdot u-\frac{\hat{h}-h}{h}\cdot J_h u\\
 &=J_h u+\frac{\hat{h}}{h}\cdot\left(u-J_j u\right)\\
 &\in J_h u+\hat{h}\cdot A J_h u
 \end{align*}
-d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.\\
-
-\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.\\
-
-\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.\\
-
+d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.\nl
+\underline{Zeige (ii) $\implies$ (i):} Ist wirklich trivial.\nl
+\underline{Zeige (i) $\implies$ (iii):} Trivial, da $Y$ dicht in $Y$ liegt.\nl
 \underline{Zeige (iii) $\implies$ (i):}\\
 Sei $A$ abgeschlossen, $h>0\mit h\cdot\omega<1$ so, dass $I+h\cdot A$ dichtes Bild hat. Die Inverse Relation
 \begin{align*}
@@ -723,8 +715,7 @@ ist dann Lipschitz-stetig vom Bild $\underbrace{\rg(I+h\cdot A)}_{\text{dicht in
 \end{proof}
 
 \begin{definition}
-Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.\\
-
+Ein Operator $A\subseteq X\times X$ heißt \textbf{$m$-akkretiv vom Typ $\omega\in\Omega$} $:\gdw\\ A$ akkretiv vom Typ $\omega\in\R$ und $I+h\cdot A$ surjektiv für ein / alle $h>0\mit h\cdot\omega<1$.\nl
 Ist $A\subseteq X\times X$  $m$-akkretiv vom Typ $\omega\in\R$, dann ist $I+h\cdot A$ bijektiv für alle $h>0\mit h\cdot\omega<1$. Wir schreiben in diesem Fall
 \begin{align*}
 J_h:=(I+h\cdot A)^{-1}.
@@ -741,11 +732,12 @@ A:=\big([-\infty,0]\times\lbrace-1\rbrace\big)\cup\big([0,\infty)\times\lbrace 1
 ist akkretiv (``monoton wachsend''). Damit gilt
 \begin{align*}
 h\cdot A&=\big([-\infty,0]\times\lbrace-h\rbrace\big)\cup\big([0,\infty)\times\lbrace h\rbrace\big)\cup\big(\lbrace0\rbrace\times[-h,h]\big)\\
-I+h\cdot A&=\graph\big(\R_{\leq0}\to\R_{\leq0},~x\mapsto x-1\big)\cup\big(\lbrace 0\rbrace\times [-h,h]\big)\cup\graph\big(\R_{\geq0}\to\R_{\geq0},x\mapsto x+1\big)
+I+h\cdot A&=\graph\big(\R_{\leq0}\to\R_{\leq0},~x\mapsto x-1\big)\cup\big(\lbrace 0\rbrace\times [-h,h]\big)\\
+&\qquad\cup\graph\big(\R_{\geq0}\to\R_{\geq0},x\mapsto x+1\big)
 \end{align*}
 Hierbei ist $I+h\cdot A$ $m$-akkretiv (also $m$-akkretiv vom Typ 0).
 \begin{align*}
-(I+h\cdot A)^{-1}=\graph\left(R\to\R,~x\mapsto\left\lbrace\begin{array}{cl}
+(I+h\cdot A)^{-1}=\graph\left(\R\to\R,~x\mapsto\left\lbrace\begin{array}{cl}
 x+h, & \falls x\leq -h\\
 0, & \falls x\in(-h,h)\\
 x-h, & \falls x\geq h
@@ -781,10 +773,12 @@ Sei $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$. Dann gilt:
 \end{align*}
 \item $\begin{aligned}
 \forall f\in\dom(A),\forall h>0\mit h\cdot\omega<1:
+\end{aligned}$
+\begin{align*}
 \big\Vert J_h f-f\big\Vert
 \leq
 h\cdot\Vert A f\Vert\mit\Vert A f\Vert=\inf\big\lbrace\Vert g\Vert:g\in A f\big\rbrace
-\end{aligned}$
+\end{align*}
 \item $\begin{aligned}
 \forall f\in\dom(A):\lim\limits_{h\to0^+} J_h f=f
 \end{aligned}$
@@ -900,8 +894,7 @@ Dann gilt für alle $v\in C$:
 \end{proof}
 
 \begin{proof}[Beweis von Theorem \ref{Theorem1.2.9}]\enter
-Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).\\
-
+Die Aussagen (a) bis (d) folgen aus den Abschätzungen für akkretive Operatoren vom Typ (ersetze $u$ und $\hat{u}$ durch $J_hf$ und $J_{\hat{h}}\hat{f}$).\nl
 \underline{Zu (e):}\\
 Sei $D:=\overline{\dom(A)}\neq\emptyset$  und $C:=\overline{\conv(D)}$ der Abschluss der konvexen Hülle. Sei $P$ die orthogonale Projektion  auf $C$ (!). Sei $f\in X$, $h>0\mit h\cdot\omega<1$. Dann gilt nach Definition der Resolvente
 \begin{align*}
@@ -928,16 +921,16 @@ Außerdem folgt aus dieser Ungleichung
 &=(1-h\cdot\omega)\cdot\left(\big\Vert J_h f-\hat{u}\big\Vert^2+2\cdot\Re\Big(\big\langle J_h f-\hat{u},\hat{u}-P(f)\big\rangle\Big)+\big\Vert\hat{u}-P(f)\big\Vert^2\right)\\
 &\leq
 \Re\Big(\big\langle J_h f-\hat{u},f-\hat{u}\big\rangle\Big)+\O(h)
-+2\cdot\Re\Big(\big\langle J_h f-\hat{u}\underbrace{-P(f)+P(f)}_{=0},\hat{u}-P(f)\big\rangle\Big)
-+\big\Vert\hat{u}-P(f)\big\Vert^2\\
++2\cdot\Re\Big(\big\langle J_h f-\hat{u}\underbrace{-P(f)+P(f)}_{=0},\hat{u}-P(f)\big\rangle\Big)\\
+&\qquad+\big\Vert\hat{u}-P(f)\big\Vert^2\\
 &=
 \Re\Big(\big\langle J_h f-P(f),f-\hat{u}\big\rangle\Big)
 +\Re\Big(\big\langle P(f)-\hat{u},f-\hat{u}\big\rangle\Big)
 +2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)\\
 &\qquad-2\cdot\big\Vert\hat{u}-P(f)\big\Vert^2+\big\Vert\hat{u}-P(f)\big\Vert^2+\O(h)\\
 &=\Re\Big(\big\langle J_h h-P(f),f-\hat{u}\big\rangle\Big)
-+\underbrace{\Re\Big(\big\langle P(f)-\hat{u},f-P(f)\big\rangle\Big)}_{\leq0}
-+2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)+\O(h)\\
++\underbrace{\Re\Big(\big\langle P(f)-\hat{u},f-P(f)\big\rangle\Big)}_{\leq0}\\
+&\qquad+2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)+\O(h)\\
 &\leq
 \Re\Big(\big\langle J_h f-P(f),f-\hat{u}\big\rangle\Big)
 +2\cdot\Re\Big(\big\langle J_h f-P(f),\hat{u}-P(f)\big\rangle\Big)+\O(h)
@@ -1022,8 +1015,7 @@ Sei $X$ ein Banachraum, $A\subseteq X\times X$ ein Operator. Dann gilt:
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-Die Teile (a)(i) und (a)(iii) sind Übung.\\
-
+Die Teile (a)(i) und (a)(iii) sind Übung.\nl
 \underline{Zu (a)(ii):}\\
 Sei $A$ $m$-akkretiv ($\omega=0$) und sei $B$ akkretiv mit $A\subseteq B$. Sei $(u,f)\in B$. Aus der Injektivität folgt:
 \begin{align}\label{proof1.2.13}\tag{$\ast$}
@@ -1034,17 +1026,13 @@ Andererseits gilt
 u+Bu\ni u+f.
 \end{align*}
 Weil $B$ eine Erweiterung von $A$ ist, folgt aus den Abschätzungen für akkretive Operatoren (Injektivität von $I+B$) schon $u=v$.\\
-Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.\\
-
+Setzt man dies in die Inklusion \eqref{proof1.2.13} ein, dann folgt $f\in Au$ bzw. $(u,f)\in A$. Wir haben also $B\subseteq A$ gezeigt und somit $A=B$. Also ist $A$ maximal akkretiv.\nl
 \underline{Zeige (a)(iv):}\\
-Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.\\
-
+Sei $A$ maximal akkretiv (vom Typ $\omega$). Dann ist der Abschluss $\overline{A}$ akkretiv (vom Typ $\omega$) und $A\subseteq\overline{A}$. Weil $A$ maximal ist, ist $A=\overline{A}$. Also ist $A$ abgeschlossen.\nl
 \underline{Zu (b), zeige ``$\implies$'':}
-Dies folgt aus der Definiton von akkretiv.\\
-
+Dies folgt aus der Definiton von akkretiv.\nl
 \underline{Zu (b), zeige ``$\Longleftarrow$'':}\\
-Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.\\
-
+Nach Voraussetzung ist $B:=A\cup\big\lbrace(u,f)\big\rbrace$ akkretiv vom Typ $\omega$. Weil $A$ maximal ist, ist $A=B$, d.h. $(u,f)\in A$.\nl
 \underline{Zu (c):}\\
 Der erste Teil der Aussage folgt aus (a). Sei außerdem $X$ ein Hilbertraum, $f_0,f_1\in Au$. Dann gilt für alle $(\hat{u},\hat{f})\in A$:
 \begin{align*}
@@ -1089,8 +1077,7 @@ Jedes Element $u\in K_n$ ist Minimierer von $F$.
 Ein Operator $A\subseteq H\times H$ auf einem Hilbertraum $H$ ist $m$-akkretiv (vom Typ $\omega$) $\Longleftrightarrow\\ A$ ist maximal akkretiv (vom Typ $\omega$).
 \end{theorem}
 \begin{proof}[Beweis (hier nur der Fall, dass $H$ reeller Hilbertraum ist)]\enter
-\underline{Zeige ``$\implies$'':} Folgt aus Lemma oben.\\
-
+\underline{Zeige ``$\implies$'':} Folgt aus Lemma oben.\nl
 \underline{Zeige ``$\Longleftarrow$'':}\\
 Sei $A\subseteq H\times H$ maximal akkretiv ($\omega:=0$) (insbesondere ist $A\neq\emptyset$). Betrachte die Funktion 
 \begin{align*}
@@ -1239,10 +1226,8 @@ konvex, unterhalbstetig und koerziv.
 \end{lemma}
 \begin{proof}
 \underline{Zur Konvexität:}\\
-Die Norm ist konvex und der Vorfaktor ist konvex. Da $\E$ konvex ist und die Summe konvexer Funktionen wieder konvex ist, folgt Konvexität.\\
-
-\underline{Zur Unterhalbstetigkeit:} Ist klar.\\
-
+Die Norm ist konvex und der Vorfaktor ist konvex. Da $\E$ konvex ist und die Summe konvexer Funktionen wieder konvex ist, folgt Konvexität.\nl
+\underline{Zur Unterhalbstetigkeit:} Ist klar.\nl
 \underline{Zur Koerzivität:}\\
 Sei $v\in\R$. Dann gilt für $u\in H$ mit
 \begin{align*}
@@ -1377,7 +1362,12 @@ Diese Funktion $\E$ ist konvex, unterhalbstetig, $\not\equiv0$ und es gilt
 \end{align*}
 und der Subgradient
 \begin{align*}
-\partial\E=\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|~u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\right.\right\rbrace
+\partial\E=\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|
+\begin{array}{c}
+u\in\dom(\E)\wedge\forall v\in\dom(\E):\\
+\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot 
+\end{array}
+v\right.\right\rbrace
 \end{align*}
 \end{lemma}
 \begin{proof}
@@ -1390,8 +1380,7 @@ ist konvex und monoton wachsend ($p\geq1$!) und damit ist die Verknüpfung
 \R^n\to\R_{\geq0},\qquad x\mapsto |x|^p
 \end{align*}
 konvex, und schließlich ist $\E$ konvex.\\
-$\E\not\equiv0$, denn $\E(0)=0$.\\
-
+$\E\not\equiv0$, denn $\E(0)=0$.\nl
 \underline{Zeige $\E$ ist unterhalbstetig:}\\
 Sei $(u_n)_{n\in\N}\subseteq L^2(\Omega)\mit u:=\limn u_n$ in $L^2(\Omega)$. Zu zeigen:
 \begin{align*}
@@ -1478,7 +1467,12 @@ Ersetze hier $v$ durch $-v$:
 \end{align*}
 Damit ist 
 \begin{align*}
-\partial\E\subseteq\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|~u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\right.\right\rbrace
+\partial\E\subseteq\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|
+\begin{array}{c}
+u\in\dom(\E)\wedge\forall v\in\dom(\E):\\
+\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v
+\end{array}
+\right.\right\rbrace
 \end{align*}
 Da die Inklusion ``$\supseteq$'' klar ist, folgt die Behauptung.
 \end{proof}
@@ -1489,7 +1483,12 @@ $\Omega=(0,1)$ (offenes Intervall, $n=1$) und $p=2$, d. h. $H=L^2((0,1))$ und
 \frac{1}{2}\cdot\int\limits_0^1|u'|^2,&\falls u'\in L^2((0,1))\\
 +\infty, &\sonst
 \end{array}\right.\\
-\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\left|~ u\in H^1(0,1)\wedge\forall v\in H^1(0,1):\int\limits_0^1 u'\cdot v'=\int\limits_0^1 f\cdot v\right.\right\rbrace\\
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\left|
+\begin{array}{c}
+u\in H^1(0,1)\wedge\forall v\in H^1(0,1):\\
+\int\limits_0^1 u'\cdot v'=\int\limits_0^1 f\cdot v
+\end{array}
+\right.\right\rbrace\\
 &\text{wobei } H^1(0,1):=H^1((0,1)):=\dom(\E)=\big\lbrace u\in L^2(0,1)~\big|~u'\in L^2(0,1)\big\rbrace
 \end{align*}
 Erinnerung (schwache Ableitung)\\
@@ -1530,7 +1529,12 @@ u'(1)&=0
 \end{align*}
 Schließlich gilt:
 \begin{align*}
-\partial\E=\big\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\big|~u\in H^1(0,1),u'\in H^1(0,1)\wedge -u''\equiv f\wedge \underbrace{u'(0)=u'(1)=0}_{\text{(hom.) Neumann-RB}}\big\rbrace
+\partial\E=\Bigg\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)~\Bigg|
+\begin{array}{c}
+u\in H^1(0,1),u'\in H^1(0,1)\wedge\\
+-u''\equiv f\wedge \underbrace{u'(0)=u'(1)=0}_{\text{(hom.) Neumann-RB}}
+\end{array}
+\Bigg\rbrace
 \end{align*}
 (negativer Laplace-Operator mit Neumann-Randbedingungen)\\
 Der Fall $\Omega=(0,1)$ und $p\in(1,\infty)$:
@@ -1541,7 +1545,12 @@ H&=L^2(0,1)\text{ und }\\
 +\infty, &\sonst
 \end{array}\right.\\
 \dom(\E)&=\big\lbrace u\in L^2(0,1)~\big|~u'\in L^p(0,1)\big\rbrace\\
-\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)\left|u\in\dom(\E)\wedge\forall v\in\dom(\E):\int\limits_0^1|u'|^{p-2}\cdot u'\cdot v'=\int\limits_0^1 f\cdot v\right.\right\rbrace
+\partial\E&=\left\lbrace(u,f)\in L^2(0,1)\times L^2(0,1)\left|
+\begin{array}{c}
+u\in\dom(\E)\wedge\forall v\in\dom(\E):\\
+\int\limits_0^1|u'|^{p-2}\cdot u'\cdot v'=\int\limits_0^1 f\cdot v
+\end{array}
+\right.\right\rbrace
 \end{align*}
 Aus $(u,f)\in\partial\E$ folgt wie oben, dass $|u'|^{p-2}\cdot u'$ schwach differenzierbar ist und\\ $\left(|u'|^{p-2}\cdot u'\right)'\equiv -f$. Außerdem folgt mit HDI:
 \begin{align*}

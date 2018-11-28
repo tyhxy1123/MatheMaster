@@ -61,8 +61,7 @@ Außerdem gibt es eine Folge von Treppenfunktionen mit $f_n\stackrel{n\to\infty}
 \begin{align*}
 f(\Omega)\subseteq\overline{\bigcup\limits_{n\in\N}\underbrace{ f_n(\Omega)}_{\text{endlich}}}
 \end{align*}
-separabel und Teilmengen von separablen Mengen sind selbst separabel.\\
-
+separabel und Teilmengen von separablen Mengen sind selbst separabel.\nl
 \underline{Zeige ``$\Longleftarrow$'':} Übung.
 \end{proof}
 
@@ -141,10 +140,8 @@ W^{1,1}(I,X):=\left\lbrace u\in L^1(I,X)~\left|~\exists g\in L^1(I,X):\forall\va
 \Vert u\Vert_{W^{1,1}}:=\Vert u\Vert_{L^1}+\Vert u'\Vert_{L^1}
 \end{align*}
 Ohne Beweis: jede Funktion $u\in W^{1,1}(I,X)$ ist fast überall differenzierbar (im klassischen Sinne) und die Ableitung stimmt fast überall mit der schwachen Ableitung überein.\\
-Achtung: Es gibt stetige Funktionen, die fast überall differenzierbar sind (im klassischen Sinne) $u'=0$ f. ü., die aber nicht schwach differenzierbar sind (nicht in $W^{1,1}$). Beispiel: Die Cantorfunktion.\\
-
-Ohne Beweis. Jedes Element $u=[u]\in W^{1,1}(I,X)$ besitzt einen Repräsentanten, der auf $\overline{I}$ stetig ist.\\
-
+Achtung: Es gibt stetige Funktionen, die fast überall differenzierbar sind (im klassischen Sinne) $u'=0$ f. ü., die aber nicht schwach differenzierbar sind (nicht in $W^{1,1}$). Beispiel: Die Cantorfunktion.\nl
+Ohne Beweis. Jedes Element $u=[u]\in W^{1,1}(I,X)$ besitzt einen Repräsentanten, der auf $\overline{I}$ stetig ist.\nl
 Ohne Beweis:
 \begin{align*}
 \forall u\in W^{1,1}\big(]a,b[,X\big),\forall\varphi\in W^{1,1}\big(]a,b[,\C\big):
@@ -189,10 +186,10 @@ Integrallösung von $\dot{u}+Au\ni 0$
 \begin{enumerate}[label=(\alph*)]
 \item Jede klassische Lösung ist starke Lösung.
 \item Jede starke Lösung ist milde Lösung.
-\item Wenn $A$ akkretiv vom Typ $\omega\in\R$ ist, dann gilt für je zwei milde Lösungen $u,\hat{u}\in C\big([,T],X\big)$ zu rechten Seiten $f,\hat{f}\in L^1\big([0,T],X\big)$
+\item Wenn $A$ akkretiv vom Typ $\omega\in\R$ ist, dann gilt für je zwei milde Lösungen $u,\hat{u}\in C\big([0,T],X\big)$ zu rechten Seiten $f,\hat{f}\in L^1\big([0,T],X\big)$
 \begin{align*}
-\forall 0\leq s\leq t\leq T
-\big\Vert u(t)-\hat{u}(z)\big\Vert\leq\big\Vert u(s)-\hat{u}(s)\big\Vert+\\+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u}(\tau),f(\tau)-\hat{f}(\tau)\big]\d\tau
+\forall 0\leq s\leq t\leq T:
+\big\Vert u(t)-\hat{u}(t)\big\Vert\leq\big\Vert u(s)-\hat{u}(s)\big\Vert+\\+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u}(\tau),f(\tau)-\hat{f}(\tau)\big]\d\tau
 \end{align*}
 und 
 \begin{align*}
@@ -210,8 +207,7 @@ besitzt für jede $f\in L^1\big(0,T;X),u_0\in X$ höchstens eine milde Lösung.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(a) und (b) sind klar.\\
-
+(a) und (b) sind klar.\nl
 \underline{Zeige (c):}\\
 Seien zuerst $u,\hat{u}\in W^{1,1}\big([0,T],X\big)$ starke Lösungen von \eqref{CauchyProblem2.2} zu rechten Seiten $f,\hat{f}\in L^1\big(0,T;X\big)$, d. h.
 \begin{align*}
@@ -233,9 +229,9 @@ und damit
 \end{align*}
 Integration dieser Ungleichung liefert erste Behauptung für starke Lösungen. Durch Approximation gilt die erste Behauptung dann auch für milde Lösungen (verwende auch die Oberhalbstetigkeit des Brackets). Aus der ersten Behauptung folgt für zwei milde Lösungen:
 \begin{align*}
-\forall 0\leq t\leq T:
 \big\Vert u(t)-\hat{u}(t)\big\Vert
-&\leq\big\Vert u(0)-\hat{u}(0)\big\Vert+\omega\cdot\int\limits_0^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_0^t\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
+&\leq\big\Vert u(0)-\hat{u}(0)\big\Vert+\omega\cdot\int\limits_0^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_0^t\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau\\
+\qquad\forall 0\leq t\leq T
 \end{align*}
 Die zweite Behauptung folgt daraus und aus dem Lemma von Gronwall.
 
@@ -254,14 +250,13 @@ Dann gilt:
 +\exp(-\omega\cdot t)\cdot\frac{\d}{\d t}\big\Vert u(t)-\hat{u}(t)\big\Vert\\
 &\qquad\stackrel{}{\leq}
 \exp(-\omega\cdot t)\cdot\big\Vert f(t)-\hat{f}(t)\big\Vert\\
-&\stackrel{\text{Integrieren}}{\implies}
+&\stackrel{\text{Integ.}}{\implies}
 \exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
 \leq\Vert u(0)-\hat{u}(0)\big\Vert+\int\limits_0^t\exp(-\omega\cdot\tau)\cdot\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
 \end{align*}
 \underline{Zeige Mild $\implies$ Integral:}\\
-Betrachte $\hat{u}(t):=\hat{u}$ konstant und $\hat{f}(t):=\hat{f}$ konstant mit $(\hat{u},\hat{f})\in A$.\\ 
+Betrachte $\hat{u}(t):=\hat{u}$ konstant und $\hat{f}(t):=\hat{f}$ konstant mit $(\hat{u},\hat{f})\in A$.\nl 
 %TODO Dieser Beweis ist nicht komplett.
-
 \underline{Zeige (d):}\\
 Sei $(\hat{u},\hat{f})\in A$ und sei $0\leq s\leq t\leq T$.
 \begin{align*}
@@ -306,13 +301,23 @@ f(\tau)-\dot{u}(\tau)\in A u(\tau)\\
 \end{proof}
 
 \begin{definition}
-Eine Partition $\pi$ sind $0=t_0<t_1<t_2<\ldots<t_N=T$
+Eine Partition
 \begin{align*}
-n_i:=t_{i+1}-t_i\qquad |\pi|:=\sup\limits_{0\leq i\leq N-1} h_i
+\pi&:=\big\lbrace t_0,\ldots,t_N: 0=t_0<t_1<t_2<\ldots<t_N=T\big\rbrace\\
+h_i&:=t_{i+1}-t_i\qquad\forall i\in\lbrace0,\ldots,N-1\rbrace\\
+|\pi|&:=\sup\limits_{0\leq i\leq N-1} h_i\qquad\text{Feinheit}
 \end{align*}
-Sei $f\in L^1\big([0,T],X\big)$ adaptiert zu $\pi$ und konstant auf $[t_i,t_{i+1})$ für $i\leq i\leq N-1$.\\
-Wir nennen $\Theta=\big(\pi,f_\Theta,u_{\Theta,0}\big)$ eine \textbf{Diskretisierung} $:\gdw\pi$ eine Partition, $f_\Theta$ adaptiert und $u_{\Theta,0}\in X$.
+Sei $f\in L^1\big([0,T],X\big)$ adaptiert zu $\pi$ und stückweise konstant auf $[t_i,t_{i+1})$ für $i\leq i\leq N-1$.\\
+Wir nennen $\Theta=\big(\pi,f_\Theta,u_{0,\Theta}\big)$ eine \textbf{Diskretisierung} $:\gdw\pi$ eine Partition, $f_\Theta$ adaptiert und $u_{\Theta,0}\in X$.
 \end{definition}
+Betrachte das Problem
+\begin{align}\label{eqETheta}\tag{$E_\Theta$}
+\left\lbrace\begin{array}{l}
+\frac{u_\Theta(t_{j+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_i)\qquad\forall i\in\lbrace0,\ldots,N+1\rbrace\\
+u_\Theta(0)=u_{0,\Theta}
+\end{array}\right.
+\end{align}
+Außerdem gilt:
 \begin{align*}
 &\dot{u}+Au(t)\ni f\\
 &\frac{u_\Theta(t_{i+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_{i+1})
@@ -321,7 +326,6 @@ u_\Theta(0)=u_{\Theta,0}\\
 &u_\Theta(t_{i+1})+h\cdot A u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)\\
 &\Longleftrightarrow (\id+h\cdot A)u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)
 \end{align*}
-
 Im Linearen:
 \begin{align*}
 u_\Theta(t_{i+1})=J_{h_i}\big(h_i f_\Theta+u_\Theta(t_i)\big)
@@ -370,19 +374,75 @@ Für $\lambda\to0$ erhält man:
 \end{proof}
 
 \begin{lemma}
-Sei $A$ akkretiv, $\pi$ Partition und Diskretisierungen 
+Seien 
 \begin{align*}
-\Theta=\big(\pi,0,u_{0,\Theta}\big),\qquad
-\Theta'=\big(\pi,0,u_{0,\Theta'}\big)
+\Theta=\big(\pi_\Theta,f_\Theta,u_{0,\Theta}\big),\qquad
+\hat{\Theta}=\big(\pi_{\hat{\Theta}},f_{\hat{\Theta}},u_{0,\hat{\Theta}}\big)
 \end{align*}
-Seien $u_\Theta,u_{\Theta'}$ die zugehörigen Lösungen der diskreten Probleme. Dann gilt:
+zwei Diskretisierungen des Cauchyproblems \eqref{CauchyProblem2.2} mit einem Operator $A\subseteq X\times X$, der akkretiv vom Typ $\omega\in\R$ ist. 
+Seien $u_\Theta,u_{\hat{\Theta}}$ zwei Lösungen des impliziten Eulerschemas (diskretes Problem) \eqref{eqETheta} bzw. $(E_{\hat{\Theta}})$.
+Es sei $\big|\pi_\Theta\big|\cdot\omega<1$ und $\big|\pi_{\hat{\Theta}}\big|\cdot\omega<1$ ($\big|\pi_\Theta\big|=\sup\limits_{0\leq i\leq N} h_i$). Sei
 \begin{align*}
-\Big|u_\Theta(t_{i+1})-u_{\Theta'}(t_{i+1})\Big|\leq\Big| u_\Theta (t_i)+u_{\Theta'}(t_i)\Big|
+a_{i,j}&:=\Big\Vert u(t_i)-\hat{u}(\hat{t}_j)\Big\Vert &\forall 0\leq j\leq N\\
+b_{i,j}&:=\Big\Vert f_\Theta(t_i)-f_{\hat{\Theta}}(t_j)\Big\Vert &\forall 0\leq j\leq N
 \end{align*}
+Dann gilt:
+\begin{align*}
+&\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}
+\leq\frac{h_i}{h_i+\hat{h}_j}\cdot a_{i+1,j}+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot a_{i,j+1}+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}\\
+&\left(1-h_i\wedge\hat{h}_j\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&\leq\left(1-\frac{\hat{h}_j}{h_i}\right)^+\cdot a_{i+1,j}+\frac{h_i\wedge\hat{h}_j}{h_i\vee\hat{h}_j}\cdot a_{i,j}+\left(1-\frac{h_i}{\hat{h}_j}\right)^+\cdot a_{i,j+1}+h_i\wedge\hat{h}_j\cdot b_{i,j}\\
+&\qquad\forall 0\leq i\leq N-1,\forall 0\leq j\leq\hat{N}-1
+\end{align*}
+Hierbei bezeichnet $\wedge$ das Minimum und $\vee$ das Maximum.
+%TODO Hier könnte man eine Skizze einfügen
 \end{lemma}
 \begin{proof}
-Für $f_\Theta=f_{\Theta'}=0$ ist das trivial, da $u_\Theta=u_{\Theta'}$.
+Es gilt für alle $0\leq i\leq N-1$, $0\leq j\leq\hat{N}-1$:
+\begin{align*}
+u_\Theta(t_{i+1})+h_i\cdot Au_\Theta(t_{i+1})&\ni f_\Theta(t_i)+u_\Theta(t_i)\\
+u_{\hat{\Theta}}(\hat{t}_{j+1})+\hat{h}_j\cdot Au_{\hat{\Theta}}(\hat{t}_{j+1})&\ni f_{\hat{\Theta}}(\hat{t}_j)+u_{\hat{\Theta}}(\hat{t}_{j})
+\end{align*}
+und somit ($A$ akkretiv vom Typ $\omega$!) gilt:
+\begin{align*}
+\left[u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1}),f_\Theta(t_i)+\frac{u_\Theta(t_i)-u_\Theta(t_{i+1})}{h_i}-\left(f_{\hat{\Theta}}(\hat{t}_j)+\frac{u_{\hat{\Theta}}(\hat{t}_j)-u_{\hat{\Theta}}(\hat{t}_{j+1})}{\hat{h}_j}\right)\right]_\lambda\\
++\omega\cdot\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\Big\Vert\geq0\qquad\forall\lambda\geq0
+\end{align*}
+Setze nun $\lambda:=\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}$. Somit ist obige Ungleichung äquivalent zu: (gleich mit $\lambda$ multipliziert)
+\begin{align*}
+&0\\
+&\leq
+\Bigg\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\\
+&\cdot\left(f_\Theta(t_i)-f_{\hat{\Theta}}(\hat{t}_j)+\frac{u_\Theta(t_i)-u_\Theta(t_{i+1})}{h_i}-\frac{u_{\hat{\Theta}}(\hat{t}_j)-u_{\hat{\Theta}}(\hat{t}_{j+1})}{\hat{h}_j}\right)\Bigg\Vert\\
+&-\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\right\Vert
++\omega\cdot\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\right\Vert\\
+&\leq
+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}-\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&+\left\Vert u_\Theta(t_{i+1})-u_{\hat{\theta}}(t_{j+1})+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(u_\Theta(t_i)-u_\Theta(t_{i+1})\right)-\frac{h_i}{h_i+\hat{h}_j} %\cdot hier weglassen, sonst Overful Box
+\left(u_{\hat{\Theta}}(\hat{t}_j)-u_{\hat{\Theta}}(\hat{t}_{j+1})\right)\right\Vert\\
+&=\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}-\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&+\left\Vert\frac{h_i}{h_i+\hat{h}_j}\cdot u_\Theta(t_{j+1})-\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot u_{\hat{\Theta}}(\hat{t}_{j+1})+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot u_\Theta(t_i)-\frac{h_i}{h_i+\hat{h}_j}\cdot u_{\hat{\Theta}}(\hat{t}_j)\right\Vert\\
+&\leq
+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}-\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}
++\frac{h_i}{h_i+\hat{h}_j}\cdot a_{i+1,j}+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot a_{i,j+1}
+\end{align*}
+Zweite Abschätzung: Wähle $\lambda=h_i\wedge\hat{h}_j$ und rechne analog.
 \end{proof}
+
+\begin{lemma}
+Voraussetzungen wie im vorherigen Lemma, aber $\pi_\Theta=\pi_{\hat{\Theta}}$. Dann gilt für alle $0\leq i\leq N-1$:
+\begin{align*}
+\big(1-h_i\cdot\omega\big)\cdot\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(t_{i+1})\right\Vert
+\leq\left\Vert u_\Theta(t_i)-u_{\hat{\Theta}}(t_i)\right\Vert
++h_i\cdot\left\Vert f_\Theta(t_i)-f_{\hat{\Theta}}(t_i)\right\Vert
+\end{align*}
+bzw. (durch Iterieren)
+\begin{align*}
+\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(t_{i+1})\right\Vert
+&\leq\prod\limits_{k=0}^i\big(1-h_k\cdot\omega\big)^{-1}\cdot\big\Vert u_{0,\Theta}-u_{0,\hat{\Theta}}\big\Vert\\
+&+\sum\limits_{k=0}^i\prod\limits_{l=k}^i\big(1-h_l\cdot\omega\big)^{-1}\cdot h_k\cdot\Big\Vert f_\Theta(t_k)-f_{\hat{\Theta}}(t_k)\Big\Vert
+\end{align*}
+\end{lemma}
 
 \begin{theorem}
 Sei $A$ akkretiv, $\Theta=\big(\pi_\Theta,0,u_{0,\Theta}\big)$ und $\Theta'=\big(\pi_{\Theta'},0,u_{0,\Theta'}\big)$ zwei Diskretisierungen, $u_\Theta$ und $u_{\Theta'}$ die dazugehörigen Lösungen. Dann gilt für alle $t,t'\in[0,T]$ und alle $\hat{u}\in\dom(A)$:
