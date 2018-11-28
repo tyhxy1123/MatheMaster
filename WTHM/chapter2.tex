@@ -47,8 +47,7 @@ Achtung!
 \begin{align*}
 \tilde{S}_n-\tilde{S}_{n-1}=e_n\cdot\xi_n
 \end{align*}
-ist \underline{nicht mehr iid}.\\
-
+ist \underline{nicht mehr iid}.\nl
 Nun ergibt sich durch eine beliebige Einsatzstrategie mit Informationen aus $\F_n$ die Vorhersage der nächsten Runde des Spiels:
 \begin{align*}
 \E[\tilde{S}_{n+1}~|~\F_n] 
@@ -122,7 +121,7 @@ so heißt $X$ \textbf{Submartingal}. (Der zukünftige Wert wird unterschätzt) \
 \begin{align}\label{defSupermartingal}\tag{c''}
 \E[X_t~|~\F_s]\leq X_s
 \end{align}
-so heißt $X$ \textbf{Supermartingal}. (Der zukünftige Wert wird überschätzt)\\
+so heißt $X$ \textbf{Supermartingal}. (Der zukünftige Wert wird überschätzt)
 \end{defi}
 
 \begin{bemerkung}
@@ -243,10 +242,10 @@ Sei $(\F_t)_{t\in I}$ eine Filtration. Dann gilt:
 \implies\forall a,b\in\R: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Martingal}
 \end{aligned}$
 \item $\begin{aligned}
-		&(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Submartingale }&
-&\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Submartingal}\\
-&(X_t)_{t\in I},(Y_t)_{t\in I}\text{ Supermartingale }&
-&\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist Supermartingal}
+&(X_t)_{t\in I},(Y_t)_{t\in I}\text{ SubMG}&
+&\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist SubMG}\\
+&(X_t)_{t\in I},(Y_t)_{t\in I}\text{ SuperMG}&
+&\implies\forall a,b\in\R_{\geq0}: (a\cdot X_t+b\cdot Y_t)_{t\in I}\text{ ist SuperMG}
 \end{aligned}$
 \item $\begin{aligned}
 (X_t)_{t\in I},(Y_t)_{t\in I}\text{ Supermartingale }
@@ -254,7 +253,7 @@ Sei $(\F_t)_{t\in I}$ eine Filtration. Dann gilt:
 \end{aligned}$
 \item $\begin{aligned}
 (X_t)_{t\in I}\text{ Martingal, $\phi$ konvex und }\E\big[\phi(X_t)\big]<\infty
-\implies \big(\phi(X_t)\big)_{t\in I}\text{ ist Submartingal}
+\implies \big(\phi(X_t)\big)_{t\in I}\text{ ist SubMG}
 \end{aligned}$
 \item $\begin{aligned}
 (X_t)_{t\in I}\text{ Submartingal, $\phi$ konvex und monoton steigend und }\E\big[\phi(X_t)\big]<\infty
@@ -294,9 +293,8 @@ Daraus folgt:
 \end{align*}
 \end{proof}
 
-\begin{proof}[Beweis von Proposition \ref{Prop2.1}]\enter
-a) und b) folgen aus Linearität und Monotoni der bedingten Erwartung. f) ist klar.\\
-
+\begin{proof}[Beweis von Proposition \ref{Prop2.1}]
+a) und b) folgen aus Linearität und Monotoni der bedingten Erwartung. f) ist klar.\nl
 \underline{Zeige c):}
 \begin{align*}
 \E\big[(X_t\wedge Y_t)~\big|~\F_s\big]
@@ -554,8 +552,7 @@ Sei $(M_n)_{n\in\N}\subseteq L_1$ adaptiert bzgl. $(\F_n)_{n\in\N}$ und $(\varth
 \end{theorem}
 
 \begin{proof}
-(a) ist trivial.\\
-
+(a) ist trivial.\nl
 \underline{Zeige (b) - (e):}
 \begin{itemize}
 \item Adaptiertheit ist klar.
