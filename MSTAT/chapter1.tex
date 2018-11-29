@@ -2633,9 +2633,164 @@ Nach Voraussetzung gilt:
 P|_\mathcal{E}&=Q|_\mathcal{E}
 \end{align*}
 $\mathcal{E}$ ist durchschnittsstabil (nachrechnen!). Jetzt liefert der \textit{Maßeindeutigkeitssatz}, dass $P=Q$ auf $\sigma(\mathcal{E})=\B(C)$.
-(Der Maßeindeutigkeitssatz besagt ungefähr: zwei Wahrscheinlichkeitsmaße, die auf einen Schnittstabilen Mengensystem überein stimmen, stimmen auch auf dessen Erzeugnis überein.)
+(Der Maßeindeutigkeitssatz besagt ungefähr: zwei Wahrscheinlichkeitsmaße, die auf einen Schnittstabilen Mengensystem überein stimmen, stimmen auch auf dessen Erzeugnis überein.)\nl
+\underline{Zeige (2):}
+\begin{align*}
+X\stackeq{\L} X
+\overset{\text{Def}}&{\Longleftrightarrow}
+\P\circ X^{-1}=\P\circ Y^{-1}\\
+\overset{(1)}&{\Longleftrightarrow}
+\underbrace{\left(\P\circ X^{-1}\right)\circ \pi_T^{-1}}_{=\P\circ\left(\pi_T\circ X\right)^{-1}}
+=\underbrace{\left(\P\circ Y^{-1}\right)\circ\pi_T^{-1}}_{=\P\circ\left(\pi_T\circ Y\right)^{-1}}
+&\forall T\subseteq T\text{ endlich}\\
+&\Longleftrightarrow
+\underbrace{\pi_T\circ X}_{=\pi_T(X)}\stackeq{\L}\underbrace{\pi_T\circ Y}_{=\pi_T(Y)}
+&\forall T\subseteq I\text{ endlich}
+\end{align*}
 \end{proof}
 
+\begin{bemerkungnr} %7.6
+Die Wahrscheinlichkeitsmaße $\P\circ\pi_T^{-1}$ bzw. die Verteilungen
+\begin{align*}
+\pi_T(X)=\big(X(t_1),\ldots,X(t_k)\big),\qquad T=\big\lbrace t_1,\ldots,t_k\rbrace\subseteq I
+\end{align*}
+heißen \textbf{endlich dimensionale Randverteilungen von $\P$} bzw. von $X$.\\
+Insbesondere ist gemäß \ref{satz7.5} (2) die Verteilung eines stetigen stochastischen Prozesses $X$ aufgefasst als Zufallsvariable in $C$ eindeutig durch die Verteilungen der Vektoren
+\begin{align*}
+\big(X(t_1),\ldots,X(t_k)\big),\qquad t_1,\ldots,t_k\in I,k\in\N
+\end{align*}
+festgelegt.
+\end{bemerkungnr}
 
+Nächstes Ziel: Handhabbare Kriterien für den Nachweis der Verteilungskonvergenz in $C$. Dazu:
 
+\begin{definition} %7.z
+Für eine Funktion $f\colon I\to\R$ und $\delta>0$ definiere den \textbf{Stetigkeitsmodul / Oszillationsmodul}
+\begin{align*}
+\omega(f,\delta):=\sup\limits\Big\lbrace \big|f(s)-f(t)\big|:s,t\in I\mit |s-t|\leq\delta\Big\rbrace
+\end{align*}
+\end{definition}
+
+Aus der Analysis ist bekannt:
+\begin{align*}
+f\in C(I)\Longleftrightarrow\omega(f,\delta)\stackrel{\delta\to0}{\longrightarrow}0
+\end{align*}
+
+\begin{lemma}\label{lemma7.8}
+$\omega(\cdot,\delta)\colon (C,d)\to\R$ ist stetig für jedes $\delta>0$ und damit gemäß Lemma \ref{Lemma3.2} (2) auch $\B(C)$-$\B(\R)$-messbar.
+\end{lemma}
+\begin{proof}
+Sei $g\in C$  und $s,t\in I$ mit $|s-t|\leq\delta$. Dann gilt:
+\begin{align*}
+\big| f(s)-f(t)\big|
+&=\big|f(s)-g(s)+g(s)-g(t)+g(t)-f(t)\big|\\
+\overset{\text{DU}}&{\leq}
+\underbrace{\big|f(s)-g(s)\big|}_{\leq d(f,g)}+\underbrace{\big| g(s)-g(t)\big|}_{\leq\omega(g,\delta)}+\underbrace{\big| g(t)-f(t)\big|}_{\leq d(f,g)}\\
+&\leq
+\omega(g,\delta)+2\cdot d(f,g)\\
+\overset{\sup}&{\implies}
+\omega(f,\delta)
+\leq\omega(g,\delta)+2\cdot d(f,g)\\
+&\implies \omega(f,\delta)-\omega(g,\delta)
+\leq 2\cdot d(f,g) &\forall f,g\\
+&\implies \omega(g,\delta)-\omega(f,\delta)
+\leq 2\cdot d(g,f)=2\cdot d(f,g)\\
+&\implies
+\big|\omega(f,\delta)-\omega(g,\delta)\big|\leq 2\cdot d(f,g)
+\end{align*}
+Das heißt, $\omega(\cdot,\delta)$ ist sogar Lipschitz-stetig.
+\end{proof}
+
+%Ferger: "Ich war übrigens gestern in der Stadt. Da bin ich eigentlich nie. Ich war in mindestens 7 oder Schuhgeschäften. Es war noch jemand dabei. Ich selber habe kein Schuhe gekauft. Und in jedem Geschäft war die Verweildauer sehr lang. Und jedes Schuhgeshcäft wurde GESCANNT: Jeder Schuh wurde angefasst und begutachtet. [...] Weihnachten ist was Schönes!"
+
+%Ferger: "Wenn man sich rote Schuhe kauft, muss dazu auch noch eine passende rote Tasche kaufen. Wussten Sie das?"
+
+Erstes Kriterium in:
+
+\begin{satz}\label{satz7.9}
+Seien $X,X_n,n\in\N$ Zufallsvariablen in $C$ über $(\Omega,\A,\P)$. Falls
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\big(X_n(t_1),\ldots,X_n(t_k)\big)\stackrel{\L}{\longrightarrow}\big(X(t_1),\ldots,X(t_k)\big)
+\qquad\forall t_1,\ldots,t_k\in I,\forall k\in\N
+\end{aligned}$\\
+so genannte \textbf{Konvergenz der fidis} (finite dimensional distributions).\\
+Notation: $X_n\stackrelnew{\text{df}}{}{\longrightarrow} X$
+\item $\begin{aligned}
+\lim\limits_{k\to\infty}\limsup\limits_{n\to\infty}\P\Big(\omega\big(X_n,\delta_k\big)>\varepsilon\Big)=0\qquad\forall\varepsilon>0
+\end{aligned}$\\
+für eine Folge $(\delta_k)_{k\in\N}\subseteq(0,\infty)\mit\delta_k\downarrow0$
+\end{enumerate}
+so folgt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow}X\text{ in }(C,d)
+\end{align*}
+\end{satz}
+\begin{proof}
+Siehe Gänssler und Stute (1977) \textit{Wahrscheinlichkeitstheorie}, Seite 348
+\end{proof}
+
+\begin{beispiel}\label{beispiel7.10} Sei 
+\begin{align*}
+X_n(t):=A_n+B_n\cdot t+C_n\cdot t^2\qquad\forall t\in I
+\qquad\mit \big(A_n,B_n,C_n)\stackrel{\L}{\longrightarrow}(A,B,C)\in\R^3
+\end{align*}
+Dann gilt:
+\begin{align*}
+X_n\stackrel{n\to\infty}{\longrightarrow} X\text{ in }(C,d)\qquad\mit\qquad X(t)=A+B\cdot t+C\cdot t^2
+\end{align*}
+\begin{proof}
+Seien $t_1,\ldots,t_k\in I$ beliebig. Für Voraussetzung (1) in Satz \ref{satz7.9} reicht es gemäß Cramér-Wold-Device \ref{satz5.4CramerWoldDevice} zu zeigen:
+\begin{align*}
+\sum\limits_{j=1}^k\lambda_j\cdot X_n(t_j)\stackrel{\L}{\longrightarrow}\sum\limits_{j=1}^k\lambda_j\cdot X(t_j)\text{ in }\R\qquad\forall\lambda=\big(\lambda_1,\ldots,\lambda_k\big)\in\R^k
+\end{align*}
+%Ich wurde von Prof Ferger bemitleidet, weil ich in Tex nicht alles umsetzen kann, was in der Tafel durch Wisch-Technik erzeugt.
+Dazu: 
+\begin{align*}
+\sum\limits_{j=1}^k\lambda_j\cdot X_n(t_j)
+&=A_n\cdot\sum\limits_{j=1}^n\lambda_j+B_n\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j+C_n\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j^2\\
+\overset{\L,\ref{satz4.10ContinuousMappingTheorem}}&{\longrightarrow}
+A\cdot\sum\limits_{j=1}^k\lambda_j+B\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j+C\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j^2
+=\sum\limits_{j=1}^k\lambda_j\cdot X(t_j)
+\end{align*}
+Zu Voraussetzung (2) in Satz \ref{satz7.9}:
+\begin{align*}
+\big|X_n(s)-X_n(t)\big|
+&=\Big|B_n\cdot(s-t)+C_n\cdot\underbrace{\big(s^2-t^2\big)}_{(s-t)\cdot(s+t)}\Big|\\
+\overset{\text{DU}}&{\leq}
+|B_n|\cdot\underbrace{|s-t|}_{\leq\delta}+|C_n|\cdot\underbrace{|s-t|}_{\leq\delta}\cdot\underbrace{|s+t|}_{\leq|s|+|t|\leq:K}\\
+&\leq
+|B_n|\cdot\delta+K\cdot|C_n|\cdot\delta\qquad\forall s,t\in I\mit |s-t|\leq\delta\\
+\overset{\sup}{\implies}
+\omega(X_n,\delta)
+&\leq|B_n|\cdot\delta+K\cdot|C_n|\cdot\delta\\
+\implies
+\P\Big(\omega\big(X_n,\delta\big)>\varepsilon\Big)
+&\leq\P\Big(|B_n|\cdot\delta+K\cdot|C_n|\cdot\delta>\varepsilon\Big)\\
+\overset{\eqref{eqProofBeispiel7.10}}&{\leq}
+\P\Big(|B_n|\cdot\delta>\frac{\varepsilon}{2}\Big)+\P\Big(K\cdot|C_n|\cdot\delta>\frac{\varepsilon}{2}\Big)\\
+&=
+\P\Big(|B_n|>\frac{\varepsilon}{2\cdot\delta}\Big)+\P\Big(|C_n|>\frac{\varepsilon}{2\cdot K\cdot\delta}\Big)\\
+&=
+1-F_n\left(\frac{\varepsilon}{2\cdot\delta}\right)+1-G_n\left(\frac{\varepsilon}{2\cdot K\cdot\delta}\right)
+\end{align*}
+%Ferger: "Warum habe ich das eigentlich so gemacht!?"
+Hierbei ist $F_n$ die Verteilungsfunktion von $|B_n|\stackrel{\L}{\longrightarrow}|B|$ und $G_n$ die Verteilungsfunktion von $|C_n|$.
+Erinnerung:
+\begin{align}\label{eqProofBeispiel7.10}
+\big\lbrace U+V>\varepsilon\big\rbrace\subseteq\left\lbrace U>\frac{\varepsilon}{2}\right\rbrace\cup\left\lbrace V>\frac{\varepsilon}{2}\right\rbrace
+\end{align}
+Mit Korollar \ref{korollar4.5} folgt, dass es eine Fologe $(\delta_k)_{k\in\N}$  mit $\delta_k\downarrow0$, so dass $\frac{\varepsilon}{2\cdot\delta_k}$ und $\frac{\varepsilon}{2\cdot K\cdot\delta_k}$ Stetigkeitsstellen der jeweiligen Grenz-Verteilungfunktionen sind,
+%Ferger: "Na gut, einen Nobelpreis für Literatur kriege ich jetzt nicht."
+\begin{align*}
+\limsup\limits_{n\to\infty}\P\Big(\omega\big(X_n,\delta_k\big)>\varepsilon\Big)\leq\P\Big(|B|>\underbrace{\frac{\varepsilon}{2\cdot\delta_k}}_{\stackrel{k\to\infty}{\longrightarrow}\infty}\Big)
++\P\Big(|C|>\underbrace{\frac{\varepsilon}{2\cdot K\cdot\delta_k}}_{\stackrel{k\to\infty}{\longrightarrow}\infty}\Big)
+\qquad\forall k\in\N
+\end{align*}
+%Ferger: "Hach ich bin so doof. Ich hätte mir das Leben leichter machen können."
+$k\to\infty$ liefert dann (2).\\
+\textbf{Aufgabe:} Zeige dieses Beispiel durch CMT \ref{satz4.10ContinuousMappingTheorem}.
+\end{proof}
+\end{beispiel}
+ 
 
