@@ -13,7 +13,7 @@ Sei $X:(\Omega,\A,\P)\to\R$ eine reelle Zufallsvariable mit Verteilungsfunktion\
 \begin{align}
 Y(t)&:=\E\left(|X-t|\right)\label{DefY}\tag{1.0}\\ \nonumber
 &=\int\limits_\Omega |X(\omega)-t|\d\P(\omega)\\ \nonumber
-&\stackeq{\text{Trafo}}
+\overset{\text{Trafo}}&=
 \int\limits_\R|x-t|\Big(\P\circ X\d x\Big)\\ \nonumber
 &=\int\limits_\R|x-t|(F\d x) \nonumber
 \qquad\forall t\in\R\\
@@ -40,7 +40,8 @@ Sei $X\sim F_X$ integrierbar und $m\in\R$. Dann äquivalent:
 Setze $h(t):=\E[|X-t|-|X-m|]\stackeq{\text{Lin}}Y(t)-Y(m)$. Dann ist 2. äquivalent zu $h(t)\geq0~\forall t\in\R$. Dies ist noch zu zeigen.\nl
 \underline{Fall 1: $t<m$}
 \begin{align*}
-h(t)&\stackeq{\text{Trafo}}
+&h(t)\\
+\overset{\text{Trafo}}&=
 \int\limits_{\R}|x-t|-|x-m| Q_F(\d x)\\
 &=\int\limits_{(-\infty,t]}\underbrace{|x-t|-|x-m|}_{=t-x-(m-x)=-(m-t)} F(\d x)
 +\int\limits_{(t,m)}\underbrace{\underbrace{|x-t|-|x-m|}_{\underbrace{x-t}_{\geq0}-\underbrace{(m-x)}_{\leq m-t}}}_{\geq-(m-t)} F(\d x)\\
@@ -598,22 +599,22 @@ Seien
 die \textbf{Projektionsabbildungen}. Dann gilt
 \begin{align*}
 \B(\S)\otimes\B(\S) 
-&\stackeq{\text{Def}}
+\overset{\text{Def}}&=
 \sigma(\pi_1,\pi_2)\\
-&\stackeq{\text{Def}}
+\overset{\text{Def}}&=
 \sigma\Big(\pi_1^{-1}\big(\sigma(\mathcal{G})\big)\cup\pi_2^{-1}\big(\sigma(\mathcal{G})\big)\Big)\\
-&\stackeq{(+)}
+\overset{(+)}&=
 \sigma\Big(\sigma\big(\pi_1^{-1}(\mathcal{G})\big)\cup\sigma\big(\pi_2^{-1}(\mathcal{G})\big)\Big)\\
 &=
 \sigma\Big(\pi_1^{-1}(\mathcal{G})\big)\cup\pi_2^{-1}(\mathcal{G})\Big)\\
 &=\sigma\Big(\big\lbrace G\times S,S\times G':G,G'\in\mathcal{G}\big\rbrace\Big)\\
 &=
 \sigma\Big(\big\lbrace \overbrace{G\times G'}^{=(G\times S)\cap(S\times G')}:G,G'1\in\mathcal{G}\big\rbrace\Big)\\
-&\stackeq{\text{($\ast$)}}
+\overset{\text{($\ast$)}}&=
 \sigma\left(\left\lbrace\bigcup\limits_{\begin{subarray}{c}G\in\mathcal{O}\\G'\in\mathcal{O}'\end{subarray}}G\times G':\mathcal{O},\mathcal{O}'\subseteq\mathcal{G}\right\rbrace\right)\\
-&\stackeq{2.10~(3)}
+\overset{2.10~(3)}&=
 \sigma\Big(\mathcal{G}(\S\times\S)\Big)\\
-&\stackeq{\text{Def}}
+\overset{\text{Def}}&=
 \B(\S\times\S)
 \end{align*}
 Zum Nachweis von (+):\\
@@ -1131,18 +1132,19 @@ Mengen $B\in\B(\S)$ mit $P(\partial B)=0$ heißen \textbf{$P$-randlos}.
 \underline{Zeige (1) $\implies$ (2):}\\
 Folgt aus der Definition \ref{def4.1} (1).\nl
 \underline{Zeige (2) $\implies$ (3):}\\
-Sei $F\in\F(\S)$ (also abgeschlossen), Der Beweis von Satz \ref{satz3.17} zeigt: Es gibt eine Folge $(f_k)_{k\in\N}$ von gleichmäßigen stetigen, beschränkten Funktionen auf $\S$ mit $f_k\downarrow\indi_F$. Dann gilt:
+Sei $F\in\F(\S)$ (also abgeschlossen), Der Beweis von Satz \ref{satz3.17} zeigt: Es gibt eine Folge $(f_k)_{k\in\N}$ von gleichmäßig stetigen, beschränkten Funktionen auf $\S$ mit $f_k\downarrow\indi_F$. Dann gilt:
 \begin{align*}
 \limsup\limits_{n\to\infty} P_n(F)
 =\limsup\limits_{n\to\infty}\int\limits\underbrace{\indi_F}_{\leq f_k~\forall k\in\N}\d P_n
-&\stackrel{\text{Mono}}{\leq}
+\overset{\text{Mono}}&{\leq}
 \limsup\limits_{n\to\infty}\int\limits f_k\d P_n
 \stackrel{\text{Vor (2)}}{=}
 \int\limits f_k\d P~~\forall k\in\N\\
-&\stackrel{\text{Mono Konv}}{\implies}
+\overset{\text{Mono Konv}}&{\implies}
 \int\limits f_k\d P\stackrel{k\to\infty}{\longrightarrow}
 \int\limits\indi_F\d P=P(F)\\
-&\stackrel{k\to\infty}{\implies}~(3)
+\overset{k\to\infty}&{\implies}
+~(3)
 \end{align*}
 
 \underline{Zeige (3) $\Longleftrightarrow$ (4):}\\
@@ -1212,7 +1214,7 @@ Daraus folgt
 &=\limsup\limits_{n\to\infty}\left((b-a)\cdot\int\limits g\d P_n+a\right)\\
 &\leq(b-a)\cdot\underbrace{\limsup\limits_{n\to\infty}\int\limits g\d P_n}_{\leq\int\limits g\d P\text{, wg. 1. Schritt}}+a\\
 &\leq(b-a)\cdot\int\limits g\d P+0\\
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \int\limits f\d P
 \end{align*}
 Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqProof1.4.2Sternchen} liefert
@@ -1222,9 +1224,9 @@ Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqP
 \liminf\limits_{n\to\infty}\int\limits f\d P_n\\
 &=\liminf\limits_{n\to\infty}-\int\limits -f\d P_n\\
 &=-\limsup\limits_{n\to\infty}-\int\limits \underbrace{-f}_{\in C^b(\S)}\d P\\
-&\stackrel{\eqref{eqProof1.4.2Sternchen}}{\geq}
+\overset{\eqref{eqProof1.4.2Sternchen}}&{\geq}
 -\int\limits -f\d P\\
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \int\limits f\d P
 \qquad\forall f\in C^b(\S)\\
 &\implies(1)
@@ -1234,16 +1236,17 @@ Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqP
 Sei $B\in\B(\S)\mit P(\partial B)=0$. Dann gilt:
 \begin{align*}
 P(\overline{B})
-&\stackrel{(3)}{\geq}
+\overset{(3)}&{\geq}
 \limsup\limits_{n\to\infty} \underbrace{P_n(\overbrace{\overline{B}}^{\supseteq B})}_{\geq P_n(B)}\\
 &\geq\limsup\limits_{n\to\infty} P_n(B)\\
-&\stackrel{\text{stetig}}{\geq}
+\overset{\text{stetig}}&{\geq}
 \liminf\limits_{n\to\infty} \underbrace{P_n(\overbrace{B}^{\supseteq\stackrel{\circ}{B}})}_{P_n(\stackrel{\circ}{B}}\\
-\stackrel{(3)\gdw(4)}{\geq}
+\overset{(3)\gdw(4)}&{\geq}
 P(\stackrel{\circ}{B})\\
 &=P(\overline{B})\\
-&=P(B)
-\end{align*}, denn:
+&=P(B),
+\end{align*}
+denn:
 \begin{align}\label{eqProof1.4.2SternchenZwei}
 0
 =P(\overbrace{\partial B}^{\overline{B}\setminus\stackrel{\circ}{B}}
@@ -1320,7 +1323,7 @@ x\in F_k\qquad\forall k\in\N\\
 d(x,F)\leq\varepsilon_k\qquad\forall k\in\N\\
 &\implies
 d(x,F)=0\\
-&\stackrel{\ref{lemma2.3}~(1)}{\Longleftrightarrow}
+\overset{\ref{lemma2.3}~(1)}&{\Longleftrightarrow}
 x\in \overline{F}\stackeq{F\in\F}F
 \end{align*}
 \end{proof}
@@ -1345,11 +1348,11 @@ Dann gilt:
 Seien $A_1,\ldots,A_m\in\U$. Dann gilt:
 \begin{align*}
 P_n\left(\bigcup\limits_{i=1}^m A_i\right)
-&\stackeq{\text{allg. Add-Formel}}
+\overset{\text{allg. Add-Formel}}&=
 \sum\limits_{k=1}^m (-1)^{k-1}\cdot\sum\limits_{1\leq i_1<\ldots<i_k\leq m}\underbrace{P_n\big(\underbrace{A_{i_1}\cap\ldots\cap A_{i_k})}_{\in\U}}_{\stackrel{n\to\infty}{\longrightarrow} P(A_{i_1}\cap\ldots\cap A_{i_k})}\\
-&\stackrel{n\to\infty}{\longrightarrow}
+\overset{n\to\infty}&{\longrightarrow}
 \sum\limits_{k=1}^m\sum\limits_{1\leq i_1<\ldots<i_k\leq m} P\left(A_{i_1}\cap\ldots\cap A_{i_k}\right)\\
-&\stackeq{\text{all. Add.}}
+\overset{\text{all. Add.}}&=
 P\left(\bigcup\limits_{i=1}^m A_i\right)
 \end{align*}
 Sei $G\in\G$. Dann gilt wegen Voraussetzung (ii):
@@ -1357,13 +1360,13 @@ Sei $G\in\G$. Dann gilt wegen Voraussetzung (ii):
 &\exists(A_i)_{i\in\N}\subseteq\U:G=\bigcup\limits_{i\in\N} A_i\\
 &\implies
 G_m:=\bigcup\limits_{i=1}^m A_i\uparrow G,~m\to\infty\\
-&\stackrel{P~\sigma\text{-stetig}}{\implies}
+\overset{P~\sigma\text{-stetig}}&{\implies}
 \forall \varepsilon>0:\exists m_0\in\N:P(G)-P(G_{m_0})\leq\varepsilon\\
 &\implies
 P(G)-\varepsilon\leq P(G_{m_0})
 \stackeq{\text{s. o.}}
 \limn P_n(\underbrace{G_{m_0}}_{\subseteq G})\leq\liminf\limits_{n\to\infty} P_n(G)\qquad\forall\varepsilon>0\\
-&\stackrel{\varepsilon\to0}{\implies}
+\overset{\varepsilon\to0}&{\implies}
 \liminf\limits_{n\to\infty} P_n(G)\geq P(G)\qquad\forall G\in\G
 \end{align*}
 Nun folgt die Behauptung aus dem Theorem \ref{satz4.2}.
@@ -1690,7 +1693,7 @@ Sei $F\in\F(\S')$ (d. h. $F\subseteq\S'$ abgeschlossen) beliebig. Dann gilt:
 \limsup\limits_{n\to\infty} P_n\circ h^{-1}(F)
 &=\limsup\limits_{n\to\infty} P_n\big(\underbrace{h^{-1}(F)}_{\subseteq \overline{h^{-1}(F)}}\big)\\\nonumber
 &\leq \limsup\limits_{n\to\infty} P_n\big(\underbrace{\overline{h^{-1}(F)}}_{\in\F(\S)}\big)\\\nonumber
-&\stackrel{\ref{satz4.2}}{\leq}
+\overset{\ref{satz4.2}}&{\leq}
 P\big(\overline{h^{-1}(F)}\big)
 \end{align}
 Es gilt
@@ -1762,12 +1765,12 @@ X_n\stackrel{\P}{\longrightarrow} X\implies X_n\stackrel{\L}{\longrightarrow} X
 Sei $(X_{n'})$ eine Teilfolge von $(X_n)_{n\in\N}$. Dann existiert gemäß \ref{satz3.13} eine TF $(X_{n''})$ von $(X_{n'})$ mit $X_{n''}\stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
 Damit folgt aus Satz \ref{Satz3.8}:
 \begin{align*}
-&f\big(X_{n''}\big)\stackrel{n''\to\infty}{\longrightarrow}f(X)~\P\text{-fast sicher}\qquad\forall f\in C^b(\S)\\
-&\stackrel{\text{dom Konv}}{\implies}
-\E\Big[f\big(X_{n''}\big)\Big]\stackrel{n''\to\infty}{\longrightarrow}\E\Big[f\big(X\big)\Big]\qquad\forall f\in C^b(\S)\\
-&\stackrel{\ref{satz4.7}}{\implies}
+&f\big(X_{n''}\big)\stackrel{n''\to\infty}{\longrightarrow}f(X)~\P\text{-fast sicher}&\forall f\in C^b(\S)\\
+\overset{\text{dom Konv}}&{\implies}
+\E\Big[f\big(X_{n''}\big)\Big]\stackrel{n''\to\infty}{\longrightarrow}\E\Big[f\big(X\big)\Big]&\forall f\in C^b(\S)\\
+\overset{\ref{satz4.7}}&{\implies}
 X_{n''}\stackrel{\L}{\longrightarrow} X\\
-&\stackrel{\ref{satz4.11}(2)}{\implies}
+\overset{\ref{satz4.11}(2)}&{\implies}
 X_n\stackrel{\L}{\longrightarrow} X
 \end{align*}
 \end{proof}
@@ -1796,7 +1799,7 @@ f(x)&=\left\lbrace\begin{array}{cl}
 1, &\falls d(x,c)\geq\varepsilon
 \end{array}\right.\\
 \implies 0 \leq \P\big(d(X_n,X)>\varepsilon\big)
-&\stackeq{\text{Vor}}
+\overset{\text{Vor}}&=
 \P\big(d(X_n,c)>\varepsilon\big)\\
 &=\E\Big[\underbrace{\indi_{\lbrace d(X_n,c)\geq\varepsilon\rbrace}}_{\leq f(X_n)}\Big]\\
 &\leq\E\big[f(X_n)\big]\stackrelnew{n\to\infty}{\text{Vor}}{\longrightarrow}\E\big[\underbrace{f(X)}_{=\underbrace{f(c)}_{=0}\text{ f.s.}}\big]\\
@@ -1829,11 +1832,11 @@ Sei $f\in C^b(\S)$ gleichmäßig stetig, d. h.
 Damit folgt
 \begin{align*}
 &\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \left|\int\limits f(X_n)-f(Y_n)\d\P\right|\\
-&\stackrel{\text{DU}}{\leq}
+\overset{\text{DU}}&{\leq}
 \int\limits\big|f(X_n)-f(Y_n)\big|\d\P\\
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \int\limits\underbrace{\indi_{\big\lbrace d(X_n,Y_n)\leq\delta\big\rbrace}\cdot\big|f(X_n)-f(Y_n)\big|}_{\leq\varepsilon\text{ wegen glm. Stetigkeit}}\d\P\\
 &\qquad+
 \int\limits\indi_{\big\lbrace d(X_n,Y_n)>\delta\big\rbrace}\cdot\underbrace{\big|f(X_n)-f(Y_n)\big|}_{\leq\big|f(X_n)\big|+\big|f(Y_n)\big|\leq2\cdot\Vert f\Vert_\infty}\d\P\\
@@ -2047,7 +2050,8 @@ sind höchstens abzählbar (vgl. Beweis von \ref{satz4.2}). Folglich ist die Ver
 (E_1\cup E_2)^C&=E_1^C\cap E_2^C=\big\lbrace\delta>0:B_{d_i}(x_i,\delta)\text{ ist $\P_i$-randlos},i\in\lbrace1,2\rbrace\big\rbrace\\
 \implies\exists\delta&\in(0,\varepsilon):B_{d_1}(x_1,\delta)~\P_1\text{-randlos und }B_{d_2}(x_2,\delta)~\P_2\text{-randlos}\\
 \implies A_\delta&=B_{d_1}(x_1,\delta)\times B_{d_2}(x_2,\delta)\in\U\\
-&\stackeq{\eqref{eqProof4.19Plus}} B_d(x,\delta)\subseteq B_d(x,\varepsilon)
+\overset{\eqref{eqProof4.19Plus}}&=
+B_d(x,\delta)\subseteq B_d(x,\varepsilon)
 \end{align*}
 Also offene Kugel ist $A_\delta$ offen, also $\stackrel{\circ}{A_\delta}=A_\delta$. Schließlich folgt
 \begin{align*}
@@ -2369,7 +2373,7 @@ Sei $N\sim\mathcal{N}_d(0,\Gamma)$. Mit \ref{satz5.4CramerWoldDevice} bleibt zu 
 Sei $t\in\R^d\setminus\lbrace0\rbrace$ (für $t=0$ ist \eqref{eqProof6.2Stern} trivialerweise erfüllt). Es folgt
 \begin{align*}
 \left\langle t,\sum\limits_{k=1}^n X_{n,k}\right\rangle
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \sum\limits_{k=1}^n\underbrace{\left\langle t,X_{n,k}\right\rangle}_{=:Y_{n,k}=:Y_{n,k}(t)}
 =\sum\limits_{k=1}^n Y_{n,k}\\
 Y_{n,k}
@@ -2395,7 +2399,7 @@ s_n^2
 &=\sum\limits_{k=1}^n\sum\limits_{i,j=1}^d t_i\cdot t_j\cdot\E\left[X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right]\\
 &=\sum\limits_{k=1}^n\sum\limits_{i,j=1}^d t_i\cdot\Big(\Cov(X_{n,k}\Big)_{i,j}\cdot t_j\\
 &=\sum\limits_{k=1}^n t'\cdot\Cov(X_{n,k})\cdot t\\
-&\stackeq{\text{Distri}}
+\overset{\text{Distri}}&=
 t'\cdot\underbrace{\sum\limits_{k=1}^n\Cov(X_{n,k})\cdot t}_{\stackrel{n\to\infty}{\longrightarrow}\Gamma\text{ wg. \eqref{eqSatz6.2NB}}}\stackrel{n\to\infty}{\longrightarrow} t'\cdot \Gamma\cdot t=:\sigma^2\stackrel{\Gamma\text{ p.d.}}{>}0
 \end{align*}
 Ggemäß Cauchy-Schwarz-Ungleichung (CSU) gilt:
