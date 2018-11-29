@@ -178,10 +178,8 @@ Wähle $L,d\in\N$. Betrachte $L^d$ Individuen auf dem regelmäßigen Gitter\\ $\
 \end{figure}
 
 Jedes Individuum hat Meinung in $\lbrace0,1\rbrace$, also dafür oder dagegen. Zustand des Kollektivs:
-$x\in\lbrace0,1\rbrace^{\Lambda}=\big\lbrace f:\Lambda\to\lbrace 0,1\rbrace\big\rbrace=\lbrace0,1\rbrace^{L^d}$\\
-
-\ul{Meinungsbildungsprozess:} Zu jedem Zeitpunkt $n\in\N_0$ übernimmt ein (zufällig ausgewähltes) Individuum $I_n$ die Meinung eines (zufällig ausgewählten) Nachbarn $I_n+N_n$. (Konvention: Es gibt keinen Rand, es wird modulo $L$ gerechnet.)\\
-
+$x\in\lbrace0,1\rbrace^{\Lambda}=\big\lbrace f:\Lambda\to\lbrace 0,1\rbrace\big\rbrace=\lbrace0,1\rbrace^{L^d}$\nl
+\ul{Meinungsbildungsprozess:} Zu jedem Zeitpunkt $n\in\N_0$ übernimmt ein (zufällig ausgewähltes) Individuum $I_n$ die Meinung eines (zufällig ausgewählten) Nachbarn $I_n+N_n$. (Konvention: Es gibt keinen Rand, es wird modulo $L$ gerechnet.)\nl
 \ul{Mathematische Formulierung}: $(I_n,N_n)_{n\in\N_0}$ iid mit 
 \begin{itemize}
 \item $I_n$ $\ldots$ gleichverteilt auf dem Gitter $\Lambda$
@@ -218,10 +216,8 @@ M_n-M_{n-1}
 &=0
 \end{align*}
 \end{itemize}
-Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß Theorem \ref{theorem4.2Martingalkonvergenz} $M_\infty\mit\limn M_n=M_\infty$ (Achtung extra Annahme: und in $L_1\implies\E[M_\infty]=\E[M_0]$).\\
-
-\ul{Weitere Behauptung:} $M_\infty\in\lbrace 0,L^d\rbrace$, d.h. im Grenzwert gibt es nur extreme Zustände (Konsens).\\
-
+Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß Theorem \ref{theorem4.2Martingalkonvergenz} $M_\infty\mit\limn M_n=M_\infty$ (Achtung extra Annahme: und in $L_1\implies\E[M_\infty]=\E[M_0]$).\nl
+\ul{Weitere Behauptung:} $M_\infty\in\lbrace 0,L^d\rbrace$, d.h. im Grenzwert gibt es nur extreme Zustände (Konsens).\nl
 \ul{Vorüberlegung:} Sei $x\in\lbrace0,1\rbrace^{\Lambda}$ \ul{kein} extremer Zustand, d. h. es existieren Nachbarn $i,j$ mit $X_n(i)\neq X_n(j)$.
 \begin{align}
 \P(X_n\neq X_{n-1}~|~X_{n-1}=x)\nonumber
@@ -241,7 +237,7 @@ Andererseits gilt:
 \langle M\rangle_n 
 &=\sum\limits_{k=1}^n\E\left[\left.\underbrace{(M_k-M_{k-1})^2}_{\in\lbrace0,1\rbrace}~\right|~\F_{k-1}\right]\\
 &=\sum\limits_{k=1}^n0 \cdot \P\big(X_k= X_{k-1}~\big|~\F_{k-1}\big)+ 1 \cdot \P\big(X_k\neq X_{k-1}~\big|~\F_{k-1}\big)\\
-\implies
+\Rightarrow
 \E\big[\langle M\rangle_n\big]
 &\stackeq{\text{tower}}\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}\big)\\
 &=\sum\limits_{k=1}^n\underbrace{\P\big(X_k\neq X_{k-1}~|~ M_{k-1} \in \{0,L^d\}\big)}_{\geq 0} + \P\big(\underbrace{X_k\neq X_{k-1}~|~ M_{k-1} \not\in \{0,L^d\}}_{\unab}\big)\\
@@ -249,7 +245,6 @@ Andererseits gilt:
 \sum\limits_{k=1}^n L^{-d}\cdot\frac{1}{2\cdot d}\cdot\P\big(\underbrace{M_{k-1}\not\in\lbrace0,L^d\rbrace}_{=:A_{k-1}\text{ (kein extremer Zustand)}}\Big)
 \end{align*}
 Außerdem:
-
 \begin{align*}
 L^{2\cdot d}
 &\geq \E\left[(M_n-M_0)^2\right]\\
@@ -357,8 +352,7 @@ Sei $(X_i)_{i\in I}\subseteq L_1$ eine Familie von Zufallsvariablen. Dann gilt:
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-\underline{Zu (a):} Siehe Übung.\\
-
+\underline{Zu (a):} Siehe Übung.\nl
 \underline{Zu (b):}
 \begin{align*}
 	\rho(R)&=\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
@@ -436,8 +430,7 @@ Sei $(X_n)_{n\in\N_0}$ ein $(\F_n)_{n\in\N_0}$-Martingal. Dann sind äquivalent:
 \end{align*}
 
 \underline{Zeige (b) $\implies$ (c):}\\
-Folgt aus Lemma \ref{lemma4.3} (b).\\
-
+Folgt aus Lemma \ref{lemma4.3} (b).\nl
 \underline{Zeige (c) $\implies$ (a):}
 \begin{align*}
 (X_n)_{n\in\N}\text{ ggi }&\implies\sup\limits_{n\in\N_0}\E\big[|X_n|\big]\leq R+\rho(R)<\infty\\

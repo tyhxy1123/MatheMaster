@@ -4,7 +4,7 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \chapter{Bedingter Erwartungswert}
-\section{Bedingter Erwartungswert als $L_2$-Projektion}
+\section{Bedingter Erwartungswert als \texorpdfstring{$L_2$}{L\_2}-Projektion}
 Betrachte den Wahrscheinlichkeitsraum $(\Omega,\A,\P)$.\\
 Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-Norm
 \begin{align*}
@@ -12,8 +12,8 @@ Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-No
 \end{align*}
 und die Räume
 \begin{align*}
-\mathcal{L}_p(\Omega,\A,\P):=\Big\lbrace X:\Omega\to\R\Big|X\text{ ist $\A$-messbar und }\Vert X\Vert_p<\infty\Big\rbrace
-\end{align*}.
+\mathcal{L}_p(\Omega,\A,\P):=\Big\lbrace X:\Omega\to\R\Big|X\text{ ist $\A$-messbar und }\Vert X\Vert_p<\infty\Big\rbrace.
+\end{align*}
 Aufgrund der Minkowski-Ungleichung
 \begin{align*}
 \Vert X+Y\Vert_p\leq\Vert X\Vert_p+\Vert Y\Vert_p
@@ -68,8 +68,8 @@ Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Om
 	$\mathcal{L}_p(\Omega,\F,\P)$ selbst ist Banachraum und damit abgeschlossener Unterraum.
 \end{proof}
 
-\begin{defi}[Bedingte Erwartung in $L_2$]\enter
-Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\enter\enter
+\begin{defi}[Bedingte Erwartung in $L_2$]
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\nl
 Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$. Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
 \begin{align*}
 \E[X~|~\mathcal{F}]:=Y.
@@ -111,9 +111,8 @@ Für $t\rightarrow0$ erhalten wir.
 Analog erhält man mit der Annahme $t<0$ die umgekehrte Ungleichung.
 Also folgt
 \[\langle X-Y, F \rangle = 0 \qquad \forall \F \in L_2(\F)\]
-da $F$ beliebig gewählt war.\enter
-
-Jetzt: $\dq (b) \implies (a) \dq{}$ \enter
+da $F$ beliebig gewählt war.\nl
+Jetzt: $\dq (b) \implies (a) \dq{}$\\
 Sei $F\in L_2(\F)$ und $\langle X-Y, F \rangle = 0$. Dann
 \[\implies \|X-Y\|_2^2 + \underbrace{t^2\|F\|_2^2}_{\geq 0} - \underbrace{2t\langle X-Y, F \rangle}_{=0} \geq \|X-Y\|_2^2\]
 Und damit 
@@ -142,8 +141,7 @@ Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Alg
 \end{proposition}
 
 \begin{proof}
-\underline{Zu (a):} Folgt direkt aus der Definition.\\
-
+\underline{Zu (a):} Folgt direkt aus der Definition.\nl
 \underline{Zu (b):} Folgt aus Proposition \ref{Prop1.3}:
 \begin{align*}
 &\stackrel{\text{Prop }\ref{Prop1.3}}{\Longrightarrow}
@@ -220,8 +218,7 @@ und andererseits
 &\Longrightarrow \P(\E[X~|~\mathcal{F}]<0)=0\\
 &\Longrightarrow\E[X~|~\mathcal{F}]\geq0\text { fast sicher}
 \end{align*}
-Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\\
-
+Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\nl
 \underline{Zu (g):}
 \begin{align*}
 \pm X\leq|X|
@@ -231,7 +228,7 @@ Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\\
 \end{align*}
 \end{proof}
  
-\section{Bedingte Erwartung in $L_1$}
+\section{Bedingte Erwartung in \texorpdfstring{$L_1$}{L\_1}}
 \setcounter{section}{1}
 Prinzip: stetige Fortsetzung.
 
@@ -439,11 +436,9 @@ In diesen Fällen schreiben wir
 \E[X~|~Y]&:=\E[X~|~\sigma(Y)]\\
 \E[X~|~Y_1,\ldots,Y_n]&:=\E\big[X~|~\sigma(Y_1,\ldots,Y_n)\big]
 \end{align*}
-Die beiden Fälle stimmen überein, wenn wir $Y$ als Zufallsvektor $Y=(Y_1,\ldots,Y_n)$ definieren.\\
-
+Die beiden Fälle stimmen überein, wenn wir $Y$ als Zufallsvektor $Y=(Y_1,\ldots,Y_n)$ definieren.\nl
 \textbf{Interpretation / Bedeutung:}\\
-Beste Vorhersage von $X$ gegeben $Y$. Dies ist in vielen Anwendungen relevant, z. B. $X$ sei das Einkommen einer zufällig ausgewählten Person und $Y$ der höchste Bildungsabschluss dieser Person. \\
-
+Beste Vorhersage von $X$ gegeben $Y$. Dies ist in vielen Anwendungen relevant, z. B. $X$ sei das Einkommen einer zufällig ausgewählten Person und $Y$ der höchste Bildungsabschluss dieser Person.\nl
 Wir betrachten: $(X,Y)$ sei $\R^m\times\R^n$-wertige Zufallsvariable mit gemeinsamer Dichte $f_{XY}(x,y)$.
 \begin{itemize}
 \item
@@ -618,8 +613,7 @@ Seien $A,B\in\A$ Ereignisse. Die \textbf{elementare bedingte Wahrscheinlichkeit}
 \begin{align*}
 \P(A~|~B)=\frac{\P(A\cap B)}{\P(B)}\text{ für }\P(B)>0
 \end{align*}
-Was ist der Zusammenhang zur bedingten Erwartung?\\
-
+Was ist der Zusammenhang zur bedingten Erwartung?\nl
 Beachte: Die erzeugte $\sigma$-Algebra 
 \begin{align*}
 \sigma(B)=\big\lbrace\emptyset,B,B^C,\Omega\big\rbrace.
@@ -673,8 +667,7 @@ Insgesamt haben wir definiert:\\
 &$\sigma$-Algebra $\F$ & Zufallsvariable $Y$ & Ereignis $B$\\ \hline
 	Wahrscheinlichkeit eines Ereignisses $A\in\A$ & $\P(A~|~\F)$ & --- & $\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$ \\\hline
 	Erwartungswert einer Zufallsvariable $X$ & $\E[X~|~\F]$ siehe 1.1 und 1.2 & $\E[X~|~Y]~~~(\ast)$ & $\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$
-\end{tabular}\\
-
+\end{tabular}\nl
 $(\ast)$: Falls eine Dichte existiert: $\E[X~|~Y=y]$
 
 \begin{beisp}[Lebensdaueranalyse]\enter
