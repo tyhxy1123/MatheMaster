@@ -26,7 +26,8 @@ Berechnung:
 &=\E\Big[S_n+\xi_{n+1}+\ldots+\xi_{n+k}~\Big|~\F_n\Big]\\
 &=\E[S_n~|~\F_n]+\sum\limits_{i=1}^k\E\big[\underbrace{\xi_{n+i}~\big|~\F_n}_{\unab}\big]\\
 &=S_n+\sum\limits_{i=1}^k\E\big[\xi_{n+i}\big]\\
-&\stackrel{\text{iid.}}{=}S_n+k\cdot\E[\xi_1]\\
+\overset{\text{iid.}}&{=}
+S_n+k\cdot\E[\xi_1]\\
 &=\left\lbrace\begin{array}{cll}
 > S_n, & \falls \E[\xi_1]>0 & \text{vorteilhaftes Spiel für A}\\
 = S_n, & \falls \E[\xi_1]=0 & \text{faires Spiel}\\
@@ -63,7 +64,7 @@ Nehmen wir ein faires Spiel an, also $\E[\xi_1]=0$, dann erhalten wir:
 Durch Iteration dieser Gleichung folgt für $k>0$:
 \begin{align*}
 \E\big[\tilde{S}_{n+k}~\big|~\F_n\big]
-&\stackeq{\eqref{Turmregel}}
+\overset{\eqref{Turmregel}}&=
 \E\Big[\underbrace{\E\big[\tilde{S}_{n+k}~\big|~\F_{n+k-1}\big]}_{=\tilde{S}_{n+k-1}}~\Big|~\F_n\Big]\\
 &=\E\big[\tilde{S}_{n+1}~\big|~\F_n\big]\\
 &=\tilde{S}_n
@@ -376,7 +377,7 @@ Also:
 -\E[A_n-A_{n-1}~|~\F_{n-1}]\\
 &=\E[ X_n-X_{n-1}~|~\F_{n-1}]
 -(A_n-A_{n-1})\\
-&\stackeq{\text{Def }A}
+\overset{\text{Def }A}&=
 0
 \end{align*}
 \underline{Zur Eindeutigkeit:}\\
@@ -608,21 +609,15 @@ Aus Theorem \ref{theorem2.5} folgt Martingaleigenschaft von $(\vartheta\bullet M
 \begin{align*}
 &\big(\vartheta^2\bullet\langle M\rangle\big)_n
 =\sum\limits_{j=1}^n\underbrace{\vartheta_j}_{\F_{n-1}\text{-messbar}}\cdot\underbrace{\big(\langle M\rangle_j-\langle M\rangle_{j-1}\big)}_{\F_{n-1}\text{-messbar}}\\
-&\implies\vartheta^2\bullet\langle M\rangle\text{ ist vorhersehbar}
-\end{align*}
-
-\begin{align*}
+&\implies\vartheta^2\bullet\langle M\rangle\text{ ist vorhersehbar}\nl
 	&\E\Big[(\vartheta\bullet M)^2_n-(\vartheta\bullet M)^2_{n-1}~\Big|~\F_{n-1}\Big] \\
 	&=\E\Big[(\vartheta\bullet M)^2_n-2\cdot(\vartheta\bullet M)_n(\vartheta\bullet M)_{n-1} +(\vartheta\bullet M)^2_{n-1}~\Big|~\F_{n-1}\Big]\\
 &=\E\Big[\big((\vartheta\bullet M)_n-(\vartheta\bullet M)_{n-1}\big)^2~\Big|~\F_{n-1}\Big]\\
 &=\E\big[\vartheta^2\cdot(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
 &=\vartheta^2_n\cdot\E\big[(M_n-M_{n-1})^2~\big|~\F_{n-1}\big]\\
-&\stackeq{\ref{lemma2.4}}
+\overset{\ref{lemma2.4}}&=
 \vartheta_n^2\cdot\big(\langle M_n\rangle-\langle M\rangle_{n-1}\big) \\
-&= \vartheta^2\bullet\langle M\rangle_n - \vartheta^2\bullet\langle M\rangle_{n-1}
-\end{align*}
-
-\begin{align*}
+&= \vartheta^2\bullet\langle M\rangle_n - \vartheta^2\bullet\langle M\rangle_{n-1}\nl
 	&\implies (\vartheta\bullet M)^2_n - \vartheta^2\bullet\langle M\rangle_n \quad \text{ist Martingal} \\
 	&\implies \langle \vartheta \bullet M \rangle_n = \vartheta^2 \bullet \langle M \rangle_n \quad \forall n\in\N
 \end{align*}
