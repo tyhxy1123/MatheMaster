@@ -4,9 +4,9 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \chapter{Martingalkonvergenz und gleichgradige Integrierbarkeit} %4
-%\setcounter{section}{4} %kleiner Hack
 
-\section{Martingalkonvergenz}
+\section{Martingalkonvergenz} %4.1
+\setcounter{section}{4} %fix numbering
 \underline{Vorüberlegung:} Sei $(a_n)_{n\in\N}\subseteq\R$ deterministische Folge in $\R$.
 \begin{itemize}
 \item $\liminf\limits_{n\to\infty} a_n$ und $\limsup\limits_{n\to\infty} a_n$ immer wohldefiniert mit Werten in $\overline{\R}:=\R\cup\lbrace\pm\infty\rbrace$
@@ -53,7 +53,6 @@ U[p,q]=\limsup\limits_{n\to\infty} U_n[p,q]
 die Anzahl der \textbf{Upcrossings} von $[p,q]\times\N$.
 \end{defi}
 
-\setcounter{section}{4} %fix numbering
 \begin{lemma}[Doob's Upcrossing Lemma]\enter\label{lemma4.1DoobsUpcrossingLemma}
 Sei $(X_n)_{n\in\N}$ Sub-Martingal und $p,q\in\R\mit p<q$. Dann gilt:
 \begin{align*}
@@ -89,8 +88,8 @@ Außerdem gilt
 \end{align}
 denn: 
 \begin{align*}
-X_N-p<0&\implies X_{\sigma_{k+1}}<p&\implies X_N-p\leq X_{\sigma_{k+1}}-p\\
-X_N-p\geq0&\implies \sigma_{k+1}=N&\implies X_N-p- X_{\sigma_{k+1}}=0
+	X_N-p<0&\implies X_{\sigma_{k+1}}<p&&\implies X_N-p\leq X_{\sigma_{k+1}}-p\\
+	X_N-p\geq0 &\implies \sigma_{k+1}=N&&\implies X_N- X_{\sigma_{k+1}}=0
 \end{align*}
 Addiere von \eqref{eqProof4.1.1Stern} auf \eqref{eqProof4.1.1ZweiStern}
 \begin{align*}
@@ -179,10 +178,8 @@ Wähle $L,d\in\N$. Betrachte $L^d$ Individuen auf dem regelmäßigen Gitter\\ $\
 \end{figure}
 
 Jedes Individuum hat Meinung in $\lbrace0,1\rbrace$, also dafür oder dagegen. Zustand des Kollektivs:
-$x\in\lbrace0,1\rbrace^{\Lambda}=\big\lbrace f:\Lambda\to\lbrace 0,1\rbrace\big\rbrace=\lbrace0,1\rbrace^{L^d}$\\
-
-\ul{Meinungsbildungsprozess:} Zu jedem Zeitpunkt $n\in\N_0$ übernimmt ein (zufällig ausgewähltes) Individuum $I_n$ die Meinung eines (zufällig ausgewählten) Nachbarn $I_n+N_n$. (Konvention: Es gibt keinen Rand, es wird modulo $L$ gerechnet.)\\
-
+$x\in\lbrace0,1\rbrace^{\Lambda}=\big\lbrace f:\Lambda\to\lbrace 0,1\rbrace\big\rbrace=\lbrace0,1\rbrace^{L^d}$\nl
+\ul{Meinungsbildungsprozess:} Zu jedem Zeitpunkt $n\in\N_0$ übernimmt ein (zufällig ausgewähltes) Individuum $I_n$ die Meinung eines (zufällig ausgewählten) Nachbarn $I_n+N_n$. (Konvention: Es gibt keinen Rand, es wird modulo $L$ gerechnet.)\nl
 \ul{Mathematische Formulierung}: $(I_n,N_n)_{n\in\N_0}$ iid mit 
 \begin{itemize}
 \item $I_n$ $\ldots$ gleichverteilt auf dem Gitter $\Lambda$
@@ -219,15 +216,13 @@ M_n-M_{n-1}
 &=0
 \end{align*}
 \end{itemize}
-Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß Theorem \ref{theorem4.2Martingalkonvergenz} $M_\infty\mit\limn M_n=M_\infty$ (Achtung extra Annahme: und in $L_1\implies\E[M_\infty]=\E[M_0]$).\\
-
-\ul{Weitere Behauptung:} $M_\infty\in\lbrace 0,L^d\rbrace$, d.h. im Grenzwert gibt es nur extreme Zustände (Konsens).\\
-
+Folglich ist $(M_n)$ ein beschränktes Martingal und somit existiert gemäß Theorem \ref{theorem4.2Martingalkonvergenz} $M_\infty\mit\limn M_n=M_\infty$ (Achtung extra Annahme: und in $L_1\implies\E[M_\infty]=\E[M_0]$).\nl
+\ul{Weitere Behauptung:} $M_\infty\in\lbrace 0,L^d\rbrace$, d.h. im Grenzwert gibt es nur extreme Zustände (Konsens).\nl
 \ul{Vorüberlegung:} Sei $x\in\lbrace0,1\rbrace^{\Lambda}$ \ul{kein} extremer Zustand, d. h. es existieren Nachbarn $i,j$ mit $X_n(i)\neq X_n(j)$.
 \begin{align}
 \P(X_n\neq X_{n-1}~|~X_{n-1}=x)\nonumber
-&\geq \P\big(I_n=i~\&~ I_n+N_n=j~(\text{mod } L)\big)\\
-&=\P\big(\underbrace{I_n=i~\&~ N_n=i-j}_{\unab}~(\text{mod  }L)\big)\nonumber\\
+&\geq \P\Big(\Big\lbrace I_n=i\Big\rbrace \cap \Big\lbrace I_n+N_n=j~(\text{mod } L)\Big\rbrace\Big)\\
+&=\P\Big(\underbrace{\Big\lbrace I_n=i\Big\rbrace \cap\Big\lbrace N_n=i-j~(\text{mod  }L)\Big\rbrace}_{\unab}\Big)\nonumber\\
 &=\P\big(I_n=i\big)\cdot\P\big(N_n=i-j~(\text{mod  }L)\big)\nonumber\\
 &=L^{-d}\cdot\frac{1}{2\cdot d}\label{eqExampleWaehlermodellStern}\tag{$\ast$}
 \end{align}
@@ -242,7 +237,7 @@ Andererseits gilt:
 \langle M\rangle_n 
 &=\sum\limits_{k=1}^n\E\left[\left.\underbrace{(M_k-M_{k-1})^2}_{\in\lbrace0,1\rbrace}~\right|~\F_{k-1}\right]\\
 &=\sum\limits_{k=1}^n0 \cdot \P\big(X_k= X_{k-1}~\big|~\F_{k-1}\big)+ 1 \cdot \P\big(X_k\neq X_{k-1}~\big|~\F_{k-1}\big)\\
-\implies
+\Rightarrow
 \E\big[\langle M\rangle_n\big]
 &\stackeq{\text{tower}}\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}\big)\\
 &=\sum\limits_{k=1}^n\underbrace{\P\big(X_k\neq X_{k-1}~|~ M_{k-1} \in \{0,L^d\}\big)}_{\geq 0} + \P\big(\underbrace{X_k\neq X_{k-1}~|~ M_{k-1} \not\in \{0,L^d\}}_{\unab}\big)\\
@@ -250,7 +245,6 @@ Andererseits gilt:
 \sum\limits_{k=1}^n L^{-d}\cdot\frac{1}{2\cdot d}\cdot\P\big(\underbrace{M_{k-1}\not\in\lbrace0,L^d\rbrace}_{=:A_{k-1}\text{ (kein extremer Zustand)}}\Big)
 \end{align*}
 Außerdem:
-
 \begin{align*}
 L^{2\cdot d}
 &\geq \E\left[(M_n-M_0)^2\right]\\
@@ -264,7 +258,7 @@ Satz von Borel-Cantelli: Nur endlich viele Ereignisse $(A_k)_{k\in\N}$ treten ei
 \begin{align*}
 &\exists N_0:\Omega\to\N:\forall n\geq N_0(\omega):\omega\not\in A_n\\
 &\implies M_n(\omega)\in\lbrace0,L^d\rbrace\qquad\forall N_0(\omega)\\
-&\implies M_\infty:=\limn M_n\text{ nimmt nur extreme Werte $\lbrace0,\Lambda^d\rbrace$ an!}
+&\implies M_\infty:=\limn M_n\text{ nimmt nur extreme Werte $\lbrace0,L^d\rbrace$ an!}
 \end{align*}
 Im Grenzwert tritt perfekter Konsens auf!
 \begin{align*}
@@ -273,9 +267,176 @@ Im Grenzwert tritt perfekter Konsens auf!
 \end{align*}
 \end{beisp}
 
+\setcounter{section}{1} %fix numbering
+\section{Gleichgradige Integrierbarkeit (ggi)} %4.2
+\setcounter{section}{4} %fix numbering
+\ul{Ziel}: $L_1$-Konvergenz und Abschließbarkeit von Martingalen
 
+\begin{defi}
+Sei $(X_i)_{i\in I}$ eine Familie von Zufallsvariablen. Setze
+\begin{align*}
+\rho(R):=\sup\limits_{i\in I}\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big]
+\end{align*}
+Die Familie $(X_i)_{i\in I}$ heißt \textbf{gleichgradig integrierbar (ggi)}
+\begin{align*}
+:\Longleftrightarrow\lim\limits_{R\to\infty}\rho(R)=0
+\end{align*}
+Interpretation: Masse in Verteilungsende verschwindet gleichmäßig für $R\to\infty$.
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=\textwidth]{pics/Sketch3.png}
+		\caption{Veranschaulichung von $\rho(R)$ aus der Definition von ggi}
+		\label{AbbRhoGGI}
+	\end{center}
+\end{figure}
+\end{defi}
 
+\setcounter{satz}{2}
+\begin{lemma}\label{lemma4.3}
+Sei $X\in L_1(\Omega,\A,\P)$. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item $\lbrace X\rbrace$ ist ggi
+\item $\big\lbrace\E[X~|~\F]:\F\text{ ist Unter-$\sigma$-Algebra von }\A\big\rbrace$ ist ggi
+\end{enumerate}
+\end{lemma}
+\begin{bemerkung}
+Insbesondere gilt: Wenn $X$ Martingal ist, ist $(X_t)_{t\in[0,T]}$ ist ggi, ABER $(X_t)_{[t\geq0}$ im Allgemeinen nicht!
+\end{bemerkung}
+\begin{proof}
+\underline{Zeige (a):}\\
+Es gilt
+\begin{align*}
+|X|\cdot\indi_{\lbrace|X|\geq R\rbrace}\leq |X|
+\end{align*}
+Daher folgt mit dominierter Konvergenz:
+\begin{align*}
+\lim\limits_{R\to\infty}\rho(R)
+&=\lim\limits_{R\to\infty}\E\left[|X|\cdot\indi_{\lbrace |X|\geq R\rbrace}\right]
+\stackeq{\text{domKonv}}\E\left[|X|\cdot\lim\limits_{R\to\infty}\indi_{\lbrace|X|\geq R\rbrace}\right]
+=0
+\end{align*}
+\underline{Zeige (b):} $\F\subseteq\A$, $Y:=\E[X~|~F]$ Es gilt
+\begin{align*}
+|Y|&\leq\E\big[|X|~\big|~\F\big]\\
+\E\left[|Y|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\right]
+&\leq\E\Big[\E\big[|X|~\big|~\F\big]\cdot\indi_{\lbrace |Y|\leq R\rbrace}\Big]
+\stackrel{\text{Tow}}{\leq}
+\E\left[|X|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\right]
+\end{align*}
+Sei $K\geq0$.
+\begin{align*}
+\E\Big[|X|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\Big]
+&=\underbrace{\E\big[|X|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\cdot\indi_{\lbrace |X|>K\rbrace}\Big]}_{\leq\E\Big[|X|\cdot\indi_{\lbrace |X|\geq K\rbrace}\Big]}+
+\underbrace{\E\Big[|X|\cdot\indi_{\lbrace|Y|\geq R\rbrace}\cdot\indi_{\lbrace|X|<K\rbrace}\Big]}_{\leq|X|\cdot\P\big(|Y|\geq R\big)\stackrel{\text{Markov}}{\leq}\frac{K}{R}\cdot\E\big[|Y|\big]\leq\frac{K}{R}\cdot\E\big[|X|\big]}
+\end{align*}
+Insgesamt:
+\begin{align*}
+\rho(R)
+&\leq\E\Big[|X|\cdot\indi_{\lbrace|X|\geq R}\Big]+\frac{K}{R}\cdot\E\big[|X|\big]\qquad\forall K\geq0\\
+\implies
+\lim\limits_{R\to\infty}\rho(R)
+&\leq\E\Big[|X|\cdot\indi_{|X|\geq K\rbrace}\Big]\stackrel{K\to\infty}{\longrightarrow}0\\
+\implies \lim\limits_{R\to\infty}\rho(R)&=0
+\end{align*}
+\end{proof}
 
-%Abschließbar: $X_n=\E[X_\infty~|~\F_n]$?
+\begin{theorem}[Hinreichende Bedigungen für ggi]\label{theorem4.4HinreichendeBeingungenFuerggi}\enter
+Sei $(X_i)_{i\in I}\subseteq L_1$ eine Familie von Zufallsvariablen. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item $\begin{aligned}
+\Big(\exists p>1:\sup\limits_{i\in I}\E\big[|X_i|^p\big]<\infty\Big)\implies (X_i)_{i\in I}\text{ ist ggi}
+\end{aligned}$
+\item $\begin{aligned}
+\Big(\exists Y\in L_1:\forall i\in I:|X_i|\leq Y\Big)\implies(X_i)_{i\in I}\text{ ist ggi}
+\end{aligned}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\underline{Zu (a):} Siehe Übung.\nl
+\underline{Zu (b):}
+\begin{align*}
+	\rho(R)&=\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
+&\stackrel{\text{Vor.}}{\leq} \E\Big[|Y|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
+&\leq\E\Big[|Y|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\Big]\\
+&\text{denn: }\big\lbrace |X_i|\geq R\big\rbrace\subseteq\big\lbrace|Y|\geq R\big\rbrace\qquad\forall i\in I\\
+\implies
+\rho(R)
+&\leq\E\Big[|Y|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\Big]\underset{\ref{lemma4.3} (a)}{\overset{R\to\infty}{\longrightarrow}}0
+\end{align*}
+\end{proof}
 
+\begin{theorem}\label{theorem4.5}
+Sei $(X_n)_{n\in\N}$ ggi und $\limn X_n=:X_\infty$ f.s.\\
+Dann gilt $L_1$-Konvergenz:
+\begin{align*}
+\E\big[|X_n-X_\infty|\big]\stackrel{n\to\infty}{\longrightarrow}0
+\qquad\text{d.h.}\qquad
+X_n\stackrel{L_1}{\longrightarrow} X_\infty
+\end{align*}
+\end{theorem}
+\begin{bemerkung}
+Merke: Fast sichere Konvergenz + ggi $\implies L_1$-Konvergenz
+\end{bemerkung}
+\begin{proof}
+Schreibe $X:=X_\infty$. Es gilt
+\begin{align*}
+\E\Big[|X|\cdot\indi_{\lbrace |X|\geq R\rbrace}\Big]
+&\stackrel{\text{Fatou}}{\leq}
+\liminf\limits_{n\to\infty}\E\Big[|X_n|\cdot\indi_{\lbrace |X_n|\geq R\rbrace}\Big]
+\stackrel{\text{ggi}}{\leq}
+\rho(R)
+\end{align*}
+Folglich
+\begin{align*}
+\E\big[|X|\big]&=\underbrace{\E\Big[|X|\cdot\indi_{\lbrace |X|< R\rbrace}\Big]}_{\leq R}+\underbrace{\E\Big[|X|\cdot\indi_{\lbrace |X|\geq R\rbrace}\Big]}_{\leq\rho(R)}
+\leq R+\rho(R)<\infty\qquad\forall R\geq0
+\end{align*}
+Also $X\in L_1$. Nun schätzen wir noch die Differenz ab:
+\begin{align*}
+|X_n-X|
+&\stackrel{\triangle\text{-Ungl.}}{\leq}
+\underbrace{|X_n-X|\cdot\indi_{\lbrace |X|\geq R\rbrace}}_{\leq R+|X|}+\underbrace{|X_n|\cdot\indi_{\lbrace |X_n|\geq R\rbrace}}_{\E[\cdot]\leq\rho(R)}+\underbrace{|X|\cdot\indi_{\lbrace |X_n|\geq R\rbrace}}_{\E[\cdot]\leq\rho(R)}\\
+&\implies
+\limn\E\big[|X_n-X|\big]
+\stackrel{\text{dom.Konv.}}{\leq}
+\underbrace{2\cdot\rho(R)}_{\stackrel{R\to\infty}{\longrightarrow}0}\qquad\forall R\geq0\\
+&\implies\limn\E\big[|X_n-X|\big]=0
+\end{align*}
+\end{proof}
 
+\begin{theorem}[$L_1$-Konvergenz von Martingalen]\label{theorem4.6L1KonvergenzVonMartingalen}\enter
+Sei $(X_n)_{n\in\N_0}$ ein $(\F_n)_{n\in\N_0}$-Martingal. Dann sind äquivalent:
+\begin{enumerate}[label=(\alph*)]
+\item $\begin{aligned}
+\exists X_\infty\in L_1(\F_\infty,\P):\E\big[|X_n-X_\infty|\big]\stackrel{n\to\infty}{\longrightarrow}0
+\end{aligned}$ ($L_1$-Konvergenz)
+\item $\begin{aligned}
+\exists X_\infty\in L_1(\F_\infty,\P):\forall n\in\N_0: X_n=\E\big[X_\infty~\big|~\F_n\big]
+\end{aligned}$ (Abschließbarkeit)
+\item $\begin{aligned}
+(X_n)_{n\in\N_0}
+\end{aligned}$ ist ggi
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\underline{Zeige (a) $\implies$ (b):} Sei $k\leq n$.
+\begin{align*}
+\E\Big[\big|X_k-\E[X_\infty~|~\F_k]\big|\Big]
+&\stackeq{\text{MG}}
+\E\Big[\big|\E[X_n~|~\F_k]-\E[X_\infty~|~\F_k]\big|\Big]\\
+&\stackrel{\text{Tow+Kontr}}{\leq}
+\E\big[|X_n-X_\infty|\big]\stackrelnew{\text{(a)}}{n\to\infty}{\longrightarrow}0\\
+\implies X_k&=\E[X_\infty~|~\F_k]\qquad\forall k\in\N_0
+\end{align*}
+
+\underline{Zeige (b) $\implies$ (c):}\\
+Folgt aus Lemma \ref{lemma4.3} (b).\nl
+\underline{Zeige (c) $\implies$ (a):}
+\begin{align*}
+(X_n)_{n\in\N}\text{ ggi }&\implies\sup\limits_{n\in\N_0}\E\big[|X_n|\big]\leq R+\rho(R)<\infty\\
+&\stackrel{\ref{theorem4.2Martingalkonvergenz}}{\implies}
+\exists X_\infty\in L_1(\F_\infty,\P):\limn X_n=X_\infty\text{ f.s.}\\
+&\stackrel{\ref{theorem4.5}}{\implies}
+\limn\E\big[|X_n-X_\infty|\big]=0
+\end{align*}
+\end{proof}
