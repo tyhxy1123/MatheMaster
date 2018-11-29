@@ -1668,7 +1668,7 @@ $:\gdw$
 		\end{figure}
 \end{enumerate}
 \end{definition}
-
+   
 \begin{theorem}\label{theorem4.16}
 Für eine formreguläre Familie von Finiten-Elementen $(K,V,\Sigma)$, alle affin-äquivalent zu $(\hat{K},\hat{V},\hat{\Sigma})$, ist die Abschätzung
 \begin{align*}
@@ -1793,9 +1793,22 @@ Warum nichtkonforme Methoden?
 V=H^2(\Omega)\qquad\qquad%\\
 \text{Konformität}\implies V_h\subseteq C^1
 \end{align*}
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{pics/Sketch4.png}
+		\caption{???}
+		\label{Abb???}
+	\end{center}
+\end{figure}
 %TODO Hier Skizze einfügen (muss aber nicht sein. Ist wohl nicht so wichtig)
-\item %TODO hier kurze Erklärung in Worten einfügen
-%TODO Hier Skizze einfügen (auch hier nur optional, da wohl unwichtig)
+\item Skizze für Zerlegung des Gebietes in vier Teilgebiete:
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{pics/Sketch5.png}
+		\caption{links: konformes $P_1$, rechts nichtkonformes $P_1$}
+		\label{AbbNonconformingMethods}
+	\end{center}
+\end{figure}
 \item Probleme mit Restriktionen / Einschränkungen
 \end{enumerate}
 
@@ -1805,13 +1818,20 @@ Definition lokaler Finite-Elemente $(K,V,\Sigma)$
 \begin{align*}
 K&=\text{Dreieck oder Tetraeder}\\
 V&=P_1(K)=\spann(1,x,y)\text{ oder }\spann(1,x,y,z)\\
-\Sigma&=\big\lbrace N_1,N_2,N_3\big\rbrace\text{ oder }\big\lbrace N_1,N_2,N_3,N-4\big\rbrace\\
+\Sigma&=\big\lbrace N_1,N_2,N_3\big\rbrace\text{ oder }\big\lbrace N_1,N_2,N_3,N_4\big\rbrace\\
 N_i&:\text{ Integral-Mittelwert der Funktionen auf Kanten}\\
 &\text{(Alternative: Funktionswerte auf den Mittelpunkten)}
 \end{align*}
 
-\begin{beisp}
-%TODO Hier Skizze 1 und 2 einfügen (nebeneinander)
+\begin{beisp}\enter
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=0.25\textwidth]{pics/Sketch6.png}
+		\includegraphics[width=0.25\textwidth]{pics/Sketch7.png}
+		\caption{links Dreieck mit Außenkante, rechts Dreiecke mit Innenkante}
+		\label{AbbKantentypen}
+	\end{center}
+\end{figure}
 \begin{align*}
 \hat{N}_i(\hat{v})=\frac{1}{|\hat{E}_i|}\cdot\int\limits_{\hat{E}_i}\hat{v}\d\gamma
 \end{align*}
@@ -1820,22 +1840,22 @@ N_i&:\text{ Integral-Mittelwert der Funktionen auf Kanten}\\
 Der Raum der Finiten-Elemente $V_h$ ist hierbei
 \begin{align*}
 V_h=\left\lbrace v\in L^2(\Omega):
-v|_K\in P_1(K),
-\begin{array}{c}
+\begin{array}{l}
+v|_K\in P_1(K), \\
 \int\limits_E [v]_E\d\gamma=0~\forall
-\text{ inneren Kanten $E$ und}\\
+\text{ inneren Kanten $E$},\\
 \frac{1}{|E|}\cdot\int\limits_E v\d\gamma=0~\forall\text{ äußeren Kanten }E
 \end{array}
 \right\rbrace
 \end{align*}
-Hierbei ist $[v]_E$ der Spring von $v$ über Kanten $E$.\\
+Hierbei ist $[v]_E$ der Sprung von $v$ über Kanten $E$.\\
 \ul{Beobachtung}: Raum der stetigen, stückweise linearen Funktionen ist eine Teilmenge von $V_h$ mit Nullrandbedingungen (d.h. die Funktionen verschwinden auf dem Rand). Es folgt
 \begin{align*}
-\int\limits_{v_h\in V_h}\big\Vert u-v_h\big\Vert_{0,2,\Omega}
+\inf\limits_{v_h\in V_h}\big\Vert u-v_h\big\Vert_{0,2,\Omega}
 \leq\inf\limits_{w_h\in S_{h,0}^{1,0}}\big\Vert u-w_h\big\Vert_{0,2,\Omega}
 \leq c\cdot h^2\cdot|u|_{2,2,\Omega}
 \end{align*}
-Wegen $V_h\not\subseteq V$ brauchen wir die Verallgemeinerung von $|\cdot|_{1,2,\Omega}$ für $v\in V=H=^1(\Omega)$:
+Wegen $V_h\not\subseteq V$ brauchen wir die Verallgemeinerung von $|\cdot|_{1,2,\Omega}$ für $v\in V=H^1_0(\Omega)$:
 \begin{align*}
 |v|_{1,2,\Omega}^2
 &=\sum\limits_{K\in\T_h}|v|^2_{1,2,K}
@@ -1864,8 +1884,8 @@ Folglich ist es wirklich eine Norm. Es gilt außerdem:
 Problem:
 \begin{align*}
 \left\lbrace\begin{array}{rl}
--\Delta u&=f\text{ in }\Omega\\
-u&=0 \text{ auf }\Gamma=\partial\Omega
+	-\Delta u=f&\text{ in }\Omega\\
+	u=0& \text{ auf }\Gamma=\partial\Omega
 \end{array}\right.
 \end{align*}
 Variationsformulierung: Finde $u\in V=H_0^1(\Omega)$ so, dass
@@ -1874,7 +1894,7 @@ Variationsformulierung: Finde $u\in V=H_0^1(\Omega)$ so, dass
 \end{align*}
 Schwierigkeit: $a$ ist nicht definiert für alle Funktionen aus $V_h$. Setze
 \begin{align*}
-a_h(v_h,w_h):=\sum\limits_K\int\limits_K\nabla v_h\cdot\underbrace{\nabla w_h}_{=\nabla(w_h|_K)}\d x
+	a_h(v_h,w_h):=\sum\limits_{K\in\mathcal{T}_h}\int\limits_K\nabla v_h\cdot\underbrace{\nabla w_h}_{=\nabla(w_h|_K)}\d x
 \end{align*}
 Diskretes Problem: Finde $u_h\in V_h$ so, dass
 \begin{align*}
@@ -1892,10 +1912,10 @@ Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V
 
 \textbf{Weitere Annahmen:}
 \begin{itemize}
-\item $a_n$ sei Bilinearform auf $V\cup V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
-\item $a_n$ sei \textbf{gleichmäßig stetig auf $V\cup V_h$}, d. h.
+\item $a_h$ sei Bilinearform auf $V\cup V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
+\item $a_h$ sei \textbf{gleichmäßig stetig auf $V\cup V_h$}, d. h.
 \begin{align*}
-\exists M>0\text{ unabhängig von }h:\big|a_n(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V\cup V_h
+\exists M>0\text{ unabhängig von }h:\big|a_h(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V\cup V_h
 \end{align*}
 \item $f_h:V_h\cup V\to\R$ sei linear und stetig
 \item $a_h$ ist \textbf{gleichmäßig $V_h$-elliptisch}, d.h.
@@ -1910,7 +1930,7 @@ Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u_h\in
 Sei $\lbrace V_h\rbrace$ eine Familie von (nichtkonformen) Finiten-Elementen-Räumen. Bezeichne $u$ und $u_h$ die schwache bzw. die diskrete Lösung. Dann gilt:
 \begin{align*}
 \big\Vert u-u_h\big\Vert_h\leq\left(1+\frac{M}{\alpha}\right)\cdot\inf\limits_{v_h\in V_h}\big\Vert u-v_h\big\Vert_h
-+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_n(u,z_h)-f_h(z_h)}{\Vert z_h\Vert_h}
++\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_h(u,z_h)-f_h(z_h)}{\Vert z_h\Vert_h}
 \end{align*}
 Hierbei ist erste Summand auf der rechten Seite der Approximationsfehler und der zweite Term der Konsistenzfehler.
 \end{theorem}
@@ -1918,25 +1938,25 @@ Hierbei ist erste Summand auf der rechten Seite der Approximationsfehler und der
 \begin{bemerkung}
 konforme Methode: $V_h\subseteq V,~a_h=a,f_h=f$ und damit:
 \begin{align*}
-a_h(u,z_h)-f_h(z_h)=(a,z_h)-f(z_h)=0\text{ wegen } z_h\in V_h\subseteq V
+a_h(u,z_h)-f_h(z_h)=a(u_h,z_h)-f(z_h)=0\text{ wegen } z_h\in V_h\subseteq V
 \end{align*}
 Folglich gibt es im Fall der konformen Methode keinen Konsistenzfehler.
 \end{bemerkung}
 
 \begin{proof}
-Sei $v_h\in V_h$ beliebig. Dann gilt:
+Sei $v_h\in V_h$ beliebig, $w_h:=v_h-u_h$. Dann gilt:
 \begin{align*}
-\alpha\cdot\big\Vert\underbrace{v_h-u_h}_{=:w_h\in V_h}\big\Vert
-&\leq a_n\big(v_h-u_h,v_h-u_h\big)\\
+\alpha\cdot\big\Vert\underbrace{v_h-u_h}_{=w_h\in V_h}\big\Vert^2
+&\leq a_h\big(v_h-u_h,v_h-u_h\big)\\
 &=a_h\big(v_h,w_h\big)-\underbrace{a_h\big(u_h,w_h\big)}_{=f_h(w_h)}\\
 &=a_h\big(v_h-u,w_h\big)+a_h\big(u,w_h\big)-f_h\big(w_h\big)\cdot\frac{\Vert w_h\Vert_h}{\Vert w_h\Vert_h}\\
 &\leq M\cdot\big\Vert v_h-u\big\Vert_h\cdot\big\Vert w_h\big\Vert_h+\Vert w_h\Vert_h\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}\\
 \implies
-\underbrace{\Vert w_h\Vert_h}_{=\Vert v_h-u_h\Vert_h}&\leq\frac{M}{\alpha}\cdot\big\Vert v_h-u\big\Vert+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_n\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
+\underbrace{\Vert w_h\Vert_h}_{=\Vert v_h-u_h\Vert_h}&\leq\frac{M}{\alpha}\cdot\big\Vert v_h-u\big\Vert+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
 \end{align*}
 Mit der Dreicksungleichung folgt:
 \begin{align*}
-\Vert u-u_h\Vert\leq\Vert u-v_h\Vert+\Vert v_h-u_h\Vert_h\leq\left(1+\frac{M}{\alpha}\right)\cdot\Vert u-v_h\Vert_h+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_n\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
+\Vert u-u_h\Vert\leq\Vert u-v_h\Vert+\Vert v_h-u_h\Vert_h\leq\left(1+\frac{M}{\alpha}\right)\cdot\Vert u-v_h\Vert_h+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
 \end{align*}
 Bilden des Infimums $\inf\limits_{v_h\in V_h}$ liefert die Behauptung.
 \end{proof}
