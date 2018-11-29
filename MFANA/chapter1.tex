@@ -221,7 +221,7 @@ $v\mapsto[u,v]$ ist sublinear, denn
 &=
 \inf\limits_{\lambda>0}[u,\mu\cdot v]_\lambda\\
 &=\inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot\mu\cdot v\Vert-\Vert u\Vert}{\lambda}\cdot\frac{\mu}{\mu}\\
-&\stackeq{Def}
+\overset{\text{Def}}&=
 \inf\limits_{\lambda>0}\mu\cdot[u,v]_{\lambda\cdot\mu}\\
 &=\mu\cdot[u,v]
 \end{align*}
@@ -230,7 +230,7 @@ und für alle $\mu\in(0,1)$ gilt
 [u,v_1+v_2]
 &=
 \inf\limits_{\lambda>0}\frac{\Vert u+\lambda\cdot(v_1+v_2)\Vert-\Vert u\Vert}{\lambda}\\
-&\stackrel{\mu\in(0,1)}{\leq}
+\overset{\mu\in(0,1)}&{\leq}
 \underbrace{\inf\limits_{\lambda>0}}_{=\lim\limits_{\lambda\to0}}
 \frac{\Vert\mu\cdot u+\lambda\cdot v_1\Vert+\Vert(1-\mu)\cdot u+\lambda\cdot v_2\Vert-\mu\cdot\Vert u\Vert-(1-\mu)\cdot\Vert u\Vert}{\lambda}\\
 &=\lim\limits_{\lambda\to0}\frac{\left\Vert u+\frac{\lambda}{\mu}\cdot v_1\right\Vert-\Vert u\Vert}{\frac{\lambda}{\mu}}+\frac{\left\Vert u+\frac{\lambda}{1-\mu}\cdot v_2\right\Vert-\Vert u\Vert}{\frac{\lambda}{1-\mu}}\\
@@ -282,7 +282,7 @@ Falls $X=H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle$ ist, d
 &=
 \lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u+\lambda\cdot v,u+\lambda\cdot v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
 &=\lim\limits_{\lambda\to0^+}\frac{\sqrt{\langle u,u\rangle+2\cdot\lambda\cdot\Re(\langle u,v\rangle)+\lambda^2\cdot\langle v,v\rangle}-\sqrt{\langle u,u\rangle}}{\lambda}\\
-&\stackeq{u\neq0}
+\overset{u\neq0}&=
 \frac{1}{2\cdot\Vert u\Vert}\cdot 2\cdot\langle u,v\rangle\\
 &=\left\langle\frac{u}{\Vert u\Vert},v\right\rangle
 \end{align*}
@@ -341,7 +341,7 @@ und somit
 \frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
 &=
 \frac{\Vert u(t)+h\cdot D_t^R u(t)+ o(h)\Vert-\Vert u(t)\Vert}{h}\\
-&\stackeq{\geq\&\leq\mit\Delta\text{-Ungl}}
+\overset{\geq\&\leq\mit\Delta\text{-Ungl}}&=
 \frac{\Vert u(t)+h\cdot D_t^R u(t)\Vert-\Vert u(t)\Vert}{h}+\frac{o(h)}{h}\\
 &\stackrel{h\to0^+}{\longrightarrow} \left[ u(t), D_t^R u(t)\right]
 \end{align*}
@@ -375,10 +375,13 @@ Sei $X$ Banachraum. Für einen Operator $A\subseteq X\times X$ und $\omega\in\R$
 \underline{Zeige (i) $\gdw$ (iii):}\\
 $A$ ist akkretiv vom Typ $\omega$
 \begin{align*}
-&\gdw\underbrace{[u-\hat{u},v-\hat{v}]}_{=\inf\limits_{\lambda>0}[\ldots]_\lambda}
+&\Longleftrightarrow
+\underbrace{[u-\hat{u},v-\hat{v}]}_{=\inf\limits_{\lambda>0}[\ldots]_\lambda}
 + \omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A\\
-&\gdw\frac{\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\\
-&\gdw\text{(iii)}
+&\Longleftrightarrow
+\frac{\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\omega\cdot\Vert u-\hat{u}\Vert\geq0~\forall(u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0\\
+&\Longleftrightarrow
+\text{(iii)}
 \end{align*}
 \underline{Zeige (iii) $\gdw$ (ii):}
 \begin{align*}
@@ -393,7 +396,7 @@ $A$ ist akkretiv vom Typ $\omega$
 \left(1-\lambda^2\cdot\omega^2\right)\cdot\Vert u-\hat{u}\Vert\\
 &\gdw\forall\ldots:
 \frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+\omega\cdot(u-\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}+\mathcal{O}(\lambda)\geq0\\
-&\stackrel{\lambda\to0}{\Rightarrow}
+\overset{\lambda\to0}&{\Rightarrow}
 \forall(u,v),(\hat{u},\hat{v})\in A:\Big[ u-\hat{u},\underbrace{v}_{=Au}-\hat{v}+\omega\cdot(u-\hat{u})\Big]\geq0\\
 &\gdw A+\omega\cdot I\text{ ist akkretiv}
 \end{align*}
@@ -452,7 +455,7 @@ Dann gilt für alle $u\in\dom(A)$:
 &= \Re\left(-\int\limits_\Omega u\cdot\overline{\Delta u}\right) = \Re\left(-\int\limits_\Omega u\cdot\overline{\nabla \Div u}\right)\\
 &= -\int\limits_\Omega \Re \left(u\cdot\overline{\nabla \Div u}\right) = -\int\limits_\Omega \Re \left(u\cdot\nabla \Div u\right)\\
 &= -\int\limits_{\supp(u)} \Re \left(u\cdot\nabla \Div u\right)\\
-&\stackeq{\text{Gauß}}
+\overset{\text{Gauß}}&=
 -\int\limits_{\partial\supp(u)} \Re \left(u\cdot\nabla u\right) + \int\limits_{\supp(u)} \Re \left(\nabla u\cdot\nabla u\right)\\
 &=\Re\left(\int\limits_{\Omega} \nabla u\cdot\overline{\nabla u}\right)\\
 %&=\int\limits_\Omega |\nabla u|^2\\
@@ -469,7 +472,7 @@ Dann ist $A+F$ akkretiv vom Typ $\omega+L$.
 +(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
 &=\frac{\Big\Vert u-\hat{u}+\lambda\cdot\big(v-\hat{v}+F(u)-F(\hat{u})\big)\Big\Vert-\Vert u-\hat{u}\Vert}{\lambda}
 +(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
-&\stackrel{\Delta\text{-Ungl}}{\geq}
+\overset{\Delta\text{-Ungl}}&{\geq}
 \frac{\big\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\big\Vert-\Vert u-\hat{u}\Vert}{\lambda}\underbrace{-\big\Vert F(u)-F(\hat{u})\big\Vert}_{\geq -L\cdot\Vert u-\hat{u}\Vert}
 +(\omega+L)\cdot\Vert u-\hat{u}\Vert\\
 &\geq0
@@ -748,8 +751,8 @@ A=\big(\lbrace a\rbrace\times (-\infty,0]\big)\cup\big(\lbrace b\rbrace\times[0,
 \end{aligned}$
 Damit gilt
 \begin{align*}
-h\cdot A=A\text{ WARUM???}
-\end{align*}
+h\cdot A=A
+\end{align*} %TODO warum gilt das?
 und $I+h\cdot A$ ist surjektiv, also ist $A$ akkretiv. $J_h=(I+h\cdot A)^{-1}$ ist eine Funktion.
 \end{enumerate}
 \end{beispiel}
@@ -847,7 +850,7 @@ Dann ist
 &=
 \left\Vert\frac{u-u_0}{2}+\frac{u-u_1}{2}\right\Vert^2\\
 &=\left\Vert\frac{u-u_0}{2}\right\Vert^2+2\cdot\Re\left(\left\langle\frac{u-u_0}{2},\frac{u-u_1}{2}\right\rangle\right)+\left\Vert\frac{u-u_1}{2}\right\Vert^2\\
-&\stackrel{\text{C.S.; }u_0\neq u_1}{<}
+\overset{\text{C.S.; }u_0\neq u_1}&{<}
 \left\Vert\frac{u-u_0}{2}\right\Vert^2+2\cdot\left\Vert\frac{u-u_0}{2}\right\Vert\cdot\left\Vert\frac{u-u_1}{2}\right\Vert+\left\Vert\frac{u-u_1}{2}\right\Vert^2\\
 &=
 \left(\left\Vert\frac{u-u_0}{2}\right\Vert+\left\Vert\frac{u-u_1}{2}\right\Vert\right)^2\\
@@ -910,7 +913,7 @@ Multiplikation mit $h>0$ und Addition von $\hat{u}$ auf beiden Seiten  liefert:
 (1-h\cdot\omega)\cdot\big\Vert J_h f-\hat{u}\big\Vert^2
 &\leq
 \Re\left(\left\langle J_h f-\hat{u},f-\hat{u}-h\cdot \hat{f}\right\rangle\right)\\
-&\stackrel{\text{C.S.}}{\leq}
+\overset{\text{C.S.}}&{\leq}
 \big\Vert J_h f-\hat{u}\big\Vert\cdot\Vert f-\hat{u}-h\cdot\hat{f}\big\Vert\\
 &\implies
 \limsup\limits_{h\to 0^+}\big\Vert J_h f-\hat{u}\big\Vert<\infty
@@ -1107,7 +1110,8 @@ ist damit unterhalbstetig, konvex. Außerdem koerziv, denn: Sei $(u,f)\in\lbrace
 \begin{align*}
 c\geq F(u,f)
 &\geq\langle u,f\rangle+\Vert u\Vert^2+\Vert f\Vert^2\\
-&\stackrel{\text{C.S.}}{\geq}-\Vert u\Vert\cdot\Vert f\Vert+\Vert u\Vert^2+\Vert f\Vert^2\\
+\overset{\text{C.S.}}&{\geq}
+-\Vert u\Vert\cdot\Vert f\Vert+\Vert u\Vert^2+\Vert f\Vert^2\\
 &=\frac{1}{2}\cdot\big(\Vert u\Vert^2-2\cdot\Vert u\Vert\cdot\Vert f\Vert+\Vert f\Vert^2\big)+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
 &=\frac{1}{2}\cdot\big(\underbrace{\Vert u\Vert-\Vert f\Vert}_{}\big)^2+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
 &\geq\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
@@ -1235,13 +1239,16 @@ c\geq\E(u+\frac{1}{2\cdot \lambda}\cdot\Vert u-f\Vert^2
 \end{align*}
 schon
 \begin{align*}
-c&\stackrel{\ref{lemma1.3.2}}{\geq} -\big(1+\Vert u\Vert\big)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\\
+c
+\overset{\ref{lemma1.3.2}}&{\geq}
+-\big(1+\Vert u\Vert\big)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\\
 &\geq -r-r\cdot\big(\Vert u-f\Vert+\Vert f\Vert\big)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2
 \end{align*}
 bzw.
 \begin{align*}
 c+r+r\cdot\Vert f\Vert &\geq -r\cdot\Vert u-f\Vert+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\\
-&\stackeq{\text{Q.E.}}\left(\frac{1}{\sqrt{2\cdot\lambda}}\cdot\Vert u-f\Vert-\frac{r\cdot\sqrt{2\cdot\lambda}}{2}\right)^2-\frac{r^2\cdot 2\cdot\lambda}{4}
+\overset{\text{Q.E.}}&=
+\left(\frac{1}{\sqrt{2\cdot\lambda}}\cdot\Vert u-f\Vert-\frac{r\cdot\sqrt{2\cdot\lambda}}{2}\right)^2-\frac{r^2\cdot 2\cdot\lambda}{4}
 \end{align*}
 Umstellen liefert
 \begin{align*}

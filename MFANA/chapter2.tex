@@ -220,11 +220,12 @@ $A$ akkretiv vom Typ $\omega\in\R$ impliziert
 \end{align*}
 und damit
 \begin{align*}
-0&\stackrel{\text{Subadd }[\cdot,\cdot]}{\leq}
+0
+\overset{\text{Subadd }[\cdot,\cdot]}&{\leq}
 \Big[u(t)-\hat{u}(t),-\big(\hat{u}(t)-\dot{\hat{u}}(t)\big)\Big]+
 \Big[u(t)-\hat{u}(t),f(t)-\hat{f}(t)\Big]+
 \omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert\\
-&\stackrelnew{\text{z. Bracket}}{\text{2. Lemma}}{=}
+\overset{\text{Bracket-Eig}}&{=}
 -\frac{\d}{\d t}\big\Vert u(t)-\hat{u}(t)\big\Vert+\omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert+\big[u(t)-\hat{u}(t),f(t)-\hat{f}(t)\big]\text{ f.ü.}
 \end{align*}
 Integration dieser Ungleichung liefert erste Behauptung für starke Lösungen. Durch Approximation gilt die erste Behauptung dann auch für milde Lösungen (verwende auch die Oberhalbstetigkeit des Brackets). Aus der ersten Behauptung folgt für zwei milde Lösungen:
@@ -358,7 +359,7 @@ Dann gilt:
 &=\frac{h-\lambda}{h}\cdot\left|u-\frac{h}{h-\lambda}\cdot\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})+\frac{h}{h-\lambda}\cdot\frac{\lambda}{h}
 -\frac{h}{h-x}\cdot\frac{\lambda}{\hat{h}}\cdot(\hat{u}-\hat{v})\right|\\
 &\quad-\frac{h-\lambda}{h}\cdot|u-\hat{u}|-\frac{\lambda}{h}\cdot|u-\hat{u}|\\
-&\stackrel{\text{DU}}{\leq}
+\overset{\text{DU}}&{\leq}
 \frac{h-\lambda}{h}\cdot\left(\left|u-\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})\right|-\big|u-\hat{u}\big|\right)\\
 &\quad+\frac{\lambda}{h}\cdot\left(\left|v-\left(\frac{h}{\hat{h}}\cdot\hat{v}+\left(1-\frac{h}{\hat{h}}\right)\cdot\hat{u}\right)\right|-\big|u-\hat{u}\big|\right)
 \end{align*}
