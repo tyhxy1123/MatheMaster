@@ -55,7 +55,7 @@ Dann gilt:
 \begin{align*}
 \Omega\cap\lbrace\tau\leq n\rbrace=\lbrace\tau\leq n\rbrace \stackrel{\text{SZ}}{\in} \F_n
 \end{align*}
-\item Sei $A \in \F_\tau$. Dann gilt $A^C \in \F_\tau$, denn:\\
+\item Sei $A \in \F_\tau$. Dann gilt $A^C \in \F_\tau$, denn:
 \begin{align*}
 \lbrace\tau\leq n\rbrace &=\big(\lbrace\tau\leq n\rbrace\cap A\big)\dot{\cup}\big(\lbrace\tau\leq n\rbrace\cap A^C\big)\\
 \implies A^C\cap\lbrace\tau\leq n\rbrace&=\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n}\setminus\big(\underbrace{\lbrace\tau\leq n\rbrace\cap A\big)}_{\stackrel{\text{Vor}}{\in}\F_n}\stackrel{\sigma\text{A}}{\in}\F_n
@@ -78,7 +78,7 @@ Sei $A\in\F_\sigma$. Dann ist $A\in\A$ und $A\cap\lbrace\sigma\leq n\rbrace\in\F
 A \cap \lbrace\tau \leq n\rbrace
 \stackeq{}
 \big(A \cap\lbrace\tau \leq n\rbrace\big)\cap\underbrace{\lbrace\sigma\leq\tau\rbrace}_{\stackeq{\text{Vor.}}\Omega}
-=\underbrace{A\cap\lbrace\sigma\leq n\rbrace}_{\stackrel{\text{Vor}}{\in}\F_n}\cap\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n} \stackrel{\sigma\text{A}}{\in} \F_n \quad \forall n \in \N_0\\
+=\underbrace{A\cap\lbrace\sigma\leq n\rbrace}_{\stackrel{\text{Vor}}{\in}\F_n}\cap\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n} \stackrel{\sigma\text{A}}{\in} \F_n\\ \quad \forall n \in \N_0
 \implies A\in\F_\tau
 \end{align*}
 
@@ -115,7 +115,7 @@ Zu zeigen: $\lbrace\sigma\leq\tau\rbrace\in\F_\tau\cap\F_\sigma$
 &\implies\lbrace\sigma\leq\tau\rbrace\in\F_n
 \end{align*}
 
-\underline{Zeige d):}\\
+\underline{Zeige d):}\
 \begin{itemize}
 \item Zeige ``$\subseteq$'':
 Sei $A\in\F_\tau\cap\F_\sigma$. Dann ist $A\in\A$ und
@@ -139,10 +139,10 @@ Da $\F_n$ eine $\sigma$-Algebra ist, ist auch die Vereinigung enthalten:
 \end{itemize}
 \end{proof}
 
-\begin{proof}[Beweis von Henrik.]\enter
-\underline{Zeige a):}\\
+\begin{proof}[Beweis von Henrik.]
+\underline{Zeige a):}\
 \begin{itemize} 
-	\item z.z.:$\emptyset \in \F_\tau$\\
+	\item z.z.:$\emptyset \in \F_\tau$
 	\begin{equation*}
 		\emptyset \in \A \text{ und } \emptyset \in \F_n\  \forall n \in \N_0 \implies \emptyset \cap \{\tau \leq n\} \in \F_n
 	\end{equation*}
@@ -161,14 +161,14 @@ Da $\F_n$ eine $\sigma$-Algebra ist, ist auch die Vereinigung enthalten:
 		 & \forall n \in \N
 	\end{align*}
 	
-	\item z.z.: Sei $A_1, A_2,\dots \in \F_\tau \implies \bigcup\limits_{i=1}^{\infty} A_i  \in \F_\tau$\\
+	\item z.z.: Sei $A_1, A_2,\dots \in \F_\tau \implies \bigcup\limits_{i=1}^{\infty} A_i  \in \F_\tau$
 	\begin{equation*}
 		\underbrace{\bigcup\limits_{i=1}^{\infty} \Big (A_i \cap \{\tau \leq n\} \Big )}_{\in \F_n} = \left( \bigcup\limits_{i=1}^{\infty} A_i \right)\cap \{\tau \leq n\} \implies  \bigcup\limits_{i=1}^{\infty} A_i \in \F_\tau
 	\end{equation*}
 	
 \end{itemize}
 
-\underline{Zeige b):}\\
+\underline{Zeige b):}
 % @Henrik: Ich habe mir mal erlaubt, deinen Beweis zu korrigieren. Kannst du gern auch beliebig abändern.
 %PS: Ich hatte dir sogar geschrieben, dass du \sigma und \tau vertauscht hast :D
 \begin{align*}
@@ -177,12 +177,12 @@ Da $\F_n$ eine $\sigma$-Algebra ist, ist auch die Vereinigung enthalten:
 	&\implies A \in \F_\tau \\
 \end{align*}
 
-\underline{Zeige c):}\\
+%\underline{Zeige c):}
 %TODO broken proof
 %z.z.: $\ \{\tau \leq \sigma\} \in \F_\tau \cap \F_\sigma$\\
 %Wir wissen $\{\tau \leq n\} \in \F_\tau$ und  $\{\sigma \geq n\} \in \F_\sigma$ (siehe Aufgabe 2.4 ). Damit gilt: $\{\tau \leq n\} \cap \{\sigma \geq n\} = \{\tau \leq \sigma\} $ ist Element von $\F_\tau \cap \F_\sigma$.\\
 
-\underline{Zeige d):}\\
+%\underline{Zeige d):}
 %TODO broken proof
 %\begin{align*}
 %&{} \qquad \quad  A \cap \{\tau \leq n\}\in \F_n \text{ und } A \cap\{\sigma \leq n\}\in \F_n &\forall n \in \N\\
@@ -202,8 +202,7 @@ Sei $(X_i)_{i\in I}$ eine Folge von Zufallsvariablen und $\phi:[0,\infty)\to\R$ 
 \sup\limits_{i\in I}\E\Big[\phi\big(|X_i|\big)\Big]<\infty\implies(X_i)_{i\in I}\text{ ist ggi}
 \end{align*}
 \begin{proof}
-Sei also das Supremum beschränkt.\\
-
+Sei also das Supremum beschränkt.\nl
 \underline{Fall 1: $\phi(0)=0$}\\
 Es gilt $\frac{\phi(a)}{a}\leq\frac{\phi(b)}{b}$ für $a\leq b$, wegen Konvexität. %TODO WARUM? ALSO FORMAL?
 
@@ -234,8 +233,7 @@ und daraus folgt durch Bildung des Grenzwertes auf beiden Seiten:
 	\underbrace{\lim\limits_{R\rightarrow \infty}\frac{R}{\phi(R)}}_{\stackrel{\text{Vor.}}{\longrightarrow} 0}\cdot\underbrace{\sup_{i\in I}\E\Big[\phi(|X_i|)\Big]}_{\stackrel{\text{Vor}}{\leq} \infty}\\
 	&=0
 \end{align*}
-Also ist $(X_i)_{i\in I}$ ggi.\\
-
+Also ist $(X_i)_{i\in I}$ ggi.\nl
 \underline{Fall 2: $\phi(0)=r\in\R\setminus\lbrace0\rbrace$}\\
 Dann setze
 \begin{align*}
