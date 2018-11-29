@@ -209,8 +209,8 @@ M_n:=\sum\limits_{i\in\Lambda} X_n(i),\qquad \F_n:=\sigma\Big((I_k,N_k))_{k\in\l
 \item Integrierbarkeit: $M_n$ ist sogar beschränkt: $0\leq M_n\leq L^d$
 \item Martingal-Eigenschaft:
 \begin{align*}
-M_n-M_{n-1}
-&=\underbrace{X_{n-1}(I_n+N_n)}_{\text{vom Nachbarn übernommen}}-\underbrace{X_{n-1}(I_n)}_{\text{alte Meinung}}\\
+&M_n-M_{n-1}
+=\underbrace{X_{n-1}(I_n+N_n)}_{\text{vom Nachbarn übernommen}}-\underbrace{X_{n-1}(I_n)}_{\text{alte Meinung}}\\
 \implies&\E\big[M_n-M_{n-1}~\big|~\F_{n-1}\big]\\
 &=\E\big[X_{n-1}(I_n+N_n)-X_{n-1}(I_n)~\big|~\F_{n-1}\big]\\
 &=\sum\limits_{i\in\Lambda} X_{n-1}(i)\cdot\P\big(i=\underbrace{I_n+N_n)~\big|~\F_{n-1}}_{\unab}\big)-X_{n-1}(i)\cdot\P\big(\underbrace{i=I_n~\big|~\F_{n-1}}_{\unab}\big)\\

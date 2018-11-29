@@ -182,7 +182,7 @@ ein Martingal bzgl. $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$. Dabei ist der Term $n\cd
 \end{align*}
 \item Martingaleigenschaft:
 \begin{align*}
-\E[M_n~|~\F_{n-1}]
+&\E[M_n~|~\F_{n-1}]\\
 &=\E[S_n^2-n\cdot\sigma^2~|~\F_{n-1}]\\
 &=\E\big[(S_{n-1}+\xi_n)^2~|~\F_{n-1}\big]-n\cdot\sigma^2\\
 &=\E\big[S_{n-1}^2~|~\F_{n-1}\big]+2\cdot\E\big[S_{n-1}\cdot\xi_n~|~\F_{n-1}\big]+\E\big[\underbrace{\xi_n^2~|~\F_{n-1}}_{\unab}\big]-n\cdot\sigma^2\\
@@ -198,7 +198,7 @@ Dann ist $(X_n)_{n\in\N}$ Submartingal (bei jeder Filtration $(\F_n)_{n\in\N}$).
 M_n:=\prod\limits_{i=1}^n\xi_i,\qquad M_0:=1
 \end{align*}
 ein Martingal bzgl. $\F_n:=\sigma(\xi_1,\ldots,\xi_n)$ (geometrischer Random Walk).
-\item Sei $X\in L_1(\Omega,\A,\P)$ eind $(\F_t)_{t\in\N_0}$ eine Filtration.\\
+\item Sei $X\in L_1(\Omega,\A,\P)$ und $(\F_t)_{t\in\N_0}$ eine Filtration.\\
 Dann ist
 \begin{align*}
 X_t:=\E[X~|~\F_t]
