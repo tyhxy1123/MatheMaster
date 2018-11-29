@@ -94,35 +94,44 @@ gilt, dann gilt:
 \end{align*}
 \end{lemma}
 \begin{proof}
-Setze $X_n:=X\wedge N$ (d.h. Minimum) für alle $n\in\N$. Zeige die Aussage zunächst für $X_n$: Merke
+Setze $X_N:=X\wedge N$ (d.h. Minimum) für alle $n\in\N$. Zeige die Aussage zunächst für $X_N$: Merke
 \begin{align*}
 \lbrace X\geq\lambda\rbrace=\lbrace X_N\geq\lambda\rbrace\qquad\forall\lambda\in[0,N]
 \end{align*}
-D.h. \eqref{eq5.3Vor} gilt auch für $X_n$, solange $\lambda\in[0,N]$ gilt. Weitere Überlegung:
+D.h. \eqref{eq5.3Vor} gilt auch für $X_N$, solange $\lambda\in[0,N]$ gilt. Weitere Überlegung:
 \begin{align*} %x soll hier klein sein
-z^p:=p\cdot\int\limits_0^z x^{p-1}\d x=p\cdot\int\limits_0^\infty x^{p-1}\cdot\indi_{\lbrace x\leq z\rbrace}\d x\qquad\forall p>0,\forall z>0
+z^p
+= p\cdot\int\limits_0^z x^{p-1}\d x
+=p\cdot\int\limits_0^\infty x^{p-1}\cdot\indi_{\lbrace z\geq x\rbrace}\d x\qquad\forall p>0,\forall z>0
 \end{align*}
 Setze $X_N$ für $z$ ein und bilde Erwartungswert:
-%TODO ich weiß nicht genau ob N oder n richtig sind im Folgenden
 \begin{align*}
 \E\left[X_N^p\right]
+&=p\cdot\int\limits_0^\infty x^{p-1}\cdot\E\left[\indi_{\lbrace X_N \geq x\rbrace}\right]\d x \\
 &=p\cdot\int\limits_0^\infty x^{p-1}\cdot\P\big(X_N\geq x\big)\d x\\
-&=p\cdot\int\limits_0^N x^{p-1}\cdot\P\big(X_N\geq x\big)\d x\\
+&=p\cdot\int\limits_0^N x^{p-1}\cdot\P\big(X_N\geq x\big)\d x + p\cdot\int\limits_N^\infty x^{p-1}\cdot\underbrace{\P\big(X_N\geq x\big)}_{=0,\text{ für diese x}}\d x\\
 \overset{\eqref{eq5.3Vor}}&{\leq}
-p\cdot\int\limits_0^\infty x^{p-2}\cdot\E\left[Y\cdot\indi_{\lbrace X_N\geq n\rbrace}\right]\d x\\
+p\cdot\int\limits_0^N x^{p-2}\cdot\E\left[Y\cdot\indi_{\lbrace X_N\geq n\rbrace}\right]\d x\\
 \overset{\text{Fubini}}&=
 p\cdot\E\left[Y\cdot\int\limits_0^N x^{p-2}\cdot\indi_{\lbrace X_N\geq x\rbrace}\d x\right]\\
-&=p\cdot\E\left[Y\cdot\int\limits_0^{X_N} x^{p-2}\d x\right]\\
+&=p\cdot\E\left[Y\cdot\int\limits_{[0,N]\cap(-\infty,X_N]} x^{p-2}\d x\right]\\
+&\stackeq{X_N\leq N}p\cdot\E\left[Y\cdot\int\limits_0^{X_N} x^{p-2}\d x\right]\\
 &=\frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right]\\
+\end{align*}
+\begin{align*}
 \implies
 \E\left[X_N^p\right]
-&\leq
-\frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right]
-\stackrel{\text{Hölder}}{\leq}
-\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^p\right]^{\overbrace{\frac{p-1}{p}}^{=1-\frac{1}{p}}}\\
+&\leq \frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right] \\
+&\stackrel{\text{Hölder}}{\leq}
+\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^{(p-1)q}\right]^{\frac{1}{q}}\\
+&\left(\frac{1}{p} + \frac{1}{q} = 1 \implies \frac{1}{q} = \frac{p-1}{p}\right) \\
+&=\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^{p}\right]^{\frac{p-1}{p}}
+\end{align*}
+\begin{align*}
 \implies
 \underbrace{\E\left[X_N^p\right]^{\frac{1}{p}}}_{=\Vert X_N\Vert_p}
-&\leq
+=\E\left[X_N^p\right]^{\frac{p}{p}-\frac{p-1}{p}}
+\leq
 \frac{p}{p-1}\cdot\underbrace{\E\left[Y^p\right]^{\frac{1}{p}}}_{=\Vert Y\Vert_p}
 \end{align*}
 Mit Fatou folgt dann:
@@ -169,13 +178,16 @@ Einsetzen: $\big(X_n-X_{n-1}\big)$ für $x$ und $c_n$ für $c$ und Bilden des Er
 \begin{align*}
 \E\Big[\exp(\alpha\cdot(X_n-X_{n-1})~\Big|~\F_{n-1}\Big]
 &\leq
-\underbrace{\frac{\E\big[X_n-X_{n-1}~\big|~\F_{n-1}\big]}{2\cdot c_n}}_{\stackeq{\text{MG}}0}\cdot\big(\exp(\alpha\cdot c_n)-\exp(-\alpha\cdot c_n)\big)\\
-&\qquad+\frac{1}{2}\cdot\big(\exp(\alpha\cdot c_n+\exp(-\alpha\cdot c_n)\big)\\
-%\implies
+\frac{\overbrace{\E\big[X_n-X_{n-1}~\big|~\F_{n-1}\big]}^{\stackeq{\text{MG}}0}}{2\cdot c_n}\cdot\big(\exp(\alpha\cdot c_n)-\exp(-\alpha\cdot c_n)\big)\\
+&\qquad+\frac{1}{2}\cdot\big(\exp(\alpha\cdot c_n+\exp(-\alpha\cdot c_n)\big)
+\end{align*}
+\begin{align*}
+\implies
 \E\Big[\exp(\alpha\cdot(X_n-X_{n-1})~\Big|~\F_{n-1}\Big]
 &\leq \frac{1}{2}\cdot\big(\exp(\alpha\cdot c_n)+\exp(-\alpha\cdot c_n)\big)\\
+&=\frac{1}{2}\left(\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{k}}{k!}+\sum\limits_{k=0}^\infty\frac{(-\alpha\cdot c_n)^{k}}{k!}\right)\\
 &=\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{2\cdot k}}{(2\cdot k)!}\\
-&\leq\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{2\cdot k}}{2^k\cdot k!}\\
+&\stackrel{2^k\cdot k! \leq (2\cdot k)!}{\leq}\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{2\cdot k}}{2^k\cdot k!}\\
 &=\exp\left(\frac{\alpha^2\cdot c_n^2}{2}\right)
 \end{align*}
 Wir wollen es Iterieren und zeigen dafür einen Schritt:
@@ -183,14 +195,19 @@ Wir wollen es Iterieren und zeigen dafür einen Schritt:
 &\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
 &=\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-1})\big)\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
 \overset{\eqref{Turmregel}}&=
+\E\Big[\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\big|~\F_{n-1}\big]~\Big|~\F_{n-2}\Big]\\
+\overset{\F_{n-1}\text{-m.b.}}&=
 \E\Big[\underbrace{\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))~\big|~\F_{n-1}\big]}_{\leq\exp\left(\frac{\alpha^2\cdot c_n^2}{2}\right)}\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
 &\leq
 \exp\left(\frac{\alpha^2}{2}\cdot\left(c_n^2+c_{n-1}^2\right)\right)
 \end{align*}
-Iterieren liefert:
+Iterieren und Erwartungswert bilden liefert:
 \begin{align*}
 \E\Big[\exp\big(\alpha\cdot(X_n-X_0)\big)\Big]
-&\leq\exp\Big(\frac{\alpha^2}{2}\cdot\underbrace{\sum\limits_{k=1}^n c_k^2}_{=D_n^2}\Big)\qquad\forall\alpha\in\R\\
+&= \E\Big[\E\left[\exp\big(\alpha\cdot(X_n-X_0)\big)~|~F_0\right]\Big] \\
+&\leq\exp\Big(\frac{\alpha^2}{2}\cdot\underbrace{\sum\limits_{k=1}^n c_k^2}_{=D_n^2}\Big)\qquad\forall\alpha\in\R
+\end{align*}
+\begin{align*}
 \P(X_n-X_0\geq\lambda)
 \overset{\alpha\geq0}&=
 \P\Big(\exp\big(\alpha\cdot(X_n-X_0)\big)\geq\exp(\alpha\cdot\lambda)\Big)\\
@@ -199,7 +216,7 @@ Iterieren liefert:
 &\leq
 \exp\Big(\underbrace{-\alpha\cdot\lambda+\frac{\alpha^2}{2}\cdot D_n^2}_{=:\rho(\alpha)}\Big)\qquad\forall\alpha\geq0
 \end{align*}
-Suche beste (d.h. kleinste) Schranke
+Suche beste (d.h. kleinste) Schranke der Ableitung von $\rho$:
 \begin{align*}
 \rho'(\alpha)=-\lambda+\alpha\cdot D_n^2\implies\alpha_\ast=\frac{\lambda}{D_n^2}\geq0
 \end{align*}
@@ -216,7 +233,10 @@ Analog erhält man:
 Insgesamt erhält man also die zweiseitige Abschätzung:
 \begin{align*}
 \P\big(|X_n-X_0|\geq\lambda\big)
-=2\cdot\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
+&\leq
+\P\big(X_n-X_0\geq\lambda\big) +
+\P\big(X_n-X_0\leq-\lambda\big) \\
+&\leq2\cdot\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
 \end{align*}
 Beachte $X_0=\E\left[X_n\right]$.
 \end{proof}
@@ -224,7 +244,7 @@ Beachte $X_0=\E\left[X_n\right]$.
 \setcounter{section}{1}
 \section{Rückwärtsmartingale (RWN)} %5.2
 \begin{defi}
-Sei $(\G_n)_{n\in\N}$ eine \textbf{absteigende} (d.h. $\G_{n-1}\subseteq\G_n~\forall n\in\N$) Folge von $\sigma$-Algebren.\\
+	Sei $(\G_n)_{n\in\N}$ eine \textbf{absteigende} (d.h. $\G_{n}\subseteq\G_{n-1}~\forall n\in\N$) Folge von $\sigma$-Algebren.\\
 Ein stochastischer Prozess $(R_n)_{n\in\N}$ heißt \textbf{Rückwärtsmartingal (RWN)} bzgl. $(\G_n)_{n\in\N}$, falls folgende Eigenschaften gelten:
 \begin{enumerate}
 \item $R_n$ ist $\G_n$-messbar $\forall n\in\N$
@@ -249,7 +269,7 @@ Sei $(R_n)_{n\in\N}$ ein RWM bzgl. $(\G_n)_{n\in\N}$ und
 \end{align*}
 die \textbf{terminale $\sigma$-Algebra}. Dann gilt:
 \begin{align*}
-\exists R_\infty\in L_1\big(\G_\infty\big):\limn R_n=R_\infty\wedge \big\Vert R_n-R_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
+	\exists R_\infty\in L_1\big(\G_\infty\big)\colon\limn R_n=R_\infty \text{ und } \big\Vert R_n-R_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
 \end{align*}
 \end{theorem}
 
@@ -258,15 +278,15 @@ Dieses Theorem hat keine Voraussetzungen! RMWs konvergieren immer!
 \end{bemerkung}
 
 \begin{proof}
-Verwende Martingal $(M_n)_{n\in\N}$. Seien $U_n\lceil a,b\rceil$ die Upcrossings von $\lceil a,b\rceil$ durch $(M_k)_{k\in\lbrace-N,\ldots,0\rbrace}$. Doobs Upcrossing Lemma \ref{lemma4.1DoobsUpcrossingLemma} sagt:
+	Verwende Martingal $(M_n)_{n\in\N}$. Seien $U_n [ a,b]$ die Upcrossings von $[ a,b]$ durch $(M_k)_{k\in\lbrace-N,\ldots,0\rbrace}$. Doobs Upcrossing Lemma \ref{lemma4.1DoobsUpcrossingLemma} sagt:
 \begin{align*}
-\E\Big[U_n\lceil a,b\rceil\Big]
+	\E\Big[U_n[ a,b]\Big]
 &\leq
 \frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
 \end{align*}
 Mit monotoner Konvergenz erhält man mit $N\to\infty$:
 \begin{align*}
-\E\Big[U\lceil a,b\rceil\Big]\leq\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
+\E\Big[U[a,b]\Big]\leq\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
 \end{align*}
 Analog zur Vorwärtskonvergenz:
 \begin{align*}
