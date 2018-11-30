@@ -3,7 +3,7 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Einführung}
+\addchap{Mathematische Statistik}
 Viele Schätzer in der Statistik sind definiert als Minimal- oder Maximalstelle von bestimmten \textit{Kriteriumsfunktionen}, z. B. der \textit{Maximum-Likelihood-Schätzer (MLS)} oder \textit{Minimum-Qudrat-Schätzer (MQS, KQS)} oder \textit{Bayes-Schätzer}. Allgemein nennt man solche Schätzer \textbf{M-Schätzer}.\\
 Ziel: Untersuchung des asymptotischen Verhaltens ($n\to\infty$) von M-Schätzern über einen \textit{funktionalen Ansatz}. Als Beispiel:
 
@@ -13,7 +13,7 @@ Sei $X:(\Omega,\A,\P)\to\R$ eine reelle Zufallsvariable mit Verteilungsfunktion\
 \begin{align}
 Y(t)&:=\E\left(|X-t|\right)\label{DefY}\tag{1.0}\\ \nonumber
 &=\int\limits_\Omega |X(\omega)-t|\d\P(\omega)\\ \nonumber
-&\stackeq{\text{Trafo}}
+\overset{\text{Trafo}}&=
 \int\limits_\R|x-t|\Big(\P\circ X\d x\Big)\\ \nonumber
 &=\int\limits_\R|x-t|(F\d x) \nonumber
 \qquad\forall t\in\R\\
@@ -37,11 +37,11 @@ Sei $X\sim F_X$ integrierbar und $m\in\R$. Dann äquivalent:
 
 \begin{proof}
 \underline{Zeige (a) $\Rightarrow$ (b):}\\
-Setze $h(t):=\E[|X-t|-|X-m|]\stackeq{\text{Lin}}Y(t)-Y(m)$. Dann ist 2. äquivalent zu $h(t)\geq0~\forall t\in\R$. Dies ist noch zu zeigen.\\
-
+Setze $h(t):=\E[|X-t|-|X-m|]\stackeq{\text{Lin}}Y(t)-Y(m)$. Dann ist 2. äquivalent zu $h(t)\geq0~\forall t\in\R$. Dies ist noch zu zeigen.\nl
 \underline{Fall 1: $t<m$}
 \begin{align*}
-h(t)&\stackeq{\text{Trafo}}
+&h(t)\\
+\overset{\text{Trafo}}&=
 \int\limits_{\R}|x-t|-|x-m| Q_F(\d x)\\
 &=\int\limits_{(-\infty,t]}\underbrace{|x-t|-|x-m|}_{=t-x-(m-x)=-(m-t)} F(\d x)
 +\int\limits_{(t,m)}\underbrace{\underbrace{|x-t|-|x-m|}_{\underbrace{x-t}_{\geq0}-\underbrace{(m-x)}_{\leq m-t}}}_{\geq-(m-t)} F(\d x)\\
@@ -62,11 +62,9 @@ h(t)&=\int\limits_{(-\infty,m]}\ldots F(\d x)+\int\limits_{(m,t]}\ldots+\int\lim
 &\geq0
 \end{align*}
 
-\underline{Fall 3: $t=m$} ist trivial. $\#$\\
-
+\underline{Fall 3: $t=m$} ist trivial. $\#$\nl
 \underline{Zeige (b) $\Rightarrow$ (a):}\\
-Nach Annahme ist $h(t)\geq0~\forall t\in\R$.\\
-
+Nach Annahme ist $h(t)\geq0~\forall t\in\R$.\nl
 \underline{Fall 1: $t<m$} Die obige Rechnung im Fall 1 bei 1. $\Rightarrow$ 2. zeigt:
 \begin{align*}
 0\leq h(t)&=-(m-t)\cdot F(t)+\int\limits_{(t,m)}\underbrace{\underbrace{x}_{<m}-t-(m-x) }_{=2x-t-m\leq m-t}F(\d x)+(m-t)\cdot(1-F(m-))\\
@@ -77,8 +75,7 @@ Nach Annahme ist $h(t)\geq0~\forall t\in\R$.\\
 &\Longrightarrow\forall t<m:F(t)\leq\frac{1}{2}\\
 &\stackrel{t\uparrow m}{\Longrightarrow}F(m-)\leq\frac{1}{2}
 \end{align*}
-\underline{Fall 2: $t> m$} Siehe 2. Fall, analog.\\
-
+\underline{Fall 2: $t> m$} Siehe 2. Fall, analog.\nl
 \underline{Zeige (a) $\gdw$ (c):}
 (b) ist offensichtlich äquivalent zur Definition des Medians.
 \end{proof}
@@ -219,8 +216,7 @@ Y\text{ fast sicher }
 \arg\min\limits_{t\in\R} Y(t)\text{ fast sicher}
 \end{align}
 Ziel: Welche Art der Konvergenz $Y_n\stackrel{n\to\infty}{\longrightarrow} Y$ reicht für obige Implikation aus? Gleichmäßige Konvergenz, gleichmäßige Konvergenz auf Kompakta punktweise Konvergenz oder sogar nur \eqref{eq1.1}?\\
-$Y$ besitzt womöglich (unter positiven Wahrscheinlichkeiten) keine eindeutige Minimalstelle. Und dann?\\
-
+$Y$ besitzt womöglich (unter positiven Wahrscheinlichkeiten) keine eindeutige Minimalstelle. Und dann?\nl
 Für die Konstruktion von (asymptotischen) Konfidenzintervallen für $m$ benötigt man \textbf{Verteilungskonvergenz}:
 \begin{align}\label{eq1.3}
 a_n(\hat{m}_n-m)
@@ -244,8 +240,7 @@ Z\text{ in } \big(C(\R),d\big)
 \stackrel{\mathcal{L}}{\longrightarrow}
 \arg\min\limits_{t\in\R} Z(t)
 \end{align}
-Dazu erforderlich ist das Konzept der \textbf{Verteilungskonvergenz} von Zufallsvariablen in metrischen Räumen, damit \eqref{eqSternchen} eine wohldefinierte Bedeutung erhält. Dies folgt später. Natürlich auch hier wieder das Problem: $Z$ besitzt mit positiver Wahrscheinlichkeit mindestens 2. Minimalstellen. Und dann?\\
-
+Dazu erforderlich ist das Konzept der \textbf{Verteilungskonvergenz} von Zufallsvariablen in metrischen Räumen, damit \eqref{eqSternchen} eine wohldefinierte Bedeutung erhält. Dies folgt später. Natürlich auch hier wieder das Problem: $Z$ besitzt mit positiver Wahrscheinlichkeit mindestens 2. Minimalstellen. Und dann?\nl
 Im Falle einer fast sicher eindeutigen Minimalstelle von $Z$ würde aber aus (1.4) und (1.5) folgen:
 \begin{align*}
 a_n(\hat{m}_n-m)
@@ -376,7 +371,7 @@ Ein metrischer Raum $(\S,d)$ heißt \textbf{separabel}
 \end{align*}
 \end{definition}
 
-\begin{beispiel} %2.6
+\begin{beispiel}\label{beisp2.6} %2.6
 $C([0,1])$ mit Supremums-Metrik ist separabal.
 \begin{proof}
 \begin{align*}
@@ -431,8 +426,7 @@ d(x,y_x)+d(y_x,x)< \underbrace{\frac{r_x}{2}+\frac{r_x}{2}}_{=r_x}\qquad\forall 
 \supseteq\bigcup\limits_{x\in G}\lbrace x\rbrace=G\\
 &\implies G=\bigcup	\limits_{x\in G}\underbrace{B\left(y_x,\frac{r_x}{2}\right)}_{\in\G_0}
 \end{align*}
-Also ist $\G_0$ einen Basis. Da $S_0$ abzählbar ist $\G_0$ abzählbar.\\
-
+Also ist $\G_0$ einen Basis. Da $S_0$ abzählbar ist $\G_0$ abzählbar.\nl
 \underline{Zeige ``$\Leftarrow$'':}\\
 Sei $\G_0$ abzählbare Basis von $\G$ und sei o.B.d.A. $\emptyset\notin\G_0$. Wähle für jedes $G\in\G_0$ ein $x_G\in G$ fest aus. Setze
 \begin{align*}
@@ -521,11 +515,7 @@ da die Produkttopologie vereinigungsstabil ist.
 \end{proof}
 
 \begin{defi}
-Die Metriken $d_1,d_2,d_3$ heißen \textbf{Produktmetriken}. Daher alternative Schreibweise $d\times d'$, also z. B. 
-\begin{align*}
-d\times d':=\max\lbrace d,d'\rbrace
-\end{align*}
-usw.
+Die Metriken $d_1,d_2,d_3$ heißen \textbf{Produktmetriken}. Daher alternative\\ Schreibweise $d\times d'$, also z. B. $d\times d':=\max\lbrace d,d'\rbrace$ usw.
 \end{defi}
 
 \begin{bemerkungnr} %2.11
@@ -575,8 +565,7 @@ da $\sigma\big(\mathcal{F}(\S)\big)$ Komplement-stabil ist. Also folgt
 \mathcal{G}\subseteq\sigma(\mathcal{F})
 \implies\sigma(\mathcal{G})\subseteq\sigma(\mathcal{F})
 \end{align*}
-\underline{Zu (1), zeige ``$\supseteq$'':} Analog.\\
-
+\underline{Zu (1), zeige ``$\supseteq$'':} Analog.\nl
 \underline{Zeige (2):}
 \begin{align*}
 f^{-1}\big(\B_{d'}(\S')\big)&=f^{-1}\Big(\sigma\big(\mathcal{G}(\S')\big)\Big)\\
@@ -610,22 +599,22 @@ Seien
 die \textbf{Projektionsabbildungen}. Dann gilt
 \begin{align*}
 \B(\S)\otimes\B(\S) 
-&\stackeq{\text{Def}}
+\overset{\text{Def}}&=
 \sigma(\pi_1,\pi_2)\\
-&\stackeq{\text{Def}}
+\overset{\text{Def}}&=
 \sigma\Big(\pi_1^{-1}\big(\sigma(\mathcal{G})\big)\cup\pi_2^{-1}\big(\sigma(\mathcal{G})\big)\Big)\\
-&\stackeq{(+)}
+\overset{(+)}&=
 \sigma\Big(\sigma\big(\pi_1^{-1}(\mathcal{G})\big)\cup\sigma\big(\pi_2^{-1}(\mathcal{G})\big)\Big)\\
 &=
 \sigma\Big(\pi_1^{-1}(\mathcal{G})\big)\cup\pi_2^{-1}(\mathcal{G})\Big)\\
 &=\sigma\Big(\big\lbrace G\times S,S\times G':G,G'\in\mathcal{G}\big\rbrace\Big)\\
 &=
 \sigma\Big(\big\lbrace \overbrace{G\times G'}^{=(G\times S)\cap(S\times G')}:G,G'1\in\mathcal{G}\big\rbrace\Big)\\
-&\stackeq{\text{($\ast$)}}
+\overset{\text{($\ast$)}}&=
 \sigma\left(\left\lbrace\bigcup\limits_{\begin{subarray}{c}G\in\mathcal{O}\\G'\in\mathcal{O}'\end{subarray}}G\times G':\mathcal{O},\mathcal{O}'\subseteq\mathcal{G}\right\rbrace\right)\\
-&\stackeq{2.10~(3)}
+\overset{2.10~(3)}&=
 \sigma\Big(\mathcal{G}(\S\times\S)\Big)\\
-&\stackeq{\text{Def}}
+\overset{\text{Def}}&=
 \B(\S\times\S)
 \end{align*}
 Zum Nachweis von (+):\\
@@ -676,8 +665,7 @@ G^\ast\in\sigma\Big(\big\lbrace G\times G':G,G'\in\mathcal{G}\big\rbrace\Big)
 
 \begin{definition} %3.4
 Sei $(\Omega,\A)$ ein Messraum. Eine Abbildung
-$X:\Omega\to\S$, die $\A$-$\B(\S)$-messbar ist, heißt \textbf{Zufallsvariable (ZV)} in den metrischen Raum $(\S,d)$ über $(\Omega,\A)$.\\
-
+$X:\Omega\to\S$, die $\A$-$\B(\S)$-messbar ist, heißt \textbf{Zufallsvariable (ZV)} in den metrischen Raum $(\S,d)$ über $(\Omega,\A)$.\nl
 Sei $\P$ ein Wahrscheinlichkeitsmaß auf $(\Omega,\A)$, also $(\Omega,\A,\P)$ ein Wahrscheinlichkeitsraum. Das Bildmaß
 \begin{align*}
 \P\circ X^{-1}&:=:\P_X:=:\mathcal{L}:=:\mathcal{L}(X~|~\P)\\
@@ -958,14 +946,14 @@ Es ``stochastische Versionen'' dieses Satzes.
 \item $\begin{aligned}
 (X_n,X_n')
 \stackrelnew{}{n\to\infty}{\longrightarrow}
-(X,X')~\P\text{-fast sicher}
+(X,X')~\P\text{-f.s.}
 \Longleftrightarrow
 X_n
 \stackrelnew{}{n\to\infty}{\longrightarrow}
-X~\P\text{-fast sicher }\wedge
+X~\P\text{-f.s. }\wedge
 X_n'
 \stackrelnew{}{n\to\infty}{\longrightarrow}
-X'~\P\text{-fast sicher}
+X'~\P\text{-f.s.}
 \end{aligned}$
 \item $\begin{aligned}
 (X_n,X_n')
@@ -1043,8 +1031,7 @@ X\stackeq{\mathcal{L}} Y\Longleftrightarrow
 \end{enumerate}
 \end{satz}
 \begin{proof}
-\underline{Zu (1) zeige ``$\implies$'':} Klar.\\
-
+\underline{Zu (1) zeige ``$\implies$'':} Klar.\nl
 \underline{Zu (1) zeige ``$\Longleftarrow$'':}
 \begin{align*}
 \B(\S)\stackeq{\text{3.2 (1)}}\sigma\big(\mathcal{F}(\S)\big)
@@ -1072,8 +1059,7 @@ f_k(x):=\varphi\Big(k\cdot d(x,F)\Big)
 =\int\limits\indi_F\d Q
 \stackeq{\text{Def}} Q(F)
 \end{align*}
-Da $F$ beliebig war, folgt die Behauptung.\\
-
+Da $F$ beliebig war, folgt die Behauptung.\nl
 \underline{Zu (2):} folgt aus (1) mit dem Transformationssatz \eqref{eqTrafo}:
 \begin{align*}
 X\stackeq{\mathcal{L}} Y
@@ -1144,21 +1130,21 @@ Mengen $B\in\B(\S)$ mit $P(\partial B)=0$ heißen \textbf{$P$-randlos}.
 \end{satz}
 \begin{proof}
 \underline{Zeige (1) $\implies$ (2):}\\
-Folgt aus der Definition \ref{def4.1} (1).\\
-
+Folgt aus der Definition \ref{def4.1} (1).\nl
 \underline{Zeige (2) $\implies$ (3):}\\
-Sei $F\in\F(\S)$ (also abgeschlossen), Der Beweis von Satz \ref{satz3.17} zeigt: Es gibt eine Folge $(f_k)_{k\in\N}$ von gleichmäßigen stetigen, beschränkten Funktionen auf $\S$ mit $f_k\downarrow\indi_F$. Dann gilt:
+Sei $F\in\F(\S)$ (also abgeschlossen), Der Beweis von Satz \ref{satz3.17} zeigt: Es gibt eine Folge $(f_k)_{k\in\N}$ von gleichmäßig stetigen, beschränkten Funktionen auf $\S$ mit $f_k\downarrow\indi_F$. Dann gilt:
 \begin{align*}
 \limsup\limits_{n\to\infty} P_n(F)
 =\limsup\limits_{n\to\infty}\int\limits\underbrace{\indi_F}_{\leq f_k~\forall k\in\N}\d P_n
-&\stackrel{\text{Mono}}{\leq}
+\overset{\text{Mono}}&{\leq}
 \limsup\limits_{n\to\infty}\int\limits f_k\d P_n
 \stackrel{\text{Vor (2)}}{=}
-\int\limits f_k\d P\quad\forall k\in\N\\
-&\stackrel{\text{Mono Konv}}{\implies}
+\int\limits f_k\d P~~\forall k\in\N\\
+\overset{\text{Mono Konv}}&{\implies}
 \int\limits f_k\d P\stackrel{k\to\infty}{\longrightarrow}
 \int\limits\indi_F\d P=P(F)\\
-&\stackrel{k\to\infty}{\implies}~(3)
+\overset{k\to\infty}&{\implies}
+~(3)
 \end{align*}
 
 \underline{Zeige (3) $\Longleftrightarrow$ (4):}\\
@@ -1215,8 +1201,7 @@ Beachte, \eqref{eqProof1.4.2DoppelSternchen} gilt für \ul{jedes} Wahrscheinlich
 &\leq\frac{1}{k}+\underbrace{\sum\limits_{i=1}^{k-1} P(F_i)}_{\stackrel{\eqref{eqProof1.4.2DoppelSternchen}}{\leq}\int\limits f\d P}\\
 &\leq\frac{1}{k}+\int\limits f\d P\qquad\forall k\in\N
 \end{align*}
-Grenzwertbildung $k\to\infty$ liefert \eqref{eqProof1.4.2Sternchen}.\\
-
+Grenzwertbildung $k\to\infty$ liefert \eqref{eqProof1.4.2Sternchen}.\nl
 \ul{2. Schritt:} Da $f\in C^b(\S)$ beliebig, gilt:
 \begin{align*}
 \exists a<b:a\leq f<b
@@ -1229,7 +1214,7 @@ Daraus folgt
 &=\limsup\limits_{n\to\infty}\left((b-a)\cdot\int\limits g\d P_n+a\right)\\
 &\leq(b-a)\cdot\underbrace{\limsup\limits_{n\to\infty}\int\limits g\d P_n}_{\leq\int\limits g\d P\text{, wg. 1. Schritt}}+a\\
 &\leq(b-a)\cdot\int\limits g\d P+0\\
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \int\limits f\d P
 \end{align*}
 Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqProof1.4.2Sternchen} liefert
@@ -1239,9 +1224,9 @@ Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqP
 \liminf\limits_{n\to\infty}\int\limits f\d P_n\\
 &=\liminf\limits_{n\to\infty}-\int\limits -f\d P_n\\
 &=-\limsup\limits_{n\to\infty}-\int\limits \underbrace{-f}_{\in C^b(\S)}\d P\\
-&\stackrel{\eqref{eqProof1.4.2Sternchen}}{\geq}
+\overset{\eqref{eqProof1.4.2Sternchen}}&{\geq}
 -\int\limits -f\d P\\
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \int\limits f\d P
 \qquad\forall f\in C^b(\S)\\
 &\implies(1)
@@ -1251,16 +1236,17 @@ Damit ist \eqref{eqProof1.4.2Sternchen} gezeigt. Übergang zu $-f$ in \eqref{eqP
 Sei $B\in\B(\S)\mit P(\partial B)=0$. Dann gilt:
 \begin{align*}
 P(\overline{B})
-&\stackrel{(3)}{\geq}
+\overset{(3)}&{\geq}
 \limsup\limits_{n\to\infty} \underbrace{P_n(\overbrace{\overline{B}}^{\supseteq B})}_{\geq P_n(B)}\\
 &\geq\limsup\limits_{n\to\infty} P_n(B)\\
-&\stackrel{\text{stetig}}{\geq}
+\overset{\text{stetig}}&{\geq}
 \liminf\limits_{n\to\infty} \underbrace{P_n(\overbrace{B}^{\supseteq\stackrel{\circ}{B}})}_{P_n(\stackrel{\circ}{B}}\\
-\stackrel{(3)\gdw(4)}{\geq}
+\overset{(3)\gdw(4)}&{\geq}
 P(\stackrel{\circ}{B})\\
 &=P(\overline{B})\\
-&=P(B)
-\end{align*}, denn:
+&=P(B),
+\end{align*}
+denn:
 \begin{align}\label{eqProof1.4.2SternchenZwei}
 0
 =P(\overbrace{\partial B}^{\overline{B}\setminus\stackrel{\circ}{B}}
@@ -1268,8 +1254,7 @@ P(\stackrel{\circ}{B})\\
 \implies
 P(\stackrel{\circ}{B})\leq P(B)\leq P(\overline{B})=P(\stackrel{\circ}{B})
 \end{align}
-Da $\liminf=\limsup$ folgt $\limn P_n(B)=P(B)$.\\
-
+Da $\liminf=\limsup$ folgt $\limn P_n(B)=P(B)$.\nl
 \underline{Zeige (5) $\implies$ (3):}\\
 Sei $F\in\F$ (abgeschlossen) beliebig. Dann gilt $\forall\varepsilon>0:$
 \begin{align}\label{eqProof1.4.2SternchenUnten}
@@ -1338,7 +1323,7 @@ x\in F_k\qquad\forall k\in\N\\
 d(x,F)\leq\varepsilon_k\qquad\forall k\in\N\\
 &\implies
 d(x,F)=0\\
-&\stackrel{\ref{lemma2.3}~(1)}{\Longleftrightarrow}
+\overset{\ref{lemma2.3}~(1)}&{\Longleftrightarrow}
 x\in \overline{F}\stackeq{F\in\F}F
 \end{align*}
 \end{proof}
@@ -1363,11 +1348,11 @@ Dann gilt:
 Seien $A_1,\ldots,A_m\in\U$. Dann gilt:
 \begin{align*}
 P_n\left(\bigcup\limits_{i=1}^m A_i\right)
-&\stackeq{\text{allg. Add-Formel}}
+\overset{\text{allg. Add-Formel}}&=
 \sum\limits_{k=1}^m (-1)^{k-1}\cdot\sum\limits_{1\leq i_1<\ldots<i_k\leq m}\underbrace{P_n\big(\underbrace{A_{i_1}\cap\ldots\cap A_{i_k})}_{\in\U}}_{\stackrel{n\to\infty}{\longrightarrow} P(A_{i_1}\cap\ldots\cap A_{i_k})}\\
-&\stackrel{n\to\infty}{\longrightarrow}
+\overset{n\to\infty}&{\longrightarrow}
 \sum\limits_{k=1}^m\sum\limits_{1\leq i_1<\ldots<i_k\leq m} P\left(A_{i_1}\cap\ldots\cap A_{i_k}\right)\\
-&\stackeq{\text{all. Add.}}
+\overset{\text{all. Add.}}&=
 P\left(\bigcup\limits_{i=1}^m A_i\right)
 \end{align*}
 Sei $G\in\G$. Dann gilt wegen Voraussetzung (ii):
@@ -1375,13 +1360,13 @@ Sei $G\in\G$. Dann gilt wegen Voraussetzung (ii):
 &\exists(A_i)_{i\in\N}\subseteq\U:G=\bigcup\limits_{i\in\N} A_i\\
 &\implies
 G_m:=\bigcup\limits_{i=1}^m A_i\uparrow G,~m\to\infty\\
-&\stackrel{P~\sigma\text{-stetig}}{\implies}
+\overset{P~\sigma\text{-stetig}}&{\implies}
 \forall \varepsilon>0:\exists m_0\in\N:P(G)-P(G_{m_0})\leq\varepsilon\\
 &\implies
 P(G)-\varepsilon\leq P(G_{m_0})
 \stackeq{\text{s. o.}}
 \limn P_n(\underbrace{G_{m_0}}_{\subseteq G})\leq\liminf\limits_{n\to\infty} P_n(G)\qquad\forall\varepsilon>0\\
-&\stackrel{\varepsilon\to0}{\implies}
+\overset{\varepsilon\to0}&{\implies}
 \liminf\limits_{n\to\infty} P_n(G)\geq P(G)\qquad\forall G\in\G
 \end{align*}
 Nun folgt die Behauptung aus dem Theorem \ref{satz4.2}.
@@ -1451,8 +1436,7 @@ Somit folgt für $x\in C_F$:
 F_n(x)&\stackeq{\text{Def}}
 P_n\big(\underbrace{(-\infty,x]}_{=B}\big)=P_n(B)\stackrel{n\to\infty}{\longrightarrow} P(B)\stackeq{\text{Def}} F(x)\qquad\forall x\in C_F
 \end{align*}
-gemäß Satz \ref{satz4.2}.\\
-
+gemäß Satz \ref{satz4.2}.\nl
 \underline{Zeige ``$\Longleftarrow$'':} Sei
 \begin{align*}
 \U:=\big\lbrace (a,b]:a,b\in C_F\big\rbrace.
@@ -1584,7 +1568,7 @@ Sei $h:(\S,d)\to(\S',d')$ messbar.\\
 \underline{Ziel:} Finde Bedingungen an $h$, so dass gilt:
 \begin{enumerate}[label=(\arabic*)]
 \item $\begin{aligned}
-P_n\stackrelnew{w}{}{\longrightarrow}\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
+P_n\stackrelnew{w}{}{\longrightarrow}P\implies P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
 \end{aligned}$
 \item $\begin{aligned}
 X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\implies h(X_n)\stackrel{\L}{\longrightarrow} h(X)\text{ in }(\S',d')
@@ -1656,8 +1640,8 @@ Mit der Dreiecksungleichung überlegt man sich leicht:
 \begin{align*}
 h\text{ stetig in }x
 \Longleftrightarrow
-\forall 0<\varepsilon\in\Q:\exists 0<\delta\in\Q:\exists y,z\in\S\mit
-d(x,y)<\delta\wedge d(x,z)<\delta
+&\forall 0<\varepsilon\in\Q:\exists 0<\delta\in\Q:\exists y,z\in\S:\\
+&d(x,y)<\delta\wedge d(x,z)<\delta
 \implies d'\big(h(y),h(z)\big)<\varepsilon
 \end{align*}
 Damit folgt:
@@ -1709,15 +1693,14 @@ Sei $F\in\F(\S')$ (d. h. $F\subseteq\S'$ abgeschlossen) beliebig. Dann gilt:
 \limsup\limits_{n\to\infty} P_n\circ h^{-1}(F)
 &=\limsup\limits_{n\to\infty} P_n\big(\underbrace{h^{-1}(F)}_{\subseteq \overline{h^{-1}(F)}}\big)\\\nonumber
 &\leq \limsup\limits_{n\to\infty} P_n\big(\underbrace{\overline{h^{-1}(F)}}_{\in\F(\S)}\big)\\\nonumber
-&\stackrel{\ref{satz4.2}}{\leq}
+\overset{\ref{satz4.2}}&{\leq}
 P\big(\overline{h^{-1}(F)}\big)
 \end{align}
 Es gilt
 \begin{align}\label{eqProof1.4.10(ii)}
 \overline{h^{-1}(F)}\subseteq h^{-1}(F)\cup D_h,
 \end{align}
-denn: Sei $x\in\overline{h^{-1}(F)}$.\\
-
+denn: Sei $x\in\overline{h^{-1}(F)}$.\nl
 \underline{Fall 1: $x\in D_h$}
 \begin{align*}
 x\in D_h\implies x\in h^{-1}(F)\cup D_h
@@ -1745,7 +1728,7 @@ P_n\circ h^{-1}\stackrelnew{w}{}{\longrightarrow} P\circ h^{-1}
 \subsection*{Die Cramér'schen Sätze}
 Zusammenstellung einiger Eigenschaften der Verteilungskonvergenz.
 
-\begin{satz}[Teilfolgenprinzip für schwache Konvergenz]\label{satz4.11}\enter
+\begin{satz}[Teilfolgenprinzip für schwache Konvergenz]\label{satz4.11}\
 \begin{enumerate}[label=(\arabic*)]
 \item $\begin{aligned}
 Q_n\stackrelnew{w}{}{\longrightarrow} Q
@@ -1753,14 +1736,14 @@ Q_n\stackrelnew{w}{}{\longrightarrow} Q
 \text{Jede TF }(Q_{n'})\subseteq(Q_n)_{n\in\N}\text{ enthält TF }(Q_{n''})\subseteq(Q_{n'}):Q_{n''}\stackrelnew{w}{}{\longrightarrow} Q
 \end{aligned}$
 \item $\begin{aligned}
-X_n\stackrel{\L}{\longrightarrow} X\text{ in }(\S,d)\Longleftrightarrow\text{Jede TF }(X_{n'})\subseteq(X_n)_{n\in\N}\text{ enthält TF }(X_{n''})\subseteq(X_{n'}):X_{n''}\stackrel{\L}{\longrightarrow} X
+X_n\stackrel{\L}{\longrightarrow} X\Longleftrightarrow\text{Jede TF }(X_{n'})\subseteq(X_n)_{n\in\N}\text{ enthält TF }(X_{n''})\subseteq(X_{n'}):X_{n''}\stackrel{\L}{\longrightarrow} X
 \end{aligned}$
 \end{enumerate}
 \end{satz}
 \begin{proof}
+Wir zeigen hier nur (1):\nl
 \underline{Zeige ``$\implies$'':}\\
-Folgt aus der Definition \ref{def4.1} und dem Teilfolgenprinzip für $(\int f\d Q)_{n\in\N}$ für alle $f\in C^b(\S)$.\\
-
+Folgt aus der Definition \ref{def4.1} und dem Teilfolgenprinzip für $(\int f\d Q)_{n\in\N}$ für alle $f\in C^b(\S)$.\nl
 \underline{Zeige ``$\Longleftarrow$'':}\\
 Angenommen $Q_n\stackrelnew{w}{}{\not\longrightarrow} Q$. Dann gilt:
 \begin{align*}
@@ -1782,12 +1765,12 @@ X_n\stackrel{\P}{\longrightarrow} X\implies X_n\stackrel{\L}{\longrightarrow} X
 Sei $(X_{n'})$ eine Teilfolge von $(X_n)_{n\in\N}$. Dann existiert gemäß \ref{satz3.13} eine TF $(X_{n''})$ von $(X_{n'})$ mit $X_{n''}\stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
 Damit folgt aus Satz \ref{Satz3.8}:
 \begin{align*}
-&f\big(X_{n''}\big)\stackrel{n''\to\infty}{\longrightarrow}f(X)~\P\text{-fast sicher}\qquad\forall f\in C^b(\S)\\
-&\stackrel{\text{dom Konv}}{\implies}
-\E\Big[f\big(X_{n''}\big)\Big]\stackrel{n''\to\infty}{\longrightarrow}\E\Big[f\big(X\big)\Big]\qquad\forall f\in C^b(\S)\\
-&\stackrel{\ref{satz4.7}}{\implies}
+&f\big(X_{n''}\big)\stackrel{n''\to\infty}{\longrightarrow}f(X)~\P\text{-fast sicher}&\forall f\in C^b(\S)\\
+\overset{\text{dom Konv}}&{\implies}
+\E\Big[f\big(X_{n''}\big)\Big]\stackrel{n''\to\infty}{\longrightarrow}\E\Big[f\big(X\big)\Big]&\forall f\in C^b(\S)\\
+\overset{\ref{satz4.7}}&{\implies}
 X_{n''}\stackrel{\L}{\longrightarrow} X\\
-&\stackrel{\ref{satz4.11}(2)}{\implies}
+\overset{\ref{satz4.11}(2)}&{\implies}
 X_n\stackrel{\L}{\longrightarrow} X
 \end{align*}
 \end{proof}
@@ -1816,7 +1799,7 @@ f(x)&=\left\lbrace\begin{array}{cl}
 1, &\falls d(x,c)\geq\varepsilon
 \end{array}\right.\\
 \implies 0 \leq \P\big(d(X_n,X)>\varepsilon\big)
-&\stackeq{\text{Vor}}
+\overset{\text{Vor}}&=
 \P\big(d(X_n,c)>\varepsilon\big)\\
 &=\E\Big[\underbrace{\indi_{\lbrace d(X_n,c)\geq\varepsilon\rbrace}}_{\leq f(X_n)}\Big]\\
 &\leq\E\big[f(X_n)\big]\stackrelnew{n\to\infty}{\text{Vor}}{\longrightarrow}\E\big[\underbrace{f(X)}_{=\underbrace{f(c)}_{=0}\text{ f.s.}}\big]\\
@@ -1849,12 +1832,13 @@ Sei $f\in C^b(\S)$ gleichmäßig stetig, d. h.
 Damit folgt
 \begin{align*}
 &\Big|\E\big[f(X_n)\big]-\E\big[f(Y_n)\big]\Big|\\
-&\stackeq{\text{Lin}}
+\overset{\text{Lin}}&=
 \left|\int\limits f(X_n)-f(Y_n)\d\P\right|\\
-&\stackrel{\text{DU}}{\leq}
+\overset{\text{DU}}&{\leq}
 \int\limits\big|f(X_n)-f(Y_n)\big|\d\P\\
-&\stackeq{\text{Lin}}
-\int\limits\underbrace{\indi_{\big\lbrace d(X_n,Y_n)\leq\delta\big\rbrace}\cdot\big|f(X_n)-f(Y_n)\big|}_{\leq\varepsilon\text{ wegen glm. Stetigkeit}}\d\P+
+\overset{\text{Lin}}&=
+\int\limits\underbrace{\indi_{\big\lbrace d(X_n,Y_n)\leq\delta\big\rbrace}\cdot\big|f(X_n)-f(Y_n)\big|}_{\leq\varepsilon\text{ wegen glm. Stetigkeit}}\d\P\\
+&\qquad+
 \int\limits\indi_{\big\lbrace d(X_n,Y_n)>\delta\big\rbrace}\cdot\underbrace{\big|f(X_n)-f(Y_n)\big|}_{\leq\big|f(X_n)\big|+\big|f(Y_n)\big|\leq2\cdot\Vert f\Vert_\infty}\d\P\\
 &\leq\varepsilon+2\cdot\Vert f\Vert_\infty\cdot\underbrace{\P\big(d(X_n,Y_n)>\delta_\varepsilon\big)}_{\stackrel{n\to\infty}{\longrightarrow}0}\\
 \implies
@@ -1871,7 +1855,7 @@ X_n\stackrel{\L}{\longrightarrow} X
 &\stackrel{\ref{satz4.7}}{\Longleftrightarrow}
 \E\big[f(X_n)\big]\longrightarrow\E\big[f(X)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}\\
 &\Longleftrightarrow
-\underbrace{\E\big[f(X_n)\big]}_{=\E\big[f(X_n)\big]+\Big(\E\big[f(Y_n)\big]-\E\big[ f(X_n)\big]\Big)\stackrel{\text{wg. oben}}{\longrightarrow}0}\stackrel{}{\longrightarrow}\E\big[f(X)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}\\
+\underbrace{\E\big[f(X_n)\big]}_{=\E\big[f(X_n)\big]+\Big(\E\big[f(Y_n)\big]-\E\big[ f(X_n)\big]\Big)\stackrel{\text{oben}}{\longrightarrow}0}\stackrel{}{\longrightarrow}\E\big[f(X)\big]~\forall f\in C^b(\S)\text{ glm. stetig}\\
 &\stackrel{\ref{satz4.7}}{\Longleftrightarrow}
 Y_n\stackrel{\L}{\longrightarrow} X
 \end{align*}
@@ -1897,7 +1881,7 @@ Ferner:
 =d'(Y_n,c)\\
 &\implies\P\Big(d\times d'\big((X_n,Y_n),(X_n,c)\big)>\varepsilon\Big)
 =\P\big(d'(Y_n,c)>\varepsilon\big)
-\stackrel{n\to\infty}{\longrightarrow} 0\qquad\forall\varepsilon>0\text{ gemäß } \eqref{eqProof4.15Stern}\\
+\stackrel{n\to\infty}{\longrightarrow} 0\quad\forall\varepsilon>0\text{ wg. } \eqref{eqProof4.15Stern}\\
 &\implies
 \big((X_n,Y_n)\big)_{n\in\N}\text{ und }\big((X_n,c)\big)_{n\in\N}\text{ sind stochastisch äquivalent}
 \end{align*}
@@ -2011,8 +1995,7 @@ Sei $(\S,d)$ separabel. Dann sind folgende Aussagen äquivalent:
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Seien $\partial,\partial_1,\partial_2$ die Randoperatoren in $(\S,d),(\S_1,d_1),(\S_2,d_2)$, respektive.\\
-
+Seien $\partial,\partial_1,\partial_2$ die Randoperatoren in $(\S,d),(\S_1,d_1),(\S_2,d_2)$, respektive.\nl
 \underline{Zeige (1) $\implies$ (2):}\\
 Sei $A:=A_1\times A_2$ mit $A_i\in(2)$. Es gilt
 \begin{align}\label{eqProof4.19Stern}\tag{$\ast$}
@@ -2067,7 +2050,8 @@ sind höchstens abzählbar (vgl. Beweis von \ref{satz4.2}). Folglich ist die Ver
 (E_1\cup E_2)^C&=E_1^C\cap E_2^C=\big\lbrace\delta>0:B_{d_i}(x_i,\delta)\text{ ist $\P_i$-randlos},i\in\lbrace1,2\rbrace\big\rbrace\\
 \implies\exists\delta&\in(0,\varepsilon):B_{d_1}(x_1,\delta)~\P_1\text{-randlos und }B_{d_2}(x_2,\delta)~\P_2\text{-randlos}\\
 \implies A_\delta&=B_{d_1}(x_1,\delta)\times B_{d_2}(x_2,\delta)\in\U\\
-&\stackeq{\eqref{eqProof4.19Plus}} B_d(x,\delta)\subseteq B_d(x,\varepsilon)
+\overset{\eqref{eqProof4.19Plus}}&=
+B_d(x,\delta)\subseteq B_d(x,\varepsilon)
 \end{align*}
 Also offene Kugel ist $A_\delta$ offen, also $\stackrel{\circ}{A_\delta}=A_\delta$. Schließlich folgt
 \begin{align*}
@@ -2109,8 +2093,7 @@ gemäßig \ref{theorem4.19}, denn $\partial\S_2=\emptyset$. Also ist $\S_2\in\B(
 \begin{align*}
 \P_n^{(1)}\stackrelnew{w}{}{\longrightarrow}\P_n^{(2)}
 \end{align*}
-Analog zeigt man: $\P_n^{(2)}\stackrelnew{w}{}{\longrightarrow}\P^{(2)}$.\\
-
+Analog zeigt man: $\P_n^{(2)}\stackrelnew{w}{}{\longrightarrow}\P^{(2)}$.\nl
 \underline{Zeige (2) $\implies$ (1):}
 \begin{align*}
 &\P_n(A_1\times A_2)=\underbrace{\P_n^{(1)}(A_1)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(1)}(A_1)}\cdot\underbrace{\P_n^{(2)}(A_2)}_{\stackrel{n\to\infty}{\longrightarrow}\P^{(2)}(A_2)}\qquad\forall A_i~\P_i\text{-randlos},i=1,2\\
@@ -2226,7 +2209,7 @@ S_n^2-\sigma^2
 \stackrel{\L}{\longrightarrow}?
 \end{align*}
 
-\section{Verteilungskonvergenz in $\R^d$}
+\section{Verteilungskonvergenz in \texorpdfstring{$\R^d$}{R\textasciicircum d}}
 Korollar \ref{korollar4.5} bzw. dessen Erweiterungen \ref{lemma4.6Einhalb} (2) liefern eine \textbf{analytische} Methode zum Nachweis von $X_n\stackrel{\L}{\longrightarrow}X\text{ in }\R^d$. Eine weitere Methode fußt auf
 
 \begin{definition}\label{def5.1}
@@ -2250,5 +2233,564 @@ X\stackeq{\L} Y\Longleftrightarrow\varphi_X\equiv\varphi_Y
 Siehe Buch \textit{Essentials in Probability} von Jacod und Protter (2000), Seite 107-108.
 \end{proof}
 
+\begin{satz}[Stetigkeitssatz]\label{satz5.3Stetigkeitssatz}
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^d\Longleftrightarrow\forall t\in\R^d: \varphi_{X_n}(t)\stackrel{n\to\infty}{\longrightarrow}\varphi_X(t)
+\end{align*}
+\end{satz}
+\begin{proof}
+Siehe Vorlesung Wahrscheinlichkeitstheorie (Bachelor) oder Jacod und Protter (2000), Seite 163 ff.
+\end{proof}
 
+Sehr nützlich ist:
+
+\begin{satz}[Cramér-Wold-Device]\label{satz5.4CramerWoldDevice}\enter
+%Device bedeutet u. A. Trick. Das ist kein Name.
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^d
+\end{aligned}$
+\item $\begin{aligned}
+\langle t, X_n\rangle\stackrel{\L}{\longrightarrow}\langle t, X\rangle\text{ in }\R\qquad\forall t\in\R^d
+\end{aligned}$
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\begin{align*}
+\varphi_X(t)
+&\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]\qquad\forall t\in\R^d
+\stackeq{d=1}\E\big[\exp(i\cdot X\cdot t)\big]
+\end{align*}
+\underline{Zeige (1) $\implies$ (2):}\\
+Sei $t\in\R^d$. Dann ist $x\mapsto\langle t,x\rangle$ stetig auf $\R^d$. Und aus Satz \ref{satz4.10ContinuousMappingTheorem} (CMT) folgt dann (2).\nl
+\underline{Zeige (2) $\implies$ (1):}
+\begin{align*}
+&\varphi_{X_n}(t)
+\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X_n\rangle\cdot 1\big)\Big]
+\stackeq{\text{Def}}\varphi_{\langle t,X_n\rangle}(1)
+\stackrelnew{\ref{satz5.3Stetigkeitssatz}}{n\to\infty}{\longrightarrow}\underbrace{\varphi_{\langle t,X\rangle}(1)}_{=\varphi_X(t)}\\
+&\implies\varphi_{X_n}\stackrel{n\to\infty}{\longrightarrow}\varphi_X\text{ auf }\R^d
+\stackrel{\ref{satz5.3Stetigkeitssatz}}{\implies}(1)
+\end{align*}
+\end{proof}
+
+\section{Der multivariate zentrale Grenzwertsatz (ZGWS) für Dreiecksschemata} %6
+Wir betrachen zunächst den \underline{univariaten} Fall. es gelte
+\begin{align}\label{eq6.1}\tag{6.1}
+X_{n,1},X_{n,2},\ldots,X_{n,n}\text{ sind unabhängige \ul{reelle} ZV }\forall n\in\N
+\end{align}
+Die Kollektion
+\begin{align*}
+\big\lbrace X_{n,k}:1\leq k\leq n,n\in\N\rbrace
+\end{align*}
+heißt \textbf{Dreiecksschema / $\Delta$-Schema}.
+\begin{align*}
+\begin{matrix}
+X_{1,1}\\
+X_{2,1} & X_{2,2}\\
+X_{3,1} & X_{3,2} & X_{3,3}\\
+\vdots & \vdots & \vdots & \ddots\\
+X_{n,1} & X_{n,2} & \hdots & \hdots & X_{n,n}\\
+\vdots &&&&\vdots & \ddots
+\end{matrix}
+\end{align*}
+
+Sei 
+\begin{align}\label{eq6.2}\tag{6.2}
+\E[X_{n,k}]=0,~\sigma_{n,k}^2:=\E\left[X_{n,k}^2\right]<\infty~\forall n,k\in\N\text{ und }
+s_n^2:=\sum\limits_{k=1}^n\sigma_{n,k}^2~\forall n\in\N
+\end{align}
+
+\begin{satz}[Lindeberg, 1922]\label{satz6.1Lindeberg1922}\enter
+Es gelten \eqref{eq6.1} und \eqref{eq6.2} sowie
+\begin{align}\label{eqSatz6.1LindebergLB}\tag{LB}
+\sum\limits_{k=1}^n\E\left[X_{n,k}^2\cdot\indi_{\big\lbrace|X_{n,k}|>\varepsilon\big\rbrace}\right]\stackrel{n\to\infty}{\longrightarrow}0\qquad\forall\varepsilon>0.
+\end{align}
+Falls zusätzlich
+\begin{align*}
+s_n^2\stackrel{n\to\infty}{\longrightarrow}\sigma^2\in(0,\infty)
+\end{align*}
+gilt, so gilt:
+\begin{align*}
+\sum\limits_{k=1}^n X_{n,k}\stackrel{\L}{\longrightarrow}\mathcal{N}(0,\sigma^2)
+\end{align*}
+\end{satz}
+\begin{bemerkung}
+\begin{align*}
+s_n^2=\Var\left(\sum\limits_{k=1}^n X_{n,k}\right)
+\end{align*}
+\end{bemerkung}
+\begin{proof}
+So ähnlich wie Beweis von klassischem zentralen Grenzwertsatz in der Vorlesung Wahrscheinlichkeitstheorie (Bachelor), nur technisch etwas komplizierter. Vergleiche auch Billingsley (1995), \textit{Probability and Measure}, Seite 359 ff.
+\end{proof}
+
+Im Folgenden betrachten wir die Verallgemeinerung auf den \underline{multivariaten} Fall.\\
+Sei $\lbrace X_{n,k}:k\leq n,n\in\N\big\rbrace$ ein $\Delta$-Schema von Zufallsvariablen.
+\begin{align*}
+X_{n,k}=\left(X_{n,k}^{(1)},\ldots,X_{n,k}^{(d)}\right)\text{ in }\R^d
+\end{align*}
+Es gelte die \textbf{zeilenweise Unabhängigkeit}:
+\begin{align}\label{eq6.3}\tag{6.3}
+X_{n,1},\ldots,X_{n,n}\text{ sind unabhängig}\qquad\forall n\in\N
+\end{align}
+%Ferger arbeitet auch am Buß- und Bettag in der Uni. Er ist evangelisch getauft worden und sogar konfirmiert. 
+Also die Vektoren seien unabhängig. Daraus folgt nicht, dass deren Komponenten unabhängig sind.
+\begin{align}\label{eq6.4}\tag{6.4}
+\E\big[X_{n,k}\big]:=\left(\E\left[X_{n,k}^{(j)}\right]\right)_{1\leq j\leq d}=0:=(0,\ldots,0)\qquad\forall k,n\in\N\\
+\label{eq6.5}\tag{6.5}
+\E\left[\left(X_{n,k}^{(j)}\right)\right]<\infty\qquad\forall 1\leq j\leq d,\forall n,k\in\N
+\end{align}
+Wegen \eqref{eq6.4} und \eqref{eq6.5} ist die so genannte \textbf{Kovarianzmatrix}
+\begin{align*}
+\Cov\left(X_{n,k}\right):=\Big(\underbrace{\Cov\left(X_{n,k}^{(i)},X_{n,k}^{(j)}\right)}_{=\E\left(X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right)}\Big)_{1\leq i,j\leq d}\in\R^{d\times d}
+\end{align*}
+
+\begin{satz}[Multivariater Zentraler Grenzwertsatz (ZGWS)]\label{satz6.2MultivariaterZGWS}\enter
+Es gelten \eqref{eq6.3}, \eqref{eq6.4}, \eqref{eq6.5} sowie
+\begin{align}\label{eqSatz6.2LB}\tag{LB}
+\sum\limits_{k=1}^n\E\left[\Vert X_{n,k}\Vert^2\cdot\indi_{\big\lbrace\Vert X_{n,k}\Vert>\varepsilon\big\rbrace}\right]\stackrel{n\to\infty}{\longrightarrow}0\qquad\forall\varepsilon>0
+\end{align}
+(Hierbei ist $\Vert\cdot\Vert$ die euklidische Norm auf $\R^d$.)\\
+Falls die Normierungsbedingung
+\begin{align}\label{eqSatz6.2NB}\tag{NB}
+\sum\limits_{k=1}^n\Cov\left(X_{n,k}\right)\stackrelnew{\text{komponentenweise}}{n\to\infty}{\longrightarrow}\Gamma\qquad\mit\Gamma\in\R^{d\times d}\text{ positiv definit}
+\end{align}
+erfüllt ist, so gilt:
+\begin{align*}
+\sum\limits_{k=1}^n X_{n,k}\stackrel{\L}{\longrightarrow}\mathcal{N}_d(0,\Gamma)\text{ in }\R^d
+\end{align*}
+\end{satz}
+%Ferger kennt die Dichte die Normalverteilung im Mehrdimensionalen nicht und versucht sie trotzdem aus dem Gedächtnis an die Tafel zu schreiben. Wieder 5 Minuten weg :D
+%"Mir persönlich reicht es, das Ding hat eine Dichte!" :D
+%"Manchmal ist weniger mehr!"
+\begin{proof}
+Sei $N\sim\mathcal{N}_d(0,\Gamma)$. Mit \ref{satz5.4CramerWoldDevice} bleibt zu zeigen:
+\begin{align}
+\label{eqProof6.2Stern}\tag{$\ast$}
+\left\langle t,\sum\limits_{k=1}^n X_{n,k}\right\rangle\stackrel{\L}{\longrightarrow}\langle t,N\rangle\text{ in }\R\qquad\forall t\in\R^d
+\end{align}
+Sei $t\in\R^d\setminus\lbrace0\rbrace$ (für $t=0$ ist \eqref{eqProof6.2Stern} trivialerweise erfüllt). Es folgt
+\begin{align*}
+\left\langle t,\sum\limits_{k=1}^n X_{n,k}\right\rangle
+\overset{\text{Lin}}&=
+\sum\limits_{k=1}^n\underbrace{\left\langle t,X_{n,k}\right\rangle}_{=:Y_{n,k}=:Y_{n,k}(t)}
+=\sum\limits_{k=1}^n Y_{n,k}\\
+Y_{n,k}
+&=\sum\limits_{k=1}^d t_j\cdot X_{n,k}^{(j)}
+\end{align*}
+Folglich erfüllt $\big\lbrace Y_{n,k}:1\leq k\leq n,n\in\N\big\rbrace$ die Bedingung \eqref{eq6.1} wegen Blockungslemma und \eqref{eq6.2} wegen \eqref{eq6.4} und Linearität sowie Cauchy-Schwarz-Ungleichung.
+%Hauptsatz des Mannschaftssport: "Jede Kombination von Nullen ist immer Null."
+\begin{align*}
+\big|Y_{n,k}^2\big|&=\big|\langle t,X_{n,k}\rangle\big|^2
+\leq\Vert t\Vert^2\cdot\Vert X_{n,k}\Vert^2
+=\Vert t\Vert^2\cdot\sum\limits_{j=1}^d\left(X_{n,k}^{(j)}\right)^2
+\end{align*}
+%Neu
+Da $\langle t,N\rangle=t\cdot N\sim\mathcal{N}(0,t\cdot\Gamma)$ (vgl. Klaus Schmidt \textit{Wahrscheinlichkeit und Maß}, Bsp. 13.2.2), folgt \eqref{eqProof6.2Stern}. Der Nachweis von 
+\begin{align}\label{eqProof6.2SternStern}\tag{$\ast\ast$}
+\sum\limits_{k=1}^n Y_{n,k}\stackrel{\L}{\longrightarrow}\mathcal{N}(0,t'\cdot\Gamma\cdot t)
+\end{align}
+erfolgt mit Satz \ref{satz6.1Lindeberg1922}. Es gilt:
+\begin{align*}
+s_n^2
+&=\sum\limits_{k=1}^n\E\left[Y_{n,k}^2\right]\\
+&=\sum\limits_{k=1}^n\E\left[\sum\limits_{i,j=1}^d t_i\cdot t_j\cdot X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right]\\
+&=\sum\limits_{k=1}^n\sum\limits_{i,j=1}^d t_i\cdot t_j\cdot\E\left[X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right]\\
+&=\sum\limits_{k=1}^n\sum\limits_{i,j=1}^d t_i\cdot\Big(\Cov(X_{n,k}\Big)_{i,j}\cdot t_j\\
+&=\sum\limits_{k=1}^n t'\cdot\Cov(X_{n,k})\cdot t\\
+\overset{\text{Distri}}&=
+t'\cdot\underbrace{\sum\limits_{k=1}^n\Cov(X_{n,k})\cdot t}_{\stackrel{n\to\infty}{\longrightarrow}\Gamma\text{ wg. \eqref{eqSatz6.2NB}}}\stackrel{n\to\infty}{\longrightarrow} t'\cdot \Gamma\cdot t=:\sigma^2\stackrel{\Gamma\text{ p.d.}}{>}0
+\end{align*}
+Ggemäß Cauchy-Schwarz-Ungleichung (CSU) gilt:
+\begin{align}\label{eqProof6.2t}\tag{t}
+&|Y_{n,k}|=\big|\langle t,X_{n,k}\rangle\big|\stackeq{\text{CSU}}{\leq}\Vert t\Vert\cdot\Vert X_{n,k}\Vert\\\nonumber
+&\implies\sum\limits_{k=1}^n\E\Big[\underbrace{|Y_{n,k}|^2}_{\leq\Vert t\Vert\cdot\Vert X_{n,k}\Vert}\cdot\indi_{\big\lbrace\underbrace{|Y_{n,k}|}_{\leq\Vert t\Vert\cdot\Vert X_{n,k}\Vert}>\varepsilon\big\rbrace}\Big]
+\stackrel{\eqref{eqProof6.2t}}{\leq}
+\Vert t\Vert^2\cdot\sum\limits_{k=1}^n\E\Big[\Vert X_{n,k}\Vert^2\cdot\indi_{\left\lbrace\Vert X_{n,k}>\frac{\varepsilon}{\Vert t\Vert}\right\rbrace}\Big]\stackrel{n\to\infty}{\longrightarrow}0
+\end{align}
+Dies gilt gemäß \ref{satz6.1Lindeberg1922} für alle $\varepsilon>0$. Somit folgt aus Satz \ref{satz6.1Lindeberg1922} dann \eqref{eqProof6.2SternStern} und dadurch \eqref{eqProof6.2Stern} und somit die Behauptung.
+\end{proof}
+
+\begin{korollar}\label{korollar6.3}
+Sei $(X_i)_{i\in\N}$ mit $X_i$ iid Zufallsvariable in $\R^d$ mit
+\begin{align*}
+&\E\left[\left(X_1^{(j)}\right)^2\right]<\infty\qquad\forall 1\leq j\leq d\\
+\mu&:=\E\big[X_1\big]=\left(\E\left(X_1^{(1)}\right),\ldots,\E\left(X_1^{(d)}\right)\right)\in\R^d,\\
+\Gamma&:=\Cov(X_1)
+=\left(\Cov\left(X_1^{(i)},X_1^{(j)}\right)\right)_{i,j=1}^d
+=\left(\E\left[\left(X_1^{(i)}-\mu_i\right)\cdot\left(X_1^{(j)}-\mu_j\right)\right]\right)_{i,j=1}^d\\&\text{ positiv definit}
+\end{align*}
+Dann gilt:
+\begin{align*}
+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n(X_i-\mu)\stackrel{\L}{\longrightarrow}\mathcal{N}_d(0,\Gamma)
+\end{align*}
+\end{korollar}
+\begin{proof}
+\begin{align}\label{eqProof6.3Stern}\tag{$\ast$}
+\frac{1}{\sqrt{n}}\cdot\sum\limits_{k=1}^n(X_k-\mu)
+&=\sum\limits_{k=1}^n\underbrace{\frac{1}{\sqrt{n}}\cdot(X_k-\mu)}_{=:X_{n,k}}\qquad\forall 1\leq k\leq n,\forall n\in\N
+\end{align}
+Dann sind \eqref{eq6.3}, \eqref{eq6.4} und \eqref{eq6.5} erfüllt und es gilt
+\begin{align*}
+\Cov(X_{n,k})
+&=\frac{1}{n}\cdot\Gamma\implies\sum\limits_{k=1}^n\Cov(X_{n,k})=\Gamma
+\end{align*}
+Somit ist \eqref{eqSatz6.2NB} erfüllt. Zu \eqref{eqSatz6.2LB}:
+\begin{align*}
+\sum\limits\E\Big[\Vert X_{n,k}\Vert^2\cdot\indi_{\big\lbrace\Vert X_{n,k}\Vert>\varepsilon\big\rbrace}\Big]
+&\stackeq{\eqref{eqProof6.3Stern}}
+\frac{1}{n}\cdot\sum\limits_{k=1}^n\E\Big[\Vert X_k-\mu\Vert^2\cdot\indi_{\big\lbrace\Vert X_k-\mu\Vert>\varepsilon\cdot\sqrt{n}\big\rbrace}\Big]\\
+&\stackeq{\text{iid}}
+\frac{1}{n}\cdot\sum\limits_{k=1}^n\E\Big[\Vert X_1-\mu\Vert^2\cdot\indi_{\big\lbrace\Vert X_1-\mu\Vert>\varepsilon\cdot\sqrt{n}\big\rbrace}\Big]\\
+&=\E\Big[\underbrace{\Vert X_1-\mu\Vert^2\cdot\indi_{\big\lbrace \Vert X_1-\mu\Vert>\varepsilon\cdot\sqrt{n}\big\rbrace}}_{\stackrel{n\to\infty}{\longrightarrow}0~\forall\varepsilon>0}\Big]
+\stackrelnew{\text{domKonv}}{n\to\infty}{\longrightarrow}0
+\end{align*}
+Hierbei geht der Satz der dominierten Konvergenz ein, denn $\Vert X_1-\mu\Vert^2$ ist Dominante und integrierbar, da 
+\begin{align*}
+\Vert X_1-\mu\Vert^2\leq\big(\Vert X_1\Vert+\Vert\mu\Vert\big)^2\leq 2\cdot\left(\Vert X_1\Vert^2+\Vert\mu\Vert^2\right)
+\end{align*}
+und 
+\begin{align*}
+\E\left[\Vert X_1\Vert^2\right]
+&=\E\left[\sum\limits_{j=1}^d\left(X_1^{(j)}\right)^2\right]
+=\sum\limits_{j=1}^d\underbrace{\E\left[\left(X_1^{(j)}\right)^2\right]}_{<\infty~\forall j}<\infty
+\end{align*}
+Somit ist \eqref{eqSatz6.2LB} erfüllt und es folgt mit \ref{satz6.2MultivariaterZGWS} die Behauptung.
+\end{proof}
+
+Für $d=1$ liefert Korollar \ref{korollar6.3} den klassischen ZGWS.
+
+\section{Verteilungskonvergenz im Raum stetiger Funktionen} %7
+Sei $I:=[a,b]$ mit $a<b$ und $C:=C(I):=\big\lbrace f:I\to\R\mid f\text{ stetig }\big\rbrace$ versehen mit der Supremumsmetrik
+\begin{align*}
+d(f,g)&:=\sup\limits_{t\in I}\big|f(t)-g(t)\big|\qquad\forall f,g\in C.
+\end{align*}
+Gemäß Beispiel \ref{beisp2.6} ist $(C,d)$ separabel. Die durch $d$ induzierte Borel-$\sigma$-Algebra
+%\begin{align*}
+$\B(C):=\B_d\big(C(I)\big)$
+%\end{align*}
+gestattet einfache Beschreibung. Dazu:
+
+\begin{definition}\ %7.1
+\begin{enumerate}[label=(\arabic*)]
+\item Sei $t\in I$. Die Abbildung 
+\begin{align*}
+\pi_t:C\to\R,\qquad\pi_t(f):=f(t)\qquad\forall f\in C
+\end{align*}
+heißt \textbf{Projektion in $t$}.
+\item Sei $T:=\big\lbrace t_1,\ldots,t_k\big\rbrace\subseteq I,k\in\N$. Die Abbildung
+\begin{align*}
+\pi_T:C\to\R^k,\qquad \pi_T(f):=\Big(f(t_1),\ldots,f(t_k)\Big)=:
+\Big(f(t)\Big)_{t\in T}\qquad\forall f\in C
+\end{align*}
+heißt \textbf{Projektion in $T$}.
+\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{satz7.2}
+\begin{align*}
+\B(C)=\sigma\Big(\pi_t:t\in I\Big)=\sigma\Big(\pi_T:T\subseteq I,T\text{ endlich}\Big)=\sigma\Big(\big\lbrace \pi_t^{-1}(B):t\in I,B\in\B(\R)\big\rbrace\Big)
+\end{align*}
+\end{satz}
+\begin{proof}
+Da $\pi_t=\pi_{\lbrace t\rbrace}$ und $T=\lbrace t\rbrace$, folgt
+\begin{align}\label{eqProof7.2(1)}\tag{1}
+\sigma\Big(\pi_t:t\in I\Big)
+\subseteq\sigma\Big(\pi_T:T\subseteq I\text{ endlich}\Big)
+\end{align}
+Weiterhin gilt:
+\begin{align*}
+&\big\Vert\pi_T(f)-\pi_T(g)\big\Vert_\infty
+=\max\limits_{1\leq i\leq k}\big|f(t_i)-g(t_i)\big|
+\leq d(f,g)\qquad\forall f,g\in C,\forall T=\lbrace t_1,\ldots,t_k\rbrace\subseteq I\\
+&\implies\pi_T:(C,d)\to\R^d\text{ ist stetig}
+\end{align*}
+Aus Satz \ref{Lemma3.2} (2) folgt, dass $B_T:\B(C)\to\B(\R^k)$ messbar ist für alle endlichen Teilmengen $T\subseteq I$. Da $\sigma\big(\pi_T:T\subseteq I\text{ endlich}\big)$ die \ul{kleinste} $\sigma$-Algebra auf $C$ ist, bzgl. der \ul{alle} $\pi_T,T\subseteq I$ endlich, messbar sind, folgt
+\begin{align}\label{eqProof7.2(2)}\tag{2}
+\sigma\Big(\pi_T:T\subseteq I,T\text{ endlich }\Big)\subseteq\B(C)
+\end{align}
+Wegen \eqref{eqProof7.2(1)} und \eqref{eqProof7.2(2)} bleibt zu zeigen:
+\begin{align}\label{eqProof7.2(3)}\tag{3}
+\B(C)\subseteq\sigma\Big(\pi_t:t\in I\Big)
+\end{align}
+Dazu sei $G\in\G(C)$, d.h. $G\subseteq C$ offen. Gemäß Satz \ref{satz2.9} existieren $f_i\in C$, $\varepsilon_i>0$, $i\in\N$ mit
+\begin{align}\label{eqProof7.2(4)}\tag{4}
+G=\bigcup\limits_{i\in\N}B\big(f_i,\varepsilon_i\big)\text{ (offene Kugel)}.
+\end{align}
+Für jede offene Kugel
+\begin{align}\label{eqProof7.2(5)}\tag{5}
+B(f,\varepsilon)
+&=\big\lbrace g\in C:d(g,f)<\varepsilon\big\rbrace
+=\bigcup\limits_{k\in\N}\underbrace{\left\lbrace g\in C:d(g,f)\leq\varepsilon-\frac{1}{k}\right\rbrace}_{=\text{ abgeschlossene Kugel}}
+\end{align}
+Betrachte daher eine beliebige \ul{abgeschlosssene} Kugel
+\begin{align*}
+\overline{B}(f,\delta)
+&=\Big\lbrace g\in C:\sup\limits_{t\in I}\big|g(t)-f(t)\big|\leq\delta\Big\rbrace\\
+&=\Big\lbrace g\in C:\sup\limits_{t\in I\cap\Q}\big|g(t)-f(t)\big|\leq\delta\Big\rbrace\\
+&=\bigcap\limits_{t\in I\cap\Q}\Big\lbrace g\in C:\big|g(t)-f(t)\big|\leq\delta\Big\rbrace\\
+&=\bigcap\limits_{t\in I\cap\Q}\underbrace{\Big\lbrace g\in C:f(t)-\delta\leq \overbrace{g(t)}^{=\pi_t(g)}\leq f(t)+\delta\Big\rbrace}_{\pi_t^{-1}\Big(\big[f(t)-\delta,f(t)+\delta\big]\Big)\in\tilde{\B}}\\
+&\implies
+\overline{B}(f,\delta)\in\tilde{\B}\qquad\forall f\in C,\forall\delta>0\\
+&\stackrel{\eqref{eqProof7.2(5)}}{\implies}
+B(f,\varepsilon)\in\tilde{\B}\qquad\forall f\in C,\forall\varepsilon>0\\
+&\stackrel{\eqref{eqProof7.2(4)}}{\implies}
+G\in\tilde{\B}\\
+&\implies
+\G(C)\subseteq\tilde{\B}\\
+&\implies\sigma\big(\G(C))=\B(C)\subseteq\tilde{\B}
+\end{align*}
+\end{proof}
+%Ferger hat Borel-Mengen am Anfang des Studiums gehasst, weil er sie nicht verstanden hat. Jetzt sieht er das anders.
+
+Ein stochastischer Prozess $\big\lbrace X(t):t\in I\big\rbrace$ heißt \textbf{indiziert nach $I$ (über $(\Omega,\A)$)}
+\begin{align*}
+:\Longleftrightarrow X(t):(\Omega,\A)\to(\R,\B(\R)),
+\qquad\omega\mapsto X(t)(\omega)\quad
+\text{ist messbar}\qquad\forall t\in I
+\end{align*}
+%Ferger: "Trage ich zu einer Verwirrung bei?"
+Schreibweise: $X(t,\omega):=X(t)(\omega)$\\
+Falls die \textbf{Pfade / Trajektorien}
+\begin{align*}
+X(\cdot,\omega):I\to\R,\qquad t\mapsto X(t,\omega)\qquad\forall \omega\in\Omega
+\end{align*}
+stetig sind (für alle $\omega\in\Omega$), so liefert die Zuordnung $\omega\mapsto X(\cdot,\omega)$ eine Abbildung $X:\Omega\to C(I)$. Diese Abbildung $X$ heißt \textbf{Pfadabbildung} des stochastischen Prozesses und wird mit diesem identifiziert.\nl
+%TODO Hier kann man eine Skizze einfügen
+Satz \ref{satz7.2} liefert ein sehr handliches Kriterium für die Messbarkeit von allgemeinen Abbildungen $X:\Omega\to X$.
+
+\begin{satz}\label{satz7.3}
+Sei $(\Omega,\A)$ messbarer Raum und $C:=C(I)$ versehen mit der Borel-$\sigma$-Algebra $\B(C)$ sowie $X:\Omega\to C$. Dann gilt:
+\begin{align*}
+X\text{ ist }A\text{-}\B(C)\text{-messbar}\Longleftrightarrow\forall t\in I:\pi_t\circ X\text { ist }\A\text{-}\B(R)\text{-messbar}
+\end{align*}
+\end{satz}
+\begin{proof}
+Erinnere an das Messbarkeitslemma:\nl
+\textbf{Lemma. (Messbarkeitslemma)}\\
+Sei $(\Omega,\A)$ messbarer Raum, $\Omega'\neq\emptyset$, $(f_t)_{t\in T}$ eine Familie von Abbildungen\\ $f_t:\Omega'\to(\Omega,\A)$ wobei $(\Omega_t,\A_t)$ messbarer Raum für alle $t\in T$, $T\neq\emptyset$ beliebige Indexmenge. Ferner sei
+\begin{align*}
+\A':=\sigma\big(f_t:t\in T\big)\stackeq{\text{Def}}\sigma\left(\bigcup\limits_{t\in T} f_t^{-1}(\A_t)\right)
+\end{align*}
+Dann gilt für eine Abbildung $Z:\Omega\to\Omega'$:
+\begin{align*}
+Z\text{ ist }\A\text{-}\A'\text{-messbar}\Longleftrightarrow\forall t\in T: f_t\circ Z\text{ ist }\A\text{-}\A_t\text{-messbar}
+\end{align*}
+Im Falle von Satz \ref{satz7.3}: $\Omega'=C, f_t=\pi_t, T=I,\A'=\sigma\big(\pi_t:T\in I\big)\stackeq{\ref{satz7.2}}\B(C),Z=X$
+\end{proof}
+
+Stochastische Prozesse mit stetigen Pfaden nennt man \textbf{stetige} stochastische Prozesse. Satz \ref{satz7.3} besagt nun: Die Pfadabbildung eines jeden stetigen stochastischen Prozesses ist $\A\text{-}\B(C)$-messbar. Insbesondere folgt:\\
+Jeder stetige stochastische Prozess indiziert nach $I$ kann aufgefasst werden als Zufallsvariable im metrischen Raum $\big(C(I),d\big)$.
+
+\begin{beispiel}
+Sei $(\xi_i)_{i\in\N}$ eine Folge von reellen Zufallsvariablen über $(\Omega,\A)$ und für $n\in\N$ sei
+\begin{align*}
+S_k:=\sum\limits_{i=1}^k\xi_i\qquad\forall0\leq k\leq n\qquad S_0:=0
+\end{align*}
+Der Polygonzug $X_n$ durch die Punkte $\left(\frac{k}{n},\frac{1}{\sqrt{n}}\cdot S_k\right),0\leq k\leq n$ heißt \textbf{$n$-ter Partialsummenprozess}.
+%TODO Hier Skizze einfügen (ist echt eine schöne Skizze)
+Mit der Zwei-Punkte-Formel der Geradengleichung folgt:
+\begin{align*}
+X_n(t)=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^{\lfloor n\cdot t\rfloor}\xi_i+\frac{1}{\sqrt{n}}\cdot\big(n\cdot t-\lfloor n\cdot t\rfloor\big)\cdot\xi_{\lfloor n\cdot t\rfloor+1}\qquad\forall t\in[0,1]=I
+\end{align*}
+Hierbei ist die Gaußklammer (Abrundefunktion) wie folgt definiert:
+\begin{align*}
+\lfloor u\rfloor:=[u]:=\max\big\lbrace l\in\Z:l\leq n\big\rbrace
+\end{align*}
+$X_n(t)$ ist eine reelle Zufallsvariable für alle $t\in I$. Gemäß Konstruktion (Polygonzug) ist jeder Pfad von $X_n$ stetig auf $[0,1]$. Aus Satz \ref{satz7.3} folgt, dass $X_n~\A\text{-}\B(C)$-messbar ist, also Zufallsvariable in $\Big(C\big([0,1]\big),d\Big)$. Weitere Anwendung von Satz \ref{satz7.2}:
+\end{beispiel}
+
+\begin{satz}\label{satz7.5}\
+\begin{enumerate}[label=(\arabic*)]
+\item $P,Q$ seien Wahrscheinlichkeitsmaße auf $\B(C)$. Dann gilt:
+\begin{align*}
+P=Q\Longleftrightarrow\forall T\subseteq I\text{ endlich }: P\circ\pi_T^{-1}=Q\circ\pi_T^{-1}
+\end{align*}
+\item $X,Y$ seien Zufallsvariablen in $\big(C(I),d\big)$. Dann gilt:
+\begin{align*}
+X\stackeq{\L}Y\Longleftrightarrow \pi_T(X)\stackeq{\L}\pi_T(Y)
+\end{align*}
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\underline{Zu (1), zeige ``$\implies$'':} Trivial.\nl
+\underline{Zu (1), zeige ``$\Longleftarrow$'':}\\
+Gemäß Satz \ref{satz7.2} ist
+\begin{align*}
+\mathcal{E}:=\left\lbrace\pi_T^{-1}(A):A\in\B(\R^{|T|},T\subseteq I\text{ endlich}\right\rbrace
+\end{align*}
+ein Erzeuger von $\B(C)$, d.h. $\B(C)=\sigma(\mathcal{E})$. Erinnerung:
+\begin{align*}
+g^{-1}(\mathcal{C})&:=\big\lbrace g^{-1}(C):C\in\mathcal{C}\big\rbrace\text{ für Mengenfamilie }\mathcal{C}\\
+\B(C)&\stackeq{\ref{satz7.2}}\sigma\big(\pi_T:T\subseteq I\text{ endlich}\big)
+=\sigma\Bigg(\underbrace{\bigcup\limits_{\begin{subarray}{c}T\subseteq I\\T\text{ endlich}\end{subarray}}\pi_T^{-1}\left(\B\left(\R^{|T|}\right)\right)}_{=\mathcal{E}}\Bigg)
+\end{align*}
+Nach Voraussetzung gilt:
+\begin{align*}
+\underbrace{P\circ\pi_T^{-1}(A)}_{\stackeq{\text{Def}}P\left(\pi_T^{-1}(A)\right)}&=\underbrace{Q\circ\pi_T^{-1}(A)}_{=Q\left(\pi_T^{-1}(A)\right)}\qquad\forall A\in\B\left(\R^{|T|}\right)\\
+\implies
+P|_\mathcal{E}&=Q|_\mathcal{E}
+\end{align*}
+$\mathcal{E}$ ist durchschnittsstabil (nachrechnen!). Jetzt liefert der \textit{Maßeindeutigkeitssatz}, dass $P=Q$ auf $\sigma(\mathcal{E})=\B(C)$.
+(Der Maßeindeutigkeitssatz besagt ungefähr: zwei Wahrscheinlichkeitsmaße, die auf einen Schnittstabilen Mengensystem überein stimmen, stimmen auch auf dessen Erzeugnis überein.)\nl
+\underline{Zeige (2):}
+\begin{align*}
+X\stackeq{\L} X
+\overset{\text{Def}}&{\Longleftrightarrow}
+\P\circ X^{-1}=\P\circ Y^{-1}\\
+\overset{(1)}&{\Longleftrightarrow}
+\underbrace{\left(\P\circ X^{-1}\right)\circ \pi_T^{-1}}_{=\P\circ\left(\pi_T\circ X\right)^{-1}}
+=\underbrace{\left(\P\circ Y^{-1}\right)\circ\pi_T^{-1}}_{=\P\circ\left(\pi_T\circ Y\right)^{-1}}
+&\forall T\subseteq T\text{ endlich}\\
+&\Longleftrightarrow
+\underbrace{\pi_T\circ X}_{=\pi_T(X)}\stackeq{\L}\underbrace{\pi_T\circ Y}_{=\pi_T(Y)}
+&\forall T\subseteq I\text{ endlich}
+\end{align*}
+\end{proof}
+
+\begin{bemerkungnr} %7.6
+Die Wahrscheinlichkeitsmaße $\P\circ\pi_T^{-1}$ bzw. die Verteilungen
+\begin{align*}
+\pi_T(X)=\big(X(t_1),\ldots,X(t_k)\big),\qquad T=\big\lbrace t_1,\ldots,t_k\rbrace\subseteq I
+\end{align*}
+heißen \textbf{endlich dimensionale Randverteilungen von $\P$} bzw. von $X$.\\
+Insbesondere ist gemäß \ref{satz7.5} (2) die Verteilung eines stetigen stochastischen Prozesses $X$ aufgefasst als Zufallsvariable in $C$ eindeutig durch die Verteilungen der Vektoren
+\begin{align*}
+\big(X(t_1),\ldots,X(t_k)\big),\qquad t_1,\ldots,t_k\in I,k\in\N
+\end{align*}
+festgelegt.
+\end{bemerkungnr}
+
+Nächstes Ziel: Handhabbare Kriterien für den Nachweis der Verteilungskonvergenz in $C$. Dazu:
+
+\begin{definition} %7.z
+Für eine Funktion $f\colon I\to\R$ und $\delta>0$ definiere den \textbf{Stetigkeitsmodul / Oszillationsmodul}
+\begin{align*}
+\omega(f,\delta):=\sup\limits\Big\lbrace \big|f(s)-f(t)\big|:s,t\in I\mit |s-t|\leq\delta\Big\rbrace
+\end{align*}
+\end{definition}
+
+Aus der Analysis ist bekannt:
+\begin{align*}
+f\in C(I)\Longleftrightarrow\omega(f,\delta)\stackrel{\delta\to0}{\longrightarrow}0
+\end{align*}
+
+\begin{lemma}\label{lemma7.8}
+$\omega(\cdot,\delta)\colon (C,d)\to\R$ ist stetig für jedes $\delta>0$ und damit gemäß Lemma \ref{Lemma3.2} (2) auch $\B(C)$-$\B(\R)$-messbar.
+\end{lemma}
+\begin{proof}
+Sei $g\in C$  und $s,t\in I$ mit $|s-t|\leq\delta$. Dann gilt:
+\begin{align*}
+\big| f(s)-f(t)\big|
+&=\big|f(s)-g(s)+g(s)-g(t)+g(t)-f(t)\big|\\
+\overset{\text{DU}}&{\leq}
+\underbrace{\big|f(s)-g(s)\big|}_{\leq d(f,g)}+\underbrace{\big| g(s)-g(t)\big|}_{\leq\omega(g,\delta)}+\underbrace{\big| g(t)-f(t)\big|}_{\leq d(f,g)}\\
+&\leq
+\omega(g,\delta)+2\cdot d(f,g)\\
+\overset{\sup}&{\implies}
+\omega(f,\delta)
+\leq\omega(g,\delta)+2\cdot d(f,g)\\
+&\implies \omega(f,\delta)-\omega(g,\delta)
+\leq 2\cdot d(f,g) &\forall f,g\\
+&\implies \omega(g,\delta)-\omega(f,\delta)
+\leq 2\cdot d(g,f)=2\cdot d(f,g)\\
+&\implies
+\big|\omega(f,\delta)-\omega(g,\delta)\big|\leq 2\cdot d(f,g)
+\end{align*}
+Das heißt, $\omega(\cdot,\delta)$ ist sogar Lipschitz-stetig.
+\end{proof}
+
+%Ferger: "Ich war übrigens gestern in der Stadt. Da bin ich eigentlich nie. Ich war in mindestens 7 oder Schuhgeschäften. Es war noch jemand dabei. Ich selber habe kein Schuhe gekauft. Und in jedem Geschäft war die Verweildauer sehr lang. Und jedes Schuhgeshcäft wurde GESCANNT: Jeder Schuh wurde angefasst und begutachtet. [...] Weihnachten ist was Schönes!"
+
+%Ferger: "Wenn man sich rote Schuhe kauft, muss dazu auch noch eine passende rote Tasche kaufen. Wussten Sie das?"
+
+Erstes Kriterium in:
+
+\begin{satz}\label{satz7.9}
+Seien $X,X_n,n\in\N$ Zufallsvariablen in $C$ über $(\Omega,\A,\P)$. Falls
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\big(X_n(t_1),\ldots,X_n(t_k)\big)\stackrel{\L}{\longrightarrow}\big(X(t_1),\ldots,X(t_k)\big)
+\qquad\forall t_1,\ldots,t_k\in I,\forall k\in\N
+\end{aligned}$\\
+so genannte \textbf{Konvergenz der fidis} (finite dimensional distributions).\\
+Notation: $X_n\stackrelnew{\text{df}}{}{\longrightarrow} X$
+\item $\begin{aligned}
+\lim\limits_{k\to\infty}\limsup\limits_{n\to\infty}\P\Big(\omega\big(X_n,\delta_k\big)>\varepsilon\Big)=0\qquad\forall\varepsilon>0
+\end{aligned}$\\
+für eine Folge $(\delta_k)_{k\in\N}\subseteq(0,\infty)\mit\delta_k\downarrow0$
+\end{enumerate}
+so folgt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow}X\text{ in }(C,d)
+\end{align*}
+\end{satz}
+\begin{proof}
+Siehe Gänssler und Stute (1977) \textit{Wahrscheinlichkeitstheorie}, Seite 348
+\end{proof}
+
+\begin{beispiel}\label{beispiel7.10} Sei 
+\begin{align*}
+X_n(t):=A_n+B_n\cdot t+C_n\cdot t^2\qquad\forall t\in I
+\qquad\mit \big(A_n,B_n,C_n)\stackrel{\L}{\longrightarrow}(A,B,C)\in\R^3
+\end{align*}
+Dann gilt:
+\begin{align*}
+X_n\stackrel{n\to\infty}{\longrightarrow} X\text{ in }(C,d)\qquad\mit\qquad X(t)=A+B\cdot t+C\cdot t^2
+\end{align*}
+\begin{proof}
+Seien $t_1,\ldots,t_k\in I$ beliebig. Für Voraussetzung (1) in Satz \ref{satz7.9} reicht es gemäß Cramér-Wold-Device \ref{satz5.4CramerWoldDevice} zu zeigen:
+\begin{align*}
+\sum\limits_{j=1}^k\lambda_j\cdot X_n(t_j)\stackrel{\L}{\longrightarrow}\sum\limits_{j=1}^k\lambda_j\cdot X(t_j)\text{ in }\R\qquad\forall\lambda=\big(\lambda_1,\ldots,\lambda_k\big)\in\R^k
+\end{align*}
+%Ich wurde von Prof Ferger bemitleidet, weil ich in Tex nicht alles umsetzen kann, was in der Tafel durch Wisch-Technik erzeugt.
+Dazu: 
+\begin{align*}
+\sum\limits_{j=1}^k\lambda_j\cdot X_n(t_j)
+&=A_n\cdot\sum\limits_{j=1}^n\lambda_j+B_n\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j+C_n\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j^2\\
+\overset{\L,\ref{satz4.10ContinuousMappingTheorem}}&{\longrightarrow}
+A\cdot\sum\limits_{j=1}^k\lambda_j+B\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j+C\cdot\sum\limits_{j=1}^k\lambda_j\cdot t_j^2
+=\sum\limits_{j=1}^k\lambda_j\cdot X(t_j)
+\end{align*}
+Zu Voraussetzung (2) in Satz \ref{satz7.9}:
+\begin{align*}
+\big|X_n(s)-X_n(t)\big|
+&=\Big|B_n\cdot(s-t)+C_n\cdot\underbrace{\big(s^2-t^2\big)}_{(s-t)\cdot(s+t)}\Big|\\
+\overset{\text{DU}}&{\leq}
+|B_n|\cdot\underbrace{|s-t|}_{\leq\delta}+|C_n|\cdot\underbrace{|s-t|}_{\leq\delta}\cdot\underbrace{|s+t|}_{\leq|s|+|t|\leq:K}\\
+&\leq
+|B_n|\cdot\delta+K\cdot|C_n|\cdot\delta\qquad\forall s,t\in I\mit |s-t|\leq\delta\\
+\overset{\sup}{\implies}
+\omega(X_n,\delta)
+&\leq|B_n|\cdot\delta+K\cdot|C_n|\cdot\delta\\
+\implies
+\P\Big(\omega\big(X_n,\delta\big)>\varepsilon\Big)
+&\leq\P\Big(|B_n|\cdot\delta+K\cdot|C_n|\cdot\delta>\varepsilon\Big)\\
+\overset{\eqref{eqProofBeispiel7.10}}&{\leq}
+\P\Big(|B_n|\cdot\delta>\frac{\varepsilon}{2}\Big)+\P\Big(K\cdot|C_n|\cdot\delta>\frac{\varepsilon}{2}\Big)\\
+&=
+\P\Big(|B_n|>\frac{\varepsilon}{2\cdot\delta}\Big)+\P\Big(|C_n|>\frac{\varepsilon}{2\cdot K\cdot\delta}\Big)\\
+&=
+1-F_n\left(\frac{\varepsilon}{2\cdot\delta}\right)+1-G_n\left(\frac{\varepsilon}{2\cdot K\cdot\delta}\right)
+\end{align*}
+%Ferger: "Warum habe ich das eigentlich so gemacht!?"
+Hierbei ist $F_n$ die Verteilungsfunktion von $|B_n|\stackrel{\L}{\longrightarrow}|B|$ und $G_n$ die Verteilungsfunktion von $|C_n|$.
+Erinnerung:
+\begin{align}\label{eqProofBeispiel7.10}
+\big\lbrace U+V>\varepsilon\big\rbrace\subseteq\left\lbrace U>\frac{\varepsilon}{2}\right\rbrace\cup\left\lbrace V>\frac{\varepsilon}{2}\right\rbrace
+\end{align}
+Mit Korollar \ref{korollar4.5} folgt, dass es eine Fologe $(\delta_k)_{k\in\N}$  mit $\delta_k\downarrow0$, so dass $\frac{\varepsilon}{2\cdot\delta_k}$ und $\frac{\varepsilon}{2\cdot K\cdot\delta_k}$ Stetigkeitsstellen der jeweiligen Grenz-Verteilungfunktionen sind,
+%Ferger: "Na gut, einen Nobelpreis für Literatur kriege ich jetzt nicht."
+\begin{align*}
+\limsup\limits_{n\to\infty}\P\Big(\omega\big(X_n,\delta_k\big)>\varepsilon\Big)\leq\P\Big(|B|>\underbrace{\frac{\varepsilon}{2\cdot\delta_k}}_{\stackrel{k\to\infty}{\longrightarrow}\infty}\Big)
++\P\Big(|C|>\underbrace{\frac{\varepsilon}{2\cdot K\cdot\delta_k}}_{\stackrel{k\to\infty}{\longrightarrow}\infty}\Big)
+\qquad\forall k\in\N
+\end{align*}
+%Ferger: "Hach ich bin so doof. Ich hätte mir das Leben leichter machen können."
+$k\to\infty$ liefert dann (2).\\
+\textbf{Aufgabe:} Zeige dieses Beispiel durch CMT \ref{satz4.10ContinuousMappingTheorem}.
+\end{proof}
+\end{beispiel}
+ 
 
