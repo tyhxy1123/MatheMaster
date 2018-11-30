@@ -10,6 +10,7 @@
 *.lof
 *.bbl
 *.fls
+*.synctex(busy)
 *.fdb_latexmk
 **/*.pdf
 
