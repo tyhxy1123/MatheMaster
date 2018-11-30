@@ -420,7 +420,7 @@ we obtain
 $A$ is called \glqq stiffness matrix\grqq\ and $b$ is called \glqq load vector\grqq.
 If $a(\cdot,\cdot)$ is coercive in $V$, then it is also coercive in $V_h \implies$ linear system has a unique solution. 
 \begin{align*}
-	\forall \xi \in \R^N, z &:= \displaystyle \sum^N_{i=1} \xi\varphi_i\\
+	\forall \xi \in \R^N, z &:= \displaystyle \sum^N_{i=1} \xi_i\varphi_i\\
 	\xi^TA\xi &= \displaystyle \sum^N_{i,j=1}a(\varphi_j,\varphi_i)\xi_j\xi_i\\
 	&=a(z,z)\\
 	& \geq \lambda \|z\|^2_V.
@@ -435,7 +435,7 @@ A is injectiv, invertable $\implies$ unique solution.
 	$u\in V$ is solution of $a(u,v) = F(v) \forall v\in V$\\
 	$u_h\in V_h$ is solution of $a(u_h,v) = F(v) \forall v\in V_h$\\
 	\begin{equation*}
-		\implies \|u-u_h\|_V \leq \frac{K}{\alpha}\underset{v \in V_h}{\inf}\|u-v\|_V
+		\implies \|u-u_h\|_V \leq \frac{K}{\lambda}\underset{v \in V_h}{\inf}\|u-v\|_V
 	\end{equation*} 
 	with $K,\lambda$ constants from continuity and coercivity inequalities.
 \end{lemma_}
@@ -456,11 +456,11 @@ A is injectiv, invertable $\implies$ unique solution.
 		&\leq K\|u-u_h\|_V\|u-v\|_V.
 	\end{align*}
 	\begin{equation*}
-		\implies \|u-u_h\|_V \leq \frac{K}{\alpha}\|u-v\|_V \quad \forall v\in V_h.
+		\implies \|u-u_h\|_V \leq \frac{K}{\lambda}\|u-v\|_V \quad \forall v\in V_h.
 	\end{equation*}
 \end{proof_}
-If $a$ is symmetric, $a(u,v) = a(v,u) \forall u,v \in V$, $a$ is a scalar product on $V$ (and $V_h$).\\
-geometric approximation of Cea-lemma: $u-u_h$ is orthogonal to $V_h,u_h$ is the element in $V_h$ \glqq closest\grqq to u. To get $u_h \to u$ for $h \to 0$ we need $V_h \to V$ if $h\to 0$. If 
+If $a$ is symmetric, $a(u,v) = a(v,u)\ \forall u,v \in V$, $a$ is a scalar product on $V$ (and $V_h$).\\
+geometric approximation of Cea-lemma: $u-u_h$ is orthogonal to $V_h,u_h$ is the element in $V_h$ \glqq closest\grqq\ to u. To get $u_h \to u$ for $h \to 0$ we need $V_h \to V$ if $h\to 0$. If 
 \begin{align*}
 	\underset{h\to 0}{\text{lim}} \text{ dist}(u,V_h) &= 0 \quad \forall u \in V\\
 	\implies \underset{h\to 0}{\text{lim}}\|u-u_h\|_V &=0.
@@ -477,7 +477,7 @@ If $a(\cdot,\cdot)$ is symmetric, we can write the problem as a minimization pro
 \begin{proof_}
 	$v \in V$, define $e:\R \to \R$:
 	\begin{equation*}
-		e(t) = E(u+tv) \overset{taylor}{=} E(u) + 2t\big ( a(u,v) - F(v)\big ) +t^2 a(v,v)  .
+		e(t) = E(u+tv) \overset{Taylor}{=} E(u) + 2t\big ( a(u,v) - F(v)\big ) +t^2 a(v,v)  .
 	\end{equation*}
 	\begin{itemize}
 		\item  \ref{variation_2} $\implies$  \ref{variation_1}:\\
@@ -488,7 +488,7 @@ If $a(\cdot,\cdot)$ is symmetric, we can write the problem as a minimization pro
 		\item \ref{variation_1} $\implies$  \ref{variation_2}:\\
 			$u$ is solution of \ref{variation_1} implies
 			\begin{equation*}
-				E(u) \leq \underbrace{E(u) + a(v,v)}_{= e(1)} = E(u,v).
+				E(u) \leq \underbrace{E(u) + a(v,v)}_{= e(1)} = E(u+v).
 			\end{equation*}
 			with $v = v-u \implies E(u) \leq E(v)$
 	\end{itemize}
@@ -498,7 +498,7 @@ Allows to interprete the discrete problem
 \begin{equation*}
 	a(u_h,v) = F(v)
 \end{equation*}
-as finding a minimum of $E$ not in V but in \glqq smaller\grqq space $V_h$. $E$ can be seen as energy and $a(u_h,v) = F(v)$ as the Euler-Lagrange-equation of this energy. 
+as finding a minimum of $E$ not in V but in \glqq smaller\grqq\ space $V_h$. $E$ can be seen as energy and $a(u_h,v) = F(v)$ as the Euler-Lagrange-equation of this energy. 
 \begin{equation*}
 	Au=b \quad \text{or} \quad \min E(u_h)
 \end{equation*}
@@ -514,10 +514,7 @@ What is needed to solve the weak form or Ritz-Galerkin-approximation?
 \section{Finite-Flements}
 consists of 3 characteristics:
 \begin{itemize}
-	\item $\overline{\Omega}= \underset{\tau \in \T_h}{\bigcupdot} \tau$\quad  with $\tau$ triangles, rectangles in $\R^2$ or tetraheder in $\R^3$
-	\input{tikz/chapter1/example_triang}
-	\input{tikz/chapter1/triang_not_allowed}	
-	
+	\item $\overline{\Omega}= \underset{\tau \in \T_h}{\bigcupdot} \tau$\quad  with $\tau$ triangles, rectangles in $\R^2$ or tetrahedra in $\R^3$	
 	\item $V_h$ contains functions, which if restricted to $\tau$ are polynomials
 	\item basis functions: $\varphi_i$ are simple to compute and have small support
 \end{itemize}
@@ -530,7 +527,7 @@ consists of 3 characteristics:
 		\item $\Sigma_{\tau}$ linearly independent, continuous functions $B_1,\dots,B_n:C^s(\tau) \to \R$, $s \in \N_0$ with $\forall \alpha_1, \dots, \alpha_n \in \R$ exists $p \in P_{\tau}$ s.t. $B_i (P) = \alpha_i$, $i = 1, \dots,n$
 	\end{enumerate}
 \end{definition_}
-$B_i$ are the degrees of freedom (DoFs) of the finite element $p_i$ basis functions of the finite element. The space of all polynomials $\Omega \to R$ of degree $\leq k$ is $P_k$.
+$B_i$ are the degrees of freedom (DoFs) of the finite element $p_i$ basis functions of the finite element. The space of all polynomials $\Omega \to R$ of degree $\leq k$ is $P_k(\Omega)$.
 
 $d$-simplex $\tau \in \R^d$ is defined as convex hull of points $a_1,\dots,a_{d+1}\in R^{d+1}$.
 \input{tikz/chapter1/unity_simplex}
@@ -581,7 +578,7 @@ The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 			\end{rcases}
 			i,j = 1,2,3 \quad i<j
 		\end{equation*}
-		The basisfunctions are defined through 
+		The basis functions are defined through 
 		\begin{align*}
 			p_j(a_i) &= \delta_{ij} &  i &=1,2,3, &  j&= 1,\dots,6\\
 			p_j(a_{kl}) &= \delta_{k+l+1,j} &  k,l&=1,2,3\quad k<l &  j&=1,\dots,6 
@@ -601,7 +598,7 @@ The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 		for \underline{$d=2$}, $\hat{\tau} \in \R^2$: $a_1,a_2,a_3, a_{123} = \frac{1}{3}(a_1+a_2+a_3)$
 		\input{tikz/chapter1/hermite_element}
 		\begin{align*}
-		P_{\tau} = P_2(\tau) = \Big\{ p:\tau \to \R,\ p(x,y) &= \alpha_1 + \alpha_2 x + \alpha_3 y + \alpha_4 xy + \alpha_5 x^2 + \alpha_6 y^2 
+		P_{\tau} = P_3(\tau) = \Big\{ p:\tau \to \R,\ p(x,y) &= \alpha_1 + \alpha_2 x + \alpha_3 y + \alpha_4 xy + \alpha_5 x^2 + \alpha_6 y^2 
 		\\&\quad + \alpha_7x^2y +\alpha_8xy^2 +\alpha_9x^3 + \alpha_{10}y^3\Big\}
 		\end{align*}
 		$\implies \dim P_{\tau}= 10$
@@ -627,7 +624,7 @@ The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 \end{example}
 \par
 computation on $\hat{\tau}$ is relativly simple\\
-\underline{idea}: transform each element $\tau$ to $\hat{\tau}$(reference element), also computation (integration) on $\hat{\tau}$ and transform back.\\
+\underline{idea}: transform each element $\tau$ to $\hat{\tau}$(reference element), proceed computation (integration) on $\hat{\tau}$ and transform back.\\
 \input{tikz/chapter1/plot_affin_equiv_triang}
 \begin{align*}
 	&F_{\tau}: \hat{\tau} \to \tau\\
@@ -663,6 +660,6 @@ $\implies$
 	(\det B)^2 & = (u_1v_2 - u_2v_1)^2\\
 	& = (u^2_1+ u^2_2)(v^2_1+v^2_2)-(u_1v_1-u_2v_2)^2\\
 	& = |u|^2|v|^2 - |u\cdot v|^2\\
-	& = |u|^2|v|^2 (1- \cos \Theta)\\
+	& = |u|^2|v|^2 (1- \cos^2 \Theta)\\
 	& = |u|^2|v|^2 \sin^2\Theta
 \end{align*}
