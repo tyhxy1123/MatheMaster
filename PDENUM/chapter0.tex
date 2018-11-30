@@ -110,13 +110,17 @@ Behauptung: $\varphi'(x)=\left\lbrace\begin{array}{cl}
 \end{array}\right.$\\
 Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist nicht relevant.
 \begin{proof}
-	Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
-	\begin{align*}
-		\int_{-1}^1 \varphi v' \d x &= \int_{-1}^0 \varphi v' \d x + \int_{0}^1 \varphi v' \d x \\
-															&\stackeq{\text{part}} ~~~ \big[\varphi v\big]_{-1}^0 - \int_{-1}^0 (-1) v \d x + \big[\varphi v\big]_{0}^1 - \int_{0}^1 (1) v \d x \\
-															&\stackeq{v = 0 \text{ auf Rand}} ~~~ - \int_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
-															&\stackeq{\text{Def}} - \int_{-1}^1 \varphi'(x)v\d x
-	\end{align*}
+Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
+\begin{align*}
+\int\limits_{-1}^1 \varphi\cdot v' \d x 
+&=\int\limits_{-1}^0 \varphi\cdot v' \d x + \int\limits_{0}^1 \varphi v' \d x \\
+\overset{\text{part}}&=
+\big[\varphi\cdot v\big]_{-1}^0 - \int\limits_{-1}^0 (-1) v \d x + \big[\varphi\cdot v\big]_{0}^1 - \int\limits_{0}^1 (1) v \d x \\
+\overset{v = 0 \text{ auf Rand}}&=
+-\int\limits_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
+\overset{\text{Def}}&=
+-\int\limits_{-1}^1 \varphi'(x)v\d x
+\end{align*}
 \end{proof}
 \end{beisp}
 
@@ -290,15 +294,15 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 	\[\|u\|^2_{1,2,\Omega}\leq 8\pi + \frac{2\pi}{\ln(4)}< \infty\]
 	\[\implies u \in H^1(\Omega)\]
 	\begin{proof}
-	\[\|u\|^2_{1,2,\Omega} = \underbrace{\int_\Omega |u|^2 \d x \d y}_{:=\text{ I}} +
-	\underbrace{\int_\Omega |u_x|^2 + |u_y|^2 \d x \d y}_{:=\text{ II}}\]
+	\[\|u\|^2_{1,2,\Omega} = \underbrace{\int\limits_\Omega |u|^2 \d x \d y}_{:=\text{ I}} +
+	\underbrace{\int\limits_\Omega |u_x|^2 + |u_y|^2 \d x \d y}_{:=\text{ II}}\]
 	Es gilt für alle $z\geq 4$:
 	\[\ln(\ln(z))\leq \sqrt{z}\]
 	Mit der Koflächenformel erhalten wir:
 	\begin{align*}
-		\text{I} &= \int_\Omega |u|^2 \d x \d y \\
-			&\leq \int_\Omega \left(\frac{4}{\sqrt{x^2 + y^2}}\right)^2 \d x \d y \\
-			&\stackeq{\text{Koflä.}} \int_0^{2\pi}\int_0^1\left(\frac{4}{r}\right)^2 r \d r \d \varphi \\
+		\text{I} &= \int\limits_\Omega |u|^2 \d x \d y \\
+			&\leq \int\limits_\Omega \left(\frac{4}{\sqrt{x^2 + y^2}}\right)^2 \d x \d y \\
+			\overset{\text{Koflä.}}&= \int\limits_0^{2\pi}\int\limits_0^1\left(\frac{4}{r}\right)^2 r \d r \d \varphi \\
 			&= 8 \pi
 	\end{align*}
 	Als nächstes betrachten wir II. Dafür schauen wir uns zunächst die partiellen Ableitungen von $u$ an:
@@ -311,8 +315,8 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 	\end{align*}
 	Also schlussendlich:
 	\begin{align*}
-		\text{II} ~~ &\stackeq{\text{vgl. I}} \int_0^{2\pi}\int_0^1\frac{r}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \d \varphi \\
-			 &= 2\pi \int_0^1 \frac{1}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \\
+		\text{II} \overset{\text{vgl. I}}&= \int\limits_0^{2\pi}\int\limits_0^1\frac{r}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \d \varphi \\
+			 &= 2\pi \int\limits_0^1 \frac{1}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \\
 			 &=\left[2\pi\left(\frac{1}{\ln\left(\frac{4}{r}\right)}\right)\right]_{r=0}^1 \\
 			 &= \frac{2\pi}{\ln(4)}
 	\end{align*}
@@ -564,7 +568,7 @@ Wähle also $N=V$. $P$ ist eine Kontraktion, wenn $\tau$ richtig gewählt wird.
 &=\big\langle P(u)-P(v),P(u)-P(v)\big\rangle_V\\
 &=\big\langle u-v-\tau\cdot A(u-v),u-v-\tau\cdot A(u-v)\big\rangle_V\\
 &=\langle u-v,u-v\rangle_V-2\cdot\tau\cdot\underbrace{\big\langle A(u-v),u-v\big\rangle_V}_{\stackrel{\text{Def.}}{=}a(u-v,u-v)\stackrel{\text{koerz}}{\geq}\alpha\cdot\Vert u-v\Vert^2_V}+\tau^2\cdot\underbrace{\big\langle A(u-v),A(u-v)\big\rangle_V}_{=\Vert A(u-v)\Vert^2_V\leq M^2\cdot\Vert u-v\Vert^2_V}\\
-&\stackrel{\tau>0}{\leq}
+\overset{\tau>0}&{\leq}
 \Vert u-v\Vert^2_V\cdot\big(1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2\big)
 \end{align*}
 Wähle $\tau:=\frac{\alpha}{M^2}>0$. Dann gilt:
@@ -627,7 +631,7 @@ Also:
 a(u-u_n,u-u_n)\\
 &=a(u-u_n,u-v_v+v_h- u_n)\\
 &=a(u-u_n,u-v_h)+\underbrace{a(u-u_n,\underbrace{v_h-u_n}_{\in V_h})}_{=0}\\
-&\stackrel{\text{stetig}}{\leq}
+\overset{\text{stetig}}&{\leq}
 M\cdot\Vert u-u_n\Vert_V\cdot\Vert u-v_h\Vert_V\\
 \implies
 \Vert u-u_n\Vert_V&\leq\frac{M}{\alpha}\cdot\Vert u-v_h\Vert_V\qquad\forall v_h\in V_h\\
@@ -753,9 +757,9 @@ Nun bringen wir die allgemeine Form der Gleichung von oben in eine lesbare Form.
 Sei dazu $v\in C_0^\infty(\Omega)$. Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$. Dann gilt:
 \begin{align*}
 \int\limits_\Omega f\cdot v\d x
-&\stackeq{\text{Def}}
+\overset{\text{Def}}&=
 \int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\ 
-&\stackeq{\text{partGauß}}
+\overset{\text{partGauß}}&=
 \int\limits_\Omega\sum\limits_{i,j=1}^d A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\cdot\frac{\partial v}{\partial x_i}\d x+\int\limits_\Omega\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
 &\qquad
 -\underbrace{\int\limits_\Gamma\underbrace{\sum\limits_{i,j=1}^d n_i\cdot A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}}_{=n^T\cdot A\cdot\nabla u}\cdot v\d\gamma}_{=0}\\
@@ -881,7 +885,7 @@ a(v,v)&=
 &=\int\limits_\Omega\underbrace{\nabla v^T\cdot A\cdot\nabla v}_{\geq\lambda_0\cdot|\nabla v(x)|^2\geq0}+\underbrace{\left(\alpha-\frac{1}{2}\cdot\div(a)\right)}_{\stackrel{\text{Vor}}{\geq}0}\cdot v^2\d x+\underbrace{\int\limits_{\Gamma}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}\\
 &\geq
 \lambda_0\cdot |v|^2_{1,2}\\
-&\stackrel{\text{Fried}}{\geq}
+\overset{\text{Fried}}&{\geq}
 \frac{\lambda_0}{C_f^2}\cdot\Vert v\Vert^2_{1,2}
 \end{align*}
 
@@ -1000,7 +1004,7 @@ a(u,\indi)=l(\indi)
 \int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma\stackeq{\text{Vor}}0\\
 &\Longleftrightarrow
 a\cdot \nabla u=0\\
-&\stackrel{\text{part. Int.}}{\Longleftrightarrow}
+\overset{\text{part. Int.}}&{\Longleftrightarrow}
 0=-\int\limits_\Omega\underbrace{(\div(a))}_{\equiv0}\cdot u\d x+\int\limits_\Gamma\underbrace{(a\cdot n)}_{\equiv 0}\cdot u\d\gamma
 \end{align*}
 Also ist die schwache Lösung in $V$ die schwache Lösung in $H^1$, die wir gesucht haben.
@@ -1040,7 +1044,7 @@ S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_n^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbra
 \end{align*}
 Hierbei ist $P_k$ der Raum der Polynome von höchstens Grad $k$.\\ Die Funktionen in $S_h^{k,m}$ heißen \textbf{finite-Elemente-Funktionen}.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 	\includegraphics[width=0.75\textwidth]{pics/Sketch0.png}
 	\caption{Beispiel für finite-Elemente-Funktionen}
@@ -1106,7 +1110,7 @@ Hierbei heißt $A$ \textbf{Stiffness-Matrix}.
 \implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
 \end{align*}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=0.75\textwidth]{pics/Sketch1.png}
 		\caption{Hut-Funktionen}
@@ -1114,7 +1118,7 @@ Hierbei heißt $A$ \textbf{Stiffness-Matrix}.
 	\end{center}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \input{tikz/plot_phi_hat}
 \caption{einzelne Hut-Funktion}
@@ -1130,7 +1134,7 @@ S_{h,0}^{2,0}&=\spann\big\lbrace\varphi_1,\ldots,\varphi_n,\psi_0,\ldots,\psi_n\
 \end{array}\right.
 \end{align*}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{./pics/Sketch2.png}
 		\caption{einzelne zweifach diffbare finite-Elemente-Funktion}
@@ -1185,12 +1189,11 @@ $u-v_n^\ast$ in $\overline{I_i}=[t_i,t_{i+1}]$ hat $(k+1)$ Nullen wegen der Inte
 h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu)}\right|_{1,2,I_i}\\
 &=h_i\cdot\left|\big(u-v_h^\ast\big)^{(\mu+1)}\right|_{0,2,I_i}\\
 &\leq h_i\cdot\left|u-v_h^\ast\right|_{\mu+1,2,I_i}\\
-\end{align*}
-\begin{align*}
 \implies
 \big|u-v_h^\ast\big|_{1,2,I_i}
 &\leq h_i^k\cdot\big|u-v_h^\ast\big|_{k+1,2,I_i} \\
-&\stackeq{v_h^\ast|_{I_i}\in P_k}h_i^k\cdot |u|_{k+1,2,I_i}
+\overset{v_h^\ast|_{I_i}\in P_k}&=
+h_i^k\cdot |u|_{k+1,2,I_i}
 \end{align*} 
 Somit folgt
 \begin{align*}
@@ -1271,7 +1274,7 @@ i\neq j\implies K_i\cap K_j=\emptyset
 \item eine \ul{gemeinsame} Kante.
 \end{itemize}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \input{tikz/triang_example1}
 \caption{beispielhafte Triangluierung, $K_i$ disjunkt}
@@ -1280,7 +1283,7 @@ i\neq j\implies K_i\cap K_j=\emptyset
 \end{figure}
 
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \input{tikz/triang_example3}
 \caption{Unzulässige Triangulierung}
@@ -1344,7 +1347,7 @@ V=\Big\lbrace v: K\to\R:v=\hat{v}\circ F^{-1},\hat{v}\in\hat{V}\Big\rbrace
 
 \begin{beisp}\
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \input{tikz/plot_affin_equiv_triang}
 \caption{affin äquivalente Triangulierung}
@@ -1394,7 +1397,7 @@ Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$. Für $N\i
 \begin{definition}[Raum der finiten Elemente]\enter
 Sei $\T_h$ eine Triangulierung von $\Omega$. Ein \textbf{Raum der finiten Elemente} $V_h$ ist gegeben durch 
 \begin{align*}
-V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\right\rbrace
+V_h:=\\\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\right\rbrace
 \end{align*}
 wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind. Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$ von dem globalen Freiheitsgrad.
 \end{definition}
@@ -1450,7 +1453,6 @@ x-y&=B_K\cdot\hat{x}+b_K-\big(B_K\cdot\hat{y}+b_K\big)=B_K\cdot(\hat{x}-\hat{y})
 \end{align*}
 \end{proof}
 
-\enter
 \begin{lemma}[Deny-Lions]\label{lemma4.11DenyLions}\enter
 Sei $P_r(K)$ der Raum aller Polynome mit höchstens Grad $r$. Dann gilt:
 \begin{align*}
@@ -1535,13 +1537,14 @@ Dann gibt es Konstanten $c,\tilde{c}>0$ so, dass
 \end{lemma}
 \begin{proof}
 \begin{align*}
-F(u)&\stackeq{\text{Lin+(ii)}}F(u+p)\qquad\forall p\in P_r(K)
-\end{align*}
-\begin{align*}
-\big\Vert F(u)\big\Vert&=\inf\limits_{p\in P_r(K)}\Vert F(u+p)\big\Vert_Y\\
-&\stackrel{\text{(i)}}{\leq}
+F(u)
+\overset{\text{Lin+(ii)}}&=
+F(u+p)\qquad\forall p\in P_r(K)\\
+\big\Vert F(u)\big\Vert
+&=\inf\limits_{p\in P_r(K)}\Vert F(u+p)\big\Vert_Y\\
+\overset{\text{(i)}}&{\leq}
 c_1\cdot\inf\limits_{p\in P_r(K)}\Vert u+p\Vert_{r+1,p,K}\\
-&\stackrel{\ref{lemma4.11DenyLions}}{\leq}
+\overset{\ref{lemma4.11DenyLions}}&{\leq}
 \tilde{c}\cdot |u|_{r+1,p,K}
 \end{align*}
 \end{proof}
@@ -1621,20 +1624,21 @@ Aus $P_r(\hat{K})\subseteq \hat{V}$ folgt $\hat{I}\hat{p}=\hat{p}$ für alle $\h
 \big| \hat{v}-\hat{I} \hat{v} \big|_{m,q,\hat{K}}
 &=\Big| \big( \id - \hat{I} \big) \big( \hat{v}+\hat{p} \big) \Big|_{m,q,\hat{K}} \qquad\forall\hat{p}\in P_r(\hat{K})\\
 &\leq \inf\limits_{\hat{p}\in P_r(\hat{K})} \Big| \big(\id-\hat{I}\big) \big(\hat{v}+\hat{p}\big) \Big|_{m,q,\hat{K}}\\
-&\stackrel{\text{stetig}}{\leq} c(\hat{K},\hat{V},\hat{\Sigma})\cdot\inf\limits_{\hat{p}\in P_r(\hat{K})}\big\Vert\hat{v}+\hat{p}\big\Vert_{r+1,p,\hat{K}} \\
-&\stackrel{\ref{lemma4.11DenyLions}}{\leq}
+\overset{\text{stetig}}&{\leq}
+c(\hat{K},\hat{V},\hat{\Sigma})\cdot\inf\limits_{\hat{p}\in P_r(\hat{K})}\big\Vert\hat{v}+\hat{p}\big\Vert_{r+1,p,\hat{K}} \\
+\overset{\ref{lemma4.11DenyLions}}&{\leq}
 c(\hat{K},\hat{V},\hat{\Sigma})\cdot\big|\hat{v}\big|_{r+1,p,\hat{K}}
 \end{align*}
 Aus dem vorherigen Lemma \ref{lemma4.13} folgt:
 \begin{align*}
 &\big(v-I_K  v\big)\circ F_K=\underbrace{v\circ F_K}_{=:\hat{v}}-\hat{I}(v\circ F_K)=\hat{v}-\hat{I}\hat{v}\\
 \big| v-I_K v\big|_{m,q,K} 
-&\stackrel{\ref{theorem4.9}}{\leq}
+\overset{\ref{theorem4.9}}&{\leq}
 c\cdot\big\Vert B_K^{-1}\big\Vert^m\cdot\big|\det(B_K)\big|^{\frac{1}{q}}\cdot\big|\underbrace{(v-I_K v)\circ F_K}_{=\hat{v}-\hat{I}\hat{v}}\big|_{m,q,K}\\
 &\leq c\cdot\big\Vert B_K^{-1}\big\Vert\cdot|\det(B_K)|^{\frac{1}{p}}\cdot\big|\hat{v}\big|_{r+1,p,\hat{K}}\\
-&\stackrel{\ref{theorem4.9}}{\leq}
+\overset{\ref{theorem4.9}}&{\leq}
 c\cdot\big\Vert B_K^{-1}\big\Vert^m\cdot\Vert B_K\Vert^{r+1}\cdot|\det(B_K)|^{\frac{1}{q}-\frac{1}{p}}\cdot |v|_{r+1,p,K}\\
-&\stackrel{\ref{lemma4.10}}{\leq}
+\overset{\ref{lemma4.10}}&{\leq}
 c\cdot\frac{\hat{h}^m}{\hat{\rho}^{r+1}}\cdot\frac{h_K^{r+1}}{\rho^m_K}\cdot|\det(B_K)|^{\frac{1}{q}-\frac{1}{p}}\cdot|v|_{r+1,p,K}
 \end{align*}
 \begin{align*}
@@ -1654,7 +1658,7 @@ $:\gdw$
 \exists\sigma>0:\frac{h_K}{\rho_K}\leq\sigma \qquad\forall K\in\T_h\;\forall\T_h
 \end{aligned}$
 \item Der Familienparameter h geht nach 0 $\iff$ die Dreiecke werden verfeinert, siehe Bild
-		\begin{figure}[h!]
+		\begin{figure}[!ht]
 			\begin{center}
 				\includegraphics[width=0.75\textwidth]{pics/Sketch3.png}
 				\caption{Beispielhafte Verfeinerung der Triangulierung mit einhergehender Konvergenz des Familienparameters}
@@ -1763,7 +1767,7 @@ wobei $h_{\min}:=\min\limits_{K\in\T_h} h_K$
 \begin{proof}
 \begin{align*}
 |w_h|_{1,2,K}
-&\stackrel{\ref{theorem4.9}}{\leq}
+\overset{\ref{theorem4.9}}&{\leq}
 c\cdot\underbrace{\Vert B_K^{-1}\Vert^1}_{\leq h_K^{-1}}\cdot\big|\det(B_K)\big|^{\frac{1}{2}}\cdot\big|\underbrace{\hat{w}}_{=w_h\circ F_K}\big|_{1,2,\hat{K}}\\
 |\hat{w}_h|_{1,2,\hat{K}}
 &\leq \Vert\hat{w}\Vert_{1,2,\hat{K}}
@@ -1788,7 +1792,7 @@ Warum nichtkonforme Methoden?
 V=H^2(\Omega)\qquad\qquad%\\
 \text{Konformität}\implies V_h\subseteq C^1
 \end{align*}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=0.75\textwidth]{pics/Sketch4.png}
 		\caption{???}
@@ -1797,7 +1801,7 @@ V=H^2(\Omega)\qquad\qquad%\\
 \end{figure}
 %TODO Hier Skizze einfügen (muss aber nicht sein. Ist wohl nicht so wichtig)
 \item Skizze für Zerlegung des Gebietes in vier Teilgebiete:
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=0.75\textwidth]{pics/Sketch5.png}
 		\caption{links: konformes $P_1$, rechts nichtkonformes $P_1$}
@@ -1807,7 +1811,7 @@ V=H^2(\Omega)\qquad\qquad%\\
 \item Probleme mit Restriktionen / Einschränkungen
 \end{enumerate}
 
-\subsection{Das nichtkonforme $P_1$-Element}
+\subsection{Das nichtkonforme \texorpdfstring{$P_1$}{P\_1}-Element}
 Alternative Bezeichnung: Crouzeix-Raviart, 1973\\
 Definition lokaler Finite-Elemente $(K,V,\Sigma)$
 \begin{align*}
@@ -1819,7 +1823,7 @@ N_i&:\text{ Integral-Mittelwert der Funktionen auf Kanten}\\
 \end{align*}
 
 \begin{beisp}\enter
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=0.25\textwidth]{pics/Sketch6.png}
 		\includegraphics[width=0.25\textwidth]{pics/Sketch7.png}
@@ -1950,7 +1954,9 @@ Sei $v_h\in V_h$ beliebig, $w_h:=v_h-u_h$. Dann gilt:
 \end{align*}
 Mit der Dreicksungleichung folgt:
 \begin{align*}
-\Vert u-u_h\Vert\leq\Vert u-v_h\Vert+\Vert v_h-u_h\Vert_h\leq\left(1+\frac{M}{\alpha}\right)\cdot\Vert u-v_h\Vert_h+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
+\Vert u-u_h\Vert
+&\leq\Vert u-v_h\Vert+\Vert v_h-u_h\Vert_h\\
+&\leq\left(1+\frac{M}{\alpha}\right)\cdot\Vert u-v_h\Vert_h+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
 \end{align*}
 Bilden des Infimums $\inf\limits_{v_h\in V_h}$ liefert die Behauptung.
 \end{proof}
