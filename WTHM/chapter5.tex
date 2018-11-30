@@ -66,7 +66,7 @@ Bilde Erwartungswerte:
 \begin{align*}
 r\cdot\P[\tau\leq n]
 &\leq\sum\limits_{k=0}^n\E\Big[M_k\cdot\indi_{\underbrace{\lbrace\tau=k\rbrace}_{\in\F_k}}\Big]\\
-&\stackrel{\eqref{eqProof5.1Stern}}{\leq}
+\overset{\eqref{eqProof5.1Stern}}&{\leq}
 \sum\limits_{k=0}^n\E\Big[M_n\cdot\indi_{\lbrace\tau=k\rbrace}\Big]\\
 &=\E\Big[M_n\cdot\indi_{\lbrace\tau\leq n\rbrace}\Big]\\
 \stackrel{\eqref{eqProof5.1SternStern}}{\implies}
@@ -110,9 +110,9 @@ Setze $X_N$ für $z$ ein und bilde Erwartungswert:
 &=p\cdot\int\limits_0^\infty x^{p-1}\cdot\E\left[\indi_{\lbrace X_N \geq x\rbrace}\right]\d x \\
 &=p\cdot\int\limits_0^\infty x^{p-1}\cdot\P\big(X_N\geq x\big)\d x\\
 &=p\cdot\int\limits_0^N x^{p-1}\cdot\P\big(X_N\geq x\big)\d x + p\cdot\int\limits_N^\infty x^{p-1}\cdot\underbrace{\P\big(X_N\geq x\big)}_{=0,\text{ für diese x}}\d x\\
-&\stackrel{\eqref{eq5.3Vor}}{\leq}
+\overset{\eqref{eq5.3Vor}}&{\leq}
 p\cdot\int\limits_0^N x^{p-2}\cdot\E\left[Y\cdot\indi_{\lbrace X_N\geq n\rbrace}\right]\d x\\
-&\stackeq{\text{Fubini}}
+\overset{\text{Fubini}}&=
 p\cdot\E\left[Y\cdot\int\limits_0^N x^{p-2}\cdot\indi_{\lbrace X_N\geq x\rbrace}\d x\right]\\
 &=p\cdot\E\left[Y\cdot\int\limits_{[0,N]\cap(-\infty,X_N]} x^{p-2}\d x\right]\\
 &\stackeq{X_N\leq N}p\cdot\E\left[Y\cdot\int\limits_0^{X_N} x^{p-2}\d x\right]\\
@@ -194,9 +194,9 @@ Wir wollen es Iterieren und zeigen dafür einen Schritt:
 \begin{align*}
 &\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
 &=\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-1})\big)\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
-&\stackeq{\text{Tow}}
+\overset{\eqref{Turmregel}}&=
 \E\Big[\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\big|~\F_{n-1}\big]~\Big|~\F_{n-2}\Big]\\
-&\stackeq{\F_{n-1}\text{m.b.}}
+\overset{\F_{n-1}\text{-m.b.}}&=
 \E\Big[\underbrace{\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))~\big|~\F_{n-1}\big]}_{\leq\exp\left(\frac{\alpha^2\cdot c_n^2}{2}\right)}\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
 &\leq
 \exp\left(\frac{\alpha^2}{2}\cdot\left(c_n^2+c_{n-1}^2\right)\right)
@@ -209,9 +209,9 @@ Iterieren und Erwartungswert bilden liefert:
 \end{align*}
 \begin{align*}
 \P(X_n-X_0\geq\lambda)
-&\stackeq{\alpha\geq0}
+\overset{\alpha\geq0}&=
 \P\Big(\exp\big(\alpha\cdot(X_n-X_0)\big)\geq\exp(\alpha\cdot\lambda)\Big)\\
-&\stackrel{\text{Markov}}{\leq}
+\overset{\text{Markov}}&{\leq}
 \exp(-\alpha\cdot\lambda)\cdot\E\Big[\exp\big(\alpha\cdot(X_n-X_0)\big)\Big]\\
 &\leq
 \exp\Big(\underbrace{-\alpha\cdot\lambda+\frac{\alpha^2}{2}\cdot D_n^2}_{=:\rho(\alpha)}\Big)\qquad\forall\alpha\geq0
@@ -286,7 +286,7 @@ Dieses Theorem hat keine Voraussetzungen! RMWs konvergieren immer!
 \end{align*}
 Mit monotoner Konvergenz erhält man mit $N\to\infty$:
 \begin{align*}
-	\E\Big[U[a,b]\Big]\leq\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
+\E\Big[U[a,b]\Big]\leq\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
 \end{align*}
 Analog zur Vorwärtskonvergenz:
 \begin{align*}

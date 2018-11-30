@@ -29,7 +29,7 @@
 wobei $U[p,q]$ die \textbf{upcrossings} (aufsteigende Überquerungen) des Streifens $[p,q]\times\N$ bezeichnet.
 \end{itemize}
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
 	\begin{center}
 		\includegraphics[width=0.75\textwidth]{./pics/Sketch2.png}
 		\caption{Beispiel für Upcrossings}
@@ -126,11 +126,13 @@ denn:
 \end{align*}
 Mit Lemma \ref{lemma4.1DoobsUpcrossingLemma} gilt:
 \begin{align*}
-\E\big[U[p,q]\big]&\stackeq{\text{Mono}}\limsup\limits_{N\to\infty}\E\big[U_N[p,q]\big]\\
-&\stackrel{\ref{lemma4.1DoobsUpcrossingLemma}}{\leq}
+\E\big[U[p,q]\big]
+\overset{\text{Mono}}&=
+\limsup\limits_{N\to\infty}\E\big[U_N[p,q]\big]\\
+\overset{\ref{lemma4.1DoobsUpcrossingLemma}}&{\leq}
 \limsup\limits_{N\to\infty}\frac{\E\big[(X_N-p)^+\big]}{q-p}\\
 &\leq\limsup\limits_{N\to\infty}\frac{\E[X_N^+]+p}{q-p}\\
-&\stackrel{\text{Vor}}{<}
+\overset{\text{Vor}}&{<}
 \infty\qquad\forall p,q\in\Q\mit p<q\\
 \implies
 \P\big(U[p,q]<\infty\big)&=1
@@ -140,7 +142,7 @@ Noch zu zeigen: $X_\infty\in(-\infty,\infty)$ fast sicher und $\E\big[|X_\infty|
 Mit $|X|=2\cdot X^+-X$ gilt
 \begin{align*}
 \E\left[\limn|X_n|\right]
-&\stackrel{\text{Fatou}}{\leq}
+\overset{\text{Fatou}}&{\leq}
 \liminf\limits_{n\to\infty}\E\big[|X_n|\big]\\
 &=\liminf\limits_{n\to\infty}\Big(2\cdot\E[X_n^+]-\underbrace{\E[X_n]}_{\stackrel{\text{SubM}}{\geq}\E[X_0]}\Big)\\
 &\leq
@@ -169,7 +171,7 @@ aber
 
 \begin{beisp}[Wählermodell]\enter
 Wähle $L,d\in\N$. Betrachte $L^d$ Individuen auf dem regelmäßigen Gitter\\ $\Lambda:=\lbrace 0,1,\ldots,L-1\rbrace^d$
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{./pics/Sketch1.png}
 		\caption{Individuen-Gitter für $d=2$ und $L=4$}
@@ -207,8 +209,8 @@ M_n:=\sum\limits_{i\in\Lambda} X_n(i),\qquad \F_n:=\sigma\Big((I_k,N_k))_{k\in\l
 \item Integrierbarkeit: $M_n$ ist sogar beschränkt: $0\leq M_n\leq L^d$
 \item Martingal-Eigenschaft:
 \begin{align*}
-M_n-M_{n-1}
-&=\underbrace{X_{n-1}(I_n+N_n)}_{\text{vom Nachbarn übernommen}}-\underbrace{X_{n-1}(I_n)}_{\text{alte Meinung}}\\
+&M_n-M_{n-1}
+=\underbrace{X_{n-1}(I_n+N_n)}_{\text{vom Nachbarn übernommen}}-\underbrace{X_{n-1}(I_n)}_{\text{alte Meinung}}\\
 \implies&\E\big[M_n-M_{n-1}~\big|~\F_{n-1}\big]\\
 &=\E\big[X_{n-1}(I_n+N_n)-X_{n-1}(I_n)~\big|~\F_{n-1}\big]\\
 &=\sum\limits_{i\in\Lambda} X_{n-1}(i)\cdot\P\big(i=\underbrace{I_n+N_n)~\big|~\F_{n-1}}_{\unab}\big)-X_{n-1}(i)\cdot\P\big(\underbrace{i=I_n~\big|~\F_{n-1}}_{\unab}\big)\\
@@ -237,11 +239,12 @@ Andererseits gilt:
 \langle M\rangle_n 
 &=\sum\limits_{k=1}^n\E\left[\left.\underbrace{(M_k-M_{k-1})^2}_{\in\lbrace0,1\rbrace}~\right|~\F_{k-1}\right]\\
 &=\sum\limits_{k=1}^n0 \cdot \P\big(X_k= X_{k-1}~\big|~\F_{k-1}\big)+ 1 \cdot \P\big(X_k\neq X_{k-1}~\big|~\F_{k-1}\big)\\
-\Rightarrow
+%\Rightarrow
 \E\big[\langle M\rangle_n\big]
-&\stackeq{\text{tower}}\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}\big)\\
+\overset{\eqref{Turmregel}}&=
+\sum\limits_{k=1}^n\P\big(X_k\neq X_{k-1}\big)\\
 &=\sum\limits_{k=1}^n\underbrace{\P\big(X_k\neq X_{k-1}~|~ M_{k-1} \in \{0,L^d\}\big)}_{\geq 0} + \P\big(\underbrace{X_k\neq X_{k-1}~|~ M_{k-1} \not\in \{0,L^d\}}_{\unab}\big)\\
-&\stackrel{\eqref{eqExampleWaehlermodellStern}}{\geq}
+\overset{\eqref{eqExampleWaehlermodellStern}}&{\geq}
 \sum\limits_{k=1}^n L^{-d}\cdot\frac{1}{2\cdot d}\cdot\P\big(\underbrace{M_{k-1}\not\in\lbrace0,L^d\rbrace}_{=:A_{k-1}\text{ (kein extremer Zustand)}}\Big)
 \end{align*}
 Außerdem:
@@ -282,7 +285,7 @@ Die Familie $(X_i)_{i\in I}$ heißt \textbf{gleichgradig integrierbar (ggi)}
 :\Longleftrightarrow\lim\limits_{R\to\infty}\rho(R)=0
 \end{align*}
 Interpretation: Masse in Verteilungsende verschwindet gleichmäßig für $R\to\infty$.
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{center}
 		\includegraphics[width=\textwidth]{pics/Sketch3.png}
 		\caption{Veranschaulichung von $\rho(R)$ aus der Definition von ggi}
@@ -356,7 +359,8 @@ Sei $(X_i)_{i\in I}\subseteq L_1$ eine Familie von Zufallsvariablen. Dann gilt:
 \underline{Zu (b):}
 \begin{align*}
 	\rho(R)&=\E\Big[|X_i|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
-&\stackrel{\text{Vor.}}{\leq} \E\Big[|Y|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
+\overset{\text{Vor.}}&{\leq}
+\E\Big[|Y|\cdot\indi_{\lbrace |X_i|\geq R\rbrace}\Big] \\
 &\leq\E\Big[|Y|\cdot\indi_{\lbrace |Y|\geq R\rbrace}\Big]\\
 &\text{denn: }\big\lbrace |X_i|\geq R\big\rbrace\subseteq\big\lbrace|Y|\geq R\big\rbrace\qquad\forall i\in I\\
 \implies
@@ -394,7 +398,7 @@ Folglich
 Also $X\in L_1$. Nun schätzen wir noch die Differenz ab:
 \begin{align*}
 |X_n-X|
-&\stackrel{\triangle\text{-Ungl.}}{\leq}
+\overset{\triangle\text{-Ungl.}}&{\leq}
 \underbrace{|X_n-X|\cdot\indi_{\lbrace |X|\geq R\rbrace}}_{\leq R+|X|}+\underbrace{|X_n|\cdot\indi_{\lbrace |X_n|\geq R\rbrace}}_{\E[\cdot]\leq\rho(R)}+\underbrace{|X|\cdot\indi_{\lbrace |X_n|\geq R\rbrace}}_{\E[\cdot]\leq\rho(R)}\\
 &\implies
 \limn\E\big[|X_n-X|\big]
@@ -422,9 +426,9 @@ Sei $(X_n)_{n\in\N_0}$ ein $(\F_n)_{n\in\N_0}$-Martingal. Dann sind äquivalent:
 \underline{Zeige (a) $\implies$ (b):} Sei $k\leq n$.
 \begin{align*}
 \E\Big[\big|X_k-\E[X_\infty~|~\F_k]\big|\Big]
-&\stackeq{\text{MG}}
+\overset{\text{MG}}&=
 \E\Big[\big|\E[X_n~|~\F_k]-\E[X_\infty~|~\F_k]\big|\Big]\\
-&\stackrel{\text{Tow+Kontr}}{\leq}
+\overset{\text{\eqref{Turmregel}+Kontr}}&{\leq}
 \E\big[|X_n-X_\infty|\big]\stackrelnew{\text{(a)}}{n\to\infty}{\longrightarrow}0\\
 \implies X_k&=\E[X_\infty~|~\F_k]\qquad\forall k\in\N_0
 \end{align*}

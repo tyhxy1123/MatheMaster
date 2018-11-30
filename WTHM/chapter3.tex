@@ -23,7 +23,7 @@ ist die Ersteintrittszeit in $[k,\infty)$.
 
 \setcounter{section}{3}
 \begin{proposition}\label{prop3.1}
-Seien $\tau,\sigma, \tau_,\tau_2,\ldots$ Stoppzeiten bzgl. einer Filtration $(\F_n)_{n\in\N_0}$. Dann gilt
+Seien $\tau,\sigma, \tau_1,\tau_2,\ldots$ Stoppzeiten bzgl. einer Filtration $(\F_n)_{n\in\N_0}$. Dann gilt:
 \begin{enumerate}[label=(\alph*)]
 \item $\begin{aligned}
 \big\lbrace\omega\in\Omega:\tau(\omega)=n\big\rbrace\in\F_n\qquad\forall n\in\N
@@ -32,14 +32,57 @@ Seien $\tau,\sigma, \tau_,\tau_2,\ldots$ Stoppzeiten bzgl. einer Filtration $(\F
 \big\lbrace\omega\in\Omega:\tau(\omega)\geq n\big\rbrace\in\F_{n-1}\qquad\forall n\in\N
 \end{aligned}$
 \item $\begin{aligned}
-\vartheta_n:=\indi_{\lbrace n\leq\tau\rbrace}
-\end{aligned}$ ist vorhersehbarer stochastischer Prozess
-\item $\sigma\wedge\tau,~\sigma\vee\tau$ sind Stoppzeiten
-\item $\inf\limits_{n\in\N_0}\tau_n,~\sup\limits_{n\in\N_0}\tau_n$ sind Stoppzeiten
+C_n(\omega):=\indi_{[0,\tau(\omega)]}(n)=:\indi_{\lbrace n\leq\tau\rbrace}
+\end{aligned}$ ist messbar bzgl. $\F_{n-1}$ (also vorhersehbarer stochastischer Prozess)
+\item $\sigma\wedge\tau$ und $\sigma\vee\tau$ sind Stoppzeiten. Erinnerung:
+\begin{align*}
+&\sigma\wedge\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace,&(\sigma\wedge\tau)(\omega)&:=\min\big\lbrace\sigma(\omega),\tau(\omega)\big\rbrace\\
+&\sigma\vee\tau:\Omega\to\N_0\cup\lbrace+\infty\rbrace,&(\sigma\vee\tau)(\omega)&:=\max\big\lbrace\sigma(\omega),\tau(\omega)\big\rbrace
+\end{align*}
+\item $\inf\limits_{n\in\N_0}\tau_n,~\sup\limits_{n\in\N_0}\tau_n$ sind Stoppzeiten.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-Siehe Übung (Blatt 2).
+\underline{Zu a):} Aus der Definition folgt:
+\begin{align*}
+	&\{\tau \leq n\} \in \F_n \\
+	\implies & \{\tau > n-1\} = \{\tau \leq n-1\}^C \in \F_{n-1} \subseteq \F_n \\
+	\implies & \{\tau = n\} = \{\tau \leq n\} \cap \{\tau > n-1\} \in \F_n
+\end{align*}
+\underline{Zu b):}
+\begin{align*}
+	\{\tau \geq n \} =\lbrace\tau <n-1\rbrace^C= \Big(\underbrace{\{\tau \leq n-1 \}}_{\in\F_{n-1}\text{, wg. (a)}} \setminus \underbrace{\{\tau = n-1 \}}_{\in\F_{n-1}} \Big)^C \in \F_{n-1}
+\end{align*}
+\underline{Zu c):}
+\begin{align*}
+C_n(\omega)&=1\Longleftrightarrow n\leq\tau(\omega)\Longleftrightarrow
+\omega\in\lbrace\tau\geq n\rbrace\stackeq{(b)}{\in}\F_{n-1}\\
+C_n(\omega)&=0\Longleftrightarrow
+n>\tau(\omega)\Longleftrightarrow
+\omega\in\lbrace\tau<n\rbrace=\lbrace\tau\leq n-1\rbrace\in\F_{n-1}
+\end{align*}
+
+\underline{Zu d):} Sei $n\in\N_0$ beliebig. Dann gilt
+\begin{align*}
+\{\sigma \wedge \tau \leq n \}
+&=\big\lbrace\omega\in\Omega:\min\lbrace\sigma(\omega),\tau(\omega)\rbrace\leq n\big\rbrace\\
+&=\big\lbrace\omega\in\Omega:\sigma(\omega)\leq n\vee\tau(\omega)\leq n\big\rbrace\\
+&=\underbrace{\{\sigma \leq n\}}_{\in \F_n} \cup \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
+\{\sigma \vee \tau \leq n \}
+&=\big\lbrace\omega\in\Omega:\max\lbrace\sigma(\omega),\tau(\omega)\rbrace\leq n\big\rbrace\\
+&=\big\lbrace\omega\in\Omega:\sigma(\omega)\leq n\wedge\tau(\omega)\leq n\big\rbrace\\
+&=\underbrace{\{\sigma \leq n\}}_{\in \F_n} \cap \underbrace{\{\tau \leq n\}}_{\in\F_n} \in \F_n \\
+\end{align*}
+\underline{Zu e):}\\
+Sei $(\tau_i)_{i\in\N}$ eine abzählbare Folge von Stoppzeiten und sei $n\in\N_0$ beliebig. Dann gilt:
+\begin{align*}
+\left\lbrace\sup_{i\in\N} \tau_{i} \leq n\right\rbrace
+= \bigcap_{i\in\N}\underbrace{\{\tau_i \leq n\}}_{\in\F_n} \in \F_n
+\end{align*}
+\begin{align*}
+\left\lbrace\inf_{i\in\N} \tau_{i} \leq n\right\rbrace =
+\left\lbrace\inf_{i\in\N} \tau_{i} \geq n+1\right\rbrace^C = \left\lbrace\bigcap_{i\in\N}\underbrace{\{\tau_i \geq n+1\}}_{\in\F_n}\right\rbrace^C \in \F_n
+\end{align*}
 \end{proof}
 
 \begin{defi}
@@ -133,7 +176,7 @@ Mit dominierter Konvergenz
 \underline{Fall c):}
 \begin{align*}
 \big| X_{n\wedge\tau}-X_0\big|
-&\stackeq{\text{Telesk}}
+\overset{\text{Teleskop}}&=
 \left|\sum\limits_{j=1}^{n\wedge\tau} X_j-X_{j-1}\right|\\
 &\leq\sum\limits_{j=1}^{n\wedge\tau} \underbrace{\big|X_j-X_{j-1}\big|}_{\leq K}\\
 &\leq\tau\cdot K
@@ -151,7 +194,7 @@ $\tau\cdot K$ ist integrierbar, da $\E[\tau]<\infty$.
 X_n=\sum\limits_{i=1}^n \xi_i\qquad\mit\qquad \P\big(\xi_i=\pm 1\big)=\frac{1}{2}
 \end{align*}
 Wähle $A,B\in\N$.
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\center
 	\includegraphics[width=0.75\textwidth]{./pics/Sketch0.png}
 	\caption{Ein Random Walk, der eine Eintrittszeit erreicht}
