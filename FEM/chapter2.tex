@@ -117,8 +117,11 @@ $\varphi_i \in X_h\ i=1,\dots,N$ with $B_{h,j}(\varphi_i) = \delta_{ij} \quad i,
 	\end{align*}
 	implies 
 	\begin{equation*}
-		A_{ij} =(a(\varphi_i, \varphi_j)) \in \R 
+		A_{ij} =(a(\varphi_i, \varphi_j)) \in \R^{9 \times 9} 
 	\end{equation*}
+	
+	\input{tikz/chapter2/important_tau}
+	
 	and 9 DoFs. As $\varphi_i = P^\tau_i$ in $\tau \in T_h(a_i)$
 	\begin{align*}
 		a(\varphi_i, \varphi_i) &= \displaystyle \sum^8_{i=1} \int \limits_{\tau_i} |\nabla \varphi_i|^2 \diff x\\

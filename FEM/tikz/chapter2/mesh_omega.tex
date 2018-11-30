@@ -5,7 +5,7 @@
 	\pgfmathsetmacro{\zerox}{-1}
 	\pgfmathsetmacro{\zeroy}{-1}
 	
-	\draw (\zerox,\zeroy) -- ++(2,0)-- ++(0,2) --++(-2,0) --cycle;
+	\draw[blue] (\zerox,\zeroy) -- ++(2,0)-- ++(0,2) --++(-2,0) --cycle;
 	
 	%vertical lines
 	\draw (\zerox,\zeroy) ++(0.5,0)-- ++(0,2);
@@ -62,7 +62,9 @@
 									(\zerox,\zeroy) ++(0,1) node[left] {$0$}
 									(\zerox,\zeroy) ++(0,1.5) node[left] {$0.5$}
 									(\zerox,\zeroy) ++(0,2) node[left] {$1$};
-
+									
+   	\node at (\zerox + 3,\zeroy + 1) {$u=0 \ton \partial \Omega$};
+   	\draw[thick,-to] (\zerox + 3 ,\zeroy + 1.1) -- ++(-1,0.5);							    
 	
 	\end{tikzpicture}
 		
