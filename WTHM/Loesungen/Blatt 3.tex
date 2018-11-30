@@ -331,8 +331,9 @@ und somit:
 	&= \sum\limits_{k=1}^\infty\underbrace{\big(k - (k-1)\big)}_{=1} \cdot \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
 	&= \sum\limits_{k=1}^\infty \P\left[\sup\limits_{n\in \N_0}X_n \geq k\right]\\
 	\overset{\eqref{eqAufgabe3bObere}}&{\leq}\sum\limits_{k=1}^\infty \left(\frac{p}{q}\right)^k\\
-	\overset{q>p}&{=}\frac{\frac{p}{q}}{1-\left(\frac{p}{q}\right)^k} \\
-	&= \frac{p}{q-p}
+	&\leq\sum\limits_{k=0}^\infty \left(\frac{p}{q}\right)^k\\
+	\overset{q>p}&{=}\frac{1}{1-\left(\frac{p}{q}\right)^k} \\
+	&= \frac{q}{q-p}
 \end{align*}
 
 \end{proof}
@@ -357,8 +358,6 @@ Dann existiert eine Zufallsvariable $M_\infty$ mit $\E\left[|M_\infty|^p\right]\
 \end{align*}
 \end{theorem}
 \begin{proof}
-	% Geht bestimmt auch einfacher, aber habs nicht anders hinbekommen
-	%TODO Robert, hast du noch einen Fehler im Beweis? Der Prof meinte ja, dass da irgendwas nicht funktioniert.
 	Wir haben gegeben, dass gilt
 	\begin{align*}
 		\sup\limits_{n\in\N_0} \E\left[|M_n|^p\right] \leq B < \infty
@@ -402,33 +401,7 @@ Dann existiert eine Zufallsvariable $M_\infty$ mit $\E\left[|M_\infty|^p\right]\
 		\P\left[\lim\limits_{n\rightarrow\infty}|M_n-M_\infty| \geq \frac{1}{k}\right] \\
 		&\stackrel{\text{s.o.}}{\leq} 0
 	\end{align*}
-	Also ist $M_\infty$ fast sicher der Grenzwert von $M_n$. Nun folgt der Rest sehr schnell mit dem Satz der dominierten Konvergenz, denn
-	\begin{align*}
-		\left.\begin{array}{c}
-				M_n \stackrel{\text{f.s.}}{\rightarrow}M_\infty \\
-				\|M_n\|_{L^p} \leq B 
-			\end{array}\right\rbrace\implies M_n \stackrel{L^p}{\rightarrow}M_\infty
-	\end{align*}
-	Und somit folgt auch schlussendlich noch
-	\begin{align*}
-		\E\left[|M_\infty|^p\right] &= 
-		\lim\limits_{n\rightarrow\infty}\E\left[|M_n|^p\right]  \\
-		&\leq \sup\limits_{n\in\N}\E\left[|M_n|^p\right] \\
-		&\leq B
-	\end{align*}
-
-	\begin{figure}
-			\caption{Die drei wesentlichen Fälle die bei einem beliebigen Schritt $n\rightarrow n+1$ des Prozesses $Z_i:=M_i(\omega)-M_\infty(\omega)$ eintreten können}
-			\includegraphics[width=0.75\textwidth]{pics/SketchUE1.png}
-			\begin{enumerate}[label=Fall \alph{*})]
-				\item \qquad $\omega_1 \in A_n \quad \rightarrow\quad \omega_1 \in A_{n+1}$
-				\item \qquad $\omega_2 \not\in A_n \quad \rightarrow \quad \omega_2 \in A_{n+1}$
-				\item \qquad $\omega_3 \not\in A_n \quad \rightarrow \quad \omega_3 \not\in A_{n+1}$
-			\end{enumerate}
-			$\omega \in A_n \quad \rightarrow \quad \omega \not\in A_{n+1} \quad$ nicht möglich $\implies A_n \subset A_{n+1} \quad\forall n\in\N$
-			\label{AbbUEProzess}
-	\end{figure}
-\end{proof}
+	Also ist $M_\infty$ fast sicher der Grenzwert von $M_n$. Nun folgt der Rest sehr wie im Beweis vom Professor.\end{proof}
 
 \begin{proof}[Beweis vom Professor]\enter
 $|M_n|$ ist Submartingal. Aus 4.2 folgt:
@@ -464,4 +437,15 @@ d.h. $|M_n-M_\infty|^p$ ist integrierbare obere Schranke. Folglich:
 \stackeq{\text{domKonv}}\E\left[\limn|M_n-M_\infty|^p\right]=0
 \end{align*}
 \end{proof}
+	\begin{figure}
+			\caption{Die drei wesentlichen Fälle die bei einem beliebigen Schritt $n\rightarrow n+1$ des Prozesses $Z_i:=M_i(\omega)-M_\infty(\omega)$ eintreten können}
+			\includegraphics[width=0.75\textwidth]{pics/SketchUE1.png}
+			\begin{enumerate}[label=Fall \alph{*})]
+				\item \qquad $\omega_1 \in A_n \quad \rightarrow\quad \omega_1 \in A_{n+1}$
+				\item \qquad $\omega_2 \not\in A_n \quad \rightarrow \quad \omega_2 \in A_{n+1}$
+				\item \qquad $\omega_3 \not\in A_n \quad \rightarrow \quad \omega_3 \not\in A_{n+1}$
+			\end{enumerate}
+			$\omega \in A_n \quad \rightarrow \quad \omega \not\in A_{n+1} \quad$ nicht möglich $\implies A_n \subset A_{n+1} \quad\forall n\in\N$
+			\label{AbbUEProzess}
+	\end{figure}
 \end{document}
