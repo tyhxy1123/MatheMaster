@@ -5,8 +5,8 @@
 \begin{definition_}
 	Let $\Omega \subset \R^d$ ($d \geq 1$) bounded domain. A partition $T_h$ of $\Omega$ with $\tau \in T_h$ is a \textit{triangulation} if
 	\begin{enumerate}[label=\alph*)]
-		\item $\forall \tau \in T_h$, $\tau$ is closed, $\tau^0 \neq \emptyset$, $\tau$ is conected and $\partial \tau \in C^{0,1}$
-		
+		\item $\forall \tau \in T_h$, $\tau$ is closed, $\tau^0 \neq \emptyset$, $\tau$ is connected and $\partial \tau \in C^{0,1}$
+		\input{tikz/chapter2/example_triang}		
 		\item $\bigcup \limits_{\tau \in T_h} = \overline{\Omega}$
 		
 		\item $\forall \tau_1,\tau_2 \in T_h:$ $\tau^0_1\cap \tau^0_2 = \emptyset$
@@ -14,20 +14,19 @@
 
 	\begin{align*}
 		h_{\tau} &= \diam (\tau)\\
-		h &= \\underset{\tau \in T_h}{\max} h_{\tau}\\
+		h &= \underset{\tau \in T_h}{\max} h_{\tau}\\
 		\rho_{\tau} &= \underset{\tau \in T_h}{\sup} \{2r: B_r \subset \tau, d\text{-ball of radius  }r \} \\
-		\rho &= \\underset{\tau \in T_h}{\max} \rho_{\tau}
+		\rho &= \underset{\tau \in T_h}{\max} \rho_{\tau}
 	\end{align*}
 \end{definition_}
 %%TODO add picture
 
 We further require that all faces of $\tau_i \in T_h$ are faces of $\tau_i \in T_h$ or part of $\partial \Omega$.
-%%TODO put picture from before here
-
+\input{tikz/chapter2/triang_not_allowed}
 Hanging nodes cannot guarantee continuity of functions.
 
 $T_h$ triangulation of $\Omega$ with Lagrange elements $(\tau,P_\tau,\Sigma_\tau)$ with $\tau \in T_h$\\
-$ N_h$ is set of all vertices of $T_h$. For $b\in \N_0 $ $T_h(b) $ is the set of all finite elements, for which $b$ is a vertex.
+$ N_h$ is set of all vertices of $T_h$. For $b\in N_0 $ $T_h(b) $ is the set of all finite elements, for which $b$ is a vertex.
 
 \begin{definition_}
 	(Finite elements space)\\
