@@ -665,12 +665,20 @@ Sei $X\in L_1(\Omega,\A,\P)$ und $B\in\A$. Dann definiere für $\P(B)>0$:
 \end{defi}
 
 Insgesamt haben wir definiert:\\
-\begin{tabular}{c|c|c|c}
-&Bedingen auf &Bedingen auf & Bedingen auf\\
-&$\sigma$-Algebra $\F$ & Zufallsvariable $Y$ & Ereignis $B$\\ \hline
-	$\begin{array}{c}\text{Wahrscheinlichkeit}\\\text{eines Ereignisses}\\A\in\A \end{array}$ & $\P(A~|~\F)$ & --- & $\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$ \\\hline
-$\begin{array}{c} \text{Erwartungswert}\\ \text{einer Zufallsvariable } X\end{array} & $\E[X~|~\F]$ siehe 1.1 und 1.2 & $\E[X~|~Y]~~~(\ast)$ & $\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$
-\end{tabular}\nl
+\begin{tabular}{p{3cm}|c|c}
+	&Wahrscheinlichkeit & Erwartungswert \\
+	& eines Ereignisses & einer Zufallsariable\\
+	& $A\in\A$ 					& $X$ \\ \hline
+	&& \\
+	$\begin{array}{c}\text{Bedingen auf}\\ \sigma\text{-Algebra } \F\end{array}$ &$\P(A~|~\F)$&$\E[X~|~\F]$ siehe 1.1 und 1.2 \\
+												&& \\ \hline
+	&& \\
+	$\begin{array}{c}\text{Bedingen auf} \\ \text{Zufallsvariable } Y\end{array}$ &---&$\E[X~|~Y]~~~(\ast)$ \\
+											&& \\ \hline
+	&& \\
+	$\begin{array}{c} \text{Bedingen auf} \\ \text{Ereignis } B \end{array}$ &$\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$&$\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$ \\
+											&&
+\end{tabular}\enter
 $(\ast)$: Falls eine Dichte existiert: $\E[X~|~Y=y]$
 
 \begin{beisp}[Lebensdaueranalyse]\enter
