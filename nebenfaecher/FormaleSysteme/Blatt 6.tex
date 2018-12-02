@@ -1,0 +1,273 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 6}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\pos}{\text{pos}}
+\newcommand{\RR}{\mathcal{R}}
+\newcommand{\PP}{\mathcal{P}}
+\renewcommand{\L}{\mathcal{L}}
+\newcommand{\Res}{\text{Res}}
+\newcommand{\Reso}{\stackrel{\Res}{\implies}}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 6.1 (Resulotionsableitungen)}
+Resolventenbildung: Entferne $A$ aus $C_1$ und $\neg A$ aus $C_2$ und verknüpfe den Rest disjunktiv.\\
+Die Auswahl der beiden Klausel für die Resolventenbildung erfolgt mit der \textit{Methode des scharfen Hinsehens}. Es ist sinnvoll rückwärts zu denken:
+\begin{align*}
+[A,B],[A,\neg B],[\neg A]\Reso[A,A],[\neg A]\Reso[~]
+\end{align*}
+Eine andere Strategie ist, zu Beginn alle einstelligen Klauseln auszunutzen. In Aufgabe 1 (b) kann man in allen Klauseln schon $\neq s$ und $r$ rausstreichen, wegen den Klauseln 4 und 5.
+
+\subsection*{Aufgabe 6.1}
+\begin{align*}
+\begin{array}{rll}
+9 & \Res(2,6,t) & [q,r]\\
+10 & \Res(9, 7,r) & [q]\\
+11 & \Res(10,8,q) & [\neg t]\\
+12 & \Res(11,2, t) & [~]
+\end{array}
+\end{align*}
+
+\subsection*{Aufgabe 6.2}
+\begin{align*}
+\begin{array}{rll}
+9 & \Res(2,4,s) & [p,q]\\
+10 & \Res(3,4,s) & [q,\neq p]\\
+11 & \Res(9,10,p) & [q,q]\\
+12 & \Res(4,8) & [\neg q,\neg q]\\
+13 & \Res(11,13) & [~]
+\end{array}
+\end{align*}
+
+\section*{Aufgabe 6.2 (Anwendungen des Resolutionsverfahrens}
+Strategie:
+\begin{enumerate}
+\item Ersetze $A\to B$ durch $\neg A\vee B$.
+\item Schreibe Formel so um, dass Unerfüllbarkeit zu zeigen ist.
+\item Bringe Formel in KNF mit den bekannten Ersetzungsregeln.
+\item Wende Resolutionsverfahren an (wie Aufgabe 1).
+\end{enumerate}
+
+\subsection*{Aufgabe 6.2 (a)}
+Hier schreiben betrachten wir direkt die Negation, da wir die Tautologie-Eigenschaft zeigen wollen, indem wir zeigen, dass die Negation unerfüllbar ist.
+\begin{align*}
+&\neg((((p\wedge q)\to r)\wedge\neg r)\to(p\to(q\to r)))\\
+&\equiv
+\neg(\neg((\neg(p\wedge q)\vee r)\wedge\neg r)\vee(\neg p\vee(\neg q\vee r)))\\
+&\equiv
+\langle[\neg(\neg((\neg(p\wedge q)\vee r)\wedge\neg r)\vee(\neg p\vee(\neg q\vee r)))]\rangle\\
+&\equiv
+\langle[\neg\neg((\neg(p\wedge q)\vee r)\wedge\neg r)],[\neg(\neg p\vee(\neg q\vee r))]\rangle\\
+&\equiv
+\langle[((\neg(p\wedge q)\vee r)\wedge\neg r)],[\neg(\neg p\vee(\neg q\vee r))]\rangle\\
+&\equiv
+\langle[(\neg(p\wedge q)\vee r)],[\neg r],[\neg(\neg p\vee(\neg q\vee r))]\rangle\\
+&\equiv
+\langle[\neg(p\wedge q), r],[\neg r],[\neg(\neg p\vee(\neg q\vee r))]\rangle\\
+&\equiv
+\langle[\neg p,\neg q, r],[\neg r],[\neg(\neg p\vee(\neg q\vee r))]\rangle\\
+&\equiv
+\langle[\neg p,\neg q, r],[\neg r],[\neg\neg p],[\neg(\neg q\vee r)]\rangle\\
+&\equiv
+\langle[\neg p,\neg q, r],[\neg r],[p],[\neg(\neg q\vee r)]\rangle\\
+&\equiv
+\langle[\neg p,\neg q, r],[\neg r],[p],[\neg\neg q],[\neg r)]\rangle\\
+&\equiv
+\langle[\neg p,\neg q, r],[\neg r],[p],[q],[\neg r)]\rangle\\,
+&\begin{array}{rll}
+1 &&[\neg p,\neg q,r]\\
+2 &&[\neg r]\\
+3 &&[p]\\
+4 &&[q]\\
+5 &&[\neg r]\\
+6 & \Res(1,2,r) & [\neg p,\neg q]\\
+7 & \Res(6,3,p) & [\neg q]\\
+8 & \Res(7,4,q) & []
+\end{array}
+\end{align*}
+
+\subsection*{Aufgabe 6.2 (b)}
+\begin{align*}
+&((\neg r\vee(p\wedge q))\wedge\neg((r\to p)\wedge(r\to q)))\\
+&\equiv
+((\neg r\vee(p\wedge q))\wedge\neg((\neg r\vee p)\wedge(\neg r\vee q)))\\
+&\equiv
+\langle[((\neg r\vee(p\wedge q))\wedge\neg((\neg r\vee p)\wedge(\neg r\vee q)))]\rangle\\
+&\equiv
+\langle[(\neg r\vee(p\wedge q))],[\neg((\neg r\vee p)\wedge(\neg r\vee q))]\rangle\\
+&\equiv
+\langle[\neg r,p],[\neg r, q],[\neg((\neg r\vee p)\wedge(\neg r\vee q))]\rangle\\
+&\equiv
+\langle[\neg r,p],[\neg r, q],[\neg(\neg r\vee p),\neg(\neg r\vee q)]\rangle\\
+&\equiv
+\langle[\neg r,p],[\neg r, q],[\neg\neg r,\neg(\neg r\vee q)],[\neg p,\neg(\neg r\vee q)]\rangle\\
+&\equiv
+\langle[\neg r,p],[\neg r, q],[r,\neg(\neg r\vee q)],[\neg p,\neg(\neg r\vee q)]\rangle\\
+&\equiv
+\langle[\neg r,p],[\neg r, q],[r,\neg\neg r],[r,\neg q],[\neg p,\neg\neg r],[p,\neg q]\rangle\\
+&\equiv
+\langle[\neg r,p],[\neg r, q],[r,r],[r,\neg q],[\neg p,r],[p,\neg q]\rangle\\
+&\begin{array}{rll}
+1 &&[\neg r,p]\\
+2 &&[\neg r,q]\\
+3 &&[r,r]\\
+4 &&[r,\neg q]\\
+5 &&[\neg p,r]\\
+6 &&[p,\neg q]\\
+%7 & \Res(1,2,r) & [\neg p,\neg q]\\
+%8 & \Res(6,3,p) & [\neg q]\\
+\end{array}
+\end{align*}
+Verrechnet, denn das ist erfüllbar mit $p^I=q^I=r^I=\top$.
+
+\section*{Aufgabe 6.2 (c)}
+Wieder von Beginn an negieren, da wir Unerfüllbarkeit zeigen wollen.
+\begin{align*}
+&\neg(((p\to q)\to p)\to p)\\
+&\equiv
+\neg(\neg(\neg(\neg p\vee q)\vee p)\vee p)\\
+&\equiv
+\langle[\neg(\neg(\neg(\neg p\vee q)\vee p)\vee p)]\rangle\\
+&\equiv
+\langle[\neg\neg(\neg(\neg p\vee q)\vee p)], [\neg p]\rangle\\
+&\equiv
+\langle[(\neg(\neg p\vee q)\vee p)], [\neg p]\rangle\\
+&\equiv
+\langle[\neg(\neg p\vee q), p], [\neg p]\rangle\\
+&\equiv
+\langle[\neg\neg p, p],[\neg q, p], [\neg p]\rangle\\
+&\equiv
+\langle[p, p],[\neg q, p], [\neg p]\rangle\\
+&\Reso[~]\mit\Res([p,p],[\neg p])
+\end{align*}
+
+\section*{Aufgabe 6.2 (d)}
+Wieder von Beginn an negieren, da wir Unerfüllbarkeit zeigen wollen.
+\begin{align*}
+&\neg(((p\to q)\wedge(q\to r))\to\neg(\neg r\wedge p))\\
+&\equiv
+\neg(\neg((\neg p\vee q)\wedge(\neg q\vee r))\vee\neg(\neg r\wedge p))\\
+&\equiv
+\langle[\neg(\neg((\neg p\vee q)\wedge(\neg q\vee r))\vee\neg(\neg r\wedge p))]\rangle\\
+&\equiv
+\langle[\neg\neg((\neg p\vee q)\wedge(\neg q\vee r))],[\neg\neg(\neg r\wedge p)]\rangle\\
+&\equiv
+\langle[((\neg p\vee q)\wedge(\neg q\vee r))],[(\neg r\wedge p)]\rangle\\
+&\equiv
+\langle[(\neg p\vee q)],[(\neg q\vee r)],[(\neg r\wedge p)]\rangle\\
+&\equiv
+\langle[\neg p, q],[\neg q,r],[(\neg r\wedge p)]\rangle\\
+&\equiv
+\langle[\neg p, q],[\neg q,r],[\neg r],[p]\rangle\\
+&\begin{array}{rll}
+1 &&[\neg p,q]\\
+2 &&[\neg q,r]\\
+3 &&[\neg r]\\
+4 &&[p]\\
+5 & \Res(2,3,r) & [\neg q]\\
+6 & \Res(1,4) & [q]\\
+7 & \Res(5,6) &[~]
+\end{array}
+\end{align*}
+
+\section{Aufgabe 6.3 (Positive/negative Klauseln und Erfüllbarkeit}
+Eine Klausel heißt \textbf{positiv} gdw. sie nur positive Literale (= aussagenlogische Variable) enthält, und eine Klausel heißt \textbf{negativ} gdw. sie nur negative Literale (= negierte aussagenlogische Variable) enthält.\nl
+Eine Klauselmenge (= Menge von Klauseln) heißt \textbf{erfüllbar} gdw. es eine Interpretation $I$ gibt, die jede Klausel aus der Klauselmenge erfüllt.
+
+\section*{Aufgabe 6.3 (a)}
+Eine Klauselmenge ist erfüllbar, wenn sie keine positive Klausel enthält.
+
+\begin{proof}
+Zeige dies indirekt, zeige also: Wenn eine Klauselmenge unerfüllbar ist, dann enthält sie eine positive Klausel.\\
+Sei also $M=\lbrace C_1,\ldots,C_n\rbrace$ eine unerfüllbare Klauselmenge. Nach Definition gibt es dann keine Interpretation, die alle $C_i,i=1,\ldots,n$ erfüllt.\\ Anders ausgedrückt: Für alle Interpretationen $I$ gibt es ein $j\in\lbrace1,\ldots n\rbrace$ so, dass $C_j^I=\bot$. (Beachte, dass $j$ von $I$ abhängt.) Sei also $I$ beliebig aber fest. Benenne $C_j=[L_{1,j},\ldots, L_{m,j}]$.
+\begin{align*}
+C_j^I\Longleftrightarrow\forall k\in\lbrace 1,\ldots,m\rbrace: L_{k,j}^I=\bot
+\end{align*}
+TODO: Beweis ist Mist.
+\end{proof}
+
+\section*{Aufgabe 6.3 (b)}
+Eine Klauselmenge ist erfüllbar, wenn sie keine negative Klausel enthält.
+
+\begin{proof}
+
+\end{proof}
+
+\section*{Aufgabe 6.3 (c)}
+Die Aussage ist falsch, denn die leere Klausel $[~]$ ist sowohl positive Klausel als auch negative Klausel.
+
+\section*{Aufgabe 6.4 (Tautologieelimination)}
+Sei $\langle D_1,\ldots,D_n\rangle$ eine verallgemeinerte Konjunktion mit verallgemeinerten Disjunktionen $D_1,\ldots,D_n$. Dann gilt:\\
+Wenn in einer verallgemeinerten Disjunktion $D_j~(j\in\lbrace1,\ldots,n\rbrace)$ sowohl $F$ als auch $\neg F$ vorkommt (wobei $F$ beliebige aussagenlogische Formel ist), dann gilt:
+\begin{align*}
+\big\langle D_1,\ldots,D_{j-1},D_j,D_{j+1},\ldots, D_n\big\rangle\equiv\big\langle D_1,\ldots,D_{j-1},D_{j+1},\ldots,D_n\big\rangle
+\end{align*}
+\begin{proof}
+Sei $I$ beliebige Interpretation und $fj\in\lbrace1,\ldots,n\rbrace$. Da $F,\neg F\in D_j$ ist $_jD$ Tautologie, d.h. $D_j^I=\top$. Da $\top$ das neutrale Element der Disjunktion ist und $\langle\cdot\rangle$ die verallgemeinerte Disjunktion ist folgt die Behauptung aus der Tatsache, dass $I$ beliebig war.
+\end{proof}
+
+\section*{Aufgabe 6.5 (Subsumtion)}
+Eine Klausel $C$ \textbf{subsumiert} eine Klausel $C'$,i.Z. $C\subseteq C'$ gdw. jedes Literal aus $C$ auch in $C'$ vorkommt.\nl
+Sei $F=\langle C_1,\ldots,C_n\rangle$ eine Formel in Klauselform und seien $C_i$ und  $C_j$ Klauseln aus $F$ mit $i\neq j,i,j\in\lbrace1,\ldots,n\rbrace$.\\
+Wenn die Klausel $C_i$ die Klausel $C_j$ subsumiert, dann gilt:
+\begin{align*}
+\big\langle C_1,\ldots,C_n\big\rangle\text{ ist erfüllbar gdw. }\big\langle C_1,\ldots C_{j-1},C_{j+1},\ldots,C_n\big\rangle\text{ ist erfüllbar.}
+\end{align*}
+\begin{proof}
+To Do
+\end{proof}
+
+\section*{Aufgabe 6.6 (Folgerungen und endlich viele Prämisse)}
+\begin{align*}
+\F\models G\Longleftrightarrow \exists\F'\subseteq\F\text{ endlich }:\F'\models G
+\end{align*}
+\begin{proof}
+To Do
+\end{proof}
+
+\section*{Aufgabe 6.7 (Korrektheit und Vollständigkeit)}
+\subsection*{Aufgabe 6.7 (a)}
+Geben Sie ein Verfahren zur Ermittlung der aussagenlogischen Allgemeingültigkeit
+an, das korrekt aber nicht vollständig ist.
+
+\begin{lösung}
+To Do 
+\end{lösung}
+
+\subsection*{Aufgabe 6.7 (b)}
+Geben Sie ein Verfahren zur Ermittlung der aussagenlogischen Allgemeingültigkeit
+an, das vollständig aber nicht korrekt ist.
+
+\begin{lösung}
+To Do
+\end{lösung}
+
+\end{document}
