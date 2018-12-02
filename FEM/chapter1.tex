@@ -1,3 +1,8 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 \section{weak solutions of elliptic pde}
 
 \begin{example}
@@ -31,8 +36,7 @@ Now we call
 \begin{equation}\label{weak_form}
 	a(u,v) = F(v) \qquad \forall v \in  H^1_0(\Omega)
 \end{equation}
-\textbf{weak formulation} of (\ref{poisson}).\\
-
+\textbf{weak formulation} of (\ref{poisson}).\nl
 We call u
 \begin{enumerate}[label=(\alph*)]
 \item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of \eqref{weak_form}
@@ -100,7 +104,7 @@ Because $u \in H^1_0(\Omega)$, there exists $\gamma(u) = 0 = u|_{\partial \Omega
 
 \par
 \underline{\textbf{goal}:}
-Show $T^{-1}$ exists and is continuous and linear.\enter
+Show $T^{-1}$ exists and is continuous and linear.
 
 \begin{enumerate}[=label=(\alph*)]
 	\item \textbf{existence}:\enter If $g \in V$ is a unique solution of 
@@ -138,9 +142,9 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 	\begin{equation*}
 		T(V) = V.
 	\end{equation*}
-	\item $T(V)$ \textbf{is closed}:\enter
-	 $(v_n) \subset T(V)$ with $v_n \to v$ for $n \to \infty$ and $v \in V$. To show $v \in T(V)$. By definition of $v_n$ exists a sequence $(u_n) \subset V$ with $v_n = T(u_n) \to v$. With (\ref{inverse}) $(u_n)$ is a Cauchy sequence in $V$ and $V$ complete follows $u_n \to u \in V$ because $T$ continuous, $T(u_n) \to T(w)$ and thus $T(w)=v$ and $v \in T(V)$\enter
-	\item $T(V) = V$:\enter
+	\item $T(V)$ \textbf{is closed}:\\
+	 $(v_n) \subset T(V)$ with $v_n \to v$ for $n \to \infty$ and $v \in V$. To show $v \in T(V)$. By definition of $v_n$ exists a sequence $(u_n) \subset V$ with $v_n = T(u_n) \to v$. With (\ref{inverse}) $(u_n)$ is a Cauchy sequence in $V$ and $V$ complete follows $u_n \to u \in V$ because $T$ continuous, $T(u_n) \to T(w)$ and thus $T(w)=v$ and $v \in T(V)$
+	\item $T(V) = V$:\\
 	 Assume $T(V) \neq V$, as $T(V)$ is a closed linear subspace of $V$, it holds 
 	\begin{equation*}
 		V = T(V) \oplus T(V)^\perp
@@ -162,11 +166,10 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 
 \textbf{\underline{consider}}
 \begin{itemize}
-	\item Dirichlet boundary conditions(short BC)\enter
-	\item Neumann BC\enter
+	\item Dirichlet boundary conditions(short BC)
+	\item Neumann BC
 	\item Robin BC
 \end{itemize}
-
 
 \begin{enumerate}[=(\alph*)]
 	\item \textbf{Dirichlet BC}:\enter
@@ -306,7 +309,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 		\end{equation*}
 		and thus coercive.
 	\end{comment_}
-	\begin{thrm}\enter
+	\begin{thrm}\
 		\begin{enumerate}[label=(\Roman*)]
 			\item If $\underset{\Omega}{\inf}\ c > 0$, there exists a unique solution $u \in H^1(\Omega)$.
 			\item If $c \equiv 0$ and $F(1)=0$ there exists a unique solution $u \in \{ u \in H^1(\Omega): \int \limits_\Omega u \diff x =0 \}$.
@@ -316,7 +319,7 @@ Show $T^{-1}$ exists and is continuous and linear.\enter
 			\|u\|_{H^1} \leq C \big ( \|f\|_{L^2} + \|g\|_{H^1} \big )	
 		\end{equation*}
 	\end{thrm}
-	\begin{proof_}\enter
+	\begin{proof_}\
 		\begin{itemize}
 			\item Part (I): \enter
 				$a$ is continuous in $V = H^1(\Omega)$: see Dirichlet BC.\enter
@@ -433,7 +436,7 @@ A is injectiv, invertable $\implies$ unique solution.
 	(Lemma of Cea)\\
 	$V$ Hilbert space,$a(\cdot,\cdot)$ continuous, coerciv, bilinearform on $V$, $F \in V'$,$V_h \subset V$.\\
 	$u\in V$ is solution of $a(u,v) = F(v) \forall v\in V$\\
-	$u_h\in V_h$ is solution of $a(u_h,v) = F(v) \forall v\in V_h$\\
+	$u_h\in V_h$ is solution of $a(u_h,v) = F(v) \forall v\in V_h$
 	\begin{equation*}
 		\implies \|u-u_h\|_V \leq \frac{K}{\lambda}\underset{v \in V_h}{\inf}\|u-v\|_V
 	\end{equation*} 
@@ -566,7 +569,7 @@ The $\lambda_i$ are called \glqq barycentric coordinates\grqq.
 			(x,y) \in \hat{\tau}.
 		\end{equation*} 
 		\item quadratic Lagrange elements in $\R^d$\\
-		for \underline{$d=2$}, $\hat{\tau} \in \R^2$: $a_1,a_2,a_3$, vertices with midpoints $a_{ij} = \frac{1}{2}(a_i +a_j),\ i < j$.\\
+		for \underline{$d=2$}, $\hat{\tau} \in \R^2$: $a_1,a_2,a_3$, vertices with midpoints $a_{ij} = \frac{1}{2}(a_i +a_j),\ i < j$.
 		\begin{equation*}
 			P_{\tau} = P_2(\tau) = \Big\{ p:\tau \to \R,\ p(x,y) = \alpha_1 + \alpha_2 x + \alpha_3 y + \alpha_4 xy + \alpha_5 x^2 + \alpha_6 y^2 \Big\}
 		\end{equation*}
