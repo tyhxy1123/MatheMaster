@@ -1,3 +1,8 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 \subsection{Triangulation}
 
 \Large{ $B_h$ oder $B_b$ ???}
@@ -19,7 +24,7 @@
 		\rho &= \underset{\tau \in T_h}{\max} \rho_{\tau}
 	\end{align*}
 \end{definition_}
-%%TODO add picture
+%TODO add picture
 
 We further require that all faces of $\tau_i \in T_h$ are faces of $\tau_i \in T_h$ or part of $\partial \Omega$.
 \input{tikz/chapter2/triang_not_allowed}
@@ -29,9 +34,14 @@ $T_h$ triangulation of $\Omega$ with Lagrange elements $(\tau,P_\tau,\Sigma_\tau
 $ N_h$ is set of all vertices of $T_h$. For $b\in N_0 $ $T_h(b) $ is the set of all finite elements, for which $b$ is a vertex.
 
 \begin{definition_}
-	(Finite elements space)\\
+	(Finite elements space)
 	\begin{equation*}
-		X_h = \left \{ v = (v_\tau)_{\tau \in T_h} \in \prod \limits_{\tau \in T_h} P_\tau :  \forall b  \in\N_h : \forall \tau_1,\tau_2 \in T_h(b): B_{b,\tau_1}(v_{\tau_1}) = B_{b,\tau_2}(v_{\tau_2})  \right \}
+		X_h = \left \{ v = (v_\tau)_{\tau \in T_h} \in \prod \limits_{\tau \in T_h} P_\tau \left|
+\begin{array}{c}
+\forall b  \in\N_h : \forall \tau_1,\tau_2 \in T_h(b):\\
+B_{b,\tau_1}(v_{\tau_1}) = B_{b,\tau_2}(v_{\tau_2}) 
+\end{array}		
+ \right.\right \}
 	\end{equation*}
 \end{definition_}
 For Lagrange elements:
@@ -48,7 +58,7 @@ Functions on $X_h$ are uniquely determined by $\{v(b): b \in N_h \}$ we thus als
 	linear lagrange elements $a_i$ vertex of $\tau \in T_h$,
 	\begin{align*}
 		B_{i,\tau}(p)  &= p(a_i) \quad \forall p \in P_\tau \\
-		X_h = \{ v:\overline{\Omega} \to \R : \forall \tau \in T_h, v|_{\tau} \in P_1(\tau) ,\ v \text{ continuous in } \overline{\Omega} \}
+		X_h &= \{ v:\overline{\Omega} \to \R : \forall \tau \in T_h, v|_{\tau} \in P_1(\tau) ,\ v \text{ continuous in } \overline{\Omega} \}
 	\end{align*}
 \end{example}
 
@@ -57,8 +67,7 @@ $X_h$ is a finite dimensional space, has a basis
 	\Sigma_h = \{ B_{h,j} : j= 1,\dots,N  \} \quad \text{ set of DoFs} 
 \end{equation*}
 
-$\varphi_i \in X_h\ i=1,\dots,N$ with $B_{h,j}(\varphi_i) = \delta_{ij} \quad i,j=1,\dots,N$ (global basis funktions),$\varphi_i \in C^0(\overline{\Omega})$, $\forall \tau \in T_h: \varphi_i|_\tau \in P_i(\tau)$. $\varphi_i(b_j) = \delta_{ij}$ for $i,j = 1,\dots,N$ with $b_j \in N_h$ vertices of all $\tau \in T_h$.\\
-
+$\varphi_i \in X_h\ i=1,\dots,N$ with $B_{h,j}(\varphi_i) = \delta_{ij} \quad i,j=1,\dots,N$ (global basis funktions),$\varphi_i \in C^0(\overline{\Omega})$, $\forall \tau \in T_h: \varphi_i|_\tau \in P_i(\tau)$. $\varphi_i(b_j) = \delta_{ij}$ for $i,j = 1,\dots,N$ with $b_j \in N_h$ vertices of all $\tau \in T_h$.\nl
 \centering
 \begin{tabular}{c|c}
 	global  & local \\ \hline 
@@ -102,7 +111,7 @@ $\varphi_i \in X_h\ i=1,\dots,N$ with $B_{h,j}(\varphi_i) = \delta_{ij} \quad i,
 	\input{tikz/chapter2/plot_f}
 	
 	\begin{align*}
-		&\text{basis functions on } \hat{\tau} & &   \text{ basis functions on } \tau\\
+		&\text{basis functions on } \hat{\tau} &&  \text{ basis functions on } \tau\\
 		&\begin{rcases}
 		&\hat{P}_1(x,y)=1-x-y \\
 		&\hat{P}_2(x,y)=x \\
