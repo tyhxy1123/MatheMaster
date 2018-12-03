@@ -1017,7 +1017,7 @@ u_g\in H^2(\Omega)\mit g=\tilde{\gamma}_{1,N}(u_g)
 \end{align*}
 gibt. Dann gilt:
 \begin{align*}
-\Vert u\Vert_{2,2,\Omega}\leq C\cdot\Big(\Vert f\Vert_{0,2,\Omega}+\Vert u\Vert_{2,2}\Big)
+\Vert u\Vert_{2,2,\Omega}\leq C\cdot\Big(\Vert f\Vert_{0,2,\Omega}+\Vert u\Vert_{0,2}\Big)
 \end{align*}
 wobei $C$ nur von $\Omega, A,a,\alpha$ abhängt (also nicht von $f$).
 \end{theorem}
@@ -1397,7 +1397,8 @@ Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$. Für $N\i
 \begin{definition}[Raum der finiten Elemente]\enter
 Sei $\T_h$ eine Triangulierung von $\Omega$. Ein \textbf{Raum der finiten Elemente} $V_h$ ist gegeben durch 
 \begin{align*}
-V_h:=\\\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\right\rbrace
+V_h:=\Bigg \lbrace v&=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\\
+&{} \quad\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\Bigg \rbrace
 \end{align*}
 wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind. Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$ von dem globalen Freiheitsgrad.
 \end{definition}
