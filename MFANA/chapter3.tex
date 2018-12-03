@@ -1,0 +1,32 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Wohlgestelltheit des Cauchyproblems} %3
+\setcounter{section}{1}
+\begin{theorem}[Crandall-Liggett]\label{theoremCrandall-Liggett}\enter
+Sei $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$, $X$ ein Banachraum.\\
+Dann besitzt das Cauchy-Problem
+\begin{align}\label{CPchapter3}\tag{CP}
+\text{(CP)}\left\lbrace\begin{array}{rl}
+\hat{u}+Au\ni 0&\text{ in }[0,T]\\
+u(0)=u_0&
+\end{array}\right.
+\end{align}
+für jedes $u_0\in\overline{\dom(A)}$ genau eine Integrallösung $u\in C\big([0,T],X\big)$.\\
+Für je zwei Integrallösungen $u,\hat{u}$ von \eqref{CPchapter3} zu Anfangswerten $u_0$ bzw. $\hat{u}\in\overline{\dom(A)}$ gilt
+\begin{align*}
+\big\Vert u(t)-\hat{u}(t)\big\Vert
+\leq\exp(\omega\cdot t)\cdot\big\Vert u_0-\hat{u}_0\big\Vert\qquad\forall t\in[0,T]
+\end{align*}
+Setze dann
+\begin{align*}
+S(t):=u(t)\qquad\forall t\geq0,\forall u_0\in\overline{\dom(A)}
+\end{align*}
+wobei $u$ eindeutige Integrallösung von \eqref{CPchapter3} mit Anfangswert $u_0$ ist $(T\geq t)$:
+\begin{align*}
+S(t):\overline{\dom(A)}\to\overline{\dom(A)}
+\end{align*}
+ist Lipschitz-stetig mit Lipschitzkonstante $S(0)=\id$ und $S(t+a)=S(t)\circ S(s)$
+\end{theorem}
