@@ -2583,7 +2583,7 @@ Im Falle von Satz \ref{satz7.3}: $\Omega'=C, f_t=\pi_t, T=I,\A'=\sigma\big(\pi_t
 Stochastische Prozesse mit stetigen Pfaden nennt man \textbf{stetige} stochastische Prozesse. Satz \ref{satz7.3} besagt nun: Die Pfadabbildung eines jeden stetigen stochastischen Prozesses ist $\A\text{-}\B(C)$-messbar. Insbesondere folgt:\\
 Jeder stetige stochastische Prozess indiziert nach $I$ kann aufgefasst werden als Zufallsvariable im metrischen Raum $\big(C(I),d\big)$.
 
-\begin{beispiel}
+\begin{beispiel}\label{beispiel7.4}
 Sei $(\xi_i)_{i\in\N}$ eine Folge von reellen Zufallsvariablen über $(\Omega,\A)$ und für $n\in\N$ sei
 \begin{align*}
 S_k:=\sum\limits_{i=1}^k\xi_i\qquad\forall0\leq k\leq n\qquad S_0:=0
@@ -2715,7 +2715,7 @@ Seien $X,X_n,n\in\N$ Zufallsvariablen in $C$ über $(\Omega,\A,\P)$. Falls
 \qquad\forall t_1,\ldots,t_k\in I,\forall k\in\N
 \end{aligned}$\\
 so genannte \textbf{Konvergenz der fidis} (finite dimensional distributions).\\
-Notation: $X_n\stackrelnew{\text{df}}{}{\longrightarrow} X$
+Notation: $X_n\stackrelnew{\text{fd}}{}{\longrightarrow} X$
 \item $\begin{aligned}
 \lim\limits_{k\to\infty}\limsup\limits_{n\to\infty}\P\Big(\omega\big(X_n,\delta_k\big)>\varepsilon\Big)=0\qquad\forall\varepsilon>0
 \end{aligned}$\\
@@ -2793,4 +2793,162 @@ $k\to\infty$ liefert dann (2).\\
 \end{proof}
 \end{beispiel}
  
+Zweite Möglichkeit für den Nachweis der Verteilungskonvergenz in $C$ liefert:
+
+\begin{satz}[Momentenkriterium von Kolmogoroff]\label{satz7.11MomentenkriteriumVonKolmogoroff}\enter
+Seien $X,X_n,n\in\N$ Zufallsvariablen in $C$ mit
+\begin{align}\label{eqSatz7.11Vor1}\tag{1}
+X_n\stackrelnew{\text{fd}}{}{\longrightarrow} X\qquad\text{(vgl. (1) in \ref{satz7.9})}
+\end{align}
+Falls es eine Konstante $\gamma>0$ und $\alpha>1$ sowie eine stetige und monoton wachsende Funktion $F:I\to\R$ gibt, derart, dass
+\begin{align}\label{eqSatz7.11VorM}\tag{M}
+\E\Big[|X_n(s)-X_n(t)|^\gamma\Big]\leq\big(F(s)-F(t)\big)^\alpha\qquad\forall s>t,s,t\in I
+\end{align}
+Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} X\text{ in }\big(C(I),d\big)
+\end{align*}
+\end{satz}
+
+\begin{proof}
+Siehe Billingsley (1968), \textit{Convergence of probability measures}, Seite 96.
+%Ferger: "Das Buch hier war früher meine Fibel."
+%Ferger: "Jim Morrison von den Doors. Das war mein Held. Neben Skorokott."
+\end{proof}
+
+\ul{Ziel:} Verteilungskonvergenz der Partialsummenprozesse $X_n$ aus dem Beispiel \ref{beispiel7.4}. Dazu:
+
+\begin{definition}\label{def7.12} %7.12
+Sei $I=[0,b]\mit b>0$ und $B:=\big\lbrace B(t):=B(t,\omega)\in I\big\rbrace$ ein stetiger stochastischer Prozess über $(\Omega,\A,\P)$ mit 
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+B(0)=B(0,\omega)=0\qquad\forall\omega\in\Omega
+\end{aligned}$
+\item $\begin{aligned}
+\forall 0=:t_0\leq t_1<\ldots<t_r\leq b
+\end{aligned}$ sind die Zuwächse $B(t_i)-B(t_{i-1}),1\leq i\leq r$\\ \ul{unabhängig}
+\item $\begin{aligned}
+0\leq s<t\leq b\implies B(t)-B(s)\sim\mathcal{N}(0,t-s)
+\end{aligned}$
+\end{enumerate}
+Dann heißt $B$ \textbf{Brownsche Bewegung (BB)} auf $I$.\\
+Vollkommen analog definiert man eine BB auf $I=[0,\infty)$.
+\end{definition}
+
+%Ferger: "Das ist wie so ein Wunschzettel. Es gelte 1, 2 und 3. Passend zur Weihnachtszeit. Wenn's dumm läuft, kann es noch sein, dass mein Wunsch nicht erfüllt wird, weil er nicht erfüllt werden kann."
+%Ferger: "In der Hoffnung das Sie nicht schonmal hier gesessen haben: Weil ich immer dieselben Geschichten erzähle. Ich bin jetzt in so einem Alter wo man alles mehrfach erzählt."
+%Ferger: "Da hat mal jemand eine Doktorarbeit geschrieben über eine tolle Fukntionenklasse. Und dann kam jemand daher, dass die Funktionenklasse nur aus der Eins-Funktion besteht. Das war echt ein Griff ins Klo. Wäre noch heftiger gewesen, wenn die Funktionenklasse leer gewesen wäre. Aber: So sind wir ja auch alle gestrickt. So werden wir konditionert. Weil, wenn der Mathematiker irgendwas hört, fragt der Mathematiker ständig "Existiert das?""
+
+\begin{satz}[Lévy]\label{satz7.13Levy}
+Eine BB existiert.
+\end{satz}
+\begin{proof}
+Siehe Vorlesung \textit{Stochastische Prozesse}.
+%Ferger: "Es gibt einen konstruktiven Beweis, der ist auch lehrrreich, aber da haben wir jetzt keine Zeit für.
+%Anmerkung des Autors: Geschichten erzhählen ist wohl wichtiger
+\end{proof}
+
+\begin{lemma}\label{lemma7.14}
+Sei $B$ eine BB auf $I$ und $t_1<\ldots<t_r$ aus $I$. Dann gilt:
+\begin{align*}
+\Big(B(t_1),\ldots, B(t_r)\Big)^T\sim\mathcal{N}_r(0,\Gamma)\text{ wobei }\\
+\Gamma:=\Big(\Cov\big(B(t_i),B(t_j)\big)\Big)_{1\leq i,j\leq r}=\big(t_i\wedge t_j\big)_{1\leq i,j,\leq r}
+\end{align*}
+% \wedge meint Minimum
+\end{lemma}
+
+\begin{proof}
+Sei $t_0:=0$. Dann gilt:
+\begin{align*}
+B(t_j)
+\overset{\text{\ref{def7.12}(1)}}=
+B(t_j)-\underbrace{B(t_0)}_{=0}
+\overset{\text{Teles}}{=}
+\sum\limits_{i=1}^j\big(B(t_i)-B(t_{i-1})\big)
+=\sum\limits_{i=1}^j\sqrt{t_i-t_{i-1}}\cdot\underbrace{\frac{B(t_i)-B(t_{i-1})}{\sqrt{t_i-t_{i-1}}}}_{=:Z_i}
+\end{align*}
+Da $B(t_i)-B(t_{i-1})\sim\mathcal{N}(0,t_i-t_{i-1})$ folgt, dass die $Z_i$ i.i.d. $\sim\mathcal{N}(0,1)$ sind.
+Also ist der Vektor
+\begin{align*}
+\begin{pmatrix}
+B(t_1)\\
+\vdots\\
+B(t_r)
+\end{pmatrix}&=\begin{pmatrix}
+\sqrt{t_1} & 0 & \hdots & \hdots & 0\\
+\sqrt{t_1} & \sqrt{t_2-t_1} & 0 & \hdots & 0\\
+\vdots & \vdots & \ddots & \ddots & \vdots\\
+\sqrt{t_1} & \sqrt{t_2-t_1} & \sqrt{t_3-t_2} & \hdots & 0\\
+\end{pmatrix}\cdot\begin{pmatrix}
+Z_1\\
+\vdots\\
+Z_r
+\end{pmatrix}\implies\begin{pmatrix}
+B(t_1)\\
+\vdots\\
+B(t_r)
+\end{pmatrix}\sim\mathcal{N}_r(\mu,\Gamma)\\
+\mu_i:&=\E\Big[B(T_i)\Big]=\E\Big[\underbrace{B(t_i)-B(t_0)}_{\sim\mathcal{N}(0,t_i-t_0)}\Big]\qquad\forall i\\
+\implies\mu_i :&=\big(\mu_1,\ldots,\mu_r\big)=0
+\end{align*}
+Ferner sei $i\leq j$. Dann gilt:
+\begin{align*}
+\Cov\big(B(t_i),B(t_j)\big)
+&=\E\Big[B(t_i)\cdot B(t_j)\Big]\\
+&=\E\Big[B(t_i)\cdot\big( B(t_j)-B(t_i)+B(t_i)\big)\Big]\\
+&=\E\Big[\underbrace{B(t_i)\cdot\big(B(t_j)-B(t_i)\big)}_{\text{beide Faktoren sind unabh.}}+\big(B(t_i)\big)^2\Big]\\
+&=\E\Big[B(t_i)\cdot\big(B(t_j)-B(t_i)\big)\Big]+\E\Big[\big(B(t_i)\big)^2\Big]\\
+\overset{\text{unab}}&=
+\underbrace{\E\big[B(t_i)\big]}_{=}\cdot\underbrace{\E\big[B(t_j)-B(t_i)\big]}_{=0}+\underbrace{\E\Big[\big(B(t_i)\big)^2\Big]}_{=\Var\big(B(t_i)\big)}\\
+\overset{\text{Vert}}&=
+\Var\big(\mathcal{N}(0,t_i)\big)\\
+&=t_i\\
+\overset{i\leq j}&{=}
+t_i\wedge t_j
+\end{align*}
+Analog behandle den Fall $i\geq j$.
+\end{proof}
+
+\begin{korollar}\label{korollar7.15Folgerung}
+Die Verteilung einer BB ist eindeutig bestimmt. 
+\end{korollar}
+\begin{proof}
+Seien $B$ und $\tilde{B}$ zwei BBs (i.d.R. über unterschiedlichen Wahrscheinlichkeitsräumen definiert). Dann gilt:
+\begin{align*}
+B\stackeq{\L}\tilde{B}
+\overset{\ref{satz7.5}}&{\Longleftrightarrow}
+\big(B(t_1),\ldots,B(t_r)\big)^T\stackeq{\L}\big(\tilde{B}(t_1),\ldots,\tilde{B}(t_r)\big)^T
+&\forall t_1<\ldots<t_r\in I,\forall r\in\N\\
+\overset{\ref{lemma7.14}}&\Longleftrightarrow
+\mathcal{N}_r(0,\Gamma)=\mathcal{N}_r(0,\Gamma)
+&\forall t_1<\ldots<t_r\in I,\forall r\in\N
+\end{align*}
+Die letzte Aussage gilt aber, weil jede mehrdimensionale Normalverteilung $\mathcal{N}_r(\mu,\Gamma)$ eindeutig durch $\mu$ und $\Gamma$ festgelegt ist:
+\begin{align*}
+\mathcal{N}(\mu,\sigma^2)=\mathcal{N}(m,s^2)\Longleftrightarrow m=\mu\text{ und }s^2=\sigma^2
+\end{align*}
+\end{proof}
+
+Die Verteilung $\P\circ B^{-1}=:W$ von  einer Brownschen Bewegung $B$ heißt \textbf{Wiener-Maß} (nach Norbert Wiener).
+%Ferger: "Absoluter Schlaukopf. Ein Ammi. Ein US-Amerikaner. Der hat 21 promoviert. Da wo wir noch mit den Klötzchen spielen, hat der schon promoviert."
+\begin{align*}
+B:(\Omega,\A,\P)\to\Big(C(I),\B_d\big(C(I)\big)\Big)
+\end{align*}
+%Ferger: "Die Brownsche Bewegung wird genannt Brownsche Bewegeung, weil folgendes passiert ist: es gab einen schottischen Bonatiker. Der hat also eine Flüssigkeit genommen, z. B. Wasser und dann ganz kleine Pollenkörner oder Staubkörnchen, also so was ganz klitzekleines oder eie kleine Minischuppe in sein Töpfchen getan, in seine Flüssigkeit und hat draufgeguckt und gesagt "Boah, da ist ja was los." [...] Ja ich erzähl das so wie bei der Sendung mit der Maus, weil man das so gut versteht. [...] Und er stellt fest, dass da viel los ist. Die Beobachtung hatten andere Leute wohl auch schon gemacht. Die ersten Leute, jeder von denen hat sich natürlich gefragt: Was steckt dahinter? Die ersten Leute haben als erklärungsversuch gegeben, dass es biologische Energie in sich hat. Der Robert Braun hat gesagt: Nein, das ist nicht so. Können Sie ja mal googeln. Entscheidend ist Folgendes: Das war ca. 182?. Dann kam Albert Einstein und hat gesagt: Nenene bzw. jajaja, was hier passiert ist Folgendes: So eine Flüssigkeit besteht ja aus ganz vielen Molekülen, die in Bewegung sind. Und die schießen wie wild hin und her. Die Moleküle sind aber klitzeklitzeklein. Das kleine Teilchen ist aber im mirkoskopischen Bereich, also im Vergleich zu den Molekülen ein Riesen-Oschi. Und die kleinen Teilchen hauen die ganze Zeit dagegen. Der Einstein ist hergegangen und hat das für Physiker-Verhältnisse sehr mathematisch beschrieben. Der Wiener hat das nochmal auf saubere, mathematische Füße gestellt (Funtionenraum, Verteilungen und solche Sachen...) Die haben das ein oder andere wohl handwaving gemacht und Norbert Wiener hat das dann mal mathematisch sauberr gemacht. Deshalb heißt die Verteilung einer Brownschen auch Wiener Maß.
+%Ferger: Sind ja immernoch 7 Minuten. Mist. Na da kann ich ja noch eine Geschichte erzählen. 
+
+\begin{satz}[Donskur]\label{satz7.16Donskur}%\enter
+Seien $(\xi)_{i\in\N}$ i.i.d. mit $\E[\xi_1]=0$ und $\Var(\xi_1)=1$.
+\begin{align*}
+S_k&:=\sum\limits_{i=1}^k\xi_i&\forall& k\in\N_0\\
+X_n(t)&:=\frac{1}{\sqrt{n}}\cdot S_{\lceil n\cdot t\rceil}+\frac{1}{\sqrt{n}}\cdot\big(n\cdot t-\lceil n\cdot t\rceil\big)\cdot\xi_{\lceil n\cdot t\rceil+1} &\forall& t\in I=[0,b]
+\end{align*}
+($b>0$ fest), d.h. $X_n$ ist der Polygonzug durch die Punkte $\left(\frac{k}{n},\frac{1}{\sqrt{n}}\cdot S_k\right)_{0\leq k\leq b\cdot n}$. Dann gilt:
+\begin{align*}
+X_n\stackrel{\L}{\longrightarrow} B\text{ in }\big(C(I),d\big)
+\end{align*}
+wobei $B$ eine BB auf $I=[0,b]$.
+\end{satz}
+
+
 
