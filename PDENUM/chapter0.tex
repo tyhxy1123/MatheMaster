@@ -2123,8 +2123,136 @@ Sei $\lbrace V_h\rbrace$ eine Familie von $P_1$-nichtkonformen Finite-Elemente-R
 \end{theorem}
 
 \begin{bemerkung}
-Die Dualitätsargument von Aubin und Nietsche kann erweitert werden auf den nichtkonformen Fall. Dabei tauchen zwei neue Terme in der Abschätzung auf.
+Das Dualitätsargument von Aubin und Nietsche kann erweitert werden auf den nichtkonformen Fall. Dabei tauchen zwei neue Terme in der Abschätzung auf.
 \begin{align*}
 \big\Vert u-u_h\big\Vert_h\leq c\cdot h^2\cdot\Vert u\Vert_{2,2,\Omega}
 \end{align*}
 \end{bemerkung}
+
+\section{Eine posteriori Fehlerabschätzung} %6
+Modellproblem: $\Omega\subseteq\R^2,f\in L^2(\Omega)$
+\begin{align*}
+\left\lbrace\begin{array}{rl}
+-\Delta u=f &\text{ in }\Omega\\
+u=0 &\text{ auf }\Gamma=\partial\Omega
+\end{array}\right.
+\end{align*}
+Schwache Formulierung: Finde $u\in H_0^1(\Omega)$ so, dass
+\begin{align*}
+\underbrace{\int\limits_\Omega\nabla u\cdot\nabla v\d x}_{=:a(u,v)}=\underbrace{\int\limits_\Omega f\cdot v\d x}_{=:l(v)}\qquad\forall v\in H_0^1(\Omega)
+\end{align*}
+Konforme Finite-Elemente-Diskretisierung:\\
+Sei $\lbrace\T_h\rbrace$ eine Familie von Form-regulären Triangulierungen mit\\ Finiten-Elementen-Räumen $X_h$ von stetigen, stückweise $P_h$-polynomiellen Funktionen\nl
+Diskretes Problem: Finde $u\in X_h$ so, dass
+\begin{align}\label{eqSecttion6Ph}\tag{$P_h$}
+a(u_h,v_h)=l(v_h)\qquad\forall v_h\in X_n
+\end{align}
+Ziel: Finde berechenbare Schranken für den Fehler $u-u_h$ in irgendeiner Norm.
+
+\subsection*{Informelle Definition}
+\begin{itemize}
+\item Eine Menge $\eta$ heißt \textbf{(Posteriori-)Fehlerschätzer} $:\gdw\eta$ ist berechenbar aus den Problemdaten und der diskreten Lösung $u_h$.
+\item Ein Fehlerschätzer $\eta$ heißt \textbf{zuverlässig} $:\gdw$ es gibt eine obere Schranke für den globalen Fehler, d.h.
+\begin{align*}
+:\Longleftrightarrow\exists c\in\R:\big\Vert u-u_h\big\Vert_\Omega\leq c\cdot\eta
+\end{align*}
+Zuverlässige Fehlerschätzer sind nützlich um eine gewisse Genauigkeit sicherzustellen.
+\item Ein Fehlerschätzer $\eta$ heißt \textbf{effizient} $:\gdw$ es existiert eine lokale untere Schranke für den Fehler, d.h.
+\begin{align*}
+\eta_{\text{ lokal}}\leq c\cdot\big\Vert u-u_h\big\Vert_{\text{lokal}}+\text{Daten-Oszillation}
+\end{align*}
+Da wir später $f$ durch ein Approximationspolynom ersetzen, kommt ein Fehlerterm hinzu, welchen wir \textbf{Daten-Oszillation} nennen.\\
+Effiziente Fehlerschätzer soll eine Überschätzung der lokalen Verfeinerung verhindern.
+\end{itemize}
+
+\subsection*{Resiuale Fehlerschätzer}
+Aus der Friedrich-Ungleichung \ref{prop1.13FriedrichsUngleichung} folgt:
+\begin{align*}
+a(v,v)&\geq\alpha\cdot\Vert v\Vert^2_{1,2,\Omega}\qquad\forall v\in H^1_0(\Omega)\\
+\implies
+\Vert u-u_h\Vert^2_{1,2,\Omega}
+&\leq
+\frac{1}{\alpha}\cdot a\big(u-u_h,u-u_h\big)\\
+\implies
+\Vert u-u_h\Vert_{1,2,\Omega}
+&\leq\frac{1}{\alpha}\cdot a\left(u-u_h,\frac{u-u_h}{\Vert u-u_h\Vert_{1,2,\Omega}}\right)\\
+\implies
+\Vert u-u_h\Vert_{1,2,\Omega}
+&\leq\frac{1}{\alpha}\cdot\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}\Big(\underbrace{a(u,v)}_{=l(v)}-a(u_h,v)\Big)
+\end{align*}
+Andererseits erhalten wir:
+\begin{align*}
+\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}} a(u-u_h,v)
+&\leq
+\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}
+\Vert u-u_h\Vert_{1,2,\Omega}\cdot\underbrace{\Vert v\Vert_{1,2,\Omega}}_{=1}
+=\Vert u-u_h\Vert_{1,2,\Omega}\\
+\implies
+\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}} a(u-u_h,v)
+&\leq
+\Vert u-u_h\Vert_{1,2,\Omega}
+\leq\frac{1}{\alpha}\cdot\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}} a(u-u_h,v)
+\end{align*}
+Das bedeutet, dass die Norm $\Vert u_h-u\Vert_{1,2,\Omega}$ äquivalent zu der Operatornorm der linearen Abbildung
+\begin{align*}
+R:H^1_0(\Omega)\to\R,\qquad v\mapsto l(v)-a(u_h,v)=a(u-u_h,v)
+\end{align*}
+ist. Beobachtung: Aus der Galerkin Orthogonalität folgt:
+\begin{align*}
+R(v_h)=a(u-u_h,v_h)=0
+\end{align*}
+Für $v\in H^1_0(\Omega)\mit\Vert v\Vert_{1,2,\Omega}=1$ gilt:
+\begin{align*}
+R(v)&=l(v)-a(u_h,v)\\
+&=\int\limits_\Omega f\cdot v\d x-\int\limits_\Omega\nabla u_h\cdot\nabla v\d x\\
+&=\sum\limits_{T\in\T_h}\left(\int\limits_T f\cdot v\d x-\int\limits_T \nabla u_h\cdot\nabla v\d x\right)\\
+&=\sum\limits_{T\in\T_h}\left(\int\limits_T f\cdot v\d x+\int\limits_T\Delta u_h\cdot v\d x-\int\limits_{\partial T}\nabla u_h\cdot n_T\cdot v\d\gamma\right)\\
+&=\sum\limits_{T\in\T_h}\int\limits_T\big(f+\Delta u_h\big)\cdot v\d x
++\sum\limits_{E\in\mathcal{E}_h}\int\limits_E\big[\nabla u_h\cdot n_E\big]_E\cdot v\d\gamma\\
+\overset{\text{CS}}&\leq
+\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert t\Vert_{0,2,T}+\sum\limits_{E\in\mathcal{E}_h}\Big\Vert\big[\nabla u_h\cdot n_E\big]_E\Big\Vert_{0,2,E}\cdot\Vert v\Vert_{0,2,E}\\
+R(v)
+&=R(v-v_h)\\
+&\leq
+\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v-v_h\Vert_{0,2,T}
++\sum\limits_{E\in\mathcal{E}_h}\Big\Vert\big[\nabla u_h\cdot u_E\big]_E\Big\Vert_{0,2,E}\cdot\Vert v-v_h\Vert_{0,2,E}
+\end{align*}
+wobei $\mathcal{E}_h$ die Menge aller Kanten ist.\\
+Bester Weg: Wähle $v_h$ als Interpolation von $v$.\\
+Aber: $v$ ist nur in $H^1$ und die gewöhnliche Interpolation wird nicht funktionieren.\\
+Lösung: Quasi-Interpolation.\\
+Hier: Quasi-Interpolation von Clément
+
+\begin{notation}\
+\begin{itemize}
+\item $N_h$ ist die Menge Knoten.
+\item $N_{h,\Omega}$ ist die Menge aller Knoten in $\Omega$.
+\item $\varphi_z\in S^{1,0}_{h,0}$ sei stetig, stückweise lineare Hut-Funktion assoziiert zu $z\in N_h$
+\item $\overline{w}_z:=\inner\left(\bigcup\limits_{\begin{subarray}{c}T\in\T_h\\z\text{ ist Knoten von }V\end{subarray}}\overline{T}\right)$
+\item Für $v\in L^2(w_z)$ definiere die \textbf{$L^2$-Projektion auf Konstanten} durch 
+\begin{align*}
+\pi_z (v):=\frac{1}{|w_z|}\cdot\int\limits_{w_z} v\d x
+\end{align*}
+\item Quasi-Interpolation von Clément:
+\begin{align*}
+R_h:H^1_0(\Omega)\to S^{1,0}_{h,0}\subseteq X_h,\qquad
+R_h(v):=\sum\limits_{z\in N_{h,\Omega}}\left(\pi_z(v)\right)\cdot\varphi_z
+\end{align*}
+\end{itemize}
+\end{notation}
+
+Als nächstes brauchen wir Abschätzungen für
+\begin{align*}
+\big\Vert v-R_h(v)\big\Vert_{0,2,T}\qquad\text{und}\qquad\big\Vert v-R_h(v)\big\Vert_{0,2,E}
+\end{align*}
+gegen die $H^1$-Normen auf $v$.
+
+\begin{theorem}[skalierter Spursatz]\label{theoremSkalierterSpursatz}\enter
+Sei $T\in\T_h$ und $E$ eine Kante von $T$.\\
+Dann existiert eine Konstante $c$, die nur von der Form-Regularitäts-Konstante abhängt, so dass
+\begin{align*}
+\Vert v\Vert_{0,2,E}\leq c\cdot\left(h_T^{-\frac{1}{2}}\cdot\Vert v\Vert_{0,2,T}+ h_T^{\frac{1}{2}}\cdot|v|_{1,2,T}\right)\qquad\forall v\in H^1(T)
+\end{align*}
+\end{theorem}
+
+
