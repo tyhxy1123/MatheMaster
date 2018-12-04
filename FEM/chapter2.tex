@@ -1,3 +1,8 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 \subsection{Triangulation}
 
 %\Large{ $B_h$ oder $B_b$ ???}
@@ -19,7 +24,7 @@
 		\rho &= \underset{\tau \in T_h}{\max} \rho_{\tau}
 	\end{align*}
 \end{definition_}
-%%TODO add picture
+%TODO add picture
 
 We further require that all faces of $\tau_i \in T_h$ are faces of $\tau_i \in T_h$ or part of $\partial \Omega$.
 \input{tikz/chapter2/triang_not_allowed}
@@ -31,9 +36,14 @@ Hanging nodes cannot guarantee continuity of functions.
 \end{itemize}
 
 \begin{definition_}
-	(Finite elements space)\\
+	(Finite elements space)
 	\begin{equation*}
-		X_h = \left \{ v = (v_\tau)_{\tau \in T_h} \in \prod \limits_{\tau \in T_h} P_\tau :  \forall b  \in\N_h : \forall \tau_1,\tau_2 \in T_h(b): B_{b,\tau_1}(v_{\tau_1}) = B_{b,\tau_2}(v_{\tau_2})  \right \}
+		X_h = \left \{ v = (v_\tau)_{\tau \in T_h} \in \prod \limits_{\tau \in T_h} P_\tau \left|
+\begin{array}{c}
+\forall b  \in\N_h : \forall \tau_1,\tau_2 \in T_h(b):\\
+B_{b,\tau_1}(v_{\tau_1}) = B_{b,\tau_2}(v_{\tau_2}) 
+\end{array}		
+ \right.\right \}
 	\end{equation*}
 \end{definition_}
 For Lagrange elements:
@@ -59,6 +69,7 @@ $X_h$ is a finite dimensional space, has a basis
 	\Sigma_h = \{ B_{h,j} : j= 1,\dots,N  \} \quad \text{ set of DoFs} 
 \end{equation*}
 
+
 \begin{itemize}
 	\item $\varphi_i \in X_h$, $ i=1,\dots,N$ with
 	\item  $B_{h,j}(\varphi_i) = \delta_{ij} \quad i,j=1,\dots,N$ (global basis funktions),
@@ -67,7 +78,6 @@ $X_h$ is a finite dimensional space, has a basis
 	\item $\varphi_i(b_j) = \delta_{ij}$ for $i,j = 1,\dots,N$ with 
 	\item $b_j \in N_h$ vertices of all $\tau \in T_h$.
 \end{itemize}
-
 
 \centering
 \begin{tabular}{c|c}
@@ -112,7 +122,7 @@ $X_h$ is a finite dimensional space, has a basis
 	\input{tikz/chapter2/plot_f}
 	
 	\begin{align*}
-		&\text{basis functions on } \hat{\tau} & &   \text{ basis functions on } \tau\\
+		&\text{basis functions on } \hat{\tau} &&  \text{ basis functions on } \tau\\
 		&\begin{rcases}
 		&\hat{P}_1(x,y)=1-x-y \\
 		&\hat{P}_2(x,y)=x \\
