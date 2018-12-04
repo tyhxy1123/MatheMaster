@@ -2,3 +2,4 @@ MSTAT: potenzielle Prüfungsfragen:
 - Was ist Borel-Sigma-Algebra
 - Was ist Zufallsvariable?
 - Continous Mapping Theorem + Beweis
+- Cramer-Wold-Deive + Beweis (Satz 5.4)

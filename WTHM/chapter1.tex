@@ -4,7 +4,7 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \chapter{Bedingter Erwartungswert}
-\section{Bedingter Erwartungswert als $L_2$-Projektion}
+\section{Bedingter Erwartungswert als \texorpdfstring{$L_2$}{L\_2}-Projektion}
 Betrachte den Wahrscheinlichkeitsraum $(\Omega,\A,\P)$.\\
 Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-Norm
 \begin{align*}
@@ -12,8 +12,8 @@ Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-No
 \end{align*}
 und die Räume
 \begin{align*}
-\mathcal{L}_p(\Omega,\A,\P):=\Big\lbrace X:\Omega\to\R\Big|X\text{ ist $\A$-messbar und }\Vert X\Vert_p<\infty\Big\rbrace
-\end{align*}.
+\mathcal{L}_p(\Omega,\A,\P):=\Big\lbrace X:\Omega\to\R\Big|X\text{ ist $\A$-messbar und }\Vert X\Vert_p<\infty\Big\rbrace.
+\end{align*}
 Aufgrund der Minkowski-Ungleichung
 \begin{align*}
 \Vert X+Y\Vert_p\leq\Vert X\Vert_p+\Vert Y\Vert_p
@@ -68,8 +68,8 @@ Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Om
 	$\mathcal{L}_p(\Omega,\F,\P)$ selbst ist Banachraum und damit abgeschlossener Unterraum.
 \end{proof}
 
-\begin{defi}[Bedingte Erwartung in $L_2$]\enter
-Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\enter\enter
+\begin{defi}[Bedingte Erwartung in $L_2$]
+Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\nl
 Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$. Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
 \begin{align*}
 \E[X~|~\mathcal{F}]:=Y.
@@ -111,9 +111,8 @@ Für $t\rightarrow0$ erhalten wir.
 Analog erhält man mit der Annahme $t<0$ die umgekehrte Ungleichung.
 Also folgt
 \[\langle X-Y, F \rangle = 0 \qquad \forall \F \in L_2(\F)\]
-da $F$ beliebig gewählt war.\enter
-
-Jetzt: $\dq (b) \implies (a) \dq{}$ \enter
+da $F$ beliebig gewählt war.\nl
+Jetzt: $\dq (b) \implies (a) \dq{}$\\
 Sei $F\in L_2(\F)$ und $\langle X-Y, F \rangle = 0$. Dann
 \[\implies \|X-Y\|_2^2 + \underbrace{t^2\|F\|_2^2}_{\geq 0} - \underbrace{2t\langle X-Y, F \rangle}_{=0} \geq \|X-Y\|_2^2\]
 Und damit 
@@ -132,7 +131,7 @@ Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Alg
 =\langle X,\E[Y~|~\mathcal{F}]\rangle
 =\langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle$ ``Symmetrie''
 \item Für jede Unter-$\sigma$-Algebra $\mathcal{H}\subseteq\mathcal{F}$ von $\mathcal{F}$ gilt die \textbf{Turmregel / tower law}:
-\begin{align}\label{Turmregel}
+\begin{align}\label{Turmregel}\tag{Tow}
 \E\big[\E[X~|~\mathcal{F}]~\big|~\mathcal{H}\big]=\E[X~|~\mathcal{H}]
 \end{align}
 \item $\E[Z\cdot X~|~\mathcal{F}]=Z\cdot\E[X~|~\mathcal{F}]\qquad\forall Z$ beschränkt und $\mathcal{F}$-messbar ``Pull-out-property''
@@ -142,22 +141,21 @@ Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Alg
 \end{proposition}
 
 \begin{proof}
-\underline{Zu (a):} Folgt direkt aus der Definition.\\
-
+\underline{Zu (a):} Folgt direkt aus der Definition.\nl
 \underline{Zu (b):} Folgt aus Proposition \ref{Prop1.3}:
 \begin{align*}
-&\stackrel{\text{Prop }\ref{Prop1.3}}{\Longrightarrow}
+\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
 \left.
 \begin{matrix}
 \langle X-\E[X~|~\mathcal{F}],F\rangle=0\\
 \langle Y-\E[Y~|~\mathcal{F}],F\rangle=0
 \end{matrix}
 \right\rbrace\forall F\in L_2(\Omega,\mathcal{F},\P)\\
-&~~~\Longrightarrow
+&\implies
 a\cdot\langle X-\E[X~|~\mathcal{F}],F\rangle+b\cdot\langle Y-\E[Y~|~\mathcal{F}],F\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
-&~\,\stackrel{\text{Bilinear}}{\Longrightarrow}
+\overset{\text{Bilinear}}&{\implies}
 \Big\langle a\cdot X+b\cdot Y-\big(a\cdot\E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]\big),F\Big\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
-&\stackrel{\text{Prop }\ref{Prop1.3}}{\Longrightarrow}
+\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
 \E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot \E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]
 \end{align*}
 
@@ -170,23 +168,26 @@ und damit
 \begin{align*}
 \langle X,\E[Y~|~\mathcal{F}]\rangle
 &=\langle \E[X~|~\mathcal{F}]+(X-\E[X~|~\mathcal{F}]),\E[Y~|~\mathcal{F}]\rangle\\
-&\stackeq{\ref{proofProp114_1}}
+\overset{\ref{proofProp114_1}}&=
 \langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle\\
 &=\langle\E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}]-Y)\rangle\\
-&\stackeq{\ref{proofProp114_2}}
+\overset{\ref{proofProp114_2}}&=
 \langle\E[X~|~\mathcal{F}],Y\rangle.
 \end{align*}
 
 \underline{Zu (d):} 
 Aus Proposition 1.3 folgt wieder:
 \begin{align*}
-&\stackrel{\text{Prop }\ref{Prop1.3}}{\Longrightarrow}
-\langle X-\E[X~|~\mathcal{F}],F\rangle\qquad\forall F\in L_2(\mathcal{F})\supseteq L_2(\mathcal{H})\\
-&~~~\Longrightarrow
-\langle \E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}-Y)]\rangle=0\qquad\forall H\in L_2(\mathcal{H})\\
-&~~~\Longrightarrow
-\Big\langle X-\E\big[\E[X~|~\mathcal{F}]~|~\mathcal{H}\big],H\Big\rangle=0\qquad\forall H\in L_2(\mathcal{H})\\
-&\stackrel{\text{Prop }\ref{Prop1.3}}{\Longrightarrow}
+\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
+\langle X-\E[X~|~\mathcal{F}],F\rangle
+&\forall& F\in L_2(\mathcal{F})\supseteq L_2(\mathcal{H})\\
+&\implies
+\langle \E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}-Y)]\rangle=0
+&\forall& H\in L_2(\mathcal{H})\\
+&\implies
+\Big\langle X-\E\big[\E[X~|~\mathcal{F}]~|~\mathcal{H}\big],H\Big\rangle=0\qquad
+&\forall& H\in L_2(\mathcal{H})\\
+\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
 \E[X~|~\mathcal{H}]=\E\big[\E[X~|~\mathcal{F}]~|~\mathcal{H}\big]
 \end{align*}
 
@@ -220,8 +221,7 @@ und andererseits
 &\Longrightarrow \P(\E[X~|~\mathcal{F}]<0)=0\\
 &\Longrightarrow\E[X~|~\mathcal{F}]\geq0\text { fast sicher}
 \end{align*}
-Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\\
-
+Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\nl
 \underline{Zu (g):}
 \begin{align*}
 \pm X\leq|X|
@@ -231,7 +231,7 @@ Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\\
 \end{align*}
 \end{proof}
  
-\section{Bedingte Erwartung in $L_1$}
+\section{Bedingte Erwartung in \texorpdfstring{$L_1$}{L\_1}}
 \setcounter{section}{1}
 Prinzip: stetige Fortsetzung.
 
@@ -268,7 +268,7 @@ Mit Kontraktionseigenschaft gilt:
 &\Longrightarrow\left(\E[X_n~|~\F]\right)_{n\in\N}\text{ ist Cauchy-Folge in }L_2(\Omega,\A,\P)\\
 &\Longrightarrow\exists Z\in L_1(\Omega,\A,\P)\mit\E[X_n~|~\F]\stackrel{L_1}{\longrightarrow} Z=:\E[X~|~\F]
 \end{align*}
-\underline{Eindeutigkeit:} Sei $(\tilde{X}_n)_{n\in\N}$ eine weitere Approximationsfolge für $X$, d. h. es gilt auch
+\underline{Eindeutigkeit:} Sei $(\tilde{X}_n)_{n\in\N}$ eine weitere Approximationsfolge für $X$, d.h. es gilt auch
 \begin{align*}
 \E[|\tilde{X}_n-X|]
 \stackrel{n\to\infty}{\longrightarrow}
@@ -279,9 +279,9 @@ Dann gilt:
 \Vert Z-\E[\tilde{X}_n~|~\F]\Vert_1
 &=\Big
 \Vert Z-\E[X_n~|~\F]+\E[X_n~|~\F]-\E[\tilde{X}_n~|~\F]\Big\Vert_1\\
-&\stackrel{\Delta\text{Ungl}}{\leq}
+\overset{\Delta\text{Ungl}}&{\leq}
 \big\Vert Z-\E[X_n~|~\F]\big\Vert_1+\underbrace{\big\Vert\E[X_n~|~\F]-\E[\tilde{X}_n~|~\F]\big\Vert_1}_{=\E[|\E[X_n~|~\F-\E[\tilde{X}_n~|~\F|]}\\
-&\stackrel{\text{Kontr}}{\leq}
+\overset{\text{Kontr}}&{\leq}
 \Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X_n-\tilde{X}_n\Vert_1\\
 &\leq\Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X-X_n\Vert_1+\Vert X-\tilde{X}_n\Vert_1\\
 &\stackrel{n\to\infty}{\longrightarrow}
@@ -322,7 +322,7 @@ Sei $(X_n)_{n\in\N}\subseteq L_2(\A)$ eine Approximationsfolge für $X$, d.h. $X
 \limn\E[(X_n-\E[X_n~|~\F]),\indi_F]\\
 &=
 \limn\langle X_n-\E[X_n~|~\F],\indi_F\rangle\\
-&\stackrel{\text{Prop }\ref{Prop1.3}}{=}
+\overset{\text{Prop }\ref{Prop1.3}}&{=}
 0\qquad\forall F\in\F
 \end{align*}
 \underline{Zeige $(b)\Longrightarrow (a)$:}\\
@@ -338,15 +338,15 @@ Dann gilt:
 \E\Big[\underbrace{\big(\E[X~|~\F]-Y\big)\cdot\indi_{F^+}}_{\geq0}\Big]
 &=
 \E\Big[\E[X~|~\F]\cdot\indi_{F^+}\Big]-\E\left[Y\cdot\indi_{F^+}\right]\\
-&\stackeq{
+\overset{
 \begin{subarray}{c}
 	\text{Pull-out} \\ \text{Turm}
 \end{subarray}
-}
+}&=
 \E[X\cdot\indi_{F^+}]-\E[Y\cdot\indi_{F^+}]\\
-&\stackeq{\text{(b)}}
+\overset{\text{(b)}}&=
 0\\
-&\Longrightarrow\P(F^+)=0
+\implies\P(F^+)&=0
 \end{align*}
 Analog erhält man $\P(F^-)=0$. Also folgt insgesamt $\E[X~|~\F]=Y$ fast sicher.
 \end{proof}
@@ -357,8 +357,8 @@ Denn es gilt:
 \begin{align*}
 \E[X\cdot\indi_\Omega]&=\E[X]=\E\big[\E[X]\cdot\indi_\Omega\big]\\
 \E[X\cdot\indi_\emptyset]&=0=\E\big[\E[X]\cdot\indi_\emptyset\big]\\
-&\stackrel{\text{Thm 1.8}}{\Longrightarrow}
-\E[X]=\E[X~|~\F]\text{, da $\F$ trivial.}
+\stackrel{\text{Theorem \ref{theorem1.8}}}{\Longrightarrow}
+\E[X]&=\E[X~|~\F]\text{, da $\F$ trivial.}
 \end{align*}
 Hier wird $\E[X]\in\R$ als konstante Zufallsgröße in $L_1(\Omega,\F,\P)$ aufgefasst. Damit gilt dann die Gleichung
 \begin{align*}
@@ -368,14 +368,14 @@ denn:
 \begin{align*}
 \E\big[\E[X~|~\mathcal{G}]\big]
 &=\E\big[\E[X~|~\mathcal{G}]~|~\lbrace\emptyset,\Omega\rbrace\big]\\
-&\stackeq{\eqref{Turmregel}}
+\overset{\eqref{Turmregel}}&=
 \E\big[X~|~\lbrace\emptyset,\Omega\rbrace\big]\\
 &=\E[X]
 \end{align*}
 \end{bemerkung}
 
 \section*{Bedingter Erwartungungswert und Unabhängigkeit} %keine Nummer
-Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar }\}$
+Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar}\}$
 \begin{defi}
 Sei $X:\Omega\to\R$ eine Zufallsvariable auf $(\Omega,\A,\P)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. Dann heißt $X$ \textbf{unabhängig} von $\F$, in Zeichen $X\unab\F$
 \begin{align}\label{sigmaAlgebraUnabhaengig}
@@ -407,11 +407,11 @@ Sei $X\in L_1(\Omega,\A,\P)$ unabhängig von $\F$. Dann gilt:
 Wegen $X\unab\F$ gilt:
 \begin{align*}
 \forall F\in\F:\E[X\cdot\indi_X]
-&\stackeq{\ref{sigmaAlgebraUnabhaengig}}
-\E[X]\cdot\P(F)\\
-&=\E\big[\E[X]\cdot\indi_F\big]
+\overset{\ref{sigmaAlgebraUnabhaengig}}&=
+\E[X]\cdot\P(F)
+=\E\big[\E[X]\cdot\indi_F\big]
+\stackrel{\text{Theorem \ref{theorem1.8}}}{\Longrightarrow} \E[X]=\E[X~|~\F]
 \end{align*}
-\[\stackrel{\text{Thm \ref{theorem1.8}}}{\Longrightarrow} \E[X]=\E[X~|~\F]\]
 \end{proof}
 
 \begin{bemerkung}
@@ -439,11 +439,9 @@ In diesen Fällen schreiben wir
 \E[X~|~Y]&:=\E[X~|~\sigma(Y)]\\
 \E[X~|~Y_1,\ldots,Y_n]&:=\E\big[X~|~\sigma(Y_1,\ldots,Y_n)\big]
 \end{align*}
-Die beiden Fälle stimmen überein, wenn wir $Y$ als Zufallsvektor $Y=(Y_1,\ldots,Y_n)$ definieren.\\
-
+Die beiden Fälle stimmen überein, wenn wir $Y$ als Zufallsvektor $Y=(Y_1,\ldots,Y_n)$ definieren.\nl
 \textbf{Interpretation / Bedeutung:}\\
-Beste Vorhersage von $X$ gegeben $Y$. Dies ist in vielen Anwendungen relevant, z. B. $X$ sei das Einkommen einer zufällig ausgewählten Person und $Y$ der höchste Bildungsabschluss dieser Person. \\
-
+Beste Vorhersage von $X$ gegeben $Y$. Dies ist in vielen Anwendungen relevant, z. B. $X$ sei das Einkommen einer zufällig ausgewählten Person und $Y$ der höchste Bildungsabschluss dieser Person.\nl
 Wir betrachten: $(X,Y)$ sei $\R^m\times\R^n$-wertige Zufallsvariable mit gemeinsamer Dichte $f_{XY}(x,y)$.
 \begin{itemize}
 \item
@@ -511,7 +509,7 @@ D. h. ist äquivalent zu
 Doch diese Gleichheit ist leicht zu zeigen:
 \begin{align*}
 \text{rechte Seite }&=\int\limits_{\R^n}\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x\cdot\indi_{\lbrace y\in B\rbrace} \cdot f_Y(y)\\
-&\stackeq{\text{Fubini}}
+\overset{\text{Fubini}}&=
 \int\limits_{\R^m\times\R^n} h(x,y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot\underbrace{f_{X|Y}(x,y)\cdot f_Y(y)}_{=f_{XY}(x,y)}\d (x,y)\\
 &=\text{ linke Seite}
 \end{align*}
@@ -618,8 +616,7 @@ Seien $A,B\in\A$ Ereignisse. Die \textbf{elementare bedingte Wahrscheinlichkeit}
 \begin{align*}
 \P(A~|~B)=\frac{\P(A\cap B)}{\P(B)}\text{ für }\P(B)>0
 \end{align*}
-Was ist der Zusammenhang zur bedingten Erwartung?\\
-
+Was ist der Zusammenhang zur bedingten Erwartung?\nl
 Beachte: Die erzeugte $\sigma$-Algebra 
 \begin{align*}
 \sigma(B)=\big\lbrace\emptyset,B,B^C,\Omega\big\rbrace.
@@ -668,13 +665,20 @@ Sei $X\in L_1(\Omega,\A,\P)$ und $B\in\A$. Dann definiere für $\P(B)>0$:
 \end{defi}
 
 Insgesamt haben wir definiert:\\
-\begin{tabular}{m{3cm}|m{3cm}|m{3cm}|m{3cm}}
-&Bedingen auf &Bedingen auf & Bedingen auf\\
-&$\sigma$-Algebra $\F$ & Zufallsvariable $Y$ & Ereignis $B$\\ \hline
-	Wahrscheinlichkeit eines Ereignisses $A\in\A$ & $\P(A~|~\F)$ & --- & $\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$ \\\hline
-	Erwartungswert einer Zufallsvariable $X$ & $\E[X~|~\F]$ siehe 1.1 und 1.2 & $\E[X~|~Y]~~~(\ast)$ & $\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$
-\end{tabular}\\
-
+\begin{tabular}{p{3cm}|c|c}
+	&Wahrscheinlichkeit & Erwartungswert \\
+	& eines Ereignisses & einer Zufallsariable\\
+	& $A\in\A$ 					& $X$ \\ \hline
+	&& \\
+	$\begin{array}{c}\text{Bedingen auf}\\ \sigma\text{-Algebra } \F\end{array}$ &$\P(A~|~\F)$&$\E[X~|~\F]$ siehe 1.1 und 1.2 \\
+												&& \\ \hline
+	&& \\
+	$\begin{array}{c}\text{Bedingen auf} \\ \text{Zufallvar. } Y\end{array}$ &---&$\E[X~|~Y]~~~(\ast)$ \\
+											&& \\ \hline
+	&& \\
+	$\begin{array}{c} \text{Bedingen auf} \\ \text{Ereignis } B \end{array}$ &$\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$&$\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$ \\
+											&&
+\end{tabular}\enter
 $(\ast)$: Falls eine Dichte existiert: $\E[X~|~Y=y]$
 
 \begin{beisp}[Lebensdaueranalyse]\enter

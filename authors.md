@@ -7,12 +7,12 @@ Der jeweilige Hauptverantwortliche für das Skript steht ganz links.
 | ------ | ------               			|
 | PDENM  | Willi, Robert, Henrik, Marvin  	|
 | ORDSTR | Lukas Z., Willi, Philipp			|
-| MFANA  | Willi, Lukas Z., Philipp			|
+| MFANA  | Willi, Lukas Z.			|
 | WTHM   | Willi, Robert, Philipp, Marvin	|
-| MSTAT  | Willi                			|
+| MSTAT  | Willi, Philipp                			|
 | PDEANA | Robert, Henrik          			|
-| AMGEO  | Lukas Z., Lukas J., Philipp 		|
-| ANGA   | Lukas Z., Lukas J., Philipp     	|
-| FEM    | Henrik, Marvin					|
+| AMGEO  | Lukas Z., Philipp, Lukas J. 		|
+| ANGA   | Lukas Z., Philipp, Lukas J.   	|
+| FEM    | Henrik				|
 
 (Alternativ geht auch "git shortlog -sn FILENAME" um zu checken, wer an welchen Modulen beteiligt ist. ersetze "FILENAME" z.B. mit "authors.md")

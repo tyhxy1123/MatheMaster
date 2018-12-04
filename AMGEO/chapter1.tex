@@ -1,19 +1,20 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 \chapter{Lie algebras}
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\liebracket}{[\cdot,\cdot]}
-\newcommand{\End}{\textrm{End}}
-\newcommand{\gl}{\mathfrak{gl}}
-\newcommand{\GL}{\textrm{GL}}
+\section{Lie algebras}
 \begin{definition}
     A \textbf{Lie algebra} over a field $\F$ 
     is a vector space $L$ together with a bilinear binary operator 
-    $$ \liebracket : L \times L \to L $$ satisfying for all $x,y,z \in L$:
+    $$ \bracket : L \times L \to L $$ satisfying for all $x,y,z \in L$:
     \begin{enumerate}[label=(\arabic*)]
         \item $[x,x] = 0$ "' skew symmetry "'\label{item:skew}
         \item $[[x,y],z] + [[y,z],x] + [[z,x],y] = 0$ "'jacobi identity"'.
     \end{enumerate}
 
-    The binary operator $\liebracket$ is called \textbf{Lie bracket} or \textbf{commutator}.
+    The binary operator $\bracket$ is called \textbf{Lie bracket} or \textbf{commutator}.
 \end{definition}
 
 \begin{remark}
@@ -22,7 +23,7 @@
         [(x+y),(x+y)] = [x,x] + [x,y] + [y,x] + [y,y] = 0 \\
         \implies [x,y] = -[y,x].
     \end{align*}
-    Conversely, if $\liebracket$ is bilinear and $[x,y] = -[y,x]$, we get
+    Conversely, if $\bracket$ is bilinear and $[x,y] = -[y,x]$, we get
     \begin{align*}
         \implies 2 [x,x] = 0\\
         \implies [x,x] = 0,
@@ -40,7 +41,7 @@
     where $V$ is a vector field over $\F$.
 
     Let $L = A$ as a vector space and $[X,Y] = XY -YX$ the "'commutator"', 
-    then $(L, \liebracket)$ form a Lie algebra.
+    then $(L, \bracket)$ form a Lie algebra.
 \end{example}
 \begin{proof} We skip the jacobi identity, as it would lead to 12 different terms, which had to cancel out.
     \begin{itemize}
@@ -93,8 +94,6 @@
     $$A_l, B_l, C_l, D_l. $$
 
     \begin{itemize}[label=]
-        \renewcommand{\sl}{\mathfrak{sl}}
-        \newcommand{\tr}{\textrm{tr}}
         \item \underline{"special linear algebra" $A_l$}:
         Let $\dim V = l+1$. $A_l$ is the set of all linear maps on $V$ with trace 0
         $$ A_l := \sl(V) := \sl(l+1, \F) := \{f \in \textrm{End}(V) \| \tr(f) = 0\}.$$
@@ -197,10 +196,172 @@
         \begin{itemize}
             \item $\mathfrak{t}(d,\F)$ upper triangualar matrices
             \item $\mathfrak{n}(d,\F)$ strictly upper triangualar matrices, i.e. 0 on diagonal
-            \item $\mathfrak{d}(d,\F) \subseteq \mathfrak{t}(d,\F)$ diagonal matrices, here we have $\liebracket = 0$.
+            \item $\mathfrak{d}(d,\F) \subseteq \mathfrak{t}(d,\F)$ diagonal matrices, here we have $\bracket = 0$.
         \end{itemize}
         Note $ \mathfrak{n}(d, \F) = [L,L]$, where $L:= \mathfrak{t}(d,\F)$.
         Warning for $H,K \subseteq L$ sub spaces we define
         $$ [H,K] := \text{span} \{[x,y] \| x\in H,y \in K\}. $$
     \end{itemize}
 \end{example}
+
+\section{Lie algebras of derivations}
+
+\begin{definition}
+    Let $A$ be a vector space with a bilinear binary operator
+    $$ A \tensor A \to A, x\tensor y \mapsto xy$$
+    (e.g. associative or Lie).
+
+    Then a linear map $ \partial: A \to A $ is a \textbf{derivation}, if for all $x,y \in A$ 
+    $$ \partial(xy) = x\partial(y) + \partial(x)y. $$
+    The set of all these is denoted by $\Der(A)$.
+\end{definition}
+
+\begin{proposition}
+    $\Der(A)$ is a Lie algebra with the bracket
+    $$ [\partial, \varphi] := \partial \varphi - \varphi \partial .$$ 
+\end{proposition}
+\begin{proof}
+    Let $\partial, \varphi : A \to A$ derivations. 
+    Then
+    \newcommand{\p}{\partial}
+    \newcommand{\f}{\varphi}
+    \begin{align*}   
+        (\p \circ \f - \f \circ \p)(xy) =& \p \circ \f(xy) - \f \circ \p(xy)\\
+        =& \p(x \f(y) + \f(x)y) - \f(x\p(y) + \p(x)y)\\
+        =& \p(x\f(y)) + \p(\f(x)y) - (\f(x\p(y)) + \f(\p(x)y))\\
+        =& x (\p \circ \f)(y) + \p(x)\f(y) + (\p \circ \f)(x)y + \f(x)\p(y) \\
+        & - \left[\f(x)\p(y) + x(\f \circ\p)(y) + (\f\circ\p)(x)y + \p(x)\f(y)\right] \\
+        =& x(\p \circ \f)(y) + (\p \circ \f)(x)y - x (\f\circ\p)(y) - (\f\circ\p)(x)y\\
+        =&x\left[(\p \circ \f)(y) - \f\circ\p(y)\right] + \left[(\p\circ\f)(x) - (\f\circ\p)(x)\right]y\\
+        =&x[\p,\f](y) + [\p,\f](x)y
+    \end{align*}
+\end{proof}
+
+\begin{example}
+    $A=L$ (with $xy=[x,y]$). Then each $x \in L$ defines a derivation 
+    $$\ad(x): L \to L, y \mapsto [x,y].$$
+    The Leibniz rule is just the Jacobi identity:
+    \begin{align*}
+        \ad(x)(yz) =& \ad(x)([y,z]) = [y, \ad(x)(z)] + [\ad(x)(y),z]\\
+        \iff& \left[x,[y,z]\right] = \left[y,[x,z]\right] \left[[x,y],z\right] \\
+        \iff& 0 = \left[[y,z],x\right] + \left[[z,x],y\right] \left[[x,y],z\right]
+    \end{align*}
+\end{example}
+
+\begin{definition}
+    A derivation $\partial \in \Der(L)$ is called \textbf{inner}, 
+    if there is an $x \in L$ s.th.
+    $$\partial = [x,-].$$
+    We call 
+    $$ \ad : L \to \Der(L) \subseteq \gl(L)$$
+    the \textbf{adjoint representation} of $L$.
+\end{definition}
+
+\section{Abstract Lie agebras and structure constants}
+If $L$ is any Lie algebra and $x_1,...,x_n$ is a basis, 
+then $\bracket$ is  completly determined by the structure of constants $a_{ij}^k \in \F$:
+$$ [x_i,x_j] = a_{ij}^k x_k .$$
+Conversely, if $a_{ij}^k \in \F$, then we can use them to define a Lie algebra on $\F^n$, if
+\begin{enumerate}[label=(\arabic*)]
+    \item $a_{ij}^k = -a_{ji}^k$ and
+    \item $a_{ij}^k a_{kl}^m + a_{jl}^k a_{ki}^m + a_{li}^k a_{kj}^m = 0$.
+\end{enumerate}
+
+\begin{example}
+    Up to isomorphism, there are two non-isomorphic Lie algebras of dimension 2
+    \begin{align*}
+        [x,y] = 0\\
+        [y,x] = 0 &\tab (x,y \text{ basis})
+    \end{align*}
+\end{example}
+
+\section{Ideals and homomorphisms}
+\begin{definition}
+    let $L,L^{'}$ be Lie algebras. A \textbf{(homo)-morphism} is a linear map 
+    $\varphi : L \to L^{'}$ s.th. for all $x,y \in L$
+    $$ [\varphi(x), \varphi(y)]_{L^{'}} = \varphi([x,y]_L). $$
+    A \textbf{monomorphism} is an injective Lie algebra morphism.\\ 
+    An \textbf{epimorphism} is a surjective Lie algebra morphism.\\
+    An \textbf{isomorphism} is a bijective Lie algebra morphism.
+\end{definition}
+
+\begin{definition}
+    An \textbf{Ideal} $J \ideal L$ is a vector subspace s.th.
+    for all $x \in L$ and for all $y \in J$
+    $$ [x,y] \in J ,$$
+    or equivalently for all $x \in J$ and for all $y \in L$
+    $$ [x,y] \in J.$$ 
+\end{definition}
+
+\begin{example}
+    $J=0, J=L$
+    $$ Z(L) := \{x \in L \| \forall y \in L[x,y] = 0\} \ideal L $$
+    $$ L^{(1)} := [L,L] \ideal L. \tab \text{"derived Lie algebra"}$$
+\end{example}
+
+\begin{definition}
+    $L$ is \textbf{abelian}, if $L^{(1)} = 0$.
+\end{definition}
+
+\begin{remark}
+    For $L = \sl(l+1, \F)$, we have $L^{(1)} = L$.
+\end{remark}
+
+\begin{definition}
+    If $0,L$ are the only ideals in $L$ and
+    $$ L^{(1)} \ne 0$$
+    then $L$ is called \textbf{simple}.
+\end{definition}
+
+\begin{remark}
+    So in a simple Lie algebra,$ Z(L) = 0$ and $ [L,L] = L.$
+\end{remark}
+
+\begin{example}
+    $\sl(2, \F) = \{x \in M_2(\F) \mid \tr(x) = 0\}$
+    $$ x = \begin{pmatrix}
+        0 & 1 \\
+        0 & 0
+    \end{pmatrix}, y = \begin{pmatrix}
+        0 & 0 \\
+        1 & 0
+    \end{pmatrix}, h = \begin{pmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{pmatrix}$$
+
+    $$ \bracket[x][y] = h, \bracket[h][x] = 2x, \bracket[h][y] = - 2y, \bracket[h][h] = 0 $$
+    $$ \implies \ad (h) : L \to L \cong \begin{pmatrix}
+        2 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -2
+    \end{pmatrix}$$
+
+    Assume $0 \neq J \ideal L = \sl(2 , \F)$.
+    $$ 0 \neq z = \alpha x + \beta y + \gamma h, z\in J $$
+    If $\alpha \neq 0$ apply $\ad(y)$ twice zo $z$
+    $$ -2 \alpha y = \bracket[y][\bracket[y][z]] \in J $$
+    So
+    \begin{align*}
+        y \in J \implies& \bracket[x][y]=h \in J \implies z - \beta y - \gamma h \in J\\
+        \implies & x \in J\\
+        \implies & J = L,
+    \end{align*}
+    hence $L$ is a simple Lie algebra.
+\end{example}
+
+\section{Quotients}
+\begin{definition}
+    If $J \ideal L$ is an ideal, then the quotient vector space $\sfrac{L}{J}$ 
+    naturally a Lie algebra with bracket
+    $$ \bracket[x + J][y + J] := \bracket[x][y] + J.$$
+    $\sfrac{L}{J}$ is called the \textbf{quotient of $L$ by $J$}.
+    
+    Indeed: If $x + J = J \iff x \in J$ then
+    \begin{align*}
+        \bracket[x][y] \in J \tab \forall y \in L \text{ and }\\
+        \bracket[x + J][y +J] = \bracket[x][y] + J = J
+    \end{align*}
+\end{definition}
+
+\textbf{Important:} Here are some parts missing. See chapter \ref{chapter0}.
