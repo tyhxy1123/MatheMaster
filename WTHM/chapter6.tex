@@ -1,0 +1,164 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Fouriertransformation und charakteristische Funktionen} %6
+Ziel: Mit Zufallsvariablen analytisch / deterministisch zu rechnen \nl
+Wichtige Anwendungen:
+\begin{itemize}
+\item Charakterisierung von Unabhängigkeit
+\item schwache Konvergenz
+\item Zentrale Grenzwertsätze
+\end{itemize}
+
+\begin{defi}\
+\begin{enumerate}[label=(\alph*)]
+\item Für $\mu\in\mathcal{M}_b(\R^d)$ (beschränkte Borelmaße auf $\R^d$) ist die \textbf{Fouriertransformation (FT)} definiert als
+\begin{align*}
+\hat{\mu}:\R^d\to\C,\qquad
+\hat{\mu}(\xi):=\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot x)~\mu(\d x)\qquad\forall\xi\in\R^d
+\end{align*}
+\item Für $f\in L_1(\R^d,\d x)$ ist die \textbf{FT} definiert als
+\begin{align*}
+\hat{f}:\R^d\to\C,\qquad
+\hat{f}(\xi):=\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot x)\cdot f(x)\d x\qquad\forall\xi\in\R^d
+\end{align*}
+\item Für Zufallsvariable $X:\Omega\to\R^d$ ist die \textbf{charakteristische Funktion (CF)} definiert als
+\begin{align*}
+\Phi_X:\R^d\to\C,\qquad
+\Phi_X(\xi):=\E\Big[\exp\big(i\cdot X^T\cdot\xi\big)\Big]\qquad\forall\xi\in\R^d
+\end{align*} 
+\end{enumerate}
+\end{defi}
+
+\begin{bemerkung}
+(a) ist die allgemeinste Definition. (b) und (c) können als Spezialfälle betrachtet werden:\\
+(b): Setze $\mu(\d x):=f(x)\d x$, d.h. $f$ ist Dichte von $\mu$ bzgl. Lebesgue-Maß. Damit gilt:
+\begin{align*}
+\hat{\mu}(\xi)
+&=\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)~\mu(\d x)
+=\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)\cdot f(x)\d x=\hat{f}(\xi)
+\end{align*}
+(c): Sei $\P_X$ Bildmaß von $X$ unter $\P$ (d.h. Wahrscheinlichkeitsmaß auf $\R^d$). Dann gilt:
+\begin{align*}
+\hat{\mu}(\xi)=\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)~\P_X(\d x)=\E\big[\exp(i\cdot X^T\cdot\xi)\big]
+=\Phi_X(\xi)
+\end{align*}
+Weitere Notation: 
+\begin{align*}
+\hat{\mu}=:\F(\mu)\qquad\hat{f}=:\F(f)
+\end{align*}
+Hier steht $\F$ also nicht für eine $\sigma$-Algebra, sondern für die Fouriertransformation. Die Schreibweise ist günstig, um große ``Dächer'' zu vermeiden. 
+\end{bemerkung}
+
+\begin{beisp}\
+\begin{enumerate}[label=(\alph*)]
+\item Sei $X\sim\mathcal{N}(0,1)$. Folglich ist
+\begin{align*}
+\Phi_X(\xi)=\exp\left(-\frac{\xi^2}{2}\right)
+\end{align*}
+denn:
+\begin{align*}
+\Phi_X(\xi)
+&=\int\limits_{-\infty}^\infty \exp(i\cdot x\cdot\xi)\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{x^2}{2}\right)\d x\\
+\Phi_X'(\xi)
+&=\frac{1}{\sqrt{2\pi}}\cdot\int\limits_{-\infty}^\infty
+i\cdot x\cdot\exp\left(i\cdot x\cdot\xi-\frac{x^2}{2}\right)\d x\\
+&=i\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\int\limits_{-\infty}^\infty\exp(i\cdot x\cdot\xi)\cdot\underbrace{x\cdot\exp\left(-\frac{x^2}{2}\right)}_{=-\frac{\partial}{\partial x}\cdot\exp\left(-\frac{x^2}{2}\right)}\\
+&=\underbrace{\left[i\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp(i\cdot x\cdot\xi)\cdot\exp\left(-\frac{x^2}{2}\right)\right]_{-\infty}^\infty}_{=0}\\
+&\qquad-\xi\cdot\underbrace{\frac{1}{\sqrt{2\cdot\pi}}\cdot\int\limits_{-\infty}^\infty\exp(i\cdot x\cdot\xi)\cdot\exp\left(-\frac{x^2}{2}\right)\d x}_{=\Phi_X(\xi)}\\
+&=-\xi\cdot\Phi_X(\xi)\\
+\end{align*}
+Also erfüllt $\Phi_X(\xi)$ die gewöhnliche Differentialgleichung
+\begin{align*}
+\Phi_X'(\xi)=-\xi\cdot\Phi_X(\xi),\qquad\Phi_X(0)=1
+\end{align*}
+Eindeutige Lösung ist $\Phi_X(\xi)=\exp\left(-\frac{\xi^2}{2}\right)$.\nl
+\textbf{Merke:} Die Charakteristische Funktion der Standardnormalverteilung ist proportional zu ihrer Dichte.
+\item Sei $X\sim\mathcal{N}(0,I_d)$ multivariat. Dann haben wir
+\begin{align*}
+\Phi_X(\xi)
+&=\E\Big[\exp(i\cdot\xi^T\cdot X)\Big]\\
+&=\E\left[\prod\limits_{j=1}^d\exp(i\cdot\xi_j\cdot X_j)\right]\\
+\overset{(X_j)\text{ unab}}&=
+\prod\limits_{j=1}^d\underbrace{\E\Big[\exp(i\cdot\xi\cdot X_j)\Big]}_{=\Phi_{X_j}(\xi_j)}\\
+&=\prod\limits_{j=1}^d\exp\left(-\frac{\xi_j^2}{2}\right)\\
+&=\exp\left(-\frac{\xi^T\cdot\xi}{2}\right)\\
+&=\exp\left(-\frac{|\xi|^2}{2}\right)
+\end{align*}
+\end{enumerate}
+\end{beisp}
+
+\begin{theorem}[Eigenschaften der FT / CT]\label{theorem6.1EigenschaftenDerFTCF}\enter
+Sei $\mu\in\mathcal{M}_b(\R^d)$ bzw. $X:\Omega\to\R^d$ eine Zufallsvariable. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item $\begin{aligned}
+\hat{\mu}(0)=\mu(\R^d)\qquad\text{bzw.}\qquad\Phi_X(0)=1
+\end{aligned}$
+\item $\begin{aligned}
+\Big|\hat{\mu}(\xi)\Big|\leq\mu(\R^d)\qquad\text{bzw.}\qquad\Big|\Phi_X(\xi)\Big|\leq \qquad\forall\xi\in\R^d
+\end{aligned}$ (Beschränktheit)
+\item $\xi\mapsto\hat{\mu}(\xi)$ bzw. $\xi\mapsto\Phi_X(\xi)$ ist stetig
+\item $\begin{aligned}
+\hat{\mu}(-\xi)=\overline{\hat{\mu}(\xi)}\qquad\text{bzw.}\qquad\Phi_X(-\xi)=\overline{\Phi_X(\xi)}\qquad\forall\xi\in\R^d
+\end{aligned}$ (Hermitsch-Symmetrie)
+\item Sei $T(x)=A\cdot x+b$ eine lineare Transformation mit $A\in\R^{m\times d}$ und $b\in\R^m$. Dann gilt:
+\begin{align*}
+\F\left(\mu\circ T^{-1}(\xi)\right)&=\exp\left(i\cdot b^T\cdot\xi\right)\cdot\hat{\mu}\left(A^T\cdot\xi\right)\qquad\forall\xi\in\R^m\text{ bzw.}\\
+\Phi_{(A\cdot X+b)}(\xi)
+&=\exp\left(i\cdot b^T\cdot\xi\right)\cdot\Phi_X\left(A^T\cdot\xi\right)\qquad\forall\xi\in\R^m
+\end{align*}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\underline{Zu (a):}
+\begin{align*}
+\hat{\mu}(0)&=\int\limits_{\R^d}1~\mu(\d x)=\mu(\R^d)
+\end{align*}
+\underline{Zu (b):}
+\begin{align*}
+\Big|\hat{\mu}(\xi)\Big|
+&=\left|\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)~\mu(\d x)\right|\\
+&\leq
+\int\limits_{\R^d}\underbrace{\Big|\exp(i\cdot x^T\cdot\xi)\Big|}_{=1}~\mu(\d x)
+=\mu(\R^d)
+\end{align*}
+\underline{Zu (c):}\\
+$\xi\mapsto\exp(i\cdot x^T\cdot\xi)$ ist stetig für alle $x$ und $\Big|\exp(i\cdot x^T\cdot\xi)\Big|\leq1$. Somit folgt aus dominierter Konvergenz die Stetigkeit von
+\begin{align*}
+\xi\mapsto\int\limits\exp\left(i\cdot x\cdot\xi\right)~\mu(\d x).
+\end{align*}
+\underline{Zu (d):}
+\begin{align*}
+\hat{\mu}(-\xi)
+&=\int\limits_{\R^d}\exp(-i\cdot x^T\cdot\xi)~\mu(\d x)\\
+&=\int\limits_{\R^d}\overline{\exp(i\cdot x^T\cdot\xi)}~\mu(\d x)\\
+&=\overline{\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)~\mu(\d x)}\\
+&=\overline{\hat{\mu}(\xi)}
+\end{align*}
+\underline{Zu (e):}
+\begin{align*}
+\F\left(\mu\circ T^{-1}\right)(\xi)
+&=\int\limits_{\R^m}\exp(i\cdot\xi^T\cdot x)~\big(\mu\circ T^{-1}\big)(\d x)\\
+\overset{\text{Trafo}}&=
+\int\limits_{\R^d}\exp\big(i\cdot\xi^T\cdot T(x)\big)~\mu(\d x)\\
+&=\int\limits_{\R^d}\exp\left(i\cdot\xi^T\cdot (A\cdot x)+i\cdot\xi^T\cdot b\right)~\mu(\d x)\\
+&=\exp\left(i\cdot\xi^T\cdot b\right)\cdot\int\limits_{\R^d}\exp\left(i\cdot(A^T\cdot\xi)^T\cdot x\right)~\mu(\d x)\\
+&=\exp\left(i\cdot\xi^T\cdot b\right)\cdot\hat{\mu}\left(A^T\cdot\xi\right)
+\end{align*}
+Alle Aussagen für $X$ folgen als Spezialfall $\mu=\P_X$.
+\end{proof}
+
+\begin{beisp}[Multivariate Normalverteilung]\enter
+Sei $X\sim\mathcal{N}(0,I_d)$, $\mu\in\R^d$, $\Sigma\in\R^{d\times d}$ positiv semidefinit mit $\Sigma=A^T\cdot A$ (z. B. \textit{Cholesky-Zerlegung}). Dann gilt:
+\begin{align*}
+Y&:=\underbrace{\mu+A\cdot X}_{=T(X)}\sim\mathcal{N}(\mu,\Sigma)\\
+\overset{\ref{theorem6.1EigenschaftenDerFTCF}}{\implies}
+\Phi_Y(\xi)&=\exp\left(i\cdot\mu^T\cdot \xi\right)\cdot\Phi_X\left(A^T\cdot\xi\right)\\
+&=\exp\left(i\cdot\mu^T\cdot\xi-\frac{1}{2}\cdot\frac{\xi^T\cdot A\cdot A^T\cdot\xi}{\Sigma}\right)\\
+&=\exp\left(-i\cdot\mu^T\cdot\xi-\frac{1}{2}\cdot\xi^T\cdot\Sigma\cdot\xi\right)
+\end{align*}
+Das ist die CF von $\mathcal{N}(\mu,\Sigma)$.
+\end{beisp}
