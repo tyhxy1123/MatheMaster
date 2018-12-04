@@ -1397,8 +1397,12 @@ Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$. Für $N\i
 \begin{definition}[Raum der finiten Elemente]\enter
 Sei $\T_h$ eine Triangulierung von $\Omega$. Ein \textbf{Raum der finiten Elemente} $V_h$ ist gegeben durch 
 \begin{align*}
-V_h:=\Bigg \lbrace v&=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\\
-&{} \quad\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\Bigg \rbrace
+V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):
+\begin{array}{cl}
+N_i^K(v|_K)=N_j^{K'}(v|_{K'}) &\forall N_i^K\\
+N_j^{K'}\in\Lambda(N) &\forall N\in\Sigma_h
+\end{array}
+\right\rbrace
 \end{align*}
 wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind. Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$ von dem globalen Freiheitsgrad.
 \end{definition}
