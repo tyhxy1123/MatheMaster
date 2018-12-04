@@ -141,8 +141,8 @@ $(\N,<_\tau)$ mit
 \leq_\tau:=\big\lbrace %TODO
 \end{align*}
 
-
 %Hier die 13. Vorlesung (20.11.2018).
+
 \begin{bemerkung}
 Für $x,y\in[0,\infty]$ mit $x\leq y$ ist also $\delta(x,y)$ das kleinste Element $t$ in $\big([0,\infty],\leq\big)$ mit $x+t=y$, d.h. $t$ ist die kleinste ``Ergänzung'' von $x$ zu $y$ im natürlich geordneten Monoid $\big([0,\infty],+,0\big)$\\
 Man erkennt hieraus leicht, dass $\delta$ funktoriell ist:
@@ -265,6 +265,8 @@ Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mat
 \item $\Delta a\ast b=\Delta a\ast\Delta b\qquad\forall(a,b)\in E^{\langle2\rangle}$
 \end{enumerate}
 
+% ab hier die 15. und 16. Vorlesung, 26.11 und 27.11
+
 \begin{bemerkung}
     Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
 \end{bemerkung}
@@ -336,3 +338,184 @@ Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mat
     Zusätzlich gilt offenbar:
     $$ \Phi^{red} \text{ Isomorphismus } \iff G \text{ dünn}.$$
 \end{bemerkungnr}
+
+%begin 17th Lecture, 03.12
+\begin{definition}
+Seien $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke. Dann heißt $G$ \textbf{Unternetzwerk} von $G:\Longleftrightarrow$
+\begin{enumerate}
+\item $V'\subseteq V$ und $E'\subseteq E$
+\item $\forall e'\in E':\rho'(e')=\rho(e')$\\
+d.h. $\rho|_{G'}=\rho'$ oder $\rho|_{(E'\to V'\times V')}=\rho'$)
+\end{enumerate}
+\end{definition}
+
+\begin{notation}
+Einschränkungen: Sei $f:A\to B$ Abbildung, $A_0\subseteq A$, $B_0\subseteq B$, $f(A_0)\subseteq_0$
+\begin{align*}
+f|_{(A_0\to B_0)}:=f|_{A_0}:A_0\to B_0,\qquad a\to f_a
+\end{align*}
+\end{notation}
+
+Konstruktion von Unternetzwerken:\\
+Sei $G=(V,E,\rho)$ ein Netzwerk und $E_\subseteq E$, $V_0\subseteq V$ mit $\rho(E_0)\subseteq U_0\times U_0$, dann ist $G_0:=(V_0,E_0,\rho|_{E_0})$ ein Unternetzwerk von $G$.\\
+Spezialfall: $V=V_0$
+\begin{align*}
+G|_{E_0}:=G_0:=(V,E_0,\rho|_{E_0})
+\end{align*}
+heißt \textbf{knotenvollständige Einschränkung}.
+
+\begin{definition}[Unterstrukturen von ANM]\enter
+Seien $\G=(G,\ast,\id)$ mit $G=(V,E,\rho)$ und $\G'=(G',\ast',\id')$ mit $G'=(V',E',\rho')$ Aktionswerke. Dann heißt $\G'$ \textbf{Unterstruktur} von $\G$ $:\Longleftrightarrow$
+\begin{enumerate}
+\item $V'=V$, $E'\subseteq E$ und $\rho'=\rho|_{E'}$ (d.h. $G'=G|_E$)
+\item $\ast'=\ast|_{E'^{\langle 2\rangle_{G'}}}$ (2 Pfade in $\G'$
+\item $\id'=\id|_{(V'\to E')}$
+\end{enumerate}
+Die letzten Bedingungen besagen:
+\begin{align*}
+\forall a',c'\in E^{\langle2\rangle}:(a',c')\in E^{\langle2\rangle}\Longleftrightarrow a'\ast c'\in E'\\
+\id V'\subseteq E'
+\end{align*}
+\end{definition}
+
+Wir nennen dann $\G|_{E'}=\G'$ die \textbf{Einschränkung von $\G$ auf $E'$}. (Denn $\G'$ ist durch $\G$ und $E'$ eindeutig bestimmt.)\nl
+Unsere Überlegungen folgen allgemeinen Konstruktionen von UnterANWs:
+
+\begin{definition}
+Sei $\G=(G,\ast,\id)$ ANW mit $D\subseteq E$. Dann \textbf{induziert $D$ eine Unterstruktur} in $\G:\Longleftrightarrow$
+\begin{enumerate}
+\item $\forall a,b\in E^{\langle2\rangle}:\big(a,b\in D\implies a\ast b\in D\big)$
+\item $\id V\subseteq D$
+\end{enumerate}
+Die Struktur $\G'=\G|_D$ ist eindeutig bestimmt.
+\end{definition}
+
+\begin{beispiel}
+$\G=(\N,+,0),~E=\N,~A=\lbrace 4,5\rbrace$ Dann folgt
+\begin{align*}
+D:=\langle A\rangle=\big\lbrace m\cdot 4+n\cdot 5\mid m,n\in\N\big\rbrace
+\end{align*}
+\begin{tabular}{c|cccc}
+4$\setminus$5 & 0 & 1 & 2 & 3\\ \hline
+0 & 0 & 5 & 10 & 15\\
+1 & 4 & 9 & 14 & 19\\
+2 & 8 & 13 & 18 & 23\\
+3 & 12 & 17 & 22 & 27
+\end{tabular}
+\end{beispiel}
+
+%begin 18th Lecture, 04.12
+
+\begin{proposition}[Erzeugung von Unterstrukturen in ANWen]\enter
+Sei $\G=(G,\ast,\id)$ ein ANW mit $G=(V,E,\rho)$ zugehöriges Netzwerk. Dann sei für $A,C\subseteq 2^E$ stets das \textbf{Minkowski-Produkt} von $A$ und $C$ in $\G$ definiert als
+\begin{align*}
+A\ast C
+:=A\ast_{\text{Mink}} C
+A\ast_{\text{Mink}(\G)} C
+:=\left\lbrace a\ast c~\left|~(a,c)\in (A\times C)\cap E^{\langle2\rangle}\right.\right\rbrace
+\end{align*}
+Sei $\mathbb{M}$ Vektorraum. Für $A,C\in 2^M$ heißt
+\begin{align*}
+A+C:=\big\lbrace a+c\mid (a,c)\in A\times C\big\rbrace
+\end{align*}
+\textbf{Minkowwski-Summe} von $A$ und $C$ in $\mathbb{M}$.
+
+Für $A\subseteq 2^E$ sei die $n$-fache \textbf{Minkowski-Potenz} von $A\in 2^E$ in $\G$ definiert als
+\begin{align*}
+A^{(n)}
+A^{(n)\ast}
+:=A^{(n)_\G}
+:=\Big\lbrace a_1\ast\ldots\ast a_n~\Big|~(a_1,\ldots,a_n)\in \underbrace{A^n\cap E^{\langle n\rangle}}_{=:A^{\langle n\rangle}}\Big\rbrace
+\end{align*}
+%für jedes $n\in\N$. D.h.
+%\begin{align*}
+%A^{(n)_\G}=A\ast_{\text{Mink}_\G}\ldots\ast_{\text{Mink}_\G} A
+%\end{align*}
+Sei $A^{(0)}:=\id V$, d.h. $A^{(0)}=\lbrace\id(p):p\in V\rbrace$. Hierbei ist $A^{(0)}$ die Menge aller \textbf{ID-Loops} in $\G$.
+Dann heiße
+\begin{align*}
+A^{(\ast)}:=A^{(\ast)_\G}:=\bigcup\limits_{n\in\N} A^{(n)}
+\end{align*}
+der \textbf{Kleene-Star / Kleenscher Stern} von $A$ in $\G$, d.h.
+\begin{align*}
+A^{(\ast)}=\id~V\cup A\cup (A\ast A)\cup (A\ast A\ast A)\cup\ldots\qquad\forall A\in 2^E
+\end{align*}
+Für $A\in 2^E$ bildet $A^{(\ast)}$ stets die bzgl. ``$\subseteq$'' kleinste Unterstruktur von$\G$, die $A$ enthält. Man nennt $A^{(\ast)}$ daher auch das \textbf{Erzeugnis} von $A$ in $\G$ und schreibt auch
+\begin{align*}
+\langle A\rangle &:=\langle A\rangle_\G:=(A)^{(\ast)_\G}\\
+\langle A\rangle&:=A^{(\ast)}
+\end{align*}
+\end{proposition}
+
+\begin{beispiel}
+Für $A:=\lbrace 4,5\rbrace\in 2^\N$ ist 
+\begin{align*}
+\langle A\rangle=A^{(\ast)}=\lbrace0,4,5,8,9,10,12,13,14,\ldots\rbrace=\N\setminus\lbrace1,2,3,6,7,11\rbrace
+\end{align*}
+in $\G=\G(\N,+,0)$. D.h. $\N\setminus\lbrace1,2,3,6,7,11\rbrace$ ist der von $\lbrace4,5\rbrace$ in $(\N,+,0)$ erzeugte Untermonoid.
+\end{beispiel}
+
+Sei $B$ eine Menge (von Buchstaben). Dann ist 
+\begin{align*}
+K_B:=\big(\lbrace\perp\rbrace,B,B\to\lbrace(\perp,\perp)\rbrace\Big)
+\end{align*}
+ein 1-knotiges Netzwerk, das sogenannte \textbf{Kleeblatt-Netzwerk} zu $B$.($\lbrace\perp\rbrace$ ist der eine Knoten, $B$ die Kantenmenge (Buchstaben) und $B\to\lbrace(\perp,\perp)\rbrace$ die Strukturabbildung)\nl
+\textbf{Allgemeine Notation:} Sei $G=(V,E,\rho)$ Netzwerk und sei
+\begin{align*}
+E^{\langle+\rangle}:=\bigcup\limits_{n\in\N_+} E^{\langle n\rangle}
+\end{align*}
+die Menge aller Pfade (``positiver Länge'') in $G$ und sei $\omega:V\to W$ Bijektion mit $W\cap E^{\langle +\rangle}=\emptyset$.\\
+Dann definieren wir das \textbf{Pfad-ANW} zu $(G,\omega)$ durch
+\begin{align*}
+\mathbb{P}(G,\omega):=\big(P(G,\omega),\circledast,\id)
+\end{align*}
+via
+\begin{align*}
+P(G,\omega)=(V,E^{\langle\ast\rangle},\tilde{\rho})\mit E^{\langle\ast\rangle}:=\bigcup\limits_{n\in\N} E^{\langle n\rangle}
+\end{align*}
+wobei $E^{\langle0\rangle}:=W$ und
+\begin{align*}
+\tilde{\rho}:E^{\langle\ast\rangle}\to V\times V,\qquad\tilde{\rho}(a_1,\ldots,a_n):=\big(\sigma a_1,\tau a_n\big)
+\qquad\forall(a_1,\ldots,a_n)\in E^{\langle+\rangle}
+\end{align*}
+und $\tilde{\rho}(\omega p):=(p,p)$ für $p\in V$.
+\begin{align*}
+(a_1,\ldots,a_m)\circledast(c_1,\ldots,c_n)
+:=\big(a_1,\ldots,a_m,c_1,\ldots, c_n\big)
+\end{align*}
+ist formales Aneinanderhängen von Pfaden 
+\begin{align*}
+\omega(p)\circledast(a_1,\ldots,a_n):=(a_1,\ldots,a_n)=:(a_1,\ldots,a_n)\circledast\omega(p)
+\end{align*}
+für $p:=\sigma a_1$ und $q:=\tau a_n$.
+\begin{align*}
+\id:V\to E^{\langle\ast\rangle},\qquad p\to\omega p
+\end{align*}
+
+\textbf{Beobachtung:} Das Erzeugnis von $E$ in $\mathbb{P}(\G,\omega)$ ist der Kleene Star von $E$:
+\begin{align*}
+\langle E\rangle_{\mathbb{P}(G,\omega)}
+&=E^{(\circledast)}
+=\underbrace{\id~V}_{E^{\langle0\rangle}}\cup \underbrace{E}_{=E^{\langle1\rangle}}\cup \underbrace{(E\circledast E)}_{E^{\langle2\rangle}}\cup\underbrace{(E\circledast E\circledast E)}_{=E^{\langle3\rangle}}\cup\ldots\\
+&=\bigcup\limits_{n\in\N} E^{(n)\circledast}
+=\bigcup\limits_{n\in\N} E^{\langle n\rangle}
+=E^{\langle\ast\rangle}
+\end{align*}
+Hierbei heißt $\circledast$ das \textbf{Pfadprodukt} in $\mathbb{P}(G,\omega)$ (formales aneinanderhängen von Pfaden). Beachte
+\begin{align*}
+E^{(n)\circledast}=E^{\langle n\rangle}\qquad\forall n\in\N
+\end{align*}
+Ergebnis:
+\begin{align*}
+\langle E\rangle_{\P(G,\omega)}=E^{(\circledast)}=E^{\langle\ast\rangle}
+\end{align*}
+Das heißt, das Erzeugnis von $E$ in $\mathbb{P}(G,\omega)$ ist $E^{\langle\ast\rangle}$, d.h. $E$ erzeugt $\mathbb{P}(G,\omega)$.\\
+Alle Kanten aus $G$ (interpretiert als Pfade der Länge 1) erzeugt das Pfad-ANN zu $(G,\omega)$.\\
+$G$ ist Unter-Netzwerk von $P(G,\omega)$, also ``liegt'' $G$ in $\mathbb{P}(G,\omega)$ als Netzwerk.\\
+Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht UnterANW!
+
+% ab hier die 19. Vorlesung vom 10.12
+
+
+
+
