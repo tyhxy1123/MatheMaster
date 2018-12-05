@@ -14,8 +14,8 @@ Dann besitzt das Cauchy-Problem
 u(0)=u_0&
 \end{array}\right.
 \end{align}
-für jedes $u_0\in\overline{\dom(A)}$ genau eine Integrallösung $u\in C\big([0,T],X\big)$.\\
-Für je zwei Integrallösungen $u,\hat{u}$ von \eqref{CPchapter3} zu Anfangswerten $u_0$ bzw. $\hat{u}\in\overline{\dom(A)}$ gilt
+für jedes $u_0\in\overline{\dom(A)}$ genau eine Integrallösung $u\in C\big([0,T],X\big)$ (oder $u\in C(\R_+,X)$ geht auch).\\
+Für je zwei Integrallösungen $u,\hat{u}$ von \eqref{CPchapter3} zu Anfangswerten $u_0$ bzw. $\hat{u}_0\in\overline{\dom(A)}$ gilt
 \begin{align*}
 \big\Vert u(t)-\hat{u}(t)\big\Vert
 \leq\exp(\omega\cdot t)\cdot\big\Vert u_0-\hat{u}_0\big\Vert\qquad\forall t\in[0,T]
@@ -30,3 +30,172 @@ S(t):\overline{\dom(A)}\to\overline{\dom(A)}
 \end{align*}
 ist Lipschitz-stetig mit Lipschitzkonstante $S(0)=\id$ und $S(t+a)=S(t)\circ S(s)$
 \end{theorem}
+
+\begin{proof}
+Wir führen temporär den Begriff der Euler-Lösung ein:\\
+Eine Funktion $u\in C\big([0,T],X\big)$ heißt \textbf{Euler-Lösung} des Cauchyproblems 
+\begin{align*}
+\left\lbrace\begin{array}{rl}
+\dot{u}+Au\ni f\\
+u(0)=u_0
+\end{array}\right.\mit u_0\in X,f\in L^1(0,T,X)
+\end{align*}
+wenn es eine Folge $(\Theta_n)_{n\in\N}=\left(\left(\pi_{\Theta_n},f_{\Theta_n},u_{0,\Theta_n}\right)\right)_{n\in\N}$ von Diskretisierungen und eine Folge $(u_n)_{n\in\N}$ von Lösungen des impliziten Eulerschemas $(E_{\Theta_n})$ gibt mit den Eigenschaften:
+\begin{enumerate}
+\item $\pi_{\Theta_n}$ ist Partition von $[0,T]$
+\item $\limn\big|\pi_{\Theta_n}\big|=0$
+\item $\limn\big\Vert f_{\Theta_n}-f\big\Vert_{L^1}=0$
+\item $\limn\big\Vert u_{0,\Theta_n}-u_0\big\Vert=0$
+\item $\limn\big\Vert u_n-u\big\Vert_{C\big([0,T],X\big)}=0$
+\end{enumerate}
+Für Existenz einer Eulerlösung:\\
+Sei $\Theta_n=\big(\pi_{\Theta_n},0,u_{0,\Theta_n}\big)$ eine Folge von Diskretisierungen so, dass 
+\begin{enumerate}
+\item $\pi_{\Theta_n}$ ist Partition von $[0,T]$
+\item $\limn\big|\pi_{\Theta_n}\big|=0$ und $\big|\pi_{\Theta_n}\big|\cdot\omega<1$
+\item $\limn\big\Vert u_{0,\Theta_n}-u_0\big\Vert=0$
+\end{enumerate}
+wobei $u_0\in\overline{\dom(A)}$ gegeben ist.\\
+Weil $A$ $m$-akkretiv vom Typ $\omega$ ist, besitzt das implizite Eulerschema $(E_{\Theta_n})$ genau eine Lösung $u_{\Theta_n}\in C\big([0,T],X\big)$. Erinnerung an das implizite Eulerschema:
+\begin{align*}
+\left\lbrace\begin{array}{c}
+u_{\Theta_n}(t_{i+1})+h_i\cdot A u_{\Theta_n}(t_{i+1})\ni u_{\Theta_n}(t_i)\\
+u(\underbrace{0}_{=t_0})=u_{0,\Theta_n}
+\end{array}\right.
+\end{align*}
+Dann gilt für alle $\hat{u}\in\dom(A)$:
+\begin{align*}
+&\limsup\limits_{n,m\to\infty}\left\Vert u_{\Theta_n}-u_{\Theta_m}\right\Vert_{C\big([0,T],X\big)}\\
+&=\limsup\limits_{n,m\to\infty}\sup\limits_{t\in[0,T]}\left\Vert u_{\Theta_n}(t)-u_{\Theta_m}(t)\right\Vert_X\\
+\overset{\ref{theoremEndeChpater2}}&\leq
+\limsup\limits_{n,m\to\infty}\sup\limits_{t\in[0,T]}
+\left(\big\Vert u_{0,\Theta_n}-\hat{u}\big\Vert+\big\Vert u_{0,\Theta_m}-\hat{u}\big\Vert+\sqrt{\big(|\pi_{\Theta_n}|+|\pi_{\Theta_m}|\big)}\cdot\Vert A\hat{u}\Vert\right)\\
+&= 2\cdot\big\Vert u_0-\hat{u}\big\Vert
+\end{align*}
+Nun bilden wir das Infimum über $\hat{u}$ und erhalten
+\begin{align*}
+\limsup\limits_{n,m\to\infty}\left\Vert u_{\Theta_n}-u_{\Theta_m}\right\Vert_{C\big([0,T],X\big)}=0
+\end{align*}
+Also ist $\big(u_{\Theta_n}\big)_{n\in\N}$ eine Cauchyfolge in $C\big([0,T],X\big)$ und wegen der Vollständigkeit konvergent. Der Grenzwert $u:=\limn u_{\Theta_n}$ ist also eine Eulerlösung von \eqref{CPchapter3}. Der Beweis zeigt, dass $u$ nicht von der Wahl der Folge $(\Theta_n)_{n\in\N}$ abhängt.\\
+Für den Rest des Theorems zeigt man, dass für zwei Eulerlösungen $u,\hat{u}$ (bzw. eine Eulerlösung $u$ und eine Integrallösung $\hat{u}$) die Abschätzung 
+\begin{align*}
+&\big\Vert u(t)-\hat{u}(t)\big\Vert\\
+&\leq\big\Vert u(s)-\hat{u}(s)\big\Vert+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau
++\int\limits_s^t\big[u(\tau)-\hat{u}(\tau),f(\tau)-\hat{f}(\tau)\big]\d\tau
+\end{align*}
+für alle $0\leq s\leq t$ gilt. (Für uns ist die rechte Seite $f\equiv 0$.) Aus der Abschätzung folgt:
+\begin{enumerate}
+\item Die konstanten Lösungen sind zulässige Eulerlösungen, also:
+\begin{align*}
+\forall(\hat{u},\hat{f}):
+\Vert u(t)-\hat{u}\Vert\leq\Vert u(s)-\hat{u}\Vert
++\omega\cdot\int\limits_s^t\Vert u(\tau)-\hat{u}\Vert\d\tau
++\int\limits_s^t\big[u(\tau)-\hat{u},-\hat{f}\big]\d\tau
+\end{align*}
+für alle $0\leq s\leq t$, d.h. jede Eulerlösung \underline{ist} Integrallösung.
+\item (Mit dem Lemma von Gronwall folgt:) Für jede Eulerlösung $u$ und jede Integrallösung $\hat{u}$ (zu rechten Seiten $f=\hat{f}=0$)
+\begin{align*}
+\big\Vert u(t)-\hat{u}(t)\big\Vert
+\leq\exp(\omega\cdot t)\cdot\big\Vert u(0)-\hat{u}(0)\big\Vert\qquad\forall t\geq 0
+\end{align*}
+woraus Eindeutigkeit von Integral- (und Euler-)lösungen und die Abschätzung im Theorem folgen.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}[Regularität]\label{theoremChapter3Regularitaet}\enter
+Voraussetzungen wie in Crandall-Ligget. Dann ist für alle $u_0\in\dom(A)$ die eindeutige Integrallösung $u$ von 
+\begin{align*}
+\left\lbrace\begin{array}{c}
+\dot{u}+Au\ni 0\\
+u(0)=u_0
+\end{array}\right.
+\end{align*}
+Lipschitzstetig mit Lipschitzkonstante
+\begin{align*}
+\Vert A u_0\Vert=\inf\big\lbrace\Vert f\Vert:f\in A u_0\big\rbrace
+\end{align*}
+\end{theorem}
+Wenn der Banachraum $X$ die \textit{Radon-Nikodym-Eigenschaft} besitzt, dann ist für jedes $u_0\in\dom(A)$ die Integrallösung $u\in W^{1,\infty}\big([0,T],X\big)$ eine starke Lösung und für $u_0\in\overline{\dom(A)}$ eine milde Lösung.\\
+Hierzu die Beobachtung:\\
+Jede Funktion $u\in W^{1,\infty}\big([0,T],X\big)$ ist \ul{Lipschitzstetig}, denn für $t\geq s$ gilt:
+\begin{align*}
+\big\Vert u(t)-u(s)\big\Vert
+&=\left\Vert\int\limits_s^t u'(\tau)\d\tau\right\Vert\\
+\overset{\text{DU}}&\leq
+\int\limits_s^t\big\Vert u'(\tau)\big\Vert\d\tau\\
+&\leq\Vert u'\Vert_{L^\infty(0,T,X)}\cdot(t-s)
+\end{align*}
+Tatsächlich ist $W^{1,\infty}\big([0,T],X\big)$ ein abgeschlossener Unterraum des Banachraums\\ $\Lip\big([0,T],X\big)$. (die Normen
+$\Vert u\Vert_{W^{1,\infty}}=\Vert u\Vert_{L^\infty}+\Vert u'\Vert_{L^\infty}$ und\\ $\Vert u\Vert_{\Lip}=\text{ Lipschitzkonstante von }u+\Vert u\Vert_{L^\infty}$ sind äquivalent.)\\
+Im Fall von $X=\R$ oder $X=\C$ gilt der Satz von Radon-Nikodym bzw. der Satz von Rademacher:
+
+\begin{satz}[Satz von Rademacher]\label{satzRademacher}
+\begin{align*}
+W^{1,\infty}\big([0,T]\big)=\Lip\big([0,T]\big)
+\end{align*}
+\end{satz}
+\begin{proof}
+Folgt aus dem Satz von Radon-Nikodym.
+\end{proof}
+
+Für beliebige Banachräume $X$ gilt die Gleichheit
+\begin{align*}
+W^{1,\infty}\big([0,T],X\big)=\Lip\big([0,T],X\big)
+\end{align*}
+im Allgemeinen nicht.
+
+\begin{beispiel}
+Sei $X=L^1(0,1)$ und  betrachte
+\begin{align*}
+f:[0,1]\to X=L^1(0,1),\qquad f(t):=\indi_{[0,t]}
+\end{align*}
+Dann gilt für $t\geq s$:
+\begin{align*}
+\big\Vert f(t)-f(s)\big\Vert_{L^1(0,1)}
+=\left\Vert\indi_{[s,t]}\right\Vert_{L^1(0,1)}
+=|t-s|
+\end{align*}
+d.h. $f$ ist Lipschitzstetig mit Lipschitzkonstante 1.
+Somit gilt $f\in\Lip\big([0,T],X\big)$, aber $f\not\in W^{1,\infty}\big([0,T],X\big)$.
+\end{beispiel}
+
+Ein Banachraum $X$ hat die \textbf{Radon-Nikodym-Eigenschaft}
+\begin{align*}
+:\Longleftrightarrow W^{1,\infty}\big([0,T],X\big)=\Lip\big([0,T],X\big)
+\end{align*}
+
+\begin{beispiel}\
+\begin{enumerate}
+\item reflexive Banachräume haben die Radon-Nikodym-Eigenschaft
+\item $L^1(0,1)$ hat die Eigenschaft nicht
+\item $l^1(\N)=l^1$ hat die Radon-Nikodym-Eigenschaft\\
+(siehe Buch von Diestel-Uhl: \textit{Vector measures})
+\end{enumerate}
+\end{beispiel}
+
+\begin{proof}[Beweis von Theorem \ref{theoremChapter3Regularitaet}]\enter
+Sei $u_0\in\dom(A)$ und sei $u$ (eindeutige) Integrallösung von $\dot{u}+Au\ni 0,~u(0)=u_0$. Seien $\Theta_n:=\big(\pi_{\Theta_n},0,u_0\big)$ Diskretisierungen von \eqref{CPchapter3} mit
+\begin{align*}
+\lim\big|\pi_{\Theta_n}\big|=0\qquad\text{und}\qquad\big|\pi_{\Theta_n}\big|\cdot\omega<1
+\end{align*}
+und sei $u_{\Theta_n}$ die Lösung von $(E_{\Theta_n})$. Dann gilt:
+\begin{align*}
+\big\Vert u_{\Theta_n}-u\big\Vert_{C\big([0,T],X\big)}\stackrel{n\to\infty}{\longrightarrow}0
+\end{align*}
+und insbesondere für alle $t,\hat{t}\in[0,T]$:
+\begin{align*}
+\big\Vert u(t)-u(\hat{t})\big\Vert_X
+&=\limn\left\Vert u_{\Theta_n}(t)-u_{\Theta_n}(\hat{t})\right\Vert_X\\
+\overset{\ref{theoremEndeChpater2},~\hat{u}\stackeq{!}0}&\leq
+\limn\sqrt{(t-\hat{t})^2+\big|\pi_{\Theta_m}\big|\cdot t+\big|\pi_{\Theta_n}\big|\cdot\hat{t}}\cdot\Vert A u_0\Vert\\
+&=\big| t-\hat{t}\big|\cdot\Vert Au_0\Vert
+\end{align*}
+Also ist $u$ Lipschitzstetig mit Lipschitzkonstante $\Vert A u_0\Vert$. Falls $X$ die Radon-Nikodym-Eigenschaft hat, dann ist $u\in W^{1,\infty}\big([0,T],X\big)$. Lemma ($u$ Integrallösung + $u\in W^{1,1}$) $\implies u$ ist starke Lösung. Falls $X$ Radon-Nikodym-Eigenschaft hat und $i_0\in\overline{\dom(A)}$, dann existiert eine Folge $(u_0^n)_{n\in\N}\subseteq\dom(A)$ mit $\limn\big\Vert u_0^n-u_0\big\Vert=0$.\\
+Die Lösungen $u_n$ zu den Anfangswerten $u_0^n$ sind starke Lösungen und konvergierenaufgrund der Abschätzung 
+\begin{align*}
+\big\Vert u_n(t)-u(t)\big\Vert\leq\exp(\omega\cdot t)\cdot\big\Vert u_0^n-u_0\big\Vert
+\end{align*}
+gleichmäßig auf $[0,T]$ gegen Lösung $u$ zum Anfangswert $u_0$. Folglich ist $u$ eine milde Lösung.
+\end{proof}
+
+
