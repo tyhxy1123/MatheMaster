@@ -1,0 +1,137 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../PDENUM/PDENM_commands}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{PDENM WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 5}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\G}{\mathcal{G}}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe 5.1}
+Sei $K=(a,a+h)$ mit $a\in\R$ und $h>0$ ein offenes Intervall.
+
+\subsection*{Aufgabe 5.1(a)}
+Es gilt für alle $v\in P_k(V)$ und $0\leq m\leq l$ sowie $p,q\in[1,\infty]$ die inverse Ungleichung
+\begin{align*}
+|v|_{l,p,K}\leq c\cdot h^{m-l+\left(\frac{1}{p}-\frac{1}{q}\right)}\cdot|v|_{m,q,K}
+\end{align*}
+wobei $C$ eine Konstante ist, die nicht von $K$ abhängt (und damit insbesondere auch nicht von $h$).
+
+\begin{proof}
+Nutze Transformation auf Referenzelement $\hat{K}=(0,1)$, also
+\begin{align*}
+f:\R\to\R,\qquad x\mapsto h\cdot x+a
+\end{align*}
+%TODO
+\end{proof}
+
+\subsection*{Aufgabe 5.1 (b)}
+Wie muss die rechte Seite angepasst werden, wenn die volle $W^{l,p}$-Norm in ähnlicher Weise abgeschätzt werden soll?
+
+\begin{lösung}
+%TODO
+\end{lösung}
+
+\section*{Aufgabe 5.2}
+Im Rahmen nichtkonformer Finite Elemente soll die folgende Verallgemeinerung des Dualitätsarguments von Aubin-Nitsche untersucht werden.\\
+Sei $H$ ein Hilbertraum mit Norm $\Vert\cdot\Vert_H$ und Skalarprodukt $(\cdot,\cdot)$. Ferner sei $V_h\subseteq H$ abgeschlossen mit Norm $\Vert\cdot\Vert_h$ und $V$ ein Hilbertraum, welcher stetig in $H$ eingebettet ist $(V\hookrightarrow H$). Die auf $V+V_h$ definierte und stetige Bilinearform $a_h$ stimme auf $V$ mit $a$ überein. Dann gilt:
+\begin{align*}
+\Vert u-u_h\Vert\leq\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{1}{\Vert g\Vert_H}\cdot\Big( &M\cdot\Vert u-u_h\Vert_h\cdot\Vert\varphi_g-\varphi_{g,h}\Vert_h\\
+&+\big|a_h(u-u_h,\varphi_g)-(u-u_h,g)\big|\\
+&+\big|a_h(u,\varphi_g-\varphi_{g,h})-(f,\varphi_g-\varphi_{g,h}\big|\Big)
+\end{align*}
+wobei zu $g\in H$ die Funktionen $\varphi_g\in V$ und $\varphi_{g,h}\in V_h$ als Lösungen von
+\begin{align*}
+a(w,\varphi_g)=(w,g)\quad\forall w\in V\qquad\text{bzw.}\qquad a_h(w_h,\varphi_{g,h})=(w_h,g)\quad\forall w_h\in V_h
+\end{align*}
+definiert sind.
+
+\begin{proof}
+%TODO
+\end{proof}
+
+\section*{Aufgabe 5.3}
+Sei $\Omega$ ein konvexes Polyeder. Beweisen Sie für die Diskretisierung der Poisson-Gleichung
+\begin{align*}
+\left\lbrace\begin{array}{rl}
+-\Delta u=f &\text{ in }\Omega\\
+u|_{\partial\Omega}=0
+\end{array}\right.\mit f\in L^2(\Omega)
+\end{align*}
+mit Crouzeix-Raviart-Elementen über einer regulären Zerlegung von $\Omega$ die $L^2$-Fehlerabschätzung
+\begin{align*}
+\Vert u-u_h\Vert_0\leq c\cdot h^2\cdot\Vert u\Vert_2
+\end{align*}
+
+\begin{proof}
+\underline{Teilschritt (a):}\\
+Das Dualitätsargument von Aubin-Nitsche ist anwendbar, denn:\nl
+%TODO
+\underline{Teilschritt (b):}\\
+Aus der Vorlesung ist bekannt:
+\begin{align*}
+\Vert u-u_h\Vert_h\leq c\cdot h\cdot\Vert u\Vert_2
+\end{align*}
+Bei der Abschätzung von $\Vert\varphi_g-\varphi_{g,h}\Vert$ hilft, dass $\varphi_g-\varphi_{g,h}$ als Diskretisierungsfehler des Problems $a(w,\varphi)=(w,g)$ angesehen werden kann.\nl
+\underline{Teilschritt (c):}\\
+Es ist bekannt:
+\begin{align*}
+\big|L_w(z)\big|:=\Big|a_h(w,z)-(\hat{f},z)\Big|\leq c\cdot h\cdot|w|_2\cdot\Vert z\Vert_h\qquad\forall z\in V_h+v,\forall w\in H^2
+\end{align*}
+%TODO
+\underline{Teilschritt (d):}\\
+%TODO
+\end{proof}
+
+\section*{Aufgabe 5.4}
+Sei $\Omega$ ein konvexes Polyeder. Es erfülle $w\in H^2(\Omega)\cap H_0^1(\Omega)$ die Poisson-Gleichung $-\Delta w=\hat{f}$. Ferner sei für $z\in V_h+V$
+\begin{align*}
+L_w(z):=a_h(w,z)-(\hat{f},z):=\sum\limits_K\int\limits_K\nabla w\cdot\nabla z\d x-\int\limits_\Omega\hat{f}\cdot z\d x
+\end{align*}
+wobei $V_h$ den Raum der Crouzeix-Raviart-Elemente über einer regulären Zerlegung von $\Omega$ bezeichne und $V=H_0^1(\Omega)$ sein.
+
+\subsection*{Aufgabe 5.4 (a)}
+Es gilt
+\begin{align*}
+L_w(z)=\sum\limits_K\sum\limits_{E\in\delta K}\int\limits_E\left(\frac{\partial}{\partial n_K}-\frac{\partial w^I}{\partial n_K}\right)\cdot\left(z-\overline{z(E)}\right)\d s
+\end{align*}
+Dabei bezeichne $w^I\in V_h\cap C^0(\Omega)$ die stetige, stückweise lineare Interpolierende, die $w$ in den Eckpunkten der Dreiecke interpoliert. Auf einer Kante $E$ sei
+\begin{align*}
+\overline{z(E)}=\frac{1}{|E|}\cdot\int\limits_E z\d s
+\end{align*}
+der Integralmittelwert einer Funktion $z\in V_h+V$.
+
+\subsection*{Aufgabe 5.4 (b)}
+Es gilt die Abschätzung
+\begin{align*}
+\big|L_w(z)\big|\leq c\cdot h\cdot|w|_2\cdot\Vert z\Vert_h
+\end{align*}
+\begin{proof}
+Wir nutzen in dem Beweis die Spurungleichung in Kombination mit dem Bramble-Hilbert-Lemma verwendet werden.
+%TODO
+\end{proof}
+\end{document}
