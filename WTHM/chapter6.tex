@@ -96,7 +96,7 @@ Sei $\mu\in\mathcal{M}_b(\R^d)$ bzw. $X:\Omega\to\R^d$ eine Zufallsvariable. Dan
 \hat{\mu}(0)=\mu(\R^d)\qquad\text{bzw.}\qquad\Phi_X(0)=1
 \end{aligned}$
 \item $\begin{aligned}
-\Big|\hat{\mu}(\xi)\Big|\leq\mu(\R^d)\qquad\text{bzw.}\qquad\Big|\Phi_X(\xi)\Big|\leq 1 \qquad\forall\xi\in\R^d
+\big|\hat{\mu}(\xi)\big|\leq\mu(\R^d)\qquad\text{bzw.}\qquad\big|\Phi_X(\xi)\big|\leq 1 \qquad\forall\xi\in\R^d
 \end{aligned}$ (Beschränktheit)
 \item $\xi\mapsto\hat{\mu}(\xi)$ bzw. $\xi\mapsto\Phi_X(\xi)$ ist stetig
 \item $\begin{aligned}
@@ -104,9 +104,11 @@ Sei $\mu\in\mathcal{M}_b(\R^d)$ bzw. $X:\Omega\to\R^d$ eine Zufallsvariable. Dan
 \end{aligned}$ (Hermitsch-Symmetrie)
 \item Sei $T(x)=A\cdot x+b$ eine lineare Transformation mit $A\in\R^{m\times d}$ und $b\in\R^m$. Dann gilt:
 \begin{align*}
-\F\left(\mu\circ T^{-1}\right)(\xi)&=\exp\left(i\cdot b^T\cdot\xi\right)\cdot\hat{\mu}\left(A^T\cdot\xi\right)\qquad\forall\xi\in\R^m\text{ bzw.}\\
+\F\left(\mu\circ T^{-1}\right)(\xi)&=\exp\left(i\cdot b^T\cdot\xi\right)\cdot\hat{\mu}\left(A^T\cdot\xi\right)
+&\forall&\xi\in\R^m\text{ bzw.}\\
 \Phi_{(A\cdot X+b)}(\xi)
-&=\exp\left(i\cdot b^T\cdot\xi\right)\cdot\Phi_X\left(A^T\cdot\xi\right)\qquad\forall\xi\in\R^m
+&=\exp\left(i\cdot b^T\cdot\xi\right)\cdot\Phi_X\left(A^T\cdot\xi\right)
+&\forall&\xi\in\R^m
 \end{align*}
 \end{enumerate}
 \end{theorem}
@@ -161,3 +163,8 @@ Y&:=\underbrace{\mu+A\cdot X}_{=T(X)}\sim\mathcal{N}(\mu,\Sigma)\\
 \end{align*}
 Das ist die CF von $\mathcal{N}(\mu,\Sigma)$.
 \end{beisp}
+
+
+
+
+
