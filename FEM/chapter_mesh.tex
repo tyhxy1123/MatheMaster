@@ -12,9 +12,8 @@
 	 & \\
 	 convergence & linear system \\
 	 $\|u-u_h\|_{L^2} \leq C h^2$ & $N_{\text{DoF}}\propto h^{-2}$
-\end{tabular}
-
-Consens: Use fine meshes in regions woth high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(npthing happening)\\
+\end{tabular}\\
+Consens: Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\nl
 
 Questions:
 \begin{itemize}
@@ -55,7 +54,7 @@ Problem: Hanging nodes
 %%TODO layout picture
 \input{tikz/chapter_mesh/hanging_nodes}
 Refinement of a single triangle leads to a hanging node that is forbidden.\\
-Solution: rekursive Refinement\\
+Solution: rekursive Refinement
 \begin{enumerate}[label= case \arabic*:]
 	\item Hanging node is on the refinement edge of a adjacent triangle
 	\input{tikz/chapter_mesh/hanging_nodes_c1}
@@ -68,7 +67,7 @@ Solution: rekursive Refinement\\
 \end{enumerate}
 
 \subsection{Data structures}
-\underline{direct storage}\\
+\underline{direct storage}
 \begin{itemize}
 	\item different array for nodes and cells(like in the tutorial)
 	%%TODO add pic
@@ -97,7 +96,7 @@ Disadvantages:
 \end{itemize}
 Thus not so good for moving regions of interest
 
-\underline{hierarchical storage}\\
+\underline{hierarchical storage}
 \begin{itemize}
 	\item start from a coarse \glqq macro mesh \grqq
 	\item store all refonement steps not only the current mesh
