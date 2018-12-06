@@ -3,10 +3,13 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
+\chapter{Ordnungsstrukturen}
+\section{Relationen und Ordnungen}
+
 \renewcommand{\|}{~|~}
 \begin{definition}
     Seien $P,R$ Mengen. Wir nennen $\mathscr{R} = (P,R)$ ein \textbf{binäres Relat}, 
-    wenn $R \subseteq P \times P$.
+    wenn $R \subseteq P \times P$ (also $R$ binäre Relation ist).
 
     Beachte, dass das Kartesische Produkt wie folgt definiert ist:
     $$ P \times Q := \{(p,q) \| p \in P \textrm{ und } q \in Q\}.$$
@@ -18,41 +21,37 @@
     \begin{enumerate}[label=(\arabic*)]
         \item \textbf{reflexiv}, falls $(pRp)$,
         \item \textbf{transitiv}, falls $pRt \land tRq \implies pRq$,
-        \item \textbf{antisymmetrisch}, falls $pRq \land qRp \implies p=q$ und
-        \item \textbf{symmetrisch}, falls $pRq \implies qRp$.
+        \item \textbf{antisymmetrisch}, falls $pRq \land qRp \implies p=q$,
+        \item \textbf{symmetrisch}, falls $pRq \implies qRp$ und
+        \item \textbf{linear / total}, falls $pRq\vee qRp$.
     \end{enumerate}
 
     Beachte, dass $pRq$ für $(p,q) \in R$ steht.
 \end{definition}
 
-\begin{definition}
-    Eine \textbf{Präordnung} ist ein reflexives und transitives binäres Relat. \\
-    Eine \textbf{partielle Ordnung} ist eine antisymmetrische Präordnung. \\
-    Eine partielle Ordnung $\mathscr{R} = (P,R)$ heißt \textbf{lineare} Ordnung (oder \textbf{Totalordnung}),\\
-    falls für alle $p,q \in P$: $$pRq \textrm{ oder } qRp.$$
+\textit{Linearisierung} partieller Ordnung geht immer!
+
+\begin{definition}\
+\begin{itemize}
+\item Eine \textbf{Präordnung} ist ein reflexives und transitives binäres Relat.
+\item Eine \textbf{partielle Ordnung} ist eine antisymmetrische Präordnung.
+\item Eine partielle Ordnung $\mathscr{R} = (P,R)$ heißt \textbf{lineare} Ordnung (oder \textbf{Totalordnung})
+     $$:\Longleftrightarrow pRq \textrm{ oder } qRp\qquad\forall p,q \in P$$
+\end{itemize}
 \end{definition}
 
 \begin{notation}
     Wenn $A,B$ Mengen, so bezeichnet $B^A$ die Menge aller Abbildungen von $A$ nach $B$.
 \end{notation}
 
-\begin{aufgabe}
-    Sei $N$ eine endliche Menge und 
-    sei $\R^N$ mit der \textbf{Dominanzordnung}, d.h. für alle $u,v \in \R^N$ gilt
-    $$u \leq v :\iff \forall i \in N (u_i \leq v_i),$$
-    gegeben.
-    
-    Wie lässt sich $\R^N$ linear erweitern?
-\end{aufgabe}
-\begin{lösung}
-    Zunächst wähle eine Totalordnung auf $ N $ und benenne die Elemente so um, dass
-    $N = \{1,2,\ldots,n\}$, wobei $n \in \N$.
-    Definiere für alle $u,v \in \R^N$:
-    $$ I^v_u := \{i \in N \| u_i \leq v_i\}.$$
+\begin{definition}
+Eine \textbf{Multimenge} $\mathcal{M}$ (von $M$) ist ein Element $\mathcal{M}\in\N^M$, also eine Abbildung $\mathcal{M}:M\to\N$.\\
+Anschaulich ist eine Multimenge eine Menge, in der die Elemente mehrfach vorkommen können.
+\end{definition}
 
-    Nun definiere die lineare Ordnung wie folgt:
-    $$ u \leq_l v :\iff \min I^v_u \leq \min I^u_v.$$
-\end{lösung}
+\begin{lemma}
+Sei $(M,\leq)$ eine partielle Ordnung. Dann ist die Multimenge $\mathcal{M}$ per Dominanzordnung geordnet.
+\end{lemma}
 
 \begin{beispiel}
 \begin{align*}
@@ -63,24 +62,78 @@ $(R^2,\sqsubseteq)$ ist \textbf{lineare Erweiterung} von $(\R,\leq)^2$ via
 \begin{align*}
 a\sqsubseteq b:\Longleftrightarrow a_1<b_1\vee a_1=b_1\wedge a_2\leq b_2
 \end{align*}
-Frage: Sei $(S,\leq)$ lineare Ordnung (d.h. reflexiv, transitiv, antisymmetretisch und linear. Dann ist $(S,\leq)^\Omega:=(S^\Omega,\leq)$ Ordnung via
+Sei $(S,\leq)$ lineare Ordnung (d.h. reflexiv, transitiv, antisymmetretisch und linear. Dann ist $(S,\leq)^\Omega:=(S^\Omega,\leq)$ Ordnung via
 \begin{align*}
 \alpha\leq\beta:\Longleftrightarrow\forall\alpha,\beta\in S^\Omega,\forall x\in\Omega:\alpha x\leq\beta x
 \end{align*}
 \end{beispiel}
 
-\begin{definition}
-Ein binäres Relat $(P,R)$ heißt \textbf{linear / total}
+\begin{notation}
+Setze
 \begin{align*}
-:\Longleftrightarrow\forall p,q\in P:p~R~q\vee q~R~p
+\underline{n}&:=\big\lbrace 0,\ldots,n-1\big\rbrace\subseteq\N\\
+[n]&:=\big\lbrace1,\ldots,n\big\rbrace\subseteq\N
+\end{align*}
+\end{notation}
+
+\begin{definition}
+Sei $\Omega$ beliebige Menge und $A\subseteq\Omega$. Dann ist die \textbf{charakteristische Funktion / Indikatorfunktion} definiert als
+\begin{align*}
+\chi_A^\Omega:\Omega\to\lbrace0,1\rbrace,\qquad\omega\mapsto\left\lbrace\begin{array}{cl}
+0, & \falls \omega\not\in A\\
+1, &\falls\omega\in A
+\end{array}\right.
 \end{align*}
 \end{definition}
+
+Somit können Teilmengen als Multimengen aufgefasst werden, denn $\chi_A$ ist eine Multimenge.
+
+\begin{beispiel}\
+\begin{itemize}
+\item $\underline{2}^\Omega$ ist die Potenzmenge
+\item $\N^\Omega$ sind die Multimengen
+\item $\Omega^{\N}$ sind die Folgen in $\Omega$
+\item $\R_{\geq0}^\Omega$ sind die reellen Multimengen über $\Omega$
+\end{itemize}
+\end{beispiel}
+
+Allgemein: Seien $S,\Omega$ Mengen. Dann ist $S^\Omega$ die $S$-wertige Multimenge über $\Omega$.
+
+\begin{lemma}
+Ist $(S,\leq)$ Präordnung (transitiv + reflexiv), dann ist die Menge $S^\Omega$ auf naheliegende Weise durch die \textbf{Dominanzordnung}
+\begin{align*}
+\forall\alpha,\beta\in S^\Omega:\alpha\leqq\beta:\Longleftrightarrow\forall\omega\in\Omega:\alpha(\omega)\leq\beta(\omega)
+\end{align*}
+geordnet. Notation: $(S,\leq)^\Omega:=\big(S^\Omega,\leqq\big)$\\
+Ist $\alpha\leqq\beta$, so \textbf{dominiert} $\beta$ das $\alpha$.
+\end{lemma}
+
+\begin{aufgabe}
+    Sei $N$ eine endliche Menge und 
+    sei $\R^N$ mit der \textbf{Dominanzordnung}, d.h. für alle $u,v \in \R^N$ gilt
+    $$u \leq v :\iff \forall i \in N (u_i \leq v_i),$$
+    gegeben.
+    
+    Wie lässt sich $\R^N$ linear erweitern?
+\end{aufgabe}
+
+\begin{lösung}
+    Zunächst wähle eine Totalordnung auf $ N $ und benenne die Elemente so um, dass
+    $N = \{1,2,\ldots,n\}$, wobei $n \in \N$.
+    Definiere für alle $u,v \in \R^N$:
+    $$ I^v_u := \{i \in N \| u_i \leq v_i\}.$$
+
+    Nun definiere die lineare Ordnung wie folgt:
+    $$ u \leq_l v :\iff \min I^v_u \leq \min I^u_v.$$
+\end{lösung}
+
 \textbf{Frage:} Seien $(\Omega,\leq)$ und $(S,\leq)$ lineare Ordnungen. Existiert dann auch eine lineare Ordnung $(S^\Omega,\sqsubseteq)$, die $(S,\leq)^\Omega$ erweitert, d.h.
 \begin{align*}
 \forall\alpha,\beta\in S^\Omega:\alpha\leq\beta\implies\alpha\sqsubseteq\beta
 \end{align*}
+
 \begin{definition}
-$(\Omega,\leq)$ heißt \textbf{Wohlordnung} $:\gdw(\Omega,\leq)$ eine Ordnung derart ist, dass jede nichtleere Teilmenge ein (bzgl. der Ordnung) kleinstes Element enthält.
+Eine Ordnung $(\Omega,\leq)$ heißt \textbf{Wohlordnung} $:\gdw(\Omega,\leq)$ eine Ordnung derart ist, dass jede nichtleere Teilmenge ein (bzgl. der Ordnung) kleinstes Element enthält.
 \end{definition}
 
 \begin{beispiel}
@@ -98,7 +151,7 @@ Sei $x,y\in\Omega$. Dann hat $\lbrace x,y\rbrace$ ein kleinstes Element bzgl. $(
 
 \begin{satz}
 Sei $(\Omega,\leq)$ Wohlordnung und sei $(S,\leq)$ lineare Ordnung.\\
-Dann ist $(S^\Omega,\sqsubseteq)$ lineare Ordnung vermöge
+Dann ist $(S^\Omega,\sqsubseteq)$ lineare Ordnung, die $(S,\leq)\Omega$ erweitert, vermöge
 \begin{align*}
 \Omega(\alpha<\beta)&:=\lbrace x\in\Omega:\alpha x<\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\\
 \Omega(\alpha=\beta)&:=\lbrace x\in\Omega\mid\alpha x=\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\\
@@ -107,8 +160,6 @@ Dann ist $(S^\Omega,\sqsubseteq)$ lineare Ordnung vermöge
 Setze dann
 $\alpha\sqsubseteq\beta:\gdw\Omega(\beta>\alpha)=\emptyset$ oder $\alpha=\beta$ oder $\Omega(\alpha<\beta)$ und $\Omega(\beta>\alpha)$ sind nichtleer und das kleinste Element von $\big(\Omega(\alpha<\beta),\leq\big)$ ist kleiner als das kleinste Element von $\big(\Omega(\beta<\alpha),\leq\big)$.
 \end{satz}
-
-%TODO Hier fehlt die 5. Vorlesung
 
 \begin{satz}
 Sei $(\Omega,\leq_\Omega)$ Wohlordnung und sei $(S,\leq_S)$ lineare Ordnung.\\
@@ -120,41 +171,107 @@ Dann ist $(S^\Omega,\sqsubseteq)$ via
 eine lineare Ordnung definiert, die $(S,\leq_S)^\Omega$ erweitert.
 \end{satz}
 
+\begin{definition}
+Die \textbf{Lexikografische Ordnung} ist definiert als
+\begin{align*}
+\text{LEX}\big((\Omega,\leq),(S,\leq)\big):=\big(S^\Omega,\sqsubseteq\big)
+\end{align*}
+\end{definition}
+
 \begin{bemerkung}
 $(S^\Omega,\sqsubseteq)$ ist die \textbf{lexikografische} Ordnungserweiterung von $(S,\leq_S)^\Omega$ via $(\Omega,\leq_\Omega)$.
 \end{bemerkung}
 
-%TODO Hier fehlt die 7. Vorlesung
-
+Ist $(S,\leq)$ nicht linear, dann ist $(S^\Omega,\sqsubseteq)$ immer noch Erweiterung von $(S,\leq)^\Omega$ Es gilt:
 \begin{align*}
-ID(\Z)=\big(\lbrace n\in\Z\mid n\in\N\rbrace,\subseteq\big)
+\big(S^\Omega,\sqsubseteq\big)\text{ linear}\Longleftrightarrow(S,\leq)\text{ linear}
 \end{align*}
-ist Idealverband von $\Z=(\Z,+,\cdot,0,1)$ bzw. Untergruppenverband von $(\Z,+,0)$.
-
-\textbf{ASCENDING CHAIN CONDITION (ACC) / noethersch} $\bar{\uparrow}$\\
-``Jede aufsteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein maximales Element (aufsteigende Kettenbedingung)
-
-\textbf{DESCENDING CHAIN CONDITION (DCC) / artinsch} $\bar{\downarrow}$\\
-``Jede absteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein maximales Element.\\
-$(\N,<_\tau)$ mit
+und außerdem
 \begin{align*}
-\leq_\tau:=\big\lbrace %TODO
+(\Omega,\leq)\text{ Wohlord. und }(S,\leq)\text{ Ord. }\implies\big(S^\Omega,\sqsubseteq\big)\text{ Ord.}
 \end{align*}
 
-%Hier die 13. Vorlesung (20.11.2018).
+\section{Ascending / Descending chain condition (ACC / DCC)}
+\begin{definition}
+Eine Ordnung $(P,\leq)$ heißt
+\begin{itemize}
+\item \textbf{ACC / noethersch}
+\begin{align*}
+:\Longleftrightarrow\forall(a_1\leq a_2\leq\ldots):\exists n\in\N:m\geq n\implies a_m=a_n
+\end{align*}
+\item \textbf{DCC / artinsch}
+\begin{align*}
+:\Longleftrightarrow\forall(a_1\geq a_2\geq\ldots):\exists n\in\N:m\geq n\implies a_m=a_n
+\end{align*}
+\end{itemize}
+\end{definition}
+
+\begin{lemma}
+Es gilt:
+\begin{enumerate}
+\item $(P,\leq)$ Wohlordnung $\Longleftrightarrow (P,\leq)$ DCC
+\item $(P,\leq)$ ACC und DCC $\Longleftrightarrow P$ endlich
+\end{enumerate}
+\end{lemma}
+
+\begin{bemerkung}\
+\begin{itemize}
+\item ACC: ``Jede aufsteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein maximales Element (aufsteigende Kettenbedingung)
+\item DCC: ``Jede absteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein minimales Element.
+\end{itemize}
+\end{bemerkung}
+
+\begin{beispiel}[Duale Verbände]\
+\begin{itemize}
+\item ACC: $\text{Id}(\Z)=\big\lbrace n\cdot\Z:n\in\N\big\rbrace$ mit $n\Z\leq m\Z:\Longleftrightarrow n\Z\subseteq m\Z$
+\item DCC: \textbf{Teilerordnung} $(\N,\leq_\tau)$ mit $n\leq_ \tau m:\Longleftrightarrow\exists t\in\N:n\cdot t=m$
+\end{itemize}
+Anti-Isomorphismus:
+\begin{align*}
+\varphi:(\N,\leq_\tau)\to\text{Id}(\Z),\qquad n\mapsto n\Z\\
+n\leq_\tau m\Longleftrightarrow n\Z\supseteq m\Z\\
+\implies(\N,\leq_\tau)^{\text{op}}\cong\text{Id}(\Z)
+\end{align*}
+\end{beispiel}
+
+\begin{definition}
+Ist $f:A\to B$ eine Abbildung, dann ist der \textbf{Kern} von $f$ definiert als
+\begin{align*}
+\ker(f):=\big\lbrace(a_1,a_2)\in A^2:f(a_1)=f(a_2)\big\rbrace
+\end{align*}
+\end{definition}
+
+\section{Das Delta}
+\begin{definition}
+\begin{align*}
+\delta:\big\lbrace(x,y)\in[0,\infty]^2:x\leq y\big\rbrace\to[0,\infty],\qquad (x,y)\mapsto\left\lbrace\begin{array}{cl}
+y-x,&\falls y\neq\infty\\
+\infty, &\falls x\neq\infty,y=\infty\\
+0, &\falls x=\infty
+\end{array}\right.
+\end{align*}
+\end{definition}
+
+\begin{lemma}
+Eine mögliche Erweiterung von $\delta$ ist:
+\begin{align*}
+\overline{\delta}:[0,\infty]^2\to[0,\infty],\qquad
+(x,y)\mapsto\inf\big\lbrace t\in[0,\infty]:y\leq x+t\big\rbrace
+\end{align*}
+\end{lemma}
 
 \begin{bemerkung}
 Für $x,y\in[0,\infty]$ mit $x\leq y$ ist also $\delta(x,y)$ das kleinste Element $t$ in $\big([0,\infty],\leq\big)$ mit $x+t=y$, d.h. $t$ ist die kleinste ``Ergänzung'' von $x$ zu $y$ im natürlich geordneten Monoid $\big([0,\infty],+,0\big)$\\
-Man erkennt hieraus leicht, dass $\delta$ funktoriell ist:
+Man erkennt hieraus leicht, dass $\delta$ \textit{funktoriell} ist:
 \begin{align*}
-\delta(x,x)=0,\qquad\delta(x,y)+\delta(y,z)=\delta x,z)\qquad\forall x\leq y\leq z
+\delta(x,x)=0,\qquad\delta(x,y)+\delta(y,z)=\delta (x,z)\qquad\forall x\leq y\leq z
 \end{align*}
 hingegen $\overline{\delta}$ nicht. Weiterhin ist $\delta$ modular:
 \begin{align*}
-\delta(x,x\vee y)=\delta x\wedge y,y)
+\delta(x,x\vee y)=\delta(x\wedge y,y)
 \end{align*}
 genauso wie $\overline{\delta}$!\\
-Auch wenn $\overline{\delta}$ schon nicht funktoriell ist, dan ngilt zumindest die Dreiecksungleichung
+Aber wenn $\overline{\delta}$ schon nicht funktoriell ist, dann gilt zumindest die Dreiecksungleichung
 \begin{align*}
 \overline{\delta}(x,z)\leq\overline{\delta}(x,y)+\overline{\delta}(y,z)
 \end{align*}
@@ -190,20 +307,21 @@ Sei $\P=(P,R)$ eine Präordnung (d.h. reflexiv + transitiv) und sei $\mathbb{M}=
 \P=\big([0,\infty],\leq\big)\\
 \mathbb{M}=\big([0,\infty],+,0\big)
 \end{matrix}\right.\implies \mit\Delta:=\delta\\
-&\left\lbrace\begin{matrix}
+&\left\lbrace\begin{array}{l}
 \P=(P,R)\mit P:=[0,\infty]^{\N}\\
-\mathbb{M}=\big([0,\infty],+,+\big)\\
-\Delta:(\alpha,\beta)\mapsto\sum\limits_{n\in\N}\delta(\alpha n,\beta n)\cdot 2^n
-\end{matrix}\right.
+\mathbb{M}=\big([0,\infty],+,0\big)\\
+\Delta:(\alpha,\beta)\mapsto\sum\limits_{n\in\N}\delta(\alpha n,\beta n)\cdot 2^{-n}
+\end{array}\right.
 \end{align*}
-Was ist mit Modularität? Definition ist allgemein. Join $(\vee)$ und meet $(\wedge)$
+Was ist mit Modularität? Definition ist zu allgemein. Join $(\vee)$ und meet $(\wedge)$ fehlen!
 \end{beispiel}
 
-\section*{Mini-Ausflug ``MEASUREMENT SETUP''}
+\section{Mini-Ausflug ``MEASUREMENT SETUP''}
 \begin{definition}
-Ein MEASUREMENT SETUP ist erklärt als Tripel $\mathcal{M}=(G,\mathbb{M},\Delta)$ bestehend aus einem \textbf{Aktionsnetzwerk} $\mathbb{G}=(G,\ast,\id)$ mit zugrundeliegendem \textbf{Netzwerk} $G=(V,E,\rho)$, einem Monoid $\mathbb{M}=(M,\ast,\varepsilon)$ und einer \textbf{funktoriellen} Abbildung $\Delta:E\to M$.
+Ein MEASUREMENT SETUP ist ein Tripel $\mathcal{M}=(\mathbb{G},\mathbb{M},\Delta)$ bestehend aus einem \textbf{Aktionsnetzwerk} $\mathbb{G}=(G,\ast,\id)$ mit zugrundeliegendem \textbf{Netzwerk} $G=(V,E,\rho)$, einem Monoid $\mathbb{M}=(M,\ast,\varepsilon)$ und einer \textbf{funktoriellen} Abbildung $\Delta:E\to M$ bzgl. $(\mathbb{G},\mathbb{M})$.
 \end{definition}
-Interpreation:
+
+Interpretation:
 \begin{itemize}
 \item $\mathbb{G}$ ist WAS ich messe.
 \item $\mathbb{M}$ ist WORIN ich messe.
@@ -254,51 +372,50 @@ G_P&:=(P,P\times P,\id_{P\times P})\\
 (p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
 \end{align*}
 \item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
-
 Sind bis auf Isomorphie einknotige Netzwerke.
 \end{itemize}
 \end{beispiel}
 
-Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mathbb{M}):\gdw$ 
+\begin{definition}
+Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. eines ANW $(\mathbb{G},\mathbb{M}):\gdw$ 
 \begin{enumerate}
-\item $\Delta \id(p)=\varepsilon\qquad\forall p\in V$
-\item $\Delta a\ast b=\Delta a\ast\Delta b\qquad\forall(a,b)\in E^{\langle2\rangle}$
+\item $\Delta \id_p=\varepsilon\qquad\forall p\in V$
+\item $\Delta (\underbrace{a\ast b}_{\text{in} E})=\underbrace{\Delta a\ast\Delta b}_{\text{in }\mathbb{M}}\qquad\forall(a,b)\in E^{\langle2\rangle}$
 \end{enumerate}
-
-% ab hier die 15. und 16. Vorlesung, 26.11 und 27.11
+\end{definition}
 
 \begin{bemerkung}
-    Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
+Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
 \end{bemerkung}
 
 \begin{definition}
     Seien $G = (V,E, \rho), G'= (V', E', \rho')$ Netzwerke.
-    Ein \textbf{Netzwerkmorphismus} von $G$ nach $G'$ ist ein Tripel $(G, G', \Phi := (\Phi_{vert}, \Phi_{edge}))$  wobei
+    Ein \textbf{Netzwerkmorphismus} von $G$ nach $G'$ ist ein Tripel $(G, G', \Phi := (\Phi_{\text{vert}}, \Phi_{\text{edge}}))$  wobei
     \begin{align*}
-        \Phi_{vert}:& V \to V', p \mapsto p' \text{ und}\\
-        \Phi_{edge}:& E \to E', e \mapsto e',
+        \Phi_{\text{vert}}:& V \to V',\qquad p \mapsto p' \text{ und}\\
+        \Phi_{\text{edge}}:& E \to E',\qquad e \mapsto e',
     \end{align*}
     sodass für $i=1,2$ gilt:
     \begin{align*}
-        \pi_i \circ \rho' \circ \Phi_{edge} = \Phi_{vert} \circ \pi_i \circ \rho.
+        \pi_i \circ \rho' \circ \Phi_{\text{edge}} = \Phi_{\text{vert}} \circ \pi_i \circ \rho.
     \end{align*}
     Als kommutatives Diagramm:
     $$\begin{tikzcd}[column sep=huge, row sep=huge]
-        E \dar{\pi_i \circ \rho} \rar{\Phi_{edge}} & E' \dar{\pi_i \circ \rho'}\\
-        V \rar{\Phi_{vert}} & V' 
+        E \dar{\pi_i \circ \rho} \rar{\Phi_{\text{edge}}} & E' \dar{\pi_i \circ \rho'}\\
+        V \rar{\Phi_{\text{vert}}} & V' 
     \end{tikzcd}$$
-    "\textit{Das \underline{Bild} des Anfangsknotens einer Kante ist stets der Anfangsknoten der \underline{Bildkante}.}"\\
-    Ein Netzwerkmorphismus heißt Netzwerk\textbf{isomorphismus}, falls $\Phi_{vert}$ und $\Phi_{edge}$ bijektiv sind.
+    "\textit{Das \underline{Bild} des Anfangsknotens einer Kante ist stets der Anfangsknoten der \underline{Bildkante}.}"\nl
+    Ein Netzwerkmorphismus heißt Netzwerk\textbf{isomorphismus}, falls $\Phi_{\text{vert}}$ und $\Phi_{\text{edge}}$ bijektiv sind.
 \end{definition}
 
 \begin{definition}
-    Seien $\mathbb{G} = (G, \ast_\mathbb{G}, id_\mathbb{G}), \mathbb{G}' = (G', \ast_{\mathbb{G}'}, id_{\mathbb{G}'})$
+    Seien $\mathbb{G} = (G, \ast_\mathbb{G}, \id_\mathbb{G}), \mathbb{G}' = (G', \ast_{\mathbb{G}'}, \id_{\mathbb{G}'})$
     zwei Aktionsnetzwerke über den Netzwerken $G,G'$.
-    Ein \textbf{Funktor (Aktionsnetzwerksmorphismus)} ist ein Netzwerkmorphismus $(G, G', \Phi := (\Phi_{vert}, \Phi_{edge}))$ von $G$ nach $G'$, 
+    Ein \textbf{Funktor (Aktionsnetzwerksmorphismus)} ist ein Netzwerkmorphismus $(G, G', \Phi := (\Phi_{\text{vert}}, \Phi_{\text{edge}}))$ von $G$ nach $G'$, 
     sodass für alle $(a,b) \in E^{\langle 2 \rangle}$ und alle $p \in V$ gilt
     \begin{enumerate}[label=(M\arabic*)]
-        \item $\Phi_{edge}(a \ast_{\mathbb{G}} b) = \Phi_{edge}(a) \ast_{\mathbb{G}'} \Phi_{edge}(b)$
-        \item $\Phi_{edge}(\id_\mathbb{G} p) = \id_{\mathbb{G}'}(\Phi_{vert} p)$.
+        \item $\Phi_{\text{edge}}(a \ast_{\mathbb{G}} b) = \Phi_{\text{edge}}(a) \ast_{\mathbb{G}'} \Phi_{\text{edge}}(b)$
+        \item $\Phi_{\text{edge}}(\id_\mathbb{G} p) = \id_{\mathbb{G}'}(\Phi_{\text{vert}} p)$.
     \end{enumerate}
     Beachte dass
     $$ E^{\langle n \rangle} = \{(e_1,\ldots,e_n) \in E^n \mid \forall i \in [n-1]: ( \tau e_i = \sigma e_{i+1})\}, $$
@@ -306,8 +423,12 @@ Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mat
 \end{definition}
 
 \begin{definition}
+Sei $\mathbb{P}:=(P,R)$ ein binäres Relat. Definiere $G\mathbb{P}:=(P,R,\rho)$ mit $\rho:R\hookrightarrow P\times P$ als das \textbf{zu $\mathbb{P}$ gehörige Netzwerk}.
+\end{definition}
+
+\begin{definition}
     Ein Netzwerk $G=(V,E,\rho)$ heißt \textbf{dünn}, 
-    falls $\rho$ injektiv.\\
+    falls $\rho:R\to V\times V$ injektiv.\\
     Das binäre Relat
     $$ \Red G := G(V, \rho E) := (V, \rho E, i)$$
     heißt \textbf{Reduktion} von $G$, wobei
@@ -326,20 +447,36 @@ Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. $\mathbb{G},\mat
     Die Reduktion eines Netzwerks ist stets dünn.
 \end{korollar}
 
-\begin{bemerkungnr}
-    \underline{Der Reduktionsmorphismus:}
+\begin{definition}
+Sind $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke, so bildet
+\begin{align*}
+\Phi:\left\lbrace\begin{array}{rl}
+\Phi_{\text{vert}}:&V\to V'\\
+\Phi_{\text{edge}}:&E\to E'
+\end{array}\right.
+\end{align*}
+einen Morphismus von $G$ nach $G'$, falls gilt:
+\begin{align*}
+\Phi_{\text{vert}}\circ\sigma&=\sigma'\circ\Phi_{\text{edge}}\\
+\Phi_{\text{vert}}\circ\tau&=\tau'\circ\Phi_{\text{edge}}
+\end{align*}
+\end{definition}
 
+\begin{definition}
+Ein Morphismus $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ zwischen Netzwerken heißt \textbf{Isomorphismus} $:\gdw\Phi_{\text{vert}}$ und $\Phi_{\text{edge}}$ bijektiv sind.
+\end{definition}
+
+\begin{bemerkungnr}[Der Reduktionsmorphismus]\enter
     Sei $G = (V, E, \rho)$ ein Netzwerk.
-    Wir definieren $ \Phi^{red} := (\id_V, \rho^{red})$, wobei
+    Wir definieren $ \Phi^{\text{red}} := (\id_V, \rho^{\text{red}})$, wobei
     $$ \rho^{red} : \begin{cases}
         E \to \rho E\\ 
         e\mapsto \rho e.\end{cases} = \rho|_{\rho E}$$
-    Dieses $ \Phi^{red} $ bildet einen Morphismus von $G$ nach $\Red G$.\\
+    Dieses $ \Phi^{\text{red}} $ bildet einen Morphismus von $G$ nach $\Red G$.\\
     Zusätzlich gilt offenbar:
-    $$ \Phi^{red} \text{ Isomorphismus } \iff G \text{ dünn}.$$
+    $$ \Phi^{\text{red}} \text{ Isomorphismus } \iff G \text{ dünn}.$$
 \end{bemerkungnr}
 
-%begin 17th Lecture, 03.12
 \begin{definition}
 Seien $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke. Dann heißt $G$ \textbf{Unternetzwerk} von $G:\Longleftrightarrow$
 \begin{enumerate}
@@ -404,8 +541,6 @@ D:=\langle A\rangle=\big\lbrace m\cdot 4+n\cdot 5\mid m,n\in\N\big\rbrace
 \end{tabular}
 \end{beispiel}
 
-%begin 18th Lecture, 04.12
-
 \begin{proposition}[Erzeugung von Unterstrukturen in ANWen]\enter
 Sei $\G=(G,\ast,\id)$ ein ANW mit $G=(V,E,\rho)$ zugehöriges Netzwerk. Dann sei für $A,C\subseteq 2^E$ stets das \textbf{Minkowski-Produkt} von $A$ und $C$ in $\G$ definiert als
 \begin{align*}
@@ -418,7 +553,7 @@ Sei $\mathbb{M}$ Vektorraum. Für $A,C\in 2^M$ heißt
 \begin{align*}
 A+C:=\big\lbrace a+c\mid (a,c)\in A\times C\big\rbrace
 \end{align*}
-\textbf{Minkowwski-Summe} von $A$ und $C$ in $\mathbb{M}$.
+\textbf{Minkowski-Summe} von $A$ und $C$ in $\mathbb{M}$.
 
 Für $A\subseteq 2^E$ sei die $n$-fache \textbf{Minkowski-Potenz} von $A\in 2^E$ in $\G$ definiert als
 \begin{align*}
