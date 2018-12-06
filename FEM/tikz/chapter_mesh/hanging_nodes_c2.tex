@@ -1,0 +1,202 @@
+\begin{figure}[h!]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+	
+	% first rectangle
+	\coordinate (A) at (\xone,\yone);
+	\coordinate (B) at ($ (A) + (1.5*\h,0) $);
+	\coordinate (C) at ($ (A) + (1.5*\h,\h) $);
+	\coordinate (D) at ($ (A) + (0,\h) $);
+	\coordinate (M) at ($ (A) + (0.75*\h,0.5*\h) $);
+	\coordinate (AD) at ($ (A) + (0,0.5*\h) $);
+	\coordinate (CD) at ($ (A) + (0.75*\h,\h) $);
+	\coordinate (BC) at ($ (A) + (1.5*\h,0.5*\h) $);
+	\coordinate (MMC) at ($ (A) + (3/4*1.5*\h,0.75*\h) $);
+
+	%draw
+	\filldraw[red!20] (M) --(MMC) -- (BC);			
+	\draw (A) -- (B) -- (C) --(D) --cycle;
+	\draw (B) --(D);
+	\draw (A) --(C);
+	\draw (AD) --(BC);
+	\draw (M) --(CD) -- (BC);
+	\foreach \i in {A,B,C,C,D,M,AD,CD,BC,MMC}{
+		\filldraw (\i) circle (1.5pt);
+	}
+
+	
+	\draw[-to] (8/5*\h,\h/2) -- ++(\h/2,0);
+	
+	
+	% second rectangle
+	\coordinate (A1) at (\xone +  2.25*\h,\yone);
+	\coordinate (B1) at ($ (A1) + (1.5*\h,0) $);
+	\coordinate (C1) at ($ (A1) + (1.5*\h,\h) $);
+	\coordinate (D1) at ($ (A1) + (0,\h) $);
+	\coordinate (M1) at ($ (A1) + (0.75*\h,0.5*\h) $);
+	\coordinate (AD1) at ($ (A1) + (0,0.5*\h) $);
+	\coordinate (CD1) at ($ (A1) + (0.75*\h,\h) $);
+	\coordinate (BC1) at ($ (A1) + (1.5*\h,0.5*\h) $);
+	\coordinate (MMC1) at ($ (A1) + (3/4*1.5*\h,0.75*\h) $);
+	\coordinate (MMBC1) at ($ (A1) + (3/4*1.5*\h,0.5*\h) $);
+	
+	%draw
+	\fill[red!20] (M1) --(B1) --(BC1) -- cycle;
+	\filldraw[green!20] (M1) --(MMC1) -- (BC1);			
+	\draw (A1) -- (B1) -- (C1) --(D1) --cycle;
+	\draw (B1) --(D1);
+	\draw (A1) --(C1);
+	\draw (AD1) --(BC1);
+	\draw (M1) --(CD1) -- (BC1);
+	\draw (MMC1) --(MMBC1);
+	\foreach \i in {A1,B1,C1,C1,D1,M1,AD1,CD1,BC1,MMC1,MMBC1}{
+		\filldraw (\i) circle (1.5pt);
+	}
+
+	\draw[-to] (\xone +  2.1*\h,\yone - 0.1*\h) -- ++(-\h/2,-\h/3);
+	
+	
+	% third rectangle
+	\coordinate (A2) at (\xone ,\yone -1.5*\h);
+	\coordinate (B2) at ($ (A2) + (1.5*\h,0) $);
+	\coordinate (C2) at ($ (A2) + (1.5*\h,\h) $);
+	\coordinate (D2) at ($ (A2) + (0,\h) $);
+	\coordinate (M2) at ($ (A2) + (0.75*\h,0.5*\h) $);
+	\coordinate (AD2) at ($ (A2) + (0,0.5*\h) $);
+	\coordinate (CD2) at ($ (A2) + (0.75*\h,\h) $);
+	\coordinate (BC2) at ($ (A2) + (1.5*\h,0.5*\h) $);
+	\coordinate (MMC2) at ($ (A2) + (3/4*1.5*\h,0.75*\h) $);
+	\coordinate (MMBC2) at ($ (A2) + (3/4*1.5*\h,0.5*\h) $);
+	\coordinate (MMB2) at ($ (A2) + (3/4*1.5*\h,0.25*\h) $);
+	\coordinate (AB2) at ($ (A2) + (0.5*1.5*\h,0) $);
+	
+	
+	%draw
+	\fill[red!20] (M2) --(B2) --(BC2) -- cycle;
+	\fill[red!20] (A2) --(B2) --(M2) -- cycle;
+	\filldraw[green!20] (M2) --(MMC2) -- (BC2);			
+	\draw (A2) -- (B2) -- (C2) --(D2) --cycle;
+	\draw (B2) --(D2);
+	\draw (A2) --(C2);
+	\draw (AD2) --(BC2);
+	\draw (M2) --(CD2) -- (BC2);
+	\draw (MMC2) --(MMBC2);
+	\foreach \i in {A2,B2,C2,D2,M2,AD2,CD2,BC2,MMC2,MMBC2,MMB2,AB2}{
+		\filldraw (\i) circle (1.5pt);
+	}
+
+	\draw[-to] (8/5*\h,-\h) -- ++(\h/2,0);
+	
+	% fourth rectangle
+	\coordinate (A3) at (\xone +  2.25*\h,\yone-1.5*\h);
+	\coordinate (B3) at ($ (A3) + (1.5*\h,0) $);
+	\coordinate (C3) at ($ (A3) + (1.5*\h,\h) $);
+	\coordinate (D3) at ($ (A3) + (0,\h) $);
+	\coordinate (M3) at ($ (A3) + (0.75*\h,0.5*\h) $);
+	\coordinate (AD3) at ($ (A3) + (0,0.5*\h) $);
+	\coordinate (CD3) at ($ (A3) + (0.75*\h,\h) $);
+	\coordinate (BC3) at ($ (A3) + (1.5*\h,0.5*\h) $);
+	\coordinate (MMC3) at ($ (A3) + (3/4*1.5*\h,0.75*\h) $);
+	\coordinate (MMBC3) at ($ (A3) + (3/4*1.5*\h,0.5*\h) $);
+	\coordinate (MMB3) at ($ (A3) + (3/4*1.5*\h,0.25*\h) $);
+	\coordinate (AB3) at ($ (A3) + (0.5*1.5*\h,0) $);
+	
+	%draw
+	\fill[red!20] (M3) --(MMB3) --(BC3) -- cycle;
+	\fill[red!20] (AB3) --(B3) --(M3) -- cycle;
+	\filldraw[green!20] (M3) --(MMC3) -- (BC3);	
+	\filldraw[green!20] (B3) --(BC3) -- (MMB3);
+	\filldraw[green!20] (A3) --(AB3) -- (M3);				
+	\draw (A3) -- (B3) -- (C3) --(D3) --cycle;
+	\draw (B3) --(D3);
+	\draw (A3) --(C3);
+	\draw (AD3) --(BC3);
+	\draw (M3) --(CD3) -- (BC3);
+	\draw (MMC3) --(MMBC3);
+	\draw (BC3) --(MMB3);
+	\draw (M3) --(AB3);
+	\foreach \i in {A3,B3,C3,C3,D3,M3,AD3,CD3,BC3,MMC3,MMBC3,MMB3,AB3}{
+		\filldraw (\i) circle (1.5pt);
+	}
+	
+	\draw[-to] (\xone +  2.1*\h,\yone - 1.6*\h) -- ++(-\h/2,-\h/3);
+	
+	% fifth rectangle
+	\coordinate (A4) at (\xone ,\yone -3*\h);
+	\coordinate (B4) at ($ (A4) + (1.5*\h,0) $);
+	\coordinate (C4) at ($ (A4) + (1.5*\h,\h) $);
+	\coordinate (D4) at ($ (A4) + (0,\h) $);
+	\coordinate (M4) at ($ (A4) + (0.75*\h,0.5*\h) $);
+	\coordinate (AD4) at ($ (A4) + (0,0.5*\h) $);
+	\coordinate (CD4) at ($ (A4) + (0.75*\h,\h) $);
+	\coordinate (BC4) at ($ (A4) + (1.5*\h,0.5*\h) $);
+	\coordinate (MMC4) at ($ (A4) + (3/4*1.5*\h,0.75*\h) $);
+	\coordinate (MMBC4) at ($ (A4) + (3/4*1.5*\h,0.5*\h) $);
+	\coordinate (MMB4) at ($ (A4) + (3/4*1.5*\h,0.25*\h) $);
+	\coordinate (AB4) at ($ (A4) + (0.5*1.5*\h,0) $);
+	
+	
+	%draw
+	\fill[red!20] (M4) --(MMB4) --(BC4) -- cycle;
+	\fill[red!20] (AB4) --(B4) --(M4) -- cycle;
+	\filldraw[green!20] (B4) --(BC4) -- (MMB4);
+	\filldraw[green!20] (M4) --(MMC4) -- (BC4);
+	\filldraw[green!20] (A4) --(AB4) -- (M4);			
+	\draw (A4) -- (B4) -- (C4) --(D4) --cycle;
+	\draw (B4) --(D4);
+	\draw (A4) --(C4);
+	\draw (AD4) --(BC4);
+	\draw (M4) --(CD4) -- (BC4);
+	\draw (MMC4) --(MMBC4);
+	\draw (BC4) --(MMB4);
+	\draw (M4) --(AB4);
+	\foreach \i in {A4,B4,C4,D4,M4,AD4,CD4,BC4,MMC4,MMBC4,MMB4,AB4}{
+		\filldraw (\i) circle (1.5pt);
+	}
+	
+	\draw[-to] (8/5*\h,-2.5*\h) -- ++(\h/2,0);
+	
+	% sixth rectangle
+	\coordinate (A5) at (\xone +  2.25*\h ,\yone -3*\h);
+	\coordinate (B5) at ($ (A5) + (1.5*\h,0) $);
+	\coordinate (C5) at ($ (A5) + (1.5*\h,\h) $);
+	\coordinate (D5) at ($ (A5) + (0,\h) $);
+	\coordinate (M5) at ($ (A5) + (0.75*\h,0.5*\h) $);
+	\coordinate (AD5) at ($ (A5) + (0,0.5*\h) $);
+	\coordinate (CD5) at ($ (A5) + (0.75*\h,\h) $);
+	\coordinate (BC5) at ($ (A5) + (1.5*\h,0.5*\h) $);
+	\coordinate (MMC5) at ($ (A5) + (3/4*1.5*\h,0.75*\h) $);
+	\coordinate (MMBC5) at ($ (A5) + (3/4*1.5*\h,0.5*\h) $);
+	\coordinate (MMB5) at ($ (A5) + (3/4*1.5*\h,0.25*\h) $);
+	\coordinate (AB5) at ($ (A5) + (0.5*1.5*\h,0) $);
+	
+	
+	%draw
+	\fill[green!20] (M5) --(MMB5) --(BC5) -- cycle;
+	\fill[green!20] (AB5) --(B5) --(M5) -- cycle;
+	\filldraw[green!20] (B5) --(BC5) -- (MMB5);
+	\filldraw[green!20] (M5) --(MMC5) -- (BC5);
+	\filldraw[green!20] (A5) --(AB5) -- (M5);			
+	\draw (A5) -- (B5) -- (C5) --(D5) --cycle;
+	\draw (B5) --(D5);
+	\draw (A5) --(C5);
+	\draw (AD5) --(BC5);
+	\draw (M5) --(CD5) -- (BC5);
+	\draw (MMC5) --(MMBC5);
+	\draw (BC5) --(MMB5);
+	\draw (M5) --(AB5);
+	\draw (AB5) --(MMB5);
+	\draw (MMB5) --(MMBC5);
+	\foreach \i in {A5,B5,C5,D5,M5,AD5,CD5,BC5,MMC5,MMBC5,MMB5,AB5}{
+		\filldraw (\i) circle (1.5pt);
+	}
+	
+	\end{tikzpicture}
+	
+	\caption{hanging nodes: case 2}\label{tikz/chapter_mesh/hanging_nodes_c2}
+	\label{ch_m_hanging_nodes_c2}
+	
+\end{figure}
