@@ -4,16 +4,18 @@
 \begin{example}
 	poisson equation, uniform mesh, linear polinomials
 \end{example}
+\begin{center}
+	\begin{tabular}{c | c}
+		\underline{Quality} & \underline{Complexity}\\
+		higher mesh resolution & higher mesh resolution requires \\
+		$\to$ better approximation & additional computaional effort\\
+		&  \\
+		convergence & linear system \\
+		$\|u-u_h\|_{L^2} \leq C h^2$ & $N_{\text{DoF}}\propto h^{-2}$
+	\end{tabular}
+\end{center}
 
-\begin{tabular}{c | c}
-	\underline{Quality} & \underline{Complexity}\\
-	higher mesh resolution & higher mesh resolution requires \\
-	 $\to$ better approximation & additional computaional effort\\
-	 & \\
-	 convergence & linear system \\
-	 $\|u-u_h\|_{L^2} \leq C h^2$ & $N_{\text{DoF}}\propto h^{-2}$
-\end{tabular}\\
-Consens: Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\nl
+Consens: Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\\
 
 Questions:
 \begin{itemize}
@@ -34,14 +36,16 @@ Method of Bisection:
 %%TODO add picture
 \input{tikz/chapter_mesh/bisection_refine}
 
-Shape regularity:\\
-\begin{tabular}{c | c}
-	\underline{mathmatical} & \underline{geometric}\\
-	$\tau_h$:  triangulation & triangles not strongly stretched \\
-	$h_T$:  diameter of $T$ & all angles should be \glqq simialar \grqq \\
-	$\rho_T$:  radius of inscribed circle:	& gives the same qualitative description\\
-	$\exists C > 0\ \forall T \in \tau_h \colon \rho_T \geq C h_T$ & 
-\end{tabular}
+Shape regularity:
+\begin{center}
+	\begin{tabular}{c | c}
+		\underline{mathmatical} & \underline{geometric}\\
+		$\tau_h$:  triangulation & triangles not strongly stretched \\
+		$h_T$:  diameter of $T$ & all angles should be \glqq simialar \grqq \\
+		$\rho_T$:  radius of inscribed circle:	& gives the same qualitative description\\
+		$\exists C > 0\ \forall T \in \tau_h \colon \rho_T \geq C h_T$ & 
+	\end{tabular}
+\end{center}
 \input{tikz/chapter_mesh/shape_regularity}
 
 Refinement edge:
@@ -62,8 +66,8 @@ Solution: rekursive Refinement
 	\item Hanging node is \textbf{not} on refinement edge
 	\input{tikz/chapter_mesh/hanging_nodes_c2}
 	%%TODO add picture
-	still better,than refining ehole domain\\
-	$implies$ multiple recursive refinements necessary
+	still better, than refining ehole domain\\
+	$\implies$ multiple recursive refinements necessary
 \end{enumerate}
 
 \subsection{Data structures}
