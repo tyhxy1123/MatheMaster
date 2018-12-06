@@ -193,7 +193,7 @@ Sei $F|K$ eine Funktionenkörper, $E|L$ eine endliche Erweiterung von $F|K$, $R 
 $R'$ der ganze Abschluss von $R$ in $E$.
 
 \begin{definition}
-    Sei $P \in S(F|K), R = \O_P$. Eine Basis $x_1, \ldots, x_n$ von $E|F$ ist eine \textbf{Ganzheitsbasis} für $P$, wenn
+    Sei $P \in S(F|K)$, $R = \O_P$. Eine Basis $x_1, \ldots, x_n$ von $E|F$ ist eine \textbf{Ganzheitsbasis} für $P$, wenn
     $$ R' = \sum\limits_{i=1}^n R x_i. $$
 \end{definition}
 
@@ -291,4 +291,135 @@ $R'$ der ganze Abschluss von $R$ in $E$.
     Da $R$ Hauptidealring ist, ist der Untermodul $R'$ des endlich erzeugten $R$-Moduls $\sum Rx_i'$ wieder endlich erzeugt, genauer
     sogar $R' = \sum\limits_{i=1}^m Ry_i$ mit $m \leq n$. Da $R'$ die Basis $x_1, \ldots, x_n$ von $E|F$ enthält, ist $m=n$ und $y_1, \ldots,y_n$
     ist auch Basis von $E|F$.
+\end{proof}
+
+\begin{satz}
+    Sei $E|F$ separabel. Für jedes $P\in S(F|K)$ gibt es eine Ganzheitsbasis für $P$ in $E|F$, und jede Basis von $E|F$ ist Ganzheitsbasis,
+    für fast alle $P\in S(F|K)$.
+\end{satz}
+\begin{proof}
+    Da $R=\O_P$ Hauptidealring ist, folgt Existenz einer Ganzheitsbasis aus 3.6. Sei $x_1,\ldots,x_n$ Basis von $E|F$.
+    Definiere 
+    \begin{align*}
+        S_0 & = \text{ Menge der Null- und Polstellen in } S(F|K)\\ 
+        &\text{ der Koeffizienten der Minimalpolynome von } \\
+        &x_1,\ldots,x_n,x'_1,\ldots,x'_n\\
+        & \implies S_0 \text{ ist endlich}\\
+        \text{Sei } P\in S(F|K)\setminus S_0, R = \O_P & \implies x_1,\ldots,x_n,x'_1,\ldots,x'_n \in R'\\
+        & \stackrel{3.6(b)}{\implies} \sum Rx_i \subseteq R' \subseteq \sum Rx'_i \subseteq R' \subseteq \sum Rx''_i = \sum Rx_i\\
+        & \implies \sum Rx_i = R'.
+    \end{align*}
+\end{proof}
+
+\begin{beispiel}
+    $F=K(T), R=K[T]=\O_{S(K(T)|K)\setminus\{P_\infty\}}$ ist ein Hauptidealring.
+    \begin{align*}
+        E|F \text{ endlich, geometrisch und separabel } & \stackrel{3.6(c)}{\implies} R' = \bigoplus\limits_{i=1}^n K[T]x_i\\
+        & \implies x_1,\ldots,x_n \text{ ist Ganzheitsbasis für alle } \\&\qquad P \in S(K(T)|K)\setminus\{P_\infty\},
+    \end{align*}
+    aber \underline{nicht} für $P=P_\infty$, denn sonst wäre $x_i \in \bigcap\limits_{Q \in S(E|L)} \O_Q = L$.
+\end{beispiel}
+
+\section{Differente und Kospur}
+Sei $F|K$ Funktionenkörper, E endliche, separabele und geometrische Erweiterung von $F|K$,
+$P \in S(F|K)$, $\O'_P$ der ganze Abschluss von $\O_P$ in $E$.
+
+\begin{definition}
+    Der \textbf{Komplementärmodul} zu $P$ ist
+    $$ C_P := \left\{z \in E \mid \Tr_{E|F}(z\O'_P)\subseteq\O_P\right\}.$$
+\end{definition}
+
+\begin{satz}
+    \begin{enumerate}[label=(\alph*)]
+        \item $C_P$ ist ein $\O'_P$-Modul, und $\O'_P \subseteq C_P$
+        \item Ist $z_1,\ldots,z_n$ Ganzheitsbasis für $P$, so ist 
+        $$ C_P = \sum\limits_{i=1}^n \O_P z'_i.$$
+
+        \item $C_P = t_P \cdot \O'_P$ für ein $t_P \in E$ mit $v_Q(t_P) \leq 0~ \forall Q|P$.
+        \item Für $t \in E$ gilt:
+        $$ C_P = t\cdot\O'_P \iff v_Q(t) = v_Q(t_P)~ \forall Q|P$$
+
+        \item $C_P = \O'_P$ für fast alle $P \in S(F|K)$.
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    (a) 3.5 (b) 
+    \begin{align*}
+        \underline{\subseteq:~}& z \in C_P \implies z = \sum\limits_{i=1}^n x_iz'_i, x_i \in F \implies x_i = \Tr_{E|F}(\underbrace{z}_{\in C_P}\overbrace{z_i}^{\in \O'_P})\\
+        \underline{\supseteq:~}& z = \sum\limits_{i=1}^n x_i z'_i, x_i \in \O_P, u \in \O'_P\\
+        & \text{ mit } u = \sum\limits_{i=1}^n y_iz_i, y_i \in \O_P \text{ und } z_1, \ldots, z_n \text{ Ganzheitsbasis von } \O_P\\
+        & \implies \Tr_{E|F}(zu) = \sum\limits_{i,j}\Tr_{E|F}(z'_iz_j) = \sum\limits_{i=1}^n x_iy_i \in \O_p
+    \end{align*}
+    (c) Nach 3.7 und (b) ist $C_P = \sum\limits_{i=1}^n \O_P$ mit $u_1,\ldots,u_n$ Basis von $E|F$. Wähle $x \in F$ mit 
+    \begin{align*}
+        & v_P(x) \geq -v_Q(u_i)~\forall i\forall Q|P, v_P(x) \geq 0\\
+        \implies & v_Q(xu_i) = e_{Q|P}v_P(x) + v_Q(u_i) \geq 0 ~\forall Q|P\\
+        \implies & xC_P \subseteq \bigcap\limits_{Q|P} \O_Q = \O'_P (\stackrel{(a)}{\subseteq C_P})\\
+        \stackrel{(a)}{\implies} & xC_P \ideal \O'_P
+    \end{align*}
+    Da $\O'_P$ Hauptidealring ist (2.5) ist $xC_P = y\O'_P$ für ein $y \in \O'_P$. Setze $t_P := \frac{y}{x}$.
+    \begin{align*}
+        & \implies C_P = t_P \O'_P\\
+        \O'_P \stackrel{(a)}{\subseteq} C_P = t_P \O'_P & \implies t^{-1}_P \O'_P \subseteq \O'_P \implies
+        t^{-1}_P\in \O'_P=\bigcap_{Q|P} \O_Q\\
+        & \implies v_Q(t^{-1}_P) \geq 0 ~\forall Q|P 
+    \end{align*}
+    (d) 
+    \begin{align*}
+        C_P = t\cdot \O'_P & \iff t_P \O'_P = t \O'_P \iff t_Pt^{-1} \in (\O'_P)^\times\\
+        & \iff v_Q(t_Pt^{-1}) = 0 ~\forall Q|P
+    \end{align*}
+    (e) Sei $z_1,\ldots,z_n$ Basis von $E|F$ $\stackrel{3.7}{\implies} z_1, \ldots,z_n$ und $z'_1,\ldots,z'_n$ sind Ganzheitsbasen
+    für fast alle $P$. Für so ein $P$ ist
+    $$ C_P \stackeq{(a)} \sum \O_P z'_i = \O'_P.$$
+\end{proof}
+
+\begin{definition}
+    Die \textbf{Differente} von $E|F$ ist
+    $$ \Diff := \Diff_{E|F} := \sum_{P\in S(F|K)}\sum_{Q|P}\d_{Q|P}Q,$$
+    wobei $\d_{Q|P}:= -v_Q(t_P)$ mit $t_P$ wie in (c), der \textbf{Differentenexponent} von $Q|P$ ist.
+\end{definition}
+
+\begin{bemerkungnr}
+    Nach (d) ist $\d_{Q|P}$ wohldefiniert und $\d_{Q|P} \geq 0$, und $\d_{Q|P} = 0$ für fast alle P und $Q|P$ nach (e).
+    Somit ist $\Diff_{E|F}$ ein effektiver Divisor von $E|K$.
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    Für $z \in E$ gilt:
+    $$ z \in C_P \iff v_Q(z) \geq - \d_{Q|P} ~\forall Q|P.$$
+\end{bemerkungnr}
+
+\begin{definition}
+    Der Raum der \textbf{relativen Adele} ist
+    $$ \A_{E|F} := \{\alpha \in \A_E \mid \alpha_Q = \alpha_{Q'} \text{ für } Q|F = Q'|F\}.$$
+    Für $A \in \Div(E|K)$ setzen wir $\A_{E|F}(A) := \A_E(A) \cap \A_{E|F}$ und wir definieren
+    $$ \Tr_{E|F} : \A_{E|F} \to \A_F, (\alpha_Q)_Q \mapsto (\Tr_{E|F}(\alpha_{Q_P}))_P$$
+    wobei für jedes $P \in S(F|K)$ ein $Q_P|P$ gewählt wird.
+    $$\begin{tikzcd}
+      E \rar[hook] & \A_{E|F} \drar \dar{\Tr} \rar[hook] & \A_E \\
+      F \rar[hook] \uar[dash] & \A_F \rar{\omega} & K  
+    \end{tikzcd}$$
+\end{definition}
+
+\begin{bemerkungnr}
+    $$\begin{tikzcd}
+        E \rar[hook] \dar{\Tr_{E|F}}& \A_{E|F} \dar{\Tr_{E|F}} \rar[hook] & \A_E\\
+        F \rar[hook] & \A_F
+    \end{tikzcd}$$
+\end{bemerkungnr}
+    
+\begin{lemma}
+    $\A_E = \A_{E|F} + \A_E(A)$ für jedes $A \in \Div(E|K)$.
+\end{lemma}
+\begin{proof}
+    Sei $\alpha=(\alpha_Q)_Q \in \A_E$. Für jedes $P$ wähle $x_P \in E$ mit
+    \begin{align*}
+        v_Q(x_P - \alpha_Q) \geq - v_Q(A) ~\forall Q|P \text{(II.1.8)}.
+    \end{align*}
+    Für $\beta := (x_{Q|_F})_Q \implies$
+    \begin{itemize}
+        \item $\beta \in \A_{E|F}$: $v_Q(\alpha_Q)=0$ und $v_Q(A)=0$ für fast alle $Q$
+        \item $\alpha - \beta \in \A_E(A)$: $v_Q(\alpha_Q -\beta_Q) \geq -v_Q(A)$
+    \end{itemize}
 \end{proof}
