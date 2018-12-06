@@ -33,7 +33,6 @@ Method of Bisection:
 	\item insert node in the middle
 	\item replace old triangle wlth 2 new ones 
 \end{itemize}
-%%TODO add picture
 \input{tikz/chapter_mesh/bisection_refine}
 
 Shape regularity:
@@ -55,7 +54,6 @@ Refinement edge:
 \end{itemize}
 
 Problem: Hanging nodes
-%%TODO layout picture
 \input{tikz/chapter_mesh/hanging_nodes}
 Refinement of a single triangle leads to a hanging node that is forbidden.\\
 Solution: rekursive Refinement
@@ -65,7 +63,6 @@ Solution: rekursive Refinement
 
 	\item Hanging node is \textbf{not} on refinement edge
 	\input{tikz/chapter_mesh/hanging_nodes_c2}
-	%%TODO add picture
 	still better, than refining ehole domain\\
 	$\implies$ multiple recursive refinements necessary
 \end{enumerate}
@@ -74,15 +71,26 @@ Solution: rekursive Refinement
 \underline{direct storage}
 \begin{itemize}
 	\item different array for nodes and cells(like in the tutorial)
-	%%TODO add pic
 	\input{tikz/chapter_mesh/data_structure}
+	\item cells = 
+	$\begin{bmatrix}
+		1 & 2 & 3\\
+		4 & 3 & 2
+	\end{bmatrix} $ (refinement edge is defined by the last 2 entries in corresponding line)
+	
 \end{itemize}
 Bisections on direct storage:
 \begin{itemize}
 	\item additional node
 	\item replace 1 cell by 2 cells
-	%%TODO add pic
 	\input{tikz/chapter_mesh/bisection_data_structure}
+	\item cells = 
+	$\begin{bmatrix}
+	5 & 1 & 2\\
+	5 & 3 & 1\\
+	4 & 3 & 2
+	\end{bmatrix} $ (first index is the new node and the structure regarding the refinement edge stays)
+	
 \end{itemize}
 
 Advantages:
@@ -98,7 +106,8 @@ Disadvantages:
 	\item coarsening of meshes is very difficult
 	\item neighboring relatons have to be computed explicitly after every refinement
 \end{itemize}
-Thus not so good for moving regions of interest
+Thus not so good for moving regions of interest.
+\vspace{1cm}
 
 \underline{hierarchical storage}
 \begin{itemize}
@@ -113,6 +122,7 @@ tree nodes:
 	\item pointer to $\leq 2$ children
 	\item pointer to $\leq 1$ father
 	\item data
+	\input{tikz/chapter_mesh/binary_tree}
 	%%TODO pic
 \end{itemize}
 properties:
