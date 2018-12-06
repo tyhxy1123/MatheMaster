@@ -43,23 +43,25 @@ Shape regularity:\\
 	$\rho_T$:  radius of inscribed circle:	& gives the same qualitative description\\
 	$\exists C > 0\ \forall T \in \tau_h \colon \rho_T \geq C h_T$ & 
 \end{tabular}
-%%TODO add pictures
 \input{tikz/chapter_mesh/shape_regularity}
 
 Refinement edge:
 \begin{itemize}
-	\item chosse longest edge for refinement
+	\item chose longest edge for refinement
 	\item shape regularity of mesh either remains or gets better
 \end{itemize}
 
 Problem: Hanging nodes
-%%TODO add picture
+%%TODO layout picture
+\input{tikz/chapter_mesh/hanging_nodes}
 Refinement of a single triangle leads to a hanging node that is forbidden.\\
 Solution: rekursive Refinement\\
 \begin{enumerate}[label= case \arabic*:]
 	\item Hanging node is on the refinement edge of a adjacent triangle
-	%%TODO add picture
+	\input{tikz/chapter_mesh/hanging_nodes_c1}
+
 	\item Hanging node is \textbf{not} on refinement edge
+	\input{tikz/chapter_mesh/hanging_nodes_c2}
 	%%TODO add picture
 	still better,than refining ehole domain\\
 	$implies$ multiple recursive refinements necessary
@@ -70,12 +72,14 @@ Solution: rekursive Refinement\\
 \begin{itemize}
 	\item different array for nodes and cells(like in the tutorial)
 	%%TODO add pic
+	\input{tikz/chapter_mesh/data_structure}
 \end{itemize}
 Bisections on direct storage:
 \begin{itemize}
 	\item additional node
 	\item replace 1 cell by 2 cells
 	%%TODO add pic
+	\input{tikz/chapter_mesh/bisection_data_structure}
 \end{itemize}
 
 Advantages:
