@@ -1,0 +1,30 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+	
+	% first rectangle
+	\coordinate (2) at (\xone,\yone);
+	\coordinate (1) at ($ (2) + (\h/2,\h/2) $);
+	\coordinate (3) at ($ (2) + (\h,0) $);
+	\coordinate (4) at ($ (2) + (\h/2,0) $);
+	
+	
+	\draw (1) -- (2) --(3) --cycle;
+	\draw (1) -- (4);
+	\foreach \i in {2,3,4}{
+		\filldraw (\i) circle (1.5pt);
+		\node[below]  at (\i) {\i};
+	}
+	\node[above]  at (1) {1};
+	\filldraw (1) circle (1.5pt);
+	
+	
+	\end{tikzpicture}
+	
+	%\caption{visualize data structure}
+	\label{ch_m_hier_mesh}
+	
+\end{figure}

@@ -15,7 +15,7 @@
 	\end{tabular}
 \end{center}
 
-Consens: Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\\
+Consens: Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\vspace{1cm}
 
 Questions:
 \begin{itemize}
@@ -149,9 +149,10 @@ Mesh:
 	\item macro mesh explicitly defined
 	\item every macro mesh cell ist \underline{root} of a tree
 	\item current mesh os given by all \underline{leafs}
-	%%TODO add pic
 	\input{tikz/chapter_mesh/mix_tree_triang}
 \end{itemize}
+
+Note that here the seperation of node indices and coordinates is not useful.\vspace{1cm}
 
 Advantages:
 \begin{itemize}
@@ -159,6 +160,15 @@ Advantages:
 	\item coarsening is a trivial task(remove leafs)
 	\item refinement inherited from father (determined by tree structure)(compute neighboring relations \glqq on demand\grqq)
 	%%TODO add pic
+	\input{tikz/chapter_mesh/hier_mesh}
+	\item cells = 
+	$\begin{bmatrix}
+	1 & 2 & 3
+	\end{bmatrix} \implies 
+	\begin{bmatrix}
+	4 & 1 & 2\\
+	4 & 3 & 1
+	\end{bmatrix} $ (refinement edge is defined by the last 2 entries in corresponding line)
 \end{itemize}
 
 Disadvantages:
