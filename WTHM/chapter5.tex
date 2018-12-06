@@ -318,8 +318,8 @@ Eine $\sigma$-Algebra $\F$ heißt \textbf{$\P$-trivial}
 \begin{proof}
 Sei $A\in\G_\infty$ und $\F_n:=\sigma\big(X_1,\ldots,X_n\big)$. Es gilt offenbar 
 \begin{align*}
-\G_\infty&\subseteq\F_\infty\text{, denn }\G_\infty=\bigcap\limits_{n\in\N}\G_n\text{ und }\F_\infty=\bigcup\limits_{n\in\N}\F_n\\
-\G_\infty&\unab\F_n\qquad\forall n\in\N
+	\G_\infty&\subseteq\F_\infty&&\text{,denn }\G_\infty=\bigcap\limits_{n\in\N}\G_n\text{ und }\F_\infty=\bigcup\limits_{n\in\N}\F_n\\
+	\G_\infty&\unab\F_n&&\forall n\in\N
 \end{align*}
 Dann ist
 \begin{align*}
@@ -327,7 +327,7 @@ M_n:=\E\big[\indi_A~\big|~\F_n\big]
 \end{align*}
 ein ggi Martingal und ggi Martingale konvergieren. Also folgt:
 \begin{align*}
-\exists M_\infty\in L_1(\F_\infty):\limn M_n=M_\infty\text{ und }\big\Vert M_n-M_\infty\big\Vert\stackrel{n\to\infty}{\longrightarrow}0
+	\exists M_\infty\in L_1(\F_\infty):\limn M_n=M_\infty\text{ f.s. und }\big\Vert M_n-M_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
 \end{align*}
 Wir zeigen $M_\infty=\indi_A$:
 \begin{align*}

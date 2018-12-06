@@ -34,17 +34,20 @@ Wichtige Anwendungen:
 
 \begin{bemerkung}
 (a) ist die allgemeinste Definition. (b) und (c) können als Spezialfälle betrachtet werden:\\
-(b): Setze $\mu(\d x):=f(x)\d x$, d.h. $f$ ist Dichte von $\mu$ bzgl. Lebesgue-Maß. Damit gilt:
+\begin{enumerate}[label=(\alph*):]
+	\setcounter{enumi}{1}
+	\item Setze $\mu(\d x):=f(x)\d x$, d.h. $f$ ist Dichte von $\mu$ bzgl. Lebesgue-Maß. Damit gilt:
 \begin{align*}
 \hat{\mu}(\xi)
 &=\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)~\mu(\d x)
 =\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)\cdot f(x)\d x=\hat{f}(\xi)
 \end{align*}
-(c): Sei $\P_X$ Bildmaß von $X$ unter $\P$ (d.h. Wahrscheinlichkeitsmaß auf $\R^d$). Dann gilt:
+\item Sei $\P_X$ Bildmaß von $X$ unter $\P$ (d.h. Wahrscheinlichkeitsmaß auf $\R^d$). Dann gilt:
 \begin{align*}
 \hat{\mu}(\xi)=\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)~\P_X(\d x)=\E\big[\exp(i\cdot X^T\cdot\xi)\big]
 =\Phi_X(\xi)
 \end{align*}
+\end{enumerate}
 Weitere Notation: 
 \begin{align*}
 \hat{\mu}=:\F(\mu)\qquad\hat{f}=:\F(f)
