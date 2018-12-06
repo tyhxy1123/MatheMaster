@@ -2950,5 +2950,140 @@ X_n\stackrel{\L}{\longrightarrow} B\text{ in }\big(C(I),d\big)
 wobei $B$ eine BB auf $I=[0,b]$.
 \end{satz}
 
+\begin{proof}
+Anwendung von Satz \ref{satz7.11MomentenkriteriumVonKolmogoroff}. Zeige also dessen Voraussetzungen:\nl
+\underline{\eqref{eqSatz7.11Vor1} Zeige Konvergenz der fidis:}\\
+Seien $0\leq t_1<\ldots<t_r\leq b$. Dann gilt:
+\begin{align*}
+\left\Vert\big(X_n(t_i)\big)_{1\leq i\leq r}-\left(\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=1}^{\lceil n\cdot t_i\rceil}\xi_j\right)_{1\leq i\leq r}\right\Vert
+&=\Bigg(\sum\limits_{i=1}^r\underbrace{\left|X_n(t_i)-\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=1}^{\lceil n\cdot t_i\rceil}\xi_j\right|^2}_{\frac{1}{\sqrt{n}}\cdot\underbrace{\big|n\cdot t_i-\lceil n\cdot t_i\rceil\big|}_{\leq1}\cdot\xi_{\lceil n\cdot t_i\rceil}}\Bigg)^{\frac{1}{2}}\\
+&\leq
+\frac{1}{\sqrt{n}}\cdot\left(\sum\limits_{i=1}^r\xi_{\lceil n\cdot t_i\rceil+1}^2\right)^{\frac{1}{2}}
+\implies\\
+\P\left(\left\Vert\big(X_n(t_i)\big)_{1\leq i\leq r}-\left(\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=1}^{\lceil n\cdot t_i\rceil}\xi_j\right)_{1\leq i\leq r}\right\Vert\right)
+&\leq\P\left(\sum\limits_{i=1}^r\xi^2_{\lceil n\cdot t_i\rceil+1}>n\cdot\varepsilon^2\right)\\
+\overset{\text{Markov}}&\leq
+\frac{1}{n}\cdot\varepsilon^{-2}\cdot\sum\limits_{i=1}^r\underbrace{\E\left[\xi^2_{\lceil n\cdot t_i\rceil+1}\right]}_{=1~\forall i}\\
+&=
+\frac{1}{n}\cdot\varepsilon^{-2}\cdot r\stackrel{n\to\infty}{\longrightarrow}0\qquad\forall\varepsilon>0
+\end{align*}
+Folglich sind die beiden Folgen
+\begin{align*}
+\big(X_n(t_i)\big)_{1\leq i\leq r}\qquad\text{und}\qquad\left(\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=1}^{\lceil n\cdot t_i\rceil}\xi_j\right)_{1\leq i\leq r}
+\end{align*}
+stochastisch äquivalent. Wegen Cramér (Satz \ref{satz4.14Cramer} genügt reicht es
+\begin{align}\label{eqProof7.16fd}\tag{fd}
+\left(\frac{1}{\sqrt{n}}\cdot S_{\lceil n\cdot t_i\rceil}\right)_{1\leq i\leq r}\stackrel{\L}{\longrightarrow}\big(B(t_1),\ldots,B(t_r)\big)
+\end{align}
+zu zeigen. Aber \eqref{eqProof7.16fd} ist äquivalent zu 
+\begin{align}\label{eqProof7.16Stern}\tag{$\ast$}
+\frac{1}{\sqrt{n}}\cdot\left(S_{\lceil n\cdot t_i\rceil}-S_{\lceil n\cdot t_{i-1}\rceil}\right)_{1\leq i\leq r}\stackrel{\L}{\longrightarrow}\big(B(t_i)-B(t_{i-1})\big)_{1\leq i\leq r}
+\end{align}
+denn:
+\begin{align*}
+h:\R^r\to\R^r,\qquad h(x_1,\ldots,x_r):=\big(x_1,x_2-x_1,x_3-x_2,\ldots,x_r-x_{r-1}\big)
+\end{align*}
+ist stetig auf $\R^r$ und hat stetige Inverse $h^{-1}$ mit 
+\begin{align*}
+h^{-1}(y_1,\ldots,y_r)=\big(y_1,y_1+y_2,\ldots,y_1+\ldots+y_r\big)
+\end{align*}
+Also ist \eqref{eqProof7.16fd} äquivalent zu \eqref{eqProof7.16Stern} gemäß CTM \ref{satz4.10ContinuousMappingTheorem}.\\
+Beachte wegen Blockungslemma sind die Komponenten $\frac{1}{\sqrt{n}}\cdot\left(S_{\lceil n\cdot t_i\rceil}-S_{\lceil n\cdot t_{i-1}\rceil}\right)_{1\leq i\leq r}$ \underline{unabhängig} und gemäß \ref{def7.12} (2) sind auch $\big(B(t_i)-B(t_{i-1})\big)$, $a\leq i\leq r$ unabhängig. Somit ist gemäß Satz \ref{satz4.21} \eqref{eqProof7.16Stern} äquivalent zu 
+\begin{align}\label{eqProof7.16SternStern}\tag{$\ast\ast$}
+\frac{1}{\sqrt{n}}\cdot\left(S_{\lceil n\cdot t_i\rceil}-S_{\lceil n\cdot t_{i-1}\rceil}\right)
+\stackrel{\L}{\longrightarrow}
+\big(B(t_i)-B(t_{i-1})\big)\text{ in }\R\qquad\forall 1\leq i\leq r
+\end{align}
+Dazu setze $k_n:=\lceil n\cdot t_i\rceil-\lceil n\cdot t_{i-1}\rceil$. Dann gilt:
+\begin{align*}
+&\frac{1}{\sqrt{n}}\cdot\left(S_{\lceil n\cdot t_i\rceil}-S_{\lceil n\cdot t_{i-1}\rceil}\right)\\
+&=\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=\lceil n\cdot t_{i-1}\rceil+1}^{\lceil n\cdot t_i\rceil}\xi_j
+=\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=1}^{k_n}\xi_{\lceil n\cdot t_{i-1}\rceil+j}
+\overset{\L}{=}
+\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=1}^{k_n}\xi_j\\
+&=\underbrace{\sqrt{\frac{k_n}{n}}}_{=\sqrt{\frac{\lceil n\cdot t_i\rceil-\lceil n\cdot t_{i-1}\rceil}{n}}}\cdot\frac{1}{\sqrt{k_n}}\cdot\sum\limits_{j=1}^{k_n}\xi_j\\
+&=\underbrace{\sqrt{\frac{\lceil n\cdot t_i\rceil-\lceil n\cdot t_{i-1}\rceil}{n}}}_{\stackrel{n\to\infty}{\longrightarrow}\sqrt{t_i-t_{i-1}}}\cdot\underbrace{\frac{1}{\sqrt{k_n}}\cdot\sum\limits_{j=1}^{k_n}\xi_j}_{\stackrelnew{\text{ZGWS}}{n\to\infty}{\longrightarrow}\mathcal{N}(0,1)}\stackrelnew{\ref{beisp4.18}(3)}{\L}{\longrightarrow}\sqrt{t_i-t_{i-1}}\cdot\mathcal{N}(0,1)
+\overset{\L}{=}\underbrace{\mathcal{N}(0,t_i-t_{i-1})}_{
+\overset{\ref{def7.12}}{=}B(t_i)-B(t_{i-1})}
+\end{align*}
+Damit ist Voraussetzung \eqref{eqSatz7.11Vor1} aus \ref{lemma7.14} gezeigt.\nl
+Wir zeigen \eqref{eqSatz7.11VorM} für $\gamma=4$ und $\alpha=2$, falls $\mu_4:=\E\big[\xi_1^4\big]<\infty$ (das ist eine stärkere Voraussetzung)\\
+Seien $s>t$ aus $I=[0,b]$. Dann gilt:
+\begin{align}\label{eqProof7.16Plus}\tag{+}
+&X_n(s)-X_n(t)\\
+&=\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=\lceil n\cdot t\rceil+1}^{\lceil n\cdot s\rceil}\xi_j+\frac{1}{\sqrt{n}}\cdot\big(n\cdot s-\lceil n\cdot s\rceil\big)\cdot\xi_{\lceil n\cdot s\rceil+1}
+-\frac{1}{\sqrt{n}}\cdot\big(n\cdot t-\lceil n\cdot t\rceil\big)\cdot\xi_{\lceil n\cdot t\rceil+1}\nonumber
+\end{align}
+Da 
+\begin{align}\label{eqProof7.16PlusPlus}\tag{++}
+\lceil n\cdot t\rceil\leq n\cdot t\leq\lceil n\cdot t\rceil+1\qquad\forall t\geq0
+\end{align}
+folgt
+\begin{align*}
+\frac{k}{n}\leq t<\frac{k+1}{n},\qquad\frac{l}{n}\leq s<\frac{l+1}{n},\qquad k=\lceil n\cdot t\rceil,\qquad l=\lceil n\cdot s\rceil
+\end{align*}
+\underline{Fall 1: $s-t\leq\frac{1}{n}$}
+\begin{enumerate}[label=(\roman*)]
+\item $s$ und $t$ liegen im selben Intervall $\left[\frac{k}{n},\frac{k+1}{n}\right)$
+\item $s$ und $t$ liegen in zwei aufeinanderfolgenden Intervallen $t\in\left[\frac{k}{n},\frac{k\cdot n}{n}\right]$, $s\in\left[\frac{k+1}{n},\frac{k+2}{n}\right)$
+\end{enumerate}
+%Ferger: Habe ich schon erwähnt, dass ich in Deutsch richtig schlecht war?
+\ul{Fall (i)}: $\lceil n\cdot s\rceil=\lceil n\cdot t\rceil$ und
+\begin{align*}
+X_n(s)-X_n(t)
+&=\frac{1}{\sqrt{n}}\cdot(n\cdot s-n\cdot t)\cdot\xi_{\lceil n\cdot t\rceil+1}
+=\sqrt{n}\cdot(s-t)\cdot\xi_{\lceil n\cdot t\rceil+1}\\
+\implies
+\E\Big[\big|X_n(s)-X_n(t)\big|^4\Big]
+&=n^2\cdot(s-t)^4\cdot\mu_4
+=\mu_4\cdot(s-t)^2\cdot\underbrace{(s-t)^2}_{<\frac{1}{n^2}}\cdot n^2\\
+&\leq\mu_4\cdot(s-t)^2
+\end{align*}
+%Ferger: Sie haben vielleicht mitbekommen es wird momentan von der Digitalisierung geredet. Und der Bund will 5 mrd € zur Verfügung stellen. Aber die Lehrer sagen: "Wir müssen die Kinder in das Zeitalter der Digitalisierung bringen". Gestern, ich lag gerade so auf meiner Couch mit einem Glas Wein und ein Journalist sagte dann "Man darf nicht zurück in die Kreidezeit (Lehrer an der Tafel)" Ich bin so kurz zusammengezuckt und habe mir gedacht: "Ach du scheiße, was machst du denn in Dresden..." Also es gibt tatsächlich Leite, die sich auch damit beschäftigen und sagen das ist Mühsam mit der Tafel. Aber indem man schreibt, beschäftigt man sich schon intensiver mit Stoff. 
+%Ferger: Manchmal ist weniger mehr.
+\ul{Fall (ii):} $k=\lceil n\cdot t\rceil$ und $l=k+1=\lceil n\cdot s\rceil$. Dann folgt aus \eqref{eqProof7.16Plus}:
+\begin{align*}
+X_n(s)-X_n(t)
+&=\frac{1}{\sqrt{n}}\cdot\xi_{k+1}+\frac{1}{\sqrt{n}}\cdot\big(n\cdot s-(k+1)\big)\cdot\xi_{k+2}-\frac{1}{\sqrt{n}}\cdot(n\cdot t-k)\cdot\xi_{k+1}\\
+&=\sqrt{n}\cdot\left(s-\frac{k+1}{n}\right)\cdot\xi_{k+2}+\sqrt{n}\cdot\xi_{k+1}\cdot\left(\frac{k+1}{n}-t\right)
+\end{align*}
 
+\begin{lem}[$c_r$-Ungleichung]\enter
+Seien $a_1,\ldots,a_m\in\R$ (paarweise verschieden) und $r\geq 1$. Dann gilt:
+\begin{align}\label{eqCrUngleichung}\tag{$C_r$}
+\left|\sum\limits_{i=1}^m a_i\right|^r\leq c_r\cdot\sum\limits_{i=1}^m|a_i|^r\mit c_r:= m^{r-1}
+\end{align}
+\end{lem}
+
+\begin{proof}
+Sei $Z$ diskrete Zufallsvariable mit $\P(Z=a_i)=\frac{1}{m}$ für $1\leq i\leq m$. Dann gilt:
+\begin{align*}
+\big|\underbrace{\E[Z]}_{=\frac{1}{n}\cdot\sum\limits_{i=1}^m a_i}\big|^r
+\overset{\text{Jensen}}&\leq
+\underbrace{\E\Big[|Z|^r\Big]}_{=\frac{1}{m}\cdot\sum\limits_{i=1}^m|a_i|^r}
+\implies
+m^{-r}\cdot\left|\sum\limits_{i=1}^m a_i\right|^r\leq\frac{1}{m}\cdot\sum\limits_{i=1}^m|a_i|^r
+\end{align*}
+\end{proof}
+
+Mit $m=2$ und $r=4$ folgt:
+\begin{align*}
+\big|X_n(s)-X_n(t)\big|^4
+&\leq 8\cdot\bigg(n^2\cdot\xi^4_{k+2}\cdot\Big(\underbrace{s-\frac{k+1}{n}}_{\leq s-t}\Big)^4+n^2\cdot\xi^4_{k+1}\cdot\Big(\underbrace{\frac{k+1}{n}-t}_{\leq s-t}\Big)^4\bigg)\\
+\implies
+\E\left[\big|X_n(s)-X_n(t)\big|^4\right]
+&\leq 16\cdot\mu_4\cdot \underbrace{n^2\cdot(s-t)^2}_{\overset{\text{Fall 1}}{\leq} 1}\cdot(s-t)^2
+\leq
+16\cdot\mu_4\cdot(s-t)^2
+\end{align*}
+
+\underline{Fall 2: $s-t\geq\frac{1}{n}$}\\
+Aus \eqref{eqProof7.16Plus} und \eqref{eqCrUngleichung} mit $r=4$ und $m=3$ folgt wegen $|\lceil n\cdot s-\lceil n\cdot s\rceil|\leq1$:
+\begin{align*}
+\E\Big[\big|X_n(s)-X_n(t)\big|^4\Big]
+\overset{}{\leq}
+27\cdot\left(\frac{1}{n^2}\cdot\E\left[\left|\sum\limits_{i=\lceil n\cdot t\rceil+1}^{\lceil n\cdot s\rceil}\xi_i\right|^4\right]+\underbrace{\frac{1}{n^2}}_{\leq(s-t)^2}\cdot\mu_4+\underbrace{\frac{1}{n^2}}_{\leq(s-t)^2}\cdot\mu_4\right)
+\end{align*}
+
+\end{proof}
 
