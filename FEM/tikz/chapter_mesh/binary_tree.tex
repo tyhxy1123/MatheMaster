@@ -1,0 +1,39 @@
+\tikzset
+{
+	treenode/.style = {circle, draw=blue!60, fill=blue!40, very thick, minimum size=4mm}
+}
+
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[->,>=stealth', level/.style={sibling distance = 2cm/#1, level distance = 1.5cm}, scale=0.6,transform shape, scale = 1.5]
+	\node [treenode] {}
+	child
+	{
+		node [treenode] {} 
+		child
+		{
+			node [treenode] {} 
+			child
+			{
+				node [treenode] {} 
+			}
+			child
+			{
+				node [treenode] {} 
+			}
+		}
+		child
+		{
+			node [treenode]  {}  
+		}
+	}
+	child
+	{
+		node [treenode]  {}     
+	};
+	
+	\end{tikzpicture}	
+\end{figure}
+
+
+	

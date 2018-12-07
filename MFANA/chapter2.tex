@@ -1,0 +1,538 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Das Cauchyproblem}
+Sei $X$ ein Banachraum. In diesem Kapitel betrachten wir das Cauchyproblem
+\begin{align}\label{CauchyProblem}\tag{CP}
+\dot{u}+Au\ni f\text{ auf }[0,T] \qquad\Big(:\Longleftrightarrow u'(t)+A u(t)\ni f(t)\text{ für (fast) alle }t\in[0,T]\Big)
+\end{align}
+evtl. ergänzt durch eine Anfangsbedingung
+\begin{align*}
+u(0)=u_0,
+\end{align*}
+wobei $u_0\in X$, $f\in L^1\big([0,T];X\big)$ und ein Operator $A\subseteq X\times X$ gegeben sind. Die Unbekannte ist eine Funktion $u:[0,T]\to X$. Mit $\dot{u}$ bezeichnen wir die Ableitung von $u$.
+
+\section{Vektorwertige Integration und Bochner-Lebesgueräume}
+Sei $(\Omega,\mathcal{A},\mu)$ ein Maßraum und $X$ ein Banachraum. Eine Funktion $f:\Omega\to X$ heißt \textbf{Treppenfunktion}
+\begin{align*}
+:\Longleftrightarrow\exists A_1,\ldots,A_n\in\mathcal{A}\text{ messbar },\exists x_1,\ldots,x_n\in X:f(\omega)=\sum\limits_{i=1}^n\indi_{A_i}(\omega)\cdot x_i
+\end{align*}
+wobei
+\begin{align*}
+\indi_A:\Omega\to\lbrace0,1\rbrace,\qquad\omega\mapsto\left\lbrace\begin{array}{cl}
+1, & \falls \omega\in A\\
+0, & \sonst
+\end{array}\right.\qquad\forall A\in\mathcal{A}
+\end{align*}
+die \textbf{Indikatorfunktion} ist.\\
+Eine Funktion $f:\Omega\to X$ heißt \textbf{messbar}
+\begin{align*}
+:\Longleftrightarrow\exists(f_n)_{n\in\N}\text{ mit $f_n:\Omega\to X$ Treppenfunktion }:f_n\stackrel{n\to\infty}{\longrightarrow} f\text{ punktweise überall}
+\end{align*}
+
+\begin{bemerkung}
+Diese Definition ist äquivalent zu der Definition aus der Maßtheorie, falls das Bild $f(\Omega)$ separabel ist.
+\end{bemerkung}
+
+\textbf{Beobachtung:} Wenn $f:\Omega\to X$ messbar ist und $g:X\to Y$ (wobei $Y$ ein weiterer Banachraum) stetig ist, dann ist $g\circ f:\Omega\to Y$ messbar, denn:
+
+\begin{proof}
+Ist $f=\sum\limits_{i=1}^n\indi_A\cdot x_i$ eine Treppenfunktion, dann ist (O.B.d.A. sind die $A_i$ paarweise disjunkt, $\bigcup\limits_i A_i=\Omega$)
+\begin{align*}
+g\circ f\equiv\sum\limits_{i=1}^n\indi_{A_i}\cdot g(x_i)
+\end{align*}
+eine Treppenfunktion. Ist $f$ messbar, dann $f_n\longrightarrow f$ punktweise für Treppenfunktionen $f_n$, und damit ($g$ stetig!) $g\circ f_n\to g\circ f$ punktweise.
+\end{proof}
+
+Insbesondere ist für eine messbare Funktion $f:\Omega\to X$ die Funktion\\ $\Vert f\Vert=\Vert\cdot\Vert\circ f:\Omega\to\R$ messbar.
+
+\begin{theorem}[Pettis]\label{theoremPettis}\enter
+Eine Funktion $f:\Omega\to X$ ist messbar $\gdw$ das Bild $f(\Omega)$ separabel ist und sie \textbf{schwach messbar ist}, d. h.
+\begin{align*}
+:\Longleftrightarrow\forall x'\in X':x'\circ f:\Omega\to\C\text{ ist messbar}
+\end{align*}
+\end{theorem}
+\begin{proof}
+\underline{Zeige ``$\implies$'':}\\
+Sei $f$ messbar. Dann ist nach der obigen Beobachtung $x'\circ f$ für alle $x'\in X'$ messbar.\\
+Außerdem gibt es eine Folge von Treppenfunktionen mit $f_n\stackrel{n\to\infty}{\longrightarrow} f$ punktweise. Damit ist
+\begin{align*}
+f(\Omega)\subseteq\overline{\bigcup\limits_{n\in\N}\underbrace{ f_n(\Omega)}_{\text{endlich}}}
+\end{align*}
+separabel und Teilmengen von separablen Mengen sind selbst separabel.\nl
+\underline{Zeige ``$\Longleftarrow$'':} Übung.
+\end{proof}
+
+Eine Funktion $f:\Omega\to X$ heißt \textbf{integrierbar}
+\begin{align*}
+:\Longleftrightarrow f\text{ messbar und }\int\limits_\Omega\Vert f\Vert\d\mu<+\infty
+\end{align*}
+Eine Treppenfunktion $f(\omega)=\sum\limits_{i=1}^n\indi_{A_i}(\omega)\cdot x_i$ ist integrierbar
+\begin{align*}
+\Longleftrightarrow\forall i\in\N: \mu(A_i)<+\infty\vee x_i=0
+\end{align*}
+Für eine integierbare Treppenfunktion $f(\omega)=\sum\limits_{i=1}^n\indi_{A_i}(\omega)\cdot x_i$ definieren wir das Integral
+\begin{align*}
+\int\limits_\Omega f:=\int\limits_\Omega f\d\mu:=\sum\limits_{i=1}^n\mu(A_i)\cdot x_i\in X
+\end{align*}
+(Diese Definition ist unabhängig von der Darstellung von $f$!)\\
+Ist $f:\Omega\to X$ eine allgemeine integrierbare Funktion, dann existiert eine Folge von Treppenfunktionen $(f_n)_{n\in\N}$ mit
+\begin{enumerate}
+\item $f_n\stackrel{n\to\infty}{\longrightarrow} f$ punktweise
+\item $\begin{aligned}
+\Vert f_n\Vert\leq\Vert f\Vert\qquad\forall n\in\N
+\end{aligned}$
+\end{enumerate}
+Wir definieren dann das Integral 
+\begin{align*}
+\int\limits_\Omega f:=\int\limits_\Omega f\d\mu:=\limn \int\limits_\Omega f_n\d\mu\in X
+\end{align*}
+(Grenzwert existiert und diese Definition ist unabhängig von der Wahl der Folge $(f_n)_{n\in\N}$!)
+
+\begin{align*}
+\left\Vert\int\limits_\Omega f_n-\int\limits_\Omega f_m\right\Vert\leq\int\limits_\Omega\big\Vert f_n-f_m\big\Vert\stackrel{n\to\infty}{\longrightarrow}0\text{ nach Satz von Lebesgue)}
+\end{align*}
+Es gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item Linearität des Integrals: Für alle $\alpha\in\K,f,g$ integrierbar gilt:
+\begin{align*}
+\int\limits_\Omega(\alpha\cdot f+g)=\alpha\cdot\int\limits_\Omega f+\int\limits_\Omega g
+\end{align*}
+\item Dreiecksungleichung: Für $f$ integrierbar gilt:
+\begin{align*}
+\left\Vert\int\limits_\Omega f\right\Vert\leq\int\limits_\Omega\Vert f\Vert
+\end{align*}
+\end{enumerate}
+
+\subsection*{Bochner-Lebesgueräume}
+Sei $p\in[1,\infty]$. Setze
+\begin{align*}
+\L^p(\Omega,X)&:=\left\lbrace f:\Omega\to X\text{ messbar }\left|~\int\limits_\Omega\Vert f\Vert^p<+\infty\right.\right\rbrace\qquad\forall p<\infty\\
+\L^\infty(\Omega,X)&:=\Big\lbrace f:\Omega\to X\text{ messbar }\Big|~\exists   c\geq0:\Vert f\Vert\leq c\text{ $\mu$-fast überall}\Big\rbrace
+\end{align*}
+Dann ist $\L^p(\Omega,X)$ ein $\K$-Vektorraum und 
+\begin{align*}
+\Vert f\Vert_p&:=\left(\int\limits_\Omega\Vert f\Vert^p\right)^{\frac{1}{p}}\qquad\forall p<\infty\\
+\Vert f\Vert_\infty&:=\inf\limits\big\lbrace c\geq 0~\big|~\Vert f\Vert\leq c\text{ $\mu$-fast überall}\big\rbrace
+\end{align*}
+ist eine Halbnorm auf diesem Raum (denn $\Vert f\Vert_p=0\not\Rightarrow f=0$). Sei
+\begin{align*}
+\mathcal{N}_p&:=\big\lbrace f\in \L^p(\Omega,A)~\big|~\Vert f\Vert_p=0\big\rbrace
+\end{align*}
+(linearer Unterraum) und setze
+\begin{align*}
+L^P(\Omega,X):=\L^p(\Omega,X)/\mathcal{N}_p
+=\big\lbrace \underbrace{f+\mathcal{N}_p}_{=[f]}~\big|~f\in\L^p(\Omega,X)\big\rbrace
+\end{align*}
+Dann ist
+\begin{align*}
+\big\Vert[f]\big\Vert_p:=\Vert f\Vert_p
+\end{align*}
+wohldefiniert (unabhängig von Repräsentanten $f$) und eine Norm. $\big(L^p(\Omega,X),\Vert\cdot\Vert_p\big)$ ist ein  Banachraum!\\
+Wir definieren noch den \textbf{Bochner-Sobolevraum} für $I\subseteq\R$ offen:
+\begin{align*}
+W^{1,1}(I,X):=\left\lbrace u\in L^1(I,X)~\left|~\exists g\in L^1(I,X):\forall\varphi\in C_c^\infty(I):\int\limits_I u\cdot\varphi'=-\int\limits_I g\cdot\varphi\right.\right\rbrace
+\end{align*}
+(schwach differenzierbare, $X$-wertige $L^1$-Funktionen, $g:=u'$ heißt \textbf{schwache Ableitung}) mit der Norm
+\begin{align*}
+\Vert u\Vert_{W^{1,1}}:=\Vert u\Vert_{L^1}+\Vert u'\Vert_{L^1}
+\end{align*}
+Ohne Beweis: jede Funktion $u\in W^{1,1}(I,X)$ ist fast überall differenzierbar (im klassischen Sinne) und die Ableitung stimmt fast überall mit der schwachen Ableitung überein.\\
+Achtung: Es gibt stetige Funktionen, die fast überall differenzierbar sind (im klassischen Sinne) $u'=0$ f. ü., die aber nicht schwach differenzierbar sind (nicht in $W^{1,1}$). Beispiel: Die Cantorfunktion.\nl
+Ohne Beweis. Jedes Element $u=[u]\in W^{1,1}(I,X)$ besitzt einen Repräsentanten, der auf $\overline{I}$ stetig ist.\nl
+Ohne Beweis:
+\begin{align*}
+\forall u\in W^{1,1}\big(]a,b[,X\big),\forall\varphi\in W^{1,1}\big(]a,b[,\C\big):
+\int\limits_a^b u\cdot\varphi'=u(b)\cdot\varphi(b)-u(a)\cdot\varphi(a)-\int\limits_a^b u'\cdot\varphi
+\end{align*}
+
+\section*{Lösungsbegriffe für das Cauchyproblem} %2.2
+Wir betrachten das Cauchyproblem
+\begin{align}\label{CauchyProblem2.2}\tag{CP}
+\dot{u}+Au\ni f\text{ auf }[0,T] 
+%\qquad\Big(:\Longleftrightarrow u'(t)+A u(t)\ni f(t)\text{ für (fast) alle }t\in[0,T]\Big)
+\end{align}
+wobei $f\in L^1([0,T],X)$ und $A\subseteq X\times X$ gegeben sind. Eine Funktion $u\in C\big([0,T],X)$ heißt
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{klassische Lösung}
+\begin{align*}
+:\Longleftrightarrow u\in C^1\big([0,T],X\big)\text{ und für fast alle }t\in[0,T]:u\text{ erfüllt }\eqref{CauchyProblem2.2}
+\end{align*}
+\item \textbf{starke Lösung}
+\begin{align*}
+:\Longleftrightarrow u\in W^{1,1}\big([0,T],X\big)\text{ und für fast alle }t\in[0,T]:u\text{ erfüllt }\eqref{CauchyProblem2.2}
+\end{align*}
+\item \textbf{milde Lösung / schwache Lösung} $:\gdw\exists$ Folge $(u_n)_{n\in\N}$ von starken Lösungen von \eqref{CauchyProblem2.2} (mit Rechter Seite $f_n\in L^1\big([0,T],X\big)$!) gibt, so dass
+\begin{align*}
+\limn\Vert f_n-f\Vert_{L^1}=0\text{ und }\limn\Vert u_n-u\Vert_\infty=0
+\end{align*}
+\item \textbf{Integrallösung}
+\begin{align*}
+:\Longleftrightarrow\exists\omega\in\R:\forall(\hat{u},\hat{f})\in A,\forall 0\leq s\leq t\leq T:\\
+\big\Vert u(t)-\hat{u}\big\Vert\leq\big\Vert u(s)-\hat{u}\big\Vert+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}\big\Vert\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\hat{f}\big]\d\tau
+\end{align*}
+(hängt a priori von $\omega$ ab)
+\end{enumerate}
+Beobachtung:
+\begin{enumerate}[label=(\alph*)]
+\item Ist $(u,f)\in A\subseteq X\times X$, dann ist die konstante Funktion $\equiv u$ klassische Lösung von \eqref{CauchyProblem2.2} zur konstanten rechten Seite $\equiv f$.
+\item Im Falle von $A=\lbrace(0,0)\rbrace\subseteq\R\times\R$ ist jede stetige, monoton wachsende Funktion $u:[0,T]\to\R$ %mit $u(0)=0$ 
+Integrallösung von $\dot{u}+Au\ni 0$
+\end{enumerate}
+
+\begin{theorem}\
+\begin{enumerate}[label=(\alph*)]
+\item Jede klassische Lösung ist starke Lösung.
+\item Jede starke Lösung ist milde Lösung.
+\item Wenn $A$ akkretiv vom Typ $\omega\in\R$ ist, dann gilt für je zwei milde Lösungen $u,\hat{u}\in C\big([0,T],X\big)$ zu rechten Seiten $f,\hat{f}\in L^1\big([0,T],X\big)$
+\begin{align*}
+\forall 0\leq s\leq t\leq T:
+\big\Vert u(t)-\hat{u}(t)\big\Vert\leq\big\Vert u(s)-\hat{u}(s)\big\Vert+\\+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u}(\tau),f(\tau)-\hat{f}(\tau)\big]\d\tau
+\end{align*}
+und 
+\begin{align*}
+\big\Vert u(t)-\hat{u}(t)\big\Vert\leq\exp(\omega\cdot t)\cdot\big\Vert u(0)-\hat{u}(0)\big\Vert+\int\limits_0^t\exp(\omega\cdot(t-\tau))\cdot\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
+\end{align*}
+Insbesondere ist jede milde Lösung eine Integrallösung, und das Problem 
+\begin{align*}
+\left\lbrace\begin{array}{c}
+\dot{u}+Au\ni f\\
+u(0)=u_0
+\end{array}\right.
+\end{align*}
+besitzt für jede $f\in L^1\big(0,T;X),u_0\in X$ höchstens eine milde Lösung.
+\item Ist $A$ maximal-akkretiv vom Typ $\omega\in\R$, ist $u\in C\big([0,T],X)$ eine Integrallösung von \eqref{CauchyProblem2.2} (mit rechter Seite $f\in L^1\big([0,T],X\big)$) und ist $u\in W^{1,1}\big([0,T],X\big)$, dann ist $u$ starke Lösung von \eqref{CauchyProblem2.2}. $X$ sei hierbei separabel.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) und (b) sind klar.\nl
+\underline{Zeige (c):}\\
+Seien zuerst $u,\hat{u}\in W^{1,1}\big([0,T],X\big)$ starke Lösungen von \eqref{CauchyProblem2.2} zu rechten Seiten $f,\hat{f}\in L^1\big(0,T;X\big)$, d. h.
+\begin{align*}
+f(t)-\dot{u}(t)&\in A u(t)\\
+\hat{f}(t)-\dot{\hat{u}}(t)&\in A\hat{u}(t)\text{ f.ü.}
+\end{align*}
+$A$ akkretiv vom Typ $\omega\in\R$ impliziert
+\begin{align*}
+\Big[u(t)-&\hat{u}(t),\big(f(t)-\hat{f}(t)\big)-\big(\dot{u}(t)-\dot{\hat{u}}(t)\big)\Big]+\omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert\geq0\text{ f.ü.}\\
+\end{align*}
+und damit
+\begin{align*}
+0
+\overset{\text{Subadd }[\cdot,\cdot]}&{\leq}
+\Big[u(t)-\hat{u}(t),-\big(\hat{u}(t)-\dot{\hat{u}}(t)\big)\Big]+
+\Big[u(t)-\hat{u}(t),f(t)-\hat{f}(t)\Big]+
+\omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert\\
+\overset{\text{Bracket-Eig}}&{=}
+-\frac{\d}{\d t}\big\Vert u(t)-\hat{u}(t)\big\Vert+\omega\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert+\big[u(t)-\hat{u}(t),f(t)-\hat{f}(t)\big]\text{ f.ü.}
+\end{align*}
+Integration dieser Ungleichung liefert erste Behauptung für starke Lösungen. Durch Approximation gilt die erste Behauptung dann auch für milde Lösungen (verwende auch die Oberhalbstetigkeit des Brackets). Aus der ersten Behauptung folgt für zwei milde Lösungen:
+\begin{align*}
+\big\Vert u(t)-\hat{u}(t)\big\Vert
+&\leq\big\Vert u(0)-\hat{u}(0)\big\Vert+\omega\cdot\int\limits_0^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau+\int\limits_0^t\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau\\
+\qquad\forall 0\leq t\leq T
+\end{align*}
+Die zweite Behauptung folgt daraus und aus dem Lemma von Gronwall.
+
+\begin{lemma}[Gronwall]\label{lemmaGronwall}\enter
+Seien $\varphi\in C\big([0,T]\big)^+,c\geq 0,\omega\in\R,f\in L^1(0,T)^+$ so, dass
+\begin{align*}
+\varphi(t)\leq c+\omega\cdot\int\limits_0^t\varphi(\tau)\d\tau+\int\limits_0^t f(\tau)\d\tau\qquad\forall t\in[0,T]
+\end{align*}
+Dann gilt:
+\begin{align*}
+\varphi(t)\leq\exp(\omega\cdot t)\cdot c+\int\limits_0^t\exp\big(\omega(t-\tau)\big)\cdot f(\tau)\d\tau\qquad\forall t
+\end{align*}
+\end{lemma}
+\begin{align*}
+&\varphi'(t)=-\omega\cdot\exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
++\exp(-\omega\cdot t)\cdot\frac{\d}{\d t}\big\Vert u(t)-\hat{u}(t)\big\Vert\\
+&\qquad\stackrel{}{\leq}
+\exp(-\omega\cdot t)\cdot\big\Vert f(t)-\hat{f}(t)\big\Vert\\
+&\stackrel{\text{Integ.}}{\implies}
+\exp(-\omega\cdot t)\cdot\big\Vert u(t)-\hat{u}(t)\big\Vert
+\leq\Vert u(0)-\hat{u}(0)\big\Vert+\int\limits_0^t\exp(-\omega\cdot\tau)\cdot\big\Vert f(\tau)-\hat{f}(\tau)\big\Vert\d\tau
+\end{align*}
+\underline{Zeige Mild $\implies$ Integral:}\\
+Betrachte $\hat{u}(t):=\hat{u}$ konstant und $\hat{f}(t):=\hat{f}$ konstant mit $(\hat{u},\hat{f})\in A$.\nl 
+%TODO Dieser Beweis ist nicht komplett.
+\underline{Zeige (d):}\\
+Sei $(\hat{u},\hat{f})\in A$ und sei $0\leq s\leq t\leq T$.
+\begin{align*}
+\int\limits_s^t\frac{\d}{\d\tau}\big[u(\tau)-\hat{u},\dot{u}(\tau)\big]\d\tau
+=\int\limits_s^t\frac{\d}{\d\tau}\big|u(\tau)-\hat{u}\big|\d\tau
+=\big|u(t)-\hat{u}\big|-\big|u(s)-\hat{u}\big|
+\end{align*}
+Da $u$ Integrallösung ist, gilt
+\begin{align*}
+\big|u(t)-\hat{u}\big|\leq\big| u(s)-\hat{u}\big|+\omega\cdot \int\limits_s^t\big|u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\hat{f}\big]\d\tau
+\end{align*}
+Folglich gilt:
+\begin{align*}
+&\int\limits_s^t\frac{\d}{\d\tau}\big[u(\tau)-\hat{u},\dot{u}(\tau)\big]\d\tau\\
+&\leq\omega\cdot\int\limits_s^t\big|u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\hat{f}+\dot{u}(\tau)-\dot{u}(\tau)\big]\d\tau\\
+&\leq\omega\cdot\int\limits_s^t\big| u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\d\tau
++\int\limits_s^t\big[u(\tau)-\hat{u},\dot{u}(\tau)\big]\d\tau\\
+&\implies
+\omega\cdot\int\limits_s^t\big|u(\tau)-\hat{u}\big|\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\d\tau\geq0
+\end{align*}
+Diese Ungleichung gilt für fast alle $\tau$. Damit folgt:
+\begin{align*}
+\omega\cdot\big|u(\tau)-\hat{u}\big|+\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\geq0
+\end{align*}
+Da $X$ nach Voraussetzung separabel ist, gibt es eine Folge $(u_n)_{n\in\N}$ mit $u_n\in\dom(A)$ und $X=\overline{\lbrace u_n:n\in\N\rbrace}\supseteq\dom(A)$. Dann gibt es eine Nullmenge $N$, so dass
+\begin{align*}
+\omega\cdot\big|u(\tau)-u_n\big|+\big[u(\tau)-u_n,f(\tau)-\dot{u}(\tau)-\hat{f}_n\big]\geq0 
+\end{align*}
+wobei $\big(u_n,\hat{f}_n\big)\in A$ für alle $\tau\in[0,T]\setminus N$ gilt.\\
+Sei $\hat{u}\in\dom(A)$. Dann gibt es eine Teilfolge $\big(u_{n_k}\big)_{k\in\N}$ mit $u_{n_k}\stackrel{k\to\infty}{\longrightarrow}\hat{u}$. Seien $(\hat{u},\hat{f})\in A$. Dann gilt:
+\begin{align*}
+0&\leq\limsup\limits_{k\to\infty}\Big(\omega\cdot\big|u(\tau)-u_{n_k}\big|+\big[u(\tau)-u_{n_k},f(\tau)-\dot{u}(\tau)-\hat{f}_{n_k}\big]\Big)\\
+&\leq\omega\cdot\big|u(\tau)-\hat{u}\big|+\big[u(\tau)-\hat{u},f(\tau)-\dot{u}(\tau)-\hat{f}\big]\\
+&\implies
+A\cup\Big\lbrace\big(u(\tau),f(\tau)-\dot{u}(\tau)\big)\Big\rbrace\text{ ist akkretiv}
+\end{align*}
+Da $A$ maximal ist, folgt $\big(u(\tau),f(\tau)-\dot{u}(\tau)\big)\in A$ für alle $\tau\in[0,T]\setminus N$, also fast überall. Somit folgt
+\begin{align*}
+f(\tau)-\dot{u}(\tau)\in A u(\tau)\\
+\implies f(\tau)\in A u(\tau)+\dot{u}(\tau)
+\end{align*}
+\end{proof}
+
+\begin{definition}
+Setze
+\begin{align*}
+\Theta&:=\big(\pi_\Theta,f_\Theta,u_{0,\Theta}\big)\\
+\pi_\Theta&:=\big\lbrace t_0,\ldots,t_N: 0=t_0<t_1<t_2<\ldots<t_N=T\big\rbrace\text{ eine Partition}\\
+h_i&:=t_{i+1}-t_i\qquad\forall i\in\lbrace0,\ldots,N-1\rbrace\\
+|\pi|&:=\sup\limits_{0\leq i\leq N-1} h_i\qquad\text{Feinheit}
+\end{align*}
+Sei $f\in L^1\big([0,T],X\big)$ adaptiert zu $\pi$ und stückweise konstant auf $[t_i,t_{i+1})$ für $i\leq i\leq N-1$.\\
+Wir nennen $\Theta=\big(\pi,f_\Theta,u_{0,\Theta}\big)$ eine \textbf{Diskretisierung} $:\gdw\pi$ eine Partition, $f_\Theta$ adaptiert und $u_{\Theta,0}\in X$.
+\end{definition}
+Betrachte das Problem
+\begin{align}\label{eqETheta}\tag{$E_\Theta$}
+\left\lbrace\begin{array}{l}
+\frac{u_\Theta(t_{j+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_i)\qquad\forall i\in\lbrace0,\ldots,N-1\rbrace\\
+u_\Theta(0)=u_{0,\Theta}
+\end{array}\right.
+\end{align}
+Diese Problem kann als \textit{explizites Eulerverfahren} aufgefasst werden. Es gilt:
+\begin{align*}
+&\dot{u}+Au(t)\ni f\\
+&\frac{u_\Theta(t_{i+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_{i+1})
+\qquad\text{ und }\qquad
+u_\Theta(0)=u_{\Theta,0}\\
+&u_\Theta(t_{i+1})+h\cdot A u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)\\
+&\Longleftrightarrow (\id+h\cdot A)u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)
+\end{align*}
+Im Linearen:
+\begin{align*}
+u_\Theta(t_{i+1})=J_{h_i}\big(h_i f_\Theta+u_\Theta(t_i)\big)
+\end{align*}
+Schon gezeigt:
+\begin{align*}
+A\text{ akkretiv}&\implies\text{höchstens ein $u_\Theta$ löst das diskrete Problem}\\
+A\text{ $m$-akkretiv}&\implies\text{genau ein $u_\Theta$ löst das diskrete Problem}
+\end{align*}
+Grob für $f\in L^1\big([0,T],X\big)$ und $f_{\Theta_i}\longrightarrow f$. Dann soll es $u\in X$ geben so, dass $u_{\Theta_i}\longrightarrow u$ und $u$ Integrallösung zur Rechten Seite $f$.
+
+\begin{lemma}
+Sei $A$ akkretiv vom Typ $\omega\in\R$ und $u,\hat{u},v,\hat{v},f,\hat{f}\in X$ und $\hat{h}\geq h\geq 0$ mit $\hat{h}\cdot\omega\leq 1$ und 
+\begin{align*}
+\frac{u-v}{h}+Au\ni f,\qquad\frac{\hat{u}-\hat{v}}{\hat{h}}+A\hat{u}\ni\hat{f}
+\end{align*}
+Dann gilt:
+\begin{align*}
+\big|u-\hat{u}\big|_X\leq\left|v-\left(\frac{h}{\hat{h}}\cdot\hat{v}+\left(1-\frac{h}{\hat{h}}\right)\cdot\hat{v}\right)\right|+h\cdot\omega\cdot\big|u-\hat{u}\big|+h\cdot\big[ u-\hat{u},f-\hat{f}\big]
+\end{align*}
+\end{lemma}
+\begin{proof} %Im Folgenden Beweis konnten u und v teilweise verwechselt worden sien
+\begin{align*}
+&\left[u-\hat{u},f-\frac{u-v}{h}-\hat{f}+\frac{\hat{u}-\hat{v}}{\hat{h}}\right]+\omega\cdot\big|u-\hat{u}\big|\stackrel{A\text{ akk}}{\geq} 0\\
+&\stackrel{\text{Def }[\cdot,\cdot]}{\implies}
+-\lambda\cdot\omega\cdot|u-\hat{u}|\\
+&\leq\left|(u-\hat{u})+\lambda\cdot\left(f-\frac{u-v}{h}-\hat{f}+\frac{\hat{u}-\hat{v}}{\hat{h}}\right)\right|-\big|u-\hat{u}\big|\\
+&=
+\left|\frac{h-\lambda}{h}\cdot u-\hat{u}+\lambda\cdot(f-\hat{f})+\frac{\lambda}{h}\cdot v-\frac{\lambda}{\hat{h}}\cdot(\hat{u}-\hat{v})\right|-|v-\hat{u}|\\
+&=\frac{h-\lambda}{h}\cdot\left|u-\frac{h}{h-\lambda}\cdot\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})+\frac{h}{h-\lambda}\cdot\frac{\lambda}{h}
+-\frac{h}{h-x}\cdot\frac{\lambda}{\hat{h}}\cdot(\hat{u}-\hat{v})\right|\\
+&\quad-\frac{h-\lambda}{h}\cdot|u-\hat{u}|-\frac{\lambda}{h}\cdot|u-\hat{u}|\\
+\overset{\text{DU}}&{\leq}
+\frac{h-\lambda}{h}\cdot\left(\left|u-\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})\right|-\big|u-\hat{u}\big|\right)\\
+&\quad+\frac{\lambda}{h}\cdot\left(\left|v-\left(\frac{h}{\hat{h}}\cdot\hat{v}+\left(1-\frac{h}{\hat{h}}\right)\cdot\hat{u}\right)\right|-\big|u-\hat{u}\big|\right)
+\end{align*}
+Dividiere durch $\frac{\lambda}{h}$:
+\begin{align*}
+-h\cdot\omega\big|u-\hat{u}\big|
+&\leq h\cdot\frac{h-\lambda}{\lambda\cdot h}\cdot\left(\left|u-\hat{u}+\frac{\lambda\cdot h}{h-\lambda}\cdot(f-\hat{f})\right|-\big|u-\hat{u}\big|\right)
+\end{align*}
+Für $\lambda\to0$ erhält man:
+\begin{align*}
+-h\cdot\omega\cdot\big|u-\hat{u}\big|\leq h\cdot\big[u-\hat{u},f-\hat{f}\big]+\left|u-\left(\frac{h}{\hat{h}}\cdot\hat{v}+\left(1-\frac{h}{\hat{h}}\cdot\hat{u}\right)\right)\right|-\big|u-\hat{u}\big|
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+Seien 
+\begin{align*}
+\Theta=\big(\pi_\Theta,f_\Theta,u_{0,\Theta}\big),\qquad
+\hat{\Theta}=\big(\pi_{\hat{\Theta}},f_{\hat{\Theta}},u_{0,\hat{\Theta}}\big)
+\end{align*}
+zwei Diskretisierungen des Cauchyproblems \eqref{CauchyProblem2.2} mit einem Operator $A\subseteq X\times X$, der akkretiv vom Typ $\omega\in\R$ ist. 
+Seien $u_\Theta,u_{\hat{\Theta}}$ zwei Lösungen des impliziten Eulerschemas (diskretes Problem) \eqref{eqETheta} bzw. $(E_{\hat{\Theta}})$.
+Es sei $\big|\pi_\Theta\big|\cdot\omega<1$ und $\big|\pi_{\hat{\Theta}}\big|\cdot\omega<1$ ($\big|\pi_\Theta\big|=\sup\limits_{0\leq i\leq N} h_i$). Sei
+\begin{align*}
+a_{i,j}&:=\Big\Vert u(t_i)-\hat{u}(\hat{t}_j)\Big\Vert &\forall 0\leq j\leq N\\
+b_{i,j}&:=\Big\Vert f_\Theta(t_i)-f_{\hat{\Theta}}(t_j)\Big\Vert &\forall 0\leq j\leq N
+\end{align*}
+Dann gilt:
+\begin{align*}
+&\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}
+\leq\frac{h_i}{h_i+\hat{h}_j}\cdot a_{i+1,j}+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot a_{i,j+1}+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}\\
+&\left(1-h_i\wedge\hat{h}_j\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&\leq\left(1-\frac{\hat{h}_j}{h_i}\right)^+\cdot a_{i+1,j}+\frac{h_i\wedge\hat{h}_j}{h_i\vee\hat{h}_j}\cdot a_{i,j}+\left(1-\frac{h_i}{\hat{h}_j}\right)^+\cdot a_{i,j+1}+h_i\wedge\hat{h}_j\cdot b_{i,j}\\
+&\qquad\forall 0\leq i\leq N-1,\forall 0\leq j\leq\hat{N}-1
+\end{align*}
+Hierbei bezeichnet $\wedge$ das Minimum und $\vee$ das Maximum.
+%TODO Hier könnte man eine Skizze einfügen
+\end{lemma}
+\begin{proof}
+Es gilt für alle $0\leq i\leq N-1$, $0\leq j\leq\hat{N}-1$:
+\begin{align*}
+u_\Theta(t_{i+1})+h_i\cdot Au_\Theta(t_{i+1})&\ni f_\Theta(t_i)+u_\Theta(t_i)\\
+u_{\hat{\Theta}}(\hat{t}_{j+1})+\hat{h}_j\cdot Au_{\hat{\Theta}}(\hat{t}_{j+1})&\ni f_{\hat{\Theta}}(\hat{t}_j)+u_{\hat{\Theta}}(\hat{t}_{j})
+\end{align*}
+und somit ($A$ akkretiv vom Typ $\omega$!) gilt:
+\begin{align*}
+\left[u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1}),f_\Theta(t_i)+\frac{u_\Theta(t_i)-u_\Theta(t_{i+1})}{h_i}-\left(f_{\hat{\Theta}}(\hat{t}_j)+\frac{u_{\hat{\Theta}}(\hat{t}_j)-u_{\hat{\Theta}}(\hat{t}_{j+1})}{\hat{h}_j}\right)\right]_\lambda\\
++\omega\cdot\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\Big\Vert\geq0\qquad\forall\lambda\geq0
+\end{align*}
+Setze nun $\lambda:=\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}$. Somit ist obige Ungleichung äquivalent zu: (gleich mit $\lambda$ multipliziert)
+\begin{align*}
+&0\\
+&\leq
+\Bigg\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\\
+&\cdot\left(f_\Theta(t_i)-f_{\hat{\Theta}}(\hat{t}_j)+\frac{u_\Theta(t_i)-u_\Theta(t_{i+1})}{h_i}-\frac{u_{\hat{\Theta}}(\hat{t}_j)-u_{\hat{\Theta}}(\hat{t}_{j+1})}{\hat{h}_j}\right)\Bigg\Vert\\
+&-\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\right\Vert
++\omega\cdot\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\right\Vert\\
+&\leq
+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}-\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&+\left\Vert u_\Theta(t_{i+1})-u_{\hat{\theta}}(t_{j+1})+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(u_\Theta(t_i)-u_\Theta(t_{i+1})\right)-\frac{h_i}{h_i+\hat{h}_j} %\cdot hier weglassen, sonst Overful Box
+\left(u_{\hat{\Theta}}(\hat{t}_j)-u_{\hat{\Theta}}(\hat{t}_{j+1})\right)\right\Vert\\
+&=\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}-\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&+\left\Vert\frac{h_i}{h_i+\hat{h}_j}\cdot u_\Theta(t_{j+1})-\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot u_{\hat{\Theta}}(\hat{t}_{j+1})+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot u_\Theta(t_i)-\frac{h_i}{h_i+\hat{h}_j}\cdot u_{\hat{\Theta}}(\hat{t}_j)\right\Vert\\
+&\leq
+\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot b_{i,j}-\left(1-\frac{h_i\cdot\hat{h}_j}{h_i+\hat{h}_j}\cdot\omega\right)\cdot a_{i+1,j+1}
++\frac{h_i}{h_i+\hat{h}_j}\cdot a_{i+1,j}+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot a_{i,j+1}
+\end{align*}
+Zweite Abschätzung: Wähle $\lambda=h_i\wedge\hat{h}_j$ und rechne analog.
+\end{proof}
+
+\begin{lemma}
+Voraussetzungen wie im vorherigen Lemma, aber $\pi_\Theta=\pi_{\hat{\Theta}}$. Dann gilt für alle $0\leq i\leq N-1$:
+\begin{align*}
+\big(1-h_i\cdot\omega\big)\cdot\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(t_{i+1})\right\Vert
+\leq\left\Vert u_\Theta(t_i)-u_{\hat{\Theta}}(t_i)\right\Vert
++h_i\cdot\left\Vert f_\Theta(t_i)-f_{\hat{\Theta}}(t_i)\right\Vert
+\end{align*}
+bzw. (durch Iterieren)
+\begin{align*}
+\left\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(t_{i+1})\right\Vert
+&\leq\prod\limits_{k=0}^i\big(1-h_k\cdot\omega\big)^{-1}\cdot\big\Vert u_{0,\Theta}-u_{0,\hat{\Theta}}\big\Vert\\
+&+\sum\limits_{k=0}^i\prod\limits_{l=k}^i\big(1-h_l\cdot\omega\big)^{-1}\cdot h_k\cdot\Big\Vert f_\Theta(t_k)-f_{\hat{\Theta}}(t_k)\Big\Vert
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Folgt direkt aus dem vorigen Lemma (dritte Abschätzung):
+\begin{align*}
+&\left(1-\left(h_i\wedge\hat{h}_j\right)\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&\leq
+\left(1-\frac{\hat{h}_j}{h_i}\right)^+\cdot a_{i+1,j}
++\left(1-\frac{h_i}{\hat{h}_j}\right)^+\cdot a_{i,j+1}
++\frac{h_i\wedge \hat{h}_j}{h_i\vee\hat{h}_j}\cdot a_{i,j}+ h_i\wedge\hat{h}_j\cdot b_{i,j}
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{theoremEndeChpater2}
+Sei $A$ akkretiv vom Typ $\omega$ auf einem Banachraum $X$. Seien $\Theta=\big(\pi_\Theta,0,u_{0,\Theta}\big)$ und $\hat{\Theta}=\big(\pi_{\hat{\Theta}},0,u_{0,\hat{\Theta}}\big)$ zwei Diskretisierungen des Cauchy-Problems mit $|\pi_\Theta|\cdot\omega<1$ und $|\pi_{\hat{\Theta}}|\cdot\omega<1$. Seien $u_\Theta$ und $u_{\hat{\Theta}}$ Lösungen des impliziten Eulerschemas \eqref{eqETheta} bzw. ($E_{\hat{\Theta}}$).\\
+Dann gilt für alle $t,\hat{t}\in[0,T]$ und alle $\hat{u}\in\dom(A)$:
+\begin{align*}
+\gamma_{i+1,j+1}&\cdot\Big\Vert u_\Theta(t)-u_{\hat{\Theta}}(\hat{t})\Big\Vert\\
+&\leq
+\Big\Vert u_{0,\Theta}-\hat{u}\Big\Vert+\Big\Vert u_{0,\hat{\Theta}}-\hat{u}\Big\Vert+\sqrt{(t-\hat{t})^2+|\pi_\Theta|\cdot t+|\pi_{\hat{\Theta}}|\cdot\hat{t}}\cdot\Vert A\hat{u}\Vert\\
+\text{ wobei }\gamma_{i,j}&:=\prod\limits_{k=0}^{i-1}\big(1-h_k\cdot\omega\big)^{-1}\cdot\prod\limits_{l=0}^{j-1}\big(1-\hat{h}_l\cdot\omega\big)
+\qquad\forall t\in[t_i,t_{i+1}],\hat{t}\in[\hat{t}_j,\hat{t}_{j+1}]\\
+\text{ und }\Vert A\hat{u}\Vert&=\inf\limits\Big\lbrace\Vert\hat{f}\Vert:\hat{f}\in A\hat{u}\Big\rbrace
+\end{align*}
+\end{theorem}
+
+\begin{proof}[Beweis. (Vereinfachung: $\omega=0$)]\enter
+Man zeigt die Behauptung zuerst für $t=t_i$ und $\hat{t}=\hat{t}_j$. Zeige dies durch Induktion über $i$ und $j$.\nl
+\ul{IA 1:} Sei zuerst $i=0$ und $j\in\big\lbrace 0,\ldots,\hat{N}\big\rbrace$ beliebig. Dann gilt für alle $(\hat{u},\hat{f})\in A$:
+\begin{align*}
+\Big\Vert u_\Theta(t_0)-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert
+&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\Big\Vert\hat{u}-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert\\
+\overset{(\ast)}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\underbrace{\sum\limits_{k=0}^{j-1}\hat{h}_k}_{=\hat{t}_j=\sqrt{(t_0-\hat{t}_j)^2}}\cdot\Vert\hat{f}\Vert\\
+&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert+
+\sqrt{(t_0-\hat{t}_j)^2+|\pi_\Theta|\cdot t_0+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}\cdot\Vert\hat{f}\Vert
+\end{align*}
+Bei ($\ast$) wird verwendet, dass $(\hat{u},\hat{f})$ eine Lösung von $\Big(E_{(\pi_{\hat{\Theta}},\hat{f},\hat{u})}\Big)$ ist.\\
+Nehme sodann $\inf$ über $\hat{f}\in A\hat{u}$.\nl
+\ul{IA 2:} Analog zu IA 1 gilt die Behauptung für $i\in\lbrace0,\ldots,N\rbrace$ und $j=0$.\nl
+\ul{IV:} Man nehme an, die Behauptung ist richtig für $(t,\hat{t})=(t_i,t_{j+1})$ und $(t,\hat{t}_j)=(t_{i+1},\hat{t}_j)$.\nl
+\ul{IS:} Dann gilt (mit der ersten Abschätzung aus dem ersten Lemma):
+\begin{align*}
+&\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\Big\Vert\\
+%\overset{\text{1. Lemma, 1. Abschätzung}}
+&\leq
+\frac{h_i}{h_i+\hat{h}_j}\cdot\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert
++\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\Big\Vert u_\Theta(t_i)-u_{\hat{\Theta}}(\hat{t}_{j+1})\Big\Vert\\
+\overset{\text{IV}}&\leq
+\frac{h_i}{h_i+\hat{h}_j}\cdot\left(\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t_{i+1}-\hat{t}_j\big)^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}\cdot\Vert A\hat{u}\Vert\right)\\
+&~+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t_i-t_{j+1}\big)^2+|\pi_\Theta|\cdot t_i+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}}\cdot\Vert A\hat{u}\Vert\right)\\
+\overset{\text{CS}}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\underbrace{\sqrt{\frac{h_i}{h_i+\hat{h}_j}+\frac{\hat{h}_j}{h_i+\hat{h}_j}}}_{=1}\cdot\\
+&\qquad\sqrt{\frac{h_i}{h_i+\hat{h}_j}\cdot\left(\big(t_{i+1}-\hat{t}_j\big)^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j\right)+}\\
+&\qquad\qquad\qquad\overline{+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(\big(t_i-\hat{t}_{j+1}\big)^2+|\pi_\Theta|\cdot t_i+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}\right)}\cdot\Vert A\hat{u}\Vert\\
+&=\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert\\
+&~+\sqrt{\frac{h_i}{h_i+\hat{h}_j}\cdot\left(\big(t_{i+1}-\hat{t}_{j+1}\big)^2+2\cdot\hat{h}_j\cdot\big(t_{i+1}-\hat{t}_{j+1}\big)+\hat{h}_j^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j\right)+}\\
+&\qquad\qquad\overline{+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(\big(t_{i+1}-\hat{t}_{j+1}\big)^2-2\cdot h_i\cdot\big(t_{i+1}-\hat{t}_{j+1}\big)+h_i^2+|\pi_\Theta|\cdot t_{i}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}\right)}\\
+&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t_{i+1}-\hat{t}_{j+1}\big)^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}}\cdot\Vert A\hat{u}\Vert
+\end{align*}
+Damit gilt die Behauptung für beliebige $t=t_i$ und $\hat{t}=\hat{t}_j$. Sei schließlich $t\in[0,T]$ beliebig, aber $\hat{t}=\hat{t}_j$. Dann gilt mit
+$t\in[t_i,t_{i+1}]$ und $t=\lambda t_i+(1-\lambda) t_{i+1}$:
+\begin{align*}
+\big\Vert u_\Theta(t)-u_{\hat{\Theta}}(\hat{t})\big\Vert
+&=
+\Big\Vert\lambda u_\Theta(t_i)+(1-\lambda)u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert\\
+&\leq
+\lambda\Big\Vert u_\Theta(t_i)-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert+
+(1-\lambda)\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert\\
+\overset{\text{s.o.}}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\lambda\sqrt{(t_i-\hat{t}_j)^2+|\pi_\Theta| t_i+|\pi_{\hat{\Theta}}|\hat{t}_j}\cdot\Vert A\hat{u}\Vert\\
+&\quad+(1-\lambda)\sqrt{(t_{i+1}-\hat{t}_j)^2+|\pi_\Theta|t_{i+1}+|\pi_{\hat{\Theta}}\hat{t}_j}\cdot\Vert A\hat{u}\Vert\\
+\overset{(\ast\ast)}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t-\hat{t}_j\big)^2+|\pi_\Theta|\cdot t+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}\cdot\Vert A\hat{u}\Vert
+\end{align*}
+Ein analoges Konkavitätsargument liefert die Behauptung für beliebige $t,\hat{t}\in[0,T]$.\\
+Bei $(\ast\ast)$ wird die Konkavität der Funktion 
+\begin{align*}
+t\mapsto\sqrt{\big(t-t_j)^2+|\pi_\Theta|\cdot t+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}
+\end{align*}
+verwendet.
+\end{proof}

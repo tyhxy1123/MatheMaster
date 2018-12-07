@@ -3,8 +3,19 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{shapes.geometric,arrows,fit,matrix,positioning}
+
+
+
+\usepackage{float} % for fixed figure environment
+
 \newenvironment{proof_}{\begin{proof}[Proof]}{\end{proof}}
-\newenvironment{rcases}
+\renewenvironment{rcases}
 {\left.\begin{aligned}}
 	{\end{aligned}\right\rbrace}
 
@@ -25,6 +36,9 @@
 \newcommand*\bigo{\mathcal{O}}
 \newcommand{\T}{\mathcal{T}}				 % Triangulierung
 
-%\newcommand*\laplace{\mathop{}\!\mathbin\bigtriangleup}
 \newcommand*\laplace{\Delta}
 
+\newcommand*\diam{\text{diam}} 
+\newcommand*\ton{\text{ on }} 
+\newcommand*\tin{\text{ in }}
+\newcommand*\meas{\text{meas}}  

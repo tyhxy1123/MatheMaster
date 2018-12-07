@@ -1,11 +1,17 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
 \documentclass[]{scrreprt}
 
 \input{../latex/packages}
 \input{../latex/theoremenvironments_english}
 \input{../latex/font}
 \input{../latex/commands}
+\input{commands_amgeo}
+
 % \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
-\renewcommand{\|}{~|~}
 
 \title{%
   Lecture\\
@@ -13,22 +19,21 @@
   Lie agebras
   }
 \subtitle{Winter semester 2018/2019}
-\author{Lecture: Prof. Dr. Uli Krähmer\\Notes from: Lukas Zenner}
-
+\author{Lecture: Prof. Dr. Ulrich Krähmer\\Notes from: Lukas Zenner}
 
 \begin{document}
 \selectlanguage{english}
 \pagenumbering{gobble}	% disable pagenumbering
 
 \maketitle
+\doclicenseThis
 \tableofcontents % Inhaltsverzeichnis
 \pagenumbering{arabic}	%enable pagenumbering
 
+{\input{chapter0}}
 {\input{chapter1}}
-
+{\input{chapter4}}
 %\listoffigures 
 %\listoftables
 %\bibliography{literatur}
-
-
 \end{document}
