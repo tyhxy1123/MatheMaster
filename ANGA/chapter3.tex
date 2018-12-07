@@ -321,7 +321,7 @@ $R'$ der ganze Abschluss von $R$ in $E$.
 \end{beispiel}
 
 \section{Differente und Kospur}
-Sei $F|K$ Funktionenkörper, E endliche, separabele und geometrische Erweiterung von $F|K$,
+Sei $F|K$ Funktionenkörper, E endliche, separable und geometrische Erweiterung von $F|K$,
 $P \in S(F|K)$, $\O'_P$ der ganze Abschluss von $\O_P$ in $E$.
 
 \begin{definition}
@@ -397,7 +397,7 @@ $P \in S(F|K)$, $\O'_P$ der ganze Abschluss von $\O_P$ in $E$.
     $$ \Tr_{E|F} : \A_{E|F} \to \A_F, (\alpha_Q)_Q \mapsto (\Tr_{E|F}(\alpha_{Q_P}))_P$$
     wobei für jedes $P \in S(F|K)$ ein $Q_P|P$ gewählt wird.
     $$\begin{tikzcd}
-      E \rar[hook] & \A_{E|F} \drar \dar{\Tr} \rar[hook] & \A_E \\
+      E \rar[hook] & \A_{E|F} \drar[dashed] \dar{\Tr} \rar[hook] & \A_E \\
       F \rar[hook] \uar[dash] & \A_F \rar{\omega} & K  
     \end{tikzcd}$$
 \end{definition}
@@ -422,4 +422,135 @@ $P \in S(F|K)$, $\O'_P$ der ganze Abschluss von $\O_P$ in $E$.
         \item $\beta \in \A_{E|F}$: $v_Q(\alpha_Q)=0$ und $v_Q(A)=0$ für fast alle $Q$
         \item $\alpha - \beta \in \A_E(A)$: $v_Q(\alpha_Q -\beta_Q) \geq -v_Q(A)$
     \end{itemize}
+\end{proof}
+
+\begin{satz}
+    Sei $0 \ne \omega \in \Omega_{F|K}$. Die Abbildung 
+    $$\omega_1:= \omega \circ \Tr_{E|F}: \A_{E|F} \to K$$
+    lässt sich eindeutig zu einem $\omega' \in \Omega_E$ fortsetzen.
+    Es gilt
+    $$ (\omega') = \Con_{E|F}((\omega)) + \Diff_{E|F}. $$
+\end{satz}
+\begin{proof}
+    \underline{Eindeutigkeit:} Seien $\omega', \omega'' \in \Omega_E$ mit 
+    \begin{align*}
+        \omega'|_{\A_{E|F}} = \omega''|_{\A_{E|F}} = \omega_1.
+    \end{align*}
+    Setze $W:= \inf \{(\omega'), (\omega'')\}$.
+    Für $\alpha \in \A_E$ ist nach 4.8
+    \begin{align*}
+        & \alpha = \beta + \gamma \text{ mit } \beta \in \A_{E|F}, \gamma \in \A_E(W)\\
+        \implies & \omega'(\alpha) = \omega'(\beta) + \omega'(\gamma) = \omega_1(\beta)\\
+        & \qquad \omega''(\beta) + \omega''(\gamma) = \omega''(\alpha)
+    \end{align*}
+    \underline{Existenz:} Setze $W':=\Con_{E|F}((\omega)) + \Diff_{E|F}$.\\
+    \underline{Behauptung 1:} $\omega_1|_{\A_{E|F}(W')+E} = 0$\\
+    \underline{Behauptung 2:} $W'$ ist der größte Divisor mit dieser Eigenschaft.
+
+    Für $\alpha \in \A_E$ schreibe $\alpha = \beta + \gamma$ mit
+    $$ \beta \in \A_{E|F}, \gamma \in \A_E(W')~(4.8),$$
+    setze $\omega'(\alpha) := \omega_1(\beta)$.
+    
+    $\omega'$ ist wohldefiniert:
+    \begin{align*}
+        & \alpha = \beta_1 + \gamma_1 = \beta_2 + \gamma_2, \beta_i \in \A_{E|F}, \gamma_i \in \A_E(W')\\
+        \implies & \beta_1 - \beta_2 = \gamma_2 - \gamma_1 \in \A_{E|F}\cap\A_E(W')=\A_{E|F}(W')\\
+        \implies & \omega_1(\beta_1) - \omega_1(\beta_2) = \omega_1(\beta_1 - \beta_2) \stackeq{Beh. 1} 0
+    \end{align*}
+
+    $\omega'$ ist linear: $\checkmark$
+
+    $\omega'|_{\A_E(W')+E} = 0$: Beh. 1
+
+    $(\omega')=W'$: 
+    \begin{align*}
+        & \omega'|_{\A_E(A)}=0, z.z. A \subseteq W'\\
+        \implies & \omega_1|_{\A_E(A) \cap \A_{E|F}} = 0\\
+        \implies & \omega_1|_{\A_{E|F}(A)} = 0\\
+        \stackrel{Beh. 2}{\implies} & A \subseteq W'
+    \end{align*}
+    \textit{Beweis von Beh. 1:} $\omega|_F=0, \Tr_{E|F} \subseteq F \implies \omega_1|_E = 0$
+    Sei $\alpha \in \A_{E|F}(W'), P \in S(F|K), Q|P$. Wähle $x \in F$ mit $v_P(x) = v_P((\omega))$.
+    \begin{align*}
+        \implies v_Q(x\alpha_Q) & = e_{Q|P}v_P(x) + v_Q(\alpha_Q) = e_{Q|P}v_P((\omega)) - v_Q(W')\\
+        & = v_Q(\Con_{E|F}((\omega))) - v_Q(W')\\
+        & = -v_Q(\Diff_{E|F}) = - \d_{Q|P}\\
+    \end{align*}
+    \begin{align*}
+        \implies & x\alpha_Q \in C_P\\
+        \implies & \Tr_{E|F}(x\alpha_Q) \in \O_P\\
+        \implies & v_P(\Tr_{E|F}(\alpha_Q)) \geq -v_P(x) = -v_P((\omega))\\
+        \implies & \Tr_{E|F}(\alpha) \in \A_F((\omega)), \text{ d.h. } \omega(\Tr_{E|F}(\alpha)) = 0
+    \end{align*}
+    \textit{Beweis von Beh. 2:} Sei $B \not \leq W'$. Dann existiert $P_0, Q_0|P_0$ mit
+    $$ v_{Q_0}(B) > v_{P_0}(\Con_{E|F}((\omega))) + \d_{Q_0|P_0}. $$
+    Nach Definition von $(\omega)$ existiert $\alpha \in \A_F((\omega) + P_0)\setminus\A_F((\omega))$ mit
+    $\omega(\alpha)\ne 0$.
+    Setze $x:= \alpha_{P_0}$
+    \begin{align*}
+        \implies & v_{P_0}(x) = v_{P_0}(\alpha) = -v_P((\omega)) - 1.
+    \end{align*}
+    Definiere $\alpha_0 \in \A_F$ durch 
+    $$(\alpha_0)_P = \begin{cases}
+        x, & P=P_0\\
+        0, & P \ne P_0
+    \end{cases}$$.
+    \begin{align*}
+        \implies & 0 \ne \omega(\alpha) = \underbrace{\omega(\underbrace{\alpha-\alpha_0}_{\in \A_F((\omega))})}_{=0}+\omega(\alpha_0)
+    \end{align*}
+    Wähle $y \in F$ mit $v_{P_0}(y) = v_{P_0}((\omega))$.\\
+    $\implies v_{P_0}(xy) = 1$, insbesondere $xy \in t^{-1}\O_{P_0}$, wobei $t \in F$ mit $v_{P_0}(t) = 1$.\\
+    Setze $J := \{z \in E \mid v_Q(z) \geq v_Q(\Con_{E|F}((\omega)) - B)~\forall Q|P_0\}$.\\
+    Nach I.1.9 existiert $u \in J$ mit $v_Q(u) = v_Q(\Con(\omega)-B)~\forall Q|P_0$, \\
+    und da $v_Q(\Con(\omega)-B) < -\d_{Q_0|P_0}$ folgt $J \not \subseteq C_P$.\\
+    Da $J\cdot\O'_{P_0} \subseteq J$ folgt $\Tr_{E|F} J \not \subseteq \O_{P_0}$.\\
+    Es existiert $r \geq 0$ mit $t^r J \subseteq \O'_{P_0}$
+    \begin{align*}
+        \implies & t^r\Tr_{E|F}J = \Tr_{E|F} t^r J \subseteq \O_{P_0}\\
+        \implies & t^r \Tr_{E|F} \ideal \O_{P_0}, \text{ d.h. } t^r \Tr_{E|F}J = t^s \cdot \O_{P_0} \text{ mit } s \geq 0\\
+        \implies & \Tr_{E|F}J = t^m \O_{P_0} \text{ mit } m < 0, \text{ insbesondere } \Tr_{E|F}J \supseteq t^{-1}\O_{P_0}\\
+        \implies & xy = \Tr_{E|F} z \text{ mit } z \in J.
+    \end{align*}
+    Definiere $\beta_0 \in \A_{E|F}$ durch
+    $$ (\beta_0)_Q = \begin{cases}
+        y^{-1}z, & Q|P_0\\
+        0, & \text{sonst}.
+    \end{cases}$$
+    $\omega_1(\beta) \ne 0:$ $\omega_1(\beta_0) = \omega(\Tr \beta_0) = \omega(\alpha_0)$\\
+    $\beta_0 \in \A_{E|F}(B):$ Für $Q|P_0$ ist $v_Q(y^{-1}z) \geq -v_Q(B)$.
+\end{proof}
+
+\begin{definition}
+    Das $\omega'$ aus 4.9 heißt die \textbf{Kospur} $\Cotr_{E|F}(\omega)$ von $\omega$.
+\end{definition}
+
+\begin{theorem}[Riemann-Hurwitz]
+    Ist $F|K$ ein Funktionenkörper, $E|K$ eine endliche, separable geometrische Erweiterung von $F|K$, so ist
+    $$ 2g_{E|K} - 2 = [E:F] \cdot (2g_{F|K} - 2) + \deg \Diff_{E|F}. $$
+\end{theorem}
+\begin{proof}
+    Sei $0 \ne \omega \in \Omega_F$.
+    \begin{align*}
+        \stackrel{4.9}{\implies} & (\Cotr_{E|F}(\omega)) = \Con_{E|F}((\omega)) + \Diff_{E|F}\\
+        \implies & 2g_E - 2 \stackeq{I.9.7} \deg(\Cotr_{E|F}(\omega)) \\
+        & \qquad = \deg \Con_{E|F}((\omega)) + \deg \Diff_{E|F}\\
+        & \qquad \stackeq{1.10} [E:F] \cdot \deg ((\omega)) + \deg \Diff\\
+        & \qquad \stackeq{I.9.7} [E:F] \cdot (2g_F - 2) + \deg \Diff.
+    \end{align*}
+\end{proof}
+
+\begin{korollar}
+    Ist $E|K$ eine endliche separable geometrische Erweiterung von $F|K$, so ist
+    $$ 2g_F - 2 \geq (2g_F - 2)\cdot [E:F].$$
+    Insbesondere ist $g_E \geq g_F$.
+\end{korollar}
+
+\begin{korollar}
+    Ist $\Char(K) = 0$ und $K \subsetneqq F \subseteq K(T)$, so ist $F \cong_K K(T)$.
+\end{korollar}
+\begin{proof}
+    \#23: Funktionenkörper $F|K$ ist rational $\iff$ $g_F=0$ und es gibt $P \in S(F|K)$ mit $\deg P = 1$
+    \begin{align*}
+        g_{K(T)} = 0 \implies g_F \leq g_{K(T)} = 0, P_\infty|_F \in S(F|K), \deg P_\infty|_F = 1
+    \end{align*}
 \end{proof}
