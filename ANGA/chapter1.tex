@@ -701,5 +701,73 @@ Sei $q = p^k$ eine Primpotenz.
 \end{bemerkungnr}
 \begin{proof}
     Ist $P \in \F_q[T]$ normiert irreduzibel vom Grad $n$, so hat $P$ genau $n$ viele Nullstellen in $\overline{\F_q}$.
-    Umgekehrt ist jedes $\alpha \in \F_{q^n}$ Nullstelle 
+    Umgekehrt ist jedes $\alpha \in \F_{q^n}$ Nullstelle eines normierten irreduziblen Polynoms, nämlich
+    $$ P := \MinPol(\alpha|\F_q) \in \F_q[T]$$
+    vom Grad
+    $$ d := \deg (\alpha|\F_q) = [\F_q(\alpha): \F_q]|[\F_{q^n}:\F_q] = n.$$
+    Mit $a_d := |\{P \in \F_q[T] \mid P \text{ normiert irreduzibel, } \deg P = d\}|$ ist also
+    $$ \sum_{d|n}d a_d = q^n .$$
+    Insbesondere $a_d \leq \frac{q^n}{d} \implies$
+    \begin{align*}
+        \implies \frac{a_n}{\sfrac{q^n}{n}} & = 1 - \sum_{\substack{d|n\\ d\ne n}} d a_d \frac{1}{q^n}\\
+        & \geq 1 - \sum_{\substack{d|n\\ d\ne n}} q^{d-n}\\
+        & \geq 1 - \sum_{i=0}^{\lfloor\frac{1}{2}\rfloor} q^{\lfloor\frac{1}{2}\rfloor-n} \geq 1 - \frac{n}{2}q^{-\frac{n}{2}}\\
+        & \to 1 \text{ für }q^n \to \infty.
+    \end{align*}
 \end{proof}
+
+\begin{definition}
+    Die \textbf{Dedekindsche Zeta-Funktion} eines Zahlkörpers $F$ ist die analytische Fortsetzung auf $\C \setminus \{1\}$
+    von
+    $$ \zeta_F(s) := \sum_{(0) \ne \mathfrak{q}\ideal \O_F} | \sfrac{\O_F}{\mathfrak{q}}|^{-s}$$
+    für $\Re(s) > 1$.
+\end{definition}
+
+\begin{beispiel}
+    Für $F=\Q$ ist
+    $$ \zeta_\Q(s) = \zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}, \text{ für } \Re(s) > 1,$$
+    die Riemannsche Zeta-Funktion.
+\end{beispiel}
+
+\begin{vermutung}[Riemannsche Vermutung, Riemann für $F=\Q$]
+    Alle Nullstellen von $\zeta_F$ mit $0 \leq \Re(s) \leq 1$ liegen auf der Geraden $\Re(s)=\frac{1}{2}$.
+\end{vermutung}
+
+\begin{bemerkungnr}
+    Ist $F|\F_q(T)$ endlich, so ist der ganze Abschluss von $\F_q[T]$ in $F$ ein Dedekindring $\O_F$, der genau wie der 
+    Ganzheitsring eines Zahlkörpers nur endliche Restklassenringe besitzt.\\
+    Die Lokalisierungen $\O_\mathfrak{p} := (\O_F)_\mathfrak{p}$, $\mathfrak{p} \in \Spec \O_F$, sind diskrete Bewertungsringe,
+    und auf diese Weise erhält man fast alle $\O \in S(F|\F_q)$, nämlich alle außer denen mit
+    $$ \O \cap \F_q(T) = \O_\infty. $$
+\end{bemerkungnr}
+
+\begin{definition}
+    Ist $F|\F_q(T)$ endlich, so ist die \textbf{Zeta-Funktion von $F$} die analytische Fortsetzung von
+    $$ \zeta_F(s) := \sum_{(0) \ne \mathfrak{q}\ideal \O_F}|\sfrac{\O_F}{\mathfrak{q}}|^{-s}, \Re(s) > 1.$$
+\end{definition}
+
+\begin{theorem}[Weil 1949]
+    Sei $F|\F_q(T)$ endlich. Alle Nullstellen $s$ von $\zeta_F$ mit $0 \leq \Re(s) \leq 1$
+    liegen auf der Geraden $\Re(s) = \frac{1}{2}$.
+\end{theorem}
+
+\begin{korollar}[Hasse-Weil-Schranke]
+    Ist $C$ eine projektive Kurve über $\F_q$, die über $\overline{\F_q}$ irreduzibel ist und vom Geschlecht $g$, so ist
+    $$ ||C(\F_q)|-(q+1)| \leq 2 g \sqrt{q}.$$
+\end{korollar}
+
+\begin{korollar}
+    Ist $f \in \Z[x,y]$ vom Grad $d$, irreduzibel in $\overline{\F_q}[X,Y]$ so ist
+    $$ |\{(x,y) \in \F_q^2 \mid f(x,y)=0\}| = q + O_d(q^{\sfrac{1}{2}}).$$
+    Insbesondere gilt: ist $f$ irreduzibel in $\C[X,Y]$, so hat $f$ Nullstellen in $\F_q[X,Y]$ für alle $q$ 
+    groß genug.
+\end{korollar}
+
+\begin{bemerkungnr}
+    Man fast
+    \begin{enumerate}[label=(\alph*)]
+        \item Zahlkörper
+        \item Funktionenkörper über endlichen Körpern
+    \end{enumerate}
+    unter dem Namen \textbf{globale Körper} zusammen.
+\end{bemerkungnr}
