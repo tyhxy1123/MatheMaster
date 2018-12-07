@@ -1915,10 +1915,10 @@ a_h(u_h,v_h)=(f,v_h)\qquad\forall v_h\in V_h
 Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V$, welches das Problem löst.\nl
 \textbf{Weitere Annahmen:}
 \begin{itemize}
-\item $a_h$ sei Bilinearform auf $V\cup V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
-\item $a_h$ sei \textbf{gleichmäßig stetig auf $V\cup V_h$}, d. h.
+\item $a_h$ sei Bilinearform auf $V+ V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
+\item $a_h$ sei \textbf{gleichmäßig stetig auf $V+ V_h$}, d. h.
 \begin{align*}
-\exists M>0\text{ unabhängig von }h:\big|a_h(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V\cup V_h
+\exists M>0\text{ unabhängig von }h:\big|a_h(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V+ V_h
 \end{align*}
 \item $f_h:V_h\cup V\to\R$ sei linear und stetig
 \item $a_h$ ist \textbf{gleichmäßig $V_h$-elliptisch}, d.h.
@@ -1972,8 +1972,8 @@ a_h(v_h,w_h)&=\sum\limits_{K\in\T_h}\int\limits_K\nabla v_h\cdot\nabla w_h\d x\\
 f_h(v_h)&=\sum\limits_{K\in\T_h}\int\limits_K f\cdot v_h\d x\\
 \Vert v\Vert_h&=\left(\sum\limits_{K\in\T_h}|v|_{1,2,K}\right)^{\frac{1}{2}}
 \end{align*}
-$\Vert\cdot\Vert_h$ ist eine Norm auf $V\cup V_h$.\\
-Gleichmäßige Stetigkeit von $a_h$ auf $V\cup V_h$: Seien $v,w\in V\cup V_h$. Dann gilt:
+$\Vert\cdot\Vert_h$ ist eine Norm auf $V+ V_h$.\\
+Gleichmäßige Stetigkeit von $a_h$ auf $V+ V_h$: Seien $v,w\in V\cup V_h$. Dann gilt:
 \begin{align*}
 \big|a_h(v,w)\big|
 &=\left|\sum\limits_{K\in\T_h}\int\limits_K\nabla v\cdot\nabla w\d x\right|\\
