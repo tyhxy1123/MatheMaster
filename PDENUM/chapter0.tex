@@ -48,7 +48,7 @@ Setze nun $t:=0$. Dann folgt aus der notwendigen Bedingung
 \end{align*}
 Es entsteht die Variationsaufgabe: Finde $u(t)$ so, dass 
 \begin{align*}
-\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~~~\forall v\in V.
+\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y\qquad\forall v\in V.
 \end{align*}
 
 Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man aus dem linken Integral
@@ -84,7 +84,7 @@ D^\alpha\varphi:=\frac{\partial^{|\alpha|}\varphi}{\partial x_1^{\alpha_1}\hdots
 \item Da $\Omega$ beschränkt ist, gilt $L^p(\Omega)\subseteq L^1(\Omega)$ und die kanonische Injektion ist stetig.
 \item Es gilt die Gauß-Formel:
 \begin{align}\label{GaussFormel}
-\int\limits_\Omega\varphi\cdot D^\alpha\psi\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot D^\alpha\varphi\d x~~~\forall \varphi,\psi\in C_0^\infty(\Omega)
+\int\limits_\Omega\varphi\cdot D^\alpha\psi\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot D^\alpha\varphi\d x\qquad\forall \varphi,\psi\in C_0^\infty(\Omega)
 \end{align}
 \end{enumerate}
 
@@ -861,7 +861,7 @@ l(v)&=\int\limits_\Omega f\cdot v\d x\\
 |l(v)|&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{0,2}\\
 			&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{1,2}
 \end{align*}
-Bilinearform
+Bilinearform:
 \begin{align*}
 a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x
 \end{align*}
@@ -968,13 +968,11 @@ gilt.
 
 \underline{Zeige (iv):}
 \begin{align*}
-	\left\{\begin{array}{rl}
+	&\left\{\begin{array}{rl}
 a\cdot n=0&\text{ auf }\Gamma\\
 \alpha=0,~\div(a)=0&\text{ in  }\Omega\\
-\end{array}\right. 
-\end{align*}
-\begin{align*}
-	V=\left\lbrace v\in H^1(\Omega):\int\limits_\Omega v(x)\d x=0\right\rbrace\mit|\cdot|_{1,2}\sim\Vert\cdot\Vert_{1,2}\text{ (siehe Poincaré-Ungleichung)}
+\end{array}\right. \\
+	&V=\left\lbrace v\in H^1(\Omega):\int\limits_\Omega v(x)\d x=0\right\rbrace\mit|\cdot|_{1,2}\sim\Vert\cdot\Vert_{1,2}\text{ (siehe Poincaré-Ungleichung)}
 \end{align*}
 Also sind die Bilinearform
 \begin{align*}
@@ -1017,7 +1015,7 @@ u_g\in H^2(\Omega)\mit g=\tilde{\gamma}_{1,N}(u_g)
 \end{align*}
 gibt. Dann gilt:
 \begin{align*}
-\Vert u\Vert_{2,2,\Omega}\leq C\cdot\Big(\Vert f\Vert_{0,2,\Omega}+\Vert u\Vert_{2,2}\Big)
+\Vert u\Vert_{2,2,\Omega}\leq C\cdot\Big(\Vert f\Vert_{0,2,\Omega}+\Vert u\Vert_{0,2}\Big)
 \end{align*}
 wobei $C$ nur von $\Omega, A,a,\alpha$ abhängt (also nicht von $f$).
 \end{theorem}
@@ -1090,24 +1088,20 @@ Diskretes Problem: Finde $u_h\in S_{h,0}^{k,0}$ so, dass
 In Matrix-Notation ergibt dies Folgendes:
 \begin{align*}
 	&A=(a_{i,j}),&&a_{i,j}:=a(\varphi_j,\varphi_i)\\
-	&b=(b_i),&&b_i:=l(\varphi_i)
-\end{align*}
-\begin{align*}
-\Longleftrightarrow A\cdot U=b,\qquad U=(u_i)
+	&b=(b_i),&&b_i:=l(\varphi_i\nl
+	&\qquad\Longleftrightarrow A\cdot U=b,\qquad U=(u_i)
 \end{align*}
 Hierbei heißt $A$ \textbf{Stiffness-Matrix}.
 
 \begin{align*}
-	&S^{1,0}_{h,0}=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
+	S^{1,0}_{h,0}&=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
 \varphi_i(t)=\left\lbrace\begin{array}{cl}
 \frac{t-t_{i-1}}{h_{i-1}}, &\falls t\in I_{i-1}\\
 \frac{t_{i+1}-t}{h_i}, &\falls t\in I_i\\
 0, &\sonst
 \end{array}\right.\\
-\big(&\text{supp}(\varphi_i) = [t_{i-1}, t_{i+1}]\big)
-\end{align*}
-\begin{align*}
-\implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
+\big(\text{supp}(\varphi_i) &= [t_{i-1}, t_{i+1}]\big)\\
+\implies a_{i,j}&=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
 \end{align*}
 
 \begin{figure}[!ht]
@@ -1282,7 +1276,6 @@ i\neq j\implies K_i\cap K_j=\emptyset
 \end{center}
 \end{figure}
 
-
 \begin{figure}[!ht]
 \begin{center}
 \input{tikz/triang_example3}
@@ -1342,7 +1335,6 @@ V=\Big\lbrace v: K\to\R:v=\hat{v}\circ F^{-1},\hat{v}\in\hat{V}\Big\rbrace
 \Sigma=\Big\lbrace N:V\to\R:N(v)=\hat{N}(v\circ F),~\hat{N}\in\hat{\Sigma}\Big\rbrace
 \end{aligned}$
 \end{enumerate}
-
 \end{definition}
 
 \begin{beisp}\
@@ -1397,7 +1389,12 @@ Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$. Für $N\i
 \begin{definition}[Raum der finiten Elemente]\enter
 Sei $\T_h$ eine Triangulierung von $\Omega$. Ein \textbf{Raum der finiten Elemente} $V_h$ ist gegeben durch 
 \begin{align*}
-V_h:=\\\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):N_i^K(v|_K)=N_j^{K'}(v|_{K'})~\forall N_i^K,N_j^{K'}\in\Lambda(N),\forall N\in\Sigma_h\right\rbrace
+V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):
+\begin{array}{cl}
+N_i^K(v|_K)=N_j^{K'}(v|_{K'}) &\forall N_i^K\\
+N_j^{K'}\in\Lambda(N) &\forall N\in\Sigma_h
+\end{array}
+\right\rbrace
 \end{align*}
 wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind. Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$ von dem globalen Freiheitsgrad.
 \end{definition}
@@ -1910,10 +1907,10 @@ a_h(u_h,v_h)=(f,v_h)\qquad\forall v_h\in V_h
 Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V$, welches das Problem löst.\nl
 \textbf{Weitere Annahmen:}
 \begin{itemize}
-\item $a_h$ sei Bilinearform auf $V\cup V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
-\item $a_h$ sei \textbf{gleichmäßig stetig auf $V\cup V_h$}, d. h.
+\item $a_h$ sei Bilinearform auf $V+ V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
+\item $a_h$ sei \textbf{gleichmäßig stetig auf $V+ V_h$}, d. h.
 \begin{align*}
-\exists M>0\text{ unabhängig von }h:\big|a_h(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V\cup V_h
+\exists M>0\text{ unabhängig von }h:\big|a_h(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V+ V_h
 \end{align*}
 \item $f_h:V_h\cup V\to\R$ sei linear und stetig
 \item $a_h$ ist \textbf{gleichmäßig $V_h$-elliptisch}, d.h.
@@ -1961,6 +1958,318 @@ Mit der Dreicksungleichung folgt:
 Bilden des Infimums $\inf\limits_{v_h\in V_h}$ liefert die Behauptung.
 \end{proof}
 
+\subsection{Überprüfen der Voraussetzungen für das Poisson-Problem}
+\begin{align*}
+a_h(v_h,w_h)&=\sum\limits_{K\in\T_h}\int\limits_K\nabla v_h\cdot\nabla w_h\d x\\
+f_h(v_h)&=\sum\limits_{K\in\T_h}\int\limits_K f\cdot v_h\d x\\
+\Vert v\Vert_h&=\left(\sum\limits_{K\in\T_h}|v|_{1,2,K}\right)^{\frac{1}{2}}
+\end{align*}
+$\Vert\cdot\Vert_h$ ist eine Norm auf $V+ V_h$.\\
+Gleichmäßige Stetigkeit von $a_h$ auf $V+ V_h$: Seien $v,w\in V\cup V_h$. Dann gilt:
+\begin{align*}
+\big|a_h(v,w)\big|
+&=\left|\sum\limits_{K\in\T_h}\int\limits_K\nabla v\cdot\nabla w\d x\right|\\
+\overset{\text{CS}}&\leq
+\sum\limits_{K\in\T_h}|v|_{1,2,K}\cdot |w|_{1,2,K}\\
+\overset{\text{CS}}&\leq
+\left(\sum\limits_{K\in\T_h} |v|_{1,2,K}^2\right)^{\frac{1}{2}}\cdot\left(\sum\limits_{K\in\T_h}|w|_{1,2,K}^2\right)^{\frac{1}{2}}\\
+&=\Vert v\Vert_h\cdot\Vert w\Vert_h \quad
+(\implies M=1)
+\end{align*}
+Gleichmäßige $V_h$-Elliptizität von $a_h$ auf $V_h$: Sei $v_h\in V_h$ beliebig. Dann gilt:
+\begin{align*}
+a_h(v_h,v_h)
+&=\sum\limits_{K\in\T_h}\int\limits_K\nabla v_h\cdot\nabla v_h\d x
+=\sum\limits_{K\in\T_h}|v_h|^2_{1,2,K}
+=\Vert v_h\Vert^2_h \quad
+(\implies\alpha=1)
+\end{align*}
+Stetigkeit von $f_h$ auf $V_h$:
+\begin{align*}
+\big|f_h(v_h)\big|
+&=\left|\sum\limits_{K\in\T_h}\int\limits_K f\cdot v_h\d x\right|
+\overset{\text{}}\leq
+\sum\limits_{K\in\T_h}\Vert f \Vert_{0,2,K}\cdot\Vert v_h\Vert_{0,2,K}
+\overset{\text{}}\leq
+\Vert f\Vert_{0,2,\Omega}\cdot\Vert v_h\Vert_{0,2,\Omega}
+\end{align*}
+Auf $V_h$ (endlich-dimensionaler Raum) sind die Normen $\Vert\cdot\Vert_h$ und $\Vert\cdot\Vert_{0,2,\Omega}$ äquivalent:
+\begin{align*}
+	\implies
+\big|f_h(v_h)\big|
+\leq
+c_h\cdot\Vert f\Vert_{0,2,\Omega}\cdot\Vert v_h\Vert_h
+\end{align*}
 
+\subsection{Fehlerabschätzung} %5.4
+Bisher:
+\begin{align*}
+\Vert u-u_h\Vert_h
+&\leq
+2\cdot\underbrace{\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_h}_{\leq c\cdot h\cdot |u|_{2,2}}+1\cdot\underbrace{\sup\limits_{z_h\in V_h}\frac{a_h(u,z_h)-f_h(z_h)}{\Vert z_h\Vert_h}}_{\leq?}
+\end{align*}
+Sei $f\in L^2(\Omega)$ und $u\in H^2(\Omega)$. Dann:
+\begin{align*}
+-\Delta u=f\text{ im $L^2$-Sinn auf jedem }K\in T_h
+\end{align*}
+Sei nun $z_h\in V_h$ beliebig. Dann gilt:
+\begin{align*}
+\sum\limits_{K\in\T_h}\int\limits_K-\Delta u\cdot z_h\d x
+&=\sum\limits_{K\in\T_h}\int\limits_K f\cdot z_h\d x\\
+\sum\limits_{K\in\T_h}\int\limits_K-\Delta u\cdot z_h\d x
+\overset{\text{part Int}}&=
+\sum\limits_{K\in\T_h}\left(\int\limits_K\nabla u\cdot\nabla z_h\d x-\int\limits_{\partial K}\underbrace{\frac{\partial u}{\partial n_K}}_{=\nabla u\cdot n_K}z_h\d\gamma\right)\\
+\implies L_h(z_h)
+:&=a_h(u,z_h)-f_h(z_h)\\
+&=\sum\limits_{K\in\T_h}\int\limits_{\partial K}\frac{\partial u}{\partial n_K}z_h\d\gamma\\
+&=\sum\limits_{E}\int\limits_E\underbrace{\left[\frac{\partial u}{\partial u_E}z_h\right]_E}_{=\frac{\partial u}{\partial u_E}[z_h]_E}\d\gamma\\
+&=\sum\limits_E\int\limits_E\frac{\partial u}{\partial u_E}[z_h]_E\d\gamma\\
+[v]_E :&=v|_{K_1}-v|_{K_2}
+\end{align*}
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{pics/Sketch8.png}
+		\caption{Skizze der Normalen an Kante zwischen zwei Dreiecken}
+		\label{AbbNormalvectors}
+	\end{center}
+\end{figure}
+Seien $\overline{z}_h$ und $\overline{\frac{\partial u}{\partial u_E}}$ die konstanten Integral-Mittelwerte von $z_h$ und $\frac{\partial u}{\partial u_E}$ auf jedem $E$, formal:
+\begin{align*}
+\overline{z}_h|_E
+:&=\frac{1}{|E|}\cdot\int\limits_E z_h\d\gamma,\qquad\left.\overline{\frac{\partial u}{\partial u_E}}\right|_E:=\frac{1}{|E|}\cdot\int\limits_E\frac{\partial u}{\partial u_E}\d\gamma
+\end{align*}
+Mit 
+\begin{align*}
+\int\limits_E[z_h]_E\d\gamma=0\text{ wegen }z_h\in V_h
+\end{align*}
+und da $\overline{\frac{\partial u}{\partial u_E}}$ eine Konstante ist
+folgt
+\begin{align*}
+\int\limits_E\frac{\partial u}{\partial u_E}[z_h]_E\d\gamma
+&=\int\limits_E\left(\frac{\partial u}{\partial u_E}-\overline{\frac{\partial u}{\partial u_E}}\right)[z_h]_E\d\gamma
+=\int\limits_E\left(\frac{\partial u}{\partial u_E}-\overline{\frac{\partial u}{\partial u_E}}\right)[z_h-\overline{z}_h]_E\d\gamma\\
+\implies
+L_h(z_h)
+&=\sum\limits_{K\in\T_h}\sum\limits_{E\subseteq\partial K}\int\limits_E\left(\frac{\partial u}{\partial u_E}-\overline{\frac{\partial u}{\partial u_E}}\right)\big[z_h-\overline{z}_h\big]_E\d\gamma\\
+\overset{\text{CS}}&\leq
+\sum\limits_{K\in\T_h}\sum\limits_{E\subseteq\partial K}\left\Vert\frac{\partial u}{\partial u_E}-\overline{\frac{\partial u}{\partial u_E}}\right\Vert_{0,2,E}\cdot\Vert z_h-\overline{z}_h\Vert_{0,2,E}
+\end{align*}
+Berechne nun für die Differenz: $z_h-\overline{z}_h$:
+\begin{align*}
+\big\Vert z_h-\overline{z}_h\big\Vert_{0,2,E}
+&\leq
+c\cdot\underbrace{\big\Vert B_E^{-1}\big\Vert^0}_{=1}\cdot{\underbrace{\big|\det(B_E)\big|}_{=h_E}}^{\frac{1}{2}}\cdot\big\Vert \underbrace{\hat{z}_h-\hat{\overline{z}}_h}_{=\widehat{z_h-\overline{z}_h}}\big\Vert_{0,2,\hat{E}}\\
+&\leq
+c\cdot h_E^{\frac{1}{2}}\cdot\big\Vert\widehat{z_h-\overline{z}_h}\big\Vert_{0,2,\hat{E}}
+\end{align*}
+Der Operator
+\begin{align*}
+L:H^1(\hat{K})\to L_2(\hat{E}),\qquad\hat{v}\mapsto\left(\hat{v}-\overline{\hat{v}}\right)|_{\hat{E}}
+\mit \overline{\hat{v}}=\frac{1}{|\hat{E}|}\cdot\int\limits_{\hat{E}}\hat{v}\d\gamma
+\end{align*}
+ist linear und stetig. Folglich gilt:
+\begin{align*}
+\big\Vert L(\hat{v})\big\Vert_{0,2,\hat{E}}
+&=\big\Vert\hat{v}-\overline{\hat{v}}\big\Vert_{0,2,\hat{E}}
+\leq
+\underbrace{\Vert\hat{v}\Vert_{0,2,\hat{E}}}_{\stackrel{\text{Spursatz}}{\leq} c\cdot\Vert\hat{v}\Vert_{1,2,\hat{K}}}+\big\Vert\overline{\hat{v}}\big\Vert_{0,2,\hat{E}}\\
+\big\Vert\overline{\hat{v}}\big\Vert^2_{0,2,\hat{E}}
+&=
+\int\limits_{\hat{E}}\big|\overline{\hat{v}}\big|^2\d\gamma \\
+&=
+\left(\frac{1}{|\hat{E}|}\cdot\int\limits_{\hat{E}}\hat{v}\d\gamma\right)^2\cdot|\hat{E}|\\
+&\leq
+\frac{1}{|\hat{E}|^2}\cdot\Big(\underbrace{\Vert1\Vert_{0,2,\hat{E}}}_{=|\hat{E}|^{\frac{1}{2}}}\cdot\Vert\hat{v}\Vert_{0,2,\hat{E}}\Big)^2\cdot|\hat{E}|\\
+&=\Vert\hat{v}\Vert^2_{0,2,\hat{E}}\\
+&\leq c\cdot\Vert\hat{v}\Vert_{1,2,\hat{K}}
+\end{align*}
+Somit:
+\begin{align*}
+\implies
+\big\Vert L(\hat{v})\big\Vert_{0,2,\hat{E}}
+&\leq c\cdot\Vert\hat{v}\Vert_{1,2,\hat{K}}
+\end{align*}
+Außerdem
+\begin{align*}
+%\implies
+L(\hat{w})&=0\qquad\forall\hat{w}\in P_0(\hat{K})\\
+\overset{\text{Bramble-Hilbert}}{\implies}
+\big\Vert L(\hat{v})\big\Vert_{0,2,\hat{E}}
+&\leq
+c\cdot|\hat{v}|_{1,2,\hat{K}}\\
+\implies
+\big\Vert z_h-\overline{z}_h\big\Vert_{0,2,E}
+&\leq c\cdot h_E^{\frac{1}{2}}\cdot\big|\hat{z}_h\big|_{1,2,\hat{K}}\\
+\overset{\text{transf. zurück}}&{\leq}
+c\cdot h_E^{\frac{1}{2}}\cdot\underbrace{\Vert B_K\Vert^1}_{\sim h_K}\cdot{\underbrace{\big|\det(B_K)\big|}_{\sim h_K^2}}^{-\frac{1}{2}}\cdot|z_h|_{1,2,K}\\
+&\leq
+c\cdot h_E^{\frac{1}{2}}\cdot|z_h|_{1,2,K}
+\end{align*}
+Auf ähnliche Art und Weise, aber mit wesentlich mehr Aufwand, erhält man auch:
+\begin{align*}
+\left\Vert\frac{\partial u}{\partial u_K}-\overline{\frac{\partial u}{\partial u_K}}\right\Vert_{0,2,E}
+&\leq c\cdot h_E^{\frac{1}{2}}\cdot\Vert u\Vert_{2,2,K}
+\end{align*}
+Nun können wir endlich alle Abschätzungen zusammenbringen und erhalten
+\begin{align*}
+\implies
+L_h(z_h)
+&\leq
+\sum\limits_{K\in\T_h}\sum\limits_{E\subseteq\partial K}\left\Vert\frac{\partial u}{\partial u_K}-\overline{\frac{\partial u}{\partial u_K}}\right\Vert_{0,2,E}\cdot\big\Vert z_h-\overline{z}_h\big\Vert_{0,2,E}\\
+&\leq
+c\cdot\sum\limits_{K\in\T_h} h^{\frac{1}{2}}\cdot\Vert u\Vert_{2,2,K}\cdot h^{\frac{1}{2}}\cdot|z_h|_{1,2,K}\\
+&\leq
+c\cdot h\cdot\left(\sum\limits_{K\in\T_h}\Vert u\Vert^2_{1,2,K}\right)^{\frac{1}{2}}\cdot\left(\sum\limits_{K\in\T_h}|z_h|_{1,2,K}^2\right)^{\frac{1}{2}}\\
+&=c\cdot h\cdot \Vert u\Vert_{2,2,\Omega}\cdot\Vert z_h\Vert_h\\
+\implies
+\sup\limits_{z_h\in V_h}\frac{a_h(u, z_h)-f_h(z_h)}{\Vert z_h\Vert_h}
+&\leq c\cdot h\cdot\Vert u\Vert_{2,2,\Omega}
+\end{align*}
+
+\begin{theorem}\label{theorem5.2}
+Sei $\lbrace V_h\rbrace$ eine Familie von $P_1$-nichtkonformen Finite-Elemente-Räume, wobei $u_h\in V_h$ das diskrete Problem löst und $u\in V\cap H^2(\Omega)$ die Lösung der schwachen Formulierung ist. Dann gilt:
+\begin{align*}
+\big\Vert u-u_h\big\Vert_h\leq c\cdot h\cdot\Vert u\Vert_{2,2,\Omega}
+\end{align*}
+\end{theorem}
+
+\begin{bemerkung}
+Das Dualitätsargument von Aubin und Nietsche kann erweitert werden auf den nichtkonformen Fall. Dabei tauchen zwei neue Terme in der Abschätzung auf.
+\begin{align*}
+	\big\Vert u-u_h\big\Vert_{0,2,\Omega}\leq c\cdot h^2\cdot\Vert u\Vert_{2,2,\Omega}
+\end{align*}
+\end{bemerkung}
+
+\section{A posteriori Fehlerabschätzung} %6
+Modellproblem: $\Omega\subseteq\R^2,f\in L^2(\Omega)$
+\begin{align*}
+\left\lbrace\begin{array}{rl}
+-\Delta u=f &\text{ in }\Omega\\
+u=0 &\text{ auf }\Gamma=\partial\Omega
+\end{array}\right.
+\end{align*}
+Schwache Formulierung: Finde $u\in H_0^1(\Omega)$ so, dass
+\begin{align*}\label{eqSection6P}\tag{$P$}
+	\underbrace{\int\limits_\Omega\nabla u\cdot\nabla v\d x}_{=:a(u,v)}=\underbrace{\int\limits_\Omega f\cdot v\d x}_{=:l(v)}\qquad\forall v\in H_0^1(\Omega)
+\end{align*}
+Konforme Finite-Elemente-Diskretisierung:\\
+Sei $\lbrace\T_h\rbrace$ eine Familie von Form-regulären Triangulierungen mit\\ Finiten-Elementen-Räumen $X_h$ von stetigen, stückweise $P_h$-polynomiellen Funktionen\nl
+Diskretes Problem: Finde $u\in X_h$ so, dass
+\begin{align}\label{eqSection6Ph}\tag{$P_h$}
+a(u_h,v_h)=l(v_h)\qquad\forall v_h\in X_h
+\end{align}
+Ziel: Finde berechenbare Schranken für den Fehler $u-u_h$ in irgendeiner Norm.
+
+\subsection*{Informelle Definition}
+\begin{itemize}
+\item Eine Menge $\eta$ heißt \textbf{(Posteriori-)Fehlerschätzer} $:\gdw\eta$ ist berechenbar aus den Problemdaten und der diskreten Lösung $u_h$.
+\item Ein Fehlerschätzer $\eta$ heißt \textbf{zuverlässig} $:\gdw$ es gibt eine obere Schranke für den globalen Fehler, d.h.
+\begin{align*}
+:\Longleftrightarrow\exists c\in\R:\big\Vert u-u_h\big\Vert_\Omega\leq c\cdot\eta
+\end{align*}
+Zuverlässige Fehlerschätzer sind nützlich um eine gewisse Genauigkeit sicherzustellen.
+\item Ein Fehlerschätzer $\eta$ heißt \textbf{effizient} $:\gdw$ es existiert eine lokale untere Schranke für den Fehler, d.h.
+\begin{align*}
+\eta_{\text{ lokal}}\leq c\cdot\big\Vert u-u_h\big\Vert_{\text{lokal}}+\text{Daten-Oszillation}
+\end{align*}
+Da wir später $f$ durch ein Approximationspolynom ersetzen, kommt ein Fehlerterm hinzu, welchen wir \textbf{Daten-Oszillation} nennen.\\
+Effiziente Fehlerschätzer soll eine Überschätzung der lokalen Verfeinerung verhindern.
+\end{itemize}
+
+\subsection*{Resiuale Fehlerschätzer}
+Aus der Friedrich-Ungleichung \ref{prop1.13FriedrichsUngleichung} folgt:
+\begin{align*}
+a(v,v)&\geq\alpha\cdot\Vert v\Vert^2_{1,2,\Omega}\qquad\forall v\in H^1_0(\Omega)\\
+\implies
+\Vert u-u_h\Vert^2_{1,2,\Omega}
+&\leq
+\frac{1}{\alpha}\cdot a\big(u-u_h,u-u_h\big)\\
+\implies
+\Vert u-u_h\Vert_{1,2,\Omega}
+&\leq\frac{1}{\alpha}\cdot a\left(u-u_h,\frac{u-u_h}{\Vert u-u_h\Vert_{1,2,\Omega}}\right)\\
+\implies
+\Vert u-u_h\Vert_{1,2,\Omega}
+&\leq\frac{1}{\alpha}\cdot\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}\Big(\underbrace{a(u,v)}_{=l(v)}-a(u_h,v)\Big)
+\end{align*}
+Andererseits erhalten wir:
+\begin{align*}
+\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}} a(u-u_h,v)
+&\leq
+\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}
+\Vert u-u_h\Vert_{1,2,\Omega}\cdot\underbrace{\Vert v\Vert_{1,2,\Omega}}_{=1}
+=\Vert u-u_h\Vert_{1,2,\Omega}\\
+\end{align*}
+Also bekommen wir die Abschätzungen
+\begin{align*}
+\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}} a(u-u_h,v)
+&\leq
+\Vert u-u_h\Vert_{1,2,\Omega}
+\leq\frac{1}{\alpha}\cdot\sup\limits_{\begin{subarray}{c}v\in H^1_0(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}} a(u-u_h,v)
+\end{align*}
+Das bedeutet, dass die Norm $\Vert u_h-u\Vert_{1,2,\Omega}$ äquivalent zu der Operatornorm der linearen Abbildung
+\begin{align*}
+R:H^1_0(\Omega)\to\R,\qquad v\mapsto l(v)-a(u_h,v)=a(u-u_h,v)
+\end{align*}
+ist. Beobachtung: Aus der Galerkin Orthogonalität folgt:
+\begin{align*}
+R(v_h)=a(u-u_h,v_h)=0
+\end{align*}
+Für $v\in H^1_0(\Omega)\mit\Vert v\Vert_{1,2,\Omega}=1$ gilt:
+\begin{align*}
+R(v)&=l(v)-a(u_h,v)\\
+&=\int\limits_\Omega f\cdot v\d x-\int\limits_\Omega\nabla u_h\cdot\nabla v\d x\\
+&=\sum\limits_{T\in\T_h}\left(\int\limits_T f\cdot v\d x-\int\limits_T \nabla u_h\cdot\nabla v\d x\right)\\
+&=\sum\limits_{T\in\T_h}\left(\int\limits_T f\cdot v\d x+\int\limits_T\Delta u_h\cdot v\d x-\int\limits_{\partial T}\nabla u_h\cdot u_T\cdot v\d\gamma\right)\\
+&=\sum\limits_{T\in\T_h}\int\limits_T\big(f+\Delta u_h\big)\cdot v\d x
++\sum\limits_{E\in\mathcal{E}_h}\int\limits_E\big[\nabla u_h\cdot u_E\big]_E\cdot v\d\gamma\\
+\overset{\text{CS}}&\leq
+\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v\Vert_{0,2,T}+\sum\limits_{E\in\mathcal{E}_h}\Big\Vert\big[\nabla u_h\cdot u_E\big]_E\Big\Vert_{0,2,E}\cdot\Vert v\Vert_{0,2,E}
+\end{align*}
+\begin{align*}
+R(v)
+&=R(v-v_h)\\
+&\leq
+\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v-v_h\Vert_{0,2,T} 
+&+\sum\limits_{E\in\mathcal{E}_h}\Big\Vert\big[\nabla u_h\cdot u_E\big]_E\Big\Vert_{0,2,E}\cdot\Vert v-v_h\Vert_{0,2,E}
+\end{align*}
+,wobei $\mathcal{E}_h$ die Menge aller Kanten ist.
+\begin{align*}
+	\text{Bester Weg}&: \text{Wähle $v_h$ als Interpolation von } v.\\
+	\text{Aber}&: v\text{ ist nur in }H^1\text{ \& die gewöhnliche Interpolation wird nicht funktionieren.}\\
+	\text{Lösung}&:\text{Quasi-Interpolation.}\\
+	\text{Hier}&: \text{Quasi-Interpolation von Clément}
+\end{align*}
+
+\begin{notation}\
+\begin{itemize}
+\item $N_h$ ist die Menge Knoten.
+\item $N_{h,\Omega}$ ist die Menge aller Knoten in $\Omega$.
+\item $\varphi_z\in S^{1,0}_{h,0}$ sei stetig, stückweise lineare Hut-Funktion assoziiert zu $z\in N_h$
+\item $\overline{w}_z:=\inner\left(\bigcup\limits_{\begin{subarray}{c}T\in\T_h\\z\text{ ist Knoten von }T\end{subarray}}\overline{T}\right)$
+\item Für $v\in L^2(w_z)$ definiere die \textbf{$L^2$-Projektion auf Konstanten} durch 
+\begin{align*}
+\pi_z (v):=\frac{1}{|w_z|}\cdot\int\limits_{w_z} v\d x
+\end{align*}
+\item Quasi-Interpolation von Clément:
+\begin{align*}
+R_h:H^1_0(\Omega)\to S^{1,0}_{h,0}\subseteq X_h,\qquad
+R_h(v):=\sum\limits_{z\in N_{h,\Omega}}\left(\pi_z(v)\right)\cdot\varphi_z
+\end{align*}
+\end{itemize}
+\end{notation}
+
+Als nächstes brauchen wir Abschätzungen für
+\begin{align*}
+\big\Vert v-R_h(v)\big\Vert_{0,2,T}\qquad\text{und}\qquad\big\Vert v-R_h(v)\big\Vert_{0,2,E}
+\end{align*}
+gegen die $H^1$-Normen auf $v$.
+
+\begin{theorem}[skalierter Spursatz]\label{theoremSkalierterSpursatz}\enter
+Sei $T\in\T_h$ und $E$ eine Kante von $T$.\\
+Dann existiert eine Konstante $c$, die nur von der Form-Regularitäts-Konstante abhängt, so dass
+\begin{align*}
+\Vert v\Vert_{0,2,E}\leq c\cdot\left(h_T^{-\frac{1}{2}}\cdot\Vert v\Vert_{0,2,T}+ h_T^{\frac{1}{2}}\cdot|v|_{1,2,T}\right)\qquad\forall v\in H^1(T)
+\end{align*}
+\end{theorem}
 
 
