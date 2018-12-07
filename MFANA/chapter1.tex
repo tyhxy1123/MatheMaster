@@ -105,7 +105,7 @@ f(u)
 Sei $c\in\R$ und sei $(u_n)_{n\in\N}\subseteq\lbrace x\in M:f(x)\leq c\rbrace$ konvergente Folge mit $u:=\lim u_n$ in $M$. 
 Dann ist
 \begin{align*}
-	\limn\underbrace{(u_n,c)}_{=\epi(f)}\mit M\times\R.
+	\limn\underbrace{(u_n,c)}_{\in\epi(f)}\mit M\times\R.
 \end{align*}
 
 Da $\epi(f)$ abgeschlossen ist, ist $(u,c)\in\epi(f)$, d.h. $f(u)\leq c$ d.h. $u\in\lbrace f\leq c\rbrace$.\nl
@@ -120,7 +120,7 @@ u=\limn u_n\in\lbrace f\leq c+\varepsilon\rbrace\text{ d.h. } f(u)\leq c+\vareps
 \end{align*}
 Da $\varepsilon>0$ beliebig ist, ist $f(u)\leq c=\liminf\limits\limits_{n\to\infty} f(u_n)$.\\
 Falls $c=-\infty$, dann enthält $\lbrace f\leq K\rbrace\mit K\in\R$ beliebig unendlich viele $u_n$. Und weil $\lbrace f\leq K\rbrace$ abgeschlossen ist, ist $u=\limn u_n\in\lbrace f\leq K\rbrace$, d.h. $f(u)\leq K$.\\
-Da $K\in\R$ beliebig ist, ist $f(u)\leq=-\infty$. Dies ist aber ein Widerspruch zur Annahme.
+Da $K\in\R$ beliebig ist, ist $f(u)=-\infty$. Dies ist aber ein Widerspruch zur Annahme.
 \end{proof}
 
 \begin{lemma}
@@ -400,7 +400,7 @@ $A$ ist akkretiv vom Typ $\omega$
 \forall(u,v),(\hat{u},\hat{v})\in A:\Big[ u-\hat{u},\underbrace{v}_{=Au}-\hat{v}+\omega\cdot(u-\hat{u})\Big]\geq0\\
 &\gdw A+\omega\cdot I\text{ ist akkretiv}
 \end{align*}
-Das die Rückrichtung auch gilt muss man sich überlegen.
+Dass die Rückrichtung auch gilt muss man sich überlegen.
 \end{proof}
 
 \begin{lemma}
@@ -537,7 +537,7 @@ u+h\cdot Au\ni f\qquad\text{und}\qquad\hat{u}+\hat{h}\cdot A\hat{u}\ni\hat{f}.
 \end{align*}
 Dann gilt:
 \begin{align*}
-\left(a-\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\right)\cdot\Vert u-\hat{u}\Vert
+\left(1-\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\right)\cdot\Vert u-\hat{u}\Vert
 \leq
 \left\Vert u-\hat{u}+\frac{\hat{h}}{h+\hat{h}}\cdot(f-u)-\frac{h}{h+\hat{h}}\cdot\big(\hat{f}-\hat{u}\big)\right\Vert
 \end{align*}
@@ -590,7 +590,7 @@ u+h\cdot Au\ni f\Longleftrightarrow\left(u,\frac{f-u}{h}\right)\in A
 &\left[u-\hat{u},\frac{f-u}{h}-\frac{\hat{f}-\hat{u}}{\hat{h}}\right]_{\frac{h\cdot\hat{h}}{h+\hat{h}}}+\omega\cdot\Vert u-\hat{u}\Vert\geq0\\
 &\gdw
 \left\Vert u-\hat{u}+\frac{\hat{h}}{h+\hat{h}}\cdot(f-u)-\frac{h}{h+\hat{h}}\cdot(\hat{f}-\hat{u})\right\Vert
--\Vert u-\hat{u}\Vert+\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\cdot\Vert u-\hat{u}\Vert>0\\
+-\Vert u-\hat{u}\Vert+\frac{h\cdot\hat{h}}{h+\hat{h}}\cdot\omega\cdot\Vert u-\hat{u}\Vert\geq0\\
 &\gdw\text{ Behauptung}
 \end{align*}
 Falls $h=\hat{h}$, dann ist
@@ -615,7 +615,7 @@ sind, dann ist
 \begin{align*}
 u+h\cdot Au\ni f.
 \end{align*}
-sei $(\hat{u},\hat{f})\in A$, also äquivalent $A\hat{u}\ni\hat{f}$. Nach Multiplikation beider Seiten mit $h$ und Addition beider Seiten mit $\hat{u}$ erhält man
+Sei $(\hat{u},\hat{f})\in A$, also äquivalent $A\hat{u}\ni\hat{f}$. Nach Multiplikation beider Seiten mit $h$ und Addition beider Seiten mit $\hat{u}$ erhält man
 \begin{align*}
 h\cdot A\hat{u}+\hat{u}\ni h\cdot\hat{f}+\hat{u}.
 \end{align*}
@@ -703,7 +703,7 @@ u\stackeq{\text{Fix}}T(u)
 bzw. 
 \begin{align*}
 f&=\frac{\hat{h}}{h}\cdot u-\frac{\hat{h}-h}{h}\cdot J_h u\\
-&=J_h u+\frac{\hat{h}}{h}\cdot\left(u-J_j u\right)\\
+&=J_h u+\frac{\hat{h}}{h}\cdot\left(u-J_h u\right)\\
 &\in J_h u+\hat{h}\cdot A J_h u
 \end{align*}
 d.h. $f$ ist im Bild von $I+\hat{h}\cdot A$. Da $f\in X$ beliebig war, ist $I+\hat{h}\cdot A$ surjektiv für $\hat{h}>\frac{h}{2-h\cdot\omega}\mit \hat{h}\cdot\omega<1$. Durch Iterieren des Arguments erhält man schließlich, dass $I+\hat{h}\cdot A$ surjektiv ist für alle $\hat{h}>0\mit\hat{h}\cdot\omega<1$.\nl
@@ -1113,7 +1113,7 @@ c\geq F(u,f)
 \overset{\text{C.S.}}&{\geq}
 -\Vert u\Vert\cdot\Vert f\Vert+\Vert u\Vert^2+\Vert f\Vert^2\\
 &=\frac{1}{2}\cdot\big(\Vert u\Vert^2-2\cdot\Vert u\Vert\cdot\Vert f\Vert+\Vert f\Vert^2\big)+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
-&=\frac{1}{2}\cdot\big(\underbrace{\Vert u\Vert-\Vert f\Vert}_{}\big)^2+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
+&=\frac{1}{2}\cdot\big(\underbrace{\Vert u\Vert-\Vert f\Vert}_{\geq0}\big)^2+\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
 &\geq\frac{1}{2}\cdot\Vert u\Vert^2+\frac{1}{2}\cdot\Vert f\Vert^2\\
 &=\frac{1}{2}\cdot\big\Vert (u,f)\big\Vert^2_{H\times H}
 \end{align*}
@@ -1170,17 +1170,20 @@ Der Satz von Minty ist falsch in Banachräumen. Es gibt ein Gegenbeispiel im $\R
 \end{bemerkung}
 
 \section{Subgradienten}
-In diesem Abschnitt sei $H$ ein reeller Hilbertraum und $\E:H\to\R\cup\lbrace+\infty\rbrace$ eine konvexe, unterhalbstetige Funktion $\E\not\equiv+\infty$ mit
+In diesem Abschnitt sei $H$ ein reeller Hilbertraum und $\E:H\to\R\cup\lbrace+\infty\rbrace$ eine konvexe, unterhalbstetige Funktion mit $\E\not\equiv+\infty$. 
+\begin{definition}
+Wir bezeichnen mit
 \begin{align*}
 \dom(\E):=\big\lbrace\E<+\infty\big\rbrace=\big\lbrace u\in H:\E(u)<+\infty\big\rbrace
 \end{align*}
-bezeichnen wir den \textbf{effektiven} Definitionsbereich ($\dom(\E)\neq\emptyset$).\\
+den \textbf{effektiven} Definitionsbereich ($\dom(\E)\neq\emptyset$).\\
 Der \textbf{Subgradient} von $\E$ ist der Operator
 \begin{align*}
 \partial\E&:=\left\lbrace (u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\lim\limits_{\lambda\to0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\langle f,v\rangle\right\rbrace\\
 &=\Big\lbrace(u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\E(u+v)-\E(u)\geq\langle f,v\rangle\Big\rbrace
 \end{align*}
-Bei der Gleichheit wird verwendet, dass die Funktion $\lambda\mapsto\frac{\E(u\lambda\cdot v)-\E(u)}{\lambda}$ monoton wachsend ist.\\
+Bei der Gleichheit wird verwendet, dass die Funktion $\lambda\mapsto\frac{\E(u\lambda\cdot v)-\E(u)}{\lambda}$ monoton wachsend ist.
+\end{definition}
 Ziel: $\partial\E$ ist $m$-akkretiv.
 
 \begin{lemma}
@@ -1233,9 +1236,9 @@ konvex, unterhalbstetig und koerziv.
 Die Norm ist konvex und der Vorfaktor ist konvex. Da $\E$ konvex ist und die Summe konvexer Funktionen wieder konvex ist, folgt Konvexität.\nl
 \underline{Zur Unterhalbstetigkeit:} Ist klar.\nl
 \underline{Zur Koerzivität:}\\
-Sei $v\in\R$. Dann gilt für $u\in H$ mit
+Sei $c\in\R$. Dann gilt für $u\in H$ mit
 \begin{align*}
-c\geq\E(u+\frac{1}{2\cdot \lambda}\cdot\Vert u-f\Vert^2
+c\geq\E(u)+\frac{1}{2\cdot \lambda}\cdot\Vert u-f\Vert^2
 \end{align*}
 schon
 \begin{align*}
@@ -1280,7 +1283,7 @@ bzw. nach Umstellen
 \end{align*}
 bzw.
 \begin{align*}
-\lim\limits_{\lambda\to 0^+}\frac{\E/u+\lambda\cdot v)-\E(u)}{\lambda}=\left\langle\frac{f-u}{h},v\right\rangle
+\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}=\left\langle\frac{f-u}{h},v\right\rangle
 \end{align*}
 d.h. 
 \begin{align*}
