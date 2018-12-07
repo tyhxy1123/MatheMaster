@@ -48,7 +48,7 @@ Setze nun $t:=0$. Dann folgt aus der notwendigen Bedingung
 \end{align*}
 Es entsteht die Variationsaufgabe: Finde $u(t)$ so, dass 
 \begin{align*}
-\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~~~\forall v\in V.
+\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y\qquad\forall v\in V.
 \end{align*}
 
 Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man aus dem linken Integral
@@ -84,7 +84,7 @@ D^\alpha\varphi:=\frac{\partial^{|\alpha|}\varphi}{\partial x_1^{\alpha_1}\hdots
 \item Da $\Omega$ beschränkt ist, gilt $L^p(\Omega)\subseteq L^1(\Omega)$ und die kanonische Injektion ist stetig.
 \item Es gilt die Gauß-Formel:
 \begin{align}\label{GaussFormel}
-\int\limits_\Omega\varphi\cdot D^\alpha\psi\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot D^\alpha\varphi\d x~~~\forall \varphi,\psi\in C_0^\infty(\Omega)
+\int\limits_\Omega\varphi\cdot D^\alpha\psi\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot D^\alpha\varphi\d x\qquad\forall \varphi,\psi\in C_0^\infty(\Omega)
 \end{align}
 \end{enumerate}
 
@@ -861,7 +861,7 @@ l(v)&=\int\limits_\Omega f\cdot v\d x\\
 |l(v)|&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{0,2}\\
 			&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{1,2}
 \end{align*}
-Bilinearform
+Bilinearform:
 \begin{align*}
 a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x
 \end{align*}
@@ -968,13 +968,11 @@ gilt.
 
 \underline{Zeige (iv):}
 \begin{align*}
-	\left\{\begin{array}{rl}
+	&\left\{\begin{array}{rl}
 a\cdot n=0&\text{ auf }\Gamma\\
 \alpha=0,~\div(a)=0&\text{ in  }\Omega\\
-\end{array}\right. 
-\end{align*}
-\begin{align*}
-	V=\left\lbrace v\in H^1(\Omega):\int\limits_\Omega v(x)\d x=0\right\rbrace\mit|\cdot|_{1,2}\sim\Vert\cdot\Vert_{1,2}\text{ (siehe Poincaré-Ungleichung)}
+\end{array}\right. \\
+	&V=\left\lbrace v\in H^1(\Omega):\int\limits_\Omega v(x)\d x=0\right\rbrace\mit|\cdot|_{1,2}\sim\Vert\cdot\Vert_{1,2}\text{ (siehe Poincaré-Ungleichung)}
 \end{align*}
 Also sind die Bilinearform
 \begin{align*}
@@ -1090,24 +1088,20 @@ Diskretes Problem: Finde $u_h\in S_{h,0}^{k,0}$ so, dass
 In Matrix-Notation ergibt dies Folgendes:
 \begin{align*}
 	&A=(a_{i,j}),&&a_{i,j}:=a(\varphi_j,\varphi_i)\\
-	&b=(b_i),&&b_i:=l(\varphi_i)
-\end{align*}
-\begin{align*}
-\Longleftrightarrow A\cdot U=b,\qquad U=(u_i)
+	&b=(b_i),&&b_i:=l(\varphi_i\nl
+	&\qquad\Longleftrightarrow A\cdot U=b,\qquad U=(u_i)
 \end{align*}
 Hierbei heißt $A$ \textbf{Stiffness-Matrix}.
 
 \begin{align*}
-	&S^{1,0}_{h,0}=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
+	S^{1,0}_{h,0}&=\text{span}\big\lbrace\varphi_i:1\leq i\leq n\big\rbrace,\qquad
 \varphi_i(t)=\left\lbrace\begin{array}{cl}
 \frac{t-t_{i-1}}{h_{i-1}}, &\falls t\in I_{i-1}\\
 \frac{t_{i+1}-t}{h_i}, &\falls t\in I_i\\
 0, &\sonst
 \end{array}\right.\\
-\big(&\text{supp}(\varphi_i) = [t_{i-1}, t_{i+1}]\big)
-\end{align*}
-\begin{align*}
-\implies a_{i,j}=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
+\big(\text{supp}(\varphi_i) &= [t_{i-1}, t_{i+1}]\big)\\
+\implies a_{i,j}&=0\text{ für }|i-j|>1\implies A\text{ ist Tridiagonalmatrix}
 \end{align*}
 
 \begin{figure}[!ht]
@@ -1282,7 +1276,6 @@ i\neq j\implies K_i\cap K_j=\emptyset
 \end{center}
 \end{figure}
 
-
 \begin{figure}[!ht]
 \begin{center}
 \input{tikz/triang_example3}
@@ -1342,7 +1335,6 @@ V=\Big\lbrace v: K\to\R:v=\hat{v}\circ F^{-1},\hat{v}\in\hat{V}\Big\rbrace
 \Sigma=\Big\lbrace N:V\to\R:N(v)=\hat{N}(v\circ F),~\hat{N}\in\hat{\Sigma}\Big\rbrace
 \end{aligned}$
 \end{enumerate}
-
 \end{definition}
 
 \begin{beisp}\
@@ -2080,9 +2072,7 @@ ist linear und stetig. Folglich gilt:
 \big\Vert L(\hat{v})\big\Vert_{0,2,\hat{E}}
 &=\big\Vert\hat{v}-\overline{\hat{v}}\big\Vert_{0,2,\hat{E}}
 \leq
-\underbrace{\Vert\hat{v}\Vert_{0,2,\hat{E}}}_{\stackrel{\text{Spursatz}}{\leq} c\cdot\Vert\hat{v}\Vert_{1,2,\hat{K}}}+\big\Vert\overline{\hat{v}}\big\Vert_{0,2,\hat{E}}
-\end{align*}
-\begin{align*}
+\underbrace{\Vert\hat{v}\Vert_{0,2,\hat{E}}}_{\stackrel{\text{Spursatz}}{\leq} c\cdot\Vert\hat{v}\Vert_{1,2,\hat{K}}}+\big\Vert\overline{\hat{v}}\big\Vert_{0,2,\hat{E}}\\
 \big\Vert\overline{\hat{v}}\big\Vert^2_{0,2,\hat{E}}
 &=
 \int\limits_{\hat{E}}\big|\overline{\hat{v}}\big|^2\d\gamma \\
@@ -2101,10 +2091,8 @@ Somit:
 \end{align*}
 Außerdem
 \begin{align*}
-\implies
-L(\hat{w})&=0\qquad\forall\hat{w}\in P_0(\hat{K})
-\end{align*}
-\begin{align*}
+%\implies
+L(\hat{w})&=0\qquad\forall\hat{w}\in P_0(\hat{K})\\
 \overset{\text{Bramble-Hilbert}}{\implies}
 \big\Vert L(\hat{v})\big\Vert_{0,2,\hat{E}}
 &\leq
@@ -2112,14 +2100,15 @@ c\cdot|\hat{v}|_{1,2,\hat{K}}\\
 \implies
 \big\Vert z_h-\overline{z}_h\big\Vert_{0,2,E}
 &\leq c\cdot h_E^{\frac{1}{2}}\cdot\big|\hat{z}_h\big|_{1,2,\hat{K}}\\
-&\underset{\text{zurück}}{\overset{\text{transf.}}{\leq}} c\cdot h_E^{\frac{1}{2}}\cdot\underbrace{\Vert B_K\Vert^1}_{\sim h_K}\cdot{\underbrace{\big|\det(B_K)\big|}_{\sim h_K^2}}^{-\frac{1}{2}}\cdot|z_h|_{1,2,K}\\
+\overset{\text{transf. zurück}}&{\leq}
+c\cdot h_E^{\frac{1}{2}}\cdot\underbrace{\Vert B_K\Vert^1}_{\sim h_K}\cdot{\underbrace{\big|\det(B_K)\big|}_{\sim h_K^2}}^{-\frac{1}{2}}\cdot|z_h|_{1,2,K}\\
 &\leq
 c\cdot h_E^{\frac{1}{2}}\cdot|z_h|_{1,2,K}
 \end{align*}
 Auf ähnliche Art und Weise, aber mit wesentlich mehr Aufwand, erhält man auch:
 \begin{align*}
 \left\Vert\frac{\partial u}{\partial u_K}-\overline{\frac{\partial u}{\partial u_K}}\right\Vert_{0,2,E}
-&\leq c\cdot h_E^{\frac{1}{2}}\cdot\Vert u\Vert_{2,2,K}\\
+&\leq c\cdot h_E^{\frac{1}{2}}\cdot\Vert u\Vert_{2,2,K}
 \end{align*}
 Nun können wir endlich alle Abschätzungen zusammenbringen und erhalten
 \begin{align*}
@@ -2131,9 +2120,7 @@ L_h(z_h)
 c\cdot\sum\limits_{K\in\T_h} h^{\frac{1}{2}}\cdot\Vert u\Vert_{2,2,K}\cdot h^{\frac{1}{2}}\cdot|z_h|_{1,2,K}\\
 &\leq
 c\cdot h\cdot\left(\sum\limits_{K\in\T_h}\Vert u\Vert^2_{1,2,K}\right)^{\frac{1}{2}}\cdot\left(\sum\limits_{K\in\T_h}|z_h|_{1,2,K}^2\right)^{\frac{1}{2}}\\
-&=c\cdot h\cdot \Vert u\Vert_{2,2,\Omega}\cdot\Vert z_h\Vert_h
-\end{align*}
-\begin{align*}
+&=c\cdot h\cdot \Vert u\Vert_{2,2,\Omega}\cdot\Vert z_h\Vert_h\\
 \implies
 \sup\limits_{z_h\in V_h}\frac{a_h(u, z_h)-f_h(z_h)}{\Vert z_h\Vert_h}
 &\leq c\cdot h\cdot\Vert u\Vert_{2,2,\Omega}
@@ -2245,10 +2232,10 @@ R(v)
 \sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v-v_h\Vert_{0,2,T} 
 &+\sum\limits_{E\in\mathcal{E}_h}\Big\Vert\big[\nabla u_h\cdot u_E\big]_E\Big\Vert_{0,2,E}\cdot\Vert v-v_h\Vert_{0,2,E}
 \end{align*}
-,wobei $\mathcal{E}_h$ die Menge aller Kanten ist.\\
+,wobei $\mathcal{E}_h$ die Menge aller Kanten ist.
 \begin{align*}
 	\text{Bester Weg}&: \text{Wähle $v_h$ als Interpolation von } v.\\
-	\text{Aber}&: v\text{ ist nur in }H^1\text{ und die gewöhnliche Interpolation wird nicht funktionieren.}\\
+	\text{Aber}&: v\text{ ist nur in }H^1\text{ \& die gewöhnliche Interpolation wird nicht funktionieren.}\\
 	\text{Lösung}&:\text{Quasi-Interpolation.}\\
 	\text{Hier}&: \text{Quasi-Interpolation von Clément}
 \end{align*}
