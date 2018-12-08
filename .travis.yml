@@ -1,0 +1,32 @@
+sudo:       required
+language:   generic
+services:   docker
+
+# Docs of the options: https://github.com/Strauman/travis-latexbuild/tree/master#configuration-options
+tex-config:
+- tex-scheme=full
+- push-type=none
+- build-pattern=AMGEO/AMGEO.tex,ANGA/ANGA.tex,FEM/FEM.tex,MFANA/MFANA.tex,MSTAT/MSTAT.tex,ORDSTR/ORDSTR.tex,PDEANA/PDEANA.tex,PDENUM/PDENM.tex
+- latexmk-flags=-halt-on-error
+# Check at https://www.ctan.org/pkg/package-name in which TeX Live package a LaTeX package is contained.
+
+# We will use the docker image from https://hub.docker.com/r/strauman/travis-latexbuild/
+script:
+- docker run --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind strauman/travis-latexbuild:full
+
+deploy:
+  provider: releases
+  api_key:
+    secure: FcxEa2hxN32ZPFGjK44umo/mUyzfrsk4JNo4SO+J/YEiX8XYESsK5drnpCSR8PMS1C46BeZJSHyoS1K9uaYYRV1GsMrysnGidFsAorsRqNuD2yn/3+9HfNM1Kkdq0786Q64vKYEvMY4qNXClQsi23YUTPFzuoXHnHqa8+SIXexl7vcGCdrFgI9h2eGN8OlSppUYjcIWqq213291RRp8MBoCIPkTICLq5+Rvv6JyDkCMuwJlytWwbl18wUlAAC6l/8mB11nosBheCTwSIdKuk893gvX3VTC1up7gXG1FF7Mfu+rXfZG8jSPTyy3fH3gakhqxwN4sAxRMbHOSlbQ2HJ3KhMB4EgT8pG6odt4sUHD91ICVyElwRSR30579nrh/pAFuQG8rMgnISy5osKZednw06ewI9rv/u6hjNv6HT9mfXgNoE6yNIOJD9bcWOJ5vXAE1aZXOo4zUHfclVeC6ilg74xV07sWth0JyCbByUIWdX9Qf6sBHBl9tWNNnuV3NEAKy65kX4jifUkgHHPOvUanp2uofINvn+n+rRgIZFnkcYXiOoSd4tyOI8NBC+ErvOSOXk5H9c60WFkW1o07VL6ypezL1WglC42VVGDTpv4A2gnWkxsXtUWMbmNotU/GthYiG0JLdKJ8H44yeEYHN6qdpE2oP+QIgfrefEmpD+EMI=
+  file:
+  - ./bin/AMGEO.pdf
+  - ./bin/ANGA.pdf
+  - ./bin/FEM.pdf
+  - ./bin/MFANA.pdf
+  - ./bin/MSTAT.pdf
+  - ./bin/ORDSTR.pdf
+  - ./bin/PDEANA.pdf
+  - ./bin/PDENM.pdf
+  skip_cleanup: true
+  on:
+    tags: true
