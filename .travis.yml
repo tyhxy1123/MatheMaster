@@ -27,6 +27,10 @@ deploy:
   - ./bin/ORDSTR.pdf
   - ./bin/PDEANA.pdf
   - ./bin/PDENM.pdf
+  name: >-
+      Mitschriften zum Ende der
+      $(date -u -d @$(($(date -d 'now' '+%s') - $(date -d 'Oct 1 2018' '+%s'))) '+%V').
+      Woche des WS 2018
   skip_cleanup: true
   on:
     tags: true
