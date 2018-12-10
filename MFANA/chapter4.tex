@@ -1,0 +1,40 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Nichtlineare Halbgruppen} %4
+\setcounter{section}{1}
+Sei $(D,d)$ ein metrischer Raum.
+
+\begin{definition}
+Eine \textbf{(stark stetige) Halbgruppe} auf $D$ ist eine Funktion\\ $S:[0,\infty]\to C(D,D)$ so, dass 
+\begin{enumerate}[label=(\roman*)]
+\item $S_0=\id$, d.h. $S_0(x)=x\qquad\forall x\in D$
+\item $\begin{aligned}
+S_{t+s}=S_t\circ S_s\qquad\forall s,t\geq0
+\end{aligned}$
+\item $\begin{aligned}
+[0,\infty)\to D,\qquad t\mapsto S_t(x)\text{ ist stetig}\qquad\forall x\in D
+\end{aligned}$
+\end{enumerate}
+(alternativer Name: \textbf{topologisches dynamisches System})\nl
+Manchmal betrachtet man auch \textbf{degenerierte (stark stetige) Halbgruppen}\\ $S\colon (0,\infty)\to C(D,D)$. Definition wie oben, nur ersetze $[0,\infty]$ durch $(0,\infty)$ (auch in (iii)). Eigenschaft (i) fällt dann weg.
+\end{definition}
+
+\begin{beispiel}[Exponentialfunktion]\enter
+Sei $X$ ein Banachraum, $A\in\L(X)$ (d.h. beschränkter linearer Operator auf $X$) und 
+\begin{align*}
+S_t:=\sum\limits_{n=0}^\infty\frac{t^n\cdot A^n}{n!}=:\exp(t\cdot A)\qquad t\in[0,\infty]\text{ oder }t\in\C
+\end{align*}
+Die Reihe konvergiert absolut
+\begin{align*}
+\sum\limits_{n=0}^\infty \frac{t^n\cdot\Vert A^n\Vert}{n!}\leq\sum\limits_{n=0}^\infty\frac{t^n\cdot\Vert A\Vert^n}{	n!}=\exp\big(t\cdot\Vert A\Vert\big)<\infty
+\end{align*}
+und somit konvergiert sie auch in $\L(X)\subseteq C(X,X)$.
+\end{beispiel}
+
+
+
+
+
