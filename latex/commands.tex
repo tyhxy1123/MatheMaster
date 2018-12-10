@@ -3,7 +3,8 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-% SHORTCUTS
+% STANDARD SHORTCUTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\R}{\mathbb{R}}				 % reelle Zahlen
 \newcommand{\Rn}{\R^n}					 % der R^n
 \newcommand{\N}{\mathbb{N}}				 % natürliche Zahlen
@@ -19,9 +20,11 @@
 \DeclareMathOperator{\Span}{span}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\SO}{SO}
+\newcommand{\ideal}{\trianglelefteq} %Ideal
 \newcommandx{\bracket}[2][1=\cdot, 2=\cdot]{[#1,#2]}
 
 % ETWAS SPEZIELLERE ZEICHEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % disjunkte Vereinigung
 \newcommand{\bigcupdot}{
 	\mathop{\vphantom{\bigcup}\mathpalette\setbigcupdot\cdot}\displaylimits
@@ -29,11 +32,12 @@
 \newcommand{\setbigcupdot}[2]{\ooalign{\hfil$#1\bigcup$\hfil\cr\hfil$#2$\hfil\cr\cr}}
 % großes Kreuz
 \newcommand*{\bigtimes}{\mathop{\raisebox{-.5ex}{\hbox{\huge{$\times$}}}}} 
-
-%Ideal
-\newcommand{\ideal}{\trianglelefteq}
+% dreifach gestrichene Norm
+\newcommand{\Vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
 
 % WHITESPACE COMMANDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Zeilenumbruch mit freier Zeile darunter OHNE underfull-hbox-warning
 \newcommand{\nl}{\\[\baselineskip]}
 % nicht restriktiver newline command
@@ -47,7 +51,7 @@
 % TEXT ÜBER UND UNTER ZEICHEN
 \newcommand{\stackrelnew}[3]{\underset{#1}{\overset{#2}{#3}}}
 
-% UNDERLINE
+% UNDERLINE (wird nicht mehr genutzt)
 % besseres underline 
 %\renewcommand{\ULdepth}{1pt}
 %\contourlength{0.5pt}
