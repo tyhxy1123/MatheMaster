@@ -34,20 +34,64 @@
 \section*{Aufgabe 5.1}
 Sei $K=(a,a+h)$ mit $a\in\R$ und $h>0$ ein offenes Intervall.
 
-\subsection*{Aufgabe 5.1(a)}
-Es gilt für alle $v\in P_k(V)$ und $0\leq m\leq l$ sowie $p,q\in[1,\infty]$ die inverse Ungleichung
+\subsection*{Aufgabe 5.1 (a)}
+Es gilt für alle $v\in P_k(K)$ und $0\leq m\leq l$ sowie $p,q\in[1,\infty]$ die inverse Ungleichung
 \begin{align*}
 |v|_{l,p,K}\leq c\cdot h^{m-l+\left(\frac{1}{p}-\frac{1}{q}\right)}\cdot|v|_{m,q,K}
 \end{align*}
 wobei $C$ eine Konstante ist, die nicht von $K$ abhängt (und damit insbesondere auch nicht von $h$).
 
 \begin{proof}
-Nutze Transformation auf Referenzelement $\hat{K}=(0,1)$, also
+%Nutze Transformation auf Referenzelement $\hat{K}=(0,1)$, also
+%\begin{align*}
+%f:\R\to\R,\qquad x\mapsto h\cdot x+a
+%\end{align*}
+In Aufgabe 4.5 haben wir gezeigt für $\hat{K}=(0,1)$:
 \begin{align*}
-f:\R\to\R,\qquad x\mapsto h\cdot x+a
+|\hat{v}|_{m,p,\hat{K}}\leq h^m\cdot\left(\frac{1}{h}\right)^{\frac{1}{p}}\cdot|v|_{m,p,K}
 \end{align*}
-%TODO
+Damit folgt:
+\begin{align*}
+|v|_{l,p,K}
+&=\underbrace{h^{-l}\cdot\left(\frac{1}{h}\right)^{-\frac{1}{p}}}_{=h^{-l+\frac{1}{p}}}\cdot\underbrace{|\hat{v}|_{l,p,\hat{K}}}_{\stackrel{l\geq m}{\leq}\Vert \hat{v}^{(m)}\Vert_{l-m,p,\hat{K}}}
+\end{align*}
+Jetzt nutzen wir die Normäquivalenz der Normen auf dem Finite-Elemente-Raum $P_k(\hat{K})$:
+\begin{align*}
+\Vert \hat{v}^{(m)}\Vert_{l-m,p,\hat{K}}
+&\leq
+c\cdot\underbrace{\Vert\hat{v}^{(m)}\Vert_{0,q,\hat{K}}}_{=|\hat{v}|_{m,q,\hat{K}}}
+\end{align*}
+wobei $c$ unabhängig von $h(K)$ ist wegen dem Referenzelement $\hat{K}$. Folglich gilt:
+\begin{align*}
+|v|_{l,p,K}
+&\leq
+c\cdot h^{-l+\frac{1}{p}}\cdot\underbrace{|\hat{v}|_{m,q,\hat{K}}}_{\stackeq{\text{Aufg. 4.5}}h^{k-\frac{1}{q}}\cdot|v|_{m,q,\hat{K}}}
+=c\cdot h^{m-l+\left(\frac{1}{p}-\frac{1}{q}\right)}\cdot|v|_{m,q,K}
+\end{align*}
+Es gilt
+\begin{align*}
+\min\limits_{p\in P_k}\big\Vert\hat{v}+p\big\Vert_{0,p,\hat{K}}\leq c\cdot|\hat{v}|_{k+1,p,\hat{K}}
+\end{align*}
 \end{proof}
+
+\begin{bemerkung}
+Falls $v$ eine Funktion auf einen Finiten-Elemente-Raum (also endlich dimensional) ist, das Element $(K,V,\Sigma)$ von der Triangulierung affin äquivalent zum Referenzelement $(\hat{K},\hat{V},\hat{\Sigma})$ ist, dann gilt:
+\begin{align*}
+\Vert v\Vert_{l,p,K}\leq c\cdot h_K^m\cdot p_k^m\cdot p_k^{-l}\cdot\meas(K)^{\frac{1}{p}-\frac{1}{q}}\cdot\Vert v\Vert_{m,q,K}
+\end{align*}
+Falls $n$ die Dimension notiert, dann gilt:
+\begin{align*}
+c\cdot f_k^n&\leq\meas(K)\leq c\cdot h_k^n\\
+\frac{h_k}{p_k}&\leq c\qquad\text{(form-regulär)}\\
+\implies\Vert v\Vert_{l,p,K}&\leq h_K^{m-l+n\cdot\left(\frac{1}{p}-\frac{1}{q}\right)}\cdot\Vert v\Vert_{m,q,K}\\
+\Vert v\Vert_{l,p,K}&=\sum\limits_{i=}^{m+1}\big| v^{(i)}\big|_{0,p,K}+\big\Vert v^{(m)}\big\Vert_{l-m,p,K}
+\end{align*}
+Rest der Lösung steht online.
+% login: PDENM18, PW: weak
+\end{bemerkung}
+
+$V_h\subseteq V$ ist konform mit $V\subseteq H^1(\Omega)\hookrightarrow C(\Omega)$\\
+$V_h\not\subseteq V$ ist nichtkonform.
 
 \subsection*{Aufgabe 5.1 (b)}
 Wie muss die rechte Seite angepasst werden, wenn die volle $W^{l,p}$-Norm in ähnlicher Weise abgeschätzt werden soll?
@@ -60,7 +104,7 @@ Wie muss die rechte Seite angepasst werden, wenn die volle $W^{l,p}$-Norm in äh
 Im Rahmen nichtkonformer Finite Elemente soll die folgende Verallgemeinerung des Dualitätsarguments von Aubin-Nitsche untersucht werden.\\
 Sei $H$ ein Hilbertraum mit Norm $\Vert\cdot\Vert_H$ und Skalarprodukt $(\cdot,\cdot)$. Ferner sei $V_h\subseteq H$ abgeschlossen mit Norm $\Vert\cdot\Vert_h$ und $V$ ein Hilbertraum, welcher stetig in $H$ eingebettet ist $(V\hookrightarrow H$). Die auf $V+V_h$ definierte und stetige Bilinearform $a_h$ stimme auf $V$ mit $a$ überein. Dann gilt:
 \begin{align*}
-\Vert u-u_h\Vert\leq\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{1}{\Vert g\Vert_H}\cdot\Big( &M\cdot\Vert u-u_h\Vert_h\cdot\Vert\varphi_g-\varphi_{g,h}\Vert_h\\
+\Vert u-u_h\Vert_H\leq\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{1}{\Vert g\Vert_H}\cdot\Big( &M\cdot\Vert u-u_h\Vert_h\cdot\Vert\varphi_g-\varphi_{g,h}\Vert_h\\
 &+\big|a_h(u-u_h,\varphi_g)-(u-u_h,g)\big|\\
 &+\big|a_h(u,\varphi_g-\varphi_{g,h})-(f,\varphi_g-\varphi_{g,h}\big|\Big)
 \end{align*}
@@ -71,7 +115,37 @@ a(w,\varphi_g)=(w,g)\quad\forall w\in V\qquad\text{bzw.}\qquad a_h(w_h,\varphi_{
 definiert sind.
 
 \begin{proof}
-%TODO
+Auf $V\times V$ gilt $a=a_h$
+\begin{align*}
+a_h:(V+V_h)\times(V+V_h),\qquad
+a(u,v)&=\int\limits_\Omega\nabla u\cdot\nabla v\d x\\
+a_h(u,v)&=\sum\limits_{K}\int\limits_K\nabla u\cdot\nabla v\d x
+\end{align*}
+Setze $\varphi_h:=\varphi_{g,h}$. Dann gilt:
+\begin{align*}
+&(u-u_h,g)\\
+&=a(\underbrace{u}_{\in V},\underbrace{\varphi_g}_{\in V})-a_h(u_h,\varphi_h)\\
+&=a_h(u,\varphi_g)-a_h(u_h,\varphi_h)\\
+&=a_h(u,\varphi_g\underbrace{-\varphi_h)-a_h(u_h,\varphi_h)}_{=0}-a_h(u_h,\varphi_h)-\underbrace{a_h(u_h,\varphi_g-\varphi_h)+a_h(u_h,\varphi_g-\varphi_h)}_{=0}\\
+&=a_h(u-u_h,\varphi_g-\varphi_h)+a_h(u-u_h,\varphi_h)+a_h(u_h,u_g-\varphi_h)
+\end{align*}
+%TODO hier fehlt was
+und außerdem
+\begin{align*}
+a_h(u,\varphi_g-\varphi_h)-(f,\varphi_g-\varphi_h)
+&=\underbrace{a_h(u,\varphi_g)-(f,\varphi_g)}_{=0}-a_h(u,\varphi_h)+\underbrace{(f,\varphi_h)}_{\stackeq{\text{Def }u_h}a_h(v_h,\varphi_h)}
+\end{align*}
+und außerdem %Wortwiederholung als Ausdruck von Langeweile
+\begin{align*}
+a_h(u-u_h,\varphi_g)-(u-u_h,g)
+&=\underbrace{a(u,\varphi_g)-(u,g)}_{=0}-a_h(u_h,\varphi_g)+\underbrace{u_h,g)}_{=a_h(u_h,\varphi_h)}\\
+&=-a_h(u_h,\varphi_g-\varphi_h)
+\end{align*}
+und außerdem %Wortwiederholung als Ausdruck von Langeweile
+\begin{align*}
+\Vert u-u_h\Vert
+&=\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{(u-u_h,g)}{\Vert g\Vert_H}
+\end{align*}
 \end{proof}
 
 \section*{Aufgabe 5.3}
@@ -88,23 +162,41 @@ mit Crouzeix-Raviart-Elementen über einer regulären Zerlegung von $\Omega$ die
 \end{align*}
 
 \begin{proof}
+$V=H_0^1(\Omega)$, $H=L^2$, $V_h\not\subseteq V$
+\begin{align*}
+a(v,w)&=\int\limits_\Omega\nabla v\cdot\nabla w\d x\\
+a_h(v,w)&=\sum\limits_K\int\limits_K\nabla v\cdot\nabla w\d x
+\end{align*}
+
 \underline{Teilschritt (a):}\\
-Das Dualitätsargument von Aubin-Nitsche ist anwendbar, denn:\nl
-%TODO
+Das Dualitätsargument von Aubin-Nitsche ist anwendbar (klar).\nl
 \underline{Teilschritt (b):}\\
 Aus der Vorlesung ist bekannt:
 \begin{align*}
 \Vert u-u_h\Vert_h\leq c\cdot h\cdot\Vert u\Vert_2
 \end{align*}
 Bei der Abschätzung von $\Vert\varphi_g-\varphi_{g,h}\Vert$ hilft, dass $\varphi_g-\varphi_{g,h}$ als Diskretisierungsfehler des Problems $a(w,\varphi)=(w,g)$ angesehen werden kann.\nl
+$\varphi_g$ und $\varphi_{g,h}$ sind auch schwache und diskrete Lösungen der Poisson-Gleichung, aber mit rechter Seite $g$ anstelle von $f$. Folglich kann die Abschätzung aus der Vorlesung benutzt werden und es gilt
+\begin{align*}
+\Vert\varphi_g-\varphi_{g,h}\Vert_h\leq c\cdot h\cdot\Vert\varphi_g\Vert_2
+\end{align*}
+
 \underline{Teilschritt (c):}\\
 Es ist bekannt:
 \begin{align*}
 \big|L_w(z)\big|:=\Big|a_h(w,z)-(\hat{f},z)\Big|\leq c\cdot h\cdot|w|_2\cdot\Vert z\Vert_h\qquad\forall z\in V_h+v,\forall w\in H^2
 \end{align*}
-%TODO
-\underline{Teilschritt (d):}\\
-%TODO
+
+%TODO vermutlich fehlt hier auch was. Bin dermaßen raus, dass ich das nicht einmal mehr einschätzen kann xD
+
+\underline{Teilschritt (d):}
+\begin{align*}
+\Vert u-u_h\Vert_0\leq\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{1}{\Vert g\Vert_H}\big\lbrace(\text{MC+CC}~h^2\cdot\Vert u\Vert_2\cdot\Vert\varphi_g\Vert_2\big\rbrace
+\end{align*}
+Aus dem \textit{Regularitäts-Theorem} folgt, da $\Omega$ konvex ist ist:
+\begin{align*}
+\varphi_g\in H^2\qquad\text{und}\qquad\Vert\varphi_g\Vert_2\leq c\cdot\Vert g\Vert_0
+\end{align*}
 \end{proof}
 
 \section*{Aufgabe 5.4}
