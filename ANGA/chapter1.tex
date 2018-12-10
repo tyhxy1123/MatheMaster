@@ -53,7 +53,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     $$ \tilde{K} := \{\alpha \in F \| \alpha \text{ algebraisch  über } K\}.$$
 \end{definition}
 
-\begin{beispiel}
+\begin{beispiel}\label{beispiel:1.7}
     Der Konstantenkörper des rationalen Funktionenkörpers $K(T)$ ist $K$:
 
     Ist $f(T) = \frac{g(T)}{h(T)} \in K(T) \setminus K$, mit $g,h \in K[T]$, algebraisch über $K$,
@@ -87,7 +87,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 
 \end{proof}
 
-\begin{satz}
+\begin{satz}\label{satz:1.9}
     Ist $F$ ein Funktionenkörper über $K$ mit Konstantenkörper $\tilde{K}$,
     so ist $\tilde{K}|K$ endlich.
 \end{satz}
@@ -177,3 +177,597 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
         \end{align*}
     \end{itemize}
 \end{proof}
+
+\begin{definition}
+    Der \textbf{Transzendenzgrad} von $F|K$, 
+    $$ \trdeg(F|K) $$ ist die Mächtigkeit einer Transzendenzbasis.
+\end{definition}
+
+\begin{korollar}
+    Sind $K \subseteq L \subseteq F$ Körper, so ist 
+    $$ \trdeg(F|K) = \trdeg(L|K) + \trdeg(F|L). $$
+\end{korollar}
+\begin{proof}
+    Ist $\mathfrak{X}$ Transzendenzbasis von $L|K$ und $\mathcal{Y}$ Transzendenzbasis von $F|L$, dann folgt
+    $ \mathfrak{X} \cup \mathcal{Y}$ ist Transzendenzbasis von $F|K$.
+    $$\begin{tikzcd}
+        & K(\mathfrak{X} \cup \mathcal{Y})(L) & \\
+        K(\mathfrak{X} \cup \mathcal{Y}) \rar[dash]{algebraisch} & L(\mathcal{Y}) \uar[dash] \rar[dash]{algebraisch} & F \\
+        K(\mathfrak{X}) \uar[dash] \rar[dash]{algebraisch}& L \uar[dash] & \\
+        \mathfrak{X} \uar[dash] & &
+    \end{tikzcd}$$
+\end{proof}
+
+\begin{satz}
+    $F$ ist genau dann Funktionenkörper über $K$, wenn $F|K$ endlich erzeugt ist und 
+    $$ \trdeg(F|K) = 1. $$
+\end{satz}
+\begin{proof}
+    \begin{itemize}[label=]
+        \item \underline{$\implies$:}
+        \begin{align*}
+            \left[F:K(t)\right] = n < \infty \implies \trdeg(F|K) & = \trdeg(F|K(t)) + \trdeg(K(t)|K)\\
+            & = 0 + 1 = 1,
+        \end{align*}
+        denn $F|K(t)$ ist endlich, also algebraisch.
+        Sei $b_1,...,b_n$ eine Transzendenzbasis von $F|K(t)$, $\implies F=K(t, b_1,...,b_n)$ ist endlich erzeugt über $K$. 
+        \item \underline{$\Longleftarrow$:}
+        $t$ sei Transzendenzbasis von $F|K$, daraus folgt $F|K(t)$ algebraisch.
+        Aus $F|K$ endlich erzeugt, folgt $F|K(t)$ endlich erzeugt.
+        Aus $F|K(t)$ ist endlich erzeugt und algebraisch folgt $F|K(t)$ endlich.
+    \end{itemize}
+\end{proof}
+
+\begin{korollar}
+    Ist $F$ ein Funktionenkörper über $K$ und $t \in F$, so gilt:
+    $$ t \text{ ist transzendent über } K \iff F|K(t) \text{ endlich}.$$ 
+\end{korollar}
+\begin{korollar}\label{korollar:1.20}
+    Ist $F$ ein Funktionenkörper über $K$ und $K \subseteq E \subseteq F$ ein Zwischenkörper, so ist entweder
+    \begin{enumerate}[label=(\arabic*)]
+        \item $E|K$ algebraisch oder
+        \item $E|K$ ein Funktionenkörper über $K$.
+    \end{enumerate}
+    In beiden Fällen ist $F|K$ endlich erzeugt.
+\end{korollar}
+\begin{proof}
+    \begin{itemize}[label=]
+        \item \underline{$E|K$ algebraisch:}
+        folgt aus \cref{satz:1.9}
+        \item \underline{$E|K$ transzendent:}
+        \begin{align*}
+            t \in E \text{ transzendent über } K \implies [E:K(t)] \leq [F:K(t)] < \infty\\
+            \trdeg(E|K) = \trdeg(F|K) - \trdeg(F|E) = 1
+        \end{align*}
+    \end{itemize}
+\end{proof}
+
+\begin{bemerkungnr}
+    So ist zum Beispiel jedes $$ K \subsetneqq E \subseteq K(T)$$
+    nach \cref{beispiel:1.7} transzendent und nach \cref{korollar:1.20} ist $E$ Funktionenkörper
+    über $K$. Als Korollar aus dem Satz von Riemann-Hurwitz werden wir unter anderem erhalten:
+\end{bemerkungnr}
+\begin{theorem}[Lüroth, 1875]
+    Ist $K \subsetneqq E \subseteq K(T)$ ein Zwischenkörper, so ist $E$ wieder ein rationaler Funktionenkörper über $K$,
+    d.h.
+    $$ E \cong_K K(T). $$
+\end{theorem}
+
+\section{Funktionenkörper algebraischer Kurven}
+Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper.
+
+\begin{definition}
+    Eine \textbf{irreduzible, ebene, affine, algebraische Kurve} über $K$ ist eine Menge der Form
+    $$ C = \mathcal{V}(f) := \{P \in \K^2 \mid f(P) = 0\} \subseteq \K^2,$$
+    mit $f \in K[X,Y]$ irreduzibel.
+\end{definition}
+
+\begin{beispiel}\label{beispiel:2.2}
+    $K = \Q$ und $\K = \C$.
+    \begin{enumerate}[label=\alph*)]
+        \item Kreis, $C = \mathcal{V}(X^2 + Y^2 - 1)$
+        \item Neil'sche Parabel, $C = \mathcal{V}(Y^2 - X^3)$
+        \item Elliptische Kurve, $C = \mathcal{V}(Y^2 - X^3 + X)$
+    \end{enumerate}
+\end{beispiel}
+
+\begin{definition}
+    Sei $C = \mathcal{V}(f)$ eine irreduzible, ebene, affine, algebraische Kurve. 
+    Dann ist $$ K[C] := \sfrac{K[X,Y]}{(f)} $$ der \textbf{Koordinatenring von $C$} und
+    $$ K(C) := \Quot(K[C]) $$ der \textbf{Funktionenkörper von $C$}.
+\end{definition}
+
+\begin{bemerkungnr}
+    Der Koordinatenring beschreibt die polynomialen Funktionen auf $C$ und ist unabhängig von der Wahl von $f$.
+    Insbesondere gibt es zu jedem $P \in C$ einen Homomorphismus
+    $$ \begin{cases}
+        K[C] \to \K \\
+        \phi \mapsto \phi(P).
+    \end{cases}$$
+    Der Ring $K[C]$ ist nullteilerfrei, da $(f)$ prim, $K(C)$ ist also wohldefiniert und beschreibt die 
+    "rationalen Funktionen"\ auf $C$, die in fast allen Punkten auf $C$ definiert sind.
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $C = \mathcal{V}(f)$ eine irreduzible, ebene, affine, algebraische Kurve über $K$, so ist $K(C)$ ein
+    algebraischer Funktionenkörper über $K$.
+
+    Ist $\Char(K) = 0$, so gilt auch die Umkehrung, d.h. für jeden Funktionenkörper $F$ über $K$ von der Form
+    $$F \cong_K K(C),$$ ist $C$ eine irreduzible, ebene, affine, algebraische Kurve über $K$.
+\end{satz}
+\begin{proof}
+    \begin{align*}
+        &K[C] = \sfrac{K[X,Y]}{(f)} = K[x,y], \\
+        &x = X + (f), y = Y + (f)\\
+        \implies & K(C) = K(x,y) \text{ und } f(x,y) = 0
+    \end{align*}
+    Ohne Einschränkung $f \notin K[X] \implies$ $y$ ist algebraisch über $K(x)$,
+    $x$ ist transzendent über $K$, denn
+    $$ K[X] \hookrightarrow K[X,Y] \to K[x,y] $$
+    ist injektiv. Somit $K(C)$ Funktionenkörper über $K$.
+
+    Ist $\Char(K) = 0$ so gilt der Satz vom primitiven Element:
+    Ist $E|K$ endlich, so ist $E = F(\alpha)$ für ein $\alpha \in E$.
+    Wähle $x \in F$ transzendent über $K$.
+    \begin{align*}
+        \implies & K(x) \text{ endlich}\\
+        \implies & \text{es existiert } y \in F \text{ mit } F=K(x,y).
+    \end{align*} 
+    Wähle $0 \neq f \in K(x)[Y]$ mit $f(x,y) =0$, o.E. $f \in K[X,Y]$ irreduzibel.
+    Daraus folgt $F = K(x,y)=K(C)$ mit $C = \mathcal{V}(f)$.
+\end{proof}
+
+\begin{bemerkungnr}
+    In der algebraischen Geometrie hat jede irreduzible Kurve $C$ über $K$ (also jede irreduzible
+    eindimensionale quasiprojektive $K-$Varietät) einen Funktionenkörper, der ein Funktionenkörper
+    über $K$ ist. 
+    
+    Allgemein: Funktionenkörper in $\dim C + 1$ Variablen.
+\end{bemerkungnr}
+
+\begin{theorem}
+    Ist $F$ ein algebraischer Funktionenkörper über $K$, so gibt es eine irreduzible projektive Kurve
+    $C$ mit $K(C) \cong_K F$.
+    
+    Ist $\Char(K)=0$, so gibt es sogar so ein $C$ die glatt ist, und $C$ ist dann bis auf Isomorphie eindeutig bestimmt.
+\end{theorem}
+
+\begin{definition}
+    Sei $C = \mathcal{V}(f)$ eine irreduzible, ebene, affine, algebraische Kurve. Der Punkt $P \in C$ ist
+    \textbf{glatt}(oder regulär), wenn
+    $$ \frac{\partial}{\partial X}f(P) \neq 0 \text{ oder } \frac{\partial}{\partial Y} f(P) \neq 0.$$
+    Die Kurve ist \textbf{glatt}, wenn jeder Punkt $P \in C$ glatt ist.
+\end{definition}
+
+\begin{beispiel}
+    \cref{beispiel:2.2} a) und c) sind glatt
+
+    \cref{beispiel:2.2} b) ist überall glatt außer in $(0,0)$, dort singulär
+\end{beispiel}
+
+\begin{definition}
+    Sei $C\subseteq \K^2$ eine irreduzible affine ebene Kurve, $P \in C$. 
+    Der \textbf{lokale Ring} von $P$ auf $C$ ist
+    $$ \mathcal{O}_{C,P} := \left\{\frac{g}{h}\mid g,h\in K[C], h(P) \ne0\right\}.$$
+\end{definition}
+
+\begin{bemerkungnr}
+    $\mathcal{O}_{C,P}$ ist ein lokaler Ring, genauer
+    $$ \mathcal{O}_{C,P} = K[C]_{m_P},$$
+    wobei $m_P$ der Kern der Abbildung $\varphi \mapsto \varphi(P)$ also
+    $$ m_P := \mathcal{I}(P). $$
+    Insbesondere ist $\mathcal{O}_{C,P}$ noethersch und $\dim \mathcal{O}_{C,P} = 1$.
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $C$ eine irreduzible algebraische Kurve und $P \in C$, so ist $P$ genau dann glatt, wenn 
+    $\mathcal{O}_{C,P}$ ein Hauptidealring ist.
+\end{satz}
+
+\begin{definition}
+    Ein \textbf{diskreter Bewertungsring} von $F$ ist ein lokaler Hauptidealring $R \subseteq F$ mit $\Quot(R) = F$.
+\end{definition}
+
+\begin{bemerkungnr}
+    \begin{enumerate}[label=\alph*)]
+        \item Wie jeder lokale Ring hat ein diskreter Bewertungsring einen \textbf{Restklassenkörper}, nämlich
+        $$ \kappa_R := \sfrac{R}{m}, $$
+        wobei $m$ das maximale Ideal von $R$ ist.
+
+        \item Erinnerung:
+        $$\begin{tikzcd}
+            & euklidisch \dar& \\
+            eindimensional & \lar Hauptidealring \dar \rar & noethersch\\
+            & faktoriell \rar & ganz abgeschlossen
+        \end{tikzcd}$$
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{theorem}
+    Sei $K = \K$. Ist $C$ eine glatte, irreduzible, projektive Kurve, so liefert
+    $ P \mapsto \mathcal{O}_{C,P}$ eine Bijektion zwischen Punkten von $C$ und diskreten
+    Bewertungsringen $K \subseteq R \subsetneqq K(C)$.
+\end{theorem}
+
+\begin{satz}
+    Ist $R$ ein diskreter Bewertungsring von $F$ mit maximalem Ideal $m = (\pi)$, so lässt sich jedes Element $x \in F^\times$ 
+    eindeutig schreiben als
+    $$ x = u \cdot \pi^{v_\pi(x)}$$
+    mit $u \in R^\times$ und $v_\pi(x) \in \Z$.
+\end{satz}
+\begin{proof}
+    $R$ ist faktoriell und $m$ ist das einzige Primideal $\ne (0)$. $\pi$ ist also bis auf Einheiten das einzige Primelement.
+\end{proof}
+
+\begin{definition}
+    Eine \textbf{diskrete Bewertung} auf $F$ ist eine Abbildung
+    $$ v: F \to \Z \cup \{\infty\},$$
+    die für $x,y \in F$ erfüllt:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $v(x) = \infty \implies x = 0$
+        \item $v(xy) = v(x) + v(y)$
+        \item $v(x+y) \geq \min\{v(x), v(y)\}$.
+    \end{enumerate}
+    (Beachte $n + \infty = \infty + n = \infty + \infty = \infty$)
+\end{definition}
+
+\begin{satz}
+    Ist $R$ ein diskreter Bewertungsring von $F$ mit maximalem Ideal $m = (\pi)$, so ist $v_\pi$ eine 
+    diskrete Bewertung auf $F$ (mit $v_\pi(0) := \infty$).
+    Umgekehrt, wenn $v$ eine diskrete Bewertung auf $F$, so ist
+    $$ \mathcal{O}_v := \{x \in F \mid v(x) \geq 0\}$$
+    ein diskreter Bewertungsring von $F$ und
+    $$ m_v := \{x \in F \mid v(x) > 0\} $$
+    das maximale Ideal von $\mathcal{O}_v$.
+\end{satz}
+\begin{proof}
+    \underline{$\mathcal{O}_v$ ist ein Ring:} $\checkmark$\\
+    \underline{$m_v$ ist Ideal von $\mathcal{O}_v$ und $\mathcal{O}_v^\times = \mathcal{O}_v\setminus m_v$:}$\checkmark$\\
+    \underline{$I \ideal \mathcal{O}_v \implies I=(a)$ für $a \in \mathcal{O}_v$ mit $v(a) = \min\{v(x) \mid x \in I\}$:}
+    \begin{align*}
+        x \in I & \implies v(a) \leq v(x) \implies v\left(\frac{x}{a}\right) \geq 0\\
+        & \implies \frac{x}{a} \in \mathcal{O}_v \implies x = \frac{x}{a}\cdot a \in \mathcal{O}_v a = (a)
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    Ist $R$ diskreter Bewertungsring von $F$, so ist $R$ ein maximaler echter Teilring von $F$, d.h. ist
+    $R \subsetneqq S \subseteq F$ ein Ring, so ist $S = F$.
+\end{lemma}
+\begin{proof}
+    Ist $x \in S \setminus R$, so ist $x = u \cdot \pi^k$ mit $u \in R^\times$, $k< 0$.
+    Sei nun $y \in F^\times$ beliebig. Schreibe
+    $$ y = w \cdot \pi^l$$
+    mit $w \in R^\times, l \in \Z$.
+
+    Ist \underline{$l \geq 0$}, so ist $y \in R \subseteq S$.
+
+    Ist \underline{$l < 0$}, so ist $yx^l=\underbrace{wu^l}_{\in R^\times} \cdot \overbrace{\pi^{l+kl}}^{\geq 0}\in R$
+    somit $y \in R[x] \subseteq S$.
+\end{proof}
+
+\begin{beispiel}
+    Sei $F = K(T) = K(\mathbb{P}^1)$. Da $K[T]$ faktoriell ist liefert jedes irreduzible normierte $p\in K[T]$ eine 
+    diskrete Bewertung $v_p$ mit zugehörigem Bewertungsring
+    $$ \mathcal{O}_p := \mathcal{O}_{v_p} = K[T]_{(p)}$$
+    mit Restklassenkörper
+    $$ \kappa_ := \kappa_{\mathcal{O}_{v_p}} = \sfrac{K[T]}{(p)}.$$
+    Desweiteren ist $\mathcal{O}_\infty := K[T^{-1}]_{(T^{-1})}$ ein diskreter Bewertungsring von $F$ mit zugehöriger diskreter Bewertung
+    $$v_\infty\left(\frac{f}{g}\right) = \deg(g) - \deg(f) \qquad (f,g \in K[T]) .$$
+    Das sind schon alle auf $\A^1 = \P^1 \cup \{\infty\}$.
+\end{beispiel}
+
+\begin{satz}
+    Die diskreten Bewertungsringe $K \subseteq R \subsetneqq K(T)$ von $K(T)$ sind genau die $\mathcal{O}_p$ mit 
+    $p \in K[T]$ normiert irreduzibel, sowie $\mathcal{O}_\infty$.
+\end{satz}
+\begin{proof}
+    Sei $m$ das maximale Ideal von $R$.\\
+    \underline{$T\in R$:} Dann ist $K[T] \subseteq R$ und $\mathfrak{p} := m \cap K[T]$ ist ein Primideal von $K[T]$ mit
+    $K[T]_\mathfrak{p} \subseteq R$. Insbesondere ist $\mathfrak{p} \ne (0)$. Somit ist $\mathfrak{p} = (p)$ für ein irreduzibeles
+    normiertes $p \in K[T]$. Nach Lemma 2.19, angewandt auf den diskreten Bewertungsring $\mathcal{O}_p = K[T]_\mathfrak{p}$,
+    folgt $\mathcal{O}_p = R$.\\
+    \underline{$T\notin R$:} Dann ist $T^{-1} \in R$, sogar $T^{-1} \in m$, dann
+    $$m=(\pi) \implies T = u \cdot \pi^k \implies k < 0 \implies T^{-1} = u^{-1}\cdot \pi^{-k} \in R.$$
+    Somit ist $K[T^{-1}] \subseteq R$ und $m \cap K[T^{-1}] = K[T^{-1}]T^{-1}$. Wie im ersten Fall folgert man daraus, dass
+    $$ \mathcal{O}_\infty = K[T^-1]_{K[T^{-1}]T^{-1}} = R.$$
+\end{proof}
+
+\begin{bemerkungnr}
+    Es bezeichne $S(F|K)$ die Menge der diskreten Bewertungsringe $K \subseteq R \subsetneqq F$ von $F$.
+    Der Restklassenkörper $\kappa_R$ eines Elements von $S(F|K)$ ist stets eine Erweiterung von $K$.
+    Im Fall $K = \K$ werden wir sehen, dass $\kappa_R = K$. Jedes $\varphi \in F$ liefert somit eine "rationale Funktion"
+    $$ S(F|K) \to \K \cup \{\infty\}. $$
+\end{bemerkungnr}
+
+\section{Riemannsch Flächen}
+\begin{definition}
+    Eine \textbf{Riemannsche Fläche} ist eine zusammenhängende eindimensionale komplexe Mannigfaltigkeit.
+    (\textit{Im rellen glatte zwei dimensionale Mannigfaltigkeit.})
+\end{definition}
+
+\begin{beispiel}
+    \begin{enumerate}[label=\alph*.)]
+        \item $\mathbb{D} = \{t \in \C \mid |z| < 1\}$.
+        \item Ist $C$ eine glatte Kurve über $K = \K = \C$, so trägt $C = C(\C)$("Menge der komplexen Punkte")
+        die Struktur einer Riemannschen Fläche.
+
+        Z.B. $$ \P^1(\C) = \overset{\wedge}{\C} = \C \cup \{\infty\}, \text{ die Riemannsche Zahlenspähre.}$$
+    \end{enumerate}
+\end{beispiel}
+
+\begin{definition}
+    Sei $X$ eine Riemannsche Fläche.
+    \begin{align*}
+        \mathcal{H} &:= \text{ Ring der holomorphen Funktionen auf }X\\
+        \mathcal{M} &:= \text{ Körper der meromorphen Funktionen auf }X \\
+        &\textit{ "Quotient 2er holomorpher Funktionen"}
+    \end{align*}
+\end{definition}
+
+\begin{beispiel}
+    \begin{align*}
+        \mathcal{H}(\mathbb{D}) & \text{"="} \left\{\sum\limits_{i=0}^\infty a_i T^i \mid a_i \in \C, 
+            \sum|a_i|\tau^i < \infty \quad \forall \tau < 1\right\}\\
+        \mathcal{H}(\overset{\wedge}{\C}) & = \C, \text{ nach Liouville}\\
+        \mathcal{M}(\overset{\wedge}{\C}) & = \C(T), \text{ da } \overset{\wedge}{\C} \text{ kompakt ist und }
+            \mathcal{H}(\overset{\wedge}{\C}) = \C
+    \end{align*}
+\end{beispiel}
+
+\begin{theorem}[Riemannscher Existenzsatz]
+    Ist $X$ eine kompakte Riemannsche Mannigfaltigkeit, so ist $\mathcal{M}(X)$ ein algebraischer Funktionenkörper über $\C$.
+\end{theorem}
+
+\begin{bemerkungnr}
+    \begin{enumerate}[label=\alph*.)]
+        \item Umgekehrt ist jeder Funktionenkörper über $\C$ isomorph zu einem Körper der Form $\mathcal{M}(X)$,
+        nämlich für ein $X = C(\C)$, siehe 2.7
+        \item Vergessen wir die komplexe Struktur auf $X$, so ist $X$ eine orientierbare, zusammenhängende topologische Fläche.
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{definition}
+    Das \textbf{Geschlecht} $g_X$ einer orientierbaren zusammenhängenden topologischen Fläche $X$ ist die maximale Anzahl von
+    möglichen Schnitten entlang disjunkter, einfach geschlossener Kurven, sodass die Fläche nach dem Schnittvorgang noch zusammenhängend ist.
+\end{definition}
+
+\begin{bemerkungnr}
+    Es gilt $\chi_X = 2 - 2g_X$, wobei
+    $$ \chi_X = \sum\limits_{i=0}^\infty (-1)^i \dim_\R (H_i, \R)$$
+    die \textbf{Eulercharakteristik} von $X$ ist.
+
+    Für orientierbare kompakte Flächen gilt 
+    $$H_0(X) = \Z, H_1(X) = \pi_1(X)^{ab}, H_2(X) = \Z,$$
+    woraus folgt
+    $$ g_X = \frac{1}{2} \rang \pi_1(X)^{ab}.$$
+\end{bemerkungnr}
+
+\begin{beispiel}
+    Ist die Fläche homöomorph zu einem simplizialen Komplex mit $E$ Ecken, $K$ Kanten und $F$ Flächen,
+    so ist
+    $$ \chi_X = E - K + F.$$
+    Spezialfall: Eulerscher Polyedersatz
+
+    Für jedes Polyeder $X \subseteq \R^3$ ist 
+    $$ E - K + F = 2.$$
+\end{beispiel}
+
+\begin{beispiel}
+    \begin{itemize}
+        \item Sphäre
+        $$g_{S^2} = 0 \implies \chi_{S^2} = 2 $$
+
+        \item Torus
+        $$g_{T^2} = 1 \implies \chi_{T^2} = 0 $$
+
+        \item Summe zweier Tori
+        $$ g = 2 \implies \chi = -2$$
+    \end{itemize}
+\end{beispiel}
+
+\begin{theorem}[Klassifikation der Flächen]
+    Zwei orientierbare kompakte zusammenhängende Flächen sind genau dann homöomorph, wenn sie das gleiche Geschlecht haben.
+\end{theorem}
+
+\begin{bemerkungnr}
+    Eine nichtkonstante holomorphe Abbildung $f: Y \to X$ zwischen Riemannschen Flächen liefert über fast allen Punkten von $X$ eine
+    \textbf{topologische Überlagerung}(d.h. für fast alle $x \in X$ gibt es offene Umgebungen $x \in U \subseteq X$ für die
+    $f^{-1}(U)=\bigsqcup U_i$ mit $f|_{U_i}: U_i \to U$ Homöomorphismus $\forall i$).
+
+    Haben fast alle Punkte von $X$ genau $n$ Urbilder, so hat $f$ \textbf{Grad} $n$, und die Punkte mit weniger als $n$ Urbilder
+    heißen \textbf{Verzweigungspunkte} von $f$.
+
+    Die Abbildung $f: Y \to X$ induziert eine Einbettung
+    $$ \begin{cases}
+            \mathcal{M}(X) \hookrightarrow \mathcal{M}(Y)\\
+            g \mapsto g \circ f.
+        \end{cases}$$
+\end{bemerkungnr}
+
+\begin{beispiel}
+    $$f : \overset{\wedge}{\C} \to \overset{\wedge}{\C}, z \mapsto z^l, l \in \N$$
+    besitzt Verzweigungspunkte bei $0$ und $\infty$.
+\end{beispiel}
+
+\begin{bemerkungnr}
+    Lokal um einen Punkt $y \in Y$ ist jede holomorphe Abbildung $f: Y \to X$ von der Form
+    $$ z \mapsto z^{e_y}, e_y \in \Z_{\geq 0}.$$
+    Hat $f$ Grad $n$, so ist für $x \in X$:
+    $$ \sum\limits_{y \in f^{-1}(x)} e_y = n. $$
+    Insbesondere ist $x$ ein Verzweigungspunkt $\iff e_y > 1$ für ein $y \in f^{-1}(x)$.
+\end{bemerkungnr}
+
+\begin{satz}
+    Ist $F$ ein Funktionenkörper über $K$ und $E|F$ endlich, so wird durch $R \mapsto R \cap F$ eine Abbildung
+    $S(E|K) \to S(F|K)$ definiert.
+\end{satz}
+\begin{proof}
+    Ist $v$ die diskrete Bewertung zu $R$, so ist $v|_F$ auch eine diskrete Bewertung und 
+    $\mathcal{O}_{v|_F}$ ist genau 
+    $$ \mathcal{O}_v \cap F = R \cap F.$$
+    Wäre $R\cap F = F$, so folgt aus $E|F$ algebraisch und $R$ ganzabgeschlossen, schon, dass $E \subseteq R$,
+    was im Widerspruch zu $R \in S(E|K)$ steht.
+\end{proof}
+
+\begin{bemerkungnr}
+    Wir werden jedem Funktionenkörper ein Geschlecht zuordnen und algebraische Analoga zweier fundamentaler Sätze über
+    Riemannsche Flächen beweisen:
+
+    Der \textbf{Satz von Riemann-Roch}, beschreibt die maximale Anzahl linear unabhängiger meromorpher Funktionen auf $X$
+    mit vorgegebenen Null- und Polstellen.
+
+    Der \textbf{Satz von Riemann-Hurwitz} beschreibt bei einer holomorphen Abbildung $f: Y \to X$ das Geschlecht von $Y$ in
+    Abhängigkeit vom Geschlecht von $X$ und dem Verzweigungsverhalten von $f$.
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    Die topologischen Überlagerungen von $X$ werden durch die Fundamentalgruppe $\pi_1(X)$ beschrieben.
+
+    Da zum Beispiel die Sphäre $\overset{\wedge}{\C} = \P^1(\overset{\wedge}{\C})$ einfach zusammenhängend ist,
+    d.h. $\pi_1(X) = 0$, ist jede holomorphe Abbildung $f: Y \to \overset{\wedge}{\C}$ vom Grad $n > 1$ verzweigt,
+    d.h. hat mindestens eine Faser mit weniger als $n$ Punkten.
+\end{bemerkungnr}
+
+Wir werden aus Riemann-Hurwitz ableiten:
+\begin{theorem}
+    Ist $K$ algebraisch abgeschlossen und $[F:K(T)] = n > 1$ so ist $F|K(T)$ verzweigt, d.h. die Abbildung
+    $S(F|K) \to S(K(T)|K)$ hat mindestens eine Faser mit weniger als $n$ Elementen.    
+\end{theorem}
+
+\begin{bemerkungnr}
+    Ist $F$ ein Zahlkörper, d.h. $[F:\Q] = n < \infty$, so ist der ganze Abschluss $\mathcal{O}_F$ von $\Z$ in $F$ ein Dedekindring,
+    d.h. noethersch, ganzabgeschlossen und eindimensional.\\
+    In einem Dedekindring $R$ hat man eine eindeutige Zerlegung in Primideale:
+    \begin{align*}
+        I \ideal R \implies I &= \mathfrak{p}_1^{e_1} \ldots \mathfrak{p}_r^{e_r} \text{ mit } \mathfrak{p}_1 \ldots \mathfrak{p}_r \in \Spec(\mathcal{O}_F)\\
+        &  \text{ paarweise verschieden und } e_i \geq 1. 
+    \end{align*}
+\end{bemerkungnr}
+
+\begin{theorem}[Minkowski 1910]
+    Ist $[F:\Q] = n > 1$, so ist $F|\Q$ verzweigt, d.h. es gibt mindestens eine Primzahl $p$, für die
+    $$ \mathcal{O}_{Fp} = \mathfrak{p}_1^{e_1} \ldots \mathfrak{p}_r^{e_r}$$
+\end{theorem}
+
+\begin{bemerkungnr}
+    "Primstellen" $S(F)$ eines Zahlkörpers $F$\\
+    \underline{endliche Stellen:} Jedes $(0) \ne \mathfrak{p} \in \Spec(\mathcal{O}_F)$ liefert eine diskrete Bewertung:
+
+    $(\mathcal{O}_F)_\mathfrak{p}$ ist ein diskreter Bewertungsring. Für $x \in F^\times$ ist 
+    $$ (\mathcal{O}_F)_\mathfrak{p}\cdot x = (\mathfrak{p}(\mathcal{O}_F)_\mathfrak{p})^{v_\mathfrak{p}(x)}.$$
+    \underline{unendliche Stellen:} Einbettungen $\sigma: F \hookrightarrow \C$.
+\end{bemerkungnr}
+
+\section{Globale Körper}
+Sei $q = p^k$ eine Primpotenz.
+
+\begin{erinnerungnr}
+    Zu jeder Primpotenz $p^k$ gibt es bis auf Isomorphie genau einen Körper $\F_{p^k}$ mit $p^k$ Elementen, und zu jedem $d$ hat
+    $\F_q$ genau eine Erweiterung $\F_{q^d}$ vom Grad $d$ in einem fixierten algebraischen Abschluss.
+\end{erinnerungnr}
+
+\begin{satz}
+    Sowohl $A = \Z$ als auch $A = \F_q[T]$ erfüllen:
+    \begin{enumerate}[label=(\alph*)]
+        \item $A$ ist ein Hauptidealring
+        \item $A^\times$ ist endlich
+        \item $A$ hat unendlich viele Primelemente
+        \item Für jedes $0 \ne x \in A$ ist $\|x\|:= |\sfrac{A}{(x)}| < \infty$
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    (d) $0 \ne f \in \F_q[T] \implies \|f\| = | \sfrac{\F_q[T]}{(f)} | = q^{\deg f}$.
+\end{proof}
+
+\begin{bemerkungnr}
+    Ein Vertretersystem der Primelemente modulo Einheiten ist
+    \begin{itemize}
+        \item $\Z=A$: positive Primzahlen
+        \item $\F_q[T]=A$: die normierten irreduziblen Polynome
+    \end{itemize}
+\end{bemerkungnr}
+
+\begin{theorem}[Primzahlsatz]
+    $$ |\{p \in \N \mid p \text{ prim }, p \leq x\}| \sim \frac{x}{\log x},\quad x \to \infty.$$
+\end{theorem}
+
+\begin{theorem}[Primpolynomsatz]
+    $$|\{P \in \F_q[T] \mid P \text{ normiert irreduzibel }, \deg P = n\}| \sim \frac{q^n}{n},\quad q^n \to \infty.$$
+\end{theorem}
+
+\begin{bemerkungnr}
+    Setzt man $x := q^n$, dann sieht man es steht auf der rechten Seite $$ \frac{x}{\log_q x}.$$
+\end{bemerkungnr}
+\begin{proof}
+    Ist $P \in \F_q[T]$ normiert irreduzibel vom Grad $n$, so hat $P$ genau $n$ viele Nullstellen in $\overline{\F_q}$.
+    Umgekehrt ist jedes $\alpha \in \F_{q^n}$ Nullstelle eines normierten irreduziblen Polynoms, nämlich
+    $$ P := \MinPol(\alpha|\F_q) \in \F_q[T]$$
+    vom Grad
+    $$ d := \deg (\alpha|\F_q) = [\F_q(\alpha): \F_q]|[\F_{q^n}:\F_q] = n.$$
+    Mit $a_d := |\{P \in \F_q[T] \mid P \text{ normiert irreduzibel, } \deg P = d\}|$ ist also
+    $$ \sum_{d|n}d a_d = q^n .$$
+    Insbesondere $a_d \leq \frac{q^n}{d} \implies$
+    \begin{align*}
+        \implies \frac{a_n}{\sfrac{q^n}{n}} & = 1 - \sum_{\substack{d|n\\ d\ne n}} d a_d \frac{1}{q^n}\\
+        & \geq 1 - \sum_{\substack{d|n\\ d\ne n}} q^{d-n}\\
+        & \geq 1 - \sum_{i=0}^{\lfloor\frac{1}{2}\rfloor} q^{\lfloor\frac{1}{2}\rfloor-n} \geq 1 - \frac{n}{2}q^{-\frac{n}{2}}\\
+        & \to 1 \text{ für }q^n \to \infty.
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Die \textbf{Dedekindsche Zeta-Funktion} eines Zahlkörpers $F$ ist die analytische Fortsetzung auf $\C \setminus \{1\}$
+    von
+    $$ \zeta_F(s) := \sum_{(0) \ne \mathfrak{q}\ideal \O_F} | \sfrac{\O_F}{\mathfrak{q}}|^{-s}$$
+    für $\Re(s) > 1$.
+\end{definition}
+
+\begin{beispiel}
+    Für $F=\Q$ ist
+    $$ \zeta_\Q(s) = \zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}, \text{ für } \Re(s) > 1,$$
+    die Riemannsche Zeta-Funktion.
+\end{beispiel}
+
+\begin{vermutung}[Riemannsche Vermutung, Riemann für $F=\Q$]
+    Alle Nullstellen von $\zeta_F$ mit $0 \leq \Re(s) \leq 1$ liegen auf der Geraden $\Re(s)=\frac{1}{2}$.
+\end{vermutung}
+
+\begin{bemerkungnr}
+    Ist $F|\F_q(T)$ endlich, so ist der ganze Abschluss von $\F_q[T]$ in $F$ ein Dedekindring $\O_F$, der genau wie der 
+    Ganzheitsring eines Zahlkörpers nur endliche Restklassenringe besitzt.\\
+    Die Lokalisierungen $\O_\mathfrak{p} := (\O_F)_\mathfrak{p}$, $\mathfrak{p} \in \Spec \O_F$, sind diskrete Bewertungsringe,
+    und auf diese Weise erhält man fast alle $\O \in S(F|\F_q)$, nämlich alle außer denen mit
+    $$ \O \cap \F_q(T) = \O_\infty. $$
+\end{bemerkungnr}
+
+\begin{definition}
+    Ist $F|\F_q(T)$ endlich, so ist die \textbf{Zeta-Funktion von $F$} die analytische Fortsetzung von
+    $$ \zeta_F(s) := \sum_{(0) \ne \mathfrak{q}\ideal \O_F}|\sfrac{\O_F}{\mathfrak{q}}|^{-s}, \Re(s) > 1.$$
+\end{definition}
+
+\begin{theorem}[Weil 1949]
+    Sei $F|\F_q(T)$ endlich. Alle Nullstellen $s$ von $\zeta_F$ mit $0 \leq \Re(s) \leq 1$
+    liegen auf der Geraden $\Re(s) = \frac{1}{2}$.
+\end{theorem}
+
+\begin{korollar}[Hasse-Weil-Schranke]
+    Ist $C$ eine projektive Kurve über $\F_q$, die über $\overline{\F_q}$ irreduzibel ist und vom Geschlecht $g$, so ist
+    $$ ||C(\F_q)|-(q+1)| \leq 2 g \sqrt{q}.$$
+\end{korollar}
+
+\begin{korollar}
+    Ist $f \in \Z[x,y]$ vom Grad $d$, irreduzibel in $\overline{\F_q}[X,Y]$ so ist
+    $$ |\{(x,y) \in \F_q^2 \mid f(x,y)=0\}| = q + O_d(q^{\sfrac{1}{2}}).$$
+    Insbesondere gilt: ist $f$ irreduzibel in $\C[X,Y]$, so hat $f$ Nullstellen in $\F_q[X,Y]$ für alle $q$ 
+    groß genug.
+\end{korollar}
+
+\begin{bemerkungnr}
+    Man fast
+    \begin{enumerate}[label=(\alph*)]
+        \item Zahlkörper
+        \item Funktionenkörper über endlichen Körpern
+    \end{enumerate}
+    unter dem Namen \textbf{globale Körper} zusammen.
+\end{bemerkungnr}

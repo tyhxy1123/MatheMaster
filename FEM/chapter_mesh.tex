@@ -1,0 +1,195 @@
+\section{Mesh Adaptivity for the FEM}
+\subsection{Motivation and general concept}
+
+\begin{example}
+	poisson equation, uniform mesh, linear polinomials
+\end{example}
+\begin{center}
+	\begin{tabular}{c | c}
+		\underline{Quality} & \underline{Complexity}\\
+		higher mesh resolution & higher mesh resolution requires \\
+		$\to$ better approximation & additional computaional effort\\
+		&  \\
+		convergence & linear system \\
+		$\|u-u_h\|_{L^2} \leq C h^2$ & $N_{\text{DoF}}\propto h^{-2}$
+	\end{tabular}
+\end{center}
+
+Consens: Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\vspace{1cm}
+
+Questions:
+\begin{itemize}
+	\item Where?\\
+		\textit{prescribed} (with prior knowledge of the problem) or \\
+		\textit{adaptive}(with error estimates,...)
+	\item How?\\
+		\textit{Red-Green Refinement} or \\
+		\textit{Bisection}(we will only deal with this method here)
+\end{itemize}
+
+Method of Bisection:
+\begin{itemize}
+	\item define a refinemnt edge
+	\item insert node in the middle
+	\item replace old triangle wlth 2 new ones 
+\end{itemize}
+\input{tikz/chapter_mesh/bisection_refine}
+
+Shape regularity:
+\begin{center}
+	\begin{tabular}{c | c}
+		\underline{mathmatical} & \underline{geometric}\\
+		$\tau_h$:  triangulation & triangles not strongly stretched \\
+		$h_T$:  diameter of $T$ & all angles should be \glqq simialar \grqq \\
+		$\rho_T$:  radius of inscribed circle:	& gives the same qualitative description\\
+		$\exists C > 0\ \forall T \in \tau_h \colon \rho_T \geq C h_T$ & 
+	\end{tabular}
+\end{center}
+\input{tikz/chapter_mesh/shape_regularity}
+
+Refinement edge:
+\begin{itemize}
+	\item chose longest edge for refinement
+	\item shape regularity of mesh either remains or gets better
+\end{itemize}
+
+Problem: Hanging nodes
+\input{tikz/chapter_mesh/hanging_nodes}
+Refinement of a single triangle leads to a hanging node that is forbidden.\\
+Solution: rekursive Refinement
+\begin{enumerate}[label= case \arabic*:]
+	\item Hanging node is on the refinement edge of a adjacent triangle
+	\input{tikz/chapter_mesh/hanging_nodes_c1}
+
+	\item Hanging node is \textbf{not} on refinement edge
+	\input{tikz/chapter_mesh/hanging_nodes_c2}
+	still better, than refining ehole domain\\
+	$\implies$ multiple recursive refinements necessary
+\end{enumerate}
+
+\subsection{Data structures}
+\underline{direct storage}
+\begin{itemize}
+	\item different array for nodes and cells(like in the tutorial)
+	\input{tikz/chapter_mesh/data_structure}
+	\item cells = 
+	$\begin{bmatrix}
+		1 & 2 & 3\\
+		4 & 3 & 2
+	\end{bmatrix} $ (refinement edge is defined by the last 2 entries in corresponding line)
+	
+\end{itemize}
+Bisections on direct storage:
+\begin{itemize}
+	\item additional node
+	\item replace 1 cell by 2 cells
+	\input{tikz/chapter_mesh/bisection_data_structure}
+	\item cells = 
+	$\begin{bmatrix}
+	5 & 1 & 2\\
+	5 & 3 & 1\\
+	4 & 3 & 2
+	\end{bmatrix} $ (first index is the new node and the structure regarding the refinement edge stays)
+	
+\end{itemize}
+
+Advantages:
+\begin{itemize}
+	\item minimal memory consumption
+	\item simple implementation
+	\item all information directly available
+\end{itemize}
+
+Disadvantages:
+\begin{itemize}
+	\item working on arrays: size-changes are costly computations
+	\item coarsening of meshes is very difficult
+	\item neighboring relatons have to be computed explicitly after every refinement
+\end{itemize}
+Thus not so good for moving regions of interest.
+\vspace{1cm}
+
+\underline{hierarchical storage}
+\begin{itemize}
+	\item start from a coarse \glqq macro mesh \grqq
+	\item store all refonement steps not only the current mesh
+	\item well suited dara structure: \textbf{binary tree}
+\end{itemize}
+
+short exkurs: binary trees\\
+tree nodes:
+\begin{itemize}
+	\item pointer to $\leq 2$ children
+	\item pointer to $\leq 1$ father
+	\item data
+	\input{tikz/chapter_mesh/binary_tree}
+	%%TODO pic
+\end{itemize}
+properties:
+\begin{itemize}
+	\item no father: \textit{root}
+	\item no children: \textit{leaf}
+\end{itemize}
+
+Applications:
+\begin{itemize}
+	\item search tree: heap
+	\item hierarchical mesh
+\end{itemize}
+
+hierarchical mesh tree:
+Node:
+\begin{itemize}
+	\item pointer: father,children
+	\item data: vertices of the represented mesh cell
+\end{itemize}
+
+Mesh:
+\begin{itemize}
+	\item macro mesh explicitly defined
+	\item every macro mesh cell ist \underline{root} of a tree
+	\item current mesh os given by all \underline{leafs}
+	\input{tikz/chapter_mesh/mix_tree_triang}
+\end{itemize}
+
+Note that here the seperation of node indices and coordinates is not useful.\vspace{1cm}
+
+Advantages:
+\begin{itemize}
+	\item large libraries for tree strictires already existent(computation of neighbors, etc.)
+	\item coarsening is a trivial task(remove leafs)
+	\item refinement inherited from father (determined by tree structure)(compute neighboring relations \glqq on demand\grqq)
+	%%TODO add pic
+	\input{tikz/chapter_mesh/hier_mesh}
+	\item cells = 
+	$\begin{bmatrix}
+	1 & 2 & 3
+	\end{bmatrix} \implies 
+	\begin{bmatrix}
+	4 & 1 & 2\\
+	4 & 3 & 1
+	\end{bmatrix} $ (refinement edge is defined by the last 2 entries in corresponding line)
+\end{itemize}
+
+Disadvantages:
+\begin{itemize}
+	\item memory consumption(storage of unnecessary nodes)
+	\item high implementational effort
+\end{itemize}
+
+\subsection{Conclusion and Outlook}
+\begin{enumerate}[label = \arabic* .]
+	\item local mesh refinement can be a powerful tool to find the optimal balence between performance and accuracy
+	\item prevention of hanging nodes requieres a recursive refinement strategy
+	\item both datastructures have advantages and disadvantages  
+\end{enumerate}
+Open questions:
+\begin{enumerate}[label = \arabic* .]
+	\item Where to refine(explicitly give locations, error estimates,...)?
+	\item How to prove that it actually works(convergence orders)?
+	\item What could have been done differently?\\
+	$\implies$ Replace Bisection- by Red-Green Refinement...\\
+	$\implies$ $p$-Adaptivity instead of $h$-Adaptivity(take higher order polonomial basisfunctions)
+\end{enumerate}
+
+

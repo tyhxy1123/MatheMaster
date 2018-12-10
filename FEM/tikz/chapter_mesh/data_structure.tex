@@ -1,0 +1,31 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+	
+	% first rectangle
+	\coordinate (1) at (\xone,\yone);
+	\coordinate (2) at ($ (A) + (\h,0) $);
+	\coordinate (3) at ($ (A) + (0,0.7*\h) $);
+	\coordinate (4) at ($ (A) + (\h,0.7*\h) $);
+	\coordinate (5) at ($ (A) + (\h/2,0.35*\h) $);
+
+	\draw (1) -- (2) -- (4) --(3) --cycle;
+	\draw (2) --(3);
+	\foreach \i in {1,2}{
+		\filldraw (\i) circle (1.5pt);
+		\node[below]  at (\i) {\i};
+	}
+	\foreach \i in {3,4}{
+		\filldraw (\i) circle (1.5pt);
+		\node[above]  at (\i) {\i};
+	}
+	
+	\end{tikzpicture}
+	
+	\caption{visualize data structure}
+	\label{ch_m_data_structure}
+	
+\end{figure}

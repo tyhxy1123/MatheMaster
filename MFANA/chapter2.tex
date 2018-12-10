@@ -302,9 +302,10 @@ f(\tau)-\dot{u}(\tau)\in A u(\tau)\\
 \end{proof}
 
 \begin{definition}
-Eine Partition
+Setze
 \begin{align*}
-\pi&:=\big\lbrace t_0,\ldots,t_N: 0=t_0<t_1<t_2<\ldots<t_N=T\big\rbrace\\
+\Theta&:=\big(\pi_\Theta,f_\Theta,u_{0,\Theta}\big)\\
+\pi_\Theta&:=\big\lbrace t_0,\ldots,t_N: 0=t_0<t_1<t_2<\ldots<t_N=T\big\rbrace\text{ eine Partition}\\
 h_i&:=t_{i+1}-t_i\qquad\forall i\in\lbrace0,\ldots,N-1\rbrace\\
 |\pi|&:=\sup\limits_{0\leq i\leq N-1} h_i\qquad\text{Feinheit}
 \end{align*}
@@ -314,11 +315,11 @@ Wir nennen $\Theta=\big(\pi,f_\Theta,u_{0,\Theta}\big)$ eine \textbf{Diskretisie
 Betrachte das Problem
 \begin{align}\label{eqETheta}\tag{$E_\Theta$}
 \left\lbrace\begin{array}{l}
-\frac{u_\Theta(t_{j+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_i)\qquad\forall i\in\lbrace0,\ldots,N+1\rbrace\\
+\frac{u_\Theta(t_{j+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_i)\qquad\forall i\in\lbrace0,\ldots,N-1\rbrace\\
 u_\Theta(0)=u_{0,\Theta}
 \end{array}\right.
 \end{align}
-Außerdem gilt:
+Diese Problem kann als \textit{explizites Eulerverfahren} aufgefasst werden. Es gilt:
 \begin{align*}
 &\dot{u}+Au(t)\ni f\\
 &\frac{u_\Theta(t_{i+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_{i+1})
@@ -445,10 +446,93 @@ bzw. (durch Iterieren)
 \end{align*}
 \end{lemma}
 
-\begin{theorem}
-Sei $A$ akkretiv, $\Theta=\big(\pi_\Theta,0,u_{0,\Theta}\big)$ und $\Theta'=\big(\pi_{\Theta'},0,u_{0,\Theta'}\big)$ zwei Diskretisierungen, $u_\Theta$ und $u_{\Theta'}$ die dazugehörigen Lösungen. Dann gilt für alle $t,t'\in[0,T]$ und alle $\hat{u}\in\dom(A)$:
+\begin{proof}
+Folgt direkt aus dem vorigen Lemma (dritte Abschätzung):
 \begin{align*}
-\big| u_\Theta(t)-u_{\Theta'}(t')\big|
-\leq\big|u_{0,\Theta}-\hat{u}\big|_X+\big| u_{0,\Theta'}-\hat{u}\big|_X+\sqrt{(t-t')^2+|\pi_\Theta|\cdot t+|\pi_{\Theta'}|\cdot t'}\cdot|A\hat{u}\big|^2
+&\left(1-\left(h_i\wedge\hat{h}_j\right)\cdot\omega\right)\cdot a_{i+1,j+1}\\
+&\leq
+\left(1-\frac{\hat{h}_j}{h_i}\right)^+\cdot a_{i+1,j}
++\left(1-\frac{h_i}{\hat{h}_j}\right)^+\cdot a_{i,j+1}
++\frac{h_i\wedge \hat{h}_j}{h_i\vee\hat{h}_j}\cdot a_{i,j}+ h_i\wedge\hat{h}_j\cdot b_{i,j}
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{theoremEndeChpater2}
+Sei $A$ akkretiv vom Typ $\omega$ auf einem Banachraum $X$. Seien $\Theta=\big(\pi_\Theta,0,u_{0,\Theta}\big)$ und $\hat{\Theta}=\big(\pi_{\hat{\Theta}},0,u_{0,\hat{\Theta}}\big)$ zwei Diskretisierungen des Cauchy-Problems mit $|\pi_\Theta|\cdot\omega<1$ und $|\pi_{\hat{\Theta}}|\cdot\omega<1$. Seien $u_\Theta$ und $u_{\hat{\Theta}}$ Lösungen des impliziten Eulerschemas \eqref{eqETheta} bzw. ($E_{\hat{\Theta}}$).\\
+Dann gilt für alle $t,\hat{t}\in[0,T]$ und alle $\hat{u}\in\dom(A)$:
+\begin{align*}
+\gamma_{i+1,j+1}&\cdot\Big\Vert u_\Theta(t)-u_{\hat{\Theta}}(\hat{t})\Big\Vert\\
+&\leq
+\Big\Vert u_{0,\Theta}-\hat{u}\Big\Vert+\Big\Vert u_{0,\hat{\Theta}}-\hat{u}\Big\Vert+\sqrt{(t-\hat{t})^2+|\pi_\Theta|\cdot t+|\pi_{\hat{\Theta}}|\cdot\hat{t}}\cdot\Vert A\hat{u}\Vert\\
+\text{ wobei }\gamma_{i,j}&:=\prod\limits_{k=0}^{i-1}\big(1-h_k\cdot\omega\big)^{-1}\cdot\prod\limits_{l=0}^{j-1}\big(1-\hat{h}_l\cdot\omega\big)
+\qquad\forall t\in[t_i,t_{i+1}],\hat{t}\in[\hat{t}_j,\hat{t}_{j+1}]\\
+\text{ und }\Vert A\hat{u}\Vert&=\inf\limits\Big\lbrace\Vert\hat{f}\Vert:\hat{f}\in A\hat{u}\Big\rbrace
 \end{align*}
 \end{theorem}
+
+\begin{proof}[Beweis. (Vereinfachung: $\omega=0$)]\enter
+Man zeigt die Behauptung zuerst für $t=t_i$ und $\hat{t}=\hat{t}_j$. Zeige dies durch Induktion über $i$ und $j$.\nl
+\ul{IA 1:} Sei zuerst $i=0$ und $j\in\big\lbrace 0,\ldots,\hat{N}\big\rbrace$ beliebig. Dann gilt für alle $(\hat{u},\hat{f})\in A$:
+\begin{align*}
+\Big\Vert u_\Theta(t_0)-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert
+&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\Big\Vert\hat{u}-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert\\
+\overset{(\ast)}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\underbrace{\sum\limits_{k=0}^{j-1}\hat{h}_k}_{=\hat{t}_j=\sqrt{(t_0-\hat{t}_j)^2}}\cdot\Vert\hat{f}\Vert\\
+&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert+
+\sqrt{(t_0-\hat{t}_j)^2+|\pi_\Theta|\cdot t_0+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}\cdot\Vert\hat{f}\Vert
+\end{align*}
+Bei ($\ast$) wird verwendet, dass $(\hat{u},\hat{f})$ eine Lösung von $\Big(E_{(\pi_{\hat{\Theta}},\hat{f},\hat{u})}\Big)$ ist.\\
+Nehme sodann $\inf$ über $\hat{f}\in A\hat{u}$.\nl
+\ul{IA 2:} Analog zu IA 1 gilt die Behauptung für $i\in\lbrace0,\ldots,N\rbrace$ und $j=0$.\nl
+\ul{IV:} Man nehme an, die Behauptung ist richtig für $(t,\hat{t})=(t_i,t_{j+1})$ und $(t,\hat{t}_j)=(t_{i+1},\hat{t}_j)$.\nl
+\ul{IS:} Dann gilt (mit der ersten Abschätzung aus dem ersten Lemma):
+\begin{align*}
+&\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_{j+1})\Big\Vert\\
+%\overset{\text{1. Lemma, 1. Abschätzung}}
+&\leq
+\frac{h_i}{h_i+\hat{h}_j}\cdot\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert
++\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\Big\Vert u_\Theta(t_i)-u_{\hat{\Theta}}(\hat{t}_{j+1})\Big\Vert\\
+\overset{\text{IV}}&\leq
+\frac{h_i}{h_i+\hat{h}_j}\cdot\left(\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t_{i+1}-\hat{t}_j\big)^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}\cdot\Vert A\hat{u}\Vert\right)\\
+&~+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t_i-t_{j+1}\big)^2+|\pi_\Theta|\cdot t_i+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}}\cdot\Vert A\hat{u}\Vert\right)\\
+\overset{\text{CS}}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\underbrace{\sqrt{\frac{h_i}{h_i+\hat{h}_j}+\frac{\hat{h}_j}{h_i+\hat{h}_j}}}_{=1}\cdot\\
+&\qquad\sqrt{\frac{h_i}{h_i+\hat{h}_j}\cdot\left(\big(t_{i+1}-\hat{t}_j\big)^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j\right)+}\\
+&\qquad\qquad\qquad\overline{+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(\big(t_i-\hat{t}_{j+1}\big)^2+|\pi_\Theta|\cdot t_i+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}\right)}\cdot\Vert A\hat{u}\Vert\\
+&=\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert\\
+&~+\sqrt{\frac{h_i}{h_i+\hat{h}_j}\cdot\left(\big(t_{i+1}-\hat{t}_{j+1}\big)^2+2\cdot\hat{h}_j\cdot\big(t_{i+1}-\hat{t}_{j+1}\big)+\hat{h}_j^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j\right)+}\\
+&\qquad\qquad\overline{+\frac{\hat{h}_j}{h_i+\hat{h}_j}\cdot\left(\big(t_{i+1}-\hat{t}_{j+1}\big)^2-2\cdot h_i\cdot\big(t_{i+1}-\hat{t}_{j+1}\big)+h_i^2+|\pi_\Theta|\cdot t_{i}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}\right)}\\
+&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t_{i+1}-\hat{t}_{j+1}\big)^2+|\pi_\Theta|\cdot t_{i+1}+|\pi_{\hat{\Theta}}|\cdot\hat{t}_{j+1}}\cdot\Vert A\hat{u}\Vert
+\end{align*}
+Damit gilt die Behauptung für beliebige $t=t_i$ und $\hat{t}=\hat{t}_j$. Sei schließlich $t\in[0,T]$ beliebig, aber $\hat{t}=\hat{t}_j$. Dann gilt mit
+$t\in[t_i,t_{i+1}]$ und $t=\lambda t_i+(1-\lambda) t_{i+1}$:
+\begin{align*}
+\big\Vert u_\Theta(t)-u_{\hat{\Theta}}(\hat{t})\big\Vert
+&=
+\Big\Vert\lambda u_\Theta(t_i)+(1-\lambda)u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert\\
+&\leq
+\lambda\Big\Vert u_\Theta(t_i)-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert+
+(1-\lambda)\Big\Vert u_\Theta(t_{i+1})-u_{\hat{\Theta}}(\hat{t}_j)\Big\Vert\\
+\overset{\text{s.o.}}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\lambda\sqrt{(t_i-\hat{t}_j)^2+|\pi_\Theta| t_i+|\pi_{\hat{\Theta}}|\hat{t}_j}\cdot\Vert A\hat{u}\Vert\\
+&\quad+(1-\lambda)\sqrt{(t_{i+1}-\hat{t}_j)^2+|\pi_\Theta|t_{i+1}+|\pi_{\hat{\Theta}}\hat{t}_j}\cdot\Vert A\hat{u}\Vert\\
+\overset{(\ast\ast)}&\leq
+\big\Vert u_{0,\Theta}-\hat{u}\big\Vert+\big\Vert u_{0,\hat{\Theta}}-\hat{u}\big\Vert
++\sqrt{\big(t-\hat{t}_j\big)^2+|\pi_\Theta|\cdot t+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}\cdot\Vert A\hat{u}\Vert
+\end{align*}
+Ein analoges Konkavitätsargument liefert die Behauptung für beliebige $t,\hat{t}\in[0,T]$.\\
+Bei $(\ast\ast)$ wird die Konkavität der Funktion 
+\begin{align*}
+t\mapsto\sqrt{\big(t-t_j)^2+|\pi_\Theta|\cdot t+|\pi_{\hat{\Theta}}|\cdot\hat{t}_j}
+\end{align*}
+verwendet.
+\end{proof}

@@ -302,3 +302,77 @@ M_{-n}
 \end{align*}
 \end{proof}
 
+\begin{theorem}[Kolmogorov's 0-1-Gesetz]\label{theorem5.6Kolmogorovs01Gesetz}\enter
+Seien $(X_n)_{n\in\N}$ unabhängige Zufallsvariablen und $\G_n:=\sigma\big(X_n,X_{n+1},\ldots\big)$.\\
+Dann ist die terminale $\sigma$-Algebra
+$\G_\infty:=\bigcap\limits_{n\in\N}\G_n$ $\P$-trivial.
+\end{theorem}
+
+\begin{bemerkung}
+Eine $\sigma$-Algebra $\F$ heißt \textbf{$\P$-trivial}
+\begin{align*}
+:\Longleftrightarrow\forall A\in\F:\P(A)\in\lbrace0,1\rbrace
+\end{align*}
+\end{bemerkung}
+
+\begin{proof}
+Sei $A\in\G_\infty$ und $\F_n:=\sigma\big(X_1,\ldots,X_n\big)$. Es gilt offenbar 
+\begin{align*}
+	\G_\infty&\subseteq\F_\infty&&\text{, denn }\G_\infty=\bigcap\limits_{n\in\N}\G_n\text{ und }\F_\infty=\bigcup\limits_{n\in\N}\F_n\\
+	\G_\infty&\unab\F_n&&\forall n\in\N
+\end{align*}
+Dann ist
+\begin{align*}
+M_n:=\E\big[\indi_A~\big|~\F_n\big]
+\end{align*}
+ein ggi Martingal und ggi Martingale konvergieren. Also folgt:
+\begin{align*}
+	\exists M_\infty\in L_1(\F_\infty):\limn M_n=M_\infty\text{ f.s. und }\big\Vert M_n-M_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
+\end{align*}
+Wir zeigen $M_\infty=\indi_A$:
+\begin{align*}
+\E\Big[\indi_A~\Big|~\F_n\Big]&=M_n=\E\big[M_\infty~\big|~\F_n\big]\\
+\implies
+\E\Big[\indi_A\cdot\indi_{B_n}~\Big|~\F_n\Big]
+&=\E\big[M_\infty\cdot\indi_{B_n}~\big|~\F_n\big]\qquad\forall B_n\in\F_n\\
+\implies
+\E\Big[\underbrace{\indi_A}_{\in\G_\infty\subseteq\F_\infty}\cdot\indi_{B}~\Big|~\F_n\Big]
+&=\E\big[\underbrace{M_\infty}_{\in\F_\infty}\cdot\indi_{B}~\big|~\F_n\big]\qquad\forall B\in\F_\infty\\
+\implies\indi_A=M_\infty
+\end{align*}
+Andererseits
+\begin{align*}
+M_n
+&=\E\Big[\underbrace{\indi_A~\Big|~\F_n}_{\unab}\Big]
+=\E\big[\indi_A\big]
+=\P(A)\\
+\implies M_\infty&=\P(A)\implies\indi_A=\P(A)
+\implies\P(A)\in\lbrace0,1\rbrace
+\end{align*}
+Also ist $\G_\infty$ ist $\P$-trivial.
+\end{proof}
+
+Konsequenz:
+
+\begin{theorem}[Starkes Gesetz der großen Zahlen]\label{theorem5.7StarkesGesetzDerGrossenZahlen}\enter
+Sei $(X_n)_{n\in\N}\subseteq L_1$ iid. Dann gilt:
+\begin{align*}
+\frac{1}{n}\cdot\left(X_1+\ldots+X_n\right)\stackrel{n\to\infty}{\longrightarrow}\E\big[X_1\big]\quad\P\text{-fast sicher}
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+Übung. Beweisskizze/Hinweise:
+%TODO hier Beweis aus Übung einfügen (nach der Übung)
+
+\begin{align*}
+R_n:=\frac{1}{n}\cdot\left(X_1+\ldots+X_n\right)\qquad\forall n\in\N
+\end{align*}
+ist Rückwärtsmartingal bzgl.
+\begin{align*}
+\G_n:&=\sigma\left(S_n,X_{n+1},X_{n+2},\ldots\right)\\
+S_n&=X_1+\ldots+X_n
+\end{align*}
+Also konvergiert $R_n$ nach Theorem \ref{theorem5.5KonvergenzVonRWMs}.\\
+Rest folgt aus Kolmogorov's 0-1-Gesetz \ref{theorem5.6Kolmogorovs01Gesetz}.
+\end{proof}
