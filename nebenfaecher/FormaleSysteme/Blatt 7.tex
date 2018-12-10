@@ -1,0 +1,151 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 7}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe $\ast$)}
+
+\section*{Aufgabe $\ast\ast$)}
+\textbf{Konvention:} $\cdot$ bindet stärker als $\cup$.
+
+\section*{Aufgabe 1}
+Sei $\Sigma$ ein Alphabet und $X_1,X_2,Y_1,Y_2\subseteq\Sigma^\ast$ mit $X_1\subseteq Y_1$ und $X_2\subseteq Y_2$. Dann gilt:
+\begin{enumerate}
+\item $X_1\cup X_2\subseteq Y_1\cup Y_2$, denn:\\
+Sei $x\in X_1\cup X_2$. Dann ist $x\in X_1$ und somit $x\in Y_1$ und $x\in X_2\subseteq Y_2$. Folglich $x\in Y_1\cup Y_2$.
+\item $X_1\cdot X_2\subseteq Y_1\cdot Y_2$, denn:\\
+Sei $x\in X_1\cdot X_2$, d.h. es existiert $x_1\in X$, $x_2\in X_2$ so, dass $x=x_1\cdot x_2$. Nach Voraussetzung gilt $x_1\in Y_1$ und $x_2\in Y_2$. Folglich ist $x=x_1\cdot x_2\in Y_1\cdot Y_2$
+\item $X_1^\ast\cup Y_1^\ast$, denn:\\
+Sei $x\in X_1^\ast$. Dann gibt es ein $n\in\N_0$ und $x_0,\ldots, x_n\in X_1$ mit $x=x_1\cdot\ldots\cdot x_n$. Nach Voraussetzung gilt $x_1,\ldots,x_n\in Y_1$ und somit $x\in Y_1^\ast$.
+\end{enumerate}
+
+\section*{Aufgabe 2}
+Operatorpriorität: $\ast$ vor Exponent vor $\cdot$ vor $\cup,\cap$.
+
+\subsection*{Aufgabe 2 a)}
+\begin{align*}
+&w\in L_1\cdot(L_2\cup L_3)\\
+&\Longleftrightarrow\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_2\cup L_3\wedge w=uv\\
+&\Longleftrightarrow\exists u,v\in\Sigma^\ast:u\in L_1\wedge \big(v\in L_2\vee v\in L_3\wedge w=uv\\
+&\Longleftrightarrow\exists u,v\in\Sigma^\ast:\big(u\in L_1\wedge v\in L_2\wedge v\in L_3\big)\vee\big(u\in L_1\wedge v\in L_3\wedge w=uv\big)\\
+&\Longleftrightarrow\Big(\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_2\wedge v\in L_3\Big)\vee
+\Big(\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_3\wedge w=uv\Big)\\
+&\Longleftrightarrow w\in L_1\cdot L_2\vee w\in L_1\cdot L_3\\
+&\Longleftrightarrow w\in L_1\cdot L_2\cup L_1\cdot L_3
+\end{align*}
+
+\subsection*{Aufgabe 2 b)}
+Die Aussagen gilt.\\
+Zeige zuerst mit natürlicher Induktion, dass für alle $n\in\N$ gilt:
+\begin{align*}
+\lbrace ab,a\rbrace^n\cdot\lbrace a\rbrace=\lbrace a\rbrace\cdot\lbrace ba,a\rbrace^n
+\end{align*}
+\ul{IA}: $n=0$: $\lbrace ab,a\rbrace^0\cdot\lbrace a\rbrace=\lbrace\varepsilon\rbrace\cdot\lbrace a\rbrace=\lbrace\varepsilon\cdot a\rbrace=\lbrace a\rbrace=\lbrace a\cdot\varepsilon\rbrace=\lbrace a\rbrace\cdot\lbrace\varepsilon\rbrace=\lbrace a\rbrace\cdot\lbrace ba,a\rbrace^0$\nl
+\ul{IH}: Für $n\in\N$ gilt $\lbrace ab,a\rbrace^n\cdot \lbrace a\rbrace=\lbrace a\rbrace\cdot\lbrace ba,a\rbrace^n$\nl
+\ul{IS:}
+\begin{align*}
+\lbrace ab,a\rbrace^{n+1}\cdot\lbrace a\rbrace
+&=\lbrace ab,a\rbrace^{n}\cdot\lbrace ab,a\rbrace\cdot\lbrace a\rbrace\\
+&=\lbrace ab,a\rbrace^{n}\cdot\lbrace aba,aa\rbrace\\
+&=\lbrace ab,a\rbrace^{n}\cdot\lbrace a\rbrace\cdot \lbrace ba,a\rbrace\\
+\overset{\text{IV}}&=
+\lbrace a\rbrace\cdot\lbrace ba,a\rbrace^n\cdot\lbrace ba,a\rbrace\\
+&=\lbrace a\rbrace\cdot\lbrace ba,a\rbrace^{n+1}
+\end{align*}
+Damit kann nun die ursprüngliche Aussage gezeigt werden:
+\begin{align*}
+w\in\big(\lbrace a\rbrace\cdot\lbrace b\rbrace\cup\lbrace a\rbrace\big)^\ast\cdot\lbrace a\rbrace\\
+&\Longleftrightarrow
+w\in \lbrace ab,a\rbrace^\ast\cdot\lbrace a\rbrace\\
+&\Longleftrightarrow
+\exists k\in\N_0:w\in\lbrace ab,a\rbrace^k\cdot\lbrace a\rbrace\\
+\overset{\text{Indu}}&\Longleftrightarrow
+\exists k\in\N_0:w\in\lbrace a\rbrace\cdot\lbrace ba,a\rbrace^k\\
+&\Longleftrightarrow
+w\in\lbrace a\rbrace\cdot\lbrace ba,a\rbrace^\ast\\
+&\Longleftrightarrow
+w\in\lbrace a\rbrace\cdot\big(\lbrace b\rbrace\cdot\lbrace a\rbrace\cup\lbrace a\rbrace\big)^\ast
+\end{align*}
+
+\subsection*{Aufgabe 2 c)}
+Falsch, betrachte folgendes Gegenbeispiel:\\
+$a\in\big(\lbrace a\rbrace\cup\lbrace b\rbrace\big)\ast=\lbrace a,b\rbrace^\ast$, aber $ab\not\in\lbrace^\ast\cup\lbrace b\rbrace^\ast=\lbrace\varepsilon, a,aa,aaa,\ldots,b,bb,bbb,\ldots\rbrace$
+
+\subsection*{Aufgabe 2 d)}
+Für alle $L\subseteq\Sigma^\ast$ gilt $L^0:=\lbrace\varepsilon\rbrace$ und $L\cdot\emptyset=\emptyset\cdot L=\emptyset$. Daher gilt:
+\begin{align*}
+\emptyset^\ast=\bigcup\limits_{n\geq0}\emptyset^n=\emptyset^0\cup\emptyset^1\cup\emptyset^2\cup\ldots=\lbrace\varepsilon\rbrace\cup\emptyset\cup\emptyset\cup\ldots=\lbrace\varepsilon\rbrace
+\end{align*}
+Offensichtlich gilt: $L\cup L\cup\lbrace\varepsilon\rbrace$. Damit folgt mit der Monotonie (Aufgabe 1):
+\begin{align*}
+\big(\cup\lbrace\varepsilon\rbrace\big)^\ast\supseteq L^\ast
+\end{align*}
+Sei nun $w\in \big(L\cup\lbrace\varepsilon\rbrace\big)^\ast$. Dann existiert $k\in\N$ mit $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^k$. Zeige nun per Induktion über $n\in\N$: $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^n\implies L^\ast$.\nl
+\ul{IA}: $n=0$: $\big(L\cup\lbrace\varepsilon\rbrace\big)^0=\lbrace\varepsilon\rbrace=L^0\subseteq L^\ast$\nl
+\ul{IH:} Für $n\in\N$ gelte: $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^n\implies w\in L^\ast$\nl
+\ul{IS:} Sei $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^{n+1}=\big(L\cup\lbrace\varepsilon\rbrace\big)^n\cdot\big(L\cup\lbrace\varepsilon\rbrace\big)$. Dann existiert $u\in\big(L\cup\lbrace\varepsilon\rbrace\big)^n$ und $v\in\big(L\cup\lbrace\varepsilon\rbrace\big)$ mit $w=uv$.\\
+\begin{itemize}
+\item $v=\varepsilon$: Dann $w=u$. Aus IH folgt dann $w\in L^\ast$.
+\item $v\in L\setminus\lbrace\varepsilon\rbrace$: Aus IH $u\in L^\ast$, d.h. es existiert $m\in\N$ mit $u\in L^m$. Dann gilt $w=u\cdot v\in L^m\cdot L=L^{m+1}$ und damit auch $w\in L^\ast$
+\end{itemize}
+
+\subsection*{Aufgabe 2 e)}
+Gilt.
+
+\subsection*{Aufgabe 2 f)}
+Gilt.
+
+\section*{Aufgabe 3}
+Idee: Füge Zustände ein, so, dass an den Pfeilen Worte von höchstens Länge 1 sind.
+%TODO Tikz Bild
+
+\section*{Aufgabe 4}
+Ziel: $\varepsilon$-Kanten entfernen: Dazu Anpassung von Übergangsrelation und Endzuständen:
+\begin{align*}
+\Delta'&:=\left\lbrace(p,a,q)\in Q\times\Sigma\times Q:p\stackrel{a}{\longrightarrow}_\mathcal{A} q\right\rbrace\\
+F'&:=\left\lbrace\begin{array}{cl}
+F\cup\lbrace q_0\rbrace, &\falls q_0\stackrel{\varepsilon}{\longrightarrow}_\mathcal{A} a\mit q\in F\\
+F, &\sonst
+\end{array}\right.
+\end{align*}
+%TODO Tikz Bild
+
+\section*{Aufgabe 5}
+Transitionssystem ist NEA mit potenziell mehreren Anfangszuständen und potenziell unendlich viele Zustände akzeptiert
+\subsection*{Aufgabe 5 a)}
+%TODO Tikz Bild
+\subsection*{Aufgabe 5 b)}
+%TODO Tikz Bild
+\subsection*{Aufgabe 5 c)}
+%TODO Tikz Bild
+\subsection*{Aufgabe 5 d)}
+%TODO Tikz Bild
+
+\end{document}
