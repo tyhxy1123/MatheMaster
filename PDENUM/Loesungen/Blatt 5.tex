@@ -55,35 +55,35 @@ Damit folgt:
 |v|_{l,p,K}
 &=\underbrace{h^{-l}\cdot\left(\frac{1}{h}\right)^{-\frac{1}{p}}}_{=h^{-l+\frac{1}{p}}}\cdot\underbrace{|\hat{v}|_{l,p,\hat{K}}}_{\stackrel{l\geq m}{\leq}\Vert \hat{v}^{(m)}\Vert_{l-m,p,\hat{K}}}
 \end{align*}
-Jetzt nutzen wir die Normäquivalenz der Normen auf dem Finite-Elemente-Raum $P_k(\hat{K})$:
+Jetzt nutzen wir die Äquivalenz der Normen auf dem endlich dimensionalem Raum $P_k(\hat{K})$:
 \begin{align*}
 \Vert \hat{v}^{(m)}\Vert_{l-m,p,\hat{K}}
 &\leq
 c\cdot\underbrace{\Vert\hat{v}^{(m)}\Vert_{0,q,\hat{K}}}_{=|\hat{v}|_{m,q,\hat{K}}}
 \end{align*}
-wobei $c$ unabhängig von $h(K)$ ist wegen dem Referenzelement $\hat{K}$. Folglich gilt:
+wobei $c$ unabhängig von $h(K)$ ist wegen des Referenzelements $\hat{K}$. Folglich gilt:
 \begin{align*}
 |v|_{l,p,K}
 &\leq
 c\cdot h^{-l+\frac{1}{p}}\cdot\underbrace{|\hat{v}|_{m,q,\hat{K}}}_{\stackeq{\text{Aufg. 4.5}}h^{k-\frac{1}{q}}\cdot|v|_{m,q,\hat{K}}}
 =c\cdot h^{m-l+\left(\frac{1}{p}-\frac{1}{q}\right)}\cdot|v|_{m,q,K}
 \end{align*}
-Es gilt
-\begin{align*}
-\min\limits_{p\in P_k}\big\Vert\hat{v}+p\big\Vert_{0,p,\hat{K}}\leq c\cdot|\hat{v}|_{k+1,p,\hat{K}}
-\end{align*}
+%Es gilt
+%\begin{align*}
+%\min\limits_{p\in P_k}\big\Vert\hat{v}+p\big\Vert_{0,p,\hat{K}}\leq c\cdot|\hat{v}|_{k+1,p,\hat{K}}
+%\end{align*}
 \end{proof}
 
 \begin{bemerkung}
 Falls $v$ eine Funktion auf einen Finiten-Elemente-Raum (also endlich dimensional) ist, das Element $(K,V,\Sigma)$ von der Triangulierung affin äquivalent zum Referenzelement $(\hat{K},\hat{V},\hat{\Sigma})$ ist, dann gilt:
 \begin{align*}
-\Vert v\Vert_{l,p,K}\leq c\cdot h_K^m\cdot p_k^m\cdot p_k^{-l}\cdot\meas(K)^{\frac{1}{p}-\frac{1}{q}}\cdot\Vert v\Vert_{m,q,K}
+\Vert v\Vert_{l,p,K}\leq c\cdot h_K^m\cdot\rho_k^{-l}\cdot\meas(K)^{\frac{1}{p}-\frac{1}{q}}\cdot\Vert v\Vert_{m,q,K}
 \end{align*}
 Falls $n$ die Dimension notiert, dann gilt:
 \begin{align*}
-c\cdot f_k^n&\leq\meas(K)\leq c\cdot h_k^n\\
-\frac{h_k}{p_k}&\leq c\qquad\text{(form-regulär)}\\
-\implies\Vert v\Vert_{l,p,K}&\leq h_K^{m-l+n\cdot\left(\frac{1}{p}-\frac{1}{q}\right)}\cdot\Vert v\Vert_{m,q,K}\\
+c\cdot \rho_k^n&\leq\meas(K)\leq c\cdot h_k^n\\
+\frac{h_k}{\rho_k}&\leq c\qquad\text{(form-regulär)}\\
+\implies\Vert v\Vert_{l,p,K}&\leq c\cdot h_K^{m-l+n\cdot\left(\frac{1}{p}-\frac{1}{q}\right)}\cdot\Vert v\Vert_{m,q,K}\\
 \Vert v\Vert_{l,p,K}&=\sum\limits_{i=}^{m+1}\big| v^{(i)}\big|_{0,p,K}+\big\Vert v^{(m)}\big\Vert_{l-m,p,K}
 \end{align*}
 Rest der Lösung steht online.
@@ -106,7 +106,7 @@ Sei $H$ ein Hilbertraum mit Norm $\Vert\cdot\Vert_H$ und Skalarprodukt $(\cdot,\
 \begin{align*}
 \Vert u-u_h\Vert_H\leq\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{1}{\Vert g\Vert_H}\cdot\Big( &M\cdot\Vert u-u_h\Vert_h\cdot\Vert\varphi_g-\varphi_{g,h}\Vert_h\\
 &+\big|a_h(u-u_h,\varphi_g)-(u-u_h,g)\big|\\
-&+\big|a_h(u,\varphi_g-\varphi_{g,h})-(f,\varphi_g-\varphi_{g,h}\big|\Big)
+&+\big|a_h(u,\varphi_g-\varphi_{g,h})-(f,\varphi_g-\varphi_{g,h})\big|\Big)
 \end{align*}
 wobei zu $g\in H$ die Funktionen $\varphi_g\in V$ und $\varphi_{g,h}\in V_h$ als Lösungen von
 \begin{align*}
@@ -123,29 +123,31 @@ a_h(u,v)&=\sum\limits_{K}\int\limits_K\nabla u\cdot\nabla v\d x
 \end{align*}
 Setze $\varphi_h:=\varphi_{g,h}$. Dann gilt:
 \begin{align*}
-&(u-u_h,g)\\
-&=a(\underbrace{u}_{\in V},\underbrace{\varphi_g}_{\in V})-a_h(u_h,\varphi_h)\\
+(u-u_h,g)&=a(\underbrace{u}_{\in V},\underbrace{\varphi_g}_{\in V})-a_h(u_h,\varphi_h)\\
 &=a_h(u,\varphi_g)-a_h(u_h,\varphi_h)\\
-&=a_h(u,\varphi_g\underbrace{-\varphi_h)-a_h(u_h,\varphi_h)}_{=0}-a_h(u_h,\varphi_h)-\underbrace{a_h(u_h,\varphi_g-\varphi_h)+a_h(u_h,\varphi_g-\varphi_h)}_{=0}\\
-&=a_h(u-u_h,\varphi_g-\varphi_h)+a_h(u-u_h,\varphi_h)+a_h(u_h,u_g-\varphi_h)
+&=a_h(u,\varphi_g\underbrace{-\varphi_h)+a_h(u,\varphi_h)}_{=0}-a_h(u_h,\varphi_h)\\
+&{} \quad-\underbrace{a_h(u_h,\varphi_g-\varphi_h)+a_h(u_h,\varphi_g-\varphi_h)}_{=0}\\
+&=a_h(u-u_h,\varphi_g-\varphi_h)+\underbrace{a_h(u-u_h,\varphi_h)}_{(1)}+\underbrace{a_h(u_h,u_g-\varphi_h)}_{(2)}
 \end{align*}
 %TODO hier fehlt was
 und außerdem
 \begin{align*}
 a_h(u,\varphi_g-\varphi_h)-(f,\varphi_g-\varphi_h)
-&=\underbrace{a_h(u,\varphi_g)-(f,\varphi_g)}_{=0}-a_h(u,\varphi_h)+\underbrace{(f,\varphi_h)}_{\stackeq{\text{Def }u_h}a_h(v_h,\varphi_h)}
+&=\underbrace{a_h(u,\varphi_g)-(f,\varphi_g)}_{=0, \text{weak solution}}-a_h(u,\varphi_h)+\underbrace{(f,\varphi_h)}_{\stackeq{\text{Def }u_h}a_h(u_h,\varphi_h)}\\
+&=-a_h(u-u_h,\varphi_h) = (1)
 \end{align*}
 und außerdem %Wortwiederholung als Ausdruck von Langeweile
 \begin{align*}
 a_h(u-u_h,\varphi_g)-(u-u_h,g)
-&=\underbrace{a(u,\varphi_g)-(u,g)}_{=0}-a_h(u_h,\varphi_g)+\underbrace{u_h,g)}_{=a_h(u_h,\varphi_h)}\\
-&=-a_h(u_h,\varphi_g-\varphi_h)
+&=\underbrace{a(u,\varphi_g)-(u,g)}_{=0}-a_h(u_h,\varphi_g)+\underbrace{(u_h,g)}_{=a_h(u_h,\varphi_h)}\\
+&=-a_h(u_h,\varphi_g-\varphi_h) = -(2)
 \end{align*}
 und außerdem %Wortwiederholung als Ausdruck von Langeweile
 \begin{align*}
 \Vert u-u_h\Vert
 &=\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{(u-u_h,g)}{\Vert g\Vert_H}
 \end{align*}
+Damit folgt mit der Stetigkeit von $a_h$ und dem Betrag auf der rechten Seite die Behauptung.
 \end{proof}
 
 \section*{Aufgabe 5.3}
@@ -184,19 +186,35 @@ $\varphi_g$ und $\varphi_{g,h}$ sind auch schwache und diskrete Lösungen der Po
 \underline{Teilschritt (c):}\\
 Es ist bekannt:
 \begin{align*}
-\big|L_w(z)\big|:=\Big|a_h(w,z)-(\hat{f},z)\Big|\leq c\cdot h\cdot|w|_2\cdot\Vert z\Vert_h\qquad\forall z\in V_h+v,\forall w\in H^2
+\big|L_w(z)\big|:=\Big|a_h(w,z)-(\hat{f},z)\Big|\leq c\cdot h\cdot\Vert w\Vert_2\cdot\Vert z\Vert_h\qquad\forall z\in V_h+v,\forall w\in H^2
+\end{align*}
+und $w$ erfüllt die Gleichung $-\Delta w = \hat{f}$.%f_{snake}%\~{f}$
+Dann folgt:
+\begin{align*}
+	\underbrace{\big|a_h(u-u_h,\varphi_g)-(u-u_h,g)\big|}_{=|L_{\varphi_g}(u-u_h)|} &\leq Ch \|\varphi_g\|_2\underbrace{\|u-u_h\|_h}_{Ch\|u\|_2}\\
+	&\leq Ch^2 \|u\|_2\|\varphi_g\|_2
+\end{align*}
+und
+\begin{align*}
+	\underbrace{\big|a_h(u,\varphi_g-\varphi_{g,h})-(f,\varphi_g-\varphi_{g,h})\big|}_{=|L_{u}(\varphi_g-\varphi_{g,h})|} &\leq Ch \|u\|_2\underbrace{\|\varphi_g - \varphi_{g,h}\|_h}_{Ch\|\varphi_g\|_2} \\
+	&\leq Ch^2 \|u\|_2\|\varphi_g\|_2
 \end{align*}
 
-%TODO vermutlich fehlt hier auch was. Bin dermaßen raus, dass ich das nicht einmal mehr einschätzen kann xD
+%TODO vermutlich fehlt hier auch was. Bin dermaßen raus, dass ich das nicht einmal mehr einschätzen kann xD Haha 
 
 \underline{Teilschritt (d):}
 \begin{align*}
-\Vert u-u_h\Vert_0\leq\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{1}{\Vert g\Vert_H}\big\lbrace(\text{MC+CC}~h^2\cdot\Vert u\Vert_2\cdot\Vert\varphi_g\Vert_2\big\rbrace
+\Vert u-u_h\Vert_0\leq\sup\limits_{g\in H\setminus\lbrace0\rbrace}\frac{1}{\Vert g\Vert_H}\big\lbrace(\text{MC+CC})~h^2\cdot\Vert u\Vert_2\cdot\underbrace{\Vert\varphi_g\Vert_2}_{C\|g\|_H}\big\rbrace
 \end{align*}
 Aus dem \textit{Regularitäts-Theorem} folgt, da $\Omega$ konvex ist ist:
 \begin{align*}
 \varphi_g\in H^2\qquad\text{und}\qquad\Vert\varphi_g\Vert_2\leq c\cdot\Vert g\Vert_0
 \end{align*}
+$\implies$ 
+\begin{align*}
+	\|u-u_h\|_0 \leq C h^2 \|u\|_2.
+\end{align*}
+(Hier wird manchmal die $\|\cdot\|_0$-Norm verwendet. Diese soll anscheinend die $H$-Norm sein.)
 \end{proof}
 
 \section*{Aufgabe 5.4}
