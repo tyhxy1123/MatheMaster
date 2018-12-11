@@ -366,10 +366,10 @@ Dies ist aber im Allgemeinen keine Oberstruktur von $G$!
 \item Pfadaktionsnetzwerk zu einem Netzwerk
 \item logistisches Aktionsnetzwerk zu einer Menge $P$:
 \begin{align*}
-\mathbb{G}_P&:=(G_P,\ast,\id)\\
-\id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
-G_P&:=(P,P\times P,\id_{P\times P})\\
-(p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
+    \mathbb{G}_P&:=(G\P,\ast,\id)\\
+    \id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
+    G_P&:=(P,P\times P,\id_{P\times P})\\
+    (p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
 \end{align*}
 \item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
 Sind bis auf Isomorphie einknotige Netzwerke.
@@ -437,7 +437,7 @@ Sei $\mathbb{P}:=(P,R)$ ein binäres Relat. Definiere $G\mathbb{P}:=(P,R,\rho)$ 
 
 \begin{beispiel}
     Sei $\mathbb{P} := (R, R)$ ein binäres Relat.
-    Dann ist $G_P := (P, R \subseteq P \times P, i)$, wobei
+    Dann ist $G\P := (P, R \subseteq P \times P, i)$, wobei
     $i: R \to P \times P$ die identische Einbettung ist,
     ein Netzwerk.
     Es folgt offensichtlich das es sich dabei um ein dünnes Netzwerk handelt.
@@ -651,11 +651,11 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 
 \begin{proposition}
     Sei $G=(V,E,\rho)$ ein Netzwerk und sei $\omega: V \to W$ eine Bijektion mit $W \cap E^{\langle\ast\rangle} = \emptyset$.
-    Dann ist $\Gamma := (\id_V, \Gamma_{edge}$) mit 
-    $$ \Gamma_{edge}: E \to E^{\langle\ast\rangle}, e \mapsto e $$ ein Morphismus [sogar eine Einbettung] von $G$ nach $P(G,\omega)$, wobei
+    Dann ist $\Gamma := (\id_V, \Gamma_{\text{edge}}$) mit 
+    $$ \Gamma_{\text{edge}}: E \to E^{\langle\ast\rangle}, e \mapsto e $$ ein Morphismus [sogar eine Einbettung] von $G$ nach $P(G,\omega)$, wobei
     $P(G,\omega)$ das zu $(G,\omega)$ gehörige Pfadnetzwerk ist, und es existiert zu jedem ANW $\G':=(G',\ast',\id')$ mit
     $G'=(V',E',\rho')$ und jedem Morphismus [Netzwerk-Morphismus!]
-    $ \Psi = (\Psi_{vert}, \Psi_{edge})$ von $G$ nach $G'$ genau ein Funktor $\Phi=(\Phi_{vert},\Phi_{edge})$ von 
+    $ \Psi = (\Psi_{\text{vert}}, \Psi_{\text{edge}})$ von $G$ nach $G'$ genau ein Funktor $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ von 
     $\P(G,\omega)$ nach $\G'$ derart, dass das folgende Diagramm kommutiert:
     $$ \begin{tikzcd}
         \dar{\Gamma}G\drar{\Psi} &\\
@@ -666,9 +666,9 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
     \underline{Eindeutigkeit:} Beachte dass für $(e_1,\ldots,e_n) \in E^{\langle n\rangle}, n \in \N_+$,stets gilt
     $$  (e_1,\ldots, e_n) = e_1 \circledast \ldots \circledast e_n.$$
     Also gilt in der Situation vom Diagramm stets:
-    $$ \Phi_{edge}(e_1, \ldots, e_n) = \Phi_{edge}e_1 \ast' \ldots \ast' \Phi_{edge}e_n = \Psi_{edge}e_1 \ast' \ldots \ast' \Psi_{edge} e_n.$$
+    $$ \Phi_{\text{edge}}(e_1, \ldots, e_n) = \Phi_{\text{edge}}e_1 \ast' \ldots \ast' \Phi_{\text{edge}}e_n = \Psi_{\text{edge}}e_1 \ast' \ldots \ast' \Psi_{\text{edge}} e_n.$$
 
-    \underline{Existenz:} $ \Phi_{edge}(e_1,\ldots,e_n) := \Psi e_1 \ast' \ldots \ast' \Psi e_n$.
+    \underline{Existenz:} $ \Phi_{\text{edge}}(e_1,\ldots,e_n) := \Psi e_1 \ast' \ldots \ast' \Psi e_n$.
 \end{proof}
 
 \begin{bemerkung}[Anwendung ID-Loop bereinigt]
@@ -691,3 +691,75 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
         P(G,\omega) \rar{\Phi} & G
     \end{tikzcd}$ ist kommutativ.
 \end{bemerkung}
+
+\begin{definition}
+    Ein Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$ \textbf{geschlossen}, falls $\sigma e_1 = \tau e_n$, oder
+    $$ (e_1,\ldots,e_n, e_1) \in E^{\<n+1\>}.$$
+\end{definition}
+
+\begin{definition}
+    Ein \textbf{Kreis} ist ein geschlosseneer Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$, sodass für alle $i,j \in \{1,\ldots,n\}$ 
+    $$ i \neq j \implies \sigma e_i \ne \tau e_j .$$
+\end{definition}
+
+\begin{definition}
+    Ein Netzwerk $G=(V,E,\rho)$ heißt \textbf{azyklisch} (acyclic), falls es keine geschlossenen Pfade besitzt (das ist dazu
+    äquivalent, dass das Netzwerk keine Kreise besitzt).
+\end{definition}
+
+\begin{definition}
+    Sei $\P = (P,R)$ binäres Relat. $\P$ heißt \textbf{azyklisch}, falls $G\P$ azyklischist.
+\end{definition}
+
+\begin{erinnerungnr}
+    Sei $P$ Menge. Dann bezeichne $\G_P$ das \textbf{logistische ANW} zu $P$, d.h. $\G_P=(G_P, \ast, \id)$
+    mit $G_P := G(P, P \times P)$ und $(p,t)\ast(t,q) := (p,q)$ für alle $p,t,q \in P$ sowie 
+    $\id(p) := (p,p)$ für alle $p \in P$.
+
+    Ist $\G=(G,\ast, \id)$ ANW mit $G=(V,E,\rho)$, so bildet eine Kantenmenge $D \subseteq E$ eine Unterstruktur
+    von $\G$, falls gilt
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\forall (a,b) \in E^{\<2\>}(a\in D \land b \in D \implies a \ast b \in D)$
+        \item $\id V \subseteq D$.
+    \end{enumerate}
+
+    Eine Kantenmenge $R \subseteq P \times P$ von $G_P$ bildet also eine Unterstruktur genau dann, wenn
+    $(P,R)$ Präordnung ist.\\
+    \textit{Denn:} (1) bedeutet, dass $(P,R)$ transitiv ist und (2) bedeutet, dass $(P,R)$ reflexiv ist.
+
+    Das zugehörige ANW sei mit $\G\P := \G_P|_R$ bezeichnet. Sprechweise "$\G\P$ ist $\P$ als ANW aufgefasst".
+\end{erinnerungnr}
+
+\begin{definition}
+    Man nennt ein ANW $\G = (G, \ast, \id)$ mit $G=(V,E,\rho)$ \textbf{azyklisch}, falls 
+    $G^\bullet =(V,E^\bullet, \rho^\bullet)$ mt $E^\bullet := E \setminus \id V$ und $\rho^\bullet := \rho|_E$
+    ein azyklisches Netzwerk ist.
+
+    $G^\bullet$ heiße die \textbf{ID-Loop-Bereinigung} von $\G$ (\underline{nicht} von $G$).
+\end{definition}
+
+\begin{bemerkungnr}
+    In der obigen Definition kann $G$ nicht azyklisch sein, da $\rho(\id p) = (p,p)$ nach Neutralitätsaxiom des Aktionsnetzwerkes.
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    Insbesondere gilt: Ist $\P = (P,R)$ Ordnung, so bildet $R$ eine Unterstruktur von $\G_P$, 
+    also fassen wir $\P$ auch als ANW $\G\P$ auf.
+\end{bemerkungnr}
+
+\begin{beispiel}
+    Sei $\P=(P,R)$ nichtleere Präordnung. DAnn gilt $\P$ \underline{ist als ANW $\G\P$} azyklisch genau
+    dann, wenn $\P$ eine Ordnung ist. $\P$ als Netzwerk ist aber nicht azyklisch, da 
+    $\Delta:P := \{(p,p) \mid p \in P\} \subseteq R$ ist.
+\end{beispiel}
+
+\begin{satz}
+    Jede maximale Ordnung ist linear.
+\end{satz}
+\begin{proof}
+    Wäre maximale Ordnung $(P,R)$ nicht linear, so gibt es zwei nicht vergleichbare Elemente $p,q \in P$.
+    Dann gibt es aber eine Obermenge $O$ von $R$, welche wieder eine Ordnung ist.
+    Wähle einfach $(p,q) \in O$. 
+    Es genügt die Antisymmetrie nachzuweisen.
+    Wäre $O$ nicht antisymmetretisch, so gäbe es wegen der Transitivität von $R$ einen Pfad von $q$ nach $p$, Widerspruch.
+\end{proof}
