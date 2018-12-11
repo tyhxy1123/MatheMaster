@@ -301,27 +301,26 @@ Analoge Resultate zu Theorem \ref{theorem6.1EigenschaftenDerFTCF} für Fourier-T
 
 \begin{korollar}\label{korollar6.3}
 Sei $f\in L_1(\R^d)$, $b\in\R^d$, $A\in\R^{d\times d}$ und $\alpha\in\N_0^d$ ein MI. Dann gilt:
-%TODO Kann man die Aufzählung auch schön alignen, also Implikatiospfeile untereinander?
 \begin{enumerate}[label=(\alph*)]
 \item $\begin{aligned}[t]
 g(x):=f(x+b) 
-&\implies \hat{g}(\xi)=\exp\big(-i\cdot b^T\cdot\xi\big)\cdot\hat{f}(\xi)
+\hspace{100pt}\implies \hat{g}(\xi)=\exp\big(-i\cdot b^T\cdot\xi\big)\cdot\hat{f}(\xi)
 \end{aligned}$
 \item $\begin{aligned}
 g(x):=\exp\big(i\cdot b^T\cdot x\big)\cdot f(x) 
-&\implies \hat{g}(\xi)=\hat{f}(\xi+b)
+\hspace{45pt}\implies \hat{g}(\xi)=\hat{f}(\xi+b)
 \end{aligned}$
 \item $\begin{aligned}
 g(x):=f(A\cdot x)\mit \det(A)>0 
-&\implies \hat{g}(\xi)=\frac{1}{\det(A)}\cdot\hat{f}\big(A^{-T}\cdot\xi\big)
+\hspace{24pt}\implies \hat{g}(\xi)=\frac{1}{\det(A)}\cdot\hat{f}\big(A^{-T}\cdot\xi\big)
 \end{aligned}$
 \item $\begin{aligned}
 g(x):=(i\cdot x)^\alpha\cdot f(x)\mit g\in L_1 
-&\implies \hat{g}(\xi)=\partial^\alpha\hat{f}(\xi)
+\hspace{23pt}\implies \hat{g}(\xi)=\partial^\alpha\hat{f}(\xi)
 \end{aligned}$
 \item $\begin{aligned}
 g(x):=\partial^\alpha f(x)\mit g\in C_\infty\cap L_1 
-&\implies \hat{g}(\xi)=(-i\cdot\xi)^\alpha\cdot\hat{f}(\xi)
+\hspace{22pt}\implies \hat{g}(\xi)=(-i\cdot\xi)^\alpha\cdot\hat{f}(\xi)
 \end{aligned}$
 \end{enumerate}
 \end{korollar}
