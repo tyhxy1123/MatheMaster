@@ -159,10 +159,12 @@ d.h. $f$ ist Lipschitzstetig mit Lipschitzkonstante 1.
 Somit gilt $f\in\Lip\big([0,T],X\big)$, aber $f\not\in W^{1,\infty}\big([0,T],X\big)$.
 \end{beispiel}
 
+\begin{definition}
 Ein Banachraum $X$ hat die \textbf{Radon-Nikodym-Eigenschaft}
 \begin{align*}
 :\Longleftrightarrow W^{1,\infty}\big([0,T],X\big)=\Lip\big([0,T],X\big)
 \end{align*}
+\end{definition}
 
 \begin{beispiel}\
 \begin{enumerate}
@@ -191,11 +193,89 @@ und insbesondere für alle $t,\hat{t}\in[0,T]$:
 &=\big| t-\hat{t}\big|\cdot\Vert Au_0\Vert
 \end{align*}
 Also ist $u$ Lipschitzstetig mit Lipschitzkonstante $\Vert A u_0\Vert$. Falls $X$ die Radon-Nikodym-Eigenschaft hat, dann ist $u\in W^{1,\infty}\big([0,T],X\big)$. Lemma ($u$ Integrallösung + $u\in W^{1,1}$) $\implies u$ ist starke Lösung. Falls $X$ Radon-Nikodym-Eigenschaft hat und $i_0\in\overline{\dom(A)}$, dann existiert eine Folge $(u_0^n)_{n\in\N}\subseteq\dom(A)$ mit $\limn\big\Vert u_0^n-u_0\big\Vert=0$.\\
-Die Lösungen $u_n$ zu den Anfangswerten $u_0^n$ sind starke Lösungen und konvergierenaufgrund der Abschätzung 
+Die Lösungen $u_n$ zu den Anfangswerten $u_0^n$ sind starke Lösungen und konvergieren aufgrund der Abschätzung 
 \begin{align*}
 \big\Vert u_n(t)-u(t)\big\Vert\leq\exp(\omega\cdot t)\cdot\big\Vert u_0^n-u_0\big\Vert
 \end{align*}
 gleichmäßig auf $[0,T]$ gegen Lösung $u$ zum Anfangswert $u_0$. Folglich ist $u$ eine milde Lösung.
 \end{proof}
 
-
+\begin{korollar}[Folgerungen zu Crandall-Ligget]\
+\begin{enumerate}[label=(\alph*)]
+\item Picard-Lindelöf: Sei $X=\R^n$ und sei $f:X\to X$ Lipschitz-stetig. Dann besitzt die ODE
+\begin{align*}
+\left\lbrace\begin{array}{rr}
+\dot{u}+f(u)=0 & t\in[0,T]\\
+u(0)=u_0
+\end{array}\right.
+\end{align*}
+für alle $u_0\in X=\R^n$ genau eine Lösung $u\in W^{1,\infty}(0,T;\R^n)$. Für je zwei Lösungen $u$ und $v$ zu Anfangswerten $u_0$ bzw. $v_0$ gilt
+\begin{align*}
+\big\Vert u(t)-v(t)\big\Vert\leq\exp(L\cdot t)\cdot\big\Vert u_0-v_0\big\Vert\qquad\forall t\in[0,T]
+\end{align*}
+wobei $L$ die Lipschitzkonstante von $f$ ist.\\
+(Der Operator $A=\big\lbrace(u,f(u)):u\in\R^n\big\rbrace=\graph(f)$ ist $m$-akkretiv vom Typ $L$, $\dom(A)=X$)\nl
+In den meisten Formulierungen von Picard-Lindelöf ist $f$ nur \ul{lokal} Lipschitz-stetig (und hängt meist noch explizit von der Variable $t$ ab). Sei also $f\colon D\to\R^n$ ($D\subseteq \R^n$ offen) nur lokal Lipschitz-stetig, d.h. 
+\begin{align*}
+\forall u_0\in D:\exists r>0,\exists L\geq0:\forall u,\hat{u}\in B(u_0,r)\subseteq D:\big\Vert f(u)-f(\hat{u})\big\Vert\leq L\cdot\big\Vert u-\hat{u}\big\Vert
+\end{align*}
+Dann ist $f|_{B(u_0,r)}$ akkretiv vom Typ $L$. Nach dem Lemma von Zorn besitzt diese Einschränkung eine maximal akkretive (vom Typ $L$) Fortsetzung.\\
+O.B.d.A. ist $\R^n$ mit der euklidischen Norm versehen. Aus dem Theorem von Minty \ref{theoremMinty} folgt, dass jede maximal akkretive Fortsetzung von $f|_{B(u_0,r)}$ $m$-akkretiv (vom Typ $L$) ist.\\
+Sei $F$ eine solche $m$-akkretive Fortsetzung von $f|_{B(u_0,r)}$. Dann besitzt 
+\begin{align*}
+\left\lbrace\begin{array}{r}
+\dot{u}+F(u)\ni 0\\
+u(0)=u_0
+\end{array}\right.
+\end{align*}
+eine globale Lösung $u\in C(\R_+,\R^n)$. Wegen Stetigkeit von $u$ gilt
+\begin{align*}
+u(t)\in B(u_0,r)\qquad\forall t\in[0,t_0]
+\end{align*}
+und 
+\begin{align*}
+F|_{B(u_0,r)}=f|_{B(u_0,r)}
+\end{align*}
+(Übung: Zeige, dass $F$ auf $B$ noch eine Funktion ist, und keine Relation).
+\item Sei $\Omega\subseteq\R^n$ offen und $p\in]1,\infty[$. Dann besitzt die \textbf{Diffusionsgleichung}
+\begin{align}\label{eqDiffusionsgleichung}\tag{Diffu}
+\left\lbrace\begin{array}{rl}
+\partial_t u(t,x)-\Delta_p u(t,x)=0 &\text{ in }(0,\infty)\times\Omega\\
+\partial_\nu u(t,x)=0 &\text{ in }(0,\infty)\times\partial\Omega\\
+u(0,x)=u_0(x) &\text{ in }\Omega
+\end{array}\right.
+\end{align}
+für alle $u_0\in L^2(\Omega)$ genau eine  ``Lösung'' $u\in C\big(\R_+, L^2(\Omega)\big)$.\\
+($u:(0,\infty)\times\Omega\to\R,~u(t,\cdot)\in L^2(\Omega),~u(t)(x):=u(t,x)$\\
+Zur Erinnerung: $\Delta_p u=\div\left(|\nabla u|^{p-2}\cdot\nabla u\right)$ ist der $p$-Laplaceoperator und $\nu$ die äußere Normale an $\Omega$.)
+\begin{align*}
+-\Delta_p&=\partial\E\qquad\mit\\
+\E(u)&=\left\lbrace\begin{array}{cl}
+\frac{1}{p}\cdot\int\limits_\Omega |\nabla u|^p, &\falls\nabla u\in L^p(\Omega)\\
++\infty ,&\sonst
+\end{array}\right.
+\end{align*}
+\item Ist $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$ und $f\in X$, dann ist der \textbf{verschobene Operator}
+\begin{align*}
+A-f:=\Big\lbrace\big(\hat{u},\hat{f}-f\big):\big(\hat{u},\hat{f}\big)\in A\Big\rbrace
+\end{align*}
+wieder $m$-akkretiv vom Typ $\omega$. Aus Crandall-Ligget \ref{theoremCrandall-Liggett} folgt also, für $m$-akkretive $A$ vom Typ $\omega$, dass das Cauchyproblem
+\begin{align*}
+\left\lbrace\begin{array}{rl}
+\dot{u}+Au\ni f & t\in[0,T]\\
+u(0)=u_0
+\end{array}\right.
+\end{align*}
+für alle $u_0\in\overline{\dom(A)}$ und alle $f\in X$ genau eine Integrallösung $u\in C\big([0,T],X\big)$ besitzt. Setzt man solche Integrallösungen zusammen, dann sieht man, dass das obige Cauchy-Problem für alle $u_0\in\overline{\dom(A)}$ und alle Treppenfunktionen $f\colon[0,T]\to X$\\
+(d.h. es existiert Partition $\pi:0=t_0<t_1<\ldots<t_N$ von $[0,T]$ so, dass $f$ auf allen $[t_i,t_{i+1})$ konstant ist) genau eine Integrallösung $u\in C\big([0,T],X\big)$ besitzt.\\
+Aus der Abschätzung
+\begin{align*}
+&\big\Vert u(t)-\hat{u}(t)\big\Vert\\
+&\leq
+\big\Vert u(s)-\hat{u}(s)\big\Vert
++\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}(\tau)\big\Vert\d\tau
++\int\limits_s^t\big[u(\tau)-\hat{u}(\tau),f(\tau)-\hat{f}(\tau)\big]\d\tau
+\end{align*}
+für je zwei Integrallösungen $u,\hat{u}$ zu Treppenfunktionen $f,\hat{f}$ einem Approximationsargument (approximiere $f\in L^1(0,T,X)$ durch Treppenfunktionen $f_n$,\\$\Vert f_n-f\Vert_{L^1}\stackrel{n\to\infty}{\longrightarrow}0$) folgt, dass das obige Cauchyproblem für alle $u_0\in\overline{\dom(A)}$ und alle $f\in L^1(0,T;X)$ genau eine Integrallösung besitzt.
+\end{enumerate}
+\end{korollar}

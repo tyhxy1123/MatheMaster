@@ -29,7 +29,7 @@ deploy:
   - ./bin/PDENM.pdf
   name: >-
       Mitschriften zum Ende der
-      $(date -u -d @$(($(date -d 'now' '+%s') - $(date -d 'Oct 1 2018' '+%s'))) '+%V').
+      $(python3 -c 'from datetime import date as d; import math; print(math.ceil((d.today() - d(2018, 10, 7)).days / 7))').
       Woche des WS 2018
   skip_cleanup: true
   on:
