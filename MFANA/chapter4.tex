@@ -1,0 +1,244 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Nichtlineare Halbgruppen} %4
+\setcounter{section}{1}
+Sei $(D,d)$ ein metrischer Raum.
+
+\begin{definition}
+Eine \textbf{(stark stetige) Halbgruppe} auf $D$ ist eine Funktion\\ $S:[0,\infty]\to C(D,D)$ so, dass 
+\begin{enumerate}[label=(\roman*)]
+\item $S_0=\id$, d.h. $S_0(x)=x\qquad\forall x\in D$
+\item $\begin{aligned}
+S_{t+s}=S_t\circ S_s\qquad\forall s,t\geq0
+\end{aligned}$
+\item $\begin{aligned}
+[0,\infty)\to D,\qquad t\mapsto S_t(x)\text{ ist stetig}\qquad\forall x\in D
+\end{aligned}$
+\end{enumerate}
+(alternativer Name: \textbf{topologisches dynamisches System})\nl
+Manchmal betrachtet man auch \textbf{degenerierte (stark stetige) Halbgruppen}\\ $S\colon (0,\infty)\to C(D,D)$. Definition wie oben, nur ersetze $[0,\infty]$ durch $(0,\infty)$ (auch in (iii)). Eigenschaft (i) fällt dann weg.
+\end{definition}
+
+\begin{beispiel}[Exponentialfunktion]\enter
+Sei $X$ ein Banachraum, $A\in\L(X)$ (d.h. beschränkter linearer Operator auf $X$) und 
+\begin{align*}
+S_t:=\sum\limits_{n=0}^\infty\frac{t^n\cdot A^n}{n!}=:\exp(t\cdot A)\qquad t\in[0,\infty]\text{ oder }t\in\C
+\end{align*}
+Die Reihe konvergiert absolut
+\begin{align*}
+\sum\limits_{n=0}^\infty \frac{t^n\cdot\Vert A^n\Vert}{n!}\leq\sum\limits_{n=0}^\infty\frac{t^n\cdot\Vert A\Vert^n}{	n!}=\exp\big(t\cdot\Vert A\Vert\big)<\infty
+\end{align*}
+und somit konvergiert sie auch in $\L(X)\subseteq C(X,X)$.\\
+Die Abbildung $S:\R_+\to\L(X)$ ist (als Potenzreihe mit Konvergenzradius $+\infty$) beliebig oft differenzierbar und 
+\begin{align*}
+\frac{\d}{\d t}S_t=AS_t=S_tA
+\end{align*}
+(Differenzierbarkeit bzgl. der Operatornorm in $\L(X)$!)\\
+Für alle $u_0\in X$ ist also der Orbit $u(t)=S_t u_0$ eine klassische Lösung des Cauchyproblems
+\begin{align*}
+\left\lbrace\begin{array}{r}
+\dot{u}-Au=0\\
+u(0)=u_0
+\end{array}\right.
+\end{align*}
+\end{beispiel}
+
+\begin{beispiel}[$C_0$-Halbgruppen / lineare Halbgruppen]\enter
+Eine stark-stetige Halbgruppe $S$ heißt auch \textbf{$C_0$-Halbgruppe} oder \textbf{lineare Halbgruppe}, wenn $D=X$ ein Banachraum ist und alle $S_t$ stetige, lineare Operatoren sind.\\
+Für lineare Halbgruppen gelten folgende Eigenschaften:
+\end{beispiel}
+
+\begin{lemma}
+Ist $S$ eine lineare Halbgruppe auf einem Banachraum $X$, dann existieren Konstanten $M\geq1$ und $\omega\in\R$ so, dass 
+\begin{align*}
+\big\Vert S_t\big\Vert_{\L(X)}\leq M\cdot\exp(\omega\cdot t)\qquad\forall t\geq0
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Für alle $x\in X$ ist die Funktion $f\mapsto S_t x$ stetig auf $\R_+$ (Eigenschaft (iii)) und insbesondere auf dem Intervall $[0,1]$. Damit ist die lineare Abbildung 
+\begin{align*}
+T:X\to C\big([0,1],X\big),\qquad x\mapsto\big(t\mapsto S_t x\big)
+\end{align*}
+wohldefiniert. 
+%Prof: "Alle Abbildungen, die man hinschreiben kann, sind stetig." -> Er meint den Satz vom abgeschlossenen Graphen.
+Nun wollen wir den Satz vom abgeschlossenen Graphen anwenden. $T$ ist außerdem abgeschlossen: Es gelte $x_n\stackrel{n\to\infty}{\longrightarrow}x$ in $X$ und $T x_n\stackrel{n\to\infty}{\longrightarrow}f$ in $C\big([0,1],X\big)$. Zu zeigen:\\
+Die Konvergenz $T x_n\stackrel{n\to\infty}{\longrightarrow}f$ (gleichmäßige Konvergenz) impliziert punktweise Konvergenz, d.h.
+\begin{align*}
+\big(\underbrace{T x_n}_{S_t x_n}\big)(t)\stackrel{n\to\infty}{\longrightarrow} f(t)\text{ in }X\qquad\forall t\in[0,1]
+\end{align*}
+Aus der Stetigkeit von $S_t$ folgt
+\begin{align*}
+f(t)=\limn S_t x_n=S_t x\qquad\forall t\in[0,1]
+\end{align*}
+d.h. $f=T x$. Aus dem Satz vom abgeschlossenen Graphen folgt, dass $T$ stetig / beschränkt (äquivalent) ist.\\
+Sei $M:=\Vert T\Vert$. Dann ist 
+\begin{align*}
+\big\Vert S_t x\big\Vert_X&\leq\sup\limits_{s\in[0,1]}\big\Vert S_s x\big\Vert\leq M\cdot\Vert x\Vert&\forall& x\in X,\forall t\in[0,1]\\
+\implies\big\Vert S_t\big\Vert_{\L(X)}&\leq M &\forall& t\in [0,1]
+\end{align*}
+Sei $t\in\R_+$ beliebig. Dann ist $t=n+\delta$ mit $n\in\N_0$ und $\delta\in[0,1[$ und somit
+\begin{align*}
+\big\Vert S_t\big\Vert
+&=\big\Vert S_{n+\delta}\big\Vert
+\overset{\text{(ii)}}{=}
+\big\Vert S_n S_\delta\big\Vert
+=\big\Vert S_1^n S_\delta\big\Vert
+\leq\big\Vert S_1\big\Vert^n\cdot\big\Vert S_\delta\big\Vert
+\leq M^{n+1}\\
+&=\underbrace{M^{n+\delta}}_{=\exp\big((n+\delta)\cdot\log(M)\big)}\cdot M^{1-\delta}
+\overset{\omega=\log(M)}\leq
+M^{1-\delta}\cdot\exp(\omega\cdot t)
+\overset{M\geq1}{\leq}
+M\cdot\exp(\omega\cdot t)
+\end{align*}
+\end{proof}
+
+Sei $S$ eine lineare Halbgruppe auf einem Banachraum $X$. Dann definieren wir den \textbf{Erzeuger} von $S$
+\begin{align*}
+A&:=\left\lbrace(u,f)\in X\times X~\left|~f=\lim\limits_{t\to0^+}\frac{S_t u-u}{t}\right.\right\rbrace\mit\\
+\dom(A)&\hspace{3pt}=\left\lbrace u\in X~\left|~\lim\limits_{t\to0^+}\frac{S_t u-u}{t}\text{ existiert}\right.\right\rbrace
+\end{align*}
+Der Operator $A$ ist linear und eindeutig.
+
+\begin{lemma}
+Sei $S$ eine lineare Halbgruppe auf einem Banachraum $X$, mit Erzeuger $A$. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item Für alle $u\in\dom(A)$ und alle $t\in\R_+$ ist $S_t u\in\dom(A)$, die Abbildung $t\mapsto S_t$ ist differenzierbar und 
+\begin{align*}
+\frac{\d}{\d t} S_t u=A S_t u=S_t A u
+\end{align*}
+\item Für alle $u\in X$ und alle $t\in\R_+$ ist
+\begin{align*}
+\int\limits_0^t S_s u\d s\in\dom(A)
+\end{align*}
+und
+\begin{align*}
+A\int\limits_0^t S_s u\d s=S_t u-u
+\end{align*}
+\item Der Erzeuger $A$ ist abgeschlossen und $\dom(A)$ ist dicht in $X$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\underline{Zeige (a):}\\
+sei $u\in\dom(A)$ und $t\in\R_+$. Dann gilt für $h>0$:
+\begin{align*}
+\frac{S_h\big(S_t u\big)-S_t u}{h}
+\overset{\text{(iii)}}&=
+\frac{S_{h+t} u-S_t u}{h}
+\overset{\text{(iii)}}=
+\frac{S_t\big(S_h u\big)-S_t u}{h}
+=S_t\frac{S_h u-u}{h}\stackrel{h\to0^+}{\longrightarrow}S_t Au
+\end{align*}
+Wegen dieser Konvergenz ist $S_t u\in\dom(A)$ und 
+\begin{align*}
+A S_t u
+&=S_t Au
+=\frac{\d}{\d t}S_t u
+\end{align*}
+\underline{Zeige (b):}\\
+Sei $u\in X$, $t\in\R_+$. Dann gilt für $h>0$:
+\begin{align*}
+\frac{S_h\left(\int\limits_0^t S_s u\d s\right)-\int\limits_0^t S_s \d s}{h}
+&=\frac{\int\limits_0^t S_{s+h}-\int\limits_0^t S_s u\d s}{h}\\
+\overset{\text{Subs}}&=
+\frac{1}{h}\cdot\left(\int\limits_h^{t+h} S_s u\d s-\int\limits_0^t S_s u\d s\right)\\
+&=\frac{1}{h}\cdot\left(\int\limits_t^{t+h} S_s u\d s-\int\limits_0^h S_s u\d s\right)
+\stackrel{h\to0^+}{\longrightarrow} S_t u-u 
+\end{align*}
+Also ist 
+\begin{align*}
+\int\limits_0^t S_s u\d s\in\dom(A)\qquad\text{und}\qquad
+A\int\limits_0^t S_s u\d s= S_t u-u
+\end{align*}
+
+\underline{Zeige (c):}\\
+Sei $u\in X$. Dann ist für alle $t\in\R_+$ (siehe (b)):
+\begin{align*}
+\cdot\int\limits_0^t S_s u \d s\in\dom(A)\\
+\overset{\text{linear}}{\implies}
+\frac{1}{t}\cdot\int\limits_0^t \underbrace{S_s u}_{\stackrel{t\to 0^+}{\longrightarrow} u} \d s\in\dom(A)\\
+\end{align*}
+Also ist $u\in\dom(A)$ und somit $\dom(A)$ dicht in $X$. Außerdem ist $A$ abgeschlossen, denn:\\
+Es gelte
+\begin{align*}
+\dom(A)\ni u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }X
+\qquad\text{und}\qquad
+A u_n\stackrel{n\to\infty}{\longrightarrow} f\text{ in }X
+\end{align*}
+Dann gilt für alle $t\in\R_+$ und alle $n$, wegen (a)
+\begin{align*}
+S_t A u_n=\frac{\d}{\d t}S_t u_n
+\end{align*}
+bzw. (Integration)
+\begin{align*}
+\int\limits_0^t S_s A u_n\d s&=S_t u_n-u_n\\
+\downarrow n\to\infty&\qquad\downarrow n\to\infty\\
+\overset{n\to\infty}{\implies}
+\int\limits_0^t S_s f\d s&=S_t u-u\qquad|:t\\
+\implies
+\frac{S_t u-u}{t}&=\frac{1}{t}\cdot\int\limits_0^t S_s f\d s\stackrel{t\to0^+}{\longrightarrow} f
+\end{align*}
+Bei der Grenzwertbildung wird dominierte Konvergenz mit
+\begin{align*}
+\left\Vert S_s A u_n\right\Vert\leq M\cdot\exp(\omega\cdot s)\cdot\big\Vert A u_n\big\Vert
+\end{align*}
+und das erste Lemma verwendet.
+Damit ist $u\in\dom(A)$ und $Au=f$.
+\end{proof}
+
+\begin{lemma}
+Sei $S$ eine lineare Halbgruppe auf einem Banachraum $X$, mit Erzeuger $A$. Seien $M\geq1$, $\omega\in\R$ so, dass 
+\begin{align*}
+\big\Vert S_t\big\Vert\leq M\cdot\exp(\omega\cdot t)\qquad\forall t\in\R_+
+\end{align*}
+Dann ist für alle $\lambda\in\R\mit\lambda>\omega$ der Operator $\lambda-A$ invertierbar und 
+\begin{align*}
+(\lambda-a)^{-1}f=\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t f\d t\qquad\forall f\in X
+\end{align*}
+Es gilt:
+\begin{align*}
+\left\Vert(\lambda-A)^{-1}\right\Vert_{\L(X)}\leq\frac{M}{\lambda-\omega}
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+Wegen
+\begin{align*}
+\big\Vert\exp(-\lambda\cdot t)\cdot S_t f\big\Vert_X\leq\exp(-\lambda\cdot t)\cdot M\cdot\exp(\omega\cdot t)\cdot\Vert f\Vert
+\end{align*}
+ist $t\mapsto\exp(-\lambda\cdot t)\cdot S_t f$ für alle $f\in X$ und alle $\lambda>\omega$ integrierbar.\\
+Für alle $f\in X$ und alle $\lambda>\omega$ gilt:
+\begin{align*}
+(A-\lambda)\int\limits_0^T\exp(-\lambda\cdot t)\cdot S_t f\d t
+\overset{(\ast)}&{=}
+\exp(-\lambda\cdot t)\cdot S_t f-f\stackrel{T\to\infty}{\longrightarrow}-f
+\end{align*}
+Bei $(\ast)$ wird verwendet, dass $A-\lambda$ Erzeuger der linearen Halbgruppe $t\mapsto\exp(-\lambda\cdot t)\cdot S_t$ ist.\\
+Und weil $A$ abgeschlossen ist, ist
+\begin{align*}
+\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t f\d t&\in\dom(A)
+\qquad\text{und}\qquad
+(\lambda-A)\cdot\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t f\d t &=f
+\end{align*}
+Ähnlich gilt für $f\in\dom(A)$:
+\begin{align*}
+\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t(\lambda-A)f\d t=f
+\end{align*}
+Damit ist der Operator
+\begin{align*}
+R_\lambda:X\to X,\qquad f\mapsto\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t f\d t
+\end{align*}
+Links- und Rechtsinverse von $\lambda-A$. Außerdem gilt:
+\begin{align*}
+\Big\Vert(\lambda-A)^{-1}\Big\Vert_{\L(X)}
+&=\Vert R_\lambda\Vert_{\L(X)}\\
+&=\sup\limits_{\Vert f\Vert\leq 1}\left\Vert\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t f\d t\right\Vert\\
+&\leq\sup\limits_{\Vert f\Vert\leq 1}\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot M\cdot\exp(\omega\cdot t)\cdot\Vert f\Vert\d t\\
+&=\frac{M}{\lambda-w}
+\end{align*}
+\end{proof}
