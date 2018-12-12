@@ -345,7 +345,7 @@ Zwei weitere wichtige Resultate zu charakteristischen Funktionen:
 \end{align*}
 \item Seien $f,g\in L_1(\R^d)$. Dann gilt:
 \begin{align*}
-\widehat{f\ast g}(\xi)=\hat{f}(\xi)\cdot\hat{g}(\xi)
+\big(\widehat{f\ast g}\big)(\xi)=\hat{f}(\xi)\cdot\hat{g}(\xi)
 \end{align*}
 \end{enumerate}
 \end{theorem}
@@ -385,4 +385,73 @@ Bei $(\ast)$ wird substituiert: $z=x-y$, $\d z=\d x$
 \end{proof}
 
 Anwendung: Additionstheoreme für Normalverteilung, Poissonverteilung etc.
+
+\begin{beisp}\
+\begin{itemize}
+\item $X\sim\text{Pois}(\lambda_1),~Y\sim\text{Pois}(\lambda_2),~X\unab Y$. Dann gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)=\exp\Big(\lambda_1\cdot\big(\exp(i\cdot\xi)-1\big)-\lambda_2\cdot\big(\exp(i\cdot\xi)-1\big)\Big)\\
+&=\exp\Big(\big(\lambda_1+\lambda_2\big)\cdot\big(\exp(i\cdot\xi)-1\big)\Big)\\
+&\implies X+Y\sim\text{Pois}(\lambda_1+\lambda_2)
+\end{align*}
+\item $X\sim\mathcal{N}(\mu_1,\sigma_1^2),~Y\sim\mathcal{N}(\mu_2,\sigma_2^2),~X\unab Y$. Dann gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)\\
+&=\exp\left(i\cdot\xi\cdot\mu_1-\sigma_1^2\cdot\frac{\xi^2}{2}+i\cdot\xi\cdot\mu_2-\sigma_2^2\cdot\frac{\xi^2}{2}\right)\\
+&=\exp\left(i\cdot\xi\cdot(\mu_1+\mu_2)-(\sigma_1^2+\sigma_2^2)\cdot\frac{\xi^2}{2}\right)\\
+&\implies
+X+Y\sim\mathcal{N}(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)
+\end{align*}
+\item $X\sim\text{Exp}(\lambda_1),~Y\sim\text{Exp}(\lambda_2),~X\unab Y$. Dann gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)
+=\frac{\lambda_1}{\lambda_1-i\cdot u}\cdot\frac{\lambda_2}{\lambda_2-i\cdot u}
+=\frac{\lambda_1\cdot\lambda_2}{(\lambda_1-i\cdot u)\cdot(\lambda_2-i\cdot u)}\\
+&\implies X+Y\text{ \ul{nicht} Exponentialverteilt}
+\end{align*}
+\end{itemize}
+\end{beisp}
+
+\begin{bemerkung}
+Hierbei haben wir den Eindeutigkeitssatz vorweggenommen:\\
+Die Charakteristische Funktion $\Phi_X(\xi)$ charakterisiert die Verteilung von $X$ eindeutig, d.h.:
+\begin{align*}
+\Big(\forall\xi\in\R^d:\Phi_X(\xi)\Phi_Y(\xi)\Big)\Longleftrightarrow X\sim Y
+\end{align*}
+Beweis folgt in Kapitel 7.
+\end{bemerkung}
+
+\begin{theorem}[Charakterisierung der Unabhängigkeit]\label{theorem6.5CharakterisierungDerUnabhaengigkeit}\enter
+Seien $X$ und $Y$ zwei $\R^{d_1}$- bzw. $\R^{d_2}$-wertige Zufallsvariablen. Dann gilt:
+\begin{align*}
+X\unab Y\Longleftrightarrow\Big(\forall\xi\in\R^{d_1},\forall y\in\R^{d_2}:\Phi_{(X,Y)}\underbrace{(\xi,y)}_{\in\R^{d_1+d_2}}=\Phi_X(\xi)\cdot\Phi_Y(y)\Big)
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+\underline{Zeige "$\implies$": (einfach)}
+\begin{align*}
+\Phi_{(X,Y)}(\xi,y)
+&=\E\Big[\exp\big(i\cdot(X,Y)^T\cdot(\xi,y)\big)\Big]\\
+&=\E\big[\exp\big(i\cdot X^T\cdot\xi+i\cdot Y^T\cdot y\big)\Big]\\
+\overset{X\unab Y}&=
+\E\Big[\exp\big(i\cdot X^T\cdot\xi\big)\Big]\cdot\E\Big[\exp\big(i\cdot Y^T\cdot y\big)\Big]\\
+&=\Phi_X(\xi)\cdot\Phi_Y(y)
+\end{align*}
+
+\underline{Zeige "$\Longleftrightarrow$":}\\
+Wir konstruieren (Stichwort Produktraum!) $\tilde{X}$ und $\tilde{Y}$ mit $\tilde{X}\sim X$ und $\tilde{Y}\sim Y$ so, dass $\tilde{X}\unab\tilde{Y}$. Aus $\tilde{X}\sim X$ und $\tilde{Y}\sim Y$ folgt, das $(\tilde{X},\tilde{Y})$ die gleiche Randverteilung wie $(X,Y)$ besitzt. Es gilt:
+\begin{align*}
+\Phi_{(X,Y)}(\xi,y)
+\overset{\text{Vor}}&=
+\Phi_X(\xi)\cdot\Phi_Y(y)
+=\Phi_{\tilde{X}}(\xi)\cdot\Phi_{\tilde{Y}}(y)
+\stackrelnew{\text{Teil 1}}{\tilde{X}\unab\tilde{Y}}{=}
+\Phi_{(\tilde{X},\tilde{Y})}(\xi,y)\qquad\forall\xi\in\R^{d_1},y\in\R^{d_2}
+\end{align*}
+Mit dem Eindeutigkeitssatz folgt $(X,Y)\sim(\tilde{X},\tilde{Y})\implies X\unab Y$
+\end{proof}
 
