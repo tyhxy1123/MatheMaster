@@ -3143,13 +3143,13 @@ Wir haben Donsker \ref{satz7.16Donsker} gezeigt, allerdings unter der \ul{stärk
 
 %Ferger: Ich bin mit meinem Leben ja sehr zufrieden. [...] Das anstregendste als Professor ist das Tafelwischen. Ansonsten ist der Job leicht verdientes Geld. 
 
-%\setcounter{satz}{15}
-%\begin{bemerkungnr}\label{bemerkung7.16Einhalb} %7.16. Einhalb
-\begin{bemerkung}
+\setcounter{satz}{15}
+\begin{bemerkungnr}\label{bemerkung7.16Einhalb} %7.16. Einhalb
+%\begin{bemerkung}
 Unser Beweis lässt sich sofort übertragen auf Dreiecksschemata\\ $\big\lbrace\xi_{i,n}:1\leq i\leq n,n\in\N\big\rbrace$ mit $\xi_{1,n},\ldots,\xi_{n,n}$ i.i.d. $\sim H$ (verteilt nach Verteilungsfunktion $H$), wobei die Verteilungsfunktion $H$ nicht von $n$ abhängt und $\E\big[\xi_{i,n}\big]=0$ und $\E\big[\xi_{i,n}^4\big]<\infty$ und $\Var(\xi_{i,n})=1$. \nl
 Prokhorov (1956), \textit{Convergence of random processes and limit theorems in probability theory, Theory of Probability and its applications 1}, Seite 157-214, zeigt, dass auch hier die Existenz zweiter Momente $\E\big[\xi_{i,n}^2\big]<\infty$ ausreicht.
-\end{bemerkung}
-%\end{bemerkungnr}
+%\end{bemerkung}
+\end{bemerkungnr}
 
 Seien $(\xi_i)_{i\geq1}$ i.i.d. $\sim F$ mit $\E\big[\xi_1\big]=\mu\in\R$ und $\sigma^2:=\Var(\xi_1)\in(0,\infty)$. Dann ist Donsker \ref{satz7.16Donsker} anwendbar auf die \textbf{standardisierten Zufallsvariablen}
 \begin{align*}
@@ -3177,6 +3177,188 @@ X\sim(\mu,\sigma^2):\Longleftrightarrow\E[X]=\mu\qquad\text{und}\qquad\Var(X)=\s
 \end{notation}
 
 Wir betrachten das \underline{Change-Point-Problem:}
+% mit diesem Problem hat Ferger seine Uni-Karriere gestartet
+$X_{1,n},\ldots,X_{n,n},n\in\N$ unabhängig mit 
+\begin{align*}
+\left\lbrace\begin{array}{cl}
+X_{i,n}\text{ i.i.d.}\sim(\mu,\sigma^2), &\falls 1\leq i\leq\tau_n\\
+X_{i,n}\text{ i.i.d.}\sim(\mu,\tau^2), &\falls \tau_n< i\leq n
+\end{array}\right.
+\end{align*}
+wobei $\tau_n\in\lbrace1,\ldots,n\rbrace$ \ul{unbekannt} (der sogenannte \textbf{Change-point\\ (moment of change)}) 
 
+\begin{align*}
+\underbrace{X_{1,n},\ldots,X_{\tau_n,n}}_{\text{i.i.d.}\sim(\mu,\sigma^2)}\qquad\underbrace{X_{\tau_n+1,n},\ldots,X_{n,n}}_{\text{i.i.d.}\sim(\nu,\tau^2)}
+\end{align*}
+\underline{Annahmen:} $\mu,\sigma^2$ bekannt, $\nu,\tau^2$ unbekannt, $\nu>\mu$\nl
+\underline{Ziel:} Finde Test für 
+$H_0:\tau_n=n$, d.h. es hat kein Wechsel stattgefunden vs. $H_1:1\leq\tau_n<n$. Dazu betrachte
+\begin{align*}
+S_k:=S_{k,n}&:=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^k\underbrace{\frac{X_{i,n}-\mu}{\sigma}}_{=:\xi_{i,n}}&\forall& 0\leq k\leq n\\
+\E[S_k]&=0\qquad	&\forall& 0\leq k\leq\tau_n
+\end{align*}
+da
+\begin{align*}
+S_k&=S_{\tau_n}+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=\tau_n+1}^k\frac{X_{i,n}-\mu}{\sigma}
+\end{align*}
+folgt
+\begin{align*}
+\E[S_k]
+&=0+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=\tau_n+1}^k\frac{\overbrace{\E[X_{i,n}]}^{=\nu}-\mu}{\sigma}
+=\frac{1}{\sqrt{n}}\cdot\big(k-\tau_n\big)\cdot\frac{\nu-\mu}{\sigma}\qquad\forall\tau_n<k\leq n
+\end{align*}
+%TODO Hier Plot von $(k,\E[S_k)]$ einfügen 
+%für k\leq\tau_n ist es immer 0,
+%für k>\tau_n wächst es monoton
+%TODO Hier Plot von $(k,S_k)$ einfügen, unter H_1:
+%für k\leq\tau_n ist es ein "rumzappeln" um die X-Achse
+%für k>\tau_n gibt es dann einen "Drift" nach oben
+%TODO Hier Plot von $(k,S_k)$ einfügen, unter H_0:
+%hier kein Drift nach oben, nur herumzappeln um die x_Achse
 
+Planversibler Test:
+$H_0$ verwerfen $:\Longleftrightarrow T_n:=\max\limits_{0\leq k\leq n} S_k>k_\alpha$\nl
+\underline{Ziel:} Bestimme kritischen Wert $k_\alpha$
 
+\begin{lemma}\label{lemma7.17}
+Sei $\underline{y}=\big(y_0,y_1,\ldots,y_n\big)\in\R^{n+1}$ und $h(\ul{y})$ der Polygonzug durch die Punkte $\left(\frac{k}{n},y_k\right)_{0\leq k\leq n}$. Dann gilt:
+\begin{enumerate}[label=(\arabic*)]
+\item $\begin{aligned}
+\max\limits_{0\leq k\leq n}y_k=\max\limits_{0\leq t\leq 1} h(\ul{y})(t)
+\end{aligned}$
+%TODO Hier  könnte man eine Skizze einfügen
+\item $\begin{aligned}
+\max\limits_{0\leq k\leq n}\big|y_k\big|=\max\limits_{0\leq t\leq 1} \big|h(\ul{y})(t)\big|
+\end{aligned}$
+\item $\begin{aligned}
+\ul{y},\ul{z}\in\R^{n+1}\implies h\big(\ul{y}+\ul{z}\big)=h\big(\ul{y}\big)+h\big(\ul{z}\big)
+\end{aligned}$
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\underline{Zeige (1):}
+Gemäß der Zwei-Punkte-Formel gilt:
+\begin{align}\label{eqProof7.17Stern}\tag{$\ast$}
+h\big(\ul{y}\big)(t)
+&=y_{k-1}+\big(n\cdot t-(k-1)\big)\cdot\big(y_k-y_{k-1}\big)
+\qquad\forall t\in\left[\frac{k-1}{n},\frac{k}{n}\right],\forall 1\leq k\leq n
+\end{align}
+Da
+\begin{align*}
+h\big(\ul{y}\big)\left(\frac{k}{n}\right)\overset{\text{Def}}{=}y_k\qquad\forall 0\leq k\leq n
+\end{align*}
+gilt in (1) und (2) in jedem Fall "$\leq$". Umgekehrt sei $t\in[0,1]$ beliebig. Dann:
+\begin{align*}
+\exists 1\leq k\leq n:t\in\left[\frac{k-1}{n},\frac{k}{n}\right]
+\end{align*}
+\underline{Fall 1:} $y_k\geq y_{k-1}$\\
+Dann ist $h\big(\ul{y}\big)$ monoton wachsend auf $\left[\frac{k-1}{n},\frac{k}{n}\right]$ und es gilt
+\begin{align*}
+h\big(\ul{y}\big)(t)\leq h\big(\ul{y}\big)\left(\frac{k}{n}\right)=y_k\leq\max\limits_{0\leq k\leq n} y_k
+\end{align*}
+\underline{Fall 2:} $y_k<y_{k-1}$\\
+Dann ist $h\big(\ul{y}\big)$ monoton fallend und es gilt
+\begin{align*}
+h\big(\ul{y}\big)(t)\leq h\big(\ul{y}\big)\left(\frac{k-1}{n}\right)=y_{k-1}\leq\max\limits_{0\leq k\leq n}y_k
+\end{align*}
+
+\underline{Zeige (2):} In Fall 1 gilt:
+\begin{align*}
+h\big(\ul{y}\big)(t)&\leq y_k\leq\big|y_k\big|\leq\max\limits_{0\leq k\leq n}\big|y_k\big|\\
+h\big(\ul{y}\big)(t)&\geq y_{k-1}\geq-\big|y_{k-1}\big|\geq-\max\limits_{0\leq k\leq n}\big|y_k\big|\\
+\implies
+\Big|h\big(\ul{y}\big)(t)\Big|&\leq\max\limits_{0\leq k\leq n}\big| y_k\big|
+\end{align*}
+Fall 2 analog. Somit folgt (2).\nl
+\underline{Zeige (3):}\\
+Folgt aus \eqref{eqProof7.17Stern}.
+\end{proof}
+
+Es folgt aus dem Lemma \ref{lemma7.17} (1) (mit $y_k=S_k$):
+\begin{align*}
+T_n:&=\max\limits_{0\leq k\leq n} S_k
+\overset{\ref{lemma7.17}}=
+\max\limits_{0\leq t\leq 1}\underbrace{h\big(S_0,\ldots,S_n\big)}_{\stackrel{\text{Def}}{=}X_n=\text{ Partialsummenproz.}}(t)\\
+T_n
+&=\sup\limits_{0\leq t\leq 1} X_n(t)=M(X_n),\text{ wobei}\\
+M&:C\big([0,1]\big)\to\R,\qquad M(f):=\sup\limits_{0\leq t\leq 1} f(t),\qquad\forall C\big([0,1]\big)
+\end{align*}
+Da 
+\begin{align*}
+\Big|M(f)-M(g)\Big|\overset{(!)}{\leq}\sup\limits_{0\leq t\leq 1}\Big|f(t)-g(t)\Big|=d(f,g)
+\end{align*}
+ist $M$ stetig auf $C\big([0,1]\big)$ folgt mit Donsker \ref{bemerkung7.16Einhalb} und dem CMT \ref{satz4.10ContinuousMappingTheorem}:
+\begin{align*}
+T_n=M(X_n)\stackrel{\L}{\longrightarrow} M(B)=\sup\limits_{0\leq t\leq 1} B(t),~\text{\ul{falls} } H_0\text{ gilt}
+\end{align*}
+Es gilt (siehe z.B. Borodin + Salminen):
+\begin{align*}
+\sup\limits_{0\leq t\leq 1}B(t)
+\overset{\L}&=
+\big|\mathcal{N}(0,1)\big|\quad\Big(=|Z|,~Z\sim\mathcal{N}(0,1)\Big)\\
+&\implies
+\underbrace{\P_{H_0}\big(T_n>x\big)}_{=1-\P\big(T_n\leq x\big)}\stackrel{n\to\infty}{\longrightarrow}\P\big(|Z|>x\big)
+=1-\P\big(|Z|\leq x\big)\qquad\forall x\in\R,
+\end{align*}
+da Verteilungsfunktion von $|Z|$ stetig auf ganz $\R$, denn:
+\begin{align*}
+\P\big(|Z|>x\big)
+\stackrelnew{Z\stackeq{\L}-Z}{\text{Sym}}{=}
+2\cdot\big(1-\Phi(x)\big)
+\end{align*}
+Also folgt
+\begin{align*}
+\P\big(T_n>k_\alpha\big)\stackrel{n\to\infty}{\longrightarrow}2\cdot\big(1-\Phi(k_\alpha)\big)\stackeq{!}\alpha\\
+2\cdot\big(1-\Phi(k_\alpha)\big)=\alpha
+\Longleftrightarrow 1-\frac{\alpha}{2}=\Phi(k_\alpha)\\
+\Longleftrightarrow k_\alpha=\Phi^{-1}\left(1-\frac{\alpha}{2}\right)=: u_{1-\frac{\alpha}{2}}
+\end{align*}
+Es folgt: Der Test $H_0$ verwerfen $:\Longleftrightarrow T_n> u_{1-\frac{\alpha}{2}}$\\ %\alpha/2-Quantil der Standardnormalverteilung
+ist ein \textbf{asymptotischer Niveau-$\alpha$-Test für $H_0$}, d.h.
+\begin{align*}
+\limn\P_{H_0}\big(H_0\text{ wird verworfen}\big)=\alpha\qquad\forall \alpha\in(0,1)
+\end{align*}
+
+Falls nur bekannt, dass $\nu\neq\mu$, so modifiziere obigen Test zu\\
+$H_0$ verwerfen $:\Longleftrightarrow\hat{T}_n:=\max\limits_{0\leq k\leq n}\big|S_k\big|>c_\alpha$\\
+Aus \ref{lemma7.17} (2) folgt:
+\begin{align*}
+\hat{T}_n=\sup\limits_{0\leq t\leq 1}\big|X_n(t)\big|=\Vert X_n\Vert_\infty=:\hat{M}(X_n)
+\end{align*}
+Da $\hat{M}$ stetig auf $C\big([0,1]\big)$, folgt analog wie oben
+\begin{align*}
+\hat{T}_n=\hat{M}(X_n)\stackrel{\L}{\longrightarrow}\hat{M}(B)=\sup\limits_{0\leq t\leq 1}\big|B(t)\big|
+\end{align*}
+Es gilt (vergleiche z.B. Shorak und Wellner (1986) \textit{Empirical Processes with applications to statistics}):
+\begin{align*}
+H(x):&=\P\left(\sup\limits_{0\leq t\leq 1}\big|B(t)\big|\leq x\right)
+=\left\lbrace\begin{array}{cl}
+\frac{4}{\pi}\cdot\sum\limits_{k\in\N_0}\frac{(-1)^k}{2\cdot k+1}\cdot\exp\left(-\frac{(2\cdot k+1)^2\cdot\pi^2}{8\cdot x^2}\right), &\falls x>0\\
+0, &\falls x\leq 0
+\end{array}\right.
+\end{align*}
+Ferner ist $H$ stetig auf $\R$ und streng monoton wachsend auf $(0,\infty)$. Somit erhalten wir (analog wie oben)
+\begin{align*}
+\limn\P_{H_0}\Big(H_0\text{ wird verworfen}\Big)=\alpha\qquad\forall\alpha\in(0,1)
+\end{align*}
+\ul{falls} man $c_\alpha:=H^{-1}(1-\alpha)$ wählt.\\
+Natürlich ist die Annahme $\mu$ und $\sigma^2$ beide bekannt sehr restriktiv. Falls beide Parameter unbekannt, so ersetze sie durch Schätzer (sogenannte \textbf{Plug-in-Methode}).
+\begin{align*}
+\overline{X}_n:=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i,\qquad S_n^2:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big(X_i-\overline{X}_n\big)^2
+\end{align*}
+Wir wissen
+\begin{align*}
+\big(\overline{X}_n,S_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\sigma^2\big)\qquad\P_{H_0}\text{-f.s.}
+\end{align*}
+Beachte: Es gibt auch ein starkes Gesetz der großen Zahlen (SGGZ bzw. auf englisch SLLN) für Dreiecksschemata (arrays), siehe z.B. Chow und Teicher (1997) \textit{Probability Theory - Independence, Interchangeability, Martingales}\nl
+Das Ersetzen von $\mu$ und $\sigma^2$ in der Statistik
+\begin{align*}
+T_n=\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\left|\sum\limits_{i=1}^k\frac{X_i-\mu}{\sigma}\right|
+\end{align*}
+liefert
+\begin{align*}
+T_n^\ast
+:&=\frac{1}{S_n}\cdot\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\cdot\left|\sum\limits_{i=1}^k \big(X_{i,n}-\overline{X}_n\big)\right|
+\mit S_n:=\sqrt{S_n^2}
+\end{align*}
