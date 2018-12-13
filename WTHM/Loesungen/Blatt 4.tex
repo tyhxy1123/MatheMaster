@@ -1,0 +1,140 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../latex/commands_stochastik}
+\input{../../WTHM/commands_WTHM}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski \& Robert Walter}
+\chead{}
+\ohead{WTHM WiSe 18 19}
+\ifoot{Aufgabenblatt 4}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+\section*{Aufgabe 1}
+Sei $(X_n)_{n\in\N}$ eine Folge von iid Zufallsvariablen in $L_1$ und 
+\begin{align*}
+R_n:=\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j,\qquad
+\G_n:=\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)
+\end{align*}
+Dann gilt:
+\begin{enumerate}[label=\alph*)]
+\item $\G_n=\sigma\big(R_n,X_{n+1},X_{n+2},\ldots\big)$
+\item $(R_n)_{n\in\N}$ ist Rückwärtsmartingal bzgl. $(\G_n)_{n\in\N}$
+\item Es gilt das starke Gesetz der großen Zahlen:
+\begin{align*}
+\limn R_n=\E[X_1]\text{ f.s.}
+\end{align*}
+\end{enumerate}
+
+\begin{proof}
+\underline{Zeige a):}\\
+%TODO
+\underline{Zeige b):}\\
+%TODO
+\underline{Zeige c):}\\
+Wir verwenden hier das 0-1-Gesetz von Kolmogorov.
+%TODO
+\end{proof}
+
+\section*{Aufgabe 2}
+Wir berechnen die charakteristische Funktionen folgender Verteilungen:
+\begin{enumerate}[label=a)]
+\item Binomial-, Poisson- und geometrische Verteilung
+\item Exponential-, Laplace- und Cauchyverteilung
+\end{enumerate}
+
+\begin{lösung}
+\underline{Zur Binomialverteilung:}\\
+%TODO
+\underline{Zur Poissonverteilung:}\\
+%TODO
+\underline{Zur geometrischen Verteilung:}\\
+%TODO
+\underline{Zur Exponentialverteilung:}\\
+%TODO
+\underline{Zur Laplaceverteilung:}\\
+%TODO
+\underline{Zur Cauchyverteilung:}\\
+%TODO
+\end{lösung}
+
+\section*{Aufgabe 3}
+Seien $X$ und $X'$ unabhängige $\R^d$-wertige Zufallsvariablen mit der gleichen Verteilung $F$.
+\begin{enumerate}[label=\alph*)]
+\item Berechne die charakteristische Funktion von $Y=X-X'$
+\item Sei $B$ unabhängig von $(X,X')$ mit $\P(B=0)=\P(B=1)=\frac{1}{2}$. Berechne die charakteristische Funktion von $Z=B\cdot X+(B-1)\cdot X'$.
+\end{enumerate}
+Sind die Zufallsvariablen $Y$ und $Z$ symmetrisch?
+
+\begin{lösung}
+\underline{Zu a):}\\
+%TODO
+\underline{Zu b):}\\
+%TODO
+\underline{Zur Symmetrie:}\\
+%TODO
+\end{lösung}
+
+\section*{Aufgabe 4}
+Sei $\alpha\in\N_0^d$ ein Multiindex, $b\in\R^d$ und $f,g$ Funktionen in $C^\alpha(\R^d)$.
+\begin{enumerate}[label=\alph*)]
+\item Berechne $\partial_x^\alpha\exp\big(b^T\cdot x\big)$
+\item Zeige die Leibniz-Regel:
+\begin{align*}
+\partial^\alpha(f\cdot g)=\sum\limits_{\begin{subarray}{c}\beta\leq\alpha\\\beta\in\N_0^d\end{subarray}}\begin{pmatrix}
+\alpha\\\beta
+\end{pmatrix}\cdot\partial^\beta f\cdot\partial^{\alpha-\beta}g
+\end{align*}
+\end{enumerate}
+
+\begin{lösung}
+\underline{Zu a):}
+\begin{align*}
+\partial_x^\alpha\exp\big(b^T\cdot x\big)
+&=
+\end{align*}
+%TODO
+\underline{Zu b):}\\
+Wir führen eine Induktion nach $|\alpha|\in\N$ durch:\nl
+\ul{IA:} Sei $|\alpha|=0$ %TODO
+\nl
+\ul{IV:} Gelte die Leibniz-Regel für beliebiges, aber festes $\alpha\in\N_0^d$ mit $|\alpha|=n\in\N$.\nl
+\ul{IS:}
+%TODO
+\end{lösung}
+
+\section*{Aufgabe 5}
+\begin{enumerate}[label=\alph*)]
+\item Sei $(X,Y)$ bivariat normalverteilt. Zeige mit charakteristischen Funktionen: $X$ und $Y$ sind unabhängig genau dann, wenn sie unkorreliert sind.
+\item Sei $X$ Cauchyverteilt und setze $Y=X$. Zeige, dass für die charakteristischen Funktionen gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)=\Phi_X(\xi)\cdot\Phi_Y(\xi)\qquad\forall\xi\in\R
+\end{align*} 
+obwohl $X$ offensichtlich \ul{nicht} unabhängig von $Y$ ist.
+\end{enumerate}
+
+\begin{lösung}
+\underline{Zu a):}\\
+%TODO
+\underline{Zu b):}\\
+%TODO
+\end{lösung}
+\end{document}
