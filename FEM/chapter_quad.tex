@@ -39,11 +39,11 @@ with $w_k \in \R$ (weights) and $x_k \in \Omega$ (points/nodes). Together the se
 \subsection{Transformation}
 Integral Transformation, $\hat{\Omega}, \Phi(\hat{\Omega}) = \Omega$
 \begin{align}
-	\int \limits_{\Phi(\Omega)}  f(y) \diff y &= \int \limits_{\hat{\Omega}} f(\Phi(y)) |det(D\Phi(x))| \diff x \\
-	&\approx \displaystyle \sum^{N_Q}_{k=1} f(\underbrace{\Phi(x_k)}_{\in \Omega}) \underbrace{|det(D\Phi)|}_{\in \R} \diff
+	\int \limits_{\Phi(\Omega)}  f(y) \diff y &= \int \limits_{\hat{\Omega}} f(\Phi(y)) |\det(D\Phi(x))| \diff x \\
+	&\approx \displaystyle \sum^{N_Q}_{k=1} f(\underbrace{\Phi(x_k)}_{\in \Omega}) \underbrace{|\det(D\Phi)|}_{\in \R} \diff
 \end{align}
 Note that in our case $\Phi$ is an affine linear function and thus $D\Phi$ does not depend on $x$.
-$\{(|det(D\Phi)|w_k,\Phi(x_k))\}$ is a quadrature rule on $\Omega$.
+$\{(|\det(D\Phi)|w_k,\Phi(x_k))\}$ is a quadrature rule on $\Omega$.
 \subsection{Exactness}
 Aim: measure the approximation quality\\
 \underline{Notation}
@@ -99,7 +99,6 @@ $\hat{\Omega} = [0,1]\times [0,1]$ $\implies \{\{x_k\}\times\{x_k\} \}$ quadratu
 \input{tikz/chapter_quad/nodes_quadrat}
 $\hat{\Omega} = \hat{T}$\\
 First Approach: transform $[0,1]\times [0,1]$ to $\hat{T}$.\\
-%%TODO add pic
 \input{tikz/chapter_quad/nodes_T_hat}
 Second Approach: derive optimal rules on $\hat{T}$\\
 $N_Q = 1$ $\implies$ exact for $\{1,x,y\}$
@@ -115,3 +114,4 @@ Q(f)= w_1f(x_1,y_1)
 \end{align*}
 \input{tikz/chapter_quad/other_nodes_T_hat}
 Note that in the above picture the dashed lines show the position of nodes for higher order quadrature rules.
+%%TODO add picture for higher order secpnd approach
