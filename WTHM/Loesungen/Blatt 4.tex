@@ -32,7 +32,7 @@
 Sei $(X_n)_{n\in\N}$ eine Folge von iid Zufallsvariablen in $L_1$ und 
 \begin{align*}
 R_n:=\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j,\qquad
-\G_n:=\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)
+\G_n:=\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)\qquad\forall n\in\N
 \end{align*}
 Dann gilt:
 \begin{enumerate}[label=\alph*)]
@@ -46,12 +46,52 @@ Dann gilt:
 
 \begin{proof}
 \underline{Zeige a):}\\
+Wegen der Definition
+\begin{align*}
+\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)
+\stackeq{\text{Def}}\sigma\Big(\big\lbrace R_i^{-1}(A):A\in\B(\R),i\geq n\big\rbrace\Big)
+\end{align*}
+genügt es zu zeigen, dass 
+\begin{align*}
+\left\lbrace X_i^{-1}(A):A\in\B(\R),i>n\right\rbrace=\left\lbrace R_i^{-1}(A):A\in\B(\R),i>n\right\rbrace
+\end{align*}
+gilt. Sei also...\nl
 %TODO
 \underline{Zeige b):}\\
-%TODO
-\underline{Zeige c):}\\
-Wir verwenden hier das 0-1-Gesetz von Kolmogorov.
-%TODO
+\begin{enumerate}
+\item $(\G_n)_{n\in\N}$ ist eine absteigende Folge, denn nach Definition gilt $\G_{n+1}\subseteq\G_n~\forall n\in\N$.
+\item Für beliebiges $n\in\N$ ist $R_n$ $\G_n$-messbar (nach Konstruktion von $(\G_n)_{n\in\N}$).
+\item $\E\big[|R_n|]<\infty~\forall n\in\N$, denn:
+\begin{align*}
+\E\big[|R_n|\big]
+=\E\left[\left|\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j\right|\right]\stackrelnew{\text{Mono}}{\text{DU}}{\leq}
+\E\left[\frac{1}{n}\cdot\sum\limits_{j=0}^n\big|X_j\big|\right]\overset{\text{Lin}}{=}
+\frac{1}{n}\cdot\sum\limits_{j=0}^n\underbrace{\E\big[|X_j|\big]}_{\underset{X_j\in L_1}{<}\infty}<\infty
+\end{align*} 
+\item Es gilt $R_n=\E\big[R_k~\big|~\G_n\big]~\forall k\leq n$, denn: %TODO
+\begin{align*}
+\E\big[R_k~\big|~\G_n\big]
+\overset{\text{Def}}&=
+\E\left[\left.\frac{1}{k}\cdot\sum\limits_{j=0}^k X_j~\right|~\G_n\right]\\
+\overset{\text{Lin}}&=
+\frac{1}{k}\cdot\sum\limits_{j=0}^k\E\big[X_j~\big|~\G_n\big]\\
+&=\ldots\\
+&=\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j\\
+\overset{\text{Def}}&=
+R_n
+\end{align*}
+\end{enumerate}
+\underline{Zeige c):}\\ %TODO Idee ist da, Details fehlen
+Da $(R_n)_{n\in\N}$ nach b) Rückwärtsmartingal ist, konvergiert der stochastische Prozess $(R_n)_{n\in\N}$ nach Theorem 5.5. Sei die Zufallsvariable $R_\infty\in L_1(\G_\infty)$ dieser Grenzwert.\\
+Da die Zufallsvariablen $X_1,X_2,\ldots$ unabhängig sind  (SIND SIE DAS???), können wir das 0-1-Gesetz von Kolmogorov anwenden und erhalten, dass $\G_\infty$ $\P$-trivial ist. Folgich (WARUM???) ist die Grenzufallsvarible $R_\infty$ fas t sicher konstant, also $R_\infty\equiv c$ f.s. für ein $c\in\R$.\\
+Aus der Rückwärtsmartingaleigenschaft folgt:
+\begin{align*}
+R_n&=\E\big[R_1~\big|~\G_n\big]=\E\big[X_1~\big|~\G_n\big] &\forall n\in\N\\
+\overset{\E[\cdot]}{\implies}
+\E\big[R_n\big]&=\E\Big[\E\big[X_1~\big|~\G_n\big]\Big]\overset{\text{Tower}}{=}\E\big[X_1\big] &\forall n\in\N\\
+\implies c&=\E[c]=\E[\R_\infty]=\E\left[\limn R_n\right]\\\overset{???}&{=}\limn\E[R_n]=\limn\E[X_1]=\E[X_1]\\
+\implies\limn R_n\overset{???}&{=}\E[X_1]
+\end{align*}
 \end{proof}
 
 \section*{Aufgabe 2}
