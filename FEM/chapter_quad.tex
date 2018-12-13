@@ -98,7 +98,7 @@ $N_Q = 2$ $\implies$ exact for $\{1,x,x^2.x^3\}$
 $\hat{\Omega} = [0,1]\times [0,1]$ $\implies \{\{x_k\}\times\{x_k\} \}$ quadrature points on $\hat{\Omega}$
 \input{tikz/chapter_quad/nodes_quadrat}
 $\hat{\Omega} = \hat{T}$\\
-First Approach: transform $[0,1]\times [0,1]$ to $\hat{T}$.\\
+First Approach: transform $[0,1]\times [0,1]$ to $\hat{T}$.
 \input{tikz/chapter_quad/nodes_T_hat}
 Second Approach: derive optimal rules on $\hat{T}$\\
 $N_Q = 1$ $\implies$ exact for $\{1,x,y\}$
@@ -111,6 +111,30 @@ Q(f)= w_1f(x_1,y_1)
 \frac{1}{6}&= I(x)= Q(x) = w_1x_1  \\
 \frac{1}{6}&= I(y)= Q(y) = w_1y_1\\
 \end{rcases} \implies w_1= \frac{1}{2}, x_1=y_1 = \frac{1}{3}
+\end{align*}
+something is probably wrong here\\
+$N_Q = 3$ $\implies$ exact for $\{1,x,y,x^2,y^2\}$
+\begin{equation*}
+Q(f)= w_1f(x_1,y_1) + w_2f(x_2,y_2) + w_3f(x_3,y_3)
+\end{equation*}
+\begin{align*}\implies
+\begin{cases}
+(x_1,y_1)&= (1/6,1/6),  \qquad w_1= 1/6\\
+(x_2,y_2)&= (2/3,1/6),  \qquad w_2= 1/6\\
+(x_3,y_3)&= (1/6,2/3),  \qquad w_3= 1/6
+\end{cases} 
+\end{align*}
+$N_Q = 4$ $\implies$ exact for $\{1,x,y,x^2,y^2,x^3,y^3\}$
+\begin{equation*}
+Q(f)= w_1f(x_1,y_1) + w_2f(x_2,y_2) + w_3f(x_3,y_3) + w_4f(x_4,y_4)
+\end{equation*}
+\begin{align*}\implies
+\begin{cases}
+(x_1,y_1)&= (1/3,1/3),  \qquad w_1= \frac{-27}{96}\\
+(x_2,y_2)&= (2/3,1/6)  \\
+(x_3,y_3)&= (1/6,2/3),  \qquad w_{2,3,4}= \frac{25}{96}\\
+(x_4,y_4)&= (1/6,2/3)
+\end{cases} 
 \end{align*}
 \input{tikz/chapter_quad/other_nodes_T_hat}
 Note that in the above picture the dashed lines show the position of nodes for higher order quadrature rules.
