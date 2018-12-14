@@ -1,0 +1,180 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Inversion der Fouriertransformation und Eindeutigkeitssatz} %7
+
+Zentrale Frage: Eindeutigkeit der Fouriertransformation / Charakteristischen Funktion
+\begin{align*}
+\hat{f}=\hat{g} \overset{?}&\implies f= g\\
+\Phi_X=\Phi_Y \overset{?}&\implies X\sim Y
+\end{align*}
+
+Wichtig z.B. in Theorem \ref{theorem6.5CharakterisierungDerUnabhaengigkeit}.
+
+\section{Inversion der Fouriertransformation}
+\begin{defi}
+Für $f:\R^d\to\C$ ist der  \textbf{Träger (Support)} definiert als
+\begin{align*}
+\supp(f):=\overline{\Big\lbrace x\in\R^d:f(x)\neq0\Big\rbrace}\subseteq\R^d
+\end{align*}
+Hierbei ist der Abschluss in $\R^d$ gemeint.
+\end{defi}
+
+%TODO Hier könnte man eine Skizze einfügen
+
+Es gilt:
+\begin{align*}
+x\not\in\supp(f)&\implies f(x)=0\\
+x\in\supp(f)&\implies\text{ Jede Umgebung von $x$ enthält $y$ mit $f(y)\neq0$}
+\end{align*}
+
+\begin{defi}\
+\begin{enumerate}[label=(\alph*)]
+\item Der (Vektor-)Raum der \textbf{Testfunktionen} ist gegeben durch
+\begin{align*}
+C_c^\infty(\R^d):=\Big\lbrace f:\R^d\to\C:\supp(f)\text{ beschränkt und $f$ beliebig ist stetig diffbar}\Big\rbrace
+\end{align*}
+Der Subindex $c$ steht hierbei für "compact Support".
+\item Der (Vektor-)Raum der \textbf{Schwartz-Funktionen (rapidly decreasing functions)} ist definiert durch
+\begin{align*}
+	S(\R^d)&:=\Big\lbrace f:\R^d\to\C: f\text{ beliebig oft diffbar und }C_{n,\alpha}(f)<\infty~\forall n\in\N,\alpha\in\N_0\Big\rbrace
+\end{align*}
+mit
+\begin{align*}
+C_{n,\alpha}(f)&:=\sup\limits_{x\in\R^d}\left|\left(1+|x|^2\right)^N\cdot\partial^\alpha f(x)\right|\qquad\forall N\in\N,\forall\alpha\in\N_0^\alpha
+\end{align*}
+Das heißt
+\begin{align*}
+f\in S(\R^d) &\implies\left|\partial^\alpha f(x)\right|\leq C_{n,\alpha}(f)\cdot\big(1+|x|^2\big)^{-N}\qquad\forall x\in\R^d
+\end{align*}
+"Alle Ableitungen fallen schneller als polynomiell."
+\end{enumerate}
+\end{defi}
+
+\begin{beisp}\
+\begin{enumerate}
+\item Beispiel einer Testfunktion:
+
+\begin{align*}
+f(x)=\left\lbrace\begin{array}{cl}
+\exp\left(\frac{b^2}{x^2-b^2}\right), &\falls x\in[-b,b],~b>0\\
+0, &\sonst
+\end{array}\right.\qquad\forall x\in\R
+\end{align*}
+%TODO Hier Skizze einfügen
+\item Beispiel einer Schwartz-Funktion:
+\begin{align*}
+f(x)=\exp\left(-\frac{x^2}{2}\right)\qquad\forall x\in\R
+\end{align*}
+%TODO Hier Skizze einfügen
+\end{enumerate}
+\end{beisp}
+
+\begin{bemerkung}
+$C_c^\infty$ und $S(\R^d)$ können mit Topologie versehen werden $\implies$ lokal-konvexe topologische Vektorräume, aber \underline{keine Banachräume}.
+\end{bemerkung}
+
+\begin{proposition}\label{proposition7.1}\
+\begin{enumerate}[label=(\alph*)]
+\item Es gilt
+\begin{align*}
+C_c^\infty(\R^d)\subseteq S(\R^d)\subseteq L_p(\R^d)\qquad\forall p\in[1,\infty]
+\end{align*}
+und
+\begin{align*}
+	S(\R^d)\text{ ist dicht in }L_p(\R^d)\qquad\forall p\in[1,\infty)
+\end{align*}
+\item $\forall K\subseteq\R^d$ kompakt $\exists$ Folge $(u_n)_{n\in\N}\subseteq C_c^\infty(\R^d)$ so, dass $0\leq u_n\leq 1~\forall n\in\N$ und $u_n\downarrow\indi_K$ für $n\to\infty$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Vielleicht als Übungsaufgabe
+\end{proof}
+
+\begin{theorem}\label{theorem7.2}
+Die Fourier-Transformation bildet $S(\R^d)$ nach $S(\R^d)$ ab.
+\end{theorem}
+
+\begin{proof}
+Sei $f\in S(\R^d)$. Dann ist $f\in L_1(\R^d)$. Nach
+Theorem \ref{theorem6.1EigenschaftenDerFTCF}
+%Proposition \ref{proposition7.1} %TODO 6.1 oder 7.1?
+existiert die FT $\hat{f}$. Wähle Multiindizes $\alpha,\beta\in\N_0^d$ und setze
+\begin{align*}
+g_{\alpha,\beta}(x):=\partial_x^\beta\left((i\cdot x)^\alpha\cdot f(x)\right)
+\end{align*}
+Leibniz-Formel:
+\begin{align*}
+g_{\alpha,\beta}(x)
+&:=\sum\limits_{\begin{subarray}{c}\gamma\leq\beta\\\gamma\in\N_0^d\end{subarray}}\underbrace{\begin{pmatrix}
+\beta\\\gamma
+\end{pmatrix}\cdot\partial_x^\gamma(i\cdot x)^\alpha}_{\text{Polynom in $x$, Grad}\leq|\alpha|}\cdot\partial_x^{\beta-\gamma}f(x)
+\end{align*}
+Folglich gilt:
+\begin{align*}
+f\in S(\R^d)&\implies\partial^{\beta-\gamma} f\in S(\R^d) \\
+						&\implies g_{\alpha,\beta}\in S(\R^d)\\
+						&\implies g_{\alpha,\beta}\in L_1(\R^d)
+\end{align*}
+Wir berechnen die Fouriertransformation von $g_{\alpha,\beta}$:
+\begin{align*}
+\hat{g}_{\alpha,\beta}(\xi)
+&=\F\left(\partial_x^\beta\Big((i\cdot x)^\alpha\cdot f(x)\Big)\right)(\xi)\\
+\overset{\ref{korollar6.3}}&=
+(-i\cdot \xi)^\beta\cdot\F\left((i\cdot x)^\alpha\cdot f(x)\right)(\xi)\\
+\overset{\ref{korollar6.3}}&=
+(-i\cdot\xi)^\beta\cdot\partial_\xi^\alpha\hat{f}(\xi)
+\end{align*}
+\begin{align*}
+	&\implies&
+\left|\xi^\beta\cdot\partial_\xi^\alpha \hat{f}(\xi)\right| 
+&\leq\left|\hat{g}_{\alpha,\beta}(\xi)\right| \\
+&&&\leq\hat{g}_{\alpha,\beta}(0)\\
+&&&=\Vert g_{\alpha,\beta}\Vert_1<\infty \\
+&\implies&
+\sup\limits_{\xi\in\R^d}\big(1+|x|^2\big)^N\cdot\partial_\xi^\alpha\hat{f}(\xi)&<\infty\qquad\forall\alpha\in\N_0^d,\forall N\in\N \\
+	&\implies&\hat{f}\in S(\R^d)
+\end{align*}
+\end{proof}
+
+\begin{korollar}[Riemann-Lebesgue-Lemma]\label{korollar7.3RiemanndLebesgue-Lemma}\enter
+Die Fouriertransformation bildet $L_1(\R^d)$ nach $C_\infty(\R^d)$ ab.
+\end{korollar}
+
+\begin{bemerkung}
+\begin{align*}
+C_\infty(\R^d):=\Big\lbrace f:\R^d\to\C: f\text{ stetig und }\lim\limits_{|x|\to\infty}f(x)=0\Big\rbrace
+\end{align*}
+\end{bemerkung}
+
+\begin{proof}
+Dass $\hat{f}$ stetig ist, folgt aus Theorem \ref{theorem6.1EigenschaftenDerFTCF}. Außerdem:
+\begin{align*}
+\big|\hat{f}(\xi)\big|
+&\leq\hat{f}(0)=\Vert f\Vert_1\implies\hat{f}\in C_b(\R^d)
+\end{align*}
+Beachte: $C_c\subseteq C_\infty\subseteq C_b\subseteq C$.
+Proposition \ref{proposition7.1} liefert:
+\begin{align*}
+S(\R^n)&\text{ dicht in }L_1(\R^d)\implies\exists(f_n)_{n\in\N}\subseteq S(\R^n):\Vert f-f_n\Vert_1\stackrel{n\to\infty}{\longrightarrow}0
+\end{align*}
+\begin{align*}
+\big|\hat{f}(\xi)\big|
+&\leq\big|\hat{f}(\xi)-\hat{f}_n(\xi)\big|+\big|\hat{f}_n(\xi)\big|\\
+&=\Bigg|\int\limits_{\R^d}\underbrace{\exp(i\cdot\xi^T\cdot x)}_{|\cdot|=1}\cdot\big(f(x)-f_n(x)\big)\d x\Bigg|+\big|\hat{f}_n(\xi)\big|\\
+&\leq
+\int\limits_{\R^d}\big|\exp(i\cdot\xi^T\cdot x)\big|\cdot\big|f(x)-f_n(x)\big|\d x+\big|\hat{f}_n(\xi)\big|\d x\\
+&=\underbrace{\big\Vert f-f_n\big\Vert_1}_{<\varepsilon\text{ für $n$ groß}}+\underbrace{\big|\hat{f}_n(\xi)\big|}_{\stackrel{\ref{theorem7.2}}{\in} S(\R^d)}
+\end{align*}
+\begin{align*}
+&\implies
+\lim\limits_{|\xi|\to\infty}\big|\hat{f}(\xi)\big|\leq\varepsilon+\underbrace{\lim\limits_{|\xi|\to\infty}\big|f_n(\xi)\big|}_{=0}=\varepsilon\mit\varepsilon>0\\
+&\implies\lim\limits_{|\xi|\to\infty}\big|\hat{f}(\xi)\big|=0\\
+&\implies\hat{f}\in C_\infty(\R^d)
+\end{align*}
+\end{proof}
+
+
+
