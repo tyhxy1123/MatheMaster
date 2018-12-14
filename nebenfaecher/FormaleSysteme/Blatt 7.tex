@@ -124,7 +124,24 @@ Gilt.
 
 \section*{Aufgabe 3}
 Idee: Füge Zustände ein, so, dass an den Pfeilen Worte von höchstens Länge 1 sind.
-%TODO Tikz Bild
+
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state]           (q_2) [right=of q_1] {$q_3$};
+  \node[state]           (q_3) [right=of q_2] {$q_4$};
+  \node[state,accepting] (q_4) [right=of q_3] {$q_5$};
+  \node[state]           (q_5) [above=of q_0] {$q_6$};
+  \node[state,accepting] (q_6) [above right=of q_0] {$q_7$};
+  \path[->] (q_0) edge                node [above] {c} (q_1)
+                  edge [bend left=45] node [right] {a} (q_5)
+                  edge [bend right=10]node [below] {$\varepsilon$} (q_6)
+            (q_1) edge                node [above] {a} (q_2)
+            (q_2) edge                node [above] {b} (q_3)
+            (q_3) edge                node [above] {c} (q_4)
+            (q_5) edge [bend left=45] node [left] {b} (q_0);
+\end{tikzpicture}
 
 \section*{Aufgabe 4}
 Ziel: $\varepsilon$-Kanten entfernen: Dazu Anpassung von Übergangsrelation und Endzuständen:
@@ -135,14 +152,77 @@ F\cup\lbrace q_0\rbrace, &\falls q_0\stackrel{\varepsilon}{\longrightarrow}_\mat
 F, &\sonst
 \end{array}\right.
 \end{align*}
-%TODO Tikz Bild
+
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial,accepting](q_0)               {$q_0$};
+  \node[state]           (q_1) [above right=of q_0] {$q_1$};
+  \node[state]           (q_2) [right=of q_0]       {$q_2$};
+  \node[state]           (q_3) [above right=of q_2] {$q_3$};
+  \node[state,accepting] (q_4) [right=of q_2]       {$q_4$};
+  \path[->] (q_0) edge                node [above] {a} (q_1)
+                  edge [bend left=230] node [right] {b} (q_3)
+            (q_1) edge [loop above]   node [above] {a} ()
+            	  edge                node [left]  {c} (q_2)
+            	  edge [bend left=10] node [below right] {c} (q_4)
+            (q_2) edge                node [left] {b} (q_3)
+            (q_3) edge                node [right] {d} (q_4)
+            	  edge [loop above]   node [above] {b} ();
+\end{tikzpicture}
 
 \section*{Aufgabe 5}
 Transitionssystem ist NEA mit potenziell mehreren Anfangszuständen und potenziell unendlich viele Zustände akzeptiert
 \subsection*{Aufgabe 5 a)}
-%TODO Tikz Bild
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=1.7cm,on grid]
+  \node[state,initial]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state]           (q_2) [right=of q_1] {$q_2$};
+  \node[state]           (q_3) [right=of q_2] {$q_3$};
+  \node[state]           (q_4) [right=of q_3] {$q_4$};
+  \node[state]           (q_5) [right=of q_4] {$q_5$};
+  \node[state]           (q_6) [right=of q_5] {$q_6$};
+  \node[state,accepting] (q_7) [right=of q_6] {$q_7$};
+  \path[->] (q_0) edge [loop above]   node [above] {a,...,z} ()
+                  edge                node [above] {t} (q_1)
+            (q_1) edge                node [above] {h} (q_2)
+            (q_2) edge                node [above] {e} (q_3)
+            (q_3) edge                node [above] {o} (q_4)
+            (q_4) edge                node [above] {r} (q_5)
+            (q_5) edge                node [above] {i} (q_6)
+            (q_6) edge                node [above] {e} (q_7)
+            (q_7) edge [loop above]   node [above] {a,...z} ();
+\end{tikzpicture}
 \subsection*{Aufgabe 5 b)}
-%TODO Tikz Bild
+Für $\Sigma=\lbrace a\rbrace$:\\
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid]
+  \node[state,initial,accepting]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state,accepting] (q_2) [right=of q_1] {$q_2$};
+  \path[->] (q_0) edge              node [above] {a} (q_1)
+  			(q_1) edge              node [above] {a} (q_2)
+  			(q_2) edge [bend right =25] node [above] {a} (q_0);
+\end{tikzpicture}
+
+Für $\Sigma=\lbrace a,b\rbrace$:\\
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid]
+  \node[state,initial,accepting]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state,accepting] (q_2) [right=of q_1] {$q_2$};
+  \path[->] (q_0) edge              node [above] {a} (q_1)
+  				  edge [loop below] node [below] {b} ()
+  			(q_1) edge              node [above] {a} (q_2)
+  			      edge [loop below] node [below] {b} ()
+  			(q_2) edge [bend right =25] node [above] {a} (q_0)
+  			      edge [loop below] node [below] {b} ();
+\end{tikzpicture}
+\begin{align*}
+Q_1 &=\big\lbrace q_0,q_1,q_2\big\rbrace,\qquad I_1=\lbrace q_0\rbrace,\qquad F_1=\lbrace q_0\rbrace\\
+\Delta_1&=\big\lbrace(q_0,a,q_1),(q_1,a,q_2),(q_2,a,q_0)\big\rbrace
+\end{align*}
+Beachte: Das Tikz-Bild beschreibt genau die Definition von $\Delta_1$.
 \subsection*{Aufgabe 5 c)}
 %TODO Tikz Bild
 \subsection*{Aufgabe 5 d)}
