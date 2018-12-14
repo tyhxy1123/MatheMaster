@@ -169,17 +169,18 @@ Das ist die CF von $\mathcal{N}(\mu,\Sigma)$.
 
 \begin{beisp}
 Einige Verteilungen mit expliziter charakteristischer Funktion (mit $q:=1-p$).\nl
-\begin{tabular}{l|l|l}
+\begin{tabular}{l|l|c}
 Verteilung & Dichte $f$ / W-Funktion $p_k=\P(X=k)$ & CF $\Phi_X(u)$\\ \hline\hline
+					 &&\\
 Binomialvtl. $p,n$ & $p_k=\begin{pmatrix}
 n\\ k
-\end{pmatrix}\cdot p^k\cdot q^{n-k},~k=0,\ldots, n$ & $\big(p\cdot\exp(i\cdot k)+1\big)^n$\\ \hline
-Poissonvtl. $\lambda$ & $p_k=\exp(-\lambda)\cdot\frac{\lambda^k}{k!}~kk\in\N_0$ & $\exp\big(\lambda\cdot(\exp(i\cdot u)\big)$ \\ \hline
-geom. Vert. $p\in(0,1)$ & $p_k=q^{k-1}\cdot p,~k\in\N$ & $\frac{p\cdot\exp(i\cdot u)}{1-q\cdot\exp(i\cdot u)}$ \\ \hline
-Exponentialvtl. $\lambda>0$ & $f(x)=\lambda\cdot\exp(-\lambda\cdot x),~x\geq0$ & $\frac{\lambda}{\lambda-i\cdot u}$\\ \hline
-Std. Normalvtl. & $f(x)=\frac{1}{\sqrt{2\cdot \pi}}\cdot\exp\left(-\frac{x^2}{2}\right)$ & $\exp\left(-\frac{u^2}{2}\right)$\\ \hline
-Lalplace-Vert. & $f(x)=\frac{1}{2}\cdot\exp\big(-|x|\big)~x\in\R$ & $\frac{1}{1+u^2}$\\ \hline
-Gleichvtl. auf $[-1,1]$ & $f(x)=\frac{1}{2}\cdot\indi_{[-1,1]}(x)$ & $\frac{\sin(u)}{u}$\\ \hline
+\end{pmatrix}\cdot p^k\cdot q^{n-k},~k=0,\ldots, n$ & $\big(p\cdot\exp(i\cdot k)+1\big)^n$\\&&\\ \hline &&\\
+Poissonvtl. $\lambda$ & $p_k=\exp(-\lambda)\cdot\frac{\lambda^k}{k!}~kk\in\N_0$ & $\exp\big(\lambda\cdot(\exp(i\cdot u)\big)$ \\ &&\\ \hline &&\\
+geom. Vert. $p\in(0,1)$ & $p_k=q^{k-1}\cdot p,~k\in\N$ & $\frac{p\cdot\exp(i\cdot u)}{1-q\cdot\exp(i\cdot u)}$ \\ &&\\ \hline &&\\
+Exponentialvtl. $\lambda>0$ & $f(x)=\lambda\cdot\exp(-\lambda\cdot x),~x\geq0$ & $\frac{\lambda}{\lambda-i\cdot u}$\\ &&\\ \hline &&\\
+Std. Normalvtl. & $f(x)=\frac{1}{\sqrt{2\cdot \pi}}\cdot\exp\left(-\frac{x^2}{2}\right)$ & $\exp\left(-\frac{u^2}{2}\right)$\\ &&\\ \hline &&\\
+Lalplace-Vert. & $f(x)=\frac{1}{2}\cdot\exp\big(-|x|\big)~x\in\R$ & $\frac{1}{1+u^2}$\\ &&\\ \hline &&\\
+Gleichvtl. auf $[-1,1]$ & $f(x)=\frac{1}{2}\cdot\indi_{[-1,1]}(x)$ & $\frac{\sin(u)}{u}$\\ &&\\ \hline &&\\
 Cauchyvtl. & $f(x)=\frac{1}{\pi}\cdot\frac{1}{1+x^2}$ & $\exp\big(-|u|\big)$
 \end{tabular}
 %TODO Tabelle hübscher machen
@@ -247,7 +248,7 @@ f(x)=\sum\limits_{\alpha\in\N_d}\partial^\alpha f(x_0)\cdot\frac{(x-x_0)^\alpha}
 
 \begin{theorem}\label{theorem6.2}
 Sei $k\in\N_0$ und $X\colon\Omega\to\R^d$ Zufallsvariable mit $\E\big[|X|^k\big]<\infty$.\\
-Dann existiert die CF $\partial^\alpha\Phi_X$ für alle MI $\alpha\in\N_0^d$ mit $|\alpha|\leq k$ und
+Dann existiert die charakteristische Funktion $\partial^\alpha\Phi_X$ für alle MI $\alpha\in\N_0^d$ mit $|\alpha|\leq k$ und
 \begin{align}\label{eqTheorem6.2}\tag{$\ast$}
 \E\big[X^\alpha\big]=(-i)^{|\alpha|}\cdot\partial^\alpha\Phi_X(0)
 \end{align}
@@ -255,24 +256,31 @@ Hierbei heißt
 \begin{align*}
 \E\big[X^\alpha\big]=\E\Big[X_1^{\alpha_1}\cdot X_1^{\alpha_2}\cdot\ldots\cdot X_d^{\alpha_d}\Big]
 \end{align*}
-\textbf{gemischtes Moment} und $\partial^\alpha\Phi_X(0)$ heißt \textbf{gemischte partielle Ableitung} an der 0.
+\textbf{gemischtes Moment} und
+\begin{align*}
+	\partial^\alpha\Phi_X(0)
+\end{align*} heißt \textbf{gemischte partielle Ableitung} an der 0.
 \end{theorem}
 
 \begin{proof}
 \underline{Zeige Existenz von $\E\big[X^\alpha\big]$:}
 \begin{align*}
 \big|X^\alpha\big|
-&=\big|X_1^{\alpha_1}\cdot X_2^{\alpha_2}\cdot\ldots\cdot X_d^{\alpha_d}\big|
-=\big|X_1^{\alpha_1}\big|\cdot\ldots\cdot\big|X_d^{\alpha_d}\big|
-\leq\big|X_1\big|^{\alpha_1}\cdot\ldots\cdot\big|X_d\big|^{\alpha_d}\\
+&=\big|X_1^{\alpha_1}\cdot X_2^{\alpha_2}\cdot\ldots\cdot X_d^{\alpha_d}\big| \\
+&=\big|X_1^{\alpha_1}\big|\cdot\ldots\cdot\big|X_d^{\alpha_d}\big| \\
+&\leq\big|X_1\big|^{\alpha_1}\cdot\ldots\cdot\big|X_d\big|^{\alpha_d} \\
+&=\big|X\big|^{|\alpha|}
+\end{align*}
+Daraus folgt durch Bildung von Erwartungswerten
+\begin{align*}
 \E\Big[\big|X^\alpha\big|\Big]
 &\leq
-\E\Big[\big|X^{|\alpha|}\big|\Big]
-\leq
-\E\Big[\big(1+|X|\big)^{|\alpha|}\Big]
-\overset{|\alpha|\leq k}{\leq}
-\E\Big[\big(1+|X|\big)^k\Big]
-\leq 2^{k-1}\cdot\Big(1+\E\big[|X|^k\big]\Big)<\infty
+\E\Big[\big|X^{|\alpha|}\big|\Big] \\
+&\leq
+\E\Big[\big(1+|X|\big)^{|\alpha|}\Big] \\
+\overset{|\alpha|\leq k}&{\leq}
+\E\Big[\big(1+|X|\big)^k\Big] \\
+&\leq 2^{k-1}\cdot\Big(1+\E\big[|X|^k\big]\Big)<\infty
 \end{align*}
 \underline{Zeige \eqref{eqTheorem6.2}:}
 \begin{align*}
@@ -365,11 +373,11 @@ Sei $f$ Dichte von $X$ ung $g$ Dichte von $Y$. Dann ist $f\ast g$ die Dichte von
 \underline{Zeige (a):}
 \begin{align*}
 \Phi_{X+Y}(\xi)
-&=\E\Big[\exp(i\cdot\xi^T\cdot(X+Y)\Big]
-=\E\Big[\exp(i\cdot\xi^T\cdot X)\cdot\exp(i\cdot\xi^T\cdot Y)\Big]\\
+&=\E\Big[\exp(i\cdot\xi^T\cdot(X+Y)\Big] \\
+&=\E\Big[\exp(i\cdot\xi^T\cdot X)\cdot\exp(i\cdot\xi^T\cdot Y)\Big]\\
 \overset{X\unab Y}&{=}
-\E\Big[\exp(i\cdot\xi^T\cdot X)\Big]\cdot\E\Big[\exp(i\cdot\xi^T\cdot Y)\Big]
-=\Phi_X(xi)\cdot\Phi_Y(\xi)
+\E\Big[\exp(i\cdot\xi^T\cdot X)\Big]\cdot\E\Big[\exp(i\cdot\xi^T\cdot Y)\Big]\\
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)
 \end{align*}
 \underline{Zeige (b):}
 \begin{align*}
@@ -388,12 +396,13 @@ Anwendung: Additionstheoreme für Normalverteilung, Poissonverteilung etc.
 
 \begin{beisp}\
 \begin{itemize}
-\item $X\sim\text{Pois}(\lambda_1),~Y\sim\text{Pois}(\lambda_2),~X\unab Y$. Dann gilt:
+\item $X\sim\text{Poi}(\lambda_1),~Y\sim\text{Poi}(\lambda_2),~X\unab Y$. Dann gilt:
 \begin{align*}
 \Phi_{X+Y}(\xi)
-&=\Phi_X(\xi)\cdot\Phi_Y(\xi)=\exp\Big(\lambda_1\cdot\big(\exp(i\cdot\xi)-1\big)-\lambda_2\cdot\big(\exp(i\cdot\xi)-1\big)\Big)\\
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)\\
+&=\exp\Big(\lambda_1\cdot\big(\exp(i\cdot\xi)-1\big)-\lambda_2\cdot\big(\exp(i\cdot\xi)-1\big)\Big)\\
 &=\exp\Big(\big(\lambda_1+\lambda_2\big)\cdot\big(\exp(i\cdot\xi)-1\big)\Big)\\
-&\implies X+Y\sim\text{Pois}(\lambda_1+\lambda_2)
+&\implies X+Y\sim\text{Poi}(\lambda_1+\lambda_2)
 \end{align*}
 \item $X\sim\mathcal{N}(\mu_1,\sigma_1^2),~Y\sim\mathcal{N}(\mu_2,\sigma_2^2),~X\unab Y$. Dann gilt:
 \begin{align*}
@@ -407,9 +416,9 @@ X+Y\sim\mathcal{N}(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)
 \item $X\sim\text{Exp}(\lambda_1),~Y\sim\text{Exp}(\lambda_2),~X\unab Y$. Dann gilt:
 \begin{align*}
 \Phi_{X+Y}(\xi)
-&=\Phi_X(\xi)\cdot\Phi_Y(\xi)
-=\frac{\lambda_1}{\lambda_1-i\cdot u}\cdot\frac{\lambda_2}{\lambda_2-i\cdot u}
-=\frac{\lambda_1\cdot\lambda_2}{(\lambda_1-i\cdot u)\cdot(\lambda_2-i\cdot u)}\\
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi) \\
+&=\frac{\lambda_1}{\lambda_1-i\cdot u}\cdot\frac{\lambda_2}{\lambda_2-i\cdot u} \\
+&=\frac{\lambda_1\cdot\lambda_2}{(\lambda_1-i\cdot u)\cdot(\lambda_2-i\cdot u)}\\
 &\implies X+Y\text{ \ul{nicht} Exponentialverteilt}
 \end{align*}
 \end{itemize}
@@ -419,7 +428,7 @@ X+Y\sim\mathcal{N}(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)
 Hierbei haben wir den Eindeutigkeitssatz vorweggenommen:\\
 Die Charakteristische Funktion $\Phi_X(\xi)$ charakterisiert die Verteilung von $X$ eindeutig, d.h.:
 \begin{align*}
-\Big(\forall\xi\in\R^d:\Phi_X(\xi)\Phi_Y(\xi)\Big)\Longleftrightarrow X\sim Y
+\Big(\forall\xi\in\R^d:\Phi_X(\xi)=\Phi_Y(\xi)\Big)\Longleftrightarrow X\sim Y
 \end{align*}
 Beweis folgt in Kapitel 7.
 \end{bemerkung}
@@ -427,30 +436,30 @@ Beweis folgt in Kapitel 7.
 \begin{theorem}[Charakterisierung der Unabhängigkeit]\label{theorem6.5CharakterisierungDerUnabhaengigkeit}\enter
 Seien $X$ und $Y$ zwei $\R^{d_1}$- bzw. $\R^{d_2}$-wertige Zufallsvariablen. Dann gilt:
 \begin{align*}
-X\unab Y\Longleftrightarrow\Big(\forall\xi\in\R^{d_1},\forall y\in\R^{d_2}:\Phi_{(X,Y)}\underbrace{(\xi,y)}_{\in\R^{d_1+d_2}}=\Phi_X(\xi)\cdot\Phi_Y(y)\Big)
+X\unab Y\Longleftrightarrow\Big(\forall\xi\in\R^{d_1},\forall \eta\in\R^{d_2}:\Phi_{(X,Y)}\underbrace{(\xi,\eta)}_{\in\R^{d_1+d_2}}=\Phi_X(\xi)\cdot\Phi_Y(\eta)\Big)
 \end{align*}
 \end{theorem}
 
 \begin{proof}
 \underline{Zeige "$\implies$": (einfach)}
 \begin{align*}
-\Phi_{(X,Y)}(\xi,y)
-&=\E\Big[\exp\big(i\cdot(X,Y)^T\cdot(\xi,y)\big)\Big]\\
-&=\E\big[\exp\big(i\cdot X^T\cdot\xi+i\cdot Y^T\cdot y\big)\Big]\\
+\Phi_{(X,Y)}(\xi,\eta)
+&=\E\Big[\exp\big(i\cdot(X,Y)^T\cdot(\xi,\eta)\big)\Big]\\
+&=\E\big[\exp\big(i\cdot X^T\cdot\xi+i\cdot Y^T\cdot \eta\big)\Big]\\
 \overset{X\unab Y}&=
-\E\Big[\exp\big(i\cdot X^T\cdot\xi\big)\Big]\cdot\E\Big[\exp\big(i\cdot Y^T\cdot y\big)\Big]\\
-&=\Phi_X(\xi)\cdot\Phi_Y(y)
+\E\Big[\exp\big(i\cdot X^T\cdot\xi\big)\Big]\cdot\E\Big[\exp\big(i\cdot Y^T\cdot \eta\big)\Big]\\
+&=\Phi_X(\xi)\cdot\Phi_Y(\eta)
 \end{align*}
 
 \underline{Zeige "$\Longleftrightarrow$":}\\
 Wir konstruieren (Stichwort Produktraum!) $\tilde{X}$ und $\tilde{Y}$ mit $\tilde{X}\sim X$ und $\tilde{Y}\sim Y$ so, dass $\tilde{X}\unab\tilde{Y}$. Aus $\tilde{X}\sim X$ und $\tilde{Y}\sim Y$ folgt, das $(\tilde{X},\tilde{Y})$ die gleiche Randverteilung wie $(X,Y)$ besitzt. Es gilt:
 \begin{align*}
-\Phi_{(X,Y)}(\xi,y)
+\Phi_{(X,Y)}(\xi,\eta)
 \overset{\text{Vor}}&=
-\Phi_X(\xi)\cdot\Phi_Y(y)
-=\Phi_{\tilde{X}}(\xi)\cdot\Phi_{\tilde{Y}}(y)
+\Phi_X(\xi)\cdot\Phi_Y(\eta)
+=\Phi_{\tilde{X}}(\xi)\cdot\Phi_{\tilde{Y}}(\eta)
 \stackrelnew{\text{Teil 1}}{\tilde{X}\unab\tilde{Y}}{=}
-\Phi_{(\tilde{X},\tilde{Y})}(\xi,y)\qquad\forall\xi\in\R^{d_1},y\in\R^{d_2}
+\Phi_{(\tilde{X},\tilde{Y})}(\xi,\eta)\qquad\forall\xi\in\R^{d_1},\eta\in\R^{d_2}
 \end{align*}
 Mit dem Eindeutigkeitssatz folgt $(X,Y)\sim(\tilde{X},\tilde{Y})\implies X\unab Y$
 \end{proof}

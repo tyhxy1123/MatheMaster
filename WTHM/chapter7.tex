@@ -7,8 +7,8 @@
 
 Zentrale Frage: Eindeutigkeit der Fouriertransformation / Charakteristischen Funktion
 \begin{align*}
-\hat{f}\equiv\hat{g} \overset{?}&\implies f\equiv g\\
-\Phi_X\equiv\Phi_Y \overset{?}&\implies X\sim Y
+\hat{f}=\hat{g} \overset{?}&\implies f= g\\
+\Phi_X=\Phi_Y \overset{?}&\implies X\sim Y
 \end{align*}
 
 Wichtig z.B. in Theorem \ref{theorem6.5CharakterisierungDerUnabhaengigkeit}.
@@ -39,9 +39,15 @@ C_c^\infty(\R^d):=\Big\lbrace f:\R^d\to\C:\supp(f)\text{ beschränkt und $f$ bel
 Der Subindex $c$ steht hierbei für "compact Support".
 \item Der (Vektor-)Raum der \textbf{Schwartz-Funktionen (rapidly decreasing functions)} ist definiert durch
 \begin{align*}
-S(\R^d)&:=\Big\lbrace f:\R^d\to\C: f\text{ beliebig oft diffbar und }C_{n,\alpha}<\infty~\forall n\in\N,\alpha\in\N_0\Big\rbrace\\
-C_{n,\alpha}&:=\sup\limits_{x\in\R^d}\left|\left(1+|x|^2\right)^N\cdot\partial^\alpha f(x)\right|\qquad\forall N\in\N,\forall\alpha\in\N_0^\alpha\\
-f\in S(\R^d) &\implies\left|\partial^\alpha f(x)\right|\leq C_{n,\alpha}\cdot\big(1+|x|^2\big)^{-N}\qquad\forall x\in\R^d
+	S(\R^d)&:=\Big\lbrace f:\R^d\to\C: f\text{ beliebig oft diffbar und }C_{n,\alpha}(f)<\infty~\forall n\in\N,\alpha\in\N_0\Big\rbrace
+\end{align*}
+mit
+\begin{align*}
+C_{n,\alpha}(f)&:=\sup\limits_{x\in\R^d}\left|\left(1+|x|^2\right)^N\cdot\partial^\alpha f(x)\right|\qquad\forall N\in\N,\forall\alpha\in\N_0^\alpha
+\end{align*}
+Das heißt
+\begin{align*}
+f\in S(\R^d) &\implies\left|\partial^\alpha f(x)\right|\leq C_{n,\alpha}(f)\cdot\big(1+|x|^2\big)^{-N}\qquad\forall x\in\R^d
 \end{align*}
 "Alle Ableitungen fallen schneller als polynomiell."
 \end{enumerate}
@@ -76,18 +82,19 @@ $C_c^\infty$ und $S(\R^d)$ können mit Topologie versehen werden $\implies$ loka
 \begin{align*}
 C_c^\infty(\R^d)\subseteq S(\R^d)\subseteq L_p(\R^d)\qquad\forall p\in[1,\infty]
 \end{align*}
-und $S(\R^d)$ ist dicht in $L_p(\R^d)$ für alle $p\in[1,\infty)$
+und
+\begin{align*}
+	S(\R^d)\text{ ist dicht in }L_p(\R^d)\qquad\forall p\in[1,\infty)
+\end{align*}
 \item $\forall K\subseteq\R^d$ kompakt $\exists$ Folge $(u_n)_{n\in\N}\subseteq C_c^\infty(\R^d)$ so, dass $0\leq u_n\leq 1~\forall n\in\N$ und $u_n\downarrow\indi_K$ für $n\to\infty$
-%TODO Hier Skizze einfügen
 \end{enumerate}
 \end{proposition}
-
-%\begin{proof}
-%ohne Beweis, evtl. Übung
-%\end{proof}
+\begin{proof}
+	Vielleicht als Übungsaufgabe
+\end{proof}
 
 \begin{theorem}\label{theorem7.2}
-Die Rourier-Transformation bildet $S(\R^d)$ nach $S(\R^d)$ ab.
+Die Fourier-Transformation bildet $S(\R^d)$ nach $S(\R^d)$ ab.
 \end{theorem}
 
 \begin{proof}
@@ -107,8 +114,9 @@ g_{\alpha,\beta}(x)
 \end{align*}
 Folglich gilt:
 \begin{align*}
-f\in S(\R^d)&\implies\partial^{\beta-\gamma} f\in S(\R^d)
-\implies g_{\alpha,\beta}\in S(\R^d)\subseteq L_1(\R^d)
+f\in S(\R^d)&\implies\partial^{\beta-\gamma} f\in S(\R^d) \\
+						&\implies g_{\alpha,\beta}\in S(\R^d)\\
+						&\implies g_{\alpha,\beta}\in L_1(\R^d)
 \end{align*}
 Wir berechnen die Fouriertransformation von $g_{\alpha,\beta}$:
 \begin{align*}
@@ -117,14 +125,17 @@ Wir berechnen die Fouriertransformation von $g_{\alpha,\beta}$:
 \overset{\ref{korollar6.3}}&=
 (-i\cdot \xi)^\beta\cdot\F\left((i\cdot x)^\alpha\cdot f(x)\right)(\xi)\\
 \overset{\ref{korollar6.3}}&=
-(-i\cdot\xi)^\beta\cdot\partial_\xi^\alpha\hat{f}(\xi)\\
-&\implies
-\left|\xi^\beta\cdot\partial_\xi^\alpha \hat{f}(\xi)\right|
-\leq\left|\hat{g}_{\alpha,\beta}(\xi)\right|
-\leq\hat{g}_{\alpha,\beta}(0)=\Vert g_{\alpha,\beta}\Vert_1<\infty\\
-&\implies
-\sup\limits_{\xi\in\R^d}\big(1+|x|^2\big)^N\cdot\partial_\xi^\alpha\hat{f}(\xi)<\infty\qquad\forall\alpha\in\N_0^d,\forall N\in\N\\
-&\implies\hat{f}\in S(\R^d)
+(-i\cdot\xi)^\beta\cdot\partial_\xi^\alpha\hat{f}(\xi)
+\end{align*}
+\begin{align*}
+	&\implies&
+\left|\xi^\beta\cdot\partial_\xi^\alpha \hat{f}(\xi)\right| 
+&\leq\left|\hat{g}_{\alpha,\beta}(\xi)\right| \\
+&&&\leq\hat{g}_{\alpha,\beta}(0)\\
+&&&=\Vert g_{\alpha,\beta}\Vert_1<\infty \\
+&\implies&
+\sup\limits_{\xi\in\R^d}\big(1+|x|^2\big)^N\cdot\partial_\xi^\alpha\hat{f}(\xi)&<\infty\qquad\forall\alpha\in\N_0^d,\forall N\in\N \\
+	&\implies&\hat{f}\in S(\R^d)
 \end{align*}
 \end{proof}
 
@@ -147,13 +158,17 @@ Dass $\hat{f}$ stetig ist, folgt aus Theorem \ref{theorem6.1EigenschaftenDerFTCF
 Beachte: $C_c\subseteq C_\infty\subseteq C_b\subseteq C$.
 Proposition \ref{proposition7.1} liefert:
 \begin{align*}
-S(\R^n)&\text{ dicht in }L_1(\R^d)\implies\exists(f_n)_{n\in\N}\subseteq S(\R^n):\Vert f-f_n\Vert_1\stackrel{n\to\infty}{\longrightarrow}0\\
+S(\R^n)&\text{ dicht in }L_1(\R^d)\implies\exists(f_n)_{n\in\N}\subseteq S(\R^n):\Vert f-f_n\Vert_1\stackrel{n\to\infty}{\longrightarrow}0
+\end{align*}
+\begin{align*}
 \big|\hat{f}(\xi)\big|
 &\leq\big|\hat{f}(\xi)-\hat{f}_n(\xi)\big|+\big|\hat{f}_n(\xi)\big|\\
 &=\Bigg|\int\limits_{\R^d}\underbrace{\exp(i\cdot\xi^T\cdot x)}_{|\cdot|=1}\cdot\big(f(x)-f_n(x)\big)\d x\Bigg|+\big|\hat{f}_n(\xi)\big|\\
 &\leq
 \int\limits_{\R^d}\big|\exp(i\cdot\xi^T\cdot x)\big|\cdot\big|f(x)-f_n(x)\big|\d x+\big|\hat{f}_n(\xi)\big|\d x\\
-&=\underbrace{\big\Vert f-f_n\big\Vert_1}_{<\varepsilon\text{ für $n$ groß}}+\underbrace{\big|\hat{f}_n(\xi)\big|}_{\stackrel{\ref{theorem7.2}}{\in} S(\R^d)}\\
+&=\underbrace{\big\Vert f-f_n\big\Vert_1}_{<\varepsilon\text{ für $n$ groß}}+\underbrace{\big|\hat{f}_n(\xi)\big|}_{\stackrel{\ref{theorem7.2}}{\in} S(\R^d)}
+\end{align*}
+\begin{align*}
 &\implies
 \lim\limits_{|\xi|\to\infty}\big|\hat{f}(\xi)\big|\leq\varepsilon+\underbrace{\lim\limits_{|\xi|\to\infty}\big|f_n(\xi)\big|}_{=0}=\varepsilon\mit\varepsilon>0\\
 &\implies\lim\limits_{|\xi|\to\infty}\big|\hat{f}(\xi)\big|=0\\
