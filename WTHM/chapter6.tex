@@ -167,7 +167,300 @@ Y&:=\underbrace{\mu+A\cdot X}_{=T(X)}\sim\mathcal{N}(\mu,\Sigma)\\
 Das ist die CF von $\mathcal{N}(\mu,\Sigma)$.
 \end{beisp}
 
+\begin{beisp}
+Einige Verteilungen mit expliziter charakteristischer Funktion (mit $q:=1-p$).\nl
+\begin{tabular}{l|l|c}
+Verteilung & Dichte $f$ / W-Funktion $p_k=\P(X=k)$ & CF $\Phi_X(u)$\\ \hline\hline
+					 &&\\
+Binomialvtl. $p,n$ & $p_k=\begin{pmatrix}
+n\\ k
+\end{pmatrix}\cdot p^k\cdot q^{n-k},~k=0,\ldots, n$ & $\big(p\cdot\exp(i\cdot k)+1\big)^n$\\&&\\ \hline &&\\
+Poissonvtl. $\lambda$ & $p_k=\exp(-\lambda)\cdot\frac{\lambda^k}{k!}~kk\in\N_0$ & $\exp\big(\lambda\cdot(\exp(i\cdot u)\big)$ \\ &&\\ \hline &&\\
+geom. Vert. $p\in(0,1)$ & $p_k=q^{k-1}\cdot p,~k\in\N$ & $\frac{p\cdot\exp(i\cdot u)}{1-q\cdot\exp(i\cdot u)}$ \\ &&\\ \hline &&\\
+Exponentialvtl. $\lambda>0$ & $f(x)=\lambda\cdot\exp(-\lambda\cdot x),~x\geq0$ & $\frac{\lambda}{\lambda-i\cdot u}$\\ &&\\ \hline &&\\
+Std. Normalvtl. & $f(x)=\frac{1}{\sqrt{2\cdot \pi}}\cdot\exp\left(-\frac{x^2}{2}\right)$ & $\exp\left(-\frac{u^2}{2}\right)$\\ &&\\ \hline &&\\
+Lalplace-Vert. & $f(x)=\frac{1}{2}\cdot\exp\big(-|x|\big)~x\in\R$ & $\frac{1}{1+u^2}$\\ &&\\ \hline &&\\
+Gleichvtl. auf $[-1,1]$ & $f(x)=\frac{1}{2}\cdot\indi_{[-1,1]}(x)$ & $\frac{\sin(u)}{u}$\\ &&\\ \hline &&\\
+Cauchyvtl. & $f(x)=\frac{1}{\pi}\cdot\frac{1}{1+x^2}$ & $\exp\big(-|u|\big)$
+\end{tabular}
+%TODO Tabelle hübscher machen
+\end{beisp}
 
+Als nächstes: partielle Ableitungen von charakteristischen Funktionen.
 
+\begin{notation}
+Kompakte Notation: \textbf{Multiindex (MI)} ist
+\begin{align*}
+\alpha=\big(\alpha_1,\ldots,\alpha_d\big)\in\N_0^d
+\end{align*}
+Für MIs $\alpha,\beta\in\N_0^d$ und $x\in\R^d$ definieren wir:
+\begin{itemize}
+\item $\begin{aligned}
+|\alpha|:=\alpha_1+\ldots+\alpha_d
+\end{aligned}$ ist die \textbf{Ordnung} des MI $\alpha$
+\item Setze weiterhin
+\begin{align*}
+\alpha!&:=\alpha_1!\cdot\alpha_2!\cdot\ldots\cdot\alpha_d!\\
+x^\alpha&:=x_1^{\alpha_1}\cdot x_2^{\alpha_2}\cdot\ldots\cdot x_d^{\alpha_d}
+\end{align*}
+\item $\begin{aligned}
+\beta\leq\alpha:\Longleftrightarrow(\beta_1\leq\alpha_1)\wedge(\beta_2\leq\alpha_2)\wedge\ldots\wedge(\beta_d\leq\alpha_d)
+\end{aligned}$ 
+\item Falls $\beta\leq\alpha$ definiere
+\begin{align*}
+\alpha-\beta:=\big(\alpha_1-\beta_1,\ldots,\alpha_d-\beta_d\big)\\
+\begin{pmatrix}
+\alpha\\\beta
+\end{pmatrix}&:=\begin{pmatrix}
+\alpha_1\\\beta_1
+\end{pmatrix}\cdot\begin{pmatrix}
+\alpha_2\\\beta_2
+\end{pmatrix}\cdot\ldots\cdot\begin{pmatrix}
+\alpha_d\\\beta_d
+\end{pmatrix}
+\end{align*}
+\item gemischte partielle Ableitung:
+\begin{align*}
+\partial^\alpha:=\partial_x^\alpha:=\frac{\partial^{|\alpha|}}{\partial_{x_1}^{\alpha_1}\partial_{x_2}^{\alpha_2}\ldots\partial_{x_d}^{\alpha_d}}
+\end{align*}
+\end{itemize}
+\end{notation}
 
+Mit Multiindexschreibweise gilt:
+\begin{enumerate}
+\item \textbf{Taylorentwicklung:} Für $f:\R^d\to\C$ analytisch in $B_R(x_0)$ gilt:
+\begin{align}\label{eqTaylor}\tag{Taylor}
+f(x)=\sum\limits_{\alpha\in\N_d}\partial^\alpha f(x_0)\cdot\frac{(x-x_0)^\alpha}{\alpha!}\qquad\forall x\in B_R(x_0)
+\end{align}
+\item \textbf{Leibnizregel:} Für $f,g\in C^\alpha(\R^d,\C)$ gilt:
+\textbf{\begin{align}\label{eqLeibnizregel}\tag{Leibniz}
+\partial^\alpha(f\cdot g)=\sum\limits_{\begin{subarray}{c}
+\beta\leq\alpha\\ \beta\in\N_0^d\end{subarray}}\begin{pmatrix}
+\alpha\\\beta
+\end{pmatrix}\cdot\partial^\beta f\cdot\partial^{\alpha-\beta}g
+\end{align}
+%Hinweis für Übung: Induktion über Länge des MI}
+\item \textbf{Ableitung einer Funktion:}
+\begin{align*}
+\partial_x^\alpha\Big(\exp\big(b^T\cdot x\big)\Big)=b^\alpha\cdot\exp\big(b^T\cdot x\big)\qquad\forall x,b\in\R^d
+\end{align*}}
+\end{enumerate}
+
+\begin{theorem}\label{theorem6.2}
+Sei $k\in\N_0$ und $X\colon\Omega\to\R^d$ Zufallsvariable mit $\E\big[|X|^k\big]<\infty$.\\
+Dann existiert die charakteristische Funktion $\partial^\alpha\Phi_X$ für alle MI $\alpha\in\N_0^d$ mit $|\alpha|\leq k$ und
+\begin{align}\label{eqTheorem6.2}\tag{$\ast$}
+\E\big[X^\alpha\big]=(-i)^{|\alpha|}\cdot\partial^\alpha\Phi_X(0)
+\end{align}
+Hierbei heißt
+\begin{align*}
+\E\big[X^\alpha\big]=\E\Big[X_1^{\alpha_1}\cdot X_1^{\alpha_2}\cdot\ldots\cdot X_d^{\alpha_d}\Big]
+\end{align*}
+\textbf{gemischtes Moment} und
+\begin{align*}
+	\partial^\alpha\Phi_X(0)
+\end{align*} heißt \textbf{gemischte partielle Ableitung} an der 0.
+\end{theorem}
+
+\begin{proof}
+\underline{Zeige Existenz von $\E\big[X^\alpha\big]$:}
+\begin{align*}
+\big|X^\alpha\big|
+&=\big|X_1^{\alpha_1}\cdot X_2^{\alpha_2}\cdot\ldots\cdot X_d^{\alpha_d}\big| \\
+&=\big|X_1^{\alpha_1}\big|\cdot\ldots\cdot\big|X_d^{\alpha_d}\big| \\
+&\leq\big|X_1\big|^{\alpha_1}\cdot\ldots\cdot\big|X_d\big|^{\alpha_d} \\
+&=\big|X\big|^{|\alpha|}
+\end{align*}
+Daraus folgt durch Bildung von Erwartungswerten
+\begin{align*}
+\E\Big[\big|X^\alpha\big|\Big]
+&\leq
+\E\Big[\big|X^{|\alpha|}\big|\Big] \\
+&\leq
+\E\Big[\big(1+|X|\big)^{|\alpha|}\Big] \\
+\overset{|\alpha|\leq k}&{\leq}
+\E\Big[\big(1+|X|\big)^k\Big] \\
+&\leq 2^{k-1}\cdot\Big(1+\E\big[|X|^k\big]\Big)<\infty
+\end{align*}
+\underline{Zeige \eqref{eqTheorem6.2}:}
+\begin{align*}
+\partial^\alpha\Phi_X(\xi)
+&=\partial^\alpha\E\Big[\exp(i\cdot\xi^T\cdot X)\Big]\\
+&=\E\Big[\partial^\alpha_\xi\exp(i\cdot\xi^T\cdot X)\Big]\\
+&=\E\Big[(i\cdot X)^\alpha\cdot\exp(i\cdot\xi^T\cdot X)\Big]\\
+&=i^{|\alpha|}\cdot\E\Big[X^\alpha\cdot\exp(i\cdot\xi^T\cdot X)\Big]
+\end{align*}
+Auswerten an der Stelle $\xi=0$ liefert:
+\begin{align*}
+\partial^\alpha\Phi_X(0)=i^{|\alpha|}\cdot\E\Big[X^\alpha\Big]
+\end{align*}
+\end{proof}
+
+\begin{bemerkung}
+Die Umkehrung in Theorem \ref{theorem6.2} gilt i.A. nicht.\\
+Aber: In Dimension $d=1$ gilt:
+\begin{align*}
+\partial^{2\cdot k}\Phi_X(0)\text{ existiert}\implies\E\Big[X^{2\cdot k}\Big]<\infty\text{ und }\E\Big[X^m\Big]=\partial^m\Phi_X(0)\qquad\forall m\leq 2\cdot k
+\end{align*}
+(Ohne Beweis.)
+\end{bemerkung}
+
+Analoge Resultate zu Theorem \ref{theorem6.1EigenschaftenDerFTCF} für Fourier-Transformation einer Funktion $f\in L_1$:
+
+\begin{korollar}\label{korollar6.3}
+Sei $f\in L_1(\R^d)$, $b\in\R^d$, $A\in\R^{d\times d}$ und $\alpha\in\N_0^d$ ein MI. Dann gilt:
+\begin{enumerate}[label=(\alph*)]
+\item $\begin{aligned}[t]
+g(x):=f(x+b) 
+\hspace{100pt}\implies \hat{g}(\xi)=\exp\big(-i\cdot b^T\cdot\xi\big)\cdot\hat{f}(\xi)
+\end{aligned}$
+\item $\begin{aligned}
+g(x):=\exp\big(i\cdot b^T\cdot x\big)\cdot f(x) 
+\hspace{45pt}\implies \hat{g}(\xi)=\hat{f}(\xi+b)
+\end{aligned}$
+\item $\begin{aligned}
+g(x):=f(A\cdot x)\mit \det(A)>0 
+\hspace{24pt}\implies \hat{g}(\xi)=\frac{1}{\det(A)}\cdot\hat{f}\big(A^{-T}\cdot\xi\big)
+\end{aligned}$
+\item $\begin{aligned}
+g(x):=(i\cdot x)^\alpha\cdot f(x)\mit g\in L_1 
+\hspace{23pt}\implies \hat{g}(\xi)=\partial^\alpha\hat{f}(\xi)
+\end{aligned}$
+\item $\begin{aligned}
+g(x):=\partial^\alpha f(x)\mit g\in C_\infty\cap L_1 
+\hspace{22pt}\implies \hat{g}(\xi)=(-i\cdot\xi)^\alpha\cdot\hat{f}(\xi)
+\end{aligned}$
+\end{enumerate}
+\end{korollar}
+
+\begin{bemerkung}
+\begin{align*}
+C_\infty:=\left\lbrace f:\R^d\to\C:f\text{ stetig und }\lim\limits_{|x|\to\infty}f(x)=0\right\rbrace
+\end{align*}
+\end{bemerkung}
+
+Zwei weitere wichtige Resultate zu charakteristischen Funktionen:
+\begin{itemize}
+\item Faltungsformel
+\item Charakterisierung der Unabhängigkeit
+\end{itemize}
+
+\begin{theorem}\label{theorem6.4}\
+\begin{enumerate}[label=(\alph*)]
+\item Sei $X,Y$ unabhängige, $\R^d$-wertige Zufallsvariablen. Dann gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)=\Phi_X(\xi)\cdot\Phi_Y(\xi)\qquad\forall\xi\in\R^d
+\end{align*}
+\item Seien $f,g\in L_1(\R^d)$. Dann gilt:
+\begin{align*}
+\big(\widehat{f\ast g}\big)(\xi)=\hat{f}(\xi)\cdot\hat{g}(\xi)
+\end{align*}
+\end{enumerate}
+\end{theorem}
+
+\begin{bemerkung}
+Faltung:
+\begin{align*}
+(f\ast g)(x):=\int\limits_{\R^d}f(y)\cdot g(x-y)\d y
+\end{align*}
+%\begin{itemize}
+%\item 
+Sei $f$ Dichte von $X$ ung $g$ Dichte von $Y$. Dann ist $f\ast g$ die Dichte von $X+Y$.
+%\end{itemize}
+\end{bemerkung}
+
+\begin{proof}
+\underline{Zeige (a):}
+\begin{align*}
+\Phi_{X+Y}(\xi)
+&=\E\Big[\exp(i\cdot\xi^T\cdot(X+Y)\Big] \\
+&=\E\Big[\exp(i\cdot\xi^T\cdot X)\cdot\exp(i\cdot\xi^T\cdot Y)\Big]\\
+\overset{X\unab Y}&{=}
+\E\Big[\exp(i\cdot\xi^T\cdot X)\Big]\cdot\E\Big[\exp(i\cdot\xi^T\cdot Y)\Big]\\
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)
+\end{align*}
+\underline{Zeige (b):}
+\begin{align*}
+\widehat{f\ast g}(\xi)
+&=\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot x)\cdot(f\ast g)(x)\d x\\
+&=\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot x)\cdot\int\limits_{\R^d}f(y)\cdot g(x-y)\d y\d x\\
+&=\int\limits_{\R^d}\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot y)\cdot\exp(i\cdot\xi^T\cdot(x-y))\cdot f(y)\cdot g(x)\d y\d x\\
+&\overset{(\ast)}{=}
+\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot y)\cdot f(y)\d y\cdot\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot zu)\cdot g(z)\d z\\
+%&=\hat{f}(\xi)\cdot\hat{g}(\xi)
+\end{align*}
+Bei $(\ast)$ wird substituiert: $z=x-y$, $\d z=\d x$
+\end{proof}
+
+Anwendung: Additionstheoreme für Normalverteilung, Poissonverteilung etc.
+
+\begin{beisp}\
+\begin{itemize}
+\item $X\sim\text{Poi}(\lambda_1),~Y\sim\text{Poi}(\lambda_2),~X\unab Y$. Dann gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)\\
+&=\exp\Big(\lambda_1\cdot\big(\exp(i\cdot\xi)-1\big)-\lambda_2\cdot\big(\exp(i\cdot\xi)-1\big)\Big)\\
+&=\exp\Big(\big(\lambda_1+\lambda_2\big)\cdot\big(\exp(i\cdot\xi)-1\big)\Big)\\
+&\implies X+Y\sim\text{Poi}(\lambda_1+\lambda_2)
+\end{align*}
+\item $X\sim\mathcal{N}(\mu_1,\sigma_1^2),~Y\sim\mathcal{N}(\mu_2,\sigma_2^2),~X\unab Y$. Dann gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi)\\
+&=\exp\left(i\cdot\xi\cdot\mu_1-\sigma_1^2\cdot\frac{\xi^2}{2}+i\cdot\xi\cdot\mu_2-\sigma_2^2\cdot\frac{\xi^2}{2}\right)\\
+&=\exp\left(i\cdot\xi\cdot(\mu_1+\mu_2)-(\sigma_1^2+\sigma_2^2)\cdot\frac{\xi^2}{2}\right)\\
+&\implies
+X+Y\sim\mathcal{N}(\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)
+\end{align*}
+\item $X\sim\text{Exp}(\lambda_1),~Y\sim\text{Exp}(\lambda_2),~X\unab Y$. Dann gilt:
+\begin{align*}
+\Phi_{X+Y}(\xi)
+&=\Phi_X(\xi)\cdot\Phi_Y(\xi) \\
+&=\frac{\lambda_1}{\lambda_1-i\cdot u}\cdot\frac{\lambda_2}{\lambda_2-i\cdot u} \\
+&=\frac{\lambda_1\cdot\lambda_2}{(\lambda_1-i\cdot u)\cdot(\lambda_2-i\cdot u)}\\
+&\implies X+Y\text{ \ul{nicht} Exponentialverteilt}
+\end{align*}
+\end{itemize}
+\end{beisp}
+
+\begin{bemerkung}
+Hierbei haben wir den Eindeutigkeitssatz vorweggenommen:\\
+Die Charakteristische Funktion $\Phi_X(\xi)$ charakterisiert die Verteilung von $X$ eindeutig, d.h.:
+\begin{align*}
+\Big(\forall\xi\in\R^d:\Phi_X(\xi)=\Phi_Y(\xi)\Big)\Longleftrightarrow X\sim Y
+\end{align*}
+Beweis folgt in Kapitel 7.
+\end{bemerkung}
+
+\begin{theorem}[Charakterisierung der Unabhängigkeit]\label{theorem6.5CharakterisierungDerUnabhaengigkeit}\enter
+Seien $X$ und $Y$ zwei $\R^{d_1}$- bzw. $\R^{d_2}$-wertige Zufallsvariablen. Dann gilt:
+\begin{align*}
+X\unab Y\Longleftrightarrow\Big(\forall\xi\in\R^{d_1},\forall \eta\in\R^{d_2}:\Phi_{(X,Y)}\underbrace{(\xi,\eta)}_{\in\R^{d_1+d_2}}=\Phi_X(\xi)\cdot\Phi_Y(\eta)\Big)
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+\underline{Zeige "$\implies$": (einfach)}
+\begin{align*}
+\Phi_{(X,Y)}(\xi,\eta)
+&=\E\Big[\exp\big(i\cdot(X,Y)^T\cdot(\xi,\eta)\big)\Big]\\
+&=\E\big[\exp\big(i\cdot X^T\cdot\xi+i\cdot Y^T\cdot \eta\big)\Big]\\
+\overset{X\unab Y}&=
+\E\Big[\exp\big(i\cdot X^T\cdot\xi\big)\Big]\cdot\E\Big[\exp\big(i\cdot Y^T\cdot \eta\big)\Big]\\
+&=\Phi_X(\xi)\cdot\Phi_Y(\eta)
+\end{align*}
+
+\underline{Zeige "$\Longleftarrow$":}\\
+Wir konstruieren (Stichwort Produktraum!) $\tilde{X}$ und $\tilde{Y}$ mit $\tilde{X}\sim X$ und $\tilde{Y}\sim Y$ so, dass $\tilde{X}\unab\tilde{Y}$. Aus $\tilde{X}\sim X$ und $\tilde{Y}\sim Y$ folgt, das $(\tilde{X},\tilde{Y})$ die gleiche Randverteilung wie $(X,Y)$ besitzt. Es gilt:
+\begin{align*}
+\Phi_{(X,Y)}(\xi,\eta)
+\overset{\text{Vor}}&=
+\Phi_X(\xi)\cdot\Phi_Y(\eta)
+=\Phi_{\tilde{X}}(\xi)\cdot\Phi_{\tilde{Y}}(\eta)
+\stackrelnew{\text{Teil 1}}{\tilde{X}\unab\tilde{Y}}{=}
+\Phi_{(\tilde{X},\tilde{Y})}(\xi,\eta)\qquad\forall\xi\in\R^{d_1},\eta\in\R^{d_2}
+\end{align*}
+Mit dem Eindeutigkeitssatz folgt $(X,Y)\sim(\tilde{X},\tilde{Y})\implies X\unab Y$
+\end{proof}
 

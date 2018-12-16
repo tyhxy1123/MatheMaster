@@ -1,0 +1,189 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{Formale Systeme WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 8}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\newcommand{\A}{\mathcal{A}}
+
+\begin{document}
+%\setcounter{section}{1}
+
+\section*{Aufgabe $\ast$)}
+\begin{itemize}
+\item Transitionssystem ist $\A=(Q,\Sigma,I,\Delta,F)$ wobei
+\begin{itemize}
+\item $Q$ eine Menge von Zuständen ist (nicht notwendigerweise endlich!)
+\item $\Sigma$ ein endliches Alphabet
+\item $I\subseteq Q$ eine Menge von Anfangszuständen
+\item $\Delta\subseteq Q\times\Sigma\times Q$ eine Übergangsrelation (Transitionsrelation) ist
+\item $F\subseteq Q$ eine Menge von Endzuständen ist
+\end{itemize}
+\item Ein NEA ist ein Transitionssystem mit $|Q|<\infty$ und $|I|=1$.
+\item Ein NEA mit Wortübergängen hat die Form $\A=(Q,\Sigma,q_0,\Delta,F)$, wobei $Q,\Sigma,q_0,F$ wie beim NEA definiert sind und $\Delta\subseteq Q\times \Sigma^\ast\times Q$ eine endliche Menge von Wortübergängen ist. (Beachte $\Sigma^\ast$!, somit ein NEA mit Wortübergängen \underline{kein} NEA!)
+\item Ein $\varepsilon$-NEA ist ein NEA mit Wortübergängen mit
+\begin{align*}
+\underbrace{|w|\leq1}_{\gdw w\in\Sigma\cup\lbrace\varepsilon\rbrace}\qquad\forall(q,w,q')\in\Delta
+\end{align*}
+\item $\varepsilon$-Übergang ist v.d.F. $(q,\varepsilon,q')\in Q\times\Sigma^\ast\times Q$
+\item Eine Menge $L$ von Wörtern mit $L\subseteq\Sigma^\ast$ heißt formale Sprache über $\Sigma$.
+\item unendliche Menge endlicher Wörter ist die Menge aller Wörter (= endliche Zeichenfolge) über $\Sigma$, i.Z. $\Sigma^\ast$.
+\end{itemize}
+
+\section*{Aufgabe $\ast\ast$)}
+Für $L_1$ betrachte den NEA: $\A_1=(Q=\lbrace q_0,q_1,q_2\rbrace,\Sigma=\lbrace a,b\rbrace,q_0,\Delta,\lbrace q_2\rbrace)$ mit
+\begin{align*}
+\Delta=\lbrace (q_0,a,q_1),(q_1,a,q_1),(q_1,b,q_1),(q_1,a,q_2)\rbrace\subseteq Q\times\Sigma\times Q
+\end{align*}
+
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state,accepting] (q_2) [right=of q_1] {$q_2$};
+  \path[->] (q_0) edge                node [above] {a} (q_1)
+            (q_1) edge [loop above]   node [above] {a,b} ()
+                  edge                node [above] {a} (q_2);
+\end{tikzpicture}
+
+%TODO Das folgende ist falsch, da Wörter wie abab fehlen.
+Für $L_2$ betrachte den NEA: $\A_2=(Q=\lbrace q_0,q_1,q_2\rbrace,\Sigma=\lbrace a,b\rbrace,q_0,\Delta,\lbrace q_0\rbrace)$ mit
+\begin{align*}
+\Delta=\lbrace (q_0,a,q_1),(q_1,a,q_0),(q_0,b,q_2),(q_2,b,q_0)\rbrace\subseteq Q\times\Sigma\times Q
+\end{align*}
+
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial, accepting]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [above right=of q_0] {$q_1$};
+  \node[state] (q_2) [below right=of q_0] {$q_2$};
+  \node[state] (q_3) [above right=of q_2] {$q_3$};
+  \path[->] (q_0) edge [bend left=30] node [above] {a} (q_1)
+                  edge [bend left=30] node [above] {b} (q_2)
+            (q_1) edge [bend left=30] node [above] {a} (q_0)
+            	  edge [bend left=30] node [above] {b} (q_3)
+            (q_2) edge [bend left=30] node [above] {b} (q_0)
+                  edge [bend left=30] node [above] {a} (q_3)
+            (q_3) edge [bend left=30] node [above] {b} (q_1)
+                  edge [bend left=30] node [above] {a} (q_2);
+\end{tikzpicture}
+
+
+\section*{Aufgabe 1}
+\begin{align*}
+V_0:=\lbrace v_0\rbrace,\qquad V_{i+1}:=V_i\cup\big\lbrace v\in V\mid\exists v'\in V_i:(v',v)\in E\big\rbrace
+\end{align*}
+\begin{proof}
+Teil 1 Ist trivial nach Konstruktion (ansonsten kann man das leicht induktiv zeigen)\nl
+\ul{Zu Teil 2:}\\
+Die Folge $(V_i)_{i\in\N}$ ist nach Teil 1 monoton wachsend und durch die endliche (!) Menge $V$ nach oben beschränkt. Folglich muss es einen Index geben, ab dem die Folge stationär wird.\nl
+Aufwand: $\mathcal{O}(|V|^2)$
+\end{proof}
+
+\section*{Aufgabe 2}
+Ein DEA ist ein NEA, falls
+\begin{align*}
+:\Longleftrightarrow\forall q\in Q,\forall a\in\Sigma:\exists!~q'\in Q:(q,a,q')\in\Delta
+\end{align*}
+Es erscheint sinnvoll, sich stets zuerst den NEA zu überlegen und danach diesen in einen DEA umzuschreiben.
+
+\subsection*{Aufgabe2 a)}
+\begin{align*}
+L_1=\big\lbrace a^n bac^m\mid m,n>0\text{ $n$ ist gerade und $m$ ist ungerade}\big\rbrace
+\end{align*}
+Wir konstruieren zuerst einen NEA, der $L_a$ akzeptiert:\\
+
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.3cm,on grid]
+  \node[state,initial]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state]           (q_2) [below=of q_1] {$q_2$};
+  \node[state]           (q_3) [right=of q_1] {$q_3$};
+  \node[state]           (q_4) [right=of q_3] {$q_4$};
+  \node[state]           (q_5) [right=of q_4] {$q_5$};
+  \node[state, accepting](q_6) [right=of q_5] {$q_6$};
+  \node[state]           (q_7) [below=of q_6] {$q_7$};
+  \path[->] (q_0) edge                node [above] {a} (q_1)
+            (q_1) edge                node [above] {a} (q_3)
+                  edge [bend left=30] node [right] {a} (q_2)
+            (q_2) edge [bend left=30] node [left] {a} (q_1)
+            (q_3) edge                node [above] {b} (q_4)
+            (q_4) edge                node [above] {a} (q_5)
+            (q_5) edge                node [above] {c} (q_6)
+            (q_6) edge [bend left=30] node [right] {c} (q_7)
+            (q_7) edge [bend left=30] node [left] {c} (q_6);
+\end{tikzpicture}
+
+Um daraus einen DEA zu machen müssen wir:
+\begin{itemize}
+\item Papierkorbzustände ergänzen
+\item Potenzmengenkonstruktion
+\end{itemize}
+
+%TODO
+
+\subsection*{Aufgabe b)}
+\begin{align*}
+L_2=\big\lbrace w\in\lbrace0,1\rbrace^\ast\mid\exists i\in\lbrace0,1\rbrace:w\text{ endet mit $i$ und enthält eine ungerade Anzahl von $i$'s}\big\rbrace
+\end{align*}
+%TODO
+
+\section*{Aufgabe 3}
+Zwei Transitionssysteme (NEAs sind Spezialfälle) heißen \textbf{äquivalent}, wenn sie dieselbe Sprache akzeptieren.\\
+Formaler: Seien $\A=(Q,\Sigma,q_0,\Delta,F),\A'=(Q',\Sigma',q_0',\Delta',F')$ zwei NEAs. Diese sind äquivalent
+\begin{align*}
+&\Longleftrightarrow L(\A_1)=L(\A_2)\\
+&\Longleftrightarrow \big\lbrace w\in\Sigma^\ast:\A_1\text{ akzeptiert }w\big\rbrace
+=\big\lbrace w\in\Sigma'^\ast:\A_2\text{ akzeptiert }w\big\rbrace\\
+&\Longleftrightarrow\big\lbrace w\in\Sigma^\ast:I\stackrel{w}{\longrightarrow}_{\A_1} F\big\rbrace=
+\big\lbrace w\in\Sigma'^\ast:I'\stackrel{w}{\longrightarrow}_{\A_2} F'\big\rbrace
+\end{align*}
+
+\section*{Aufgabe 4}
+Sei $\A=(Q,\Sigma,I,\delta,F)$ ein DEA.
+
+\subsection*{Aufgabe 4 a)}
+\begin{align*}
+\forall\lbrace u,v\rbrace\subseteq\Sigma^\ast,\forall q\in Q:\delta(q,uv)=\delta\big(\delta(q,u),v\big)
+\end{align*}
+\begin{proof}
+Sei $\lbrace u,v\rbrace\subseteq\Sigma^\ast$ beliebige Teilmenge und sei $q\in Q$ beliebig. Dann gilt:
+\begin{align*}
+\delta\big(\delta(q,u),v\big)
+&=...
+\end{align*}
+\end{proof}
+
+\subsection*{Aufgabe 4 b)}
+\begin{align*}
+\sim_k=\sim_{k+1}\implies\sim_k=\sim_\A
+\end{align*}
+\begin{proof}
+Angenommen es gilt $\sim_k=\sim_{k+1}$ für ein festes $k\in\N$. Dann gilt:
+%TODO
+\end{proof}
+
+\end{document}
