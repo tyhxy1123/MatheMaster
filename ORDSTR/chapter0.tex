@@ -698,7 +698,7 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 \end{definition}
 
 \begin{definition}
-    Ein \textbf{Kreis} ist ein geschlosseneer Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$, sodass für alle $i,j \in \{1,\ldots,n\}$ 
+    Ein \textbf{Kreis} ist ein geschlossener Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$, sodass für alle $i,j \in \{1,\ldots,n\}$ 
     $$ i \neq j \implies \sigma e_i \ne \tau e_j .$$
 \end{definition}
 
@@ -708,7 +708,7 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 \end{definition}
 
 \begin{definition}
-    Sei $\P = (P,R)$ binäres Relat. $\P$ heißt \textbf{azyklisch}, falls $G\P$ azyklischist.
+    Sei $\P = (P,R)$ binäres Relat. $\P$ heißt \textbf{azyklisch}, falls $G\P$ azyklisch ist.
 \end{definition}
 
 \begin{erinnerungnr}
@@ -748,7 +748,7 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 \end{bemerkungnr}
 
 \begin{beispiel}
-    Sei $\P=(P,R)$ nichtleere Präordnung. DAnn gilt $\P$ \underline{ist als ANW $\G\P$} azyklisch genau
+    Sei $\P=(P,R)$ nichtleere Präordnung. Dann gilt $\P$ \underline{ist als ANW $\G\P$} azyklisch genau
     dann, wenn $\P$ eine Ordnung ist. $\P$ als Netzwerk ist aber nicht azyklisch, da 
     $\Delta:P := \{(p,p) \mid p \in P\} \subseteq R$ ist.
 \end{beispiel}
@@ -762,4 +762,32 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
     Wähle einfach $(p,q) \in O$. 
     Es genügt die Antisymmetrie nachzuweisen.
     Wäre $O$ nicht antisymmetretisch, so gäbe es wegen der Transitivität von $R$ einen Pfad von $q$ nach $p$, Widerspruch.
+\end{proof}
+
+\begin{definition}
+    Sind $G=(V,E,\rho)$ und $\overline{G} = (V, \overline{E}, \overline{\rho})$ Netzwerke, so heiße
+    $\overline{G}$ eine \textbf{echte Kantenerweiterung} von $G$, falls $E \subsetneqq \overline{E}$ und $G = \overline{G}|_E$ gilt.
+    Gilt $\#(\overline{E}-E) = n$, so heiße $\overline{G}$ \textbf{$n$-kantige Erweiterung} von $G$.
+\end{definition}
+
+\begin{lemma}
+    Sei $G=(V,E,\rho)$ ein azyklisches Netzwerk und seien $p,q \in V$ mit $p \ne q$.
+    Es sind äquivalent:
+    \begin{enumerate}[label=(\roman*)]
+        \item Es existiert eine 1-kantige azyklische Erweiterung $\overline{G} = (V,\overline{E}, \overline{\rho})$ von $G$
+        derart, dass es ein $\overline{e} \in \overline{E}$ gibt mit $\overline{\rho}\overline{e} = (p,q)$,
+
+        \item  In $G$ gibt es keinen Pfad von $q$ nach $p$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \underline{(1) $\implies$ (2):} Gelte (1). Angenommen es existiert ein Pfad $(e_1, \ldots,e_n)$ in $G$ von $q$ nach $p$. Dann ist
+    $(\overline{e},e_1,\ldots,e_n)$ ein Pfad von $p$ nach $q$, d.h. ein geschlossener Pfad, in $\overline{G}$, was im Widerspruch zu (1) steht.
+
+    \underline{(2) $\implies$ (1):} Wähle $\overline{e} \notin E$ und setze $\overline{E} := E \cup \{\overline{e}\}$ und setze
+    $\overline{\rho}\overline{e}:=(p,q)$ und erhalte 1-kantige Erweiterung $\overline{G} := (V, \overline{E}, \overline{\rho})$
+    von $G$. Angenommen $\overline{G}$ nicht azyklisch. Dann existiert ein geschlossener Pfad $(e_1, \ldots,e_n)$ in $\overline{G}$.
+    Wenn $(e_1, \ldots,e_n)$ ein Pfad in $G$ wäre so stünde dies im Widerspruch dazu, dass $G$ azyklisch ist.
+    Also gilt $\overline{e} \in \{e_1, \ldots,e_n\}$. Sei ohne Einschränkung $\overline{e} = e_1$. Dann ist $(e_2, \ldots, e_n)$ ein
+    Pfad von $q$ nach $p$ in $G$ was im Widerspruch zu (2) steht.
 \end{proof}
