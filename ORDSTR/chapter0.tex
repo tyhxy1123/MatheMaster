@@ -366,10 +366,10 @@ Dies ist aber im Allgemeinen keine Oberstruktur von $G$!
 \item Pfadaktionsnetzwerk zu einem Netzwerk
 \item logistisches Aktionsnetzwerk zu einer Menge $P$:
 \begin{align*}
-\mathbb{G}_P&:=(G_P,\ast,\id)\\
-\id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
-G_P&:=(P,P\times P,\id_{P\times P})\\
-(p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
+    \mathbb{G}_P&:=(G\P,\ast,\id)\\
+    \id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
+    G_P&:=(P,P\times P,\id_{P\times P})\\
+    (p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
 \end{align*}
 \item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
 Sind bis auf Isomorphie einknotige Netzwerke.
@@ -437,7 +437,7 @@ Sei $\mathbb{P}:=(P,R)$ ein binäres Relat. Definiere $G\mathbb{P}:=(P,R,\rho)$ 
 
 \begin{beispiel}
     Sei $\mathbb{P} := (R, R)$ ein binäres Relat.
-    Dann ist $G_P := (P, R \subseteq P \times P, i)$, wobei
+    Dann ist $G\P := (P, R \subseteq P \times P, i)$, wobei
     $i: R \to P \times P$ die identische Einbettung ist,
     ein Netzwerk.
     Es folgt offensichtlich das es sich dabei um ein dünnes Netzwerk handelt.
@@ -448,22 +448,22 @@ Sei $\mathbb{P}:=(P,R)$ ein binäres Relat. Definiere $G\mathbb{P}:=(P,R,\rho)$ 
 \end{korollar}
 
 \begin{definition}
-Sind $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke, so bildet
-\begin{align*}
-\Phi:\left\lbrace\begin{array}{rl}
-\Phi_{\text{vert}}:&V\to V'\\
-\Phi_{\text{edge}}:&E\to E'
-\end{array}\right.
-\end{align*}
-einen Morphismus von $G$ nach $G'$, falls gilt:
-\begin{align*}
-\Phi_{\text{vert}}\circ\sigma&=\sigma'\circ\Phi_{\text{edge}}\\
-\Phi_{\text{vert}}\circ\tau&=\tau'\circ\Phi_{\text{edge}}
-\end{align*}
+    Sind $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke, so bildet
+    \begin{align*}
+        \Phi:\left\lbrace\begin{array}{rl}
+        \Phi_{\text{vert}}:&V\to V'\\
+        \Phi_{\text{edge}}:&E\to E'
+        \end{array}\right.
+    \end{align*}
+    einen Morphismus von $G$ nach $G'$, falls gilt:
+    \begin{align*}
+        \Phi_{\text{vert}}\circ\sigma&=\sigma'\circ\Phi_{\text{edge}}\\
+        \Phi_{\text{vert}}\circ\tau&=\tau'\circ\Phi_{\text{edge}}
+    \end{align*}
 \end{definition}
 
 \begin{definition}
-Ein Morphismus $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ zwischen Netzwerken heißt \textbf{Isomorphismus} $:\gdw\Phi_{\text{vert}}$ und $\Phi_{\text{edge}}$ bijektiv sind.
+    Ein Morphismus $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ zwischen Netzwerken heißt \textbf{Isomorphismus} $:\gdw\Phi_{\text{vert}}$ und $\Phi_{\text{edge}}$ bijektiv sind.
 \end{definition}
 
 \begin{bemerkungnr}[Der Reduktionsmorphismus]\enter
@@ -478,179 +478,288 @@ Ein Morphismus $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ zwischen Netzwerke
 \end{bemerkungnr}
 
 \begin{definition}
-Seien $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke. Dann heißt $G$ \textbf{Unternetzwerk} von $G:\Longleftrightarrow$
-\begin{enumerate}
-\item $V'\subseteq V$ und $E'\subseteq E$
-\item $\forall e'\in E':\rho'(e')=\rho(e')$\\
-d.h. $\rho|_{G'}=\rho'$ oder $\rho|_{(E'\to V'\times V')}=\rho'$)
-\end{enumerate}
+    Seien $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke. Dann heißt $G$ \textbf{Unternetzwerk} von $G:\Longleftrightarrow$
+    \begin{enumerate}
+        \item $V'\subseteq V$ und $E'\subseteq E$
+        \item $\forall e'\in E':\rho'(e')=\rho(e')$\\
+        d.h. $\rho|_{G'}=\rho'$ oder $\rho|_{(E'\to V'\times V')}=\rho'$)
+    \end{enumerate}
 \end{definition}
 
 \begin{notation}
-Einschränkungen: Sei $f:A\to B$ Abbildung, $A_0\subseteq A$, $B_0\subseteq B$, $f(A_0)\subseteq_0$
-\begin{align*}
-f|_{(A_0\to B_0)}:=f|_{A_0}:A_0\to B_0,\qquad a\to f_a
-\end{align*}
+    Einschränkungen: Sei $f:A\to B$ Abbildung, $A_0\subseteq A$, $B_0\subseteq B$, $f(A_0)\subseteq_0$
+    \begin{align*}
+        f|_{(A_0\to B_0)}:=f|_{A_0}:A_0\to B_0,\qquad a\to f_a
+    \end{align*}
 \end{notation}
 
 Konstruktion von Unternetzwerken:\\
-Sei $G=(V,E,\rho)$ ein Netzwerk und $E_\subseteq E$, $V_0\subseteq V$ mit $\rho(E_0)\subseteq U_0\times U_0$, dann ist $G_0:=(V_0,E_0,\rho|_{E_0})$ ein Unternetzwerk von $G$.\\
+Sei $G=(V,E,\rho)$ ein Netzwerk und $E_0\subseteq E$, $V_0\subseteq V$ mit $\rho(E_0)\subseteq V_0\times V_0$, dann ist $G_0:=(V_0,E_0,\rho|_{E_0})$ ein Unternetzwerk von $G$.\\
 Spezialfall: $V=V_0$
 \begin{align*}
-G|_{E_0}:=G_0:=(V,E_0,\rho|_{E_0})
+    G|_{E_0}:=G_0:=(V,E_0,\rho|_{E_0})
 \end{align*}
 heißt \textbf{knotenvollständige Einschränkung}.
 
 \begin{definition}[Unterstrukturen von ANM]\enter
-Seien $\G=(G,\ast,\id)$ mit $G=(V,E,\rho)$ und $\G'=(G',\ast',\id')$ mit $G'=(V',E',\rho')$ Aktionswerke. Dann heißt $\G'$ \textbf{Unterstruktur} von $\G$ $:\Longleftrightarrow$
-\begin{enumerate}
-\item $V'=V$, $E'\subseteq E$ und $\rho'=\rho|_{E'}$ (d.h. $G'=G|_E$)
-\item $\ast'=\ast|_{E'^{\langle 2\rangle_{G'}}}$ (2 Pfade in $\G'$
-\item $\id'=\id|_{(V'\to E')}$
-\end{enumerate}
-Die letzten Bedingungen besagen:
-\begin{align*}
-\forall a',c'\in E^{\langle2\rangle}:(a',c')\in E^{\langle2\rangle}\Longleftrightarrow a'\ast c'\in E'\\
-\id V'\subseteq E'
-\end{align*}
+    Seien $\G=(G,\ast,\id)$ mit $G=(V,E,\rho)$ und $\G'=(G',\ast',\id')$ mit $G'=(V',E',\rho')$ Aktionswerke. Dann heißt $\G'$ \textbf{Unterstruktur} von $\G$ $:\Longleftrightarrow$
+    \begin{enumerate}
+        \item $V'=V$, $E'\subseteq E$ und $\rho'=\rho|_{E'}$ (d.h. $G'=G|_E$)
+        \item $\ast'=\ast|_{E'^{\langle 2\rangle}}$ (2 Pfade in $\G'$)
+        \item $\id'=\id|_{(V'\to E')}$
+    \end{enumerate}
+    Die letzten Bedingungen besagen:
+    \begin{align*}
+        \forall (a,c)\in E^{\langle2\rangle}:(a,c)\in E'^{\langle2\rangle}\Longleftrightarrow a\ast c\in E'\\
+        \id V'\subseteq E'
+    \end{align*}
 \end{definition}
 
 Wir nennen dann $\G|_{E'}=\G'$ die \textbf{Einschränkung von $\G$ auf $E'$}. (Denn $\G'$ ist durch $\G$ und $E'$ eindeutig bestimmt.)\nl
 Unsere Überlegungen folgen allgemeinen Konstruktionen von UnterANWs:
 
 \begin{definition}
-Sei $\G=(G,\ast,\id)$ ANW mit $D\subseteq E$. Dann \textbf{induziert $D$ eine Unterstruktur} in $\G:\Longleftrightarrow$
-\begin{enumerate}
-\item $\forall a,b\in E^{\langle2\rangle}:\big(a,b\in D\implies a\ast b\in D\big)$
-\item $\id V\subseteq D$
-\end{enumerate}
-Die Struktur $\G'=\G|_D$ ist eindeutig bestimmt.
+    Sei $\G=(G,\ast,\id)$ ANW mit $D\subseteq E$. Dann \textbf{induziert $D$ eine Unterstruktur} in $\G:\Longleftrightarrow$
+    \begin{enumerate}
+        \item $\forall a,b\in E^{\langle2\rangle}:\big(a,b\in D\implies a\ast b\in D\big)$
+        \item $\id V\subseteq D$
+    \end{enumerate}
+    Die Struktur $\G'=\G|_D$ ist eindeutig bestimmt.
 \end{definition}
 
 \begin{beispiel}
-$\G=(\N,+,0),~E=\N,~A=\lbrace 4,5\rbrace$ Dann folgt
-\begin{align*}
-D:=\langle A\rangle=\big\lbrace m\cdot 4+n\cdot 5\mid m,n\in\N\big\rbrace
-\end{align*}
-\begin{tabular}{c|cccc}
-4$\setminus$5 & 0 & 1 & 2 & 3\\ \hline
-0 & 0 & 5 & 10 & 15\\
-1 & 4 & 9 & 14 & 19\\
-2 & 8 & 13 & 18 & 23\\
-3 & 12 & 17 & 22 & 27
-\end{tabular}
+    $\G=(\N,+,0),~E=\N,~A=\lbrace 4,5\rbrace$ Dann folgt
+    \begin{align*}
+        D:=\langle A\rangle=\big\lbrace m\cdot 4+n\cdot 5\mid m,n\in\N\big\rbrace
+    \end{align*}
+    \begin{tabular}{c|cccc}
+        4$\setminus$5 & 0 & 1 & 2 & 3\\ \hline
+        0 & 0 & 5 & 10 & 15\\
+        1 & 4 & 9 & 14 & 19\\
+        2 & 8 & 13 & 18 & 23\\
+        3 & 12 & 17 & 22 & 27
+    \end{tabular}
 \end{beispiel}
 
 \begin{proposition}[Erzeugung von Unterstrukturen in ANWen]\enter
-Sei $\G=(G,\ast,\id)$ ein ANW mit $G=(V,E,\rho)$ zugehöriges Netzwerk. Dann sei für $A,C\subseteq 2^E$ stets das \textbf{Minkowski-Produkt} von $A$ und $C$ in $\G$ definiert als
-\begin{align*}
-A\ast C
-:=A\ast_{\text{Mink}} C
-A\ast_{\text{Mink}(\G)} C
-:=\left\lbrace a\ast c~\left|~(a,c)\in (A\times C)\cap E^{\langle2\rangle}\right.\right\rbrace
-\end{align*}
-Sei $\mathbb{M}$ Vektorraum. Für $A,C\in 2^M$ heißt
-\begin{align*}
-A+C:=\big\lbrace a+c\mid (a,c)\in A\times C\big\rbrace
-\end{align*}
-\textbf{Minkowski-Summe} von $A$ und $C$ in $\mathbb{M}$.
+    Sei $\G=(G,\ast,\id)$ ein ANW mit $G=(V,E,\rho)$ zugehöriges Netzwerk. Dann sei für $A,C\in 2^E$ stets das \textbf{Minkowski-Produkt} von $A$ und $C$ in $\G$ definiert als
+    \begin{align*}
+        A\ast C
+        :=A\ast_{\text{Mink}} C
+        A\ast_{\text{Mink}(\G)} C
+        :=\left\lbrace a\ast c~\left|~(a,c)\in (A\times C)\cap E^{\langle2\rangle}\right.\right\rbrace
+    \end{align*}
+    Sei $\mathbb{M}$ Vektorraum. Für $A,C\in 2^M$ heißt
+    \begin{align*}
+        A+C:=\big\lbrace a+c\mid (a,c)\in A\times C\big\rbrace
+    \end{align*}
+    \textbf{Minkowski-Summe} von $A$ und $C$ in $\mathbb{M}$.
 
-Für $A\subseteq 2^E$ sei die $n$-fache \textbf{Minkowski-Potenz} von $A\in 2^E$ in $\G$ definiert als
-\begin{align*}
-A^{(n)}
-A^{(n)\ast}
-:=A^{(n)_\G}
-:=\Big\lbrace a_1\ast\ldots\ast a_n~\Big|~(a_1,\ldots,a_n)\in \underbrace{A^n\cap E^{\langle n\rangle}}_{=:A^{\langle n\rangle}}\Big\rbrace
-\end{align*}
-%für jedes $n\in\N$. D.h.
-%\begin{align*}
-%A^{(n)_\G}=A\ast_{\text{Mink}_\G}\ldots\ast_{\text{Mink}_\G} A
-%\end{align*}
-Sei $A^{(0)}:=\id V$, d.h. $A^{(0)}=\lbrace\id(p):p\in V\rbrace$. Hierbei ist $A^{(0)}$ die Menge aller \textbf{ID-Loops} in $\G$.
-Dann heiße
-\begin{align*}
-A^{(\ast)}:=A^{(\ast)_\G}:=\bigcup\limits_{n\in\N} A^{(n)}
-\end{align*}
-der \textbf{Kleene-Star / Kleenscher Stern} von $A$ in $\G$, d.h.
-\begin{align*}
-A^{(\ast)}=\id~V\cup A\cup (A\ast A)\cup (A\ast A\ast A)\cup\ldots\qquad\forall A\in 2^E
-\end{align*}
-Für $A\in 2^E$ bildet $A^{(\ast)}$ stets die bzgl. ``$\subseteq$'' kleinste Unterstruktur von$\G$, die $A$ enthält. Man nennt $A^{(\ast)}$ daher auch das \textbf{Erzeugnis} von $A$ in $\G$ und schreibt auch
-\begin{align*}
-\langle A\rangle &:=\langle A\rangle_\G:=(A)^{(\ast)_\G}\\
-\langle A\rangle&:=A^{(\ast)}
-\end{align*}
+    Für $A\in 2^E$ sei die $n$-fache \textbf{Minkowski-Potenz} von $A\in 2^E$ in $\G$ definiert als
+    \begin{align*}
+        A^{(n)}
+        := A^{(n)\ast}
+        := A^{(n)_\G}
+        :=\Big\lbrace a_1\ast\ldots\ast a_n~\Big|~(a_1,\ldots,a_n)\in \underbrace{A^n\cap E^{\langle n\rangle}}_{=:A^{\langle n\rangle}}\Big\rbrace
+    \end{align*}
+    %für jedes $n\in\N$. D.h.
+    %\begin{align*}
+    %A^{(n)_\G}=A\ast_{\text{Mink}_\G}\ldots\ast_{\text{Mink}_\G} A
+    %\end{align*}
+    Sei $A^{(0)}:=\id V$, d.h. $A^{(0)}=\lbrace\id(p):p\in V\rbrace$. Hierbei ist $A^{(0)}$ die Menge aller \textbf{ID-Loops} in $\G$.
+    Dann heiße
+    \begin{align*}
+        A^{(\ast)}:=A^{(\ast)_\G}:=\bigcup\limits_{n\in\N} A^{(n)}
+    \end{align*}
+    der \textbf{Kleene-Star / Kleenscher Stern} von $A$ in $\G$, d.h.
+    \begin{align*}
+        A^{(\ast)}=\id~V\cup A\cup (A\ast A)\cup (A\ast A\ast A)\cup\ldots\qquad\forall A\in 2^E
+    \end{align*}
+    Für $A\in 2^E$ bildet $A^{(\ast)}$ stets die bzgl. ``$\subseteq$'' kleinste Unterstruktur von $\G$, die $A$ enthält. Man nennt $A^{(\ast)}$ daher auch das \textbf{Erzeugnis} von $A$ in $\G$ und schreibt auch
+    \begin{align*}
+        \langle A\rangle &:=\langle A\rangle_\G:=(A)^{(\ast)_\G}\\
+        \langle A\rangle&:=A^{(\ast)}
+    \end{align*}
 \end{proposition}
 
 \begin{beispiel}
-Für $A:=\lbrace 4,5\rbrace\in 2^\N$ ist 
-\begin{align*}
-\langle A\rangle=A^{(\ast)}=\lbrace0,4,5,8,9,10,12,13,14,\ldots\rbrace=\N\setminus\lbrace1,2,3,6,7,11\rbrace
-\end{align*}
-in $\G=\G(\N,+,0)$. D.h. $\N\setminus\lbrace1,2,3,6,7,11\rbrace$ ist der von $\lbrace4,5\rbrace$ in $(\N,+,0)$ erzeugte Untermonoid.
+    Für $A:=\lbrace 4,5\rbrace\in 2^\N$ ist 
+    \begin{align*}
+        \langle A\rangle=A^{(\ast)}=\lbrace0,4,5,8,9,10,12,13,14,\ldots\rbrace=\N\setminus\lbrace1,2,3,6,7,11\rbrace
+    \end{align*}
+    in $\G=\G(\N,+,0)$. D.h. $\N\setminus\lbrace1,2,3,6,7,11\rbrace$ ist der von $\lbrace4,5\rbrace$ in $(\N,+,0)$ erzeugte Untermonoid.
 \end{beispiel}
 
 Sei $B$ eine Menge (von Buchstaben). Dann ist 
 \begin{align*}
-K_B:=\big(\lbrace\perp\rbrace,B,B\to\lbrace(\perp,\perp)\rbrace\Big)
+    K_B:=\big(\lbrace\perp\rbrace,B,B\to\lbrace(\perp,\perp)\rbrace\Big)
 \end{align*}
 ein 1-knotiges Netzwerk, das sogenannte \textbf{Kleeblatt-Netzwerk} zu $B$.($\lbrace\perp\rbrace$ ist der eine Knoten, $B$ die Kantenmenge (Buchstaben) und $B\to\lbrace(\perp,\perp)\rbrace$ die Strukturabbildung)\nl
 \textbf{Allgemeine Notation:} Sei $G=(V,E,\rho)$ Netzwerk und sei
 \begin{align*}
-E^{\langle+\rangle}:=\bigcup\limits_{n\in\N_+} E^{\langle n\rangle}
+    E^{\langle+\rangle}:=\bigcup\limits_{n\in\N_+} E^{\langle n\rangle}
 \end{align*}
 die Menge aller Pfade (``positiver Länge'') in $G$ und sei $\omega:V\to W$ Bijektion mit $W\cap E^{\langle +\rangle}=\emptyset$.\\
 Dann definieren wir das \textbf{Pfad-ANW} zu $(G,\omega)$ durch
 \begin{align*}
-\mathbb{P}(G,\omega):=\big(P(G,\omega),\circledast,\id)
+    \mathbb{P}(G,\omega):=\big(P(G,\omega),\circledast,\id)
 \end{align*}
 via
 \begin{align*}
-P(G,\omega)=(V,E^{\langle\ast\rangle},\tilde{\rho})\mit E^{\langle\ast\rangle}:=\bigcup\limits_{n\in\N} E^{\langle n\rangle}
+    P(G,\omega)=(V,E^{\langle\ast\rangle},\tilde{\rho})\mit E^{\langle\ast\rangle}:=\bigcup\limits_{n\in\N} E^{\langle n\rangle}
 \end{align*}
 wobei $E^{\langle0\rangle}:=W$ und
 \begin{align*}
-\tilde{\rho}:E^{\langle\ast\rangle}\to V\times V,\qquad\tilde{\rho}(a_1,\ldots,a_n):=\big(\sigma a_1,\tau a_n\big)
-\qquad\forall(a_1,\ldots,a_n)\in E^{\langle+\rangle}
+    \tilde{\rho}:E^{\langle\ast\rangle}\to V\times V,\qquad\tilde{\rho}(a_1,\ldots,a_n):=\big(\sigma a_1,\tau a_n\big)
+    \qquad\forall(a_1,\ldots,a_n)\in E^{\langle+\rangle}
 \end{align*}
 und $\tilde{\rho}(\omega p):=(p,p)$ für $p\in V$.
 \begin{align*}
-(a_1,\ldots,a_m)\circledast(c_1,\ldots,c_n)
-:=\big(a_1,\ldots,a_m,c_1,\ldots, c_n\big)
+    (a_1,\ldots,a_m)\circledast(c_1,\ldots,c_n)
+    :=\big(a_1,\ldots,a_m,c_1,\ldots, c_n\big)
 \end{align*}
 ist formales Aneinanderhängen von Pfaden 
 \begin{align*}
-\omega(p)\circledast(a_1,\ldots,a_n):=(a_1,\ldots,a_n)=:(a_1,\ldots,a_n)\circledast\omega(p)
+    \omega(p)\circledast(a_1,\ldots,a_n):=(a_1,\ldots,a_n)=:(a_1,\ldots,a_n)\circledast\omega(p)
 \end{align*}
 für $p:=\sigma a_1$ und $q:=\tau a_n$.
 \begin{align*}
-\id:V\to E^{\langle\ast\rangle},\qquad p\to\omega p
+    \id:V\to E^{\langle\ast\rangle},\qquad p\to\omega p
 \end{align*}
 
 \textbf{Beobachtung:} Das Erzeugnis von $E$ in $\mathbb{P}(\G,\omega)$ ist der Kleene Star von $E$:
 \begin{align*}
-\langle E\rangle_{\mathbb{P}(G,\omega)}
-&=E^{(\circledast)}
-=\underbrace{\id~V}_{E^{\langle0\rangle}}\cup \underbrace{E}_{=E^{\langle1\rangle}}\cup \underbrace{(E\circledast E)}_{E^{\langle2\rangle}}\cup\underbrace{(E\circledast E\circledast E)}_{=E^{\langle3\rangle}}\cup\ldots\\
-&=\bigcup\limits_{n\in\N} E^{(n)\circledast}
-=\bigcup\limits_{n\in\N} E^{\langle n\rangle}
-=E^{\langle\ast\rangle}
+    \langle E\rangle_{\mathbb{P}(G,\omega)}
+    &=E^{(\circledast)}
+    =\underbrace{\id~V}_{E^{\langle0\rangle}}\cup \underbrace{E}_{=E^{\langle1\rangle}}\cup \underbrace{(E\circledast E)}_{E^{\langle2\rangle}}\cup\underbrace{(E\circledast E\circledast E)}_{=E^{\langle3\rangle}}\cup\ldots\\
+    &=\bigcup\limits_{n\in\N} E^{(n)\circledast}
+    =\bigcup\limits_{n\in\N} E^{\langle n\rangle}
+    =E^{\langle\ast\rangle}
 \end{align*}
 Hierbei heißt $\circledast$ das \textbf{Pfadprodukt} in $\mathbb{P}(G,\omega)$ (formales aneinanderhängen von Pfaden). Beachte
 \begin{align*}
-E^{(n)\circledast}=E^{\langle n\rangle}\qquad\forall n\in\N
+    E^{(n)\circledast}=E^{\langle n\rangle}\qquad\forall n\in\N
 \end{align*}
 Ergebnis:
 \begin{align*}
-\langle E\rangle_{\P(G,\omega)}=E^{(\circledast)}=E^{\langle\ast\rangle}
+    \langle E\rangle_{\P(G,\omega)}=E^{(\circledast)}=E^{\langle\ast\rangle}
 \end{align*}
 Das heißt, das Erzeugnis von $E$ in $\mathbb{P}(G,\omega)$ ist $E^{\langle\ast\rangle}$, d.h. $E$ erzeugt $\mathbb{P}(G,\omega)$.\\
 Alle Kanten aus $G$ (interpretiert als Pfade der Länge 1) erzeugt das Pfad-ANN zu $(G,\omega)$.\\
 $G$ ist Unter-Netzwerk von $P(G,\omega)$, also ``liegt'' $G$ in $\mathbb{P}(G,\omega)$ als Netzwerk.\\
 Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht UnterANW!
 
-% ab hier die 19. Vorlesung vom 10.12
+\begin{proposition}
+    Sei $G=(V,E,\rho)$ ein Netzwerk und sei $\omega: V \to W$ eine Bijektion mit $W \cap E^{\langle\ast\rangle} = \emptyset$.
+    Dann ist $\Gamma := (\id_V, \Gamma_{\text{edge}}$) mit 
+    $$ \Gamma_{\text{edge}}: E \to E^{\langle\ast\rangle}, e \mapsto e $$ ein Morphismus [sogar eine Einbettung] von $G$ nach $P(G,\omega)$, wobei
+    $P(G,\omega)$ das zu $(G,\omega)$ gehörige Pfadnetzwerk ist, und es existiert zu jedem ANW $\G':=(G',\ast',\id')$ mit
+    $G'=(V',E',\rho')$ und jedem Morphismus [Netzwerk-Morphismus!]
+    $ \Psi = (\Psi_{\text{vert}}, \Psi_{\text{edge}})$ von $G$ nach $G'$ genau ein Funktor $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ von 
+    $\P(G,\omega)$ nach $\G'$ derart, dass das folgende Diagramm kommutiert:
+    $$ \begin{tikzcd}
+        \dar{\Gamma}G\drar{\Psi} &\\
+        P(G,\omega) \rar{\Phi} & G'
+    \end{tikzcd}$$
+\end{proposition}
+\begin{proof}
+    \underline{Eindeutigkeit:} Beachte dass für $(e_1,\ldots,e_n) \in E^{\langle n\rangle}, n \in \N_+$,stets gilt
+    $$  (e_1,\ldots, e_n) = e_1 \circledast \ldots \circledast e_n.$$
+    Also gilt in der Situation vom Diagramm stets:
+    $$ \Phi_{\text{edge}}(e_1, \ldots, e_n) = \Phi_{\text{edge}}e_1 \ast' \ldots \ast' \Phi_{\text{edge}}e_n = \Psi_{\text{edge}}e_1 \ast' \ldots \ast' \Psi_{\text{edge}} e_n.$$
 
+    \underline{Existenz:} $ \Phi_{\text{edge}}(e_1,\ldots,e_n) := \Psi e_1 \ast' \ldots \ast' \Psi e_n$.
+\end{proof}
 
+\begin{bemerkung}[Anwendung ID-Loop bereinigt]
+    Sei $\G = (G, \ast, \id)$ ANW. Sei $G := (V, E^\bullet, \rho^\bullet)$ mit $E^\bullet := E - \id V$ und
+    $\rho^\bullet := \rho|_{E^\bullet}$. Und sei $\omega := \id|_{(V \to \id V)}$. Dann ist $\Psi:= (\id_V, i_{E^\bullet,E})$ ein 
+    Morphismus von $G^\bullet$ nach $G$ und es existiert genau ein Funktor $\Phi$ von $\P(G^\bullet, \omega)$ nach $\G$ mit
+    $\begin{tikzcd}
+        G^\bullet \dar{\Gamma} \drar{\Psi}\\
+        P(G^\bullet,\omega) \rar{\Phi} & G
+    \end{tikzcd}$ ist kommutativ. In der Tat ist $\Phi=(\id_V, \varphi)$ mit $\varphi:(E^\bullet)^{\langle\ast\rangle} \to E$
+    via $$\varphi(e_1, \ldots, e_n) := \varphi e_1 \ast \ldots \ast e_n$$
+    für $(e_1, \ldots, e_n) \in (E^\bullet)^{\langle +\rangle}$ und $\varphi(\id p):= \id p$ für $p \in P$.
+\end{bemerkung}
 
+\begin{bemerkung}[Anwendung unbereinigt]
+    Sei $\G = (G, \ast, \id)$ ANW mit $G=(V,E,\rho)$ und sei $\omega: V \to W$ Bijektion mit $W \cap E^{\langle + \rangle} = \emptyset$.
+    Dann existiert genau ein Funktor $\Phi$ von $\P(G, \omega)$ nach $\G$ mit
+    $\begin{tikzcd}
+        G \dar{\Gamma} \drar{\id_G:=(\id_V, \id_E)}\\
+        P(G,\omega) \rar{\Phi} & G
+    \end{tikzcd}$ ist kommutativ.
+\end{bemerkung}
 
+\begin{definition}
+    Ein Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$ \textbf{geschlossen}, falls $\sigma e_1 = \tau e_n$, oder
+    $$ (e_1,\ldots,e_n, e_1) \in E^{\<n+1\>}.$$
+\end{definition}
+
+\begin{definition}
+    Ein \textbf{Kreis} ist ein geschlosseneer Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$, sodass für alle $i,j \in \{1,\ldots,n\}$ 
+    $$ i \neq j \implies \sigma e_i \ne \tau e_j .$$
+\end{definition}
+
+\begin{definition}
+    Ein Netzwerk $G=(V,E,\rho)$ heißt \textbf{azyklisch} (acyclic), falls es keine geschlossenen Pfade besitzt (das ist dazu
+    äquivalent, dass das Netzwerk keine Kreise besitzt).
+\end{definition}
+
+\begin{definition}
+    Sei $\P = (P,R)$ binäres Relat. $\P$ heißt \textbf{azyklisch}, falls $G\P$ azyklischist.
+\end{definition}
+
+\begin{erinnerungnr}
+    Sei $P$ Menge. Dann bezeichne $\G_P$ das \textbf{logistische ANW} zu $P$, d.h. $\G_P=(G_P, \ast, \id)$
+    mit $G_P := G(P, P \times P)$ und $(p,t)\ast(t,q) := (p,q)$ für alle $p,t,q \in P$ sowie 
+    $\id(p) := (p,p)$ für alle $p \in P$.
+
+    Ist $\G=(G,\ast, \id)$ ANW mit $G=(V,E,\rho)$, so bildet eine Kantenmenge $D \subseteq E$ eine Unterstruktur
+    von $\G$, falls gilt
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\forall (a,b) \in E^{\<2\>}(a\in D \land b \in D \implies a \ast b \in D)$
+        \item $\id V \subseteq D$.
+    \end{enumerate}
+
+    Eine Kantenmenge $R \subseteq P \times P$ von $G_P$ bildet also eine Unterstruktur genau dann, wenn
+    $(P,R)$ Präordnung ist.\\
+    \textit{Denn:} (1) bedeutet, dass $(P,R)$ transitiv ist und (2) bedeutet, dass $(P,R)$ reflexiv ist.
+
+    Das zugehörige ANW sei mit $\G\P := \G_P|_R$ bezeichnet. Sprechweise "$\G\P$ ist $\P$ als ANW aufgefasst".
+\end{erinnerungnr}
+
+\begin{definition}
+    Man nennt ein ANW $\G = (G, \ast, \id)$ mit $G=(V,E,\rho)$ \textbf{azyklisch}, falls 
+    $G^\bullet =(V,E^\bullet, \rho^\bullet)$ mt $E^\bullet := E \setminus \id V$ und $\rho^\bullet := \rho|_E$
+    ein azyklisches Netzwerk ist.
+
+    $G^\bullet$ heiße die \textbf{ID-Loop-Bereinigung} von $\G$ (\underline{nicht} von $G$).
+\end{definition}
+
+\begin{bemerkungnr}
+    In der obigen Definition kann $G$ nicht azyklisch sein, da $\rho(\id p) = (p,p)$ nach Neutralitätsaxiom des Aktionsnetzwerkes.
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    Insbesondere gilt: Ist $\P = (P,R)$ Ordnung, so bildet $R$ eine Unterstruktur von $\G_P$, 
+    also fassen wir $\P$ auch als ANW $\G\P$ auf.
+\end{bemerkungnr}
+
+\begin{beispiel}
+    Sei $\P=(P,R)$ nichtleere Präordnung. DAnn gilt $\P$ \underline{ist als ANW $\G\P$} azyklisch genau
+    dann, wenn $\P$ eine Ordnung ist. $\P$ als Netzwerk ist aber nicht azyklisch, da 
+    $\Delta:P := \{(p,p) \mid p \in P\} \subseteq R$ ist.
+\end{beispiel}
+
+\begin{satz}
+    Jede maximale Ordnung ist linear.
+\end{satz}
+\begin{proof}
+    Wäre maximale Ordnung $(P,R)$ nicht linear, so gibt es zwei nicht vergleichbare Elemente $p,q \in P$.
+    Dann gibt es aber eine Obermenge $O$ von $R$, welche wieder eine Ordnung ist.
+    Wähle einfach $(p,q) \in O$. 
+    Es genügt die Antisymmetrie nachzuweisen.
+    Wäre $O$ nicht antisymmetretisch, so gäbe es wegen der Transitivität von $R$ einen Pfad von $q$ nach $p$, Widerspruch.
+\end{proof}
