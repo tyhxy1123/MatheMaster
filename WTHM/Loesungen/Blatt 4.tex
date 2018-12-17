@@ -108,8 +108,9 @@ Wir berechnen die charakteristische Funktionen folgender Verteilungen:
 \Phi_{\text{Bin}}(\xi)
 \overset{\text{Def}}&{=}
 \E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\ldots\\
-&=\big(p\cdot\exp(i\cdot k)+1\big)^n
+&=\displaystyle\sum^n_{k=0} e^{ik\xi} \binom{n}{k} p^{k}q^{n-k}\\
+&=\displaystyle\sum^n_{k=0} \binom{n}{k} \left(pe^{i\xi}\right)^k  q^{n-k}\\
+&=\big(p\cdot\exp(i\cdot \xi)+1\big)^n
 \end{align*}
 \underline{Zur Poissonverteilung:} Sei $X\sim\text{Poi}(\lambda)$. Dann gilt:
 %TODO
@@ -117,17 +118,21 @@ Wir berechnen die charakteristische Funktionen folgender Verteilungen:
 \Phi_{\text{Poi}}(\xi)
 \overset{\text{Def}}&{=}
 \E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\ldots\\
-&=\exp\big(\lambda\cdot\exp(i\cdot u)\big)
+&=\displaystyle\sum^n_{k=0} e^{ik\xi} e^{-\lambda}\frac{\lambda^k}{k!}\\
+&=e^{-\lambda} \displaystyle\sum^n_{k=0}  \frac{\left( \lambda e^{i\xi} \right)^k}{k!}\\
+&=e^{-\lambda} e^{\lambda e^{i\xi} }\\
+&=\exp\big(\lambda \left( \exp(i\cdot \xi) -1 \right)\big)
 \end{align*}
-\underline{Zur geometrischen Verteilung:} Sei $X\sim\text{Geo}(p)$. Dann gilt:
+\underline{Zur geometrischen Verteilung:} Sei $X\sim\text{Geo}(p)$. Dann gilt mit $q = 1-p$:
 %TODO
 \begin{align*}
 \Phi_{\text{Geo}}(\xi)
 \overset{\text{Def}}&{=}
 \E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\ldots\\
-&=\frac{p\cdot\exp(i\cdot u)}{1-(1-p)\cdot\exp(i\cdot u)}
+&=\displaystyle\sum^n_{k=1} e^{ik\xi} pq^{k-1}\\
+&=\displaystyle\sum^n_{k=0} e^{i\xi(k+1)} pq^k\\
+&=\displaystyle\sum^n_{k=0} (e^{i\xi q })^k e^{i\xi}p\\
+&=\frac{p\cdot\exp(i\cdot \xi)}{1-q\cdot\exp(i\cdot \xi)}
 \end{align*}
 \underline{Zur Exponentialverteilung:} Sei $X\sim\text{Exp}(\lambda)$. Dann gilt:
 %TODO
@@ -135,8 +140,10 @@ Wir berechnen die charakteristische Funktionen folgender Verteilungen:
 \Phi_{\text{Exp}}(\xi)
 \overset{\text{Def}}&{=}
 \E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\ldots\\
-&=\frac{\lambda}{\lambda-i\cdot u}
+&=\int \limits_{\R_{\geq 0}} e^{i\xi x}\lambda e^{-\lambda x} \d x\\
+&= \lambda \left[ \frac{1}{i\xi-\lambda} e^{i\xi-\lambda}\right]^\infty_0 \\
+&= \frac{\lambda}{i\xi -\lambda}\left(0-1\right)\\
+&=\frac{\lambda}{\lambda-i\cdot \xi}
 \end{align*}
 \underline{Zur Laplaceverteilung:} Sei $X\sim\text{Lap}$. Dann gilt:
 %TODO
@@ -144,8 +151,11 @@ Wir berechnen die charakteristische Funktionen folgender Verteilungen:
 \Phi_{\text{Lap}}(\xi)
 \overset{\text{Def}}&{=}
 \E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\ldots\\
-&=\frac{1}{1+u^2}
+&=\int \limits_{\R} e^{i\xi x}\frac{1}{2} e^{-|x|} \d x\\
+&=\frac{1}{2} \left( \int \limits_{\R_{\geq 0}} e^{(i\xi-1)x}\d x + \int \limits_{\R_{\leq 0}} e^{(i\xi+1)x}\d x \right)\\
+&=\frac{1}{2} \left( \left[ \frac{1}{i\xi-1} e^{(i\xi-1)x} \right]^\infty_0 + \left[ \frac{1}{i\xi+1} e^{(i\xi+1)x} \right]^0_{-\infty} \right)\\
+&=\frac{1}{2} \left( -\frac{1}{i\xi-1} + \frac{1}{i\xi+1} \right)\\
+&=\frac{1}{1+\xi^2}
 \end{align*}
 \underline{Zur Cauchyverteilung:} Sei $X\sim\text{Cauchy}$. Dann gilt:
 %TODO
@@ -154,7 +164,7 @@ Wir berechnen die charakteristische Funktionen folgender Verteilungen:
 \overset{\text{Def}}&{=}
 \E\big[\exp(i\cdot X\cdot\xi)\big]\\
 &=\ldots\\
-&=\exp\big(-|u|\big)
+&=\exp\big(-|\xi|\big)
 \end{align*}
 \end{lösung}
 
@@ -214,7 +224,8 @@ gilt
 \partial_x^\alpha\exp\big(b^T\cdot x\big)
 \overset{\text{Def}}&{=}
 \frac{\partial^{\alpha_1}\ldots\partial^{\alpha_d}}{\partial_{x_1}^{\alpha_1}\ldots\partial_{x_d}^{\alpha_d}}\exp(b^T\cdot x)
-=b_i^{\alpha_1}\cdot\ldots\cdot b_d^{\alpha_d}\cdot\exp\big(b^T\cdot x\big)
+=b_i^{\alpha_1}\cdot\ldots\cdot b_d^{\alpha_d}\cdot\exp\big(b^T\cdot x\big)\\
+&=b^\alpha \exp\big(b^T\cdot x\big)
 \end{align*}
 %TODO Das ist möglicherweise nicht ganz richtig. Bin mir sehr unsicher
 \underline{Zu b):}\\
