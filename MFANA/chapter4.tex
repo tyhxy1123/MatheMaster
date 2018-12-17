@@ -97,12 +97,14 @@ M\cdot\exp(\omega\cdot t)
 \end{align*}
 \end{proof}
 
+\begin{definition}[Erzeuger]\enter
 Sei $S$ eine lineare Halbgruppe auf einem Banachraum $X$. Dann definieren wir den \textbf{Erzeuger} von $S$
 \begin{align*}
 A&:=\left\lbrace(u,f)\in X\times X~\left|~f=\lim\limits_{t\to0^+}\frac{S_t u-u}{t}\right.\right\rbrace\mit\\
 \dom(A)&\hspace{3pt}=\left\lbrace u\in X~\left|~\lim\limits_{t\to0^+}\frac{S_t u-u}{t}\text{ existiert}\right.\right\rbrace
 \end{align*}
 Der Operator $A$ ist linear und eindeutig.
+\end{definition}
 
 \begin{lemma}
 Sei $S$ eine lineare Halbgruppe auf einem Banachraum $X$, mit Erzeuger $A$. Dann gilt:
@@ -242,3 +244,67 @@ Links- und Rechtsinverse von $\lambda-A$. Außerdem gilt:
 &=\frac{M}{\lambda-w}
 \end{align*}
 \end{proof}
+
+Linearer Fall:
+%TODO Add Tikz CD picture
+%$$\begin{tikzcd}
+%S\drar{Def. (Abl. in 0)} \\
+%A \ar[leftrightarrow]{\text{Invertieren von Operatoren}}& (\lambda -A) ^{-1}
+%\end{tikzcd}$$
+
+\begin{align*}
+f\colon\R_+\to X,\qquad\big\Vert f(t)\big\Vert\leq M\cdot\exp(\omega\cdot t)\\
+\hat{f}(x)=\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot f(t)\d t
+\end{align*}
+Hierbei ist $\hat{f}$ die \textbf{Laplacetransformation} von $f$ ($\lambda\in\C,\Re(\lambda)>0$).\\
+$\hat{f}$ ist analytisch / holomorph auf der Halbebene $\big\lbrace\Re(\lambda)>\omega\big\rbrace$. 
+\begin{align*}
+\widehat{f'}(x)&=\lambda\cdot\hat{f}(x)-f(0)\\
+\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot f'(t)\d t
+&=\big[\exp(-\lambda\cdot t)\big]_{t=0}^\infty+\lambda\cdot\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot f(t)\d t
+\end{align*}
+
+Bezüglich der Wohlgestelltheit des Cauchyproblems mit \ul{linearem} $A$ gilt der folgende "Spezialfall" von Crandall-Ligget \ref{theoremCrandall-Liggett}:
+
+\begin{theorem}[Lumer-Phillips]\enter
+Ein linearer Operator $A\subseteq X\times X$ auf einem Banachraum $X$ ist genau dann Erzeuger einer linearen Halbgruppe $S$ von Kontraktionen (d.h. $\Vert S_t\Vert_{\L(X)}\leq 1$), wenn $-A$ $m$-akkretiv ist und $\dom(A)$ dicht in $X$ liegt.\\
+(Analog: quasi-Kontraktionen, d.h. $\Vert S_t\Vert\leq\exp(\omega\cdot t)$, wenn $-A$ $m$-akkretiv vom Typ $\omega$ und $\dom(A)$ dicht in $X$ ist. Wichtig ist die Konstante $M=1$!)
+\end{theorem}
+
+\begin{bemerkung}
+Zu der Konstante $M=1$ eine Bemerkung: Sei $S$ eine lineare Halbgruppe auf einem Banachraum $X$,
+\begin{align*}
+\Vert S_t\Vert_{\L(X)}\leq M\cdot\exp(\omega\cdot t)\qquad\forall t\in\R_+
+\end{align*}
+($M\geq1,\omega\in\R$). Dann gibt es auf dem Banachraum $X$ eine äquivalente Norm $\Vertiii{\cdot}$, so dass
+\begin{align*}
+\Vertiii{S_t}_{\L(X)}\leq\exp(\omega\cdot t)\qquad\forall t\in\R_+
+\end{align*} 
+\begin{proof}
+Setze
+\begin{align*}
+\Vertiii{x}:=\sup\limits_{t\geq0}\exp(-\omega\cdot t)\cdot\Vert S_t x\Vert\qquad\forall x\in X
+\end{align*}
+Das ist offenbar eine Norm auf $XR$ und es gilt 
+\begin{align*}
+\Vertiii{x}\leq M\cdot\Vert x\Vert
+\end{align*}
+(exponentielle Abschätzung für $S$) und 
+\begin{align*}
+\Vert x\Vert=\Vert S_0 x\Vert\leq\Vertiii{x},
+\end{align*}
+d.h. $\Vertiii{x}$ \underline{ist} äquivalente Norm auf $X$. Außerdem gilt für alle $x\in X, s\in\R_+$:
+\begin{align*}
+\Vertiii{S_s x}
+&=\sup\limits_{t\geq0}\exp(-\omega\cdot t)\cdot\big\Vert S_t\cdot S_s\big\Vert\\
+&=\sup\limits_{t\geq0}\exp(-\omega\cdot t)\cdot\big\Vert S_{t+s}\big\Vert\\
+&=\sup\limits_{t\geq0}\exp\big(-\omega\cdot(t+s)\big)\cdot\big\Vert S_{t+s}\big\Vert\cdot\exp(\omega\cdot s)\\
+&=\exp(\omega\cdot s)\cdot\sup\limits_{t\geq s}\exp(-\omega\cdot t)\cdot\big\Vert S_{t}\big\Vert\\\
+&\leq\exp(\omega\cdot s)\cdot\Vertiii{x}\\
+\implies \Vertiii{S_s}_{\L(X)}&\leq\exp(\omega\cdot s)
+\end{align*}
+\end{proof}
+\end{bemerkung}
+
+
+
