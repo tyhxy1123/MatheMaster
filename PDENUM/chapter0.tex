@@ -2450,9 +2450,155 @@ c_{10}\cdot\sum\limits_{z\in\mathcal{N}(E)}\Big(h_T^{-\frac{1}{2}}\cdot\underbra
 &\leq
 c\cdot h_E^{\frac{1}{2}}\cdot|v|_{1,2,\tilde{\omega}_E}
 \end{align*}
-\item $E$ hat Knotenbeschränkung %TODO bitte Übersetzung fixen || Ich weiß nicht was im Original an der Tafel stand. Schreibt er nächstes mal bestimmt eh nochmal an
+\item $E$ hat Knotenbeschränkung
+\begin{align*}
+&R(v)=l(v)-a(u_h,v)=l(v-v_h)-a(u_h,v-v_h)\qquad\forall v_h\in X_h\\
+&\leq\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v-v_h\Vert_{0,2,T}
++\sum\limits_{E\in\Sigma_h}\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E}\cdot\Vert v-v_h\Vert_{0,2,E}
+\end{align*}
+Idee: Nutze $v_h=R_h(v)$.
+\begin{align*}
+R(v)&\leq
+c\cdot\sum\limits_{T\in\T_h}\big\Vert f+ g u_h\big\Vert_{0,2,T}\cdot h_T\cdot |v|_{1,2,\tilde{\omega}_T}\\
+&\quad+c\cdot\sum\limits_{E\in\Sigma_h}\left(\Big\Vert[\nabla u_h\cdot n_E]_E\Big\Vert_{0,2,E}\cdot h_E^{\frac{1}{2}}\right)\cdot|v|_{1,2,\tilde{\omega}_E}\\
+&\leq
+c\cdot\left(\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\cdot h_T^2\right)^{\frac{1}{2}}\cdot\left(\sum\limits_{T\in\T_h}|v|^2_{1,2,\tilde{\omega}_T}\right)^{\frac{1}{2}}\\
+&\quad+c\cdot\left(\sum\limits_{E\in\Sigma_h}\big\Vert\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\right)\cdot\underbrace{\left(\sum\limits_{E\in\Sigma_h}|v|^2_{1,2,\tilde{\omega}_E}\right)^{\frac{1}{2}}}_{\leq c\cdot |v|_{1,2,\Omega}\text{ wobei $c$ Form-regulär ist}}\\
+&\leq
+c\cdot\left(\sum\limits_{T\in\T_h} h^2_T\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}
++\sum\limits_{E\in\Sigma_h}h_E\cdot\big\Vert\nabla u_h\cdot v_E]_E\big\Vert^2_{0,2,E}\right)^{\frac{1}{2}}\cdot\Vert v\Vert_{1,2,\Omega}\\
+&\implies
+\Vert u-u_h\Vert_{1,2,\Omega}
+\leq
+c\cdot\sup\limits_{\begin{subarray}{c}v\in H_0^1(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}R(v)\\
+&\hspace{58pt}\leq
+ c\cdot\underbrace{\left(\sum\limits_{T\in\T_h} h^2_T\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}
++\sum\limits_{E\in\Sigma_h}h_E\cdot\big\Vert\nabla u_h\cdot v_E]_E\big\Vert^2_{0,2,E}\right)^{\frac{1}{2}}}_{=\eta}
+\end{align*}
+Setze
+\begin{align*}
+\eta_T^2&:=h_T^2\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}+\frac{1}{2}\cdot\sum\limits_{E\in\Sigma_k\cap\partial T}h_E\cdot\big\Vert\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\\
+\eta:&=\left(\sum\limits_{T\in\T_h}\eta^2_T\right)^{\frac{1}{	2}}
+\end{align*}
+$\eta$ ist eine zuverlässige a posteriori Fehler-Abschätzung.
 \end{enumerate}
 \end{proof}
+
+\begin{definition}[Bubble-Funktion]\enter %no number, but i will give some
+Sei $T\in\T_h$ auf $E\in\Sigma_h$. Wir setzen
+\begin{align*}
+\psi_T:=27\cdot\varphi_{z_1}\cdot\varphi_{z_2}\cdot\varphi_{z_3}
+\end{align*}
+wobei $z_1,z_2,z_3$ beliebige Knoten von $T$ sind. Definiere weiterhin
+\begin{align*}
+\psi_E:=4\cdot\varphi_{z_1}\cdot\varphi_{z_2}
+\end{align*}
+wobei $z_1,z_2$ am Ende der Kante $E$ sind.
+\end{definition}
+
+\begin{lemma}[Eigenschaften]\ %no lemma in lecture
+\begin{enumerate}[label=\roman*)]
+\item $\begin{aligned}
+\psi_T\in P_3(T)
+\end{aligned}
+\hspace{64pt}
+\psi_E\big|_T\in P_2(T)\qquad\forall T\in\omega_E$
+\item $\begin{aligned}
+\psi_T\geq0\text{ in }\overline{T}
+\hspace{61pt}
+\psi_E\geq 0\text{ in }\overline{\omega}_E
+\end{aligned}$
+\item $\begin{aligned}
+\psi_T\equiv0\text{ auf }\partial T
+\hspace{50pt}
+\psi_E\equiv 0\text{ auf }\partial\omega_E
+\end{aligned}$
+\item $\begin{aligned}
+\max\limits_{x\in\overline{T}}\psi_T(x)=1
+\hspace{48pt}
+\max\limits_{x\in\overline{\omega_E}}\psi_E(x)=1
+\end{aligned}$
+\item $\begin{aligned}
+\hspace{120pt}
+\psi_E\in C(\omega_E)
+\end{aligned}$
+\end{enumerate}
+\end{lemma}
+%TODO Manchmal schreibe ich \Sigma_h statt \mathcal{E}_h ode rumgekehrt. Bitte fixen
+\begin{theorem}
+Sei $T\in\T_h,E\in\mathcal{E}_H, v\in P_k(T), \sigma\in P_k(E)$. Dann gilt:
+\begin{align*}
+c_1\cdot\Vert v\Vert_{0,2,T}
+&\leq\left(\int\limits_T\psi_T\cdot v^2(x)\d x\right)^{\frac{1}{2}}
+&\leq&\Vert v\Vert_{0,2,T}\\
+c_2\cdot h_T^{-1}\cdot\big\Vert\psi_T v\big\Vert_{0,2,T}
+&\leq\big|\psi_T v\big|_{1,2,T}
+&\leq& c_3\cdot h_T^{-1}\cdot\big\Vert\psi_T v\big\Vert_{0,2,E}\\
+c_4\cdot\Vert\sigma\Vert_{0,2,E}
+&\leq\left(\int\limits_E\psi_E\cdot\sigma^2\d s\right)^{\frac{1}{2}}
+&\leq&\Vert\sigma\Vert_{0,2,E}\\
+c_5\cdot h_E^{-1}\cdot\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
+&\leq\big|\psi_E\sigma\big|_{1,2,\omega_E}
+&\leq& c_6\cdot h_E^{-1}\cdot\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}\\
+\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
+&\leq c_7\cdot h_E^{\frac{1}{2}}\cdot\Vert\sigma\Vert_{0,2,E}
+\end{align*}
+\end{theorem}
+
+$f_h$ ist eine stückweise  polynomielle Approximation von $f$, z.B.
+\begin{align*}
+f_h\big|_T:=L^2\text{-Projektion von $f$ auf }P_h(T)
+\end{align*}
+
+\begin{align*}
+&c^2_1\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}\\
+&\leq\int\limits_T\big(f_h+\Delta u_h\big)\cdot\underbrace{\big(f_h+\Delta u_h\big)\cdot\psi_T}_{=:v_T\in H^1_0(\Omega)\mit v_T|_{\partial T}=0}\d x\\
+&=
+\int\limits_T\big(f+\Delta u_h\big)\cdot v_T\d x+\int\limits_T\big(f_h-f\big)\cdot v_T\d x
++\int\limits_{\partial T}\nabla u_h\cdot n_T\cdot\underbrace{v_T}_{=0}\d\gamma\\
+\overset{\text{part Int}}&=
+\int\limits_T\big(\nabla u-\nabla u_h\big)\cdot\nabla v_T\d x+\int\limits_T\big(f_h-f\big)\cdot v_T\d x\\
+\overset{\text{CS}}&\leq
+\big|u-u_h\big|_{1,2,T}\cdot\big|v_T\big|_{1,2,T}+\big\Vert f-f_h\big\Vert_{0,2,T}\cdot\big\Vert v_T\big\Vert_{0,2,T}\\
+&\leq
+c\cdot h_T^{-1}\cdot\big\Vert u-u_h\big\Vert_{1,2,T}\cdot\big\Vert\underbrace{v_T}_{=\psi_T\big(f_h+\Delta u_h\big)}\big\Vert_{0,2,T}+\big\Vert f-f_h\big\Vert_{0,2,T}\cdot\big\Vert v_T\big\Vert_{0,2,T}\\
+&\leq
+c\cdot h^{-1}_T\cdot\big\Vert u-u_h\big\Vert_{1,2,T}\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}+\big\Vert f-f_h\big\Vert_{0,2,T}\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}
+\end{align*}
+Hierbei wird auch benutzt:
+\begin{align*}
+\int\limits_T f\cdot v_T\d x=\int\limits_\Omega f\cdot v_T\d x=\int\limits_\Omega \nabla u\cdot\nabla v_T\d x=\int\limits_T\nabla u\cdot\nabla v_T\d x
+\end{align*}
+Multiplikation mit $\frac{h_T}{\Vert f_h+\Delta u_h\Vert_{0,2,T}}$ liefert:
+\begin{align*}
+c_1^2\cdot h^T\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}
+&\leq c\cdot\big\Vert u-u_h\big\Vert_{1,2,T}+h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,T}\\
+\implies
+h_T\cdot\big\Vert f+\Delta u_h\big\Vert_{0,2,T}
+&\leq h_T\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}+h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,T}\\
+&\leq c\cdot\big\Vert u-u_h\big\Vert_{1,2,T}+c\cdot h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,T}
+\end{align*}
+\begin{align*}
+&c_4^2\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\\
+&=\int\limits_E\big[\nabla u_h\cdot n_E\big]_E\cdot\underbrace{\big[\nabla u_h\cdot n_E\big]_E\cdot\psi_E}_{=:v_E\in H^1_0(\omega_E)\subseteq H_0^1(\Omega)}\\
+&=\int\limits_E\big[\nabla u_h\cdot n_E\big]_E\cdot v_E\d\gamma+\int\limits_{\omega_E}\big(f+\Delta u_h\big)\cdot v_E\d x\\
+&\quad-\int\limits_{\omega_E}\big(f+\Delta u_h\big)\cdot v_E\d x\\
+\overset{\text{part Int}}&=
+a\big(u-u_h,v_E\big)-\sum\limits_{T\in\omega_E}\int\limits_T\big(f+\Delta u_h\big)\cdot v_E\d x\\
+&\leq
+\big\Vert u-u_h\big\Vert_{1,2,\omega_E}\cdot\big|v_E\big|_{1,2,\omega_E}+\left(\sum\limits_{T\in\omega_E}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\right)^{\frac{1}{2}}\cdot\big\Vert v_E\big\Vert_{0,2,\omega_E}\\
+&\leq
+\big\Vert u-u_h\big\Vert_{1,2,\omega_E}\cdot c_6\cdot c_7\cdot h_E^{-\frac{1}{2}}\cdot\big\Vert[\nabla u_h\cdot n_E]\big\Vert_{0,2,E}\\
+&~+h_E^{\frac{1}{2}}\cdot\left(\sum\limits_{T\in\omega_E}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\right)^{\frac{1}{2}}\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E}\\
+&\implies\\ &h_E^{\frac{1}{2}}\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E}
+\leq c_8\cdot\Bigg(\big\Vert u-u_h\big\Vert_{1,2,\omega_E}+\bigg(\underbrace{\sum\limits_{T\in\omega_E} h^2_T\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}}_{\leq c\cdot\Vert u-u_h\Vert_{1,2,\omega_E}+h_E\cdot\Vert f-f_h\Vert_{0,2,\omega_E}}\bigg)^{\frac{1}{2}}\Bigg)\\
+&\eta_T\leq c\cdot\big\Vert u-u_h\big\Vert_{1,2,\omega_T}+c\cdot h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,\omega_T}\\
+&\implies\eta_T\text{ ist effizient}
+\end{align*}
+
+
+
+
 
 
 
