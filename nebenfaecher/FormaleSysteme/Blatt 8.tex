@@ -100,7 +100,8 @@ V_0:=\lbrace v_0\rbrace,\qquad V_{i+1}:=V_i\cup\big\lbrace v\in V\mid\exists v'\
 Teil 1 Ist trivial nach Konstruktion (ansonsten kann man das leicht induktiv zeigen)\nl
 \ul{Zu Teil 2:}\\
 Die Folge $(V_i)_{i\in\N}$ ist nach Teil 1 monoton wachsend und durch die endliche (!) Menge $V$ nach oben beschränkt. Folglich muss es einen Index geben, ab dem die Folge stationär wird.\nl
-Aufwand: $\mathcal{O}(|V|^2)$
+Alternativ: Beweis durch Widerspruch: Angenommen, $V_i\neq V_{i+1}~\forall i\in\N$. Aus Teil 1 folgt dann $V_i\varsubsetneqq V_{i+1}~\forall i\in\N.$ Man sieht leicht, dass $V_i\subseteq V~\forall i\in\N$. Damit existiert eine injektive Abbildung, welche jeder natürlichen Zahl $n\in\N$ ein Element aus $V_{n+1}\setminus V_n$ zuweist. Damit gilt: $|\N|\leq |V|$. Dies ist ein Widerspruch zur Annahme, dass $V$ endlich ist.\nl
+Aufwand: $\mathcal{O}(|V|^2)$ %bin mir nicht ganz sicher
 \end{proof}
 
 \section*{Aufgabe 2}
@@ -110,7 +111,7 @@ Ein DEA ist ein NEA, falls
 \end{align*}
 Es erscheint sinnvoll, sich stets zuerst den NEA zu überlegen und danach diesen in einen DEA umzuschreiben.
 
-\subsection*{Aufgabe2 a)}
+\subsection*{Aufgabe 2 a)}
 \begin{align*}
 L_1=\big\lbrace a^n bac^m\mid m,n>0\text{ $n$ ist gerade und $m$ ist ungerade}\big\rbrace
 \end{align*}
@@ -129,12 +130,12 @@ Wir konstruieren zuerst einen NEA, der $L_a$ akzeptiert:\\
   \path[->] (q_0) edge                node [above] {a} (q_1)
             (q_1) edge                node [above] {a} (q_3)
                   edge [bend left=30] node [right] {a} (q_2)
-            (q_2) edge [bend left=30] node [left] {a} (q_1)
+            (q_2) edge [bend left=30] node [left]  {a} (q_1)
             (q_3) edge                node [above] {b} (q_4)
             (q_4) edge                node [above] {a} (q_5)
             (q_5) edge                node [above] {c} (q_6)
             (q_6) edge [bend left=30] node [right] {c} (q_7)
-            (q_7) edge [bend left=30] node [left] {c} (q_6);
+            (q_7) edge [bend left=30] node [left]  {c} (q_6);
 \end{tikzpicture}
 
 Um daraus einen DEA zu machen müssen wir:
@@ -143,13 +144,36 @@ Um daraus einen DEA zu machen müssen wir:
 \item Potenzmengenkonstruktion
 \end{itemize}
 
-%TODO
+Hier nun die Lösung aus der Übung (der Tutor stellte direkt den DEA auf und ging nicht obigen Umweg):
+
+\usetikzlibrary{positioning,automata}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.3cm,on grid]
+  \node[state,initial]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state]           (q_3) [right=of q_1] {$q_3$};
+  \node[state]           (q_4) [right=of q_3] {$q_4$};
+  \node[state]           (q_5) [right=of q_4] {$q_5$};
+  \node[state, accepting](q_6) [right=of q_5] {$q_2$};
+  \node[state]           (q_t) [below=of q_3] {$q_t$};
+  \path[->] (q_0) edge                node [above] {a} (q_1)
+                  edge [bend right=30] node [below] {b,c} (q_t)
+            (q_1) edge [bend left=30] node [above] {a} (q_3)
+                  edge [bend right=15]node [above] {b,c} (q_t)
+            (q_3) edge                node [above] {b} (q_4)
+                  edge [bend left=30] node [above] {a} (q_1)
+                  edge                node [right] {c} (q_t)
+            (q_4) edge                node [above] {a} (q_5)
+            (q_5) edge [bend left=30] node [above] {c} (q_6)
+            (q_6) edge [bend left=30] node [above] {c} (q_5)
+            (q_t) edge [loop below]   node [below]  {a,b,c,} ();
+\end{tikzpicture}
 
 \subsection*{Aufgabe b)}
 \begin{align*}
 L_2=\big\lbrace w\in\lbrace0,1\rbrace^\ast\mid\exists i\in\lbrace0,1\rbrace:w\text{ endet mit $i$ und enthält eine ungerade Anzahl von $i$'s}\big\rbrace
 \end{align*}
-%TODO
+
+Konstruiere zuerst Automaten, welche Wörter über $\Sigma=\lbrace 0,1\rbrace$ erkennen, die mit $i$ enden und eine gerade Anzahl an $i$'s enthalten (für $i\in\lbrace0,1\rbrace$. Dann ``vereinige'' diese beiden Automaten in $\varepsilon$-NEA: 
 
 \section*{Aufgabe 3}
 Zwei Transitionssysteme (NEAs sind Spezialfälle) heißen \textbf{äquivalent}, wenn sie dieselbe Sprache akzeptieren.\\
@@ -170,10 +194,35 @@ Sei $\A=(Q,\Sigma,I,\delta,F)$ ein DEA.
 \forall\lbrace u,v\rbrace\subseteq\Sigma^\ast,\forall q\in Q:\delta(q,uv)=\delta\big(\delta(q,u),v\big)
 \end{align*}
 \begin{proof}
-Sei $\lbrace u,v\rbrace\subseteq\Sigma^\ast$ beliebige Teilmenge und sei $q\in Q$ beliebig. Dann gilt:
+%Sei $\lbrace u,v\rbrace\subseteq\Sigma^\ast$ beliebige Teilmenge und sei $q\in Q$ beliebig.\nl
+Beweis durch Induktion über dieLänge von $v$ beliebigem $u\in\Sigma^\ast$.\\
+Erinnerung an die Definition:
+\begin{align}
+\delta^\ast(q,\varepsilon)&:=q\label{eq1}\\
+\delta^\ast(q,wa)&:=\delta\big(\delta^\ast(q,w),a\big)\label{eq2}
+\end{align}
+\ul{IA:} $|v|=0$, d.h. $v=\varepsilon$:
 \begin{align*}
-\delta\big(\delta(q,u),v\big)
-&=...
+\delta^\ast(q,uv)\overset{u\cdot\varepsilon=u}&{=}
+\delta^\ast(q,u)
+\overset{\eqref{eq1}}{=}
+\delta^\ast\big(\delta^\ast(q,u),\varepsilon\big)
+=\delta^\ast\big(\delta^\ast(q,u),v\big)
+\end{align*}
+\ul{IH:} Für alle $v\in\Sigma^n$ gilt: $\delta^\ast(q,uv)=\delta^\ast\big(\delta^\ast(q,u),v\big)$\nl
+\ul{IS:} Sei $v'\in\Sigma^{n+1}$, d.h. es existiert $v\in\Sigma^n$ und $a\in\Sigma$ mit $v'=va$.
+\begin{align*}
+\delta^\ast\big(q,uv'\big)
+&=
+\delta^\ast\big(q,uva\big)\\
+\overset{\eqref{eq2}}&=
+\delta\big(\delta^\ast(q,uv),a\big)\\
+\overset{\text{IH}}&=
+\delta\big(\delta^\ast\big(\delta^\ast(q,u),v\big),a\big)\\
+\overset{\eqref{eq2}}&=
+\delta^\ast\big(\delta^\ast(q,u),va\big)\\
+&=
+\delta^\ast\big(\delta^\ast(q,u),v'\big)
 \end{align*}
 \end{proof}
 
