@@ -3345,11 +3345,12 @@ Ferner ist $H$ stetig auf $\R$ und streng monoton wachsend auf $(0,\infty)$. Som
 \ul{falls} man $c_\alpha:=H^{-1}(1-\alpha)$ wählt.\\
 Natürlich ist die Annahme $\mu$ und $\sigma^2$ beide bekannt sehr restriktiv. Falls beide Parameter unbekannt, so ersetze sie durch Schätzer (sogenannte \textbf{Plug-in-Methode}).
 \begin{align*}
-\overline{X}_n:=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i,\qquad S_n^2:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big(X_i-\overline{X}_n\big)^2
+\overline{X}_n:=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i,\qquad 
+\hat{\sigma}_n^2:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big(X_i-\overline{X}_n\big)^2
 \end{align*}
 Wir wissen
 \begin{align*}
-\big(\overline{X}_n,S_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\sigma^2\big)\qquad\P_{H_0}\text{-f.s.}
+\big(\overline{X}_n,\sigma_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\hat{\sigma}^2\big)\qquad\P_{H_0}\text{-f.s.}
 \end{align*}
 Beachte: Es gibt auch ein starkes Gesetz der großen Zahlen (SGGZ bzw. auf englisch SLLN) für Dreiecksschemata (arrays), siehe z.B. Chow und Teicher (1997) \textit{Probability Theory - Independence, Interchangeability, Martingales}\nl
 Das Ersetzen von $\mu$ und $\sigma^2$ in der Statistik
@@ -3359,6 +3360,147 @@ T_n=\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\left|\sum\limits_{i=1}^k\frac{
 liefert
 \begin{align*}
 T_n^\ast
-:&=\frac{1}{S_n}\cdot\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\cdot\left|\sum\limits_{i=1}^k \big(X_{i,n}-\overline{X}_n\big)\right|
-\mit S_n:=\sqrt{S_n^2}
+:&=\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\cdot\left|\sum\limits_{i=1}^k \big(X_{i,n}-\overline{X}_n\big)\right|
+\mit \hat{\sigma}=\sqrt{\hat{\sigma}^2}
 \end{align*}
+
+\begin{satz}\label{satz7.18}
+Unter $H_0$ gilt:
+\begin{align*}
+T_n^\ast\stackrel{\L}{\longrightarrow}\sup\limits_{0\leq t\leq 1}\big|B(t)-t\cdot B(1)\big|
+\end{align*}
+\end{satz}
+
+\begin{proof}
+\begin{align*}
+X_i-\overline{X}_n
+&=X_i-\frac{1}{n}\cdot\sum\limits_{j=1}^n X_j
+=\sigma\bigg(\underbrace{\frac{X_i-\mu}{\sigma}}_{=:Z_i}-\underbrace{\frac{1}{n}\cdot\sum\limits_{j=1}^n\frac{X_j-\mu}{\sigma}}_{=:\overline{Z}_n}\bigg)\\
+\implies 
+T_n^\ast&=\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\left|\frac{1}{n\sqrt{n}}\cdot\sum\limits_{i=1}^k\big(Z_i-\overline{Z}_n\big)\right|\\
+&=\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\left|S_k-\frac{k}{n}\cdot S_n\right|\\
+\overset{\ref{lemma7.17}(2)+(3)}&=
+\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq t\leq 1}\Big|\underbrace{X_n(t)-t\cdot X_n(1)}_{=:Y_n(t)}\Big|
+\end{align*}
+wobei $X_n$ der Partialsummenprozess zu $Z_1,\ldots,Z_n$ ist (= Polygonzug durch $\left(\frac{k}{n},S_k\right)$) und $S_k:=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^k Z_i$.\nl
+Betrachte die Abbildung
+\begin{align*}
+&h:C\big([0,1]\big)\to C\big([0,1]\big),\qquad f \mapsto h(f):[0,1]\to\R,\qquad t\mapsto h(f)(t):=f(t)-t\cdot f(1)\\
+&\implies Y_n=h(X_n)
+\end{align*}
+Wir zeigen nun, dass $h$ stetig ist.
+\begin{align*}
+\big|h(f)(t)-h(g)(t)\big|
+&=\Big|f(t)-t\cdot f(1)-\big(g(t)-t\cdot g(1)\big)\Big|\\
+&=\Big|f(t)-g(t)-t\cdot\big(f(1)-g(1)\big)\Big|\\
+\overset{\text{DU}}&\leq
+\big|f(t)-g(t)\big|+\underbrace{|t|}_{\leq 1}\cdot\big|f(1)-g(1)\big|\\
+&\leq
+2\cdot d(f,g)\qquad\forall t\in[0,1]\\
+\implies d\big(h(f),h(g)\big)&\leq 2\cdot d(f,g)\qquad\forall f,g\in C\big([0,1]\big)
+\end{align*}
+Also ist $h$ stetig auf $C\big([0,1]\big)$. Dann folgt aus Bemerkung  \ref{bemerkung7.16Einhalb} + CMT \ref{satz4.10ContinuousMappingTheorem}:
+\begin{align*}
+Y_n=h(X_n)\stackrel{\L}{\longrightarrow} h(B)=:B_0\text{ in }C\big([0,1]\big)
+\end{align*}
+wobei $B_0(t)\overset{\text{Def}}{=}B(t)-t\cdot B(1)$.
+\begin{align*}
+\max\limits_{0\leq t\leq 1}\big|Y_n(t)\big|=\hat{M}(Y_n)=\Vert Y_n\Vert_\infty\stackrelnew{\ref{satz4.10ContinuousMappingTheorem}}{\L}{\longrightarrow}\Vert B_0\Vert=\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|
+\end{align*}
+Da $\frac{\sigma}{\hat{\sigma}_n}\stackrel{\P}{\longrightarrow}1$, liefert \ref{beisp4.18}(3):
+\begin{align*}
+T_n^\ast\stackrel{\L}{\longrightarrow}\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|
+\end{align*}
+\end{proof}
+
+\begin{definition} %7.19
+Sei $B$ ein Brownsche Bewegung aud $[0,1]$. Der stochastische Prozess
+\begin{align*}
+B_0(t):=B(t)-t\cdot B(1)\qquad\forall t\in[0,1]
+\end{align*}
+heißt \textbf{Brownsche Brücke}.
+\end{definition}
+
+%TODO Hier könnte man eine Skizze einfügen
+%B_0(0)=B_0(1)=0
+%Zwischen 0 und 1 gezitterter Sinus
+%Ferger: "Also über die Brücke würde ich jetzt nicht gehen. Kein Ahnung, warum man Brücke dazu sagt."
+
+%T_n^\ast ist Supremumsnorm von Partialsummenprozess?+
+
+Es gilt (vergleiche Shorak und Wellner 1986 \textit{empirical processes}, Seite 34)
+\begin{align*}
+H_0(x)&:=\P\left(\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|\leq x\right)
+\overset{\text{Doob}}{=}
+1-\sum\limits_{k\geq 1}(-1)^{k+1}\cdot\exp\big(-2\cdot k^2\cdot x^2\big)&\forall x>0\\
+H_0(x)&~=0 &\forall x\leq 0
+\end{align*}
+$H_0$ ist stetig auf $\R$ uns streng monoton auf $[0,\infty)$. Folglich ist der Test
+\begin{align*}
+H_0\text{ verwerfen }:\Longleftrightarrow T_n^\ast>H_0^{-1}(1-\alpha)
+\end{align*}
+ist ein asymptotischer Niveau-$\alpha$-Test.\\
+$H_0$ ist die Verteilungsfunktion der \textbf{Kolmogorov-Smirnov-Verteilung}.\\
+Falls $\mu,\sigma^2$ unbekannt, aber $\nu>\mu$, so betrachte 
+\begin{align*}
+\tilde{T}_n&:=\frac{1}{\sqrt{n}}\cdot\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\left(\sum\limits_{i=1}^kX_i-\overline{X}_n\right)
+\end{align*}
+Vollkommen analog folgt: $\tilde{T}_n\stackrel{\L}{\longrightarrow}\sup\limits_{0\leq t\leq 1} B_0(t)$ unter $H_0$. Es gilt (vergleiche z.B. Gänssler + Stute (1977) \textit{Wahrscheinlichkeitstheorie}, Seite 322)
+\begin{align*}
+H_0^+(x)&:=\P\left(\sup\limits_{0\leq t\leq 1}B_0(t)\leq x\right)=1-\exp\left(-2\cdot x^2\right) &\forall x\geq0\\
+H_0^+(x)&:=0 &\forall x<0
+\end{align*}
+Da 
+\begin{align*}
+(H_0^+)^{-1}(1-\alpha)&=\left(-\frac{1}{2}\cdot\log(\alpha)\right)^{\frac{1}{2}}
+\end{align*}
+folgt, dass der (einseitige) Test
+\begin{align*}
+H_0\text{ verwerfen}:\Longleftrightarrow\tilde{T}_n>\left(-\frac{1}{2}\cdot\log(\alpha)\right)^{\frac{1}{2}}
+\end{align*}
+ein asymptotischer Niveau-$\alpha$-Test für $H_0$ ist.\nl
+Anstelle von
+\begin{align*}
+T_n^\ast=\frac{1}{\sqrt{n}}\cdot\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k \leq n}\bigg|\underbrace{\sum\limits_{i=1}^k\big(X_i-\overline{X}_n\big)}_{=:C_k}\bigg|
+\end{align*}
+(die $C_k$ heißen \textbf{kumulierte Summe}) betrachten Csörgö und Horváth (1977) in \textit{Limit Theorems in Change-point Analysis} \ul{gewichtete} kumulierte Summen:
+\begin{align*}
+U_n^\ast&:=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{1\leq k\leq n-1}\frac{|C_k|}{\sqrt{k\cdot(n-k)}}
+\end{align*}
+
+\begin{theorem}[Csörgö und Horváth]\label{theoremCH} %noNumber
+Seien
+\begin{align*}
+A_n&:=\sqrt{2\cdot\log\big(\log(n)\big)}\\
+D_n&:=2\cdot\log\big(\log(n)\big)+\frac{1}{2}\cdot\log\Big(\log\big(\log(n)\big)\Big)-\frac{1}{2}\cdot\log(\pi)\qquad\forall n\geq n_0
+\end{align*}
+Dann gilt unter $H_0$:
+\begin{align}\label{eqTheoremCsorgoHorvath}\tag{1}
+\limn\P\Big(A_n\cdot U_n^\ast-D_n\leq t\Big)=\exp\big(-2\cdot\exp(-t)\big)=:G(t)
+\qquad\forall t\in\R
+\end{align}
+$G$ ist die sogenannte \textbf{Gumbel-Verteilung}.
+\end{theorem}
+
+Damit Konstruktion eines asymptotischen Niveau-$\alpha$-Tests für $H_0$ wie folgt möglich: Sei
+\begin{align*}
+t_\alpha&:=G^{-1}(1-\alpha)=-\log\left(-\frac{1}{2}\cdot\log(1-\alpha)\right)
+\end{align*}
+Klarerweise gilt:
+\begin{align*}
+A_n\cdot U_n^\ast-D_n>t_\alpha\implies U_n^\ast>\frac{t_\alpha+D_n}{A_n}:=d_n(\alpha)
+\end{align*}
+Somit ist 
+\begin{align*}
+H_0\text{ verwerfen}:\Longleftrightarrow U_n^\ast>d_n(\alpha)
+\end{align*}
+ein asymptotischer Niveau-$\alpha$-Test, d.h.
+\begin{align}\label{eqUnderTheoremCsorgoHarcath}\tag{2}
+\limn\P_{H_0}\big(U_n^\ast>d_n(\alpha)\big)=\alpha
+\end{align}
+\textbf{Problem:} Die Konvergenz in \eqref{eqTheoremCsorgoHorvath} bzw. in \eqref{eqUnderTheoremCsorgoHarcath} ist sehr sehr sehr laaaaaangsaaaam. %genauso stand das an der Tafel
+%Ferger: "[...] Grottenschlecht."
+Andererseits führen die Gewichte in $\big(k\cdot(n-k)\big)^{-\frac{1}{2}}$ in $U_n^\ast$ zu einer verbesserten Sensitivitä des \textbf{$U_n^\ast$-Test} unter der Alternativen, \underline{insbesondere}, falls $\tau_n$ nahe bei $1$ bzw. oder $n-1$ (am Rand) liegt.
+
+
+
