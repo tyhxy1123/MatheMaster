@@ -69,11 +69,7 @@ Für $L_1$ betrachte den NEA: $\A_1=(Q=\lbrace q_0,q_1,q_2\rbrace,\Sigma=\lbrace
                   edge                node [above] {a} (q_2);
 \end{tikzpicture}
 
-%TODO Das folgende ist falsch, da Wörter wie abab fehlen.
-Für $L_2$ betrachte den NEA: $\A_2=(Q=\lbrace q_0,q_1,q_2\rbrace,\Sigma=\lbrace a,b\rbrace,q_0,\Delta,\lbrace q_0\rbrace)$ mit
-\begin{align*}
-\Delta=\lbrace (q_0,a,q_1),(q_1,a,q_0),(q_0,b,q_2),(q_2,b,q_0)\rbrace\subseteq Q\times\Sigma\times Q
-\end{align*}
+Für $L_2$ betrachte den NEA: $\A_2=(Q=\lbrace q_0,q_1,q_2\rbrace,\Sigma=\lbrace a,b\rbrace,q_0,\Delta,\lbrace q_0\rbrace)$ mit $\Delta$ wie im Bild:
 
 \usetikzlibrary{positioning,automata}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
@@ -163,9 +159,12 @@ Hier nun die Lösung aus der Übung (der Tutor stellte direkt den DEA auf und gi
                   edge [bend left=30] node [above] {a} (q_1)
                   edge                node [right] {c} (q_t)
             (q_4) edge                node [above] {a} (q_5)
+                  edge [bend left=15] node [right] {a,c} (q_t)
             (q_5) edge [bend left=30] node [above] {c} (q_6)
+                  edge [bend left=15] node [below] {a,b} (q_t)
             (q_6) edge [bend left=30] node [above] {c} (q_5)
-            (q_t) edge [loop below]   node [below]  {a,b,c,} ();
+                  edge [bend left=15] node [below] {a,b} (q_t)
+            (q_t) edge [loop below]   node [below] {a,b,c} ();
 \end{tikzpicture}
 
 \subsection*{Aufgabe b)}
@@ -174,6 +173,122 @@ L_2=\big\lbrace w\in\lbrace0,1\rbrace^\ast\mid\exists i\in\lbrace0,1\rbrace:w\te
 \end{align*}
 
 Konstruiere zuerst Automaten, welche Wörter über $\Sigma=\lbrace 0,1\rbrace$ erkennen, die mit $i$ enden und eine gerade Anzahl an $i$'s enthalten (für $i\in\lbrace0,1\rbrace$. Dann ``vereinige'' diese beiden Automaten in $\varepsilon$-NEA: 
+
+\usetikzlibrary{positioning,automata}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [below left=of q_0] {$q_1$};
+  \node[state,accepting] (q_2) [below right=of q_0] {$q_2$};
+  \path[->] (q_0) edge [bend left=30] node [above] {0} (q_2)
+                  edge [loop above]   node [above] {1} ()
+            (q_1) edge                node [left] {0} (q_0)
+                  edge [loop above]   node [above] {1} ()
+            (q_2) edge                node [above] {1} (q_1)
+                  edge [bend left=30] node [above] {0} (q_0);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial]   (p_0)                {$p_0$};
+  \node[state]           (p_1) [below left=of p_0] {$p_1$};
+  \node[state,accepting] (p_2) [below right=of p_0] {$p_2$};
+  \path[->] (p_0) edge [bend left=30] node [above] {1} (p_2)
+                  edge [loop above]   node [above] {0} ()
+            (p_1) edge                node [left] {1} (p_0)
+                  edge [loop above]   node [above] {0} ()
+            (p_2) edge                node [above] {0} (p_1)
+                  edge [bend left=30] node [above] {1} (p_0);
+\end{tikzpicture}
+\end{minipage}
+
+Vereinigen liefert:
+
+\begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid]
+  \node[state,initial]   (S)                       {S};
+  \node[state]           (q_0) [left=of S]   {$q_0$};
+  \node[state]           (q_1) [below left=of q_0] {$q_1$};
+  \node[state,accepting] (q_2) [below right=of q_0]{$q_2$};
+  \node[state]           (p_0) [right=of S]  {$p_0$};
+  \node[state]           (p_1) [below left=of p_0] {$p_1$};
+  \node[state,accepting] (p_2) [below right=of p_0]{$p_2$};
+  \path[->] (S)   edge [bend right=15] node [above] {$\varepsilon$} (q_0)
+                  %edge                node [above] {0} (q_2)
+                  edge [bend left=15] node [above] {$\varepsilon$} (p_0)
+                  %edge                node [below right] {1} (p_2)
+            (q_0) edge [bend left=30] node [above] {0} (q_2)
+                  edge [loop above]   node [above] {1} ()
+            (q_1) edge                node [left] {0} (q_0)
+                  edge [loop above]   node [above] {1} ()
+            (q_2) edge                node [above] {1} (q_1)
+                  edge [bend left=30] node [above] {0} (q_0)
+            (p_0) edge [bend left=30] node [above] {1} (p_2)
+                  edge [loop above]   node [above] {0} ()
+            (p_1) edge                node [left] {1} (p_0)
+                  edge [loop above]   node [above] {0} ()
+            (p_2) edge                node [above] {0} (p_1)
+                  edge [bend left=30] node [above] {1} (p_0);
+\end{tikzpicture}
+
+Wir haben nun einen $\varepsilon$-NEA. Nun entfernen wir die $\varepsilon$-Transitionen:
+
+\begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid]
+  \node[state,initial]   (S)                       {S};
+  \node[state]           (q_0) [left=of S]   {$q_0$};
+  \node[state]           (q_1) [below left=of q_0] {$q_1$};
+  \node[state,accepting] (q_2) [below right=of q_0]{$q_2$};
+  \node[state]           (p_0) [right=of S]  {$p_0$};
+  \node[state]           (p_1) [below left=of p_0] {$p_1$};
+  \node[state,accepting] (p_2) [below right=of p_0]{$p_2$};
+  \path[->] (S)   edge [bend right=15] node [above] {1} (q_0)
+                  edge                node [above] {0} (q_2)
+                  edge [bend left=15] node [above] {0} (p_0)
+                  edge                node [below right] {1} (p_2)
+            (q_0) edge [bend left=30] node [above] {0} (q_2)
+                  edge [loop above]   node [above] {1} ()
+            (q_1) edge                node [left] {0} (q_0)
+                  edge [loop above]   node [above] {1} ()
+            (q_2) edge                node [above] {1} (q_1)
+                  edge [bend left=30] node [above] {0} (q_0)
+            (p_0) edge [bend left=30] node [above] {1} (p_2)
+                  edge [loop above]   node [above] {0} ()
+            (p_1) edge                node [left] {1} (p_0)
+                  edge [loop above]   node [above] {0} ()
+            (p_2) edge                node [above] {0} (p_1)
+                  edge [bend left=30] node [above] {1} (p_0);
+\end{tikzpicture}
+
+Jetzt nutzen wir die Potenzmengenkonstruktion, um daraus einen DEA zu erhalten. Dabei gehen wir \textit{On-the-tly} vor:
+\begin{itemize}
+\item Betrachte zuerst die Menge der Knoten, die man vom Startzustand aus über Kante $i$ erreicht.
+\item Eine solche Menge wird Endzustand gdw. ein Element davon Endzustand war.
+\end{itemize}
+
+\begin{tikzpicture}[shorten >=1pt,node distance=3.1cm,on grid]
+  \node[state,initial]   (S)                       {$\lbrace S\rbrace$};
+  \node[state,accepting] (q_2p_0) [above right=of S]   {$\lbrace q_2,p_0\rbrace$};
+  \node[state, accepting](q_0p_2) [below right=of S] {$\lbrace q_0,p_2\rbrace$};
+  \node[state]           (q_0p_0) [below right=of q_2p_0]{$\lbrace q_0,p_0\rbrace$};
+  \node[state,accepting] (q_1p_2) [above right=of q_0p_0] {$\lbrace q_1,p_2\rbrace$};
+  \node[state,accepting] (q_2p_1) [below right=of q_0p_0] {$\lbrace q_2,p_1\rbrace$};
+  \node[state]           (q_0p_1) [below right=of q_1p_2]{$\lbrace q_0,p_1\rbrace$};
+  \node[state]           (q_1p_0) [below right=of q_0p_1]{$\lbrace q_1,p_0\rbrace$};
+  \path[->] (S)   edge [bend right=0] node [left] {0} (q_2p_0)
+                  edge [bend right=0] node [left] {1} (q_0p_2)
+         (q_2p_0) edge [bend right=0] node [above]{1} (q_1p_2)
+                  edge [bend left=30] node [right]{0} (q_0p_0)
+         (q_0p_2) edge [bend right=0] node [below]{0} (q_2p_1)
+                  edge [bend left=30] node [right]{1} (q_0p_0)
+         (q_0p_0) edge [bend left=30] node [right]{0} (q_2p_0)
+         		  edge [bend left=30] node [right]{1} (q_0p_2)
+         (q_1p_2) edge [bend right=0] node [right]{0} (q_0p_1)
+                  edge [bend right=0] node [right]{1} (q_1p_0)
+         (q_2p_1) edge [bend right=0] node [below]{1} (q_1p_0)
+                  edge [bend right=0] node [right]{0} (q_0p_1)
+         (q_0p_1) edge [bend left=30] node [right]{0} (q_2p_1)
+         		  edge [bend right=0] node [above]{1} (q_1p_0);
+\end{tikzpicture}
+%TODO Hier fehlen noch Kanten
 
 \section*{Aufgabe 3}
 Zwei Transitionssysteme (NEAs sind Spezialfälle) heißen \textbf{äquivalent}, wenn sie dieselbe Sprache akzeptieren.\\
@@ -194,7 +309,7 @@ Sei $\A=(Q,\Sigma,I,\delta,F)$ ein DEA.
 \forall\lbrace u,v\rbrace\subseteq\Sigma^\ast,\forall q\in Q:\delta(q,uv)=\delta\big(\delta(q,u),v\big)
 \end{align*}
 \begin{proof}
-%Sei $\lbrace u,v\rbrace\subseteq\Sigma^\ast$ beliebige Teilmenge und sei $q\in Q$ beliebig.\nl
+%Sei $\lbrace u,v\rbrace\subseteq\Sigma^\ast$ beliebige Teilmenge und  $q\in Q$ beliebig.\nl
 Beweis durch Induktion über dieLänge von $v$ beliebigem $u\in\Sigma^\ast$.\\
 Erinnerung an die Definition:
 \begin{align}
