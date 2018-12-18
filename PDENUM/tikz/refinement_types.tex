@@ -1,0 +1,58 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+	
+	% first triangle   red
+	\coordinate (A) at (\xone,\yone);
+	\coordinate (B) at ($ (A) + (1.4*\h,0) $);
+	\coordinate (C) at ($ (A) + (0.7*\h,0.7*\h) $);
+	\coordinate (AB) at ($ (A) + (0.7*\h,0) $);
+	\coordinate (AC) at ($ (A) + (0.35*\h,0.35*\h) $);
+	\coordinate (BC) at ($ (A) + (1.05*\h,0.35*\h) $);
+
+
+	%draw		
+	\draw (A) -- (B) -- (C) --cycle;
+	\draw[red] (AB) -- (AC) -- (BC) --cycle;
+	\foreach \i in {A,B,C,AB,AC,BC}{
+		\filldraw (\i) circle (1.5pt);
+	}
+
+	% second triangle   green
+	\coordinate (A1) at (\xone + 1.6*\h,\yone);
+	\coordinate (B1) at ($ (A1) + (1.4*\h,0) $);
+	\coordinate (C1) at ($ (A1) + (0.7*\h,0.7*\h) $);
+	\coordinate (AB1) at ($ (A1) + (0.7*\h,0) $);
+
+	%draw			
+	\draw (A1) -- (B1) -- (C1) --cycle;
+	\draw[green] (AB1) -- (C1);
+	\foreach \i in {A1,B1,C1,AB1}{
+		\filldraw (\i) circle (1.5pt);
+	}
+
+	% third triangle   blue
+	\coordinate (A2) at (\xone + 0.8*\h,\yone - \h);
+	\coordinate (B2) at ($ (A2) + (1.4*\h,0) $);
+	\coordinate (C2) at ($ (A2) + (0.7*\h,0.7*\h) $);
+	\coordinate (AB2) at ($ (A2) + (0.7*\h,0) $);
+	\coordinate (BC2) at ($ (A2) + (1.05*\h,0.35*\h) $);
+
+	%draw			
+	\draw (A2) -- (B2) -- (C2) --cycle;
+	\draw[blue] (AB2) -- (C2);
+	\draw[blue] (AB2) -- (BC2);
+	\foreach \i in {A2,B2,C2,AB2}{
+		\filldraw (\i) circle (1.5pt);
+	}
+
+	
+	\end{tikzpicture}
+	
+	\caption{Verfeinerung: rot,grün,blau}
+	\label{refinement_types}
+	
+\end{figure}
