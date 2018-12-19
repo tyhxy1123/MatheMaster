@@ -295,17 +295,17 @@ Sei $\alpha\in\N_0^d$ ein Multiindex, $b\in\R^d$ und $f,g$ Funktionen in $C^\alp
 		&= \partial^{\gamma}\left( \partial^\alpha(fg) \right)\\
 		&\stackeq{\text{IV}} \partial^{\gamma}\left( \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta}\partial^\beta f \partial^{\alpha -\beta}g \right)\\
 		&= \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta} \left( \partial^{\beta+\gamma} f \partial^{\alpha -\beta}g + \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g \right)\\
-		&= \displaystyle \sum_{\beta \leq \alpha + \gamma \land |\beta|\neq 0} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
-		&= \partial^{\alpha +\gamma}f + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0 } \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
-		&= \partial^{\alpha +\gamma}f + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0} \underbrace{\left( \binom{\alpha }{\beta - \gamma} + \binom{\alpha }{\beta} \right)}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
-		&= \binom{\alpha +\gamma}{\alpha +\gamma}\partial^{\alpha +\gamma}f + \binom{\alpha +\gamma}{0}\partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0}  \underbrace{\binom{\alpha + \gamma}{\beta}}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&= \displaystyle \sum_{\substack{\beta \leq \alpha + \gamma \\ |\beta|\neq 0}} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&= \partial^{\alpha +\gamma}f + \displaystyle \sum_{\substack{\beta \leq \alpha \\ |\beta|\neq 0}} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\substack{\beta \leq \alpha \\ |\beta|\neq 0 }} \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&= \partial^{\alpha +\gamma}f + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\substack{\beta \leq \alpha \\ |\beta|\neq 0}} \underbrace{\left( \binom{\alpha }{\beta - \gamma} + \binom{\alpha }{\beta} \right)}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&= \binom{\alpha +\gamma}{\alpha +\gamma}\partial^{\alpha +\gamma}f + \binom{\alpha +\gamma}{0}\partial^{\alpha +\gamma}g + \displaystyle \sum_{\substack{\beta \leq \alpha \\ |\beta|\neq 0}}  \underbrace{\binom{\alpha + \gamma}{\beta}}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
 		&=\displaystyle \sum_{\beta \leq \alpha + \gamma} \binom{\alpha + \gamma}{\beta}\partial^\beta f \partial^{\alpha+\gamma -\beta}g
 	\end{align*}
 	Es bleibt noch zu zeigen, dass die mit $(\ast)$ markierte Gleichheit gilt. Für den eindimensionalen Binomialkoeffizienten gilt dies.
 	\begin{align*}
 		\binom{\alpha }{\beta - \gamma} + \binom{\alpha }{\beta} &=  \binom{\alpha_1 }{\beta_1 - \gamma_1}\dots \binom{\alpha_d }{\beta_d - \gamma_d} + \binom{\alpha_1 }{\beta_1}\dots \binom{\alpha_d }{\beta_d}\\
 		\overset{|\gamma|=1}&=
-		\underbrace{\left( \binom{\alpha_j}{\beta_j -\gamma_j} + \binom{\alpha_j}{\beta_j} \right)}_{\stackeq{1D}\binom{\alpha_j + \gamma_j}{\beta_j}} \left( \prod \limits^d_{i=1 \land i\neq j} \binom{\alpha_i}{\beta_i} \right)\\
+		\underbrace{\left( \binom{\alpha_j}{\beta_j -\gamma_j} + \binom{\alpha_j}{\beta_j} \right)}_{\stackeq{1D}\binom{\alpha_j + \gamma_j}{\beta_j}} \left( \prod \limits^d_{\substack{i=1 \\ i\neq j}} \binom{\alpha_i}{\beta_i} \right)\\
 		&= \binom{\alpha +\gamma }{\beta}
 	\end{align*}
 \end{lösung}
