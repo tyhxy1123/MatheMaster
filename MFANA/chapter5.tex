@@ -1,0 +1,124 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Anwendungen} %eigentlich ist das das dritte Kapitel
+\section{Approximation}
+
+\begin{theorem}[Trotter-Kato-Miyadera]\label{theoremTrotterKatoMiyadera}\enter
+	Sei $(A_n)_{n\in\N}$ ein Folge von $m$-akkretiven Operatoren (vom uniformen Typ $\omega\in\R$, d.h. $\omega$ hängt nicht von $n$ ab) auf einem Banachraum $X$. Sei $(S_n)_{n\in\N}$ die zugehörige Folge von nichtlinearen Halbgruppen ($S_n$ ist Halbgruppe auf $D_n:=\overline{\dom(A_n)}$). Betrachte die folgenden Aussagen:
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und\\ $u_0:=\limn u_{0,n}$ existiert
+		\begin{align*}
+			\limn S_n(t) u_{0,n}=:S(t) u_0
+		\end{align*}
+		gleichmäßig für $t$ in kompakten Teilmengen in $\R_+$.
+		\item Es existiert ein $\lambda_0>0$ mit $\lambda_0\cdot\omega<1$ so, dass für alle $f\in X$
+		\begin{align*}
+			\limn J_{\lambda_0}^{A_n} f=:J_{\lambda_0}f\qquad \Big(\mit J_{\lambda_0}^{A_n}=\big(I+\lambda_0\cdot A_n\big)^{-1}\Big)
+		\end{align*}
+		existiert.
+		\item Für alle $\lambda>0$ mit $\lambda\cdot\omega<1$ und alle $f\in X$ existiert
+		\begin{align*}
+			\limn J_\lambda^{A_n} f=:J_\lambda f
+		\end{align*}
+		\item Für alle $\lambda>0$ mit $\lambda\cdot\omega<1$ und alle konvergenten Folgen $(f_n)_{n\in\N}$ in $X$ mit $f:=\limn f_n$ existiert
+		\begin{align*}
+			\limn J_\lambda^{A_n}f_n=:J_\lambda f
+		\end{align*}
+		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und\\ $u_0=\limn u_{0,n}$ und jede konvergente Folge $(f_n)_{n\in\N}$ in $L^1(0,T;X)$ mit $f=\limn f_n$ gilt:
+		Sind $u,u_0\in C\big([0,1];X\big)$ die eindeutigen Integrallösungen von
+		\begin{align*}
+			\left\lbrace\begin{array}{r}
+				\dot{u}+A_n u_n\ni f_n\\
+				u_n(0)=u_{0,n}
+			\end{array}\right.\qquad\text{und}\qquad
+			\left\lbrace\begin{array}{r}
+				\dot{u}+A u\ni f\\
+				u(0)=u_{0}
+			\end{array}\right.
+		\end{align*}
+		wobei $A\subseteq X\times X$ der Operator ist mit $J_\lambda^A=J_\lambda$ (wie in (iii) und (iv)), dann gilt
+		\begin{align*}
+			\limn\big\Vert u_n-u\big\Vert_{C\big([0,T];X\big)}=0
+		\end{align*}
+	\end{enumerate}
+	Dann gilt: (i) $\Longleftarrow$ (ii) $\Longleftrightarrow$ (iii) $\Longleftrightarrow$ (iv) $\Longleftrightarrow$ (v)\\
+	Falls $X$ ein Hilbertraum ist, dann gilt auch (i) $\Longleftrightarrow$ (ii).\nl
+	Zu (iv) $\Longrightarrow$ (v): Wenn die äquivalenten Aussagen (ii),(iii),(iv) gelten, dann ist $J_\lambda$ Resolvente eines $m$-akkretiven Operators $A$ vom Typ $\omega$. Die von $A$ erzeugte Halbgruppe ist die Halbgruppe $S$ aus (i).
+\end{theorem}
+
+\begin{proof}
+	Wir zeigen hier nur (i) $\Longleftarrow$ (ii) $\Longleftrightarrow$ (iii) $\Longleftrightarrow$ (iv).\nl
+	\underline{Vorbetrachtung:}\\
+	Auf dem Raum $c(\N,X)$ aller konvergenten Folgen in $X$(Banachraum  bzgl. Supremumsnorm $\Vert\cdot\Vert_\infty$) betrachten wir den Operator
+	\begin{align*}
+		\A=\Big\lbrace\big((u_n)_{n\in\N},(f_n)_{n\in\N}\big)\in c(\N,X)\times c(\N,X):\big(u_n,f_n)\in A_n~\forall n\in\N\Big\rbrace
+	\end{align*}	 
+	Weil die $A_n$ akkretiv vom Typ $\omega$ sind, gilt für alle $(u_n,f_n),(\hat{u}_n,\hat{f}_n)\in A_n$ und alle $\lambda>0$ mit $\lambda\cdot\omega<1$:
+	\begin{align*}
+		\Big\Vert u_n-\hat{u}_n+\lambda\cdot(f_n-\hat{f}_n)\Big\Vert_X
+		&\geq(1-\lambda\cdot\omega)\cdot\big\Vert u_n-\hat{u}_n\big\Vert
+	\end{align*}
+	Also gilt (nehme Supremum auf beiden Seiten) für alle\\ $\big((u_n)_{n\in\N},(f_n)_{n\in\N}\big),\big((\hat{u}_n)_{n\in\N},(\hat{f}_n)_{n\in\N}\big)\in\A$ und alle $\lambda>0$ mit $\lambda\cdot\omega<1$
+	\begin{align*}
+		\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}+\lambda\cdot\big((f_n)_{n\in\N}-(\hat{f}_n)_{n\in\N}\big)\Big\Vert_\infty
+		&\geq(1-\lambda\cdot\omega)\cdot\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}\Big\Vert_\infty
+	\end{align*}
+	Also ist $\A$ akkretiv vom Typ $\omega$.\nl
+	%\underline{Es gelte nun Aussage (ii):}\\
+	\underline{Zeige (ii)$\implies$(iv):}
+	Sei $(f_n)_{n\in\N}\in c(\N,X),~f:=\limn f_n$. Dann gilt:
+	\begin{align*}
+		\Big\Vert J_{\lambda_0}^{A_n} f_n-J_{\lambda_0} f\Big\Vert
+		&=\Big\Vert J_{\lambda_0}^{A_n} f_n\underbrace{-J_{\lambda_0}^{A_n} f+J_{\lambda_0}^{A_n} f}_{=0}-J_{\lambda_0} f\Big\Vert_X\\
+		\overset{\text{DU}}&\leq
+		\Big\Vert J_{\lambda_0}^{A_n} f_n-J_{\lambda_0}^{A_n} f\Big\Vert_X+\Big\Vert J_{\lambda_0}^{A_n} f-J_{\lambda_0} f\Big\Vert_X\\
+		\overset{(\ast)}&\leq
+		\frac{1}{1-\lambda_0\cdot\omega}\cdot\big\Vert f_n-f\big\Vert+\Big\Vert J_{\lambda_0}^{A_n} f-J_{\lambda_0}f\Big\Vert_X\stackrel{n\to\infty}{\longrightarrow} 0
+	\end{align*}
+	Bei $(\ast)$ wird verwendet, dass $J_{\lambda_0}^{A_n}$ Lipschitzstetig mit Lipschitzkonstante $\frac{1}{1-\lambda_0\cdot\omega}$ ist. 
+	Folglich ist 
+	\begin{align*}
+		(u_n)_{n\in\N}:=\Big(J_{\lambda_0}^{A_n} f_n\Big)_{n\in\N}\in c(\N,X)
+	\end{align*}
+	Damit ist $(u_n)_{n\in\N}\in\dom(\A)$ und 
+	\begin{align*}
+		\big(I+\lambda_0\cdot\A\big)(u_n)_{n\in\N}\ni (f_n)_{n\in\N}
+	\end{align*}
+	(Es gilt
+	\begin{align*}
+		u_n+\lambda_0\cdot A_n u_n\ni f_n
+		\quad\text{bzw.}\quad
+		A_n u_n\ni\frac{f_n-u_n}{\lambda_0}		
+		\quad\text{bzw.}\quad
+		\left(u_n,\frac{f_n-u_n}{\lambda_0}\right)\in A_n\quad\forall n\in\N
+	\end{align*}
+	und somit $\left((u_n)_{n\in\N},\left(\frac{f_n-u_n}{\lambda_0}\right)_{n\in\N}\right)\in\A$.)\nl
+	Wir haben gezeigt, dass $I+\lambda_0\cdot\A$ surjektiv ist. Weil $\A$ akkretiv vom Typ $\omega$ ist, ist damit  $A$ $m$-akkretiv vom Typ $\omega$ und damit ist $I+\lambda\cdot\A$ surjektiv (bijektiv) für alle $\lambda>0$ mit $\lambda\cdot\omega<1$.
+	Daraus folgt Eigenschaft (iv).\nl
+	\underline{Zeige (iv)$\implies$(iii)$\implies$(ii):} Trivial.\nl
+	Nachrechnen: Die $J_\lambda$ sind von der Form $J_\lambda^A$ für einen $m$-akkretiven Operator vom Typ $\omega$.\nl
+	\underline{Zeige (ii)$\implies$(i):}\\
+	Es gelte nun eine der äquivalenten Aussagen (ii),(iii),(iv). Dann ist der Operator $\A$ $m$-akkretiv vom Typ $\omega$.
+	Der Operator $\A$ erzeugt also eine Halbgruppe $\mathcal{S}$ auf dem Raum $c(\N,X)$.\\
+	Die Exponentialformel zeigt:
+	\begin{align*}
+		\mathcal{S}(t)(u_{0,n})
+		\overset{\text{Exp-Formel}}&=
+		\lim\limits_{k\to\infty}\left(J_{\frac{t}{k}}^{\A}\right)^k(u_{0,n})_{n\in\N}\\
+		&=\lim\limits_{k\to\infty}\left(\left(J_{\frac{t}{k}}^{A_n}\right)^k u_{0,n}\right)_{n\in\N}\\
+		\overset{\text{Exp-Formel}}&=
+		\left(S_n(t) u_{0,n}\right)\in  c(\N,X)
+		\qquad\forall (u_{0,n})_{n\in\N}\in\overline{\dom(\A)}
+	\end{align*}
+	Daraus folgt (i). (Zeige dafür:
+	\begin{align*}
+		\overline{\dom(\A)}=\Big\lbrace(u_{0,n})_{n\in\N}\in c(\N,X)~\Big|~ u_{0,n}\in D_n\Big\rbrace~)
+	\end{align*}
+\end{proof}
+
+
+
+
