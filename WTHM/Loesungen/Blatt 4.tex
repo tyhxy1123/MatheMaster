@@ -29,248 +29,325 @@
 
 \begin{document}
 \section*{Aufgabe 1}
-Sei $(X_n)_{n\in\N}$ eine Folge von iid Zufallsvariablen in $L_1$ und 
+Sei $(X_n)_{n\in\N}\subseteq L_1$ eine Folge von iid Zufallsvariablen in $L_1$ und 
 \begin{align*}
-R_n:=\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j,\qquad
-\G_n:=\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)\qquad\forall n\in\N
+	R_n:=\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j,\qquad
+	\G_n:=\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)\qquad\forall n\in\N
 \end{align*}
 Dann gilt:
 \begin{enumerate}[label=\alph*)]
-\item $\G_n=\sigma\big(R_n,X_{n+1},X_{n+2},\ldots\big)$
-\item $(R_n)_{n\in\N}$ ist Rückwärtsmartingal bzgl. $(\G_n)_{n\in\N}$
-\item Es gilt das starke Gesetz der großen Zahlen:
-\begin{align*}
-\limn R_n=\E[X_1]\text{ f.s.}
-\end{align*}
+	\item $\G_n=\sigma\big(R_n,X_{n+1},X_{n+2},\ldots\big)$
+	\item $(R_n)_{n\in\N}$ ist Rückwärtsmartingal bzgl. $(\G_n)_{n\in\N}$
+	\item Es gilt das starke Gesetz der großen Zahlen:
+	\begin{align*}
+		\limn R_n=\E[X_1]\text{ f.s.}
+	\end{align*}
 \end{enumerate}
 
 \begin{proof}
-\underline{Zeige a):}\\
-Wegen der Definition
-\begin{align*}
-\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)
-\stackeq{\text{Def}}\sigma\Big(\big\lbrace R_i^{-1}(A):A\in\B(\R),i\geq n\big\rbrace\Big)
-\end{align*}
-genügt es zu zeigen, dass 
-\begin{align*}
-\left\lbrace X_i^{-1}(A):A\in\B(\R),i>n\right\rbrace=\left\lbrace R_i^{-1}(A):A\in\B(\R),i>n\right\rbrace
-\end{align*}
-gilt. Sei also...\nl
-%TODO
-\underline{Zeige b):}\\
-\begin{enumerate}
-\item $(\G_n)_{n\in\N}$ ist eine absteigende Folge, denn nach Definition gilt $\G_{n+1}\subseteq\G_n~\forall n\in\N$.
-\item Für beliebiges $n\in\N$ ist $R_n$ $\G_n$-messbar (nach Konstruktion von $(\G_n)_{n\in\N}$).
-\item $\E\big[|R_n|]<\infty~\forall n\in\N$, denn:
-\begin{align*}
-\E\big[|R_n|\big]
-=\E\left[\left|\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j\right|\right]\stackrelnew{\text{Mono}}{\text{DU}}{\leq}
-\E\left[\frac{1}{n}\cdot\sum\limits_{j=0}^n\big|X_j\big|\right]\overset{\text{Lin}}{=}
-\frac{1}{n}\cdot\sum\limits_{j=0}^n\underbrace{\E\big[|X_j|\big]}_{\underset{X_j\in L_1}{<}\infty}<\infty
-\end{align*} 
-\item Es gilt $R_n=\E\big[R_k~\big|~\G_n\big]~\forall k\leq n$, denn: %TODO
-\begin{align*}
-\E\big[R_k~\big|~\G_n\big]
-\overset{\text{Def}}&=
-\E\left[\left.\frac{1}{k}\cdot\sum\limits_{j=0}^k X_j~\right|~\G_n\right]\\
-\overset{\text{Lin}}&=
-\frac{1}{k}\cdot\sum\limits_{j=0}^k\E\big[X_j~\big|~\G_n\big]\\
-&=\ldots\\
-&=\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j\\
-\overset{\text{Def}}&=
-R_n
-\end{align*}
-\end{enumerate}
-\underline{Zeige c):}\\ %TODO Idee ist da, Details fehlen
-Da $(R_n)_{n\in\N}$ nach b) Rückwärtsmartingal ist, konvergiert der stochastische Prozess $(R_n)_{n\in\N}$ nach Theorem 5.5. Sei die Zufallsvariable $R_\infty\in L_1(\G_\infty)$ dieser Grenzwert.\\
-Da die Zufallsvariablen $X_1,X_2,\ldots$ unabhängig sind  (SIND SIE DAS???), können wir das 0-1-Gesetz von Kolmogorov anwenden und erhalten, dass $\G_\infty$ $\P$-trivial ist. Folgich (WARUM???) ist die Grenzufallsvarible $R_\infty$ fas t sicher konstant, also $R_\infty\equiv c$ f.s. für ein $c\in\R$.\\
-Aus der Rückwärtsmartingaleigenschaft folgt:
-\begin{align*}
-R_n&=\E\big[R_1~\big|~\G_n\big]=\E\big[X_1~\big|~\G_n\big] &\forall n\in\N\\
-\overset{\E[\cdot]}{\implies}
-\E\big[R_n\big]&=\E\Big[\E\big[X_1~\big|~\G_n\big]\Big]\overset{\text{Tower}}{=}\E\big[X_1\big] &\forall n\in\N\\
-\implies c&=\E[c]=\E[\R_\infty]=\E\left[\limn R_n\right]\\\overset{???}&{=}\limn\E[R_n]=\limn\E[X_1]=\E[X_1]\\
-\implies\limn R_n \overset{\text{f.s.}}&=\limn\E[R_n]=\E[X_1]\text{ f.s.}
-\end{align*}
+	\underline{Zeige a):}\\
+	Wegen der Definition
+	\begin{align*}
+		\sigma\big(R_n,R_{n+1},R_{n+2},\ldots\big)
+		\stackeq{\text{Def}}\sigma\Big(\big\lbrace R_i^{-1}(A):A\in\B(\R),i\geq n\big\rbrace\Big)
+	\end{align*}
+	genügt es zu zeigen, dass 
+	\begin{align*}
+		\left\lbrace X_i^{-1}(A):A\in\B(\R),i>n\right\rbrace=\left\lbrace R_i^{-1}(A):A\in\B(\R),i>n\right\rbrace
+	\end{align*}
+	gilt. Schreibe $X_n$ als:
+	\begin{align}\label{eqAufgabe1Plus}\tag{+}
+		X_n=n\cdot R_n-(n-1)\cdot R_{n-1}\qquad\forall n\in\N
+	\end{align}
+	Folglich ist jede messbare Funktion von $\big(R_n,R_{n+1},\ldots\big)$ ist messbare Funktion von $\big(R_n,X_{n+1},X_{n+2},\ldots\big)$ und umgekehrt.\nl
+	\underline{Zeige b):}
+	Vorüberlegung: Aus Symmetrie-Gründen gilt für alle $i\in\lbrace1,\ldots,n\rbrace$:
+	\begin{align*}
+		\E\Big[X_i~\Big|~X_1+\ldots+X_n\Big]
+		&=\frac{1}{n}\cdot\sum\limits_{j=1}^n\E\Big[X_j~\Big|~X_1+\ldots+X_n\Big]\\
+		&=\frac{1}{n}\cdot\E\Big[X_1+\ldots+X_n~\Big|~X_1+\ldots+X_n\Big]\\
+		&=\frac{1}{n}\Big(X_1+\ldots+X_n\Big)\\
+		&=R_n
+	\end{align*}		
+	
+	\begin{enumerate}
+		\item $(\G_n)_{n\in\N}$ ist eine absteigende Folge, denn nach 	Definition gilt $\G_{n+1}\subseteq\G_n~\forall n\in\N$.
+		\item Für beliebiges $n\in\N$ ist $R_n$ $\G_n$-messbar (nach 	Konstruktion von\\ $(\G_n)_{n\in\N}$).
+		\item $\E\big[|R_n|]<\infty~\forall n\in\N$, denn:
+			\begin{align*}
+				\E\big[|R_n|\big]
+				=\E\left[\left|\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j\right|\right]\stackrelnew{\text{Mono}}{\text{DU}}{\leq}
+				\E\left[\frac{1}{n}\cdot\sum\limits_{j=0}^n\big|X_j\big|\right]\overset{\text{Lin}}{=}
+				\frac{1}{n}\cdot\sum\limits_{j=0}^n\underbrace{\E\big[|X_j|\big]}_{\underset{X_j\in L_1}{<}\infty}<\infty
+			\end{align*} 
+		\item Es gilt $R_n=\E\big[R_k~\big|~\G_n\big]~\forall k\leq n$, denn: 
+		\begin{align*}
+		(n-1)\cdot\E\Big[R_{n-1}~\Big|~\G_n\Big]
+		\overset{\eqref{eqAufgabe1Plus}}&=
+		\E\Big[n\cdot R_n-X_n~\Big|~\sigma\big(R_n,X_{n+1},\ldots\big)\Big]\\
+		&=n\cdot\R_n-\E\Big[X_n~\Big|~R_n\Big]\\
+		\overset{\text{VÜ}}&=
+		n\cdot R_n-R_n\\
+		&=(n-1)\cdot R_n\\
+		\implies\E\Big[R_{n-1}~\Big|~\G_n\Big]&=R_n
+	\end{align*}
+		%	\begin{align*}
+		%		\E\big[R_k~\big|~\G_n\big]
+		%		\overset{\text{Def}}&=
+		%		\E\left[\left.\frac{1}{k}\cdot\sum\limits_{j=0}^k X_j~\right|~\G_n\right]\\
+		%		\overset{\text{Lin}}&=
+		%		\frac{1}{k}\cdot\sum\limits_{j=0}^k\E\big[X_j~\big|~\G_n\big]\\
+		%		&=\ldots\\
+		%		&=\frac{1}{n}\cdot\sum\limits_{j=0}^n X_j\\
+		%		\overset{\text{Def}}&=
+		%		R_n
+		%	\end{align*}
+	\end{enumerate}
+	\underline{Zeige c):}
+	Da $(R_n)_{n\in\N}$ nach b) Rückwärtsmartingal ist, konvergiert der stochastische Prozess $(R_n)_{n\in\N}$ nach Theorem 5.5 fast sicher. Sei die Zufallsvariable $R_\infty\in L_1(\G_\infty)$ dieser Grenzwert.\\
+	Da die Zufallsvariablen $X_1,X_2,\ldots$ unabhängig sind (nach Voraussetzung), können wir das 0-1-Gesetz von Kolmogorov anwenden und erhalten, dass $\G_\infty$ $\P$-trivial ist. 
+	\begin{align*}
+		R_\infty=\underbrace{\limn\frac{1}{n}\cdot\big(X_1+\ldots+X_j\big)}_{\longrightarrow0}+\underbrace{\limn\frac{1}{n}\cdot\big(X_{j+1}+X_{j+2}+\ldots+X_n\big)}_{\sigma(X_{j+1},\ldots)\text{-messbar}}\qquad\forall j\in\N
+	\end{align*}
+	Folglich (WARUM???) ist die Grenzzufallsvariable $R_\infty$ fast sicher konstant, also $R_\infty\equiv c$ f.s. für ein $c\in\R$.\\
+	Aus der Rückwärtsmartingaleigenschaft folgt:
+	\begin{align*}
+		R_n&=\E\big[R_1~\big|~\G_n\big]=\E\big[X_1~\big|~\G_n\big] &\forall n\in\N\\
+		\overset{\E[\cdot]}{\implies}
+		\E\big[R_n\big]&=\E\Big[\E\big[X_1~\big|~\G_n\big]\Big]\overset{\text{Tower}}{=}\E\big[X_1\big] &\forall n\in\N\\
+		\implies c&=\E[c]=\E[\R_\infty]=\E\left[\limn R_n\right]\\\overset{???}&{=}\limn\E[R_n]=\limn\E[X_1]=\E[X_1]\\
+		\implies R_\infty &=\limn R_n \overset{\text{f.s.}}=\limn\E[R_n]=\E[X_1]\text{ f.s.}
+	\end{align*}
 \end{proof}
 
 \section*{Aufgabe 2}
 Wir berechnen die charakteristische Funktionen folgender Verteilungen:
 \begin{enumerate}[label=a)]
-\item Binomial-, Poisson- und geometrische Verteilung
-\item Exponential-, Laplace- und Cauchyverteilung
+	\item Binomial-, Poisson- und geometrische Verteilung
+	\item Exponential-, Laplace- und Cauchyverteilung
 \end{enumerate}
 
 \begin{lösung}
 \underline{Zur Binomialverteilung:} Sei $X\sim\text{Bin}(p,n)$. Dann gilt:
-%TODO
 \begin{align*}
-\Phi_{\text{Bin}}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\displaystyle\sum^n_{k=0} e^{ik\xi} \binom{n}{k} p^{k}q^{n-k}\\
-&=\displaystyle\sum^n_{k=0} \binom{n}{k} \left(pe^{i\xi}\right)^k  q^{n-k}\\
-&=\big(p\cdot\exp(i\cdot \xi)+1\big)^n
+	\Phi_{\text{Bin}}(\xi)
+	\overset{\text{Def}}&{=}
+	\E\big[\exp(i\cdot X\cdot\xi)\big]\\
+	&=\sum\limits^n_{k=0} e^{i\cdot k\cdot\xi}\cdot \binom{n}{k}\cdot p^{k}\cdot q^{n-k}\\
+	&=\displaystyle\sum^n_{k=0} \binom{n}{k}\cdot \left(p\cdot e^{i\cdot \xi}\right)^k\cdot q^{n-k}\\
+	&=\big(p\cdot\exp(i\cdot \xi)+q\big)^n
 \end{align*}
+
 \underline{Zur Poissonverteilung:} Sei $X\sim\text{Poi}(\lambda)$. Dann gilt:
-%TODO
 \begin{align*}
-\Phi_{\text{Poi}}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\displaystyle\sum^n_{k=0} e^{ik\xi} e^{-\lambda}\frac{\lambda^k}{k!}\\
-&=e^{-\lambda} \displaystyle\sum^n_{k=0}  \frac{\left( \lambda e^{i\xi} \right)^k}{k!}\\
-&=e^{-\lambda} e^{\lambda e^{i\xi} }\\
-&=\exp\big(\lambda \left( \exp(i\cdot \xi) -1 \right)\big)
+	\Phi_{\text{Poi}}(\xi)
+	\overset{\text{Def}}&{=}
+	\E\big[\exp(i\cdot X\cdot\xi)\big]\\
+	&=\sum\limits^n_{k=0} e^{i\cdot k\cdot\xi}\cdot e^{-\lambda}\cdot\frac{\lambda^k}{k!}\\
+	&=e^{-\lambda}\cdot\sum\limits^n_{k=0}\frac{\left( \lambda\cdot e^{i\cdot\xi}\right)^k}{k!}\\
+	&=e^{-\lambda} e^{\lambda e^{i\xi} }\\
+	&=\exp\Big(\lambda\cdot\big(\exp(i\cdot\xi)-1\big)\Big)
 \end{align*}
+
 \underline{Zur geometrischen Verteilung:} Sei $X\sim\text{Geo}(p)$. Dann gilt mit $q = 1-p$:
-%TODO
 \begin{align*}
-\Phi_{\text{Geo}}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\displaystyle\sum^n_{k=1} e^{ik\xi} pq^{k-1}\\
-&=\displaystyle\sum^n_{k=0} e^{i\xi(k+1)} pq^k\\
-&=\displaystyle\sum^n_{k=0} (e^{i\xi q })^k e^{i\xi}p\\
-&=\frac{p\cdot\exp(i\cdot \xi)}{1-q\cdot\exp(i\cdot \xi)}
+	\Phi_{\text{Geo}}(\xi)
+	\overset{\text{Def}}&{=}
+	\E\big[\exp(i\cdot X\cdot\xi)\big]\\
+	&=\sum\limits^n_{k=1} e^{i\cdot k\cdot \xi}\cdot p\cdot q^{k-1}\\
+	&=\sum\limits^n_{k=0} e^{i\cdot\xi\cdot(k+1)} p\cdot q^k\\
+	&=\sum\limits^n_{k=0} (e^{i\cdot\xi\cdot q})^k\cdot e^{i\cdot\xi}\cdot p\\
+	\overset{\text{Geo-Reihe}}&=
+	\frac{p\cdot\exp(i\cdot \xi)}{1-q\cdot\exp(i\cdot \xi)}
 \end{align*}
+
 \underline{Zur Exponentialverteilung:} Sei $X\sim\text{Exp}(\lambda)$. Dann gilt:
-%TODO
 \begin{align*}
-\Phi_{\text{Exp}}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\int \limits_{\R_{\geq 0}} e^{i\xi x}\lambda e^{-\lambda x} \d x\\
-&= \lambda \left[ \frac{1}{i\xi-\lambda} e^{i\xi-\lambda}\right]^\infty_0 \\
-&= \frac{\lambda}{i\xi -\lambda}\left(0-1\right)\\
-&=\frac{\lambda}{\lambda-i\cdot \xi}
+	\Phi_{\text{Exp}}(\xi)
+	\overset{\text{Def}}&{=}
+	\E\big[\exp(i\cdot X\cdot\xi)\big]\\
+	\overset{\text{Dichte}}&=
+	\int \limits_{\R_{\geq 0}} e^{i\xi x}\cdot\lambda\cdot e^{-\lambda x} \d x\\
+	&=\lambda\cdot\int\limits_{\R_{\geq0}}\exp\big((i\cdot\xi-\lambda)\cdot x\big)\d x\\
+	&= \lambda \left[ \frac{1}{i\xi-\lambda} \exp\big(i\cdot\xi-\lambda)\cdot x\big)\right]^\infty_0 \\
+	&= \frac{\lambda}{i\xi -\lambda}\left(0-1\right)\\
+	&=\frac{\lambda}{\lambda-i\cdot \xi}
 \end{align*}
-\underline{Zur Laplaceverteilung:} Sei $X\sim\text{Lap}$. Dann gilt:
-%TODO
-\begin{align*}
-\Phi_{\text{Lap}}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\int \limits_{\R} e^{i\xi x}\frac{1}{2} e^{-|x|} \d x\\
-&=\frac{1}{2} \left( \int \limits_{\R_{\geq 0}} e^{(i\xi-1)x}\d x + \int \limits_{\R_{\leq 0}} e^{(i\xi+1)x}\d x \right)\\
-&=\frac{1}{2} \left( \left[ \frac{1}{i\xi-1} e^{(i\xi-1)x} \right]^\infty_0 + \left[ \frac{1}{i\xi+1} e^{(i\xi+1)x} \right]^0_{-\infty} \right)\\
-&=\frac{1}{2} \left( -\frac{1}{i\xi-1} + \frac{1}{i\xi+1} \right)\\
-&=\frac{1}{1+\xi^2}
-\end{align*}
-\underline{Zur Cauchyverteilung:} Sei $X\sim\text{Cauchy}$. Dann gilt:
-%TODO
-\begin{align*}
-\Phi_{\text{Cauchy}}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot X\cdot\xi)\big]\\
-&=\ldots\\
-&=\exp\big(-|\xi|\big)
-\end{align*}
+
+	\underline{Zur Laplaceverteilung:} Sei $X\sim\text{Lap}$. Dann gilt:
+	\begin{align*}
+		\Phi_{\text{Lap}}(\xi)
+		\overset{\text{Def}}&{=}
+		\E\big[\exp(i\cdot X\cdot\xi)\big]\\
+		\overset{\text{Dichte}}&=
+		\int\limits_{\R} e^{i\xi x}\cdot\frac{1}{2} e^{-|x|} \d x\\
+		&=\frac{1}{2} \left( \int \limits_{\R_{\geq 0}} e^{(i\xi-1)x}\d x + \int \limits_{\R_{\leq 0}} e^{(i\xi+1)x}\d x \right)\\
+		&=\frac{1}{2} \left( \left[ \frac{1}{i\xi-1} e^{(i\xi-1)x} \right]^\infty_0 + \left[ \frac{1}{i\xi+1} e^{(i\xi+1)x} \right]^0_{-\infty} \right)\\
+		&=\frac{1}{2} \left( -\frac{1}{i\xi-1} + \frac{1}{i\xi+1} \right)\\
+		&=\frac{1}{1+\xi^2}
+	\end{align*}
+
+	\underline{Zur Cauchyverteilung:} Sei $X\sim\text{Cauchy}$. 
+	Die Dichte der Cauchyverteilung ist
+	\begin{align*}
+		f(x)=\frac{1}{1+x^2}\cdot\frac{1}{\pi}
+	\end{align*}
+	Bereits gezeigt: Dichte der Laplace-Verteilung:
+	\begin{align*}
+		g(x)=\frac{1}{2}\cdot\exp\big(-|x|\big)
+	\end{align*}
+	Die Fourier-Transformation dieser Dichte ist:
+	\begin{align*}
+		\hat{g}(\xi)=\frac{1}{1+\xi^2}
+	\end{align*}
+	Inverse Fourier-Transformation von $\hat{g}(\xi)$:
+	\begin{align*}
+		g(x)=\frac{1}{2\cdot\pi}cdot\int\limits_{\R}\exp(-i\cdot \xi\cdot x)\cdot\hat{g}(\xi)\d\xi
+	\end{align*}
+	Ersetzen liefert
+	\begin{align*}
+		\frac{1}{2}\cdot\exp\big(-|x|\big)&=\frac{1}{2\cdot\pi}\cdot\int\limits_{\R}\exp(-i\cdot\xi\cdot x)\cdot\frac{1}{1+\xi^2}\d\xi\\
+		\implies\exp\big(-|x|\big)&=\frac{1}{\pi}\cdot\int\limits_{-\infty}^\infty\exp(i\cdot\xi\cdot x)\cdot\frac{1}{1+\xi^2}\\
+		\implies \Phi_{\text{Cauchy}}(\xi)=\exp\big(-|x|\big)
+	\end{align*}
 \end{lösung}
 
 \section*{Aufgabe 3}
 Seien $X$ und $X'$ unabhängige $\R^d$-wertige Zufallsvariablen mit der gleichen Verteilung $F$.
 \begin{enumerate}[label=\alph*)]
-\item Berechne die charakteristische Funktion von $Y=X-X'$.
-\item Sei $B$ unabhängig von $(X,X')$ mit $\P(B=0)=\P(B=1)=\frac{1}{2}$. Berechne die charakteristische Funktion von $Z=B\cdot X+(B-1)\cdot X'$.
+	\item Berechne die charakteristische Funktion von $Y=X-X'$.
+	\item Sei $B$ unabhängig von $(X,X')$ mit $\P(B=0)=\P(B=1)=\frac{1}{2}$. Berechne die charakteristische Funktion von $Z=B\cdot X+(B-1)\cdot X'$.
 \end{enumerate}
 Sind die Zufallsvariablen $Y$ und $Z$ symmetrisch?
 
 \begin{lösung}
-\underline{Zu a):}
-%TODO
-\begin{align*}
-\Phi_{Y}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot (X-X')\cdot\xi)\big]\\
-&=\ldots\\
-\end{align*}
-\underline{Zu b):}
-%TODO
-\begin{align*}
-\Phi_{Z}(\xi)
-\overset{\text{Def}}&{=}
-\E\big[\exp(i\cdot (B\cdot X+(B-1)\cdot X')\cdot\xi)\big]\\
-&=\ldots\\
-\end{align*}
-\underline{Zur Symmetrie:}\\
-%TODO
+	\underline{Zu a):}
+	\begin{align*}
+		\Phi_{Y}(\xi)
+		\overset{\text{Def}}&{=}
+		\E\big[\exp(i\cdot (X-X')\cdot\xi)\big]\\
+		\overset{\text{unab}}&=
+		\E\Big[\exp(i\cdot X\cdot\xi)\Big]\cdot\E\Big[\exp(-i\cdot X'\cdot\xi)\Big]\\
+		&=\E\Big[\exp(i\cdot X\cdot\xi)\Big]\cdot\overline{\E\Big[\exp(i\cdot X'\cdot\xi)\Big]}\\
+		&=\Phi_X(\xi)\cdot\overline{\Phi_X(\xi)}\\
+		&=\big|\Phi_X(\xi)\big|^2
+	\end{align*}
+	
+	\underline{Zu b):}
+	\begin{align*}
+		\Phi_{Z}(\xi)
+		\overset{\text{Def}}&{=}
+		\E\big[\exp(i\cdot (B\cdot X+(B-1)\cdot X')\cdot\xi)\big]\\
+		&=\E\Big[\indi_{B=0}\cdot\exp(i\cdot\xi\cdot X')+\indi_{B=1}\cdot\exp(i\cdot\xi\cdot X)\Big]\\
+		&=\underbrace{\P(B=0)}_{=\frac{1}{2}}\cdot\E\Big[\exp(-i\cdot\xi\cdot X)\Big]+\underbrace{\P(B=1)}_{=\frac{1}{2}}\cdot\E\Big[\exp(i\cdot\xi\cdot X)\Big]\\
+		&=\frac{1}{2}\cdot\Big(\overline{\Phi_X(\xi)}+\Phi_X(\xi)\Big)\\
+		&=\Re\big(\Phi_X(\xi)\big)
+	\end{align*}
+	\underline{Zur Symmetrie:}\\
+	Ja, sie sind symmetrisch. (entweder aus Definition ablesen oder sehen, dass die charakteristischen Funktionen reellwertig sind.)
 \end{lösung}
 
 \section*{Aufgabe 4}
 Sei $\alpha\in\N_0^d$ ein Multiindex, $b\in\R^d$ und $f,g$ Funktionen in $C^\alpha(\R^d)$.
 \begin{enumerate}[label=\alph*)]
-\item Berechne $\partial_x^\alpha\exp\big(b^T\cdot x\big)$
-\item Zeige die Leibniz-Regel:
-\begin{align*}
-\partial^\alpha(f\cdot g)=\sum\limits_{\begin{subarray}{c}\beta\leq\alpha\\\beta\in\N_0^d\end{subarray}}\begin{pmatrix}
-\alpha\\\beta
-\end{pmatrix}\cdot\partial^\beta f\cdot\partial^{\alpha-\beta}g
-\end{align*}
+	\item Berechne $\partial_x^\alpha\exp\big(b^T\cdot x\big)$
+	\item Zeige die Leibniz-Regel:
+	\begin{align*}
+		\partial^\alpha(f\cdot g)=\sum\limits_{\begin{subarray}{c}\beta\leq\alpha\\\beta\in\N_0^d\end{subarray}}\begin{pmatrix}
+		\alpha\\\beta
+		\end{pmatrix}\cdot\partial^\beta f\cdot\partial^{\alpha-\beta}g
+	\end{align*}
 \end{enumerate}
 
 \begin{lösung}
-\underline{Zu a):}
-Wegen
-\begin{align*}
-\frac{\partial}{\partial_{x_i}}\exp(b^T\cdot x)
-&=\frac{\partial}{\partial_{x_i}}\exp\left(\sum\limits_{i=1}^d b_i\cdot x_i\right)
-=b_i\cdot\exp\big(b_i\cdot x_i\big)\\
-\implies\frac{\partial^k}{\partial_{x_i}^k}\exp(b^T\cdot x)
-&=b_i^k\cdot\exp\big(b_i\cdot x_i\big)
-\end{align*}
-gilt
-\begin{align*}
-\partial_x^\alpha\exp\big(b^T\cdot x\big)
-\overset{\text{Def}}&{=}
-\frac{\partial^{\alpha_1}\ldots\partial^{\alpha_d}}{\partial_{x_1}^{\alpha_1}\ldots\partial_{x_d}^{\alpha_d}}\exp(b^T\cdot x)
-=b_i^{\alpha_1}\cdot\ldots\cdot b_d^{\alpha_d}\cdot\exp\big(b^T\cdot x\big)\\
-&=b^\alpha \exp\big(b^T\cdot x\big)
-\end{align*}
-%TODO Das ist möglicherweise nicht ganz richtig. Bin mir sehr unsicher
-\underline{Zu b):}\\
-Wir führen eine Induktion nach $|\alpha|\in\N$ durch:\nl
-\ul{IA:} Sei $|\alpha|=0$: $fg=fg$ %TODO 
-\nl
-\ul{IV:} Gelte die Leibniz-Regel für beliebiges, aber festes $\alpha\in\N_0^d$ mit $|\alpha|=n\in\N$.\nl
-\ul{IS:} Sei $\gamma$ ein Multiindex mit $|\gamma|=1$. D.h. es ist zu zeigen
-\begin{equation*}
-	\partial^{\alpha + \gamma}(fg) = \displaystyle \sum_{\beta \leq \alpha + \gamma} \binom{\alpha + \gamma}{\beta}\partial^\beta f \partial^{\alpha+\gamma -\beta}g,
-\end{equation*}
-da $\alpha + \gamma$ ein Multiindex mit $|\alpha + \gamma|=n+1$ ist.
-\begin{align*}
-	\partial^{\alpha + \gamma}(fg) &= \partial^{\gamma}\left( \partial^\alpha(fg) \right)\\
-	&\stackeq{\text{IV}} \partial^{\gamma}\left( \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta}\partial^\beta f \partial^{\alpha -\beta}g \right)\\
-	&= \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta} \left( \partial^{\beta+\gamma} f \partial^{\alpha -\beta}g + \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g \right)\\
-	&= \displaystyle \sum_{\beta \leq \alpha + \gamma \land |\beta|\neq 0} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
-	&= \partial^{\alpha +\gamma}f + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0 } \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
-	&= \partial^{\alpha +\gamma}f + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0} \underbrace{\left( \binom{\alpha }{\beta - \gamma} + \binom{\alpha }{\beta} \right)}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
-	&= \binom{\alpha +\gamma}{\alpha +\gamma}\partial^{\alpha +\gamma}f + \binom{\alpha +\gamma}{0}\partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0}  \underbrace{\binom{\alpha + \gamma}{\beta}}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
-	&=\displaystyle \sum_{\beta \leq \alpha + \gamma} \binom{\alpha + \gamma}{\beta}\partial^\beta f \partial^{\alpha+\gamma -\beta}g
-\end{align*}
-%TODO
-Es bleibt noch zu zeigen, dass die mit $*$ markierte Gleichheit gilt. Für den eindimensionalen Binomialkoeffizienten gilt dies.
-\begin{align*}
-	\binom{\alpha }{\beta - \gamma} + \binom{\alpha }{\beta} &=  \binom{\alpha_1 }{\beta_1 - \gamma_1}\dots \binom{\alpha_d }{\beta_d - \gamma_d} + \binom{\alpha_1 }{\beta_1}\dots \binom{\alpha_d }{\beta_d}\\
-	&\stackeq{|\gamma|=1} \underbrace{\left( \binom{\alpha_j}{\beta_j -\gamma_j} + \binom{\alpha_j}{\beta_j} \right)}_{\stackeq{1D}\binom{\alpha_j + \gamma_j}{\beta_j}} \left( \prod \limits^d_{i=1 \land i\neq j} \binom{\alpha_i}{\beta_i} \right)\\
-	&= \binom{\alpha +\gamma }{\beta}
-\end{align*}
+	\underline{Zu a):}
+	Wegen
+	\begin{align*}
+		\frac{\partial}{\partial_{x_i}}\exp(b^T\cdot x)
+		&=\frac{\partial}{\partial_{x_i}}\exp\left(\sum\limits_{i=1}^d b_i\cdot x_i\right)
+		=b_i\cdot\exp\big(b_i\cdot x_i\big)\\
+		\implies\frac{\partial^k}{\partial_{x_i}^k}\exp(b^T\cdot x)
+		&=b_i^k\cdot\exp\big(b_i\cdot x_i\big)
+	\end{align*}
+	gilt
+	\begin{align*}
+		\partial_x^\alpha\exp\big(b^T\cdot x\big)
+		\overset{\text{Def}}&{=}
+		\frac{\partial^{\alpha_1}\ldots\partial^{\alpha_d}}{\partial_{x_1}^{\alpha_1}\ldots\partial_{x_d}^{\alpha_d}}\exp(b^T\cdot x)
+		=b_1^{\alpha_1}\cdot\ldots\cdot b_d^{\alpha_d}\cdot\exp\big(b^T\cdot x\big)\\
+		&=b^\alpha \exp\big(b^T\cdot x\big)
+	\end{align*}
+	
+	\underline{Zu b):}\\
+	Wir führen eine Induktion nach $|\alpha|\in\N$ durch:\nl
+	\ul{IA:} Sei $|\alpha|=0$: 
+	\begin{align*}
+		\partial^{(0)}(f\cdot g)=f\cdot g=\sum\limits_{\beta\mit|\beta|=0}\binom{\alpha}{\beta}\partial^\beta f\cdot\partial^{\alpha-\beta} g=f\cdot g
+	\end{align*}		
+	\ul{IV:} Gelte die Leibniz-Regel für beliebiges, aber festes $\alpha\in\N_0^d$ mit $|\alpha|=n\in\N$.\nl
+	\ul{IS:} Sei $\gamma$ ein Multiindex mit $|\gamma|=1$. D.h. es ist zu zeigen
+	\begin{equation*}
+		\partial^{\alpha + \gamma}(fg) = \displaystyle \sum_{\beta \leq \alpha + \gamma} \binom{\alpha + \gamma}{\beta}\partial^\beta f \partial^{\alpha+\gamma -\beta}g,
+	\end{equation*}
+	da $\alpha + \gamma$ ein Multiindex mit $|\alpha + \gamma|=n+1$ ist.
+	\begin{align*}
+		&\partial^{\alpha + \gamma}(fg)\\
+		&= \partial^{\gamma}\left( \partial^\alpha(fg) \right)\\
+		&\stackeq{\text{IV}} \partial^{\gamma}\left( \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta}\partial^\beta f \partial^{\alpha -\beta}g \right)\\
+		&= \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta} \left( \partial^{\beta+\gamma} f \partial^{\alpha -\beta}g + \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g \right)\\
+		&= \displaystyle \sum_{\beta \leq \alpha + \gamma \land |\beta|\neq 0} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \displaystyle \sum_{\beta \leq \alpha} \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&= \partial^{\alpha +\gamma}f + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0} \binom{\alpha }{\beta - \gamma} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0 } \binom{\alpha }{\beta}  \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&= \partial^{\alpha +\gamma}f + \partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0} \underbrace{\left( \binom{\alpha }{\beta - \gamma} + \binom{\alpha }{\beta} \right)}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&= \binom{\alpha +\gamma}{\alpha +\gamma}\partial^{\alpha +\gamma}f + \binom{\alpha +\gamma}{0}\partial^{\alpha +\gamma}g + \displaystyle \sum_{\beta \leq \alpha \land |\beta|\neq 0}  \underbrace{\binom{\alpha + \gamma}{\beta}}_{=(*)} \partial^{\beta} f \partial^{\alpha +\gamma -\beta}g\\
+		&=\displaystyle \sum_{\beta \leq \alpha + \gamma} \binom{\alpha + \gamma}{\beta}\partial^\beta f \partial^{\alpha+\gamma -\beta}g
+	\end{align*}
+	Es bleibt noch zu zeigen, dass die mit $(\ast)$ markierte Gleichheit gilt. Für den eindimensionalen Binomialkoeffizienten gilt dies.
+	\begin{align*}
+		\binom{\alpha }{\beta - \gamma} + \binom{\alpha }{\beta} &=  \binom{\alpha_1 }{\beta_1 - \gamma_1}\dots \binom{\alpha_d }{\beta_d - \gamma_d} + \binom{\alpha_1 }{\beta_1}\dots \binom{\alpha_d }{\beta_d}\\
+		\overset{|\gamma|=1}&=
+		\underbrace{\left( \binom{\alpha_j}{\beta_j -\gamma_j} + \binom{\alpha_j}{\beta_j} \right)}_{\stackeq{1D}\binom{\alpha_j + \gamma_j}{\beta_j}} \left( \prod \limits^d_{i=1 \land i\neq j} \binom{\alpha_i}{\beta_i} \right)\\
+		&= \binom{\alpha +\gamma }{\beta}
+	\end{align*}
 \end{lösung}
 
 \section*{Aufgabe 5}
 \begin{enumerate}[label=\alph*)]
-\item Sei $(X,Y)$ bivariat normalverteilt. Zeige mit charakteristischen Funktionen: $X$ und $Y$ sind unabhängig genau dann, wenn sie unkorreliert sind.
-\item Sei $X$ Cauchyverteilt und setze $Y=X$. Zeige, dass für die charakteristischen Funktionen gilt:
-\begin{align*}
-\Phi_{X+Y}(\xi)=\Phi_X(\xi)\cdot\Phi_Y(\xi)\qquad\forall\xi\in\R
-\end{align*} 
-obwohl $X$ offensichtlich \ul{nicht} unabhängig von $Y$ ist.
+	\item Sei $(X,Y)$ bivariat normalverteilt. Zeige mit charakteristischen Funktionen: $X$ und $Y$ sind unabhängig genau dann, wenn sie unkorreliert sind.
+	\item Sei $X$ Cauchyverteilt und setze $Y=X$. Zeige, dass für die charakteristischen Funktionen gilt:
+	\begin{align*}
+		\Phi_{X+Y}(\xi)=\Phi_X(\xi)\cdot\Phi_Y(\xi)\qquad\forall\xi\in\R
+	\end{align*} 
+	obwohl $X$ offensichtlich \ul{nicht} unabhängig von $Y$ ist.
 \end{enumerate}
 
 \begin{lösung}
-\underline{Zu a):}\\
-%TODO
-\underline{Zu b):}\\
-%TODO
-\end{lösung}
+	\underline{Zu a):}
+		\begin{align*}
+		(X,Y)&\sim\mathcal{N}(\mu,\Sigma),\qquad\mu=\binom{\mu_x}{\mu_y},\qquad\Sigma=\begin{pmatrix}
+			\sigma_x^2 & \rho\sigma_x\sigma_y\\
+			\rho\sigma_x\sigma_y & \sigma_y^2
+		\end{pmatrix}\\
+		\Phi_{(X,Y)}(\xi)
+		&=\exp\bigg(i\cdot\mu_x\cdot\xi_1+i\cdot\mu_y\cdot\xi_2\underbrace{-\frac{\sigma_x^2}{2}\cdot\xi_1^2-\rho\sigma_x\sigma_y\cdot\xi_1\cdot\xi_2-\frac{\sigma_y^2}{2}\cdot\xi_2^2}_{=-\frac{1}{2}\cdot\xi^T\cdot\Sigma\cdot\xi}\bigg)\\
+		X\unab Y &\Longleftrightarrow\Phi_{(X,Y)}(\xi)=\Phi_X(\xi)\cdot\Phi_Y(\xi_2)\\
+		\Phi_X(\xi_1)&=\exp\Big(i\cdot\mu_x\cdot\xi_1-\frac{\sigma_x^2}{2}\cdot\xi_1^2\Big)\\
+		\Phi_Y(\xi_2)&=\exp\Big(i\cdot\mu_y\cdot\xi_2-\frac{\sigma_y^2}{2}\cdot\xi_2^2\Big)\\
+		\frac{\Phi_{(X,Y)}(\xi)}{\Phi_X(\xi)\cdot\Phi_Y(\xi_2)}
+		&=\exp\Big(-\rho\sigma_x\sigma_y\cdot\xi_1\cdot\xi_2\Big)=1
+		\Longleftrightarrow\rho\sigma_x\sigma_y=\Cov(X,Y)=0
+	\end{align*}	
+		
+	\underline{Zu b):}
+	\begin{align*}
+		\Phi_X(\xi)&=\Phi_Y(\xi)=\exp\big(-|x|\big)\nl
+		\Phi_{(X+Y)}(\xi)
+		&=\E\Big[\exp(i\cdot\xi(X+Y)\Big]\\
+		&=\E\Big[\exp(2\cdot\xi\cdot i\cdot X)\Big]\\
+		&=\Phi_X(2\cdot\xi)\\
+		&=\exp\big(-2\cdot|\xi|\big)\\
+		&=\exp\big(-|x|\big)\cdot\exp\big(-|x|\big)\\
+		&=\Phi_X(\xi)\cdot\Phi_Y(\xi)
+	\end{align*}
+	Aber $X\not\unab Y$!
+	\end{lösung}
 \end{document}
