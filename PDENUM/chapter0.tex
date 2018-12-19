@@ -2525,7 +2525,7 @@ wobei $z_1,z_2$ die Enden der Kante $E$ sind.
 \end{aligned}$
 \end{enumerate}
 \end{lemma}
-%TODO Manchmal schreibe ich \Sigma_h statt \mathcal{E}_h ode rumgekehrt. Bitte fixen
+
 \begin{theorem}
 Sei $T\in\T_h,E\in\Sigma_H, v\in P_k(T), \sigma\in P_k(E)$. Dann gilt:
 \begin{align*}
@@ -2599,18 +2599,18 @@ a\big(u-u_h,v_E\big)-\sum\limits_{T\in\omega_E}\int\limits_T\big(f+\Delta u_h\bi
 \subsection{Algorithmus (adaptive Gitterverfeinerung)}
 \texttt{
 \begin{enumerate}[start=0]
-\item Wähle eine Start-Triangulierung $T_0$, Setze $l:=0$
-\item Löse das diskrete Problem auf $T_l$
-\item Berechne $\eta_T$, $T\in\T_l$
-\begin{align*}
-\eta_l:=\max\limits_{T\in\T_l}\eta_T,\qquad\eta:=\left(\sum\limits_T\eta_T^2\right)^{\frac{1}{2}}
-\end{align*}
-\item Falls $\eta_l\leq\varepsilon$ STOP
-\item Verfeinere alle Zellen $T$ mit $\eta_T\geq\gamma\eta_l$\\
-Verfeinere andere Dreiecke um die Regularität des Gitters\\ sicherzustellen
-\begin{align*}
-l:=l+1,\qquad\texttt{GOTO }1
-\end{align*}
+	\item Wähle eine Start-Triangulierung $T_0$, Setze $l:=0$
+	\item Löse das diskrete Problem auf $T_l$
+	\item Berechne $\eta_T$, $T\in\T_l$
+	\begin{align*}
+		\eta_l:=\max\limits_{T\in\T_l}\eta_T,\qquad\eta:=\left(\sum\limits_T\eta_T^2\right)^{\frac{1}{2}}
+	\end{align*}
+	\item Falls $\eta_l\leq\varepsilon$ STOP
+	\item Verfeinere alle Zellen $T$ mit $\eta_T\geq\gamma\eta_l$\\
+	Verfeinere andere Dreiecke um die Regularität des Gitters\\ sicherzustellen
+	\begin{align*}
+		l:=l+1,\qquad\texttt{GOTO }1
+	\end{align*}
 \end{enumerate}}
 Die Wahl von $\gamma\in[0,1]$:\\
 $\gamma$ klein $\rightsquigarrow$ Verfeinerung von vielen Dreiecken\\
@@ -2618,26 +2618,33 @@ $\gamma$ groß $\rightsquigarrow$ Verfeinerung von wenigen Dreiecken
 
 \subsection{Verfeinerungs-Pattern von Dreiecken} %noNumber
 \begin{itemize}
-\item rote Verfeinerung: normale Verfeinerung: Unterteile ein Dreick in 4 Teildreicke
+	\item rote Verfeinerung: normale Verfeinerung: Unterteile ein Dreick in 4 Teildreicke
 %TODO Skizze hier ergänzen 
-\item grüne Verfeinerung: verbinde den Mittelpunkt der \ul{längsten} Kante mit der entgegengesetzten Ecke
+	\item grüne Verfeinerung: verbinde den Mittelpunkt der \ul{längsten} Kante mit der entgegengesetzten Ecke
 %TODO Skizze hier ergänzen
-\item blaue Verfeinerung: Verbinde den Mittelpunkt der \underline{längsten} Kante mit der entgegengesetzten Ecke und mit einem Mittelpunkt einer anderen Kante
+	\item blaue Verfeinerung: Verbinde den Mittelpunkt der \underline{längsten} Kante mit der entgegengesetzten Ecke und mit einem Mittelpunkt einer anderen Kante
 %TODO Skizze hier ergänzen
 \end{itemize}
-\input{tikz/refinement_types}
+
+\begin{figure}[H]
+	\center
+	\input{tikz/refinement_types}
+	\caption{Verfeinerung: rot,grün,blau}
+	\label{AbbRefinement_types}
+\end{figure}	
+	
 \textbf{Schritt 4:}
 \begin{enumerate}[label=\alph*)]
-\item $\eta_T\geq\gamma\cdot\eta_l\implies\text{ rote Verfeinerung}$
-\item drei hängende Knoten $\implies$ rote Verfeinerung
+	\item $\eta_T\geq\gamma\cdot\eta_l\implies\text{ rote Verfeinerung}$
+	\item drei hängende Knoten $\implies$ rote Verfeinerung
 %TODO Skizze hier ergänzen 
-\item zwei hängende Knoten, beide \underline{nicht} auf der längsten Kante $\implies$ rote Verfeinerung
+	\item zwei hängende Knoten, beide \underline{nicht} auf der längsten Kante $\implies$ rote Verfeinerung
 %TODO Skizze hier ergänzen 
-\item zwei hängende Knoten, eine auf der längsten Kante $\implies$ blaue Verfeinerung
+	\item zwei hängende Knoten, eine auf der längsten Kante $\implies$ blaue Verfeinerung
 %TODO Skizze hier ergänzen 
-\item ein hängender Knoten, \underline{nicht} auf der längsten Kante $\implies$ blaue Verfeinerung
+	\item ein hängender Knoten, \underline{nicht} auf der längsten Kante $\implies$ blaue Verfeinerung
 %TODO Skizze hier ergänzen 
-\item ein hängender Knoten auf der längsten Kante $\implies$ grüne Verfeinerung
+	\item ein hängender Knoten auf der längsten Kante $\implies$ grüne Verfeinerung
 %TODO Skizze hier ergänzen 
 \end{enumerate}
 
@@ -2649,13 +2656,14 @@ Hughes / Brooks 1979
 
 \subsection{Motivation}
 \begin{align*}
--\varepsilon\cdot\Delta u+b\cdot\Delta u+c\cdot u&=f\text{ in }\Omega\\
-u&=g\text{ auf }\Gamma=\partial\Omega\\
-0<\varepsilon&<<1
+	-\varepsilon\cdot\Delta u+b\cdot\Delta u+c\cdot u&=f\text{ in }\Omega\\
+	u&=g\text{ auf }\Gamma=\partial\Omega\\
+	0<\varepsilon&<<1
 \end{align*}
+
 \textbf{1D:}
 \begin{align*}
--\varepsilon\cdot u''+u'=0\text{ auf }(0,1),\qquad u(0)=0,\qquad u(1)=1
+	-\varepsilon\cdot u''+u'=0\text{ auf }(0,1),\qquad u(0)=0,\qquad u(1)=1
 \end{align*}
 %TODO Skizze hier ergänzen (mit kleinem und großem Epsilon)
 
@@ -2664,11 +2672,11 @@ $\implies$ keine Oszillation, aber "Schmiererei" %smearing
 
 %TODO Skizze hier ergänzen 
 
-Schmiererei hauptsächlich in Seitwindrichtung %TODO fix translation 
+Schmiererei hauptsächlich in Seitenwindrichtung %TODO fix translation 
 $b$ und $b^\perp$ sind orthogonale Einheitsvektoren
 \begin{align*}
-\Delta u&=\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}
-=\frac{\partial^2 u}{\partial b^2}+\frac{\partial^2 u}{\partial (b^T)^2}\\
-\varepsilon\cdot\Delta u&\to\varepsilon\cdot\frac{\partial^2 u}{\partial(b^T)^2}+h\cdot\frac{\partial^2 u}{\partial b^2}
+	\Delta u&=\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}
+	=\frac{\partial^2 u}{\partial b^2}+\frac{\partial^2 u}{\partial (b^T)^2}\\
+	\varepsilon\cdot\Delta u&\to\varepsilon\cdot\frac{\partial^2 u}{\partial(b^T)^2}+h\cdot\frac{\partial^2 u}{\partial b^2}
 \end{align*}
 Hier nur Konvergenz erster Ordnung in $h$.

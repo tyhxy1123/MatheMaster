@@ -1,6 +1,4 @@
-\begin{figure}[H]
-	\center
-	\begin{tikzpicture}[scale=1]
+\begin{tikzpicture}[scale=1]
 	\def \xone{0};
 	\def \yone{0};
 	\def \h{3};
@@ -12,7 +10,6 @@
 	\coordinate (AB) at ($ (A) + (0.7*\h,0) $);
 	\coordinate (AC) at ($ (A) + (0.35*\h,0.35*\h) $);
 	\coordinate (BC) at ($ (A) + (1.05*\h,0.35*\h) $);
-
 
 	%draw		
 	\draw (A) -- (B) -- (C) --cycle;
@@ -48,11 +45,4 @@
 	\foreach \i in {A2,B2,C2,AB2}{
 		\filldraw (\i) circle (1.5pt);
 	}
-
-	
-	\end{tikzpicture}
-	
-	\caption{Verfeinerung: rot,grün,blau}
-	\label{refinement_types}
-	
-\end{figure}
+\end{tikzpicture}
