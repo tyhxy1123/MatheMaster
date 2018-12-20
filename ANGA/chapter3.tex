@@ -5,7 +5,7 @@ Sei $F|K$ ein Funktionenkörper.
 
 \begin{definition}
     Ein Funktionenkörper $E|L$ ist eine Erweiterung des Funktionenkörpers $F|K$, wenn $F \subseteq E$ und $K \subseteq L$.
-    Die Erweiterung $E|K$ von $F|K$ ist \textbf{algebraisch}, \textbf{separabel}, \textbf{galoisch}, oder \textbf{endlich}, falls
+    Die Erweiterung $E|K$ von $F|K$ ist \textbf{algebraisch}, \textbf{separabel}, \textbf{galoissch}, oder \textbf{endlich}, falls
     $E|F$ dies ist. Sie ist eine \textbf{Konstantenkörpererweiterung}, wenn $E = FL$, und \textbf{geometrisch}, wenn $K=L$.
 \end{definition}
 
@@ -553,4 +553,137 @@ $P \in S(F|K)$, $\O'_P$ der ganze Abschluss von $\O_P$ in $E$.
     \begin{align*}
         g_{K(T)} = 0 \implies g_F \leq g_{K(T)} = 0, P_\infty|_F \in S(F|K), \deg P_\infty|_F = 1
     \end{align*}
+\end{proof}
+
+\begin{bemerkungnr}
+    Ist $E|L$ eine endliche separable (aber eben nicht notwendigerweise geometrische) Erweiterung von $F|K$, dann erhält man 
+    mit 1.10 analog 
+    $$ 2g_E-2=\frac{[E:F]}{[L:K]}(2g_F - 2) + \deg \Diff_{E|F}. $$
+\end{bemerkungnr}
+
+\section{Galoiserweiterung}
+Sei $F|K$ Funktionenkörper, $E|L$ eine endliche Galoiserweiterung von $F|K$.
+
+Notation:
+$$ G = \Gal(E|F), P \in S(F|K), P' \in S(E|L) \text{ mit } P'|P.$$
+
+\begin{lemma}
+    Für jedes $\sigma \in G$ ist $\sigma(\O_{P'}) = \O_{P''}$ für ein $P''|P$, und $v_{P''} = v_P \circ \sigma^{-1}$.
+\end{lemma}
+\begin{proof}
+    $R:=\sigma(\O_{P'})$ ist ein Bewertungsring von $E$, $K \subseteq L \subseteq \O_{P'}$\\
+    $\implies K = \sigma(K) \subseteq \sigma(\O_{P'}) = R \stackrel{R\text{ ganzabgeschlossen}}{\implies} L \subseteq R$,\\
+    da $L|K$ ganz. $R \cap F = \sigma(\O_{P'} \cap F = \sigma(\O_{P'}\cap F) = \O_{P'} \cap F = \O_P$\\
+    Insgesamt folgt also es gibt $P'' \in S(E|L)$ mit $P''|P$ und $R=\O_{P''}$.
+
+    \begin{align*}
+        \O_{v_{P''}} & = \O_{P''} = \sigma(\O_{P'}) = \{\sigma(x) \mid x \in \O_{P'}\} = \{\sigma(x) \mid v_{P'}(x) \geq 0\}\\
+        & = \{y \mid v_{P'}(\sigma^{-1}(y)\geq 0\} = \O_{v_{P'}\circ\sigma^{-1}}
+    \end{align*}
+    und $v_{P''}, v_{P'}\circ \sigma^{-1}$ sind normiert $\implies v_{P''} = v_{P'} \circ \sigma^{-1}$.
+\end{proof}
+
+\begin{definition}
+    Wir schreiben $\sigma(P')$ für das $P''$ mit $\sigma(\O_{P'}) = \O_{P''}$.
+\end{definition}
+
+\begin{erinnerungnr}
+    Sei $M|K$ endlich. Die \textbf{$M|K$-Norm} von $x \in M$ kann beschrieben werden als
+    \begin{enumerate}[label=(\arabic*)]
+        \item $N_{M|K}(x) = \det(\mu_x)$, wobei
+        $$ \mu_x : \begin{cases}
+            M \to M\\
+            y \mapsto xy
+        \end{cases}$$
+
+        \item $N_{M|K}(x) = (-1)^{[M:K]} \cdot a_0^{[M:K(x)]}$, wobei $MinPol(x|K) = X^n + \ldots + a_0$
+        \item $N_{M|K}(x) = \left(\prod\limits_{i=1}^n \sigma_i(x)\right)^{\frac{[M:K]}{n}}$, wobei $\Hom_K(M, \overline{K}) = \{\sigma_1, \ldots, \sigma_n\}$.
+    \end{enumerate}
+\end{erinnerungnr}
+
+\begin{satz}
+    $G$ wirkt transitiv auf $\{P' \in S(E|L) \mid P' | P\}$
+\end{satz}
+\begin{proof}
+    Angenommen, es gibt $P_1|P, P_2|P$ mit $\sigma(P_1) \ne P_2~\forall \sigma\in G$.\\
+    Nach II.1.8 existiert ein $x \in E$, sodass für alle $\sigma \in G$:
+    \begin{align*}
+        v_{\sigma(P_1)}(x) = 0\\
+        v_{\sigma(P_2)}(x) > 0.
+    \end{align*}
+    \begin{alignat*}{3}
+        & \implies && a:= N_{E|F}(x) && = \prod_{\sigma \in G} \sigma(x) \in F\\
+        & && v_{P_1}(a) && = \sum_{\sigma\in G} v_{P_1}(\sigma(x)) = \sum_{\sigma\in G} v_{\sigma^{-1}(P_1}(x) = 0\\
+        & && v_{P_2}(a) && = \sum_{\sigma\in G} v_{P_2}(\sigma(x)) = \sum_{\sigma\in G} v_{\sigma^{-1}(P_2}(x) > 0
+    \end{alignat*}
+    was im Widerspruch zu $P_1|_F = P_2|_F$ steht.
+\end{proof}
+
+\begin{korollar}
+    Sind $P_1, \ldots, P_r$ alle Primstellen von $E$, die über $P$ liegen, so sind $e_P:=e_{P_i|P}, f_P:= f_{P_i|P}, d_P:=d_{P_i|P}$
+    unabhängig von $i$ und 
+    $$ r \cdot e_P \cdot f_P = [E:F].$$
+\end{korollar}
+\begin{proof}
+    5.4 + 1.7
+\end{proof}
+
+\begin{definition}
+    $Z_{P'|P} := \{\sigma \in G \mid \sigma(P') = P'\}$, heißt \textbf{Zerlegungsgruppe} von $P'|P$\\
+    $T_{P'|P} := \{\sigma \in G \mid v_{P'}(\sigma(x)-x)>0 \quad \forall x\in \O_{P'}\}$, heißt \textbf{Trägheitsgruppe} von $P'|P$\\
+    $E^{Z_{P'|P}}$ ist der \textbf{Zerlegungskörper} von $P'|P$\\
+    $E^{T_{P'|P}}$ ist der \textbf{Trägheitskörper} von $P'|P$
+\end{definition}
+
+\begin{lemma}
+    $T_{P'|P} \leq Z_{P'|P} \leq G$
+\end{lemma}
+\begin{proof}
+    \begin{itemize}
+        \item $Z_{P'|P} \leq G$: $Z_{P'|P}$ ist Stabilisator von $P'$
+        \item $T_{P'|P} \subseteq Z_{P'|P}$: $x \in \O_{P'}, \sigma \in T_{P'|P} \implies \sigma(x) \in \O_{P'}$\\
+        also $\sigma(\O_{P'}) \subseteq \O_{P'} \implies \O_{P'} \subseteq \sigma^{-1}(\O_{P'}) \subseteq \O_{P'} 
+        \implies \sigma(\O_{P'}) = \O_{P'}$
+
+        \item $T_{P'|P} \leq Z_{P'|P}$: $\sigma,\tau \in T_{P'|P}, x \in \O_{P'}$
+        $$ v_{P'}(\sigma x - x) > 0 \implies \sigma x \in \O_{P'} \implies v_{P'}(\tau \sigma x - \sigma x) > 0$$
+        Also $\sigma x - x \in m_{P'} \implies \tau\sigma x - x \in m_{P'}$.
+    \end{itemize}
+\end{proof}
+
+\begin{satz}
+    Sei $K$ vollkommen, $P'_Z := P'|_{E^{Z_{P'|P}}}, P'|_T := P'|_{E^{T_{P'|P}}}$
+    \begin{enumerate}[label=(\alph*)]
+        \item $|Z_{P'|P}| = e_{P'|P} \cdot f_{P'|P}, e_{P'_Z|P} = f_{P'_Z|P} = 1$ und $P'$ ist die einziger
+        Primstelle von $E$, die über $P'_Z$ liegt.
+
+        \item $|T_{P'|P}| = e_{P'|P}, T_{P'|P} \ideal Z_{P'|P}, e_{P'_T|P'_Z} = 1$,
+        $$ f_{P'_T|P'_Z}=f_{P'|P} = (Z_{P'|P} : T_{P'|P}), e_{P'|P'_T}=e_{P'|P}.$$
+
+        \item Die Erweiterung $E_{P'}| F_P$ ist galoissch. Für $\sigma \in Z_{P'|P}$ wird durch
+        $$ \overline{\sigma}(x(P')) = (\sigma x)(P')$$
+        ein $\overline{\sigma} \in \Gal(E_{P'}|F_P)$ definiert, und
+        $$ \begin{cases}
+            Z_{P'|P} \to \Gal(E_{P'}|F_P)\\
+            \sigma \mapsto \overline{\sigma}
+        \end{cases}$$
+        ist ein Epimorphismus mit Kern $T_{P'|P}$.
+    \end{enumerate}
+
+    Veranschaulichung:
+    $$\begin{tikzcd}
+        1 \dar[dash]& E\dar[dash] & P'\dar[dash]{e=e_{P'|P}, f=1}\\
+        T_{P'|P} \dar[dash]& E^{T_{P'|P}}\dar[dash] & P'_T\dar[dash]{e=1, f=f_{P'|P}}\\
+        Z_{P'|P} \dar[dash]& E^{Z_{P'|P}}\dar[dash] & P'_Z\dar[dash]{e=f=1}\\
+        G & F & P
+    \end{tikzcd}$$
+\end{satz}
+\begin{proof}
+    (a) Schreibe $G = \bigcup\limits_{i=1}^r \sigma_i Z_{P'|P} \implies \sigma_1(P'),\ldots,\sigma_r(P')$ sind alle Fortsetzungen
+    von $P$ auf $E$ (5.4)
+    $$ r \cdot e_P \cdot f_P \stackeq{5.5} [E:F] = |G| = r \cdot |Z_{P'|P}| \implies |Z_{P'|P}| = e_P \cdot f_P$$
+    Aus $Z_{P'|P'_Z} = Z_{P'|P}$ folgt dann $e_{P'|P} \cdot f_{P'|P} = |Z_{P'|P}| = |Z_{P'|P'_Z}| = e_{P'|P'_Z} \cdot f_{P'|P'_Z}$
+    $ \implies e_{P'|P} = e_{P'|P'_Z}, f_{P'|P} = f_{P'|P'_Z}$\\
+    Mit $e_{P'|P} = e_{P'|P'_Z} \cdot e_{P'_Z|P}$ und $f_{P'|P} = f_{P'|P'_Z}\cdot f_{P'_Z|P}$ folgt $e_{P'_Z|P} = 1, f_{P'_Z|P} = 1$.
+    $$ r' \cdot e_{P'|P'_Z}\cdot f_{P'|P'_Z} = [E:E^{Z_{P'|P}}] = |Z_{P'|P}| = e_{P'|P'_Z} \cdot f_{P'|P'_Z} \implies r' = 1. $$
 \end{proof}
