@@ -3468,19 +3468,19 @@ T_n^\ast=\frac{1}{\sqrt{n}}\cdot\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{0\leq 
 U_n^\ast&:=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{1\leq k\leq n-1}\frac{|C_k|}{\sqrt{k\cdot(n-k)}}
 \end{align*}
 
-\begin{theorem}[Csörgö und Horváth]\label{theoremCH} %noNumber
-Seien
-\begin{align*}
-A_n&:=\sqrt{2\cdot\log\big(\log(n)\big)}\\
-D_n&:=2\cdot\log\big(\log(n)\big)+\frac{1}{2}\cdot\log\Big(\log\big(\log(n)\big)\Big)-\frac{1}{2}\cdot\log(\pi)\qquad\forall n\geq n_0
-\end{align*}
-Dann gilt unter $H_0$:
-\begin{align}\label{eqTheoremCsorgoHorvath}\tag{1}
-\limn\P\Big(A_n\cdot U_n^\ast-D_n\leq t\Big)=\exp\big(-2\cdot\exp(-t)\big)=:G(t)
-\qquad\forall t\in\R
-\end{align}
-$G$ ist die sogenannte \textbf{Gumbel-Verteilung}.
-\end{theorem}
+\begin{thm}[Csörgö und Horváth]\label{theoremCH} %noNumber
+	Seien
+	\begin{align*}
+		A_n&:=\sqrt{2\cdot\log\big(\log(n)\big)}\\
+		D_n&:=2\cdot\log\big(\log(n)\big)+\frac{1}{2}\cdot\log\Big(\log\big(\log(n)\big)\Big)-\frac{1}{2}\cdot\log(\pi)\qquad\forall n\geq n_0
+	\end{align*}
+	Dann gilt unter $H_0$:
+	\begin{align}\label{eqTheoremCsorgoHorvath}\tag{1}
+		\limn\P\Big(A_n\cdot U_n^\ast-D_n\leq t\Big)=\exp\big(-2\cdot\exp(-t)\big)=:G(t)
+		\qquad\forall t\in\R
+	\end{align}
+	$G$ ist die sogenannte \textbf{Gumbel-Verteilung}.
+\end{thm}
 
 Damit Konstruktion eines asymptotischen Niveau-$\alpha$-Tests für $H_0$ wie folgt möglich: Sei
 \begin{align*}
@@ -3500,7 +3500,202 @@ ein asymptotischer Niveau-$\alpha$-Test, d.h.
 \end{align}
 \textbf{Problem:} Die Konvergenz in \eqref{eqTheoremCsorgoHorvath} bzw. in \eqref{eqUnderTheoremCsorgoHarcath} ist sehr sehr sehr laaaaaangsaaaam. %genauso stand das an der Tafel
 %Ferger: "[...] Grottenschlecht."
-Andererseits führen die Gewichte in $\big(k\cdot(n-k)\big)^{-\frac{1}{2}}$ in $U_n^\ast$ zu einer verbesserten Sensitivitä des \textbf{$U_n^\ast$-Test} unter der Alternativen, \underline{insbesondere}, falls $\tau_n$ nahe bei $1$ bzw. oder $n-1$ (am Rand) liegt.
+Andererseits führen die Gewichte in $\big(k\cdot(n-k)\big)^{-\frac{1}{2}}$ in $U_n^\ast$ zu einer verbesserten Sensitivität des \textbf{$U_n^\ast$-Test} unter der Alternativen, \underline{insbesondere}, falls $\tau_n$ nahe bei $1$ bzw. oder $n-1$ (am Rand) liegt.\nl
+\textbf{Idee:} Weiterhin gewichten, aber durch die \ul{zufällige} Größe $\sqrt{\hat{k}_n\cdot(n-\hat{k}_n)}$ wobei 
+\begin{align*}
+	\hat{k}_n&:=\min\left\lbrace 1\leq k\leq n:\big|C_k\big|=\max\limits_{1\leq j\leq n-1}\big|C_j\big|\right\rbrace\\
+	C_j&:=\sum\limits_{i=1}^j \big(X_i-\overline{X}_n\big)
+\end{align*}
+d.h. $\hat{k}_n$ ist die kleinste Maximalstelle von $|C_k|,k\in\lbrace1,\ldots,n-1\rbrace$. Erhalte:
+\begin{align*}
+	R_n=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\frac{\max\limits_{1\leq k\leq n-1}\left|\sum\limits_{i=1}^k\big)(X_i-\overline{X}_n\big)\right|}{\sqrt{\hat{k}_n\cdot(n-\hat{k}_n)}}
+\end{align*}
 
+\begin{thm}[Dietmar Ferger, 2018]\label{theoremFerger2018} %nonumber
+	Sei $(X_i)_{i\in\N}$ eine Folge von i.i.d. Zufallsvariablen mit positiver endlicher Varianz. Dann gilt:
+	\begin{align}\label{eqTheoremFerger2018}\tag{3}
+		R_n&\stackrel{\L}{\longrightarrow} R
+		\qquad\text{wobei}\qquad
+		R=\frac{M}{\sqrt{T\cdot(1-T)}}\mit\\
+		M&:=\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|\nonumber,\qquad
+		T:=\arg\max\limits_{0<t<1}\big|B_0(t)\big|,\qquad
+		B_0=\text{ Brownsche Brücke}\nonumber
+	\end{align}
+\end{thm}
 
+In diesem Theorem \ref{theoremFerger2018} wird die Verteilungsfunktion $H$ von $R$ explizit bestimmt ($H$ hat Reihendarstellung).
+%Ferger: "Sie müssen immer eine Anwendung haben. Am besten Sie retten die Welt."
+Falls $r_\alpha:=H^{-1}(1-\alpha)$, so liefert \eqref{eqTheoremFerger2018} für den Test
+\begin{align*}
+	H_0\text{ verwerfen}:\Longleftrightarrow R_n>r_\alpha
+\end{align*}
+dass gilt:
+\begin{align*}
+	\limn\P_{H_0}\big(R_n>r_\alpha\big)=\alpha
+\end{align*}
 
+\begin{bemerkung}
+	\eqref{eqTheoremFerger2018} gilt für $X_{1,n},\ldots,X_{n,n}$ i.i.d. $\forall n\in\N$.\\
+	In Simulationsstudien zeigt der $R_n$-Test eine deutlich bessere Güte als der $U_n^\ast$-Test von Csörgö und Horvath.\\
+	Falls bekannt ist, dass $\nu>\mu$, so betrachte
+	\begin{align*}
+		R_n^+&:=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\frac{\max\limits_{1\leq k\leq n-1}\sum\limits_{i=1}^k\big(X_i-\overline{X}_n\big)}{\sqrt{\hat{k}_n^+\cdot\big(n-\hat{k}_n^+\big)}}\\
+		\hat{k}_n^+&:=\min\left\lbrace 1\leq k\leq n-1:C_k=\max\limits_{1\leq j\leq n-1}C_j\right\rbrace
+	\end{align*}
+\end{bemerkung}
+
+Es gilt:
+\begin{align*}
+	R_n^+\stackrel{\L}{\longrightarrow} R^+=\frac{M^+}{\sqrt{T^+\cdot(1-T^+)}},\qquad
+	M^+=\sup\limits B_0(t),\qquad
+	T^*=\arg\max\limits B_0(t)\\
+	H^+(x):=\P\big(R^+\leq x\big)=2\cdot\Phi(x)-\sqrt{\frac{2}{\pi}}\cdot x\cdot\exp\left(-\frac{1}{2}\cdot x^2\right)-1\qquad x\geq0~(=0, x<0)
+\end{align*}
+Hierbei ist $\Phi$ die Verteilungsfunktion der Standardnormalverteilung. Ferner gilt:\\
+Die Zufallsgrößen $R^+$ und $T^+$ sind stochastisch unabhängig!
+\begin{align*}
+	\hat{\tau}_n-\tau_n\stackrel{\L}{\longrightarrow}V=\\
+	\hat{\tau}_n:=\arg\max\limits_{1\leq k\leq n-1}\left|\sum\limits_{i=1}^k\big(X_i-\overline{X_n}\big)\right|
+\end{align*}
+
+\subsection{Verteilungskonvergenz in \texorpdfstring{$C(\R)$}{C(R)}}
+Häufig hat man mit stochastischen Prozessen zu tun, deren Pfade in
+\begin{align*}
+	C(\R):=\Big\lbrace f:\R\to\R:f\text{ stetig}\Big\rbrace
+\end{align*}
+liegen (siehe Beispiel Median ganz am Anfang). Die bisherige Theorie für $C(I)$, $I$\\ \underline{kompaktes} Intervall deckt das nicht an. Wir versehen $C(\R)$ mit der Metrik
+\begin{align*}
+	d(f,g)&:=\sum\limits_{j\geq 1} 2^{-j}\cdot\frac{d_j(f,g)}{1+d_j(f,g)} &\forall f,g\in C(\R)\\
+	d_j(f,g)&:=\sup\limits_{-j\leq t\leq j}\Big|f(t)-g(t)\Big| &\forall f,g\in C(\R)
+\end{align*}
+Es zeigt sich, das $\big(C(\R),d\big)$ ein vollständiger separabler metrischer Raum ist. Ferner gilt:
+\begin{align*}
+	d(f_n,f)\stackrel{n\to\infty}{\longrightarrow}0
+	\Longleftrightarrow \forall j\in\N: d_j(f_n,f)\stackrel{n\to\infty}{\longrightarrow}0
+	\Longleftrightarrow\text{ glm. Konvergenz auf Kompakta}
+\end{align*}
+Seien $\pi_t:C(\R)\to R$ und $\pi_T:C(\R)\to\R^{|T|}$ die Projektionsabbildungen, d.h. z.B.
+\begin{align*}
+	\pi_T(f)=\big(f(t)\big)_{t\in T}=\Big(f(t_1),\ldots,f(t_k)\Big)\qquad
+	T=\lbrace t_1,\ldots, t_k\rbrace
+\end{align*}
+
+\begin{theorem}\label{theorem7.20}
+	\begin{align*}
+		\B_d\big(C(\R)\big)&=\sigma\Big(\pi_t:t\in\R\Big)=\sigma\Big(\pi_T:T\subseteq\R\text{ endlich}\Big)
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	Die Argumente im Beweis von Satz \ref{satz7.2} lassen sich problemlos übertragen.
+\end{proof}
+
+Ebenfalls analog beweist man:
+
+\begin{satz}\label{satz7.21}
+	 Sei $(\Omega,\A)$ messbarer Raum und $C:=C(\R)$ versehen mit $\B_d(D)$.\\
+	 Dann gilt für eine Abbildung $X:\Omega\to C(\R):$
+	 \begin{align*}
+	 	X~\A\text{-}\B_d(C)\text{-messbar}
+	 	\Longleftrightarrow\forall t\in\R:
+	 	\pi_t\circ X~\A\text{-}\B(\R)\text{-messbar }
+	 \end{align*}
+\end{satz}
+
+Konsequenz aus Satz \ref{satz7.21}: Jeder stetige stochastische Prozess indiziert nach $\R$ kann aufgefasst werden als Zufallsvariable in $(C,d)$.
+
+\begin{satz}\label{satz7.22}
+	Seien $X,Y$ Zufallsvariablen in $\big(C(\R),d\big)$. Dann gilt:
+	\begin{align*}
+		X\stackeq{\L}Y\Longleftrightarrow
+		\Big(X(t_1),\ldots,X(t_k)\Big)\stackeq{\L}\Big(Y(t_1),\ldots,Y(t_k)\Big)
+	\end{align*}
+	für jede Wahl von Punkten $t_1<\ldots<t_k$ aus $\R$.
+\end{satz}
+
+\begin{proof}
+	Siehe Theorem \ref{theorem7.20} + Maßeindeutigkeitssatz.
+\end{proof}
+
+Für $f\in C(\R)$ sei
+\begin{align*}
+	f^{(j)}:=f|_{[-j,j]},\qquad I_j:=[-j,j]\text{ d.h.}\\
+	f^{(j)}:I_j\to\R,\qquad f^{(j)}(t):=f(t)\qquad\forall t\in I_j
+\end{align*}
+
+\begin{satz}\label{satz7.23}
+	Seien $X,X_n,n\in\N$ Zufallsvariablen in $\big(C(\R),d\big)$. Dann gilt:
+	\begin{align*}
+		X_n\stackrel{\L}{\longrightarrow}X\text{ in }\big(C(\R),d\big)
+		\Longleftrightarrow\forall j\in\N:
+		X_n^{(j)}\stackrel{\L}{\longrightarrow} X^{(j)}\text{ in }\big(C(I_j),d_j\big)
+	\end{align*}
+\end{satz}
+
+Satz \ref{satz7.23} geht auf Whitt (1970) zurück. Ein (relativ) einfacher Beweis findet sich in Kallenberg (1997), \textit{Foundations of modern probability}, Seite 260.
+
+\begin{bemerkungnr}\label{bemerkung7.24}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Die Resultate in \ref{theorem7.20},\ref{satz7.21},\ref{satz7.22} und \ref{satz7.23} gelten analog für $C\big([0,\infty)\big)$ mit $I_j$ ersetzt durch $[0,j]$.
+		\item Satz \ref{satz7.23} ermöglicht es insbesondere, auf die Konvergenz-Kriterien in \ref{satz7.9} und \ref{satz7.11MomentenkriteriumVonKolmogoroff} zurückzugreifen.
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{beispiel}\label{beispiel7.25}
+	 Seien $(\xi_i)_{i\in\N}$ i.i.d. mit $\E[\xi_1]=0$, $\Var(\xi_1)=1$ und 
+	 \begin{align*}
+	 	S_k&:=\sum\limits_{j=1}^k\xi_j\qquad\forall k\in\N_0\\
+	 	X_n(t)&:=\frac{1}{\sqrt{n}}\cdot S_{\lceil n\cdot t\rceil}+\frac{1}{\sqrt{n}}\cdot\big(n\cdot t-\lceil n\cdot t\rceil\big)\cdot\xi_{\lceil n\cdot t\rceil+1}\qquad\forall t\in[0,\infty)
+	 \end{align*}
+	 D.h. $X_n$ ist Polygonzug durch $\left(\frac{k}{n},\frac{1}{\sqrt{n}\cdot S_n}\right),k\in\N_0$.
+	 %TODO Hier Skizze einfügen
+	 Aus Satz \ref{satz7.16Donsker} folgt:
+	 \begin{align*}
+	 	&X_n^{(j)}\stackrel{\L}{\longrightarrow}B^{(j)}\qquad\forall j\in\N\\
+	 	&\overset{\ref{bemerkung7.24}(1)+\ref{satz7.23}}&\Longleftrightarrow
+	 	X_n\stackrel{\L}{\longleftarrow} B\text{ in }\Big(C\big([0,\infty)\big),d\Big)
+	 \end{align*}
+\end{beispiel}
+
+\section{Argmin-Theoreme in \texorpdfstring{$C(\R)$}{C(R)}}
+Erinnere an folgende Probleme, vergleiche  1.2 und 1.5 (Median)\\ %TODO
+Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stochastischen Prozessen auf deren Minimalstellen?
+
+\begin{definition}\label{definition8.1}
+	Sei $f\in C(\R)$.
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			A(f)=\arg\min(f):=\left\lbrace t\in\R:f(t)=\inf\limits_{s\in\R} f(s)\right\rbrace
+		\end{aligned}$ = Menge aller Minimalstellen von $f$
+		\item $\tau\in A(f)$ heißt \textbf{wohl-separiert} 
+		\begin{align*}
+			:\Longleftrightarrow\int\Big\lbrace f(t):|t-\tau|\geq\varepsilon\Big\rbrace>f(\tau)\qquad\forall 0<\varepsilon\in\Q
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkungnr}\label{bemerkung8.2}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $A(f)\neq\emptyset$ ist natürlich nicht ausgeschlossen, aber in jedem Fall ist $A(f)$\\ \underline{abgeschlossen} in $\R$, denn:\\
+		Sei $(t_n)_{n\in\N}\subseteq A(f)$ mit $t_n\stackrel{n\to\infty}{\longrightarrow}t.$ Dann gilt:
+		\begin{align*}
+			f(t)&=\limn\underbrace{f(t_n)}_{=\inf\limits_{s\in\R}f(s)}=\inf\limits_{s\in\R}f(s)
+			\implies t\in A(f)
+		\end{align*}
+		\item $\tau$ wohl-separariert $\implies\tau$ eindeutig, denn:\\
+		Sei $\tilde{\tau}\in A(f)$ und $\tilde{\tau}\neq\tau$. Also:
+		\begin{align}\label{eqBemerkung8.2Stern}\tag{$\ast$}
+			\exists 0&<\varepsilon\in\Q:\big|\tau-\tau|>\varepsilon\\\nonumber
+			\inf\limits_{s\in\R}f(s)
+			\overset{\tilde{\tau}\in A(f)}&=
+			f(\tau)
+			\overset{\eqref{eqBemerkung8.2Stern}}{\geq}
+			\inf\Big\lbrace f(t):|t-\tau|\geq\varepsilon\Big\rbrace
+			\overset{\tau\text{ wohl-sep}}{\geq}
+			f(\tau)
+			\overset{\tau\in A(f)}{=}
+			\inf\limits_{s\in\R} f(s)
+		\end{align}
+		Dies ist ein Widerspruch!
+	\end{enumerate}
+\end{bemerkungnr}
