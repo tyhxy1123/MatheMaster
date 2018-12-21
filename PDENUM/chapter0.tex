@@ -59,8 +59,8 @@ Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man a
 \end{align*}
 Somit folgt:
 \begin{align*}
--\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\laplace u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
-\Longrightarrow-\laplace u\equiv f\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
+-\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\Delta u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
+\Longrightarrow-\Delta u\equiv f\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
 \end{align*}
 
 \section{Sobolev-Räume}
@@ -440,7 +440,7 @@ Die \textbf{Poissongleichung} ist
 \begin{align}
 	\left\{
 	\begin{array}{r l l}\label{PoissonEquation}\tag{Poi}
-		-\laplace u &\equiv f &\text{ auf }\Omega \\
+		-\Delta u &\equiv f &\text{ auf }\Omega \\
 		u &\equiv 0 &\text{ auf }\partial\Omega=:\Gamma.
 	\end{array}\right.
 \end{align}
@@ -448,7 +448,7 @@ Durch Multiplikation mit $v$ und Integration erhalten wir
 \begin{align*}
 &\stackrel{ v|_{\partial\Omega}\equiv0}{\implies}
 \int\limits_\Omega f\cdot v\d x
-=\int\limits_\Omega-\laplace u\cdot v\d x
+=\int\limits_\Omega-\Delta u\cdot v\d x
 =\int\limits_\Omega\nabla u\cdot\nabla v\d x-\underbrace{\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x}_{=0}
 \end{align*}
 Definiere:
@@ -2450,9 +2450,293 @@ c_{10}\cdot\sum\limits_{z\in\mathcal{N}(E)}\Big(h_T^{-\frac{1}{2}}\cdot\underbra
 &\leq
 c\cdot h_E^{\frac{1}{2}}\cdot|v|_{1,2,\tilde{\omega}_E}
 \end{align*}
-\item $E$ hat Knotenbeschränkung %TODO bitte Übersetzung fixen || Ich weiß nicht was im Original an der Tafel stand. Schreibt er nächstes mal bestimmt eh nochmal an
+\item $E$ hat Knotenbeschränkung
+\begin{align*}
+R(v)&=l(v)-a(u_h,v)=l(v-v_h)-a(u_h,v-v_h)\qquad\forall v_h\in X_h\\
+&\leq\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v-v_h\Vert_{0,2,T}\\
+&{}\quad+\sum\limits_{E\in\Sigma_h}\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E}\cdot\Vert v-v_h\Vert_{0,2,E}
+\end{align*}
+Idee: Nutze $v_h=R_h(v)$.
+\begin{align*}
+R(v)&\leq
+c\cdot\sum\limits_{T\in\T_h}\Big(\left\Vert f+ \Delta u_h\big\Vert_{0,2,T}\cdot h_T\right)\cdot |v|_{1,2,\tilde{\omega}_T}\\
+&\quad+c\cdot\sum\limits_{E\in\Sigma_h}\left(\Big\Vert[\nabla u_h\cdot n_E]_E\Big\Vert_{0,2,E}\cdot h_E^{\frac{1}{2}}\right)\cdot|v|_{1,2,\tilde{\omega}_E}\\
+&\leq
+c\cdot\left(\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\cdot h_T^2\right)^{\frac{1}{2}}\cdot\left(\sum\limits_{T\in\T_h}|v|^2_{1,2,\tilde{\omega}_T}\right)^{\frac{1}{2}}\\
+&\quad+c\cdot\left(\sum\limits_{E\in\Sigma_h}\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\cdot h_E\right)\cdot\underbrace{\left(\sum\limits_{E\in\Sigma_h}|v|^2_{1,2,\tilde{\omega}_E}\right)^{\frac{1}{2}}}_{\leq c\cdot |v|_{1,2,\Omega}\text{, $c$ aus Formregulärität}}\\
+&\leq
+c\cdot\underbrace{\left(\sum\limits_{T\in\T_h} h^2_T\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}
++\sum\limits_{E\in\Sigma_h}h_E\cdot\big\Vert[\nabla u_h\cdot v_E]_E\big\Vert^2_{0,2,E}\right)^{\frac{1}{2}}}_{:=\eta}\cdot\Vert v\Vert_{1,2,\Omega}\nl
+&\implies
+\Vert u-u_h\Vert_{1,2,\Omega}
+\leq
+c\cdot\sup\limits_{\begin{subarray}{c}v\in H_0^1(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}R(v) \leq c \cdot \eta
+\end{align*}
+Setze
+\begin{align*}
+\eta_T^2&:=h_T^2\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}+\frac{1}{2}\cdot\sum\limits_{E\in\Sigma_k\cap\partial T}h_E\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\\
+\eta:&=\left(\sum\limits_{T\in\T_h}\eta^2_T\right)^{\frac{1}{	2}}
+\end{align*}
+$\eta$ ist eine zuverlässige a posteriori Fehler-Abschätzung.
 \end{enumerate}
 \end{proof}
 
+\begin{definition}[Bubble-Funktion]\enter %no number, but i will give some
+Sei $T\in\T_h$ und $E\in\Sigma_h$. Wir setzen
+\begin{align*}
+\psi_T:=27\cdot\varphi_{z_1}\cdot\varphi_{z_2}\cdot\varphi_{z_3}
+\end{align*}
+wobei $z_1,z_2,z_3$ die Ecken von $T$ sind. Definiere weiterhin
+\begin{align*}
+\psi_E:=4\cdot\varphi_{z_1}\cdot\varphi_{z_2}
+\end{align*}
+wobei $z_1,z_2$ die Enden der Kante $E$ sind.
+\end{definition}
 
+\begin{lemma}[Eigenschaften]\ %no lemma in lecture
+\begin{enumerate}[label=\roman*)]
+\item $\begin{aligned}
+\psi_T\in P_3(T)
+\end{aligned}
+\hspace{64pt}
+\psi_E\big|_T\in P_2(T)\qquad\forall T\in\omega_E$
+\item $\begin{aligned}
+\psi_T\geq0\text{ in }\overline{T}
+\hspace{61pt}
+\psi_E\geq 0\text{ in }\overline{\omega}_E
+\end{aligned}$
+\item $\begin{aligned}
+\psi_T\equiv0\text{ auf }\partial T
+\hspace{50pt}
+\psi_E\equiv 0\text{ auf }\partial\omega_E
+\end{aligned}$
+\item $\begin{aligned}
+\max\limits_{x\in\overline{T}}\psi_T(x)=1
+\hspace{48pt}
+\max\limits_{x\in\overline{\omega}_E}\psi_E(x)=1
+\end{aligned}$
+\item $\begin{aligned}
+\hspace{120pt}
+\psi_E\in C(\omega_E)
+\end{aligned}$
+\end{enumerate}
+\end{lemma}
 
+\begin{theorem}
+Sei $T\in\T_h,E\in\Sigma_H, v\in P_k(T), \sigma\in P_k(E)$. Dann gilt:
+\begin{enumerate}[label=(\arabic*)]
+	\item \begin{align*}
+c_1\cdot\Vert v\Vert_{0,2,T}
+\leq\left(\int\limits_T\psi_T\cdot v^2(x)\d x\right)^{\frac{1}{2}} \leq\Vert v\Vert_{0,2,T}
+		\end{align*}
+	\item \begin{align*}
+c_2\cdot h_T^{-1}\cdot\big\Vert\psi_T v\big\Vert_{0,2,T}\leq\big|\psi_T v\big|_{1,2,T}\leq c_3\cdot h_T^{-1}\cdot\big\Vert\psi_T v\big\Vert_{0,2,T}
+		\end{align*}
+	\item \begin{align*}
+c_4\cdot\Vert\sigma\Vert_{0,2,E} \leq\left(\int\limits_E\psi_E\cdot\sigma^2\d s\right)^{\frac{1}{2}}\leq \Vert\sigma\Vert_{0,2,E}
+		\end{align*}
+	\item \begin{align*}
+c_5\cdot h_E^{-1}\cdot\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
+\leq\big|\psi_E\sigma\big|_{1,2,\omega_E}
+\leq c_6\cdot h_E^{-1}\cdot\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
+		\end{align*}
+	\item \begin{align*}
+\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
+\leq c_7\cdot h_E^{\frac{1}{2}}\cdot\Vert\sigma\Vert_{0,2,E}
+		\end{align*}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Beweisskizze: Es sollte sich alles durch Transformation zum Referenzelement ergeben. Dann Normäquivalenz auf dem endlich dimensionalem Raum.
+\end{proof}
+
+$f_h$ ist eine stückweise  polynomielle Approximation von $f$, z.B.
+\begin{align*}
+f_h\big|_T:=L^2\text{-Projektion von $f$ auf }P_h(T)
+\end{align*}
+
+\begin{align*}
+%Undo Henriks changes because of overfull box
+c^2_1\cdot\big\Vert f_h+\Delta u_h\big\Vert^2_{0,2,T}
+&\leq\int\limits_T\big(f_h+\Delta u_h\big)\cdot\underbrace{\big(f_h+\Delta u_h\big)\cdot\psi_T}_{=:v_T\in H^1_0(\Omega)\mit v_T|_{\partial T}=0}\d x\\
+&=\int\limits_T\big(f+\Delta u_h\big)\cdot v_T\d x+\int\limits_T\big(f_h-f\big)\cdot v_T\d x\\
+&\quad+\int\limits_{\partial T}\nabla u_h\cdot n_T\cdot\underbrace{v_T}_{=0}\d\gamma\\
+\overset{\text{part Int}}&=
+\int\limits_T\big(\nabla u-\nabla u_h\big)\cdot\nabla v_T\d x+\int\limits_T\big(f_h-f\big)\cdot v_T\d x\\
+\overset{\text{CS}}&\leq
+\big\Vert u-u_h\big\Vert_{1,2,T}\cdot\big\Vert v_T\big\Vert_{1,2,T}+\big\Vert f-f_h\big\Vert_{0,2,T}\cdot\big\Vert v_T\big\Vert_{0,2,T}\\
+&\leq
+c\cdot h_T^{-1}\cdot\big\Vert u-u_h\big\Vert_{1,2,T}\cdot\big\Vert\overbrace{v_T}^{\mathclap{=\psi_T\big(f_h+\Delta u_h\big)}}\big\Vert_{0,2,T}\\
+&\quad+\big\Vert f-f_h\big\Vert_{0,2,T}\cdot\big\Vert v_T\big\Vert_{0,2,T}\\
+&\leq
+c\cdot h^{-1}_T\cdot\big\Vert u-u_h\big\Vert_{1,2,T}\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}\\
+&\quad+\big\Vert f-f_h\big\Vert_{0,2,T}\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}
+\end{align*}
+Hierbei wird auch benutzt:
+\begin{align*}
+\int\limits_T f\cdot v_T\d x=\int\limits_\Omega f\cdot v_T\d x=\int\limits_\Omega \nabla u\cdot\nabla v_T\d x=\int\limits_T\nabla u\cdot\nabla v_T\d x
+\end{align*}
+Multiplikation mit $\frac{h_T}{\Vert f_h+\Delta u_h\Vert_{0,2,T}}$ liefert:
+\begin{align*}
+c_1^2\cdot h^T\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}
+&\leq c\cdot\big\Vert u-u_h\big\Vert_{1,2,T}+h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,T}\\
+\end{align*}
+Und so erhalten wir:
+\begin{align*}
+h_T\cdot\big\Vert f+\Delta u_h\big\Vert_{0,2,T}
+&\leq h_T\cdot\big\Vert f_h+\Delta u_h\big\Vert_{0,2,T}+h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,T}\\
+&\leq c\cdot\big\Vert u-u_h\big\Vert_{1,2,T}+c\cdot h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,T}
+\end{align*}
+\begin{align*}
+c_4^2\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}
+&=\int\limits_E\big[\nabla u_h\cdot n_E\big]_E\cdot\underbrace{\big[\nabla u_h\cdot n_E\big]_E\cdot\psi_E}_{=:v_E\in H^1_0(\omega_E)\subseteq H_0^1(\Omega)}\\
+&=\int\limits_E\big[\nabla u_h\cdot n_E\big]_E\cdot v_E\d\gamma+\int\limits_{\omega_E}\big(f+\Delta u_h\big)\cdot v_E\d x\\
+&\quad-\int\limits_{\omega_E}\big(f+\Delta u_h\big)\cdot v_E\d x\\
+\overset{\text{part Int + schwache Form.}}&=
+a\big(u-u_h,v_E\big)-\sum\limits_{T\in\omega_E}\int\limits_T\big(f+\Delta u_h\big)\cdot v_E\d x\\
+&\leq
+\big\Vert u-u_h\big\Vert_{1,2,\omega_E}\cdot\big|v_E\big|_{1,2,\omega_E}\\
+&\quad+\left(\sum\limits_{T\in\omega_E}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\right)^{\frac{1}{2}}\cdot\big\Vert v_E\big\Vert_{0,2,\omega_E}\\
+&\leq
+\big\Vert u-u_h\big\Vert_{1,2,\omega_E}\cdot c_6\cdot c_7\cdot h_E^{-\frac{1}{2}}\cdot\big\Vert[\nabla u_h\cdot n_E]\big\Vert_{0,2,E}\\
+&\quad + c_7\cdot h_E^{\frac{1}{2}}\cdot\left(\sum\limits_{T\in\omega_E}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\right)^{\frac{1}{2}}\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E}
+\end{align*}
+\begin{align*}
+	\implies &h_E^{\frac{1}{2}}\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E} \\
+	\leq &c_8\cdot\Bigg(\big\Vert u-u_h\big\Vert_{1,2,\omega_E}+\bigg(\underbrace{\sum\limits_{T\in\omega_E} h^2_T\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}}_{\leq c\cdot\Vert u-u_h\Vert_{1,2,\omega_E}+h_E\cdot\Vert f-f_h\Vert_{0,2,\omega_E}}\bigg)^{\frac{1}{2}}\Bigg)
+\end{align*}
+Also
+\begin{align*}
+\eta_T&\leq c\cdot\big\Vert u-u_h\big\Vert_{1,2,\omega_T}+c\cdot h_T\cdot\big\Vert f-f_h\big\Vert_{0,2,\omega_T}\\
+&\implies\eta_T\text{ ist effizient}
+\end{align*}
+
+\subsection{Algorithmus (adaptive Gitterverfeinerung)}
+\texttt{
+\begin{enumerate}[start=0]
+	\item Wähle eine Start-Triangulierung $\mathcal{T}_0$, Setze $l:=0$
+	\item Löse das diskrete Problem auf $\mathcal{T}_l$
+	\item Berechne $\eta_T$, $T\in\T_l$
+	\begin{align*}
+		\eta_l:=\max\limits_{T\in\T_l}\eta_T,\qquad\eta:=\left(\sum\limits_{T\in\mathcal{T}_l}\eta_T^2\right)^{\frac{1}{2}}
+	\end{align*}
+	\item Falls $\eta_l\leq\varepsilon$ STOP
+	\item Verfeinere alle Zellen $T$ mit $\eta_T\geq\gamma \cdot \eta_l$\\
+	Verfeinere andere Dreiecke um die Regularität des Gitters\\ sicherzustellen
+	\begin{align*}
+		l:=l+1,\qquad\texttt{GOTO }1
+	\end{align*}
+\end{enumerate}}
+Die Wahl von $\gamma\in[0,1]$:\\
+$\gamma$ klein $\rightsquigarrow$ Verfeinerung von vielen Dreiecken\\
+$\gamma$ groß $\rightsquigarrow$ Verfeinerung von wenigen Dreiecken
+
+\subsection{Verfeinerungs-Pattern von Dreiecken} %noNumber
+Wenn wir bei hängenden Knoten die benachbarten Dreiecke nach dem normalen Schema verfeineren stoßen wir auf ungewollte Probleme. Zwangsweise wird dadurch das komplette Gebiet verfeinert.
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=\textwidth]{pics/Sketch10.png}
+		\caption{Unnötig starke Verfeinerung um hängenden Knoten zu beheben}
+		\label{AbbVerfeinerung}
+	\end{center}
+\end{figure}
+
+Deshalb führen wir folgende Typen von Verfeinerungen ein:
+\begin{itemize}
+	\item \color{red}rote Verfeinerung\color{black}: normale Verfeinerung: Unterteile ein Dreick in 4 Teildreicke
+	\item \color{green}grüne Verfeinerung\color{black}: verbinde den Mittelpunkt der \ul{längsten} Kante mit der entgegengesetzten Ecke
+	\item \color{blue}blaue Verfeinerung\color{black}: Verbinde den Mittelpunkt der \underline{längsten} Kante mit der entgegengesetzten Ecke und mit einem Mittelpunkt einer anderen Kante
+\end{itemize}
+
+\begin{figure}[H]
+	\center
+	\input{tikz/refinement_types}
+	\caption{Verfeinerung: rot,grün,blau}
+	\label{AbbRefinement_types}
+\end{figure}	
+	
+\textbf{Schritt 4:}
+\begin{enumerate}[label=\alph*)]
+	\item $\eta_T\geq\gamma\cdot\eta_l\implies\text{ rote Verfeinerung}$
+	\item drei hängende Knoten $\implies$ rote Verfeinerung
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{pics/Sketch11.png}
+		\caption{Fall b}
+		\label{AbbVerfeinerungB}
+	\end{center}
+\end{figure}
+	\item zwei hängende Knoten, beide \underline{nicht} auf der längsten Kante $\implies$ rote Verfeinerung
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{pics/Sketch12.png}
+		\caption{Fall c}
+		\label{AbbVerfeinerungC}
+	\end{center}
+\end{figure}
+	\item zwei hängende Knoten, eine auf der längsten Kante $\implies$ blaue Verfeinerung
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{pics/Sketch13.png}
+		\caption{Fall d}
+		\label{AbbVerfeinerungD}
+	\end{center}
+\end{figure}
+	\item ein hängender Knoten, \underline{nicht} auf der längsten Kante $\implies$ blaue Verfeinerung
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{pics/Sketch14.png}
+		\caption{Fall e}
+		\label{AbbVerfeinerungE}
+	\end{center}
+\end{figure}
+	\item ein hängender Knoten auf der längsten Kante $\implies$ grüne Verfeinerung
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{pics/Sketch15.png}
+		\caption{Fall f}
+		\label{AbbVerfeinerungF}
+	\end{center}
+\end{figure}
+\end{enumerate}
+
+%TODO Skizze hier ergänzen (Das Rechteck, was zerlegt wird)
+%TODO noch mehr Skizzen, Skizzen hier, Skizzen da, SKIZZEN EVERYWHERE!!!!1!elf!einself!
+
+\section{Stromlinien-Diffusions-Methode (SDFEM)} %7.
+Hughes / Brooks 1979
+
+\subsection{Motivation}
+\begin{align*}
+\left\lbrace
+	\begin{array}{rl}
+	-\varepsilon\cdot\Delta u+b\cdot \nabla u+c\cdot u=f&\text{ in }\Omega\\
+	u=g&\text{ auf }\Gamma=\partial\Omega\\
+	0<\varepsilon\ll 1&
+	\end{array}
+	\right.
+\end{align*}
+
+\textbf{1D:}
+\begin{align*}
+	-\varepsilon\cdot u''+u'=0\text{ auf }(0,1),\qquad u(0)=0,\qquad u(1)=1
+\end{align*}
+\begin{figure}[!ht]
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{pics/Sketch16.png}
+		\caption{Skizze für kleines und großes $\epsilon$}
+		\label{AbbEinfachesStromlinienProblem}
+	\end{center}
+\end{figure}
+
+ersetze $\varepsilon$ durch Gitterparameter $h$.\\
+$\implies$ keine Oszillation, aber "Verschmierung" %smearing
+
+Verschmierung hauptsächlich in Seitenwindrichtung %TODO fix translation 
+$b$ und $b^\perp$ sind orthogonale Einheitsvektoren
+\begin{align*}
+	\Delta u&=\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}
+	=\frac{\partial^2 u}{\partial b^2}+\frac{\partial^2 u}{\partial (b^T)^2}\\
+	\varepsilon\cdot\Delta u&\to\varepsilon\cdot\frac{\partial^2 u}{\partial(b^T)^2}+h\cdot\frac{\partial^2 u}{\partial b^2}
+\end{align*}
+Hier nur Konvergenz erster Ordnung in $h$.
