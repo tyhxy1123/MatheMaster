@@ -179,7 +179,7 @@ S(\R^n)&\text{ dicht in }L_1(\R^d)\implies\exists(f_n)_{n\in\N}\subseteq S(\R^n)
 \begin{theorem}[Inversion der Fouriertransformation]\label{theorem7.4InversionDerFourierTransformation}\enter
 Die Fouriertransformation $\F:S\big(\R^d\big)\to S\big(\R^d\big)$ ist eine Bijektion. Die Umkehrabbildung $\F^{-1}$ ist gegeben durch
 \begin{align}\label{eqTheorem7.4}\tag{IFT}
-\F^{-1}(g)(x)=\hut{g}(x):=\frac{1}{(2\cdot\pi)^d}\cdot\int\limits_{\R^d}\exp(-i\cdot x^T\cdot\xi)\cdot g(\xi)\d x,\qquad\forall x\in\R^d
+\F^{-1}(g)(x)=\hut{g}(x):=\frac{1}{(2\cdot\pi)^d}\cdot\int\limits_{\R^d}\exp(-i\cdot x^T\cdot\xi)\cdot g(\xi)\d \xi,\qquad\forall x\in\R^d
 \end{align}
 \end{theorem}
 
@@ -194,10 +194,10 @@ Die Fouriertransformation $\F:S\big(\R^d\big)\to S\big(\R^d\big)$ ist eine Bijek
 Sei $f,g\in S(\R^d)$. Dann gilt:
 \begin{align}
 &\int\limits_{\R^d}\hat{f}(\xi)\cdot g(\xi)\cdot\exp(-i\cdot x^T\cdot\xi)\d\xi\nonumber\\
-\overset{\text{Def }\hat{f}}&=
-\int\limits_{\R^d}\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot y)\cdot f(y)\d y\cdot g(\xi)\cdot\exp(-i\cdot x^T\cdot\xi)\d\xi\nonumber\\
-&=\int\limits_{\R^d}\int\limits_{\R^d}\exp\big(i\cdot\xi^T\cdot(y-x)\big)\cdot g(\xi)\d\xi\cdot f(y)\d y\nonumber\\
-&=\int\limits_{\R^d}\hat{g}(y-x)\cdot f(y)\d y\label{eqProof7.4SternStern}\tag{$\ast\ast$}
+\overset{\text{Def }\hat{f}}=&
+\int\limits_{\R^d}\int\limits_{\R^d}\exp(i\cdot y^T\cdot \xi)\cdot f(y)\d y\cdot g(\xi)\cdot\exp(-i\cdot x^T\cdot\xi)\d\xi\nonumber\\
+=&\int\limits_{\R^d}\int\limits_{\R^d}\exp\big(i\cdot\xi^T\cdot(y-x)\big)\cdot g(\xi)\d\xi\cdot f(y)\d y\nonumber\\
+=&\int\limits_{\R^d}\hat{g}(y-x)\cdot f(y)\d y\label{eqProof7.4SternStern}\tag{$\ast\ast$}
 \end{align}
 Wähle
 \begin{align*}
@@ -254,7 +254,7 @@ Also:
 \begin{align*}
 \int\limits_{\R^d}\hat{f}(\xi)~\mu(\d\xi)
 \overset{\text{Def }\hat{f}}&=
-\int\limits_{\R^d}\int\limits_{\R^d}\exp(-i\cdot x^T\cdot\xi)\cdot f(x)\d x~\mu(d\xi)\\
+\int\limits_{\R^d}\int\limits_{\R^d}\exp(-i\cdot x^T\cdot\xi)\cdot f(x)\d x~\mu(\d\xi)\\
 \overset{\text{Fubini}}&=
 \int\limits_{\R^d}\underbrace{\int\limits_{\R^d}\exp(i\cdot x^T\cdot\xi)~\mu(\d\xi)}_{=\hat{\mu}(x)}\cdot f(x)\d x\\
 &=\int\limits_{\R^d}\hat{\mu}(x)\cdot f(x)\d x
@@ -265,7 +265,8 @@ Also:
 \begin{theorem}[Eindeutigkeitssatz]\label{theorem7.6Eindeutigkeitssatz}\enter
 Die Fouriertransformation $\F:\M_b(\R^d)\to C(\R^d)$ ist injektiv, d.h.
 \begin{align*}
-\Big(\forall\xi\in\R^d:\hat{\mu}(\xi)=\hat{\nu}(\xi)\Big)\implies\mu\equiv\nu
+\Big(\forall\xi\in\R^d:\hat{\mu}(\xi)=\hat{\nu}(\xi)\Big)\implies\mu=\nu
+% in Stochastik würde ich nicht equiv verwenden, da Gleichheit nur Gleichheit bis auf Nullmengen ist und equiv (zumindest für für mich) soetwas wie überall Gleichheit bedeutet.
 \end{align*}
 \end{theorem}
 
@@ -290,7 +291,7 @@ Sei $K\subseteq\R^d$ kompakt. Mit Proposition \ref{proposition7.1} existiert ein
 =\limn\int\limits_{\R^d}\varphi_n(\xi)~\nu(\d\xi)
 =\nu(K)
 \end{align*}
-Kompakte Teilmengen von $\R^d$ bilden einen durchschnittsstabilen Erzeuger von $\B(\R^d)$ (Borel-Mengen). Aus dem Eindeutigkeitssatz von Maßen aus der Maßtheorie folgt nun die Gleichheit der Maß: $\mu\equiv\nu$.
+Kompakte Teilmengen von $\R^d$ bilden einen durchschnittsstabilen Erzeuger von $\B(\R^d)$ (Borel-Mengen). Aus dem Eindeutigkeitssatz von Maßen aus der Maßtheorie folgt nun die Gleichheit der Maß: $\mu=\nu$.
 \end{proof}
 
 \begin{korollar}[Eindeutigkeitssatz auf $L_1$]\label{korollar7.7EindeutigkeitssatzAufL1}\enter
@@ -305,7 +306,7 @@ Seien $X,Y:\Omega\to\R^d$ Zufallsvariablen. Dann gilt:
 \begin{align*}
 \Big(\forall\xi\in\R^d:\Phi_X(\xi)=\Phi_X(\xi)\Big)\implies X\overset{\text{d}}{\sim} Y
 \end{align*}
-(d.h. $X$ und $Y$ haben dieselbe Verteilung.\\ Alternative Notationen: $X\sim Y$, $X\overset{\text{d}}{=}Y,\L(X)=L(Y)$)
+(d.h. $X$ und $Y$ haben dieselbe Verteilung.\\ Alternative Notationen: $X\sim Y$, $X\overset{\text{d}}{=}Y$)
 \end{korollar}
 
 Im Allgemeinen gibt es keine schöne Inversionsformel, aber:
