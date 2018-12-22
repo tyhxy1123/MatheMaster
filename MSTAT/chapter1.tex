@@ -3463,12 +3463,12 @@ Anstelle von
 \begin{align*}
 T_n^\ast=\frac{1}{\sqrt{n}}\cdot\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k \leq n}\bigg|\underbrace{\sum\limits_{i=1}^k\big(X_i-\overline{X}_n\big)}_{=:C_k}\bigg|
 \end{align*}
-(die $C_k$ heißen \textbf{kumulierte Summe}) betrachten Csörgö und Horváth (1977) in \textit{Limit Theorems in Change-point Analysis} \ul{gewichtete} kumulierte Summen:
+(die $C_k$ heißen \textbf{kumulierte Summe}) betrachten Csörgő und Horváth (1977) in \textit{Limit Theorems in Change-point Analysis} \ul{gewichtete} kumulierte Summen:
 \begin{align*}
 U_n^\ast&:=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{1\leq k\leq n-1}\frac{|C_k|}{\sqrt{k\cdot(n-k)}}
 \end{align*}
 
-\begin{thm}[Csörgö und Horváth]\label{theoremCH} %noNumber
+\begin{thm}[Csörgő und Horváth]\label{theoremCH} %noNumber
 	Seien
 	\begin{align*}
 		A_n&:=\sqrt{2\cdot\log\big(\log(n)\big)}\\
@@ -3536,7 +3536,7 @@ dass gilt:
 
 \begin{bemerkung}
 	\eqref{eqTheoremFerger2018} gilt für $X_{1,n},\ldots,X_{n,n}$ i.i.d. $\forall n\in\N$.\\
-	In Simulationsstudien zeigt der $R_n$-Test eine deutlich bessere Güte als der $U_n^\ast$-Test von Csörgö und Horvath.\\
+	In Simulationsstudien zeigt der $R_n$-Test eine deutlich bessere Güte als der $U_n^\ast$-Test von Csörgő und Horvath.\\
 	Falls bekannt ist, dass $\nu>\mu$, so betrachte
 	\begin{align*}
 		R_n^+&:=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\frac{\max\limits_{1\leq k\leq n-1}\sum\limits_{i=1}^k\big(X_i-\overline{X}_n\big)}{\sqrt{\hat{k}_n^+\cdot\big(n-\hat{k}_n^+\big)}}\\
@@ -3563,7 +3563,7 @@ Häufig hat man mit stochastischen Prozessen zu tun, deren Pfade in
 \begin{align*}
 	C(\R):=\Big\lbrace f:\R\to\R:f\text{ stetig}\Big\rbrace
 \end{align*}
-liegen (siehe Beispiel Median ganz am Anfang). Die bisherige Theorie für $C(I)$, $I$\\ \underline{kompaktes} Intervall deckt das nicht an. Wir versehen $C(\R)$ mit der Metrik
+liegen (siehe Beispiel Median ganz am Anfang). Die bisherige Theorie für $C(I)$, $I$\\ \underline{kompaktes} Intervall deckt das nicht ab. Wir versehen $C(\R)$ mit der Metrik
 \begin{align*}
 	d(f,g)&:=\sum\limits_{j\geq 1} 2^{-j}\cdot\frac{d_j(f,g)}{1+d_j(f,g)} &\forall f,g\in C(\R)\\
 	d_j(f,g)&:=\sup\limits_{-j\leq t\leq j}\Big|f(t)-g(t)\Big| &\forall f,g\in C(\R)
