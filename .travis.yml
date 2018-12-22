@@ -6,7 +6,7 @@ services:   docker
 tex-config:
 - tex-scheme=full
 - push-type=none
-- build-pattern=AMGEO/AMGEO.tex,ANGA/ANGA.tex,FEM/FEM.tex,MFANA/MFANA.tex,MSTAT/MSTAT.tex,ORDSTR/ORDSTR.tex,PDEANA/PDEANA.tex,PDENUM/PDENM.tex
+- build-pattern=AMGEO/AMGEO.tex,ANGA/ANGA.tex,FEM/FEM.tex,MFANA/MFANA.tex,MSTAT/MSTAT.tex,ORDSTR/ORDSTR.tex,PDEANA/PDEANA.tex,PDENUM/PDENM.tex,WTHM/WTHM.tex
 - latexmk-flags=-halt-on-error
 # Check at https://www.ctan.org/pkg/package-name in which TeX Live package a LaTeX package is contained.
 
@@ -27,6 +27,7 @@ deploy:
   - ./bin/ORDSTR.pdf
   - ./bin/PDEANA.pdf
   - ./bin/PDENM.pdf
+  - ./bin/WTHM.pdf
   name: >-
       Mitschriften zum Ende der
       $(python3 -c 'from datetime import date as d; import math; print(math.ceil((d.today() - d(2018, 10, 7)).days / 7))').
