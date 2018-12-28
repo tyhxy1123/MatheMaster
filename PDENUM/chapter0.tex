@@ -2364,187 +2364,192 @@ Hierbei ist
 \end{figure}
 \end{theorem}
 % Prof Matthies, nachdem ihm etwas heruntergefallen ist: "Scheiß Schwerkfraft!"
-% Das war ein guter Moment :D Lassen wir das als easter egg im Code?
+
 \begin{proof}
 	Sei $\mathcal{N}(T)$ die Menge aller Ecken von $T$. Sei $\mathcal{N}(E)$ die Menge aller Endpunkte der Kante E. Dann gilt:
-\begin{align*}
-\sum\limits_{Z\in\mathcal{N}(T)}\varphi_z|_T=1 \\
-\sum\limits_{Z\in\mathcal{N}(E)}\varphi_z|_E=1
-\end{align*}
-\begin{enumerate}[label=\roman*)]
-\item $\begin{aligned}
-\int\limits_{\omega_z}\big(v-\pi_z(v)\big)\d x=0
-\end{aligned}$
-\begin{align*}
-\big\Vert v-\pi_z(v)\big\Vert_{0,2,\omega_z}
-\overset{\ref{korollarPoincareUngleichung}}&\leq
-c_P\cdot\underbrace{\diam(\omega_z)}_{\leq c_3\cdot h_T}\cdot\underbrace{\big|v-\pi_z(v)\big|_{1,2,\omega_z}}_{=|v|_{1,2,\omega_z}}
-=c_4\cdot h_T\cdot|v|_{1,2,\omega_z}
-\end{align*}
-\item \begin{align*}
-\big\Vert v-R_h(v)\big\Vert_{0,2,T}=\Bigg\Vert\underbrace{\left(\sum\limits_{z\in\mathcal{N}(T)}\varphi_z\right)}_{=1}\cdot v-\sum\limits_{z\in\mathcal{N}(T)}\pi_z(v)\cdot\varphi_z\Bigg\Vert_{0,2,T}
-\end{align*}\\
-$T$ hat keine Ecke auf $\partial\Omega=\Gamma$. Also gilt:
-\begin{align*}
-\big\Vert v-R_h(v)\big\Vert_{0,2,T}
-&=\left\Vert\sum\limits_{z\in\mathcal{N}(T)}\big(v-\pi_z(v)\big)\cdot\varphi_z\right\Vert_{0,2,T}\\
-\overset{\text{DU}}&\leq
-\sum\limits_{z\in\mathcal{N}(T)}\Big\Vert\big(v-\pi_z(v)\big)\cdot\underbrace{\varphi_z}_{\in[0,1]}\Big\Vert_{0,2,T}\\
-&\leq
-\sum\limits_{z\in\mathcal{N}(T)}\Big\Vert\big(v-\pi_z(v)\big)\Big\Vert_{0,2,T}\\
-&\leq
-\sum\limits_{z\in\mathcal{N}(T)}\Big\Vert\big(v-\pi_z(v)\big)\Big\Vert_{0,2,\omega_z}\\
-&\leq
-c_4\cdot h_T\cdot\sum\limits_{z\in\mathcal{N}(T)}|v|_{1,2,\omega_z}\\
-&\leq
-3\cdot c_4\cdot h_T\cdot|v|_{1,2,\tilde{\omega}_T}\\
-\end{align*}
-%TODO Oben habe ich sicher einige Male \omega und w vertauscht. Bitte fixen. Aßerdem weiß ich nicht, ob man z groß oder klein schreiben sollte.
-\item $T$ hat mindestens einen Knoten auf $\Gamma$:
-\begin{align*}
-v-R_h(v)
-&=\underbrace{\left(\sum\limits_{z\in\mathcal{N}(T)}\varphi_z\right)}_{=1}\cdot v-\sum\limits_{z\in\mathcal{N}(T)\setminus\Gamma}\pi_z(v)\cdot\varphi_z\\
-&=\sum\limits_{z\in\mathcal{N}(T)}\varphi_z\cdot\big(v-\pi_z(v)\big)+\sum\limits_{z\in\mathcal{N}(T)\cap\Gamma}\big(\pi_z(v)\big)\cdot\varphi_z
-\end{align*}
-Wir berechnen:
-\begin{align*}
-\Big\Vert(\pi_z(v)\big)\cdot\varphi_z\Big\Vert_{0,2,T}
-&\leq
-\big\Vert\underbrace{\pi_z(v)}_{=\text{konst.}}\big\Vert_{0,2,T}
-=\big|\pi_z(v)\big|\cdot|T|^{\frac{1}{2}}
-\leq c_5\cdot h_T\cdot\big|\pi_z(v)\big|
-\end{align*}
-Wenn $z\in\Gamma$, dann ist $E'\subseteq\Gamma$ mit Knoten $z$ und somit:
-\begin{align*}
-\big|\pi_z(v)\big|^2
-&=|E'|^{-1}\cdot\int\limits_{E'}\big|\pi_z(v)\big|^2\d\gamma\\
-&=h_{E'}^{-1}\cdot\big\Vert\pi_z(v)\big\Vert^2_{0,2,E'}\\
-&=h_{E'}^{-1}\cdot\big\Vert\underbrace{v}_{\in H_0^1(\Omega)}-\pi_z(v)\big\Vert^2_{0,2,E'}\\
-&\stackrel{\ref{theoremSkalierterSpursatz}}{\leq}
-c_6^2\cdot h_{E'}^{-1}\cdot\Big(h_{T'}^{-1}\cdot
-\underbrace{\big\Vert v-\pi_z(v)\big\Vert_{0,2,T'}^2}
-_{
-\begin{array}{l}
-\leq\Vert v-\pi_z(v)\Vert^2_{0,2,\omega_z}\\
-\leq c_4^2\cdot h_T^2\cdot|v|^2_{1,2,\omega_z}
-\end{array}}+h_T^{+1}\cdot\underbrace{\big|v-\pi_z(v)\big|^2_{1,2,T'}}_{=|v|^2_{1,2,T'}}\Big)\\
-&\leq
-c_8^2\cdot|v|^2_{1,2,\omega_z} \\
-&\leq
-c_8^2\cdot|v|_{1,2,\tilde{\omega}_T}^2\\
-\end{align*}
-\begin{align*}
-\implies \Big\Vert\big(\pi_z(v)\big)\cdot\varphi_z\Big\Vert\leq c_9\cdot h_T\cdot|v|_{1,2,\tilde{\omega}_T}
-\end{align*}
-\item  Sei $E$ eine Kante, die keinen Knoten auf $\Gamma$ hat. Dann gilt:
-\begin{align*}
-\big\Vert v-R_h(v)\big\Vert_{0,2,E}
-&\leq
-c\cdot\Big(h_T^{-\frac{1}{2}}\cdot\underbrace{\big\Vert h-R_h(v)\big\Vert_{0,2,T}}_{=c\cdot h_T\cdot|v|_{1,2,\tilde{\omega}_T}}+h_T^{\frac{1}{2}}\cdot\underbrace{\big|v-R_h(v)\big|_{1,2,T}}_{=|v|_{1,2,T}}\Big)\\
-\big\Vert v-R_h(v)\big\Vert_{0,2,E}
-&=\Bigg\Vert\sum\limits_{z\in\mathcal{N}(E)}\big(v-\pi_z(v)\big)\cdot\varphi_z\Bigg\Vert_{0,2,E}\\
-&\leq
-\sum\limits_{z\in\mathcal{N}(E)}\big\Vert v-\pi_z(v)\big\Vert_{0,2,E}\\
-&\leq
-c_{10}\cdot\sum\limits_{z\in\mathcal{N}(E)}\Big(h_T^{-\frac{1}{2}}\cdot\underbrace{\big\Vert v-\pi_z(v)\big\Vert_{0,2,T}}_{\leq c\cdot h_T\cdot|v|_{1,2,\omega_z}}+h_T^{\frac{1}{2}}\cdot\underbrace{\big|v-\pi_z(v)\big|_{1,2,T}}_{\leq|v|_{1,2,\omega_z}}\Big)\\
-&\leq
-c\cdot h_E^{\frac{1}{2}}\cdot|v|_{1,2,\tilde{\omega}_E}
-\end{align*}
-\item $E$ hat Knotenbeschränkung
-\begin{align*}
-R(v)&=l(v)-a(u_h,v)=l(v-v_h)-a(u_h,v-v_h)\qquad\forall v_h\in X_h\\
-&\leq\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v-v_h\Vert_{0,2,T}\\
-&{}\quad+\sum\limits_{E\in\Sigma_h}\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E}\cdot\Vert v-v_h\Vert_{0,2,E}
-\end{align*}
-Idee: Nutze $v_h=R_h(v)$.
-\begin{align*}
-R(v)&\leq
-c\cdot\sum\limits_{T\in\T_h}\Big(\left\Vert f+ \Delta u_h\big\Vert_{0,2,T}\cdot h_T\right)\cdot |v|_{1,2,\tilde{\omega}_T}\\
-&\quad+c\cdot\sum\limits_{E\in\Sigma_h}\left(\Big\Vert[\nabla u_h\cdot n_E]_E\Big\Vert_{0,2,E}\cdot h_E^{\frac{1}{2}}\right)\cdot|v|_{1,2,\tilde{\omega}_E}\\
-&\leq
-c\cdot\left(\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\cdot h_T^2\right)^{\frac{1}{2}}\cdot\left(\sum\limits_{T\in\T_h}|v|^2_{1,2,\tilde{\omega}_T}\right)^{\frac{1}{2}}\\
-&\quad+c\cdot\left(\sum\limits_{E\in\Sigma_h}\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\cdot h_E\right)\cdot\underbrace{\left(\sum\limits_{E\in\Sigma_h}|v|^2_{1,2,\tilde{\omega}_E}\right)^{\frac{1}{2}}}_{\leq c\cdot |v|_{1,2,\Omega}\text{, $c$ aus Formregulärität}}\\
-&\leq
-c\cdot\underbrace{\left(\sum\limits_{T\in\T_h} h^2_T\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}
-+\sum\limits_{E\in\Sigma_h}h_E\cdot\big\Vert[\nabla u_h\cdot v_E]_E\big\Vert^2_{0,2,E}\right)^{\frac{1}{2}}}_{:=\eta}\cdot\Vert v\Vert_{1,2,\Omega}\nl
-&\implies
-\Vert u-u_h\Vert_{1,2,\Omega}
-\leq
-c\cdot\sup\limits_{\begin{subarray}{c}v\in H_0^1(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}R(v) \leq c \cdot \eta
-\end{align*}
-Setze
-\begin{align*}
-\eta_T^2&:=h_T^2\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}+\frac{1}{2}\cdot\sum\limits_{E\in\Sigma_k\cap\partial T}h_E\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\\
-\eta:&=\left(\sum\limits_{T\in\T_h}\eta^2_T\right)^{\frac{1}{	2}}
-\end{align*}
-$\eta$ ist eine zuverlässige a posteriori Fehler-Abschätzung.
-\end{enumerate}
+	\begin{align*}
+		\sum\limits_{Z\in\mathcal{N}(T)}\varphi_z|_T=1 \\
+		\sum\limits_{Z\in\mathcal{N}(E)}\varphi_z|_E=1
+	\end{align*}
+	\begin{enumerate}[label=\roman*)]
+		\item $\begin{aligned}
+			\int\limits_{\omega_z}\big(v-\pi_z(v)\big)\d x=0
+		\end{aligned}$
+		\begin{align*}
+			\big\Vert v-\pi_z(v)\big\Vert_{0,2,\omega_z}
+			\overset{\ref{korollarPoincareUngleichung}}&\leq
+			c_P\cdot\underbrace{\diam(\omega_z)}_{\leq c_3\cdot h_T}\cdot\underbrace{\big|v-\pi_z(v)\big|_{1,2,\omega_z}}_{=|v|_{1,2,\omega_z}}
+			=c_4\cdot h_T\cdot|v|_{1,2,\omega_z}
+		\end{align*}
+		\item 
+		\begin{align*}
+			\big\Vert v-R_h(v)\big\Vert_{0,2,T}=\Bigg\Vert\underbrace{\left(\sum\limits_{z\in\mathcal{N}(T)}\varphi_z\right)}_{=1}\cdot v-\sum\limits_{z\in\mathcal{N}(T)}\pi_z(v)\cdot\varphi_z\Bigg\Vert_{0,2,T}
+		\end{align*}
+		$T$ hat keine Ecke auf $\partial\Omega=\Gamma$. Also gilt:
+		\begin{align*}
+			\big\Vert v-R_h(v)\big\Vert_{0,2,T}
+			&=\left\Vert\sum\limits_{z\in\mathcal{N}(T)}\big(v-\pi_z(v)\big)\cdot\varphi_z\right\Vert_{0,2,T}\\
+			\overset{\text{DU}}&\leq
+			\sum\limits_{z\in\mathcal{N}(T)}\Big\Vert\big(v-\pi_z(v)\big)\cdot\underbrace{\varphi_z}_{\in[0,1]}\Big\Vert_{0,2,T}\\
+			&\leq
+			\sum\limits_{z\in\mathcal{N}(T)}\Big\Vert\big(v-\pi_z(v)\big)\Big\Vert_{0,2,T}\\
+			&\leq
+			\sum\limits_{z\in\mathcal{N}(T)}\Big\Vert\big(v-\pi_z(v)\big)\Big\Vert_{0,2,\omega_z}\\
+			&\leq
+			c_4\cdot h_T\cdot\sum\limits_{z\in\mathcal{N}(T)}|v|_{1,2,\omega_z}\\
+			&\leq
+			3\cdot c_4\cdot h_T\cdot|v|_{1,2,\tilde{\omega}_T}\\
+		\end{align*}
+		\item $T$ hat mindestens einen Knoten auf $\Gamma$:
+		\begin{align*}
+			v-R_h(v)
+			&=\underbrace{\left(\sum\limits_{z\in\mathcal{N}(T)}\varphi_z\right)}_{=1}\cdot v-\sum\limits_{z\in\mathcal{N}(T)\setminus\Gamma}\pi_z(v)\cdot\varphi_z\\
+			&=\sum\limits_{z\in\mathcal{N}(T)}\varphi_z\cdot\big(v-\pi_z(v)\big)+\sum\limits_{z\in\mathcal{N}(T)\cap\Gamma}\big(\pi_z(v)\big)\cdot\varphi_z
+		\end{align*}
+		Wir berechnen:
+		\begin{align*}
+			\Big\Vert(\pi_z(v)\big)\cdot\varphi_z\Big\Vert_{0,2,T}
+			&\leq
+			\big\Vert\underbrace{\pi_z(v)}_{=\text{konst.}}\big\Vert_{0,2,T}
+			=\big|\pi_z(v)\big|\cdot|T|^{\frac{1}{2}}
+			\leq c_5\cdot h_T\cdot\big|\pi_z(v)\big|
+		\end{align*}
+		Wenn $z\in\Gamma$, dann ist $E'\subseteq\Gamma$ mit Knoten $z$ und somit:
+		\begin{align*}
+			\big|\pi_z(v)\big|^2
+			&=|E'|^{-1}\cdot\int\limits_{E'}\big|\pi_z(v)\big|^2\d\gamma\\
+			&=h_{E'}^{-1}\cdot\big\Vert\pi_z(v)\big\Vert^2_{0,2,E'}\\
+			&=h_{E'}^{-1}\cdot\big\Vert\underbrace{v}_{\in H_0^1(\Omega)}-\pi_z(v)\big\Vert^2_{0,2,E'}\\
+			&\stackrel{\ref{theoremSkalierterSpursatz}}{\leq}
+			c_6^2\cdot h_{E'}^{-1}\cdot\Big(h_{T'}^{-1}\cdot
+			\underbrace{\big\Vert v-\pi_z(v)\big\Vert_{0,2,T'}^2}
+			_{
+			\begin{array}{l}
+				\leq\Vert v-\pi_z(v)\Vert^2_{0,2,\omega_z}\\
+				\leq c_4^2\cdot h_T^2\cdot|v|^2_{1,2,\omega_z}
+			\end{array}}+h_T^{+1}\cdot\underbrace{\big|v-\pi_z(v)\big|^2_{1,2,T'}}_{=|v|^2_{1,2,T'}}\Big)\\
+			&\leq
+			c_8^2\cdot|v|^2_{1,2,\omega_z} \\
+			&\leq
+			c_8^2\cdot|v|_{1,2,\tilde{\omega}_T}^2\\
+		\end{align*}
+		\begin{align*}
+			\implies \Big\Vert\big(\pi_z(v)\big)\cdot\varphi_z\Big\Vert\leq c_9\cdot h_T\cdot|v|_{1,2,\tilde{\omega}_T}
+		\end{align*}
+		\item  Sei $E$ eine Kante, die keinen Knoten auf $\Gamma$ hat. Dann gilt:
+		\begin{align*}
+			\big\Vert v-R_h(v)\big\Vert_{0,2,E}
+			&\leq
+			c\cdot\Big(h_T^{-\frac{1}{2}}\cdot\underbrace{\big\Vert h-R_h(v)\big\Vert_{0,2,T}}_{=c\cdot h_T\cdot|v|_{1,2,\tilde{\omega}_T}}+h_T^{\frac{1}{2}}\cdot\underbrace{\big|v-R_h(v)\big|_{1,2,T}}_{=|v|_{1,2,T}}\Big)\\
+			\big\Vert v-R_h(v)\big\Vert_{0,2,E}
+			&=\Bigg\Vert\sum\limits_{z\in\mathcal{N}(E)}\big(v-\pi_z(v)\big)\cdot\varphi_z\Bigg\Vert_{0,2,E}\\
+			&\leq
+			\sum\limits_{z\in\mathcal{N}(E)}\big\Vert v-\pi_z(v)\big\Vert_{0,2,E}\\
+			&\leq
+			c_{10}\cdot\sum\limits_{z\in\mathcal{N}(E)}\Big(h_T^{-\frac{1}{2}}\cdot\underbrace{\big\Vert v-\pi_z(v)\big\Vert_{0,2,T}}_{\leq c\cdot h_T\cdot|v|_{1,2,\omega_z}}+h_T^{\frac{1}{2}}\cdot\underbrace{\big|v-\pi_z(v)\big|_{1,2,T}}_{\leq|v|_{1,2,\omega_z}}\Big)\\
+			&\leq
+			c\cdot h_E^{\frac{1}{2}}\cdot|v|_{1,2,\tilde{\omega}_E}
+		\end{align*}
+		\item $E$ hat Knotenbeschränkung
+		\begin{align*}
+			R(v)&=l(v)-a(u_h,v)=l(v-v_h)-a(u_h,v-v_h)\qquad\forall v_h\in X_h\\
+			&\leq\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert_{0,2,T}\cdot\Vert v-v_h\Vert_{0,2,T}\\
+			&{}\quad+\sum\limits_{E\in\Sigma_h}\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert_{0,2,E}\cdot\Vert v-v_h\Vert_{0,2,E}
+		\end{align*}
+		Idee: Nutze $v_h=R_h(v)$.
+		\begin{align*}
+			R(v)&\leq
+			c\cdot\sum\limits_{T\in\T_h}\Big(\left\Vert f+ \Delta u_h\big\Vert_{0,2,T}\cdot h_T\right)\cdot |v|_{1,2,\tilde{\omega}_T}\\
+			&\quad+c\cdot\sum\limits_{E\in\Sigma_h}\left(\Big\Vert[\nabla u_h\cdot n_E]_E\Big\Vert_{0,2,E}\cdot h_E^{\frac{1}{2}}\right)\cdot|v|_{1,2,\tilde{\omega}_E}\\
+			&\leq
+			c\cdot\left(\sum\limits_{T\in\T_h}\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}\cdot h_T^2\right)^{\frac{1}{2}}\cdot\left(\sum\limits_{T\in\T_h}|v|^2_{1,2,\tilde{\omega}_T}\right)^{\frac{1}{2}}\\
+			&\quad+c\cdot\left(\sum\limits_{E\in\Sigma_h}\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\cdot h_E\right)\cdot\underbrace{\left(\sum\limits_{E\in\Sigma_h}|v|^2_{1,2,\tilde{\omega}_E}\right)^{\frac{1}{2}}}_{\leq c\cdot |v|_{1,2,\Omega}\text{, $c$ aus Formregulärität}}\\
+			&\leq
+			c\cdot\underbrace{\left(\sum\limits_{T\in\T_h} h^2_T\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}
+			+\sum\limits_{E\in\Sigma_h}h_E\cdot\big\Vert[\nabla u_h\cdot v_E]_E\big\Vert^2_{0,2,E}\right)^{\frac{1}{2}}}_{:=\eta}\cdot\Vert v\Vert_{1,2,\Omega}\nl
+			&\implies
+			\Vert u-u_h\Vert_{1,2,\Omega}
+			\leq
+			c\cdot\sup\limits_{\begin{subarray}{c}v\in H_0^1(\Omega)\\\Vert v\Vert_{1,2,\Omega}=1\end{subarray}}R(v) \leq c \cdot \eta
+		\end{align*}
+		Setze
+		\begin{align*}
+			\eta_T^2&:=h_T^2\cdot\big\Vert f+\Delta u_h\big\Vert^2_{0,2,T}+\frac{1}{2}\cdot\sum\limits_{E\in\Sigma_k\cap\partial T}h_E\cdot\big\Vert[\nabla u_h\cdot n_E]_E\big\Vert^2_{0,2,E}\\
+			\eta:&=\left(\sum\limits_{T\in\T_h}\eta^2_T\right)^{\frac{1}{	2}}
+		\end{align*}
+		$\eta$ ist eine zuverlässige a posteriori Fehler-Abschätzung.
+	\end{enumerate}
 \end{proof}
 
 \begin{definition}[Bubble-Funktion]\enter %no number, but i will give some
-Sei $T\in\T_h$ und $E\in\Sigma_h$. Wir setzen
-\begin{align*}
-\psi_T:=27\cdot\varphi_{z_1}\cdot\varphi_{z_2}\cdot\varphi_{z_3}
-\end{align*}
-wobei $z_1,z_2,z_3$ die Ecken von $T$ sind. Definiere weiterhin
-\begin{align*}
-\psi_E:=4\cdot\varphi_{z_1}\cdot\varphi_{z_2}
-\end{align*}
-wobei $z_1,z_2$ die Enden der Kante $E$ sind.
+	Sei $T\in\T_h$ und $E\in\Sigma_h$. Wir setzen
+	\begin{align*}
+		\psi_T:=27\cdot\varphi_{z_1}\cdot\varphi_{z_2}\cdot\varphi_{z_3}
+	\end{align*}
+	wobei $z_1,z_2,z_3$ die Ecken von $T$ sind. Definiere weiterhin
+	\begin{align*}
+		\psi_E:=4\cdot\varphi_{z_1}\cdot\varphi_{z_2}
+	\end{align*}
+	wobei $z_1,z_2$ die Enden der Kante $E$ sind.
 \end{definition}
 
 \begin{lemma}[Eigenschaften]\ %no lemma in lecture
-\begin{enumerate}[label=\roman*)]
-\item $\begin{aligned}
-\psi_T\in P_3(T)
-\end{aligned}
-\hspace{64pt}
-\psi_E\big|_T\in P_2(T)\qquad\forall T\in\omega_E$
-\item $\begin{aligned}
-\psi_T\geq0\text{ in }\overline{T}
-\hspace{61pt}
-\psi_E\geq 0\text{ in }\overline{\omega}_E
-\end{aligned}$
-\item $\begin{aligned}
-\psi_T\equiv0\text{ auf }\partial T
-\hspace{50pt}
-\psi_E\equiv 0\text{ auf }\partial\omega_E
-\end{aligned}$
-\item $\begin{aligned}
-\max\limits_{x\in\overline{T}}\psi_T(x)=1
-\hspace{48pt}
-\max\limits_{x\in\overline{\omega}_E}\psi_E(x)=1
-\end{aligned}$
-\item $\begin{aligned}
-\hspace{120pt}
-\psi_E\in C(\omega_E)
-\end{aligned}$
-\end{enumerate}
+	\begin{enumerate}[label=\roman*)]
+	\item $\begin{aligned}
+		\psi_T\in P_3(T)
+		\end{aligned}
+		\hspace{64pt}
+		\psi_E\big|_T\in P_2(T)\qquad\forall T\in\omega_E$
+	\item $\begin{aligned}
+		\psi_T\geq0\text{ in }\overline{T}
+		\hspace{61pt}
+		\psi_E\geq 0\text{ in }\overline{\omega}_E
+		\end{aligned}$
+	\item $\begin{aligned}
+		\psi_T\equiv0\text{ auf }\partial T
+		\hspace{50pt}
+		\psi_E\equiv 0\text{ auf }\partial\omega_E
+		\end{aligned}$
+	\item $\begin{aligned}
+		\max\limits_{x\in\overline{T}}\psi_T(x)=1
+		\hspace{48pt}
+		\max\limits_{x\in\overline{\omega}_E}\psi_E(x)=1
+		\end{aligned}$
+	\item $\begin{aligned}
+		\hspace{120pt}
+		\psi_E\in C(\omega_E)
+		\end{aligned}$
+	\end{enumerate}
 \end{lemma}
 
 \begin{theorem}
-Sei $T\in\T_h,E\in\Sigma_H, v\in P_k(T), \sigma\in P_k(E)$. Dann gilt:
-\begin{enumerate}[label=(\arabic*)]
-	\item \begin{align*}
+	Sei $T\in\T_h,E\in\Sigma_H, v\in P_k(T), \sigma\in P_k(E)$. Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item 
+		\begin{align*}
 c_1\cdot\Vert v\Vert_{0,2,T}
 \leq\left(\int\limits_T\psi_T\cdot v^2(x)\d x\right)^{\frac{1}{2}} \leq\Vert v\Vert_{0,2,T}
 		\end{align*}
-	\item \begin{align*}
+		\item
+		\begin{align*}
 c_2\cdot h_T^{-1}\cdot\big\Vert\psi_T v\big\Vert_{0,2,T}\leq\big|\psi_T v\big|_{1,2,T}\leq c_3\cdot h_T^{-1}\cdot\big\Vert\psi_T v\big\Vert_{0,2,T}
 		\end{align*}
-	\item \begin{align*}
+		\item
+		\begin{align*}
 c_4\cdot\Vert\sigma\Vert_{0,2,E} \leq\left(\int\limits_E\psi_E\cdot\sigma^2\d s\right)^{\frac{1}{2}}\leq \Vert\sigma\Vert_{0,2,E}
 		\end{align*}
-	\item \begin{align*}
+		\item
+		\begin{align*}
 c_5\cdot h_E^{-1}\cdot\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
 \leq\big|\psi_E\sigma\big|_{1,2,\omega_E}
 \leq c_6\cdot h_E^{-1}\cdot\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
 		\end{align*}
-	\item \begin{align*}
+		\item 
+		\begin{align*}
 \big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
 \leq c_7\cdot h_E^{\frac{1}{2}}\cdot\Vert\sigma\Vert_{0,2,E}
 		\end{align*}
-\end{enumerate}
+	\end{enumerate}
 \end{theorem}
 \begin{proof}
 	Beweisskizze: Es sollte sich alles durch Transformation zum Referenzelement ergeben. Dann Normäquivalenz auf dem endlich dimensionalem Raum.
@@ -2552,7 +2557,7 @@ c_5\cdot h_E^{-1}\cdot\big\Vert\psi_E\sigma\big\Vert_{0,2,\omega_E}
 
 $f_h$ ist eine stückweise  polynomielle Approximation von $f$, z.B.
 \begin{align*}
-f_h\big|_T:=L^2\text{-Projektion von $f$ auf }P_h(T)
+	f_h\big|_T:=L^2\text{-Projektion von $f$ auf }P_h(T)
 \end{align*}
 
 \begin{align*}
@@ -2659,49 +2664,46 @@ Deshalb führen wir folgende Typen von Verfeinerungen ein:
 \begin{enumerate}[label=\alph*)]
 	\item $\eta_T\geq\gamma\cdot\eta_l\implies\text{ rote Verfeinerung}$
 	\item drei hängende Knoten $\implies$ rote Verfeinerung
-\begin{figure}[!ht]
-	\begin{center}
-		\includegraphics[width=0.4\textwidth]{pics/Sketch11.png}
-		\caption{Fall b}
-		\label{AbbVerfeinerungB}
-	\end{center}
-\end{figure}
+	\begin{figure}[!ht]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{pics/Sketch11.png}
+			\caption{Fall b}
+			\label{AbbVerfeinerungB}
+		\end{center}
+	\end{figure}
 	\item zwei hängende Knoten, beide \underline{nicht} auf der längsten Kante $\implies$ rote Verfeinerung
-\begin{figure}[!ht]
-	\begin{center}
-		\includegraphics[width=0.4\textwidth]{pics/Sketch12.png}
-		\caption{Fall c}
-		\label{AbbVerfeinerungC}
-	\end{center}
-\end{figure}
+	\begin{figure}[!ht]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{pics/Sketch12.png}
+			\caption{Fall c}
+			\label{AbbVerfeinerungC}
+		\end{center}
+	\end{figure}
 	\item zwei hängende Knoten, eine auf der längsten Kante $\implies$ blaue Verfeinerung
-\begin{figure}[!ht]
-	\begin{center}
-		\includegraphics[width=0.4\textwidth]{pics/Sketch13.png}
-		\caption{Fall d}
-		\label{AbbVerfeinerungD}
-	\end{center}
-\end{figure}
+	\begin{figure}[!ht]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{pics/Sketch13.png}
+			\caption{Fall d}
+			\label{AbbVerfeinerungD}
+		\end{center}
+	\end{figure}
 	\item ein hängender Knoten, \underline{nicht} auf der längsten Kante $\implies$ blaue Verfeinerung
-\begin{figure}[!ht]
-	\begin{center}
-		\includegraphics[width=0.4\textwidth]{pics/Sketch14.png}
-		\caption{Fall e}
-		\label{AbbVerfeinerungE}
-	\end{center}
-\end{figure}
+	\begin{figure}[!ht]
+		\begin{center}
+			\includegraphics[width=0.4\textwidth]{pics/Sketch14.png}
+			\caption{Fall e}
+			\label{AbbVerfeinerungE}
+		\end{center}
+	\end{figure}
 	\item ein hängender Knoten auf der längsten Kante $\implies$ grüne Verfeinerung
-\begin{figure}[!ht]
-	\begin{center}
-		\includegraphics[width=0.3\textwidth]{pics/Sketch15.png}
-		\caption{Fall f}
-		\label{AbbVerfeinerungF}
-	\end{center}
-\end{figure}
+	\begin{figure}[!ht]
+		\begin{center}
+			\includegraphics[width=0.3\textwidth]{pics/Sketch15.png}
+			\caption{Fall f}
+			\label{AbbVerfeinerungF}
+		\end{center}
+	\end{figure}
 \end{enumerate}
-
-%TODO Skizze hier ergänzen (Das Rechteck, was zerlegt wird)
-%TODO noch mehr Skizzen, Skizzen hier, Skizzen da, SKIZZEN EVERYWHERE!!!!1!elf!einself!
 
 \section{Stromlinien-Diffusions-Methode (SDFEM)} %7.
 Hughes / Brooks 1979
@@ -2732,7 +2734,7 @@ Hughes / Brooks 1979
 ersetze $\varepsilon$ durch Gitterparameter $h$.\\
 $\implies$ keine Oszillation, aber "Verschmierung" %smearing
 
-Verschmierung hauptsächlich in Seitenwindrichtung %TODO fix translation 
+Verschmierung hauptsächlich in Seitenwindrichtung
 $b$ und $b^\perp$ sind orthogonale Einheitsvektoren
 \begin{align*}
 	\Delta u&=\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}
