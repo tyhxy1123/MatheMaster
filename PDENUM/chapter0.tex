@@ -2853,14 +2853,14 @@ Annahmen:
 		\implies a_h(v_h,v_h)
 		&=\varepsilon(\nabla v_h,\nabla v_h)+(b\cdot\nabla v_h,v_h)+(c v_h,v_h)\\
 		&~+\sum\limits_{K\in\T_h}\delta_K\Big(-\varepsilon\Delta v_h+b\cdot\nabla v_h+c v_h,b\cdot\nabla v_h\Big)_K\\
-		&=\varepsilon|v_h|^2_{1,2,\Omega}+\Big(\underbrace{c-\frac{1}{2}\cdot\div(b)}_{\geq c_0>0},v_h^2\Big)+\sum\limits_{K\in\T_h}\delta_K\big(b\cdot\nabla v_h,b\cdot \nabla v_h\big)_K
-		+\underbrace{\sum\limits_{K\in\T_h}\delta_K\big(-\varepsilon\Delta v_h,b\cdot\nabla v_h\big)_K}_{=:T_1}
+		&=\varepsilon|v_h|^2_{1,2,\Omega}+\Big(\underbrace{c-\frac{1}{2}\cdot\div(b)}_{\geq c_0>0},v_h^2\Big)+\sum\limits_{K\in\T_h}\delta_K\big(b\cdot\nabla v_h,b\cdot \nabla v_h\big)_K\\
+		&~+\underbrace{\sum\limits_{K\in\T_h}\delta_K\big(-\varepsilon\Delta v_h,b\cdot\nabla v_h\big)_K}_{=:T_1}
 		+\underbrace{\sum\limits_{K\in\T_h}\delta_K\big(c v_h,b\cdot\nabla v_h\big)_K}_{=:T_2}\\
 		&\geq\underbrace{\varepsilon|v_h|^2_{1,2,\Omega}+c_0\Vert v_h\Vert^2_{0,2,\Omega}+\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}}_{=\Vert v\Vert^2_{\text{SD}}}-|T_1|-|T_2|\nl
 		|T_1|
 		&\leq\sum\limits_{K\in\T_h}\delta_K\varepsilon\Big|(\Delta v_h,b\cdot\nabla v_h)_K\Big|
 		\overset{\text{CS}}{\leq}
-		\sum\limits_{K\in\T_h}\delta_K\varepsilon\Vert\Delta v_h\Vert_{0,2,K}\cdot\Vertb\cdot\nabla v_h\Vert_{0,2,K}\\
+		\sum\limits_{K\in\T_h}\delta_K\varepsilon\Vert\Delta v_h\Vert_{0,2,K}\cdot\Vert b\cdot\nabla v_h\Vert_{0,2,K}\\
 	\end{align*}
 	Mit
 	\begin{align*}
@@ -2871,7 +2871,7 @@ Annahmen:
 	\end{align*}
 	gilt
 	\begin{align*}
-		\sum\limits_{K\in\T_h}\delta_K\varepsilon\Vert\Delta v_h\Vert_{0,2,K}\cdot\Vertb\cdot\nabla v_h\Vert_{0,2,K}
+		\sum\limits_{K\in\T_h}\delta_K\varepsilon\Vert\Delta v_h\Vert_{0,2,K}\cdot\Vert b\cdot\nabla v_h\Vert_{0,2,K}
 		&\leq
 		\sum\limits_{K\in\T_h}\underbrace{\varepsilon^2\delta_K\underbrace{\Vert\Delta v_h\Vert^2_{0,2,K}}_{\overset{\eqref{eq7.3_11}}{\leq}\mu^2_{\text{inv}} h_K^{-1}|v_h|^2_{1,2,K}}}_{\leq\underbrace{\varepsilon^2\delta_K\mu^2_{\text{inv}} h_K^{-2}}_{\overset{\eqref{eq7.3_13}}{\leq}\frac{\varepsilon}{2}}|v_h|^2_{1,2,K}}\\
 		&\leq\frac{1}{2}\varepsilon|v_h|^2_{1,2,\Omega}+\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}
@@ -2893,20 +2893,23 @@ Annahmen:
 		&\leq\sum\limits_{K\in\T_h}\underbrace{\delta_K c_K^2}_{\overset{\eqref{eq7.3_13}}{\leq}\frac{c_0}{2}}\Vert v_h\Vert^2_{0,2,K}+\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}\\
 		&\leq\frac{1}{2}c_0\Vert v_h\Vert^2_{0,2,\Omega}+\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}
 	\end{align*}
-	Folglich gilt insgesamt 
+	Folglich gilt insgesamt
+ 
 	\begin{align*}
 		a_h(v_h,v_h)
-		&\geq\Vert v_h\Vert^2_{\text{SD}}-\underbrace{
-			-\frac{1}{2}\varepsilon\vert v_h\vert_{1,2,\Omega}
-			-\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}
+		&\geq\Vert v_h\Vert^2_{\text{SD}}\underbrace{
+			\begin{array}{l}
+				-\frac{1}{2}\varepsilon\vert v_h\vert_{1,2,\Omega}
+			-\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}\\
 			-\frac{1}{2}c_0\Vert v_h\Vert_{0,2,\Omega}
 			-\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}
-			}_{=-\frac{1}{2}\Vert v_h\Vert_{\text{SD}}^2}
+			\end{array}
+			}_{=-\frac{1}{2}\Vert v_h\Vert_{\text{SD}}^2}\\
 		&=\frac{1}{2}\Vert v_h\Vert^2_{\text{SD}}
 	\end{align*}
 \end{proof}
 
-\begin{bemerkungen}\
+\begin{bemerkung}\
 	\begin{itemize}
 		\item $P_1$-Elemente: \eqref{eq7.3_13} kann ersetzt werden durch
 		\begin{align*}
@@ -2914,7 +2917,7 @@ Annahmen:
 		\end{align*}
 		\item Die Bedingung $\delta_K\leq\frac{1}{2}\frac{c_0}{c_K^2}$ kann ersetzt werden durch $\delta_K c_K^2\leq\frac{1}{2}c_0$. Dies erlaubt $c_K=0$.
 	\end{itemize}
-\end{bemerkungen}
+\end{bemerkung}
 
 \begin{align*}
 	\frac{1}{2}\Vert u_h\Vert^2_{\text{SD}}
@@ -2930,6 +2933,8 @@ Annahmen:
 
 Wir habe zusätzliche Kontrolle über die Ableitungen in Streamline-Richtung
 \begin{align*}
-	\left(\sum\limits_{K\in\T_h}\underbrace{\delta_K}_{\approx h_K\falls \text{pe}_K>1}\Vert b\cdot\nabla u_h\Vert^2_{0,2,K}
+	\left(\sum\limits_{K\in\T_h}\underbrace{\delta_K}_{\approx h_K\falls \text{pe}_K>1}\Vert b\cdot\nabla u_h\Vert^2_{0,2,K}...\right)...
 \end{align*}
 %TODO Ende fehlt
+
+
