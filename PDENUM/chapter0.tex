@@ -2754,14 +2754,16 @@ Hier nur Konvergenz erster Ordnung in $h$.
 Diskretisierung: stetige $P_r$-Elemente $\to V_h\subseteq H_0^1(\Omega)$\\
 $u\in H^2(\Omega)$, $b,c$ hinreichend glatt
 \begin{align}\nonumber
-	-\varepsilon\Delta u+b\cdot \nabla u+cu&= f\text{ im }L^2\text{ Sinn}\\
+	-\varepsilon\Delta u+b\cdot \nabla u+cu&= f&&\text{ im }L^2\text{- Sinn}\\
 	\implies\Big(-\varepsilon\Delta u+b\cdot\nabla u+cu,b\cdot\nabla v_h\Big)_K&=\big(f,b\cdot\nabla v_h\big)_K
-	\qquad\forall K\in\T_h,v_h\in V_h
-	\label{eq7.2_2}\tag{2}\\
-	\mit (\varphi,\psi):&=\int\limits_K\varphi(x)\cdot\psi(x)\d x
-	\nonumber
+																																						 &&\forall K\in\T_h,v_h\in V_h
+	\label{eq7.2_2}\tag{2}
 \end{align}
 
+mit 
+\begin{align*}
+	(\varphi,\psi):&=\int\limits_K\varphi(x)\cdot\psi(x)\d x
+\end{align*}
 Zusätzlich: (Einschränkung auf schwache Formulierung von $V_h$):
 \begin{align*}\label{eq7.2_3}\tag{3}
 	\varepsilon(\nabla u,\nabla v)+(b\cdot\nabla u+ cu,v_h)=(f,v_h)\qquad\forall v_h\in V_h
@@ -2769,11 +2771,11 @@ Zusätzlich: (Einschränkung auf schwache Formulierung von $V_h$):
 $(\cdot,\cdot)=(\cdot,\cdot)_\Omega$\nl
 $u$ erfüllt:
 \begin{align}\label{eq7.2_4}\tag{4}
-	a_h(u,v_h)&=f_h(x_h)\qquad\forall v_h\in V_h
+	a_h(u,v_h)&=f_h(v_h)\qquad\forall v_h\in V_h
 \end{align}
 wobei 
 \begin{align}\label{eq7.2_5}\tag{5}
-	a_h(u,v)&:=\varepsilon(\nabla u,\nabla v)+(b\cdot\nabla u+cu,b\cdot\nabla v)_K\\\nonumber
+	a_h(u,v)&:=\varepsilon(\nabla u,\nabla v)+(b\cdot\nabla u+cu, v)\\\nonumber
 	&\qquad+\sum\limits_{K\in\T_h}\delta_K\Big(-\varepsilon\Delta u+b\cdot\nabla u+cu,b\cdot\nabla v\Big)_K\\
 	\label{eq7.2_6}\tag{6}
 	f_h(v_h)&:=(f,v_h)+\sum\limits_{K\in\T_h}\delta_K(f,b\cdot\nabla v)_K
@@ -2791,22 +2793,21 @@ Damit folgt aus \eqref{eq7.2_4} und \eqref{eq7.2_7}:
 Also die Galerkin Orthogonalität.\nl
 \textbf{Wahl von $\delta_k$:}\\
 Die \textbf{lokale Peclét-Zahl} ist
-%TODO Bin mir nicht sicher ob $p_{e_K}$ gemeint ist. Bitte fixen.
 \begin{align*}
-	\text{pe}_K:=\frac{\Vert b\Vert_{0,\infty,K}}{2\cdot\varepsilon}\cdot h_K
+	p_{e_K}:=\frac{\Vert b\Vert_{0,\infty,K}}{2\cdot\varepsilon}\cdot h_K
 \end{align*}
 Hängt mit der Beziehung zwischen Konvention und Diffusion zusammen.
 \begin{align}\label{eq7.2_9}\tag{9}
 	\delta_K:=\left\lbrace\begin{array}{cl}
-		\delta_0 h_K, &\falls \text{pe}_K>1\\
-		\frac{\delta_1 h_K^2}{\varepsilon}, &\falls\text{pe}_K\leq 1	
+		\delta_0 h_K, &\falls p_{e_K}>1\\
+		\frac{\delta_1 h_K^2}{\varepsilon}, &\fallsp_{e_K}\leq 1	
 	\end{array}\right.
 \end{align}
 Hierbei sind $\delta_0,\delta_1$ Konstanten.\nl
 \textbf{Spezialfall: 2D, stetige $P_1$-Elemente, $c\equiv0$, $b\equiv(b_1,b_2)=$ konstant}\\
 Also erhält man
 \begin{align*}
-	a_h(u_h,v_h)&=\varepsilon\big(\nabla u_h,\nabla v_h\big)+(b\cdot\nabla v_h,v_h)
+	a_h(u_h,v_h)&=\varepsilon\big(\nabla u_h,\nabla v_h\big)+(b\cdot\nabla u_h,v_h)
 	+\underbrace{\sum\limits_{K\in\T_h}\delta_K\big(b\cdot\nabla u_h,b\cdot\nabla v_h\big)_K}_{\text{zusätzliche Diffsion in Richtung }b}
 \end{align*}
 
@@ -2815,6 +2816,8 @@ Annahmen:
 \begin{itemize}
 	\item $b,c,f$ seien hinreichend glatt
 	\item %TODO Das hier soll linksbündig stehen und Formelnummer 10 bekommen, mit \label{eq7.3_10}\tag{10}
+		% TODO BEARBEITUNG 1: hab einfach den text, der in der VL darunter stand, darüber geschrieben. könnten wir ja so lassen, oder?
+		für die eindeutige Lösbarkeit nehmen wir an
 	\begin{align}\label{eq7.3_10}\tag{10}
 		c-\frac{1}{2}\div(b)\geq0\text{ in }\Omega
 	\end{align}
@@ -2834,11 +2837,11 @@ Annahmen:
 \begin{lemma}[Koerzivität]\label{lemma7.1Koerzivitaet}
 	Sei
 	\begin{align*}
-		c_k:=\Vert v\Vert_{0,\infty,\Omega}=\max\limits_{x\in K}\big|c(x)\big|>0
+		c_k:=\Vert c\Vert_{0,\infty,\Omega}=\max\limits_{x\in K}\big|c(x)\big|>0
 	\end{align*}
 	und
 	\begin{align}\label{eq7.3_13}\tag{13}
-		0<\delta_K\leq\frac{1}{2}\cdot\min\left\lbrace\frac{c_0}{c_K^2},\frac{h_K^2}{\varepsilon\cdot\mu_{\text{inv}}}\right\rbrace
+		0<\delta_K\leq\frac{1}{2}\cdot\min\left\lbrace\frac{c_0}{c_K^2},\frac{h_K^2}{\varepsilon\cdot\mu_{\text{inv}}^2}\right\rbrace
 	\end{align}
 	Dann ist $a_h$ koerziv im folgenden Sinn:
 	\begin{align}\label{eq7.3_14}\tag{14}
@@ -2849,17 +2852,23 @@ Annahmen:
 \begin{proof}
 	Erinnerung:
 	\begin{align*}
-		\big(b\cdot\nabla v_h,v_h\big)&=\frac{1}{2}\cdot\big(\div(b)\cdot v_h^2\big)\\
+		\big(b\cdot\nabla v_h,v_h\big)&=\frac{1}{2}\cdot\big(\div(b)\cdot v_h^2\big)
+	\end{align*}
+	Damit also:
+	\begin{align*}
 		\implies a_h(v_h,v_h)
-		&=\varepsilon(\nabla v_h,\nabla v_h)+(b\cdot\nabla v_h,v_h)+(c v_h,v_h)\\
-		&~+\sum\limits_{K\in\T_h}\delta_K\Big(-\varepsilon\Delta v_h+b\cdot\nabla v_h+c v_h,b\cdot\nabla v_h\Big)_K\\
+		&=\varepsilon(\nabla v_h,\nabla v_h)+(b\cdot\nabla v_h,v_h)+(c \cdot v_h,v_h)\\
+		&~+\sum\limits_{K\in\T_h}\delta_K\Big(-\varepsilon\Delta v_h+b\cdot\nabla v_h+c \cdot v_h,b\cdot\nabla v_h\Big)_K\\
 		&=\varepsilon|v_h|^2_{1,2,\Omega}+\Big(\underbrace{c-\frac{1}{2}\cdot\div(b)}_{\geq c_0>0},v_h^2\Big)+\sum\limits_{K\in\T_h}\delta_K\big(b\cdot\nabla v_h,b\cdot \nabla v_h\big)_K\\
 		&~+\underbrace{\sum\limits_{K\in\T_h}\delta_K\big(-\varepsilon\Delta v_h,b\cdot\nabla v_h\big)_K}_{=:T_1}
-		+\underbrace{\sum\limits_{K\in\T_h}\delta_K\big(c v_h,b\cdot\nabla v_h\big)_K}_{=:T_2}\\
-		&\geq\underbrace{\varepsilon|v_h|^2_{1,2,\Omega}+c_0\Vert v_h\Vert^2_{0,2,\Omega}+\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}}_{=\Vert v\Vert^2_{\text{SD}}}-|T_1|-|T_2|\nl
+		+\underbrace{\sum\limits_{K\in\T_h}\delta_K\big(c \cdot v_h,b\cdot\nabla v_h\big)_K}_{=:T_2}\\
+		&\geq\underbrace{\varepsilon|v_h|^2_{1,2,\Omega}+c_0\Vert v_h\Vert^2_{0,2,\Omega}+\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}}_{=\Vert v\Vert^2_{\text{SD}}}-|T_1|-|T_2|
+	\end{align*}
+	Jetzt müssen wir noch $T_1$ und $T_2$ abschätzen.
+	\begin{align*}
 		|T_1|
-		&\leq\sum\limits_{K\in\T_h}\delta_K\varepsilon\Big|(\Delta v_h,b\cdot\nabla v_h)_K\Big|
-		\overset{\text{CS}}{\leq}
+		&\leq\sum\limits_{K\in\T_h}\delta_K\varepsilon\Big|(\Delta v_h,b\cdot\nabla v_h)_K\Big| \\
+		&\overset{\text{CS}}{\leq}
 		\sum\limits_{K\in\T_h}\delta_K\varepsilon\Vert\Delta v_h\Vert_{0,2,K}\cdot\Vert b\cdot\nabla v_h\Vert_{0,2,K}\\
 	\end{align*}
 	Mit
@@ -2871,7 +2880,7 @@ Annahmen:
 	\end{align*}
 	gilt
 	\begin{align*}
-		\sum\limits_{K\in\T_h}\delta_K\varepsilon\Vert\Delta v_h\Vert_{0,2,K}\cdot\Vert b\cdot\nabla v_h\Vert_{0,2,K}
+		&\sum\limits_{K\in\T_h}\delta_K\varepsilon\Vert\Delta v_h\Vert_{0,2,K}\cdot\Vert b\cdot\nabla v_h\Vert_{0,2,K} \\
 		&\leq
 		\sum\limits_{K\in\T_h}\underbrace{\varepsilon^2\delta_K\underbrace{\Vert\Delta v_h\Vert^2_{0,2,K}}_{\overset{\eqref{eq7.3_11}}{\leq}\mu^2_{\text{inv}} h_K^{-1}|v_h|^2_{1,2,K}}}_{\leq\underbrace{\varepsilon^2\delta_K\mu^2_{\text{inv}} h_K^{-2}}_{\overset{\eqref{eq7.3_13}}{\leq}\frac{\varepsilon}{2}}|v_h|^2_{1,2,K}}\\
 		&\leq\frac{1}{2}\varepsilon|v_h|^2_{1,2,\Omega}+\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}
@@ -2879,7 +2888,7 @@ Annahmen:
 	Für $T_2$ erhalten wir die Abschätzung
 	\begin{align*}
 		|T_2|
-		&\leq\sum\limits_{K\in\T_h}\delta_K\Big|(c v_h,b\cdot\nabla v_h)_K\Big|\\
+		&\leq\sum\limits_{K\in\T_h}\delta_K\Big|(c \cdot v_h,b\cdot\nabla v_h)_K\Big|\\
 		&\leq\sum\limits_{K\in\T_h}\delta_K c_K\Vert v_h\Vert_{0,2,K}\Vert b\cdot\nabla v_h\Vert_{0,2,K}
 	\end{align*}
 	Mit
@@ -2889,7 +2898,7 @@ Annahmen:
 	\end{align*}
 	gilt
 	\begin{align*}
-		\leq\sum\limits_{K\in\T_h}\delta_K c_K\Vert v_h\Vert_{0,2,K}\Vert b\cdot\nabla v_h\Vert_{0,2,K}
+		&\sum\limits_{K\in\T_h}\delta_K c_K\Vert v_h\Vert_{0,2,K}\Vert b\cdot\nabla v_h\Vert_{0,2,K} \\
 		&\leq\sum\limits_{K\in\T_h}\underbrace{\delta_K c_K^2}_{\overset{\eqref{eq7.3_13}}{\leq}\frac{c_0}{2}}\Vert v_h\Vert^2_{0,2,K}+\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}\\
 		&\leq\frac{1}{2}c_0\Vert v_h\Vert^2_{0,2,\Omega}+\frac{1}{4}\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla v_h\Vert^2_{0,2,K}
 	\end{align*}
@@ -2897,6 +2906,7 @@ Annahmen:
  
 	\begin{align*}
 		a_h(v_h,v_h)
+		&\geq\Vert v_h\Vert^2_{\text{SD}}-|T_1| -|T_2| \\
 		&\geq\Vert v_h\Vert^2_{\text{SD}}\underbrace{
 			\begin{array}{l}
 				-\frac{1}{2}\varepsilon\vert v_h\vert_{1,2,\Omega}
@@ -2916,6 +2926,7 @@ Annahmen:
 			0<\delta_K\leq\frac{1}{2}\frac{c_0}{c_K^2}\qquad\forall K\in\T_h
 		\end{align*}
 		\item Die Bedingung $\delta_K\leq\frac{1}{2}\frac{c_0}{c_K^2}$ kann ersetzt werden durch $\delta_K c_K^2\leq\frac{1}{2}c_0$. Dies erlaubt $c_K=0$.
+		\item Eine geeignete Wahl von $\delta_0, \delta_1$ (klein genug) in \ref{eq7.2_9} erhält die Gültigkeit von \ref{eq7.3_13}
 	\end{itemize}
 \end{bemerkung}
 
@@ -2927,14 +2938,17 @@ Annahmen:
 	\overset{\text{CS}}&{\leq}
 	\Vert f\Vert_{0,2,\Omega}\frac{1}{c_0}\sqrt{c_0}\Vert u_h\Vert_{0,2,\Omega}+\sum\limits_{K\in\T_h}\delta_K^{\frac{1}{2}}\Vert f\Vert_{0,2,K}\delta_K^{\frac{1}{2}}\Vert b\cdot\nabla u_h\Vert_{0,2,K}\\
 	&\leq\frac{1}{\sqrt{c_0}}\Vert f\Vert_{0,2,\Omega}\Vert u_h\Vert_{\text{SD}}+\left(\sum\limits_{K\in\T_h}\delta_K\Vert f\Vert^2_{0,2,K}\right)^{\frac{1}{2}}\Vert u_h\Vert_{\text{SD}}\\
-	\implies \Vert u_h\Vert_{\text{SD}}
-	\leq C(f)
+\end{align*}
+Teilen durch $\frac{\Vert u_h \Vert_{SD}}{2}$ auf beiden Seiten ergibt
+\begin{align*}
+	\Vert u_h\Vert_{\text{SD}} \leq C(f)
 \end{align*}
 
 Wir habe zusätzliche Kontrolle über die Ableitungen in Streamline-Richtung
 \begin{align*}
-	\left(\sum\limits_{K\in\T_h}\underbrace{\delta_K}_{\approx h_K\falls \text{pe}_K>1}\Vert b\cdot\nabla u_h\Vert^2_{0,2,K}...\right)...
+	\left(\sum\limits_{K\in\T_h}\delta_K\Vert b\cdot\nabla u_h\Vert^2_{0,2,K}\right)^{\frac{1}{2}} \leq C(f)
 \end{align*}
+,wobei $\delta_K \sim h_K \text{, wenn } p_{e_K} > 1$.
 %TODO Ende fehlt
 
 
