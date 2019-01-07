@@ -698,7 +698,7 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 \end{definition}
 
 \begin{definition}
-    Ein \textbf{Kreis} ist ein geschlosseneer Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$, sodass für alle $i,j \in \{1,\ldots,n\}$ 
+    Ein \textbf{Kreis} ist ein geschlossener Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$, sodass für alle $i,j \in \{1,\ldots,n\}$ 
     $$ i \neq j \implies \sigma e_i \ne \tau e_j .$$
 \end{definition}
 
@@ -708,7 +708,7 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 \end{definition}
 
 \begin{definition}
-    Sei $\P = (P,R)$ binäres Relat. $\P$ heißt \textbf{azyklisch}, falls $G\P$ azyklischist.
+    Sei $\P = (P,R)$ binäres Relat. $\P$ heißt \textbf{azyklisch}, falls $G\P$ azyklisch ist.
 \end{definition}
 
 \begin{erinnerungnr}
@@ -748,7 +748,7 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 \end{bemerkungnr}
 
 \begin{beispiel}
-    Sei $\P=(P,R)$ nichtleere Präordnung. DAnn gilt $\P$ \underline{ist als ANW $\G\P$} azyklisch genau
+    Sei $\P=(P,R)$ nichtleere Präordnung. Dann gilt $\P$ \underline{ist als ANW $\G\P$} azyklisch genau
     dann, wenn $\P$ eine Ordnung ist. $\P$ als Netzwerk ist aber nicht azyklisch, da 
     $\Delta:P := \{(p,p) \mid p \in P\} \subseteq R$ ist.
 \end{beispiel}
@@ -763,3 +763,159 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
     Es genügt die Antisymmetrie nachzuweisen.
     Wäre $O$ nicht antisymmetretisch, so gäbe es wegen der Transitivität von $R$ einen Pfad von $q$ nach $p$, Widerspruch.
 \end{proof}
+
+\begin{definition}
+    Sind $G=(V,E,\rho)$ und $\overline{G} = (V, \overline{E}, \overline{\rho})$ Netzwerke, so heiße
+    $\overline{G}$ eine \textbf{echte Kantenerweiterung} von $G$, falls $E \subsetneqq \overline{E}$ und $G = \overline{G}|_E$ gilt.
+    Gilt $\#(\overline{E}-E) = n$, so heiße $\overline{G}$ \textbf{$n$-kantige Erweiterung} von $G$.
+\end{definition}
+
+\begin{lemma}
+    Sei $G=(V,E,\rho)$ ein azyklisches Netzwerk und seien $p,q \in V$ mit $p \ne q$.
+    Es sind äquivalent:
+    \begin{enumerate}[label=(\arabic*)]
+        \item Es existiert eine 1-kantige azyklische Erweiterung $\overline{G} = (V,\overline{E}, \overline{\rho})$ von $G$
+        derart, dass es ein $\overline{e} \in \overline{E}$ gibt mit $\overline{\rho}\overline{e} = (p,q)$,
+
+        \item  In $G$ gibt es keinen Pfad von $q$ nach $p$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \underline{(1) $\implies$ (2):} Gelte (1). Angenommen es existiert ein Pfad $(e_1, \ldots,e_n)$ in $G$ von $q$ nach $p$. Dann ist
+    $(\overline{e},e_1,\ldots,e_n)$ ein Pfad von $p$ nach $q$, d.h. ein geschlossener Pfad, in $\overline{G}$, was im Widerspruch zu (1) steht.\nl
+    \underline{(2) $\implies$ (1):} Wähle $\overline{e} \notin E$ und setze $\overline{E} := E \cup \{\overline{e}\}$ und setze
+    $\overline{\rho}\overline{e}:=(p,q)$ und erhalte 1-kantige Erweiterung $\overline{G} := (V, \overline{E}, \overline{\rho})$
+    von $G$. Angenommen $\overline{G}$ nicht azyklisch. Dann existiert ein geschlossener Pfad $(e_1, \ldots,e_n)$ in $\overline{G}$.
+    Wenn $(e_1, \ldots,e_n)$ ein Pfad in $G$ wäre so stünde dies im Widerspruch dazu, dass $G$ azyklisch ist.
+    Also gilt $\overline{e} \in \{e_1, \ldots,e_n\}$. Sei ohne Einschränkung $\overline{e} = e_1$. Dann ist $(e_2, \ldots, e_n)$ ein
+    Pfad von $q$ nach $p$ in $G$ was im Widerspruch zu (2) steht.
+\end{proof}
+
+% @Lukas: Ich schreibe mal neu auf, da ich in deinen Aufzeichnungen nicht rumpfuschen will.
+%TODO bitte mergen (die beiden Lemmas müssten semantisch ja äquivalent sein. Kannst aber auch einfach beide stehen lassen.
+
+\begin{lemma}\label{lemmaAnwendung}
+Sei $G=(V,E,\rho)$ azyklisches Netzwerk. Dann gilt genau eine der folgenden Aussagen:
+	\begin{enumerate}[label=(\roman*)]
+		\item In $G$ existiert für zwei verschiedene Knoten $p$ und $q$ stets ein Pfad entweder von $p$ nach $q$ oder von $q$ nach $p$.
+		\item Es existiert azyklische 1-kantige Erweiterung $\overline{G}=\big(V,\overline{E},\overline{\rho}\big)$ von $G$ um eine Kante $\overline{e}\in\overline{E}$ derart, dass in  $G$ kein Punkt $\overline{\sigma}e$ nach $\overline{\tau}e$ führt.\\
+		(d.h. es gibt verschiedene Knoten $p$ und $q$ in $G$ derart, dass weder ein Pfad von $p$ nach $q$ noch von $q$ nach $p$ existiert.)
+	\end{enumerate}
+\end{lemma}
+
+\begin{bemerkung}
+	Ist (i) erfüllt, so sagen wir auch, dass $G$ \textbf{Pfad-linear} ist.
+\end{bemerkung}
+
+\begin{proposition}[Claim 1]
+	Sei $G=(V,E,\rho)$ Netzwerk. Dann gilt:
+	\begin{align*}
+		G\text{ Pfad-linear}\Longleftrightarrow\Red G:=\Red(G):=G(V,\rho E)\text{ Pfad-linear}
+	\end{align*}
+\end{proposition}
+
+\begin{proposition}[Claim 0]
+	Sei $G=(V,E,\rho)$ Netzwerk. Dann gilt:
+	\begin{align*}
+		G\text{ azyklisch}\Longleftrightarrow\Red G\text{ azyklisch}
+	\end{align*}
+\end{proposition}
+
+\begin{proof}
+	\underline{Fall 1:} $G$ nicht azyklisch. Dann gilt:
+	\begin{align*}
+		\exists n\in\N_+,\exists\big(e_1,\ldots,e_n\big)\in E^{\langle n\rangle}:\sigma e_1=\tau e_1\\
+		\implies\big(\rho e_1,\ldots,\rho e_n\big)\text{ ist geschlossener Pfad in $\Red G$}.
+	\end{align*}
+	\underline{Fall 2:} $G$ ist azyklisch. Dann gilt:
+	\begin{align*}
+		\exists n\in\N,\exists p_0,\ldots,p_n\in V:
+		(p_0,p_1),\ldots,(p_{n-1},p_n)\in\rho E\text{ und }p_0=p_n\\
+		\implies\forall i\in[n]:\exists e_i\in E:\rho e_i=\big(p_{i-1},p_i\big)
+	\end{align*}
+	Dann ist $\big(e_1,\ldots,e_n\big)$ geschlossener Pfad in $G$. Widerspruch!
+\end{proof}
+
+\begin{proposition}[Claim 2]
+	Seien $G$ und $G'$ Netzwerke und ist $\Phi$ ein Morphismus von $G$ nach $G'$. Dann gilt:
+	\begin{align*}
+		G\text{ \underline{nicht} azyklisch}\Longleftrightarrow G'\text{ \underline{nicht} azyklisch}
+	\end{align*}
+\end{proposition}
+
+\begin{proof}
+	Nach Voraussetzung gilt:
+	\begin{align*}
+		\exists n\in\N_+:\exists\big(e_1,\ldots,e_n\big)\in E^{\langle n\rangle}:\sigma e_1=\tau e_n
+	\end{align*}
+	Dann ist auch $\big(e_1',\ldots,e_n'\big)$ geschlossener Pfad in $G'$, wobei
+	\begin{align*}
+		\forall i\in[n]:e_i:=\Phi_{\text{edge}}(e_i)
+	\end{align*}
+	Siehe Fall 1 von Claim 0.
+\end{proof}
+
+\begin{theorem}\
+	\begin{enumerate}
+		\item Mit Zorns Lemma folgt, dass jedes azyklische Netzwerk in eine azyklische Pfad-lineare Erweiterung besitzt.
+		\item Jedes endliche azyklische Netzwerk hat eine endlichen azyklische Pfad-lineare Erweiterung.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	2. folgt bereits aus Lemma \ref{lemmaAnwendung} durch sukzessive azyklische 1-kantiger Erweterungen. (terminiert, da $V\times V$-$\Delta_V$ endlich ist, $\Delta_V:=\big\lbrace(p,p)\mid p\in V\big\rbrace$)
+\end{proof}
+
+\begin{bemerkung}
+	Ordnungstheoretisch betrachtet umfassen die azyklischen Netzwerke die strikten Ordnungen.
+\end{bemerkung}
+
+\begin{lemma}
+	Sei $G=(V,E,\rho)$ und $\omega:V\to W$ Bijektion mit 
+	\begin{align*}
+		W\cap E^{\langle+\rangle}=\emptyset,\qquad\text{wobei }
+		E^{\langle +\rangle}=\bigcup_{n\in\N_+}E^{\langle n\rangle}\text{ Menge aller Pfade in }G
+	\end{align*}
+	Dann ist
+	\begin{align*}
+		\underbrace{E^{(\ast)}_{\P(G,\omega)}}_{\langle E\rangle_{\P(G,\omega)}}=E^{\langle\ast\rangle}=\bigcup\limits_{n\in\N} E^{\langle n\rangle},\qquad E^{(0)}:=W,\qquad
+		E\equiv E^1
+	\end{align*}
+	D.h. $E$ erzeugt in $\P(G,\omega)$ alle "Metakanten", d.h.
+	\begin{align*}
+		\langle E\rangle_{\P(G,\omega)}=E^{\langle\ast\rangle}.
+	\end{align*}
+	Für $D\subseteq E$ gilt dann 
+	\begin{align*}
+		\langle D\rangle_{\P(G,\omega)}&=D^{\langle\ast\rangle}=\bigcup\limits_{n\in\N} D^{\langle n\rangle}\\
+		D^{\langle0\rangle}:&=W\\
+		D^{\langle n\rangle}:&=\left\lbrace\big(d_1,\ldots,d_n\big)\in D^n~\Big|~\big(d_1,\ldots,d_n\big)\in E^{\langle n\rangle}\right\rbrace=E^{\langle n\rangle}\cap D^n\qquad\forall n\in\N_+
+	\end{align*}
+	Also gilt:
+	\begin{align*}
+		\Red\P(G,\omega)&=G\left(V,\tilde{\rho} E^{\langle\ast\rangle}\right) &\P&(G,\omega)=\big(P(G,\omega),\circledast,\id\big)\\
+		\Red G:&=\big(\Red G,\ast,\id\big) &P&(G,\omega)=\big(V,E^{\langle\ast\rangle},\tilde{\rho}\big)\\
+		\mathbb{G}&=\big(G,\ast,\id\big)\text{ ANW} &G&=(V,E,\rho)\\
+		\Red G&=G(V,\rho E)=\big(V,\rho E,\rho E\hookrightarrow V\times V\big)
+	\end{align*}
+	Hierbei ist $(V,\rho E)$ binäres Relat (ist hier Präordnung) und $E\hookrightarrow V\times V$ die identische Einbettung. Außerdem ist $\big(V,\tilde{\rho}E^{\langle\ast\rangle}\big)$ Präordnung (reflexiv und transitiv) und $\P=(P,R)$ Präordnung und $\mathbb{G}\P:=\mathbb{G}_P|R$\\
+	Beachte:
+	\begin{align*}
+		\tilde{\rho} E^{\langle\ast\rangle}&=\underbrace{\Delta_V}_{=\lbrace(p,p)\mid p\in V\rbrace}\cup\big\lbrace(p,q)\in V\times V\mid\exists\text{ Pfad von $p$ nach $q$ in }G\big\rbrace
+	\end{align*}
+	Wenn $\vec{a}$ Pfad von $p$ nach $q$ und $\vec{c}$ Pfad von $q$ nach $r$, dann ist $\vec{a}\circledast\vec{c}$ Pfad von $p$ nach $r$.
+\end{lemma}
+
+\textbf{Frage:} Wann ist $\big(V,\tilde{\rho}E^{\langle\ast\rangle}\big)$ eine Ordnung?
+\begin{itemize}
+	\item $\Red \P(G,\omega)$ Ordnung $\Longleftarrow G$ azyklisch.
+	\item $\mathbb{G}$ Aktionsnwetzwerk $\implies \Red\mathbb{G})\mathbb{G}_V|\rho_E$ Präordnung
+	\item $\mathbb{G}$ azyklisch Aktionsnetzwerk $\implies\Red G$ Ordnung
+	\item $G$ azyklisch $\implies\P(G,\omega)$ azyklisch
+\end{itemize}
+
+
+
+
+
+
