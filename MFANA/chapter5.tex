@@ -119,6 +119,194 @@
 	\end{align*}
 \end{proof}
 
+\textbf{Erinnerung.}
+Seien $A_n$ akkretiv vom Typ $\omega\in\R$. Dann gilt:
+\begin{align*}
+	\Big(\exists\lambda>0\mit\lambda\cdot\omega<1:\forall x\in X:
+	J_\lambda^{A_n} x\longrightarrow J_\lambda^A x\Big)\implies\forall x\in X:S_n(t)x\longrightarrow S(t)x
+\end{align*}
+Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmengen von $[0,\infty)$).
+
+\section{Yosidaapproximation}
+\begin{definition}
+	Sei $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$, $\lambda>0,\lambda\cdot\omega<1$.
+	Dann heißt
+	\begin{align*}
+		A^\lambda:=\frac{1}{\lambda}\left(I-J_\lambda^A\right)
+	\end{align*}
+	\textbf{Yosidaapproximation} von $A$ ($J_\lambda^A:=(I-\lambda\cdot A)^{-1}$)
+\end{definition}
+
+\begin{theorem}[Eigenschaften der Yosidaapproximationen]\
+	\begin{enumerate}[label=(\alph*)]
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in X:\big(J_\lambda u,A^\lambda u\big)\in A
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1
+		\end{aligned}$ ist $A^\lambda$ Lipschitzstetig mit Lipschitzkonstante $\frac{2-\lambda\cdot\omega}{\lambda\cdot(1-\lambda\cdot\omega)}$.
+		\item $\forall\lambda>0\mit\lambda\cdot\omega<1$ ist $A^\lambda$ $m$-akkretiv vom Typ $\frac{\omega}{1-\lambda\cdot\omega}$.
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in\dom(A):			
+		\end{aligned}$
+		\begin{align*}
+			(1-\lambda\cdot\omega)\cdot\Vert A^\lambda u\Vert_X\leq\Vert A u\Vert:=\inf\big\lbrace\Vert f\Vert_X:(u,f)\in A\big\rbrace
+		\end{align*}
+		\item $\begin{aligned}
+			\forall\lambda,\mu>0\mit(\mu+\lambda)\cdot\omega<1:
+			A^{\lambda+\mu}=\big(A^\lambda\big)^\mu
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in X:
+			\lim\limits_{\mu\to0^+}J_\lambda^{A^\mu}f=J_\lambda^A f
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\underline{Zeige (a):}
+	\begin{align*}
+		A J_\lambda u
+		&=\frac{-I+I+\lambda\cdot A}{\lambda}J_\lambda u
+		\ni\frac{1}{\lambda}\cdot(I-J_\lambda)u
+		=A^\lambda u
+	\end{align*}
+	Hierbei geht ein, dass $u\in(I+\lambda\cdot A)J_\lambda u$ gilt)
+	Folglich ist $\big(J_\lambda u,A^\lambda u\big)\in A$.\nl
+	\underline{Zeige (b):}\\
+	$J_\lambda$ ist Lipschitzstetig mit Konstante $\frac{1}{1-\lambda\cdot\omega}$.\nl
+	\underline{Zeige (c):}
+	Allgemein gilt:\\
+	Ist $S$ Lipschitzstetig mit Lipschitzkonstante $L$, dann ist $L\cdot I-S$ $m$-akkretiv (vom Typ 0), siehe Beispiele von akkretiven Operatoren). ($m$-Akkretivität ist Übung!). Also ist
+	\begin{align*}
+		\frac{1}{\lambda}\cdot\left(\frac{1}{1-\lambda\cdot\omega}-J_\lambda\right)
+	\end{align*}
+	$m$-akkretiv, d.h. $\frac{\omega}{1-\lambda\cdot\omega}+A^\lambda$ ist $m$-akkretiv, d.h. $A^\lambda$ ist $m$-akkretiv vom Typ $\frac{w}{1-\lambda\cdot\omega}$.\nl
+	\underline{Zeige (e):}\\
+	Seien $\lambda,\mu>0$ mit $(\lambda+\mu)\cdot\omega<1$.
+	Es gilt
+	\begin{align*}
+		A^\mu u=f
+		&\Longleftrightarrow \frac{I-J_\mu^A}{\mu} u=f\\
+		&\Longleftrightarrow J_\mu^A u=u-\mu\cdot f\\
+		&\Longleftrightarrow(u-\mu\cdot f)+\mu\cdot A(u-\mu\cdot f)\ni u\\
+		&\Longleftrightarrow A(u-\mu\cdot f)\ni f
+	\end{align*}
+	Diese Äquivalenz gilt auch für $A^\lambda$ anstelle von $A$, d.h.
+	\begin{align*}
+		\big(A^\lambda)^\mu u=f
+		&\Longleftrightarrow A^\lambda(u-\mu f)\ni u\\
+		\overset{\text{Äquivalenz für }A}&{\Longleftrightarrow}
+		A\big(u-(\mu+\lambda)\cdot f\big)\ni f\\
+		\overset{\text{Äquivalenz für }A}&{\Longleftrightarrow}
+		A^{\lambda+\mu} u=f
+	\end{align*}
+	\underline{Zeige (d):}\\
+	Sei $u\in\dom(A),\lambda>0$ mit $\lambda\cdot\omega<1$.
+	Sei $f\in A u$.
+	Nach (a) gilt $A^\lambda u\in A J_\lambda u$.
+	Weil $A$ akkretiv vom Typ $\omega$ ist, folgt daraus 
+	\begin{align*}
+		\hspace{5pt}\big[u-J_\lambda u,f-A^\lambda u\big]+\omega\cdot\big\Vert u-J_\lambda u\big\Vert&\geq0\\
+		\implies
+		\big[u-J_\lambda u,f-A^\lambda u\big]+\lambda\cdot\omega\cdot\frac{\big\Vert u-J_\lambda u\big\Vert_X}{\lambda}&\geq0\\
+		\implies
+		0&\leq\lambda\cdot\omega\cdot\big\Vert A^\lambda u\big\Vert_X+\big[A^\lambda u,f-A^\lambda u\big]\\
+		&\leq\lambda\cdot\big\Vert A^\lambda u\big\Vert_X+\big[A^\lambda u,f\big]+\big[A^\lambda u,-A^\lambda u\big]\\
+		&\leq\lambda\cdot\omega\cdot\big\Vert A^\lambda u\big\Vert+\Vert f\Vert_X-\big\Vert A^\lambda\big\Vert_X\\
+		\implies\big\Vert A^\lambda u\big\Vert_X
+		&\leq\frac{1}{1-\lambda\cdot\omega}\cdot\Vert f\Vert_X
+		\qquad\forall f\in Au
+	\end{align*}
+	\underline{Zeige (f):}\\
+	Aus (e) folgt
+	\begin{align*}
+		A^{\mu+\lambda}
+		\overset{\text{(e)}}&=
+		\left(A^\mu\right)^\lambda
+		\overset{\text{Def}}=
+		\frac{I-J_\lambda^{A^\mu}}{\lambda}
+	\end{align*}
+	Somit gilt für alle $f\in X$:
+	\begin{align*}
+		J_\lambda^{A^\mu} f
+		&= f-\lambda\cdot A^{\mu+\lambda} f
+		=f-\lambda\cdot\left(\frac{f-J_{\mu+\lambda}^A}{\mu+\lambda}\right)
+		=\frac{\mu}{\mu+\lambda}\cdot f+\frac{\lambda}{\mu+\lambda}\cdot J_{\mu+\lambda}^A f
+		\overset{\mu\to0^+}{\longrightarrow}J_\lambda^A f
+	\end{align*}
+	Beim Grenzübergang wird die Stetigkeit der Resolvente $A$ verwendet, in Abhängigkeit von $\lambda$.
+\end{proof}
+
+\begin{bemerkung}
+	Aus der Eigenschaft (f) der Yosidaapproximation und aus dem Theorem von Trotter-Kato-Miyadera \ref{theoremTrotterKatoMiyadera} folgt, dass die von $A^mu$ erzeugten Halbgruppen $S_\mu$ 
+	(hier genügt der Satz von Picard-Lindelöf!)
+	stark gegen die von $A$ erzeugte Halbgruppe $S$ konvergieren
+	(für $\mu\to0^+$).
+	\begin{align*}
+		S_\mu(t)u_0\overset{\mu\to0^+}{\longrightarrow} S(t)u_0
+		\qquad\forall u_0\in\overline{\dom(A)},\forall t\geq0
+	\end{align*}
+\end{bemerkung}
+
+\begin{definition}
+	Sei $H$ ein Hilbertraum und sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv+\infty$, semikonvex von Typ $\omega\in\R$, d.h.
+	\begin{align*}
+		u\mapsto\E(u)+\frac{\omega}{2}\cdot\Vert u\Vert^2_H\text{ ist konvex.}
+	\end{align*}
+	Dann heißt (für $\lambda>0$ mit $\lambda\cdot\omega<1$
+	\begin{align*}
+		\E^\lambda:H\to\R,\qquad
+		\E^\lambda(u):=\inf\limits_{v\in H}\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2_H
+	\end{align*}
+	\textbf{Moreau-Yosida-Approximation} von $\E$.
+\end{definition}
+
+\begin{theorem}[Eigenschaften der Moreau-Yosida-Approximationen]\label{theoremEigenschaftenDerMoreuaYosiaApproximation}\
+	\begin{enumerate}[label=(\alph*)]
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H:
+		\end{aligned}$
+		\begin{align*}
+			\E^\lambda(u)
+			=\E\left(J_\lambda u\right)+\frac{1}{2\cdot\lambda}\cdot\big\Vert u-J_\lambda u\big\Vert_H^2
+			=\E\big(J_\lambda u\big)+\frac{\lambda}{2}\cdot\big\Vert(\partial\E)^\lambda u\big\Vert_H^2
+		\end{align*}				
+		 wobei $\partial\E$ der Subgradient von $\E$, $(\partial\E)^\lambda$ die Yosidaapproximation von $\partial\E$ und $J_\lambda=\big(I+\lambda\cdot\partial\E\big)^{-1}$ die Resolvente von $\partial\E$ ist.
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1
+		\end{aligned}$ ist $\E^\lambda$ stetig differenzierbar und semikonvex vom Typ $\frac{\omega}{1-\lambda\cdot\omega}$.
+		\item $\begin{aligned}
+			\forall u\in H
+		\end{aligned}$ ist die Funktion $\lambda\mapsto\E^\lambda(u)$ monoton fallend und 
+		\begin{align*}
+			\sup\limits_{\lambda>0}\E^\lambda(u)=\lim\limits_{\lambda\to0^+}\E^\lambda(u)\overset{!}{=}\E(u)
+		\end{align*}
+		\item $\begin{aligned}
+			\forall u\in H
+		\end{aligned}$ ist die Funktion $\lambda\mapsto\lambda\cdot\E^\lambda(u)$ konkav und stetig differenzierbar und 
+		\begin{align*}
+			\frac{\d}{\d\lambda}\big(\lambda\cdot\E^\lambda(u)\big)=\E\big(J_\lambda u\big)
+		\end{align*}
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1:\partial\big(\E^\lambda\big)=(\partial\E)^\lambda
+		\end{aligned}$
+		Auf der linken Seite steht der Subgradient (=Frechétableitung) von $\E^\lambda$ und auf der rechten Seite die Yosidaableitung von $\partial\E$.
+		\item $\begin{aligned}
+			\forall f\in H,\forall\lambda>0\mit\lambda\cdot\omega<1:
+			\lim\limits_{\mu\to0^+}J_\lambda^{\partial\E^\mu}f=J_\lambda^{\partial\E} f
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\underline{Zeige (a):}\\
+	$J_\lambda u$ ist der globale Minimierer der Funktion 
+	\begin{align*}
+		v\mapsto\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2_H
+	\end{align*}
+	(siehe Beweis, dass $\partial\E$ $m$-akkretiv vom Typ $\omega$ ist, also die Surjektivität)
+\end{proof}
 
 
 
