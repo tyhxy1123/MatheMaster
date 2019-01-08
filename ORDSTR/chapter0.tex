@@ -894,7 +894,7 @@ Sei $G=(V,E,\rho)$ azyklisches Netzwerk. Dann gilt genau eine der folgenden Auss
 	Also gilt:
 	\begin{align*}
 		\Red\P(G,\omega)&=G\left(V,\tilde{\rho} E^{\langle\ast\rangle}\right) &\P&(G,\omega)=\big(P(G,\omega),\circledast,\id\big)\\
-		\Red G:&=\big(\Red G,\ast,\id\big) &P&(G,\omega)=\big(V,E^{\langle\ast\rangle},\tilde{\rho}\big)\\
+		\Red \G:&=\big(\Red G,\ast,\id\big) &P&(G,\omega)=\big(V,E^{\langle\ast\rangle},\tilde{\rho}\big)\\
 		\mathbb{G}&=\big(G,\ast,\id\big)\text{ ANW} &G&=(V,E,\rho)\\
 		\Red G&=G(V,\rho E)=\big(V,\rho E,\rho E\hookrightarrow V\times V\big)
 	\end{align*}
@@ -909,13 +909,83 @@ Sei $G=(V,E,\rho)$ azyklisches Netzwerk. Dann gilt genau eine der folgenden Auss
 \textbf{Frage:} Wann ist $\big(V,\tilde{\rho}E^{\langle\ast\rangle}\big)$ eine Ordnung?
 \begin{itemize}
 	\item $\Red \P(G,\omega)$ Ordnung $\Longleftarrow G$ azyklisch.
-	\item $\mathbb{G}$ Aktionsnwetzwerk $\implies \Red\mathbb{G})\mathbb{G}_V|\rho_E$ Präordnung
+	\item $\mathbb{G}$ Aktionsnwetzwerk $\implies \Red\G := \G_V|\rho_E$ Präordnung
 	\item $\mathbb{G}$ azyklisch Aktionsnetzwerk $\implies\Red G$ Ordnung
 	\item $G$ azyklisch $\implies\P(G,\omega)$ azyklisch
 \end{itemize}
 
+\begin{proposition}
+    Ist ein Aktionsnetzwerk azyklisch, so ist seine Reduktion azyklisch, d.h.
+    ist $\G =(G, \ast, \id)$ ein azyklische Aktionsnetzwerk mit $G =(V,E,\rho)$, so ist $(V, \rho E)$ Ordnung ist. [d.h. $(V,\rho E)$ ist antisymmetrisch]
+\end{proposition}
+\begin{proof}
+    Sei $\G$ azyklisch. Angenommen $(V, \rho E)$ ist nicht antisymmetrisch. Dann existiert $p,q \in V$ mit $p\ne q$ und $(p,q),(q,p) \in \rho E$.
+    D.h. es existieren $a,b \in E$ mit $\rho a =(p,q)$ und $\rho b = (q,p)$. Dann ist aber $(a,b)$ ein geschlossener Pfad.
+\end{proof}
 
+\begin{bemerkungnr}
+    Die Rückrichtung gilt nicht, denn jedes 1-knotige Aktionsnetzwerk hat eine 1-elementige Ordnung als Reduktion. Jedes mehrkantige
+    1-knotige Aktionsnetzwerk ist aber nicht azyklisch.
+\end{bemerkungnr}
 
+\begin{bemerkungnr}
+    Hat ein Aktionsnetzwerk $\G =(G, \ast, \id)$ mit $G=(V,E,\rho)$ keine Loops außer den ID-Loops, so ist $\G$ azyklisch genau dann, wenn 
+    $(V, \rho E)$ antisymmetrisch ist.
+\end{bemerkungnr}
+\begin{proof}
+    Sei $(V, \rho E)$ antisymmetrisch. Angenommen $\G$ ist nicht azyklisch, so existiert ein $n \in \N_+$ und ein geschlossener Pfad
+    $(e_1, \ldots,e_n)$ in $\G$. Ohne Einschränkung folgt $\sigma e_1 \ne \tau e_1$. Dann ist aber $(\sigma e_1, \tau e_1)=\rho e_1,
+    (\tau e_1, \sigma e_1)=\rho(e_2\ast\ldots\ast e_n) \in \rho E$ was im Widerspruch zur Antisymmetrie von $(V, \rho E)$.
+\end{proof}
 
+\begin{definition}
+    Ein Aktionsnetzwerk $\G =(G, \ast, \id)$ mit $G =(V,E,\rho)$ heiße \textbf{linear}, falls für $p,q \in V$ stets ein $e \in E$ mit
+    $\rho e \in \{(p,q),(q,p)\}$ existiert, d.h. $(V,\rho E)$ ist linear.
+    \textit{Ein Augenmerk haben wir auf azyklische, lineare Aktionsnetzwerke.}
+\end{definition}
 
+\begin{proposition}
+    Sei $\G = (G, \ast, \id)$ mit $G=(V, E,\rho)$ Aktionsnetzwerk.
+    Dann ist $\Phi := (\id_V, \varphi)$ mit $\varphi: E \to \rho E, e\mapsto \rho e$ ein Funktor von
+    $\G$ nach $\Red \G$.
+\end{proposition}
+\begin{proof}
+    Wir wissen schon, das $\Phi$ Morphismus von $G$ nach $\Red G := G(V, \rho E)$ ist [ist sowieso klar].
+    Außerdem gilt für $(a,b) \in E^{\<2\>}$ stets 
+    $$ \varphi(a \ast b) = \rho (a\ast b) = (\sigma a, \tau b) = (\sigma a, \tau a) \ast (\sigma b, \tau b) = 
+    = \rho a \ast \rho b = \varphi a \ast \varphi b.$$ 
+    Und für $p \in V$ ist stets 
+    $$ \varphi (\id p) = \rho(\id p) = (p,p)=\id_{\G_V}p = \id_{\G_V} (\id_V p)$$
+\end{proof}
 
+Zurück zum Begriff des Measurement Setups.
+\begin{definition}
+    Ein Tripel $\mathcal{M} =(\G, \M, \Delta)$ bestehend aus einem Aktionsnetzwerk $\G = (G, \ast, \id)$ mit $G =(V,E,\rho)$, einem Monoid 
+    $\M = (M, \ast, \epsilon)$ und einer funktoriellen Abbildung $\Delta: E \to M$ von $\G$ nach $\M$ heiße \textbf{Measurement Setup}.
+
+    Dabei heißt $\Delta$ funktoriell, falls gilt: $\forall~(a,b)\in E^{\<2\>} : \Delta (a\ast b) = \Delta a \ast \Delta b$ und
+    $\forall~p\in V: \Delta (\id p) = \epsilon$.
+
+    D.h. $\Phi := (\Phi_{\text{vert}}, \Phi_{\text{edge}})$ mit $\Phi_{\text{vert}}: V \to \{\perp\}, p \mapsto \perp$ und
+    $\Phi_{\text{edge}} := \Delta$ ist Funktor von $\G$ nach $\G(\M,\perp)$, wobei $\perp$ ein geeignetes Symbol ist.
+\end{definition}
+
+\begin{beispiel}[Gegenbeispiel]
+    Sei $\Omega$ Menge. Dann ist $M:=(\G_P, \M, d)$ mit $P := 2^\Omega$ und $\M := (M, \cup, \emptyset)$ mit $M := 2^\Omega$ und
+    $$ d: P \times P \to M, (X,Y) \mapsto Y - X. $$ im Allgemeinen kein Measurement Setup.
+    
+    Ansonsten müsste gelten: für alle $X,Y,Z \in P$ gilt $$d(X,Z) = d((X,Y) \ast (Y,Z)) = d(X,Y) \cup d(Y,Z)$$
+    d.h. $Z-X = (Y-X)\cup (Z-Y)$.
+    Das gilt im Allgemeinen nicht. Zum Beispiel wenn $Y \subsetneqq X \subseteq Z$.
+
+    Immerhin gilt aber: für alle $X,Y,Z \in P$ ist $d(X,Z) \subseteq d(X,Y) \cup d(Y,Z)$.
+\end{beispiel}
+
+\begin{beispiel}
+    $\mathcal{M} := (\G\P, \M, \Delta)$ mit $\G\P := \G_P|R$ für $\P:=(P,R)$ wobei $R := \{(X,Y) \in P\times P \mid X \subseteq Y\}$
+    und $\Delta: R \to M, (X,Y) \mapsto Y-X$.\nl
+    Die Dimensionsformel gilt hier:
+
+    Für $X,Y \in P$ gilt stets $$\Delta(X,X\cup Y) = \Delta(X\cap Y,Y).$$
+    Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.
+\end{beispiel}
