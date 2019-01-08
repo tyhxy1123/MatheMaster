@@ -3220,99 +3220,105 @@ Die Verteilung $\P\circ B^{-1}=:W$ von  einer Brownschen Bewegung $B$ heißt \te
 		X_n(s)-X_n(t)
 		&=\frac{1}{\sqrt{n}}\cdot\xi_{k+1}+\frac{1}{\sqrt{n}}\cdot\big(n\cdot s-(k+1)\big)\cdot\xi_{k+2}-\frac{1}{\sqrt{n}}\cdot(n\cdot t-k)\cdot\xi_{k+1}\\
 		&=\sqrt{n}\cdot\left(s-\frac{k+1}{n}\right)\cdot\xi_{k+2}+\sqrt{n}\cdot\xi_{k+1}\cdot\left(\frac{k+1}{n}-t\right)
-\end{align*}
+	\end{align*}
 
-\begin{lem}[$c_r$-Ungleichung]\enter
-	Seien $a_1,\ldots,a_m\in\R$ (paarweise verschieden) und $r\geq 1$. Dann gilt:
-	\begin{align}\label{eqCrUngleichung}\tag{$C_r$}
-		\left|\sum\limits_{i=1}^m a_i\right|^r\leq c_r\cdot\sum\limits_{i=1}^m|a_i|^r\mit c_r:= m^{r-1}
-	\end{align}
-\end{lem}
+	\begin{lem}[$c_r$-Ungleichung]\enter
+		Seien $a_1,\ldots,a_m\in\R$ (paarweise verschieden) und $r\geq 1$. Dann gilt:
+		\begin{align}\label{eqCrUngleichung}\tag{$C_r$}
+			\left|\sum\limits_{i=1}^m a_i\right|^r\leq c_r\cdot\sum\limits_{i=1}^m|a_i|^r\mit c_r:= m^{r-1}
+		\end{align}
+	\end{lem}
 
-\begin{proof}
-	Sei $Z$ diskrete Zufallsvariable mit $\P(Z=a_i)=\frac{1}{m}$ für $1\leq i\leq m$. Dann gilt:
+	\begin{proof}
+		Sei $Z$ diskrete Zufallsvariable mit $\P(Z=a_i)=\frac{1}{m}$ für $1\leq i\leq m$. Dann gilt:
+		\begin{align*}
+			\big|\underbrace{\E[Z]}_{=\frac{1}{n}\cdot\sum\limits_{i=1}^m a_i}\big|^r
+			\overset{\text{Jensen}}&\leq
+			\underbrace{\E\Big[|Z|^r\Big]}_{=\frac{1}{m}\cdot\sum\limits_{i=1}^m|a_i|^r}
+			\implies
+			m^{-r}\cdot\left|\sum\limits_{i=1}^m a_i\right|^r\leq\frac{1}{m}\cdot\sum\limits_{i=1}^m|a_i|^r
+		\end{align*}
+	\end{proof}
+
+	Mit $m=2$ und $r=4$ folgt:
 	\begin{align*}
-		\big|\underbrace{\E[Z]}_{=\frac{1}{n}\cdot\sum\limits_{i=1}^m a_i}\big|^r
-		\overset{\text{Jensen}}&\leq
-		\underbrace{\E\Big[|Z|^r\Big]}_{=\frac{1}{m}\cdot\sum\limits_{i=1}^m|a_i|^r}
+		\big|X_n(s)-X_n(t)\big|^4
+		&\leq 8\cdot\bigg(n^2\cdot\xi^4_{k+2}\cdot\Big(\underbrace{s-\frac{k+1}{n}}_{\leq s-t}\Big)^4+n^2\cdot\xi^4_{k+1}\cdot\Big(\underbrace{\frac{k+1}{n}-t}_{\leq s-t}\Big)^4\bigg)\\
 		\implies
-		m^{-r}\cdot\left|\sum\limits_{i=1}^m a_i\right|^r\leq\frac{1}{m}\cdot\sum\limits_{i=1}^m|a_i|^r
+		\E\left[\big|X_n(s)-X_n(t)\big|^4\right]
+		&\leq 16\cdot\mu_4\cdot \underbrace{n^2\cdot(s-t)^2}_{\overset{\text{Fall 1}}{\leq} 1}\cdot(s-t)^2
+		\leq
+		16\cdot\mu_4\cdot(s-t)^2
 	\end{align*}
-\end{proof}
 
-Mit $m=2$ und $r=4$ folgt:
-\begin{align*}
-	\big|X_n(s)-X_n(t)\big|^4
-	&\leq 8\cdot\bigg(n^2\cdot\xi^4_{k+2}\cdot\Big(\underbrace{s-\frac{k+1}{n}}_{\leq s-t}\Big)^4+n^2\cdot\xi^4_{k+1}\cdot\Big(\underbrace{\frac{k+1}{n}-t}_{\leq s-t}\Big)^4\bigg)\\
-	\implies
-	\E\left[\big|X_n(s)-X_n(t)\big|^4\right]
-	&\leq 16\cdot\mu_4\cdot \underbrace{n^2\cdot(s-t)^2}_{\overset{\text{Fall 1}}{\leq} 1}\cdot(s-t)^2
-	\leq
-	16\cdot\mu_4\cdot(s-t)^2
-\end{align*}
-
-\underline{Fall 2: $s-t\geq\frac{1}{n}$}\\
-Aus \eqref{eqProof7.16Plus} und \eqref{eqCrUngleichung} mit $r=4$ und $m=3$ folgt wegen $\big|\lceil n\cdot s-\lceil n\cdot s\rceil\big|\leq1$:
-\begin{align*}
-\E\Big[\big|X_n(s)-X_n(t)\big|^4\Big]
-\overset{}&{\leq}
-27\cdot\left(\frac{1}{n^2}\cdot\E\left[\left|\sum\limits_{i=\lceil n\cdot t\rceil+1}^{\lceil n\cdot s\rceil}\xi_i\right|^4\right]+\underbrace{\frac{1}{n^2}}_{\leq(s-t)^2}\cdot\mu_4+\underbrace{\frac{1}{n^2}}_{\leq(s-t)^2}\cdot\mu_4\right)
-\end{align*}
-
-\begin{lem}[Momenten-Ungleichung]\enter
-Seien $\xi_1,\ldots,\xi_n$ i.i.d., zentriert mit $\mu_4:=\E[\xi_1^4]<\infty$ und $\mu_2:=\E[\xi_1^1]$. Dann gilt:
+	\underline{Fall 2: $s-t\geq\frac{1}{n}$}\\
+	Aus \eqref{eqProof7.16Plus} und \eqref{eqCrUngleichung} mit $r=4$ und $m=3$ folgt wegen $\big|\lceil n\cdot s-\lceil n\cdot s\rceil\big|\leq1$:
 	\begin{align*}
-		\E\left[\left|\sum\limits_{i=1}^n\xi_i\right|^4\right]=n\cdot\mu_4+3\cdot n\cdot(n-1)\cdot\mu_2^2
-\leq 4\cdot\mu_4\cdot n^2
+		\E\Big[\big|X_n(s)-X_n(t)\big|^4\Big]
+		\overset{}&{\leq}
+		27\cdot\left(\frac{1}{n^2}\cdot\E\left[\left|\sum\limits_{i=\lceil n\cdot t\rceil+1}^{\lceil n\cdot s\rceil}\xi_i\right|^4\right]+\underbrace{\frac{1}{n^2}}_{\leq(s-t)^2}\cdot\mu_4+\underbrace{\frac{1}{n^2}}_{\leq(s-t)^2}\cdot\mu_4\right)
 	\end{align*}
-\end{lem}
 
-\begin{proof}
-Zeige zuerst das Gleichheitszeichen:
-\begin{align*}
-\E\left[\left|\sum\limits_{i=1}^n\xi_i\right|^4\right]
-&=\E\left[\left(\sum\limits_{i=1}^n\xi_i\right)^4\right]\\
-&=\E\left[\sum\limits_{1\leq i,j,k,l\leq n}\xi_i\cdot\xi_j\cdot\xi_k\cdot\xi_l\right]\\
-&=\sum\limits_{1\leq i,j,k,l\leq n}\underbrace{\E\Big[\xi_i\cdot\xi_j\cdot\xi_k\cdot\xi_l\Big]}_{=:\mu_{i,j,k,l}}
-\end{align*}
-Die Tupel $(i,j,k,l)\in\lbrace1,\ldots,n\rbrace^4$ mit mindestens drei verschiedenen Komponenten liefern $\mu_{i,j,k,l}=0$, denn z. B. (verschiedene Buchstaben repräsentieren verschiedene Zahlen):
-\begin{align*}
-\mu_{i,j,k,j}
-&=\E\Big[\xi_i\cdot\xi_j\cdot\xi_k\cdot\xi_j\Big]
-=\E\Big[\xi_i\cdot\xi_j^2\cdot\xi_k\Big]=\underbrace{\E\big[\xi_i\big]}_{=0}\cdot\E\big[\xi_i^2\big]\cdot\E\big[\xi_k\big]
-\end{align*}
-Folglich reduziert sich die obige auf (!)
-\begin{align*}
-&\sum\limits_{i=1}^4\underbrace{\E\Big[\xi_i^4\Big]}_{=\mu_4}
-+6\cdot\sum\limits_{1\leq i\leq j\leq n}
-\underbrace{\E\Big[\xi_i^2\cdot\xi_j^2\Big]}_{=\mu_2^2}
-+\underbrace{\cdot\sum\limits_{1\leq i\leq j\leq n}\underbrace{\E\Big[\xi_i\Big]}_{=0}\cdot\E\Big[\xi_j^3\Big]+4\cdot\sum\limits_{1\leq i\leq j\leq n}\E\Big[\xi_i^3\Big]\cdot\underbrace{\E\Big[\xi_j\Big]}_{=0}}_{=0}\\
-&=n\cdot\mu_4+6\cdot\mu_2^2\cdot\underbrace{\begin{pmatrix}
-n\\ 2
-\end{pmatrix}}_{=\frac{n\cdot(n-1)}{2}}\\
-&=\underbrace{n}_{\leq n^2}\cdot\mu_4+3\dot n\cdot\underbrace{(n-1)}_{\leq n}\cdot\underbrace{\mu_2^2}_{=\big(\E[\xi_1^2]\big)^2\stackrel{\text{Jensen}}{\leq}\mu_4}\\
-&\leq 4\cdot n^2\cdot\mu_4
-\end{align*}
-Siehe auch \textit{Turkish Journal of Mathematics, Moment equalities via integer partitions} (2014) von Dietmar Ferger für mehr Hintergründe.
-\end{proof}
+	\begin{lem}[Momenten-Ungleichung]\enter
+	Seien $\xi_1,\ldots,\xi_n$ i.i.d., zentriert mit $\mu_4:=\E[\xi_1^4]<\infty$ und $\mu_2:=\E[\xi_1^1]$. Dann gilt:
+		\begin{align*}
+			\E\left[\left|\sum\limits_{i=1}^n\xi_i\right|^4\right]=n\cdot\mu_4+3\cdot n\cdot(n-1)\cdot\mu_2^2
+			\leq 4\cdot\mu_4\cdot n^2
+		\end{align*}
+	\end{lem}
 
-Mit diesem Lemma folgt:
-\begin{align*}
-\frac{1}{n^2}\cdot\E\left[\left|\sum\limits_{i=\lceil n\cdot t\rceil+1}^{\lceil n\cdot s\rceil}\xi_i\right|^4\right]
-&=
-\frac{1}{n^2}\cdot\E\left[\left|\sum\limits_{i=1}^{\lceil n\cdot s\rceil-\lceil n\cdot t\rceil}\xi_{i+\lceil n\cdot t\rceil}\right|^4\right]\\
-&\leq
-\frac{1}{n^2}\cdot 4\cdot\mu_4\cdot\Big(\underbrace{\lceil n\cdot s\rceil-\overbrace{\lceil n\cdot t\rceil}^{>n\cdot t-1}}_{\leq\underbrace{ n\cdot s-n\cdot t}_{=n\cdot(s-t)}+\underbrace{1}_{\stackrel{\text{2. Fall}}{\leq}n\cdot(s-t)}\leq2\cdot n\cdot(s-t)}\Big)^2\\
-&\leq
-\frac{1}{n^2}\cdot 4\cdot\mu_4\cdot 4\cdot n^2\cdot(s-t)^2\\
-&=16\cdot\mu_4\cdot(s-t)^2\\
-\implies
-\E\Big[\big|X_n(s)-X_n(t)\big|^4\Big]
-&\leq 27\cdot18\cdot\mu_4\cdot(s-t)^2\qquad\forall s>t\in I\\
-&=\Big(F(s)-F(t)\Big)^2
-\end{align*}
-wobei $F(s):=\sqrt{27\cdot18\cdot\mu_4}\cdot s$. Offenbar ist $F$ stetig und streng monoton wachsend auf $I=[0,b]$. Folglich ist \eqref{eqSatz7.11VorM} aus Satz \ref{satz7.11MomentenkriteriumVonKolmogoroff} erfüllt mit $\mu=4$ und $\alpha=2>1$.\nl
-Wir haben Donsker \ref{satz7.16Donsker} gezeigt, allerdings unter der \ul{stärkeren} Voraussetzung $\E\big[\xi_1^4]<\infty$. Den allgemeinen Fall $\E[\xi_1^2]<\infty$ zeigt man mit der sogenannten \textit{Methode des Stutzens (truncation)}, vergleiche Achim Klenke (2008) \textit{Wahrscheinlichkeitstheorie}
+	\begin{proof}
+		Zeige zuerst das Gleichheitszeichen:
+		\begin{align*}
+			\E\left[\left|\sum\limits_{i=1}^n\xi_i\right|^4\right]
+			&=\E\left[\left(\sum\limits_{i=1}^n\xi_i\right)^4\right]\\
+			&=\E\left[\sum\limits_{1\leq i,j,k,l\leq n}\xi_i\cdot\xi_j\cdot\xi_k\cdot\xi_l\right]\\
+			&=\sum\limits_{1\leq i,j,k,l\leq n}\underbrace{\E\Big[\xi_i\cdot\xi_j\cdot\xi_k\cdot\xi_l\Big]}_{=:\mu_{i,j,k,l}}
+		\end{align*}
+		Die Tupel $(i,j,k,l)\in\lbrace1,\ldots,n\rbrace^4$ mit mindestens drei verschiedenen Komponenten liefern $\mu_{i,j,k,l}=0$, 
+		denn z. B. (verschiedene Buchstaben repräsentieren verschiedene Zahlen):
+		\begin{align*}
+			\mu_{i,j,k,j}
+			&=\E\Big[\xi_i\cdot\xi_j\cdot\xi_k\cdot\xi_j\Big]
+			=\E\Big[\xi_i\cdot\xi_j^2\cdot\xi_k\Big]=\underbrace{\E\big[\xi_i\big]}_{=0}\cdot\E\big[\xi_i^2\big]\cdot\E\big[\xi_k\big]
+		\end{align*}
+		Folglich reduziert sich die obige auf (!)
+		\begin{align*}
+			&\sum\limits_{i=1}^4\underbrace{\E\Big[\xi_i^4\Big]}_{=\mu_4}
+			+6\cdot\sum\limits_{1\leq i\leq j\leq n}
+			\underbrace{\E\Big[\xi_i^2\cdot\xi_j^2\Big]}_{=\mu_2^2}
+			+\underbrace{\cdot\sum\limits_{1\leq i\leq j\leq n}\underbrace{\E\Big[\xi_i\Big]}_{=0}\cdot\E\Big[\xi_j^3\Big]+4\cdot\sum\limits_{1\leq i\leq j\leq n}\E\Big[\xi_i^3\Big]\cdot\underbrace{\E\Big[\xi_j\Big]}_{=0}}_{=0}\\
+			&=n\cdot\mu_4+6\cdot\mu_2^2\cdot\underbrace{\begin{pmatrix}
+			n\\ 2
+			\end{pmatrix}}_{=\frac{n\cdot(n-1)}{2}}\\
+			&=\underbrace{n}_{\leq n^2}\cdot\mu_4+3\dot n\cdot\underbrace{(n-1)}_{\leq n}\cdot\underbrace{\mu_2^2}_{=\big(\E[\xi_1^2]\big)^2\stackrel{\text{Jensen}}{\leq}\mu_4}\\
+			&\leq 4\cdot n^2\cdot\mu_4
+		\end{align*}
+		Siehe auch \textit{Turkish Journal of Mathematics, Moment equalities via integer partitions} (2014) von Dietmar Ferger für mehr Hintergründe.
+	\end{proof}
+
+	Mit diesem Lemma folgt:
+	\begin{align*}
+		\frac{1}{n^2}\cdot\E\left[\left|\sum\limits_{i=\lceil n\cdot t\rceil+1}^{\lceil n\cdot s\rceil}\xi_i\right|^4\right]
+		&=
+		\frac{1}{n^2}\cdot\E\left[\left|\sum\limits_{i=1}^{\lceil n\cdot s\rceil-\lceil n\cdot t\rceil}\xi_{i+\lceil n\cdot t\rceil}\right|^4\right]\\
+		&\leq
+		\frac{1}{n^2}\cdot 4\cdot\mu_4\cdot\Big(\underbrace{\lceil n\cdot s\rceil-\overbrace{\lceil n\cdot t\rceil}^{>n\cdot t-1}}_{\leq\underbrace{ n\cdot s-n\cdot t}_{=n\cdot(s-t)}+\underbrace{1}_{\stackrel{\text{2. Fall}}{\leq}n\cdot(s-t)}\leq2\cdot n\cdot(s-t)}\Big)^2\\
+		&\leq
+		\frac{1}{n^2}\cdot 4\cdot\mu_4\cdot 4\cdot n^2\cdot(s-t)^2\\
+		&=16\cdot\mu_4\cdot(s-t)^2\\
+		\implies
+		\E\Big[\big|X_n(s)-X_n(t)\big|^4\Big]
+		&\leq 27\cdot18\cdot\mu_4\cdot(s-t)^2\qquad\forall s>t\in I\\
+		&=\Big(F(s)-F(t)\Big)^2
+	\end{align*}
+
+	wobei $F(s):=\sqrt{27\cdot18\cdot\mu_4}\cdot s$. 
+	Offenbar ist $F$ stetig und streng monoton wachsend auf $I=[0,b]$.
+	Folglich ist \eqref{eqSatz7.11VorM} aus Satz \ref{satz7.11MomentenkriteriumVonKolmogoroff} erfüllt mit $\mu=4$ und $\alpha=2>1$.\nl
+	Wir haben Donsker \ref{satz7.16Donsker} gezeigt, allerdings unter der \ul{stärkeren} Voraussetzung $\E\big[\xi_1^4]<\infty$. 
+	Den allgemeinen Fall $\E[\xi_1^2]<\infty$ zeigt man mit der sogenannten \textit{Methode des Stutzens (truncation)}, 
+	vergleiche Achim Klenke (2008) \textit{Wahrscheinlichkeitstheorie}
 \end{proof}
 
 %Ferger: Ich bin mit meinem Leben ja sehr zufrieden. [...] Das anstregendste als Professor ist das Tafelwischen. Ansonsten ist der Job leicht verdientes Geld. 
@@ -3320,66 +3326,75 @@ Wir haben Donsker \ref{satz7.16Donsker} gezeigt, allerdings unter der \ul{stärk
 \setcounter{satz}{15}
 \begin{bemerkungnr}\label{bemerkung7.16Einhalb} %7.16. Einhalb
 %\begin{bemerkung}
-Unser Beweis lässt sich sofort übertragen auf Dreiecksschemata\\ $\big\lbrace\xi_{i,n}:1\leq i\leq n,n\in\N\big\rbrace$ mit $\xi_{1,n},\ldots,\xi_{n,n}$ i.i.d. $\sim H$ (verteilt nach Verteilungsfunktion $H$), wobei die Verteilungsfunktion $H$ nicht von $n$ abhängt und $\E\big[\xi_{i,n}\big]=0$ und $\E\big[\xi_{i,n}^4\big]<\infty$ und $\Var(\xi_{i,n})=1$. \nl
-Prokhorov (1956), \textit{Convergence of random processes and limit theorems in probability theory, Theory of Probability and its applications 1}, Seite 157-214, zeigt, dass auch hier die Existenz zweiter Momente $\E\big[\xi_{i,n}^2\big]<\infty$ ausreicht.
+	Unser Beweis lässt sich sofort übertragen auf Dreiecksschemata\\ 
+	$\big\lbrace\xi_{i,n}:1\leq i\leq n,n\in\N\big\rbrace$ mit $\xi_{1,n},\ldots,\xi_{n,n}$ i.i.d. $\sim H$ (verteilt nach Verteilungsfunktion $H$), 
+	wobei die Verteilungsfunktion $H$ nicht von $n$ abhängt und $\E\big[\xi_{i,n}\big]=0$ und $\E\big[\xi_{i,n}^4\big]<\infty$ und $\Var(\xi_{i,n})=1$. \nl
+	Prokhorov (1956), \textit{Convergence of random processes and limit theorems in probability theory, Theory of Probability and its applications 1},
+	Seite 157-214, zeigt, dass auch hier die Existenz zweiter Momente $\E\big[\xi_{i,n}^2\big]<\infty$ ausreicht.
 %\end{bemerkung}
 \end{bemerkungnr}
 
-Seien $(\xi_i)_{i\geq1}$ i.i.d. $\sim F$ mit $\E\big[\xi_1\big]=\mu\in\R$ und $\sigma^2:=\Var(\xi_1)\in(0,\infty)$. Dann ist Donsker \ref{satz7.16Donsker} anwendbar auf die \textbf{standardisierten Zufallsvariablen}
+Seien $(\xi_i)_{i\geq1}$ i.i.d. $\sim F$ mit $\E\big[\xi_1\big]=\mu\in\R$ und $\sigma^2:=\Var(\xi_1)\in(0,\infty)$. 
+Dann ist Donsker \ref{satz7.16Donsker} anwendbar auf die \textbf{standardisierten Zufallsvariablen}
 \begin{align*}
-\tilde{\xi}_i:=\frac{\xi_i-\mu}{\sigma},\qquad\forall i\geq1
+	\tilde{\xi}_i:=\frac{\xi_i-\mu}{\sigma},\qquad\forall i\geq1
 \end{align*}
-Beachte: Die Grenzverteilung $W$ in Satz \ref{satz7.16Donsker} (also das Wiener-Maß) hängt \ul{nicht} von $F$ ab. Die Grenzverteilung ist also invariant unter $F$. Deshalb heißt Satz \ref{satz7.16Donsker} auch \textbf{Invarianzprinzip}. (Andere Formulierung: \textbf{Funktionaler Grenzwertsatz})\nl
-Sei $h\colon C\big([0,b]\big)\to\R$ messbar und $W$-fast überall stetig. Dann gilt wegen Satz \ref{satz7.16Donsker} und \ref{satz4.10ContinuousMappingTheorem}:
+Beachte: Die Grenzverteilung $W$ in Satz \ref{satz7.16Donsker} (also das Wiener-Maß) hängt \ul{nicht} von $F$ ab. 
+Die Grenzverteilung ist also invariant unter $F$. Deshalb heißt Satz \ref{satz7.16Donsker} auch \textbf{Invarianzprinzip}. 
+(Andere Formulierung: \textbf{Funktionaler Grenzwertsatz})\nl
+Sei $h\colon C\big([0,b]\big)\to\R$ messbar und $W$-fast überall stetig. 
+Dann gilt wegen Satz \ref{satz7.16Donsker} und \ref{satz4.10ContinuousMappingTheorem}:
 \begin{align}\label{eqUnder7.16Eins}\tag{1}
-h(X_n)\stackrel{\L}{\longrightarrow} h(B)
+	h(X_n)\stackrel{\L}{\longrightarrow} h(B)
 \end{align}
-Kennt man die Verteilung von $h(B)$ (=Funktional der Brownschen Bewegung, dazu existiert umfangreiche Literatur, z.B. Borodin und Salminen (2002), \textit{Handbook of Brownian motion}), so auch die Grenzverteilung von $h(X_n)$. Dies macht man sich in der asymptotischen Statistik zunutze. (siehe Beispiel später) Umgekehrt lässt sich oft die Grenzverteilung $h(W)$ für besonders einfache Verteilungfunktionen $F$ bestimmen.
+Kennt man die Verteilung von $h(B)$ (=Funktional der Brownschen Bewegung, dazu existiert umfangreiche Literatur, z.B. Borodin und Salminen (2002),
+\textit{Handbook of Brownian motion}), so auch die Grenzverteilung von $h(X_n)$. Dies macht man sich in der asymptotischen Statistik zunutze.
+(siehe Beispiel später) Umgekehrt lässt sich oft die Grenzverteilung $h(W)$ für besonders einfache Verteilungfunktionen $F$ bestimmen.
 \begin{align*}
-h\big(X_n\big)\stackrel{\L}{\longrightarrow}Z
-\overset{\eqref{eqUnder7.16Eins}~\&~\ref{lemma4.6Einhalb}}{\implies}
-h(B)=Z
+	h\big(X_n\big)\stackrel{\L}{\longrightarrow}Z
+	\overset{\eqref{eqUnder7.16Eins}~\&~\ref{lemma4.6Einhalb}}{\implies}
+	h(B)=Z
 \end{align*}
 Damit ist der Satz \ref{satz7.16Donsker} von Donsker auch nützlich in der Wahrscheinlichkeitstheorie.
 
 \subsection{Anwendung von Donsker in der Statistik}
 \begin{notation}
-Sei $X$ eine reelle Zufallsvariable. Dann schreibe
-\begin{align*}
-X\sim(\mu,\sigma^2):\Longleftrightarrow\E[X]=\mu\qquad\text{und}\qquad\Var(X)=\sigma^2
-\end{align*}
+	Sei $X$ eine reelle Zufallsvariable. Dann schreibe
+	\begin{align*}
+		X\sim(\mu,\sigma^2):\Longleftrightarrow\E[X]=\mu\qquad\text{und}\qquad\Var(X)=\sigma^2
+	\end{align*}
 \end{notation}
 
 Wir betrachten das \underline{Change-Point-Problem:}
 % mit diesem Problem hat Ferger seine Uni-Karriere gestartet
 $X_{1,n},\ldots,X_{n,n},n\in\N$ unabhängig mit 
 \begin{align*}
-\left\lbrace\begin{array}{cl}
-X_{i,n}\text{ i.i.d.}\sim(\mu,\sigma^2), &\falls 1\leq i\leq\tau_n\\
-X_{i,n}\text{ i.i.d.}\sim(\mu,\tau^2), &\falls \tau_n< i\leq n
-\end{array}\right.
+	\left\lbrace\begin{array}{cl}
+		X_{i,n}\text{ i.i.d.}\sim(\mu,\sigma^2), &\falls 1\leq i\leq\tau_n\\
+		X_{i,n}\text{ i.i.d.}\sim(\mu,\tau^2), &\falls \tau_n< i\leq n
+	\end{array}\right.
 \end{align*}
 wobei $\tau_n\in\lbrace1,\ldots,n\rbrace$ \ul{unbekannt} (der sogenannte \textbf{Change-point\\ (moment of change)}) 
 
 \begin{align*}
-\underbrace{X_{1,n},\ldots,X_{\tau_n,n}}_{\text{i.i.d.}\sim(\mu,\sigma^2)}\qquad\underbrace{X_{\tau_n+1,n},\ldots,X_{n,n}}_{\text{i.i.d.}\sim(\nu,\tau^2)}
+	\underbrace{X_{1,n},\ldots,X_{\tau_n,n}}_{\text{i.i.d.}\sim(\mu,\sigma^2)}\qquad\underbrace{X_{\tau_n+1,n},\ldots,X_{n,n}}_{\text{i.i.d.}\sim(\nu,\tau^2)}
 \end{align*}
 \underline{Annahmen:} $\mu,\sigma^2$ bekannt, $\nu,\tau^2$ unbekannt, $\nu>\mu$\nl
 \underline{Ziel:} Finde Test für 
 $H_0:\tau_n=n$, d.h. es hat kein Wechsel stattgefunden vs. $H_1:1\leq\tau_n<n$. Dazu betrachte
 \begin{align*}
-S_k:=S_{k,n}&:=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^k\underbrace{\frac{X_{i,n}-\mu}{\sigma}}_{=:\xi_{i,n}}&\forall& 0\leq k\leq n\\
-\E[S_k]&=0\qquad	&\forall& 0\leq k\leq\tau_n
+	S_k:=S_{k,n}&:=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^k\underbrace{\frac{X_{i,n}-\mu}{\sigma}}_{=:\xi_{i,n}}&\forall& 0\leq k\leq n\\
+	\E[S_k]&=0\qquad	&\forall& 0\leq k\leq\tau_n
 \end{align*}
 da
 \begin{align*}
-S_k&=S_{\tau_n}+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=\tau_n+1}^k\frac{X_{i,n}-\mu}{\sigma}
+	S_k&=S_{\tau_n}+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=\tau_n+1}^k\frac{X_{i,n}-\mu}{\sigma}
 \end{align*}
 folgt
 \begin{align*}
-\E[S_k]
-&=0+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=\tau_n+1}^k\frac{\overbrace{\E[X_{i,n}]}^{=\nu}-\mu}{\sigma}
-=\frac{1}{\sqrt{n}}\cdot\big(k-\tau_n\big)\cdot\frac{\nu-\mu}{\sigma}\qquad\forall\tau_n<k\leq n
+	\E[S_k]
+	&=0+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=\tau_n+1}^k\frac{\overbrace{\E[X_{i,n}]}^{=\nu}-\mu}{\sigma}
+	=\frac{1}{\sqrt{n}}\cdot\big(k-\tau_n\big)\cdot\frac{\nu-\mu}{\sigma}\qquad\forall\tau_n<k\leq n
 \end{align*}
 %TODO Hier Plot von $(k,\E[S_k)]$ einfügen 
 %für k\leq\tau_n ist es immer 0,
@@ -3395,192 +3410,198 @@ $H_0$ verwerfen $:\Longleftrightarrow T_n:=\max\limits_{0\leq k\leq n} S_k>k_\al
 \underline{Ziel:} Bestimme kritischen Wert $k_\alpha$
 
 \begin{lemma}\label{lemma7.17}
-Sei $\underline{y}=\big(y_0,y_1,\ldots,y_n\big)\in\R^{n+1}$ und $h(\ul{y})$ der Polygonzug durch die Punkte $\left(\frac{k}{n},y_k\right)_{0\leq k\leq n}$. Dann gilt:
-\begin{enumerate}[label=(\arabic*)]
-\item $\begin{aligned}
-\max\limits_{0\leq k\leq n}y_k=\max\limits_{0\leq t\leq 1} h(\ul{y})(t)
-\end{aligned}$
-%TODO Hier  könnte man eine Skizze einfügen
-\item $\begin{aligned}
-\max\limits_{0\leq k\leq n}\big|y_k\big|=\max\limits_{0\leq t\leq 1} \big|h(\ul{y})(t)\big|
-\end{aligned}$
-\item $\begin{aligned}
-\ul{y},\ul{z}\in\R^{n+1}\implies h\big(\ul{y}+\ul{z}\big)=h\big(\ul{y}\big)+h\big(\ul{z}\big)
-\end{aligned}$
-\end{enumerate}
+	Sei $\underline{y}=\big(y_0,y_1,\ldots,y_n\big)\in\R^{n+1}$ und $h(\ul{y})$ der Polygonzug durch die Punkte $\left(\frac{k}{n},y_k\right)_{0\leq k\leq n}$. 
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\max\limits_{0\leq k\leq n}y_k=\max\limits_{0\leq t\leq 1} h(\ul{y})(t)
+		\end{aligned}$
+		%TODO Hier  könnte man eine Skizze einfügen
+		\item $\begin{aligned}
+			\max\limits_{0\leq k\leq n}\big|y_k\big|=\max\limits_{0\leq t\leq 1} \big|h(\ul{y})(t)\big|
+		\end{aligned}$
+		\item $\begin{aligned}
+			\ul{y},\ul{z}\in\R^{n+1}\implies h\big(\ul{y}+\ul{z}\big)=h\big(\ul{y}\big)+h\big(\ul{z}\big)
+		\end{aligned}$
+	\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-\underline{Zeige (1):}
-Gemäß der Zwei-Punkte-Formel gilt:
-\begin{align}\label{eqProof7.17Stern}\tag{$\ast$}
-h\big(\ul{y}\big)(t)
-&=y_{k-1}+\big(n\cdot t-(k-1)\big)\cdot\big(y_k-y_{k-1}\big)
-\qquad\forall t\in\left[\frac{k-1}{n},\frac{k}{n}\right],\forall 1\leq k\leq n
-\end{align}
-Da
-\begin{align*}
-h\big(\ul{y}\big)\left(\frac{k}{n}\right)\overset{\text{Def}}{=}y_k\qquad\forall 0\leq k\leq n
-\end{align*}
-gilt in (1) und (2) in jedem Fall "$\leq$". Umgekehrt sei $t\in[0,1]$ beliebig. Dann:
-\begin{align*}
-\exists 1\leq k\leq n:t\in\left[\frac{k-1}{n},\frac{k}{n}\right]
-\end{align*}
-\underline{Fall 1:} $y_k\geq y_{k-1}$\\
-Dann ist $h\big(\ul{y}\big)$ monoton wachsend auf $\left[\frac{k-1}{n},\frac{k}{n}\right]$ und es gilt
-\begin{align*}
-h\big(\ul{y}\big)(t)\leq h\big(\ul{y}\big)\left(\frac{k}{n}\right)=y_k\leq\max\limits_{0\leq k\leq n} y_k
-\end{align*}
-\underline{Fall 2:} $y_k<y_{k-1}$\\
-Dann ist $h\big(\ul{y}\big)$ monoton fallend und es gilt
-\begin{align*}
-h\big(\ul{y}\big)(t)\leq h\big(\ul{y}\big)\left(\frac{k-1}{n}\right)=y_{k-1}\leq\max\limits_{0\leq k\leq n}y_k
-\end{align*}
+	\underline{Zeige (1):}
+	Gemäß der Zwei-Punkte-Formel gilt:
+	\begin{align}\label{eqProof7.17Stern}\tag{$\ast$}
+		h\big(\ul{y}\big)(t)
+		&=y_{k-1}+\big(n\cdot t-(k-1)\big)\cdot\big(y_k-y_{k-1}\big)
+		\qquad\forall t\in\left[\frac{k-1}{n},\frac{k}{n}\right],\forall 1\leq k\leq n
+	\end{align}
+	Da
+	\begin{align*}
+		h\big(\ul{y}\big)\left(\frac{k}{n}\right)\overset{\text{Def}}{=}y_k\qquad\forall 0\leq k\leq n
+	\end{align*}
+	gilt in (1) und (2) in jedem Fall "$\leq$". Umgekehrt sei $t\in[0,1]$ beliebig. Dann:
+	\begin{align*}
+		\exists 1\leq k\leq n:t\in\left[\frac{k-1}{n},\frac{k}{n}\right]
+	\end{align*}
+	\underline{Fall 1:} $y_k\geq y_{k-1}$\\
+	Dann ist $h\big(\ul{y}\big)$ monoton wachsend auf $\left[\frac{k-1}{n},\frac{k}{n}\right]$ und es gilt
+	\begin{align*}
+		h\big(\ul{y}\big)(t)\leq h\big(\ul{y}\big)\left(\frac{k}{n}\right)=y_k\leq\max\limits_{0\leq k\leq n} y_k
+	\end{align*}
+	\underline{Fall 2:} $y_k<y_{k-1}$\\
+	Dann ist $h\big(\ul{y}\big)$ monoton fallend und es gilt
+	\begin{align*}
+		h\big(\ul{y}\big)(t)\leq h\big(\ul{y}\big)\left(\frac{k-1}{n}\right)=y_{k-1}\leq\max\limits_{0\leq k\leq n}y_k
+	\end{align*}
 
-\underline{Zeige (2):} In Fall 1 gilt:
-\begin{align*}
-h\big(\ul{y}\big)(t)&\leq y_k\leq\big|y_k\big|\leq\max\limits_{0\leq k\leq n}\big|y_k\big|\\
-h\big(\ul{y}\big)(t)&\geq y_{k-1}\geq-\big|y_{k-1}\big|\geq-\max\limits_{0\leq k\leq n}\big|y_k\big|\\
-\implies
-\Big|h\big(\ul{y}\big)(t)\Big|&\leq\max\limits_{0\leq k\leq n}\big| y_k\big|
-\end{align*}
-Fall 2 analog. Somit folgt (2).\nl
-\underline{Zeige (3):}\\
-Folgt aus \eqref{eqProof7.17Stern}.
+	\underline{Zeige (2):} In Fall 1 gilt:
+	\begin{align*}
+		h\big(\ul{y}\big)(t)&\leq y_k\leq\big|y_k\big|\leq\max\limits_{0\leq k\leq n}\big|y_k\big|\\
+		h\big(\ul{y}\big)(t)&\geq y_{k-1}\geq-\big|y_{k-1}\big|\geq-\max\limits_{0\leq k\leq n}\big|y_k\big|\\
+		\implies
+		\Big|h\big(\ul{y}\big)(t)\Big|&\leq\max\limits_{0\leq k\leq n}\big| y_k\big|
+	\end{align*}
+	Fall 2 analog. Somit folgt (2).\nl
+	\underline{Zeige (3):}\\
+	Folgt aus \eqref{eqProof7.17Stern}.
 \end{proof}
 
 Es folgt aus dem Lemma \ref{lemma7.17} (1) (mit $y_k=S_k$):
 \begin{align*}
-T_n:&=\max\limits_{0\leq k\leq n} S_k
-\overset{\ref{lemma7.17}}=
-\max\limits_{0\leq t\leq 1}\underbrace{h\big(S_0,\ldots,S_n\big)}_{\stackrel{\text{Def}}{=}X_n=\text{ Partialsummenproz.}}(t)\\
-T_n
-&=\sup\limits_{0\leq t\leq 1} X_n(t)=M(X_n),\text{ wobei}\\
-M&:C\big([0,1]\big)\to\R,\qquad M(f):=\sup\limits_{0\leq t\leq 1} f(t),\qquad\forall C\big([0,1]\big)
+	T_n:&=\max\limits_{0\leq k\leq n} S_k
+	\overset{\ref{lemma7.17}}=
+	\max\limits_{0\leq t\leq 1}\underbrace{h\big(S_0,\ldots,S_n\big)}_{\stackrel{\text{Def}}{=}X_n=\text{ Partialsummenproz.}}(t)\\
+	T_n
+	&=\sup\limits_{0\leq t\leq 1} X_n(t)=M(X_n),\text{ wobei}\\
+	M&:C\big([0,1]\big)\to\R,\qquad M(f):=\sup\limits_{0\leq t\leq 1} f(t),\qquad\forall C\big([0,1]\big)
 \end{align*}
 Da 
 \begin{align*}
-\Big|M(f)-M(g)\Big|\overset{(!)}{\leq}\sup\limits_{0\leq t\leq 1}\Big|f(t)-g(t)\Big|=d(f,g)
+	\Big|M(f)-M(g)\Big|\overset{(!)}{\leq}\sup\limits_{0\leq t\leq 1}\Big|f(t)-g(t)\Big|=d(f,g)
 \end{align*}
 ist $M$ stetig auf $C\big([0,1]\big)$ folgt mit Donsker \ref{bemerkung7.16Einhalb} und dem CMT \ref{satz4.10ContinuousMappingTheorem}:
 \begin{align*}
-T_n=M(X_n)\stackrel{\L}{\longrightarrow} M(B)=\sup\limits_{0\leq t\leq 1} B(t),~\text{\ul{falls} } H_0\text{ gilt}
+	T_n=M(X_n)\stackrel{\L}{\longrightarrow} M(B)=\sup\limits_{0\leq t\leq 1} B(t),~\text{\ul{falls} } H_0\text{ gilt}
 \end{align*}
 Es gilt (siehe z.B. Borodin + Salminen):
 \begin{align*}
-\sup\limits_{0\leq t\leq 1}B(t)
-\overset{\L}&=
-\big|\mathcal{N}(0,1)\big|\quad\Big(=|Z|,~Z\sim\mathcal{N}(0,1)\Big)\\
-&\implies
-\underbrace{\P_{H_0}\big(T_n>x\big)}_{=1-\P\big(T_n\leq x\big)}\stackrel{n\to\infty}{\longrightarrow}\P\big(|Z|>x\big)
-=1-\P\big(|Z|\leq x\big)\qquad\forall x\in\R,
+	\sup\limits_{0\leq t\leq 1}B(t)
+	\overset{\L}&=
+	\big|\mathcal{N}(0,1)\big|\quad\Big(=|Z|,~Z\sim\mathcal{N}(0,1)\Big)\\
+	&\implies
+	\underbrace{\P_{H_0}\big(T_n>x\big)}_{=1-\P\big(T_n\leq x\big)}\stackrel{n\to\infty}{\longrightarrow}\P\big(|Z|>x\big)
+	=1-\P\big(|Z|\leq x\big)\qquad\forall x\in\R,
 \end{align*}
 da Verteilungsfunktion von $|Z|$ stetig auf ganz $\R$, denn:
 \begin{align*}
-\P\big(|Z|>x\big)
-\stackrelnew{Z\stackeq{\L}-Z}{\text{Sym}}{=}
-2\cdot\big(1-\Phi(x)\big)
+	\P\big(|Z|>x\big)
+	\stackrelnew{Z\stackeq{\L}-Z}{\text{Sym}}{=}
+	2\cdot\big(1-\Phi(x)\big)
 \end{align*}
 Also folgt
 \begin{align*}
-\P\big(T_n>k_\alpha\big)\stackrel{n\to\infty}{\longrightarrow}2\cdot\big(1-\Phi(k_\alpha)\big)\stackeq{!}\alpha\\
-2\cdot\big(1-\Phi(k_\alpha)\big)=\alpha
-\Longleftrightarrow 1-\frac{\alpha}{2}=\Phi(k_\alpha)\\
-\Longleftrightarrow k_\alpha=\Phi^{-1}\left(1-\frac{\alpha}{2}\right)=: u_{1-\frac{\alpha}{2}}
+	\P\big(T_n>k_\alpha\big)\stackrel{n\to\infty}{\longrightarrow}2\cdot\big(1-\Phi(k_\alpha)\big)\stackeq{!}\alpha\\
+	2\cdot\big(1-\Phi(k_\alpha)\big)=\alpha
+	\Longleftrightarrow 1-\frac{\alpha}{2}=\Phi(k_\alpha)\\
+	\Longleftrightarrow k_\alpha=\Phi^{-1}\left(1-\frac{\alpha}{2}\right)=: u_{1-\frac{\alpha}{2}}
 \end{align*}
 Es folgt: Der Test $H_0$ verwerfen $:\Longleftrightarrow T_n> u_{1-\frac{\alpha}{2}}$\\ %\alpha/2-Quantil der Standardnormalverteilung
 ist ein \textbf{asymptotischer Niveau-$\alpha$-Test für $H_0$}, d.h.
 \begin{align*}
-\limn\P_{H_0}\big(H_0\text{ wird verworfen}\big)=\alpha\qquad\forall \alpha\in(0,1)
+	\limn\P_{H_0}\big(H_0\text{ wird verworfen}\big)=\alpha\qquad\forall \alpha\in(0,1)
 \end{align*}
 
 Falls nur bekannt, dass $\nu\neq\mu$, so modifiziere obigen Test zu\\
 $H_0$ verwerfen $:\Longleftrightarrow\hat{T}_n:=\max\limits_{0\leq k\leq n}\big|S_k\big|>c_\alpha$\\
 Aus \ref{lemma7.17} (2) folgt:
 \begin{align*}
-\hat{T}_n=\sup\limits_{0\leq t\leq 1}\big|X_n(t)\big|=\Vert X_n\Vert_\infty=:\hat{M}(X_n)
+	\hat{T}_n=\sup\limits_{0\leq t\leq 1}\big|X_n(t)\big|=\Vert X_n\Vert_\infty=:\hat{M}(X_n)
 \end{align*}
 Da $\hat{M}$ stetig auf $C\big([0,1]\big)$, folgt analog wie oben
 \begin{align*}
-\hat{T}_n=\hat{M}(X_n)\stackrel{\L}{\longrightarrow}\hat{M}(B)=\sup\limits_{0\leq t\leq 1}\big|B(t)\big|
+	\hat{T}_n=\hat{M}(X_n)\stackrel{\L}{\longrightarrow}\hat{M}(B)=\sup\limits_{0\leq t\leq 1}\big|B(t)\big|
 \end{align*}
 Es gilt (vergleiche z.B. Shorak und Wellner (1986) \textit{Empirical Processes with applications to statistics}):
 \begin{align*}
-H(x):&=\P\left(\sup\limits_{0\leq t\leq 1}\big|B(t)\big|\leq x\right)
-=\left\lbrace\begin{array}{cl}
-\frac{4}{\pi}\cdot\sum\limits_{k\in\N_0}\frac{(-1)^k}{2\cdot k+1}\cdot\exp\left(-\frac{(2\cdot k+1)^2\cdot\pi^2}{8\cdot x^2}\right), &\falls x>0\\
-0, &\falls x\leq 0
-\end{array}\right.
+	H(x):&=\P\left(\sup\limits_{0\leq t\leq 1}\big|B(t)\big|\leq x\right)
+	=\left\lbrace\begin{array}{cl}
+		\frac{4}{\pi}\cdot\sum\limits_{k\in\N_0}\frac{(-1)^k}{2\cdot k+1}\cdot\exp\left(-\frac{(2\cdot k+1)^2\cdot\pi^2}{8\cdot x^2}\right), &\falls x>0\\
+		0, &\falls x\leq 0
+	\end{array}\right.
 \end{align*}
 Ferner ist $H$ stetig auf $\R$ und streng monoton wachsend auf $(0,\infty)$. Somit erhalten wir (analog wie oben)
 \begin{align*}
-\limn\P_{H_0}\Big(H_0\text{ wird verworfen}\Big)=\alpha\qquad\forall\alpha\in(0,1)
+	\limn\P_{H_0}\Big(H_0\text{ wird verworfen}\Big)=\alpha\qquad\forall\alpha\in(0,1)
 \end{align*}
 \ul{falls} man $c_\alpha:=H^{-1}(1-\alpha)$ wählt.\\
-Natürlich ist die Annahme $\mu$ und $\sigma^2$ beide bekannt sehr restriktiv. Falls beide Parameter unbekannt, so ersetze sie durch Schätzer (sogenannte \textbf{Plug-in-Methode}).
+Natürlich ist die Annahme $\mu$ und $\sigma^2$ beide bekannt sehr restriktiv. 
+Falls beide Parameter unbekannt, so ersetze sie durch Schätzer (sogenannte \textbf{Plug-in-Methode}).
 \begin{align*}
-\overline{X}_n:=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i,\qquad 
-\hat{\sigma}_n^2:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big(X_i-\overline{X}_n\big)^2
+	\overline{X}_n:=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i,\qquad 
+	\hat{\sigma}_n^2:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big(X_i-\overline{X}_n\big)^2
 \end{align*}
 Wir wissen
 \begin{align*}
-\big(\overline{X}_n,\sigma_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\hat{\sigma}^2\big)\qquad\P_{H_0}\text{-f.s.}
+	\big(\overline{X}_n,\sigma_n^2\big)\stackrel{n\to\infty}{\longrightarrow}\big(\mu,\hat{\sigma}^2\big)\qquad\P_{H_0}\text{-f.s.}
 \end{align*}
-Beachte: Es gibt auch ein starkes Gesetz der großen Zahlen (SGGZ bzw. auf englisch SLLN) für Dreiecksschemata (arrays), siehe z.B. Chow und Teicher (1997) \textit{Probability Theory - Independence, Interchangeability, Martingales}\nl
+Beachte: Es gibt auch ein starkes Gesetz der großen Zahlen (SGGZ bzw. auf englisch SLLN) für Dreiecksschemata (arrays), 
+siehe z.B. Chow und Teicher (1997) \textit{Probability Theory - Independence, Interchangeability, Martingales}\nl
 Das Ersetzen von $\mu$ und $\sigma^2$ in der Statistik
 \begin{align*}
-T_n=\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\left|\sum\limits_{i=1}^k\frac{X_i-\mu}{\sigma}\right|
+	T_n=\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\left|\sum\limits_{i=1}^k\frac{X_i-\mu}{\sigma}\right|
 \end{align*}
 liefert
 \begin{align*}
-T_n^\ast
-:&=\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\cdot\left|\sum\limits_{i=1}^k \big(X_{i,n}-\overline{X}_n\big)\right|
-\mit \hat{\sigma}=\sqrt{\hat{\sigma}^2}
+	T_n^\ast
+	:&=\frac{1}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\frac{1}{\sqrt{n}}\cdot\left|\sum\limits_{i=1}^k \big(X_{i,n}-\overline{X}_n\big)\right|
+	\mit \hat{\sigma}=\sqrt{\hat{\sigma}^2}
 \end{align*}
 
 \begin{satz}\label{satz7.18}
-Unter $H_0$ gilt:
-\begin{align*}
-T_n^\ast\stackrel{\L}{\longrightarrow}\sup\limits_{0\leq t\leq 1}\big|B(t)-t\cdot B(1)\big|
-\end{align*}
+	Unter $H_0$ gilt:
+	\begin{align*}
+		T_n^\ast\stackrel{\L}{\longrightarrow}\sup\limits_{0\leq t\leq 1}\big|B(t)-t\cdot B(1)\big|
+	\end{align*}
 \end{satz}
 
 \begin{proof}
-\begin{align*}
-X_i-\overline{X}_n
-&=X_i-\frac{1}{n}\cdot\sum\limits_{j=1}^n X_j
-=\sigma\bigg(\underbrace{\frac{X_i-\mu}{\sigma}}_{=:Z_i}-\underbrace{\frac{1}{n}\cdot\sum\limits_{j=1}^n\frac{X_j-\mu}{\sigma}}_{=:\overline{Z}_n}\bigg)\\
-\implies 
-T_n^\ast&=\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\left|\frac{1}{n\sqrt{n}}\cdot\sum\limits_{i=1}^k\big(Z_i-\overline{Z}_n\big)\right|\\
-&=\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\left|S_k-\frac{k}{n}\cdot S_n\right|\\
-\overset{\ref{lemma7.17}(2)+(3)}&=
-\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq t\leq 1}\Big|\underbrace{X_n(t)-t\cdot X_n(1)}_{=:Y_n(t)}\Big|
-\end{align*}
-wobei $X_n$ der Partialsummenprozess zu $Z_1,\ldots,Z_n$ ist (= Polygonzug durch $\left(\frac{k}{n},S_k\right)$) und $S_k:=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^k Z_i$.\nl
-Betrachte die Abbildung
-\begin{align*}
-&h:C\big([0,1]\big)\to C\big([0,1]\big),\qquad f \mapsto h(f):[0,1]\to\R,\qquad t\mapsto h(f)(t):=f(t)-t\cdot f(1)\\
-&\implies Y_n=h(X_n)
-\end{align*}
-Wir zeigen nun, dass $h$ stetig ist.
-\begin{align*}
-\big|h(f)(t)-h(g)(t)\big|
-&=\Big|f(t)-t\cdot f(1)-\big(g(t)-t\cdot g(1)\big)\Big|\\
-&=\Big|f(t)-g(t)-t\cdot\big(f(1)-g(1)\big)\Big|\\
-\overset{\text{DU}}&\leq
-\big|f(t)-g(t)\big|+\underbrace{|t|}_{\leq 1}\cdot\big|f(1)-g(1)\big|\\
-&\leq
-2\cdot d(f,g)\qquad\forall t\in[0,1]\\
-\implies d\big(h(f),h(g)\big)&\leq 2\cdot d(f,g)\qquad\forall f,g\in C\big([0,1]\big)
-\end{align*}
-Also ist $h$ stetig auf $C\big([0,1]\big)$. Dann folgt aus Bemerkung  \ref{bemerkung7.16Einhalb} + CMT \ref{satz4.10ContinuousMappingTheorem}:
-\begin{align*}
-Y_n=h(X_n)\stackrel{\L}{\longrightarrow} h(B)=:B_0\text{ in }C\big([0,1]\big)
-\end{align*}
-wobei $B_0(t)\overset{\text{Def}}{=}B(t)-t\cdot B(1)$.
-\begin{align*}
-\max\limits_{0\leq t\leq 1}\big|Y_n(t)\big|=\hat{M}(Y_n)=\Vert Y_n\Vert_\infty\stackrelnew{\ref{satz4.10ContinuousMappingTheorem}}{\L}{\longrightarrow}\Vert B_0\Vert=\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|
-\end{align*}
+	\begin{align*}
+		X_i-\overline{X}_n
+		&=X_i-\frac{1}{n}\cdot\sum\limits_{j=1}^n X_j
+		=\sigma\bigg(\underbrace{\frac{X_i-\mu}{\sigma}}_{=:Z_i}-\underbrace{\frac{1}{n}\cdot\sum\limits_{j=1}^n\frac{X_j-\mu}{\sigma}}_{=:\overline{Z}_n}\bigg)\\
+		\implies 
+		T_n^\ast&=\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\left|\frac{1}{n\sqrt{n}}\cdot\sum\limits_{i=1}^k\big(Z_i-\overline{Z}_n\big)\right|\\
+		&=\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq k\leq n}\left|S_k-\frac{k}{n}\cdot S_n\right|\\
+		\overset{\ref{lemma7.17}(2)+(3)}&=
+		\frac{\sigma}{\hat{\sigma}_n}\cdot\max\limits_{0\leq t\leq 1}\Big|\underbrace{X_n(t)-t\cdot X_n(1)}_{=:Y_n(t)}\Big|
+	\end{align*}
+	wobei $X_n$ der Partialsummenprozess zu $Z_1,\ldots,Z_n$ ist (= Polygonzug durch $\left(\frac{k}{n},S_k\right)$) und 
+	$S_k:=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^k Z_i$.\nl
+	Betrachte die Abbildung
+	\begin{align*}
+		&h:C\big([0,1]\big)\to C\big([0,1]\big),\qquad f \mapsto h(f):[0,1]\to\R,\qquad t\mapsto h(f)(t):=f(t)-t\cdot f(1)\\
+		&\implies Y_n=h(X_n)
+	\end{align*}
+	Wir zeigen nun, dass $h$ stetig ist.
+	\begin{align*}
+		\big|h(f)(t)-h(g)(t)\big|
+		&=\Big|f(t)-t\cdot f(1)-\big(g(t)-t\cdot g(1)\big)\Big|\\
+		&=\Big|f(t)-g(t)-t\cdot\big(f(1)-g(1)\big)\Big|\\
+		\overset{\text{DU}}&\leq
+		\big|f(t)-g(t)\big|+\underbrace{|t|}_{\leq 1}\cdot\big|f(1)-g(1)\big|\\
+		&\leq
+		2\cdot d(f,g)\qquad\forall t\in[0,1]\\
+		\implies d\big(h(f),h(g)\big)&\leq 2\cdot d(f,g)\qquad\forall f,g\in C\big([0,1]\big)
+	\end{align*}
+	Also ist $h$ stetig auf $C\big([0,1]\big)$. Dann folgt aus Bemerkung  \ref{bemerkung7.16Einhalb} + CMT \ref{satz4.10ContinuousMappingTheorem}:
+	\begin{align*}
+		Y_n=h(X_n)\stackrel{\L}{\longrightarrow} h(B)=:B_0\text{ in }C\big([0,1]\big)
+	\end{align*}
+	wobei $B_0(t)\overset{\text{Def}}{=}B(t)-t\cdot B(1)$.
+	\begin{align*}
+		\max\limits_{0\leq t\leq 1}\big|Y_n(t)\big|=\hat{M}(Y_n)=\Vert Y_n\Vert_\infty
+		\stackrelnew{\ref{satz4.10ContinuousMappingTheorem}}{\L}{\longrightarrow}
+		\Vert B_0\Vert=\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|
+	\end{align*}
 	Da $\frac{\sigma}{\hat{\sigma}_n}\stackrel{\P}{\longrightarrow}1$, liefert \ref{beisp4.18}(3):
 	\begin{align*}
 		T_n^\ast\stackrel{\L}{\longrightarrow}\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|
@@ -3592,7 +3613,7 @@ wobei $B_0(t)\overset{\text{Def}}{=}B(t)-t\cdot B(1)$.
 	\begin{align*}
 		B_0(t):=B(t)-t\cdot B(1)\qquad\forall t\in[0,1]
 	\end{align*}
-h	eißt \textbf{Brownsche Brücke}.
+	heißt \textbf{Brownsche Brücke}.
 \end{definition}
 
 %TODO Hier könnte man eine Skizze einfügen
@@ -3875,3 +3896,159 @@ Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stoc
 		Dies ist ein Widerspruch!
 	\end{enumerate}
 \end{bemerkungnr}
+
+%TODO 2x Skizze einfügen
+%links: $\tau$ ist wohl-separiert
+%rechts: $\tau$ eindeutig, aber nicht wohl-separiert
+
+\begin{satz}\label{satz8.3}
+	Seien $f,f_n,n\in\N$ aus $C(\R)$, $\tau_n\in A(f_n)\neq\emptyset~\forall n\geq N_0\in\N$ 
+	(also $\tau_n$ ist eine Minimalstelle, ab einem gewissen Zeitpunkt $N_0$.)
+	und $\tau\in A(f)$ sei wohl-separiert.
+	Falls
+	\begin{align}\label{eqSatz8.3_1}\tag{1}
+		\big\Vert f_n-f\big\Vert\overset{\text{Def}}{=}\sup\limits_{t\in\R}\big|f_n(t)-f(t)\big|\overset{n\to\infty}{\longrightarrow}0
+	\end{align}
+	so folgt
+	\begin{align*}
+		\tau_n\overset{n\to\infty}{\longrightarrow}\tau
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Sei $0<\varepsilon\overset{\text{oBdA}}{\in}\Q$. Es folgt:
+	\begin{align*}
+		s(\varepsilon)&:=\inf\limits\big\lbrace f(t):|t-\tau|\geq\varepsilon\big\rbrace
+		\overset{\text{Def wohl-sep}}{>}
+		f(\tau)\\
+		\implies
+		\delta&:=\delta(\varepsilon):=\frac{1}{3}\cdot\big(s(\varepsilon)-f(\tau)\big)>0\\
+		\overset{\eqref{eqSatz8.3_1}}{\implies}
+		\exists n_0&=n_0(\delta)\in\N:\forall n\geq n_0:
+		\Vert f_n-f\Vert\leq\delta
+	\end{align*}
+	Für alle $n\geq\max\limits(N_0,n_0)$ gilt:\\
+	Falls $t\in\R$ mit $|t-\tau|\geq\varepsilon$, so folgt:
+	\begin{align*}
+		f_n(t)-f_n(\tau)
+		&=\underbrace{f_n(t)-f(t)}_{\geq\underbrace{-\underbrace{\Vert f_n-f\Vert}_{\leq\delta}}_{\geq-\delta}}+\underbrace{\underbrace{f(t)}_{\geq s(\varepsilon)}-f(\tau)}_{\geq s(\varepsilon)-f(\tau)=3\delta}+\underbrace{f(\tau)-f_n(\tau)}_{\geq-\delta}\\
+		&\geq-\delta+3\cdot\delta-\delta\\
+		&=\delta>0
+	\end{align*}
+	Es folgt
+	\begin{align}\label{eqProofSatz8.3Stern}\tag{$\ast$}
+		f_n(t)>f_n(\tau)\qquad\forall t\in\R\mit|t-\tau|\geq\varepsilon
+	\end{align}
+	Folglich gilt $|\tau_n-\tau|<\varepsilon$, denn sonst folgte aus \eqref{eqProofSatz8.3Stern}, dass
+	$f_n(\tau_n)>f_n(\tau)$ im Widerspruch zu $\tau_n$ ist Minimalstelle von $f_n$.\\
+	Somit gezeigt:
+	\begin{align*}
+		\forall\varepsilon\in\Q\cap(0,\infty):\exists m_0=m_0(\varepsilon):=\max\limits(N_0,n_0):\forall n\geq m_0:|t_n-\tau|<\varepsilon
+	\end{align*}
+\end{proof}
+
+Satz 8.3 lässt sich problemlos von $\R$ auf offene Intervalle $I=(a,b)$ übertragen.\nl
+Für kompakte Intervalle $I=[a,b]$, $a<b\in\R$ muss $\tau$ nur eindeutig sein.
+Es gilt:
+
+\begin{satz}\label{satz8.4}
+	Sei also $I=[a,b]$ kompaktes Intervall und seien $f,f_n,n\in\N$ aus $C(I)$. 
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			A(f_n)\neq\emptyset
+		\end{aligned}$
+		\item Falls $\tau$ \underline{eindeutige} Minimalstelle von $f$ ist und falls
+		\begin{align*}
+			\Vert f_n-f\Vert_I:=\sup\limits_{t\in I}\big|f_n(t)-f(t)\big|\overset{n\to\infty}{\longrightarrow}0
+		\end{align*}
+		so gilt für \underline{jede} Auswahl $\tau_n\in A(f)$:
+		$\tau_n\overset{n\to\infty}{\longrightarrow}\tau$
+	\end{enumerate}
+\end{satz}
+
+%Ferger: "In irgendeinem der Seminarräumen ist mal eine Tafel von der Wand gefallen. Und ich möchte jetzt nicht unter so einer Tafel begraben liegen.
+% Vielleicht ist das für einen Professor ein schöner Tod. Aber bitte jetzt noch nicht."
+% "Ich bin ja von Natur aus etwas ängstlich. Es gab da mal so ein lustiges Lied und da singt der Sänger: "Leute seid nicht feige, lasst mich ...""
+
+\begin{proof}
+	\underline{Zeige (1):}\\
+	Folgt, da jede stetige Funktion auf einem Kompaktum das Infimum annimmt.\nl
+	\underline{Zeige (2):}\\
+	$\tau$ ist wohl-separiert auf $I$, denn: 
+	Angenommen, es wäre nicht so, also angenommen
+	\begin{align*}
+		\exists0<\varepsilon\in\Q:\inf\limits\big\lbrace f(t):t\in I:|t-\tau|\geq\varepsilon\big\rbrace=f(\tau)
+	\end{align*}
+	Die Menge $K_\varepsilon:=\lbrace t\in I:|t-\tau|\geq\varepsilon\rbrace$ ist kompakt.  
+	Weil $f$ stetig ist, nimmt $f$ auf $K_\varepsilon$ ihr Infimum an, d.h.
+	\begin{align*}
+		\exists\sigma\in I:|\sigma-\tau|\geq\varepsilon\mit f(\sigma)=\inf\limits
+		\big\lbrace f(t):t\in I:|t-\tau|\geq\varepsilon\big\rbrace
+		=f(\tau)
+	\end{align*}
+	Also ist $\sigma$ eine \underline{weitere} Minimalstelle von $f$ (denn $\sigma$ und $\tau$ haben positiven Abstand zueinander) im Widerspruch zur Eindeutigkeit von $\tau$.\\
+	Jetzt weiter wie im Beweis von Satz \ref{satz8.3}.
+\end{proof}
+
+Es ergeben sich nun mühelos Argmin-Theoreme für fast sichere Konvergenz:
+
+\begin{satz}\label{satz8.5}
+	Seien $M,M_n,n\in\N$ stochastische Prozesse über $(\Omega,\A,\P)$ mit Pfaden in $C(\R)$.
+	Es gelte:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\tau\in A(M)
+		\end{aligned}$ f.s. für eine Zufallsvariable $\tau$
+		\item $\begin{aligned}
+			\inf\limits\big\lbrace M(t):|t-\tau|\geq\varepsilon\big\rbrace>M(\tau)\text{ f.s.}\qquad\forall 0<\varepsilon\in\Q
+		\end{aligned}$
+		\item $\begin{aligned}
+			\big\Vert M_n-M\big\Vert\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}
+		\end{aligned}$
+	\end{enumerate}
+	Dann gilt für jede Folge $(\tau_n)_{n\in\N}$ von Zufallsvariablen mit $\tau_n\in A(M_n)$ f.s.:
+	$\tau_n\overset{n\to\infty}{\longrightarrow}\tau$ f.s.
+\end{satz}
+
+\begin{proof}
+	Setze
+	\begin{align*}
+		\Omega_0:=\underbrace{\Big\lbrace\omega\in\Omega:\tau(\omega)\in A\big(M(\cdot,\omega)\big)\Big\rbrace}_{=:\big\lbrace\tau\in A(M)\big\rbrace\text{ Einsmenge wg (1)}}
+		&\cap\bigcap\limits_{0<\varepsilon\in\Q}
+		\underbrace{\Big\lbrace\inf\limits\big\lbrace M(t):|t-\tau|\geq\varepsilon\big\rbrace>M(\tau)\Big\rbrace}_{\text{Einsmenge wg. (2)}}\\
+		&\cap\underbrace{\Big\lbrace\Vert M_n-M\Vert\overset{n\to\infty}{\longrightarrow}0\Big\rbrace}_{\text{Einsmenge wg (3)}}
+		\cap\bigcap\limits_{n\geq1}\underbrace{\Big\lbrace\tau_n\in A(M_n)\Big\rbrace}_{\text{Einsmenge nach Vor.}}
+	\end{align*}
+	Erinnerung: Abzählbare Schnitte von Einsmengen sind Einsmengen.\\
+	Dann gilt $\P(\Omega_0)=1$. 
+	Da $\Omega_0\overset{\ref{satz8.3}}{\subseteq}\big\lbrace\tau_n\overset{n\to\infty}{\longrightarrow}\tau\big\rbrace$, folgt die Behauptung.
+\end{proof}
+
+Analog erhält man mit Satz \ref{satz8.4}:
+
+\begin{satz}\label{satz8.6}
+	Seien $M,M_n,n\in\N$ stochastische Prozesse über $(\Omega,\A,\P)$ mit Pfaden in $C(I)$,
+	wobei $I$ kompaktes Intervall ist.
+	Es gelte:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Es gibt eine Zufallsvariable $\tau$, die f.s. eindeutige Minimalstelle von $M$ ist.
+		\item $\begin{aligned}
+			\Vert M_n-M\Vert_I\overset{n\to\infty}{\longrightarrow}0
+		\end{aligned}$ f.s.
+	\end{enumerate}
+	Dann gilt für jede Folge $(\tau_n)_{n\in\N}$ von Zufallsvariablen mit $\tau_n\in A(M_n)$ f.s.:
+	$\tau_n\overset{n\to\infty}{\longrightarrow}\tau$ f.s.
+\end{satz}
+
+\begin{proof}
+	Setze
+	\begin{align*}
+		 \Omega_0&:=\lbrace\tau\text{ ist eindeutige Minimalst. v. }M\rbrace
+		 \cap\Big\lbrace\Vert M_n-M\Vert_I\overset{n\to\infty}{\longrightarrow}0\Big\rbrace
+		 \cap\bigcap\limits_{n\geq1}\Big\lbrace\tau_n\in A(M_n)\Big\rbrace\\
+		 &\implies\P(\Omega_0)=1
+	\end{align*}		
+	Da $\Omega_0\overset{\ref{satz8.4}}{\subseteq}\Big\lbrace\tau_n\overset{n\to\infty}{\longrightarrow}\tau\Big\rbrace$, folgt die Behauptung.
+\end{proof}
+
