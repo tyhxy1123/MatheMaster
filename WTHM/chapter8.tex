@@ -33,9 +33,9 @@ Zur Erinnerung:
 
 \begin{bemerkung}\
 	\begin{itemize}
-		\item Sei $\P_y$ das von $Y$ \textbf{induzierte} Maß in $\M_b(\R^d)$, d.h.
+		\item Sei $\P_Y$ das von $Y$ \textbf{induzierte} Maß in $\M_b(\R^d)$, d.h.
 		\begin{align*}
-			P_y(B):=\P(Y\in B):=\P\big(\lbrace\omega\in\Omega:B(\omega)\in B\rbrace\big)\qquad\forall B\in\B\big(\R^d\big)
+			\P_Y(B):=\P(Y\in B):=\P\big(\lbrace\omega\in\Omega:B(\omega)\in B\rbrace\big)\qquad\forall B\in\B\big(\R^d\big)
 		\end{align*}
 		Dann gilt:
 		\begin{align}\label{eqBemerkungChapter8}\tag{$\ast$}
@@ -63,7 +63,10 @@ Zur Erinnerung:
 		\end{align*}
 		Also: Schwache Konvergenz der Maße bedeutet punktweise Konvergenz der Fouriertransformation.
 		\item Wenn $\hat{\mu}_n(\xi)\overset{n\to\infty}{\longrightarrow}\phi(\xi)$ $\forall\xi\in\R^d$ und $\phi:\R^n\to\R$ ist stetig bei $\xi=0$, 
-		dann existiert $\mu\in\M_b(\R^d)$ mit $\mu_n\overset{\w}{\longrightarrow}\mu$ und $\phi=\hat{\mu}$.\\
+		dann existiert 
+		\begin{align*}
+			\mu\in\M_b(\R^d) \mit \mu_n\overset{\w}{\longrightarrow}\mu \text{ und } \phi=\hat{\mu}.
+		\end{align*}
 		Also: Punktweise Konvergenz der Fouriertransformation \underline{und} Grenzfunktion $\phi$ ist stetig in 0 $\implies$ schwache Konvergenz der Maße.
 	\end{enumerate}
 \end{theorem}
@@ -102,12 +105,12 @@ Mit Äquivalenz \eqref{eqBemerkungChapter8} zu schwacher Konvergenz und Konverge
 	Also gilt
 	\begin{align*}
 		\hat{\mu}_n(\xi)
-		&=\int\limits_{\R^d}\exp\big(i\cdot x^T\cdot\xi\big)~\mu_n(\d x)
-		=\int\limits_{\R^d} \underbrace{f_\xi}_{\in C_b(\R^d)}\d\mu_n
-		\overset{\text{Def. schwacher Konv}}{\longrightarrow}
+		&=\int\limits_{\R^d}\exp\big(i\cdot x^T\cdot\xi\big)~\mu_n(\d x) \\
+		&=\int\limits_{\R^d} \underbrace{f_\xi}_{\in C_b(\R^d)}\d\mu_n \\
+		&\overset{\text{w}}{\longrightarrow}
 		\int\limits_{\R^d}f_\xi\d\mu\\
-		&=\int\limits_{\R^d}\exp\big(i\cdot x^T\cdot\xi\big)~\mu(\d x)
-		=\hat{\mu}(\xi)
+		&=\int\limits_{\R^d}\exp\big(i\cdot x^T\cdot\xi\big)~\mu(\d x) \\
+		&=\hat{\mu}(\xi)
 		\qquad\forall\xi\in\R^d
 	\end{align*}
 \end{proof}
@@ -133,7 +136,6 @@ Mit Äquivalenz \eqref{eqBemerkungChapter8} zu schwacher Konvergenz und Konverge
 		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+n\cdot\log\left(1+p\cdot\left(\exp\left(\frac{i\cdot u}{\sqrt{n\cdot p\cdot q}}\right)-1\right)\right) 
 	\end{align*}
 	Grenzübergang $n\to\infty$: Nutze Taylorentwicklung der Exponentialfunktion:
-	%TODO Ich konnte n und u nicht auseinanderhalten. Bitte fixen.
 	\begin{align*}
 		\exp(x)
 		&=1+x+\frac{x^2}{2}+\O\big(x^3\big)\\
@@ -141,8 +143,8 @@ Mit Äquivalenz \eqref{eqBemerkungChapter8} zu schwacher Konvergenz und Konverge
 		&=x-\frac{x^2}{2}+\O\big(x^3\big)\\
 		%\implies
 		\log\big(\Phi_{Y_n}(u)\big)
-		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+u\cdot\log\left(1+i\cdot u\cdot\sqrt{\frac{p}{n\cdot q}}-\frac{u^2}{2}\cdot\frac{1}{n\cdot q}+\O\left(n^{-\frac{3}{2}}\right)\right)\\
-		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+u\cdot\left(i\cdot u\cdot\sqrt{\frac{p}{n\cdot q}}-\frac{u^2}{2}\cdot\frac{1}{n\cdot q}+\frac{u^2}{2}\cdot\frac{p}{n\cdot q}+\O\left(n^{-\frac{3}{2}}\right)\right)\\
+		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+n\cdot\log\left(1+i\cdot u\cdot\sqrt{\frac{p}{n\cdot q}}-\frac{u^2}{2}\cdot\frac{1}{n\cdot q}+\O\left(n^{-\frac{3}{2}}\right)\right)\\
+		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+n\cdot\left(i\cdot u\cdot\sqrt{\frac{p}{n\cdot q}}-\frac{u^2}{2}\cdot\frac{1}{n\cdot q}+\frac{u^2}{2}\cdot\frac{p}{n\cdot q}+\O\left(n^{-\frac{3}{2}}\right)\right)\\
 		&=\sqrt{n}\cdot i\cdot u\cdot\underbrace{\left(\sqrt{\frac{p}{q}}-\sqrt{\frac{p}{q}}\right)}_{=0}-\frac{u^2}{2}\cdot\underbrace{\left(\frac{1}{q}-\frac{p}{q}\right)}_{=1}+\O\left(n^{-\frac{1}{2}}\right)
 		\overset{n\to\infty}{\longrightarrow}-\frac{u^2}{2}\\
 		&\implies
