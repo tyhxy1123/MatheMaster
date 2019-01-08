@@ -686,4 +686,61 @@ $$ G = \Gal(E|F), P \in S(F|K), P' \in S(E|L) \text{ mit } P'|P.$$
     $ \implies e_{P'|P} = e_{P'|P'_Z}, f_{P'|P} = f_{P'|P'_Z}$\\
     Mit $e_{P'|P} = e_{P'|P'_Z} \cdot e_{P'_Z|P}$ und $f_{P'|P} = f_{P'|P'_Z}\cdot f_{P'_Z|P}$ folgt $e_{P'_Z|P} = 1, f_{P'_Z|P} = 1$.
     $$ r' \cdot e_{P'|P'_Z}\cdot f_{P'|P'_Z} = [E:E^{Z_{P'|P}}] = |Z_{P'|P}| = e_{P'|P'_Z} \cdot f_{P'|P'_Z} \implies r' = 1. $$
-\end{proof}
+    (c) Für $a \in \O_{P'}$ und $g= \sum a_i X^i \in \O_{P'}[X]$\\ 
+    schreibe $\overline{a} := a(P') \in E_{P'}$ und $\overline{g} := \sum \overline{a_i} \overline{X}^i \in E_{P'}[X]$.\\
+    Da $K$ vollkommen, folgt $E_{P'} | F_p$ separabel, woraus folgt $E_{P'} = F_P(\overline{z})$ für ein $z \in \O_{P'}$.
+
+    Sei $g := \MinPol(Z|E^Z) \in E^Z[X]$. Da $P'$ die einzige Fortsetzung von $P_Z'$ auf $E$ ist, ist $\O_{P'}$ der ganze Abschluss von
+    $\O_{P_Z'}$ in $E$.
+    \begin{align*}
+        \implies & g \in \O_{P_Z'}[X]. \\
+        \text{Aus } f_{P'_Z|P} = 1 \implies & \overline{g}\in F_P[X].\\
+        E|E^Z \text{ galoissch} \implies & g = \prod (X-z_i), z_i \in \O_{P'}.\\
+        \implies & \overline{g} = \prod (x - \overline{z_i}), \overline{z_i} \in E_{P'}, \overline{g}(\overline{z}) = 0\\
+        \implies & E_{P'} \text{ ist Zerfällungskörper von } \overline{g} \in F_P[X]. \\
+        & \text{ somit ist } E_{P'}|F_P \text{ galoissch}.
+    \end{align*}
+    \begin{itemize}
+        \item $\sigma$ wohldefiniert: 
+        \begin{align*}
+            \overline{x} = \overline{y} & \implies x-y \in m_{P'}\\
+            & \implies \sigma x - \sigma y = \sigma (x-y) \in m_{P'}\\
+            & \implies \overline{\sigma x} = \overline{\sigma y}
+        \end{align*}
+
+        \item $\ker (\sigma \mapsto \overline{\sigma}) = T$:
+        \begin{align*}
+            \overline{\sigma} = \id & \iff \forall~\overline{x}: \overline{\sigma}\,\overline{x} = \overline{x}\\
+            & \iff \forall~x \in \O_{P'}: \overline{\sigma x - x} = 0\\
+            & \iff \sigma \in T
+        \end{align*}
+
+        \item $\im (\sigma \mapsto \overline{\sigma}) = \Gal(E_{P'}|F_P)$:
+        
+        Sei $\tau \in \Gal(E_{P'}|F_P)$. dann ist $\tau \overline{z} = \overline{z_i}$ für ein $i$. Da $E|E^Z$ galoissch, existiert 
+        $\sigma \in Z$ mit $\sigma z = z_i$ 
+        $$ \implies \overline{\sigma}\, \overline{z} = \overline{z_i} \implies \tau = \overline{\sigma} \in \im (\sigma \mapsto \overline{\sigma})$$
+    \end{itemize}
+
+    (b) $f_{P'|P} = [E_{P'}:F_P] = |\Gal(E_{P'}|F_P)| = \frac{|Z|}{|T|} = \frac{e \cdot f}{|T|}$
+    \begin{align*}
+        \implies & |T| = e_{P'|P}\\
+        T_{P'|P'_T} = T_{P'|P} \implies & e_{P'|P'_T} = |T_{P'|P'_T}| = |T_{P'|P}| = e_{P'|P}\\
+        \implies & f_{P'|P'_T} = 1 \implies f_{P'_T|P'_Z} = f_{P'|P}
+    \end{align*}
+    \end{proof}
+
+    \begin{korollar}
+        \begin{enumerate}[label=(\alph*)]
+            \item In $E^Z|F$ ist $P$ vollzerlegt, d.h. es gibt genau $r = [E^Z:F]$ viele Fortsetzungen von $P$ auf $E^Z$, und diese
+            sind unverzweigt und nicht träge.
+
+            \item In $E^T|E^Z$ ist $P'_Z$ vollträge, d.h. es gibt nur eine Fortsetzung von $P'_Z$ auf $E^T$, diese ist unverzweigt
+            und $f_{P'_T|P'_Z} = [E^T:E^Z]$
+
+            \item In $E|E^T$ ist $P'_T$ vollverzweigt, d.h. $P'$ ist die einzige Fortsetzung von $P'_T$ auf $E$, diese ist
+            nicht träge und $e_{P'|P'_T} = [E:E^T]$
+
+            \item Es gilt $$e_{P'|P'_T}\cdot f_{P'_T|P'_Z} \cdot r = [E:E].$$
+        \end{enumerate}
+    \end{korollar}
