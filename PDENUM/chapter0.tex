@@ -3012,7 +3012,10 @@ wobei $\delta_K \sim h_K \text{, wenn } p_{e_K} > 1$.
 		\Big|\big((c-\div(b))(I_h u-u),w_h\big)\Big|
 		\overset{\text{CS}}&\leq
 		\underbrace{\big\Vert c-\div(b)\big\Vert_{0,\infty,\Omega}}_{\leq C}\underbrace{\Vert I_h u-u\Vert_{0,2,\Omega}}_{\leq C h^{r+1}|u|_{r+1,2,\Omega}}\underbrace{\Vert w_h\Vert_{0,2,\Omega}}_{\leq\frac{1}{\sqrt{c_0}}\Vert w_h\Vert_{\text{SD}}}\\
-		&\leq\frac{C}{\sqrt{c_0}}h^{r+1}|u|_{r+1,2,\Omega}\Vert w_h\Vert_{\text{SD}}\\
+		&\leq\frac{C}{\sqrt{c_0}}h^{r+1}|u|_{r+1,2,\Omega}\Vert w_h\Vert_{\text{SD}}
+	\end{align*}
+	Zum Schluss noch
+	\begin{align*}
 		\Big|\big(I_h u-u,b\cdot\nabla w_h\big)\Big|
 		\overset{\text{CS}}&\leq
 		\sum\limits_{K\in\T_h}\Vert I_h u-u\Vert_{0,2,K}\Vert b\cdot\nabla w_h\Vert_{0,2,K}\\
@@ -3021,11 +3024,15 @@ wobei $\delta_K \sim h_K \text{, wenn } p_{e_K} > 1$.
 			\leq h^r\left(\sum\limits_{K\in\T_h}\delta_K^{-1} h_K^2|u|^2_{r+1,2,K}\right)^{\frac{1}{2}}
 		}\Vert w_h\Vert_{\text{SD}}
 	\end{align*}
+	Setzen wir dies alles zusammen, so erhalten wir
 	\begin{align*}
 		&\left|\sum\limits_{K\in\T_h}\delta_K\Big(-\varepsilon\Delta(I_h u-u)+b\cdot\nabla(I_h u-u)+c(I_h u-u),b\cdot\nabla w_h\Big)_K\right|\\
-		&\leq\sum\limits_{K\in\T_h}\delta_K\Big(\varepsilon\underbrace{\Vert\Delta(I_h u-u)\Vert_{0,2,K}}_{\leq C h^{r-1}|u|_{r+1,2,K}}+\Vert b\Vert_{0,\infty,K}\underbrace{|I_h u-u|_{1,2,K}}_{\leq C h^r_K|u|_{r+1,2,K}}+\Vert c\Vert_{0,\infty,K}\underbrace{\Vert I_h u-u\Vert_{0,2,K}}_{\leq C h^{r+1}|u|_{r+1,2,K}}\Big)\\
+		&\leq\sum\limits_{K\in\T_h}\delta_K^{\frac{1}{2}}\Big(\varepsilon\underbrace{\Vert\Delta(I_h u-u)\Vert_{0,2,K}}_{\leq C h^{r-1}|u|_{r+1,2,K}}+\Vert b\Vert_{0,\infty,K}\underbrace{|I_h u-u|_{1,2,K}}_{\leq C h^r|u|_{r+1,2,K}}+\Vert c\Vert_{0,\infty,K}\underbrace{\Vert I_h u-u\Vert_{0,2,K}}_{\leq C h^{r+1}|u|_{r+1,2,K}}\Big)\\
 		&\qquad\cdot\delta_K^{\frac{1}{2}}\Vert b\cdot\nabla w_h\Vert_{0,2,K}\\
-		&\leq C h^r\left(\sum\limits_{K\in\T_h}\Big(\delta_k\varepsilon^2 h^{-2}_K+\delta_K+\delta_K h^2_K\Big)|u|^2_{r+1,2,K}\right)^{\frac{1}{2}}\Vert w_h\Vert_{\text{SD}}\\
+		&\leq C h^r\left(\sum\limits_{K\in\T_h}\Big(\delta_k\varepsilon^2 h^{-2}_K+\delta_K+\delta_K h^2_K\Big)|u|^2_{r+1,2,K}\right)^{\frac{1}{2}}\Vert w_h\Vert_{\text{SD}}
+	\end{align*}
+	Kurzer Einschub/Zwischenrechnung:
+	\begin{align*}
 		&\delta_K^{-1} h_K=\left\lbrace\begin{array}{cl}
 			\frac{h^2_K}{\delta_0 h_K}=\frac{1}{\delta_0}h_K, & \falls p_{e_k}>1\\
 			\frac{h_K}{\frac{\delta_1 h_K^2}{\varepsilon}}=\frac{\varepsilon}{\delta_1}, &\falls p_{e_k}\leq1
@@ -3041,10 +3048,14 @@ wobei $\delta_K \sim h_K \text{, wenn } p_{e_K} > 1$.
 	\begin{align*}
 		p_{e_k}\leq1\Longleftrightarrow\frac{\Vert b\Vert_{0,\infty,K}}{2\varepsilon}h_K&\leq 1\\
 		h_K&\leq C\varepsilon\\
-		\delta_K=\delta_1\frac{h_K^2}{\varepsilon}&\leq C\varepsilon\\
-		\implies \frac{1}{2}\Vert w_h\Vert^2_{\text{SD}}&\leq C h^r\left(\varepsilon^{\frac{1}{2}}+h^{\frac{1}{2}}\right)|u|_{r+1,2,\Omega}\Vert w_h\Vert_{\text{SD}}\\
+		\delta_K=\delta_1\frac{h_K^2}{\varepsilon}&\leq C\varepsilon
+	\end{align*}
+	Die Abschätzung funktioniert also immer. Nutzen wir sie, so erhalten wir:
+	\begin{align*}
+		\frac{1}{2}\Vert w_h\Vert^2_{\text{SD}}&\leq C h^r\left(\varepsilon^{\frac{1}{2}}+h^{\frac{1}{2}}\right)|u|_{r+1,2,\Omega}\Vert w_h\Vert_{\text{SD}}\\
 		\Vert w_h\Vert_{\text{SD}}&\leq C h^r\left(\varepsilon^{\frac{1}{2}}+h^{\frac{1}{2}}\right)|u|_{r+1,2,\Omega}
 	\end{align*}
+	Damit können wir die eigentliche Abschätzung beginnen
 	\begin{align*}
 		\Vert u-u_h\Vert_{\text{SD}}
 		&\leq\Vert u-I_h u\Vert_{\text{SD}}+\Vert\underbrace{I_h u-u_h}_{=w_h}\Vert_{\text{SD}}
@@ -3058,14 +3069,14 @@ wobei $\delta_K \sim h_K \text{, wenn } p_{e_K} > 1$.
 \end{proof}
 
 \begin{align*}
-	\varepsilon<<h&\implies \delta_K\approx h_K\\
-	\implies\Vert u-u_h\Vert_{\text{SD}}&\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
-	\implies \Vert u-u_h\Vert_{0,2,\Omega}&\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
-	\Bigg(\sum\limits_{K\in\T_h}\underbrace{\approx h_K}\big\Vert b\cdot\nabla(u+h_K)\big\Vert_{0,2,K}\Bigg)^{\frac{1}{2}}
-	&\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
-	\implies\text{nicht-optimal hinsichtlich Interpolationsfehler}\\
-	\implies \big\Vert b\cdot\nabla(u-u_h)\big\Vert_{0,2,\Omega}&\leq C\cdot h^r\cdot|u|_{r+1,2,\Omega}\\
-	\implies\text{optimale Konvergenz in Streamline-Richtung}
+	&\varepsilon<<h\implies \delta_K\approx h_K\\
+	\implies&\Vert u-u_h\Vert_{\text{SD}}\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
+	\implies& \Vert u-u_h\Vert_{0,2,\Omega}\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
+	&\Bigg(\sum\limits_{K\in\T_h}\underbrace{\approx h_K}\big\Vert b\cdot\nabla(u+h_K)\big\Vert_{0,2,K}\Bigg)^{\frac{1}{2}}
+	\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
+	\implies&\text{nicht-optimal hinsichtlich Interpolationsfehler}\\
+	\implies& \big\Vert b\cdot\nabla(u-u_h)\big\Vert_{0,2,\Omega}\leq C\cdot h^r\cdot|u|_{r+1,2,\Omega}\\
+	\implies&\text{optimale Konvergenz in Streamline-Richtung}
 \end{align*}
 
 
