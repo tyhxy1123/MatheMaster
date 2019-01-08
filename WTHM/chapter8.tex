@@ -1,0 +1,216 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Der Stetigkeitssatz von Lévy} %8
+\textbf{Ziel:}
+\begin{itemize}
+	\item Das Beschreiben von Konvergenz in Verteilung mittels charakteristischer Funktion
+	\item Wichtig für zentrale Grenzwertsätze
+\end{itemize}
+
+Zur Erinnerung:
+
+\begin{defi}[Konvergenz in Verteilung]\enter
+	Seien $(Y_n)_{n\in\N}$, $Y$ $\R^d$-wertige Zufallsvariablen.
+	Wir sagen $(Y_n)_{n\in\N}$ \textbf{konvergiert in Verteilung} gegen $Y$, i. Z.
+	\begin{align*}
+		Y_n\overset{\d}{\longrightarrow}Y
+		:\Longleftrightarrow\forall f\in C_b\big(\R^d\big):
+		\E\big[f(Y_n)\big]\overset{n\to\infty}{\longrightarrow}\E\big[f(Y)\big]
+	\end{align*}
+\end{defi}
+
+\begin{defi}[schwache Konvergenz]\enter
+	Seien $(\mu_n)_{n\in\N},\mu\in\M_b\big(\R^d\big)$ beschränkte Borelmaße.
+	Wir sagen $(\mu_n)_{n\in\N}$ \textbf{konvergiert schwach gegen} $\mu$, i.Z.
+	\begin{align*}
+		\mu_n\overset{\w}{\longrightarrow}\mu 
+		:\Longleftrightarrow\forall f\in C_b\big(\R^d\big):\int\limits f\d\mu_n\overset{n\to\infty}{\longrightarrow}\int\limits f\d\mu 
+	\end{align*}
+\end{defi}
+
+\begin{bemerkung}\
+	\begin{itemize}
+		\item Sei $\P_y$ das von $Y$ \textbf{induzierte} Maß in $\M_b(\R^d)$, d.h.
+		\begin{align*}
+			P_y(B):=\P(Y\in B):=\P\big(\lbrace\omega\in\Omega:B(\omega)\in B\rbrace\big)\qquad\forall B\in\B\big(\R^d\big)
+		\end{align*}
+		Dann gilt:
+		\begin{align}\label{eqBemerkungChapter8}\tag{$\ast$}
+			\P_{Y_n}\overset{\w}{\longrightarrow}\P_Y
+			\Longleftrightarrow
+			Y_n\overset{\d}{\longrightarrow} Y
+		\end{align}
+		Also schwache Konvergenz der induzierten Maße ist äquivalent zur Konvergenz in Verteilung.
+		\item In Dimension $d=1$ kann Konvergenz in Verteilung auch folgendermaßen formuliert werden:\nl
+		Seien $(F_n)_{n\in\N}$ und $F$ die Verteilungsfunktionen von $(Y_n)_{n\in\N}$ und $Y$. Dann gilt:
+		\begin{align*}
+			Y_n\overset{\d}{\longrightarrow}Y
+			\Longleftrightarrow\forall\text{ Stetigkeitspunkte $x$ von }F:
+			F_n(x)\overset{n\to\infty}{\longrightarrow} F(x)
+		\end{align*}
+	\end{itemize}
+\end{bemerkung}
+
+\begin{theorem}[Stetigkeitssatz von Lévy]\label{theorem8.1StetigkeitssatzVonLevy}\enter
+	Seien $(\mu_n)_{n\in\N}\subseteq\M_b(\R^d)$ eine Folge von beschränkten Borelmaßen.
+	\begin{enumerate}[label=(\alph*)]
+		\item Wenn $\mu_n\overset{\w}{\longrightarrow}\mu$ für $\mu\in\M_b(\R^d)$, dann gilt
+		\begin{align*}
+			\hat{\mu}_n(\xi)\overset{n\to\infty}{\longrightarrow}\hat{\mu}(\xi)\qquad\forall\xi\in\R^d
+		\end{align*}
+		Also: Schwache Konvergenz der Maße bedeutet punktweise Konvergenz der Fouriertransformation.
+		\item Wenn $\hat{\mu}_n(\xi)\overset{n\to\infty}{\longrightarrow}\phi(\xi)$ $\forall\xi\in\R^d$ und $\phi:\R^n\to\R$ ist stetig bei $\xi=0$, 
+		dann existiert $\mu\in\M_b(\R^d)$ mit $\mu_n\overset{\w}{\longrightarrow}\mu$ und $\phi=\hat{\mu}$.\\
+		Also: Punktweise Konvergenz der Fouriertransformation \underline{und} Grenzfunktion $\phi$ ist stetig in 0 $\implies$ schwache Konvergenz der Maße.
+	\end{enumerate}
+\end{theorem}
+
+Mit Äquivalenz \eqref{eqBemerkungChapter8} zu schwacher Konvergenz und Konvergenz in Verteilung erhalten wir:
+
+\begin{korollar}\label{korollar8.2}
+	Sei $(Y_n)_{n\in\N}$ ein Folge von $\R^d$-wertigen Zufallsvariablen.
+	\begin{enumerate}[label=(\alph*)]
+		\item $\begin{aligned}
+			Y_n\overset{\d}{\longrightarrow} Y\implies\forall\xi\in\R^d:\Phi_{Y_n}(\xi)\overset{n\to\infty}{\longrightarrow}\Phi_Y(\xi)
+		\end{aligned}$
+		\item Wenn $\begin{aligned}
+			 \Phi_{Y_n}(\xi)\overset{n\to\infty}{\longrightarrow}\phi(\xi)~\forall\xi\in\R^d
+		\end{aligned}$
+		\underline{und} $\phi$ ist stetig bei $\xi=0$, dann existiert eine Zufallsvariable $Y$ mit $Y_n\overset{\d}{\longrightarrow}Y$ und $\Phi_Y=\phi$.
+	\end{enumerate}
+\end{korollar}
+
+\begin{bemerkung}\
+	\begin{itemize}
+		\item Die Konvergenz in (a) ist \textbf{gleichmäßig auf Kompakta}, d.h.
+		\begin{align*}
+			\sup\limits_{|\xi|\leq R}\Big|\mu_n(\xi)-\mu(\xi)\Big|\overset{n\to\infty}{\longrightarrow}0
+		\end{align*}
+		\item Der Grenzwert $\mu$ (bzw. $Y$) ist eindeutig (Folgt aus Eindeutigkeitssatz für Fouriertransformation bzw. charakteristische Funktionen, Theorem \ref{theorem7.6Eindeutigkeitssatz}).
+	\end{itemize}
+\end{bemerkung}
+
+\begin{proof}[Beweis des Stetigkeitssatzes von Lévy \ref{theorem8.1StetigkeitssatzVonLevy}, Teil (a)]\enter
+	Für $\xi\in\R^d$ setze
+	\begin{align*}
+		f_\xi(x):=\exp\big(i\cdot x^T\cdot\xi\big).
+	\end{align*}
+	Dies ist offenbar eine stetige und beschränkte Funktion, also $f_\xi\in C_b(\R^d)$.
+	Also gilt
+	\begin{align*}
+		\hat{\mu}_n(\xi)
+		&=\int\limits_{\R^d}\exp\big(i\cdot x^T\cdot\xi\big)~\mu_n(\d x)
+		=\int\limits_{\R^d} \underbrace{f_\xi}_{\in C_b(\R^d)}\d\mu_n
+		\overset{\text{Def. schwacher Konv}}{\longrightarrow}
+		\int\limits_{\R^d}f_\xi\d\mu\\
+		&=\int\limits_{\R^d}\exp\big(i\cdot x^T\cdot\xi\big)~\mu(\d x)
+		=\hat{\mu}(\xi)
+		\qquad\forall\xi\in\R^d
+	\end{align*}
+\end{proof}
+
+\begin{beisp}[Normalapproximation der Binomialverteilung]\enter
+	Sei $(X_n)_{n\in\N}\sim\Bin(n,p)$ und $p\in(0,1),q:=1-p$. Setze
+	\begin{align*}
+		Y_n:
+		&=\frac{X_n-\E[X_n]}{\sqrt{\Var(X_n)}}
+		=\frac{X_n-n\cdot p}{\sqrt{n\cdot p\cdot q}}
+		=\frac{X_n}{\sqrt{n\cdot p\cdot q}}-\sqrt{\frac{n\cdot p}{q}}
+	\end{align*}
+	Charakteristische Funktion der Binomialverteilung(siehe Tabelle und Übung):
+	\begin{align*}
+		\Phi_{X_n}(u)
+		&=\Big(1+p\cdot\big(\exp(i\cdot u)-1\big)\Big)^n\\
+		\Phi_{Y_n}(u)
+		&=\exp\left(-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}\right)\cdot\Phi_{X_n}\left(\frac{u}{\sqrt{n\cdot p\cdot q}}\right)
+	\end{align*}
+	Logarithmieren:
+	\begin{align*}
+		\log\big(\Phi_{Y_n}(u)\big)
+		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+n\cdot\log\left(1+p\cdot\left(\exp\left(\frac{i\cdot u}{\sqrt{n\cdot p\cdot q}}\right)-1\right)\right) 
+	\end{align*}
+	Grenzübergang $n\to\infty$: Nutze Taylorentwicklung der Exponentialfunktion:
+	%TODO Ich konnte n und u nicht auseinanderhalten. Bitte fixen.
+	\begin{align*}
+		\exp(x)
+		&=1+x+\frac{x^2}{2}+\O\big(x^3\big)\\
+		\log(1+x)
+		&=x-\frac{x^2}{2}+\O\big(x^3\big)\\
+		%\implies
+		\log\big(\Phi_{Y_n}(u)\big)
+		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+u\cdot\log\left(1+i\cdot u\cdot\sqrt{\frac{p}{n\cdot q}}-\frac{u^2}{2}\cdot\frac{1}{n\cdot q}+\O\left(n^{-\frac{3}{2}}\right)\right)\\
+		&=-i\cdot u\cdot\sqrt{\frac{n\cdot p}{q}}+u\cdot\left(i\cdot u\cdot\sqrt{\frac{p}{n\cdot q}}-\frac{u^2}{2}\cdot\frac{1}{n\cdot q}+\frac{u^2}{2}\cdot\frac{p}{n\cdot q}+\O\left(n^{-\frac{3}{2}}\right)\right)\\
+		&=\sqrt{n}\cdot i\cdot u\cdot\underbrace{\left(\sqrt{\frac{p}{q}}-\sqrt{\frac{p}{q}}\right)}_{=0}-\frac{u^2}{2}\cdot\underbrace{\left(\frac{1}{q}-\frac{p}{q}\right)}_{=1}+\O\left(n^{-\frac{1}{2}}\right)
+		\overset{n\to\infty}{\longrightarrow}-\frac{u^2}{2}\\
+		&\implies
+		\limn\Phi_{Y_n}(u)=\exp\left(-\frac{u^2}{2}\right)
+	\end{align*}
+	Da $u\mapsto\exp\left(-\frac{u^2}{2}\right)$ offenbar stetig in $u=0$ und charakteristische Funktion von $\Nor(0,1)$ ist, folgt aus dem Stetigkeitssatz von Lévy \ref{theorem8.1StetigkeitssatzVonLevy}:
+	\begin{align*}
+		\exists\text{ Zufallsvariable }Y\sim\Nor(0,1)\mit Y_n\overset{\d}{\longrightarrow}Y.
+	\end{align*}
+\end{beisp}
+
+Noch zu zeigen: Theorem \ref{theorem8.1StetigkeitssatzVonLevy} (b). Wir benötigen dafür (ohne Beweis):
+
+%\setcounter{satz}{1} %Notwendig, da Prof so nummerierte (er hat Korollar 8.2 auf Wunsch eingeschoben)
+\begin{lemma}\label{lemma8.2}
+	$C_c^\infty(\R^d)$ (Testfunktionen) ist dicht in $C_\infty(\R^d)$ (stetige Funktionen, die bei Unendlich verschwinden) bzgl. $\Vert\cdot\Vert_\infty$.\\
+	Intuition: %TODO Add Sketch
+\end{lemma}
+
+\begin{theorem}[Rieszscher Darstellungssatz für $\M_b(\R^d)$]\label{theorem8.4RieszscherDarstellungssatzFuerM_b}\enter
+	Sei $\Lambda:C_\infty(\R^d)\to\R$ ein lineares, positives, stetiges Funktional, d.h.
+	\begin{itemize}
+		\item $\begin{aligned}
+			\Lambda(\alpha\cdot f+g)=\alpha\cdot\Lambda(f)+\Lambda(g)\qquad\forall\alpha\in\R,\forall f,g\in C_\infty
+		\end{aligned}$ (Linearität)
+		\item $\begin{aligned}
+			f\geq0\implies\Lambda(f)\geq0
+		\end{aligned}$ (Positivität)
+		\item $\begin{aligned}
+			\big|\Lambda(f)\big|\leq C_\Lambda\cdot\Vert f\Vert_\infty\qquad\forall f\in C_\infty
+		\end{aligned}$ (beschränkt + linear $\implies$ stetig)
+	\end{itemize} 
+	Dann existiert ein \underline{eindeutiges} $\mu\in\M_b(\R^d)$ so, dass $\Lambda$ wird durch $\mu$ \textbf{dargestellt} wird, d.h.
+	\begin{align*}
+		\Lambda(f)=\int\limits f\d\mu\qquad\forall f\in C_\infty(\R^d)
+	\end{align*}
+	Also ist $\M_b(\R^d)$ der Dualraum (im Sinne der Funktionalanalysis) von $C_\infty(\R^d)$.
+\end{theorem}
+
+Folgende Definition aus der Maßtheorie wird noch benötigt:
+
+\begin{defi}[Straffheit]
+	Eine Folge $(\mu_n)_{n\in\N}\subseteq\M_b(\R^d)$ heißt \textbf{straff}
+	\begin{align*}
+		:\Longleftrightarrow
+		\forall\varepsilon>0:\exists K_\varepsilon\subseteq\R^d\text{ kompakt},\exists N_\varepsilon\in\N:\forall n\geq N_\varepsilon:
+		\mu_n\big(\R^d\setminus K_\varepsilon\big)\leq\varepsilon
+	\end{align*}
+\end{defi}
+
+\begin{bemerkung}\
+	\begin{itemize}
+		\item Intuition: Bei straffer Folge "verschwindet" keine Masse nach Unendlich
+		\item Jede straffe Folge enthält schwach konvergente Teilfolge.
+		\item Beispiel für \underline{nicht}-straffe Folge: 
+		\begin{align*}
+			\mu_n(\d x):=\phi(x-n)\d x
+			\quad\mit\quad
+			\phi(x):=\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{x^2}{2}\right)\text{ (Dichte von }\Nor)
+		\end{align*}
+		%TODO Hier Skizze einfügen!
+		"Masse läuft hier davon"
+	\end{itemize}
+\end{bemerkung}
+
+\begin{proof}[Beweis des Stetigkeitssatzes von Lévy \ref{theorem8.1StetigkeitssatzVonLevy}, Teil (b)]\enter
+	Sei
+\end{proof}
+
+
+
