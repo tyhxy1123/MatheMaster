@@ -969,3 +969,23 @@ Zurück zum Begriff des Measurement Setups.
     D.h. $\Phi := (\Phi_{\text{vert}}, \Phi_{\text{edge}})$ mit $\Phi_{\text{vert}}: V \to \{\perp\}, p \mapsto \perp$ und
     $\Phi_{\text{edge}} := \Delta$ ist Funktor von $\G$ nach $\G(\M,\perp)$, wobei $\perp$ ein geeignetes Symbol ist.
 \end{definition}
+
+\begin{beispiel}[Gegenbeispiel]
+    Sei $\Omega$ Menge. Dann ist $M:=(\G_P, \M, d)$ mit $P := 2^\Omega$ und $\M := (M, \cup, \emptyset)$ mit $M := 2^\Omega$ und
+    $$ d: P \times P \to M, (X,Y) \mapsto Y - X. $$ im Allgemeinen kein Measurement Setup.
+    
+    Ansonsten müsste gelten: für alle $X,Y,Z \in P$ gilt $$d(X,Z) = d((X,Y) \ast (Y,Z)) = d(X,Y) \cup d(Y,Z)$$
+    d.h. $Z-X = (Y-X)\cup (Z-Y)$.
+    Das gilt im Allgemeinen nicht. Zum Beispiel wenn $Y \subsetneqq X \subseteq Z$.
+
+    Immerhin gilt aber: für alle $X,Y,Z \in P$ ist $d(X,Z) \subseteq d(X,Y) \cup d(Y,Z)$.
+\end{beispiel}
+
+\begin{beispiel}
+    $\mathcal{M} := (\G\P, \M, \Delta)$ mit $\G\P := \G_P|R$ für $\P:=(P,R)$ wobei $R := \{(X,Y) \in P\times P \mid X \subseteq Y\}$
+    und $\Delta: R \to M, (X,Y) \mapsto Y-X$.\nl
+    Die Dimensionsformel gilt hier:
+
+    Für $X,Y \in P$ gilt stets $$\Delta(X,X\cup Y) = \Delta(X\cap Y,Y).$$
+    Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.
+\end{beispiel}
