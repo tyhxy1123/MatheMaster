@@ -3,13 +3,13 @@
 ## Grundlegende Regeln
 1. LaTeX-Code immer einrücken. Eingerücken wird stets zwischen `\begin{...}` und `\end{...}`.
 2. Die Nummerierung sowie Formelnummern (sofern vorhanden) müssen exakt mit der Vorlesung übereinstimmen (nutze `\tag` und `\setcounter`).
-3. Alle LaTeY-Warnungen beheben. Nur Warning-free code wird gepusht. 
+3. Alle LaTeX-Warnungen beheben. Nur Warning-free code wird gepusht. 
  (Tipp: Der `\nl`-command kann underfull boxes vermeiden und dennoch optische Leerzeilen erzeugen.)
-4. Statt `$$`, `\[` und `Equation`-Umgebungen (oder ähnliches) sind immer `align*`-Umgebungen zu benutzen.
 
 ##  Kleinigkeiten
 1. Der `\enter` command wird sparsam verwendet, d.h. nur an Stellen, an denen `\\` nicht funktioniert.
 2. Statt `\stackrel` immer `\overset` nutzen. 
+3. Statt `$$`, `\[` und `Equation`-Umgebungen (oder ähnliches) sind immer `align*`-Umgebungen zu benutzen.
 (Tipp: Dank dem Package `aligned-overset` bietet sich Syntax `\overset{\text{Magie}}&{=}` an, wenn man Code alignen will.)
 4. `\item`'s die aus Formeln bestehen sollten mit `aligned`-Umgebungen ausgestattet werden, z. B.
 
