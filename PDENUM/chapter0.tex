@@ -2820,7 +2820,7 @@ $u\in H^2(\Omega)$, $b,c$ hinreichend glatt
 \begin{align}\nonumber
 	-\varepsilon\Delta u+b\cdot \nabla u+cu&= f&&\text{ im }L^2\text{- Sinn}\\
 	\implies\Big(-\varepsilon\Delta u+b\cdot\nabla u+cu,b\cdot\nabla v_h\Big)_K&=\big(f,b\cdot\nabla v_h\big)_K
-																																						 &&\forall K\in\T_h,v_h\in V_h
+	&&\forall K\in\T_h,v_h\in V_h
 	\label{eq7.2_2}\tag{2}
 \end{align}
 
@@ -2879,9 +2879,7 @@ Also erhält man
 Annahmen:
 \begin{itemize}
 	\item $b,c,f$ seien hinreichend glatt
-	\item %TODO Das hier soll linksbündig stehen und Formelnummer 10 bekommen, mit \label{eq7.3_10}\tag{10}
-		% TODO BEARBEITUNG 1: hab einfach den text, der in der VL darunter stand, darüber geschrieben. könnten wir ja so lassen, oder?
-		für die eindeutige Lösbarkeit nehmen wir an
+	\item für die eindeutige Lösbarkeit nehmen wir an
 	\begin{align}\label{eq7.3_10}\tag{10}
 		c-\frac{1}{2}\div(b)\geq0\text{ in }\Omega
 	\end{align}
@@ -3054,7 +3052,7 @@ wobei $\delta_K \sim h_K \text{, wenn } p_{e_K} > 1$.
 		\big(b\cdot\nabla(I_h u-u),w_h\big)
 		&=-\big(b\cdot\nabla w_h,I_h u-u\big)-\big(\div(b)w_h,I_h u-u\big)\\
 		%\implies
-		\Big|\big(b\cdot\nabla(I_h u-u)+c\cdot (I_h u-u),w_h\big)\Big|
+		\Big|\big(b\cdot\nabla(I_h u-u)+c (I_h u-u),w_h\big)\Big|
 		&\leq\Big|\big((c-\div(b))(I_h u-u),w_h\big)\Big|+\Big|\big(I_h u-u,b\cdot\nabla w_h\big)\Big|\\
 		\implies
 		\Big|\big((c-\div(b))(I_h u-u),w_h\big)\Big|
