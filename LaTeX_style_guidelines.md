@@ -45,16 +45,16 @@ Zum Einbinden von Bildern immer folgendes Snippet verwenden:
 \end{figure}
 ```
 	
-	Code Snippet für Tikz-Bikder:
-	
-	`
-	\begin{figure}[ht!]
-		\begin{center}
-			\input{./tikz/tikz.png}
-			\caption{Bildunterschrift}
-			\label{AbbTitel}
-		\end{center}
-	\end{figure}
-	`
-	
-	Wichtig ist, dass die Labels immer mit "Abb" beginnen. Das macht das referenzieren leichter.
+Code Snippet für Tikz-Bikder:
+
+```
+\begin{figure}[ht!]
+	\begin{center}
+		\input{./tikz/tikz.png}
+		\caption{Bildunterschrift}
+		\label{AbbTitel}
+	\end{center}
+\end{figure}
+```
+
+Wichtig ist, dass die Labels immer mit "Abb" beginnen. Das macht das referenzieren leichter.
