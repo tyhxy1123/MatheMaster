@@ -231,8 +231,20 @@ Zusammenhang: Straffheit $\longleftrightarrow$ Fouriertransformation
 	Vorüberlegung: Betrachte Sinusfunktion:
 	%TODO Add picture: sin(x) auf [-\pi,\pi]
 	\begin{align*}
-		\frac{\sin(x)}{x}\leq 1~\forall x\in\R
-		\qquad\text{und}\qquad
+		\left\lbrace
+		\begin{array}{rl}
+			\sin(x) \leq x & \forall x\geq 0 \\
+			\sin(x) \geq x & \forall x\leq 0
+		\end{array}\right. \implies
+		\frac{\sin(x)}{x}\leq 1~\forall x\in\R \\
+	\end{align*}
+	und
+	\begin{align*}
+		\left\lbrace
+		\begin{array}{rl}
+			\sin(x) \leq x \cdot \sin(1) & \forall x\geq 0 \\
+			\sin(x) \geq x \cdot \sin(1) & \forall x\leq 0
+		\end{array}\right. \implies
 		\frac{\sin(x)}{x}\leq\sin(1)~\forall x\in\R\setminus[-1,1]
 	\end{align*}
 	Also gilt:
@@ -272,10 +284,10 @@ Zusammenhang: Straffheit $\longleftrightarrow$ Fouriertransformation
 		\item Stetigkeit (bzw. Beschränktheit):
 		\begin{align*}
 			\big|\Lambda(f)\big|
-			&=\left|\limn\int\limits f\d\mu_n\right|
-			\leq\Vert f\Vert_\infty\cdot\limn\mu(\R)\\
-			&=\Vert f\Vert_\infty\cdot\limn\hat{\mu}_n(0)
-			=\Vert f\Vert_\infty\cdot\phi(0)
+			&=\left|\limn\int\limits f\d\mu_n\right| \\
+			&\leq\Vert f\Vert_\infty\cdot\limn\mu(\R)\\
+			&=\Vert f\Vert_\infty\cdot\limn\hat{\mu}_n(0)\\
+			&=\Vert f\Vert_\infty\cdot\phi(0)
 			<\infty
 		\end{align*}
 	\end{itemize}
@@ -298,12 +310,12 @@ Zusammenhang: Straffheit $\longleftrightarrow$ Fouriertransformation
 	\textbf{Teil 2: Straffheit der Folge}\\
 	Es gilt:
 	\begin{align}\nonumber
-		\hat{\mu}_n(\xi)\overset{n\to\infty}{\longrightarrow}\phi(\xi) &\forall\xi\in\R\\
+		\hat{\mu}_n(\xi)&\overset{n\to\infty}{\longrightarrow}\phi(\xi) &\forall\xi\in\R\\
 		\implies\nonumber
-		\underbrace{\Big(\hat{\mu}_n(0)-\Re\big(\hat{\mu}_n(\xi)\big)\Big)}_{|\cdot|\leq2}\overset{n\to\infty}{\longrightarrow}\Big(\phi(0)-\Re\big(\phi(\xi)\big)\Big) &\forall\xi\in\R\\
+		\underbrace{\Big(\hat{\mu}_n(0)-\Re\big(\hat{\mu}_n(\xi)\big)\Big)}_{|\cdot|\leq2}&\overset{n\to\infty}{\longrightarrow}\Big(\phi(0)-\Re\big(\phi(\xi)\big)\Big) &\forall\xi\in\R\\
 		\overset{\text{dom Konv}}{\implies}\label{eqProof8.1TeilBPlus}\tag{+}
 		R\cdot\int\limits_0^{\frac{1}{R}}\Big(\hat{\mu}_n(0)-\Re\big(\hat{\mu}_n(\xi)\big)\Big)\d\xi
-		\overset{n\to\infty}{\longrightarrow}
+		&\overset{n\to\infty}{\longrightarrow}
 		R\cdot\int\limits_0^{\frac{1}{R}}\Big(\phi(0)-\Re\big(\phi(\xi)\big)\Big)\d\xi
 	\end{align}
 	\underline{Straffheit:} Sei $\varepsilon>0$.
@@ -314,7 +326,7 @@ Zusammenhang: Straffheit $\longleftrightarrow$ Fouriertransformation
 		&\leq c\cdot\left(R\cdot\int\limits_0^{\frac{1}{R}}\Big(\phi(0)-\Re\big(\phi(\xi)\big)\Big)\d\xi+\varepsilon\right)
 		=:I\qquad\forall n\geq N_\varepsilon\label{eqProof8.1ZeilBSternStern}\tag{$\ast\ast$}
 	\end{align}
-	Voraussetzung: $\phi$ stetig in 0!
+	Voraussetzung: $\phi$ stetig in 0!, d.h.
 	\begin{align*}
 		\forall\varepsilon>0:\exists\delta>0:\forall|\xi|\leq\delta:\Big|\phi(0)-\Re\big(\phi(\xi)\big)\Big|\leq\varepsilon
 	\end{align*}
@@ -344,23 +356,21 @@ Zusammenhang: Straffheit $\longleftrightarrow$ Fouriertransformation
 	\underline{Also:} Sei $f\in C_b(\R)$.
 	\begin{align*}
 		&\left|\int\limits f\d\mu_n-\int\limits f\d\mu\right|\\
-		\overset{\text{DU}}&{\leq}
+		\overset{\text{DU}}{\leq}&
 		\underbrace{\Bigg|\int\limits \underbrace{(f\cdot g)}_{\in C_\infty(\R)}-\d\mu_n-\int\limits\underbrace{(f\cdot g)}_{\in C_\infty(\R)}\d\mu\Bigg|}_{\overset{n\to\infty}{\longrightarrow}0\text{ wg. Teil 1}}
 		+\left|\int\limits f\cdot(1-g)\d\mu_n-\int\limits f\cdot(1- g)\d\mu_n\right|\\
-		&\leq\left|\int\limits (f\cdot g)\d\mu_n-\int\limits(f\cdot g)\d\mu\right|
+		\leq&\left|\int\limits (f\cdot g)\d\mu_n-\int\limits(f\cdot g)\d\mu\right|
 		+\Vert f\Vert_\infty\cdot\underbrace{\left(\int\limits(1-g)\d\mu_n+\int\limits(1-g)\d\mu\right)}_{
 			\begin{subarray}{l}
 				\leq\mu_n\big(\R\setminus[-R,R]\big)+\mu\big(\R\setminus[-R,R]\big)\\
 				\leq 2\cdot\varepsilon\text{ wegen Straffheit}
 			\end{subarray}
-		}\\
-		&\implies
-		\limn\left|\int\limits f\d\mu_n-\int\limits f\d\mu\right|\leq 2\cdot\varepsilon
+		}
 	\end{align*}
-	Mit $\varepsilon>0$ beliebig folgt
 	\begin{align*}
-		\limn\int\limits f\d\mu_n=\int\limits f\d\mu\qquad\forall f\in C_b(\R)\\
-		\implies\mu_n\overset{\w}{\longrightarrow}\mu
+		&\implies\limn\left|\int\limits f\d\mu_n-\int\limits f\d\mu\right|\leq 2\cdot\varepsilon \mit \varepsilon>0 \text{ beliebig}\\
+		&\implies\limn\int\limits f\d\mu_n=\int\limits f\d\mu\qquad\forall f\in C_b(\R)\\
+		&\implies\mu_n\overset{\w}{\longrightarrow}\mu
 	\end{align*}
 \end{proof}
 
