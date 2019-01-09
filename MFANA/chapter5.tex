@@ -257,7 +257,7 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 	Dann heißt (für $\lambda>0$ mit $\lambda\cdot\omega<1$
 	\begin{align*}
 		\E^\lambda:H\to\R,\qquad
-		\E^\lambda(u):=\inf\limits_{v\in H}\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2_H
+		\E^\lambda(u):=\inf\limits_{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2_H\right)
 	\end{align*}
 	\textbf{Moreau-Yosida-Approximation} von $\E$.
 \end{definition}
@@ -269,7 +269,7 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 		\end{aligned}$
 		\begin{align*}
 			\E^\lambda(u)
-			=\E\left(J_\lambda u\right)+\frac{1}{2\cdot\lambda}\cdot\big\Vert u-J_\lambda u\big\Vert_H^2
+			=\E\left(J_\lambda u\right)+\frac{1}{2\cdot\lambda}\cdot\big\Vert u-J_\lambda^{\partial\E} u\big\Vert_H^2
 			=\E\big(J_\lambda u\big)+\frac{\lambda}{2}\cdot\big\Vert(\partial\E)^\lambda u\big\Vert_H^2
 		\end{align*}				
 		 wobei $\partial\E$ der Subgradient von $\E$, $(\partial\E)^\lambda$ die Yosidaapproximation von $\partial\E$ und $J_\lambda=\big(I+\lambda\cdot\partial\E\big)^{-1}$ die Resolvente von $\partial\E$ ist.
@@ -286,11 +286,11 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 			\forall u\in H
 		\end{aligned}$ ist die Funktion $\lambda\mapsto\lambda\cdot\E^\lambda(u)$ konkav und stetig differenzierbar und 
 		\begin{align*}
-			\frac{\d}{\d\lambda}\big(\lambda\cdot\E^\lambda(u)\big)=\E\big(J_\lambda u\big)
+			\frac{\d}{\d\lambda}\big(\lambda\cdot\E^\lambda(u)\big)=\E\big(J_\lambda^{\partial\E} u\big)
 		\end{align*}
 		\item $\begin{aligned}
 			\forall\lambda>0\mit\lambda\cdot\omega<1:\partial\big(\E^\lambda\big)=(\partial\E)^\lambda
-		\end{aligned}$
+		\end{aligned}$\\
 		Auf der linken Seite steht der Subgradient (=Frechétableitung) von $\E^\lambda$ und auf der rechten Seite die Yosidaableitung von $\partial\E$.
 		\item $\begin{aligned}
 			\forall f\in H,\forall\lambda>0\mit\lambda\cdot\omega<1:
@@ -305,8 +305,170 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 	\begin{align*}
 		v\mapsto\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2_H
 	\end{align*}
-	(siehe Beweis, dass $\partial\E$ $m$-akkretiv vom Typ $\omega$ ist, also die Surjektivität)
+	(siehe Beweis, dass $\partial\E$ $m$-akkretiv vom Typ $\omega$ ist, also die Surjektivität)\nl
+	\underline{Zeige (b):} Ohne Beweis.\nl
+	\underline{Zeige (c):} Es gilt:
+	\begin{align*}
+		\E^\lambda(u)
+		&=\inf\limits{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2\right)\\
+		\overset{\text{wähle }v=u}&{\leq}
+		\E(u)\qquad\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H
+	\end{align*}
+	Außerem ist $\forall v\in H$ die Funktion $\lambda\mapsto\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert_H^2$ monoton fallend und damit ist 
+	$\E^\lambda(u)=\inf\limits{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2\right)$ monoton fallend.
+	Damit ist
+	\begin{align*}
+		\sup\limits_{\lambda>0}\E^\lambda(u)
+		&=\lim\limits_{\lambda\to0^+}\E^\lambda(u)\leq\E(u)
+	\end{align*}
+	Die Abschätzung $\ldots\geq\E(u)$ ist Übung.\nl
+	\underline{Zeige (d):}\\
+	Für alle $v\in H$ ist die Funktion $\lambda\mapsto\lambda\cdot\E(u)+\frac{1}{2}\cdot\Vert v-u\Vert^2_H$ konkav, 
+	und damit ist $\lambda\mapsto\lambda\cdot\E^\lambda(u)=\inf\limits_{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2\right)$
+	konkav (punktweise Infimum konkaver Funktionen ist konkav).
+	Damit ist $\lambda\mapsto\lambda\cdot\E^\lambda(u)$ insbesondere stetig.
+	Seien $\lambda_1,\lambda_2>0$ mit $\lambda_1\cdot\omega,\lambda_2\cdot\omega<1$ und sei $u\in H$.
+	Dann ist
+	\begin{align*}
+		&\lambda_1\cdot\E^{\lambda_1}(u)-\lambda_2\cdot\E^{\lambda_2}(u)\\
+		\overset{\text{(a)}}&=
+		\lambda_1\cdot\inf\limits_{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda_1}\cdot\Vert u-v\Vert^2_H\right)
+		-\left(\lambda_2\cdot\E\big(J_{\lambda_2} u\big)+\frac{1}{2\cdot\lambda_2}\cdot\big\Vert u-J_{\lambda_2} u\big\Vert_H^2\right)\\
+		\overset{\text{setze }v=J_{\lambda_2}u}&\leq
+		\lambda_1\cdot\E\big(J_{\lambda_2} u\big)+\frac{1}{2}\cdot\big\Vert u-J_{\lambda_2} u\big\Vert^2_H
+		-\lambda_2\cdot\E\big(J_{\lambda_2} u\big)-\frac{1}{2}\cdot\big\Vert u-J_{\lambda_2} u\big\Vert^2_H\\
+		&=\big(\lambda_1-\lambda_2\big)\cdot\E\big(J_{\lambda_2}u\big)
+	\end{align*}
+	Vertausche Rollen von $\lambda_1$ und $\lambda_2$:
+	\begin{align*}
+		\big(\lambda_1-\lambda_2\big)\cdot\E\big(J_{\lambda_1} u\big)
+		&\leq \lambda_1\cdot\E^{\lambda_1}(u)-\lambda_2\cdot\E^{\lambda_2}(u)\\
+		&\leq\big(\lambda_1-\lambda_2\big)\cdot\E\big(J_{\lambda_2}u\big)
+	\end{align*}
+	Da $\lambda\mapsto\E\big(J_{\lambda} u\big)$ stetig ist, folgt die Behauptung.\nl
+	\underline{Zeige (e):} Ohne Beweis.\nl
+	\underline{Zeige (f):}\\
+	Folgt aus (e) und den Eigenschaften der Yosidaapproximationen.
 \end{proof}
+
+\begin{definition}
+	Sei $H$ ein Hilbertraum und seien $\E,\E_n:H\to\R\cup\lbrace+\infty\rbrace$ Funktionen.
+	Die Folge $(\E_n)_{n\in\N}$ heißt \textbf{Mosco-konvergent} gegen $\E:\gdw$
+	\begin{enumerate}[label=(\roman*)]
+		\item für jede schwach konvergente Folge $(u_n)_{n\in\N}$ in $H$ mit $u=\weaklim\limits_{n\to\infty} u_n$ gilt
+		\begin{align*}
+			\E(u)\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+		\end{align*}
+		\item Für jedes $u\in H$ gibt es eine "recovery sequence" $(u_n)_{n\in\N}$ in $H$ mit $\limn u_n=u$ 
+		(starke (übliche) Konvergenz!) und 
+		\begin{align*}
+			\E(u)\geq\limsup\limits_{n\to\infty}\E_n(u_n)\\
+			\Big(\overset{\text{wg. (i)}}{\Longleftrightarrow}
+			\E(u)=\limn\E_n(u_n)\Big)
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	Die bekannte \textit{$\Gamma$-Konvergenz} unterscheidet sich von der Moscow-\\Konvergenz nur dadurch, dass die (i) starke Konvergenz gefordert wird.
+	\begin{align*}
+		\E_n\overset{\text{Moscow}}{\longrightarrow}\E\implies\E_n\overset{\Gamma}{\longrightarrow}\E
+	\end{align*}
+\end{bemerkung}
+
+\begin{lemma}
+	Seien $\E,\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv0$, konvexe so, dass 
+	\begin{align*}
+		\E_n\overset{\text{Moscow}}{\longrightarrow}\E.
+	\end{align*}
+	Dann gibt es Konstanten $c\in\R,r>0$ so, dass 
+	\begin{align*}
+		\forall n\in\N,\forall u\in H:
+		\E_n(u)\geq c-r\cdot\Vert u\Vert_H
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Übung.
+\end{proof}
+
+\begin{theorem}
+	Seien $\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig.
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item Wenn $(\E_n)_{n\in\N}$ monoton wachsend und konvergent ist, dann ist $(\E_n)_{n\in\N}$ Mosco-konvergent mit
+		\begin{align*}
+			\E_n\overset{\text{Mosco}}{\longrightarrow}\sup\limits_{n\in\N}\E_n
+		\end{align*}
+		\item Sei $\E$ konvex. Wenn $(\E_n)_{n\in\N}$ monoton fallend und von unten durch eine unterhalbstetige Funktion beschränkt ist,
+		dann ist $(\E_n)_{n\in\N}$ Mosco-konvergent mit
+		\begin{align*}
+			\E_n\overset{\text{Mosco}}{\longrightarrow}\overline{\inf\limits_{n\in\N}\E_n}
+		\end{align*}
+		Hierbei meint die Überstreichung die \textbf{unterhalbtstetige Hülle}, d.h. die größte unterhalbstetige Funktion, die kleiner als dieses Infimum ist.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\underline{Zeige (a):}\\
+	Sei $(u_n)_{n\in\N}$ schwach konvergent in $H$, $u:=\weaklim\limits_{n\to\infty} u_n$.\\
+	Für $n\geq m~(m,n\in\N)$ gilt
+	\begin{align*}
+		\E_m(u_n)
+		&\leq\E_n(u_n)
+	\end{align*}
+	Es gilt:
+	\begin{align*}
+		\E_n\text{ unterhalbstetig (Norm)}
+		&\Longleftrightarrow
+		\big\lbrace\E_n\leq c\big\rbrace\text{ abgeschlossen in }H &\forall c\in \R\\
+		\overset{\E_m\text{ konvex+Hahn-B.}}&{\Longleftrightarrow}
+		\big\lbrace\E_m\leq c\big\rbrace\text{ schwach abgeschlossen in }H &\forall c\in\R\\
+		&\Longleftrightarrow\E_m\text{ unterhalbstetig bzgl. schwacher Topologie}
+	\end{align*}
+	Erinnerung: schwach abgeschlossen bedeutet abgeschlossen in der schwachen Topologie.
+	Also gilt:
+	\begin{align*}
+		\E_m(u)
+		&\leq\liminf\limits_{n\to\infty}\E_m(u_n)
+		\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+		\qquad\forall m\\ %\leq n\\
+		\implies
+		\E(u)&:=\sup\limits_{m\in\N}\E_m(u)
+		\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+	\end{align*}
+	Außerdem sei $u\in H$.
+	Setze $u_n:=u$.
+	Dann gilt:
+	\begin{align*}
+		\sup\limits_{m}\E_m(u)=\E(u)=\limn\E_n(u_n)
+	\end{align*}
+
+	\underline{Zeige (b):}\\
+	Sei $\E_n)_{n\in\N}$ monoton fallend, $\E_n\leq\mathcal{F}$, wobei $\mathcal{F}:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig.
+	Sei $\E:=\overline{\inf\limits_{n\in\N}\E_n}(\geq\mathcal{F})$.
+	Sei $(u_n)_{n\in\N}$ schwach konvergent in $H$, $u:=\weaklim\limits_{n\to\infty} u_n$.
+	\begin{align*}
+		\implies\E(u)\overset{\E\text{ konvex}}{\leq}\liminf\limits_{n\to\infty}\E(u_n)\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+	\end{align*}
+	Außerdem: sei $u\in H$.
+	Sei $\E^0(u):=\inf\limits_{n\in\N}\E_n(u)$ (so, dass $\E=\overline{\E^0}$).\\
+	Dann existiert eine Folge $(v_n)_{n\in\N}$ in $H$ mit
+	\begin{align*}
+		\E(u)
+		&=\limn\E^0(v_n)
+		\qquad\text{und}\qquad
+		\limn v_n=u
+	\end{align*}
+	(Der Epigraph von $\E$ ist der Abschluss in $H\times\R$ des Epigraphen von $\E^0$!)\\
+	Nach Definition von $\E^0$ existiert für jedes $n\in\N$ ein $m_n\in\N$ so, dass
+	\begin{align*}
+		\E_{m_n}(v_n)\leq\E^0(v_n)+\frac{1}{n}
+	\end{align*}
+	O.B.d.A. (weil $(\E_m)_{m\in\N}$ monoton fallend ist) ist $(m_n)_{n\in\N}$ streng monoton wachsend.
+	Setze nun $u_m:=v_1$ für $m\leq m_1$ und $u_m:=v_n$ für $m_{n-1}\leq m\leq m_n$.
+\end{proof}
+
 
 
 
