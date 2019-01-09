@@ -8,279 +8,292 @@
 \section{Einleitung}
 In diesem Dokument werden folgende Notationen verwendet:
 \begin{itemize}
-\item $u_x:=\frac{\partial u(x)}{\partial x}$ für die Ableitung einer diffbaren Funktion $u, x\mapsto u(x)$
-\item $\frac{\partial u}{\partial n}:=\nabla u\cdot n$ wobei $n$ die Normale an $u$ ist
+	\item $u_x:=\frac{\partial u(x)}{\partial x}$ für die Ableitung einer diffbaren Funktion $u, x\mapsto u(x)$
+	\item $\frac{\partial u}{\partial n}:=\nabla u\cdot n$ wobei $n$ die Normale an $u$ ist
 \end{itemize}
 
 \subsection*{Durchbiegung einer Membran}
 \begin{itemize}
-\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$.
-\item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist. Die Flächenänderung ist
-\begin{align*}
-\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y
-\end{align*}
-\item Die Energie des Systems ist 
-\begin{align*}
-\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y-\int\limits_\Omega f\cdot u\d x\d y
-\end{align*}
-wobei $f$ eine von außen einwirkende Kraft ist
-\item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d.h. das System strebt stets einen Zustand minimaler Gesamtenergie an. Gesucht ist also eine Funktion $u$ derart, dass 
-\begin{align*}
-	E(u)&\leq E(v)&\forall v\in\tilde{V}\\
-	\gdw ~ E(u)&\leq E(u+t\cdot v)\forall t\in\R,~&\forall v\in V
-\end{align*}
-Dabei ist $V$ ein Funktionenraum, dessen Funktionen auf dem Rand verschwinden.
-\item Setze $\varphi(v,t):=E(u+t\cdot v)$, wobei $v$ als Parameter und $t$ als Variable aufgefasst wird. Somit lautet die notwendige Bedingung an das Energieminimum
-\begin{align*}
-\frac{\d\varphi}{\d t}(v,0)=0
-\end{align*}
+	\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$.
+	\item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist. 
+	Die Flächenänderung ist
+	\begin{align*}
+		\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y
+	\end{align*}
+	\item Die Energie des Systems ist 
+	\begin{align*}
+		\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y-\int\limits_\Omega f\cdot u\d x\d y
+	\end{align*}
+	wobei $f$ eine von außen einwirkende Kraft ist
+	\item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d.h. das System strebt stets einen Zustand minimaler Gesamtenergie an. 
+	Gesucht ist also eine Funktion $u$ derart, dass 
+	\begin{align*}
+		E(u)&\leq E(v)&\forall v\in\tilde{V}\\
+		\gdw ~ E(u)&\leq E(u+t\cdot v)\forall t\in\R,~&\forall v\in V
+	\end{align*}
+	Dabei ist $V$ ein Funktionenraum, dessen Funktionen auf dem Rand verschwinden.
+	\item Setze $\varphi(v,t):=E(u+t\cdot v)$, wobei $v$ als Parameter und $t$ als Variable aufgefasst wird. 
+	Somit lautet die notwendige Bedingung an das Energieminimum
+	\begin{align*}
+		\frac{\d\varphi}{\d t}(v,0)=0
+	\end{align*}
 \end{itemize}
 Nachrechnen:
 \begin{align*}
-\frac{\d\varphi}{\d t}(v,t)
-&=\frac{\d}{\d t}E(u+t\cdot v)\\
-&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v)_y^2\right)-f(u+t\cdot v)\right)\d x\d y\\
-&=\int\limits_\Omega\left((u+t\cdot v)_x\cdot v_x+(u+t\cdot v)_y\cdot v_y-f\cdot v\right)\d x\d y
+	\frac{\d\varphi}{\d t}(v,t)
+	&=\frac{\d}{\d t}E(u+t\cdot v)\\
+	&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v)_y^2\right)-f(u+t\cdot v)\right)\d x\d y\\
+	&=\int\limits_\Omega\left((u+t\cdot v)_x\cdot v_x+(u+t\cdot v)_y\cdot v_y-f\cdot v\right)\d x\d y
 \end{align*}
-Setze nun $t:=0$. Dann folgt aus der notwendigen Bedingung
+Setze nun $t:=0$. 
+Dann folgt aus der notwendigen Bedingung
 \begin{align*}
-0=\int\limits_\Omega\left(u_x\cdot v_x+u_y\cdot v_y-f\cdot v\right)\d x\d y
+	0=\int\limits_\Omega\left(u_x\cdot v_x+u_y\cdot v_y-f\cdot v\right)\d x\d y
 \end{align*}
 Es entsteht die Variationsaufgabe: Finde $u(t)$ so, dass 
 \begin{align*}
-\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y\qquad\forall v\in V.
+	\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y\qquad\forall v\in V.
 \end{align*}
 
 Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man aus dem linken Integral
 \begin{align*}
-\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y
-=-\int\limits_\Omega\left(u_{xx}+u_{yy}\right)\cdot v
-+\int\limits_{\partial\Omega}\underbrace{u_x\cdot v\cdot n_x+u_y\cdot v\cdot n_y}_{=(\nabla u\cdot n)\cdot v=0\text{, da $v=0$ auf }\partial\Omega}\d\gamma
+	\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y
+	=-\int\limits_\Omega\left(u_{xx}+u_{yy}\right)\cdot v
+	+\int\limits_{\partial\Omega}\underbrace{u_x\cdot v\cdot n_x+u_y\cdot v\cdot n_y}_{=(\nabla u\cdot n)\cdot v=0\text{, da $v=0$ auf }\partial\Omega}\d\gamma
 \end{align*}
 Somit folgt:
 \begin{align*}
--\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\Delta u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
-\Longrightarrow-\Delta u\equiv f\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
+	-\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\Delta u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
+	\Longrightarrow-\Delta u\equiv f\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
 \end{align*}
 
 \section{Sobolev-Räume}
 Bezeichnungen für dieses Kapitel:
 
 \begin{itemize}
-\item $d\geq1$ sei die Raumdimension
-\item $\Omega\subseteq\R^d$ sei offen und beschränkt
-\item $p\in[1,\infty)$ reelle Zahl
-\item $q\in(1,\infty]\mit\frac{1}{p}+\frac{1}{q}=1$ \textbf{konjungierter / dualer Exponent}
-\item $\alpha=(\alpha_1,\ldots,\alpha_d)\in\N_0^d$ Multiindex mit
-\begin{align*}
-|\alpha|:=\alpha_1+\ldots+\alpha_d\\
-D^\alpha\varphi:=\frac{\partial^{|\alpha|}\varphi}{\partial x_1^{\alpha_1}\hdots\partial x_d^{\alpha_d}}
-\end{align*}
-\item $L^p(\Omega):=\left\lbrace f:\Omega\to\R:f\text{ messbar und }\int\limits_\Omega |f(x)|^p\d\mathcal{L}(x)<\infty\right\rbrace$ Lebesgue-Räume
+	\item $d\geq1$ sei die Raumdimension
+	\item $\Omega\subseteq\R^d$ sei offen und beschränkt
+	\item $p\in[1,\infty)$ reelle Zahl
+	\item $q\in(1,\infty]\mit\frac{1}{p}+\frac{1}{q}=1$ \textbf{konjungierter / dualer Exponent}
+	\item $\alpha=(\alpha_1,\ldots,\alpha_d)\in\N_0^d$ Multiindex mit
+	\begin{align*}
+		|\alpha|:=\alpha_1+\ldots+\alpha_d\\
+		D^\alpha\varphi:=\frac{\partial^{|\alpha|}\varphi}{\partial x_1^{\alpha_1}\hdots\partial x_d^{\alpha_d}}
+	\end{align*}
+	\item $L^p(\Omega):=\left\lbrace f:\Omega\to\R:f\text{ messbar und }\int\limits_\Omega |f(x)|^p\d\mathcal{L}(x)<\infty\right\rbrace$ Lebesgue-Räume
 \end{itemize}
 
-\textbf{Bemerkungen.}
-\begin{enumerate}
-\item Da $\Omega$ beschränkt ist, gilt $L^p(\Omega)\subseteq L^1(\Omega)$ und die kanonische Injektion ist stetig.
-\item Es gilt die Gauß-Formel:
-\begin{align}\label{GaussFormel}
-\int\limits_\Omega\varphi\cdot D^\alpha\psi\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot D^\alpha\varphi\d x\qquad\forall \varphi,\psi\in C_0^\infty(\Omega)
-\end{align}
-\end{enumerate}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item Da $\Omega$ beschränkt ist, gilt $L^p(\Omega)\subseteq L^1(\Omega)$ und die kanonische Injektion ist stetig.
+		\item Es gilt die Gauß-Formel:
+		\begin{align}\label{GaussFormel}
+			\int\limits_\Omega\varphi\cdot D^\alpha\psi\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot D^\alpha\varphi\d x\qquad\forall \varphi,\psi\in C_0^\infty(\Omega)
+		\end{align}
+	\end{enumerate}
+\end{bemerkung}
 
 \begin{definition}[schwache Ableitung]
-Seien $\varphi,\psi\in L^1(\Omega)$ und sei $\alpha\in\N_0^\alpha$ ein Multiindex. Dann heißt $\psi$ die \textbf{$\alpha$-te schwache Ableitung} von $\varphi:\gdw$
-\begin{align*}
-\forall v\in C_0^\infty(\Omega):\int\limits_\Omega\varphi\cdot D^\alpha v\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot v\d x
-\end{align*}
-Kurzschreibweise: $\psi=D^\alpha\varphi$
-\end{definition}
-
-\textbf{Bemerkungen.}
-\begin{enumerate}
-\item Die $\alpha$-te schwache Ableitung ist eindeutig bestimmt im Sinne des $L^1$ (also bis auf Lebesgue-Nullmengen).
-\item Ist $\varphi\in C^{|\alpha|}(\Omega)$, dann existiert die schwache $\alpha$-te 	Ableitung, die mit der klassischen Ableitung übereinstimmt.
-\end{enumerate}
-
-\begin{beisp}
-$d=1$, $\Omega=(-1,1)$, $\varphi(x):=|x|$\\
-Behauptung: $\varphi'(x)=\left\lbrace\begin{array}{cl}
--1, & \falls -1<x<0\\
-1, & \falls 0\leq x<1
-\end{array}\right.$\\
-Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist nicht relevant.
-\begin{proof}
-Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
-\begin{align*}
-\int\limits_{-1}^1 \varphi\cdot v' \d x 
-&=\int\limits_{-1}^0 \varphi\cdot v' \d x + \int\limits_{0}^1 \varphi v' \d x \\
-\overset{\text{part}}&=
-\big[\varphi\cdot v\big]_{-1}^0 - \int\limits_{-1}^0 (-1) v \d x + \big[\varphi\cdot v\big]_{0}^1 - \int\limits_{0}^1 (1) v \d x \\
-\overset{v = 0 \text{ auf Rand}}&=
--\int\limits_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
-\overset{\text{Def}}&=
--\int\limits_{-1}^1 \varphi'(x)v\d x
-\end{align*}
-\end{proof}
-\end{beisp}
-
-\begin{definition}[Sobolev-Räume]
-Für $k\in\N_0$, $p\in[1,\infty)$ definieren wir den \textbf{Sobolev-Raum} wie folgt;
-\begin{align}
-W^{k,p}(\Omega):=\Big\lbrace\varphi\in L^p(\Omega):D^\alpha\varphi\text{ (schwache Abl.) existiert und }D^\alpha\varphi\in L^p(\Omega)~\forall|\alpha|\leq k\Big\rbrace
-\end{align}
-Als Norm vereinbaren wir
-\begin{align*}
-\Vert\varphi\Vert_{k,p,\Omega}:=\left(\sum\limits_{|\alpha|\leq k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
-=\left(\sum\limits_{|\alpha|\leq k}\int\limits_\Omega\left| D^\alpha\varphi(x)\right|^p\d x\right)^{\frac{1}{p}}
-\end{align*}
-Durch
-\begin{align*}
-|\varphi|_{k,p,\Omega}:=\left(\sum\limits_{|\alpha|= k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
-\end{align*}
-wird eine Halbnorm definiert.\\
-Für $p=2$ schreiben wir $H^k(\Omega):=W^{k,2}(\Omega)$.
-\end{definition}
-
-\begin{satz}[Eigenschaften der Sobolev-Räume]
-Es gilt:
-\begin{enumerate}
-\item $\left(W^{k,p}(\Omega),\Vert\cdot\Vert_{k,p,\Omega}\right)$ ist ein Banachraum.
-\item $C^\infty(\overline{\Omega})$ liegt dicht in $W^{k,p}(\Omega)$.
-\item $H^k(\Omega)$ ist ein Hilbertraum mit dem Skalarprodukt
-\begin{align*}
-\langle \varphi,\psi\rangle_k:=\sum\limits_{|\alpha|\leq k}\int\limits_\Omega D^\alpha\varphi\cdot D^\alpha\psi\d x.
-\end{align*}
-\end{enumerate}
-\end{satz}
-
-\begin{satz}[Glätte von stückweise glatten Funktionen]\label{satz1.4}\enter
-Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte und disjunkte Teilmengen mit stückweise glattem Rand. Gelte
-$\overline{\Omega}=\overline{\Omega_1}\cup\overline{\Omega_2}$.
-Weiterhin sei $\varphi\in L^p(\Omega)$ so, dass 
-\begin{align*}
-\exists k\geq 1:\forall i\in\lbrace1,2\rbrace:\varphi|_{\Omega_i}\in C^k(\overline{\Omega_i}).
-\end{align*}
-Dann gilt:
-\begin{align*}
-\varphi\in W^{k,p}(\Omega)\Longleftrightarrow\varphi\in C^{k-1}(\Omega)
-\end{align*}
-\end{satz}
-\begin{proof}
-Siehe Übung.
-\end{proof}
-
-\begin{definition}
-Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ wird mit $W_0^{k,p}(\Omega)$ bezeichnet. Außerdem setze $H_0^k(\Omega):=W_0^{k,2}(\Omega)$.
-\end{definition}
-
-\begin{definition}[Lipschitz-Rand]\enter
-$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\exists N\in\N,\exists U_1,\ldots,U_N\subseteq\R^d$ offen, sodass
-\begin{enumerate}
-\item $
-\begin{aligned}
-\partial\Omega\subseteq\bigcup\limits^N_{i=1} U_i
-\end{aligned}$
-\item $
-\begin{aligned}
-\forall i\in\lbrace1,\ldots,N\rbrace:\partial\Omega\cap U_i
-\end{aligned}$
- ist darstellbar als Graph einer Lipschitz-stetigen Funktion
-\end{enumerate}
-Das Gebiet $\Omega$ wird dann \textbf{Lipschitz-Gebiet} genannt.
+	Seien $\varphi,\psi\in L^1(\Omega)$ und sei $\alpha\in\N_0^\alpha$ ein Multiindex. 
+	Dann heißt $\psi$ die \textbf{$\alpha$-te schwache Ableitung} von $\varphi:\gdw$
+	\begin{align*}
+		\forall v\in C_0^\infty(\Omega):\int\limits_\Omega\varphi\cdot D^\alpha v\d x=(-1)^{|\alpha|}\cdot\int\limits_\Omega\psi\cdot v\d x
+	\end{align*}
+	Kurzschreibweise: $\psi=D^\alpha\varphi$
 \end{definition}
 
 \begin{bemerkung}
-Für Lipschitz-Gebiete existiert fast überall auf $\partial\Omega$ der äußere Normalenvektor.
+	\begin{enumerate}
+		\item Die $\alpha$-te schwache Ableitung ist eindeutig bestimmt im Sinne des $L^1$ (also bis auf Lebesgue-Nullmengen).
+		\item Ist $\varphi\in C^{|\alpha|}(\Omega)$, dann existiert die schwache $\alpha$-te 	Ableitung, die mit der klassischen Ableitung übereinstimmt.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beisp}
+	$d=1$, $\Omega=(-1,1)$, $\varphi(x):=|x|$\\
+	Behauptung: $\varphi'(x)=\left\lbrace\begin{array}{cl}
+		-1, & \falls -1<x<0\\
+		1, & \falls 0\leq x<1
+	\end{array}\right.$\\
+	Die schwache Ableitung existiert also und der Wert an der Stelle 0 ist nicht relevant.
+	\begin{proof}
+		Sei $v \in C_0^\infty(\Omega)$ beliebig. Dann
+		\begin{align*}
+			\int\limits_{-1}^1 \varphi\cdot v' \d x 
+			&=\int\limits_{-1}^0 \varphi\cdot v' \d x + \int\limits_{0}^1 \varphi v' \d x \\
+			\overset{\text{part}}&=
+			\big[\varphi\cdot v\big]_{-1}^0 - \int\limits_{-1}^0 (-1) v \d x + \big[\varphi\cdot v\big]_{0}^1 - \int\limits_{0}^1 (1) v \d x \\
+			\overset{v = 0 \text{ auf Rand}}&=
+			-\int\limits_{-1}^0 (-1) v \d x - \int_{0}^1 (1) v \d x \\
+			\overset{\text{Def}}&=
+			-\int\limits_{-1}^1 \varphi'(x)v\d x
+		\end{align*}
+	\end{proof}
+\end{beisp}
+
+\begin{definition}[Sobolev-Räume]
+	Für $k\in\N_0$, $p\in[1,\infty)$ definieren wir den \textbf{Sobolev-Raum} wie folgt;
+	\begin{align}
+		W^{k,p}(\Omega):=\Big\lbrace\varphi\in L^p(\Omega):D^\alpha\varphi\text{ (schwache Abl.) existiert und }D^\alpha\varphi\in L^p(\Omega)~\forall|\alpha|\leq k\Big\rbrace
+	\end{align}
+	Als Norm vereinbaren wir
+	\begin{align*}
+		\Vert\varphi\Vert_{k,p,\Omega}:=\left(\sum\limits_{|\alpha|\leq k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
+		=\left(\sum\limits_{|\alpha|\leq k}\int\limits_\Omega\left| D^\alpha\varphi(x)\right|^p\d x\right)^{\frac{1}{p}}
+	\end{align*}
+	Durch
+	\begin{align*}
+		|\varphi|_{k,p,\Omega}:=\left(\sum\limits_{|\alpha|= k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
+	\end{align*}
+	wird eine Halbnorm definiert.\\
+	Für $p=2$ schreiben wir $H^k(\Omega):=W^{k,2}(\Omega)$.
+\end{definition}
+
+\begin{satz}[Eigenschaften der Sobolev-Räume]
+	Es gilt:
+	\begin{enumerate}
+		\item $\left(W^{k,p}(\Omega),\Vert\cdot\Vert_{k,p,\Omega}\right)$ ist ein Banachraum.
+		\item $C^\infty(\overline{\Omega})$ liegt dicht in $W^{k,p}(\Omega)$.
+		\item $H^k(\Omega)$ ist ein Hilbertraum mit dem Skalarprodukt
+		\begin{align*}
+			\langle \varphi,\psi\rangle_k:=\sum\limits_{|\alpha|\leq k}\int\limits_\Omega D^\alpha\varphi\cdot D^\alpha\psi\d x.
+		\end{align*}
+	\end{enumerate}
+\end{satz}
+
+\begin{satz}[Glätte von stückweise glatten Funktionen]\label{satz1.4}\enter
+	Seien $\Omega_1,\Omega_2\subseteq\Omega$ zwei nichtleere, offene, beschränkte und disjunkte Teilmengen mit stückweise glattem Rand. 
+	Gelte
+	$\overline{\Omega}=\overline{\Omega_1}\cup\overline{\Omega_2}$.
+	Weiterhin sei $\varphi\in L^p(\Omega)$ so, dass 
+	\begin{align*}
+		\exists k\geq 1:\forall i\in\lbrace1,2\rbrace:\varphi|_{\Omega_i}\in C^k(\overline{\Omega_i}).
+	\end{align*}
+	Dann gilt:
+	\begin{align*}
+		\varphi\in W^{k,p}(\Omega)\Longleftrightarrow\varphi\in C^{k-1}(\Omega)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Siehe Übung.
+\end{proof}
+
+\begin{definition}
+	Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ wird mit $W_0^{k,p}(\Omega)$ bezeichnet. 
+	Außerdem setze $H_0^k(\Omega):=W_0^{k,2}(\Omega)$.
+\end{definition}
+
+\begin{definition}[Lipschitz-Rand]\enter
+	$\Omega$ hat einen \textbf{Lipschitz-Rand} $:\gdw\exists N\in\N,\exists U_1,\ldots,U_N\subseteq\R^d$ offen, sodass
+	\begin{enumerate}
+		\item $\begin{aligned}
+			\partial\Omega\subseteq\bigcup\limits^N_{i=1} U_i
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall i\in\lbrace1,\ldots,N\rbrace:\partial\Omega\cap U_i
+		\end{aligned}$
+		ist darstellbar als Graph einer Lipschitz-stetigen Funktion
+	\end{enumerate}
+	Das Gebiet $\Omega$ wird dann \textbf{Lipschitz-Gebiet} genannt.
+\end{definition}
+
+\begin{bemerkung}
+F	ür Lipschitz-Gebiete existiert fast überall auf $\partial\Omega$ der äußere Normalenvektor.
 \end{bemerkung}
 
 \begin{satz}[Spursatz]\label{satz1.7Spursatz}\enter
-Seien $\Omega$ eine Lipschitz-Gebiet, $k\in\N$, $l\in\lbrace 0,\ldots,k-1\rbrace$.\\
-Dann gibt es eine stetige lineare Abbildung
-\begin{align*}
-\gamma_l:W^{k,p}(\Omega)\rightarrow L^p(\partial\Omega)
-\end{align*}
-mit der Eigenschaft
-\begin{align*}
-\gamma_l(\varphi)=\frac{\partial^l}{\partial u^l}\varphi|_{\partial\Omega}\qquad\forall\varphi\in C^k(\overline{\Omega}).
-\end{align*}
+	Seien $\Omega$ eine Lipschitz-Gebiet, $k\in\N$, $l\in\lbrace 0,\ldots,k-1\rbrace$.\\
+	Dann gibt es eine stetige lineare Abbildung
+	\begin{align*}
+		\gamma_l:W^{k,p}(\Omega)\rightarrow L^p(\partial\Omega)
+	\end{align*}
+	mit der Eigenschaft
+	\begin{align*}
+		\gamma_l(\varphi)=\frac{\partial^l}{\partial u^l}\varphi|_{\partial\Omega}\qquad\forall\varphi\in C^k(\overline{\Omega}).
+	\end{align*}
 \end{satz}
 
 \begin{bemerkung}\
-\begin{itemize}
-\item $\gamma_0$ bildet die Funktion $\varphi$, die auf $\Omega$ lebt, auf ihre Randdaten ab.
-\item  $\gamma_1$ gibt die Normalenableitung zurück.
-\item Dass Bild von $W^{k,p}(\Omega)$ unter $\gamma_l$ ist ein abgeschlossener Unterraum von $L^p(\partial\Omega)$, genauer:
-\begin{align*}
-\gamma_l\left(W^{k,p}(\Omega)\right)=W^{k-l-\frac{1}{p},p}(\partial\Omega)
-\end{align*}
-\end{itemize}
+	\begin{itemize}
+		\item $\gamma_0$ bildet die Funktion $\varphi$, die auf $\Omega$ lebt, auf ihre Randdaten ab.
+		\item  $\gamma_1$ gibt die Normalenableitung zurück.
+		\item Dass Bild von $W^{k,p}(\Omega)$ unter $\gamma_l$ ist ein abgeschlossener Unterraum von $L^p(\partial\Omega)$, genauer:
+		\begin{align*}
+			\gamma_l\left(W^{k,p}(\Omega)\right)=W^{k-l-\frac{1}{p},p}(\partial\Omega)
+		\end{align*}
+	\end{itemize}
 \end{bemerkung}
 
 \begin{satz}
-Sei $\Omega$ ein Lipschitz-Gebiet. Dann gilt:
-\begin{align*}
-W_0^{k,p}(\Omega)=\left\lbrace\varphi\in W^{k,p}(\Omega):
-\forall l\in\lbrace0,\ldots,k-1\rbrace:\gamma_l(\varphi)=0\right\rbrace
-\end{align*}
+	Sei $\Omega$ ein Lipschitz-Gebiet. 
+	Dann gilt:
+	\begin{align*}
+		W_0^{k,p}(\Omega)=\left\lbrace\varphi\in W^{k,p}(\Omega):
+		\forall l\in\lbrace0,\ldots,k-1\rbrace:\gamma_l(\varphi)=0\right\rbrace
+	\end{align*}
 \end{satz}
 
 \begin{definition}
-Seien $(X,\Vert\cdot\Vert_X)$ und $(Y,\Vert\cdot\Vert_Y)$ zwei normierte Vektorräume.
-\begin{enumerate}
-\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ im Raum $Y$ relativkompakt ist.
-\item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ stetig ist.
-\item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ kompakt ist.
-\end{enumerate}
+	Seien $(X,\Vert\cdot\Vert_X)$ und $(Y,\Vert\cdot\Vert_Y)$ zwei normierte Vektorräume.
+	\begin{enumerate}
+		\item Eine lineare Abbildung $A:X\to Y$ heißt \textbf{kompakt} $:\gdw$ das Bild der abgeschlossenen Einheitskugel in $X$ im Raum $Y$ relativkompakt ist.
+		\item $X$ heißt \textbf{stetig eingebettet} in $Y$, in Zeichen $X\hookrightarrow Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ stetig ist.
+		\item $X$ heißt \textbf{kompakt eingebettet} in $Y$, in Zeichen $X\stackrel{C}{\hookrightarrow} Y:\gdw X\subseteq Y$ und die kanonische Injektion $I:X\to Y,~\varphi\mapsto\varphi$ kompakt ist.
+	\end{enumerate}
 \end{definition}
 
 \begin{bemerkung}\
-\begin{enumerate}
-\item $X\hookrightarrow Y\Longrightarrow\exists c>0:\forall\varphi\in X:\Vert\varphi\Vert_Y\leq c\cdot\Vert\varphi\Vert_X$
-\item $X\stackrel{C}{\hookrightarrow} Y\Longrightarrow X\hookrightarrow Y$
-\item Ist $\stackrel{C}{\hookrightarrow} Y$ und $(\varphi_n)_{n\in\N}\subseteq X$ eine beschränkte Folge in $X$, so besitzt $(\varphi_n)_{n\in\N}\subseteq Y$ eine konvergente Teilfolge.
-\end{enumerate}
+	\begin{enumerate}
+		\item $\begin{aligned}
+			X\hookrightarrow Y\Longrightarrow\exists c>0:\forall\varphi\in X:\Vert\varphi\Vert_Y\leq c\cdot\Vert\varphi\Vert_X
+		\end{aligned}$
+		\item $\begin{aligned}
+			X\stackrel{C}{\hookrightarrow} Y\Longrightarrow X\hookrightarrow Y
+		\end{aligned}$
+		\item Ist $\stackrel{C}{\hookrightarrow} Y$ und $(\varphi_n)_{n\in\N}\subseteq X$ eine beschränkte Folge in $X$, so besitzt $(\varphi_n)_{n\in\N}\subseteq Y$ eine konvergente Teilfolge.
+	\end{enumerate}
 \end{bemerkung}
 
 \begin{satz}[Einbettung]\
-\begin{enumerate}
-\item Sei $p<d$. Dann gilt:
-\begin{align*}
-W^{k,p}(\Omega)\hookrightarrow W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\frac{p\cdot d}{d-p}\right]\\
-W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\frac{p\cdot d}{d-p}\right)
-\end{align*}
-\item Sei $p=d$. Dann gilt:
-\begin{align*}
-W^{k,p}(\Omega)\hookrightarrow W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\infty\right)
-\end{align*}
-\item Sei $k>\frac{d}{p}$. Dann gilt:
-\begin{align*}
-W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} C^l(\overline{\Omega})\qquad\forall 0\leq l\leq k-\frac{d}{p}
-\end{align*}
-\end{enumerate}
+	\begin{enumerate}
+		\item Sei $p<d$. Dann gilt:
+		\begin{align*}
+			W^{k,p}(\Omega)\hookrightarrow W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\frac{p\cdot d}{d-p}\right]\\
+			W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\frac{p\cdot d}{d-p}\right)
+		\end{align*}
+		\item Sei $p=d$. Dann gilt:
+		\begin{align*}
+			W^{k,p}(\Omega)\hookrightarrow W^{k-1,p}(\Omega)\qquad\forall q\in\left[1,\infty\right)
+		\end{align*}
+		\item Sei $k>\frac{d}{p}$. Dann gilt:
+		\begin{align*}
+			W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} C^l(\overline{\Omega})\qquad\forall 0\leq l\leq k-\frac{d}{p}
+		\end{align*}
+	\end{enumerate}
 \end{satz}
 
 \begin{bemerkung}\
-\begin{itemize}
-\item Es gilt stets
-\begin{align*}
-W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)
-\end{align*}
-\item Falls $p=2$, $d\in\lbrace2,3\rbrace$: 
-\begin{align*}
-	H^2(\Omega)\hookrightarrow C(\overline{\Omega})
-\end{align*}
-Für $H^1(\Omega)$-Funktionen sind Punkte weiter nicht sinnvoll.
-\item Falls $p=2,~d=2$: 
-\begin{align*}
-H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
-\end{align*}
-\item Falls $p=2,~d=3$: 
-\begin{align*}
-&H^1(\Omega)\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,6)\\
-&H^1(\Omega)\stackrel{C}{\hookrightarrow} L^6(\Omega)
-\end{align*}
-\end{itemize}
+	\begin{itemize}
+		\item Es gilt stets
+		\begin{align*}
+			W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)
+		\end{align*}
+		\item Falls $p=2$, $d\in\lbrace2,3\rbrace$: 
+		\begin{align*}
+			H^2(\Omega)\hookrightarrow C(\overline{\Omega})
+		\end{align*}
+		Für $H^1(\Omega)$-Funktionen sind Punkte weiter nicht sinnvoll.
+		\item Falls $p=2,~d=2$: 
+		\begin{align*}
+			H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
+		\end{align*}
+		\item Falls $p=2,~d=3$: 
+		\begin{align*}
+			&H^1(\Omega)\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,6)\\
+			&H^1(\Omega)\stackrel{C}{\hookrightarrow} L^6(\Omega)
+		\end{align*}
+	\end{itemize}
 \end{bemerkung}
 
 \begin{beisp}
@@ -289,150 +302,153 @@ H^1(\Omega\stackrel{C}{\hookrightarrow} L^q(\Omega)\qquad\forall q\in[1,\infty)
 		\item Sei $\Omega=$ Einheitskreis
 		\item $u(x,y):=\ln\left(\ln\left(\frac{4}{\sqrt{x^2+y^2}}\right)\right)$
 	\end{itemize}
-	$u$ hat einen Pol im Ursprung, d.h. $u\not\in C(\overline{\Omega})$, aber:\enter
+	$u$ hat einen Pol im Ursprung, d.h. $u\not\in C(\overline{\Omega})$, aber:\\
 	\ul{Behauptung:} 
 	\[\|u\|^2_{1,2,\Omega}\leq 8\pi + \frac{2\pi}{\ln(4)}< \infty\]
 	\[\implies u \in H^1(\Omega)\]
 	\begin{proof}
-	\[\|u\|^2_{1,2,\Omega} = \underbrace{\int\limits_\Omega |u|^2 \d x \d y}_{:=\text{ I}} +
-	\underbrace{\int\limits_\Omega |u_x|^2 + |u_y|^2 \d x \d y}_{:=\text{ II}}\]
-	Es gilt für alle $z\geq 4$:
-	\[\ln(\ln(z))\leq \sqrt{z}\]
-	Mit der Koflächenformel erhalten wir:
-	\begin{align*}
-		\text{I} &= \int\limits_\Omega |u|^2 \d x \d y \\
+		\[\|u\|^2_{1,2,\Omega} = \underbrace{\int\limits_\Omega |u|^2 \d x \d y}_{:=\text{ I}} +
+		\underbrace{\int\limits_\Omega |u_x|^2 + |u_y|^2 \d x \d y}_{:=\text{ II}}\]
+		Es gilt für alle $z\geq 4$:
+		\[\ln(\ln(z))\leq \sqrt{z}\]
+		Mit der Koflächenformel erhalten wir:
+		\begin{align*}
+			\text{I} &= \int\limits_\Omega |u|^2 \d x \d y \\
 			&\leq \int\limits_\Omega \left(\frac{4}{\sqrt{x^2 + y^2}}\right)^2 \d x \d y \\
 			\overset{\text{Koflä.}}&= \int\limits_0^{2\pi}\int\limits_0^1\left(\frac{4}{r}\right)^2 r \d r \d \varphi \\
 			&= 8 \pi
-	\end{align*}
-	Als nächstes betrachten wir II. Dafür schauen wir uns zunächst die partiellen Ableitungen von $u$ an:
-	\begin{align*}
-		u_x &= \frac{1}{\ln\left(\frac{4}{r}\right)}\frac{r}{4}\left(-\frac{4}{r^2}\right)\frac{x}{r} = - \frac{x}{r^2\ln\left(\frac{4}{r}\right)} \\
-		u_y &= - \frac{y}{r^2\ln\left(\frac{4}{r}\right)} \\
-		\implies u_x^2 + u_y^2 &= \frac{x^2+y^2}{\left(r^2\ln\left(\frac{4}{r}\right)\right)^2} \\
-		&= \frac{r^2}{\left(r^2\ln\left(\frac{4}{r}\right)\right)^2} \\
-		&= \frac{1}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \\
-	\end{align*}
-	Also schlussendlich:
-	\begin{align*}
-		\text{II} \overset{\text{vgl. I}}&= \int\limits_0^{2\pi}\int\limits_0^1\frac{r}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \d \varphi \\
+		\end{align*}
+		Als nächstes betrachten wir II. Dafür schauen wir uns zunächst die partiellen Ableitungen von $u$ an:
+		\begin{align*}
+			u_x &= \frac{1}{\ln\left(\frac{4}{r}\right)}\frac{r}{4}\left(-\frac{4}{r^2}\right)\frac{x}{r} = - \frac{x}{r^2\ln\left(\frac{4}{r}\right)} \\
+			u_y &= - \frac{y}{r^2\ln\left(\frac{4}{r}\right)} \\
+			\implies u_x^2 + u_y^2 &= \frac{x^2+y^2}{\left(r^2\ln\left(\frac{4}{r}\right)\right)^2} \\
+			&= \frac{r^2}{\left(r^2\ln\left(\frac{4}{r}\right)\right)^2} \\
+			&= \frac{1}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \\
+		\end{align*}
+		Also schlussendlich:
+		\begin{align*}
+			\text{II} \overset{\text{vgl. I}}&= \int\limits_0^{2\pi}\int\limits_0^1\frac{r}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \d \varphi \\
 			 &= 2\pi \int\limits_0^1 \frac{1}{r^2\left(\ln\left(\frac{4}{r}\right)\right)^2} \d r \\
 			 &=\left[2\pi\left(\frac{1}{\ln\left(\frac{4}{r}\right)}\right)\right]_{r=0}^1 \\
 			 &= \frac{2\pi}{\ln(4)}
-	\end{align*}
-\end{proof}
+		\end{align*}
+	\end{proof}
 \end{beisp}
 
-\newpage
 \begin{proposition}\label{prop1.11}
-Sei $\Omega\subseteq\R^d$ ein beschränktes Lipschitz-Gebiet und sei $F$ lineares, stetiges Funktional auf $H^1(\Omega)$ und $B$ eine beschränkte, symmetrische Bilinearform auf $H^1(\Omega)$ mit
-\begin{align*}
-B(u,u)\geq0\qquad\forall u\in H^1(\Omega).
-\end{align*}
-Sei $g$ eine Funktion mit $g(x)=1~\forall x\in\overline{\Omega}$ so, dass
-\begin{align*}
-|F(g)|+\sqrt{B(g,g)}>0.
-\end{align*}
-Dann gilt:\\
-Die Normen $\Vert\cdot\Vert_{1,2,\Omega}$ und
-\begin{align*}
-\Vertiii{f}:=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}
-\end{align*}
-sind äquivalent auf $H^1(\Omega)$, d. h. es existieren $c_1,c_2>0$ so, dass
-\begin{align*}
-c_1\cdot\Vert f\Vert_{1,2,\Omega}\leq\Vertiii{f}
-\leq
-c_2\cdot\Vert f\Vert_{1,2,\Omega}
-\qquad\forall f\in H^1(\Omega)
-\end{align*}
+	Sei $\Omega\subseteq\R^d$ ein beschränktes Lipschitz-Gebiet und sei $F$ lineares, stetiges Funktional auf $H^1(\Omega)$ und $B$ eine beschränkte, symmetrische Bilinearform auf $H^1(\Omega)$ mit
+	\begin{align*}
+		B(u,u)\geq0\qquad\forall u\in H^1(\Omega).
+	\end{align*}
+	Sei $g$ eine Funktion mit $g(x)=1~\forall x\in\overline{\Omega}$ so, dass
+	\begin{align*}
+		|F(g)|+\sqrt{B(g,g)}>0.
+	\end{align*}
+	Dann gilt:\\
+	Die Normen $\Vert\cdot\Vert_{1,2,\Omega}$ und
+	\begin{align*}
+		\Vertiii{f}:=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}
+	\end{align*}
+	sind äquivalent auf $H^1(\Omega)$, d. h. es existieren $c_1,c_2>0$ so, dass
+	\begin{align*}
+		c_1\cdot\Vert f\Vert_{1,2,\Omega}\leq\Vertiii{f}
+		\leq
+		c_2\cdot\Vert f\Vert_{1,2,\Omega}
+		\qquad\forall f\in H^1(\Omega)
+	\end{align*}
 \end{proposition}
+
 \begin{proof}
-\underline{Zeige $\Vertiii{\cdot}$ ist eine Norm:}
-Dies wird in der Übung gezeigt.\nl
-\underline{Zeige $\Vertiii{f}\leq c_2\cdot\Vert f\Vert_{1,2,\Omega}$:}
-\begin{align*}
-\Vertiii{f} &=
-|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
-&\leq
-\Vert f\Vert_{1,2,\Omega} +c_F\cdot\Vert f\Vert_{1,2,\Omega}+\sqrt{c_B\cdot\Vert f\Vert^2_{1,2,\Omega}}\\
-&\leq
-(1+c_F+\sqrt{c_B})\cdot\Vert f\Vert_{1,2,\Omega}
-\end{align*}
+	\underline{Zeige $\Vertiii{\cdot}$ ist eine Norm:}
+	Dies wird in der Übung gezeigt.\nl
+	\underline{Zeige $\Vertiii{f}\leq c_2\cdot\Vert f\Vert_{1,2,\Omega}$:}
+	\begin{align*}
+		\Vertiii{f} &=
+		|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
+		&\leq
+		\Vert f\Vert_{1,2,\Omega} +c_F\cdot\Vert f\Vert_{1,2,\Omega}+\sqrt{c_B\cdot\Vert f\Vert^2_{1,2,\Omega}}\\
+		&\leq
+		(1+c_F+\sqrt{c_B})\cdot\Vert f\Vert_{1,2,\Omega}
+	\end{align*}
 
-%(iii)
-\underline{Zeige $\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}$ indirekt:}
-Angenommen es gibt eine Folge $(f_n)_{n\in\N}\subseteq H^1(\Omega)$ mit
-\begin{align}\label{proof1.9}\tag{$\ast$}
-\Vert f_n\Vert_{0,2,\Omega}=1\text{ und }\Vertiii{f_n}<\frac{1}{n}~\forall n\in\N
-\end{align}
-Dann gilt für alle $n\in\N$:
-\begin{align*}
-|f_n|_{1,2,\Omega}<\frac{1}{n}
-\implies
-\Vert f_n\Vert^2_{1,2,\Omega}\leq 2\
-\end{align*}
-Deshalb ist $(f_n)_{n\in\N}$ eine beschränkte Folge in $H^1(\Omega)$. Wegen $H^1(\Omega)\stackrel{C}{\hookrightarrow} L^2(\Omega)$ gibt eine Teilfolge $(f_m)_{m\in\N}$, die in $L^2(H)$ konvergiert.
-\begin{align*}
-&\stackrel{\eqref{proof1.9}}{\implies}
-(f_m)_{m\in\N}\text{ ist eine Cauchy-Folge in }H^1(\Omega)\\
-&\implies
- f_m\stackrel{m\to\infty}{\longrightarrow} f\in H^1(\Omega)\\
- &\implies
- \Vert f\Vert_{0,2,\Omega}=1\text{ und } |f|_{1,2,\Omega}=0\\
- &\implies
- f\text{ ist konstant, also } f\equiv \lambda\cdot g\mit\lambda\in\R
-\end{align*}
-Mit $\Vertiii{f}=0$ erhalten wir
-\begin{align*}
-\Vertiii{f} = 0 
-&=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
-&=0+|\lambda|\cdot|F(g)|+|\lambda|\cdot\sqrt{B(g,g)}\\
-&=|\lambda|\cdot\underbrace{\Big(|F(g)|+\sqrt{B(g,g)}\Big)}_{>0}\\
-&\implies\lambda=0\implies f\equiv 0
-\end{align*}
-Das ist ein Widerspruch zur Annahme $\Vert f\Vert_{0,2,\Omega}=1$. Also folgt
-\begin{align*}
-\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega).
-\end{align*}
+	%(iii)
+	\underline{Zeige $\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}$ indirekt:}
+	Angenommen es gibt eine Folge $(f_n)_{n\in\N}\subseteq H^1(\Omega)$ mit
+	\begin{align}\label{proof1.9}\tag{$\ast$}
+		\Vert f_n\Vert_{0,2,\Omega}=1\text{ und }\Vertiii{f_n}<\frac{1}{n}~\forall n\in\N
+	\end{align}
+	Dann gilt für alle $n\in\N$:
+	\begin{align*}
+		|f_n|_{1,2,\Omega}<\frac{1}{n}
+		\implies
+		\Vert f_n\Vert^2_{1,2,\Omega}\leq 2\
+	\end{align*}
+	Deshalb ist $(f_n)_{n\in\N}$ eine beschränkte Folge in $H^1(\Omega)$. 
+	Wegen $H^1(\Omega)\stackrel{C}{\hookrightarrow} L^2(\Omega)$ gibt eine Teilfolge $(f_m)_{m\in\N}$, die in $L^2(H)$ konvergiert.
+	\begin{align*}
+		&\stackrel{\eqref{proof1.9}}{\implies}
+		(f_m)_{m\in\N}\text{ ist eine Cauchy-Folge in }H^1(\Omega)\\
+		&\implies
+		f_m\stackrel{m\to\infty}{\longrightarrow} f\in H^1(\Omega)\\
+		&\implies
+		\Vert f\Vert_{0,2,\Omega}=1\text{ und } |f|_{1,2,\Omega}=0\\
+		&\implies
+		f\text{ ist konstant, also } f\equiv \lambda\cdot g\mit\lambda\in\R
+	\end{align*}
+	Mit $\Vertiii{f}=0$ erhalten wir
+	\begin{align*}
+		\Vertiii{f} = 0 
+		&=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
+		&=0+|\lambda|\cdot|F(g)|+|\lambda|\cdot\sqrt{B(g,g)}\\
+		&=|\lambda|\cdot\underbrace{\Big(|F(g)|+\sqrt{B(g,g)}\Big)}_{>0}\\
+		&\implies\lambda=0\implies f\equiv 0
+	\end{align*}
+	Das ist ein Widerspruch zur Annahme $\Vert f\Vert_{0,2,\Omega}=1$. 
+	Also folgt
+	\begin{align*}
+		\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega).
+	\end{align*}
 
-\underline{Zeige $\|f\|_{1,2,\Omega}\leq c_1 \Vertiii{f}$}
+	\underline{Zeige $\|f\|_{1,2,\Omega}\leq c_1 \Vertiii{f}$}
 
-\begin{align*}
-\Vert f\Vert_{1,2,\Omega}
-&\leq
-|f|_{1,2,\Omega}+\Vert f\Vert_{0,2,\Omega}\\
-&\leq
-\Vertiii{f}+c\cdot\Vertiii{f}\\
-&=c_1\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega)
-\end{align*}
+	\begin{align*}
+		\Vert f\Vert_{1,2,\Omega}
+		&\leq
+		|f|_{1,2,\Omega}+\Vert f\Vert_{0,2,\Omega}\\
+		&\leq
+		\Vertiii{f}+c\cdot\Vertiii{f}\\
+		&=c_1\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega)
+	\end{align*}
 \end{proof}
 
 \begin{korollar}[Poincaré-Ungleichung]\label{korollarPoincareUngleichung}\enter %1.12
-Aus Proposition \ref{prop1.11} folgt mit
-\begin{align*}
-B(u,v)=0\quad\text{ und }\quad F(u)=\int\limits_\Omega u(x)\d x
-\qquad\forall u,v\in H^1(\Omega)
-\end{align*}
-die Äquivalenz der Normen
-\begin{align*}
-\Vert\cdot\Vert_{1,2,\Omega}\text{ und } |\cdot|_{1,2,\Omega}+|F(\cdot)|.
-\end{align*}
-Setze
-\begin{align*}
-V:=\left\lbrace\varphi\in H^1(\Omega):\int\limits_\Omega u(x)\d x=0\right\rbrace.
-\end{align*}
-Dann sind sogar $\Vert\cdot\Vert_{1,2,\Omega}$ und $|\cdot|_{1,2,\Omega}$ äquivalent auf $V$.
+	Aus Proposition \ref{prop1.11} folgt mit
+	\begin{align*}
+		B(u,v)=0\quad\text{ und }\quad F(u)=\int\limits_\Omega u(x)\d x
+		\qquad\forall u,v\in H^1(\Omega)
+	\end{align*}
+	die Äquivalenz der Normen
+	\begin{align*}
+		\Vert\cdot\Vert_{1,2,\Omega}\text{ und } |\cdot|_{1,2,\Omega}+|F(\cdot)|.
+	\end{align*}
+	Setze
+	\begin{align*}
+		V:=\left\lbrace\varphi\in H^1(\Omega):\int\limits_\Omega u(x)\d x=0\right\rbrace.
+	\end{align*}
+	Dann sind sogar $\Vert\cdot\Vert_{1,2,\Omega}$ und $|\cdot|_{1,2,\Omega}$ äquivalent auf $V$.
 \end{korollar}
+
 \begin{proof}
-Es ist zu zeigen, dass $F$ ein lineares stetiges Funktional auf $H^1(\Omega)$  ist. Das ist einfach.
+	Es ist zu zeigen, dass $F$ ein lineares stetiges Funktional auf $H^1(\Omega)$  ist. Das ist einfach.
 \end{proof}
 
 \begin{proposition}[Friedrichs Ungleichung]\label{prop1.13FriedrichsUngleichung}\enter
-$|\cdot|_{k,p,\Omega}$ ist eine Norm auf $W_0^{k,p}(\Omega)$, welche äquivalent zu der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ ist.\nl
-Bemerkung: Für $k=1,~p=2$ ist das eine direkte Folgerung auf Proposition \ref{prop1.11} mit 
-\begin{align*}
-B(u,v)\equiv0\text{ und } F(u)=\int\limits_{\partial\Omega} u\d \gamma.
-\end{align*}
+	$|\cdot|_{k,p,\Omega}$ ist eine Norm auf $W_0^{k,p}(\Omega)$, welche äquivalent zu der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ ist.\nl
+	Bemerkung: Für $k=1,~p=2$ ist das eine direkte Folgerung auf Proposition \ref{prop1.11} mit 
+	\begin{align*}
+		B(u,v)\equiv0\text{ und } F(u)=\int\limits_{\partial\Omega} u\d \gamma.
+	\end{align*}
 \end{proposition}
 
 \section{Abstrakte Variations-Analysis}
@@ -446,554 +462,585 @@ Die \textbf{Poissongleichung} ist
 \end{align}
 Durch Multiplikation mit $v$ und Integration erhalten wir
 \begin{align*}
-&\stackrel{ v|_{\partial\Omega}\equiv0}{\implies}
-\int\limits_\Omega f\cdot v\d x
-=\int\limits_\Omega-\Delta u\cdot v\d x
-=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\underbrace{\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x}_{=0}
+	&\stackrel{ v|_{\partial\Omega}\equiv0}{\implies}
+	\int\limits_\Omega f\cdot v\d x
+	=\int\limits_\Omega-\Delta u\cdot v\d x
+	=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\underbrace{\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x}_{=0}
 \end{align*}
 Definiere:
 \begin{align*}
-\text{Bilinearform } a(u,v)&:=\int\limits_\Omega\nabla u\cdot\nabla v\d x\\
-\text{Linearform } l(v)&:=\int\limits_\Omega f\cdot v\d x
+	\text{Bilinearform } a(u,v)&:=\int\limits_\Omega\nabla u\cdot\nabla v\d x\\
+	\text{Linearform } l(v)&:=\int\limits_\Omega f\cdot v\d x
 \end{align*}
-$a$ und $l$ sind wohldefiniert für $f\in L^2(\Omega),~u,v\in H^1(\Omega)$. Um $v|_{\partial\Omega}=0$ und $u|_{\partial\Omega}=0$ sicherzustellen, muss $u,v\in H^1_0(\Omega)$ gelten.\nl
+$a$ und $l$ sind wohldefiniert für $f\in L^2(\Omega),~u,v\in H^1(\Omega)$. 
+Um $v|_{\partial\Omega}=0$ und $u|_{\partial\Omega}=0$ sicherzustellen, muss $u,v\in H^1_0(\Omega)$ gelten.\nl
 \textbf{Variationsformulierung der Poissongleichung:}\\
 Finde $u\in H_0^1(\Omega)$ so, dass
 \begin{align*}
-a(u,v)=l(v)\qquad\forall v\in H^1_0(\Omega).
+	a(u,v)=l(v)\qquad\forall v\in H^1_0(\Omega).
 \end{align*}
-Dieses Problem gilt es zu lösen. Allgemeiner formuliert erhält man das folgende Problem:\\
+Dieses Problem gilt es zu lösen. 
+Allgemeiner formuliert erhält man das folgende Problem:\\
 Sei $V$ ein Hilbertraum. Finde $u\in V$ so, dass
 \begin{align*}
-a(u,v)=l(v)\qquad\forall v\in V.
+	a(u,v)=l(v)\qquad\forall v\in V.
 \end{align*}
 
 Eigenschaften der oben definieren Bilinearform $a$:
 \begin{itemize}
-\item $a$ ist stetig auf $V$, d. h.
-\begin{align*}
-\exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V
-\end{align*}
-denn:
-\begin{align*}
-\big| a(u,v)\big|=\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
-\leq
-|u|_{1,2,\Omega}\cdot|v|_{1,2,\Omega}
-\leq
-\underbrace{1}_{=:M}\cdot\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
-\end{align*}
-\item $a$ ist \textbf{koerziv}, d. h.
-\begin{align*}
-\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V
-\end{align*} 
-denn:
-\begin{align*}
-a(v,v)
-=\int\limits_\Omega\nabla v\cdot\nabla v\d x
-=\int\limits_\Omega\sum\limits_{i=1}^d\left(\frac{\partial v}{\partial x_i}\right)^2\d x
-=|v|^2_{1,2,\Omega}
-\stackrel{\text{Fried}}{\geq}
-\frac{1}{c_F^2}\cdot\Vert v\Vert^2_{1,2,\Omega}
-\end{align*}
+	\item $a$ ist stetig auf $V$, d. h.
+	\begin{align*}
+		\exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V
+	\end{align*}
+	denn:
+	\begin{align*}
+		\big| a(u,v)\big|=\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
+		\leq
+		|u|_{1,2,\Omega}\cdot|v|_{1,2,\Omega}
+		\leq
+		\underbrace{1}_{=:M}\cdot\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
+	\end{align*}
+	\item $a$ ist \textbf{koerziv}, d. h.
+	\begin{align*}
+		\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V
+	\end{align*} 
+	denn:
+	\begin{align*}
+		a(v,v)
+		=\int\limits_\Omega\nabla v\cdot\nabla v\d x
+		=\int\limits_\Omega\sum\limits_{i=1}^d\left(\frac{\partial v}{\partial x_i}\right)^2\d x
+		=|v|^2_{1,2,\Omega}
+		\stackrel{\text{Fried}}{\geq}
+		\frac{1}{c_F^2}\cdot\Vert v\Vert^2_{1,2,\Omega}
+	\end{align*}
 \end{itemize}
+
 Eigenschaften der oben definierten Linearform $l$:
 \begin{itemize}
-\item $l$ ist stetig auf $V$, d. h.
-\begin{align*}
-\exists M^\ast>0:\forall v\in V: \big|l(v)\big|\leq M^\ast\cdot\Vert v\Vert_V
-\end{align*}
-denn:
-\begin{align*}
-\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
-\stackrel{\text{CS}}{\leq}
-\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
-\stackrel{\text{CS}}{\leq}
-\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
-\end{align*}
+	\item $l$ ist stetig auf $V$, d. h.
+	\begin{align*}
+		\exists M^\ast>0:\forall v\in V: \big|l(v)\big|\leq M^\ast\cdot\Vert v\Vert_V
+	\end{align*}
+	denn:
+	\begin{align*}
+		\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
+		\stackrel{\text{CS}}{\leq}
+		\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
+		\stackrel{\text{CS}}{\leq}
+		\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
+	\end{align*}
 \end{itemize}
 
 \begin{theorem}[Lax-Milgram]\label{theorem2.1LaxMilgram}\enter
-Sei $V$ ein Hilbertraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $b$ eine stetige Linearform auf $V$.\\
-Dann hat das Variationsproblem
-\begin{align*}
-\text{Bestimme $u\in V$ so, dass }a(u,v)=b(v)\qquad\forall v\in V.
-\end{align*}
-eine eindeutige Lösung.
+	Sei $V$ ein Hilbertraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $b$ eine stetige Linearform auf $V$.\\
+	Dann hat das Variationsproblem
+	\begin{align*}
+		\text{Bestimme $u\in V$ so, dass }a(u,v)=b(v)\qquad\forall v\in V.
+	\end{align*}
+	eine eindeutige Lösung.
 \end{theorem}
+
 \begin{proof}
-\underline{Schritt 1:}\\ Transformation in einen dualen Operator über dem Dualraum $V^\ast$ von $V$. Die Abbildung $v\mapsto a(u,v)$ definiert für alle festen $u\in V$ eine stetige Linearform auf $V$. Wir bezeichnen diese mit $Au\in V^\ast$
-\begin{align*}
-	\langle Au,v\rangle=(Au)(v):&=a(u,v)\qquad\forall u,v\in V \\
-	b\in V^\ast: \langle b,v\rangle&=b(v)
-\end{align*}
-Damit folgt:
-\begin{align*}
-\text{Variationsproblem}&\Longleftrightarrow\langle Au,v\rangle=\langle b,v\rangle\qquad\forall v\in V\\
-&\Longleftrightarrow Au=b\text{ in }V^\ast
-\end{align*}
-\underline{Schritt 2:}\\
-Die Abbildung $V\to V^\ast$ kann auch als Abbildung $A:V\to V$ aufgefasst werden. Eigenschaften von $A$:
-\begin{enumerate}[label=(\alph*)]
-\item $A$ ist linear auf $V$
-\begin{align*}
-\big\langle A(\alpha u+\beta v),w\big\rangle
-&=a(\alpha u+\beta v,w)\\
-&=\alpha a(u,w)+\beta a(v,w)\\
-&=\alpha\langle Au,w\rangle+\beta\langle Av,w\rangle\qquad\forall u,v,w,\in V
-\end{align*}
-\item $A$ ist stetig auf $V$:
-\begin{align*}
-\Vert A v\Vert_{V}
-&=\Vert A u\Vert_{V^\ast}\\
-&=\sup\limits_{v\neq0}\frac{\big|\langle Au,v\rangle\big|}{\Vert v\Vert_V}\\
-&=\sup\limits_{v\neq0}\frac{\big|a(u,v)\big|}{\Vert v\Vert_V}\\
-&\leq
-\sup\limits_{v\neq0}\frac{M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V}{\Vert v\Vert_V}\\
-&=M\cdot\Vert u\Vert_V
-\end{align*}
-\end{enumerate}
-\underline{Schritt 3:} Setze
-\begin{align*}
-u^{n+1}:=P(u^n):=u^n+\tau\cdot(b-A u^n)\qquad\forall\tau\in\R_{\neq0}
-\end{align*}
-$u^0$ ist eine beliebiger Startwert.
-\begin{align*}
-P:V\to V,\qquad u\mapsto u+\tau\cdot(b-Au)
-\end{align*}
-Jeder Fixpunkt von $P$ ist eine Lösung von $Au=b$ und umgekehrt.\\
-Es bleibt also zu zeigen, das $P$ einen eindeutigen Fixpunkt hat. Dafür nutzen wir den \textit{Banach'schen Fixpunktsatz} \ref{BanachscherFixpunktsatz}.\nl
-Wähle also $N=V$. $P$ ist eine Kontraktion, wenn $\tau$ richtig gewählt wird.
-\begin{align*}
-&\quad\Vert P(u)-P)v)\Vert^2_V\\
-&=\big\langle P(u)-P(v),P(u)-P(v)\big\rangle_V\\
-&=\big\langle u-v-\tau\cdot A(u-v),u-v-\tau\cdot A(u-v)\big\rangle_V\\
-&=\langle u-v,u-v\rangle_V-2\cdot\tau\cdot\underbrace{\big\langle A(u-v),u-v\big\rangle_V}_{\stackrel{\text{Def.}}{=}a(u-v,u-v)\stackrel{\text{koerz}}{\geq}\alpha\cdot\Vert u-v\Vert^2_V}+\tau^2\cdot\underbrace{\big\langle A(u-v),A(u-v)\big\rangle_V}_{=\Vert A(u-v)\Vert^2_V\leq M^2\cdot\Vert u-v\Vert^2_V}\\
-\overset{\tau>0}&{\leq}
-\Vert u-v\Vert^2_V\cdot\big(1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2\big)
-\end{align*}
-Wähle $\tau:=\frac{\alpha}{M^2}>0$. Dann gilt:
-\begin{align*}
-1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2=1-\frac{\alpha^2}{M^2}>0
-\end{align*}
-$P$ ist eine Kontraktion, also hat $P$ nach dem Banachschen Fixpunktsatz einen eindeutigen Fixpunkt und damit hat auch $Au=b$ eine eindeutige Lösung.
+	\underline{Schritt 1:}\\ 
+	Transformation in einen dualen Operator über dem Dualraum $V^\ast$ von $V$. 
+	Die Abbildung $v\mapsto a(u,v)$ definiert für alle festen $u\in V$ eine stetige Linearform auf $V$. 
+	Wir bezeichnen diese mit $Au\in V^\ast$
+	\begin{align*}
+		\langle Au,v\rangle=(Au)(v):&=a(u,v)\qquad\forall u,v\in V \\
+		b\in V^\ast: \langle b,v\rangle&=b(v)
+	\end{align*}
+	Damit folgt:
+	\begin{align*}
+		\text{Variationsproblem}&\Longleftrightarrow\langle Au,v\rangle=\langle b,v\rangle\qquad\forall v\in V\\
+		&\Longleftrightarrow Au=b\text{ in }V^\ast
+	\end{align*}
+	
+	\underline{Schritt 2:}\\
+	Die Abbildung $V\to V^\ast$ kann auch als Abbildung $A:V\to V$ aufgefasst werden. 
+	Eigenschaften von $A$:
+	\begin{enumerate}[label=(\alph*)]
+		\item $A$ ist linear auf $V$
+		\begin{align*}
+			\big\langle A(\alpha u+\beta v),w\big\rangle
+			&=a(\alpha u+\beta v,w)\\
+			&=\alpha a(u,w)+\beta a(v,w)\\
+			&=\alpha\langle Au,w\rangle+\beta\langle Av,w\rangle\qquad\forall u,v,w,\in V
+		\end{align*}
+		\item $A$ ist stetig auf $V$:
+		\begin{align*}
+			\Vert A v\Vert_{V}
+			&=\Vert A u\Vert_{V^\ast}\\
+			&=\sup\limits_{v\neq0}\frac{\big|\langle Au,v\rangle\big|}{\Vert v\Vert_V}\\
+			&=\sup\limits_{v\neq0}\frac{\big|a(u,v)\big|}{\Vert v\Vert_V}\\
+			&\leq
+			\sup\limits_{v\neq0}\frac{M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V}{\Vert v\Vert_V}\\
+			&=M\cdot\Vert u\Vert_V
+		\end{align*}
+	\end{enumerate}
+	
+	\underline{Schritt 3:} Setze
+	\begin{align*}
+		u^{n+1}:=P(u^n):=u^n+\tau\cdot(b-A u^n)\qquad\forall\tau\in\R_{\neq0}
+	\end{align*}
+	$u^0$ ist eine beliebiger Startwert.
+	\begin{align*}
+		P:V\to V,\qquad u\mapsto u+\tau\cdot(b-Au)
+	\end{align*}
+	Jeder Fixpunkt von $P$ ist eine Lösung von $Au=b$ und umgekehrt.\\
+	Es bleibt also zu zeigen, das $P$ einen eindeutigen Fixpunkt hat. 
+	Dafür nutzen wir den \textit{Banach'schen Fixpunktsatz} \ref{BanachscherFixpunktsatz}.\nl
+	Wähle also $N=V$. 
+	$P$ ist eine Kontraktion, wenn $\tau$ richtig gewählt wird.
+	\begin{align*}
+		&\quad\Vert P(u)-P)v)\Vert^2_V\\
+		&=\big\langle P(u)-P(v),P(u)-P(v)\big\rangle_V\\
+		&=\big\langle u-v-\tau\cdot A(u-v),u-v-\tau\cdot A(u-v)\big\rangle_V\\
+		&=\langle u-v,u-v\rangle_V-2\cdot\tau\cdot\underbrace{\big\langle A(u-v),u-v\big\rangle_V}_{\stackrel{\text{Def.}}{=}a(u-v,u-v)\stackrel{\text{koerz}}{\geq}\alpha\cdot\Vert u-v\Vert^2_V}+\tau^2\cdot\underbrace{\big\langle A(u-v),A(u-v)\big\rangle_V}_{=\Vert A(u-v)\Vert^2_V\leq M^2\cdot\Vert u-v\Vert^2_V}\\
+		\overset{\tau>0}&{\leq}
+		\Vert u-v\Vert^2_V\cdot\big(1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2\big)
+	\end{align*}
+	Wähle $\tau:=\frac{\alpha}{M^2}>0$. 
+	Dann gilt:
+	\begin{align*}
+		1-2\cdot\tau\cdot\alpha+\tau^2\cdot M^2=1-\frac{\alpha^2}{M^2}>0
+	\end{align*}
+	$P$ ist eine Kontraktion, also hat $P$ nach dem Banachschen Fixpunktsatz einen eindeutigen Fixpunkt und damit hat auch $Au=b$ eine eindeutige Lösung.
 \end{proof}
 
 Schwierigkeit:
 \begin{align*}
-a(u,v)=b(v)\qquad\forall v\in V
+	a(u,v)=b(v)\qquad\forall v\in V
 \end{align*}
 ist ein unendlichdimensionales Problem.\\
 \underline{Idee:} Approximation in einem endlich-dimensionalen Unterraum\\
-Sei $V_h\subseteq V$ ein endlich-dimensionaler Unterraum von $V$. Betrachte das Problem
+Sei $V_h\subseteq V$ ein endlich-dimensionaler Unterraum von $V$. 
+Betrachte das Problem
 \begin{align*}
-\text{Finde }u_n\in V_h \text{ so, dass }\qquad \\
-a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h
+	\text{Finde }u_n\in V_h \text{ so, dass }\qquad \\
+	a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h
 \end{align*}
 Da $a$ und $l$ auf $V_h$ die Voraussetzungen des Satzes von Lax-Milgram auf $V_h$ erfüllen, gibt es ein eindeutiges $u_n\in V_h$, das das Problem löst.\nl
 Sei $\lbrace\varphi_i\rbrace_{i=1}^n$ eine Basis von $V_h$.
 \begin{align*}
-\Big(a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h\Big)\Longleftrightarrow
-\Big(a(u_n,\varphi_i)=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\Big)
+	\Big(a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h\Big)\Longleftrightarrow
+	\Big(a(u_n,\varphi_i)=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\Big)
 \end{align*}
 und 
 \begin{align*}
-u_n=\sum\limits_{j=1}^n u_j\cdot\varphi_j,\qquad u_1,\ldots,u_n\in\R,j\\
-\sum\limits_{j=1}^n a(\varphi_j,\varphi_i)\cdot u_j=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\\
+	u_n=\sum\limits_{j=1}^n u_j\cdot\varphi_j,\qquad u_1,\ldots,u_n\in\R,j\\
+	\sum\limits_{j=1}^n a(\varphi_j,\varphi_i)\cdot u_j=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\\
 \end{align*}
 Daraus ergibt sich ein lineares Gleichungssystem:
 \begin{align*}
-\left.\begin{array}{ll}
-A:=(a_{i,j})_{i,j=1,\ldots,n} &a_{i,j}:=a\big(\varphi_j,\varphi_i\big)\\
-b:=(b_i)_{i=1,\ldots,n} &b_i:=l(\varphi_i)\\
-u:=(u_j)_{j=1,\ldots,n}
-\end{array}\right\rbrace A\cdot u=b\qquad\text{ LGS}
+	\left.\begin{array}{ll}
+		A:=(a_{i,j})_{i,j=1,\ldots,n} &a_{i,j}:=a\big(\varphi_j,\varphi_i\big)\\
+		b:=(b_i)_{i=1,\ldots,n} &b_i:=l(\varphi_i)\\
+		u:=(u_j)_{j=1,\ldots,n}
+	\end{array}\right\rbrace A\cdot u=b\qquad\text{ LGS}
 \end{align*}
 
 \begin{theorem}[Céa's Lemma]\enter\label{theorem2.2CeasLemma}
-Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $l$ eine stetige Linearform. Dann gilt:
-\begin{align*}
-\exists C=\frac{M}{\alpha}>0:\Vert u-u_n\Vert_V\leq C\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
-\end{align*}
+	Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $l$ eine stetige Linearform. 
+	Dann gilt:
+	\begin{align*}
+		\exists C=\frac{M}{\alpha}>0:\Vert u-u_n\Vert_V\leq C\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
+	\end{align*}
 \end{theorem}
+
 \begin{proof}
-\begin{align*}
-a(u,v)&=l(v) &\forall v\in V\\
-a(u_n,v_h)&= l(v_h) &\forall v_h\in V_h\subseteq V
-\end{align*}
-Wir erhalten die sogenannte \textbf{Galerkin Orthogonalität}, indem wir die Differenz dieser beiden Gleichungen bilden: (nutze $v=v_h$ in der ersten Gleichung!) 
-\begin{align}\label{eqGalerkinOrthogonalitaet}\tag{GalerkinOrtho}
-a(u-u_n,v_h)=0\qquad v_h\in V_h
-\end{align}
-Also:
-\begin{align*}
-\alpha\cdot\Vert u-u_n\Vert^2_V
-&\leq
-a(u-u_n,u-u_n)\\
-&=a(u-u_n,u-v_v+v_h- u_n)\\
-&=a(u-u_n,u-v_h)+\underbrace{a(u-u_n,\underbrace{v_h-u_n}_{\in V_h})}_{=0}\\
-\overset{\text{stetig}}&{\leq}
-M\cdot\Vert u-u_n\Vert_V\cdot\Vert u-v_h\Vert_V\\
-\implies
-\Vert u-u_n\Vert_V&\leq\frac{M}{\alpha}\cdot\Vert u-v_h\Vert_V\qquad\forall v_h\in V_h\\
-\implies
-\Vert u-u_n\Vert_V&\leq \frac{M}{\alpha}\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
-\end{align*}
+	\begin{align*}
+		a(u,v)&=l(v) &\forall v\in V\\
+		a(u_n,v_h)&= l(v_h) &\forall v_h\in V_h\subseteq V
+	\end{align*}
+	Wir erhalten die sogenannte \textbf{Galerkin Orthogonalität}, indem wir die Differenz dieser beiden Gleichungen bilden: 
+	(nutze $v=v_h$ in der ersten Gleichung!) 
+	\begin{align}\label{eqGalerkinOrthogonalitaet}\tag{GalerkinOrtho}
+		a(u-u_n,v_h)=0\qquad v_h\in V_h
+	\end{align}
+	Also:
+	\begin{align*}
+		\alpha\cdot\Vert u-u_n\Vert^2_V
+		&\leq
+		a(u-u_n,u-u_n)\\
+		&=a(u-u_n,u-v_v+v_h- u_n)\\
+		&=a(u-u_n,u-v_h)+\underbrace{a(u-u_n,\underbrace{v_h-u_n}_{\in V_h})}_{=0}\\
+		\overset{\text{stetig}}&{\leq}
+		M\cdot\Vert u-u_n\Vert_V\cdot\Vert u-v_h\Vert_V\\
+		\implies
+		\Vert u-u_n\Vert_V&\leq\frac{M}{\alpha}\cdot\Vert u-v_h\Vert_V\qquad\forall v_h\in V_h\\
+		\implies
+		\Vert u-u_n\Vert_V&\leq \frac{M}{\alpha}\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
+	\end{align*}
 \end{proof}
 
 \begin{theorem}[Dualitätsargument, Aubin-Nietsche]\enter\label{theorem2.3AubinNietscheDualitaetsargument}
-Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform und $l$ eine stetige Linearform. Sei weiterhin $H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle_H$ und Norm $\Vert\cdot\Vert_H$ so, dass $V\hookrightarrow H$ und $V$ liegt dicht in $H$ bzgl. $\Vert\cdot\Vert_H$. Sei zusätzlich $u_\varphi\in V$ für jedes feste $\varphi\in H$ die eindeutige Lösung von
-\begin{align}\label{Dtheorem2.3}\tag{D}
-a(v,u_\varphi)=\langle\varphi,v\rangle_H\qquad\forall v\in V
-\end{align}
-Dann gilt:
-\begin{align*}
-\Vert u-u_h\Vert_H\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert_H=1\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
-\end{align*}
+	Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform und $l$ eine stetige Linearform. 
+	Sei weiterhin $H$ ein Hilbertraum mit Skalarprodukt $\langle\cdot,\cdot\rangle_H$ und Norm $\Vert\cdot\Vert_H$ so, dass $V\hookrightarrow H$ und $V$ liegt dicht in $H$ bzgl. $\Vert\cdot\Vert_H$. 
+	Sei zusätzlich $u_\varphi\in V$ für jedes feste $\varphi\in H$ die eindeutige Lösung von
+	\begin{align}\label{Dtheorem2.3}\tag{D}
+		a(v,u_\varphi)=\langle\varphi,v\rangle_H\qquad\forall v\in V
+	\end{align}
+	Dann gilt:
+	\begin{align*}
+		\Vert u-u_h\Vert_H\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}
+			\varphi\in H\\
+			\Vert\varphi\Vert_H=1
+		\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
+	\end{align*}
 \end{theorem}
 
 \begin{proof}
-$v\mapsto\langle\varphi,v\rangle_H$ ist eine stetige Linearform auf $V$. Aus Lax-Milgram \ref{theorem2.1LaxMilgram} folgt, dass es eine eindeutige Lösung $u_\varphi\in V$ gibt.
+	$v\mapsto\langle\varphi,v\rangle_H$ ist eine stetige Linearform auf $V$. 
+	Aus Lax-Milgram \ref{theorem2.1LaxMilgram} folgt, dass es eine eindeutige Lösung $u_\varphi\in V$ gibt.
  
-\begin{align*}
-\langle u-u_h,\varphi\rangle_H
-&=\langle\varphi,u-u_h\rangle_H\\
-&=a(u-u_h,u_\varphi)\\
-&=a(u-u_h,u_\varphi-v_h)\mit v_h\in V\text{ beliebig}\\
-&\leq M\cdot\Vert u-u_h\Vert_V\cdot\Vert u_\varphi-v_h\Vert_V\\
-\Vert u-u_h\Vert_H
-&=\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\langle u-u_h,\varphi\rangle_H\\
-&\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
-\end{align*}
+	\begin{align*}
+		\langle u-u_h,\varphi\rangle_H
+		&=\langle\varphi,u-u_h\rangle_H\\
+		&=a(u-u_h,u_\varphi)\\
+		&=a(u-u_h,u_\varphi-v_h)\mit v_h\in V\text{ beliebig}\\
+		&\leq M\cdot\Vert u-u_h\Vert_V\cdot\Vert u_\varphi-v_h\Vert_V\\
+		\Vert u-u_h\Vert_H
+		&=\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\langle u-u_h,\varphi\rangle_H\\
+		&\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
+	\end{align*}
 \end{proof}
 
-\begin{theorem}\label{theorem2.4} %2.4
-Seien $(X,\Vert\cdot\Vert_X)$, $(Y,\Vert\cdot\Vert_Y)$ Banachräume  mit $X\stackrel{C}{\hookrightarrow} Y$ und $a_0,a_1$ stetige Bilinearformen auf $X$. Gelte weiterhin:
-\begin{itemize}
-\item $a_0$ ist symmetrisch und koerziv auf $X$
-\item $\begin{aligned}
-\exists A>0:\forall u,v\in X:\big|a_1(u,v)\big|\leq A\cdot\Vert u\Vert_X\cdot\Vert v\Vert_Y
-\end{aligned}$
-\end{itemize}
-Erfülle
-\begin{align*}
-a(u,v):=a_0(u,v)+a_1(u,v)\qquad\forall u,v\in X
-\end{align*}
-die Ungleichung
-\begin{align*}
-a(v,v)>0\qquad\forall v\in X\setminus\lbrace0\rbrace.
-\end{align*}
-Dann sind die beiden Probleme
-\begin{align*}
-\text{Finde }u\in X\text{ so, dass }
-a(u,v)=l(v)\qquad\forall v\in X\\
-\text{Finde }\tilde{u}\in X\text{ so, dass }
-a(v,\tilde{u})=l(v)\qquad\forall v\in X
-\end{align*}
-jeweils eindeutig lösbar für alle stetigen Linearformen $l$.
+\begin{theorem}\label{theorem2.4}
+	Seien $(X,\Vert\cdot\Vert_X)$, $(Y,\Vert\cdot\Vert_Y)$ Banachräume mit $X\stackrel{C}{\hookrightarrow} Y$ und $a_0,a_1$ stetige Bilinearformen auf $X$. 	Gelte weiterhin:
+	\begin{itemize}
+		\item $a_0$ ist symmetrisch und koerziv auf $X$
+		\item $\begin{aligned}
+			\exists A>0:\forall u,v\in X:\big|a_1(u,v)\big|\leq A\cdot\Vert u\Vert_X\cdot\Vert v\Vert_Y
+		\end{aligned}$
+	\end{itemize}
+	Erfülle
+	\begin{align*}
+		a(u,v):=a_0(u,v)+a_1(u,v)\qquad\forall u,v\in X
+	\end{align*}
+	die Ungleichung
+	\begin{align*}
+		a(v,v)>0\qquad\forall v\in X\setminus\lbrace0\rbrace.
+	\end{align*}
+	Dann sind die beiden Probleme
+	\begin{align*}
+		\text{Finde }u\in X\text{ so, dass }
+		a(u,v)=l(v)\qquad\forall v\in X\\
+		\text{Finde }\tilde{u}\in X\text{ so, dass }
+		a(v,\tilde{u})=l(v)\qquad\forall v\in X
+	\end{align*}
+	jeweils eindeutig lösbar für alle stetigen Linearformen $l$.
 \end{theorem}
 
-\begin{theorem} %2.5
-Gleiche Voraussetzungen wie Theorem \ref{theorem2.4}.\\
-Sei zusätzlich $X_h\subseteq X$ ein endlich-dimensionaler Unterraum von $X$.\\
-Dann ist das Problem
-\begin{align*}
-\text{Finde }u_h\in X_h\text{ so, dass }
-a(u_h,v_h)=l(v_h)\qquad\forall v_h\in X_h
-\end{align*}
-eindeutig lösbar für jede feste stetige Linearform $l$. Zusätzlich gilt
-\begin{align*}
-\Vert u-u_h\Vert_X\leq\frac{M}{\alpha}\cdot\inf\limits_{v_h\in X_h}\Vert u-u_h\Vert_X
-\end{align*}
-unter der Voraussetzung
-\begin{align*}
-a(v,v)&\geq\beta\cdot\Vert v\Vert^2_X &\forall v\in X\\
-\big|a(u,v)\big|&\leq M\cdot\Vert u\Vert_X\cdot\Vert v\Vert_Y &\forall u,v\in X
-\end{align*}
+\begin{theorem}\label{theorem2.5}
+	Gleiche Voraussetzungen wie Theorem \ref{theorem2.4}.\\
+	Sei zusätzlich $X_h\subseteq X$ ein endlich-dimensionaler Unterraum von $X$.\\
+	Dann ist das Problem
+	\begin{align*}
+		\text{Finde }u_h\in X_h\text{ so, dass }
+		a(u_h,v_h)=l(v_h)\qquad\forall v_h\in X_h
+	\end{align*}
+	eindeutig lösbar für jede feste stetige Linearform $l$. 
+	Zusätzlich gilt
+	\begin{align*}
+		\Vert u-u_h\Vert_X\leq\frac{M}{\alpha}\cdot\inf\limits_{v_h\in X_h}\Vert u-u_h\Vert_X
+	\end{align*}
+	unter der Voraussetzung
+	\begin{align*}
+		a(v,v)&\geq\beta\cdot\Vert v\Vert^2_X &\forall v\in X\\
+		\big|a(u,v)\big|&\leq M\cdot\Vert u\Vert_X\cdot\Vert v\Vert_Y &\forall u,v\in X
+	\end{align*}
 \end{theorem}
 
 \section{Schwache Lösungen} %3.
 Hier: skalare, lineare, elliptische partielle Differentialgleichungen zweiter Ordnung, also
 \begin{align*}
--\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u=f(x)\text{ in }\Omega
+	-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u=f(x)\text{ in }\Omega
 \end{align*}
 Vereinfachende Annahmen:
 \begin{align*}
-\begin{array}{ll}
-	f\in L^2(\Omega)&\alpha \in C(\Omega)\\
-	a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace\\
-	A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots a_d\big)^T\\
-	A=\big(A_{i,j}\big)^d_{i,j=1},& 0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
-\end{array}
+	\begin{array}{ll}
+		f\in L^2(\Omega)&\alpha \in C(\Omega)\\
+		a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace\\
+		A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots a_d\big)^T\\
+		A=\big(A_{i,j}\big)^d_{i,j=1},& 0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
+	\end{array}
 \end{align*}
 
 \subsection*{Einige Spezialfälle}
 \begin{itemize}
-\item Poisson-Gleichung: $\alpha\equiv 0,~a\equiv0,~A=I$
-\item Membran-Gleichung: $\alpha\equiv0,~a\equiv 0$
-\item Reaktionsdiffusionsgleichung: $a\equiv 0$
-\item Konvektions-Diffusions-Gleichung: ist der allgemeine Fall
+	\item Poisson-Gleichung: $\alpha\equiv 0,~a\equiv0,~A=I$
+	\item Membran-Gleichung: $\alpha\equiv0,~a\equiv 0$
+	\item Reaktionsdiffusionsgleichung: $a\equiv 0$
+	\item Konvektions-Diffusions-Gleichung: ist der allgemeine Fall
 \end{itemize}
 
 \subsection*{Randbedingungen}
 \begin{itemize}
-\item Die \textbf{homogene Dirichlet-Randbedingung} ist
-\begin{align*}
-u\equiv0\qquad\text{auf}\qquad\Gamma:=\partial\Omega
-\end{align*}
-\item Die \textbf{Neumann-Randbedingung} ist
-\begin{align*}
-n^T\cdot A\cdot\nabla u\equiv q\qquad\text{auf}\qquad\Gamma,\qquad\forall g\in L^2(\Gamma)
-\end{align*}
-wobei $n$ der äußere Normalenvektor ist.
-\item Mischform: Dirichlet-Randbegingung auf $\Gamma_D$ und Neumann-Randbedingung auf $\Gamma_N$ für $\Gamma=\Gamma_D\stackrel{\cdot}{\cup}\Gamma_N,~\Gamma_D\cap\Gamma_N=\emptyset$
-\item Die \textbf{Robin-Randbedingung} ist
-\begin{align*}
-\gamma\cdot u+n^T\cdot A\cdot\nabla u\equiv h\qquad\text{auf}\qquad\Gamma
-\end{align*}
+	\item Die \textbf{homogene Dirichlet-Randbedingung} ist
+	\begin{align*}
+		u\equiv0\qquad\text{auf}\qquad\Gamma:=\partial\Omega
+	\end{align*}
+	\item Die \textbf{Neumann-Randbedingung} ist
+	\begin{align*}
+		n^T\cdot A\cdot\nabla u\equiv q\qquad\text{auf}\qquad\Gamma,\qquad\forall g\in L^2(\Gamma)
+	\end{align*}
+	wobei $n$ der äußere Normalenvektor ist.
+	\item Mischform: Dirichlet-Randbegingung auf $\Gamma_D$ und Neumann-Randbedingung auf $\Gamma_N$ für 
+	$\Gamma=\Gamma_D\stackrel{\cdot}{\cup}\Gamma_N,~\Gamma_D\cap\Gamma_N=\emptyset$
+	\item Die \textbf{Robin-Randbedingung} ist
+	\begin{align*}
+		\gamma\cdot u+n^T\cdot A\cdot\nabla u\equiv h\qquad\text{auf}\qquad\Gamma
+	\end{align*}
 \end{itemize}
 
-%Was ist das hier?
+%Was ist das hier? %TODO
 Nun bringen wir die allgemeine Form der Gleichung von oben in eine lesbare Form.
-Sei dazu $v\in C_0^\infty(\Omega)$. Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$. Dann gilt:
+Sei dazu $v\in C_0^\infty(\Omega)$. 
+Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$. 
+Dann gilt:
 \begin{align*}
-\int\limits_\Omega f\cdot v\d x
-\overset{\text{Def}}&=
-\int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\ 
-\overset{\text{partGauß}}&=
-\int\limits_\Omega\sum\limits_{i,j=1}^d A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\cdot\frac{\partial v}{\partial x_i}\d x+\int\limits_\Omega\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
-&\qquad
--\underbrace{\int\limits_\Gamma\underbrace{\sum\limits_{i,j=1}^d n_i\cdot A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}}_{=n^T\cdot A\cdot\nabla u}\cdot v\d\gamma}_{=0}\\
-&=
-\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+	\int\limits_\Omega f\cdot v\d x
+	\overset{\text{Def}}&=
+	\int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\ 
+	\overset{\text{partGauß}}&=
+	\int\limits_\Omega\sum\limits_{i,j=1}^d A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\cdot\frac{\partial v}{\partial x_i}\d x+\int\limits_\Omega\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
+	&\qquad
+	-\underbrace{\int\limits_\Gamma\underbrace{\sum\limits_{i,j=1}^d n_i\cdot A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}}_{=n^T\cdot A\cdot\nabla u}\cdot v\d\gamma}_{=0}\\
+	&=
+	\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
 \end{align*}
 
 \begin{definition}[Schwache Lösung]\ %3.1
-\begin{enumerate}[label=(\roman*)]
-\item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
-\begin{align*}
-:\Longleftrightarrow
-\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
-=\int\limits_\Omega f(x)\cdot v\d x
-\qquad\forall v\in H_0^1(\Omega)
-\end{align*}
-\item Eine Funktion 
-\begin{align*}
-u\in H_D^1(\Omega):=\big\lbrace\varphi\in H^1(\Omega):\varphi|_{\Gamma_D}\equiv 0\big\rbrace
-\end{align*}
-heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung  mit gemischten Randbedingungen}
-\begin{align*}
-:\Longleftrightarrow
-\int\limits_\Omega \nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
-=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
-\qquad\forall v\in H^1_D(\Omega)
-\end{align*}
-\item Eine Funktion $u\in H^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit Neumann-Randbedingung}
-\begin{align*}
-:\Longleftrightarrow
-\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
-=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma} g\cdot v\d\gamma\\
-\qquad\forall v\in H^1(\Omega)
-\end{align*}
-\end{enumerate}
+	\begin{enumerate}[label=(\roman*)]
+		\item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
+		\begin{align*}
+			:\Longleftrightarrow
+			\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+			=\int\limits_\Omega f(x)\cdot v\d x
+			\qquad\forall v\in H_0^1(\Omega)
+		\end{align*}
+		\item Eine Funktion 
+		\begin{align*}
+			u\in H_D^1(\Omega):=\big\lbrace\varphi\in H^1(\Omega):\varphi|_{\Gamma_D}\equiv 0\big\rbrace
+		\end{align*}
+		heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung  mit gemischten Randbedingungen}
+		\begin{align*}
+			:\Longleftrightarrow
+			\int\limits_\Omega \nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+			=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
+			\qquad\forall v\in H^1_D(\Omega)
+		\end{align*}
+		\item Eine Funktion $u\in H^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit Neumann-Randbedingung}
+		\begin{align*}
+			:\Longleftrightarrow
+			\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+			=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma} g\cdot v\d\gamma\\
+			\qquad\forall v\in H^1(\Omega)
+		\end{align*}
+	\end{enumerate}
 \end{definition}
 
 \begin{bemerkung}\ %NoNumber
-\begin{itemize}
-\item Jede ``klassische'' Lösung ist auch eine schwache Lösung. 
-\item Jede schwache Lösung, welche glatt genug ist ($C^2$) ist auch eine ``klassische'' Lösung.
-\item schwächere Annahmen an die Problemdaten:
-\begin{align*}
-	&\alpha\in L^\infty(\Omega), &&\alpha\geq0\\
-	&a_i\in L^\infty(\Omega), &&\div(a)=\sum\limits_{i=1}^d\frac{\partial a_i}{\partial x_i}\in L^\infty(\Omega)\\
-&A_{i,j}\in L^\infty(\Omega)
-\end{align*}
-\item Unter der inhomogenen Dirichletbedingung
-\begin{align*}
-u|_\Gamma\equiv u_D
-\end{align*}
-gehört die schwache Lösung zu
-\begin{align*}
-u_D+H_0^1(\Omega)=\big\lbrace v\in H^1(\Omega):v|_\Gamma\equiv u_D\big\rbrace
-\end{align*}
-Der Testraum ist immer $H^1_0(\Omega)$.
-\end{itemize}
+	\begin{itemize}
+		\item Jede "klassische" Lösung ist auch eine schwache Lösung. 
+		\item Jede schwache Lösung, welche glatt genug ist ($C^2$) ist auch eine "klassische" Lösung.
+		\item schwächere Annahmen an die Problemdaten:
+		\begin{align*}
+			&\alpha\in L^\infty(\Omega), &&\alpha\geq0\\
+			&a_i\in L^\infty(\Omega), &&\div(a)=\sum\limits_{i=1}^d\frac{\partial a_i}{\partial x_i}\in L^\infty(\Omega)\\
+			&A_{i,j}\in L^\infty(\Omega)
+		\end{align*}
+		\item Unter der inhomogenen Dirichletbedingung
+		\begin{align*}
+			u|_\Gamma\equiv u_D
+		\end{align*}
+		gehört die schwache Lösung zu
+		\begin{align*}
+			u_D+H_0^1(\Omega)=\big\lbrace v\in H^1(\Omega):v|_\Gamma\equiv u_D\big\rbrace
+		\end{align*}
+		Der Testraum ist immer $H^1_0(\Omega)$.
+	\end{itemize}
 \end{bemerkung}
 
 \begin{theorem}[Existenz und Eindeutigkeit von schwachen Lösungen]\ 
-\begin{enumerate}[label=(\roman*)]
-\item Sei 
-\begin{align*}
-\alpha-\frac{1}{2}\cdot\div(a)\geq0.
-\end{align*}
-Dann hat die Konvektions-Diffusions-Gleichung mit homogenen\\ Dirichlet-Randbedingungen eine eindeutige schwache Lösung.
-\item Sei 
-\begin{align*}
-\alpha-\frac{1}{2}\cdot\div(a)\geq0\qquad\text{ und }\qquad a\cdot n\geq0\text{ auf }\Gamma_N.
-\end{align*}
-Dann hat die Konvektions-Diffusions-Gleichung mit gemischten Randbedingungen eine eindeutige Lösung.
-\item Sei 
-\begin{align*}
-\alpha-\frac{1}{2}\cdot\div(a)\geq0,\qquad \alpha\geq\alpha_0>0\qquad\text{ und }\qquad a\cdot n\geq 0\text{ auf }\Gamma.
-\end{align*}
-Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige Lösung.
-\item Sei
-\begin{align*}
-\alpha=0,\qquad-\frac{1}{2}\cdot\div(a)=0\qquad\text{und}\qquad a\cdot n\geq 0\text{ auf }\Gamma\\
-\end{align*}
-und gelte
-\begin{align*}
-	\int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma=0.
-\end{align*}
-Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige schwache Lösung $u$, welche 
-\begin{align*}
-\int\limits_\Omega u(x)\d x=0
-\end{align*}
-erfüllt.
-\end{enumerate}
+	\begin{enumerate}[label=(\roman*)]
+		\item Sei 
+		\begin{align*}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0.
+		\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit homogenen\\ Dirichlet-Randbedingungen eine eindeutige schwache Lösung.
+		\item Sei 
+		\begin{align*}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0\qquad\text{ und }\qquad a\cdot n\geq0\text{ auf }\Gamma_N.
+		\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit gemischten Randbedingungen eine eindeutige Lösung.
+		\item Sei 
+		\begin{align*}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0,\qquad \alpha\geq\alpha_0>0\qquad\text{ und }\qquad a\cdot n\geq 0\text{ auf }\Gamma.
+		\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige Lösung.
+		\item Sei
+		\begin{align*}
+			\alpha=0,\qquad-\frac{1}{2}\cdot\div(a)=0\qquad\text{und}\qquad a\cdot n\geq 0\text{ auf }\Gamma\\
+		\end{align*}
+		und gelte
+		\begin{align*}
+		\int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma=0.
+	\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige schwache Lösung $u$, welche 
+		\begin{align*}
+			\int\limits_\Omega u(x)\d x=0
+		\end{align*}
+		erfüllt.
+	\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\underline{Zeige (i):}\\
-$V=H_0^1(\Omega)$, $\Vert\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\sim\vert\cdot\vert_{1,2,\Omega}$. 
-Zeige zunächst, dass $l(v)$ stetig ist. %Zuerst die rechte Seite: <- steht bei mir ursprünglich auch so im Skript, aber ich versteh es nicht. Macht wenig Sinn an der Stelle.
-\begin{align*}
-l(v)&=\int\limits_\Omega f\cdot v\d x\\
-|l(v)|&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{0,2}\\
-			&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{1,2}
-\end{align*}
-Bilinearform:
-\begin{align*}
-a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x
-\end{align*}
-Stetigkeit:
-\begin{align*}
-\big|a(v,w)\big|&=\left|\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x\right|\\
-&\leq
-\Vert A\Vert_{L^\infty}\cdot\Vert\nabla v\Vert_{0,2}\cdot\Vert\nabla w\Vert_{0,2}\\
-&\quad+\Vert a\Vert_{L^\infty} \cdot\Vert\nabla v\Vert_{0}\cdot\Vert w\Vert_{0,2}\\
-&\quad+\Vert\alpha\Vert_{L^\infty}\cdot\Vert v\Vert_{0,2}\cdot\Vert w\Vert_{0,2}\\
-&\leq
-\left(\Vert A\Vert_{L^\infty}+\Vert a\Vert_{L^\infty}+\Vert\alpha\Vert_{L^\infty}\right)\cdot\Vert v\Vert_{1,2}\cdot\Vert w\Vert_{1,2}
-\end{align*}
-Koerzivität: 
-\begin{align*}
-a(v,v)&\geq\underbrace{\beta}_{>0}\cdot\Vert v\Vert^2_{1,2}\qquad\forall v\in V=H_0^1(\Omega)\\
-a(v,v)&=
-\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot v\d x\\
-&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v\big) v+\alpha\cdot v^2\d x\\
-&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\frac{a}{2}\nabla \left(v^2\right)+\alpha\cdot v^2\d x\\
-&=\int\limits_\Omega\underbrace{\nabla v^T\cdot A\cdot\nabla v}_{\geq\lambda_0\cdot|\nabla v(x)|^2\geq0}+\underbrace{\left(\alpha-\frac{1}{2}\cdot\div(a)\right)}_{\stackrel{\text{Vor}}{\geq}0}\cdot v^2\d x+\underbrace{\int\limits_{\Gamma}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}\\
-&\geq
-\lambda_0\cdot |v|^2_{1,2}\\
-\overset{\text{Fried}}&{\geq}
-\frac{\lambda_0}{C_f^2}\cdot\Vert v\Vert^2_{1,2}
-\end{align*}
+	\underline{Zeige (i):}\\
+	$V=H_0^1(\Omega)$, $\Vert\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\sim\vert\cdot\vert_{1,2,\Omega}$. 
+	Zeige zunächst, dass $l(v)$ stetig ist. 
+	%Zuerst die rechte Seite: <- steht bei mir ursprünglich auch so im Skript, aber ich versteh es nicht. Macht wenig Sinn an der Stelle.
+	\begin{align*}
+		l(v)&=\int\limits_\Omega f\cdot v\d x\\
+		|l(v)|&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{0,2}\\
+		&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{1,2}
+	\end{align*}
+	Bilinearform:
+	\begin{align*}
+		a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x
+	\end{align*}
+	Stetigkeit:
+	\begin{align*}
+		\big|a(v,w)\big|&=\left|\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x\right|\\
+		&\leq
+		\Vert A\Vert_{L^\infty}\cdot\Vert\nabla v\Vert_{0,2}\cdot\Vert\nabla w\Vert_{0,2}\\
+		&\quad+\Vert a\Vert_{L^\infty} \cdot\Vert\nabla v\Vert_{0}\cdot\Vert w\Vert_{0,2}\\
+		&\quad+\Vert\alpha\Vert_{L^\infty}\cdot\Vert v\Vert_{0,2}\cdot\Vert w\Vert_{0,2}\\
+		&\leq
+		\left(\Vert A\Vert_{L^\infty}+\Vert a\Vert_{L^\infty}+\Vert\alpha\Vert_{L^\infty}\right)\cdot\Vert v\Vert_{1,2}\cdot\Vert w\Vert_{1,2}
+	\end{align*}
+	Koerzivität: 
+	\begin{align*}
+		a(v,v)&\geq\underbrace{\beta}_{>0}\cdot\Vert v\Vert^2_{1,2}\qquad\forall v\in V=H_0^1(\Omega)\\
+		a(v,v)&=
+		\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot v\d x\\
+		&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v\big) v+\alpha\cdot v^2\d x\\
+		&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\frac{a}{2}\nabla \left(v^2\right)+\alpha\cdot v^2\d x\\
+		&=\int\limits_\Omega\underbrace{\nabla v^T\cdot A\cdot\nabla v}_{\geq\lambda_0\cdot|\nabla v(x)|^2\geq0}+\underbrace{\left(\alpha-\frac{1}{2}\cdot			\div(a)\right)}_{\stackrel{\text{Vor}}{\geq}0}\cdot v^2\d x+\underbrace{\int\limits_{\Gamma}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}\\
+		&\geq
+		\lambda_0\cdot |v|^2_{1,2}\\
+		\overset{\text{Fried}}&{\geq}
+		\frac{\lambda_0}{C_f^2}\cdot\Vert v\Vert^2_{1,2}
+	\end{align*}
 
-\underline{Zeige (ii):}\\
-Homogene Dirichlet-Randbedingungen auf $\Gamma_D$ und Neumann-Randbedingungen auf $\Gamma_N$.
-\begin{align*}
-	\left\{\begin{array}{rl}
+	\underline{Zeige (ii):}\\
+	Homogene Dirichlet-Randbedingungen auf $\Gamma_D$ und Neumann-Randbedingungen auf $\Gamma_N$.
+	\begin{align*}
+		\left\{\begin{array}{rl}
 			\alpha-\frac{1}{2}\cdot\div(a)\geq0 &\text{ in }\Omega\\
 			a\cdot n\geq0&\text{ auf }\Gamma_N
-\end{array}\right.
-\end{align*}
-Also gilt
-\begin{align*}
-l(v)&=\int\limits_\Omega f\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
-\big|l(v)\big|&\leq\underbrace{\Vert f\Vert_{0,2}}_{\leq\Vert v\Vert_{1,2}}\cdot\Vert v\Vert_{0,2}+\Vert g\Vert_{0,2,\Gamma}\cdot\underbrace{\Vert v\Vert_{0,2,\Gamma_N}}_{\leq\Vert v\Vert_{1,2,\Omega}}
-\end{align*}
-Erinnerung:
-\begin{align*}
-H^1_D(\Omega)=\big\lbrace v\in H^1(\Omega):v|_{\Gamma_D}\equiv 0\big\rbrace
-\end{align*}
-Die Abschätzung für $a$ ist analog zu (a), nur ist das letzte Integral nicht Null, sondern:
-\begin{align*}
-\int\limits_\Gamma\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma
-&=\underbrace{\int\limits_{\Gamma_D}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}+\underbrace{\int\limits_{\Gamma_N}\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{\geq0}\cdot v^2\d\gamma}_{\geq0}
-\end{align*}
+		\end{array}\right.
+	\end{align*}
+	Also gilt
+	\begin{align*}
+		l(v)&=\int\limits_\Omega f\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
+		\big|l(v)\big|&\leq\underbrace{\Vert f\Vert_{0,2}}_{\leq\Vert v\Vert_{1,2}}\cdot\Vert v\Vert_{0,2}+\Vert g\Vert_{0,2,\Gamma}\cdot\underbrace{\Vert v\Vert_{0,2,\Gamma_N}}_{\leq\Vert v\Vert_{1,2,\Omega}}
+	\end{align*}
+	Erinnerung:
+	\begin{align*}
+		H^1_D(\Omega)=\big\lbrace v\in H^1(\Omega):v|_{\Gamma_D}\equiv 0\big\rbrace
+	\end{align*}
+	Die Abschätzung für $a$ ist analog zu (a), nur ist das letzte Integral nicht Null, sondern:
+	\begin{align*}
+		\int\limits_\Gamma\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma
+		&=\underbrace{\int\limits_{\Gamma_D}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}+\underbrace{\int\limits_{\Gamma_N}\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{\geq0}\cdot v^2\d\gamma}_{\geq0}
+	\end{align*}
 
-\underline{Zeige (iii):}
-\begin{align*}
-	\left\{\begin{array}{rl}
-\alpha-\frac{1}{2}\cdot\div(a)\geq0&\text{ in }\Omega\\
-\alpha\geq\alpha_0>0&\text{ in }\Omega\\
-a\cdot n\geq0&\text{ auf }\Gamma
-	\end{array}\right.
-\end{align*}
-Wende Theorem \ref{theorem2.4} an:
-\begin{align*}
-X&=H^1(\Omega),\qquad Y=L^2(\Omega)\\
-l(v)&=\int\limits_\Omega f\cdot v\d x+\int\limits_\Gamma g\cdot v\d\gamma\\
-a_0(v,w)&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\alpha\cdot v\cdot w\d x\\
-a_1(v,w)&=\int\limits_\Omega(a\cdot\nabla v)\cdot v\d x
-\end{align*}
-Stetigkeit von $l$ und $a_0$ sowie Symmetrie sind klar. Bleibt nur Koerzivität zu zeigen:
-\begin{align*}
-a(v,v)&=\int\limits_\Omega\nabla v^T \cdot A \cdot \nabla v+\underbrace{\alpha}_{\geq\alpha_0>0}\cdot v^2\d x\\
-&\geq\lambda_0\cdot|v|^2_{1,2,\Omega}+\alpha_0\cdot\Vert v\Vert^2_{0,2,\Omega}\\
-&\geq\underbrace{\min\lbrace\lambda_0,\alpha_0\rbrace}_{>0}\cdot\Vert v\Vert^2_{1,2,\Omega}
-\end{align*}
-Stetigkeit von $a_1$:
-\begin{align*}
-\big| a_1(v,w)\big|&\leq\Vert a\Vert_{L^\infty}\cdot\underbrace{|\nabla v|_{0,2,\Omega}}_{\leq\Vert v\Vert_{1,2,\Omega}}\cdot\underbrace{\Vert w\Vert_{0,2,\Omega}}_{\leq\Vert w\Vert_{1,2,\Omega}}
-\end{align*}
-Es bleibt nur noch zu zeigen, dass
-\begin{align*}
-a(v,v)>0\qquad\forall v\in H^1(\Omega)\setminus\lbrace0\rbrace
-\end{align*}
-Also
-\begin{align*}
-a(v,v)
-&=\int\limits_{\Omega} \nabla v^T\cdot A\cdot \nabla v+\underbrace{(a\cdot\nabla v)\cdot v}_{=\frac{a}{2}\cdot\nabla(v^2)}+\alpha\cdot v^2\d x\\
-&=\int\limits_{\Omega}\nabla v^T\cdot A\cdot\nabla v+\underbrace{\left(\alpha-\frac{1}{2}\cdot\div(a\right)}_{\geq0}\cdot v^2\d x+\int\limits_\Gamma\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{\geq0}\cdot v^2\d\gamma\\
-&\geq\lambda_0\cdot |v|^2_{1,2,\Omega}\\
-&\geq 0\qquad\forall v\in H^1(\Omega)
-\end{align*}
-Aber wir müssen noch den Fall \dq$=0$\dq{} ausschließen. Also ist zu zeigen, dass
-\begin{align*}
-a(v,v)=0\implies v\equiv 0
-\end{align*}
-gilt.
-\begin{align*}
-0&=a(v,v)\geq\underbrace{\lambda_0}_{>0}\cdot|v|^2_{1,2,\Omega}\geq0 \\
-\implies& |v|_{1,2,\Omega}=0 \\
-\implies& v\equiv c\text{ konstant auf }\Omega\\
-0&=a(c,c)=\int\limits_\Omega\underbrace{\nabla c^T}_{=0}\cdot A\cdot\underbrace{\nabla c}_{=0}+(a\cdot\underbrace{\nabla c}_{=0})\cdot c+\alpha\cdot c^2\d x\\
-&=\int\limits_\Omega\alpha\cdot c^2\d x\\
-&\geq\underbrace{\alpha_0}_{>0}\cdot\Vert c\Vert^2_{0,2,\Omega}\\
-&\implies\Vert c\Vert_{0,2,\Omega}=0\\
-&\implies c=0\\
-&\implies v\equiv 0
-\end{align*}
+	\underline{Zeige (iii):}
+	\begin{align*}
+		\left\{\begin{array}{rl}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0&\text{ in }\Omega\\
+			\alpha\geq\alpha_0>0&\text{ in }\Omega\\
+			a\cdot n\geq0&\text{ auf }\Gamma
+		\end{array}\right.
+	\end{align*}
+	Wende Theorem \ref{theorem2.4} an:
+	\begin{align*}
+		X&=H^1(\Omega),\qquad Y=L^2(\Omega)\\
+		l(v)&=\int\limits_\Omega f\cdot v\d x+\int\limits_\Gamma g\cdot v\d\gamma\\
+		a_0(v,w)&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\alpha\cdot v\cdot w\d x\\
+		a_1(v,w)&=\int\limits_\Omega(a\cdot\nabla v)\cdot v\d x
+	\end{align*}
+	Stetigkeit von $l$ und $a_0$ sowie Symmetrie sind klar. Bleibt nur Koerzivität zu zeigen:
+	\begin{align*}
+		a(v,v)&=\int\limits_\Omega\nabla v^T \cdot A \cdot \nabla v+\underbrace{\alpha}_{\geq\alpha_0>0}\cdot v^2\d x\\
+		&\geq\lambda_0\cdot|v|^2_{1,2,\Omega}+\alpha_0\cdot\Vert v\Vert^2_{0,2,\Omega}\\
+		&\geq\underbrace{\min\lbrace\lambda_0,\alpha_0\rbrace}_{>0}\cdot\Vert v\Vert^2_{1,2,\Omega}
+	\end{align*}
+	Stetigkeit von $a_1$:
+	\begin{align*}
+		\big| a_1(v,w)\big|&\leq\Vert a\Vert_{L^\infty}\cdot\underbrace{|\nabla v|_{0,2,\Omega}}_{\leq\Vert v\Vert_{1,2,\Omega}}\cdot\underbrace{\Vert w		\Vert_{0,2,\Omega}}_{\leq\Vert w\Vert_{1,2,\Omega}}
+	\end{align*}
+	Es bleibt nur noch zu zeigen, dass
+	\begin{align*}
+		a(v,v)>0\qquad\forall v\in H^1(\Omega)\setminus\lbrace0\rbrace
+	\end{align*}
+	Also
+	\begin{align*}
+		a(v,v)
+		&=\int\limits_{\Omega} \nabla v^T\cdot A\cdot \nabla v+\underbrace{(a\cdot\nabla v)\cdot v}_{=\frac{a}{2}\cdot\nabla(v^2)}+\alpha\cdot v^2\d x\\
+		&=\int\limits_{\Omega}\nabla v^T\cdot A\cdot\nabla v+\underbrace{\left(\alpha-\frac{1}{2}\cdot\div(a\right)}_{\geq0}\cdot v^2\d x+\int\limits_\Gamma\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{\geq0}\cdot v^2\d\gamma\\
+		&\geq\lambda_0\cdot |v|^2_{1,2,\Omega}\\
+		&\geq 0\qquad\forall v\in H^1(\Omega)
+	\end{align*}
+	Aber wir müssen noch den Fall \dq$=0$\dq{} ausschließen. Also ist zu zeigen, dass
+	\begin{align*}
+		a(v,v)=0\implies v\equiv 0
+	\end{align*}
+	gilt.
+	\begin{align*}
+		0&=a(v,v)\geq\underbrace{\lambda_0}_{>0}\cdot|v|^2_{1,2,\Omega}\geq0 \\
+		\implies& |v|_{1,2,\Omega}=0 \\
+		\implies& v\equiv c\text{ konstant auf }\Omega\\
+		0&=a(c,c)=\int\limits_\Omega\underbrace{\nabla c^T}_{=0}\cdot A\cdot\underbrace{\nabla c}_{=0}+(a\cdot\underbrace{\nabla c}_{=0})\cdot c+\alpha\cdot c^2\d x\\
+		&=\int\limits_\Omega\alpha\cdot c^2\d x\\
+		&\geq\underbrace{\alpha_0}_{>0}\cdot\Vert c\Vert^2_{0,2,\Omega}\\
+		&\implies\Vert c\Vert_{0,2,\Omega}=0\\
+		&\implies c=0\\
+		&\implies v\equiv 0
+	\end{align*}
 
-\underline{Zeige (iv):}
-\begin{align*}
-	&\left\{\begin{array}{rl}
-a\cdot n=0&\text{ auf }\Gamma\\
-\alpha=0,~\div(a)=0&\text{ in  }\Omega\\
-\end{array}\right. \\
-	&V=\left\lbrace v\in H^1(\Omega):\int\limits_\Omega v(x)\d x=0\right\rbrace\mit|\cdot|_{1,2}\sim\Vert\cdot\Vert_{1,2}\text{ (siehe Poincaré-Ungleichung)}
-\end{align*}
-Also sind die Bilinearform
-\begin{align*}
-a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+(a\cdot\nabla v)\d x
-\end{align*}
-und die Linearform 
-\begin{align*}
-l(v)=\int\limits_\Omega f(x)\cdot v(x)\d x+\int\limits_\Gamma g\cdot v\d\gamma
-\end{align*}
-stetig. Zur Koerzivität:
-\begin{align*}
-a(v,v)&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+(a\cdot\nabla v)\cdot v\d x\\
-&=\int\limits_\Omega\nabla v^T\cdot A\cdot \nabla v-\Big(\frac{1}{2}\cdot\underbrace{\div(a)}_{=0}\Big)\cdot v^2\d x+\int\limits_\Gamma\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{=0}\cdot v^2\d\gamma\\
-&\geq\lambda_0\cdot|v|_{1,2,\Omega}^2\\
-&\geq\frac{\lambda_0}{C^2_p}\cdot\Vert v\Vert^2_{1,2,\Omega}
-\end{align*}
-Aus Lax Milgram \ref{theorem2.1LaxMilgram} folgt, dass das Variationsproblem eine eindeutig Lösung \ul{in $V$} hat. Aber: Die schwache Lösung benötigt $X=H^1(\Omega)$. Wir wissen, dass das Problem
-\begin{align*}
-\text{Finde $u\in V$ so, dass }a(u,v)=l(v)\qquad\forall v\in V
-\end{align*}
-	eine eindeutige Lösung besitzt. Es bleibt zu zeigen, dass $a(u,\indi)=l(\indi)$ für eine konstante Funktion $\indi$ gilt.
+	\underline{Zeige (iv):}
+	\begin{align*}
+		&\left\{\begin{array}{rl}
+			a\cdot n=0&\text{ auf }\Gamma\\
+			\alpha=0,~\div(a)=0&\text{ in  }\Omega\\
+		\end{array}\right. \\
+		&V=\left\lbrace v\in H^1(\Omega):\int\limits_\Omega v(x)\d x=0\right\rbrace\mit|\cdot|_{1,2}\sim\Vert\cdot\Vert_{1,2}\text{ (siehe Poincaré-Ungleichung)}
+	\end{align*}
+	Also sind die Bilinearform
+	\begin{align*}
+		a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+(a\cdot\nabla v)\d x
+	\end{align*}
+	und die Linearform 
+	\begin{align*}
+		l(v)=\int\limits_\Omega f(x)\cdot v(x)\d x+\int\limits_\Gamma g\cdot v\d\gamma
+	\end{align*}
+	stetig. Zur Koerzivität:
+	\begin{align*}
+		a(v,v)&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+(a\cdot\nabla v)\cdot v\d x\\
+		&=\int\limits_\Omega\nabla v^T\cdot A\cdot \nabla v-\Big(\frac{1}{2}\cdot\underbrace{\div(a)}_{=0}\Big)\cdot v^2\d x+\int\limits_\Gamma\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{=0}\cdot v^2\d\gamma\\
+		&\geq\lambda_0\cdot|v|_{1,2,\Omega}^2\\
+		&\geq\frac{\lambda_0}{C^2_p}\cdot\Vert v\Vert^2_{1,2,\Omega}
+	\end{align*}
+	Aus Lax Milgram \ref{theorem2.1LaxMilgram} folgt, dass das Variationsproblem eine eindeutig Lösung \ul{in $V$} hat. 
+	Aber: Die schwache Lösung benötigt $X=H^1(\Omega)$. 
+	Wir wissen, dass das Problem
+	\begin{align*}
+		\text{Finde $u\in V$ so, dass }a(u,v)=l(v)\qquad\forall v\in V
+	\end{align*}
+	eine eindeutige Lösung besitzt. 
+	Es bleibt zu zeigen, dass $a(u,\indi)=l(\indi)$ für eine konstante Funktion $\indi$ gilt.
 	\begin{align*}
 		a(u,\indi)=l(\indi)
 		&\Longleftrightarrow
@@ -1041,7 +1088,8 @@ Aus Lax Milgram \ref{theorem2.1LaxMilgram} folgt, dass das Variationsproblem ein
 		S_h^{k,m}&:=S_n^{k,-1}\cap C^m\big([0,1]\big)\\
 		S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_n^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbrace
 	\end{align*}
-	Hierbei ist $P_k$ der Raum der Polynome von höchstens Grad $k$.\\ Die Funktionen in $S_h^{k,m}$ heißen \textbf{finite-Elemente-Funktionen}.
+	Hierbei ist $P_k$ der Raum der Polynome von höchstens Grad $k$.\\ 
+	Die Funktionen in $S_h^{k,m}$ heißen \textbf{finite-Elemente-Funktionen}.
 
 	\begin{figure}[!ht]
 		\begin{center}
