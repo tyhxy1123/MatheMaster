@@ -744,3 +744,117 @@ $$ G = \Gal(E|F), P \in S(F|K), P' \in S(E|L) \text{ mit } P'|P.$$
             \item Es gilt $$e_{P'|P'_T}\cdot f_{P'_T|P'_Z} \cdot r = [E:E].$$
         \end{enumerate}
     \end{korollar}
+
+\section{Die Differentenformel}
+Sei $F|K$ ein Funktionenkörper, $K$ vollkommen, $E|F$ endlich separabele geometrische Erweiterung.
+
+\begin{lemma}
+    Ist $P \in S(F|K)$ und $Q_1,\ldots,Q_r \in S(E|K)$ alle Fortsetzungen von $P$ auf $E$, so gilt für $u \in \O'_P=\bigcap\limits_{i=1}^r \O_{Q_i}$
+    $$ \underbrace{(\Tr_{E|F}(u))(P)}_{\in F_P} = \sum_{i=1}^r e_{Q_i|P}\Tr_{E_{Q_i|F_P}}(u(Q_i)).$$
+\end{lemma}
+
+\begin{theorem}[Dedekind]
+    Seien $P\in S(F|K), Q \in S(E|K)$ mit $Q|P$. Dann gilt 
+    $$d_{Q|P} \geq e_{Q|P} - 1$$
+    mit Gleichheit genau dann, wenn $\Char K \not | e_{Q_P}$.
+\end{theorem}
+\begin{proof}
+    Sei $\O'_P$ der ganze Abschluss von $\O_P$ in $E$.
+
+    \underline{Teil 1:} $d_{Q|P} \geq e_{Q|P} - 1$\\
+    Wähle $t\in F$ mit $v_{Q'}(t) = -(e_{Q'|P}-1) \forall~Q'|P$\\
+    Zu zeigen: $t \in C_P$, d.h. $\Tr_{E|F}(tz)\in \O_P$ für alle $z \in \O'_P$.
+
+    \newcommand{\Eh}{\overset{\wedge}{E}}
+    \newcommand{\Qh}{\overset{\wedge}{Q}}
+    Setze $\Eh = $ galoissche Hülle von $E|F$, $n = [E:F]$, wähle $\sigma_1,\ldots,\sigma_n \in \Gal(\Eh|F)$ mit 
+    $\Hom_F(E,\Eh)=\{\sigma_1|_E,\ldots,\sigma_n|_E\}$
+    \begin{align*}
+        \implies & \Tr_{E|F}(tz) = \sum_{i=1}^n \sigma_i(tz) 
+    \end{align*}
+    Wähle $\Qh \in S(\Eh|\tilde{K})$ mit $\Qh|_F = P$, setze $\Qh_i := \sigma_i^{-1}(\Qh), Q_i:= \Qh_i|_E$
+    \begin{align*}
+        \implies v_{\Qh}(\sigma_i(tz)) = v_{\Qh}(\sigma_i(t)) + \underbrace{v_{\Qh}(\sigma_i(z))}_{\geq 0} \geq
+        v_{\Qh_i}(t) = e_{\Qh_i|Q_i}\cdot v_{Q_i}(t)\\
+        = e_{\Qh_i|Q_i}(1-e_{Q_i|P}) > - e_{\Qh_i|P} = -e_{\Qh|P}\\
+        \implies e_{\Qh|P} \cdot v_P(\Tr_{E|F}(tz)) = v_{\Qh}(\Tr_{E|F}(tz)) > - e_{\Qh|P}\\
+        \implies v_P(\Tr_{E|F}(tz)) \geq 0 \text{d.h. } \Tr_{E|F}(tz) \in \O_P 
+    \end{align*}
+    \underline{Teil 2:} $\Char K|_{e_{Q|P}} \implies d_{Q|P} \geq e_{Q|P}$\\
+    Sei $\{Q_1,\ldots,Q_n\} = \{Q_1,\ldots,Q_r\}$ mit $Q = Q_1,\ldots,Q_r$ paarweise verschieden,
+    $$ e_i := e_{Q_i|P}, e:= e_{Q|P}.$$
+    Nach II.1.8 existiert $y \in E$ mit $v_Q(y) = -e, v_{Q_i}(y) \geq - e_i + 1, i=2,\ldots,r$.\\
+    Ziel: $y \in C_P$, also $\Tr_{E|F}(yz) \in \O_P \forall~ z\in \O'_P$.\\
+    Wähle $x \in F$ mit $v_P(x) = 1$.
+    \begin{align*}
+        \implies & v_Q(xyz) \geq e-e+0 = 0, v_{Q_i}(xyz) \geq e_i - e_i +1 > 0\\
+        \implies & xyz \in \O'_P, (\Tr_{E|F}(xyz))(P) \stackeq{6.1} \sum e_i \Tr_{E_{Q_i|F_P}}((xyz)(Q_i))\\
+        & = \underbrace{e}_{=0} \cdot \Tr_{E_Q|F_P}(xyz(Q)) + \sum_{i=2}^r e_i \Tr_{E_{Q_i}|F_P}(\underbrace{xyz(Q_i)}_{=0})=0\\
+        \implies & 0 < v_P(\Tr_{E|F}(xyz)) = \underbrace{v_P(x)}_{=1} + v_P(\Tr_{E|F}(yz)) \implies \Tr_{E|F}(yz) \in \O_P
+    \end{align*}
+    \underline{Teil 3:} $\Char K \not | e_{Q|P} \implies d_{Q|P} \leq e_{Q|P} - 1$\\
+    Da $K$ vollkommen ist, ist $E_Q|F_P$ separabel, es existiert also\\ $y_0 \in \O_Q$ mit $\Tr_{E_Q|F_P}(y_0(Q)) \ne 0$.
+    Nach II.1.8 existiert $y \in E$ mit 
+    \begin{align*}
+        & v_Q(y-y_0) > 0, v_{Q_i}(y) \geq \max \{1, e_i+v_{Q_i}(t)\}, i=2,\ldots,r.\\
+        & \implies y \in \O'_P, (\Tr_{E|F}(y))(P) \stackeq{6.1} \sum_{i=1}^r e_i \Tr_{E_{Q_i|F_P}}(y(Q_i))\\
+        & \quad = e \Tr_{Q|P}(\underbrace{y(Q)}_{=y_0(Q)}) \ne 0\\
+        & \implies v_P(\Tr_{E|F}(y)) = 0\\
+        & v_P(x) = 1 \implies \Tr_{E|F}(x^{-1}y) = x^{-1}\Tr_{E|F}(y) \ne \O_P\\
+        & \left. \begin{array}{l}
+            v_Q(x^{-1}yt^{-1}) \geq -e + v_Q(y) +e = v_Q(y) \geq 0\\
+            v_{Q_i}(x^{-1}yt^{-1}) = v_{Q_i}(y) - (e_i + v_{Q_i(z)}) \geq 0
+        \end{array} \right\} \implies x^{-1}yt^{-1}\in \O'_P\\
+        & \implies x^{-1}y \in t \O_P \subseteq C_P \implies \Tr_{E|F}(x^{-1}y)\in \O_P \text{, Widerspruch.}
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Sei $P \in S(F|K), Q \in S(E|K), Q|P$.\\
+    $Q|P$ \underline{zahm verzweigt} $:\iff \Char K \not | e_{Q|P}$\\
+    $Q|P$ \underline{wild verzweigt} $:\iff \Char K | e_{Q|P}$\\
+    $E|F$ \underline{zahm} $:\iff$ alle $Q \in S(E|K)$ zahm verzweigt über $Q|_F$.
+\end{definition}
+
+\begin{korollar}
+    Fast alle $P \in S(F|K)$ sind unverzweigt in $E|F$.    
+\end{korollar}
+
+\begin{korollar}
+    \begin{enumerate}[label=(\alph*)]
+        \item $2 g_E - 2 \geq [E:F] \cdot (2 g_F -2)+\sum\limits_P\sum\limits_{Q|P}(e_Q - 1) \deg Q$.
+        \item Ist $E|F$ zahm, so gilt in (a) Gleichheit.
+        \item Ist $E|F$ unverzweigt, so ist $2g_E = [E:F] \cdot (2g_F-2)$.
+    \end{enumerate}
+\end{korollar}
+
+\begin{korollar}
+    Ist $F|K$ eine echte endliche geometrische Erweiterung von $K(T)|K$ so ist $F|K(T)$ verzweigt. Ist $\Char K = 0$ und $K = \overline{K}$,
+    so verzweigen sogar mindestens zwei Primstellen von $K(T)$ in $F$.
+\end{korollar}
+\begin{proof}
+    O.E. $F|K(T)$ minimale echte Erweiterung.\nl
+    \underline{$F|K(T)$ ist separabel:}
+
+    $F|K(T)$ unverzweigt $\stackrel{6.5(c)}{\implies} 2g_F - 2 = \underbrace{[F:K(T)]}_{\geq 2} \cdot (-2)$\nl
+    \underline{$F|K(T)$ ist inseparabel:} 
+    
+    $F = K(T)(\alpha), \alpha^P=f(T) \in K[T], p = \Char K > 0$\\
+    $f = \prod\limits_{i=1}^k P_i^{r_i}, P_i \in K[T]$ irreduzibel, $r_i >0$\\
+    $\alpha \ne K(T) \implies r_i \not \equiv 0 \mod p$ für ein $i$\\
+    $Q|P_i$ unverzweigt $\implies v_Q(\alpha) = \frac{1}{p} v_Q(\alpha^p) = \frac{1}{p}v_Q(f) = \frac{r_i}{p} \ne \Z$ Widerspruch.\nl
+    \underline{$\Char K = 0$:}
+
+    $F|K(T)$ ist zahm $\stackrel{6.5(b)}{\implies}$
+    \begin{align*}
+        2([F:K(T)] - 1) & \leq 2 g_F - 2 - [F:K(T)](2g_{K(T)|K}-2) = \sum_P\sum_{Q|P}(e_{Q|P} - 1)\deg Q\\
+        & = \sum_P(\sum_{Q|P} e_{Q|P}\underbrace{f_{Q|P}}_{=1} - \# \{Q:Q|P\})\\
+        & = \sum_P( [F:K(T)] - \#\{Q:Q|P\}
+    \end{align*}
+    $\implies$ es gibt mindestens zwei $P$ mit $\#\{Q:Q|P\} < [F:K(T)]$.
+\end{proof}
+
+\begin{bemerkungnr}
+    Das Zerlegungsverhalten von $P$ lässt sich auch wie folgt bestimmen:
+    $$ d_{Q|P} \leq v_Q(f'(\alpha)), E=F(\alpha), f=\MinPol(\alpha|F).$$
+\end{bemerkungnr}
