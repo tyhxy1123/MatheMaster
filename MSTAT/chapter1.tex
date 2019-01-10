@@ -4052,3 +4052,153 @@ Analog erhält man mit Satz \ref{satz8.4}:
 	Da $\Omega_0\overset{\ref{satz8.4}}{\subseteq}\Big\lbrace\tau_n\overset{n\to\infty}{\longrightarrow}\tau\Big\rbrace$, folgt die Behauptung.
 \end{proof}
 
+\subsection{Anwedung in der Statistik} %nonumber
+Maximum-Likelihood-Schätzung in 1-parametrigen Exponentialfamilien
+Seien $(X_n)_{n\geq1}$ i.i.d. Kopien von Zufallsvariablen $X$, (d.h. $X_i\sim X$ bzw. $X_i\overset{\L}{=}X$)
+mit Werten im Messraum $(\X,\F)$ und mit $\mu$-Dichte 
+\begin{align*}
+	f_\theta(x)&=c(\theta)\cdot h(x)\cdot\exp\big(q(\theta)\cdot T(\theta)\big)
+	\qquad\forall x\in\X,\theta\in\Theta\subseteq\R
+\end{align*}
+
+% Ferger:
+% In der Statistik werden Beobachtungen als Realisierungen von Zufallsvariablen aufgefasst, also X(\omega)=Beobachtung für ein \omega\in\Omega
+% X_i kann das Befragungsergebnis des $i$-ten Probanden sein
+% Kann man die $X_i$ in der Theorie als Unabhhängigkeit annehmen? -> siehe Zeitreihenanalyse
+% Natürlich ist es nicht immer gegeben, unabhängige Daten zu betrachten. Mann muss sich in jeder Situation fragen, ob diese Modellierung sinnvoll ist.
+
+% Ferger zu mir: "Schreiben Sie auch meine Späße mit?"
+% Ich: "Ja, natürlich!"
+% Ferger: "Das ist bedenklich..."
+
+Erinnere an Maximum-Likelihood-Schätzer (MLS /MLE):
+\begin{align*}
+	\ul{X}_n:=\big(X_1,\ldots,X_n\big)
+\end{align*}
+hat \textbf{Likelihood-Funktion}
+\begin{align*}
+	L_n(\theta,\ul{X}_n)&:=\prod\limits_{i=1}^n L\big(\theta,X_i\big)
+	\qquad\mit\qquad
+	L(\theta,x):=f_\theta(x)
+\end{align*}
+Zugehörige \textbf{$\log$-Likelihood-Funktion} ist
+\begin{align*}
+	l_n\big(\theta,\ul{X}_n\big)&:=\log\Big(L_n\big(\theta,\ul{X}_n\big)\Big)
+	=\sum\limits_{i=1}^n\log\big(\theta,X_i\big)
+	=\sum\limits_{i=1}^n l\big(\theta,X_i\big)\qquad\mit
+\\
+l(\theta,x)&:=\log\big(L(\theta,x)\big)=\log\big(f_\theta(x)\big)
+\end{align*}
+Der MLS für $\theta$ ist definiert durch
+\begin{align*}
+	\hat{\theta}_n
+	:=\arg\max\limits_{\theta\in\Theta}L_n\big(\theta,\ul{X}_n\big)
+	%\overset{x\mapsto\log(x)\text{ streng monoton wachsend}}{=}
+	\overset{(\ast)}{=}
+	\arg\max\limits_{\theta\in\Theta} l_n\big(\theta,\ul{X}_n\big)
+	=\arg\min\limits_{\theta\in\Theta}\underbrace{-\frac{1}{n}\cdot  l_n\big(\theta,\ul{X}_n\big)}_{=:S_n(\theta)}
+\end{align*}
+Die $(\ast)$-Gleichheit gilt, weil $x\mapsto\log(x)$ streng monoton wachsend und stetig ist.
+\begin{align*}
+	l(\theta,x)&=\log\big(c(\theta)\big)+\log\big(h(x)\big)+q(\theta)\cdot T(x)\\
+	\implies S_n(\theta)&=-\log\big(c(\theta)\big)\underbrace{-\frac{1}{n}\cdot\sum\limits_{i=1}^n\log\big(h(X_i)\big)}_{\text{hängt \ul{nicht} von $\theta$ ab}}-q(\theta)\cdot\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n T(X_i)}_{=:\overline{T}_n}\\
+	&=\underbrace{-\Big(\log\big(c(\theta)\big)+q(\theta)\cdot\overline{T}_n\Big)}_{=:M_n(\theta)}-\frac{1}{n}\cdot\sum\limits_{i=1}^n\log\big(h(X_i)\big)\\
+	\implies\hat{\theta}_n
+	&=\arg\min\limits_{\theta\in\Theta} M_n(\theta)
+\end{align*}
+
+% Ferger zu den Schülern von Uni-Live: "Ich mach' auch sonst keine Späße. Und die Studenten sind auch immer leise."
+%Ferger: "Ich komme aus einem 400-Einwohner Dorf."
+
+\textbf{Annahme:}
+\begin{enumerate}[label=(\arabic*)]
+	\item $\Theta\subseteq\R$ ist kompaktes Intervall
+	\item $q$ ist stetig auf $\Theta$ ($\implies c$ stetig, $c>0$).
+	\item Sei $\theta_0$ der \textbf{wahre} Parameter, d.h. $X_i\sim f_{\theta_0}$
+\end{enumerate}
+
+Ziel: Zeige
+\begin{align*}
+	\hat{\theta}_n\overset{n\to\infty}{\longrightarrow}\theta_0
+	\quad\P\text{-fast sicher}
+	\qquad\forall \theta_0\in\Theta
+\end{align*}
+Das ist die sogenannte \textbf{starke Konsistenz} der Schätzerfolge $(\hat{\theta}_n)_{n\in\N}$.
+
+% Ferger zu den Schülern: "Liebe Kinder, bitte nicht rauchen! Rauchen ist ungesund."
+%Ferger: "Ich rauche in meinem Zimmer. Das ist verboten. Da ist ziviler ungehorsam. Ich warte immer noch, dass jemand zu mir kommt und sagt, dass das verboten. Und jetzt? Werfen Sie mich jetzt raus?
+% Ich habe auch einen Hund in meinem Zimmer. Ist auch verboten."
+
+Gemäß SGGZ gilt:
+\begin{align}\label{eqUnderStarkeKonsistenz}
+	\overline{T}_n\overset{n\to\infty}{\longrightarrow}&\E_{\theta_0}\big[T(X)\big]\quad\P\text{-fast sicher}\\
+	\E_{\theta_0}\big[T(X)\big]
+	&=\int\limits_\Omega T(X)\d\P_{\theta_0}
+	\overset{\eqref{eqTrafo}}{=}
+	\int\limits_{\X}T(x)\underbrace{\P_{\theta0}\circ X^{-1}}_{\text{hat $\mu$-Dichte}}(\d x)	
+	\int\limits_{\X}T(x)\cdot f_{\theta_0}(x)~\mu(\d x)\nonumber
+\end{align}
+
+Erinnerung: 
+\begin{align*}
+	X_i:\big(\Omega,\A,\P_\theta)\to\big(\X,\F)
+	\qquad
+	X_i(\omega)\in\X\overset{\text{z.B.}}{=}\R
+	\qquad
+	\underline{X}_n:=\big(X_1,\ldots,X_n\big):\Omega\to\X^n
+\end{align*}
+
+Aus \eqref{eqUnderStarkeKonsistenz} folgt:
+\begin{align*}
+	M_n(\theta)\overset{n\to\infty}&{\longrightarrow}
+	\underbrace{-\Big(\log\big(c(\theta)\big)+q(\theta)\cdot\E_{\theta_0}\big[T(X)\big]\Big)}_{=:M(\theta)=:M_{\theta_0}(\theta)}
+	\quad\P\text{-f.s.}
+	\qquad\forall\theta_0\in\Theta\\
+	\Big|M_n(\theta)-M_{\theta_0}(\theta)\Big|
+	&=\bigg|q(\theta)\cdot\Big(\overline{T}_n-\E_{\theta_0}\big[T(X)\big]\Big)\bigg|\\
+	\implies
+	\sup\limits_{\theta\in\Theta}\Big|M_n(\theta)-M_{\theta_0}(\theta)\Big|
+	&=\underbrace{\left(\sup\limits_{\theta\in\Theta}\big|q(\theta)\big|\right)}_{=:c<\infty}
+	\cdot\underbrace{\bigg|\Big(\overline{T}_n-\E_{\theta_0}\big[T(X)\big]\Big)\bigg|}_{\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}}
+\end{align*}
+Die Bedingung (2) in Satz \ref{satz8.6} ist also erfüllt.
+
+% Ferger hat am 18.01. Geburtstag
+
+Falls $\theta_0$ eindeutige Minimalstelle von $M_{\theta_0}$ ist, so liefert Satz \ref{satz8.6} die starke Konsistenz von $(\hat{\theta}_n)_{n\in\N}$.
+Zusammenfassung in:
+
+\begin{satz}\label{satz8.7}
+	 Im Modell (Exponential-Familie) sei $\Theta\subseteq\R$ kompaktes Intervall,
+	 $q$ sei stetig und der wahre Parameter $\theta_0$ sei eindeutige Minimalstelle der Funktion
+	 \begin{align*}
+	 	M_{\theta_0}(\theta)
+	 	&=-\log\big(c(\theta)\big)-q(\theta)\cdot c(\theta)\cdot\int\limits T(x)\cdot h(x)\cdot\exp\big(q(\theta_0)\cdot T(x)\big)~\mu(\d x)
+	 	\qquad\forall\theta\in\Theta
+	 \end{align*}
+	 (Das ist eine implizite Forderung an die Verteilungsannahmen (VA).)
+	 Und sei 
+	 \begin{align*}
+	 	\hat{\theta}_n=\arg\min\limits_{\theta\in\Theta} M_n(\theta)
+	 	\qquad\mit\qquad
+	 	M_n(\theta)=-\log\big(c(\theta)\big)-q(\theta)\cdot\frac{1}{n}\cdot\sum\limits_{i=1}^n T(X_i)
+	 \end{align*}
+	 Dann gilt:
+	 \begin{align*}
+	 	\hat{\theta}_n\overset{n\to\infty}{\longrightarrow}
+	 	\theta_0\quad\P\text{-f.s.}\qquad\forall\theta_0\in\Theta
+	 \end{align*}
+\end{satz}
+
+\begin{proof}
+	Folgt aus Satz \ref{satz8.6}.
+\end{proof}
+
+%Ferger: "Stellen wir uns mal konkret einen Hilbertraum vor."
+
+Vom theoretischen Standpunkt aus ist die Kompaktheitsannahme an $\Theta$ sehr stark.
+Allerdings ist dies für den Anwender keine signifikante Einschränkung.
+Dafür aber neben der Stetigkeit von $q$ \underline{keine} weitere "Glattheitsannahmen".
+Sind solche Glattheitsannahmen aber gegeben, so lässt sich zeigen, dass $\theta_0$ tatsächlich eindeutiger (und im Fall $\Theta=\R$ wohl-separierte) Minimalstelle von $M_{\theta_0}$ ist. 
+
+
