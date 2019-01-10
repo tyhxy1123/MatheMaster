@@ -1,0 +1,144 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../latex/commands_stochastik}
+\input{../../WTHM/commands_WTHM}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski \& Robert Walter}
+\chead{}
+\ohead{WTHM WiSe 18 19}
+\ifoot{Aufgabenblatt 5}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+\begin{document}
+\section*{Aufgabe 1}
+Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
+\begin{enumerate}[label=\alph*)]
+	\item Die charakteristische Funktion von $W\cdot X$ ist 
+	\begin{align*}
+		\Phi_{W\cdot X}(u)=\frac{1}{\sqrt{1+u^2}}
+	\end{align*}
+	\item $\begin{aligned}
+		\begin{pmatrix}
+			W & X\\
+			Y & Z
+		\end{pmatrix}
+	\end{aligned}$ ist laplaceverteilt.
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}
+	
+	\underline{Zeige b):}
+	
+\end{proof}
+
+\section*{Aufgabe 2}
+Sei $\big(\phi_n(u)\big)_{n\in\N_0}$ eine Folge von CF und $(a_n)_{n\in\N_0}\subseteq\R_{\geq0}$ mit $\sum\limits_n a_n=1$.
+Dann gilt:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		\psi(u):=\sum\limits_{n=0}^\infty a_n\cdot\phi_n(u)
+	\end{aligned}$ ist wieder eine CF.
+	\item Für festes $\phi(u)$ ist 
+	\begin{align*}
+		\chi(u):=\sum\limits_{n=0}^\infty a_n\cdot\big(\phi(u)\big)^n
+	\end{align*}
+	wieder eine CF.
+	\item Für alle $\lambda>0$ und alle $p\in(0,1)$ sind
+	\begin{align*}
+		\exp\Big(\lambda\cdot\big(\phi(u)-1)\big)\Big),\qquad
+		\frac{1-p}{1-p\cdot\phi(u)}
+	\end{align*}
+	ebenfalls CF. Zu welchen Verteilungen gehören diese für $\phi(u)=\exp(i\cdot u)$?
+\end{enumerate} 
+
+\begin{proof}
+	\underline{Zeige a):}
+	
+	\underline{Zeige b):}
+	
+	\underline{Zeige c):}
+		
+\end{proof}
+
+\section*{Aufgabe 3}
+Aus dem Stetigkeitssatz von Lévy folgt:
+\begin{enumerate}[label=\alph*)]
+	\item Sei $X_n$ binomialverteilt mit Parametern $n$ und $p_n=\frac{c}{n}$.
+	Dann konvergiert $X_n$ für $n\to\infty$ gegen eine poissonverteilte Zufallsvariable $X$ mit Parameter $c$.
+	\item Sei $X_n$ gammaverteilt mit Parametern $n$ und $\lambda>0$.
+	Dann konvergiert $Y_n:=\frac{\lambda\cdot X_n-n}{\sqrt{n}}$ für $n\to\infty$ gegen eine standardnormalverteilt Zufallsvariable $Y$.
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}
+	
+	\underline{Zeige b):}
+\end{proof}
+
+\section*{Aufgabe 4}
+Sei $X$ eine reellwertige Zufallsvariable mit Vertielung $F$ und seien $X_1,X_2,\ldots$ i.i.d. Kopien von $X$.
+Die Verteilung $F$ heißt \textbf{stabil}
+\begin{align*}
+	:\Longleftrightarrow
+	\exists(a_n)_{n\in\N},(b_n)_{n\in\N}\subseteq\R_{\geq0}:\forall\in\N:
+	X_1+\ldots+X_n\overset{\d}{=}a_n\cdot X+b_n
+\end{align*}
+Die Verteilung $F$ heißt \textbf{symmetrisch stabil}
+\begin{align*}
+	:\Longleftrightarrow
+	\forall n\in\N:b_n=0
+\end{align*}
+
+\begin{enumerate}[label=\alph*)]
+	\item Zeige, dass die Normalverteilung und die Cauchyverteilung stabil sind und bestimme $a_n$ und $b_n$.
+	\item Sei $X$ symmetrisch stabil.
+	Zeige:
+	\begin{align*}
+		\big(\phi_X(u)\big)^n&=\phi_X(a_n\cdot u) & \forall n\in\N
+		a_{m\cdot n}&=a_n\cdot a_m &\forall m,n\in\N
+	\end{align*}		
+	\item Für alle $\alpha\in(0,2]$ und alle $c>0$ existieren Zufallsvariablen $X_{\alpha,c}$ mit CF 
+	\begin{align*}
+		\phi(u)=\exp\left(-c\cdot|u|^\alpha\right).
+	\end{align*}
+	Zeige, dass $X_{\alpha,c}$ stabil ist und bestimmt $a_n$.
+	Welche Parameter entsprechen der Normal- und der Cauchyverteilung?
+	\item Zeige, dass
+	\begin{align*}
+		\phi(u)=\exp\left(-c\cdot|u|^\alpha\right).
+	\end{align*}
+	für $\alpha>2$ \ul{keine} CF ist.
+\end{enumerate}
+
+\begin{lösung}
+	\underline{Zu a):}
+	
+	\underline{Zu b):}
+	
+	\underline{Zu c):}
+	
+	\underline{Zu d):}\\
+	Angenommen $\phi(u)$ ist die CF einer Zufallsvariable $X$.
+	Wir berechnen nun $\Var[X]$:
+	
+\end{lösung}
+\end{document}
