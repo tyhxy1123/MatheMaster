@@ -166,6 +166,14 @@ Wir benötigen dafür (ohne Beweis):
 \begin{lemma}\label{lemma8.2}
 	$C_c^\infty(\R^d)$ (Testfunktionen) ist dicht in $C_\infty(\R^d)$ (stetige Funktionen, die bei Unendlich verschwinden) bzgl. $\Vert\cdot\Vert_\infty$.\\
 	Intuition: %TODO Add Sketch
+	% Das hier ist der Sketch aus der VL. Ich würde ihn aber rauslassen, da er (glaube ich) nicht richtig ist. Die Grenzfunktion mit der Spitze kann nicht in C_infty sein, da sie im Punkt der Spitze nicht unendlich glatt ist.
+	% \begin{figure}[ht!]
+	% 	\begin{center}
+	% 		\includegraphics[width=0.75\textwidth]{./pics/Sketch4.png}
+	% 		\caption{Funktionenfolge aus $C^\infty_c$, die gegen Funktion in $C^\infty$ konvergiert}
+	% 		\label{AbbTestfunktionenDicht}
+	% 	\end{center}
+	% \end{figure}
 \end{lemma}
 
 \begin{theorem}[Rieszscher Darstellungssatz für $\M_b(\R^d)$]\label{theorem8.4RieszscherDarstellungssatzFuerM_b}\enter
@@ -209,8 +217,13 @@ Folgende Definition aus der Maßtheorie wird noch benötigt:
 			\quad\mit\quad
 			\phi(x):=\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{x^2}{2}\right)\text{ (Dichte von }\Nor)
 		\end{align*}
-		%TODO Hier Skizze einfügen!
-		"Masse läuft hier davon"
+		\begin{figure}[ht!]
+			\begin{center}
+				\includegraphics[width=0.75\textwidth]{./pics/Sketch5.png}
+				\caption{"Masse läuft hier davon"}
+				\label{AbbNichtStraffesMaß}
+			\end{center}
+		\end{figure}
 	\end{itemize}
 \end{bemerkung}
 
@@ -229,7 +242,13 @@ Zusammenhang: Straffheit $\longleftrightarrow$ Fouriertransformation
 
 \begin{proof}
 	Vorüberlegung: Betrachte Sinusfunktion:
-	%TODO Add picture: sin(x) auf [-\pi,\pi]
+		\begin{figure}[ht!]
+			\begin{center}
+				\includegraphics[width=0.75\textwidth]{./pics/Sketch6.png}
+				\caption{Abschätzungen des Sinus}
+				\label{AbbSinusAbschätzung}
+			\end{center}
+		\end{figure}
 	\begin{align*}
 		\left\lbrace
 		\begin{array}{rl}
@@ -352,7 +371,13 @@ Zusammenhang: Straffheit $\longleftrightarrow$ Fouriertransformation
 		\exists R>0:\forall n\geq N_\varepsilon:\mu_n\big(\R\setminus[-R,R]\big)\leq\varepsilon
 	\end{align*}
 	Wir finden $g\in C_c^\infty(\R)$ mit $0\leq g\leq 1$ und $g(x)=1$ für $x\in[-R,R]$.
-	%TODO Hier Skizze der Glättung einfügen
+	\begin{figure}[ht!]
+		\begin{center}
+			\includegraphics[width=0.75\textwidth]{./pics/Sketch7.png}
+			\caption{Skizze der Funktion $g$ und der Funktion $1-g$}
+			\label{AbbSkizzeEinsFunktion}
+		\end{center}
+	\end{figure}
 	\underline{Also:} Sei $f\in C_b(\R)$.
 	\begin{align*}
 		&\left|\int\limits f\d\mu_n-\int\limits f\d\mu\right|\\
