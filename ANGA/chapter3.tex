@@ -765,8 +765,8 @@ Sei $F|K$ ein Funktionenkörper, $K$ vollkommen, $E|F$ endlich separabele geomet
     Wähle $t\in F$ mit $v_{Q'}(t) = -(e_{Q'|P}-1) \forall~Q'|P$\\
     Zu zeigen: $t \in C_P$, d.h. $\Tr_{E|F}(tz)\in \O_P$ für alle $z \in \O'_P$.
 
-    \newcommand{\Eh}{\overset{\wedge}{E}}
-    \newcommand{\Qh}{\overset{\wedge}{Q}}
+    \newcommand{\Eh}{\widehat{E}}
+    \newcommand{\Qh}{\widehat{Q}}
     Setze $\Eh = $ galoissche Hülle von $E|F$, $n = [E:F]$, wähle $\sigma_1,\ldots,\sigma_n \in \Gal(\Eh|F)$ mit 
     $\Hom_F(E,\Eh)=\{\sigma_1|_E,\ldots,\sigma_n|_E\}$
     \begin{align*}
@@ -858,3 +858,138 @@ Sei $F|K$ ein Funktionenkörper, $K$ vollkommen, $E|F$ endlich separabele geomet
     Das Zerlegungsverhalten von $P$ lässt sich auch wie folgt bestimmen:
     $$ d_{Q|P} \leq v_Q(f'(\alpha)), E=F(\alpha), f=\MinPol(\alpha|F).$$
 \end{bemerkungnr}
+
+\section{Konstantenkörpererweiterungen}
+Sei $F|K$ ein Funktionenkörper , $K'|K$ algebraisch,\\
+$F' := FK'$.
+$$
+\begin{tikzcd}
+    F \rar[dash] \dar[dash] & F' \dar[dash]\\
+    K \rar[dash] & K'
+\end{tikzcd}
+$$
+
+\begin{bemerkungnr}
+    $F'$ ist ein Funktionenkörper über $K'$.\\
+    $F|K$ endlich erzeugt $\implies$ $FK'|K'$ endlich erzeugt\\
+    $\trdeg F|K = 1 \implies \trdeg F'|K' = \underbrace{\trdeg F'|F}_{=0} + \trdeg F|K - 
+    \underbrace{\trdeg K'|K}_{=0} = 1$
+\end{bemerkungnr}
+
+\begin{lemma}
+    Ist $K'=K(\alpha)$ einfach, so ist
+    $$ [K':K] = [FK':F]. $$
+\end{lemma}
+\begin{proof}
+    Sei $f=\MinPol(\alpha|K)$.\nl
+    \underline{$\geq$:} $FK' = F(\alpha) \implies [FK':F] = \deg (\alpha|F) \leq \deg f = [K':K]$\nl
+    \underline{$\leq$:} Angenommen $f=gh, g,h \in F[X]\setminus F$\\
+    $f = \prod\limits_{i=1}^n (X-\alpha_i)$ mit $\alpha_1,\ldots,\alpha_n \in \overline{K}$\\
+    $\implies g,h \in \overline{K}[X]\cap F[X] = K[X]$ \Lightning\\
+    $ \implies f$ irreduzibel in $F[X]$, also $f=\MinPol(\alpha|K)$\\
+    $[F(\alpha):F] = \deg f = [K(\alpha):K]$.
+\end{proof}
+
+\begin{satz}
+    Sei $K$ vollkommen.
+    \begin{enumerate}[label=(\alph*)]
+        \item Der Konstantenkörper von $F'$ ist $K'$.
+        \item Sind $x_1,\ldots,x_n \in F$ $K$-linear unabhängig, so auch $K'$-linear unabhängig.
+        \item Für jedes $x \in F$ ist $[F:K(x)]=[F':K'(x)]$.
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    O.E. $K'|K$ endlich\\
+    $\stackrel{K \text{ vollkommen}}{\implies} K'=K(\alpha)$ einfach $\stackrel{7.2}{\implies} [F':F] = [K':K]$\nl
+    (a) Sei $\beta \in F'$ algebraisch über $K'$\\
+    $\implies K'(\beta)|K$ endlich separabel\\
+    $\implies K'(\beta)=K(\gamma)$ einfach\\
+    $\stackrel{7.2}{\implies} [\underbrace{F(\gamma)}_{\leq F'}:F] =[K(\gamma):K] \geq [K':K]$\\
+    $\implies [K':K] \leq [F(\alpha):F] \leq [F':F]=[K':K]$\\
+    $\implies [K(\gamma):K] = [K':K] \implies \beta\in K'$.\nl
+    (b) $y_1,\ldots,y_m \in K'$ Basis von $K'$ als $K$-Vektorraum\\
+    $\implies y_1,\ldots,y_m$ Basis von $F'$ als $F$-Vektorraum\\
+    $\sum\limits_{i=1}^n \lambda_ix_i=0$ mit $\lambda_i \in K'$ $\implies \lambda_i = \sum\limits_{k=1}^m \mu_{ij}y_j, \mu_{ij}\in K$\\
+    $\implies 0 = \sum\limits_i(\sum\limits_j \mu_{ij}y_j)x_i = \sum\limits_j\underbrace{(\sum\limits_i \mu_{ij}x_i)}_{\in F}y_j$\\
+    $ \implies \sum\limits_i(\mu_{ij}x_i = 0 \forall~j$\\
+    $\implies \mu_{ij}=0 \forall~i\forall~j \implies \lambda_i = 0 \forall~i$\nl
+    (c) $$
+    \begin{tikzcd}
+        F \rar[dash]{m} \dar[dash]{n} & F' \dar[dash]{n}\\
+        K(x) \rar[dash]{m} \dar[dash] & K'(x) \dar[dash]\\
+        K \rar[dash]{m} & K'
+    \end{tikzcd}$$
+\end{proof}
+
+\begin{satz}
+    Sei $K$ vollkommen, $K'|K$ endlich, $F'=FK'$.
+    \begin{enumerate}[label=(\alph*)]
+        \item $F'|F$ ist unverzweigt.
+        \item $g_{F'} = g_{F}$
+        \item Sei $A \in \Div(F|K), A' = \Con_{F'|F}(A)$. Dann gilt
+        \begin{align*}
+            \deg A & = \deg A',\\
+            \dim A & = \dim A',\\
+            A \text{ kanonisch } & \iff A' \text{ kanonisch}
+        \end{align*}
+
+        \item Für $P' \in S(F'|K')$ und $P=P'|_F$ ist
+        $$ F'_{P'} = F_PK'.$$
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    (a) Sei $P \in S(F|K), \O'_P$ der ganze Abschluss von $\O_P$ in $F'$. Beachte, dass $\O'_P \supseteq K'$.
+    Ist $K' = \bigoplus\limits_{i=1}^n Kx_i$, so ist $F' = \bigoplus\limits_{i=1}^n F x_i$ und somit 
+    $$ \Tr_{F'|F}|_{K'} = \Tr_{K'|K}.$$
+    Daraus folgt,ist $x'_1,\ldots,x'_n$ die duale Basis zu $x_1,\ldots,x_n$, so sind $x'_1,\ldots,x'_n \in K'$ und
+    $$\sum \O_P x_i \subseteq \O'_P \stackrel{3.6}{\subseteq} \sum \O_Px'_i \subseteq \O'_P \stackrel{3.6}{\subseteq} \sum \O_Px_i$$
+    Somit ist $x_1,\ldots,x_n$ Ganzheitsbasis für $P$\\
+    $\implies C_P = \sum \O_P x'_i = \O'_P$\\
+    $ C_P = t_p \cdot \O'_P$ mit $t_P = 1$\\
+    $\implies d_{P'|P} = v_P(t_P)=0 \stackrel{6.2}{\implies} e_{P'|P} = 1$ für alle $P'|P$\nl
+    (b) Nach 4.14 ist
+    \begin{align*}
+        2g_F - 2 = \frac{[F':F]}{[K':K]}(2g_F-2)+ \underbrace{\deg \Diff}_{=0} \\
+        \implies 2 g_{F'}-2=2g_F-2
+    \end{align*}
+    (d) Sei $y \in \O_{P'}$. Zu zeigen $y(P') \in F_PK'$.\\
+    Wähle $z \in F'$ mit 
+    \begin{align*}
+        &v_{P'}(z-y) > 0 \text{ und } v_Q(z) \geq 0 \forall~Q|P, Q\ne P'\\
+        &\implies z(P')=y(P') \text{ und } z \in \O'_P. \\
+        &\O'_P = \sum\O_Px_i \implies z = \sum a_ix_i, a_i \in \O_P\\
+        &\implies y(P') = z(P') = \sum \underbrace{a_i(P')}_{=a_i(P)\in F_P}\underbrace{x_i(P')}_{\in K'} \in F_PK'
+    \end{align*}
+    (c) - $\deg \Con A = \frac{[F':F]}{[K':K]}\deg A = \deg A$\\
+    - $\deg A > 2g -2 \implies \dim A' = \dim A$:
+    $$ \dim A = \deg A + 1 - g_F = \deg A' + 1 - g_{F'} = \dim A'.$$
+    - $\dim A \leq \dim A'$:
+    \begin{align*}
+        & x_1,\ldots,x_n \in \mathcal{L}(A) \text{ linear unabhängig über } K\\
+        & \implies x_1,\ldots,x_n K'\text{-linear unabhängig und } x_i \in \mathcal{L}(A') \text{, denn}\\
+        & (x_i)^{F'} + A' \stackeq{1.8} \Con(x_i)^F + \Con(A) = \Con (\underbrace{(x_i)^F + A}_{\geq 0}) \geq 0
+    \end{align*}
+    - $\dim A \geq \dim A'$:
+    Sei $x_1,\ldots,x_n$ Basis von $\mathcal{L}(A), z \in \mathcal{L}(A')$.\\
+    Zu zeigen: $z \in \sum Kx_i$.
+    \begin{align*}
+        & \text{Wähle } P_1,P_2 \in S(F|K), P_1 \ne P_2, \text{ setze } \\
+        & A_1 = A + n_1 P_1, A_2 = A + n_2 P_2, \deg A_i > 2g -2.\\
+        & \implies \mathcal{L}(A) = \mathcal{L}(A_1) \cap \mathcal{L}(A_2)\\
+        & \text{Ergänze zu Basis } x_1,\ldots,x_n,y_1,\ldots,y_m \text{ von } \mathcal{L}(A_1)\\
+        & \text{und Basis } x_1,\ldots,x_n,z_1,\ldots,z_l \text{ von } \mathcal{L}(A_2)\\
+        & \implies x_1,\ldots,x_n,y_1,\ldots,y_m,z_1,\ldots,z_l K\text{-linear unabhängig}\\
+        & \implies x_1,\ldots,x_n,y_1,\ldots,y_m,z_1,\ldots,z_l K'\text{-linear unabhängig}\\
+        & \deg A_i > 2g -2 \implies z = \sum \lambda_ix_i + \sum \mu_jy_j = \sum \lambda'_ix_i + \sum \nu_k z_k, \lambda_i, \mu_j,\nu_k\in K'\\
+        & z \in \mathcal{L}(\Con A_1)\\
+        & z \in \mathcal{L}(\Con A_2)\\
+        & \implies \mu_j = 0 \forall~j, \nu_k=0 \forall~k, \lambda'_i=\lambda_i \forall~i\\
+        & \implies z = \sum \lambda_i x_i \in \sum L'x_i 
+    \end{align*}
+    - $A$ kanonisch $\iff$ $A'$ kanonisch
+    \begin{align*}
+        A \text{ kanonisch } & \iff \deg A = 2g_F -2 \text{ und } \dim A = g_F\\
+        & \iff \deg A' = 2g_{F'}-2 \text{ und } \dim A' = g_{F'}\\
+        & \iff A' \text{ kanonisch} 
+    \end{align*}
+\end{proof}
