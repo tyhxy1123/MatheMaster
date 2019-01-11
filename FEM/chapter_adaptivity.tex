@@ -94,12 +94,76 @@ How to compute $\eta_T$?\vspace{1cm}
 		&n && \text{normal}\\
 		&d=(0,1)^T && \text{flow direction}\\
 	\end{align*}
-	\underline{heuristic indicator}: $\eta_T$\\
+	%TODO ist die Aufteilung richtig hier?
 	\begin{itemize}
+		\item heuristic indicator: $\eta_T$
 		\item verticity: $\eta_T = h_T \|\nabla \times v_h\|_T$
 		\item first order pressure gradient:  $\eta_T = h_T \|\nabla p_h\|_T$
 		\item second order velocity gradient:  $\eta_T = h_T \|\nabla^2 v_h\|_T$
 		\item residual based indicator: 
+		\begin{equation*}
+			\eta_T = h_T \|R_h\|_T +  h_T^{(1/2)} \|r_h\|_T + h_T \|\nabla v_h\|_T
+		\end{equation*}
+		with 
+		\begin{align*}
+			R_h &= f + \nu \laplace v_h - v_h \cdot \nabla v_h -  \nabla p \\
+			r_h &= 
+			\begin{cases}
+				\frac{1}{2}(\nu ?? v_h - n p_h), &\text{for }\Gamma \nsubseteq \partial \Omega\\
+				0 ,&\text{for }\Gamma \subset \Gamma_{\text{rigid}}\cup\Gamma_{\text{in}}\\
+				-\nu ?? v_h + n p_h, &\text{for }\Gamma \subset \Gamma_{\text{out}}
+			\end{cases} 
+		\end{align*}
 	\end{itemize}
+	comment on residuals(lin. alg.)\nl
+	\begin{align*}
+		Ax&=b &  A_h x_h &= b_h &&A,A_h \in \R^{n\times n},x,x_h,b,b_h\in\R^n \\
+		A_h&\to A & b_h &\to b  &&(h\to 0)\\
+	\end{align*}
+	\begin{align*}
+		e&= x-x_h &&\text{error}\\
+		\rho&= b-Ax_h&&\text{residual}
+	\end{align*}
+	%TODO ist die strukturierung richtig?
 \end{example}
-%%TODO add missing part and next lecture
+\subsection{a posteriori error analysis uses}
+\begin{equation*}
+	Ae = Ax-Ax_h = b - Ax_h = \rho
+\end{equation*}
+$\implies \|e\| \leq c_T \|\rho\|$, with $c_T = \|A^{-1}\|$
+\begin{align*}
+	-\laplace u &= f \tin \Omega \\
+	u &= 0 \ton \partial \Omega
+\end{align*}
+\begin{align*}
+	\laplace u_h +f &= R_T= R_T(u_h) \quad (\text{volume residual on T}) \\
+	\left[\frac{\partial u_h}{\partial n}\right] &= R_e= R_e(u_h) \quad (\text{edge residual on e}) \\
+\end{align*}
+$\implies$ residual error estimate(local)
+\begin{align*}
+	\eta_T = \left( h_T^2 \|R_T\|^2  + \frac{1}{2}\displaystyle \sum_{e\in \partial T}  h_e \|R_e\|^2\right)^{1/2}
+\end{align*}
+$\implies$ 
+\begin{align*}
+	\|u-u_h\|_1 \leq c \left( \sum \limits_{T \in \T} \eta_T^2 \right)^{1/2}
+\end{align*}
+residual error estimate(global)
+\begin{equation*}
+	\eta = \left(  \sum \limits_{T \in \T_K} \|R_T\|^2  +  \sum \limits_{e \in \Gamma_K} \|R_e\|^2 \right)^{1/2}
+\end{equation*}
+\begin{proof_}
+	(of Lemma of Cea (where is (1)??))\\
+	\begin{align*}
+		a(u,v) &= \langle l,v\rangle\quad \forall v\in V \\
+		a(u_h,v) &=\langle l,v\rangle \quad \forall v\in V_h \\
+		\implies a(u-u_h,v) &=0 \quad \forall v\in V_h \\
+	\end{align*}
+	\begin{align}
+		\implies ( \nabla(u-u_h),\nabla v_h )  =0 \quad \forall u \in V_h 
+	\end{align} 
+	Let's consider $w \in V$:
+	\begin{align*}
+		\langle l,w\rangle &= (\nabla(u-u_h),\nabla w) = (f,w) - \sum\limits_T (\nabla u_h,\nabla w)\\
+		&\stackeq{\text{Int.by parts}} (f,w) - 
+	\end{align*}
+\end{proof}
