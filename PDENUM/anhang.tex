@@ -12,41 +12,51 @@ Im Beispiel aus der Vorlesung erhalten wir folgende Gleichheit:
 \begin{align}
 	\int_{\Omega} u_xv_x + u_yv_y \d x\d y = -\int_{\Omega} (u_{xx} + u_{yy})v\d x\d y + \int_{\partial\Omega} u_x v n_x + u_y v n_y \d\gamma
 \end{align}
-Dies wird hier noch einmal im Detail erklärt.
-\enter
-Zunächst gehen wir zu einer kürzeren und allgemeineren Notation über. Wir schreiben die Summen der partiellen Ableitungen als Skalarprodukt von Gradienten auf, z.B. :
+Dies wird hier noch einmal im Detail erklärt.\nl
+Zunächst gehen wir zu einer kürzeren und allgemeineren Notation über. 
+Wir schreiben die Summen der partiellen Ableitungen als Skalarprodukt von Gradienten auf, z.B. :
 \[u_xv_x + u_yv_y = \nabla u \cdot \nabla v\]
 Außerdem bedienen wir uns einer Indentität, die man durch Nachrechnen für passende Funktionen nachweisen kann:
-\begin{align}\div(fg) = f \cdot \nabla g + g \div(f)\end{align}
+\begin{align}
+	\div(fg) = f \cdot \nabla g + g \div(f)
+\end{align}
 Wir nutzen diese Gleichung spezifisch mit $f=\nabla u$ und $g=v$.
 Nun können wir (A.2) beweisen:
 \begin{proof}
-\begin{align*}
-	\int_{\Omega} u_xv_x + u_yv_y \d x\d y ~~ &\stackeq{\text{Notation}} ~~ \int_{\Omega} \nabla u \cdot \nabla v \d x\d y \\
-																		 &\stackeq{\text{A.3}} \int_{\Omega}\div(v\nabla u) \d x\d y - \int_{\Omega} v \div(\nabla u) \d x\d y \\
-																		 &\stackeq{\text{Gauß}} \int_{\partial\Omega}v \nabla u \cdot n \d\gamma - \int_{\Omega} v \div(\nabla u) \d x\d y \\
-																		 &\stackeq{\div(\nabla) = \laplace} ~~~ \int_{\partial\Omega}v \nabla u \cdot n \d\gamma - \int_{\Omega} v \laplace u \d x\d y \\
-																		 &\stackeq{\text{Def}} \int_{\partial\Omega} u_x v n_x + u_y v n_y \d\gamma - \int_{\Omega} (u_{xx} + u_{yy})v\d x\d y 
-\end{align*}
+	\begin{align*}
+		\int_{\Omega} u_xv_x + u_yv_y \d x\d y 
+		\overset{\text{Notation}}&=
+		\int_{\Omega} \nabla u \cdot \nabla v \d x\d y \\
+		\overset{\text{A.3}}&=
+		\int_{\Omega}\div(v\nabla u) \d x\d y - \int_{\Omega} v \div(\nabla u) \d x\d y \\
+		\overset{\text{Gauß}}&=
+		\int_{\partial\Omega}v \nabla u \cdot n \d\gamma - \int_{\Omega} v \div(\nabla u) \d x\d y \\
+		\overset{\div(\nabla) = \laplace}&=
+		\int_{\partial\Omega}v \nabla u \cdot n \d\gamma - \int_{\Omega} v \laplace u \d x\d y \\
+		\overset{\text{Def}}&=
+		\int_{\partial\Omega} u_x v n_x + u_y v n_y \d\gamma - \int_{\Omega} (u_{xx} + u_{yy})v\d x\d y 
+	\end{align*}
 \end{proof}
 
 \section{Koflächenformel}
-\begin{satz}\enter
-	Sei $f:B(0,R)\rightarrow \R$ integrierbar. Dann ist $f$ für fast alle $r>0$ über der Sphäre $S_r := \partial B(0,r)$ integrierbar und es gilt:
+\begin{satz}
+	Sei $f:B(0,R)\rightarrow \R$ integrierbar. 
+	Dann ist $f$ für fast alle $r>0$ über der Sphäre $S_r := \partial B(0,r)$ integrierbar und es gilt:
 	\begin{align*}
 		\int_{B(0,R)}f(x) \d\lambda(x) &= \int_0^R \left(\int_{S_r} f(x) \d\gamma(x)\right) \d r \\
 																	 &= \int_0^R \left(\int_{S_1} f(rx) \d\gamma(x)\right)r^{n-1} \d r
 	\end{align*}
 \end{satz}
-	\begin{proof}
-		siehe Forster 2 (wenn nicht, bitte melden)
-	\end{proof}
+
+\begin{proof}
+	Siehe Forster \textit{Analysis 2}.
+\end{proof}
 	
 \section{Fixpunktsätze}
 \begin{satz}[Banach'scher Fixpunktsatz]\label{BanachscherFixpunktsatz}\enter
-Sei $W$ ein Banachraum, $Q:N\to N$ mit $N\subseteq W$ sei eine Kontraktion, d. h.
-\begin{align*}
-\exists\gamma<1:\forall u,v\in N:\Vert Q(u)-Q(v)\Vert_V\leq\gamma\cdot\Vert u-v\Vert_V.
-\end{align*}
-Dann hat $Q$ genau einen Fixpunkt.
+	Sei $W$ ein Banachraum, $Q:N\to N$ mit $N\subseteq W$ sei eine Kontraktion, d. h.
+	\begin{align*}
+		\exists\gamma<1:\forall u,v\in N:\Vert Q(u)-Q(v)\Vert_V\leq\gamma\cdot\Vert u-v\Vert_V.
+	\end{align*}
+	Dann hat $Q$ genau einen Fixpunkt.
 \end{satz}
