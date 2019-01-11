@@ -1,0 +1,105 @@
+\section{Adaptive refinement / coarsening}
+Assume $\T$ of $\Omega$, $u_h\in V_h$ is a FEM-solution \nl
+a posteori error estimate 
+\begin{equation*}
+	\|u-u_h\| \leq \eta(u_h) = \left( \displaystyle \sum_{T\in \T} (\eta_T(u_h))^p\right)^{1/p}, \quad p\in [1,\infty)
+\end{equation*}
+$\eta$ is a computable funtion, only dependable on FEM-solution. If $\tol$ is a given tolerance and $\eta(u_h) > \tol$. Where to refine $\T$ in order to reduce the error?
+\subsection{General strategy for elliptic problems}
+start with $\T_0$ and $\tol$
+\begin{align*}
+	{}&k=0\\
+	{}&\text{solve discrete problem on }\T_h \text{ compute global error estimate }\\
+	{}& \eta \text{ and local error estimation} \eta_T \text{ for} T\in \T_k\\
+	{}&while \eta > \tol do\\
+	{}& \quad mark elements for retirement\\
+	{}& \quad adapt mesh\\
+	{}& \quad k=k+1\\
+	{}& \quad solve discrete problem on \T_h\\
+	{}& \quad compute \eta and \eta_T for T\in \T_k\\
+	{}&end while	 
+\end{align*}
+strategy: local error is similiar for all elements $\implies$ elements with large local error can be coarsed
+\begin{enumerate}[label=\alph*)]
+	\item global refinement
+	\item maximum strategy, $\gamma \in(0,1)$ refine all elements with 
+	\begin{equation*}
+		\eta_T > \gamma \underset{T'\in\T_K}{\max} \eta_{T'}
+	\end{equation*}
+	typical $\gamma=\frac{1}{2}$ 
+	\item equidistribution strategy\\
+	$N_K$ number of elements in $\T_K$, assuming equal distribution of the error, e.g.
+	\begin{align*}
+		\eta_T &= \eta_{T'} \quad \forall T,T' \in \T_K\\
+		\eta &= \left(\displaystyle \sum_{T \in \T_K} (\eta_T)^p \right)^{\frac{1}{p}} = (N_K)^{\frac{1}{p}} \eta_T \overset{!}{=} \tol
+	\end{align*}
+	\begin{equation*}
+		\eta_T = \frac{\tol}{(N_K)^\frac{1}{p}}
+	\end{equation*}
+	choose $\Theta \in (0,1)$, $\Theta \approx1 $, refine all elements with 
+	\begin{equation*}
+		\eta_T > \Theta \frac{\tol}{(N_K)^\frac{1}{p}}
+	\end{equation*}
+	
+	\item guaranteed error reduction\\
+	usually it is not clear, that the error is reduced and the strategy converges\\
+	idea: refine a subset of triangulation, whose element errors sum up to a fixed amount of $\eta$
+\end{enumerate}
+
+\subsection{Coarsening}
+refinement is sufficient for linear elliptic problems, but for time dependent problems coarsening is needed too.
+\begin{itemize}
+	\item for maximum strategy: $\gamma > \gamma_C$: coarsen all elements with
+	\begin{equation*}
+		\eta_T^p + \underbrace{\eta_{C,T}^p}_{\text{loss through coarsening}} \leq \gamma_C \underset{T'\in\T_K}{\max} \eta_{T'}
+	\end{equation*}
+	\item for equidistribution strategy $\Theta_C \in(0,1)$ coarsen all elements with 
+	\begin{equation*}
+		\eta_T + \eta_{C,T} \leq \Theta_C \frac{\tol}{(N_K)^\frac{1}{p}}
+	\end{equation*}
+\end{itemize}
+
+\underline{time-dependent problems}:\nl
+\begin{itemize}
+	\item explicit strategy: do iteration only once $\to$ next timestep
+	\item semi-implicit: do a adaption only once
+	\item implicit strategy: adapt until $\tol$ is reached in each timestep
+	\begin{itemize}
+		\item start with coarse mesh
+		\item start with the mesh from the previous time step
+	\end{itemize}
+\end{itemize}
+How to compute $\eta_T$?\vspace{1cm}
+\begin{example}
+	Compute drag coefficient in an incompressible flow around a cylinder(fine mesh needed at green parts)\\
+	%TODO add pic 
+	Navier-Stokes equation
+	\begin{align*}
+	\begin{cases}
+	\partial_t v - \nu \laplace v + v \cdot \nabla v + \nabla p = f\\
+	\hspace{3.4cm}\nabla \cdot v = 0
+	\end{cases}
+	\end{align*}
+	with unknowns: velocity $v$ and pressure $p$.\\
+	drag coefficient 
+	%TODO is that right?
+	\begin{equation*}
+		\exists (v,p) = \frac{2}{\bar{u}^2D}\int \limits_S n^T \left(2v \tau -p I\right) \partial \partial S
+	\end{equation*}
+	\begin{align*}
+		&S && \text{surface of cylinder}\\
+		&D && \text{diameter of cylinder}\\
+		&\bar{u} && \text{maximum inflow velocity}\\
+		&\tau \approx \frac{1}{2}(\nabla v + (\nabla v )^T) && \text{stress tensor}\\
+		&n && \text{normal}\\
+		&d=(0,1)^T && \text{flow direction}\\
+	\end{align*}
+	\underline{heuristic indicator}: $\eta_T$\\
+	\begin{itemize}
+		\item verticity: $\eta_T = h_T \|\nabla \times v_h\|_T$
+		\item first order pressure gradient:  $\eta_T = h_T \|\nabla p_h\|_T$
+		\item second order velocity gradient:  $\eta_T = h_T \|\nabla^2 v_h\|_T$
+		\item residual based indicator: 
+	\end{itemize}
+\end{example}
+%%TODO add missing part and next lecture
