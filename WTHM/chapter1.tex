@@ -8,56 +8,55 @@
 Betrachte den Wahrscheinlichkeitsraum $(\Omega,\A,\P)$.\\
 Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-Norm
 \begin{align*}
-\Vert X\Vert_p:=\E\left[|X|^p\right]=\left(\int\limits_\Omega|X(\omega)|^p\d\P(\omega)\right)^{\frac{1}{p}}
+	\Vert X\Vert_p:=\E\left[|X|^p\right]=\left(\int\limits_\Omega|X(\omega)|^p\d\P(\omega)\right)^{\frac{1}{p}}
 \end{align*}
 und die Räume
 \begin{align*}
-\mathcal{L}_p(\Omega,\A,\P):=\Big\lbrace X:\Omega\to\R\Big|X\text{ ist $\A$-messbar und }\Vert X\Vert_p<\infty\Big\rbrace.
+	\mathcal{L}_p(\Omega,\A,\P):=\Big\lbrace X:\Omega\to\R\Big|X\text{ ist $\A$-messbar und }\Vert X\Vert_p<\infty\Big\rbrace.
 \end{align*}
 Aufgrund der Minkowski-Ungleichung
 \begin{align*}
-\Vert X+Y\Vert_p\leq\Vert X\Vert_p+\Vert Y\Vert_p
+	\Vert X+Y\Vert_p\leq\Vert X\Vert_p+\Vert Y\Vert_p
 \end{align*}
 und der Homogenität
 \begin{align*}
-\Vert c\cdot X\Vert_p=c\cdot\Vert X\Vert_p\qquad\forall c\geq0
+	\Vert c\cdot X\Vert_p=c\cdot\Vert X\Vert_p\qquad\forall c\geq0
 \end{align*}
 ist 
 \begin{align*}
-\mathcal{L}_p(\Omega,\A,\P)
+	\mathcal{L}_p(\Omega,\A,\P)
 \end{align*}
 Vektorraum mit Halbnorm $\Vert\cdot\Vert_p$. Es fehlt die Definitheit.\\
 Wir identifizieren Zufallsvariablen $X,\tilde{X}$, welche $\P$-fast sicher übereinstimmen, d. h. 
 \begin{align*}
-\P[X\neq\tilde{X}]=0.
+	\P[X\neq\tilde{X}]=0.
 \end{align*}
 Formal betrachten wir den Unterraum
 \begin{align*}
-\mathcal{N}:=\lbrace N:\Omega\to\R:N=0\text{ $\P$-fast sicher}\rbrace
+	\mathcal{N}:=\lbrace N:\Omega\to\R:N=0\text{ $\P$-fast sicher}\rbrace
 \end{align*}
 und bilden den Quotientenraum
 \begin{align*}
-L_p(\Omega,\A,\P):=\mathcal{L}_p(\Omega,\A,\P)/\mathcal{N}=\left\lbrace[X+\mathcal{N}]:X\in\mathcal{L}_p(\Omega,\A,\P)\right\rbrace.
+	L_p(\Omega,\A,\P):=\mathcal{L}_p(\Omega,\A,\P)/\mathcal{N}=\left\lbrace[X+\mathcal{N}]:X\in\mathcal{L}_p(\Omega,\A,\P)\right\rbrace.
 \end{align*}
 Wir schreiben auch kurz $L_p(\A)$ oder $L_p(\P)$, wenn wir Abhängigkeit von $\A$ oder $\P$ betonen wollen.\\
 Aus der Maßtheorie ist bekannt:
 
 \begin{theorem}
-Sei $p\in[1,\infty)$. Dann ist $L_p(\Omega,\A,\P)$ mit Norm $\Vert\cdot\Vert_p$ ein Banachraum.\\
-Für $p=2$ ist $L_2(\Omega,\A,\P)$ ein Hilbertraum mit Skalarprodukt
-\begin{align*}
-\langle X,Y\rangle:=\E[X\cdot Y]=\int\limits_\Omega X(\omega)\cdot Y(\omega)\d\P(\omega)
-\end{align*}
+	Sei $p\in[1,\infty)$. Dann ist $L_p(\Omega,\A,\P)$ mit Norm $\Vert\cdot\Vert_p$ ein Banachraum.\\
+	Für $p=2$ ist $L_2(\Omega,\A,\P)$ ein Hilbertraum mit Skalarprodukt
+	\begin{align*}
+		\langle X,Y\rangle:=\E[X\cdot Y]=\int\limits_\Omega X(\omega)\cdot Y(\omega)\d\P(\omega)
+	\end{align*}
 \end{theorem}
 
 \begin{bemerkung}
-Zwei Zufallsvariablen $X,Y\in L_2$ heißen \textbf{orthogonal} $:\gdw\langle X,Y\rangle=0$.
+	Zwei Zufallsvariablen $X,Y\in L_2$ heißen \textbf{orthogonal} $:\gdw\langle X,Y\rangle=0$.
 \end{bemerkung}
 
 \begin{proposition}
-Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$ und $p\in[1,\infty)$.\\
-Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Omega,\A,\P)$.
-
+	Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$ und $p\in[1,\infty)$.\\
+	Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Omega,\A,\P)$.
 \end{proposition}
 
 \begin{proof}
@@ -69,20 +68,21 @@ Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Om
 \end{proof}
 
 \begin{defi}[Bedingte Erwartung in $L_2$]
-Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\nl
-Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$. Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
-\begin{align*}
-\E[X~|~\mathcal{F}]:=Y.
-\end{align*}
-Die bedingte Erwartung ist also eine Zufallsgröße und nur bis auf $\P$-Nullmengen eindeutig bestimmt.
+	Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\nl
+	Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$.
+	Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
+	\begin{align*}
+		\E[X~|~\mathcal{F}]:=Y.
+	\end{align*}
+	Die bedingte Erwartung ist also eine Zufallsgröße und nur bis auf $\P$-Nullmengen eindeutig bestimmt.
 \end{defi}
 
 \begin{bemerkung}
-Als Orthogonalprojektion gilt
-\begin{align*}
-\Vert X-\E[X~|~\mathcal{F}]\Vert_2=\inf\left\lbrace\Vert X-Y\Vert_2:Y\in L_2(\Omega,\mathcal{F},\P)\right\rbrace.
-\end{align*}
-Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zufallsvariablen\\ $Y\in L_2(\Omega,\mathcal{F},\P)$.
+	Als Orthogonalprojektion gilt
+	\begin{align*}
+		\Vert X-\E[X~|~\mathcal{F}]\Vert_2=\inf\left\lbrace\Vert X-Y\Vert_2:Y\in L_2(\Omega,\mathcal{F},\P)\right\rbrace.
+	\end{align*}
+	Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zufallsvariablen\\ $Y\in L_2(\Omega,\mathcal{F},\P)$.
 \end{bemerkung}
 
 \begin{proposition}\label{Prop1.3}
@@ -93,142 +93,143 @@ Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zuf
 		\item $\forall F\in\mathcal{F}\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
 	\end{enumerate}
 \end{proposition}
+
 \begin{proof}
-	$\dq (a) \implies (b) \dq{}$ \enter
+	$\dq (a) \implies (b) \dq{}$ \\
 	Wähle $F \in L_2(\F)$ beliebig. Dann gilt
 	\[Y + tF \in L_2(\F) \qquad \forall t \in \R\]
 	Der Abstand wird für $t=0$ minimiert, also gilt:
-\[\|X-(Y+tF)\|_2^2 \geq \|X-Y\|_2^2 \qquad \forall t \in \R\]
-Nun nehmen wir an, dass $t>0$ auf der rechten Seite gilt und multiplizieren die Norm als Produkt von Skalarprodukten aus.
-\begin{align*}
-	&&\|X-(Y+tF)\|_2^2 &\geq \|X-Y\|_2^2 \\
-	\implies	&&\|X-Y\|_2^2 + t^2\|F\|_2^2 - 2t\langle X-Y, F \rangle &\geq \|X-Y\|_2^2 \\
-	\implies	&&t^2\|F\|_2^2 - 2t\langle X-Y, F \rangle &\geq 0 \\
-	\implies	&&t\|F\|_2^2 - 2\langle X-Y, F \rangle &\geq 0 \\
-\end{align*}
-Für $t\rightarrow0$ erhalten wir.
-\[\langle X-Y, F \rangle \leq 0\]
-Analog erhält man mit der Annahme $t<0$ die umgekehrte Ungleichung.
-Also folgt
-\[\langle X-Y, F \rangle = 0 \qquad \forall \F \in L_2(\F)\]
-da $F$ beliebig gewählt war.\nl
-Jetzt: $\dq (b) \implies (a) \dq{}$\\
-Sei $F\in L_2(\F)$ und $\langle X-Y, F \rangle = 0$. Dann
-\[\implies \|X-Y\|_2^2 + \underbrace{t^2\|F\|_2^2}_{\geq 0} - \underbrace{2t\langle X-Y, F \rangle}_{=0} \geq \|X-Y\|_2^2\]
-Und damit 
-\[\|X-(Y+tF)\|_2^2 \geq \|X-Y\|_2^2 \qquad \forall t\in\R, \forall F\in L_2(\F)\]
-Somit ist $\|X-Y\|_2^2$ Minimierer der rechten Seite, in Zeichen:
-\[\|X-Y\|_2^2 \leq \inf\{\|X-\tilde{F}\|_2^2 : \tilde{F}\in L_2(\F)\}\]
-und damit ist $Y$ die orthogonale Projektion von $X$ auf $\F$
+	\[\|X-(Y+tF)\|_2^2 \geq \|X-Y\|_2^2 \qquad \forall t \in \R\]
+	Nun nehmen wir an, dass $t>0$ auf der rechten Seite gilt und multiplizieren die Norm als Produkt von Skalarprodukten aus.
+	\begin{align*}
+		&&\|X-(Y+tF)\|_2^2 &\geq \|X-Y\|_2^2 \\
+		\implies	&&\|X-Y\|_2^2 + t^2\|F\|_2^2 - 2t\langle X-Y, F \rangle &\geq \|X-Y\|_2^2 \\
+		\implies	&&t^2\|F\|_2^2 - 2t\langle X-Y, F \rangle &\geq 0 \\
+		\implies	&&t\|F\|_2^2 - 2\langle X-Y, F \rangle &\geq 0 \\
+	\end{align*}
+	Für $t\rightarrow0$ erhalten wir.
+		\[\langle X-Y, F \rangle \leq 0\]
+	Analog erhält man mit der Annahme $t<0$ die umgekehrte Ungleichung.
+	Also folgt
+	\[\langle X-Y, F \rangle = 0 \qquad \forall \F \in L_2(\F)\]
+	da $F$ beliebig gewählt war.\nl
+	Jetzt: $\dq (b) \implies (a) \dq{}$\\
+	Sei $F\in L_2(\F)$ und $\langle X-Y, F \rangle = 0$. Dann
+	\[\implies \|X-Y\|_2^2 + \underbrace{t^2\|F\|_2^2}_{\geq 0} - \underbrace{2t\langle X-Y, F \rangle}_{=0} \geq \|X-Y\|_2^2\]
+	Und damit 
+	\[\|X-(Y+tF)\|_2^2 \geq \|X-Y\|_2^2 \qquad \forall t\in\R, \forall F\in L_2(\F)\]
+	Somit ist $\|X-Y\|_2^2$ Minimierer der rechten Seite, in Zeichen:
+	\[\|X-Y\|_2^2 \leq \inf\{\|X-\tilde{F}\|_2^2 : \tilde{F}\in L_2(\F)\}\]
+	und damit ist $Y$ die orthogonale Projektion von $X$ auf $\F$.
 \end{proof}
 
 \begin{proposition}[Eigenschaften der bedingten Erwartung]\enter\label{Prop1.4}
-Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. Dann gilt:
-\begin{enumerate}[label=(\alph*)]
-\item $X\in L_2(\mathcal{F})\Longrightarrow\E[X~|~\mathcal{F}]=X$
-\item $\E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot\E[X~|~\mathcal{F}]+b\cdot\E[Y~|~\mathcal{F}]~\forall a,b\in\R$ ``Linearität''
-\item $\langle\E[X~|~\mathcal{F}],Y\rangle
-=\langle X,\E[Y~|~\mathcal{F}]\rangle
-=\langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle$ ``Symmetrie''
-\item Für jede Unter-$\sigma$-Algebra $\mathcal{H}\subseteq\mathcal{F}$ von $\mathcal{F}$ gilt die \textbf{Turmregel / tower law}:
-\begin{align}\label{Turmregel}\tag{Tow}
-\E\big[\E[X~|~\mathcal{F}]~\big|~\mathcal{H}\big]=\E[X~|~\mathcal{H}]
-\end{align}
-\item $\E[Z\cdot X~|~\mathcal{F}]=Z\cdot\E[X~|~\mathcal{F}]\qquad\forall Z$ beschränkt und $\mathcal{F}$-messbar ``Pull-out-property''
-\item $X\leq Y\Longrightarrow\E[X~|~\mathcal{F}]\leq\E[Y~|~\mathcal{F}]$ ``Monotonie''
-\item $\big|\E[X~|~\mathcal{F}]\big|\leq\E\big[|X|~\big|~\mathcal{F}\big]$ ``Dreiecksungleichung''
-\end{enumerate}
+	Seien $X,Y\in L_2(\Omega,\A,\P)$ und $\mathcal{F}\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item $X\in L_2(\mathcal{F})\Longrightarrow\E[X~|~\mathcal{F}]=X$
+		\item $\E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot\E[X~|~\mathcal{F}]+b\cdot\E[Y~|~\mathcal{F}]~\forall a,b\in\R$ ``Linearität''
+		\item $\langle\E[X~|~\mathcal{F}],Y\rangle
+		=\langle X,\E[Y~|~\mathcal{F}]\rangle
+		=\langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle$ ``Symmetrie''
+		\item Für jede Unter-$\sigma$-Algebra $\mathcal{H}\subseteq\mathcal{F}$ von $\mathcal{F}$ gilt die \textbf{Turmregel / tower law}:
+		\begin{align}\label{Turmregel}\tag{Tow}
+			\E\big[\E[X~|~\mathcal{F}]~\big|~\mathcal{H}\big]=\E[X~|~\mathcal{H}]
+		\end{align}
+		\item $\E[Z\cdot X~|~\mathcal{F}]=Z\cdot\E[X~|~\mathcal{F}]\qquad\forall Z$ beschränkt und $\mathcal{F}$-messbar ``Pull-out-property''
+		\item $X\leq Y\Longrightarrow\E[X~|~\mathcal{F}]\leq\E[Y~|~\mathcal{F}]$ ``Monotonie''
+		\item $\big|\E[X~|~\mathcal{F}]\big|\leq\E\big[|X|~\big|~\mathcal{F}\big]$ ``Dreiecksungleichung''
+	\end{enumerate}
 \end{proposition}
 
 \begin{proof}
-\underline{Zu (a):} Folgt direkt aus der Definition.\nl
-\underline{Zu (b):} Folgt aus Proposition \ref{Prop1.3}:
-\begin{align*}
-\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
-\left.
-\begin{matrix}
-\langle X-\E[X~|~\mathcal{F}],F\rangle=0\\
-\langle Y-\E[Y~|~\mathcal{F}],F\rangle=0
-\end{matrix}
-\right\rbrace\forall F\in L_2(\Omega,\mathcal{F},\P)\\
-&\implies
-a\cdot\langle X-\E[X~|~\mathcal{F}],F\rangle+b\cdot\langle Y-\E[Y~|~\mathcal{F}],F\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
-\overset{\text{Bilinear}}&{\implies}
-\Big\langle a\cdot X+b\cdot Y-\big(a\cdot\E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]\big),F\Big\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
-\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
-\E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot \E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]
-\end{align*}
+	\underline{Zu (a):} Folgt direkt aus der Definition.\nl
+	\underline{Zu (b):} Folgt aus Proposition \ref{Prop1.3}:
+	\begin{align*}
+		\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
+		\left.
+		\begin{matrix}
+			\langle X-\E[X~|~\mathcal{F}],F\rangle=0\\
+			\langle Y-\E[Y~|~\mathcal{F}],F\rangle=0
+		\end{matrix}
+		\right\rbrace\forall F\in L_2(\Omega,\mathcal{F},\P)\\
+		&\implies
+		a\cdot\langle X-\E[X~|~\mathcal{F}],F\rangle+b\cdot\langle Y-\E[Y~|~\mathcal{F}],F\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
+		\overset{\text{Bilinear}}&{\implies}
+		\Big\langle a\cdot X+b\cdot Y-\big(a\cdot\E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]\big),F\Big\rangle=0\qquad&\forall F\in L_2(\Omega,\mathcal{F},\P)\\
+		\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
+		\E[a\cdot X+b\cdot Y~|~\mathcal{F}]=a\cdot \E[X~|~\mathcal{F}]+b\cdot \E[Y~|~\mathcal{F}]
+	\end{align*}
 
-\underline{Zu (c):} Aus Proposition \ref{Prop1.3} folgt wieder
-\begin{align}
-\langle X-\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle=0\label{proofProp114_1}\\
-\langle Y-\E[Y~|~\mathcal{F}],\E[X~|~\mathcal{F}]\rangle=0\label{proofProp114_2}
-\end{align}
-und damit
-\begin{align*}
-\langle X,\E[Y~|~\mathcal{F}]\rangle
-&=\langle \E[X~|~\mathcal{F}]+(X-\E[X~|~\mathcal{F}]),\E[Y~|~\mathcal{F}]\rangle\\
-\overset{\ref{proofProp114_1}}&=
-\langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle\\
-&=\langle\E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}]-Y)\rangle\\
-\overset{\ref{proofProp114_2}}&=
-\langle\E[X~|~\mathcal{F}],Y\rangle.
-\end{align*}
+	\underline{Zu (c):} Aus Proposition \ref{Prop1.3} folgt wieder
+	\begin{align}
+		\langle X-\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle=0\label{proofProp114_1}\\
+		\langle Y-\E[Y~|~\mathcal{F}],\E[X~|~\mathcal{F}]\rangle=0\label{proofProp114_2}
+	\end{align}
+	und damit
+	\begin{align*}
+		\langle X,\E[Y~|~\mathcal{F}]\rangle
+		&=\langle \E[X~|~\mathcal{F}]+(X-\E[X~|~\mathcal{F}]),\E[Y~|~\mathcal{F}]\rangle\\
+		\overset{\ref{proofProp114_1}}&=
+		\langle\E[X~|~\mathcal{F}],\E[Y~|~\mathcal{F}]\rangle\\
+		&=\langle\E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}]-Y)\rangle\\
+		\overset{\ref{proofProp114_2}}&=
+		\langle\E[X~|~\mathcal{F}],Y\rangle.
+	\end{align*}
 
-\underline{Zu (d):} 
-Aus Proposition 1.3 folgt wieder:
-\begin{align*}
-\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
-\langle X-\E[X~|~\mathcal{F}],F\rangle
-&\forall& F\in L_2(\mathcal{F})\supseteq L_2(\mathcal{H})\\
-&\implies
-\langle \E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}-Y)]\rangle=0
-&\forall& H\in L_2(\mathcal{H})\\
-&\implies
-\Big\langle X-\E\big[\E[X~|~\mathcal{F}]~|~\mathcal{H}\big],H\Big\rangle=0\qquad
-&\forall& H\in L_2(\mathcal{H})\\
-\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
-\E[X~|~\mathcal{H}]=\E\big[\E[X~|~\mathcal{F}]~|~\mathcal{H}\big]
-\end{align*}
+	\underline{Zu (d):} 
+	Aus Proposition 1.3 folgt wieder:
+	\begin{align*}
+		\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
+		\langle X-\E[X~|~\mathcal{F}],F\rangle
+		&\forall& F\in L_2(\mathcal{F})\supseteq L_2(\mathcal{H})\\
+		&\implies
+		\langle \E[X~|~\mathcal{F}],Y+(\E[Y~|~\mathcal{F}-Y)]\rangle=0
+		&\forall& H\in L_2(\mathcal{H})\\
+		&\implies
+		\Big\langle X-\E\big[\E[X~|~\mathcal{F}]~|~\mathcal{H}\big],H\Big\rangle=0\qquad
+		&\forall& H\in L_2(\mathcal{H})\\
+		\overset{\text{Prop }\ref{Prop1.3}}&{\implies}
+		\E[X~|~\mathcal{H}]=\E\big[\E[X~|~\mathcal{F}]~|~\mathcal{H}\big]
+	\end{align*}
 
-\underline{Zu (e):} 
-\begin{align*}
-\big\langle X\cdot Z-\E[X~|~\mathcal{F}]\cdot Z,F\big\rangle
-&=\E\Big[\big(X\cdot Z-\E[X~|~\mathcal{F}]\cdot Z\big)~|~\mathcal{F}\Big]\\
-&=\big\langle X-\E[X~|~\mathcal{F}],Z\cdot F\big\rangle=0\quad\forall F\in L_2(\mathcal{F})\text{ da }Z\cdot F\in L_2(\mathcal{F})\\
-&\Longrightarrow\E[X\cdot Z~|~\mathcal{F}]
-=Z\cdot \E[X~|~\mathcal{F}]
-=Z\cdot\E[X~|~\mathcal{F}]
-\end{align*}
+	\underline{Zu (e):} 
+	\begin{align*}
+		\big\langle X\cdot Z-\E[X~|~\mathcal{F}]\cdot Z,F\big\rangle
+		&=\E\Big[\big(X\cdot Z-\E[X~|~\mathcal{F}]\cdot Z\big)~|~\mathcal{F}\Big]\\
+		&=\big\langle X-\E[X~|~\mathcal{F}],Z\cdot F\big\rangle=0\quad\forall F\in L_2(\mathcal{F})\text{ da }Z\cdot F\in L_2(\mathcal{F})\\
+		&\Longrightarrow\E[X\cdot Z~|~\mathcal{F}]
+		=Z\cdot \E[X~|~\mathcal{F}]
+		=Z\cdot\E[X~|~\mathcal{F}]
+	\end{align*}
 
-\underline{Zu (f):} Sei $X\geq0$. Setze
-\begin{align*}
-A:=\lbrace\omega\in\Omega:\E[X~|~\mathcal{F}](\omega)<0\rbrace\in\mathcal{F}.
-\end{align*}
-Außerdem gilt für die Indikatorfunktion $\indi_A\in L_2(\mathcal{F})$.
-Einerseits gilt
-\begin{align*}
-\E[X\cdot\indi_A~|~\mathcal{F}]\geq0\text{ weil }X\geq0
-\end{align*}
-und andererseits
-\begin{align*}
-\E[X\cdot\indi_A]
-&=\E\left[\E[X~|~\mathcal{F}]\cdot\indi_A\right]\\
-&=\E\left[\E[X~|~\mathcal{F}]\cdot\indi_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace}\right]\\
-&=\int\limits_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace} \E[X~|~\mathcal{F}]\d\P\leq0\\
-&\Longrightarrow\E[X\cdot\indi_A]=0\\
-&\Longrightarrow\int\limits_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace} \E[X~|~\mathcal{F}]\d\P=0\\\\
-&\Longrightarrow \P(\E[X~|~\mathcal{F}]<0)=0\\
-&\Longrightarrow\E[X~|~\mathcal{F}]\geq0\text { fast sicher}
-\end{align*}
-Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\nl
-\underline{Zu (g):}
-\begin{align*}
-\pm X\leq|X|
-\stackrel{6.}{\Longrightarrow}
-\pm\E\big[X~|~\mathcal{F}]\leq\E[|X|~|~\mathcal{F}\big]\\
-\Longrightarrow\Big|\E[X~|~\mathcal{F}]\Big|\leq\E\Big[|X|~|~\mathcal{F}\Big]
-\end{align*}
+	\underline{Zu (f):} Sei $X\geq0$. Setze
+	\begin{align*}
+		A:=\lbrace\omega\in\Omega:\E[X~|~\mathcal{F}](\omega)<0\rbrace\in\mathcal{F}.
+	\end{align*}
+	Außerdem gilt für die Indikatorfunktion $\indi_A\in L_2(\mathcal{F})$.
+	Einerseits gilt
+	\begin{align*}
+		\E[X\cdot\indi_A~|~\mathcal{F}]\geq0\text{ weil }X\geq0
+	\end{align*}
+	und andererseits
+	\begin{align*}
+		\E[X\cdot\indi_A]
+		&=\E\left[\E[X~|~\mathcal{F}]\cdot\indi_A\right]\\
+		&=\E\left[\E[X~|~\mathcal{F}]\cdot\indi_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace}\right]\\
+		&=\int\limits_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace} \E[X~|~\mathcal{F}]\d\P\leq0\\
+		&\Longrightarrow\E[X\cdot\indi_A]=0\\
+		&\Longrightarrow\int\limits_{\lbrace\E[X~|~\mathcal{F}]<0\rbrace} \E[X~|~\mathcal{F}]\d\P=0\\\\
+		&\Longrightarrow \P(\E[X~|~\mathcal{F}]<0)=0\\
+		&\Longrightarrow\E[X~|~\mathcal{F}]\geq0\text { fast sicher}
+	\end{align*}
+	Allgemeine Aussage folgt mit $\tilde{X}:=Y-X$ und aus der Linearität.\nl
+	\underline{Zu (g):}
+	\begin{align*}
+		\pm X\leq|X|
+		\stackrel{6.}{\Longrightarrow}
+		\pm\E\big[X~|~\mathcal{F}]\leq\E[|X|~|~\mathcal{F}\big]\\
+		\Longrightarrow\Big|\E[X~|~\mathcal{F}]\Big|\leq\E\Big[|X|~|~\mathcal{F}\Big]
+	\end{align*}
 \end{proof}
  
 \section{Bedingte Erwartung in \texorpdfstring{$L_1$}{L\_1}}
@@ -237,191 +238,200 @@ Prinzip: stetige Fortsetzung.
 
 \setcounter{satz}{5} %Nr. 1.5 fehlt wurde ausgelassen vom Prof.
 \begin{proposition}\label{Prop1.6} %1.6
-Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\enter
-Die bedingte Erwartung hat eine eindeutige stetige Fortsetzung von $L_2(\Omega,\F,\P)$ auf $L_1(\Omega,\A,\P)$. Diese bezeichnen wir ebenfalls mit $\E[~\cdot~|~\mathcal{F}]$.
+	Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\\
+	Die bedingte Erwartung hat eine eindeutige stetige Fortsetzung von $L_2(\Omega,\F,\P)$ auf $L_1(\Omega,\A,\P)$.
+	Diese bezeichnen wir ebenfalls mit $\E[~\cdot~|~\mathcal{F}]$.
 \end{proposition}
+
 \begin{proof}
-\underline{Existenz:}\\
-Sei $X\in L_1$. Dann existiert eine Approximationsfolge $(X_n)_{n\in\N}\subseteq L_2$ mit 
-\[\E\big[|X_n-X|\big]\stackrel{n\to\infty}{\longrightarrow}0\] 
-(in Zeichen $X_n\stackrel{L_1}{\longrightarrow} X$).\\
-Wähle z. B.
-\begin{align*}
-X_n:=\left\lbrace\begin{array}{cl}
-X, & \falls |X|\leq n\\
-n, & \falls X>n\\
--n, & \falls X<-n
-\end{array}\right.
-\end{align*}
-Mit dominanter Konvergenz gilt 
-\begin{align*}
-\limn\E[|X_n-X|]=\E\left[\limn|X_n-X|\right]=0.
-\end{align*}
-Mit Kontraktionseigenschaft gilt:
-\[\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
-	\leq\E\Big[\E\big[|X-M-X_n|\big]~\big|~\F\Big]
-\stackeq{\text{Turm}}~
-\E\big[|X_n-X_n|\big]
-\stackrel{m,n\to\infty}{\longrightarrow}
-0\]
-\begin{align*}
-&\Longrightarrow\left(\E[X_n~|~\F]\right)_{n\in\N}\text{ ist Cauchy-Folge in }L_2(\Omega,\A,\P)\\
-&\Longrightarrow\exists Z\in L_1(\Omega,\A,\P)\mit\E[X_n~|~\F]\stackrel{L_1}{\longrightarrow} Z=:\E[X~|~\F]
-\end{align*}
-\underline{Eindeutigkeit:} Sei $(\tilde{X}_n)_{n\in\N}$ eine weitere Approximationsfolge für $X$, d.h. es gilt auch
-\begin{align*}
-\E[|\tilde{X}_n-X|]
-\stackrel{n\to\infty}{\longrightarrow}
-0.
-\end{align*}
-Dann gilt:
-\begin{align*}
-\Vert Z-\E[\tilde{X}_n~|~\F]\Vert_1
-&=\Big
-\Vert Z-\E[X_n~|~\F]+\E[X_n~|~\F]-\E[\tilde{X}_n~|~\F]\Big\Vert_1\\
-\overset{\Delta\text{Ungl}}&{\leq}
-\big\Vert Z-\E[X_n~|~\F]\big\Vert_1+\underbrace{\big\Vert\E[X_n~|~\F]-\E[\tilde{X}_n~|~\F]\big\Vert_1}_{=\E[|\E[X_n~|~\F-\E[\tilde{X}_n~|~\F|]}\\
-\overset{\text{Kontr}}&{\leq}
-\Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X_n-\tilde{X}_n\Vert_1\\
-&\leq\Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X-X_n\Vert_1+\Vert X-\tilde{X}_n\Vert_1\\
-&\stackrel{n\to\infty}{\longrightarrow}
-0\\
-&\Longrightarrow\E[\tilde{X}_n~|~\F]\stackrel{L_1}{\longrightarrow} Z
-\end{align*}
-Also ist der Limes unabhängig von der Approximationsfolge.
+	\underline{Existenz:}\\
+	Sei $X\in L_1$. Dann existiert eine Approximationsfolge $(X_n)_{n\in\N}\subseteq L_2$ mit 
+	\[\E\big[|X_n-X|\big]\stackrel{n\to\infty}{\longrightarrow}0\] 
+	(in Zeichen $X_n\stackrel{L_1}{\longrightarrow} X$).\\
+	Wähle z. B.
+	\begin{align*}
+		X_n:=\left\lbrace\begin{array}{cl}
+			X, & \falls |X|\leq n\\
+			n, & \falls X>n\\
+			-n, & \falls X<-n
+		\end{array}\right.
+	\end{align*}
+	Mit dominanter Konvergenz gilt 
+	\begin{align*}
+		\limn\E[|X_n-X|]=\E\left[\limn|X_n-X|\right]=0.
+	\end{align*}
+	Mit Kontraktionseigenschaft gilt:
+	\begin{align*}
+		\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
+		\leq\E\Big[\E\big[|X-M-X_n|\big]~\big|~\F\Big]
+		\stackeq{\text{Turm}}~
+		\E\big[|X_n-X_n|\big]
+		\stackrel{m,n\to\infty}{\longrightarrow}
+		0
+	\end{align*}
+	
+	\begin{align*}
+		&\Longrightarrow\left(\E[X_n~|~\F]\right)_{n\in\N}\text{ ist Cauchy-Folge in }L_2(\Omega,\A,\P)\\
+		&\Longrightarrow\exists Z\in L_1(\Omega,\A,\P)\mit\E[X_n~|~\F]\stackrel{L_1}{\longrightarrow} Z=:\E[X~|~\F]
+	\end{align*}
+	\underline{Eindeutigkeit:} Sei $(\tilde{X}_n)_{n\in\N}$ eine weitere Approximationsfolge für $X$, d.h. es gilt auch
+	\begin{align*}
+		\E[|\tilde{X}_n-X|]
+		\stackrel{n\to\infty}{\longrightarrow}
+		0.
+	\end{align*}
+	Dann gilt:
+	\begin{align*}
+		\Vert Z-\E[\tilde{X}_n~|~\F]\Vert_1
+		&=\Big
+		\Vert Z-\E[X_n~|~\F]+\E[X_n~|~\F]-\E[\tilde{X}_n~|~\F]\Big\Vert_1\\
+		\overset{\Delta\text{Ungl}}&{\leq}
+		\big\Vert Z-\E[X_n~|~\F]\big\Vert_1+\underbrace{\big\Vert\E[X_n~|~\F]-\E[\tilde{X}_n~|~\F]\big\Vert_1}_{=\E[|\E[X_n~|~\F-\E[\tilde{X}_n~|~\F|]}\\
+		\overset{\text{Kontr}}&{\leq}
+		\Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X_n-\tilde{X}_n\Vert_1\\
+		&\leq\Vert Z-\E[X_n~|~\F]\Vert_1+\Vert X-X_n\Vert_1+\Vert X-\tilde{X}_n\Vert_1\\
+		&\stackrel{n\to\infty}{\longrightarrow}
+		0\\
+		&\Longrightarrow\E[\tilde{X}_n~|~\F]\stackrel{L_1}{\longrightarrow} Z
+	\end{align*}
+	Also ist der Limes unabhängig von der Approximationsfolge.
 \end{proof}
 
 \begin{korollar} %1.7
-Alle Eigenschaften aus Proposition \ref{Prop1.4} (außer Symmetrie) gelten weiterhin für alle $X,Y\in L_1(\Omega,\A,\P)$.
+	Alle Eigenschaften aus Proposition \ref{Prop1.4} (außer Symmetrie) gelten weiterhin für alle $X,Y\in L_1(\Omega,\A,\P)$.
 \end{korollar}
+
 \begin{proof}
-Beweis durch Approximation.
+	Beweis durch Approximation.
 \end{proof}
 
 \begin{theorem}\label{theorem1.8}%1.8
-Sei $\F$ Unter-$\sigma$-Algebra von $\A$ und seien
-\begin{align*}
-X\in L_1(\Omega,\A,\P),\qquad Y\in L_1(\Omega,\F,\P).
-\end{align*}
-Dann sind äquivalent:
-\begin{enumerate}[label=(\alph*)]
-\item $Y=\E[X~|~\F]$ fast sicher
-\item $\E[X\cdot\indi_F]=\E[Y\cdot\indi_F]\qquad\forall F\in\F$\\
-(Beachte $X,Y\in L_2\Longrightarrow\langle X-Y,\indi_F\rangle=0$)
-\end{enumerate}
+	Sei $\F$ Unter-$\sigma$-Algebra von $\A$ und seien
+	\begin{align*}
+		X\in L_1(\Omega,\A,\P),\qquad Y\in L_1(\Omega,\F,\P).
+	\end{align*}
+	Dann sind äquivalent:
+	\begin{enumerate}[label=(\alph*)]
+		\item $Y=\E[X~|~\F]$ fast sicher
+		\item $\E[X\cdot\indi_F]=\E[Y\cdot\indi_F]\qquad\forall F\in\F$\\
+		(Beachte $X,Y\in L_2\Longrightarrow\langle X-Y,\indi_F\rangle=0$)
+	\end{enumerate}
 \end{theorem}
+
 \begin{proof}
-\underline{Zeige $(a)\Longrightarrow (b)$:}\\
-Sei $(X_n)_{n\in\N}\subseteq L_2(\A)$ eine Approximationsfolge für $X$, d.h. $X_n\stackrel{L_1}{\longrightarrow} X$. Mit Proposition \ref{Prop1.6} folgt:
-\begin{align*}
-\E[X_n~|~\F]
-&\stackrel{L_1}{\longrightarrow}
-\E[X~|~\F]=Y\\
-\E\left[(X-Y)\cdot\indi_F\right]
-&=
-\limn\E[(X_n-\E[X_n~|~\F]),\indi_F]\\
-&=
-\limn\langle X_n-\E[X_n~|~\F],\indi_F\rangle\\
-\overset{\text{Prop }\ref{Prop1.3}}&{=}
-0\qquad\forall F\in\F
-\end{align*}
-\underline{Zeige $(b)\Longrightarrow (a)$:}\\
-Setze 
-\begin{align*}
-F^{+}&:=\left\lbrace\E[X~|~\F]-Y>0\right\rbrace\in\F\\
-F^{-}&:=\left\lbrace-(\E[X~|~\F]-Y)>0\right\rbrace\in\F.
-\end{align*}
-Dann gilt:
-\begin{align*}
-0
-\leq
-\E\Big[\underbrace{\big(\E[X~|~\F]-Y\big)\cdot\indi_{F^+}}_{\geq0}\Big]
-&=
-\E\Big[\E[X~|~\F]\cdot\indi_{F^+}\Big]-\E\left[Y\cdot\indi_{F^+}\right]\\
-\overset{
-\begin{subarray}{c}
-	\text{Pull-out} \\ \text{Turm}
-\end{subarray}
-}&=
-\E[X\cdot\indi_{F^+}]-\E[Y\cdot\indi_{F^+}]\\
-\overset{\text{(b)}}&=
-0\\
-\implies\P(F^+)&=0
-\end{align*}
-Analog erhält man $\P(F^-)=0$. Also folgt insgesamt $\E[X~|~\F]=Y$ fast sicher.
+	\underline{Zeige $(a)\Longrightarrow (b)$:}\\
+	Sei $(X_n)_{n\in\N}\subseteq L_2(\A)$ eine Approximationsfolge für $X$, d.h. $X_n\stackrel{L_1}{\longrightarrow} X$. Mit Proposition \ref{Prop1.6} folgt:
+	\begin{align*}
+		\E[X_n~|~\F]
+		&\stackrel{L_1}{\longrightarrow}
+		\E[X~|~\F]=Y\\
+		\E\left[(X-Y)\cdot\indi_F\right]
+		&=
+		\limn\E[(X_n-\E[X_n~|~\F]),\indi_F]\\
+		&=
+		\limn\langle X_n-\E[X_n~|~\F],\indi_F\rangle\\
+		\overset{\text{Prop }\ref{Prop1.3}}&{=}
+		0\qquad\forall F\in\F
+	\end{align*}
+	\underline{Zeige $(b)\Longrightarrow (a)$:}\\
+	Setze 
+	\begin{align*}
+		F^{+}&:=\left\lbrace\E[X~|~\F]-Y>0\right\rbrace\in\F\\
+		F^{-}&:=\left\lbrace-(\E[X~|~\F]-Y)>0\right\rbrace\in\F.
+	\end{align*}
+	Dann gilt:
+	\begin{align*}
+		0
+		\leq
+		\E\Big[\underbrace{\big(\E[X~|~\F]-Y\big)\cdot\indi_{F^+}}_{\geq0}\Big]
+		&=
+		\E\Big[\E[X~|~\F]\cdot\indi_{F^+}\Big]-\E\left[Y\cdot\indi_{F^+}\right]\\
+		\overset{
+		\begin{subarray}{c}
+			\text{Pull-out} \\ \text{Turm}
+		\end{subarray}
+		}&=
+		\E[X\cdot\indi_{F^+}]-\E[Y\cdot\indi_{F^+}]\\
+		\overset{\text{(b)}}&=
+		0\\
+		\implies\P(F^+)&=0
+	\end{align*}
+	Analog erhält man $\P(F^-)=0$. Also folgt insgesamt $\E[X~|~\F]=Y$ fast sicher.
 \end{proof}
 
 \begin{bemerkung}
-Die ``unbedingte Erwartung'' $\E[X]$ können wir als Spezialfall der bedingten Erwartung $\E[X~|~\F]$ für die triviale $\sigma$-Algebra $\F:=\lbrace\emptyset,\Omega\rbrace\subseteq\A$ auffassen.\\
-Denn es gilt:
-\begin{align*}
-\E[X\cdot\indi_\Omega]&=\E[X]=\E\big[\E[X]\cdot\indi_\Omega\big]\\
-\E[X\cdot\indi_\emptyset]&=0=\E\big[\E[X]\cdot\indi_\emptyset\big]\\
-\stackrel{\text{Theorem \ref{theorem1.8}}}{\Longrightarrow}
-\E[X]&=\E[X~|~\F]\text{, da $\F$ trivial.}
-\end{align*}
-Hier wird $\E[X]\in\R$ als konstante Zufallsgröße in $L_1(\Omega,\F,\P)$ aufgefasst. Damit gilt dann die Gleichung
-\begin{align*}
-\E\big[\E[X~|~\mathcal{G}]\big]=\E[X]\qquad\forall \mathcal{G}\subseteq\A\text{ Unter-$\sigma$-Algebra}
-\end{align*}
-denn:
-\begin{align*}
-\E\big[\E[X~|~\mathcal{G}]\big]
-&=\E\big[\E[X~|~\mathcal{G}]~|~\lbrace\emptyset,\Omega\rbrace\big]\\
-\overset{\eqref{Turmregel}}&=
-\E\big[X~|~\lbrace\emptyset,\Omega\rbrace\big]\\
-&=\E[X]
-\end{align*}
+	Die ``unbedingte Erwartung'' $\E[X]$ können wir als Spezialfall der bedingten Erwartung $\E[X~|~\F]$ für die triviale $\sigma$-Algebra $\F:=\lbrace\emptyset,\Omega\rbrace\subseteq\A$ auffassen.\\
+	Denn es gilt:
+	\begin{align*}
+		\E[X\cdot\indi_\Omega]&=\E[X]=\E\big[\E[X]\cdot\indi_\Omega\big]\\
+		\E[X\cdot\indi_\emptyset]&=0=\E\big[\E[X]\cdot\indi_\emptyset\big]\\
+		\stackrel{\text{Theorem \ref{theorem1.8}}}{\Longrightarrow}
+		\E[X]&=\E[X~|~\F]\text{, da $\F$ trivial.}
+	\end{align*}
+	Hier wird $\E[X]\in\R$ als konstante Zufallsgröße in $L_1(\Omega,\F,\P)$ aufgefasst. Damit gilt dann die Gleichung
+	\begin{align*}
+		\E\big[\E[X~|~\mathcal{G}]\big]=\E[X]\qquad\forall \mathcal{G}\subseteq\A\text{ Unter-$\sigma$-Algebra}
+	\end{align*}
+	denn:
+	\begin{align*}
+		\E\big[\E[X~|~\mathcal{G}]\big]
+		&=\E\big[\E[X~|~\mathcal{G}]~|~\lbrace\emptyset,\Omega\rbrace\big]\\
+		\overset{\eqref{Turmregel}}&=
+		\E\big[X~|~\lbrace\emptyset,\Omega\rbrace\big]\\
+		&=\E[X]
+	\end{align*}
 \end{bemerkung}
 
 \section*{Bedingter Erwartungungswert und Unabhängigkeit} %keine Nummer
 Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar}\}$
+
 \begin{defi}
-Sei $X:\Omega\to\R$ eine Zufallsvariable auf $(\Omega,\A,\P)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$. Dann heißt $X$ \textbf{unabhängig} von $\F$, in Zeichen $X\unab\F$
-\begin{align}\label{sigmaAlgebraUnabhaengig}
-:\Longleftrightarrow
-\E[f(X)\cdot\indi_A]
-=
-\E[f(X)]\cdot\P(A)\qquad\forall A\in\F\text{ und $f\in B_b(\R)$}
-\end{align}
-$X$ heißt \textbf{unabhängig} von einer Zufallsvariablen $Y$, in Zeichen $X\unab Y$ wenn eine der folgenden äquivalenten Bedingungen gilt:
-\begin{enumerate}[label=(\alph*)]
-\item $X\unab\sigma(Y)$
-\item 
-$\begin{aligned}
-\E[f(X)\cdot g(Y)]
-=
-\E[f(X)]\cdot\E[g(Y)]\qquad\forall f,g\in B_b(\R)
-\end{aligned}$
-\end{enumerate}
+	Sei $X:\Omega\to\R$ eine Zufallsvariable auf $(\Omega,\A,\P)$ und $\F\subseteq\A$ Unter-$\sigma$-Algebra von $\A$.
+	Dann heißt $X$ \textbf{unabhängig} von $\F$, in Zeichen $X\unab\F$
+	\begin{align}\label{sigmaAlgebraUnabhaengig}
+		:\Longleftrightarrow
+		\E[f(X)\cdot\indi_A]
+		=
+		\E[f(X)]\cdot\P(A)\qquad\forall A\in\F\text{ und $f\in B_b(\R)$}
+	\end{align}
+	$X$ heißt \textbf{unabhängig} von einer Zufallsvariablen $Y$, in Zeichen $X\unab Y$ wenn eine der folgenden äquivalenten Bedingungen gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item $X\unab\sigma(Y)$
+		\item 
+		$\begin{aligned}
+			\E[f(X)\cdot g(Y)]
+			=
+			\E[f(X)]\cdot\E[g(Y)]\qquad\forall f,g\in B_b(\R)
+		\end{aligned}$
+	\end{enumerate}
 \end{defi}
 
 \begin{theorem} %1.9
-Sei $X\in L_1(\Omega,\A,\P)$ unabhängig von $\F$. Dann gilt:
-\begin{align*}
-\E[X~|~\F]=\E[X]
-\end{align*}
+	Sei $X\in L_1(\Omega,\A,\P)$ unabhängig von $\F$. Dann gilt:
+	\begin{align*}
+		\E[X~|~\F]=\E[X]
+	\end{align*}
 \end{theorem}
 
 \begin{proof}
-Wegen $X\unab\F$ gilt:
-\begin{align*}
-\forall F\in\F:\E[X\cdot\indi_X]
-\overset{\ref{sigmaAlgebraUnabhaengig}}&=
-\E[X]\cdot\P(F)
-=\E\big[\E[X]\cdot\indi_F\big]
-\stackrel{\text{Theorem \ref{theorem1.8}}}{\Longrightarrow} \E[X]=\E[X~|~\F]
-\end{align*}
+	Wegen $X\unab\F$ gilt:
+	\begin{align*}
+		\forall F\in\F:\E[X\cdot\indi_X]
+		\overset{\ref{sigmaAlgebraUnabhaengig}}&=
+		\E[X]\cdot\P(F)
+		=\E\big[\E[X]\cdot\indi_F\big]
+		\stackrel{\text{Theorem \ref{theorem1.8}}}{\Longrightarrow} \E[X]=\E[X~|~\F]
+	\end{align*}
 \end{proof}
 
 \begin{bemerkung}
-Merke die beiden Extremfälle:
-\begin{itemize}
-\item Wenn $X$ $\F$-messbar ist, dann ist $\E[X~|~\F]=X$.\\
-Die bedingte Erwartung verändert also $X$ nicht.
-\item Wenn $X$ von $\F$ unabhängig ist, dann ist $\E[X~|~\F]=\E[X]$.\\
-Die bedingte Erwartung reduziert $X$ auf den unbedingten Erwartungswert $\E[X]$.
-\end{itemize}
+	Merke die beiden Extremfälle:
+	\begin{itemize}
+		\item Wenn $X$ $\F$-messbar ist, dann ist $\E[X~|~\F]=X$.\\
+		Die bedingte Erwartung verändert also $X$ nicht.
+		\item Wenn $X$ von $\F$ unabhängig ist, dann ist $\E[X~|~\F]=\E[X]$.\\
+		Die bedingte Erwartung reduziert $X$ auf den unbedingten Erwartungswert $\E[X]$.
+	\end{itemize}
 \end{bemerkung}
 
 \setcounter{section}{2}
@@ -432,236 +442,239 @@ Die bedingte Erwartung reduziert $X$ auf den unbedingten Erwartungswert $\E[X]$.
 \textbf{Bedingen auf Zufallsvariablen}:\\
 Wir nehmen nun an, dass $\F$ von einer oder mehreren Zufallsvariablen $Y$ bzw. $Y_1,\ldots, Y_n$ erzeugt wird, d.h.
 \begin{align*}
-\F=\sigma(Y)\text{ oder }\F=\sigma(Y_1,\ldots Y_n).
+	\F=\sigma(Y)\text{ oder }\F=\sigma(Y_1,\ldots Y_n).
 \end{align*}
 In diesen Fällen schreiben wir 
 \begin{align*}
-\E[X~|~Y]&:=\E[X~|~\sigma(Y)]\\
-\E[X~|~Y_1,\ldots,Y_n]&:=\E\big[X~|~\sigma(Y_1,\ldots,Y_n)\big]
+	\E[X~|~Y]&:=\E[X~|~\sigma(Y)]\\
+	\E[X~|~Y_1,\ldots,Y_n]&:=\E\big[X~|~\sigma(Y_1,\ldots,Y_n)\big]
 \end{align*}
 Die beiden Fälle stimmen überein, wenn wir $Y$ als Zufallsvektor $Y=(Y_1,\ldots,Y_n)$ definieren.\nl
 \textbf{Interpretation / Bedeutung:}\\
 Beste Vorhersage von $X$ gegeben $Y$. Dies ist in vielen Anwendungen relevant, z. B. $X$ sei das Einkommen einer zufällig ausgewählten Person und $Y$ der höchste Bildungsabschluss dieser Person.\nl
 Wir betrachten: $(X,Y)$ sei $\R^m\times\R^n$-wertige Zufallsvariable mit gemeinsamer Dichte $f_{XY}(x,y)$.
 \begin{itemize}
-\item
-$ f_Y(y)=\int\limits_{\R^m}f_{XY}(x,y)\d x $ ist die \textbf{Randverteilung} (Dichte) von $Y$
-\item 
-$\begin{aligned}
-S_Y:=\big\lbrace y\in\R^n:f_Y(y)>0\big\rbrace\subseteq\R^n
-\end{aligned}$ \textbf{Träger} von $Y$
+	\item
+	$ f_Y(y)=\int\limits_{\R^m}f_{XY}(x,y)\d x $ ist die \textbf{Randverteilung} (Dichte) von $Y$
+	\item 
+	$\begin{aligned}
+		S_Y:=\big\lbrace y\in\R^n:f_Y(y)>0\big\rbrace\subseteq\R^n
+	\end{aligned}$ \textbf{Träger} von $Y$
 \end{itemize}
 
 \begin{defi} %noNumber
-\textbf{Die bedingte Dichte} von $X$ bzw. $Y$ ist gegeben durch 
-\begin{align*}
-f_{X|Y}(x,y):=\left\lbrace\begin{array}{cl}
-\frac{f_{XY}(x,y)}{f_Y(y)}, &\falls y\in S_y\\
-0, &\falls y\not\in S_y
-\end{array}\right.
-\end{align*}
+	\textbf{Die bedingte Dichte} von $X$ bzw. $Y$ ist gegeben durch 
+	\begin{align*}
+		f_{X|Y}(x,y):=\left\lbrace\begin{array}{cl}
+			\frac{f_{XY}(x,y)}{f_Y(y)}, &\falls y\in S_y\\
+			0, &\falls y\not\in S_y
+		\end{array}\right.
+	\end{align*}
 \end{defi}
 
 \begin{theorem} %1.10
-Sei $(X,Y)$ eine $\R^m\times\R^n$-wertige Zufallsvariable mit Dichte $f_{XY}$.\\
-Dann gilt für alle messbaren Funktionen $h:\R^m\times\R^n\to\R\mit\E\big[|h(X,Y)|\big]<\infty$:
-\begin{align*}
-\E\big[ h(X,Y)~\big|~Y\big]=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,Y)\d x
-\end{align*}
+	Sei $(X,Y)$ eine $\R^m\times\R^n$-wertige Zufallsvariable mit Dichte $f_{XY}$.\\
+	Dann gilt für alle messbaren Funktionen $h:\R^m\times\R^n\to\R\mit\E\big[|h(X,Y)|\big]<\infty$:
+	\begin{align*}
+		\E\big[ h(X,Y)~\big|~Y\big]=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,Y)\d x
+	\end{align*}
 \end{theorem}
 
 \begin{bemerkung}\
-\begin{itemize}
-\item Insbesondere gilt
-\begin{align*}
-\E[X~|~Y]=\int\limits_{\R^m} x\cdot f_{X|Y}(x,Y)\d x
-\end{align*}
-\item Für $y\in S_Y$ schreiben wir auch
-\begin{align*}
-\E\big[h(X,Y)~\big|~Y=y\big]:=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x
-\end{align*}
-Die bedingte Erwartung ist also nun ``punktweise''  als messbare Funktion $S_Y\to\R$ definiert.
-\end{itemize}
+	\begin{itemize}
+		\item Insbesondere gilt
+		\begin{align*}
+			\E[X~|~Y]=\int\limits_{\R^m} x\cdot f_{X|Y}(x,Y)\d x
+		\end{align*}
+		\item Für $y\in S_Y$ schreiben wir auch
+		\begin{align*}
+			\E\big[h(X,Y)~\big|~Y=y\big]:=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x
+		\end{align*}
+		Die bedingte Erwartung ist also nun ``punktweise''  als messbare Funktion $S_Y\to\R$ definiert.
+	\end{itemize}
 \end{bemerkung}
+
 \begin{proof}[Beweis von Theorem 1.10]
-Setze
-\begin{align*}
-g(y):=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x.
-\end{align*}
-Offenbar ist $g:\R^n\to\R$ messbar. Zu zeigen:
-\begin{align*}
-	\E\big[h(X,Y)~\big|~\sigma(Y)\big]=g(Y)
-\end{align*}
-Mit Theorem \ref{theorem1.8} ist dies äquivalent zu
-\begin{align*}
-\E\big[ h(X,Y)\cdot\indi_F\big]=\E\big[g(Y)\cdot\indi_F\big]\qquad\forall F\in\sigma(Y)
-\end{align*}
-Jedes $F\in\sigma(Y)$ lässt sich darstellen als 
-\begin{align*}
-F=\big\lbrace\omega\in\Omega:Y(\omega)\in B\big\rbrace\mit B\in\B(\R^n)
-\end{align*}
-D. h. ist äquivalent zu
-\begin{align*}
-\int\limits_{\R^m\times\R^n} h(x,y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot f_{XY}(x,y)\d (x,y)
-&=
-\int\limits_{\R^n} g(y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot f_Y(y)\d y\qquad\forall B\in\B(\R^n)
-\end{align*}
-Doch diese Gleichheit ist leicht zu zeigen:
-\begin{align*}
-\text{rechte Seite }&=\int\limits_{\R^n}\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x\cdot\indi_{\lbrace y\in B\rbrace} \cdot f_Y(y)\\
-\overset{\text{Fubini}}&=
-\int\limits_{\R^m\times\R^n} h(x,y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot\underbrace{f_{X|Y}(x,y)\cdot f_Y(y)}_{=f_{XY}(x,y)}\d (x,y)\\
-&=\text{ linke Seite}
-\end{align*}
+	Setze
+	\begin{align*}
+		g(y):=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x.
+	\end{align*}
+	Offenbar ist $g:\R^n\to\R$ messbar. Zu zeigen:
+	\begin{align*}
+		\E\big[h(X,Y)~\big|~\sigma(Y)\big]=g(Y)
+	\end{align*}
+	Mit Theorem \ref{theorem1.8} ist dies äquivalent zu
+	\begin{align*}
+		\E\big[ h(X,Y)\cdot\indi_F\big]=\E\big[g(Y)\cdot\indi_F\big]\qquad\forall F\in\sigma(Y)
+	\end{align*}
+	Jedes $F\in\sigma(Y)$ lässt sich darstellen als 
+	\begin{align*}
+		F=\big\lbrace\omega\in\Omega:Y(\omega)\in B\big\rbrace\mit B\in\B(\R^n)
+	\end{align*}
+	D. h. ist äquivalent zu
+	\begin{align*}
+		\int\limits_{\R^m\times\R^n} h(x,y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot f_{XY}(x,y)\d (x,y)
+		&=
+		\int\limits_{\R^n} g(y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot f_Y(y)\d y\qquad\forall B\in\B(\R^n)
+	\end{align*}
+	Doch diese Gleichheit ist leicht zu zeigen:
+	\begin{align*}
+		\text{rechte Seite }&=\int\limits_{\R^n}\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,y)\d x\cdot\indi_{\lbrace y\in B\rbrace} \cdot f_Y(y)\\
+		\overset{\text{Fubini}}&=
+		\int\limits_{\R^m\times\R^n} h(x,y)\cdot\indi_{\lbrace y\in B\rbrace}\cdot\underbrace{f_{X|Y}(x,y)\cdot f_Y(y)}_{=f_{XY}(x,y)}\d (x,y)\\
+	&=\text{ linke Seite}
+	\end{align*}
 \end{proof}
 
 Insbesondere gilt: Sei $m=1$. Das Minimierungsproblem 
 \begin{align*}
-\min\left\lbrace\E\Big[\big(X-g(Y)\big)^2\Big]:g:\R^n\to\R\text{  messbar}\right\rbrace
+	\min\left\lbrace\E\Big[\big(X-g(Y)\big)^2\Big]:g:\R^n\to\R\text{  messbar}\right\rbrace
 \end{align*}
 wird gelöst durch
 \begin{align*}
-g(y)=\E[X~|~Y=y]=\int\limits_{\R^m} x\cdot f_{X|Y}(x,y)\d x.
+	g(y)=\E[X~|~Y=y]=\int\limits_{\R^m} x\cdot f_{X|Y}(x,y)\d x.
 \end{align*}
 
 \begin{beisp}
-Sei $(X,Y)$ normalverteilt auf $\R^2$ mit Mittelwert
-\begin{align*}
-\mu=\begin{pmatrix}
-\mu_x\\ \mu_y
-\end{pmatrix}\text{ und Kovarianzmatrix }
-\Sigma=\begin{pmatrix}
-\sigma_x^2 & \rho\sigma_x\sigma_y\\
-\rho\sigma_x\sigma_y & \sigma_y^2
-\end{pmatrix}\mit|\rho|<1
-\end{align*}
-Was ist $f_{X|Y}$?
-\begin{enumerate}
-\item Normierter Fall: $\mu_x=\mu_y=0$ und $\sigma_x=\sigma_y=1$.
-\begin{align*}
-\implies \mu=\begin{pmatrix}
-0\\ 0
-\end{pmatrix},\quad\Sigma=\begin{pmatrix}
-1 & \rho\\
-\rho & 1
-\end{pmatrix}
-\end{align*}
-Nebenrechnung:
-\begin{align*}
-\det(\Sigma)&=1-\rho^2\qquad\Sigma^{-1}=\frac{1}{1-\rho^2}\cdot\begin{pmatrix}
-1 & -\rho\\
--\rho & 1
-\end{pmatrix}\\
-f_{XY}(x,y)&=\frac{1}{2\cdot\pi\cdot\det(\Sigma)}\cdot\exp\left(-\frac{1}{2}\cdot\begin{pmatrix}
-x\\ y
-\end{pmatrix}^T\cdot\Sigma^{-1}\cdot\begin{pmatrix}
-x\\ y
-\end{pmatrix}\right)\\
-&=\frac{1}{2\cdot\pi\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho)^2}\cdot\big(x^2-2\cdot\rho\cdot x\cdot y+y^2\big)\right)\\
-f_Y(y) &=\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{y^2}{2}\right)\\
-f_{X|Y}(x,y)&=\frac{f_{XY}(x,y)}{f_Y(y)}\\
-&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\\
-&\qquad\cdot\exp\Bigg(-\frac{1}{2\cdot(1-\rho^2)}\cdot\big(\underbrace{x^2-2\cdot\rho\cdot x\cdot y+y^2-(1-\rho^2)\cdot y^2}_{=x^2-2\cdot\rho\cdot x\cdot y+\rho^2\cdot y^2}\big)\Bigg)\\
-&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho^2)}\cdot(x-\rho\cdot y)^2\right)
-\end{align*}
-Letzteres ist die Dichte von $\mathcal{N}(\rho\cdot y,1-\rho^2)$. Insbesondere gilt
-\begin{align*}
-\E[X~|~Y=y]&=\rho\cdot y\\
-\Var(X~|~Y=y)=1-\rho^2.
-\end{align*}
-\item Allgemeiner Fall:
-\begin{align*}
-\begin{matrix}
-X=\sigma_x\cdot\tilde{X}+\mu_x\\
-Y=\sigma_y\cdot\tilde{Y}+\mu_y
-\end{matrix}\mit(\tilde{X},\tilde{Y})\text{ normiert in Fall 1.}
-\end{align*}
-Damit gilt:
-\begin{align*}
-f_{XY}(x,y) 
-&=\frac{1}{\sigma_x\cdot\sigma_y}\cdot f_{\tilde{X}\tilde{Y}}\left(\frac{x-\mu_x}{\sigma_x},~\frac{y-\mu_y}{\sigma_y}\right)\\
-f_Y(y) &= \frac{1}{\sigma_y}\cdot f_{\tilde{Y}}\left(\frac{y-\mu_y}{\sigma_y}\right)
-\end{align*}
-Die Bedingte Dichte ist:
-\begin{align*}
-&\quad f_{X|Y}(x,y) \\
-&=\frac{f_{XY}(x,y)}{f_Y(y)}
-=\frac{1}{\sigma_x}\cdot f_{\tilde{X}|\tilde{Y}}\left(\frac{x-\mu_x}{\sigma_x},~\frac{y-\mu_y}{\sigma_y}\right)\\
-&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho^2)}\cdot\left(\frac{x-\mu_x}{\sigma_x}-\frac{\rho}{\sigma_y}\cdot(y-\mu_y)\right)^2\right)\\
-&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot\sigma_x^2\cdot(1-\rho^2)}\cdot\left(x-\left(\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)\right)\right)^2\right)
-\end{align*}
-Dies ist die Dichte von
-\begin{align*}
-\mathcal{N}\left(\mu_y+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y),~\sigma_x^2\cdot(1-\rho^2)\right)
-\end{align*}
-Insbesondere gilt
-\begin{align*}
-\E[X~|~Y=y]&=\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)\\
-\Var(X~|~Y=y)&=\sigma_x^2\cdot(1-\rho^2)
-\end{align*}
-\end{enumerate}
+	Sei $(X,Y)$ normalverteilt auf $\R^2$ mit Mittelwert
+	\begin{align*}
+		\mu=\begin{pmatrix}
+		\mu_x\\ \mu_y
+		\end{pmatrix}\text{ und Kovarianzmatrix }
+		\Sigma=\begin{pmatrix}
+		\sigma_x^2 & \rho\sigma_x\sigma_y\\
+		\rho\sigma_x\sigma_y & \sigma_y^2
+		\end{pmatrix}\mit|\rho|<1
+	\end{align*}
+	
+	Was ist $f_{X|Y}$?
+	\begin{enumerate}
+		\item Normierter Fall: $\mu_x=\mu_y=0$ und $\sigma_x=\sigma_y=1$.
+		\begin{align*}
+			\implies \mu=\begin{pmatrix}
+				0\\ 0
+			\end{pmatrix},\quad\Sigma=\begin{pmatrix}
+				1 & \rho\\
+				\rho & 1
+			\end{pmatrix}
+		\end{align*}
+		Nebenrechnung:
+		\begin{align*}
+			\det(\Sigma)&=1-\rho^2\qquad\Sigma^{-1}=\frac{1}{1-\rho^2}\cdot\begin{pmatrix}
+				1 & -\rho\\
+				-\rho & 1
+			\end{pmatrix}\\
+			f_{XY}(x,y)&=\frac{1}{2\cdot\pi\cdot\det(\Sigma)}\cdot\exp\left(-\frac{1}{2}\cdot\begin{pmatrix}
+				x\\ y
+			\end{pmatrix}^T\cdot\Sigma^{-1}\cdot\begin{pmatrix}
+				x\\ y
+			\end{pmatrix}\right)\\
+			&=\frac{1}{2\cdot\pi\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho)^2}\cdot\big(x^2-2\cdot\rho\cdot x\cdot y+y^2\big)\right)\\
+			f_Y(y) &=\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{y^2}{2}\right)\\
+			f_{X|Y}(x,y)&=\frac{f_{XY}(x,y)}{f_Y(y)}\\
+			&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\\
+			&\qquad\cdot\exp\Bigg(-\frac{1}{2\cdot(1-\rho^2)}\cdot\big(\underbrace{x^2-2\cdot\rho\cdot x\cdot y+y^2-(1-\rho^2)\cdot y^2}_{=x^2-2\cdot\rho	\cdot x\cdot y+\rho^2\cdot y^2}\big)\Bigg)\\
+			&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho^2)}\cdot(x-\rho\cdot y)^2\right)
+		\end{align*}
+		Letzteres ist die Dichte von $\mathcal{N}(\rho\cdot y,1-\rho^2)$. Insbesondere gilt
+		\begin{align*}
+			\E[X~|~Y=y]&=\rho\cdot y\\
+			\Var(X~|~Y=y)=1-\rho^2.
+		\end{align*}
+		\item Allgemeiner Fall:
+		\begin{align*}
+			\begin{matrix}
+				X=\sigma_x\cdot\tilde{X}+\mu_x\\
+				Y=\sigma_y\cdot\tilde{Y}+\mu_y
+			\end{matrix}\mit(\tilde{X},\tilde{Y})\text{ normiert in Fall 1.}
+		\end{align*}
+		Damit gilt:
+		\begin{align*}
+			f_{XY}(x,y) 
+			&=\frac{1}{\sigma_x\cdot\sigma_y}\cdot f_{\tilde{X}\tilde{Y}}\left(\frac{x-\mu_x}{\sigma_x},~\frac{y-\mu_y}{\sigma_y}\right)\\
+			f_Y(y) &= \frac{1}{\sigma_y}\cdot f_{\tilde{Y}}\left(\frac{y-\mu_y}{\sigma_y}\right)
+		\end{align*}
+		Die Bedingte Dichte ist:
+		\begin{align*}
+			&\quad f_{X|Y}(x,y) \\
+			&=\frac{f_{XY}(x,y)}{f_Y(y)}
+			=\frac{1}{\sigma_x}\cdot f_{\tilde{X}|\tilde{Y}}\left(\frac{x-\mu_x}{\sigma_x},~\frac{y-\mu_y}{\sigma_y}\right)\\
+			&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot(1-\rho^2)}\cdot\left(\frac{x-\mu_x}{\sigma_x}-\frac{\rho}{\sigma_y}\cdot(y-\mu_y)\right)^2\right)\\
+			&=\frac{1}{\sqrt{2\cdot\pi}\cdot(1-\rho^2)}\cdot\exp\left(-\frac{1}{2\cdot\sigma_x^2\cdot(1-\rho^2)}\cdot\left(x-\left(\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)\right)\right)^2\right)
+		\end{align*}
+		Dies ist die Dichte von
+		\begin{align*}
+			\mathcal{N}\left(\mu_y+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y),~\sigma_x^2\cdot(1-\rho^2)\right)
+		\end{align*}
+		Insbesondere gilt
+		\begin{align*}
+			\E[X~|~Y=y]&=\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)\\
+			\Var(X~|~Y=y)&=\sigma_x^2\cdot(1-\rho^2)
+		\end{align*}
+	\end{enumerate}
 \end{beisp}
 
 \begin{bemerkung}
-Die Funktion
-\begin{align*}
-y\mapsto\E[X~|~Y=y]=\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)
-\end{align*}
-heißt \textbf{Regressionsgerade} für $X$ gegeben $Y$.
-%Abbilung fehlt. RobertToDo
+	Die Funktion
+	\begin{align*}
+		y\mapsto\E[X~|~Y=y]=\mu_x+\frac{\sigma_x\cdot\rho}{\sigma_y}\cdot(y-\mu_y)
+	\end{align*}
+	heißt \textbf{Regressionsgerade} für $X$ gegeben $Y$.
+	%Abbilung fehlt. RobertToDo %TODO
 \end{bemerkung}
 
 \subsection*{Bedingte Wahrscheinlichkeit}
 Seien $A,B\in\A$ Ereignisse. Die \textbf{elementare bedingte Wahrscheinlichkeit} ist 
 \begin{align*}
-\P(A~|~B)=\frac{\P(A\cap B)}{\P(B)}\text{ für }\P(B)>0
+	\P(A~|~B)=\frac{\P(A\cap B)}{\P(B)}\text{ für }\P(B)>0
 \end{align*}
 Was ist der Zusammenhang zur bedingten Erwartung?\nl
 Beachte: Die erzeugte $\sigma$-Algebra 
 \begin{align*}
-\sigma(B)=\big\lbrace\emptyset,B,B^C,\Omega\big\rbrace.
+	\sigma(B)=\big\lbrace\emptyset,B,B^C,\Omega\big\rbrace.
 \end{align*}
 Was ist nun 
 \begin{align*}
-\P\big(A~\big|~\sigma(B)\big)=\E\big[\indi_A~|~\sigma(B)\big]\text{ ?}
+	\P\big(A~\big|~\sigma(B)\big)=\E\big[\indi_A~|~\sigma(B)\big]\text{ ?}
 \end{align*}
 \begin{align*}
-&L_2\big(\sigma(B)\big)=\Big\lbrace \alpha\cdot\indi_B+\beta\cdot\indi_{B^C}:\alpha,\beta\in\R\Big\rbrace\\
-&\implies
-Y=\E\big[\indi_A~\big|~\sigma(B)\big]=a\cdot\indi_B+b\cdot\indi_{B^C}\mit a,b\in\R\text{ zu bestimmen}\\
-&\P(A\cap B)=\E[\indi_A\cdot\indi_B]
-\stackeq{\text{Thm \ref{theorem1.8}}}
-\E[Y\cdot\indi_B]=\E[a\cdot\indi_B]=a\cdot\P(B)\\
-&\implies
-a=\frac{\P(A\cap B)}{\P(B)}=\P(A~|~B)\\
-&\P(A\cap B^C)=\E[\indi_A\cdot\indi_{B^C}]
-\stackeq{\text{Thm \ref{theorem1.8}}}
-\E[Y\cdot\indi_{B^C}]=b\cdot\P(B^C)\\
-&\implies
-b=\frac{\P(A\cap B^C)}{\P(B^C)}=\P(A~|~B^C)\\
-&\implies
-\P(A~|~\sigma(B))=\P(A~|~B)\cdot\indi_B+\P(A~|~B^C)\cdot\indi_{B^C}
+	&L_2\big(\sigma(B)\big)=\Big\lbrace \alpha\cdot\indi_B+\beta\cdot\indi_{B^C}:\alpha,\beta\in\R\Big\rbrace\\
+	&\implies
+	Y=\E\big[\indi_A~\big|~\sigma(B)\big]=a\cdot\indi_B+b\cdot\indi_{B^C}\mit a,b\in\R\text{ zu bestimmen}\\
+	&\P(A\cap B)=\E[\indi_A\cdot\indi_B]
+	\stackeq{\text{Thm \ref{theorem1.8}}}
+	\E[Y\cdot\indi_B]=\E[a\cdot\indi_B]=a\cdot\P(B)\\
+	&\implies
+	a=\frac{\P(A\cap B)}{\P(B)}=\P(A~|~B)\\
+	&\P(A\cap B^C)=\E[\indi_A\cdot\indi_{B^C}]
+	\stackeq{\text{Thm \ref{theorem1.8}}}
+	\E[Y\cdot\indi_{B^C}]=b\cdot\P(B^C)\\
+	&\implies
+	b=\frac{\P(A\cap B^C)}{\P(B^C)}=\P(A~|~B^C)\\
+	&\implies
+	\P(A~|~\sigma(B))=\P(A~|~B)\cdot\indi_B+\P(A~|~B^C)\cdot\indi_{B^C}
 \end{align*}
 
 Analog: Seien $B_1,\ldots,B_n\in\A$ disjunkte Ereignisse mit
 \begin{align*}
-\bigcupdot\limits_{j=1}^n B_j=\Omega.
+	\bigcupdot\limits_{j=1}^n B_j=\Omega.
 \end{align*}
 Dann gilt:
 \begin{align*}
-\P\big(A~\big|~\sigma(B_1,\ldots,B_n)\big)=\sum\limits_{j=1}^n\P(A~|~B_j)\cdot\indi_{B_j}
+	\P\big(A~\big|~\sigma(B_1,\ldots,B_n)\big)=\sum\limits_{j=1}^n\P(A~|~B_j)\cdot\indi_{B_j}
 \end{align*}
 Mit der Turmregel \eqref{Turmregel} erhalten wir das \textbf{Gesetz der totalen Wahrscheinlichkeit}:
 \begin{align*}
-\P(A)=\E[\indi_A]=\sum\limits_{j=1}^n \P(A~|~B_j)\cdot\P(B_j)
+	\P(A)=\E[\indi_A]=\sum\limits_{j=1}^n \P(A~|~B_j)\cdot\P(B_j)
 \end{align*}
 
 Analog zur bedingten Wahrscheinlichkeit:
+
 \begin{defi}[Erwartungswert bedingt auf Ereignis]\enter %noNumber
-Sei $X\in L_1(\Omega,\A,\P)$ und $B\in\A$. Dann definiere für $\P(B)>0$:
-\begin{align*}
-\E[X~|~B]:=\frac{\E[X\cdot\indi_B]}{\P(B)}
-\end{align*}
+	Sei $X\in L_1(\Omega,\A,\P)$ und $B\in\A$. Dann definiere für $\P(B)>0$:
+	\begin{align*}
+		\E[X~|~B]:=\frac{\E[X\cdot\indi_B]}{\P(B)}
+	\end{align*}
 \end{defi}
 
 Insgesamt haben wir definiert:\\
@@ -677,35 +690,35 @@ Insgesamt haben wir definiert:\\
 											&& \\ \hline
 	&& \\
 	$\begin{array}{c} \text{Bedingen auf} \\ \text{Ereignis } B \end{array}$ &$\P(A|B)=\frac{\P(A\cap B)}{\P(B)}$&$\E[X|B]=\frac{\E[X\indi_B]}{\P(B)}$ \\
-											&&
+	&&
 \end{tabular}\enter
 $(\ast)$: Falls eine Dichte existiert: $\E[X~|~Y=y]$
 
 \begin{beisp}[Lebensdaueranalyse]\enter
-Die Lebensdauer $X:\Omega\to[0,\infty)$ eines Radios sei mit Dichte $f(z)$ verteilt.\\
-Wie ist die mittlere Restlaufzeit nach $a$ Jahren, d. h. 
-\begin{align*}
-\E[X-a~|~X\geq a]\qquad?
-\end{align*}
-Ausrechnen:
-\begin{align*}
-\E[X-a~|~X\geq a] 
-&=\frac{\E\left[(X-a)\cdot\indi_{\{X\geq a\}}\right]}{\P(X\geq a)}\\
-&=\frac{\int\limits_a^\infty (x-a)\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}\\
-&=\frac{\int\limits_a^\infty x\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}-a
-\end{align*}
-Sei nun $X\sim\text{Exp}(\lambda)$, d. h. $f(x)=\lambda\cdot\exp(-\lambda\cdot x)$. Dann ist:
-\begin{align*}
-\E[X-a~|~X\geq a]
-&=\frac{\int\limits_a^\infty \lambda\cdot x\cdot\exp(-\lambda\cdot x)\d x}{\int\limits_a^\infty\lambda\cdot\exp(-\lambda\cdot x)}-a\\
-\text{Zähler}&=\int\limits_0^\infty\exp(-\lambda\cdot x)\d x=-\frac{\exp(-\lambda\cdot x)}{x}\Big|_{x=a}^\infty=\frac{\exp(-\lambda\cdot a)}{\lambda}\\
-\text{Nenner} &=\int\limits_a^\infty x\cdot\exp(-\lambda\cdot x)\d x\\
-&=\frac{x\cdot\exp(-\lambda\cdot x)}{-\lambda}\Big|_{x=a}^\infty+\int\limits_a^\infty\frac{\exp(-\lambda\cdot x)}{\lambda}\d x\\
-&=\frac{a\cdot\exp(-\lambda\cdot a)}{\lambda}+\frac{\exp(-\lambda\cdot a)}{\lambda^2}\\
-\implies
-\E[X-a~|~X\geq a]&=\frac{\exp(-\lambda\cdot a)\cdot\left(\frac{a}{\lambda}+\frac{1}{\lambda^2}\right)}{\exp(-\lambda\cdot a)\cdot\frac{1}{\lambda}}-a=a+\frac{1}{\lambda}-a=\frac{1}{\lambda}\\
-\implies
-\E[X-a~|~X\geq a]&=\E[X]
-\end{align*}
-Somit die die \textbf{Gedächtnislosigkeit} der Exponentialverteilung gezeigt.
+	Die Lebensdauer $X:\Omega\to[0,\infty)$ eines Radios sei mit Dichte $f(z)$ verteilt.\\
+	Wie ist die mittlere Restlaufzeit nach $a$ Jahren, d. h. 
+	\begin{align*}
+		\E[X-a~|~X\geq a]\qquad?
+	\end{align*}
+	Ausrechnen:
+	\begin{align*}
+		\E[X-a~|~X\geq a] 
+		&=\frac{\E\left[(X-a)\cdot\indi_{\{X\geq a\}}\right]}{\P(X\geq a)}\\
+		&=\frac{\int\limits_a^\infty (x-a)\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}\\
+		&=\frac{\int\limits_a^\infty x\cdot f(x)\d x}{\int\limits_a^\infty f(x)\d x}-a
+	\end{align*}
+	Sei nun $X\sim\text{Exp}(\lambda)$, d. h. $f(x)=\lambda\cdot\exp(-\lambda\cdot x)$. Dann ist:
+	\begin{align*}
+		\E[X-a~|~X\geq a]
+		&=\frac{\int\limits_a^\infty \lambda\cdot x\cdot\exp(-\lambda\cdot x)\d x}{\int\limits_a^\infty\lambda\cdot\exp(-\lambda\cdot x)}-a\\
+		\text{Zähler}&=\int\limits_0^\infty\exp(-\lambda\cdot x)\d x=-\frac{\exp(-\lambda\cdot x)}{x}\Big|_{x=a}^\infty=\frac{\exp(-\lambda\cdot a)}{\lambda}\\
+		\text{Nenner} &=\int\limits_a^\infty x\cdot\exp(-\lambda\cdot x)\d x\\
+		&=\frac{x\cdot\exp(-\lambda\cdot x)}{-\lambda}\Big|_{x=a}^\infty+\int\limits_a^\infty\frac{\exp(-\lambda\cdot x)}{\lambda}\d x\\
+		&=\frac{a\cdot\exp(-\lambda\cdot a)}{\lambda}+\frac{\exp(-\lambda\cdot a)}{\lambda^2}\\
+		\implies
+		\E[X-a~|~X\geq a]&=\frac{\exp(-\lambda\cdot a)\cdot\left(\frac{a}{\lambda}+\frac{1}{\lambda^2}\right)}{\exp(-\lambda\cdot a)\cdot\frac{1}{\lambda}}-a=a+\frac{1}{\lambda}-a=\frac{1}{\lambda}\\
+		\implies
+		\E[X-a~|~X\geq a]&=\E[X]
+	\end{align*}
+	Somit die die \textbf{Gedächtnislosigkeit} der Exponentialverteilung gezeigt.
 \end{beisp}
