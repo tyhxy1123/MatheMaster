@@ -141,7 +141,7 @@ $\implies \|e\| \leq c_T \|\rho\|$, with $c_T = \|A^{-1}\|$
 \end{align*}
 $\implies$ residual error estimate(local)
 \begin{align*}
-	\eta_T = \left( h_T^2 \|R_T\|^2  + \frac{1}{2}\displaystyle \sum_{e\in \partial T}  h_e \|R_e\|^2\right)^{1/2}
+	\eta_{T,R} = \left( h_T^2 \|R_T\|^2  + \frac{1}{2}\displaystyle \sum_{e\in \partial T}  h_e \|R_e\|^2\right)^{1/2}
 \end{align*}
 $\implies$ 
 \begin{align*}
@@ -149,7 +149,7 @@ $\implies$
 \end{align*}
 residual error estimate(global)
 \begin{equation*}
-	\eta = \left(  \sum \limits_{T \in \T_K} \|R_T\|^2  +  \sum \limits_{e \in \Gamma_K} \|R_e\|^2 \right)^{1/2}
+	\eta_T = \left(  \sum \limits_{T \in \T_K} \|R_T\|^2  +  \sum \limits_{e \in \Gamma_K} \|R_e\|^2 \right)^{1/2}
 \end{equation*}
 \begin{proof_}
 	(of Lemma of Cea (where is (1)??))\\
@@ -164,6 +164,50 @@ residual error estimate(global)
 	Let's consider $w \in V$:
 	\begin{align*}
 		\langle l,w\rangle &= (\nabla(u-u_h),\nabla w) = (f,w) - \sum\limits_T (\nabla u_h,\nabla w)\\
-		&\stackeq{\text{Int.by parts}} (f,w) - 
+		&\stackeq{\text{Int.by parts}} (f,w) - \sum \limits_T \left( (l-\laplace u_h,w)_T + \sum \limits_{e\in\partial T} (\nabla u_n \cdot n,w)_e \right)\\
+		&= \sum \limits_T  (\laplace u_h +f,w)_T + \sum \limits_{\Gamma_h} \left(\left[\frac{\partial u_h}{\partial n}\right],w\right)_e \\
+		&\stackeq{R_T,R_e} \sum \limits_T  (R_T,w)_T + \sum \limits_{\Gamma_h} \left(R_e,w\right)_e
 	\end{align*}
-\end{proof}
+\end{proof_}
+
+Approximation property of of the interpolation:\nl
+for each $w\in V\ (H^1_0)$ exists $I_hw\in V_h$ with 
+\begin{align*}
+	\|w-I_hw\|_T &\leq c h_T \|\nabla w\|_{\hat{w}_T}\\
+	\|w-I_hw\|_e &\leq c h^{1/2}_e \|\nabla w\|_{\hat{w}_T}
+\end{align*}
+with $\hat{w}_T = \bigcup\{w_x:x\in T\}, w_x = \bigcup \{T'\in\T_h,x\in T'\}$.
+\begin{align*}
+	\langle l,\underbrace{w}_{\in V} \rangle &\stackeq{(*)} \langle l,w-\underbrace{I_hw}_{\in V_h} \rangle\\
+	&= \sum \limits_T  (R_T,w-I_hw)_T + \sum \limits_{\Gamma_h} \left(R_e,w-I_hw\right)_e\\
+	&\leq c\sum \limits_T h_T  \|R_T\|_T |w|_{1,T} + c\sum \limits_{\Gamma_h} h^{1/2}_e \|R_e\|_e |w|_{1,e}\\
+	&\stackrel{\text{C.S.}}{\leq} c\sum \limits_T \eta_{T,R} |w|_{1,T}
+\end{align*}
+
+\underline{duality argument}
+\begin{equation*}
+	|u-u_h|_1 = \underset{|w|_1=1 \land w\in H^1_0}{\sup} ( \nabla(u-u_h),\nabla w)
+\end{equation*}
+\underline{poincaré inequality}
+\begin{equation*}
+	\|v\|_0 \leq \gamma |v|_1 \quad forall v \in H^1_0(\Omega)
+\end{equation*}
+$\implies$
+\begin{equation*}
+	\|u-u_h\|_0 \leq \gamma \left( \sum \limits_{T \in \T_h}\right)^{1/2}
+\end{equation*}
+
+\underline{other useful estimtates}:
+\begin{enumerate}[label= (\alph*)]
+	\item consider local problem on each element $T$ or small domain $\hat{w}_r$ 
+	\begin{align*}
+		Az &= R_T \tin T  &&\text{or}& -\laplace z&= f \ton \hat{w}_T\\
+		\frac{\partial z}{\partial n} &= R_e \ton \partial T  &&& z &= u_h \ton \partial \hat{w}_T
+	\end{align*}
+	solve this with Finite elements which are one degree higher than original problem, us \textbf{???} as estimate of error(Babusha,Reinhold 1978) 
+	\item consider averaging\nl
+	conpute on each vertex an approximation of $\laplace u$ by averaging gradients of neighboring elements( with weights according to size of elements) and define approximation by interpolation in the element.\nl
+	difference between $\nabla $ and this approximation is indicatior for the error(Rewize,Zhon,1987)
+\end{enumerate}
+\textbf{was waren diese randnotizen?}
+%TODO add randnotizen
