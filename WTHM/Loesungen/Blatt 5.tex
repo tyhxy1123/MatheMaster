@@ -45,6 +45,33 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 
 \begin{proof}
 	\underline{Zeige a):}
+	\begin{align*}
+		\Phi_{W\cdot X}(u)
+		\overset{\text{Def}}&=
+		\int\limits_\Omega\exp\big(i\cdot X\cdot W\cdot u\big)~\mu(\d u)\\
+		\overset{\text{Trafo}}&=
+		\int\limits_\R\exp\big(i\cdot x\cdot w\cdot u)\cdot f_{X\cdot W}(u)\d u
+		\qquad\forall u\in\R
+	\end{align*}
+	
+	Hierbei ist $f_{W\cdot X}$ die Dichte von $X\cdot W$. Da $W,X\sim\Nor(0,1)$ unabhängig sind,  gilt:
+	\begin{align*}
+		f_{X\cdot W}(u)
+		\overset{\text{Stoch}}&=
+		\int\limits_\R\frac{1}{|t|}\cdot f_X(t)\cdot f_W\left(\frac{u}{t}\right)\d u\\
+		\overset{\sim\Nor(0,1)}&=
+		\int\limits_\R\frac{1}{|t|}\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{1}{2}\cdot t^2\right)\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{1}{2}\cdot\frac{u^2}{t^2}\right)\d t\\
+		&=\frac{1}{2\cdot\pi}\cdot\int\limits_\R\frac{1}{|t|}\cdot\exp\left(-\frac{1}{2}\cdot\left(t^2+\frac{u^2}{t^2}\right)\right)\d t\\
+		&=...
+	\end{align*}
+	
+	%TODO
+	Eingesetzt erhalten wir also:
+	\begin{align*}
+		\Phi_{W\cdot X}(u)
+		&=\int\limits_\R\exp\big(i\cdot x\cdot w\cdot u)\cdot f_{X\cdot W}(u)\d u\\
+		&=...
+	\end{align*}
 	
 	\underline{Zeige b):}
 	
