@@ -35,7 +35,7 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 	\begin{align*}
 		\Phi_{W\cdot X}(u)=\frac{1}{\sqrt{1+u^2}}
 	\end{align*}
-	\item $\begin{aligned}
+	\item $\det\begin{aligned}
 		\begin{pmatrix}
 			W & X\\
 			Y & Z
@@ -74,7 +74,20 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 	\end{align*}
 	
 	\underline{Zeige b):}
-	
+	\begin{align*}
+		\det
+		\begin{pmatrix}
+			W & X\\
+			Y & Z
+		\end{pmatrix}
+		=W\cdot Z-X\cdot Y\\
+		\Phi_{W\cdot Z-X\cdot Y}(u)
+		&=\Phi_{W\cdot Z}(u)\cdot\Phi_{-X\cdot Y}(u)\\
+		\overset{\text{a)}}&{=}
+		...
+	\end{align*}
+	Dies ist die charakteristische Funktion der Laplaceverteilung.
+	Da die charakteristische Funktion die Verteilung eindeutig bestimmt, folgt die Behauptung.
 \end{proof}
 
 \section*{Aufgabe 2}
