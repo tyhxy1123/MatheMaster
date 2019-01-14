@@ -119,6 +119,8 @@ Da hier alle Zustände paarweise nicht äquivalent zueinander sind, gilt:
 \end{align*}
 
 \section*{Aufgabe 1}
+\textbf{Konvention.} Bei mir ist $\N:=\lbrace 1,2,3,\ldots\rbrace$.\nl
+
 Meine Idee (geht sicher viel eleganter):\\
 Da es sehr viele Zerlegungsmöglichkeiten pro Wort $w$ gibt, ist es geschickter zu schauen, für welche $y\in\Sigma^+$ überhaupt die Eigenschaft 
 \begin{align*}
@@ -129,8 +131,8 @@ Man sieht, dass nur $y\in\lbrace c,cd,dc\rbrace=:M$ dies erfüllen. Nun gehen wi
 \begin{itemize}
 	\item $w=adc$: Mögliche Zerlegungen: 
 	\begin{itemize}
-		\item $\varepsilon|c|da$: ist nicht in $L(\A)$.
-		\item $a|cd$: ist in $L(\A)$ und erfüllt \eqref{eqAufgabe1} fast, jedoch nur für $k>1$.
+		\item $ad|c|\varepsilon$: ist in $L(\A)$, aber $c$ dann nicht mehr loopbar.
+		\item $a|dc|\varepsilon$: ist in $L(\A)$ und erfüllt \eqref{eqAufgabe1}.
 	\end{itemize}
 	\item $w=cda$ ist gar nicht in $L(\A)$, weshalb keine solche Zerlegungen existieren können, die \eqref{eqAufgabe1} erfüllen. 
 	\item $w=bcdc$ Mögliche Zerlegungen: 
@@ -140,7 +142,7 @@ Man sieht, dass nur $y\in\lbrace c,cd,dc\rbrace=:M$ dies erfüllen. Nun gehen wi
 		\item $b|cd|c$: erfüllt \eqref{eqAufgabe1}.
 		\item $bc|dc|\varepsilon$: erfüllt \eqref{eqAufgabe1}.
 	\end{itemize}
-	\item $acdc$ Mögliche Zerlegungen: 
+	\item $w=acdc$ Mögliche Zerlegungen: 
 	\begin{itemize}
 		\item $a|c|dc$: erfüllt \eqref{eqAufgabe1}.
 		\item $acd|c|\varepsilon$ erfüllt \eqref{eqAufgabe1} nicht, da $c$ dann nicht mehr geloopt werden kann.
@@ -148,11 +150,31 @@ Man sieht, dass nur $y\in\lbrace c,cd,dc\rbrace=:M$ dies erfüllen. Nun gehen wi
 		\item $a|cd|c$ erfüllt \eqref{eqAufgabe1}.
 	\end{itemize}
 \end{itemize}
-Somit erhalten wir für $adc$ 0, für $cda$ 0, für $bcdc$ 3 und für $acdc$ 3 Zerlegungen, die die gesuchten Eigenschaft erfüllen:
+Somit erhalten wir für $adc$ 1, für $cda$ 0, für $bcdc$ 3 und für $acdc$ 3 Zerlegungen, die die gesuchten Eigenschaft erfüllen:
 
 \begin{align}\label{eqAufgabe1}
 	\forall k\in\N:xy^kz\in L(\A)
 \end{align}
+
+\textbf{Tutor-Lösung: (stimmt mit meiner überein)}
+\begin{itemize}
+	\item $w=adc\in L(\A)$: 
+	\item $w=cda\not\in L(\A)$: keine "pumpbare" Zerlegung möglich, da nicht in der Sprache
+	\item $w=bcdc\in L(\A)$:
+	\begin{itemize}
+		\item $x=b,\qquad,y=c,\qquad z=dc$
+		\item $x=b,\qquad y=cd,\qquad z=c$
+		\item $x=bc,\qquad y=dc,\qquad z=\varepsilon$
+	\end{itemize}
+	\item $w=acdc\in L(\A)$:
+	\begin{itemize}
+		\item $x=a,\qquad y=c,\qquad z=dc$
+		\item $x=ac,\qquad y=dc,\qquad z=\varepsilon$
+		\item $x=a,\qquad y=cd,\qquad z=\varepsilon$ 
+	\end{itemize}
+\end{itemize}
+
+Beachte: falls man $0\in\N$ annimmt, entfallen noch einige Fälle oben.
 
 \section*{Aufgabe 2}
 Die Sprache
@@ -179,6 +201,28 @@ ist nicht erkennbar.
 	Widerspruch! Somit ist $L$ nicht erkennbar.
 \end{proof}
 
+\begin{proof}[Beweis des Tutors.]\enter
+	\textbf{Pumping-Lemma (vereinfacht)}:\\
+	Für jede erkennbare Sprache $L$ existiert ein $n_0\in\N$ so, dass\\
+	für alle Wörter $w\in L$ mit $|w|\geq n_0$\\
+	existiert eine Zerlegung $w=xyz$ mit $y\neq\varepsilon$ so, dass\\
+	für alle $k\in\N$ gilt: $xy^kz\in L$.\nl
+	Beweis durch Widerspruch:
+	Angenommen, $L$ wäre erkennbar. Dann gilt das Pumpinglemma (vereinfacht) auch für $L$.
+	Sei $p$ ein Primzahl mit $p\geq n_0$ (existiert nach Satz von Euklid: Es gibt unendlich viele Primzahlen).
+	Dann gilt:
+	$a^p\in L$ und $|a^p|\geq n_0$.
+	Damit muss es eine Zerlegung von $a^p=xyz$ geben $\rightsquigarrow x=a^n,y=a^m,z=a^{n_2}$ mit $n_1,n_2,m\in\N$ und $m>0$.
+	Also gilt $p=n_1+n_2+m$. 
+	Definiere $n:=n_1+n_2$.
+	Da $a^p=a^{m+n}\in L$, folgt aus dem Pumping-Lemma,
+	dass auch $a^{n+k\cdot m}\in L$ für alle $k\in\N$.
+	Insbesondere für $k=n$ %Die Idee, die mir fehlte!
+	gilt $a^{n+n\cdot m}\in L$.
+	Aber falls $n\neq1$ (also $n>1$ oder $n=0$) ist $n+n\cdot m=n\cdot(n+1)$ keine Primzahl!\\
+	Falls $n=1$, dann müsste $a^{n+0\cdot m}=a^n=a\in L$ gelten. Widerspruch!
+\end{proof}
+
 \section*{Aufgabe 3}
 Die Sprache
 \begin{align*}
@@ -188,7 +232,23 @@ Die Sprache
 ist nicht erkennbar.
 
 \begin{proof}
-	%TODO
+	\textbf{Pumping-Lemma (verschärft, Änderungen unterstrichen)}:\\
+	Für jede erkennbare Sprache $L$ existiert ein $n_0\in\N$ so, dass\\
+	%für alle Wörter $w\in L$ mit $|w|\geq n_0$ 
+	\underline{für alle Wörter $u,v,w$ mit $uvw\in L$ und $|w|\geq n_0$}\\
+	existiert eine Zerlegung $\underline{v}=xyz$ mit $y\neq\varepsilon$ so, dass\\
+	für alle $k\in\N$ gilt: $xy^kz\in L$.\nl
+	Das vereinfachte Pumpinglemma kann hier zwar auch wieder angewendet werden, hilft uns aber nicht, da
+	alle $w\in L$ mit $|w|>0$ "pumpbar" zerlegt werden können:
+	\begin{itemize}
+		\item $w=1^k\rightsquigarrow x=1^{k-1},y=1,z\varepsilon$
+		\item $w=0^j 1^p\rightsquigarrow x=\varepsilon,y=0^j,z=1^p$
+	\end{itemize}
+	Es gibt also eine gültige Zerlegung, weshalb wir mit dem vereinfachten Pumpinglemma keinen Widerspruch herleiten können.
+	Mit dem Pumping-Lemma in verschärfter Form kann das Ergebnis aus Aufgabe 10.2 genutzt werden:
+	Sei $p$ eine Primzahl mit $p\geq n_0$. Zerlege dann das Wort $01^p$ in $u=0$, $v=1^p$ und $w\in\varepsilon$.
+	Es gilt $01^p\in L$ und $|v|\geq n_0$.
+	Zerlege dann $v$ nun wie in 10.2 gezeigt.
 \end{proof}
 
 \section*{Aufgabe 4}
@@ -219,15 +279,18 @@ ist nicht erkennbar.
 \end{proof}
 
 \section*{Aufgabe 5}
-Beweis oder Widerlege:
+Folgende Automatenklassen sind in ihrer Ausdrucksstärke gleichmächtig zueinander:
+NEA, $\varepsilon$-NEA (entfernen von $\varepsilon$-Transitionen), NEA mit WOrtübergängen (Zwischenzustände einführen), DEA (Potenzmengenkonstruktion)\\
+Transitionssysteme sind \underline{nicht} äquivalent zu obigen.\nl
+Beweise oder Widerlege:
 \begin{enumerate}[label=\alph*)]
 	\item $L$ erkennbar $\implies\exists\varepsilon$-NEA $\A:L(\A)=L$.\\
 	Stimmt, denn:
 	\begin{align*}
 		L\text{ erkennbar}
-		\overset{\text{Def 1.6}}&\implies
+		\overset{\text{Def 1.6}}&\Longleftrightarrow
 		\exists\text{NEA}\A_N:L(\A_N)=L\\
-		\overset{\text{Lemma 10}}&\implies
+		\overset{\text{Lemma 10}}&\Longleftrightarrow
 		\exists\varepsilon\text{-NEA }\A:L(\A)\overset{\text{Def 1.6}}{=}L(\A_N)=L
 	\end{align*}
 	\item $\exists$ NEA mit Wortübergängen mit $L(\A)=L\implies L$ erkennbar.\\
@@ -240,25 +303,27 @@ Beweis oder Widerlege:
 		L\text{ erkennbar}
 	\end{align*}
 	\item $\exists$ Transitionssystem $\A$ mit $L(\A)=L\implies L$ erkennbar\\
-	Das stimmt nicht, denn man betrachte ein Transitionssystem mit $Q=\infty$, z. B.
+	Das stimmt nicht, Gegenbeispiel:
 	\begin{align*}
-		\A:=\Big(\N_{\geq0},\lbrace a\rbrace,\lbrace0\rbrace,\Delta:=\lbrace(q_i,a,q_{i+1})\mid i\in\N_{\geq0}\rbrace,F:=\N\Big)
+		L:=\Big\lbrace a^p:p\text{ ist Primzahl }\Big\rbrace
 	\end{align*}
-	Dann gilt
-	\begin{align*}
-		a^\infty\in L(\A)
-	\end{align*}
-	Hm... irgendwie ist das wohl doch nicht ganz richtig %TODO
+	Transitionssystem: (wird endliche Kette, Endzustände sind Primzahlen)
 	\item $L$ erkennbar und $L\subseteq L'\implies L'$ erkennbar\\
-	Stimmt nicht.
-	%TODO
+	Stimmt nicht, Gegenbeispiel:
+	\begin{align*}
+		L:=\lbrace aa\rbrace\qquad
+		L':=\Big\lbrace a^p:p\text{ ist Primzahl }\Big\rbrace
+	\end{align*}
 	\item $L$ erkennbar und $L'\subseteq L\implies L'$ erkennbar.\\
-	Stimmt. %TODO
+	Stimmt nicht, Gegenbeispiele:
+	\begin{align*}
+		&L=\Big\lbrace a^n:n\in\N\big\rbrace,& l'=\big\lbrace a^p:p\text{ ist Primzahl }\Big\rbrace\\
+		&L_2=\Sigma^\ast, &\Big\lbrace a^n b^n:n\in\N\Big\rbrace
+	\end{align*}
 	\item $L_1,L_2$ erkennbar $\implies L:=L_1\cap L_2$ erkennbar.\\
-	Stimmt, wegen Satz 4.1
+	Stimmt, wegen Satz 4.1.
 	\item Wenn es ein $n\in\N$ gibt, so dass $\cong_L$ (Nerode-Rechtskongruenz) höchstens $n$ Äquivalenzklassen hat, so ist $L$ erkennbar.\\
-	%TODO
-	
+	Ja, dies ist eine Richtung des Satzes von Myhill-Nerode
+	($L$ ist erkennbar / regulär $\Longleftrightarrow\cong_L$ hat endlichen Index / endliche viele Äquivalenzklassen)
 \end{enumerate}
-
 \end{document}
