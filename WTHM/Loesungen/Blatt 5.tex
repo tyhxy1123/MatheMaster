@@ -45,6 +45,7 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 
 \begin{proof}
 	\underline{Zeige a):}
+	\textbf{VERSION WILLI}
 	\begin{align*}
 		\Phi_{W\cdot X}(u)
 		\overset{\text{Def}}&=
@@ -72,8 +73,62 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 		&=\int\limits_\R\exp\big(i\cdot t\cdot u)\cdot f_{X\cdot W}(t)\d t\\
 		&=...
 	\end{align*}
+
+	\textbf{VERSION ROBERT}
+	Zunächst verwenden wir den Polarisations-Trick:
+	\begin{align*}
+		Z &= WX \\
+			&= \frac{1}{4}\cdot\left((W+X)^2 - (W-X)^2\right)
+	\end{align*}
+	Mit dieser Darstellung lassen sich bessere Aussagen über die Verteilung von $Z$ treffen:
+	\begin{align*}
+		Z
+		&=\frac{1}{4}\cdot\left((\underbrace{W+X}_{\sim \Nor(0, 2)})^2 - (\underbrace{W-X}_{\sim \Nor(0, 2)})^2\right)\\ 
+		&\sim \frac{2}{4}\left(\underbrace{(\underbrace{F}_{\sim \Nor(0, 1)})^2}_{\sim \chi^2_1}-\underbrace{(\underbrace{G}_{\sim \Nor(0, 1)})^2}_{\sim \chi^2_1}\right) \\ 
+		&\sim \frac{1}{2}(\underbrace{M}_{\sim \chi^2_1} -\underbrace{N}_{\sim \chi^2_1})
+	\end{align*}
+	Damit folgt:
+	\begin{align*}
+		\text{Cov}((W+X),(W-X)) &= \E((W+X)(W-X)) - \underbrace{\E(W+X)}_{=0}\cdot \underbrace{\E(W-X)}_{=0} \\
+										&= \E(W^2-X^2) \\
+										&= \E(W^2) -\E(X^2) \\
+										&= \Var(W) - \Var(X) \\
+										&= 0
+	\end{align*}
+	Das heißt, dass die Zufallsvariablen $(W+X)$ und $(W-X)$ unabhängig sind und somit auch $M$ und $N$(, da $(\cdot)^2$ borel-messbar ist).
+	Nun können wir die charakteristische Funktion berechnen:
+	\begin{align*}
+		\E\left[e^{i\xi\cdot Z}\right]
+		&=\E\left[e^{i\xi\cdot \frac{1}{2}\left(M-N\right)}\right] \\
+		\implies \varphi_Z(2\xi)
+		&=\E\left[e^{i\xi\cdot\left(M-N\right)}\right] \\
+		\overset{\text{unab.}}&{=}\E\left[e^{i\xi M}\right]\cdot\overline{\E\big[e^{i\xi M}\big]}\\
+		\overset{\text{char. F. } \chi^2_1}&{=}\frac{1}{\sqrt{1-2i\xi}}\frac{1}{\sqrt{1+2i\xi}} \\
+																			 &=\frac{1}{\sqrt{1+4\xi^2}}\\
+		\implies \varphi_Z(\xi) &= \frac{1}{\sqrt{1+4(\frac{1}{2}\xi)^2}}\\
+														&= \frac{1}{\sqrt{1+\xi^2}}
+	\end{align*}
+
 	
 	\underline{Zeige b):}
+
+	\begin{align*}
+		P:=
+		\left|\begin{array}{cc}
+			W & Y \\
+			Z & X
+		\end{array}\right| &= WX-YZ
+	\end{align*}
+	Damit ist leicht auszurechnen:
+	\begin{align*}
+	 	&\E\left[e^{i\xi(WX-YZ)}\right]\\
+	 	=&\E\left[e^{i\xi(WX)}\right]\E\left[e^{i\xi(-YZ)}\right]\\
+	 	=&\E\left[e^{i\xi(WX)}\right]\overline{\E\big[e^{i\xi(YZ)}\big]}\\
+		=&\frac{1}{\sqrt{1+u^2}}\frace{1}{\sqrt{1+u^2}}\\
+		=&\frac{1}{1+u^2}
+	\end{align*}
+	Dies ist die charakteristische Funktion einer Laplace-verteilten Zufallsvariable.
+	Nach dem Eindeutigkeitssatz muss also $P$ Laplace-verteilt sein.
 	
 \end{proof}
 
