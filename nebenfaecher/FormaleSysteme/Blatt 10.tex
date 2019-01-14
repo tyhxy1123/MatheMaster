@@ -158,7 +158,7 @@ Somit erhalten wir für $adc$ 1, für $cda$ 0, für $bcdc$ 3 und für $acdc$ 3 Z
 
 \textbf{Tutor-Lösung: (stimmt mit meiner überein)}
 \begin{itemize}
-	\item $w=adc\in L(\A)$: 
+	\item $w=adc\in L(\A)$: kein Zerlegung möglich bei der $y$ auch wegfallen kann
 	\item $w=cda\not\in L(\A)$: keine "pumpbare" Zerlegung möglich, da nicht in der Sprache
 	\item $w=bcdc\in L(\A)$:
 	\begin{itemize}
@@ -219,7 +219,7 @@ ist nicht erkennbar.
 	dass auch $a^{n+k\cdot m}\in L$ für alle $k\in\N$.
 	Insbesondere für $k=n$ %Die Idee, die mir fehlte!
 	gilt $a^{n+n\cdot m}\in L$.
-	Aber falls $n\neq1$ (also $n>1$ oder $n=0$) ist $n+n\cdot m=n\cdot(n+1)$ keine Primzahl!\\
+	Aber falls $n\neq1$ (also $n>1$ oder $n=0$) ist $n+n\cdot m=n\cdot(m+1)$ keine Primzahl!\\
 	Falls $n=1$, dann müsste $a^{n+0\cdot m}=a^n=a\in L$ gelten. Widerspruch!
 \end{proof}
 
@@ -246,7 +246,7 @@ ist nicht erkennbar.
 	\end{itemize}
 	Es gibt also eine gültige Zerlegung, weshalb wir mit dem vereinfachten Pumpinglemma keinen Widerspruch herleiten können.
 	Mit dem Pumping-Lemma in verschärfter Form kann das Ergebnis aus Aufgabe 10.2 genutzt werden:
-	Sei $p$ eine Primzahl mit $p\geq n_0$. Zerlege dann das Wort $01^p$ in $u=0$, $v=1^p$ und $w\in\varepsilon$.
+	Sei $p$ eine Primzahl mit $p\geq n_0$. Zerlege dann das Wort $01^p$ in $u=0$, $v=1^p$ und $w=\varepsilon$.
 	Es gilt $01^p\in L$ und $|v|\geq n_0$.
 	Zerlege dann $v$ nun wie in 10.2 gezeigt.
 \end{proof}
@@ -272,15 +272,15 @@ ist nicht erkennbar.
 	
   \includegraphics[width=0.7\textwidth]{Blatt10_4.png}
   
-  Offenbar ist $\A_\varepsilon$ ein $\varepsilon$-NEA. Mit Lemma 1.12 bekommt man einen zu $\A_\varepsilon$ äquivalenten NEA, nennen wir ihn $\A_{\text{NEA}}$. Äquivalent bedeutet $L(\A_\varepsilon)=\A_{\text{NEA}}$.\nl
+  Offenbar ist $\A_\varepsilon$ ein $\varepsilon$-NEA. Mit Lemma 1.12 bekommt man einen zu $\A_\varepsilon$ äquivalenten NEA, nennen wir ihn $\A_{\text{NEA}}$. Äquivalent bedeutet $L(\A_\varepsilon)=L(\A_{\text{NEA}})$.\nl
   Bleibt noch zu zeigen, dass $L(\A_\varepsilon)=L^\ast$ gilt. 
   Sei also $w\in L^\ast$.
-  Dann gibt es ein $n\in\N$ so, dass $w\in\bigcup\limits_{i=1}^n L$ ist. Man sieht leicht, dass $w\in L(\A_\varepsilon)$ liegen muss. (Das formal aufzuschreiben ist ein wenig sperrig.)
+  Dann gibt es ein $n\in\N$ so, dass $w\in\bigcup\limits_{i=0}^n L$ ist. Man sieht leicht, dass $w\in L(\A_\varepsilon)$ liegen muss. (Das formal aufzuschreiben ist ein wenig sperrig.)
 \end{proof}
 
 \section*{Aufgabe 5}
 Folgende Automatenklassen sind in ihrer Ausdrucksstärke gleichmächtig zueinander:
-NEA, $\varepsilon$-NEA (entfernen von $\varepsilon$-Transitionen), NEA mit WOrtübergängen (Zwischenzustände einführen), DEA (Potenzmengenkonstruktion)\\
+NEA, $\varepsilon$-NEA (entfernen von $\varepsilon$-Transitionen), NEA mit Wortübergängen (Zwischenzustände einführen), DEA (Potenzmengenkonstruktion)\\
 Transitionssysteme sind \underline{nicht} äquivalent zu obigen.\nl
 Beweise oder Widerlege:
 \begin{enumerate}[label=\alph*)]
@@ -324,6 +324,6 @@ Beweise oder Widerlege:
 	Stimmt, wegen Satz 4.1.
 	\item Wenn es ein $n\in\N$ gibt, so dass $\cong_L$ (Nerode-Rechtskongruenz) höchstens $n$ Äquivalenzklassen hat, so ist $L$ erkennbar.\\
 	Ja, dies ist eine Richtung des Satzes von Myhill-Nerode
-	($L$ ist erkennbar / regulär $\Longleftrightarrow\cong_L$ hat endlichen Index / endliche viele Äquivalenzklassen)
+	($L$ ist erkennbar / regulär $\Longleftrightarrow \, \cong_L$ hat endlichen Index / endliche viele Äquivalenzklassen)
 \end{enumerate}
 \end{document}
