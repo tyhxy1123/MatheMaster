@@ -393,14 +393,14 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 \end{proof}
 
 \begin{theorem}
-	Seien $\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig.
+	Seien $\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig und konvex.
 	Dann gilt:
 	\begin{enumerate}[label=(\alph*)]
 		\item Wenn $(\E_n)_{n\in\N}$ monoton wachsend und konvergent ist, dann ist $(\E_n)_{n\in\N}$ Mosco-konvergent mit
 		\begin{align*}
 			\E_n\overset{\text{Mosco}}{\longrightarrow}\sup\limits_{n\in\N}\E_n
 		\end{align*}
-		\item Sei $\E$ konvex. Wenn $(\E_n)_{n\in\N}$ monoton fallend und von unten durch eine unterhalbstetige Funktion beschränkt ist,
+		\item Wenn $(\E_n)_{n\in\N}$ monoton fallend und von unten durch eine unterhalbstetige Funktion beschränkt ist,
 		dann ist $(\E_n)_{n\in\N}$ Mosco-konvergent mit
 		\begin{align*}
 			\E_n\overset{\text{Mosco}}{\longrightarrow}\overline{\inf\limits_{n\in\N}\E_n}
@@ -469,6 +469,179 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 	Setze nun $u_m:=v_1$ für $m\leq m_1$ und $u_m:=v_n$ für $m_{n-1}\leq m\leq m_n$.
 \end{proof}
 
+\begin{korollar}
+	Sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig,$\not\equiv\infty$ und semikonvex vom Typ $\omega\in\R$.
+	Dann gilt:
+	\begin{align*}
+		\E^\lambda+\frac{\omega}{2\cdot(1-\lambda\cdot\omega)}\cdot\Vert\cdot\Vert_H^2
+		\stackrelnew{\lambda\to0^+}{\text{Mosco}}{\longrightarrow}
+		\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2
+	\end{align*}
+\end{korollar}
 
+\begin{proof}
+	$\E^\lambda$ ist monoton wachsend 
+	(siehe Eigenschaften der \\Moreau-Yoshida-Approximation)
+\end{proof}
 
+\begin{theorem}[ATTOUCH]\label{theoremATTOUCH}\enter
+	Seien $\E_n,\E:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv+\infty$ und semikonvex vom Typ $\omega\in\R$
+	auf einem Hilbertraum $H$.
+	Seien $S_n$ und $S$ die von Subgradienten $\partial\E_n$ und $\partial\E$ erzeugten Halbgruppen.
+	Dann sind folgende Aussagen äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede konvergente Folge $(u_n^0)_{n\in\N}$ (0 ist Anfangswert) in $H$ mit $u_n^0\in\overline{\dom(\partial\E_n)}$ und 
+		mit $u^0:=\limn u_n^0$ gilt
+		\begin{align*}
+			u_0\in\overline{\dom(\partial\E)}
+			\qquad\text{ und }\qquad
+			\limn S_n(t)u_n^0=S(t) u^0
+			\text{ lokal glm. in }t\in\R_{\geq0}
+		\end{align*}
+		und es gilt die Normalisierung
+		\begin{align}\label{eqAttouchAN}\tag{N}
+			\exists\big(\hat{u}_n,\hat{f}_n\big)\in\partial\E,\exists\big(\hat{u},\hat{f}\big)\in\partial\E:
+			\limn\big(\hat{u}_n\hat{f}_n\big)=\big(\hat{u},\hat{f}\big)
+			%\text{ in }H\times H
+			\text{ und }\limn \E_n\big(\hat{u}_n\big)=\E\big(\hat{u}\big)
+		\end{align}
+		\item $\begin{aligned}
+			\exists\lambda>0\mit\lambda\cdot\omega<1:\forall f\in H:
+			\limn J_\lambda^{\partial\E_n} f=J_\lambda^{\partial\E} f\text{ in }H
+			\text{ und }\eqref{eqAttouchAN}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in H:
+			\limn J_\lambda^{\partial\E_n}f=J_\lambda^{\partial\E} f\text{ in }H
+			\text{ und }\eqref{eqAttouchAN}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in H:
+			\weaklim\limits_{n\to\infty} J_\lambda^{\partial\E_n} f=J_\lambda^{\partial\E}f
+			\text{ und }\eqref{eqAttouchAN}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H:
+			\lim\E_n^\lambda(u)=\E^\lambda(u)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2
+			\overset{\text{Mosco}}{\longrightarrow}
+			\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+% Das Theorem existiert in der Form zum aktuellen Zeitpunkt nirgends in der Literatur. 
+% Höchstens einzelne Äquivalenzen lassen sich finden.
+
+\begin{proof}
+	(i) $\gdw$ (ii) $\gdw$ (iii) folgt aus Trotter-Kato-Miyadera \ref{theoremTrotterKatoMiyadera}.\nl
+	(iii) $\implies$ (iv) ist klar, da starke Konvergenz in jedem Banachraum schwache Konvergenz impliziert.\nl
+	\underline{Zeige (vi) $\implies$ (iii)/(ii):}\\
+	Sei $\lambda>0\mit\lambda\cdot\omega<1$.
+	Sei $f\in H$.
+	Aus dem Lemma oben %TODO add reference
+	folgt die Existenz von $c,r>0$ so, dass $\forall u\in H,\forall n\in\N$:
+	\begin{align*}
+		\E_n(u)+\frac{\omega}{2}\cdot\Vert u\Vert^2
+		&\geq -c-r\cdot\Vert u\Vert
+	\end{align*}
+	Sei $v\in H$.
+	Wähle eine "recovery sequence" $(v_n)_{n\in\N}$ in $H$ mit $\limn\Vert v_n-v\Vert_H=0$
+	und
+	\begin{align*}
+		\limn\E_n(v_n)+\frac{\omega}{2}\cdot\Vert v_n\Vert^2_H
+		=\E(v)+\frac{\omega}{2}\cdot\Vert v\Vert^2_H
+	\end{align*}
+	Dann gilt (bei $(\ast)$ wird benutzt, dass $J_\lambda^{\partial\E_n}$ globaler Minimierer ist):
+	\begin{align*}
+		&\overbrace{\E_n(v_n)}^{\longrightarrow\E(v)}+\overbrace{\frac{1}{2\cdot\lambda}\cdot\Vert v_n-f\Vert_H^2}^{\longrightarrow\frac{1}{2\cdot\lambda}\cdot\Vert v-f\Vert^2}\\
+		\overset{(\ast)}&\geq
+		\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\\
+		&=\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2
+		+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert^2_H\\
+		\overset{\text{CS}}&\geq
+		\E_n\Big(J_\lambda^{\partial\E_n}f\Big)+\frac{\omega}{2}\cdot\Big\Vert j_\lambda^{\partial\E_n} f\Big\Vert_H^2
+		-|\omega|\cdot\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H\cdot\Vert f\Vert+\frac{\omega}{2}\cdot\Vert f\Vert_H^2\\
+		&~~+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\\
+		&\geq-c-r\cdot\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H
+		-|\omega|\cdot\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H\cdot\Vert f\Vert+\frac{\omega}{2}\cdot\Vert f\Vert_H^2+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2
+	\end{align*}
+	Es folgt also:
+	\begin{enumerate}
+		\item Die Folge $\big(J_\lambda^{\partial\E_n} f\big)_{n\in\N}$ ist beschränkt.
+		\item Die Folge $\Big(\E_n\big(J_\lambda^{\partial\E_n} f\big)\Big)_{n\in\N}$ ist beschränkt.
+	\end{enumerate}
+	Nach Auswahl einer Teilfolge von 2. (wieder mit $(\E_n)_{n\in\N}$ bezeichnet) gilt:\\
+	$\big(J_\lambda^{\partial\E_n} f\big)_{n\in\N}$ ist schwach konvergent.
+	Setze $u:=\weaklim\limits_{n\to\infty} J_\lambda^{\partial\E_n} f$.\\
+	Wir zeigen: $u=J_\lambda^{\partial\E} f$.\\
+	Sei noch einmal $v\in H$ und $(v_n)_{n\in\N}$ eine "recovery sequence" für $v$
+	($v_n\overset{}{\longrightarrow} v$ und $\E_n(v_n)\overset{}{\longrightarrow}\E(v)$).
+	Dann gilt:
+	\begin{align*}
+		\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert_H^2
+		\overset{\text{(i) von Mosco-Konv}}&\leq 
+		\liminf\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\
+		&\leq\limsup\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\
+		&\leq\limsup\limits_{n\to\infty}\left(\E_n(v_n)+\frac{1}{2\cdot\lambda}\cdot\Vert v_n-f\Vert_H^2\right)\\
+		&=\E(v)+\frac{1}{2 \cdot\lambda}\cdot\Vert v-f\Vert_H^2
+	\end{align*}
+	Da diese Abschätzung für alle $v\in H$ gilt, ist $u$ globaler Minimierer von 
+	$v\mapsto\E(v)+\frac{1}{2}\cdot\Vert v-f\Vert_H^2$, d.h. $u=J_\lambda^{\partial\E} f$.
+	Setzt man außerdem $v=u=J_\lambda^{\partial\E_n} f$ in die Abschätzung ein, dann folgt
+	\begin{align}\label{eqProofAttouchStern}\tag{$\ast$}
+		&\limn\left(\E_n\Big(J_\lambda^{\partial\E_n}f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)
+		=\E\Big(J_\lambda^{\partial\E}f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2\\\nonumber
+		&\implies\limsup\limits_{n\to\infty}\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\\\nonumber
+		&\leq\limsup\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\\nonumber
+		&~~~-\liminf\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\\nonumber
+		%+\liminf\limits_{n\to\infty}\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H^2\\ %wurde an der Tafel gelöscht
+		\overset{(\ast)}&\leq 
+		\E\Big(J_\lambda^{\partial\E} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2
+		-\E\Big(J_\lambda^{\partial\E} f\Big)-\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E} f\Big\Vert_H^2\\\nonumber
+		&=\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2	
+	\end{align}
+	Bei $(\ast)$ geht erneut Eigenschaft (i) der Mosco-Konvergenz ein.
+	\begin{lemma}
+		Aus $v_n\overset{n\to\infty}{\longrightarrow} v$ schwach in $H$ und $\limsup\limits_{n\to\infty}\Vert v_n\Vert\leq\Vert v\Vert$ folgt
+		\begin{align*}
+			\big\Vert v_n-v\big\Vert_H\overset{n\to\infty}{\longrightarrow}0.
+		\end{align*}
+	\end{lemma}
+	
+	\begin{proof}
+		\begin{align*}
+			\limsup\limits_{n\to\infty}\big\Vert v_n-v\big\Vert^2
+			&=\limsup\limits_{n\to\infty}\Big(\Vert v_n\Vert^2-2\cdot\Re\big(\langle v_n,v\rangle\big)+\Vert v\Vert_H^2\Big)\\
+			&\leq \Vert v\Vert^2-2\cdot\Vert v\Vert^2+\Vert v\Vert^2\\
+			&=0
+		\end{align*}
+	\end{proof}
+	
+	Mit dem Lemma erhalten wir
+	\begin{align*}
+		\limn\Big\Vert J_\lambda^{\partial\E_n}f-J_\lambda f\Big\Vert_H^2=0
+	\end{align*}
+	
+	Aus der Normkonvergenz $\big(J_\lambda^{\partial\E_n}f\big)$ gegen $J_\lambda^{\partial\E} f$ und (*) %TODO
+	folgt
+	\begin{align*}
+		\limn E_n\Big(J_\lambda^{\partial\E_n}f\Big)=\E\big(J_\lambda^{\partial\E}f\Big)
+	\end{align*}
+	Jede Folge der Form $\left(\left(J_\lambda^{\partial\E_n} f,\frac{I-J_\lambda^{\partial\E_n}}{\lambda}\cdot f\right)\right)$ 
+	($f\in H$) ist gut für die Normalisierungsbedingung \eqref{eqAttouchAN}.\nl
+	Der Beweis der Rückrichtung entfällt.
+\end{proof}
+
+\begin{lemma}
+	Sei $I\subseteq\R$ Intervall und seien $f_n,f:I\to\R$ stetig differenzierbare, konvexe Funktionen.
+	Falls $f_n\overset{n\to\infty}{\longrightarrow} f$ punktweise überall,
+	dann $f_n'\overset{n\to\infty}{\longrightarrow} f'$ lokal gleichmäßig.
+\end{lemma}
+
+\begin{proof}
+	Übung.
+\end{proof}
 
