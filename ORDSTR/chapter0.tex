@@ -987,5 +987,37 @@ Zurück zum Begriff des Measurement Setups.
     Die Dimensionsformel gilt hier:
 
     Für $X,Y \in P$ gilt stets $$\Delta(X,X\cup Y) = \Delta(X\cap Y,Y).$$
-    Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.
+    Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.\nl
+    Dies gilt auch, falls $(\Omega, \mathcal{A})$ eine $\sigma$-Algebra ist - 
+    oder man nur das Folgende fordert:
+
+    Sei $\Omega$ Menge ($\ne 0$) und sei $\mathcal{A} \subseteq 2^\Omega$ mit:
+    \begin{itemize}
+        \item $\emptyset\in \mathcal{A}$
+        \item $A \in \mathcal{A} \implies A^c \in \mathcal{A}$
+        \item $A,B \in \mathcal{A} \implies A \cup B \in \mathcal{A}$
+    \end{itemize}
+\end{beispiel}
+
+\begin{beispiel}
+    Sei $A = (P,B,I, \parallel)$ ein axiomatischer affiner Raum bestehend aus Punktmenge $P$, Beradenmenge $B$, eine 
+    Inzidenzrelation $I \subseteq P\times B$ und Parallelitätsrelation $\parallel \subseteq B \times B$.
+
+    \underline{Ziel:} Führe ein Measurement Setup für $A$ ein, falls $A$ hinreichend gutartig.
+    \textit{Modelltheoretisch ist dies eine 2-sorted first-order language model with two relation symbols.}
+
+    \begin{enumerate}[label=(Axiom \arabic{*})]
+        \item Any two different points are incident with exactly one line.
+        \item There are 3 points not incident with one line.
+        \item Any line is incident with at least two points.
+        \item For every point $p$ and every line $b$ there is exactly one line $c$ which is parallel to $b$ and incident with $p$.
+        \textit{"Euclid's parallel postulate"}
+    \end{enumerate}
+
+    Namen: "Max Dehn", "David Hilbert"(Grundlagen der Geometrie ende des 19.Jh)\nl
+    Damit können wir ein Measurement Setup $(\G_P, \M, \Delta)$ folgendermaßen einführen:
+    \begin{itemize}
+        \item $\M = (\text{Translationen}, \ast, \id_p)$
+        \item $\Delta: P\times P, (p,q) \mapsto \tau_{(p,q)} \in \text{Translationen}$.
+    \end{itemize}
 \end{beispiel}
