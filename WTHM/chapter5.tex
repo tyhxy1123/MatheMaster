@@ -6,373 +6,380 @@
 \chapter{Martingalungleichungen und Rückwärtsmartingale} %5
 \section{Martingalungleichungen} %5.1
 \begin{itemize}
-\item Doobs Maximalungleichung
-\item Doobs $L_p$-Ungleichung
-\item Azumas Ungleichung (Beispiel für \textit{Konzentrationsungleichung})
+	\item Doobs Maximalungleichung
+	\item Doobs $L_p$-Ungleichung
+	\item Azumas Ungleichung (Beispiel für \textit{Konzentrationsungleichung})
 \end{itemize}
 
 \setcounter{section}{5} %fix numbering
 \begin{theorem}[Doobs Maximalungleichung]\label{theorem5.1DoobMaximalungleichung}\enter
-Sei $(M_n)_{n\in\N}$ (Sub-)Martingal. Dann gilt:
-\begin{align*}
-\P\left(\max\limits_{j\leq n} M_j\geq r\right)\leq\frac{1}{r}\cdot\E\left[M_n^+\right]\qquad\forall n\in\N,\forall r\geq0
-\end{align*}
-Hierbei hängt die linke Seite vom gesamten Pfad ab, aber die rechte Seite hängt nur vom Endwert ab.
+	Sei $(M_n)_{n\in\N}$ (Sub-)Martingal. Dann gilt:
+	\begin{align*}
+		\P\left(\max\limits_{j\leq n} M_j\geq r\right)\leq\frac{1}{r}\cdot\E\left[M_n^+\right]\qquad\forall n\in\N,\forall r\geq0
+	\end{align*}
+	Hierbei hängt die linke Seite vom gesamten Pfad ab, aber die rechte Seite hängt nur vom Endwert ab.
 \end{theorem}
+
 \begin{bemerkung}\
-\begin{enumerate}[label=(\alph*)]
-\item $(M_n)_{n\in\N}$ Martingal $\implies\big(|M_n|\big)_{n\in\N}$ Submartingal
-\begin{align*}
-\implies\P\left(\max\limits_{j\leq n} |M_j|\geq r\right)\leq\frac{\E\big[|M_n|\big]}{r}
-\end{align*}
-\item Es gilt die Zwischenabschätzung
-\begin{align*}
-\P\left(\max\limits_{j\leq n} M_j\geq r\right)
-\leq
-\frac{1}{r}\cdot\E\left[M_n\cdot\indi_{\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace}\right]
-\leq
-\frac{1}{r}\cdot\E\left[M_n^+\right]
-\end{align*}
-\end{enumerate}
+	\begin{enumerate}[label=(\alph*)]
+		\item $(M_n)_{n\in\N}$ Martingal $\implies\big(|M_n|\big)_{n\in\N}$ Submartingal
+		\begin{align*}
+			\implies\P\left(\max\limits_{j\leq n} |M_j|\geq r\right)\leq\frac{\E\big[|M_n|\big]}{r}
+		\end{align*}
+		\item Es gilt die Zwischenabschätzung
+		\begin{align*}
+			\P\left(\max\limits_{j\leq n} M_j\geq r\right)
+			\leq
+			\frac{1}{r}\cdot\E\left[M_n\cdot\indi_{\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace}\right]
+			\leq
+			\frac{1}{r}\cdot\E\left[M_n^+\right]
+		\end{align*}
+	\end{enumerate}
 \end{bemerkung}
 
 \begin{proof}
-$(M_n)_{n\in\N}$ sei Submartingal. Für $k\leq n,A\in\F_k$ gilt wegen der Submartingaleigenschaft:
-\begin{align}
-M_k&\leq\E[M_n~|~\F_k]\nonumber\\
-\implies\indi_A\cdot M_k &\leq\E\big[\indi_A\cdot M_n~\big|~\F_k\big]\nonumber\\
-\implies\E[\indi_A\cdot M_k]&\leq\E[\indi_A\cdot M_n]\label{eqProof5.1Stern}\tag{$\ast$}
-\end{align}
-Definiere die Stoppzeit
-\begin{align*}
-\tau:=\min\big\lbrace n\in\N_0:M_n\geq r\big\rbrace.
-\end{align*}
-Es gilt
-\begin{align*}
-\tau\leq n&\implies \max\limits_{j\leq n} M_j\geq r\\
-\text{ und } \max\limits_{j\leq n} M_j\geq r&\implies\tau\leq n
-\end{align*}
-d.h.
-\begin{align}\label{eqProof5.1SternStern}\tag{$\ast\ast$}
-\lbrace\tau\leq n\rbrace=\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace
-\end{align}
-Somit
-\begin{align*}
-r\cdot\indi_{\lbrace\tau\leq n\rbrace}
-&\leq M_\tau\cdot\indi_{\lbrace\tau\leq n\rbrace}
-=\sum\limits_{k=0}^n M_k\cdot\indi_{\lbrace\tau=k\rbrace}
-\end{align*}
-Bilde Erwartungswerte:
-\begin{align*}
-r\cdot\P[\tau\leq n]
-&\leq\sum\limits_{k=0}^n\E\Big[M_k\cdot\indi_{\underbrace{\lbrace\tau=k\rbrace}_{\in\F_k}}\Big]\\
-\overset{\eqref{eqProof5.1Stern}}&{\leq}
-\sum\limits_{k=0}^n\E\Big[M_n\cdot\indi_{\lbrace\tau=k\rbrace}\Big]\\
-&=\E\Big[M_n\cdot\indi_{\lbrace\tau\leq n\rbrace}\Big]\\
-\stackrel{\eqref{eqProof5.1SternStern}}{\implies}
-r\cdot\P\left(\max\limits_{j\leq n} M_j\geq r\right)
-&\leq\E\Big[M_n\cdot\indi_{\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace}\Big]
-\leq\E\big[M_n^+\big]
-\end{align*}
+	$(M_n)_{n\in\N}$ sei Submartingal. Für $k\leq n,A\in\F_k$ gilt wegen der Submartingaleigenschaft:
+	\begin{align}
+		M_k&\leq\E[M_n~|~\F_k]\nonumber\\
+		\implies\indi_A\cdot M_k &\leq\E\big[\indi_A\cdot M_n~\big|~\F_k\big]\nonumber\\
+		\implies\E[\indi_A\cdot M_k]&\leq\E[\indi_A\cdot M_n]\label{eqProof5.1Stern}\tag{$\ast$}
+	\end{align}
+	Definiere die Stoppzeit
+	\begin{align*}
+		\tau:=\min\big\lbrace n\in\N_0:M_n\geq r\big\rbrace.
+	\end{align*}
+	Es gilt
+	\begin{align*}
+		\tau\leq n&\implies \max\limits_{j\leq n} M_j\geq r\\
+		\text{ und } \max\limits_{j\leq n} M_j\geq r&\implies\tau\leq n
+	\end{align*}
+	d.h.
+	\begin{align}\label{eqProof5.1SternStern}\tag{$\ast\ast$}
+		\lbrace\tau\leq n\rbrace=\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace
+	\end{align}
+	Somit
+	\begin{align*}
+		r\cdot\indi_{\lbrace\tau\leq n\rbrace}
+		&\leq M_\tau\cdot\indi_{\lbrace\tau\leq n\rbrace}
+		=\sum\limits_{k=0}^n M_k\cdot\indi_{\lbrace\tau=k\rbrace}
+	\end{align*}
+	Bilde Erwartungswerte:
+	\begin{align*}
+		r\cdot\P[\tau\leq n]
+		&\leq\sum\limits_{k=0}^n\E\Big[M_k\cdot\indi_{\underbrace{\lbrace\tau=k\rbrace}_{\in\F_k}}\Big]\\
+		\overset{\eqref{eqProof5.1Stern}}&{\leq}
+		\sum\limits_{k=0}^n\E\Big[M_n\cdot\indi_{\lbrace\tau=k\rbrace}\Big]\\
+		&=\E\Big[M_n\cdot\indi_{\lbrace\tau\leq n\rbrace}\Big]\\
+		\stackrel{\eqref{eqProof5.1SternStern}}{\implies}
+		r\cdot\P\left(\max\limits_{j\leq n} M_j\geq r\right)
+		&\leq\E\Big[M_n\cdot\indi_{\left\lbrace\max\limits_{j\leq n} M_j\geq r\right\rbrace}\Big]
+		\leq\E\big[M_n^+\big]
+	\end{align*}
 \end{proof}
 
 \begin{theorem}[Doobs $L_p$-Ungleichung]\label{theorem5.2DoobsLpUngleichung}\enter
-Sei $(M_n)_{n\in\N}$ Martingal (oder positives Submartingal) und $p>1$. Dann gilt:
-\begin{align*}
-\big\Vert M_n^\ast\big\Vert_{p}\leq\frac{p}{p-1}\cdot\big\Vert M_n\big\Vert_p\qquad\forall n\in\N_0\qquad\mit M_n^\ast:=\max\limits_{0\leq j\leq n}|M_j|
-\end{align*}
+	Sei $(M_n)_{n\in\N}$ Martingal (oder positives Submartingal) und $p>1$. Dann gilt:
+	\begin{align*}
+		\big\Vert M_n^\ast\big\Vert_{p}\leq\frac{p}{p-1}\cdot\big\Vert M_n\big\Vert_p\qquad\forall n\in\N_0\qquad\mit M_n^\ast:=\max\limits_{0\leq j\leq n}|M_j|
+	\end{align*}
 \end{theorem}
 
 \begin{lemma}\label{lemma5.3}
-Sei $X,Y\geq0$ mit $\E\big[Y^p]<\infty$ für $p>1$. Wenn
-\begin{align}\label{eq5.3Vor}\tag{$\ast$}
-\lambda\cdot\P(X\geq\lambda)\leq\E\left[Y\cdot\indi_{\lbrace X\geq\lambda\rbrace}\right]\qquad\forall\lambda\geq0
-\end{align}
-gilt, dann gilt:
-\begin{align*}
-\Vert X\Vert_p\leq\frac{p}{p-1}\cdot\Vert Y\Vert_p
-\end{align*}
+	Sei $X,Y\geq0$ mit $\E\big[Y^p]<\infty$ für $p>1$. Wenn
+	\begin{align}\label{eq5.3Vor}\tag{$\ast$}
+		\lambda\cdot\P(X\geq\lambda)\leq\E\left[Y\cdot\indi_{\lbrace X\geq\lambda\rbrace}\right]\qquad\forall\lambda\geq0
+	\end{align}
+	gilt, dann gilt:
+	\begin{align*}
+		\Vert X\Vert_p\leq\frac{p}{p-1}\cdot\Vert Y\Vert_p
+	\end{align*}
 \end{lemma}
+
 \begin{proof}
-Setze $X_N:=X\wedge N$ (d.h. Minimum) für alle $n\in\N$. Zeige die Aussage zunächst für $X_N$: Merke
-\begin{align*}
-\lbrace X\geq\lambda\rbrace=\lbrace X_N\geq\lambda\rbrace\qquad\forall\lambda\in[0,N]
-\end{align*}
-D.h. \eqref{eq5.3Vor} gilt auch für $X_N$, solange $\lambda\in[0,N]$ gilt. Weitere Überlegung:
-\begin{align*} %x soll hier klein sein
-z^p
-= p\cdot\int\limits_0^z x^{p-1}\d x
-=p\cdot\int\limits_0^\infty x^{p-1}\cdot\indi_{\lbrace z\geq x\rbrace}\d x\qquad\forall p>0,\forall z>0
-\end{align*}
-Setze $X_N$ für $z$ ein und bilde Erwartungswert:
-\begin{align*}
-\E\left[X_N^p\right]
-&=p\cdot\int\limits_0^\infty x^{p-1}\cdot\E\left[\indi_{\lbrace X_N \geq x\rbrace}\right]\d x \\
-&=p\cdot\int\limits_0^\infty x^{p-1}\cdot\P\big(X_N\geq x\big)\d x\\
-&=p\cdot\int\limits_0^N x^{p-1}\cdot\P\big(X_N\geq x\big)\d x + p\cdot\int\limits_N^\infty x^{p-1}\cdot\underbrace{\P\big(X_N\geq x\big)}_{=0,\text{ für diese x}}\d x\\
-\overset{\eqref{eq5.3Vor}}&{\leq}
-p\cdot\int\limits_0^N x^{p-2}\cdot\E\left[Y\cdot\indi_{\lbrace X_N\geq n\rbrace}\right]\d x\\
-\overset{\text{Fubini}}&=
-p\cdot\E\left[Y\cdot\int\limits_0^N x^{p-2}\cdot\indi_{\lbrace X_N\geq x\rbrace}\d x\right]\\
-&=p\cdot\E\left[Y\cdot\int\limits_{[0,N]\cap(-\infty,X_N]} x^{p-2}\d x\right]\\
-&\stackeq{X_N\leq N}p\cdot\E\left[Y\cdot\int\limits_0^{X_N} x^{p-2}\d x\right]\\
-&=\frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right]\\
-\end{align*}
-\begin{align*}
-\implies
-\E\left[X_N^p\right]
-&\leq \frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right] \\
-&\stackrel{\text{Hölder}}{\leq}
-\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^{(p-1)q}\right]^{\frac{1}{q}}\\
-&\left(\frac{1}{p} + \frac{1}{q} = 1 \implies \frac{1}{q} = \frac{p-1}{p}\right) \\
-&=\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^{p}\right]^{\frac{p-1}{p}}
-\end{align*}
-\begin{align*}
-\implies
-\underbrace{\E\left[X_N^p\right]^{\frac{1}{p}}}_{=\Vert X_N\Vert_p}
-=\E\left[X_N^p\right]^{\frac{p}{p}-\frac{p-1}{p}}
-\leq
-\frac{p}{p-1}\cdot\underbrace{\E\left[Y^p\right]^{\frac{1}{p}}}_{=\Vert Y\Vert_p}
-\end{align*}
-Mit Fatou folgt dann:
-\begin{align*}
-\Vert X\Vert_p\leq\liminf\limits_{N\to\infty}\Vert X_N\Vert_p\leq\frac{p}{p-1}\cdot\Vert Y\Vert_p
-\end{align*}
+	Setze $X_N:=X\wedge N$ (d.h. Minimum) für alle $n\in\N$. Zeige die Aussage zunächst für $X_N$: Merke
+	\begin{align*}
+		\lbrace X\geq\lambda\rbrace=\lbrace X_N\geq\lambda\rbrace\qquad\forall\lambda\in[0,N]
+	\end{align*}
+	D.h. \eqref{eq5.3Vor} gilt auch für $X_N$, solange $\lambda\in[0,N]$ gilt. Weitere Überlegung:
+	\begin{align*} %x soll hier klein sein
+		z^p
+		= p\cdot\int\limits_0^z x^{p-1}\d x
+		=p\cdot\int\limits_0^\infty x^{p-1}\cdot\indi_{\lbrace z\geq x\rbrace}\d x\qquad\forall p>0,\forall z>0
+	\end{align*}
+	Setze $X_N$ für $z$ ein und bilde Erwartungswert:
+	\begin{align*}
+		\E\left[X_N^p\right]
+		&=p\cdot\int\limits_0^\infty x^{p-1}\cdot\E\left[\indi_{\lbrace X_N \geq x\rbrace}\right]\d x \\
+		&=p\cdot\int\limits_0^\infty x^{p-1}\cdot\P\big(X_N\geq x\big)\d x\\
+		&=p\cdot\int\limits_0^N x^{p-1}\cdot\P\big(X_N\geq x\big)\d x + p\cdot\int\limits_N^\infty x^{p-1}\cdot\underbrace{\P\big(X_N\geq x\big)}_{=0,\text{ für diese x}}\d x\\
+		\overset{\eqref{eq5.3Vor}}&{\leq}
+		p\cdot\int\limits_0^N x^{p-2}\cdot\E\left[Y\cdot\indi_{\lbrace X_N\geq n\rbrace}\right]\d x\\
+		\overset{\text{Fubini}}&=
+		p\cdot\E\left[Y\cdot\int\limits_0^N x^{p-2}\cdot\indi_{\lbrace X_N\geq x\rbrace}\d x\right]\\
+		&=p\cdot\E\left[Y\cdot\int\limits_{[0,N]\cap(-\infty,X_N]} x^{p-2}\d x\right]\\
+		&\stackeq{X_N\leq N}p\cdot\E\left[Y\cdot\int\limits_0^{X_N} x^{p-2}\d x\right]\\
+		&=\frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right]\\
+	\end{align*}
+	\begin{align*}
+		\implies
+		\E\left[X_N^p\right]
+		&\leq \frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right] \\
+		&\stackrel{\text{Hölder}}{\leq}
+		\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^{(p-1)q}\right]^{\frac{1}{q}}\\
+		&\left(\frac{1}{p} + \frac{1}{q} = 1 \implies \frac{1}{q} = \frac{p-1}{p}\right) \\
+		&=\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^{p}\right]^{\frac{p-1}{p}}
+	\end{align*}
+	\begin{align*}
+		\implies
+		\underbrace{\E\left[X_N^p\right]^{\frac{1}{p}}}_{=\Vert X_N\Vert_p}
+		=\E\left[X_N^p\right]^{\frac{p}{p}-\frac{p-1}{p}}
+		\leq
+		\frac{p}{p-1}\cdot\underbrace{\E\left[Y^p\right]^{\frac{1}{p}}}_{=\Vert Y\Vert_p}
+	\end{align*}
+	Mit Fatou folgt dann:
+	\begin{align*}
+		\Vert X\Vert_p\leq\liminf\limits_{N\to\infty}\Vert X_N\Vert_p\leq\frac{p}{p-1}\cdot\Vert Y\Vert_p
+	\end{align*}
 \end{proof}
 
 \begin{proof}[Beweis von Theorem \ref{theorem5.2DoobsLpUngleichung}]\enter
-$(M_n)_{n\in\N}$ ist Martingal oder positives Submartingal. Folglich ist $\big(|M_n|\big)_{n\in\N}$ ein Submartingal. Aus der Maximalungleichung \ref{theorem5.1DoobMaximalungleichung} (Zwischenabschätzung) folgt:
-\begin{align*}
-\P\Big(\underbrace{\max\limits_{0\leq j\leq n}|M_j|}_{=M_n^\ast}\geq\lambda\Big)
-&\leq\lambda\cdot\E\Big[|M_n|\cdot\indi_{\Big\lbrace\underbrace{\max\limits_{0\leq j\leq n}|M_j|}_{=M_n^\ast}\geq\lambda\Big\rbrace}\Big]
-\end{align*}
-Dies entspricht der Voraussetzung \eqref{eq5.3Vor} in Lemma \ref{lemma5.3} mit $X=M_n^\ast$, $Y=|M_n|$. Somit folgt aus Lemma \ref{lemma5.3}:
-\begin{align*}
-\big\Vert M_n^\ast\big\Vert_p\leq\frac{p}{p-1}\cdot\big\Vert M_n\big\Vert_p
-\end{align*}
+	$(M_n)_{n\in\N}$ ist Martingal oder positives Submartingal.
+	Folglich ist $\big(|M_n|\big)_{n\in\N}$ ein Submartingal.
+	Aus der Maximalungleichung 	\ref{theorem5.1DoobMaximalungleichung} (Zwischenabschätzung) folgt:
+	\begin{align*}
+		\P\Big(\underbrace{\max\limits_{0\leq j\leq n}|M_j|}_{=M_n^\ast}\geq\lambda\Big)
+		&\leq\lambda\cdot\E\Big[|M_n|\cdot\indi_{\Big\lbrace\underbrace{\max\limits_{0\leq j\leq n}|M_j|}_{=M_n^\ast}\geq\lambda\Big\rbrace}\Big]
+	\end{align*}
+	Dies entspricht der Voraussetzung \eqref{eq5.3Vor} in Lemma \ref{lemma5.3} mit $X=M_n^\ast$, $Y=|M_n|$. Somit folgt aus Lemma \ref{lemma5.3}:
+	\begin{align*}
+		\big\Vert M_n^\ast\big\Vert_p\leq\frac{p}{p-1}\cdot\big\Vert M_n\big\Vert_p
+	\end{align*}
 \end{proof}
 
 \begin{theorem}[Azumas Ungleichung]\label{theorem5.4AzumasUngleichung}\enter
-Sei $(X_n)_{n\in\N}$ ein Martingal mit beschränkten Zuwächsen, also $\big|X_n-X_{n-1}\big|\leq c_n$ für deterministische Folge $(c_n)_{n\in\N}\subseteq\R_{\geq0}$. Dann gilt:
-\begin{align*}
-\P\Big(\big|X_n-\E[X_n]\big|\geq\lambda\Big)\leq2\cdot\exp\left(-\frac{\lambda^2}{2\cdot\sum\limits_{i=1}^n c_i^2}\right)\qquad\forall\lambda\geq0
-\end{align*}
-Hierbei ist die rechte Seite der Ungleichung proportional zur Dichte von $\mathcal{N}\left(0,\sum\limits_{i=1}^n c_i^2\right)$. Man spricht auch von ``Subgaussian tails''.
+	Sei $(X_n)_{n\in\N}$ ein Martingal mit beschränkten Zuwächsen, also $\big|X_n-X_{n-1}\big|\leq c_n$ für deterministische Folge $(c_n)_{n\in\N}\subseteq\R_{\geq0}$. Dann gilt:
+	\begin{align*}
+		\P\Big(\big|X_n-\E[X_n]\big|\geq\lambda\Big)\leq2\cdot\exp\left(-\frac{\lambda^2}{2\cdot\sum\limits_{i=1}^n c_i^2}\right)\qquad\forall\lambda\geq0
+	\end{align*}
+	Hierbei ist die rechte Seite der Ungleichung proportional zur Dichte von $\mathcal{N}\left(0,\sum\limits_{i=1}^n c_i^2\right)$.
+	Man spricht auch von ``Subgaussian tails''.
 \end{theorem}
+
 \begin{proof}
-Betrachte die Funktion
-\begin{align*}
-f:\R\to\R,\qquad f_\alpha(x):=\exp(\alpha\cdot x)\qquad\forall x,\alpha\in\R
-\end{align*}
-%TODO Hier könnte man eine Skizze einfügen. 
-Offenbar ist $f_\alpha$ konvex, d.h. für alle $c>0$ liegt $\graph(f_\alpha)$ unter dem Liniensegment $s$ von $\big(-c,f_\alpha(-c)\big)$ nach $\big(c,f_\alpha(c)\big)$. Explizit:
-\begin{align*}
-f_\alpha(x)\leq s_\alpha(x)\qquad\forall |x|\leq c\qquad\mit s_\alpha(x)=\frac{f_\alpha(c)-f_\alpha(-c)}{2\cdot c}\cdot x+\frac{f_\alpha(c)+f_\alpha(-c)}{2}
-\end{align*}
-Jetzt setzen wir $f_\alpha$ ein und erhalten:
-\begin{align*}
-\exp(\alpha\cdot x)
-&\leq\frac{x}{2\cdot c}\cdot\big(\exp(\alpha\cdot c)-\exp(-\alpha\cdot c)\big)+\frac{1}{2}\cdot\big(\exp(\alpha\cdot c)+\exp(-\alpha\cdot c)\big)\quad\forall |x|\leq c
-\end{align*}
-Einsetzen: $\big(X_n-X_{n-1}\big)$ für $x$ und $c_n$ für $c$ und Bilden des Erwartungswertes $\E[\cdot~|~\F_{n-1}]$ liefert:
-\begin{align*}
-\E\Big[\exp(\alpha\cdot(X_n-X_{n-1})~\Big|~\F_{n-1}\Big]
-&\leq
-\frac{\overbrace{\E\big[X_n-X_{n-1}~\big|~\F_{n-1}\big]}^{\stackeq{\text{MG}}0}}{2\cdot c_n}\cdot\big(\exp(\alpha\cdot c_n)-\exp(-\alpha\cdot c_n)\big)\\
-&\qquad+\frac{1}{2}\cdot\big(\exp(\alpha\cdot c_n+\exp(-\alpha\cdot c_n)\big)
-\end{align*}
-\begin{align*}
-\implies
-\E\Big[\exp(\alpha\cdot(X_n-X_{n-1})~\Big|~\F_{n-1}\Big]
-&\leq \frac{1}{2}\cdot\big(\exp(\alpha\cdot c_n)+\exp(-\alpha\cdot c_n)\big)\\
-&=\frac{1}{2}\left(\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{k}}{k!}+\sum\limits_{k=0}^\infty\frac{(-\alpha\cdot c_n)^{k}}{k!}\right)\\
-&=\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{2\cdot k}}{(2\cdot k)!}\\
-&\stackrel{2^k\cdot k! \leq (2\cdot k)!}{\leq}\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{2\cdot k}}{2^k\cdot k!}\\
-&=\exp\left(\frac{\alpha^2\cdot c_n^2}{2}\right)
-\end{align*}
-Wir wollen es Iterieren und zeigen dafür einen Schritt:
-\begin{align*}
-&\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
-&=\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-1})\big)\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
-\overset{\eqref{Turmregel}}&=
-\E\Big[\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\big|~\F_{n-1}\big]~\Big|~\F_{n-2}\Big]\\
-\overset{\F_{n-1}\text{-m.b.}}&=
-\E\Big[\underbrace{\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))~\big|~\F_{n-1}\big]}_{\leq\exp\left(\frac{\alpha^2\cdot c_n^2}{2}\right)}\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
-&\leq
-\exp\left(\frac{\alpha^2}{2}\cdot\left(c_n^2+c_{n-1}^2\right)\right)
-\end{align*}
-Iterieren und Erwartungswert bilden liefert:
-\begin{align*}
-\E\Big[\exp\big(\alpha\cdot(X_n-X_0)\big)\Big]
-&= \E\Big[\E\left[\exp\big(\alpha\cdot(X_n-X_0)\big)~|~F_0\right]\Big] \\
-&\leq\exp\Big(\frac{\alpha^2}{2}\cdot\underbrace{\sum\limits_{k=1}^n c_k^2}_{=D_n^2}\Big)\qquad\forall\alpha\in\R
-\end{align*}
-\begin{align*}
-\P(X_n-X_0\geq\lambda)
-\overset{\alpha\geq0}&=
-\P\Big(\exp\big(\alpha\cdot(X_n-X_0)\big)\geq\exp(\alpha\cdot\lambda)\Big)\\
-\overset{\text{Markov}}&{\leq}
-\exp(-\alpha\cdot\lambda)\cdot\E\Big[\exp\big(\alpha\cdot(X_n-X_0)\big)\Big]\\
-&\leq
-\exp\Big(\underbrace{-\alpha\cdot\lambda+\frac{\alpha^2}{2}\cdot D_n^2}_{=:\rho(\alpha)}\Big)\qquad\forall\alpha\geq0
-\end{align*}
-Suche beste (d.h. kleinste) Schranke der Ableitung von $\rho$:
-\begin{align*}
-\rho'(\alpha)=-\lambda+\alpha\cdot D_n^2\implies\alpha_\ast=\frac{\lambda}{D_n^2}\geq0
-\end{align*}
-Einsetzen:
-\begin{align*}
-\P\big(X_n-X_0\geq\lambda\big)
-\leq\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
-\end{align*}
-Analog erhält man:
-\begin{align*}
-\P\big(X_n-X_0\leq-\lambda\big)
-\leq\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
-\end{align*}
-Insgesamt erhält man also die zweiseitige Abschätzung:
-\begin{align*}
-\P\big(|X_n-X_0|\geq\lambda\big)
-&\leq
-\P\big(X_n-X_0\geq\lambda\big) +
-\P\big(X_n-X_0\leq-\lambda\big) \\
-&\leq2\cdot\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
-\end{align*}
-Beachte $X_0=\E\left[X_n\right]$.
+	Betrachte die Funktion
+	\begin{align*}
+		f:\R\to\R,\qquad f_\alpha(x):=\exp(\alpha\cdot x)\qquad\forall x,\alpha\in\R
+	\end{align*}
+	%TODO Hier könnte man eine Skizze einfügen. 
+	Offenbar ist $f_\alpha$ konvex, d.h. für alle $c>0$ liegt $\graph(f_\alpha)$ unter dem Liniensegment $s$ von $\big(-c,f_\alpha(-c)\big)$ nach $\big(c,f_\alpha(c)\big)$. Explizit:
+	\begin{align*}
+		f_\alpha(x)\leq s_\alpha(x)\qquad\forall |x|\leq c\qquad\mit s_\alpha(x)=\frac{f_\alpha(c)-f_\alpha(-c)}{2\cdot c}\cdot x+\frac{f_\alpha(c)+f_\alpha(-c)}{2}
+	\end{align*}
+	Jetzt setzen wir $f_\alpha$ ein und erhalten:
+	\begin{align*}
+		\exp(\alpha\cdot x)
+		&\leq\frac{x}{2\cdot c}\cdot\big(\exp(\alpha\cdot c)-\exp(-\alpha\cdot c)\big)+\frac{1}{2}\cdot\big(\exp(\alpha\cdot c)+\exp(-\alpha\cdot c)\big)\quad\forall |x|\leq c
+	\end{align*}
+	Einsetzen: $\big(X_n-X_{n-1}\big)$ für $x$ und $c_n$ für $c$ und Bilden des Erwartungswertes $\E[\cdot~|~\F_{n-1}]$ liefert:
+	\begin{align*}
+		\E\Big[\exp(\alpha\cdot(X_n-X_{n-1})~\Big|~\F_{n-1}\Big]
+		&\leq
+		\frac{\overbrace{\E\big[X_n-X_{n-1}~\big|~\F_{n-1}\big]}^{\stackeq{\text{MG}}0}}{2\cdot c_n}\cdot\big(\exp(\alpha\cdot c_n)-\exp(-\alpha\cdot c_n)\big)\\
+		&\qquad+\frac{1}{2}\cdot\big(\exp(\alpha\cdot c_n+\exp(-\alpha\cdot c_n)\big)
+	\end{align*}
+	\begin{align*}
+		\implies
+		\E\Big[\exp(\alpha\cdot(X_n-X_{n-1})~\Big|~\F_{n-1}\Big]
+		&\leq \frac{1}{2}\cdot\big(\exp(\alpha\cdot c_n)+\exp(-\alpha\cdot c_n)\big)\\
+		&=\frac{1}{2}\left(\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{k}}{k!}+\sum\limits_{k=0}^\infty\frac{(-\alpha\cdot c_n)^{k}}{k!}\right)\\
+		&=\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{2\cdot k}}{(2\cdot k)!}\\
+		&\stackrel{2^k\cdot k! \leq (2\cdot k)!}{\leq}\sum\limits_{k=0}^\infty\frac{(\alpha\cdot c_n)^{2\cdot k}}{2^k\cdot k!}\\
+		&=\exp\left(\frac{\alpha^2\cdot c_n^2}{2}\right)
+	\end{align*}
+	Wir wollen es Iterieren und zeigen dafür einen Schritt:
+	\begin{align*}
+		&\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
+		&=\E\Big[\exp\big(\alpha\cdot(X_n-X_{n-1})\big)\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
+		\overset{\eqref{Turmregel}}&=
+		\E\Big[\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))\cdot\exp\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\big|~\F_{n-1}\big]~\Big|~\F_{n-2}\Big]\\
+		\overset{\F_{n-1}\text{-m.b.}}&=
+		\E\Big[\underbrace{\E\big[\exp(\alpha\cdot(X_n-X_{n-1}))~\big|~\F_{n-1}\big]}_{\leq\exp\left(\frac{\alpha^2\cdot c_n^2}{2}\right)}\cdot\exp		\big(\alpha\cdot(X_{n-1}-X_{n-2})\big)~\Big|~\F_{n-2}\Big]\\
+		&\leq
+		\exp\left(\frac{\alpha^2}{2}\cdot\left(c_n^2+c_{n-1}^2\right)\right)
+	\end{align*}
+	Iterieren und Erwartungswert bilden liefert:
+	\begin{align*}
+		\E\Big[\exp\big(\alpha\cdot(X_n-X_0)\big)\Big]
+		&= \E\Big[\E\left[\exp\big(\alpha\cdot(X_n-X_0)\big)~|~F_0\right]\Big] \\
+		&\leq\exp\Big(\frac{\alpha^2}{2}\cdot\underbrace{\sum\limits_{k=1}^n c_k^2}_{=D_n^2}\Big)\qquad\forall\alpha\in\R
+	\end{align*}
+	\begin{align*}
+		\P(X_n-X_0\geq\lambda)
+		\overset{\alpha\geq0}&=
+		\P\Big(\exp\big(\alpha\cdot(X_n-X_0)\big)\geq\exp(\alpha\cdot\lambda)\Big)\\
+		\overset{\text{Markov}}&{\leq}
+		\exp(-\alpha\cdot\lambda)\cdot\E\Big[\exp\big(\alpha\cdot(X_n-X_0)\big)\Big]\\
+		&\leq
+		\exp\Big(\underbrace{-\alpha\cdot\lambda+\frac{\alpha^2}{2}\cdot D_n^2}_{=:\rho(\alpha)}\Big)\qquad\forall\alpha\geq0
+	\end{align*}
+	Suche beste (d.h. kleinste) Schranke der Ableitung von $\rho$:
+	\begin{align*}
+		\rho'(\alpha)=-\lambda+\alpha\cdot D_n^2\implies\alpha_\ast=\frac{\lambda}{D_n^2}\geq0
+	\end{align*}
+	Einsetzen:
+	\begin{align*}
+		\P\big(X_n-X_0\geq\lambda\big)
+		\leq\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
+	\end{align*}
+	Analog erhält man:
+	\begin{align*}
+		\P\big(X_n-X_0\leq-\lambda\big)
+		\leq\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
+	\end{align*}
+	Insgesamt erhält man also die zweiseitige Abschätzung:
+	\begin{align*}
+		\P\big(|X_n-X_0|\geq\lambda\big)
+		&\leq
+		\P\big(X_n-X_0\geq\lambda\big) +
+		\P\big(X_n-X_0\leq-\lambda\big) \\
+		&\leq2\cdot\exp\left(-\frac{\lambda^2}{2\cdot D_n^2}\right)
+	\end{align*}
+	Beachte $X_0=\E\left[X_n\right]$.
 \end{proof}
 
 \setcounter{section}{1}
 \section{Rückwärtsmartingale (RWN)} %5.2
 \begin{defi}
 	Sei $(\G_n)_{n\in\N}$ eine \textbf{absteigende} (d.h. $\G_{n}\subseteq\G_{n-1}~\forall n\in\N$) Folge von $\sigma$-Algebren.\\
-Ein stochastischer Prozess $(R_n)_{n\in\N}$ heißt \textbf{Rückwärtsmartingal (RWN)} bzgl. $(\G_n)_{n\in\N}$, falls folgende Eigenschaften gelten:
-\begin{enumerate}
-\item $R_n$ ist $\G_n$-messbar $\forall n\in\N$
-\item $\begin{aligned}
-\E\big[|R_n|\big]<\infty\qquad\forall n\in\N
-\end{aligned}$
-\item $\begin{aligned}
-R_n=\E\big[R_k~\big|~\G_n\big]\qquad\forall k\leq n
-\end{aligned}$
-\end{enumerate} 
+	Ein stochastischer Prozess $(R_n)_{n\in\N}$ heißt \textbf{Rückwärtsmartingal (RWN)} bzgl. $(\G_n)_{n\in\N}$, falls folgende Eigenschaften gelten:
+	\begin{enumerate}
+		\item $R_n$ ist $\G_n$-messbar $\forall n\in\N$
+		\item $\begin{aligned}
+			\E\big[|R_n|\big]<\infty\qquad\forall n\in\N
+		\end{aligned}$
+		\item $\begin{aligned}
+			R_n=\E\big[R_k~\big|~\G_n\big]\qquad\forall k\leq n
+		\end{aligned}$
+	\end{enumerate} 
 \end{defi}
 
 \begin{bemerkung}
-Setze $M_{-n}=R_n$  und $\F_{-n}=\G_n$ für alle $n\in\N$.\\
-Dann ist $\big(M_k,\F_k\big)_{k\in-\N}$ ein Martingal mit Indexmenge $I=-\N$.
+	Setze $M_{-n}=R_n$  und $\F_{-n}=\G_n$ für alle $n\in\N$.\\
+	Dann ist $\big(M_k,\F_k\big)_{k\in-\N}$ ein Martingal mit Indexmenge $I=-\N$.
 \end{bemerkung}
 
 \begin{theorem}[Konvergenz von RWMs]\label{theorem5.5KonvergenzVonRWMs}\enter
-Sei $(R_n)_{n\in\N}$ ein RWM bzgl. $(\G_n)_{n\in\N}$ und 
-\begin{align*}
-\G_\infty:=\bigcap\limits_{k=1}^\infty\G_k
-\end{align*}
-die \textbf{terminale $\sigma$-Algebra}. Dann gilt:
-\begin{align*}
-	\exists R_\infty\in L_1\big(\G_\infty\big)\colon\limn R_n=R_\infty \text{ und } \big\Vert R_n-R_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
-\end{align*}
+	Sei $(R_n)_{n\in\N}$ ein RWM bzgl. $(\G_n)_{n\in\N}$ und 
+	\begin{align*}
+		\G_\infty:=\bigcap\limits_{k=1}^\infty\G_k
+	\end{align*}
+	die \textbf{terminale $\sigma$-Algebra}. Dann gilt:
+	\begin{align*}
+		\exists R_\infty\in L_1\big(\G_\infty\big)\colon\limn R_n=R_\infty \text{ und } \big\Vert R_n-R_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
+	\end{align*}
 \end{theorem}
 
 \begin{bemerkung}
-Dieses Theorem hat keine Voraussetzungen! RMWs konvergieren immer!
+	Dieses Theorem hat keine Voraussetzungen! RMWs konvergieren immer!
 \end{bemerkung}
 
 \begin{proof}
-	Verwende Martingal $(M_n)_{n\in\N}$. Seien $U_n [ a,b]$ die Upcrossings von $[ a,b]$ durch $(M_k)_{k\in\lbrace-N,\ldots,0\rbrace}$. Doobs Upcrossing Lemma \ref{lemma4.1DoobsUpcrossingLemma} sagt:
-\begin{align*}
-	\E\Big[U_n[ a,b]\Big]
-&\leq
-\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
-\end{align*}
-Mit monotoner Konvergenz erhält man mit $N\to\infty$:
-\begin{align*}
-\E\Big[U[a,b]\Big]\leq\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
-\end{align*}
-Analog zur Vorwärtskonvergenz:
-\begin{align*}
-\exists M_{-\infty}\text{ mit Werten in }\overline{\R}:\limn M_{-n}=M_{-\infty}\text{ f.s.}
-\end{align*}
-\ul{Außerdem:} (mit RWM-Eigenschaft und $k=0$)
-\begin{align*}
-M_{-n}
-&=\E\big[M_0~\big|~\F_{-n}\big]\\
-&\implies \big(M_{-n}\big)_{n\in\N}\text{ ist ggi}\\
-&\implies M_{-\infty}\in L_1\big(\F_{-\infty}\big)\text{ und }\big\Vert M_{-n}-M_{-\infty}\big\Vert_1\stackrel{n\to\infty}{\longrightarrow}0\\
-&\text{d.h. }R_\infty\in L_1(\G_\infty)\text{ und }\big\Vert R_n-R_\infty\big\Vert_1\stackrel{n\to\infty}{\longrightarrow}0
-\end{align*}
+	Verwende Martingal $(M_n)_{n\in\N}$. Seien $U_n [ a,b]$ die Upcrossings von $[ a,b]$ durch $(M_k)_{k\in\lbrace-N,\ldots,0\rbrace}$.
+	Doobs Upcrossing Lemma \ref{lemma4.1DoobsUpcrossingLemma} sagt:
+	\begin{align*}
+		\E\Big[U_n[ a,b]\Big]
+		&\leq
+		\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
+	\end{align*}
+	Mit monotoner Konvergenz erhält man mit $N\to\infty$:
+	\begin{align*}
+		\E\Big[U[a,b]\Big]\leq\frac{1}{b-a}\cdot\E\Big[\big(M_0-a\big)^+\Big]<\infty
+	\end{align*}
+	Analog zur Vorwärtskonvergenz:
+	\begin{align*}
+		\exists M_{-\infty}\text{ mit Werten in }\overline{\R}:\limn M_{-n}=M_{-\infty}\text{ f.s.}
+	\end{align*}
+	\ul{Außerdem:} (mit RWM-Eigenschaft und $k=0$)
+	\begin{align*}
+		M_{-n}
+		&=\E\big[M_0~\big|~\F_{-n}\big]\\
+		&\implies \big(M_{-n}\big)_{n\in\N}\text{ ist ggi}\\
+		&\implies M_{-\infty}\in L_1\big(\F_{-\infty}\big)\text{ und }\big\Vert M_{-n}-M_{-\infty}\big\Vert_1\stackrel{n\to\infty}{\longrightarrow}0\\
+		&\text{d.h. }R_\infty\in L_1(\G_\infty)\text{ und }\big\Vert R_n-R_\infty\big\Vert_1\stackrel{n\to\infty}{\longrightarrow}0
+	\end{align*}
 \end{proof}
 
 \begin{theorem}[Kolmogorov's 0-1-Gesetz]\label{theorem5.6Kolmogorovs01Gesetz}\enter
-Seien $(X_n)_{n\in\N}$ unabhängige Zufallsvariablen und $\G_n:=\sigma\big(X_n,X_{n+1},\ldots\big)$.\\
-Dann ist die terminale $\sigma$-Algebra
-$\G_\infty:=\bigcap\limits_{n\in\N}\G_n$ $\P$-trivial.
+	Seien $(X_n)_{n\in\N}$ unabhängige Zufallsvariablen und $\G_n:=\sigma\big(X_n,X_{n+1},\ldots\big)$.\\
+	Dann ist die terminale $\sigma$-Algebra
+	$\G_\infty:=\bigcap\limits_{n\in\N}\G_n$ $\P$-trivial.
 \end{theorem}
 
 \begin{bemerkung}
-Eine $\sigma$-Algebra $\F$ heißt \textbf{$\P$-trivial}
-\begin{align*}
-:\Longleftrightarrow\forall A\in\F:\P(A)\in\lbrace0,1\rbrace
-\end{align*}
+	Eine $\sigma$-Algebra $\F$ heißt \textbf{$\P$-trivial}
+	\begin{align*}
+		:\Longleftrightarrow\forall A\in\F:\P(A)\in\lbrace0,1\rbrace
+	\end{align*}
 \end{bemerkung}
 
 \begin{proof}
-Sei $A\in\G_\infty$ und $\F_n:=\sigma\big(X_1,\ldots,X_n\big)$. Es gilt offenbar 
-\begin{align*}
-	\G_\infty&\subseteq\F_\infty&&\text{, denn }\G_\infty=\bigcap\limits_{n\in\N}\G_n\text{ und }\F_\infty=\bigcup\limits_{n\in\N}\F_n\\
-	\G_\infty&\unab\F_n&&\forall n\in\N
-\end{align*}
-Dann ist
-\begin{align*}
-M_n:=\E\big[\indi_A~\big|~\F_n\big]
-\end{align*}
-ein ggi Martingal und ggi Martingale konvergieren. Also folgt:
-\begin{align*}
-	\exists M_\infty\in L_1(\F_\infty):\limn M_n=M_\infty\text{ f.s. und }\big\Vert M_n-M_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
-\end{align*}
-Wir zeigen $M_\infty=\indi_A$:
-\begin{align*}
-\E\Big[\indi_A~\Big|~\F_n\Big]&=M_n=\E\big[M_\infty~\big|~\F_n\big]\\
-\implies
-\E\Big[\indi_A\cdot\indi_{B_n}~\Big|~\F_n\Big]
-&=\E\big[M_\infty\cdot\indi_{B_n}~\big|~\F_n\big]\qquad\forall B_n\in\F_n\\
-\implies
-\E\Big[\underbrace{\indi_A}_{\in\G_\infty\subseteq\F_\infty}\cdot\indi_{B}~\Big|~\F_n\Big]
-&=\E\big[\underbrace{M_\infty}_{\in\F_\infty}\cdot\indi_{B}~\big|~\F_n\big]\qquad\forall B\in\F_\infty\\
-\implies\indi_A=M_\infty
-\end{align*}
-Andererseits
-\begin{align*}
-M_n
-&=\E\Big[\underbrace{\indi_A~\Big|~\F_n}_{\unab}\Big]
-=\E\big[\indi_A\big]
-=\P(A)\\
-\implies M_\infty&=\P(A)\implies\indi_A=\P(A)
-\implies\P(A)\in\lbrace0,1\rbrace
-\end{align*}
-Also ist $\G_\infty$ ist $\P$-trivial.
+	Sei $A\in\G_\infty$ und $\F_n:=\sigma\big(X_1,\ldots,X_n\big)$. Es gilt offenbar 
+	\begin{align*}
+		\G_\infty&\subseteq\F_\infty&&\text{, denn }\G_\infty=\bigcap\limits_{n\in\N}\G_n\text{ und }\F_\infty=\bigcup\limits_{n\in\N}\F_n\\
+		\G_\infty&\unab\F_n&&\forall n\in\N
+	\end{align*}
+	Dann ist
+	\begin{align*}
+		M_n:=\E\big[\indi_A~\big|~\F_n\big]
+	\end{align*}
+	ein ggi Martingal und ggi Martingale konvergieren. Also folgt:
+	\begin{align*}
+		\exists M_\infty\in L_1(\F_\infty):\limn M_n=M_\infty\text{ f.s. und }\big\Vert M_n-M_\infty\big\Vert_{L_1}\stackrel{n\to\infty}{\longrightarrow}0
+	\end{align*}
+	Wir zeigen $M_\infty=\indi_A$:
+	\begin{align*}
+		\E\Big[\indi_A~\Big|~\F_n\Big]&=M_n=\E\big[M_\infty~\big|~\F_n\big]\\
+		\implies
+		\E\Big[\indi_A\cdot\indi_{B_n}~\Big|~\F_n\Big]
+		&=\E\big[M_\infty\cdot\indi_{B_n}~\big|~\F_n\big]\qquad\forall B_n\in\F_n\\
+		\implies
+		\E\Big[\underbrace{\indi_A}_{\in\G_\infty\subseteq\F_\infty}\cdot\indi_{B}~\Big|~\F_n\Big]
+		&=\E\big[\underbrace{M_\infty}_{\in\F_\infty}\cdot\indi_{B}~\big|~\F_n\big]\qquad\forall B\in\F_\infty\\
+		\implies\indi_A=M_\infty
+	\end{align*}
+	Andererseits
+	\begin{align*}
+		M_n
+		&=\E\Big[\underbrace{\indi_A~\Big|~\F_n}_{\unab}\Big]
+		=\E\big[\indi_A\big]
+		=\P(A)\\
+		\implies M_\infty&=\P(A)\implies\indi_A=\P(A)
+		\implies\P(A)\in\lbrace0,1\rbrace
+	\end{align*}
+	Also ist $\G_\infty$ ist $\P$-trivial.
 \end{proof}
 
 Konsequenz:
 
 \begin{theorem}[Starkes Gesetz der großen Zahlen]\label{theorem5.7StarkesGesetzDerGrossenZahlen}\enter
-Sei $(X_n)_{n\in\N}\subseteq L_1$ iid. Dann gilt:
-\begin{align*}
-\frac{1}{n}\cdot\left(X_1+\ldots+X_n\right)\stackrel{n\to\infty}{\longrightarrow}\E\big[X_1\big]\quad\P\text{-fast sicher}
-\end{align*}
+	Sei $(X_n)_{n\in\N}\subseteq L_1$ iid. Dann gilt:
+	\begin{align*}
+		\frac{1}{n}\cdot\left(X_1+\ldots+X_n\right)\stackrel{n\to\infty}{\longrightarrow}\E\big[X_1\big]\quad\P\text{-fast sicher}
+	\end{align*}
 \end{theorem}
 
 \begin{proof}
-Übung. Beweisskizze/Hinweise:
-%TODO hier Beweis aus Übung einfügen (nach der Übung)
+	Übung. Beweisskizze/Hinweise:
+	%TODO hier Beweis aus Übung einfügen (nach der Übung)
 
-\begin{align*}
-R_n:=\frac{1}{n}\cdot\left(X_1+\ldots+X_n\right)\qquad\forall n\in\N
-\end{align*}
-ist Rückwärtsmartingal bzgl.
-\begin{align*}
-\G_n:&=\sigma\left(S_n,X_{n+1},X_{n+2},\ldots\right)\\
-S_n&=X_1+\ldots+X_n
-\end{align*}
-Also konvergiert $R_n$ nach Theorem \ref{theorem5.5KonvergenzVonRWMs}.\\
-Rest folgt aus Kolmogorov's 0-1-Gesetz \ref{theorem5.6Kolmogorovs01Gesetz}.
+	\begin{align*}
+		R_n:=\frac{1}{n}\cdot\left(X_1+\ldots+X_n\right)\qquad\forall n\in\N
+	\end{align*}
+	ist Rückwärtsmartingal bzgl.
+	\begin{align*}
+		\G_n:&=\sigma\left(S_n,X_{n+1},X_{n+2},\ldots\right)\\
+		S_n&=X_1+\ldots+X_n
+	\end{align*}
+	Also konvergiert $R_n$ nach Theorem \ref{theorem5.5KonvergenzVonRWMs}.\\
+	Rest folgt aus Kolmogorov's 0-1-Gesetz \ref{theorem5.6Kolmogorovs01Gesetz}.
 \end{proof}
