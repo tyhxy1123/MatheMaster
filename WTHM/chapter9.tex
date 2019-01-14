@@ -1,0 +1,42 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Zentrale Grenzwertsätze (ZGS)} %9
+\ul{\textbf{Botschaft / Kernaussage:}}\nl
+Summen von unabhängigen Zufallsvariablen konvergieren bei passender Normalisierung (Verschiebung + Skalierung) in Verteilung gegen eine 
+(Standard-)Normalverteilte Zufallsvariable, wenn:
+\begin{itemize}
+	\item Alle Zufallsvariablen endliche Varianzen $\sigma_j^2$ haben.
+	\item Keine der $\sigma_j^2$ zu stark "dominiert".
+\end{itemize}
+
+Wir behandeln ZGS von 
+\begin{itemize}
+	\item De Moivre-Laplace (Alle $\sigma_j^2$ sind gleich)
+	\item Lindeberg (unterschiedliche $\sigma_j^2$)
+\end{itemize}
+
+Beweismethode: Charakteristische Funktionen und Stetigkeitssatz von Lévy \ref{theorem8.1StetigkeitssatzVonLevy}
+
+\begin{vorüberlegung}
+	Taylor-Entwicklung der Exponentialfunktion mit Rekursion für Restglied
+	\begin{align}\label{eqVorueberlegungChapter9Exp}\tag{Exp}
+		\exp(i\cdot x)=\sum\limits_{k=0}^n\frac{(i\cdot x)^k}{k!}+g_n(x)
+	\end{align}
+	Es gilt:
+	\begin{align*}
+		\int\limits_0^x g_n(y)\d y
+		&=\int\limits_0^x\left(\exp(i\cdot x)-\sum\limits_{k=0}^n\frac{(i\cdot y)^k}{k!}\right)\d y\\
+		&=(-i)\cdot\left(\big(\exp(i\cdot x)\-1\big)-\sum\limits_{k=0}^n\frac{(i\cdot x)^{k+1}}{(k+1)!}\right)\\
+		\overset{\text{Indexshift}}&=
+		(-i)\cdot\underbrace{\left(\exp(i\cdot x)-\sum\limits_{k=0}^{n+1}\frac{(i\cdot x)^k}{k!}\right)}_{=g_{n+1}(x)}\\
+		&=-i\cdot g_{n+1}(x)
+	\end{align*}
+\end{vorüberlegung}
+
+
+
+
+
