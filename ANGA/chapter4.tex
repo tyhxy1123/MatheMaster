@@ -1,0 +1,159 @@
+\chapter{Die Riemannsche Vermutung}
+Sei $K =\F_q$ ein endlicher Körper, $F|K$ Funktionenkörper vom Geschlecht $g$.
+
+\section{Endlichkeit der Klassenzahl}
+\begin{erinnerungnr}
+    Der endliche Körper $\F_q$ ist vollkommen und hat für jedes $d \in \N$ genau eine Erweiterung $L \subseteq \overline{\F_q}$ vom Grad $d$.
+    Diese ist galoissch mit zyklischer Galoisgruppe, erzeugt vom relativen Frobenius $x \mapsto x^q$.
+\end{erinnerungnr}
+
+\begin{definition}
+    Für $d \in \Z$ seien
+    \begin{align*}
+        \Div^d(F|K) &:= \{A \in \Div(F|K) \mid \deg A = d\} \\
+        \Div^d_{\geq 0}(F|K) & := \{A \in \Div^d(F|K) \mid A \geq 0\}\\
+        \Cs^d(F|K) & := \{[A] \in \Cs(F|K) \mid A \in \Div^d(F|K)\}.
+    \end{align*}
+\end{definition}
+
+\begin{lemma}
+    $$ |S^d(F|K)| < \infty \quad\forall~d$$
+\end{lemma}
+\begin{proof}
+    Für $F = K(t)$ klar aus II.3.4. Für $F$ allgemein wähle $t \in F$ transzendent.
+    Für $P \in S^d(F|K)$ ist $P|_{K(t)} \in \bigcup\limits_{i=1}^d S^i(K(t)|K)$ 
+    und die Abbildung $P \mapsto P|_{K(t)}$ hat endliche Fasern (II.3.5).
+\end{proof}
+
+\begin{satz}
+    $$ |\Div^d_{\geq 0} (F|K) < \infty \quad \forall~d$$
+\end{satz}
+\begin{proof}
+    $D \in \Div^d_{\geq 0}(F|K) \implies D$ ist Summe von höchstens $d$ vielen
+    $$ P \in \bigcup_{i=0}^d S^i(F|K), $$
+    denn $D = \sum n_iP_i \implies \deg D = \sum n_i \deg P_i$. 
+\end{proof}
+
+\begin{lemma}
+    $$|\Cs^d(F|K)| < \infty \quad \forall~d \geq g$$
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \deg A = d \geq g  & \implies \dim A \geq 1\\
+        & \implies A \sim A' \geq 0, [A] = [A'], \deg A' = d
+    \end{align*}
+    Nach 1.4 existieren nur endlich viele solche $A'$, somit auch nur endlich viele $[A]$.
+\end{proof}
+
+\begin{satz}
+    $\Cs^0(F|K)$ ist eine endliche abelsche Gruppe.
+\end{satz}
+\begin{proof}
+    Wähle $D \in \Div(F|K)$ mit $d:=\deg D \geq g$.
+    $$ \text{Die Abbildung } \begin{cases}
+        \Cs^0(F|K) \to \Cs^d(F|K)\\
+        [A] \mapsto [A +D]
+    \end{cases} \text{ ist eine Bijektion.}$$
+\end{proof}
+
+\begin{definition}
+    \begin{align*}
+        h := h_{F|K} := |\Cs^0(F|K)|, \text{ ist die \textbf{Klassenzahl} von } F|K
+    \end{align*}
+\end{definition}
+
+\begin{beispiel}
+    $$ h_{K(T)|K} = 1 \text{ (II.4.6)}$$
+    Allgemeiner gilt: $g=0 \implies h = 1$, denn:
+    \begin{align*}
+        \deg [A] = 0 & \implies \dim [A] = \deg [A] + 1 -g = 1 > 0 \\
+        & \implies A \sim A' \geq 0, \deg A' = 0 \\
+        & \implies A' = 0, \text{ d.h. } [A] = [0].
+    \end{align*}
+\end{beispiel}
+
+\begin{definition}
+    $$ \delta := \min\{d > 0 \mid \Div^d(F|K) \ne \emptyset\}$$
+\end{definition}
+
+\begin{bemerkungnr}
+    Da $\im(\deg) \leq \Z$ ist:
+    $$ \Div^d(F|K) \ne \emptyset \iff \delta|d.$$
+    In diesem Fall ist $|\Cs^d(F|K)|=h_{F|K}$.    
+\end{bemerkungnr}
+
+\begin{lemma}
+    Für $[C] \in \Cs(F|K)$ ist
+    $$ | \{A \in [C] \mid A \geq 0\}| = \frac{1}{q-1}(q^{\dim C}-1).$$
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        &\begin{cases}
+            \mathcal{L}(C)\setminus \{0\} \to \{A \in [C] \mid A \geq 0\}\\
+            x \mapsto C + (x)
+        \end{cases} \text{ ist surjektiv mit } C + (x) = C + (y)\\
+        &\iff \frac{x}{y} \in K^\times\\
+        &\implies |\{A \in [C] \mid A \geq 0\}| = |\P(\mathcal{L}(C))| = \frac{|\mathcal{L}(C) - 1}{|K| -1} 
+        = \frac{q^{\dim C}-1}{q-1}
+    \end{align*}
+\end{proof}
+
+\begin{satz}
+    Für $d > 2g - 2$ mit $\delta|d$ ist
+    $$ |\Div^d_{\geq 0}(F|K)| = \frac{h}{q-1}(q^{d+1-g}-1).$$
+\end{satz}
+\begin{proof}
+    \begin{align*}
+        \delta|d & \implies |\Cs^d(F|K)| = h\\
+        [C] \in \Cs^d(F|K) & \stackrel{d > 2g - 2}{\implies} \dim C = \deg C + 1 -g = d + 1 -g\\
+        & \implies |\Div^d_{\geq 0}(F|K)| = \sum_{[C]\in \Cs^d(F|K)} |\{A \in [C] \mid A \geq 0\}|\\
+        & \qquad = h \frac{1}{q-1}(q^{\dim C} -1) = \frac{h}{q-1}(q^{d +1 -g}-1)
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Die \textbf{Norm} von $D \in \Div(F|K)$ ist
+    $$ N(D) := q^{\deg D}. $$
+\end{definition}
+
+\begin{beispiel}
+    Für $P \in S(F|K)$ ist
+    $$ N(P) = |F_P|.$$
+\end{beispiel}
+
+\section{Die Zeta-Funktion}
+\begin{definition}
+    Schreibe $a_n := |\Div^n(F|K)|$. Die \textbf{Zeta-Funktion} von $F|K$ ist
+    $$ Z(t):=Z_{F|K}(t):= \sum_{n \geq 0} a_n t^n \in \C\llbracket t\rrbracket.$$
+\end{definition}
+
+\begin{satz}
+    \begin{enumerate}[label=(\alph*)]
+        \item $g=0 \implies$ 
+        $$ Z(t) = \frac{1}{q-1}\left(\frac{q}{1-(qt)^\delta} - \frac{1}{1-t^\delta}\right)$$
+        \item $g > 0 \implies$
+        $$ Z(t) = \frac{1}{q-1}\left(\sum_{0\leq\deg[C]\leq 2g-2}q^{\dim [C]}t^{\deg [C]}+hq^{1-g}(qt)^{2g-2+\delta}\frac{1}{1-(qt)^{\delta}}
+        - h\frac{1}{1-t^\delta}
+        \right)$$
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    \begin{align*}
+        \text{(a) } \sum_{n=0}^\infty a_n t^n & = \sum_{n=0}^\infty a_{\delta n}t^{\delta n}\\
+        & \stackeq{1.12~h=1} \sum_{n=0}^\infty \frac{1}{q-1}\left(q^{\delta n +1}-1\right)t^{\delta n}\\
+        & = \frac{1}{q-1} \left(\frac{1}{1-q^\delta t^\delta} - \frac{1}{1 - t^\delta}\right)\\
+        \text{(b) } \sum_{n=0}^\infty a_n t^n & = \sum_{\deg [C] \geq 0} |\{A \in [C] \mid A \geq 0\}|t^{\deg [C]}\\
+        & = \sum_{\deg [C] \geq 0} \frac{q^{\dim [C]}-1}{q-1} t^{\deg [C]}\\
+        & = \frac{1}{q-1}\left(\sum_{0 \leq \deg [C] \leq 2g - 2} q^{\dim [C]} t^{\deg [C]}\right.
+            + \sum_{\deg [C] > 2g -2} q^{\deg [C] + 1 - g} t^{\deg [C]}\\
+            & \left. \qquad - \sum_{\deg [C] \geq 0} t^{\deg [C]}\right)\\
+        & = \frac{1}{q-1}\left(\sum_{0 \leq \deg [C] \leq 2g - 2} q^{\dim [C]} t^{\deg [C]} 
+            + \sum_{n > \underbrace{\frac{2g -2}{\delta}}_{\in \Z}} hq^{\delta n + 1-g}t^{\delta n}
+            - \sum_{n=0}^\infty h t^{\delta n} \right)
+    \end{align*}
+\end{proof}
+
+\begin{korollar}
+    Die Potenzreihe $Z(t)$ konvergiert für $|t| < q^{-1}$, und diese Funktion setzt sich zu einer rationalen Funktion
+    auf $\C$ mit einfachem Pol bei $t=1$ fort.
+\end{korollar}
