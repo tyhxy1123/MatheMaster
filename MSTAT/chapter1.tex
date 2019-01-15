@@ -4201,4 +4201,181 @@ Allerdings ist dies für den Anwender keine signifikante Einschränkung.
 Dafür aber neben der Stetigkeit von $q$ \underline{keine} weitere "Glattheitsannahmen".
 Sind solche Glattheitsannahmen aber gegeben, so lässt sich zeigen, dass $\theta_0$ tatsächlich eindeutiger (und im Fall $\Theta=\R$ wohl-separierte) Minimalstelle von $M_{\theta_0}$ ist. 
 
+\subsection{Anwendung in der Change-Point-Analyse} %8.2
+Betrachten des Change-Point-Modell aus Kapitel 7.1:
+$X_{1,n},\ldots,X_{n,n},n\in\N$ seien unabhängige reelle Zufallsvariablen mit 
+\begin{align*}
+	\left\lbrace\begin{array}{ll}
+		X_{i,n}\text{ i.i.d }\sim(\mu,\sigma^2), &\falls 1\leq i\leq\tau_n\\
+		X_{i,n}\text{ i.i.d }\sim(\nu,\tau^2), &\falls \tau_n< i\leq\tau_n\\
+	\end{array}\right.,\qquad\mu\neq\nu
+\end{align*}
+Mit $\tau_n\in\big\lbrace1,\ldots,n-1\big\rbrace$ unbekannter \textbf{Wechselzeitpunkt}.
+\begin{align*}
+	\underbrace{X_1,\ldots,X_{\tau_n}}_{\text{pre-change variables}},\underbrace{X_{\tau_n+1},\ldots,X_n}_{\text{post-change variables}}
+\end{align*}
+
+\underline{Ziel:} Schätzung von $\tau$\\
+Schreibe im Folgenden: $X_i\equiv X_{i,n}$
+\begin{align*}
+	S_k&:=\sum\limits_{i=1}^k\big(X_i-\overline{X}_n\big) &\forall& 0\leq k\leq n\\
+	\overline{X}_n&:=\frac{1}{n}\cdot\sum\limits_{i=1}^n X_i &\forall& n\in\N\\
+	\theta_n&:=\frac{\tau_n}{n} &\forall& n\in\N
+\end{align*}
+
+Eine elementare Rechnung zeigt (zur Übung):
+\begin{align}\label{eqUnder8.2_1}\tag{1}
+	\E[S_k]
+	&=\left\lbrace\begin{array}{cll}
+		k\cdot(1-\theta_n)\cdot(\mu-\nu), &\falls 0\leq k\leq\tau_n &\text{monoton wachsend}\\
+		(n-k)\cdot\theta_n\cdot(\mu-\nu), &\falls\tau_n<k\leq n &\text{monoton fallend}
+	\end{array}\right.\\\nonumber
+	\big|\E[S_k]\big|
+	&=\left\lbrace\begin{array}{cll}
+		k\cdot(1-\theta_n)\cdot|\mu-\nu|, &\falls 0\leq k\leq\tau_n &\text{monoton wachsend}\\
+		(n-k)\cdot\theta_n\cdot|\mu-\nu|, &\falls\tau_n<k\leq n &\text{monoton fallend}
+	\end{array}\right.\\
+	&\implies\tau_n=\arg\max\limits_{0\leq k\leq n}\big|\E[S_k]\big|\nonumber
+\end{align}
+%TODO Hier könnte man eine Skizze einfügen
+% monoton linear wachsend bis zu einem punkt, dann fallend, sieht aus wie ein Dreieck
+
+Dies motiviert folgenden Schätzer (ersetze unbekannte $\big|\E[S_k)\big]$ durch bekannte $|S_k|$):
+\begin{align*}
+	\hat{\tau}_n:=\arg\max\limits_{0\leq k\leq n}\big|S_k\big|
+\end{align*}
+Im Folgenden sei $\tau_n=\lfloor n\cdot\theta\rfloor,\theta\in(0,1)$.
+Wir zeigen:
+\begin{align*}
+	\hat{\theta}_n:=\frac{\hat{\tau}_n}{n}\overset{n\to\infty}{\longrightarrow}\theta\qquad\P\text{-f.s.}
+\end{align*}
+
+\textbf{Annahme:} Wir nehmen die sogenannte \textbf{Momentenbedingung an}, d.h.
+\begin{align*}
+	\mu_p:=\E\Big[\big|X_{\tau_n}\big|^p\Big]<\infty,
+	\qquad
+	\nu_p:=\E\Big[\big|X_{\tau_n+1}\big|^p\Big]<\infty
+\end{align*}
+
+Sei $M_n:=$ Polygonzug durch $\left(\frac{k}{n},\frac{1}{n}\cdot S_k\right)$, $0\leq k\leq n$.
+Dann folgt aus Lemma \ref{lemma7.17}:
+\begin{align*}
+	\hat{\theta}_n&:=\arg\max\limits_{0\leq t\leq 1}\big|M_n(t)\big|\\
+	M_n(t)&~=\frac{1}{n}\cdot S_{\lfloor n\cdot t\rfloor}+\big(n\cdot t-\lfloor w\cdot t\rfloor\big)\cdot\Big(S_{\lfloor n\cdot t\rfloor+1}-S_{\lfloor n\cdot t\rfloor+1}\Big) &\forall 0\leq t\leq 1\\
+	\E\big[M_n(t)\big]&~=\frac{1}{n}\cdot\E\Big[ S_{\lfloor n\cdot t\rfloor}\Big]+\big(n\cdot t-\lfloor w\cdot t\rfloor\big)\cdot
+	\Big(\E\Big[S_{\lfloor n\cdot t\rfloor+1}\Big]-\E\Big[S_{\lfloor n\cdot t\rfloor+1}\Big]\Big) &\forall 0\leq t\leq 1\\
+\end{align*}
+
+Sei $\overline{M}_n(t):=\E\big[M_n(t)\big),0\leq t\leq 1$. 
+Dann ist $\overline{M}_n$ ein Polygonzug durch die Punkte $\left(\frac{k}{n},\frac{1}{n}\cdot\E[S_k]\right)$ $0\leq k\leq n$.
+Da wegen \eqref{eqUnder8.2_1} 
+\begin{align*}
+	\overline{M}_n\left(\frac{k}{n}\right)
+	&=\frac{1}{n}\cdot\E\big[S_k\big]
+	\overset{\eqref{eqUnder8.2_1}}&=
+	\left\lbrace\begin{array}{cl}
+		\frac{k}{n}\cdot(1-\theta_n)\cdot(\mu-\nu) &\falls \frac{k}{n}\leq\frac{\tau_n}{n}=\theta_n\\
+		\left(1-\frac{k}{n}\right)\cdot\theta_n\cdot(\mu-\nu), & \falls \frac{k}{n}>\theta_n
+	\end{array}\right.
+\end{align*}
+folgt
+\begin{align*}
+	\overline{M}_n\left(t\right)
+	&=\left\lbrace\begin{array}{cl}
+		t\cdot(1-\theta_n)\cdot(\mu-\nu) &\falls t\leq\theta_n\\
+		\left(1-t\right)\cdot\theta_n\cdot(\mu-\nu), & \falls \frac{k}{n}>\theta_n
+	\end{array}\right.
+\end{align*}
+Beachte $\theta-\frac{1}{n}<\theta_n=\frac{\lfloor n\cdot\theta\rfloor}{n}=\theta$.
+Eine Fallunterscheidung ($t\leq\theta_n$; $\theta_n<t\leq\theta$; $t>\theta$) liefert
+\begin{align}\label{eqUnder8.2_2}\tag{2}
+	\big\Vert\overline{M}_n-M\big\Vert
+	&=\sup\limits_{0\leq t\leq 1}\Big|\overline{M}_n(t)-M(t)\Big|
+	\leq 2\cdot|\mu-\nu|\cdot n^{-1}\overset{n\to\infty}{\longrightarrow}0\text{ wobei}\\\nonumber
+	M(t)&=\left\lbrace\begin{array}{cl}
+		t\cdot(1-\theta)\cdot(\mu-\nu) ,&\falls 0\leq t\leq\theta\\
+		(1-t)\cdot\theta\cdot(\mu-\nu), &\falls \theta<t\leq 1
+	\end{array}\right.\\\nonumber
+	|M(t)|&=\left\lbrace\begin{array}{cl}
+		t\cdot(1-\theta)\cdot|\mu-\nu| ,&\falls 0\leq t\leq\theta\\
+		(1-t)\cdot\theta\cdot|\mu-\nu|, &\falls \theta<t\leq 1
+	\end{array}\right.
+\end{align}
+
+%TODO Evtl. Skizze einfügen, plot(\overline{M}) auf [0,1]
+% Wieder so ein Zelt mit Maximum in \theta
+
+Somit ist dieses $\theta$ charakterisierbar als Maximalstelle:
+\begin{align*}
+	\theta=\arg\max\limits_{0\leq t\leq 1}\big|M(t)\big|
+\end{align*}
+
+Zeige:
+\begin{align*}
+	\big\Vert M_n-M\big\Vert
+	&=\sup\limits_{0\leq t\leq 1}\big|M_n(t)-M(t)\big|\overset{n\to\infty}{\longrightarrow}0\quad\P\text{-f.s.}
+\end{align*}
+Da
+\begin{align}\label{eqUnder8.2_3}\tag{3}
+	0\leq\big\Vert M_n-M\big\Vert\leq\big\Vert M_n-\overline{M}_n\big\Vert+\underbrace{\overline{M}_n-M\big\Vert}_{\stackrelnew{\eqref{eqUnder8.2_2}}{n\to\infty}{\longrightarrow}0}
+\end{align}
+
+Betrachte den ersten Summanden
+\begin{align}\label{eqUnder8.2_4}\tag{4}
+	\big\Vert M_n-\overline{M}_n\big\Vert
+	&=\sup\limits_{0\leq t\leq 1}\big|M_n(t)-\overline{M}_n(t)\big|
+	\overset{\ref{lemma7.17}}{=}
+	\max\limits_{0\leq k\leq n}\bigg|\underbrace{M_n\left(\frac{k}{n}\right)}_{=\frac{1}{n}\cdot S_k}-\underbrace{\overline{M}_n\left(\frac{k}{n}\right)}_{=\frac{1}{n}\cdot\E[S_k]}\bigg|\\\nonumber
+	\frac{1}{n}\cdot S_k
+	&=\frac{1}{n}\cdot\sum\limits_{i=1}^k\big(X_i-\overline{X}_n\big)
+	=\frac{1}{n}\cdot\sum\limits_{i=1}^k X_i-\frac{k}{n^2}\cdot\sum\limits_{i=1}^n X_i\\\nonumber
+	\implies
+	M_n\left(\frac{k}{n}\right)-\overline{M}_n\left(\frac{k}{n}\right)
+	\overset{\text{Lin}}&=
+	\frac{1}{n}\cdot\sum\limits_{i=1}^n\underbrace{\Big(X_i-\E\big[X_i\big]\Big)}_{=:Z_i}-\frac{k}{n^2}\cdot\sum\limits_{i=1}^n\underbrace{\Big(X_i-\E\big[X_i\big]\Big)}_{=Z_i}\\\nonumber
+	\implies
+	\left|M_n\left(\frac{k}{n}\right)-\overline{M}_n\left(\frac{k}{n}\right)\right|
+	\overset{\text{DU}}&\leq
+	\frac{1}{n}\cdot\underbrace{\bigg|\sum\limits_{i=1}^n\underbrace{\Big(X_i-\E\big[X_i\big]\Big)}_{=:Z_i}\bigg|}_{
+		\leq\max\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k Z_i\right|
+	}+\underbrace{\frac{k}{n^2}}_{\leq\frac{1}{n}}\underbrace{\cdot\bigg|\sum\limits_{i=1}^n\underbrace{\Big(X_i-\E\big[X_i\big]\Big)}_{=Z_i}\bigg|}_{
+		\leq\max\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k Z_i\right|
+	}\\\nonumber
+	&\leq2\cdot\frac{1}{n}\cdot\max\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k Z_i\right|\\
+	&\implies\label{eqUnder8.2_5}\tag{5}
+	\max\limits_{0\leq k\leq n}\left|M_n\left(\frac{k}{n}\right)-\overline{M}_n\left(\frac{k}{n}\right)\right|
+	\leq 2\cdot\frac{1}{n}\cdot\max\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k Z_i\right|
+\end{align}
+
+Es ist
+\begin{align*}
+	T_k=\sum\limits_{i=1}^k Z_i\qquad 0\leq k\leq n
+\end{align*}
+ein Martingal bzgl. Filtration 
+\begin{align*}
+	\F_k:=\sigma\big(Z_1,\ldots,Z_k\big) &\qquad\forall 1\leq k\leq n,\qquad \F_0:=\lbrace\emptyset,\Omega\rbrace
+\end{align*}
+Ist Martingal, weil
+\begin{align*}
+	\E\Big[T_{k+1}~\Big|~\F_k\Big]
+	&=\E\left.\left[\sum\limits_{i=1}^k Z_i+Z_{k+1}~\right|~\F_k\right]
+	=\underbrace{\E\bigg[\overbrace{\sum\limits_{i=1}^k Z_i}^{\text{ist $\F_K$-messbar}}~\bigg|~\F_k\bigg]}_{=T_k}+\underbrace{\E\Big[ Z_{k+1}~\Big|~\F_k\Big]}_{=\E[Z_{k+1}]=0}
+\end{align*}
+
+Es folgt aus der bedingten Jensenungleichung, dass $\left(|T_k|^p,\F_k\right)_{0\leq k\leq n}$ ein nicht-negatives Submartingal ist.
+\begin{align*}
+	\P\Big(\big\Vert M_n-\overline{M}_n\big\Vert\geq\varepsilon\Big)
+	\overset{\eqref{eqUnder8.2_4}+\eqref{eqUnder8.2_5}}&{\leq}
+	2\cdot\frac{1}{n}\cdot\max\limits_{0\leq k\leq n}\big|T_k\big|\\
+	&\leq\P\left(\max\limits_{0\leq k\leq n}\big|T_k\big|\geq\frac{1}{2}\cdot n\cdot\varepsilon\right)\\
+	\overset{u\mapsto u^p\uparrow}&\leq
+	\P\left(\left(\max\limits_{0\leq k\leq n}\big|T_k\big|\right)^p\geq\left(\frac{1}{2}\cdot n\cdot\varepsilon\right)^p\right)\\
+	&=\P\left(\max\limits_{0\leq k\leq n}\big|T_k\big|^p\geq\left(\frac{1}{2}\cdot n\cdot\varepsilon\right)^p\right)\\
+	\implies
+	\P\Big(\big\Vert M_n-\overline{M}_n\big\Vert\geq\varepsilon\Big)
+	&\leq\bigg(\max\limits_{0\leq k\leq n}\underbrace{\big|T_k\big|^p}_{\text{Submartingal}}\geq\underbrace{2^{-p}\cdot n^p\cdot\varepsilon^p}_{=:y>0}\bigg)\\
+	\overset{\text{Doob-Ungl}}&\leq
+	...
+\end{align*}
+
 
