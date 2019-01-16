@@ -43,42 +43,67 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 	\end{aligned}$ ist laplaceverteilt.
 \end{enumerate}
 
-\begin{proof}
-	\underline{Zeige a):}
-	\textbf{VERSION WILLI}
-	\begin{align*}
+\begin{proof}[Beweis von Jonas Kirchner an der Tafel.]
+	\underline{Zeige a):}	
+		\begin{align*}
 		\Phi_{W\cdot X}(u)
 		\overset{\text{Def}}&=
-		\int\limits_\Omega\exp\big(i\cdot X\cdot W\cdot u\big)~\mu(\d u)\\
-		\overset{\text{Trafo}}&=
-		\int\limits_\R\exp\big(i\cdot t\cdot u)\cdot f_{X\cdot W}(t)\d t
-		\qquad\forall u\in\R
-	\end{align*}
-	
-	Hierbei ist $f_{W\cdot X}$ die Dichte von $X\cdot W$. Da $W,X\sim\Nor(0,1)$ unabhängig sind,  gilt:
-	\begin{align*}
-		f_{X\cdot W}(t)
-		\overset{\text{Stoch}}&=
-		\int\limits_\R\frac{1}{|x|}\cdot f_X(x)\cdot f_W\left(\frac{t}{x}\right)\d x\\
-		\overset{\sim\Nor(0,1)}&=
-		\int\limits_\R\frac{1}{|x|}\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{1}{2}\cdot x^2\right)\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{1}{2}\cdot\frac{t^2}{x^2}\right)\d x\\
-		&=\frac{1}{2\cdot\pi}\cdot\int\limits_\R\frac{1}{|x|}\cdot\exp\left(-\frac{1}{2}\cdot\left(x^2+\frac{t^2}{x^2}\right)\right)\d x\\
-		&=...
-	\end{align*}
-	
-	%TODO
-	Eingesetzt erhalten wir also:
-	\begin{align*}
+		\E\Big[\exp\big(i\cdot X\cdot W\cdot u\big)\Big]\\
+		\overset{\text{unab}}&=
+		\E\Big[\E\Big[\exp\big(iuWX\big)~\Big|~X\Big]\\	
+		\overset{W\sim\Nor(0,1)}\implies
 		\Phi_{W\cdot X}(u)
-		&=\int\limits_\R\exp\big(i\cdot t\cdot u)\cdot f_{X\cdot W}(t)\d t\\
-		&=...
+		&=\E\left[\exp\left(-\frac{u^2\cdot X^2}{2}\right)\right]\\
+		&=\frac{1}{\sqrt{2\cdot\pi}}\cdot\int\limits_\R\exp\left(-\frac{u^2 y^2}{2}\right)\exp\left(-\frac{y}{2}\right)\d y\\
+		&=\frac{1}{\sqrt{2\cdot\pi}}\cdot\int\limits_\R\exp\left(-\frac{y^2}{2}\cdot\left(u^2+1\right)\right)\d y
 	\end{align*}
+	Also ist
+	\begin{align*}
+		p(x)=\sqrt{\frac{u^2+1}{2\cdot\pi}}\exp\left(-\frac{y^2}{2}\cdot\left(u^2+1\right)\right)
+	\end{align*}
+	die Dichte von $\Nor\left(0,\frac{1}{u^2+1}\right)$. Also folgt
+	\begin{align*}
+		1=\int\limits_\R\sqrt{\frac{u^2+1}{2\cdot\pi}}\cdot\exp\left(-\frac{y^2}{2}\cdot\left(u^2+1\right)\right)\d y\\
+		\Longleftrightarrow\int\limits_\R\exp(\ldots)=\sqrt{\frac{2\cdot\pi}{u^2+1}}\\
+		\implies\Phi_{X\cdot W}(u)=\frac{1}{\sqrt{2\cdot\pi}}\cdot\sqrt{\frac{2\cdot\pi}{u^2+1}}=\frac{1}{\sqrt{u^2+1}}
+	\end{align*}
+	
+	\underline{Zeige b):} Analog zu Robert
+\end{proof}
 
-	\textbf{VERSION ROBERT}
+\begin{proof}
+	%\textbf{VERSION WILLI}
+	%\begin{align*}
+		%\Phi_{W\cdot X}(u)
+		%\overset{\text{Def}}&=
+		%\int\limits_\Omega\exp\big(i\cdot X\cdot W\cdot u\big)~\mu(\d u)\\
+		%\overset{\text{Trafo}}&=
+		%\int\limits_\R\exp\big(i\cdot t\cdot u)\cdot f_{X\cdot W}(t)\d t
+		%\qquad\forall u\in\R
+	%\end{align*}
+	
+	%Hierbei ist $f_{W\cdot X}$ die Dichte von $X\cdot W$. Da $W,X\sim\Nor(0,1)$ unabhängig sind,  gilt:
+	%\begin{align*}
+		%f_{X\cdot W}(t)
+		%\overset{\text{Stoch}}&=
+		%\int\limits_\R\frac{1}{|x|}\cdot f_X(x)\cdot f_W\left(\frac{t}{x}\right)\d x\\
+		%\overset{\sim\Nor(0,1)}&=
+		%\int\limits_\R\frac{1}{|x|}\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{1}{2}\cdot x^2\right)\cdot\frac{1}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{1}{2}\cdot\frac{t^2}{x^2}\right)\d x\\
+		%&=\frac{1}{2\cdot\pi}\cdot\int\limits_\R\frac{1}{|x|}\cdot\exp\left(-\frac{1}{2}\cdot\left(x^2+\frac{t^2}{x^2}\right)\right)\d x\\
+		%&=...
+	%\end{align*}
+	
+	%Eingesetzt erhalten wir also:
+	%\begin{align*}
+		%\Phi_{W\cdot X}(u)
+		%&=\int\limits_\R\exp\big(i\cdot t\cdot u)\cdot f_{X\cdot W}(t)\d t\\
+		%&=...
+	%\end{align*}
+
+	%\textbf{VERSION ROBERT}
 	Zunächst verwenden wir den Polarisations-Trick:
 	\begin{align*}
-		Z &= WX \\
-			&= \frac{1}{4}\cdot\left((W+X)^2 - (W-X)^2\right)
+		Z &= WX= \frac{1}{4}\cdot\left((W+X)^2 - (W-X)^2\right)
 	\end{align*}
 	Mit dieser Darstellung lassen sich bessere Aussagen über die Verteilung von $Z$ treffen:
 	\begin{align*}
@@ -104,13 +129,13 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 		&=\E\left[e^{i\xi\cdot\left(M-N\right)}\right] \\
 		\overset{\text{unab.}}&{=}\E\left[e^{i\xi M}\right]\cdot\overline{\E\big[e^{i\xi M}\big]}\\
 		\overset{\text{char. F. } \chi^2_1}&{=}\frac{1}{\sqrt{1-2i\xi}}\frac{1}{\sqrt{1+2i\xi}} \\
-																			 &=\frac{1}{\sqrt{1+4\xi^2}}\\
+																		&=\frac{1}{\sqrt{1+4\xi^2}}\\
 		\implies \varphi_Z(\xi) &= \frac{1}{\sqrt{1+4(\frac{1}{2}\xi)^2}}\\
 														&= \frac{1}{\sqrt{1+\xi^2}}
 	\end{align*}
 
 	
-	\underline{Zeige b):}
+	\underline{Zeige b):} %TODO Matrix falsch abgeschrieben
 
 	\begin{align*}
 		P:=
@@ -121,14 +146,20 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 	\end{align*}
 	Damit ist leicht auszurechnen:
 	\begin{align*}
-	 	&\E\left[e^{i\xi(WX-YZ)}\right]\\
-	 	=&\E\left[e^{i\xi(WX)}\right]\E\left[e^{i\xi(-YZ)}\right]\\
-	 	=&\E\left[e^{i\xi(WX)}\right]\overline{\E\big[e^{i\xi(YZ)}\big]}\\
-		=&\frac{1}{\sqrt{1+u^2}}\frace{1}{\sqrt{1+u^2}}\\
-		=&\frac{1}{1+u^2}
+	 	\E\left[e^{i\xi(WX-YZ)}\right]
+	 	&=\E\left[e^{i\xi(WX)}\cdot e^{i\xi(-YZ)}\right]\\
+	 	\overset{\eqref{eqAufgabe1}}&{=}
+	 	\E\left[e^{i\xi(WX)}\right]\E\left[e^{i\xi(-YZ)}\right]\\
+	 	&=\E\left[e^{i\xi(WX)}\right]\overline{\E\big[e^{i\xi(YZ)}\big]}\\
+		&=\frac{1}{\sqrt{1+u^2}}\frac e{1}{\sqrt{1+u^2}}\\
+		&=\frac{1}{1+u^2}
 	\end{align*}
 	Dies ist die charakteristische Funktion einer Laplace-verteilten Zufallsvariable.
-	Nach dem Eindeutigkeitssatz muss also $P$ Laplace-verteilt sein.
+	Nach dem Eindeutigkeitssatz muss also $P$ Laplace-verteilt sein.\nl
+	Erinnerung:
+	\begin{align}\label{eqAufgabe1}
+		\E\big[f(W\cdot Z)\cdot g(Y\cdot X)\big]=\E\big[f(W\cdot Z)\big]\cdot\E\big[g(Y\cdot X)\big]\qquad\forall f,g\in\B_b(\R)
+	\end{align}
 \end{proof}
 
 \section*{Aufgabe 2}
@@ -152,12 +183,96 @@ Dann gilt:
 \end{enumerate} 
 
 \begin{proof}
-	\underline{Zeige a):}
+	\underline{Zeige a):}\\
+	Verwende
+	\textbf{Satz von Bochner.}\\
+		Eine stetige Funktion $f:\R^d\to\C$ mit $f(0)=1$ ist CF einer ZG g.d.w. $f$ positiv definit.\nl
+	Eine Funktion $f:\R^d\to\C$ heißt \textbf{positiv definit}
+	\begin{align*}
+		:\Longleftrightarrow
+		\forall n\in\N,\forall\lambda_1,\ldots,\lambda_n\in\C,\forall x_1,\ldots,x_n\in\R^d:
+		\sum\limits_{k,l=1}^n\lambda_k\cdot\overline{\lambda_l}\cdot f\big(x_k-x_l\big)\geq0
+	\end{align*}
 	
-	\underline{Zeige b):}
+	Die Reihe
+	\begin{align*}
+		\sum\limits_{n=0}^\infty a_n\cdot\phi_n(u)
+	\end{align*}
+	ist absolut und gleichmäßig konvergent, denn
+	\begin{align*}
+		\left|\sum\limits_{n=0}^N a_n\cdot\phi_n(u)\right|
+		&\leq\sum\limits_{n=0}^\infty\underbrace{\big|\phi_n(u)\big|}_{\leq1}
+		\leq\sum\limits_{n=0}^\infty a_n=1
+	\end{align*}
+	Somit ist
+	\begin{align*}
+		\psi(u):=\sum\limits_{n=0}^\infty a_n\cdot\phi_n(u)
+	\end{align*}
+	ist insbesondere stetig.
+	\begin{align*}
+		\psi(0)
+		&=\sum\limits_{n=0}^\infty a_n\cdot\underbrace{\phi_n(0)}_{=1}
+		=\sum\limits_{n=0}^\infty a_n\overset{\text{Vor}}{=}1
+	\end{align*}
+	Sei $N\in\N,\lambda_1,\ldots,\lambda_N\in\C,u_N\in\R^d$.
+	Dann gilt:
+	\begin{align*}
+		\sum\limits_{k,l=1}^N\lambda_k\cdot\overline{\lambda_l}\cdot\psi\big(u_k-u_l\big)
+		&=\sum\limits_{k,l=1}^N\lambda_k\cdot\overline{\lambda_l}\cdot\sum\limits_{n=0}^\infty a_n\cdot\phi_n\big(u_k-u_l\big)\\
+		&=\sum\limits_{n=0}^\infty a_n\cdot\underbrace{\left(\sum\limits_{k,l=1}^N\lambda_k\cdot\overline{\lambda_l}\cdot\phi_n\big(u_k-u_l\big)\right)}_{\overset{\text{pos definit}}{\geq}0}\\
+		&\geq0
+	\end{align*}		
+	Somit ist $\psi$ positiv definit und aus dem Satz von Bochner folgt, das $\psi$ eine charakteristische Funktion ist.\nl
+	\underline{Zeige a) (Alternative vom Prof.)}\\
+	Sei $(X_n)_{n\in\N}$ Folge von unabhängigen Zufallsvariablen mit
+	\begin{align*}
+		\phi_n(u)=\E\big[\exp(i\cdot u\cdot X_n)\big].
+	\end{align*}
+	Sei $N$ eine Zufallsvariable (unabhängig von $(X_n)_{n\in\N}$) mit $\P(N=k)=a_k~\forall k\in\N_0$.
+	Setze $Y(\omega):=X_{N(\omega)}(\omega)~\forall\omega\in\Omega$.
+	Berechne $\Phi_Y(u)$:
+	\begin{align*}
+		\Phi_Y(u)
+		&=\E\Big[\exp\big(i\cdot u\cdot X_N\big)\Big]\\
+		&=\E\Big[\underbrace{\E\Big[\exp(i\cdot u\cdot X_n)~\big|~N\Big]}_{=\phi_N(u)}\Big]\\
+		&=\E\Big[\phi_N(u)\Big]\\
+		&=\sum\limits_{k=0}^\infty\phi_k(u)\cdot a_k
+	\end{align*}
 	
-	\underline{Zeige c):}
-		
+	\underline{Zeige b):}\\
+	Sei $F$ die zugehörige Verteilung zu $\phi$.
+	Setze
+	\begin{align*}
+		\phi_n(u):=\big(\phi(u)\big)^n.
+	\end{align*}
+	Dies ist die charakteristische Funktion von $X_1+\ldots+X_n$ mit $X_1,\ldots,X_n$ unabhängig mit $X_k\sim F$.
+	Somit folgt die Behauptung aus a).\nl
+	\underline{Zeige c):}\\
+	Wähle
+	\begin{align*}
+		a_n:=\exp(-\lambda)\cdot\frac{\lambda^n}{n!}\geq0.
+	\end{align*}
+	Dann gilt:
+	\begin{align*}
+		\sum\limits_{n=0}^\infty a_n
+		&=\exp(-\lambda)\cdot\underbrace{\sum\limits_{n=0}^\infty\frac{\lambda^n}{n!}}_{=\exp(\lambda)}=1\\
+		\sum\limits_{n=0}^\infty a_n\cdot\big(\phi(u)\big)^n
+		&=\exp(-\lambda)\cdot\underbrace{\sum\limits_{n=0}^\infty\frac{\lambda^n}{n!}\cdot\phi_n(u)}_{=\exp\big(\lambda\cdot\phi(u)\big)}
+		=\exp\Big(\lambda\cdot\big(\phi(u)-1\big)\Big)
+	\end{align*}
+	Sei $a_n(1-p)\cdot p^n\geq0$ und 
+	\begin{align*}
+		\sum\limits_{n=0}^\infty a_n&=(1-p)\cdot\sum\limits_{n=0}^\infty p^n=1\\
+		\implies
+		\sum\limits_{n=0}^\infty a_n\cdot\phi_n(u)
+		&=(1-p)\cdot\sum\limits_{n=0}^\infty\underbrace{p^n\cdot\phi^n(u)}_{=\big(p\cdot\phi(u)\big)^n}
+		=(1-p)\cdot\frac{1}{1-p\cdot\phi(u)}
+	\end{align*}		
+	Speziell für $\varphi(u)=\exp(i\cdot u)$ folgt:
+	\begin{align*}
+		&\exp\Big(\lambda\cdot\big(\exp(i\cdot u)-1\big)\Big) &\rightsquigarrow\text{Poissonverteilung mit Par.}\lambda>0\\
+		&\frac{1-p}{1-p\cdot\exp(i\cdot u)}	&\rightsquigarrow\text{geometrische Verteilung mit Par. }p
+	\end{align*}
 \end{proof}
 
 \section*{Aufgabe 3}
@@ -170,9 +285,69 @@ Aus dem Stetigkeitssatz von Lévy folgt:
 \end{enumerate}
 
 \begin{proof}
-	\underline{Zeige a):}
+	\underline{Zeige a):} Setze $p_n:=\frac{c}{n}$
+	\begin{align*}
+		&P_n\overset{\w}{\longrightarrow} P
+		\Longleftrightarrow X_n\overset{\d}{\longrightarrow} X\\
+		\P(X_n=k)&=\begin{pmatrix}
+			n\\
+			k
+		\end{pmatrix}\cdot p_n^k\cdot q_n^{n-k}\\
+		&=\frac{n!}{k!\cdot(n-k)!}\cdot\left(\frac{c}{n}\right)^k\cdot\left(1-\frac{c}{n}\right)^{n-k}\\
+		&=\frac{n\cdot(n-1)\cdot\ldots\cdot(n-k+1)\cdot(n-k)!}{(n-k)!}\cdot\frac{c^k}{n^k}\cdot\frac{\left(1-\frac{c}{n}\right)^n}{\left(1-\frac{c}{n}\right)^k}\\
+		&=\frac{c^k}{k!}\cdot\frac{(n-1)\cdot\ldots\cdot(n-k+1)}{n^{k-1}}\cdot\frac{1}{\left(-\frac{c}{n}\right)^k}\cdot\left(1-\frac{c}{n}\right)^n\\
+		&=\frac{c^k}{k!}\cdot\frac{\left(1-\frac{1}{n}\right)\cdot\left(1-\frac{2}{n}\right)\cdot\ldots\cdot\left(1-\frac{k-1}{n}\right)}{\left(1-\frac{c}{n}\right)^k}\cdot\left(1-\frac{c}{n}\right)^n
+	\end{align*}
+	Grenzwertbildung:
+	\begin{align*}
+		\limn\P(X_n=k)
+		&=\limn\frac{c^k}{k!}\cdot\frac{\left(1-\frac{1}{n}\right)\cdot\ldots\cdot\left(1-\frac{k-1}{n}\right)}{\left(1-\frac{c}{n}\right)^k}\cdot\left(1-\frac{c}{n}\right)^n\\
+		\limn\left(1-\frac{c}{n}\right)^n
+		&=\exp(-c)\\
+		&\implies\limn\frac{\left(1-\frac{1}{n}\right)\cdot\ldots\cdot\left(1-\frac{k-1}{n}\right)}{\left(1-\frac{c}{n}\right)}=1
+	\end{align*}
 	
+	\underline{Zeige a), Alternative von Pascal}\\
+	Sei $X_n\sim\Bin\left(n,\frac{c}{n}=:p_n\right)$.
+	Dann:
+	\begin{align*}
+		\Phi_{X_n}(u)
+		&=\left(\frac{c}{n}\cdot\exp(i\cdot u)+1-\frac{c}{n}\right)^n\\
+		%\implies
+		\limn\left(\left(\frac{c}{n}\cdot\exp(i\cdot u)+1-\frac{c}{n}\right)^n\right)
+		&=\limn\left(\left(\frac{c\cdot\big(\exp(i\cdot u)-1\big)}{n}+1\right)^n\right)\\
+		&=\exp\Big(c\cdot\big(\exp(i\cdot u)-1\big)\Big)\\
+		&=\Phi_Y(u)\mit Y\sim\Poi(c)
+	\end{align*}
+	Stetigkeit folgt sofort.\nl
 	\underline{Zeige b):}
+	\begin{align*}
+		\Phi_{X_n}(u)
+		&=\left(\frac{\lambda}{\lambda-u}\right)^n\\
+		\Phi_{Y_n}(u)
+		&=\exp\left(-i\cdot u\cdot n\cdot\frac{1}{\sqrt{n}}\right)\cdot\Phi_{X_n}\left(\frac{\lambda\cdot u}{\sqrt{n}}\right)\\
+		&=\exp\big(-i\cdot u\cdot\sqrt{n})\cdot\left(\frac{\lambda}{\lambda-i\cdot\lambda\cdot\frac{u}{\sqrt{n}}}\right)^n\\
+		&=\exp\big(-i\cdot u\cdot\sqrt{n}\big)\cdot\frac{1}{1-i\cdot u\cdot\frac{1}{\sqrt{n}}}\\
+		&=\exp\big(-i\cdot u\cdot\sqrt{n}\big)\cdot\left(1-i\cdot\frac{u}{\sqrt{n}}\right)^{-n}\\
+		&=:\big(\varphi(v_n)\big)^{-n}
+	\end{align*}
+	wobei $\varphi(v)=\exp(v)\cdot(1-v),v_n=\frac{i\cdot u}{\sqrt{n}}$ ist.
+	Entwicklung der Exponentialfunktion:
+	\begin{align*}
+		\varphi(v)
+		&=\Big(1+v+\frac{1}{2}\cdot v^2+\O(v^3)\Big)\cdot(1-v)
+		=1-\frac{1}{2}\cdot v^2+\O(v^3)\\
+		\varphi(v_n)
+		&=1-\frac{1}{2}\cdot\left(\frac{i\cdot u}{\sqrt{n}}\right)^2+\O\left(\left(\frac{i\cdot u}{\sqrt{n}}\right)^3\right)\\
+		&=1+\frac{1}{2}\cdot\frac{u^2}{n}+\O\left(\frac{1}{n^{\frac{3}{2}}}\right)\\
+		\big(\varphi(v_n)\big)^{-n}
+		&=\frac{1}{\left(1+\frac{\frac{1}{2}\cdot u^2+\O\left(\frac{1}{\sqrt{n}}\right)}{n}\right)^n}
+		\overset{\text{VL}}{\longrightarrow}
+		\frac{1}{\exp\left(\frac{u^2}{2}\right)}=\exp\left(-\frac{u^2}{2}\right)=\Phi_Y(u)
+	\end{align*}
+	wobei $Y\sim\Nor(0,1)$.
+	
+	
 \end{proof}
 
 \section*{Aufgabe 4}
@@ -211,11 +386,49 @@ Die Verteilung $F$ heißt \textbf{symmetrisch stabil}
 \end{enumerate}
 
 \begin{lösung}
-	\underline{Zu a):}
+	\underline{Zu a):} Vorüberlegung:
+	\begin{align*}
+		\Phi_{X_1+\ldots+X_n}(u)
+		&=\big(\Phi(u)\big)^n\\
+		\Phi_{a_n\cdot X+b_n}(u)
+		&=\exp\big(i\cdot b_n)\cdot u\big)\cdot\Phi(a_n\cdot u\big)
+	\end{align*}
+	Beide sind stabil, wenn sie gleich sind.
+	Seien $X_k\sim\Nor(\mu,\sigma^2)$, $X_1+\ldots+X_n\sim\Nor(n\cdot\mu,n\cdot\sigma^2)$.
+	\begin{align*}
+		X_1+\ldots+X_n
+		\overset{\d}&{=}
+		\underbrace{\sqrt{n}}_{=a_n}\cdot X+\underbrace{(n-\sqrt{n})\cdot\mu }_{=b_n}
+	\end{align*}
 	
-	\underline{Zu b):}
+	Für die Cauchyverteilung: $X_k\sim\Cauchy(\gamma,\beta)$ d.h. mit Dichte
+	\begin{align*}
+		f(x)=\frac{1}{\pi}\cdot\frac{\gamma}{\gamma^2+(x-\beta)^2}.
+	\end{align*}
+	Also gilt:
+	\begin{align*}
+		\Phi_X(s)&=\exp\big(i\cdot\beta\cdot s-\gamma\cdot|s|\big)\\
+		\Phi_X^n(s)&=\exp\big(i\cdot n\cdot\beta\cdot s-\gamma_n\cdot|s|\big)&(1)\\
+		\Phi_{a_n\cdot X+b_n}(s)
+		&=\exp(i\cdot b_n\cdot s)\cdot\exp\big(i\cdot\beta\cdot a_n\cdot s-\gamma\cdot|a_n\cdot s|\big)\\
+		&=\exp\Big(i\cdot s\cdot\big(b_n+\beta\cdot a_n\big)-\gamma\cdot a_n\cdot|s|\Big)&(2)\\
+		(1)\overset{!}&{=}(2)\\
+		&\left\lbrace\begin{array}{cl}
+			n\cdot\beta&= b_n+\beta\cdot a_n\\
+			\gamma_n&=\gamma\cdot a_n
+		\end{array}\right.\implies a_n=n~\wedge~b_n=0
+	\end{align*}		
+	Also ist $\Cauchy(\gamma,\beta)$ symmetrisch stabil.\nl
+	\underline{Zu b):}\\
+	$X$ symmetrisch stabil impliziert wegen a)
+	\begin{align*}
+		\Phi^n(u)&=\Phi(a_n\cdot u)\\
+		\Phi(a_n\cdot a_m\cdot u)&=\Big(\Phi(a_m\cdot u)\Big)^n
+		=\big(\Phi(u)\big)^{n\cdot m}=\Phi(a_{m\cdot n}\cdot u)
+	\end{align*}
 	
 	\underline{Zu c):}
+	
 	
 	\underline{Zu d):}\\
 	Angenommen $\phi(u)$ ist die CF einer Zufallsvariable $X$.
