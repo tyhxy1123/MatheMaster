@@ -987,5 +987,101 @@ Zurück zum Begriff des Measurement Setups.
     Die Dimensionsformel gilt hier:
 
     Für $X,Y \in P$ gilt stets $$\Delta(X,X\cup Y) = \Delta(X\cap Y,Y).$$
-    Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.
+    Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.\nl
+    Dies gilt auch, falls $(\Omega, \mathscr{A})$ eine $\sigma$-Algebra ist - 
+    oder man nur das Folgende fordert:
+
+    Sei $\Omega$ Menge ($\ne \emptyset$) und sei $\mathscr{A} \subseteq 2^\Omega$ mit:
+    \begin{itemize}
+        \item $\emptyset\in \mathscr{A}$
+        \item $A \in \mathscr{A} \implies A^c \in \mathscr{A}$
+        \item $A,B \in \mathscr{A} \implies A \cup B \in \mathscr{A}$
+    \end{itemize}
+
+    Sei dann $R := \{(X,Y) \in \mathscr{A}\times \mathscr{A} \mid X \subseteq Y\}$. Dann ist $(\G\P,\M,\Delta)$ ein Measurement Setup
+    für $\P := (\mathscr{A},R)$, $\M:=(\mathscr{A}, \sup, \emptyset)$, $\Delta: R \to \mathscr{A}, (X,Y)\mapsto Y-X$.\nl
+    Ferner sei $\mathscr{S} = (S, \ast, \varepsilon, \leq)$ ein geordnetes Monoid, d.h. $(S, \ast, \varepsilon)$ ist Monoid
+    und $(S, \leq)$ ist Ordnung mit $\forall~s,t,u\in S(s\leq t\implies u \ast s\leq u\ast t \land s\ast u \leq t \ast u)$.
+    Außerdem sei $\mu:\mathscr{A} \to S$ mit
+    \begin{enumerate}[label=(\roman*)]
+        \item $\mu \emptyset = \varepsilon$
+        \item $\forall~ A,B \in \mathscr{A}(A\subseteq B \implies \mu A \leq \mu B)$ \textit{"isoton"}
+        \item $\forall~A,B\in \mathscr{A}(\mu(A\cup B)\ast \mu(A\cap B)=\mu A \ast \mu B)$ \textit{"modular bezüglich $((\mathscr{A},\subseteq),\mathscr{S})$"}
+    \end{enumerate}
+    \underline{Übung:} Sind $A,B \in \mathscr{A}$ mit $A\cap B = \emptyset$, so ist $\mu(A \cup B) = \mu A \ast \mu B$.\\
+    \textit{Beweis.} Es gilt: 
+    \begin{align*}
+        \mu(A\cup B) & = \mu(A\cup B) \ast \varepsilon\\
+        & \stackeq{\text{(i)}}\mu(A\cup B)\ast\mu(A \cap B)\\
+        & \stackeq{\text{(iii)}} \mu A \ast \mu B.
+    \end{align*}
+    \underline{Exploration:} Sei $A,B \in \mathscr{A}$ mit $A \subseteq B \subseteq C$.\\
+    Dann $\mu\Delta(A,C)=\mu(C-A)$\\
+    und $\mu\Delta(A,B) = \mu(B-A)$, sowie $\mu\Delta(B,C)=\mu(C-B)$.
+    Also gilt 
+    \begin{align*}
+        \mu\Delta(A,B)\ast\mu\Delta(B,C) &= \mu(B-A) \ast \mu(C-B)\\
+        & = \mu(B-A \cup C-B)\\
+        & = \mu(C-A) = \mu\Delta(A,C).
+    \end{align*}
+    Außerdem gilt für alle $A \in \mathscr{A}$:
+    $$ \mu\Delta(A,A) = \mu(A-A) = \varepsilon.$$
+    \underline{Zwei etwas unterschiedliche Konzepte von "modular":}
+    \begin{enumerate}
+        \item $\Delta(A,A\cup B) = \Delta(A \cap B, B)$ \textit{"$\Delta$ \textbf{modular} bzgl. $(\G\P,\M)$"}
+        \item $\mu(A \cup B) \ast \mu(A \cap B) = \mu A \ast \mu B$ \textit{"$\mu$ \textbf{modular} bzgl. $((\mathscr{A},\subseteq),(S,\ast,\varepsilon))$"}
+    \end{enumerate}
+    \underline{Proposition:} Bildet $(S,\ast,\varepsilon)$ eine abelsche Gruppe, so ist eine Abbildung $\mu: \mathscr{A} \to S$ modular bzgl. $((\mathscr{A},\subseteq),(S,\ast,\varepsilon))$
+    genau dann, wenn $\Delta^\mu: R \to S, (A,B) \mapsto (\mu A)^{-1}\ast \mu B$ modular bzgl. $(\G(\mathscr{A},R),(S,\ast,\varepsilon))$ ist.\\
+    \underline{Begründung:} Dies folgt, da, falls $\mu$ modular, für $(A,B) \in R$ stets gilt 
+    \begin{align*}
+        \Delta^\mu(A, A \cup B) = \Delta^\mu(A \cap B, B) & \iff (\mu A)^{-1} \ast \mu(A \cup B) = \mu(A \cup B)^{-1} \ast \mu B\\
+        & \iff \mu(A \cup B) \ast \mu(A\cap B) = \mu A \ast \mu B.
+    \end{align*}
+    \underline{Zusatz:} Falls $\mu$ modular gilt:
+    \begin{align*}
+        \mu\Delta(A,B) =(\mu A)^{-1}\ast \mu B &\iff \mu A \ast \mu\Delta(A,B) = \mu B\\
+        & \iff \mu A \ast \mu (B-A) = \mu B\\
+        & \iff \mu ( \underbrace{A \cup (B-A)}_{=B})= \mu B,
+    \end{align*}
+    \underline{Proposition:} Sei $\P = (P, R)$ Präordnung und sei $\mathcal{S} = (S,\ast,\varepsilon)$ Gruppe.\\
+    Dann gilt für jede Abbildung $\mu: P \to S$ und $\Delta^\mu : R \to S, (a,b) \mapsto (\mu a)^{-1} \ast \mu b$,
+    dass $(\G\P, \mathcal{S}, \Delta^\mu)$ Measurement Setup ist.\\
+    \textit{Beweis.} Müssen zeigen, dass $\Delta^\mu$ funktoriell, also
+    \begin{itemize}
+        \item Für $p \in P$ ist stets $\Delta^\mu(p,p) = (\mu p)^{-1} \ast \mu p = \varepsilon$.
+        \item Für $p,t,q \in P$ ist stets
+        $$ \Delta^\mu(p,t)\ast\Delta^\mu(t,q) = (\mu p)^{-1} \ast \mu t \ast (\mu t)^{-1} \ast \mu q = (\mu p)^{-1} \ast \mu q = \Delta^\mu(p,q). $$
+    \end{itemize}
+    \underline{Ergebins:} $(\G(\mathscr{A},R),(S,\ast,\varepsilon),\mu\circ\Delta = \Delta^\mu)$ ist Measurement Setup.\nl
+    \underline{Proposition:} Bilde $\P = (?, \leq)$ einen Verband (d.h. $p \vee q$ ist die kleinste obere Schranke von $\{p,q\}$ in $\P$ und
+    $p\wedge q$ ist die größte untere Schranke von $\{p,q\}$ in $\P$.) und $\mathcal{S} = (S,\ast,\varepsilon)$ eine abelsche Gruppe, dann sind
+    für jede Abbildung $\mu: P \to S$ äquivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\mu$ ist modular bezüglich $(\P,\mathcal{S})$
+        \item $\Delta^\mu: \leq_\P \to S, (p,q) \mapsto (\mu p)^{-1} \ast \mu q$ ist modular bezüglich $(\G\P,\mathcal{S})$.
+    \end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}
+    Sei $A = (P,B,I, \parallel)$ ein axiomatischer affiner Raum bestehend aus Punktmenge $P$, Beradenmenge $B$, eine 
+    Inzidenzrelation $I \subseteq P\times B$ und Parallelitätsrelation $\parallel \subseteq B \times B$.
+
+    \underline{Ziel:} Führe ein Measurement Setup für $A$ ein, falls $A$ hinreichend gutartig.
+    \textit{Modelltheoretisch ist dies eine 2-sorted first-order language model with two relation symbols.}
+
+    \begin{enumerate}[label=(Axiom \arabic{*})]
+        \item Any two different points are incident with exactly one line.
+        \item There are 3 points not incident with one line.
+        \item Any line is incident with at least two points.
+        \item For every point $p$ and every line $b$ there is exactly one line $c$ which is parallel to $b$ and incident with $p$.
+        \textit{"Euclid's parallel postulate"}
+    \end{enumerate}
+
+    Namen: "Max Dehn", "David Hilbert"(Grundlagen der Geometrie ende des 19.Jh)\nl
+    Damit können wir ein Measurement Setup $(\G_P, \M, \Delta)$ folgendermaßen einführen:
+    \begin{itemize}
+        \item $\M = (\text{Translationen}, \ast, \id_p)$
+        \item $\Delta: P\times P, (p,q) \mapsto \tau_{(p,q)} \in \text{Translationen}$.
+    \end{itemize}
 \end{beispiel}
