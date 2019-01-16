@@ -143,16 +143,16 @@ $\implies$ residual error estimate(local)
 \begin{align*}
 	\eta_{T,R} = \left( h_T^2 \|R_T\|^2  + \frac{1}{2}\displaystyle \sum_{e\in \partial T}  h_e \|R_e\|^2\right)^{1/2}
 \end{align*}
-$\implies$ 
-\begin{align*}
+$\implies$ it holds:
+\begin{align}\label{lem_cea}
 	\|u-u_h\|_1 \leq c \left( \sum \limits_{T \in \T} \eta_T^2 \right)^{1/2}
-\end{align*}
+\end{align}
 residual error estimate(global)
 \begin{equation*}
 	\eta_T = \left(  \sum \limits_{T \in \T_K} \|R_T\|^2  +  \sum \limits_{e \in \Gamma_K} \|R_e\|^2 \right)^{1/2}
 \end{equation*}
 \begin{proof_}
-	(of Lemma of Cea (where is (1)??))\\
+	(of Lemma of Cea \eqref{lem_cea}))\\
 	\begin{align*}
 		a(u,v) &= \langle l,v\rangle\quad \forall v\in V \\
 		a(u_h,v) &=\langle l,v\rangle \quad \forall v\in V_h \\
@@ -163,7 +163,8 @@ residual error estimate(global)
 	\end{align} 
 	Let's consider $w \in V$:
 	\begin{align*}
-		\langle l,w\rangle &= (\nabla(u-u_h),\nabla w) = (f,w) - \sum\limits_T (\nabla u_h,\nabla w)\\
+		\langle l,w\rangle &= (\nabla(u-u_h),\nabla w) =\underbrace{(\nabla u,\nabla w)}_{=(-\laplace u,w) } - (\nabla u_h,\nabla w) \\
+		&= (f,w) - \sum\limits_T (\nabla u_h,\nabla w)\\
 		&\stackeq{\text{Int.by parts}} (f,w) - \sum \limits_T \left( (l-\laplace u_h,w)_T + \sum \limits_{e\in\partial T} (\nabla u_n \cdot n,w)_e \right)\\
 		&= \sum \limits_T  (\laplace u_h +f,w)_T + \sum \limits_{\Gamma_h} \left(\left[\frac{\partial u_h}{\partial n}\right],w\right)_e \\
 		&\stackeq{R_T,R_e} \sum \limits_T  (R_T,w)_T + \sum \limits_{\Gamma_h} \left(R_e,w\right)_e
@@ -186,11 +187,11 @@ with $\hat{w}_T = \bigcup\{w_x:x\in T\}, w_x = \bigcup \{T'\in\T_h,x\in T'\}$.
 
 \underline{duality argument}
 \begin{equation*}
-	|u-u_h|_1 = \underset{|w|_1=1 \land w\in H^1_0}{\sup} ( \nabla(u-u_h),\nabla w)
+	|u-u_h|_1 = \underset{\substack{|w|_1=1 \\w\in H^1_0}}{\sup} ( \nabla(u-u_h),\nabla w)
 \end{equation*}
 \underline{poincaré inequality}
 \begin{equation*}
-	\|v\|_0 \leq \gamma |v|_1 \quad forall v \in H^1_0(\Omega)
+	\|v\|_0 \leq \gamma |v|_1 \quad \forall v \in H^1_0(\Omega)
 \end{equation*}
 $\implies$
 \begin{equation*}
@@ -204,10 +205,8 @@ $\implies$
 		Az &= R_T \tin T  &&\text{or}& -\laplace z&= f \ton \hat{w}_T\\
 		\frac{\partial z}{\partial n} &= R_e \ton \partial T  &&& z &= u_h \ton \partial \hat{w}_T
 	\end{align*}
-	solve this with Finite elements which are one degree higher than original problem, us \textbf{???} as estimate of error(Babusha, Reinhold 1978) 
+	solve this with Finite elements which are one degree higher than original problem, use $\|z\|_1$ or $\|z-u_h\|_1$ as estimate of error(Babusha, Reinhold 1978) (more effort: need to solve for all T)
 	\item consider averaging\nl
 	conpute on each vertex an approximation of $\laplace u$ by averaging gradients of neighboring elements( with weights according to size of elements) and define approximation by interpolation in the element.\nl
-	difference between $\nabla $ and this approximation is indicatior for the error (Rewize, Zhon 1987)
+	difference between $\nabla $ and this approximation is indicatior for the error (Rewize, Zhon 1987)(especially for time deoendent problems, very expensive -> quite good for elliptic problems)
 \end{enumerate}
-\textbf{was waren diese randnotizen?}
-%TODO add randnotizen
