@@ -64,7 +64,7 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 	die Dichte von $\Nor\left(0,\frac{1}{u^2+1}\right)$. Also folgt
 	\begin{align*}
 		1=\int\limits_\R\sqrt{\frac{u^2+1}{2\cdot\pi}}\cdot\exp\left(-\frac{y^2}{2}\cdot\left(u^2+1\right)\right)\d y\\
-		\Longleftrightarrow\int\limits_\R\exp(\ldots)=\sqrt{\frac{2\cdot\pi}{u^2+1}}\\
+		\Longleftrightarrow\int\limits_\R\exp\left(-\frac{y^2}{2}\cdot\left(u^2+1\right)\right)\d y=\sqrt{\frac{2\cdot\pi}{u^2+1}}\\
 		\implies\Phi_{X\cdot W}(u)=\frac{1}{\sqrt{2\cdot\pi}}\cdot\sqrt{\frac{2\cdot\pi}{u^2+1}}=\frac{1}{\sqrt{u^2+1}}
 	\end{align*}
 	
@@ -135,23 +135,23 @@ Seien $W,X,Y,Z$ unabhängig und standardnormalverteilt. Dann gilt:
 	\end{align*}
 
 	
-	\underline{Zeige b):} %TODO Matrix falsch abgeschrieben
+	\underline{Zeige b):}
 
 	\begin{align*}
 		P:=
 		\left|\begin{array}{cc}
-			W & Y \\
-			Z & X
-		\end{array}\right| &= WX-YZ
+			W & X \\
+			Y & Z
+		\end{array}\right| &= WZ-YX
 	\end{align*}
 	Damit ist leicht auszurechnen:
 	\begin{align*}
-	 	\E\left[e^{i\xi(WX-YZ)}\right]
-	 	&=\E\left[e^{i\xi(WX)}\cdot e^{i\xi(-YZ)}\right]\\
+	 	\E\left[e^{i\xi(WZ-YX)}\right]
+		\overset{\text{unab., da $x\cdot y$ mb.}}&{=}\E\left[e^{i\xi(WZ)}\cdot e^{i\xi(-YX)}\right]\\
 	 	\overset{\eqref{eqAufgabe1}}&{=}
-	 	\E\left[e^{i\xi(WX)}\right]\E\left[e^{i\xi(-YZ)}\right]\\
-	 	&=\E\left[e^{i\xi(WX)}\right]\overline{\E\big[e^{i\xi(YZ)}\big]}\\
-		&=\frac{1}{\sqrt{1+u^2}}\frac e{1}{\sqrt{1+u^2}}\\
+	 	\E\left[e^{i\xi(WZ)}\right]\E\left[e^{i\xi(-YX)}\right]\\
+	 	&=\E\left[e^{i\xi(WZ)}\right]\overline{\E\big[e^{i\xi(YX)}\big]}\\
+		&=\frac{1}{\sqrt{1+u^2}}\frac{1}{\sqrt{1+u^2}}\\
 		&=\frac{1}{1+u^2}
 	\end{align*}
 	Dies ist die charakteristische Funktion einer Laplace-verteilten Zufallsvariable.
@@ -179,7 +179,10 @@ Dann gilt:
 		\exp\Big(\lambda\cdot\big(\phi(u)-1)\big)\Big),\qquad
 		\frac{1-p}{1-p\cdot\phi(u)}
 	\end{align*}
-	ebenfalls CF. Zu welchen Verteilungen gehören diese für $\phi(u)=\exp(i\cdot u)$?
+	ebenfalls CF. Zu welchen Verteilungen gehören diese für 
+	\begin{align*}
+		\phi(u)=\exp(i\cdot u)?
+	\end{align*}
 \end{enumerate} 
 
 \begin{proof}
@@ -201,14 +204,14 @@ Dann gilt:
 	ist absolut und gleichmäßig konvergent, denn
 	\begin{align*}
 		\left|\sum\limits_{n=0}^N a_n\cdot\phi_n(u)\right|
-		&\leq\sum\limits_{n=0}^\infty\underbrace{\big|\phi_n(u)\big|}_{\leq1}
+		&\leq\sum\limits_{n=0}^\infty a_n\underbrace{\big|\phi_n(u)\big|}_{\leq1}
 		\leq\sum\limits_{n=0}^\infty a_n=1
 	\end{align*}
 	Somit ist
 	\begin{align*}
 		\psi(u):=\sum\limits_{n=0}^\infty a_n\cdot\phi_n(u)
 	\end{align*}
-	ist insbesondere stetig.
+	insbesondere stetig.
 	\begin{align*}
 		\psi(0)
 		&=\sum\limits_{n=0}^\infty a_n\cdot\underbrace{\phi_n(0)}_{=1}
@@ -219,7 +222,7 @@ Dann gilt:
 	\begin{align*}
 		\sum\limits_{k,l=1}^N\lambda_k\cdot\overline{\lambda_l}\cdot\psi\big(u_k-u_l\big)
 		&=\sum\limits_{k,l=1}^N\lambda_k\cdot\overline{\lambda_l}\cdot\sum\limits_{n=0}^\infty a_n\cdot\phi_n\big(u_k-u_l\big)\\
-		&=\sum\limits_{n=0}^\infty a_n\cdot\underbrace{\left(\sum\limits_{k,l=1}^N\lambda_k\cdot\overline{\lambda_l}\cdot\phi_n\big(u_k-u_l\big)\right)}_{\overset{\text{pos definit}}{\geq}0}\\
+		&=\sum\limits_{n=0}^\infty a_n\cdot\underbrace{\left(\sum\limits_{k,l=1}^N\lambda_k\cdot\overline{\lambda_l}\cdot\phi_n\big(u_k-u_l\big)\right)}_{\overset{\text{pos definit}}{\geq}0, \text{ nach S. v. Bochner}}\\
 		&\geq0
 	\end{align*}		
 	Somit ist $\psi$ positiv definit und aus dem Satz von Bochner folgt, das $\psi$ eine charakteristische Funktion ist.\nl
@@ -233,11 +236,13 @@ Dann gilt:
 	Berechne $\Phi_Y(u)$:
 	\begin{align*}
 		\Phi_Y(u)
-		&=\E\Big[\exp\big(i\cdot u\cdot X_N\big)\Big]\\
-		&=\E\Big[\underbrace{\E\Big[\exp(i\cdot u\cdot X_n)~\big|~N\Big]}_{=\phi_N(u)}\Big]\\
-		&=\E\Big[\phi_N(u)\Big]\\
+		&=\E\Big[\exp\big(i\cdot u\cdot X_N\big)\Big]_{X_N}\\
+		&=\E\Big[\underbrace{\E\Big[\exp(i\cdot u\cdot X_N)~\big|~N\Big]_X}_{=\phi_{n=N}(u)}\Big]_N\\
+		&=\E\Big[\phi_{n=N}(u)\Big]_N\\
 		&=\sum\limits_{k=0}^\infty\phi_k(u)\cdot a_k
 	\end{align*}
+
+	Hier bezeichnet $\E[~\cdot~]_X$ den Erwartungswert bezüglich der ZV $X$.
 	
 	\underline{Zeige b):}\\
 	Sei $F$ die zugehörige Verteilung zu $\phi$.
@@ -287,9 +292,9 @@ Aus dem Stetigkeitssatz von Lévy folgt:
 \begin{proof}
 	\underline{Zeige a):} Setze $p_n:=\frac{c}{n}$
 	\begin{align*}
-		&P_n\overset{\w}{\longrightarrow} P
+		&\P_n\overset{\w}{\longrightarrow} \P
 		\Longleftrightarrow X_n\overset{\d}{\longrightarrow} X\\
-		\P(X_n=k)&=\begin{pmatrix}
+		\P_n(X_n=k)&=\begin{pmatrix}
 			n\\
 			k
 		\end{pmatrix}\cdot p_n^k\cdot q_n^{n-k}\\
@@ -300,20 +305,24 @@ Aus dem Stetigkeitssatz von Lévy folgt:
 	\end{align*}
 	Grenzwertbildung:
 	\begin{align*}
-		\limn\P(X_n=k)
-		&=\limn\frac{c^k}{k!}\cdot\frac{\left(1-\frac{1}{n}\right)\cdot\ldots\cdot\left(1-\frac{k-1}{n}\right)}{\left(1-\frac{c}{n}\right)^k}\cdot\left(1-\frac{c}{n}\right)^n\\
-		\limn\left(1-\frac{c}{n}\right)^n
-		&=\exp(-c)\\
-		&\implies\limn\frac{\left(1-\frac{1}{n}\right)\cdot\ldots\cdot\left(1-\frac{k-1}{n}\right)}{\left(1-\frac{c}{n}\right)}=1
+		\limn\P_n(X_n=k)
+		=&\limn\frac{c^k}{k!}\cdot\frac{\left(1-\frac{1}{n}\right)\cdot\ldots\cdot\left(1-\frac{k-1}{n}\right)}{\left(1-\frac{c}{n}\right)^k}\cdot\left(1-\frac{c}{n}\right)^n\\
+		=&\frac{c^k}{k!}\cdot\exp(-c) \text{ ,da} \\
+		 &\limn\left(1-\frac{c}{n}\right)^n=\exp(-c) \text{ und}\\
+		&\limn\frac{\left(1-\frac{1}{n}\right)\cdot\ldots\cdot\left(1-\frac{k-1}{n}\right)}{\left(1-\frac{c}{n}\right)}=1
 	\end{align*}
+	Also haben wir
+	\begin{align*}
+		\limn \P_n(X_n =k) = \frac{c^k}{k!}\cdot\exp(-c) = \P(Y=k)
+	\end{align*}
+	,wobei $Y\sim Poi(c)$.
 	
 	\underline{Zeige a), Alternative von Pascal}\\
-	Sei $X_n\sim\Bin\left(n,\frac{c}{n}=:p_n\right)$.
+	Sei $X_n\sim\Bin\left(n,p_n\right)$ mit $p_n := \frac{c}{n}$.
 	Dann:
 	\begin{align*}
 		\Phi_{X_n}(u)
 		&=\left(\frac{c}{n}\cdot\exp(i\cdot u)+1-\frac{c}{n}\right)^n\\
-		%\implies
 		\limn\left(\left(\frac{c}{n}\cdot\exp(i\cdot u)+1-\frac{c}{n}\right)^n\right)
 		&=\limn\left(\left(\frac{c\cdot\big(\exp(i\cdot u)-1\big)}{n}+1\right)^n\right)\\
 		&=\exp\Big(c\cdot\big(\exp(i\cdot u)-1\big)\Big)\\
