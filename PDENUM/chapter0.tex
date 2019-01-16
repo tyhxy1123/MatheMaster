@@ -3107,11 +3107,190 @@ wobei $\delta_K \sim h_K \text{, wenn } p_{e_K} > 1$.
 	&\varepsilon<<h\implies \delta_K\approx h_K\\
 	\implies&\Vert u-u_h\Vert_{\text{SD}}\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
 	\implies& \Vert u-u_h\Vert_{0,2,\Omega}\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
-	&\Bigg(\sum\limits_{K\in\T_h}\underbrace{\approx h_K}\big\Vert b\cdot\nabla(u+h_K)\big\Vert_{0,2,K}\Bigg)^{\frac{1}{2}}
+	&\Bigg(\sum\limits_{K\in\T_h}\approx h_K\big\Vert b\cdot\nabla(u+h_K)\big\Vert_{0,2,K}\Bigg)^{\frac{1}{2}}
 	\leq C\cdot h^{r+\frac{1}{2}}\cdot|u|_{r+1,2,\Omega}\\
 	\implies&\text{nicht-optimal hinsichtlich Interpolationsfehler}\\
 	\implies& \big\Vert b\cdot\nabla(u-u_h)\big\Vert_{0,2,\Omega}\leq C\cdot h^r\cdot|u|_{r+1,2,\Omega}\\
 	\implies&\text{optimale Konvergenz in Streamline-Richtung}
 \end{align*}
 
+\section{Gemischte Methoden}
+\subsection{Startpunkt}
+Idee: Minimierung auf einem Unterraum\\
+Gegeben: Funktional $\Phi\colon V\to\R,u\mapsto\frac{1}{2}a(u,u)-\underbrace{(f,u)}_{=f(u)}$\\
+Wir wollen dieses Funktional minimieren ($\Phi\to\min$) auf $W\subseteq V$ wobei
+\begin{align*}
+	W:=\Big\lbrace v\in V:b(q,v)=0~\forall q\in Q\Big\rbrace
+\end{align*}
+$a\colon V\times V\to\R$: ist eine koerzive, stetige Bilinearform\\
+$f(\cdot)=(f,\cdot)$: ist stetige Lineaform $f(\cdot)\colon V\to\R$ \\
+$b\colon Q\times V\to\R$: stetige Bilinearform\\
+$Q$: passender Funktionenraum\nl
+$b$ hat verschwindes Integral-Mittel:
+\begin{align*}
+	b(q,v)=\int\limits_\Omega q\cdot v\d x,\qquad
+	Q=\spann\lbrace\indi\rbrace\hat{=}\R
+\end{align*}
+Folglich ist $W$ der Raum aller Funktionen aus $V$, bei welchem das Integral-Mittel verschwindet.\nl
+Bezeichne $u^\ast$ eine Lösung des Minimierungsproblems mit Bedingung
+\begin{align*}
+	\frac{\d}{\d t}\Phi\big(u^\ast+t\cdot w\big)\Big|_{t=0}=0\qquad\forall w\in W
+\end{align*}
+Also:
+\begin{align*}
+	\Phi\big(u^\ast+t\cdot w\big)
+	&=\frac{1}{2}a\big(u^\ast+t\cdot w,u^\ast+t\cdot w\big)-f\big(u^\ast+t\cdot w\big)\\
+	0&=a\big(u^\ast,w\big)-f(w)\qquad\forall w\in W
+\end{align*}
+Das ist ein Variationsproblem in $W$.\\
+Problem: Es ist oftmals scher $W$ durch konforme Finite-Elemente-Räume zu approximieren.
+
+\begin{beispiel}\label{beispiel8.1} %nonumber in Lecture, but i'll give one
+	\begin{align*}
+		V:&=\big(H_0^1(\Omega)\big)^d,d\in\lbrace1,2\rbrace,\qquad Q=L^2(\Omega)\\
+		a(v,w)&=\int\limits_\Omega\nabla v:\nabla w\d x\\
+		b(q,v)&=\int\limits_\Omega q\div(v)\d x\\
+		f(v)&=\int\limits_\Omega f\cdot v\d x\mit\\
+		\Big( A:B:&=\sum\limits_{i,j=1}^d A_{i,j}\cdot B_{i,j}\qquad\forall A,B\in\R^{d\times d} \Big)\\
+		W&=\big\lbrace v\in V:b(q,v)=0~\forall q\in Q\big\rbrace\\
+		&=\left\lbrace v\in\big(H_0^1(\Omega)\big)^d:\int\limits_\Omega q\div(v)\d x=0~\forall q\in L^2(\Omega)\right\rbrace\\
+		&=\left\lbrace v\in\big(H_0^1(\Omega)\big)^d:\div(v)=0\right\rbrace
+	\end{align*}
+	$W$ ist also der Raum der Divergenzfreien Funktionen
+\end{beispiel}
+
+Kurzer Exkurs zu Minimierung mit Nebenbedingungen:
+\begin{align*}
+	f(x,y)&=x\cdot y\to\min\quad\text{unter}\quad x^2+y^2=1\\
+	F(x,y,\lambda):&=f(x,y)+\lambda\cdot\big(x^2+y^2-1\big)
+\end{align*}
+$F$ ist die sogenannte Lagrange-Funktion und $\lambda$ der Lagrange-Multiplikator.\\
+Optimalitätsbedingungen:
+\begin{align*}
+	\frac{\partial F}{\partial x}=0\qquad
+	\frac{\partial F}{\partial y}=0\qquad
+	\frac{\partial F}{\partial\lambda}=0
+\end{align*}
+Nun versuchen wir dies auf unser Problem anzuwenden:
+Wir betrachten also die Funktion (mit Lagrange-Mulitplikator $p$):
+%Ich weiß, dass es deine Regel bricht, aber an dieser Stelle sieht es besser auf, wenn man die align Umgebungen direkt hintereinander macht. 
+\begin{align*}
+	F(u,p):&=\Phi(u)-b(p,u)\\
+	&=\frac{1}{2}a(u,u)-f(u)-b(p,u)
+\end{align*}
+\begin{align*}
+	\frac{\partial}{\partial t}F\big(u+tv,p+sq\big)\Big|_{s=t=0}
+	&=0
+	\qquad\forall v\in V,\forall q\in Q\\
+	\frac{\partial}{\partial s}F\big(u+tv,p+sq\big)\Big|_{s=t=0}
+	&=0
+	\qquad\forall v\in V,\forall q\in Q
+\end{align*}
+\begin{align*}
+	F\big(u+tv,p+sq\big)
+	&=\frac{1}{2}a\big(u+tv,u+tv\big)-f\big(u+tv\big)-b\big(p+sq,u+tv\big)
+\end{align*}
+\begin{align*}
+	&\implies \left\lbrace\begin{array}{rl}
+		a(u,v)-f(v)-b(p,v)=0 &\forall v\in V\\
+		-b(q,u) =0 &\forall q\in Q
+	\end{array}\right.
+\end{align*}
+ \begin{align*}
+	a(u,w)&=f(w) \qquad\forall w\in W
+\end{align*}
+
+\begin{beispiel}[Weiter Beispiel \ref{beispiel8.1}]
+	\begin{align*}
+		\int\limits_\Omega\nabla u:\nabla v\d x-\int\limits_\Omega p\div(v)\d x
+		&=\int\limits_\Omega f\cdot v\d x
+		&&\forall v\in V\\
+		\int\limits_\Omega q\div(u)\d x
+		&=0
+		&&\forall q\in Q=L^2(\Omega)\\
+		\overset{q=\div(u)\in L^2(\Omega)}{\implies}
+		\div(u)&=0 
+		&& \text{ in } \Omega
+	\end{align*}
+	Für $u\in\big(H^2(\Omega)\big)^d$ und $p\in H^1(\Omega)$ gilt:
+	\begin{align*}
+		\int\limits_\Omega\nabla u:\nabla v\d x
+		\overset{\text{part Int}}&=
+		-\int\limits_\Omega \Delta u\cdot v\d x\\
+		\int\limits_\Omega p\div(v)\d x
+		\overset{\text{part Int}}&=
+		-\int\limits_\Omega v\cdot\nabla p\d x\\
+		\implies
+		\int\limits_\Omega\big(-\Delta u+\nabla p\big)\cdot v\d x
+		&=\int\limits_\Omega f\cdot v\d x\qquad\forall v\in V\\
+	\end{align*}
+	\begin{align*}
+		\stackrelnew{\text{der Variationsanalysis}}{\text{Fundamentallemma}}{\implies}
+		\left\lbrace\begin{array}{rl}
+			-\Delta u+\nabla p &=f\text{ in }\Omega\\
+			\div(u)&=0\text{ in }\Omega
+		\end{array}\right.
+	\end{align*}
+	Das entstandene Problem heißt \textbf{Stokes-Problem}.
+\end{beispiel}
+
+\subsection{Lösbarkeit von gemischten Problemen}
+Seien $V,Q$ Hilberträume, $a\colon V\times V\to\R$ bilinear, stetig und koerziv, $b\colon Q\times V\to\R$ bilinear und stetig.\nl
+Finde $(u,p)\in V\times Q$ so, dass
+\begin{align*}
+	a(u,v)-b(p,v)&=f(v) &\forall v\in V\\
+	b(q,u) &=0 &\forall q\in Q
+\end{align*}
+Setze 
+\begin{align*}
+	A\big((u,p),(v,q)\big) &:=a(u,v)-b(p,v)+b(q,v)\\
+	B\big((v,q)\big) &:= f(v)
+\end{align*}
+Damit erhalten wir das äquivalente Problem:
+Finde $(u,p)\in V\times Q$ so, dass
+\begin{align*}
+	A\big((u,p),(v,q)\big)=F\big(v,q)\big) \qquad\forall(v,q)\in V\times Q
+\end{align*}
+Setze $X:=V\times Q$ mit der kanonischen Norm
+\begin{align*}
+	\big\Vert(v,q)\big\Vert_X:=\sqrt{\Vert v\Vert_V^2+\Vert q\Vert_Q^2}
+\end{align*}
+$A$ ist stetig und bilinear auf $X$ und $F$ ist stetig auf $X$.\\
+Ist $A$ koerziv auf $X$?
+\begin{align*}
+	A\big((v,q),(v,q)\big)
+	&=a(v,v)-b(q,v)+b(q,v)
+	=a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V\\
+	\implies
+	A\big((0,q),(0,q)\big)&=0\qquad\forall q\in Q
+\end{align*}
+Somit ist $A$ \underline{nicht} koerziv.
+Folglich kann Lax-Milgram nicht angewandt werden.
+
+\begin{align}\label{eq8.2Problem1MixedForm}\tag{1}
+		\left\lbrace
+		\begin{array}{rlrr}
+			\text{Finde }(u,p)\in V\times Q\text{ so, dass }&\\
+			a(u,v)-b(p,v)&=f(v) &\forall v\in V\\
+			b(q,u)&=0 &\forall q\in Q
+		\end{array}\right.\\
+		\label{eq8.2Problem2MixedForm}\tag{2}
+		\text{Finde $u\in W$ so, dass }
+		a(u,v)= f(v)\qquad\forall v\in W
+\end{align}
+
+Wenn $\big(u^\ast,p^\ast\big)$ eine Lösung von \eqref{eq8.2Problem1MixedForm} ist, dann löst $u^\ast$ \eqref{eq8.2Problem2MixedForm}.\\
+Aus $\big(u^\ast,p^\ast\big)$ löst\eqref{eq8.2Problem1MixedForm} folgt:
+\begin{align*}
+	b\big(q,u^\ast\big)=0\qquad\forall q\in Q
+	\implies u^\ast\in W
+	\implies u^\ast\text{ löst }\eqref{eq8.2Problem2MixedForm}
+\end{align*}
+
+Sei $v\in W\subseteq V$ beliebig.
+\begin{align*}
+	a\big(u^\ast,v\big)-\underbrace{b(p^\ast,v)}_{\overset{v\in W}{=}0}=f(v)\\
+	a(u^\ast,v)=f(v)\qquad\forall v\in W
+	\implies u^\ast\text{ löst }\eqref{eq8.2Problem2MixedForm}
+\end{align*}
 
