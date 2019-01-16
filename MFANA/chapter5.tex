@@ -645,3 +645,181 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 	Übung.
 \end{proof}
 
+\subsection{Anwendungen des Theorems von Attouch} %nonumber
+\subsubsection{Moreau-Yosida-Approximation}
+Bereits gesehen.
+Es sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ semikonvex vom Typ $\omega$, $\not\equiv+\infty$ und unterhalbstetig,
+$\E^\lambda$ die Moreau-Yosida-Approximation.
+Dann gilt für ein $\omega'>\omega$:
+\begin{align*}
+	\E\lambda+\frac{\omega'}{2}\cdot\Vert\cdot\Vert_H^2
+	\stackrelnew{\text{Mosco}}{\lambda\to 0^+}{\longrightarrow}
+	\E+\frac{\omega'}{2}\cdot\Vert\cdot\Vert_H^2
+\end{align*}
+
+\subsubsection{Galerkinapproximation (Finite Elemente)}
+Sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ semikonvex vom Typ $\omega\in\R$, $\not\equiv+\infty$ und unterhalbstetig.
+Sei $\dom(\E)=\lbrace\E<+\infty\rbrace$ der effektive Definitionsbereich.
+Es gebe eine abzählbare Menge $D=\big\lbrace v_n:v\in\N\big\rbrace\subseteq\dom(\E)$, die "dicht" in $\dom(\E)$ ist im folgenden Sinne:
+\begin{align*}
+	\forall u\in\dom(\E):\exists\text{ Teilfolge }\big(v_{n_k}\big)_{k\in\N}:
+	V_{N_k}\cap D\ni v_{n_k}\overset{k\to\infty}{\longrightarrow} u\text{ in }H
+	\text{ und }\E\big(v_{n_k}\big)\overset{k\to\infty}{\longrightarrow}\E(u)
+\end{align*}
+
+$\dom(\E)$ ist metrischer Raum bzgl. der Metrik
+\begin{align*}
+	d_\varepsilon(u,v):=\Vert u-v\Vert_H+\big|\E(u)-\E(v)\big|\qquad\forall u,v\in\dom(\E).
+\end{align*}
+Die Voraussetzung besagt also, dass $D$ dicht in dem metrischen Raum $(\dom(\E),d_\varepsilon)$ ist.
+
+\begin{beispiel}[Standardbeispiel für die gesamte Theorie]
+	\begin{align*}
+		H&=L^2(\Omega)\\
+		\E(u)&=\left\lbrace\begin{array}{cl}
+			\frac{1}{2}\cdot\int\limits_\Omega\big|\nabla u\big|^2, &\falls \nabla u\in L^2\\
+			+\infty, &\sonst		
+		\end{array}\right.\\
+		\dom(\E)&=\left\lbrace u\in L^2(\Omega):\nabla u\in L^2\right\rbrace=W^{1,2}(\Omega)\text{ ist Hilbertraum bzgl.}\\
+		\langle u,v\rangle_{W^{1,2}}
+		&=\langle u,v\rangle_{L^2}+\langle\nabla u,\nabla v\rangle_{L^2}
+	\end{align*}
+	Falls man für eine Folge $(u_n)_{n\in\N}$ Konvergenz hat, also
+	\begin{align*}
+		u_n\overset{n\to\infty}{\longrightarrow} u\text{ in }\big(\dom(\E),d_\varepsilon\big)\\
+		\Longleftrightarrow\Vert u_n-u\Vert_{L^2}\overset{n\to\infty}{\longrightarrow}0\\
+		\E(u_n)\overset{n\to\infty}{\longrightarrow}\E(u)
+	\end{align*}
+	Insbesondere ist $(u_n)_{n\in\N}$ beschränkt in $\left(W^{1,2},\Vert\cdot\Vert_{W^{1,2,}}\right)$.
+	Nach Übergang zur Teilfolge:
+	\begin{align*}
+		u_n\overset{n\to\infty}{\longrightarrow}u\text{ schwache Konvergenz}
+	\end{align*}
+	Aber auch
+	\begin{align*}
+		\Vert u_n\Vert^2_{W^{1,2}}
+		&=\Vert u_n\Vert_{L^2}^2+\Vert\nabla u\Vert_{L^2}^2
+		\overset{n\to\infty}{\longrightarrow}
+		\Vert u\Vert_{L^2}^2+\Vert\nabla u\Vert_{L^2}^2\\
+		\implies u_n\overset{n\to\infty}{\longrightarrow} u\text{ in }W^{1,2}
+	\end{align*}
+\end{beispiel}
+
+Zurück zum abstraktem, allgemeinen Fall:
+Setze
+\begin{align*}
+	V_n:=\linspan\big\lbrace v_1,\ldots,v_n\big\rbrace
+\end{align*}
+und
+\begin{align*}
+	\E_n&\colon H\to\R\cup\lbrace+\infty\rbrace,\qquad
+	\E_n(u):=\left\lbrace\begin{array}{cl}
+		\E(u) ,&\falls u\in V_n\\
+		+\infty, &\sonst
+	\end{array}\right.
+	=:\E(u)+\chi_{V_n}(u)
+\end{align*}
+Dann ist $\E_n$ unterhalbstetig, semikonvex vom Typ $\omega$ und $\not\equiv+\infty$ ($\E_n(v_1)<\infty$).
+Außerdem ist $(\E_n)_{n\in\N}$ monoton fallend, nach unten beschränkt durch $\E$ 
+(bzw. $\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2\right)$ monoton fallend und nach unten beschränkt durch $\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2$.
+Damit ist die Folge
+\begin{align*}
+	\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2\right)_{n\in\N}
+\end{align*}
+Moscokonvergent gegen 
+\begin{align*}
+	\overline{\inf\limits_{n\in\N}\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2\right)}=:\F
+\end{align*}
+Nach Definition ist 
+\begin{align*}
+	\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert-H^2\leq \F.
+\end{align*}
+Behauptung:
+\begin{align*}
+	\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2=\F
+\end{align*}
+
+Nachdem der Epigraph von $\F$ der Abschluss des Epigraphen von
+\begin{align*}
+	\inf\limits_{n\in\N}\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2\right)=:\F_0
+\end{align*}
+ist, gilt für alle $(u_n)_{n\in\N}\subseteq\F_0$, $(\lambda_n)_{n\in\N}\subseteq\R$ mit $u_n\longrightarrow u,\lambda_n\longrightarrow\lambda$ und $\lambda_n\geq\F_0(u_n)$: $\lambda\geq\F(u)$.
+% das folgende wurde gelöscht in der VL
+%gibt es für jedes $u\in\dom(\F)$ eine Folge $(u_n)_{n\in\N}$ in $\dom(\F_0)$, $\lambda\geq\F(u)$, $(\lambda_n)_{\n\in\N}\subseteq\R$ mit $\lambda\geq\F_0(u_n)$
+%\begin{align*}
+	%u_n\overset{n\to\infty}{\longrightarrow}u\text{ in }H
+	%\qquad\text{und}\qquad
+	%\F_0(u_n)\overset{n\to\infty}{\longrightarrow}\F(u)
+	%\lambda_n\overset{n\to\infty}{\longrightarrow}\lambda
+%\end{align*}
+Mit Voraussetzung folgt $\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2=\F$.
+Wir haben also
+\begin{align*}
+	\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2
+	\stackrelnew{n\to\infty}{\text{Mosco}}{\longrightarrow}
+	\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2
+\end{align*}
+gezeigt.
+(Die Grundidee ist, die DGL in $V_n$ zu lösen und $n\to\infty$ zu betrachten, da $u_n\longrightarrow u$ gleichmäßig und $u$ Lösung).
+Sind also $u_n$ Lösungen von 
+\begin{align*}
+	\dot{u}_n+\partial\E_n(u)\ni 0\text{ in }V_n,\quad u_n(0)=u_n^0
+\end{align*}
+und konvergiert $u_n^0\overset{n\to\infty}{\longrightarrow}u^0$ in $H$, dann konvergiert $u_n\overset{n\to\infty}{\longrightarrow}u$ lokal gleichmäßig auf $\R_+$, z.B.
+\begin{align*}
+	\limn\sup\limits_{t\in[0,T]}\big\Vert u_n(t)-u(t)\big\Vert_H=0\qquad\forall T>0
+\end{align*}
+$u$ ist Lösung von
+\begin{align*}
+	\left\lbrace	
+	\begin{array}{rl}
+		\dot{u}+\partial\E(u)&\ni0\\
+		u(0)&=u^0
+	\end{array}\right.
+\end{align*}
+
+(Am Rand des effektiven Definitionsbereich geschehen komische Dinge. 
+Da kommt die Mehrwertigkeit dann rein.)
+
+\begin{beispiel}
+	 Betrachte $H=L^2(\Omega)$ mit $\Omega\subseteq\R^n$ offen.
+	 Sei $p\in]1,+\infty[$ und 
+	 \begin{align*}
+	 	\E&:L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
+	 	\E(u)=\left\lbrace\begin{array}{cl}
+	 		\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p, &\falls \nabla u\in L^p\\
+	 		+\infty, &\sonst
+	 	\end{array}\right.\\
+	 	\dom(\E)&=\left\lbrace u\in L^2(\Omega):\nabla u\in L^p(\Omega)\right\rbrace
+	 \end{align*}
+	 Die Metrik $d_\varepsilon$ ist äquivalent zur Norm
+	 \begin{align*}
+	 	\Vert u\Vert=\Vert u\Vert_{L^2}+\Vert\nabla u\Vert_{L^p}.
+	 \end{align*}
+	 Wähle $(v_n)_{n\in\N}$ sicht in $\big(\dom(\E),\Vert\cdot\Vert\big)$ und setze
+	 \begin{align*}
+	 	\E(u)=\left\lbrace\begin{array}{cl}
+	 		\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p , &\falls \nabla u\in L^p\text{ und }u\in V_n:=\spann\big\lbrace v_1,\ldots,v_n\big\rbrace\\
+	 		+\infty, &\sonst
+	 	\end{array}\right.
+	 \end{align*}
+	 Dann ist
+	 \begin{align*}
+	 	\dot{u}_n+\partial\E_n(u_n)\ni 0\text{ in }L^2(\Omega)
+	 	\qquad\mit u_n\colon [0,T]\to V_n
+	 \end{align*}
+	 eine gewöhnliche DGL in $V_n$ (endlich dimensional). Für $C^1$-Funktionen ist dann der Subgradient einfach die Ableitung.
+	 Es gilt:
+	 \begin{align*}
+	 	u_n(0)\overset{n\to\infty}{\longrightarrow}u^0\in L^2(\Omega)
+	 	\implies &u_n\overset{n\to\infty}{\longrightarrow} u\text{ lokal glm. und $u$ ist Lösung von}\\
+	 	&\left\lbrace\begin{array}{cl}
+	 		u_t-\Delta_p u =0 &\text{in }(0,\infty)\times\Omega\\
+	 		\frac{\partial u}{\partial n}=0 &\text{in }(0,\infty)\times\partial\Omega\\
+	 		u(0,x)=u^0(x) &x\in\Omega
+	 	\end{array}\right.
+	 \end{align*}
+\end{beispiel}
+
+
+
