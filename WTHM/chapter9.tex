@@ -22,11 +22,10 @@ Beweismethode: Charakteristische Funktionen und Stetigkeitssatz von Lévy \ref{t
 
 \begin{vorüberlegung}
 	Taylor-Entwicklung der Exponentialfunktion mit Rekursion für Restglied
-	\begin{align}\label{eqVorueberlegungChapter9Exp}\tag{Exp}
+	\begin{align}\label{eqVorueberlegungChapter9Exp}\tag{ExpTay}
 		\exp(i\cdot x)=\sum\limits_{k=0}^n\frac{(i\cdot x)^k}{k!}+g_n(x)
 	\end{align}
 	Es gilt:
-	%TODO Is the following correct now?
 	\begin{align*}
 		\int\limits_0^x g_n(y)\d y
 		&=\int\limits_0^x\left(\exp(i\cdot y)-\sum\limits_{k=0}^n\frac{(i\cdot y)^k}{k!}\right)\d y\\
@@ -43,7 +42,7 @@ Beweismethode: Charakteristische Funktionen und Stetigkeitssatz von Lévy \ref{t
 	\begin{align*}
 		\big|g_n(x)\big|\leq\min\left\lbrace\frac{2\cdot|x|^n}{n!},\frac{|x|^{n+1}}{(n+1)!}\right\rbrace
 	\end{align*}
-	Die linke ist besser für großes $|x|$ und die rechte besser für $|x|$ klein.
+	Die linke Ungleichung ist besser für großes $|x|$ und die rechte Ungleichung ist besser für $|x|$ klein.
 \end{lemma}
 
 \begin{proof}
@@ -82,6 +81,7 @@ Beweismethode: Charakteristische Funktionen und Stetigkeitssatz von Lévy \ref{t
 	 	&\leq u^2\cdot\E\left[\min\left\lbrace X^2,\frac{|X|^3\cdot|u|}{6}\right\rbrace\right]
 	 \end{align}
 	 Diese Abschätzung wird im Beweis der ZGS verwendet.
+	 Beachte außerdem, dass die dritten Momente nicht existieren müssen, damit diese Gleichung gilt.
 \end{bemerkung}
 
 \begin{lemma}\label{lemma9.2}
@@ -139,7 +139,7 @@ Beweismethode: Charakteristische Funktionen und Stetigkeitssatz von Lévy \ref{t
 		\overset{\eqref{eqBemerkungUnder9.1A}}{\leq}
 		\frac{1}{\sigma^2}\cdot\underbrace{\E\left[\min\left\lbrace X_1^2,\left|\frac{u}{\sigma\cdot\sqrt{n}}\right|\cdot\frac{|X_1|^3}{6}\right\rbrace\right]}_{\overset{n\to\infty}{\longrightarrow}0\text{ mit dom. Konv.}}
 	\end{align*}
-	Also gilt $an\overset{n\to\infty}{\longrightarrow}\frac{u^2}{2}$.
+	Also gilt $a_n\overset{n\to\infty}{\longrightarrow}\frac{u^2}{2}$.
 	Aus Lemma \ref{lemma9.2} folgt:
 	\begin{align*}
 		\limn\Phi_{a_n}(u)
@@ -154,7 +154,7 @@ Beweismethode: Charakteristische Funktionen und Stetigkeitssatz von Lévy \ref{t
 \end{proof}
 
 \begin{bemerkung}
-	Folgendes Beispiel zeigt was passieren kann, wenn $\E[X_1^2]=\infty$ (also die Varianz). 
+	Folgendes Beispiel zeigt was passieren kann, wenn $\E[X_1^2]=\infty$ (also die Varianz nicht endlich ist). 
 \end{bemerkung}
 
 \begin{beisp}
@@ -192,7 +192,7 @@ Nächstes Ziel: Abschwächen der Annahme der gleichen Verteilungen
 	Setze $s_n^2:=\sigma_1^2+\ldots+\sigma_n^2$.
 	Wenn die \textbf{Lindeberg-Bedingung}
 	\begin{align}\label{eqTheorem9.4LindebergBedingungL}\tag{L}
-		\limn\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\left[X_j^2\cdot\indi_{\big\lbrace|X_<j|\geq\varepsilon\cdot s_n\big\rbrace}\right]=0\qquad\forall\varepsilon>0
+		\limn\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\left[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_n\big\rbrace}\right]=0\qquad\forall\varepsilon>0
 	\end{align}
 	erfüllt ist, dann gilt:
 	\begin{align*}
