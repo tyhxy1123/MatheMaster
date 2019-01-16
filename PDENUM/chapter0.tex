@@ -3151,7 +3151,7 @@ Problem: Es ist oftmals scher $W$ durch konforme Finite-Elemente-Räume zu appro
 		a(v,w)&=\int\limits_\Omega\nabla v:\nabla w\d x\\
 		b(q,v)&=\int\limits_\Omega q\div(v)\d x\\
 		f(v)&=\int\limits_\Omega f\cdot v\d x\mit\\
-		A:B:&=\sum\limits_{i,j=1}^d A_{i,j}\cdot B_{i,j}\qquad\forall A,B\in\R^{d\times d}\\
+		\Big( A:B:&=\sum\limits_{i,j=1}^d A_{i,j}\cdot B_{i,j}\qquad\forall A,B\in\R^{d\times d} \Big)\\
 		W&=\big\lbrace v\in V:b(q,v)=0~\forall q\in Q\big\rbrace\\
 		&=\left\lbrace v\in\big(H_0^1(\Omega)\big)^d:\int\limits_\Omega q\div(v)\d x=0~\forall q\in L^2(\Omega)\right\rbrace\\
 		&=\left\lbrace v\in\big(H_0^1(\Omega)\big)^d:\div(v)=0\right\rbrace
@@ -3159,7 +3159,7 @@ Problem: Es ist oftmals scher $W$ durch konforme Finite-Elemente-Räume zu appro
 	$W$ ist also der Raum der Divergenzfreien Funktionen
 \end{beispiel}
 
-Minimierung mit Nebenbedingungen:
+Kurzer Exkurs zu Minimierung mit Nebenbedingungen:
 \begin{align*}
 	f(x,y)&=x\cdot y\to\min\quad\text{unter}\quad x^2+y^2=1\\
 	F(x,y,\lambda):&=f(x,y)+\lambda\cdot\big(x^2+y^2-1\big)
@@ -3171,26 +3171,32 @@ Optimalitätsbedingungen:
 	\frac{\partial F}{\partial y}=0\qquad
 	\frac{\partial F}{\partial\lambda}=0
 \end{align*}
-Wir betrachten also nun die Funktion (mit Lagrange-Mulitplikator $p$):
+Nun versuchen wir dies auf unser Problem anzuwenden:
+Wir betrachten also die Funktion (mit Lagrange-Mulitplikator $p$):
+%Ich weiß, dass es deine Regel bricht, aber an dieser Stelle sieht es besser auf, wenn man die align Umgebungen direkt hintereinander macht. 
 \begin{align*}
-	F(u,p)&:=\Phi(u)-b(p,u)\\
-	&~=\frac{1}{2}a(u,u)-f(u)-b(p,u)\\
+	F(u,p):&=\Phi(u)-b(p,u)\\
+	&=\frac{1}{2}a(u,u)-f(u)-b(p,u)
+\end{align*}
+\begin{align*}
 	\frac{\partial}{\partial t}F\big(u+tv,p+sq\big)\Big|_{s=t=0}
 	&=0
 	\qquad\forall v\in V,\forall q\in Q\\
 	\frac{\partial}{\partial s}F\big(u+tv,p+sq\big)\Big|_{s=t=0}
 	&=0
-	&\qquad\forall v\in V,\forall q\in Q
+	\qquad\forall v\in V,\forall q\in Q
 \end{align*}
-
 \begin{align*}
 	F\big(u+tv,p+sq\big)
-	&=\frac{1}{2}a\big(u+tv,u+tv\big)-f\big(u+tv\big)-b\big(p+sq,u+tv\big)\\
-	&\implies
-	\left\lbrace\begin{array}{rl}
+	&=\frac{1}{2}a\big(u+tv,u+tv\big)-f\big(u+tv\big)-b\big(p+sq,u+tv\big)
+\end{align*}
+\begin{align*}
+	&\implies \left\lbrace\begin{array}{rl}
 		a(u,v)-f(v)-b(p,v)=0 &\forall v\in V\\
 		-b(q,u) =0 &\forall q\in Q
-	\end{array}\right.\\
+	\end{array}\right.
+\end{align*}
+ \begin{align*}
 	a(u,w)&=f(w) \qquad\forall w\in W
 \end{align*}
 
@@ -3198,12 +3204,13 @@ Wir betrachten also nun die Funktion (mit Lagrange-Mulitplikator $p$):
 	\begin{align*}
 		\int\limits_\Omega\nabla u:\nabla v\d x-\int\limits_\Omega p\div(v)\d x
 		&=\int\limits_\Omega f\cdot v\d x
-		&\forall v\in V\\
+		&&\forall v\in V\\
 		\int\limits_\Omega q\div(u)\d x
-		&=
-		&\forall q\in Q=L^2(\Omega)\\
+		&=0
+		&&\forall q\in Q=L^2(\Omega)\\
 		\overset{q=\div(u)\in L^2(\Omega)}{\implies}
-		\div(u)=0
+		\div(u)&=0 
+		&& \text{ in } \Omega
 	\end{align*}
 	Für $u\in\big(H^2(\Omega)\big)^d$ und $p\in H^1(\Omega)$ gilt:
 	\begin{align*}
@@ -3214,8 +3221,10 @@ Wir betrachten also nun die Funktion (mit Lagrange-Mulitplikator $p$):
 		\overset{\text{part Int}}&=
 		-\int\limits_\Omega v\cdot\nabla p\d x\\
 		\implies
-		\int\limits\big(-\Delta u+\nabla p\big)\cdot v\d x
+		\int\limits_\Omega\big(-\Delta u+\nabla p\big)\cdot v\d x
 		&=\int\limits_\Omega f\cdot v\d x\qquad\forall v\in V\\
+	\end{align*}
+	\begin{align*}
 		\stackrelnew{\text{der Variationsanalysis}}{\text{Fundamentallemma}}{\implies}
 		\left\lbrace\begin{array}{rl}
 			-\Delta u+\nabla p &=f\text{ in }\Omega\\
