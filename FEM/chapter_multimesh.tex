@@ -17,7 +17,7 @@
 	\mu &= -\varepsilon \laplace u + \frac{1}{\varepsilon}w'(u) 
 	\end{align*}
 	with $u$ as concentration(phase variable), $\mu$ as chemical potential and $w(u) = \frac{1}{4} (1-u^2)^2$ as the double-well potential and a small parameter $\varepsilon$.
-	%TODO add picture
+	\input{tikz/chapter_multimesh/hahn_hilliard}
 \end{example}
 \textbf{eventuell fehler in der obigen Gleichung}
 \begin{example}
@@ -61,8 +61,8 @@
 	\end{align*}
 	The problem is in $\int \limits_T \nabla \psi_j  \varphi_i$. There is a need to use the union of two partitions. For this we need the following assumptions on meshes:\nl
 	any element $T^0 \in \T^0_h$ is either a subelement of an element $T^1 \in \T^1_h$ or vice versa.
-	%TODO add picture
-	This is fullfilled if e.g. bisection is used starting from the same coarse mesh.\nl
+	This is fullfilled if e.g. bisection is used starting from the same coarse mesh.
+	\input{tikz/chapter_multimesh/union}
 	$\implies \T^0_h \cup \T^1_h$ is union of locally finest simplices. The integral is typically computed by using local basisfunctions.\nl
 	$\varphi_{i,j}$: $j$-th local basisfunction on $T_i \in \T^0_h$\\
 	$\psi_{i,j}$: $j$-th local basisfunction on $T_i \in \T^1_h$\nl
@@ -80,9 +80,8 @@
 	\int \limits_{T \in \T^1_h} \psi_{k,l}\varphi_{i,j} = \int \limits_{T \in \T^0_h} \sum \limits_m  \psi_{k,l} \left( c_{k,m} \psi_{i,m} \right)
 	\end{align*}
 	For the assembly step we use a mesh traverse algorithm which creates requested elements on demand, traverses two meshes in parallel and create union in virtual way.
-	% TODO add picture
-	% TODO add second picture 
-	($\varphi = \psi_0 + \frac{1}{2}\psi_1$)\\
+	\input{tikz/chapter_multimesh/traverse}
+	\input{tikz/chapter_multimesh/other_basis}
 	element matrix $M_{T'}$:(somewhere in this example the dimension of the basis got changed...) 
 	\begin{align*}
 		M_{T'}&= 
