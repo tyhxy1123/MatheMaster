@@ -1,0 +1,48 @@
+\section{Multimesh concept}
+
+\begin{example}
+	Navier-Stokes-Equation:
+	\begin{align*}
+		\partial_t u + u \cdot \nabla u &= \nabla p + \nu \laplace u \\
+		\nabla \cdot u = 0 
+	\end{align*}
+	with $u = (u_1,u_2,u_3)^T$ as velocity, $p$ as pressure and $\nu$ as viscosity and proper intial and boundary conditions
+\end{example}
+
+\begin{example}
+	Hahn-Hilliard-Equation(phase field moduls)\\
+	(e.g. seperation of two liquids)
+	\begin{align*}
+	\partial_t u &= \laplace u \\
+	\mu &= -\varepsilon \laplace u + \frac{1}{\varepsilon}w'(u) 
+	\end{align*}
+	with $u$ as concentration(phase variable), $\mu$ as chemical potential and $w(u) = \frac{1}{4} (1-u^2)^2$ as the double-well potential and a small parameter $\varepsilon$.
+	%TODO add picture
+\end{example}
+\textbf{eventuell fehler in der obigen Gleichung}
+\begin{example}
+	for illustration , biharmonic equation
+	\begin{align*}
+	\laplace^2 u &= 0 \tin \Omega \\
+	u &= 0 \ton \partial\Omega\\
+	\frac{\partial u}{\partial n} &=0 \ton \partial \Omega
+	\end{align*}
+	classical solution: $u \in C^4(\Omega)\cap C^1(\bar{\Omega})$\nl
+	do operator splitting and rewrite as a system:
+	\begin{align*}
+		\begin{rcases}
+			-\laplace u + v &=0\\
+			\laplace v &= 0
+		\end{rcases} \tin \Omega
+	\end{align*}
+	variational/weak formulation: Find $(u,v) \in H^1_0(\Omega)\times H^1(\Omega)$
+	\begin{align*}
+		\int \limits_{\Omega} \nabla u \cdot \nabla \varphi + \int \limits_{\Omega} v\varphi &=0 \qquad \forall \varphi \in H^1\\
+		\int \limits_{\Omega} \nabla v \cdot \nabla \psi &=0 \qquad \forall \psi \in H^1_0
+	\end{align*}
+	assume $\T^0_h, \T^1_h$ are different partitions of $\Omega$
+	\begin{align*}
+		V^0_h &= \left\{ v_h \in H^1: v_h|_T \in P_{\alpha},\ \forall T \in \T^0_h  \right\}\\
+		V^1_h &= \left\{ v_h \in H^1_0: v_h|_T \in P_{\alpha},\ \forall T \in \T^1_h  \right\}
+	\end{align*}
+\end{example}
