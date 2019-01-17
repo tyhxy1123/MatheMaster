@@ -17,7 +17,7 @@ Sei $X:(\Omega,\A,\P)\to\R$ eine reelle Zufallsvariable mit Verteilungsfunktion\
 	\int\limits_\R|x-t|\Big(\P\circ X\d x\Big)\\ \nonumber
 	&=\int\limits_\R|x-t|(F\d x) \nonumber
 	\qquad\forall t\in\R\\
-	m&:=\arg\min\limits_{t\in\R}Y(t):=\text{ (irgendeine) Minimalstelle der Funktion}\nonumber
+	m&:=\argmin\limits_{t\in\R}Y(t):=\text{ (irgendeine) Minimalstelle der Funktion}\nonumber
 \end{align} 
 
 \begin{notation}
@@ -123,7 +123,7 @@ Gemäß dem Satz von Gliwenko-Cantelli gilt:
 
 Ein vages Stetigkeitsargument motiviert folgenden Schätzer für $m$:
 \begin{align*}
-	\hat{m}_n&:=\arg\min\limits_{t\in\R}Y_n(t):=\text{ (irgendeine) Minimalstelle der Funktion}\\
+	\hat{m}_n&:=\argmin\limits_{t\in\R}Y_n(t):=\text{ (irgendeine) Minimalstelle der Funktion}\\
 	Y_n(t)&:=\int\limits_\Omega |x-t|F_n(\d x)\\ 
 	&=\int\limits_\Omega |x-t|Q_n(\d x)\\ 
 	&=\frac{1}{n}\cdot\sum\limits_{i=1}^n\int\limits|x-t|~\delta_{X_i}(\d x)\\
@@ -148,9 +148,9 @@ Mit dem starken Gesetz der großen Zahlen (SGGZ) gilt
 \end{align}
 Problem: Folgt aus \eqref{eq1.1} bereits, dass
 \begin{align*}
-	\arg\min\limits_{t\in\R} Y_n(t)
+	\argmin\limits_{t\in\R} Y_n(t)
 	\stackrel{n\to\infty}{\longrightarrow}
-	\arg\min\limits_{t\in\R}
+	\argmin\limits_{t\in\R}
 	Y(t)\text{ fast sicher?}
 \end{align*}
 Dann folgte:
@@ -211,9 +211,9 @@ Was lässt sich sagen über die Gültigkeit der folgenden Implikationen?
 	\stackrel{n\to\infty}{\longrightarrow}
 	Y\text{ fast sicher }
 	\Longrightarrow
-	\arg\min\limits_{t\in\R} Y(t)
+	\argmin\limits_{t\in\R} Y(t)
 	\stackrel{n\to\infty}{\longrightarrow}
-	\arg\min\limits_{t\in\R} Y(t)\text{ fast sicher}
+	\argmin\limits_{t\in\R} Y(t)\text{ fast sicher}
 \end{align}
 Ziel: Welche Art der Konvergenz $Y_n\stackrel{n\to\infty}{\longrightarrow} Y$ reicht für obige Implikation aus? Gleichmäßige Konvergenz, gleichmäßige Konvergenz auf Kompakta punktweise Konvergenz oder sogar nur \eqref{eq1.1}?\\
 $Y$ besitzt womöglich (unter positiven Wahrscheinlichkeiten) keine eindeutige Minimalstelle. Und dann?\nl
@@ -228,7 +228,7 @@ wobei $a_n\to\infty$ in $\xi$ Grenzvariable, die es zu identifizieren gilt. Für
 \end{align*}
 der sogenannte \textbf{reskalierte Prozess zu $Y_n$}, wobei $\beta_n$ deine geeignete positive Folge ist. Damit folgt
 \begin{align}\label{1.4}
-	a_n(\hat{m}_n-m)=\arg\min\limits_{t\in\R} Z_n(t)
+	a_n(\hat{m}_n-m)=\argmin\limits_{t\in\R} Z_n(t)
 \end{align}
 Klar: $Z_n$ ist wieder ein stetiger stochastischer Prozess und damit $(Z_n)_{n\in\N}$ eine Folge von Zufallsvariablen in $\big(C(\R),d\big)$.
 Wünschenswert auch hier wäre die Gültigkeit folgender Implikation:
@@ -237,9 +237,9 @@ Wünschenswert auch hier wäre die Gültigkeit folgender Implikation:
 	\stackrel{\mathcal{L}}{\longrightarrow}
 	Z\text{ in } \big(C(\R),d\big)
 	\Longrightarrow
-	\arg\min\limits_{t\in\R} Z_n(t)
+	\argmin\limits_{t\in\R} Z_n(t)
 	\stackrel{\mathcal{L}}{\longrightarrow}
-	\arg\min\limits_{t\in\R} Z(t)
+	\argmin\limits_{t\in\R} Z(t)
 \end{align}
 Dazu erforderlich ist das Konzept der \textbf{Verteilungskonvergenz} von Zufallsvariablen in metrischen Räumen, damit \eqref{eqSternchen} eine wohldefinierte Bedeutung erhält.
 Dies folgt später.
@@ -249,7 +249,7 @@ Im Falle einer fast sicher eindeutigen Minimalstelle von $Z$ würde aber aus (1.
 \begin{align*}
 	a_n(\hat{m}_n-m)
 	\stackrel{\mathcal{L}}{\longrightarrow}
-	\arg\min\limits_{t\in\R} Z(t)
+	\argmin\limits_{t\in\R} Z(t)
 \end{align*}
 
 \section{Konzepte aus metrischen Räumen}
@@ -3715,7 +3715,7 @@ d.h. $\hat{k}_n$ ist die kleinste Maximalstelle von $|C_k|,k\in\lbrace1,\ldots,n
 		\qquad\text{wobei}\qquad
 		R=\frac{M}{\sqrt{T\cdot(1-T)}}\mit\\
 		M&:=\sup\limits_{0\leq t\leq 1}\big|B_0(t)\big|\nonumber,\qquad
-		T:=\arg\max\limits_{0<t<1}\big|B_0(t)\big|,\qquad
+		T:=\argmax\limits_{0<t<1}\big|B_0(t)\big|,\qquad
 		B_0=\text{ Brownsche Brücke}\nonumber
 	\end{align}
 \end{thm}
@@ -3745,14 +3745,14 @@ Es gilt:
 \begin{align*}
 	R_n^+\stackrel{\L}{\longrightarrow} R^+=\frac{M^+}{\sqrt{T^+\cdot(1-T^+)}},\qquad
 	M^+=\sup\limits B_0(t),\qquad
-	T^*=\arg\max\limits B_0(t)\\
+	T^*=\argmax\limits B_0(t)\\
 	H^+(x):=\P\big(R^+\leq x\big)=2\cdot\Phi(x)-\sqrt{\frac{2}{\pi}}\cdot x\cdot\exp\left(-\frac{1}{2}\cdot x^2\right)-1\qquad x\geq0~(=0, x<0)
 \end{align*}
 Hierbei ist $\Phi$ die Verteilungsfunktion der Standardnormalverteilung. Ferner gilt:\\
 Die Zufallsgrößen $R^+$ und $T^+$ sind stochastisch unabhängig!
 \begin{align*}
 	\hat{\tau}_n-\tau_n\stackrel{\L}{\longrightarrow}V=\\
-	\hat{\tau}_n:=\arg\max\limits_{1\leq k\leq n-1}\left|\sum\limits_{i=1}^k\big(X_i-\overline{X_n}\big)\right|
+	\hat{\tau}_n:=\argmax\limits_{1\leq k\leq n-1}\left|\sum\limits_{i=1}^k\big(X_i-\overline{X_n}\big)\right|
 \end{align*}
 
 \subsection{Verteilungskonvergenz in \texorpdfstring{$C(\R)$}{C(R)}}
@@ -3862,7 +3862,7 @@ Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stoc
 	Sei $f\in C(\R)$.
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
-			A(f)=\arg\min(f):=\left\lbrace t\in\R:f(t)=\inf\limits_{s\in\R} f(s)\right\rbrace
+			A(f)=\argmin(f):=\left\lbrace t\in\R:f(t)=\inf\limits_{s\in\R} f(s)\right\rbrace
 		\end{aligned}$ = Menge aller Minimalstellen von $f$
 		\item $\tau\in A(f)$ heißt \textbf{wohl-separiert} 
 		\begin{align*}
@@ -4092,11 +4092,11 @@ l(\theta,x)&:=\log\big(L(\theta,x)\big)=\log\big(f_\theta(x)\big)
 Der MLS für $\theta$ ist definiert durch
 \begin{align*}
 	\hat{\theta}_n
-	:=\arg\max\limits_{\theta\in\Theta}L_n\big(\theta,\ul{X}_n\big)
+	:=\argmax\limits_{\theta\in\Theta}L_n\big(\theta,\ul{X}_n\big)
 	%\overset{x\mapsto\log(x)\text{ streng monoton wachsend}}{=}
 	\overset{(\ast)}{=}
-	\arg\max\limits_{\theta\in\Theta} l_n\big(\theta,\ul{X}_n\big)
-	=\arg\min\limits_{\theta\in\Theta}\underbrace{-\frac{1}{n}\cdot  l_n\big(\theta,\ul{X}_n\big)}_{=:S_n(\theta)}
+	\argmax\limits_{\theta\in\Theta} l_n\big(\theta,\ul{X}_n\big)
+	=\argmin\limits_{\theta\in\Theta}\underbrace{-\frac{1}{n}\cdot  l_n\big(\theta,\ul{X}_n\big)}_{=:S_n(\theta)}
 \end{align*}
 Die $(\ast)$-Gleichheit gilt, weil $x\mapsto\log(x)$ streng monoton wachsend und stetig ist.
 \begin{align*}
@@ -4104,7 +4104,7 @@ Die $(\ast)$-Gleichheit gilt, weil $x\mapsto\log(x)$ streng monoton wachsend und
 	\implies S_n(\theta)&=-\log\big(c(\theta)\big)\underbrace{-\frac{1}{n}\cdot\sum\limits_{i=1}^n\log\big(h(X_i)\big)}_{\text{hängt \ul{nicht} von $\theta$ ab}}-q(\theta)\cdot\underbrace{\frac{1}{n}\cdot\sum\limits_{i=1}^n T(X_i)}_{=:\overline{T}_n}\\
 	&=\underbrace{-\Big(\log\big(c(\theta)\big)+q(\theta)\cdot\overline{T}_n\Big)}_{=:M_n(\theta)}-\frac{1}{n}\cdot\sum\limits_{i=1}^n\log\big(h(X_i)\big)\\
 	\implies\hat{\theta}_n
-	&=\arg\min\limits_{\theta\in\Theta} M_n(\theta)
+	&=\argmin\limits_{\theta\in\Theta} M_n(\theta)
 \end{align*}
 
 % Ferger zu den Schülern von Uni-Live: "Ich mach' auch sonst keine Späße. Und die Studenten sind auch immer leise."
@@ -4179,7 +4179,7 @@ Zusammenfassung in:
 	 (Das ist eine implizite Forderung an die Verteilungsannahmen (VA).)
 	 Und sei 
 	 \begin{align*}
-	 	\hat{\theta}_n=\arg\min\limits_{\theta\in\Theta} M_n(\theta)
+	 	\hat{\theta}_n=\argmin\limits_{\theta\in\Theta} M_n(\theta)
 	 	\qquad\mit\qquad
 	 	M_n(\theta)=-\log\big(c(\theta)\big)-q(\theta)\cdot\frac{1}{n}\cdot\sum\limits_{i=1}^n T(X_i)
 	 \end{align*}
@@ -4235,14 +4235,14 @@ Eine elementare Rechnung zeigt (zur Übung):
 		k\cdot(1-\theta_n)\cdot|\mu-\nu|, &\falls 0\leq k\leq\tau_n &\text{monoton wachsend}\\
 		(n-k)\cdot\theta_n\cdot|\mu-\nu|, &\falls\tau_n<k\leq n &\text{monoton fallend}
 	\end{array}\right.\\
-	&\implies\tau_n=\arg\max\limits_{0\leq k\leq n}\big|\E[S_k]\big|\nonumber
+	&\implies\tau_n=\argmax\limits_{0\leq k\leq n}\big|\E[S_k]\big|\nonumber
 \end{align}
 %TODO Hier könnte man eine Skizze einfügen
 % monoton linear wachsend bis zu einem punkt, dann fallend, sieht aus wie ein Dreieck
 
 Dies motiviert folgenden Schätzer (ersetze unbekannte $\big|\E[S_k)\big]$ durch bekannte $|S_k|$):
 \begin{align*}
-	\hat{\tau}_n:=\arg\max\limits_{0\leq k\leq n}\big|S_k\big|
+	\hat{\tau}_n:=\argmax\limits_{0\leq k\leq n}\big|S_k\big|
 \end{align*}
 Im Folgenden sei $\tau_n=\lfloor n\cdot\theta\rfloor,\theta\in(0,1)$.
 Wir zeigen:
@@ -4260,7 +4260,7 @@ Wir zeigen:
 Sei $M_n:=$ Polygonzug durch $\left(\frac{k}{n},\frac{1}{n}\cdot S_k\right)$, $0\leq k\leq n$.
 Dann folgt aus Lemma \ref{lemma7.17}:
 \begin{align*}
-	\hat{\theta}_n&:=\arg\max\limits_{0\leq t\leq 1}\big|M_n(t)\big|\\
+	\hat{\theta}_n&:=\argmax\limits_{0\leq t\leq 1}\big|M_n(t)\big|\\
 	M_n(t)&~=\frac{1}{n}\cdot S_{\lfloor n\cdot t\rfloor}+\big(n\cdot t-\lfloor w\cdot t\rfloor\big)\cdot\Big(S_{\lfloor n\cdot t\rfloor+1}-S_{\lfloor n\cdot t\rfloor+1}\Big) &\forall 0\leq t\leq 1\\
 	\E\big[M_n(t)\big]&~=\frac{1}{n}\cdot\E\Big[ S_{\lfloor n\cdot t\rfloor}\Big]+\big(n\cdot t-\lfloor w\cdot t\rfloor\big)\cdot
 	\Big(\E\Big[S_{\lfloor n\cdot t\rfloor+1}\Big]-\E\Big[S_{\lfloor n\cdot t\rfloor+1}\Big]\Big) &\forall 0\leq t\leq 1\\
@@ -4307,7 +4307,7 @@ Eine Fallunterscheidung ($t\leq\theta_n$; $\theta_n<t\leq\theta$; $t>\theta$) li
 
 Somit ist dieses $\theta$ charakterisierbar als Maximalstelle:
 \begin{align*}
-	\theta=\arg\max\limits_{0\leq t\leq 1}\big|M(t)\big|
+	\theta=\argmax\limits_{0\leq t\leq 1}\big|M(t)\big|
 \end{align*}
 
 Zeige:
@@ -4323,7 +4323,7 @@ Da
 Betrachte den ersten Summanden
 \begin{align}\label{eqUnder8.2_4}\tag{4}
 	\big\Vert M_n-\overline{M}_n\big\Vert
-	&=\sup\limits_{0\leq t\leq 1}\big|M_n(t)-\overline{M}_n(t)\big|
+	=\sup\limits_{0\leq t\leq 1}&\big|M_n(t)-\overline{M}_n(t)\big|
 	\overset{\ref{lemma7.17}}{=}
 	\max\limits_{0\leq k\leq n}\bigg|\underbrace{M_n\left(\frac{k}{n}\right)}_{=\frac{1}{n}\cdot S_k}-\underbrace{\overline{M}_n\left(\frac{k}{n}\right)}_{=\frac{1}{n}\cdot\E[S_k]}\bigg|\\\nonumber
 	\frac{1}{n}\cdot S_k
@@ -4342,8 +4342,8 @@ Betrachte den ersten Summanden
 		\leq\max\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k Z_i\right|
 	}\\\nonumber
 	&\leq2\cdot\frac{1}{n}\cdot\max\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k Z_i\right|\\
-	&\implies\label{eqUnder8.2_5}\tag{5}
-	\max\limits_{0\leq k\leq n}\left|M_n\left(\frac{k}{n}\right)-\overline{M}_n\left(\frac{k}{n}\right)\right|
+	\implies\label{eqUnder8.2_5}\tag{5}
+	&\max\limits_{0\leq k\leq n}\left|M_n\left(\frac{k}{n}\right)-\overline{M}_n\left(\frac{k}{n}\right)\right|
 	\leq 2\cdot\frac{1}{n}\cdot\max\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k Z_i\right|
 \end{align}
 
@@ -4363,19 +4363,171 @@ Ist Martingal, weil
 \end{align*}
 
 Es folgt aus der bedingten Jensenungleichung, dass $\left(|T_k|^p,\F_k\right)_{0\leq k\leq n}$ ein nicht-negatives Submartingal ist.
-\begin{align*}
+\begin{align}\nonumber
 	\P\Big(\big\Vert M_n-\overline{M}_n\big\Vert\geq\varepsilon\Big)
 	\overset{\eqref{eqUnder8.2_4}+\eqref{eqUnder8.2_5}}&{\leq}
-	2\cdot\frac{1}{n}\cdot\max\limits_{0\leq k\leq n}\big|T_k\big|\\
-	&\leq\P\left(\max\limits_{0\leq k\leq n}\big|T_k\big|\geq\frac{1}{2}\cdot n\cdot\varepsilon\right)\\
+	2\cdot\frac{1}{n}\cdot\max\limits_{0\leq k\leq n}\big|T_k\big|\\\nonumber
+	&\leq\P\left(\max\limits_{0\leq k\leq n}\big|T_k\big|\geq\frac{1}{2}\cdot n\cdot\varepsilon\right)\\\nonumber
 	\overset{u\mapsto u^p\uparrow}&\leq
-	\P\left(\left(\max\limits_{0\leq k\leq n}\big|T_k\big|\right)^p\geq\left(\frac{1}{2}\cdot n\cdot\varepsilon\right)^p\right)\\
-	&=\P\left(\max\limits_{0\leq k\leq n}\big|T_k\big|^p\geq\left(\frac{1}{2}\cdot n\cdot\varepsilon\right)^p\right)\\
+	\P\left(\left(\max\limits_{0\leq k\leq n}\big|T_k\big|\right)^p\geq\left(\frac{1}{2}\cdot n\cdot\varepsilon\right)^p\right)\\\nonumber
+	&=\P\left(\max\limits_{0\leq k\leq n}\big|T_k\big|^p\geq\left(\frac{1}{2}\cdot n\cdot\varepsilon\right)^p\right)\\\nonumber
 	\implies
 	\P\Big(\big\Vert M_n-\overline{M}_n\big\Vert\geq\varepsilon\Big)
-	&\leq\bigg(\max\limits_{0\leq k\leq n}\underbrace{\big|T_k\big|^p}_{\text{Submartingal}}\geq\underbrace{2^{-p}\cdot n^p\cdot\varepsilon^p}_{=:y>0}\bigg)\\
+	&\leq\P\bigg(\max\limits_{0\leq k\leq n}\underbrace{\big|T_k\big|^p}_{\text{Submartingal}}\geq\underbrace{2^{-p}\cdot n^p\cdot\varepsilon^p}_{=:y>0}\bigg)\\\nonumber
 	\overset{\text{Doob-Ungl}}&\leq
-	...
+	y^{-1}\cdot\E\left[\big|T_n\big|^p\right]\\
+	&=2^p\cdot n^{-p}\cdot\varepsilon^{-p}\cdot\E\left[\left|\sum\limits_{i=1}^n Z_i\right|^p\right]\label{eqUnder8.2_6}\tag{6}
+\end{align}
+
+Es gilt folgende \textbf{Momenten-Ungleichung} (vergleiche (1.6) in Ferger (2014), \textit{Optimal constants in the Marcinkiewicz-Zygmund-inequalities, statistics and propability letters} Ausgabe 84, Seiten 96 bis 101)
+
+\begin{align*}
+	\E\left[\left|\sum\limits_{i=1}^n Z_i\right|^p\right]
+	\overset{(1.6)}{\leq}
+	C_p\cdot n^{\frac{p}{2}}\cdot\sum\limits_{i=1}^n\E\Big[|Z_i|^p\Big]
 \end{align*}
+
+Erinnerung:
+\begin{align*}
+	Z_i&=X_i-\E[X_i]\\
+	\implies
+	|Z_i|^p&=\big|X_i-\E[X_i]\big|^p\\
+	\implies
+	\big|X_i-\E[X_i]\big|^p
+	\overset{C_r\text{ Ungl}}&\leq
+	c_p\cdot\Big(|X_i|^p+\underbrace{\big|\E[X_i]\big|^p}_{\overset{\text{Jensen}}{\leq}\E\big[|X_i|^p\big]}\Big)\\
+	\implies
+	\E\Big[|Z_i|^p\Big]
+	&\leq c_p\cdot\left(\E\big[|X_i|^p\big]+\E\big[|X_i|^p\big]\right)\\
+	&\leq 2\cdot c_p\cdot\underbrace{\E\Big[|X_i|^p\Big]}_{\leq\max\lbrace\mu_p,\nu_p\rbrace}
+\end{align*}
+Somit gibt es eine Konstante $D_p$ so, dass
+\begin{align*}
+	\E\left[\left|\sum\limits_{i=1}^n Z_i\right|^p\right]
+	\overset{(1.6)}&{\leq}
+	C_p\cdot n^{-\frac{p}{2}}\cdot\sum\limits_{i=1}^n\underbrace{\E\Big[|Z_i|^p\Big]}_{\leq D_p}\\
+	\implies
+	\E\left[\left|\sum\limits_{i=1}^n Z_i\right|\right]
+	&\leq\tilde{c}_p\cdot n^{\frac{p}{2}}\\
+	\overset{\eqref{eqUnder8.2_6}}{\implies}
+	\P\Big(\big\Vert M_m-\overline{M}_n\big\Vert\geq\varepsilon\Big)
+	&\leq\overline{c}_p\cdot\varepsilon^{-p}\qquad\forall\varepsilon>0
+\end{align*}
+
+Nun bilden wir die Reihe dieser Wahrscheinlichkeiten und erhalten Konvergenz für $p>2$:
+\begin{align*}
+	\overset{p>2}{\implies}
+	\sum\limits_{n=1}^\infty\P\Big(\big\Vert M_m-\overline{M}_n\big\Vert\geq\varepsilon\Big)<\infty\qquad\forall\varepsilon>0
+\end{align*}
+
+Es gilt ganz allgemein für eine Folge $(\xi_n)_{n\in\N}$ von Zufallsvariablen (folgt aus dem Borel-Cantelli-Lemma):
+\begin{align*}
+	\left(\forall\varepsilon>0:\sum\limits_{n=1}^\infty\P\Big(|\xi_n|\geq\varepsilon\Big)<\infty\right)\implies\xi_n\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}
+\end{align*}
+
+Also erhalten wir
+\begin{align*}
+	\big\Vert M_n-\overline{M}_n\big\Vert\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}\\
+	\overset{\eqref{eqUnder8.2_2}+\eqref{eqUnder8.2_3}}{\implies}
+	\big\Vert M_n-M\big\Vert\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}
+\end{align*}
+
+Da
+\begin{align*}
+	\Big\Vert\big|M_n\big|-\big|M\big|\Big\Vert\leq\big\Vert M_n-M\big\Vert
+\end{align*}
+folgt
+\begin{align*}
+	\Big\Vert\big|M_n\big|-\big|M\big|\Big\Vert\overset{n\to\infty}&{\longrightarrow}0\text{ f.s.}\\
+	\implies	
+	\Big\Vert-\big|M_n\big|-\big(-\big|M\big|)\Big\Vert\overset{n\to\infty}&{\longrightarrow}0\text{ f.s.}\\
+	\implies
+	\hat{\theta}_n
+	&=\argmax\limits_{0\leq t\leq 1}\big|M_n(t)\big|
+	=\argmin\limits_{0\leq t\leq 1}-\big|M_n(t)\big|
+\end{align*}
+Also hat $-|M|$ eindeutige Minimalstelle $\theta$.
+Aus Satz \ref{satz8.6} folgt nun $\hat{\theta}\overset{n\to\infty}{\longrightarrow}\theta$ f.s.\\
+(In Satz \ref{satz8.6} verwende: $M_n\hat{=}-|M_n|$, $M\hat{=}|M|$, $\tau\hat{=}\theta$)
+
+\begin{bemerkung}
+	Betrachte eine endliche Beobachtungsfolge:\\
+	$X_1,X_2,\ldots,X_\tau,X_{\tau+1},X_{\tau+},\ldots,X_n\qquad n>\tau$\\
+	Hier braucht man keinen doppelten Index.
+	Vergrößert man aber nun $n$, dann geht der Anteil an der Gesamtstichprobe gegen 0, also $\frac{\tau}{n}\longrightarrow0$.
+\end{bemerkung}
+
+Zusammenfassung unserer Überlegungen in
+\begin{satz}\label{satz8.8}
+	Sei $\theta\in(0,1),\mu\neq\nu,\mu_p<\infty,\nu_p<\infty$ für ein $p>2$.
+	Dann gilt:
+	\begin{align*}
+		\hat{\theta}_n
+		&=\frac{1}{n}\cdot\underbrace{\argmax\limits_{0\leq k\leq n}\left|\sum\limits_{i=1}^k\big(X_i-\overline{X}_n\big)\right|}_{=\hat{\tau}_n}\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}
+	\end{align*}
+\end{satz}
+
+\begin{bemerkung}
+	 Es gilt \underline{nicht}, dass $\hat{\tau}_n-\tau_n\overset{n\to\infty}{\longrightarrow}0$ f.s.
+	 Tatsächlich gilt:
+	 \begin{align*}
+	 	\hat{\tau}_n-\tau_n\overset{\L}{\longrightarrow} T
+	 \end{align*}
+	 wobei $T$ die f.s. eindeutige Maximalstelle einer \textit{2-seitigen Irrfahrt / Random Walk} auf $\Z$ ist
+	 (vergleiche D.F. (1994) \textit{Asymptotic distribution theory of change-point estimators} veröffentlicht in \textit{Mathematical methods in statics 3}, Seiten 362 bis 378).
+\end{bemerkung}
+
+Nächstes Ziel: Unter welchen Bedingungen gilt
+\begin{align*}
+	Z_n\overset{L}{\longrightarrow}Z\text{ in }\big(C(\R),d\big)
+	\implies\argmin\limits_{t\in\R}Z_n(t)\overset{\L}{\longrightarrow}\argmin\limits_{t\in\R}Z(t)
+\end{align*}
+
+Folgender Satz gibt Antwort.
+
+\begin{satz}\label{satz8.9}
+	Seien $Z,Z_n,n\in\N$ stochastische Prozesse mit Pfaden in $C(\R)$ über $(\Omega,\A,P)$,
+	wobei $A(Z)$ 
+	\footnote{$A(Z)$ ist eine \textit{random closed set (RCS)}} 
+	und $A(Z_n)$ für alle $n\in\N$ nichtleer sind.
+	Ferner sei $\sigma_n$ eine Zufallsvariable mit $\sigma_n\in A(Z_n)$.
+	Dann gilt: Falls
+	\begin{align}\label{eqSatz8.9_1}\tag{1}
+		Z_n\overset{L}{\longrightarrow} Z\text{ in }\big(C(\R),d\big)
+	\end{align}
+	so folgt
+	\begin{align}\label{eqSatz8.9_a}\tag{a}
+		\limsup\limits_{n\to\infty}\P\big(\sigma_n\in K\big)\leq\mu^\ast(K)\qquad\forall K\in\mathcal{K}:=\big\lbrace K\subseteq\R:K\text{ kompakt}\big\rbrace
+	\end{align}
+	wobei $\mu^\ast$
+	\footnote{$\mu^\ast$ ist die \textit{Kapazitätsfunktion von $A(Z)$} und damit insbesondere eine \textit{Choquet-Kapazität}.
+	Beachte, dass $\mu^\ast$ i.d.R. \underline{kein} W-Maß.}	
+	die sogenannte \textbf{hitting-probability} ist:
+	\begin{align*}
+		\mu^\ast:\mathcal{K}\to[0,1],\qquad
+		\mu^\ast(K)=\P\big(A(Z)\cap K\neq\emptyset\big)
+	\end{align*}
+	Gilt zusätzlich, dass $(\sigma_n)_{n\in\N}$ \textbf{stochastisch beschränkt} ist, d.h. 
+	\begin{align}\label{eqSatz8.9_2}\tag{2}
+		\lim\limits_{j\to\infty}\limsup\limits_{n\to\infty}\P\Big(\big|\sigma_n\big|>j\Big)=0
+	\end{align}
+	so folgt
+	\begin{align}\label{eqSatz8.9_b}\tag{b}
+		\limsup\limits_{n\to\infty}\P\big(\sigma_n\in F\big)\leq\mu^\ast(F)\qquad\forall F\in\F(\R):=\big\lbrace F\subseteq\R:F\text{ abgeschlossen}\big\rbrace
+	\end{align}
+	Falls zusätzlich $A(Z)=\lbrace\sigma\rbrace$ für eine Zufallsvariable $\sigma$
+	(d.h. $Z$ hat f.s. eine eindeutige Minimalstelle, nämlich $\sigma$), dann gilt
+	\begin{align*}
+		\sigma_n\overset{L}{\longrightarrow}\sigma\text{ in }\R.
+	\end{align*}
+\end{satz}
+
+%Ferger: "Ich weiß nicht mehr wie ich drauf gekommen bin. Aber ich bin darauf gekommen. Da habe ich mich gefreut wie so ein Brötchen."
+%Ferger: "Müssen Sie nicht mitschreiben, ich will jetzt hier nur zu einer didaktischen Meisterleistung auflaufen."
+
+\begin{proof}
+	
+\end{proof}
+
 
 
