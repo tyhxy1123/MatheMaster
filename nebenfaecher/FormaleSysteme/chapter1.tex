@@ -1,0 +1,439 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Aussagenlogik}
+\section{Syntax}
+
+\begin{definition}\
+	\begin{itemize}
+		\item Ein \textbf{Alphabet} $\Sigma$ ist eine Menge.
+		\item Ein \textbf{Zeichen} ist Element eines Alphabets.
+		\item Das \textbf{leere Wort} schreiben wir als $\lambda$, o.B.d.A $\lambda\not\in\Sigma$
+		\item Ein \textbf{Wort} über einem Alphabet ist $\lambda$ oder $aw$, falls $w$ ein Wort und $a\in\Sigma$ (also einfach alle möglichen Kombinationen).
+		\item Die Menge aller Wörter über $\Sigma$ wird mit $\Sigma^\ast$ bezeichnet.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	Ein \textbf{Alphabet der Aussagenlogik} ist $(\RR,\J,\lbrace(,)\rbrace)$ wobei
+	\begin{itemize}
+		\item $\RR:=\lbrace p_1,p_2,\ldots\rbrace$ eine Menge von aussagenlogischen Variablen
+		\item $\J:=\lbrace\neg,\wedge,\vee,\to,\leftrightarrow\rbrace$ die Menge von Junktoren
+		\item und $\lbrace(,)\rbrace$ die Menge der beiden Sonderzeichen ist.
+	\end{itemize}
+	Die Elemente von $\RR$ heißen auch \textbf{Atome / atomare Formeln}.
+\end{definition}
+
+\begin{definition}\label{defFormel}
+	Eine \textbf{aussagenlogische Formel} ist wie folgt definiert:
+	\begin{enumerate}
+		\item Wenn $F\in\RR$, dann ist $F$ eine Formel.
+		\item Wenn $F$ eine Formel ist, dann ist $\neg F$ ein Formel.
+		\item Wenn $F,G$ Formeln sind, dann ist $(F\circ G)$ eine Formel mit $\circ\in\J$.
+	\end{enumerate}
+	Die Menge aller aussagenlogischen Formeln wird mit $\L(\RR)$ bezeichnet.
+\end{definition}
+
+\begin{beispiel}
+	Das \textbf{Alphabet der Arithmetik} ist $(\Q,\lbrace+,-,\div,\times\rbrace,\lbrace(,)\rbrace)$.\\
+	Ein \textbf{arithmetischer Ausdruck} ist:
+	\begin{enumerate}
+		\item $T\in\Q$ ist ein arithmetischer Ausdruck.
+		\item Für $\circ\in\lbrace+,-,\div,\times\rbrace$ und $T_1,T_2$ arithmetische Ausdrücke ist $(T_1\circ T_2)$ ein arithmetischer Ausdruck.
+	\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}
+	Das \textbf{Alphabet der Natürlichen Zahlen} ist $(\lbrace 0\rbrace,\lbrace s\rbrace,\lbrace(,)\rbrace)$.
+	Eine \textbf{natürliche} Zahl ist:
+	\begin{enumerate}
+		\item $0$ ist eine natürliche Zahl
+		\item Wenn $N$ eine natürliche Zahl ist, ist $s(N)$ eine natürliche Zahl.
+	\end{enumerate}
+\end{beispiel}
+
+Mit dem folgenden nützlichem Tool können wir Eigenschaften über aussagenlogische Formeln leicht beweisen:
+
+\begin{satz}[Prinzip der strukturellen Induktion]\enter
+	Jede Formel in $\L(\RR)$ besitzt Eigenschaft $E$, wenn:
+	\begin{enumerate}
+		\item \underline{Induktionsanfang:} $\forall A\in\RR:A$ besitzt Eigenschaft $E$.
+		\item \underline{Induktionsschritte:}
+		\begin{itemize}
+			\item Wenn $F$ Eigenschaft $E$ besitzt, dann besitzt sie auch $\neq F$.
+			\item Wenn $\circ\in\J$ und $F,G\in\L(\RR)$ die Eigenschaft $E$ besitzen, dann besitzt auch $(F\circ G)$ die Eigenschaft $E$.
+		\end{itemize}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Sei $\E\subseteq\L(\RR)$ die Menge aller Formeln, die Eigenschaft $E$ erfüllen.
+	Da $\E$ die drei Bedingungen in Definition \ref{defFormel} erfüllt, gilt $\L(\RR)\subseteq\E$, da $\L(\RR)$ nach Definition die kleinste solche Menge ist.
+\end{proof}
+
+\begin{lemma}[Strukturelle Induktion über Zeichenreihen]\enter
+	Sei $\Sigma$ ein Alphabet.
+	Jede Zeichenreihe über $\Sigma$ besitzt eine Eigenschaft $E$, falls:
+	\begin{enumerate}
+		\item \underline{IA:} $\lambda$ besitzt Eigenschaft $E$.
+		\item \underline{IS:} Wenn $w\in\Sigma\ast$ die Eigenschaft $E$ besitzt und $a\in\Sigma$, dann besitzt $aw$ die Eigenschaft $E$.
+	\end{enumerate}
+\end{lemma}
+
+Funktionen auf $\L(\RR)$ haben stets die Gestalt
+\begin{align*}
+	f\colon\L(\RR)\to A,\qquad
+	F\mapsto\left\lbrace\begin{array}{cl}
+		a, &\falls F\in\RR\\
+		f(G), &\falls F=\neg G\\
+		f(G_1)+f(G_2),&\falls F=(G_1\circ G_2)\mit \circ\in\J
+	\end{array}\right.
+\end{align*}
+
+\begin{definition}
+	Sei $T$ ein arithmetischer Ausdruck.	
+	Die \textbf{Menge aller (arithmetischen) Teilausdrücke} $\S_T$ ist:
+	\begin{enumerate}
+		\item $T\in\S_T$.
+		\item Wenn $(T_1\circ T_2)\in\S_T\mit\circ\in\lbrace+,-,\div,\times\rbrace$, dann sind auch $T_1,T_2\in\S_T$.
+	\end{enumerate}
+\end{definition}
+
+\begin{beispiel}
+	Der Ausdruck $((3\times(9-6))+7)$ die Teilausdrücke
+	\begin{align*}
+		((3\times(9-6))+7),
+		(3\times(9-6)),
+		(9-6),
+		9,6,7,3.
+	\end{align*}
+\end{beispiel}
+
+\begin{definition}
+	Die \textbf{Menge aller Teilformeln} von $F\in\L(\RR)$ ist $\S_F$:
+	\begin{enumerate}
+		\item $F\in\S_F$.
+		\item Wenn $\neg G\in\S_G$, dann $G\in\S_F$.
+		\item Wenn $(G_1\circ G_2)\in\S_f\mit\circ\in\J$, dann sind auch $G_1,G_2\in\S_F$.
+	\end{enumerate}
+	Die \textbf{Menge der in $F\in\L(\RR)$ vorkommenden Variablen} ist $\RR_F:=\S_F\cap\RR$.
+\end{definition}
+
+\begin{beispiel}
+	Für $F=\neg((p_1\to p_2)\vee p_1)$ gilt:
+	\begin{align*}
+		\S_F&=\Big\lbrace
+			\neg((p_1\to p_2)\vee p_1),
+			((p_1\to p_2)\vee p_1),
+			(p_1\to p_2), p_1,
+			p_2
+		\Big\rbrace\\
+		\RR_F&=\lbrace p_1,p_2\rbrace
+	\end{align*}
+\end{beispiel}
+
+\section{Semantik}
+Was bedeuten eigentlich aussagenlogische Formeln? 
+Sie können entweder wahr $\top$ oder falsch $\bot$ sein (zweiwertige Logik).
+Wir nutzen \textit{Interpretationsfunktionen}, um Syntax auf Semantik abzubilden.
+Wir betrachten zusätzlich Funktionen zu Junktoren um kennzeichnen diese mit einem $\ast$ als Superindex.
+
+\begin{beispiel}
+	Sei $\A$ die Menge der arithmetischen Ausdrücke.
+	Dann betrachte die Interpretation
+	\begin{align*}
+		\cdot^I:=I:\A\to\Q,\qquad T\mapsto\left\lbrace\begin{array}{cl}
+			T ,&\falls T\in\Q\\
+			\big([T_1]^I\circ^\ast[T_2]^I\big), &\falls T=(T_1\circ T_2)
+		\end{array}\right.
+	\end{align*}
+	Somit erhalten wir beispielsweise
+	\begin{align*}
+		[((3\times(9-6))+7)]^I=((3\times^\ast(9-^\ast6))+^\ast7)=16
+	\end{align*}
+\end{beispiel}
+
+\begin{definition}\
+	\begin{itemize}
+		\item Eine \textbf{Struktur} besteht aus einer Menge und einer Menge darauf definierter Funktionen.
+		\item Die Menge der \textbf{Wahrheitswerte} ist $\W:=\lbrace\top,\bot\rbrace$.
+		\item Einstellige Funktionen vom Typ $\W\to\W$ sind genau:
+		\begin{enumerate}
+			\item Die \textbf{Negation} $\neg^\ast$ mit $\neg^\ast(\top):=\bot$ und $\neg^\ast(\bot):=\top$
+			\item Die \textbf{Identität}.
+			\item Die beiden Konstanten Funktionen, die auf $\bot$ bzw. $\top$ abbilden.
+		\end{enumerate}
+		\item Zweistellige Funktionen: Es gibt genau 16 Stück. Wichtig sind:
+			Konjunktion, Disjunktion, Implikation und Äquivalenz
+	\end{itemize}
+	
+	\begin{tabular}{cc||c|c|c|c}\\
+		&& $\wedge^\ast$ & $\vee^\ast$ & $\to^\ast$ & $\leftrightarrow^\ast$\\ \hline
+		\w & \w & \w & \w & \w & \w\\
+		\w & \f & \f & \w & \f & \f\\
+		\f & \w & \f & \w & \w & \f\\
+		\f & \f & \f & \f & \w & \w
+	\end{tabular}
+\end{definition}
+
+\begin{definition}
+	Eine \textbf{(aussagenlogische) Interpretation} $I=(\W,\cdot^I)$ besteht aus einer Menge $\W$ von Wahrheitswerten und einer Abbildung $\cdot^I:=I:\L(\RR)\to\W$ die folgende Bedingung erfüllt:
+	\begin{align*}
+		[F]^I=\left\lbrace\begin{array}{cl}
+			\neg^\ast[G]^I, &\falls F=\neg G\\
+			\big([G_1]^I\circ^\ast[G_2]^I\big),&\falls F=(G_1\circ G_2)
+		\end{array}\right.
+	\end{align*}
+	(Der Basisfall $F\in\RR$ ist also "interpretationssache".)
+\end{definition}
+
+\begin{proposition}\label{proposition3.10}
+	Für jede Abbildung $g:\RR\to\W$ gibt es genau eine Interpretation $I=(\W,\cdot^I)$ so, dass $g(A)=[A]^I~\forall A\in\RR$.
+\end{proposition}
+
+\begin{proof}
+	Setze
+	\begin{align*}
+		[F]^I:=\left\lbrace\begin{array}{cl}
+			g(F),&\falls F\in\RR\\			
+			\neg^\ast[G]^I, &\falls F=\neg G\\
+			\big([G_1]^I\circ^\ast[G_2]^I\big),&\falls F=(G_1\circ G_2)
+		\end{array}\right.
+	\end{align*}
+\end{proof}
+
+\begin{proposition}\label{proposition3.11}
+	%Sei $F\in\L(\RR)$ und 
+	Seien $I=(\W,\cdot^I)$ und $I'=(\W,\cdot^{I'})$ Interpretationen.\\
+	Wenn für alle $A\in\RR$ $[A]^I=[A]^{I'}$ gilt, dann gilt auch $I\equiv I'$.
+\end{proposition}
+
+Wir identifizieren eine Interpretation mit der Menge der Variablen, die auf \w abgebildet werden.
+
+\begin{definition}
+	Sei $F\in\L(\RR)$.
+	\begin{itemize}
+		\item $F$ heißt \textbf{erfüllbar} $:\Longleftrightarrow\exists I:F^I=\top$.
+		\item $F$ heißt \textbf{allgemeingültig / Tautologie} $:\Longleftrightarrow\forall I:F^I=\top$.
+		\item $F$ heißt \textbf{widerlegbar} $:\Longleftrightarrow\exists I:F^I=\bot$.
+		\item $F$ heißt \textbf{unerfüllbar} $:\Longleftrightarrow\forall I:F^I=\bot$.
+	\end{itemize}
+\end{definition}
+
+Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \textbf{Wahrheitswertetabellen}, d.h. eine Tabelle mit 
+\begin{itemize}
+	\item Anzahl der Zeilen entspricht 2 hoch der Anzahl der Variablen, also $2^{|\R_F|}$ Zeilen
+	\item Anzahl der Spalten ist Anzahl der Teilformeln von $F$, also $|\S_F|$.
+	\item Für die ersten $n$ Spalten: \w\f\w\f\ldots; \w\w\f\f\ldots;\w\w\w\w\f\f\f\f\ldots
+\end{itemize}
+
+\begin{beispiel}\enter
+	\begin{tabular}{c|c||c|c|c}
+		$p$ & $q$ & $(p\to q)$ & $(p\to q)\to p$ & $(((p\to q)\to p)\to p)$\\ \hline
+		$\top$ & $\top$ & $\top$ & $\top$ & $\top$ \\
+		$\bot$ & $\top$ & $\top$ & $\bot$ & $\top$ \\
+		$\top$ & $\bot$ & $\bot$ & $\top$ & $\top$\\
+		$\bot$ & $\bot$ & $\top$ & $\bot$ & $\top$
+	\end{tabular}
+\end{beispiel}
+
+\begin{bemerkung}
+	Sei $F\in\L(\RR)$ und $T(F)$ eine dazugehörige Wahrheitswertetabelle.
+	Dann gilt:
+	\begin{itemize}
+		\item $F$ ist erfüllbar $\gdw T(F)$ enthält ein $\top$ in der letzten Spalte.
+		\item $F$ ist allgemeingültig $\gdw T(F)$ enthält kein $\bot$ in der letzten Spalte.
+		\item $F$ ist widerlegbar $\gdw T(F)$ enthält $\bot$ in der letzten Spalte.
+		\item $F$ ist unerfüllbar $\gdw T(F)$ enthält kein $\top$ in der letzten Spalte.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{definition}
+	Eine Interpretation $I=(\W,\cdot^I)$ heißt \textbf{Modell} für eine Formel $F$, i.Z. $I\models F:\Longleftrightarrow F^I=\top$.\\
+	Wenn $F$ allgemeingültig ist, schreiben wir $\models F$.
+\end{definition}
+
+\begin{satz}\label{satz3.14}
+	$F$ allgemeingültig $\Longleftrightarrow\neg F$ unerfüllbar
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		\models F &\Longleftrightarrow\big(\forall I:I\models F\big)\\
+		&\Longleftrightarrow\big(\nexists I:I\models\neg F\big)\\
+		&\Longleftrightarrow\neg F\text{ ist unerfüllbar}
+	\end{align*}
+\end{proof}
+
+\begin{definition}\label{def3.15}
+	Sei $\G$ eine Menge von Formeln.
+	\begin{itemize}
+		\item Eine Interpretation $I$ heißt Modell für $\G$, i.Z.
+		\begin{align*}
+			I\models G:\Longleftrightarrow\forall F\in\G:I\models G
+		\end{align*}
+		\item $\G$ ist \textbf{erfüllbar}, wenn es ein Modell für $\G$ gibt.
+		\item $\G$ ist \textbf{unerfüllbar}, wenn es kein Modell für $\G$ gibt.
+		\item $\G$ ist \textbf{widerlegbar}, wenn es eine Interpretation gibt, die kein Modell für $\G$ ist
+		\item $\G$ ist \textbf{allgemeingültig}, wenn alle Interpretationen auch Modelle für $\G$ sind.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}\label{def3.16}
+	Eine Formel $F\in\L(\RR)$ ist eine \textbf{(aussagen-)logische Konsequenz} einer Menge von Formelm $\G$, i.Z.
+	\begin{align*}
+		\G\models F:\Longleftrightarrow\forall I:I\models\G\implies I\models F
+	\end{align*}
+\end{definition}
+
+\begin{satz}\label{satz3.17}
+	Seien $F,F_1,\ldots,F_n\in\L(\RR)$. Dann gilt:
+	\begin{align*}
+		\big\lbrace F_1,\ldots,F_n\big\rbrace\models F\Longleftrightarrow\models\Big(\big(\ldots(F_1\wedge F_2)\wedge\ldots\wedge F_n\big)\to F_n\Big)
+	\end{align*}
+\end{satz}
+
+\section{Äquivalenz und Normalform}
+\subsection{Semantische Äquivalenz}
+
+\begin{definition}\label{def3.18}
+	Zwei Formeln $F,G$ heißen \textbf{(semantisch) äquivalent}, i.Z.
+	\begin{align*}
+		F\equiv G:\Longleftrightarrow\forall I:I\models F\Longleftrightarrow I\models G
+	\end{align*}
+\end{definition}
+
+\begin{bemerkung}
+	$\equiv$ ist offenbar eine Äquivalenzrelation auf $\L(\RR)$.
+\end{bemerkung}
+
+\begin{satz}\label{satz3.19}
+	Seien $F,G,H$ Formeln. Dann gilt:
+	\begin{align*}
+		(F\wedge F)&\equiv F\\
+		(F\vee F)&\equiv F &&\text{Idempotenz}\\[1ex]
+		(F\wedge G)&\equiv(G\wedge F)\\
+		(F\vee G)&\equiv (G\vee F) &&\text{Kommutativität}\\[1ex]
+		((F\wedge G)\wedge H)&\equiv(F\wedge(G\wedge H))\\
+		((F\vee G)\vee H)&\equiv(F\vee(G\vee H)) &&\text{Assoziativität}\\[1ex]
+		((F\wedge G)\vee F)&\equiv F\\
+		((F\vee G)\wedge F)&\equiv F &&\text{Absorption}\\[1ex]
+		(F\wedge(G\vee H))&\equiv((F\wedge G)\vee(F\wedge H))\\
+		(F\vee(G\wedge H)&\equiv((F\vee G)\wedge(F\vee H) &&\text{Distributivität}\\[1ex]
+		\neg\neg F&\equiv F &&\text{Doppelte Negation}\\[1ex]
+		\neg(F\wedge G)&\equiv(\neg F\vee\neg G)\\
+		\neg(F\vee G)&\equiv(\neg F\wedge\neg G)&&\text{de Morgan}\\[1ex]
+		(F\vee G)&\equiv F,\text{ wenn $F$ allgemeingültig}\\
+		(F\wedge G)&\equiv G\text{ wenn $F$ allgemeingültig} &&\text{Tautologie}\\[1ex]
+		(F\vee G)&\equiv G,\text{ wenn $F$ unerfüllbar}\\
+		(F\wedge G)&\equiv F,\text{ wenn $F$ unerfüllbar} &&\text{Unerfüllbarkeit}\\[1ex]
+		(F\leftrightarrow G)&\equiv((F\wedge G\vee(\neg G\wedge\neg F)) &&\text{Äquivalent}\\[1ex]
+		(F\to G)&\equiv(\neg F\vee G) &&\text{Implikation}
+	\end{align*}
+\end{satz}
+
+\begin{definition}\label{def3.20}
+	Die Menge der \textbf{Positionen / Vorkommen} $\P_F$ in einer Formel $F\in\L(\RR)$ ist
+	\begin{align*}
+		&\pos\colon\L(\RR)\to\lbrace1,2\rbrace^\ast,\\
+		&F\mapsto\lbrace\lambda\rbrace\cup\left\lbrace\begin{array}{cl}
+			\emptyset ,&\falls F\in\RR\\
+			\lbrace 1\pi:\pi\in\pos(G)\rbrace, &\falls F=\neg G\\
+			\lbrace 2\pi:\pi_1\in\pos(G_1)\rbrace\cup\lbrace2\pi_2:\pi_2\in\pos(G_2)\rbrace
+			,&\falls F=(G_1\circ G_2)
+		\end{array}\right.
+	\end{align*}
+\end{definition}
+
+\begin{beispiel}
+	Für $F=\neg(p\wedge(q\vee\neg p))$ ist 
+	$\mathcal{P}_F=\lbrace\Lambda,1,11,12,121,122,1221\rbrace$.
+	
+	\begin{figure}[ht!]
+		\begin{center}
+			\begin{tikzpicture}[node distance=5em]
+				\tikzstyle{every state}=[shape=circle,draw=black]
+				\node[state] (1) {$\neg:\Lambda$};
+				\node[state] (2) [below = of 1] {$\wedge:1$};
+				\node[state] (3) [below left = of 2] {$p:11$};
+				\node[state] (4) [below right = of 2] {$\vee:12$};
+				\node[state] (5) [below left = of 4] {$q:121$};
+				\node[state] (6) [below right = of 4] {$\neg:122$};
+				\node[state] (7) [below of =6] {$p:1221$};
+				\path 	(2) edge [, -] node {} (1)
+    		  	   		(3) edge [, -] node {} (2)
+	 	      			(4) edge [, -] node {} (2)
+			  			(5) edge [, -] node {} (4)
+	  					(6) edge [, -] node {} (4)
+	  					(7) edge [, -] node {} (6)
+				;	
+			\end{tikzpicture}
+			
+			\caption{Beispiel für Positionen in Formel}
+			\label{AbbPositionenInFormeln}
+		\end{center}
+	\end{figure}
+\end{beispiel}
+
+\begin{definition}\label{def3.21}
+	Die \textbf{Teilformel von $F$ an der Position $\pi\in\P_F$}, i.Z. $F\lceil\pi\rceil$, ist wie folgt definiert:
+	\begin{enumerate}
+		\item $F\lceil\lambda\rceil:=F$.
+		\item $F\lceil[1\pi\rceil:= G\lceil\pi\rceil$, wenn $F=\neg G$.
+		\item $F\lceil i\pi\rceil:=G_i\lceil\pi\rceil$, wenn $F=(G_1\circ G_2)$ und $i\in\lbrace1,2\rbrace$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def3.22}
+	Die \textbf{Ersetzung von $F$ an der Position $\pi\in\P_F$ durch $H$}, i.Z. $F\lceil\pi\mapsto H\rceil$ ist:
+	\begin{enumerate}
+		\item $F\lceil\lambda\mapsto H\rceil:=H$
+		\item $F\lceil 1\pi\mapsto H\rceil:=\neg(G\pi\mapsto H\rceil)$, wenn $F=\neg G$.
+		\item $F\lceil 1\pi\mapsto H\rceil:=\big(G_1\lceil\pi\mapsto H\rceil\circ G_2\big)$, wenn $F=(G_1\circ G_2)$.
+		\item $F\lceil2\pi\mapsto H\rceil:=\big(G_1\circ G_2\lceil\pi\mapsto H\rceil\big)$, wenn $F=(G_1\circ G_2)$
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{satz3.23}
+	Seien $F,H,G\in\L(\RR),\pi\in\P_F,F\lceil\pi\rceil=G$ und $G\equiv H$.\\
+	Dann gilt: $F\equiv F\lceil\pi\mapsto H\rceil$
+\end{satz}
+
+\begin{proof}
+	Induktion über den Aufbau von $\pi$ (IA: $\pi=\lambda$, IS: $\pi=i\pi'$ mit $i\in\lbrace1,2\rbrace$).
+\end{proof}
+
+\begin{konvention}\
+	\begin{itemize}
+		\item Wenn $\pi\not\in\P_F$, dann sei $F\lceil\pi\mapsto H\rceil:=F$.
+		\item Sei $F\lceil\pi\rceil=G$. Wenn aus dem Kontext ersichtlich ist, welches Vorkommen der Teilformel in $G$ ersetzt werden soll, dann schreiben wir $F\lceil G\mapsto H\rceil$ anstelle von $F\lceil\pi\mapsto H\rceil$.
+		\item Satz \ref{satz3.23} erlaubt alle Vorkommen der Junktoren $\leftrightarrow$ und $\to$ zu ersetzen. Wir betrachten nun o.B.d.A. nur noch Formeln über $\R\cup\lbrace\neq,\wedge,\vee,(,)\rbrace$.
+	\end{itemize}
+\end{konvention}
+
+\subsection{Negationsnormalform}
+
+\begin{definition}\label{def3.24}
+	Eine Formel $F$ ist in \textbf{Negationsnormalform}, wenn alls in $F$ vorkommenden Negationszeichen $\neg$ unmittelbar for aussagenlogischen Variablen stehen (also nicht vor Klammern).
+\end{definition}
+
+\begin{proposition}\label{prop3.25}
+	Man kann jede Formel in eine semantisch äquivalente Formel in Negationsnormalform überführen:\\
+	Solange $F$ nicht in Negationsnormalform ist, tue:
+	\begin{itemize}
+		\item Bestimme eine Teilformel der Form $\neg G$ von $F$ mit $G\not\in\RR$.
+		\item Wenn $\neg G=\neg\neg H$, dann ersetze $\neg G$ durch $H$.
+		\item Wenn $\neg G=\neg(G_1\wedge G_2)$, dann ersetze $\neg G$ durch $(\neg G_1\vee\neg G_2)$.
+		\item Wenn $\neg G=\neg(G_1\vee G_2)$, dann ersetze $\neg G$ durch $(\neg G_1\wedge\neg G_2)$.
+	\end{itemize}
+\end{proposition}
+
+\subsection{Klauselform}
+
+\section{Beweisverfahren}
+
+\section{Eigenschaften}
+
+\section{Das Testen auf Erfüllbarkeit}
