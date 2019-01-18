@@ -48,23 +48,23 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 
 \begin{definition}
     Ist $F$ Funktionenkörper über $K$, 
-    so ist der relative algebraische Abschluss $\tilde{K}$ von $K$ in $F$ der 
+    so ist der relative algebraische Abschluss $\widetilde{K}$ von $K$ in $F$ der 
     \textbf{Konstantenkörper} von $F$, d.h.
-    $$ \tilde{K} := \{\alpha \in F \| \alpha \text{ algebraisch  über } K\}.$$
+    $$ \widetilde{K} := \{\alpha \in F \| \alpha \text{ algebraisch  über } K\}.$$
 \end{definition}
 
 \begin{beispiel}\label{beispiel:1.7}
     Der Konstantenkörper des rationalen Funktionenkörpers $K(T)$ ist $K$:
 
     Ist $f(T) = \frac{g(T)}{h(T)} \in K(T) \setminus K$, mit $g,h \in K[T]$, algebraisch über $K$,
-    so existiert $p(X) \in K[X]$ mit $p(f(T)) = 0$. Dann gilt für alle $a_i \in K$
+    so existiert $p(X) \in K[X]$ mit $p(f(T)) = 0$. Dann gilt
     \begin{align*}
         p(f(T)) &= \sum\limits_{i=0}^n a_i f(T)^i = 0\\
         & \implies \sum\limits_{i=0}^n a_i \frac{g(T)^i}{h(T)^i} = 0\\
         & \implies \sum\limits_{i=0}^n a_i g(T)^i h(T)^{n-i} = 0 \\
-        & \implies T \text{ algebraisch über } K.
+        & \implies T \text{ algebraisch über } K \text{\Lightning zu $T$ transzendent über $K$}
     \end{align*}
-    Was aber im Widerspruch dazu steht, dass $T$ transzendent über $K$.
+    wobei $a_i \in K$ die Koeffizienten von $p$ sind.
 \end{beispiel}
 
 \begin{lemma}\label{lemma:finiteExp}
@@ -75,6 +75,8 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     Zunächst folgt aus $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig, dass
     $x_1,...,x_n \in L$ $K$-linear unabhängig. 
     Daraus folgt$$ [L(T):K(T)] \leq [L:K]. $$
+    % L = \sum K x_i
+    % K(T) \subseteq \sum K(x) x_i \subseteq L(T)
 
     Sei also $x_1,...,x_n \in L$ $K$-linear unabhängig. Wir zeigen nun, dass dann
     $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig ist.
@@ -94,7 +96,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 \begin{proof}
     Ist $t\in F$ transzendent über $K$ mit $F|K(t)$ endlich,
     so ist wegen \cref{lemma:finiteExp} 
-    $$ [\tilde{K}:K] = [\tilde{K}(t):K(t)] \leq [F:K(t)] \leq \infty.$$
+    $$ [\tilde{K}:K] = [\tilde{K}(t):K(t)] \leq [F:K(t)] < \infty.$$
 \end{proof}
 
 \begin{definition}
