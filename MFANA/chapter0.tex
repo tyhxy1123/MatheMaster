@@ -8,86 +8,98 @@
 \chapter{Einführung}
 Eine \textbf{Halbgruppe} ist
 \begin{align*}
-t\mapsto S(t)\\
-S(t):C\to C\\
-S(0)=\id\\
-S(t+s)=S(t)\circ S(s)
+	t\mapsto S(t)\\
+	S(t):C\to C\\
+	S(0)=\id\\
+	S(t+s)=S(t)\circ S(s)
 \end{align*}
 
 Eine Beobachtung: Wir betrachten das folgende \textbf{Cauchy-Problem} (gewöhnliche GDG)
 \begin{align}\label{CauchyProblem0}\tag{CP}
-(\text{CP)}\left\lbrace\begin{array}{cl}
-	\dot{u}(t)+Au(t)=0,~~~t\geq0\\
-	u(0) =u_0
-\end{array}\right.
+	(\text{CP)}\left\lbrace\begin{array}{cl}
+		\dot{u}(t)+Au(t)=0,~~~t\geq0\\
+		u(0) =u_0
+	\end{array}\right.
 \end{align}
 
 \begin{theorem}[Picard-Lindelöf]
-Sei $A\colon\R^N\to\R^N$ eine Lipschitz-stetige Funktion. Dann besitzt das Cauchy-Problem für alle $u_0\in\R^N$ genau eine (globale) Lösung $u\in C^1(\R_+;\R^N)$.
+	Sei $A\colon\R^N\to\R^N$ eine Lipschitz-stetige Funktion. 
+	Dann besitzt das Cauchy-Problem für alle $u_0\in\R^N$ genau eine (globale) Lösung $u\in C^1(\R_+;\R^N)$.
 \end{theorem}
+
 \begin{proof}
-Die Existenz einer lokalen Lösung folgt bereits aus dem Theorem von Peano. Darauf kommen wir später zurück. Zur Erbringung des Eindeutigkeitsbeweises seien $u,v\in C^1(\R_+;\R^N)$ zwei Lösungen des Cauchy-Problems zum selben Anfangswert. Dann gilt 
+	Die Existenz einer lokalen Lösung folgt bereits aus dem Theorem von Peano. 
+	Darauf kommen wir später zurück. 
+	Zur Erbringung des Eindeutigkeitsbeweises seien $u,v\in C^1(\R_+;\R^N)$ zwei Lösungen des Cauchy-Problems zum selben Anfangswert. 
+	Dann gilt 
 
-\begin{align*}
-\frac{1}{2}\frac{\d}{\d t}\Vert u(t)-v(t)\Vert_2^2 
-&=\left\langle u(t)-v(t),\dot{u}(t)-\dot{v}(t)\right\rangle_2 \\
-\overset{\text{CP}}&=
--\left\langle u(t)-v(t),Au(t)-Av(t)\right\rangle_2 \\
-\overset{\text{C.S.}}&{\leq}
-\Vert u(t)-v(t)\Vert_2\cdot\Vert Au(t)-Av(t)\Vert_2 \\
-\overset{\text{Lip}}&{\leq}
-L\cdot\Vert u(t)-v(t)\Vert_2^2
-\end{align*}
+	\begin{align*}
+		\frac{1}{2}\frac{\d}{\d t}\Vert u(t)-v(t)\Vert_2^2 
+		&=\left\langle u(t)-v(t),\dot{u}(t)-\dot{v}(t)\right\rangle_2 \\
+		\overset{\text{CP}}&=
+		-\left\langle u(t)-v(t),Au(t)-Av(t)\right\rangle_2 \\
+		\overset{\text{C.S.}}&{\leq}
+		\Vert u(t)-v(t)\Vert_2\cdot\Vert Au(t)-Av(t)\Vert_2 \\
+		\overset{\text{Lip}}&{\leq}
+		L\cdot\Vert u(t)-v(t)\Vert_2^2
+	\end{align*}
 
-mit der Cauchy-Schwarz-Ungleichung und der Lipschitz-Stetigkeit von $A$. Wir integrieren über $\left[0,t\right]$ und erhalten
+	mit der Cauchy-Schwarz-Ungleichung und der Lipschitz-Stetigkeit von $A$. 
+	Wir integrieren über $\left[0,t\right]$ und erhalten
 
-\begin{align*}
-	\Vert u(t)-v(t)\Vert_2^2\leq\Vert u(0)-v(0)\Vert_2^2+2L\int_0^t\Vert u(s)-v(s)\Vert_2^2\,\d s,
-\end{align*}
+	\begin{align*}
+		\Vert u(t)-v(t)\Vert_2^2\leq\Vert u(0)-v(0)\Vert_2^2+2L\int_0^t\Vert u(s)-v(s)\Vert_2^2\,\d s,
+	\end{align*}
 
-wobei $\Vert u(0)-v(0)\Vert_2^2=0$ durch Identität der Anfangswerte für $u$ und $v$. Mit dem Lemma von Gronwall folgt 
+	wobei $\Vert u(0)-v(0)\Vert_2^2=0$ durch Identität der Anfangswerte für $u$ und $v$. 
+	Mit dem Lemma von Gronwall folgt 
 
-\begin{align*}
-	\Vert u(t)-v(t)\Vert_2^2\leq\exp(2\cdot L\cdot t)\Vert u(0)-v(0)\Vert_2^2=0\qquad\forall t\in\left[0,T\right].
-\end{align*}
+	\begin{align*}
+		\Vert u(t)-v(t)\Vert_2^2\leq\exp(2\cdot L\cdot t)\Vert u(0)-v(0)\Vert_2^2=0\qquad\forall t\in\left[0,T\right].
+	\end{align*}
 
-Daraus folgt $u\equiv v$. Der Existenzbeweis erfolgt über den Beweis, dass kein "`blow-up"' in endlicher Zeit möglich ist.
+	Daraus folgt $u\equiv v$. 
+	Der Existenzbeweis erfolgt über den Beweis, dass kein "blow-up" in endlicher Zeit möglich ist.
 \end{proof}
 
 \begin{bemerkung}
-Nur Stetigkeit von $A$ reicht nicht für die eindeutige Lösbarkeit. Zum Beispiel sei $N=1$ und $Au=-\operatorname{sgn}(u)\cdot\sqrt{\vert u\vert}$.
+	Nur Stetigkeit von $A$ reicht nicht für die eindeutige Lösbarkeit. 
+	Zum Beispiel sei $N=1$ und $Au=-\operatorname{sgn}(u)\cdot\sqrt{\vert u\vert}$.
 \end{bemerkung}
 
 Eine Alternative zur Lipschitz-Stetigkeit:
 
 \begin{definition}[Monotonie]
-Die Funktion $A\colon\R^N\to\R^N$ heißt \textbf{monoton (wachsend)}
-\begin{align*}
-:\gdw\forall u,v\in\R^N\colon\langle Au-Av,u-v\rangle\geq 0
-\end{align*}
+	Die Funktion $A\colon\R^N\to\R^N$ heißt \textbf{monoton (wachsend)}
+	\begin{align*}
+		:\gdw\forall u,v\in\R^N\colon\langle Au-Av,u-v\rangle\geq 0
+	\end{align*}
 \end{definition}
 
 \begin{lemma}
-Ist $A$ monoton und stetig, dann gibt es zu jedem $u_0\in\R^N$ immer noch genau eine (globale) Lösung des Cauchy-Problems \eqref{CauchyProblem0}.
+	Ist $A$ monoton und stetig, dann gibt es zu jedem $u_0\in\R^N$ immer noch genau eine (globale) Lösung des Cauchy-Problems \eqref{CauchyProblem0}.
 \end{lemma}
-\begin{proof}
-\begin{align*}
-	\frac{1}{2}\frac{d}{dt}\Vert u(t)-v(t)\Vert_2^2=-\langle u(t)-v(t),Au(t)-Av(t)\rangle\leq 0.\\
-	\Longrightarrow t\mapsto\frac{1}{2}\Vert u(t)-v(t)\Vert^2\text{ ist monoton fallend}
-\end{align*}
 
-Die Abbildung $t\mapsto 2^{-1}\Vert u(t)-v(t)\Vert_2^2$ ist also monoton fallend, woraus die eindeutige Lösbarkeit folgt. 
+\begin{proof}
+	\begin{align*}
+		\frac{1}{2}\frac{d}{dt}\Vert u(t)-v(t)\Vert_2^2=-\langle u(t)-v(t),Au(t)-Av(t)\rangle\leq 0.\\
+		\Longrightarrow t\mapsto\frac{1}{2}\Vert u(t)-v(t)\Vert^2\text{ ist monoton fallend}
+	\end{align*}
+
+	Die Abbildung $t\mapsto 2^{-1}\Vert u(t)-v(t)\Vert_2^2$ ist also monoton fallend, woraus die eindeutige Lösbarkeit folgt. 
 \end{proof}
 
 \begin{beispiel}
-$N=1$ und $Au=\operatorname{sgn}(u)\cdot\sqrt{\vert u\vert}$
+	$N=1$ und $Au=\operatorname{sgn}(u)\cdot\sqrt{\vert u\vert}$
 \end{beispiel}
 
 \begin{korollar}[Picard-Lindelöf allgemein]
-$A=A_0+A_1$, wobei $A_0\colon\R^N\to\R^N$ monoton sowie stetig und $A_1\colon\R^N\to\R^N$ Lipschitz-stetig sind. Daraus folgt eindeutige (globale) Lösbarkeit und Existenz der Lösung.
+	$A=A_0+A_1$, wobei $A_0\colon\R^N\to\R^N$ monoton sowie stetig und $A_1\colon\R^N\to\R^N$ Lipschitz-stetig sind. 
+	Daraus folgt eindeutige (globale) Lösbarkeit und Existenz der Lösung.
 \end{korollar}
+
 \begin{proof}
-Folgt auf beiden vorherigen Resultaten.
+	Folgt auf beiden vorherigen Resultaten.
 \end{proof}
 
 In dieser Vorlesung behandeln wir die allgemeine Theorie in Banachräumen.
