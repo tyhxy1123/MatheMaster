@@ -59,7 +59,7 @@ refinement is sufficient for linear elliptic problems, but for time dependent pr
 	\end{equation*}
 \end{itemize}
 
-\underline{time-dependent problems}:\nl
+\underline{time-dependent problems}:
 \begin{itemize}
 	\item explicit strategy: do iteration only once $\to$ next timestep
 	\item semi-implicit: do a adaption only once
@@ -115,7 +115,7 @@ How to compute $\eta_T$?\vspace{1cm}
 			\end{cases} 
 		\end{align*}
 	\end{itemize}
-	comment on residuals(lin. alg.)\nl
+	comment on residuals(lin. alg.)
 	\begin{align*}
 		Ax&=b &  A_h x_h &= b_h &&A,A_h \in \R^{n\times n},x,x_h,b,b_h\in\R^n \\
 		A_h&\to A & b_h &\to b  &&(h\to 0)\\
@@ -152,7 +152,7 @@ residual error estimate(global)
 	\eta_T = \left(  \sum \limits_{T \in \T_K} \|R_T\|^2  +  \sum \limits_{e \in \Gamma_K} \|R_e\|^2 \right)^{1/2}
 \end{equation*}
 \begin{proof_}
-	(of Lemma of Cea \eqref{lem_cea}))\\
+	(of Lemma of Cea \eqref{lem_cea}))
 	\begin{align*}
 		a(u,v) &= \langle l,v\rangle\quad \forall v\in V \\
 		a(u_h,v) &=\langle l,v\rangle \quad \forall v\in V_h \\
