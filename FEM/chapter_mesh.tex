@@ -15,7 +15,7 @@
 	\end{tabular}
 \end{center}
 
-Consens: Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\vspace{1cm}
+Consens:(local refinement) Use fine meshes in regions with high gradient(something happens) and coarse meshes in regions with nearly constant gradiants(nothing happening)\vspace{1cm}
 
 Questions:
 \begin{itemize}
@@ -31,7 +31,7 @@ Method of Bisection:
 \begin{itemize}
 	\item define a refinemnt edge
 	\item insert node in the middle
-	\item replace old triangle wlth 2 new ones 
+	\item replace old triangle with 2 new ones 
 \end{itemize}
 \input{tikz/chapter_mesh/bisection_refine}
 
@@ -56,21 +56,21 @@ Refinement edge:
 Problem: Hanging nodes
 \input{tikz/chapter_mesh/hanging_nodes}
 Refinement of a single triangle leads to a hanging node that is forbidden.\\
-Solution: rekursive Refinement
+Solution: recursive Refinement
 \begin{enumerate}[label= case \arabic*:]
 	\item Hanging node is on the refinement edge of a adjacent triangle
 	\input{tikz/chapter_mesh/hanging_nodes_c1}
 
 	\item Hanging node is \textbf{not} on refinement edge
 	\input{tikz/chapter_mesh/hanging_nodes_c2}
-	still better, than refining ehole domain\\
+	still better, than refining whole domain\\
 	$\implies$ multiple recursive refinements necessary
 \end{enumerate}
 
 \subsection{Data structures}
 \underline{direct storage}
 \begin{itemize}
-	\item different array for nodes and cells(like in the tutorial)
+	\item different arrays for nodes and cells(like in the tutorial)
 	\input{tikz/chapter_mesh/data_structure}
 	\item cells = 
 	$\begin{bmatrix}
@@ -104,7 +104,7 @@ Disadvantages:
 \begin{itemize}
 	\item working on arrays: size-changes are costly computations
 	\item coarsening of meshes is very difficult
-	\item neighboring relatons have to be computed explicitly after every refinement
+	\item neighboring relations have to be computed explicitly after every refinement
 \end{itemize}
 Thus not so good for moving regions of interest.
 \vspace{1cm}
@@ -146,9 +146,9 @@ Node:
 
 Mesh:
 \begin{itemize}
-	\item macro mesh explicitly defined
+	\item (coarse) macro mesh explicitly defined
 	\item every macro mesh cell ist \underline{root} of a tree
-	\item current mesh os given by all \underline{leafs}
+	\item current mesh os given by all \underline{leaves}
 	\input{tikz/chapter_mesh/mix_tree_triang}
 \end{itemize}
 
@@ -156,9 +156,9 @@ Note that here the seperation of node indices and coordinates is not useful.\vsp
 
 Advantages:
 \begin{itemize}
-	\item large libraries for tree strictires already existent(computation of neighbors, etc.)
+	\item large libraries for tree structures already existent(computation of neighbors, etc.)
 	\item coarsening is a trivial task(remove leafs)
-	\item refinement inherited from father (determined by tree structure)(compute neighboring relations \glqq on demand\grqq)
+	\item refinement edge inherited from father (determined by tree structure)(compute neighboring relations \glqq on demand\grqq)
 	%%TODO add pic
 	\input{tikz/chapter_mesh/hier_mesh}
 	\item cells = 
@@ -185,11 +185,12 @@ Disadvantages:
 \end{enumerate}
 Open questions:
 \begin{enumerate}[label = \arabic* .]
-	\item Where to refine(explicitly give locations, error estimates,...)?
+	\item Where to refine(explicitly given locations, error estimates,...)?
 	\item How to prove that it actually works(convergence orders)?
 	\item What could have been done differently?\\
 	$\implies$ Replace Bisection- by Red-Green Refinement...\\
-	$\implies$ $p$-Adaptivity instead of $h$-Adaptivity(take higher order polonomial basisfunctions)
+	$\implies$ $p$-Adaptivity instead of $h$-Adaptivity(take higher order polonomial basisfunctions instead of finer meshes)\\
+	$\implies$ combination of $p$- and $h$-Adaptivity approaches
 \end{enumerate}
 
 

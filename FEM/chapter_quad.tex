@@ -19,7 +19,7 @@ We want to compute Integrals of the form:
  		A_{ij} = \int \limits_\Omega \nabla \varphi_j \cdot \nabla \varphi_i \diff x
  	\end{equation*}
  	\item no closed form of $\varphi_i$ on $\Omega$
- 	\item philosophical: FEM is just an approximation
+ 	\item philosophical: FEM is just an approximation $\implies$ approximate integrals as well
  \end{itemize}
 
 $\implies$ Aim: Approximate $\int \limits_\Omega f(x) \diff x$
@@ -31,7 +31,7 @@ $\implies$ Aim: Approximate $\int \limits_\Omega f(x) \diff x$
 with $w_k \in \R$ (weights) and $x_k \in \Omega$ (points/nodes). Together the set $\{(w_k,x_k)\}$ is called quadrature rule.\\
 \underline{Questions:}
 \begin{enumerate}[label=\arabic*)]
-	\item Do I need a quadrature rule for every $\Omega$?
+	\item Do I need a specific quadrature rule for every $\Omega$?
 	\item How do I choose $\{(w_k,x_k)\}$?
 	\item How do I measure the quality of approximation?
 \end{enumerate}
@@ -40,7 +40,7 @@ with $w_k \in \R$ (weights) and $x_k \in \Omega$ (points/nodes). Together the se
 Integral Transformation, $\hat{\Omega}, \Phi(\hat{\Omega}) = \Omega$
 \begin{align}
 	\int \limits_{\Phi(\Omega)}  f(y) \diff y &= \int \limits_{\hat{\Omega}} f(\Phi(y)) |\det(D\Phi(x))| \diff x \\
-	&\approx \displaystyle \sum^{N_Q}_{k=1} f(\underbrace{\Phi(x_k)}_{\in \Omega}) \underbrace{|\det(D\Phi)|}_{\in \R} \diff
+	&\approx \displaystyle \sum^{N_Q}_{k=1} f(\underbrace{\Phi(x_k)}_{\in \Omega}) \underbrace{|\det(D\Phi)|}_{\in \R} \diff x 
 \end{align}
 Note that in our case $\Phi$ is an affine linear function and thus $D\Phi$ does not depend on $x$.
 $\{(|\det(D\Phi)|w_k,\Phi(x_k))\}$ is a quadrature rule on $\Omega$.
@@ -58,7 +58,7 @@ Aim: measure the approximation quality\\
 	\begin{equation*}
 		I(f)= Q(f) \qquad \forall p\in \mathbb{P}_m(\hat{\Omega})
 	\end{equation*}
-	and there exists $p\in \mathbb{P}_{m+1}$ s.t. $I(f)\neq Q(f)$
+	and there exists $p\in \mathbb{P}_{m+1}(\hat{\Omega})$ s.t. $I(f)\neq Q(f)$
 \end{definition}
 \begin{lemma_}
 	exact of order $m$ $\iff$ exact for $\{1,x,x^2,\dots,x^m \}$
@@ -138,4 +138,3 @@ Q(f)= w_1f(x_1,y_1) + w_2f(x_2,y_2) + w_3f(x_3,y_3) + w_4f(x_4,y_4)
 \end{align*}
 \input{tikz/chapter_quad/other_nodes_T_hat}
 Note that in the above picture the dashed lines show the position of nodes for higher order quadrature rules.
-%%TODO add picture for higher order secpnd approach
