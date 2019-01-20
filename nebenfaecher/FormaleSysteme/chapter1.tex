@@ -424,16 +424,169 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 	Solange $F$ nicht in Negationsnormalform ist, tue:
 	\begin{itemize}
 		\item Bestimme eine Teilformel der Form $\neg G$ von $F$ mit $G\not\in\RR$.
-		\item Wenn $\neg G=\neg\neg H$, dann ersetze $\neg G$ durch $H$.
-		\item Wenn $\neg G=\neg(G_1\wedge G_2)$, dann ersetze $\neg G$ durch $(\neg G_1\vee\neg G_2)$.
-		\item Wenn $\neg G=\neg(G_1\vee G_2)$, dann ersetze $\neg G$ durch $(\neg G_1\wedge\neg G_2)$.
+		\item Wenn $\neg G=\neg\neg H$, dann ersetze $\neg G$ durch $H$, i.Z.:
+		\begin{align*}
+			\frac{\neg\neg H}{H}
+		\end{align*}
+		\item Wenn $\neg G=\neg(G_1\wedge G_2)$, dann ersetze $\neg G$ durch $(\neg G_1\vee\neg G_2)$, i.Z.:
+		\begin{align*}
+			\frac{\neg(G_1\wedge G_2)}{(\neg G_1\vee\neg G_2)}
+		\end{align*}
+		\item Wenn $\neg G=\neg(G_1\vee G_2)$, dann ersetze $\neg G$ durch $(\neg G_1\wedge\neg G_2)$, i.Z.
+		\begin{align*}
+			\frac{\neg(G_1\vee G_2)}{(\neg G_1\wedge\neg G_2)}
+		\end{align*}
 	\end{itemize}
 \end{proposition}
 
 \subsection{Klauselform}
 
+\begin{definition}\label{def3.26}
+	Ein \textbf{Literal} ist eine aussagenlogische Variable (\textbf{positives Literal}) oder eine negierte aussagenlogische Variable (\textbf{negatives Literal}).
+\end{definition}
+
+\begin{notation}\
+	\begin{itemize}
+		\item Verallgemeinerte Disjunktion und verallgemeinerte Konjunktion:
+		\begin{align*}
+			\big[F_1,\ldots,F_n\big]:=\bigvee\limits_{i=1}^n F_i,\qquad
+			\big\langle F_1,\ldots,F_n\big\rangle:=\bigwedge\limits_{i=1}^n F_i
+			\qquad\forall F_j\in\L(\RR)
+		\end{align*}
+		\item Beachte $[F]=F=\langle F\rangle$ und $[~]^I=\bot,\langle\rangle^I=\top~\forall I$.
+		Somit $(G\vee[~])\equiv G\equiv(G\wedge\langle\rangle)$.
+	\end{itemize}
+\end{notation}
+
+\begin{definition}\label{def3.27}\
+	\begin{itemize}
+		\item Eine \textbf{Klausel} ist einer verallgemeinerte Disjunktion $[L_1,\ldots,L_n]$ mit $n\geq0,L_i$ Literal.
+		\item Eine \textbf{duale Klausel} ist eine verallgemeinerte Konjunktion $\langle L_1,\ldots,L_n\rangle$ mit $n\geq0,_i$ Literal.
+		\item Eine Formel ist in \textbf{konjunktiver Normalform / Klauselform} $:\gdw$ sie v.d.F. $\langle C_1,\ldots,C_m\rangle$ mit $m\geq0,C_i$ Klausel ist.
+		\item Eine Formel ist in \textbf{disjunktiver Normalform / dualer Klauselform} $:\gdw$ sie v.d.F. $[C_1,\ldots,C_m]$ mit $m\geq0, C_i$ duale Klausel ist.
+	\end{itemize}
+\end{definition}
+
+\begin{bemerkung}
+	Sei $F$ eine Formel in Klauselform. Dann gilt:
+	\begin{enumerate}
+		\item $F$ unerfüllbar, wenn eine $F$ vorkommende Klausel unerfüllbar ist.
+		\item Klausel unerfüllbar $\gdw$ sie leer ist $[~]$.
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{satz}\label{satz3.28}
+	Jede Formel $F$ kann in eine semantisch äquivalente Formel $G$ in Klauselform (dualer Klauselform) überführt werden:\nl
+	\texttt{ Setze $G:=\langle[F]\rangle$. 
+	Solange $G$ nicht in konjunktiver Normalform ist, tue:
+	\begin{itemize}
+		\item Wähle ein Element $H$ aus $G$ aus, dass keine Klausel ist.
+		\item Wähle ein Element $K$ aus $H$ aus, dass kein Literal ist.
+		\item Wende eine der folgenden Regeln an, die anwendbar ist:
+		\begin{align}
+			&\frac{\neg\neg D}{D}\label{KNF1}\tag{KNF1}\\
+			&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\tag{KNF2}\\
+			&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{KNF3}\tag{KNF3}\\
+			&\frac{(D_1\vee D_2)}{D_1, D_2}\label{KNF4}\tag{KNF4}\\
+			&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{KNF5}\tag{KNF5}
+		\end{align}
+	\end{itemize}		
+	} Bei Anwendung einer Regel $\frac{E}{E_1\mid E_2}$ wird $H$ durch zwei Disjunktionen ersetzt: 
+	Die erste erhält man aus $H$, indem man das Vorkommen von $E$ durch $E_1$ ersetzt.
+	Die zweite erhält man aus $H$ indem das Vorkommen von $E$ durch $E_2$ ersetzt wird.
+\end{satz}
+
 \section{Beweisverfahren}
+
+\begin{align*}
+	\big\lbrace F_1,\ldots,F_n\big\rbrace\models F 
+	&\Longleftrightarrow \Big(\big\langle F_1,\ldots,F_n\big\rangle\to F\Big)\text{ ist allgemeingültig}\\
+	&\Longleftrightarrow\neg\Big(\big\langle F_1,\ldots,F_n\big\rangle\to F\Big)\text{ ist unerfüllbar}\\
+	&\Longleftrightarrow\big\langle F_1,\ldots,F_n,\neg F\big\rangle\text{ ist unerfüllbar}
+\end{align*}
+
+\subsection{Resolution}
+Resolution ist ein Verfahren zum Nachweis der Unerfüllbarkeit beliebiger Formeln (in Klauselform).
+Eine Formel in Klauselform ist unerfüllbar, wenn sie eine leere Klausel enthält (oder sie in eine semantisch äquivalente Formel umgeformt werden kann, die die leere Klausel enthält).
+Resolution ist also die Suche nach der leeren Klausel unter Verwendung der \textit{Resolutionsregel}.
+
+\begin{definition}\label{def3.32}
+	Sei $C_1$ eine Klausel, in der das Atom $A\in\RR$ vorkommt und $C_2$ eine Klausel, in der das negierte Atom $\neg\A$ vorkommt. Sei $C$ das Resultat von:
+	\begin{enumerate}
+		\item Entferne alle Elemente der Form $A$ aus $C_1$.
+		\item Entferne alle Elemente der Form $\neg A$ aus $C_2$.
+		\item Verknüpfe die so erhaltenen Klauseln disjunktiv.
+	\end{enumerate}
+	Die ist die \textbf{Resolutionsregel} und $C$ die \textbf{Resolvente} von $C_1$ und $C_2$ bzgl. $A$. 
+	Kurzform zum Merken:
+	\begin{align*}
+		C_1=\big[ A,B\big],~
+		C_2=\big[ \neg A,C\big]\implies C=[ B,C]
+	\end{align*}
+\end{definition}
+
+\begin{definition}\label{def3.33}
+	Sei $F=\langle C_1,\ldots C_n\rangle$ eine Formel in Klauselform.
+	\begin{enumerate}
+		\item Die Folge $(C_1,\ldots,C_n)$ heißt \textbf{Resolutionsableitung} für $F$.
+		\item Wenn $C_1,\ldots,C_m)$ eine Resolutionsableitung für $F$ ist und $C_{m+1}$ durch Anwendung der Resolutionsregel auf zwei Elemente $C_i,C_j,i,j\leq m$ entstanden ist, dann ist $C_1,\ldots,C_m,C_{m+1})$ eine \textbf{Resolutionsableitung} für $F$.
+		\item Eine Resolutionsableitung für $F$, die die leere Klausel $[~]$ enthält, heißt \textbf{Resolutionswiderlegung} für $F$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}\label{def3.34}
+	Sei $F$ eine aussagenlogische Formel und $G\equiv\neg F$ in Klauselform.
+	Ein \textbf{(aussagenlogischer) Resolutionsbeweis} für $F$ ist eine Resolutionswiderlegegung für $G$.
+	$F$ heißt \textbf{Theorem} des Resolutionskalküls, wenn es einen Resolutionsbeweis für $F$ gibt, i.Z. $\vdash_r F$.\nl
+	Forderungen:
+	\begin{enumerate}
+		\item Korrektheit: $\vdash_r F\implies\models F$
+		\item Vollständigkeit: $\models F\implies\vdash_r F$.
+	\end{enumerate}
+\end{definition}
 
 \section{Eigenschaften}
 
-\section{Das Testen auf Erfüllbarkeit}
+Idee: Um die Erfüllbarkeit einer unendlich großen Menge von Formeln zu betrachten, genügt es, endliche Teilmengen zu betrachten.
+
+\begin{itemize}
+	\item $\equiv$ ist eine Äquivalenzrelarion auf $\L(\RR)$.
+	\item Sei $\L(\RR,n)\subseteq\L(\RR)$ die Menge aller Formeln mit höchstens $n$ Variablen.
+	\item Dann finden wir $2^n$ verschiedene Interpretationen für $\L(\RR,n)$.
+	\item Es gibt $2^{2^n}$ verschiedene durch $\equiv$ auf $\L(RR,n)$ definierte Äquivalenzklassen.
+\end{itemize}
+
+\begin{satz}[Endlichkeitssatz]\label{satz345Endlichkeitssatz}\enter
+	Eine Menge $\G$ von Formeln der Aussagenlogik ist erfüllbar $\gdw$ jede endliche Teilmenge $\H\subseteq\G$ erfüllbar ist.
+\end{satz}
+
+\begin{proof}
+	Die Richtung "$\implies$" folgt direkt aus der Definition von Erfüllbarkeit von Mengen.\nl
+	Sei jede endliche Teilmenge von $\G$ erfüllbar.
+	Setze $\G_n:=\G\cap\L(\RR,n)$.\\
+	Dann gibt es maximal $k\leq 2^{2^n}$ verschiedene durch $\equiv$ auf $\G_n$ definierte Äquivalenzklassen.
+	Seien $G_1,\ldots,G_k$ Repräsentanten dieser Äquivalenzklassen.\\
+	Somit gibt es für alle $G\in\G_n$ ein $i\in\lbrace 1,\ldots,k\rbrace:G\equiv G_i$.\\
+	Folglich ist jedes Modell für $\big\lbrace G_1,\ldots,G_k\big\rbrace$ auch ein Modell für $\G_n$.\\
+	Da $\big\lbrace G_1,\ldots,G_k\big\rbrace\subseteq\G$ endlich, besitzt sie ein Modell, nennen wir es $I_n$.\\
+	Wegen $\G_1\subseteq\G_2\subseteq\ldots\subseteq\G_n$ ist $I_n$ auch ein Modell für alle $G_j$ mit $1\leq j\leq n$.\\
+	Nun konstruieren wir eine Interpretation $I$ für $\G$ (Details unwichtig).
+\end{proof}
+
+\begin{korollar}\label{korollar3.46}
+	Eine Menge von Formeln ist unerfüllbar $\gdw$ eine ihrer Teilmengen unerfüllbar ist.
+\end{korollar}
+
+\begin{lemma}[Resolutionslemma]\label{lemma3.47Resolutionslemma}\enter
+	Sei $F=\big\langle C_1,\ldots,C_n\big\rangle$ Formel in Klauselform mit Klauseln $C_i$ 
+	und seien $D_1\ldots,D_m$ die in einer Resolventenableitung von $F$ berechneten Resolventen.\\
+	Dann gilt $F\equiv(F\wedge D_1)$ und $F\equiv\big\langle F,D_1,\ldots, D_m\big\rangle$
+\end{lemma}
+
+\begin{satz}\label{satz3.49}
+	Das Resolutionsverfahren ist korrekt und vollständig, d.h.:
+	\begin{align*}
+		\forall F\in\L(\RR):\vdash_r F\Longleftrightarrow\models F
+	\end{align*}
+\end{satz}
+
