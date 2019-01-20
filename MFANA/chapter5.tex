@@ -600,7 +600,7 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 		%+\liminf\limits_{n\to\infty}\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H^2\\ %wurde an der Tafel gelöscht
 		\overset{(\ast)}&\leq 
 		\E\Big(J_\lambda^{\partial\E} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2
-		-\E\Big(J_\lambda^{\partial\E} f\Big)-\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E} f\Big\Vert_H^2\\\nonumber
+		-\E\Big(J_\lambda^{\partial\E} f\Big)-\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2\\\nonumber
 		&=\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2	
 	\end{align}
 	Bei $(\ast)$ geht erneut Eigenschaft (i) der Mosco-Konvergenz ein.
@@ -652,7 +652,7 @@ Es sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ semikonvex vom Typ $\omega$, $\not\e
 $\E^\lambda$ die Moreau-Yosida-Approximation.
 Dann gilt für ein $\omega'>\omega$:
 \begin{align*}
-	\E\lambda+\frac{\omega'}{2}\cdot\Vert\cdot\Vert_H^2
+	\E^\lambda+\frac{\omega'}{2}\cdot\Vert\cdot\Vert_H^2
 	\stackrelnew{\text{Mosco}}{\lambda\to 0^+}{\longrightarrow}
 	\E+\frac{\omega'}{2}\cdot\Vert\cdot\Vert_H^2
 \end{align*}
@@ -690,7 +690,7 @@ Die Voraussetzung besagt also, dass $D$ dicht in dem metrischen Raum $(\dom(\E),
 		\Longleftrightarrow\Vert u_n-u\Vert_{L^2}\overset{n\to\infty}{\longrightarrow}0\\
 		\E(u_n)\overset{n\to\infty}{\longrightarrow}\E(u)
 	\end{align*}
-	Insbesondere ist $(u_n)_{n\in\N}$ beschränkt in $\left(W^{1,2},\Vert\cdot\Vert_{W^{1,2,}}\right)$.
+	Insbesondere ist $(u_n)_{n\in\N}$ beschränkt in $\left(W^{1,2},\Vert\cdot\Vert_{W^{1,2}}\right)$.
 	Nach Übergang zur Teilfolge:
 	\begin{align*}
 		u_n\overset{n\to\infty}{\longrightarrow}u\text{ schwache Konvergenz}
@@ -721,7 +721,7 @@ und
 \end{align*}
 Dann ist $\E_n$ unterhalbstetig, semikonvex vom Typ $\omega$ und $\not\equiv+\infty$ ($\E_n(v_1)<\infty$).
 Außerdem ist $(\E_n)_{n\in\N}$ monoton fallend, nach unten beschränkt durch $\E$ 
-(bzw. $\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2\right)$ monoton fallend und nach unten beschränkt durch $\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2$.
+(bzw. $\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2$) monoton fallend und nach unten beschränkt durch $\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2$.
 Damit ist die Folge
 \begin{align*}
 	\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2\right)_{n\in\N}
