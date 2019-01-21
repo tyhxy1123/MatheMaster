@@ -263,11 +263,24 @@ Sei $(D,d)$ ein metrischer Raum.
 \end{proof}
 
 Linearer Fall:
-%TODO Add Tikz CD picture
-%$$\begin{tikzcd}
-%S\drar{Def. (Abl. in 0)} \\
-%A \ar[leftrightarrow]{\text{Invertieren von Operatoren}}& (\lambda -A) ^{-1}
-%\end{tikzcd}$$
+$$
+\begin{tikzcd}[sep=tiny]
+	& & S \arrow[drr, dash, bend left] \arrow[ddr, dash, bend right] \arrow[ddl, dash, bend left] \arrow[dll, dash, bend right]
+	& & \\
+	\parbox{50pt}{\tiny Definition\\(Ableitung\\in $0$)} 
+	\arrow[dd, bend right]
+	& & & 
+	& \parbox{80pt}{\tiny Laplacetransformation}
+	\arrow[dd, bend left]	\\
+	&\parbox{50pt}{\tiny Lösung von \\$\dot{u}-Au=0$} 
+	\arrow[uur, bend right]
+	& 
+	&\parbox{80pt}{\tiny Inversion der\\Laplacetransformation,\\Exponentialformel}
+	\arrow[uul, bend left] 
+	\\
+	A \arrow[ur, dash, bend right] & & \arrow[ll, bend left] \parbox{50pt}{\tiny \tiny Invertieren von\\Operatoren} \arrow[rr, bend right]& & (\lambda - A)^{-1} \arrow[ul, dash, bend left]
+\end{tikzcd}
+$$
 
 \begin{align*}
 	f\colon\R_+\to X,\qquad\big\Vert f(t)\big\Vert\leq M\cdot\exp(\omega\cdot t)\\
@@ -424,6 +437,21 @@ Im nichtlinearen Fall:
 %$(I+h\cdot A)^{-1}=J_h$ -> S: Exponentialformel
 %A <-> $(I+h\cdot A)^{-1}=J_h$: Inversion von nichtlinearen Operatoren
 
-
-
-
+$$
+\begin{tikzcd}[sep=tiny]
+	& & S \arrow[drr, dash, bend left] \arrow[ddr, dash, bend right] \arrow[ddl, dash, bend left] \arrow[dll, dash, bend right]
+	& & \\
+	\parbox{50pt}{\tiny sadsfoasdjb\\foasdfijoasdfojs\\dofjoisdf} 
+	\arrow[dd, bend right]
+	& & & 
+	& \parbox{50pt}{\tiny sadsfoasdjb\\foasdfijoasdfoj\\sdofjoisdf}
+	\arrow[dd, bend left]	\\
+	&\parbox{60pt}{\small Crandall-\\Ligget,\\Wohlgestelltheit\\ von $\dot{u}+Au\ni0$} 
+	\arrow[uur, bend right]
+	& 
+	&\parbox{60pt}{\tiny sadsfoasdjb\\foasdfijoasdfojsd\\ofjoisdf}
+	\arrow[uul, bend left]
+	\\
+	A \arrow[ur, dash, bend right] & & & & (\lambda - A)^{-1} \arrow[ul, dash, bend left]
+\end{tikzcd}
+$$
