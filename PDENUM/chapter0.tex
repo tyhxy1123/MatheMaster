@@ -3294,3 +3294,178 @@ Sei $v\in W\subseteq V$ beliebig.
 	\implies u^\ast\text{ löst }\eqref{eq8.2Problem2MixedForm}
 \end{align*}
 
+\underline{Problem (1):}
+Finde $(u,p)\in V\times Q:$
+\begin{align*}
+	a(u,v)-b(p,v)&=f(v) &\forall&v\in V\\
+	b(q,u)&= &\forall& q\in Q
+\end{align*}
+
+\underline{Problem (2):}
+Finde $u\in W$
+\begin{align*}
+	a(u,v)&=f(v) \qquad\forall v\in W\mit\\
+	W&=\big\lbrace v\in V:b(q,v)=0~\forall q\in Q\big\rbrace
+\end{align*}
+
+Angenommen $u\in W$ löst Problem (2).
+Also erfüllt $u$ die zweite Gleichung in Problem (1).
+Um eine Funktion $p\in Q$ in (1) zu finden, wir brauchen
+\begin{align*}
+	b(p,v)=a(u,v)-f(v)\qquad\forall v\in V
+\end{align*}
+Für $w\in W:$
+\begin{align*}
+	b(p,w)=a(u,w)-f(w)\overset{(2)}{=}0
+\end{align*}
+mit $V=W+W^\perp$ und $W^\perp:=\big\lbrace v\in V:(v,w)=0~\forall w\in W\big\rbrace$
+$v\in V\implies\exists! w\in W,w^\perp\in W^\perp:v=w+w^\perp$
+Es reichte auch zu zeigen:
+\begin{align}\label{eqProblem3}\tag{3}
+	b(p,v)=a(u,v)-f(v)\qquad\forall v\in W^\perp
+\end{align}
+Sei $B:V\to Q^\ast$ eine Funktion wobei $Q^\ast$ die Menge aller linearen stetigen Funktionale auf $Q$ ist.
+\begin{align*}
+	\langle Bv,q\rangle&:=b(q,v)\qquad\forall q\in Q,\forall v\in V
+\end{align*}
+$B^\ast:Q\to V^\ast$:
+\begin{align*}
+	\langle B^\ast q,v\rangle&:=b(q,v)\qquad\forall q\in Q,\forall v\in V
+\end{align*}
+$B$ und $B^\ast$ sind offenbar stetig und linear.
+Außerdem gilt:
+\begin{align*}
+	\eqref{eqProblem3}&\Longleftrightarrow\big\langle B^\ast p,v\big\rangle
+	=\underbrace{a(u,v)-f(v)}_{=:\langle g,v\rangle,g\in V^\ast}\qquad\forall v\in V\\
+	&\Longleftrightarrow B^\ast p=g\text{ in }V^\ast
+\end{align*}
+
+$B^\ast$ ist injektiv ist äquivalent zu
+\begin{align*}
+	\overset{B^\ast\text{ linear}}&{\Longleftrightarrow}
+	\exists\beta>0:\big\Vert B^\ast p\big\Vert_{V^\ast}\geq\beta\cdot\Vert p\Vert_Q &\forall& p\in Q\\
+	\overset{\text{Def }\Vert\cdot\Vert}&\Longleftrightarrow \exists\beta>0:
+	\sup\limits_{v\in V\setminus\lbrace0\rbrace}\frac{b(p,v)}{\Vert v\Vert_V}\geq\beta\Vert p\Vert_Q &\forall&p\in Q\\
+	&\Longleftrightarrow\exists\beta>0:
+	\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
+\end{align*}
+Die letzte Ungleichung heißt \textbf{inf-sup-Bedingung / LBB-Bedingung}
+
+\begin{thm} %nonumber
+	Für eine stetige Bilinearform $b$ auf $Q\times V$ mit zugehörigen Operatoren
+	$B\colon v\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			\exists\beta>0:\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace 0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
+		\end{aligned}$
+		\item $\begin{aligned}
+			B\colon W^\perp\to Q^\ast
+		\end{aligned}$ ist ein Isomorphismus mit 
+		\begin{align*}
+			\Vert B v\Vert_{Q^\ast}\geq\beta\cdot\Vert v\Vert_V\qquad\forall v\in W^\perp
+		\end{align*}
+		\item $\begin{aligned}
+			B^\ast\colon Q\to\big\lbrace g\in V^\ast:\langle g,v\rangle=0~\forall v\in W\big\rbrace
+		\end{aligned}$ ist ein Isomorphismus mit
+		\begin{align*}
+			\big\Vert B^\ast q\big\Vert_{V^\ast}\geq\beta\cdot\Vert q\Vert_Q\qquad\forall q\in Q
+		\end{align*}
+	\end{enumerate}
+\end{thm}
+
+\setcounter{satz}{0} %Die Nummerierung war in der VL so.
+\begin{theorem}\label{theorem8.1}
+	Seien $Q,V$ Hilberträume.	
+	Sei $a\colon V\times V\to\R$ stetig, $V$-elliptisch (= koerziv), bilinear.
+	Sei $b\colon V\to\R$ stetig, bilinear mit
+	\begin{align*}
+		\exists\beta>0:\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(q)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
+	\end{align*}
+	Dann gibt es für jedes $f\in V^\ast$ eine eindeutige Lösung des Problems
+	\begin{align*}
+		\text{Finde }u\in W:a(u,v)=f(v)\qquad\forall v\in W
+	\end{align*}
+	Zusätzlich existiert ein eindeutiges $p\in Q$ mit
+	\begin{align*}
+		b(p,v)=a(u,v)-f(v)\qquad\forall v\in W^\perp
+	\end{align*}
+	Das Paar $(u,p)\in V\times Q$ löst:\\
+	\tab Finde $(u,p)\in V\times Q$ so, dass
+	\begin{align*}
+		a(v,v)-b(p,v)&=f(v) &\forall& v\in V\\
+		b(q,u)&=0 &\forall& q\in Q
+	\end{align*}
+\end{theorem}
+
+\begin{bemerkung}
+	Man kann die Voraussetzungen abschwächen. 
+	Es reicht aus, dass $a$ elliptisch (koerziv) auf $W$ ist.
+\end{bemerkung}
+
+Betrachte erneut unser Beispiel, das Stokes Problem:
+\begin{align*}
+	\left\lbrace\begin{array}{rl}
+		-\Delta u+\nabla p=f&\text{ in }\Omega\\
+		\div(u)=0&\text{ in }\Omega\\
+		u=0&\text{ auf }\partial\Omega
+	\end{array}\right.
+\end{align*}
+
+Wähle $V=\big(H_0^1(\Omega)\big)^d$ und $Q=L_0^2(\Omega):=\left\lbrace q\in L^2(\Omega):\int\limits_\Omega q(x)\d x=0\right\rbrace$.
+Unsere Setting ist
+\begin{align*}
+	a(v,w&)=\int\limits_\Omega\nabla v:\nabla w\d x,\qquad
+	b(q,v)=\int\limits_\Omega q\div(v)\d x\\
+	\Vert v\Vert_V&=\Vert v\Vert_{1,2,\Omega}=\left(\sum\limits_{i=1}^d\Vert v_i\Vert^2_{1,2,\Omega}\right)^{\frac{1}{2}}\\
+	\Vert q\Vert_Q&=\inf\limits_{c\in\R}\Vert q+c\Vert_{0,2,\Omega}=\Vert q\Vert_{0,2,\Omega}\text{ für }q\in L^2_0(\Omega)
+\end{align*}
+
+Die inf-sup-Bedingung ist erfüllt für $(V,Q)$.
+
+\subsection{Konforme Diskretisierungen} %8.3
+Wähle Finite-Elemente-Räume $V_h\subseteq V,Q_h\subseteq Q$.
+Diskretes Problem:\\
+Finde $(u_h,p_h)\in V_h\times Q_h$ so, dass
+\begin{align*}
+	a(u_h,v_h)-b(p_h,v_h)&=f(v_h) &\forall& v_h\in V_h\\
+	b(q_n,u_n)&=0 &\forall& q_h\in Q_h
+\end{align*}
+
+Seien $\lbrace\varphi_i\rbrace$, $\lbrace\psi_i\rbrace$ Basen von $V_h$ bzw. $Q_h$.
+\begin{align*}
+	A&:=(a_{i,j}), &a_{i,j}&:=a(\varphi_j,\varphi_i)\\
+	B&:=(b_{i,j}), &b_{i,j}&:=b(\psi_i,\varphi_j)\\
+	F&:=(f_i), &f_i&:=f(\varphi_i)\\
+	AU-B^T p&~=F &U&:=(u_i),~P(p_i)\\
+	BU&~=0 &u_h&:=\sum\limits_i u_i\varphi_i,~p_h:=\sum\limits_i p_i\psi_i\\
+	\begin{pmatrix}
+		A & -B^T\\
+		B & 0
+	\end{pmatrix}\cdot\begin{pmatrix}
+		U\\
+		p
+	\end{pmatrix}
+	=\begin{pmatrix}
+		F\\
+		0
+	\end{pmatrix}
+\end{align*}
+
+\subsection*{Lösbarkeit von diskreten Problemen}
+Stetigkeit und Elliptizität vererben sich für stetige Probleme.
+Eine \textbf{diskrete Version der inf-sup-Bedingung} muss angenommen / geprüft werden.
+\begin{align*}
+	\exists\beta>0:\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h\Vert_V\cdot\Vert q_h\Vert_V}\geq\beta
+\end{align*}
+Wir nehmen an, dass $beta$ ist unabhängig von Netzparameter $h$ ist.
+Folglich ist das diskrete Problem eindeutig lösbar.\\
+Paare von $(V_h,Q_h)$ erfüllen diese diskrete inf-sup-Bedingung:
+\begin{align*}
+	V_h:S_{h,0}^{r,0},\qquad Q:S_h^{r-1,0},\qquad r\geq2,\qquad P_2/P_1\\
+	r\geq 2,\qquad Q_h=S_h^{r-1,1},\qquad V_h=P_r+\text{ Bereicherung}\supseteq S_{h,0}^{r,0}
+\end{align*}
+Die Variante in der ersten Zeile wird \textbf{Taylor-Hood-Element} genannt.
+
+
+
+
