@@ -1,3 +1,4 @@
+% !TEX root = ORDSTR.tex
 % This work is licensed under the Creative Commons
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
@@ -982,13 +983,14 @@ Zurück zum Begriff des Measurement Setups.
 \end{beispiel}
 
 \begin{beispiel}
+    \label{ex:TeilmengenMeasurementSetup}
     $\mathcal{M} := (\G\P, \M, \Delta)$ mit $\G\P := \G_P|R$ für $\P:=(P,R)$ wobei $R := \{(X,Y) \in P\times P \mid X \subseteq Y\}$
     und $\Delta: R \to M, (X,Y) \mapsto Y-X$.\nl
     Die Dimensionsformel gilt hier:
 
     Für $X,Y \in P$ gilt stets $$\Delta(X,X\cup Y) = \Delta(X\cap Y,Y).$$
     Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.\nl
-    Dies gilt auch, falls $(\Omega, \mathscr{A})$ eine $\sigma$-Algebra ist - 
+    Dies gilt auch, falls $(\Omega, \mathscr{A})$ eine $\sigma$-Algebra ist --
     oder man nur das Folgende fordert:
 
     Sei $\Omega$ Menge ($\ne \emptyset$) und sei $\mathscr{A} \subseteq 2^\Omega$ mit:
@@ -1031,41 +1033,84 @@ Zurück zum Begriff des Measurement Setups.
         \item $\Delta(A,A\cup B) = \Delta(A \cap B, B)$ \textit{"$\Delta$ \textbf{modular} bzgl. $(\G\P,\M)$"}
         \item $\mu(A \cup B) \ast \mu(A \cap B) = \mu A \ast \mu B$ \textit{"$\mu$ \textbf{modular} bzgl. $((\mathscr{A},\subseteq),(S,\ast,\varepsilon))$"}
     \end{enumerate}
-    \underline{Proposition:} Bildet $(S,\ast,\varepsilon)$ eine abelsche Gruppe, so ist eine Abbildung $\mu: \mathscr{A} \to S$ modular bzgl. $((\mathscr{A},\subseteq),(S,\ast,\varepsilon))$
-    genau dann, wenn $\Delta^\mu: R \to S, (A,B) \mapsto (\mu A)^{-1}\ast \mu B$ modular bzgl. $(\G(\mathscr{A},R),(S,\ast,\varepsilon))$ ist.\\
-    \underline{Begründung:} Dies folgt, da, falls $\mu$ modular, für $(A,B) \in R$ stets gilt 
-    \begin{align*}
-        \Delta^\mu(A, A \cup B) = \Delta^\mu(A \cap B, B) & \iff (\mu A)^{-1} \ast \mu(A \cup B) = \mu(A \cup B)^{-1} \ast \mu B\\
-        & \iff \mu(A \cup B) \ast \mu(A\cap B) = \mu A \ast \mu B.
-    \end{align*}
+    \begin{proposition}
+        \label{prop:FunktAbelschModular}
+        Bildet $(S,\ast,\varepsilon)$ eine abelsche Gruppe, so ist eineAbbildung $\mu\colon\mathscr{A} \to S$ modular bzgl.~$((\mathscr{A},\subseteq),(S,\ast,\varepsilon))$ genau dann,
+        wenn $\Delta^\mu\cong R \to S, (A,B) \mapsto (\mu A)^{-1}\ast \mu B$ modular bzgl.~$(\G(\mathscr{A},R),(S,\ast,\varepsilon))$ ist.
+        \begin{proof}
+            Dies folgt, da, falls $\mu$ modular, für $(A,B) \in R$ stets gilt
+            \begin{align*}
+                \Delta^\mu(A, A \cup B) = \Delta^\mu(A \cap B, B) & \iff (\mu A)^{-1} \ast \mu(A \cup B) = \mu(A \cup B)^{-1} \ast \mu B\\
+                & \iff \mu(A \cup B) \ast \mu(A\cap B) = \mu A \ast \mu B.
+            \end{align*}
+        \end{proof}
+    \end{proposition}
     \underline{Zusatz:} Falls $\mu$ modular gilt:
     \begin{align*}
         \mu\Delta(A,B) =(\mu A)^{-1}\ast \mu B &\iff \mu A \ast \mu\Delta(A,B) = \mu B\\
         & \iff \mu A \ast \mu (B-A) = \mu B\\
         & \iff \mu ( \underbrace{A \cup (B-A)}_{=B})= \mu B,
     \end{align*}
-    \underline{Proposition:} Sei $\P = (P, R)$ Präordnung und sei $\mathcal{S} = (S,\ast,\varepsilon)$ Gruppe.\\
-    Dann gilt für jede Abbildung $\mu: P \to S$ und $\Delta^\mu : R \to S, (a,b) \mapsto (\mu a)^{-1} \ast \mu b$,
-    dass $(\G\P, \mathcal{S}, \Delta^\mu)$ Measurement Setup ist.\\
-    \textit{Beweis.} Müssen zeigen, dass $\Delta^\mu$ funktoriell, also
-    \begin{itemize}
-        \item Für $p \in P$ ist stets $\Delta^\mu(p,p) = (\mu p)^{-1} \ast \mu p = \varepsilon$.
-        \item Für $p,t,q \in P$ ist stets
-        $$ \Delta^\mu(p,t)\ast\Delta^\mu(t,q) = (\mu p)^{-1} \ast \mu t \ast (\mu t)^{-1} \ast \mu q = (\mu p)^{-1} \ast \mu q = \Delta^\mu(p,q). $$
-    \end{itemize}
-    \underline{Ergebins:} $(\G(\mathscr{A},R),(S,\ast,\varepsilon),\mu\circ\Delta = \Delta^\mu)$ ist Measurement Setup.\nl
-    \underline{Proposition:} Bilde $\P = (?, \leq)$ einen Verband (d.h. $p \vee q$ ist die kleinste obere Schranke von $\{p,q\}$ in $\P$ und
-    $p\wedge q$ ist die größte untere Schranke von $\{p,q\}$ in $\P$.) und $\mathcal{S} = (S,\ast,\varepsilon)$ eine abelsche Gruppe, dann sind
-    für jede Abbildung $\mu: P \to S$ äquivalent:
-    \begin{enumerate}[label=(\alph*)]
-        \item $\mu$ ist modular bezüglich $(\P,\mathcal{S})$
-        \item $\Delta^\mu: \leq_\P \to S, (p,q) \mapsto (\mu p)^{-1} \ast \mu q$ ist modular bezüglich $(\G\P,\mathcal{S})$.
-    \end{enumerate}
+
+    \begin{proposition}
+        \label{prop:MeasSetupÜberGruppe}
+        Sei $\P = (P, R)$ Präordnung und sei $\mathcal{S} = (S,\ast,\varepsilon)$ Gruppe.
+        Dann gilt für jede Abbildung $\mu\colon P \to S$ und $\Delta^\mu\colon R \to S, (a,b) \mapsto (\mu a)^{-1} \ast \mu b$,
+        dass $(\G\P, \mathcal{S}, \Delta^\mu)$ Measurement Setup ist.
+        \begin{proof}
+            Wir müssen zeigen, dass $\Delta^\mu$ funktoriell, also
+            \begin{itemize}
+                \item Für $p \in P$ ist stets $\Delta^\mu(p,p) = (\mu p)^{-1} \ast \mu p = \varepsilon$.
+                \item Für $p,t,q \in P$ ist stets
+                $$ \Delta^\mu(p,t)\ast\Delta^\mu(t,q) = (\mu p)^{-1} \ast \mu t \ast (\mu t)^{-1} \ast \mu q = (\mu p)^{-1} \ast \mu q = \Delta^\mu(p,q). $$
+            \end{itemize}
+            Ergebins: $(\G(\mathscr{A},R),(S,\ast,\varepsilon),\mu\circ\Delta = \Delta^\mu)$ ist Measurement Setup.
+        \end{proof}
+    \end{proposition}
+    \begin{definition}[Verband]
+        Sei $\P = (P, \leq_\P)$ eine Ordnung derart, dass zu jedem $p,q\in P$ stets $s, u\in P$ existieren mit
+        \begin{equation}
+            \label{eqn:VerbandInfSup}
+            u \leq_\P p \leq_\P s \qquad\text{und}\qquad u \leq_\P q \leq_\P s.
+        \end{equation}
+        Falls es weitere $u', s'\in P$ gibt, die \eqref{eqn:VerbandInfSup} erfüllen, so gilt $u'\leq_\P u \land s \leq_\P s'$.
+        Dann heißt $\P$ \textbf{Verband}.
+        Wir nennen $p\land_\P q := u$ das \textbf{Infimum} (größte untere Schranke) von $(p, q) \in P$ und $p \lor_\P q := s$ \textbf{Supremum} (kleinste obere Schranke).
+        Also sind $\land_\P, \lor_\P\colon P\times P\to P$ 2-stellige Operationen auf $P$, welche Infimum- bzw.~Supremum-Operation heißen.
+        Ein Verband heißt \textbf{vollstädig}, falls \emph{jede beliebige} Teilmenge $X\subset P$ ein Infimum und Supremum besitzt.
+        Das heißt: es existieren $u, s\in P$, sodass für alle $p\in X$ gilt:
+        \begin{align}
+                u\leq_\P p
+                &\quad\text{und}\quad
+                \forall u'\in P\colon u'\leq_\P p\implies u'\leq_\P u \\
+                p\leq_\P s
+                &\quad\text{und}\quad
+                \forall s'\in P\colon p\leq_\P s'\implies s\leq_\P s'
+        \end{align}
+        Wir schreiben $\inf_\P X := u$ für das Infimum von $X$, bzw.~$\sup_\P X := s$ für das Supremum von $X$.
+        \begin{beispiel}
+            Seien $P_1, P_2$ Mengen.
+            Dann ist $P := P_1\times P_2$ eine Menge mit den Projektionen $\pi_1, \pi_2$, welche wir als \enquote{Pfeile} zwischen Mengen als Knoten interpretieren.
+            Sind dann $\varphi_1\colon P'\to P_1$ und $\varphi_2\colon P'\to P_2$ Abbildungen,
+            so existiert genau eine Abbildung $\varphi\colon P'\to P$ mit $\varphi * \pi_1 = \varphi_1$\footnote{kovariant verkettet} und $\varphi * \pi_2 = \varphi_2$.
+            Wir nennen $(P; \pi_2, \pi_2)$ das (kartesische) Produkt von $P_1$ und $P_2$ (in der kovarianten Kategorie der Mengen und Abbildungen).
+            Ist $\P = (\mathcal{P}, \subset)$ ein geordnetes Mengensystem,
+            so bildet $\G\P$ einen vollstädigen Verband mit dem Produkt als Infimum
+            (analog mit Koprodukt als Supremum).
+        \end{beispiel}
+    \end{definition}
+    \begin{proposition}
+        Bilde $\P = (P, \leq)$ einen Verband und $\mathcal{S} = (S,\ast,\varepsilon)$ eine abelsche Gruppe, dann sind für jede Abbildung $\mu: P \to S$ äquivalent:
+        \begin{enumerate}[label=(\alph*)]
+            \item $\mu$ ist modular bezüglich $(\P,\mathcal{S})$
+            \item $\Delta^\mu\colon {}\leq_\P{} \to S, (p,q) \mapsto (\mu p)^{-1} \ast \mu q$ ist modular bezüglich $(\G\P,\mathcal{S})$.
+        \end{enumerate}
+    \end{proposition}
 \end{beispiel}
 
 \begin{beispiel}
-    Sei $A = (P,B,I, \parallel)$ ein axiomatischer affiner Raum bestehend aus Punktmenge $P$, Beradenmenge $B$, eine 
-    Inzidenzrelation $I \subseteq P\times B$ und Parallelitätsrelation $\parallel \subseteq B \times B$.
+    Sei $A = (P,B,I, \parallel)$ ein axiomatischer affiner Raum bestehend aus Punktmenge $P$, Beradenmenge $B$, eine
+    Inzidenzrelation $I \subseteq P\times B$ und Parallelitätsrelation ${}\parallel{} \subseteq B \times B$.
 
     \underline{Ziel:} Führe ein Measurement Setup für $A$ ein, falls $A$ hinreichend gutartig.
     \textit{Modelltheoretisch ist dies eine 2-sorted first-order language model with two relation symbols.}
@@ -1085,3 +1130,59 @@ Zurück zum Begriff des Measurement Setups.
         \item $\Delta: P\times P, (p,q) \mapsto \tau_{(p,q)} \in \text{Translationen}$.
     \end{itemize}
 \end{beispiel}
+
+\begin{definition}[Dimensionsfunktion]
+    Sei $\P = (P, \leq)$ ein Verband und $\M := (M, *, \varepsilon)$ ein Monoid.%
+    \footnote{oftmals kommutativ}
+    Dann heißt eine Abbildung $\Delta\colon (\leq) \to M$ \textbf{Dimensionsfunktion} bzgl.~$(\P, \M)$, falls für alle $p, t, q\in P$ gilt, dass
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\Delta(p, p) = \varepsilon$
+            \label{def:DimFktRefl}
+        \item $p\leq t \land t\leq q \implies \Delta(p, q) = \Delta(p, t) * \Delta(t, q)$
+            \label{def:DimFktTrans}
+        \item $\Delta(p\land q, q) = \Delta(p, p\lor q)$
+            \label{def:DimFktDimFormel}
+    \end{enumerate}
+    Dabei heißen \ref{def:DimFktRefl} und \ref{def:DimFktTrans}, dass $\Delta$ Funktor von $\G\P$ nach $\G\M$ induziert;
+    \ref{def:DimFktDimFormel} dass die Dimensionsformel gilt.
+    Wir interpretieren $\Delta$ als gerichteten Abstand von $p$ nach $q$ falls $p\leq q$.
+\end{definition}
+So ist $\Delta$ aus \autoref{ex:TeilmengenMeasurementSetup} eine Dimensionsfunktion bezüglich $((\mathcal{A}, R), M)$.
+
+\begin{proposition}
+    \newcommand*{\Dphi}{\ensuremath{\Delta^\varphi}}
+    Ist $\P$ Ordnung mit kleinstem Element $0$ und bildet $\M$ eine Gruppe, so
+    gilt:
+    \begin{enumerate}[label=(\arabic*)]
+        \item
+            \label{prop:FunktorialitätInInvMeasSetup_1}
+            Für jede Abbildung $\varphi\colon P\to M$ ist
+            $\Dphi\colon (\leq_\P) \to M,\,
+                (p, q) \mapsto (\varphi p)^{-1}*\varphi q$
+            funktoriell.
+        \item
+            \label{prop:FunktorialitätInInvMeasSetup_2}
+            Ist $\Delta$ eine funktorielle Abbildung bzgl.~$(\P, \M)$, so gilt
+            für $\varphi\colon P\to M,\, p\mapsto \Delta(0, p)$ stets $\Delta
+            = \Dphi$.
+    \end{enumerate}
+    \begin{proof}
+
+        Zuerst \autoref{prop:FunktorialitätInInvMeasSetup_1}.
+        Seien $p, t, q\in P$.
+        Dann gilt $\Dphi(p, p) = (\varphi p)^{-1}*\varphi p = \varepsilon$, und
+        genau so $\Dphi(p, t)*\Dphi(t, q) = (\varphi p)^{-1}*\varphi t*(\varphi
+        t)^{-1}*\varphi q = \Dphi(p, q)$.
+        Somit ist $\Dphi$ funktoriell.
+        Nun \autoref{prop:FunktorialitätInInvMeasSetup_2}.
+        Seien $p, q\in P$.
+        Aus \autoref{prop:MeasSetupÜberGruppe} folgt, dass $\Delta$ Dimensionsfunktion ist, also gilt (da $0\leq p \leq q$):
+        \begin{align*}
+            \Dphi(p, q)
+                &= (\varphi p)^{-1}*\varphi q \\
+                &= \Delta(0, p)^{-1}*\Delta(0, q) \\
+                &= \Delta(0, p)^{-1}*\Delta(0, p)*\Delta(p, q) \\
+                &= \Delta(p, q) \qedhere
+        \end{align*}
+    \end{proof}
+\end{proposition}
