@@ -90,13 +90,13 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 \end{proof}
 
 \begin{satz}\label{satz:1.9}
-    Ist $F$ ein Funktionenkörper über $K$ mit Konstantenkörper $\tilde{K}$,
-    so ist $\tilde{K}|K$ endlich.
+    Ist $F$ ein Funktionenkörper über $K$ mit Konstantenkörper $\widetilde{K}$,
+    so ist $\widetilde{K}|K$ endlich.
 \end{satz}
 \begin{proof}
     Ist $t\in F$ transzendent über $K$ mit $F|K(t)$ endlich,
     so ist wegen \cref{lemma:finiteExp} 
-    $$ [\tilde{K}:K] = [\tilde{K}(t):K(t)] \leq [F:K(t)] < \infty.$$
+    $$ [\widetilde{K}:K] = [\widetilde{K}(t):K(t)] \leq [F:K(t)] < \infty.$$
 \end{proof}
 
 \begin{definition}
@@ -494,7 +494,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
         \item Ist $C$ eine glatte Kurve über $K = \K = \C$, so trägt $C = C(\C)$("Menge der komplexen Punkte")
         die Struktur einer Riemannschen Fläche.
 
-        Z.B. $$ \P^1(\C) = \overset{\wedge}{\C} = \C \cup \{\infty\}, \text{ die Riemannsche Zahlenspähre.}$$
+        Z.B. $$ \P^1(\C) = \widehat{\C} = \C \cup \{\infty\}, \text{ die Riemannsche Zahlenspähre.}$$
     \end{enumerate}
 \end{beispiel}
 
@@ -511,9 +511,9 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     \begin{align*}
         \mathcal{H}(\mathbb{D}) & \text{"="} \left\{\sum\limits_{i=0}^\infty a_i T^i \mid a_i \in \C, 
             \sum|a_i|\tau^i < \infty \quad \forall \tau < 1\right\}\\
-        \mathcal{H}(\overset{\wedge}{\C}) & = \C, \text{ nach Liouville}\\
-        \mathcal{M}(\overset{\wedge}{\C}) & = \C(T), \text{ da } \overset{\wedge}{\C} \text{ kompakt ist und }
-            \mathcal{H}(\overset{\wedge}{\C}) = \C
+        \mathcal{H}(\widehat{\C}) & = \C, \text{ nach Liouville}\\
+        \mathcal{M}(\widehat{\C}) & = \C(T), \text{ da } \widehat{\C} \text{ kompakt ist und }
+            \mathcal{H}(\widehat{\C}) = \C
     \end{align*}
 \end{beispiel}
 
@@ -588,7 +588,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 \end{bemerkungnr}
 
 \begin{beispiel}
-    $$f : \overset{\wedge}{\C} \to \overset{\wedge}{\C}, z \mapsto z^l, l \in \N$$
+    $$f : \widehat{\C} \to \widehat{\C}, z \mapsto z^l, l \in \N$$
     besitzt Verzweigungspunkte bei $0$ und $\infty$.
 \end{beispiel}
 
@@ -626,8 +626,8 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 \begin{bemerkungnr}
     Die topologischen Überlagerungen von $X$ werden durch die Fundamentalgruppe $\pi_1(X)$ beschrieben.
 
-    Da zum Beispiel die Sphäre $\overset{\wedge}{\C} = \P^1(\overset{\wedge}{\C})$ einfach zusammenhängend ist,
-    d.h. $\pi_1(X) = 0$, ist jede holomorphe Abbildung $f: Y \to \overset{\wedge}{\C}$ vom Grad $n > 1$ verzweigt,
+    Da zum Beispiel die Sphäre $\widehat{\C} = \P^1(\widehat{\C})$ einfach zusammenhängend ist,
+    d.h. $\pi_1(X) = 0$, ist jede holomorphe Abbildung $f: Y \to \widehat{\C}$ vom Grad $n > 1$ verzweigt,
     d.h. hat mindestens eine Faser mit weniger als $n$ Punkten.
 \end{bemerkungnr}
 
