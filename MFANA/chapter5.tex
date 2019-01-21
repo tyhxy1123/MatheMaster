@@ -813,13 +813,179 @@ Da kommt die Mehrwertigkeit dann rein.)
 	 \begin{align*}
 	 	u_n(0)\overset{n\to\infty}{\longrightarrow}u^0\in L^2(\Omega)
 	 	\implies &u_n\overset{n\to\infty}{\longrightarrow} u\text{ lokal glm. und $u$ ist Lösung von}\\
-	 	&\left\lbrace\begin{array}{cl}
+	 	&\left\lbrace\begin{array}{rl}
 	 		u_t-\Delta_p u =0 &\text{in }(0,\infty)\times\Omega\\
 	 		\frac{\partial u}{\partial n}=0 &\text{in }(0,\infty)\times\partial\Omega\\
 	 		u(0,x)=u^0(x) &x\in\Omega
 	 	\end{array}\right.
 	 \end{align*}
 \end{beispiel}
+
+\subsubsection{Stabilität bzgl. des Gebiets}
+
+Sei $\Omega\subseteq\R^N$ offen, $p\in]1,\infty[$.
+Sei $V_0$ der Abschluss der Testfunktionen $C_c^1(\Omega)$ in\\
+$V:=\big\lbrace u\in L^2(\Omega):\nabla u\in L^p(\Omega)\big\rbrace$ bzgl. der Norm 
+$\Vert u\Vert_V:=\Vert u\Vert_{L^2}+\Vert\nabla u\Vert_{L^p}$.
+Wir fassen in natürlicher Weise $L^2(\Omega)$ als Unterraum von $L^2(\R^n)$ auf
+\begin{align*}
+	L^2(\Omega)\cong\Big\lbrace u\in L^2(\R^n):u=0\text{ f.ü. auf }\R^N\setminus\Omega\Big\rbrace
+\end{align*}
+und ebenso als Unterraum $C_c^1(\Omega)$ als Unterraum von $C_c^1(\R^N)$, 
+und schließlich $V_0=V_0(\Omega)$ als Unterraum von
+\begin{align*}
+	V(\R^N):=\Big\lbrace u\in L^2(\R^N):\nabla u\in L^p(\R^N)\Big\rbrace.
+\end{align*}
+Wir betrachten dann die Energie 
+\begin{align*}
+	\E^\Omega\colon L^2(\R^N)\to\R\cup\lbrace+\infty\rbrace,\qquad
+	\E^\Omega(u):=\left\lbrace\begin{array}{cl}
+		\frac{1}{p}\cdot\int\limits_\Omega|\nabla u|^p,&\falls u\in V_o(\Omega)\\
+		+\infty,&\sonst
+	\end{array}\right.
+\end{align*}
+
+Die Energie $\E^\Omega$ ist konvex, unterhalbstetig, $\not\equiv+\infty$.
+
+\begin{proof}
+	Genau wie bei der Energie des $p$-Laplaceoperators mit Neumannrandbedingungen (Reflexivität geht ein).
+\end{proof}
+
+\begin{align*}
+	\partial\E^\Omega&=\Bigg\lbrace(u,f)\in L^2(\R^N)\times L^2(\R^N)\Bigg|
+	\begin{array}{c}
+		u\in\overbrace{V_0(\Omega)}^{=\dom(\E^\Omega)}\text{ und }\forall v\in L^2(\R^N):\\
+		\lim\limits_{t\to 0^+}\frac{\E^\Omega(u+t\cdot v)-\E^\Omega(u)}{t}\geq\int\limits_{\R^N} f\cdot v
+	\end{array}\Bigg\rbrace\\
+	&=\Bigg\lbrace(u,f)\in L^2(\R^N)\times L^2(\R^N)\Bigg|
+	\begin{array}{c}
+		u\in V_0(\Omega)\text{ und }\forall v\in V_0(\Omega):\\
+		\int\limits_{\R^N}|\nabla u|^{p-2}\nabla u\cdot\nabla v=\int\limits_{\R^N} f\cdot v
+	\end{array}		
+	\Bigg\rbrace
+\end{align*}
+
+d.h. $(u,f)\in\partial\E^\Omega
+\Longleftrightarrow
+\div\left(|\nabla u|^{p-2}\cdot\nabla u\right)=f\text{ in }\Omega$ 
+in dem schwachen Sinn, dass
+\begin{align*}
+	\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\qquad\forall v\in V_0(\Omega)
+\end{align*}
+und $u\in V_0(\Omega)$, was in einem schwachen Sinn $u=0$ auf $\partial\Omega$ impliziert.
+Genauer:\\ Für $\Omega$ mit $C^1$-Rand $\partial\Omega$ setzt sich die Spur-Abbildung
+\begin{align*}
+	\tr:V(\Omega)\cap C(\overline{\Omega})\to C(\partial\Omega),\qquad u\mapsto u|_{\partial\Omega}(=\tr~u)
+\end{align*}
+zu einem beschränkten, linearen Operator 
+\begin{align*}
+	\tr:V(\Omega)\to L_{\text{loc}}^1(\partial\Omega)
+\end{align*}
+fort und 
+\begin{align*}
+	V_0(\Omega)=\big\lbrace u\in V(\Omega):\tr(u)=0\big\rbrace.
+\end{align*}
+
+Wir nennen den Subgradienten $\partial\E^\Omega$ den \textbf{(negativen) $p$-Lapplaceoperator mit Dirichletrandbedingungen}.
+Das Cauchy-Problem $\dot{u}+\partial\E^\Omega(u)\ni 0$ ist eine abstrakte Umschreibung der nichtlinearen Diffusionsgleichung
+\begin{align*}
+	\left\lbrace\begin{array}{rl}
+		\partial_t u-\Delta_p u=0&\text{ in }(0,\infty)\times\Omega\\
+		u=0 &\text{ auf }(0,\infty)\times\partial\Omega\\
+		\text{+ Anfangsbedingung }&
+	\end{array}\right.	
+\end{align*}
+Beachte: oben ist $u\colon \R_+\to L^2(\R^N)$ und unten $u:\R_+\times\Omega\to\R$,\\ $u_0\in\overline{\dom(\E^\Omega)}^{L^2(\R^N)}=L^2(\Omega)$.\nl
+Sei nun $(\Omega_n)_{n\in\N}$ ein Folge von offenen Mengen in $\R^N$.
+Wunsch: charakterisiere Moscokonvergenz der $\big(\E^{\Omega_n}\big)$ und damit Konvergenz der zugehörigen Halbgruppen.\nl
+Beobachtung:
+Falls die Folge $(\Omega_n)_{n\in\N}$ monoton fallend ist 
+(d.h. $\Omega_{n+1}\subseteq\Omega_n~\forall n\in\N$, $V_0(\Omega_{n+1})\subseteq V_0(\Omega_n)$), 
+dann ist die Folge $\big(\E^{\Omega_n}\big)_{n\in\N}$ monoton wachsend und damit Moscokonvergent gegen $\sup\limits_{n\in\N}\E^{\Omega_n}$.\\
+Frage: Gilt
+\begin{align*}
+	\sup\limits_{n\in\N}\E^{\Omega_n}\overset{?}{=}\E^\Omega
+\end{align*}
+für ein $\Omega\subseteq\R^N$? Wenn ja, welches?
+
+\begin{theorem}
+	Falls die Folge $(\Omega_n)_{n\in\N}$ monoton wachsend ist (d.h. $\Omega_n\subseteq\Omega_{n+1}$),
+	dann ist $\big(\E^{\Omega_n}\big)_{n\in\N}$ Moscokonvergent gegen $\E^\Omega$ mit $\Omega=\bigcup\limits_{n\in\N}\Omega_n$.
+\end{theorem}
+
+\begin{proof}
+	Die Folge $\big(\E^{\Omega_n}\big)_{n\in\N}$ ist nach unten durch $\E^\Omega$ beschränkt und sie ist monoton fallend. 
+	Also ist $\big(\E^{\Omega_n}\big)_{n\in\N}$ Moscokonvergent gegen 
+	$\overline{\inf\limits_{n\in\N}\E^{\Omega_n}}=:\F$.
+	Da $\E^\Omega$ unterhalbstetig und $\E^\Omega\leq\inf\limits_{n\in\N}\E^{\Omega_n}$ ist, ist $\E^\Omega\leq\F$.
+	Für alle Testfunktionen $u\in C_c^1(\Omega)\subseteq V_0(\Omega)$ gilt $\supp(u)\subseteq\Omega_n$ für ein $n\in\N$ groß genug. 
+	Also ist $u\in C^1_c(\Omega_n)\subseteq V_0(\Omega_n)=\dom(\E^{\Omega_m})$ für ein $n\in\N$ groß genug.
+	Wegen Monotonie folgt dann 
+	\begin{align*}
+		&u\in C_c^1(\Omega_n)
+		\quad\text{und}\quad
+		\E^{\Omega_n}(u)=\E^{\Omega}(u)
+		&\forall& n\in\N\text{ groß genug}\\
+		&\implies
+		\F(u)=\E^\Omega(u)&\forall& u\in C_c^1(\Omega)\\
+		&\implies
+		\F=\E^\Omega\text{ auf }\dom(\E^\Omega)
+	\end{align*}
+	Außerhalb von $\dom(\E^\Omega)$ gilt
+	\begin{align*}
+		+\infty\leq\E^\Omega\leq\F
+	\end{align*}
+	und somit $\E^\Omega=\F$ auch auf $L^2\setminus\dom(\E)$.\\
+	Weiterführend: D. Bucur 2005.
+\end{proof}
+
+\section{Invarianz konvexer Mengen}
+Sei $H$ ein Hilbertraum und $C\subseteq H$ eine abgeschlossene, nichtleere, konvexe Teilmenge.
+Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
+\begin{align*}
+	P_C u:=P_C(u):=\argmin\limits_{v\in C}\Vert u-v\Vert_H\qquad\forall u\in H
+\end{align*}
+
+\begin{theorem}
+	Sei $A\subseteq H\times H$ $m$-akkretiv und sei $S$ die von $A$ erzeugte Halbgruppe auf $\overline{\dom(A)}$.
+	Betrachte:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			\forall t\geq0:S(t)\big(C\cap\overline{\dom(A)}\big)\subseteq C
+		\end{aligned}$ Also: $C$ ist invariant unter der Halbgruppe $S$.
+		 \item $\begin{aligned}
+		 	\forall\lambda>0:J_\lambda C\subseteq C
+		 \end{aligned}$ Also: $C$ ist invariant unter der Resolvente von $A$.
+	\end{enumerate}
+	Dann gilt (i) $\Longleftrightarrow$ (ii).
+	Falls $A=\partial\E$ für eine konvexe, unterhalbstetige Energie $\E:H\to\R\cup\lbrace+\infty\rbrace$, dann sind (i) und (ii) äquivalent zu 
+	\begin{enumerate}[label=(\roman*)]
+		 \setcounter{enumi}{2}
+		\item $\begin{aligned}
+			\forall u\in H:\E\big(P_C u\big)\leq\E(u)
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Beweis von (iii) $\implies$ (ii) $\implies$ (i)]\enter
+	\underline{Zeige (iii) $\implies$ (ii):}\\
+	Folgt aus der Exponentialformel
+	\begin{align*}
+		S(t)u_0&=\limn\left(J_{\frac{t}{n}}\right)^n u_0\\
+		u_0\in C\cap\dom(A),t>0,n\in\N
+		&\implies J_{\frac{t}{n}} u_0\in C\\
+		&\implies\left(J_{\frac{t}{n}}\right)^n u_0\in C\\
+		\overset{C\text{ abgeschlossen}}&\implies
+		S(t) u_0\in C
+	\end{align*}
+	
+	\underline{Zeige (ii) $\implies$ (i):}
+	
+\end{proof}
+
+
+
+
 
 
 
