@@ -3457,7 +3457,7 @@ Eine \textbf{diskrete Version der inf-sup-Bedingung} muss angenommen / geprüft 
 \begin{align*}
 	\exists\beta>0:\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h\Vert_V\cdot\Vert q_h\Vert_V}\geq\beta
 \end{align*}
-Wir nehmen an, dass $beta$ ist unabhängig von Netzparameter $h$ ist.
+Wir nehmen an, dass $\beta$ ist unabhängig von Netzparameter $h$ ist.
 Folglich ist das diskrete Problem eindeutig lösbar.\\
 Paare von $(V_h,Q_h)$ erfüllen diese diskrete inf-sup-Bedingung:
 \begin{align*}
@@ -3466,6 +3466,222 @@ Paare von $(V_h,Q_h)$ erfüllen diese diskrete inf-sup-Bedingung:
 \end{align*}
 Die Variante in der ersten Zeile wird \textbf{Taylor-Hood-Element} genannt.
 
+\subsubsection*{Fehlerschätzung}
+$a\colon V\times V\to\R$ sei bilinear, stetig mit Konstante $M$ und koerziv (V-elliptisch) mit Konstante $\alpha$, also
+\begin{align*}
+	\big|a(v,w)\big|&\leq M\Vert v\Vert_V\Vert w\Vert_V\\
+	a(v,v)&\geq\alpha\Vert v\Vert_V^2
+\end{align*}
+$b\colon Q\times V\to\R$ sei bilinear, stetig mit Konstante $C_b$:
+\begin{align*}
+	\big|b(q,v)\big|&\leq C_b\Vert q\Vert_Q\Vert v\Vert_V
+\end{align*}
+Die inf-sup-Bedingung für $(V,Q)$
+\begin{align*}
+	\exists\beta>0:\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(q,v)}{\Vert q\Vert_Q\Vert v\Vert_V}\geq\beta
+\end{align*}
+ist erfüllt. Ebenso die uniforme inf-sup-Bedingung für $(V_h,Q_h)$:
+\begin{align*}
+	\exists\tilde{\beta}>0:\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q\Vert v_h\Vert_V}\geq\tilde{\beta}
+\end{align*}
+wobei $\tilde{\beta}$ unabhängig von $h$ ist.
 
+\begin{align*}
+	W&=\Big\lbrace v\in V:b(q,v)=0~\forall q\in Q\Big\rbrace\text{ divergenzfreie Funktionen}\\
+	W^\perp&=\Big\lbrace v\in V:(v,w)=0~\forall w\in W\Big\rbrace\\
+	W_h&=\Big\lbrace v_h\in V_h:b(q_h,v_h)=0~\forall q_h\in Q_h\Big\rbrace\text{ diskrete divergenzfreie Funktionen}\\
+	W_h^\perp&=\Big\lbrace v_h\in V_h:(v_h,w_h)=0~\forall w_h\in W_h\Big\rbrace
+\end{align*}
+
+Stetiges Problem: (P)
+
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $(u,p)\in V\times Q$:
+	\begin{align*}
+		a(u,v)-b(p,v)&=f(v) &\forall&v\in V\\
+		b(q,v)&=0 &\forall& q\in Q\\
+	\end{align*}
+\end{minipage} %zwischen Minipages darf kein leere Zeile stehen, da es sonst nicht funktioniert
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $u\in W$:
+	\begin{align*}
+		a(u,v)=f(v)\qquad\forall v\in W
+	\end{align*}
+\end{minipage}
+
+Diskretes Problem: ($P_h$)\\
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $(u_h,p_h)\in V_h\times Q_h$:
+	\begin{align*}
+		a(u_h,v_h)-b(p_h,v_h)&=f(v_h) &\forall&v_h\in V_h\\
+		b(q_h,v_h)&=0 &\forall& q_h\in Q_h
+	\end{align*}
+\end{minipage} %zwischen Minipages darf kein leere Zeile stehen, da es sonst nicht funktioniert
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $u_h\in W_h$:
+	\begin{align*}
+		a(u_h,v_h)=f(v_h)\qquad\forall v_h\in W_h
+	\end{align*}
+\end{minipage}
+
+\begin{bemerkung}
+	Da im Allgemeinen $W_h\not\subseteq W$ gilt, werden Techniken wie Céas Lemma \ref{theorem2.2CeasLemma} nicht funktionieren.\\
+	Selbst wenn $W_h\subseteq W$ gilt, bleibt die Frage der Approximationseigenschaften von $W_h$.
+\end{bemerkung}
+
+\begin{theorem} %nonumber
+	Unter obigen Voraussetzungen gilt
+	\begin{align*}
+		\inf\limits_{w_h\in W_h}\big\Vert u-w_h\big\Vert_V\leq c\cdot\inf\limits_{v_h\in V_h}\big\Vert u-v_h\big\Vert_V
+	\end{align*}
+	d.h. der Raum $W_h$ hat dieselben Approximationseigenschaften wie $V_h$.
+\end{theorem}
+
+\begin{proof}
+	Sei $v_h\in V_h$ beliebig.
+	Wir konstruieren eine Funktion $r_h\in V_h$ so, dass $w_h:=v_h+r_h\in W_h$.
+	Wir wollen, dass $w_h\in W_h$.
+	Es gilt:
+	\begin{align*}
+		w_h\in W_h
+		&\Longleftrightarrow \Big(b(q_h,w_h)=0\qquad&\forall& q_h\in Q_h\Big)\\
+		&\Longleftrightarrow \Big(b(q_h,v_h)+b(q_h,r_h)=b(q_h,u) &\forall&q_h\in Q_h\Big)\\
+		&\Longleftrightarrow\Big( b(q_h,r_h)=b(q_h,u-v_h) &\forall&q_h\in Q_h\Big)
+	\end{align*}
+	Aus der diskreten inf-sup-Bedingung folgt, dass es eine eindeutige Lösung $r_h\in W_h^\perp$ von
+	\begin{align*}
+		b(q_h,r_h)=b(q_h,u-v_h)\qquad\forall q_h\in Q_h
+	\end{align*}
+	gibt. Es folgt:
+	\begin{align*}
+		\Vert r_h\Vert&\leq\frac{1}{\tilde{\beta}}\Vert B_h r_h\Vert_{Q_h^\ast}\\
+		&=\frac{1}{\tilde{p}}\sup\limits_{q_h\in Q_h}\frac{b(q_h,r_h)}{\Vert q_h\Vert_Q}\\
+		&=\frac{1}{\tilde{\beta}}\sup\limits_{q_h\in Q_h}\frac{b(q_h,u-v_h)}{\Vert q_h\Vert_Q}\\
+		&\leq\frac{c_b}{\tilde{\beta}}\Vert u-v_h\Vert_V
+	\end{align*}
+	
+	\begin{align*}
+		\Vert u-w_h\Vert_V
+		&\leq\Vert u-v_h\Vert_V+\Vert\underbrace{v_h-w_h}_{=r_h}\Vert_V
+		\leq\left(1-\frac{c_b}{\tilde{\beta}}\right)\Vert u-v_h\Vert_V\\
+		\inf\limits_{z_h\in W_h}\Vert u-z_h\Vert_V
+		&\leq\Vert u-w_h\Vert_V
+		\leq\left(1+\frac{c_b}{\tilde{\beta}}\right)\Vert u-v_h\Vert_V\qquad\forall v_h\in V_h\\
+		\implies
+		\inf\limits_{z_h\in W_h}\Vert u-z_h\Vert_V
+		&\leq\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V\left(1+\frac{c_b}{\tilde{\beta}}\right)
+	\end{align*}
+\end{proof}
+
+\begin{theorem} %nonumber
+	Unter obigen Voraussetzungen gilt
+	\begin{align*}
+		\Vert u-u_h\Vert_V&\leq\left(1+\frac{M}{\alpha}\right)\inf\limits_{v_h\in W_h}\Vert u-v_h\Vert_V+\frac{c_b}{\alpha}\inf\limits_{q_h\in Q_h}\Vert p-q_h\Vert_Q
+	\end{align*}
+\end{theorem}
+
+\begin{bemerkung}
+	Die Abschätzung von $u$ hängt im Allgemeinen vom Raum $Q_h$ ab.
+\end{bemerkung}
+
+\begin{proof}
+	$V_h\subseteq V$
+	Für die Probleme (P) bzw. ($P_h$) gilt:
+	\begin{align*}
+		&(P) &a&(u,v_h)-b(p,v_h)-b(p,v_h)&=&f(v_h) &\forall&v_h\in V_h\subseteq V\\
+		&(P_h) &a&(u_h,v_h)-b(p_h,v_h)-b(p,v_h)&=&f(v_h) &\forall&v_h\in V_h\\
+		&\implies
+		&a&(u-u_h,v_h)&=&b(p-p_h,v_h) &\forall&v_h\in V
+	\end{align*}
+	Dies wird auch \textbf{Galerkin Orthogonalität} genannt.
+	Sei $w_h\in W_h$ beliebig und setze $v_h:=w_h-u_h\in W_h$.
+	Dann gilt:
+	\begin{align*}
+		\alpha\Vert\underbrace{w_h-u_h}_{=v_h}\Vert_V^2
+		&\leq a(w_h-u_h,v_h)\\
+		&=a(w_h-u,v_h)+a(u-u_h,v_h)\\
+		&=a(w_h-u,v_h)+b(p-p_h,v_h)-\underbrace{b(q_h-p_h,v_h)}_{=0~\forall q_h\in Q_h}\\
+		&=a(w_h-u,v_h)+b(p-q_h,v_h)\\
+		\overset{\text{stetig}}&\leq 
+		M\Vert u-w_h\Vert_V\Vert v_h\Vert_V+c_b\Vert p-q_h\Vert_Q\Vert v_h\Vert_V\\
+		\implies
+		\Vert w_h-u_h\Vert_V
+		&\leq \frac{M}{\alpha}\Vert u-w_h\Vert_V+\frac{c_b}{\alpha}\Vert p-q_h\Vert_Q &\forall& q_h\in Q_h,\forall w_h\in W_h\\
+		\implies
+		\Vert u-u_h\Vert_V
+		&\leq\Vert u-w_h\Vert_V+\Vert w_h-u_h\Vert_V\\
+		&\leq\left(1+\frac{M}{\alpha}\right)\Vert u-w_h\Vert_V+\frac{c_b}{\alpha}\Vert p-q_h\Vert_Q &\forall& q_h\in Q_h,\forall w_h\in W_h
+	\end{align*}
+	Bilden des Infimums $\inf\limits_{q_h\in W_h}$ liefert die Behauptung.
+\end{proof}
+
+\begin{theorem}
+	Gelten obige Voraussetzungen. Dann gilt:
+	\begin{align*}
+		\Vert p-p_h\Vert_Q&\leq\left(1+\frac{c_b}{\tilde{\beta}}\right)\inf\limits_{q_h\in Q_h}\Vert p-q_h\Vert_Q+\frac{M}{\tilde{\beta}}\Vert u-u_h\Vert_V
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	Sei $q_h\in Q$ beliebig. Dann gilt aus der inf-sup-Bedingung:
+	\begin{align*}
+		\Vert p_h-q_h\Vert_Q
+		&\leq\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{b(p_h-q_h,v_h)}{\Vert v_h\Vert_V}
+	\end{align*}
+	Nun setzen wir
+	\begin{align*}
+		b(p_h-q_h,v_h)
+		&=b(p_h-p,v_h)+b(p-q_h,v_h)\\
+		&=a(u_h-u,v_h)+b(p-q_h,v_h)
+	\end{align*}
+	in obige Ungleichung ein und erhalten
+	\begin{align*}
+		\Vert p_h-q_h\Vert_Q
+		&\leq\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{b(p_h-q_h,v_h}{\Vert v_h\Vert_V}\\
+		&=\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{a(u_h-u,v_h)+b(p-q_h,v_h)}{\Vert v_h\Vert_V}\\
+		&=\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{b(p-q_h,v_h)-a(u-u_h,v_h)}{\Vert v_h\Vert_V}\\
+		&\leq\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{c_b\Vert p-q_h\Vert_Q\Vert v_h\Vert_V+M\Vert u-u_h\Vert_V\Vert v_h\Vert_V}{\Vert v_h\Vert_V}\\
+		&=\frac{1}{\tilde{\beta}}c_b\Vert p-q_h\Vert_Q+M\Vert u-u_h\Vert_V\\
+		&=\frac{1}{\tilde{\beta}}\Big(c_b\Vert p-q_h\Vert-Q+M\Vert u-v_h\Vert_V\Big)\qquad\forall q_h\in Q_h
+	\end{align*}
+	
+	\begin{align*}
+		\Vert p-p_h\Vert_Q
+		&\leq\Vert p-q_h\Vert_Q+\Vert q_h-p_h\Vert_Q\\
+		&\leq \left(1+\frac{c_b}{\tilde{\beta}}\right)\Vert p-q_h\Vert_Q+\frac{M}{\tilde{\beta}}\Vert u-u_h\Vert_V\qquad\forall q_h\in Q_h
+	\end{align*}
+	Bilden des Infimums liefert die Behauptung.
+\end{proof}
+
+\begin{bemerkung}
+	\begin{align*}
+		\Vert p-p_h\Vert_Q
+		&\leq c\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V+c\inf\limits_{q_h\in Q_h}\Vert p-q_h\Vert_Q
+	\end{align*}
+\end{bemerkung}
+
+\textbf{Stokes}:
+\begin{align*}
+	V&=\big(H_0^1(\Omega)\big)^d, &\Vert&\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\\
+	Q&=L_0^2(\Omega), &\Vert&\cdot\Vert_Q=\Vert\cdot\Vert_{0,2,\Omega}
+\end{align*}
+
+Wähle Elemente der Ordnung $r$ für $V_h$ und Elemente der Ordnung $r-1$ für $Q_h$ würde zu 
+\begin{align*}
+	\Vert p-p_h\Vert_{0,2}&=\O(h^r)\\
+	\Vert u-u_h\Vert_{1,2}&=\O(h^r)
+\end{align*}
+führen.
+
+\begin{beispiel}[Beispiele für Stokes-Probleme]\enter
+	Mini-Element
+	%TODO Add Sketch for $u,p,p_1$
+	
+	(klassisches) Taylor-Hood Element
+	%TODO Add Sketch with $P_2,P_r,P_1,P_{r-1},r\geq2$
+	
+	Bernardi-Rangel Element
+	%TODO Add Sketch
+\end{beispiel}
 
 
