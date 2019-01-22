@@ -185,15 +185,96 @@ Man erhält durch weglassen unerreichbarer Zustände eine äquivalenten DEA:
 	\end{align*}
 \end{definition}
 
-\begin{lemma}\label{lemma2.8}
-	Sei %TODO
+\begin{lemma}\label{lemma2.9}\
+	\begin{enumerate}[label=\arabic*)]
+		\item $\sim_\A$ ist eine Äquivalenzrelation auf $Q$ (reflexiv, transitiv und symmetrisch).
+		\item $\sim_\A$ ist verträglich mit der Übergangsfunktion, d.h.
+		\begin{align*}
+			q\sim_\A q'\implies \forall a\in \Sigma:\delta(q,a)\sim_\A\delta(q',a)
+		\end{align*}
+		\item $\sim_\A$ kann effektiv bestimmt werden.
+	\end{enumerate}
 \end{lemma}
 
-Um von einem DEA $\A$ einen reduzierten DEA $\A_\red$ zu erhalten, tue folgendes:
-\begin{enumerate}
-	\item Entferne unerreichbare Zustände und erhalte $\A_0$.
-	\item Fasse äquivalente Zustände zusammen.
-\end{enumerate}
+\begin{proof}
+	\underline{Zu 1):} ist klar, da "=" reflexiv, transitiv und symmetrisch ist.\nl
+	\underline{Zu 2):} Nachrechnen.\nl
+	\underline{Zu 3):} Wir definieren die Approximation $\sim_k$ von $\sim_\A$:
+	\begin{align*}
+		q\sim_0 q'&:\Longleftrightarrow\Big( q\in F\gdw q'\in F\Big)\\
+		q\sim_{k+1}&:\Longleftrightarrow\Big(q\sim_k q'\text{ und }\forall a\in\Sigma:\delta(q,a)\sim_k\delta(q',a)\Big)\forall k\in\N_0
+	\end{align*}
+	Es gilt $Q\times Q\supseteq\sim_0\supseteq\sim_1\supseteq\ldots\supseteq\sim_\A$.
+	Da $Q$ endlich ist, gibt es ein $k\in\N$ mit $\sim_k=\sim_{k+1}$.
+	Dann gilt $\sim_k=\sim_\A$.
+\end{proof}
+
+\begin{definition}\label{def2.10}
+	Der \textbf{Quotientenautomat} $\tilde{\A}=\big(\tilde{Q},\Sigma,\tilde{q}_0,\tilde{\delta},\tilde{F}\big)$ zu\\ $\A=(Q,\Sigma,q_0,\delta,F)$ ist definiert durch
+	\begin{align*}
+		\tilde{Q}&:=\big\lbrace[q]_{\sim_\A}:q\in Q\big\rbrace\\
+		\tilde{\delta}([q]_{\sim_\A},a)&:=[\delta(q,a)]_{\sim_\A}=:\widetilde{\delta(q,a)}\\
+		\tilde{F}&:=\lbrace[q]_{\sim_\A}\mid q\in F\rbrace
+	\end{align*}
+\end{definition}
+
+\begin{lemma}\label{lemma2.11}
+	$\tilde{\A}$ ist äquivalent zu $\A$.
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		w\in L(\A)
+		&\Longleftrightarrow \delta(q_0,w)\in F\\
+		&\Longleftrightarrow\widetilde{\delta(q_0,w)}\in\tilde{F}\\
+		&\Longleftrightarrow\tilde{\delta}\big(\tilde{q}_0,w\big)\in\tilde{F}\\
+		&\Longleftrightarrow w\in L(\tilde{A})
+	\end{align*}
+\end{proof}
+
+\begin{definition}\label{def2.12}
+	Für einen DEA $\A$ bezeichnet $\A_{\red}:=\tilde{\A}_0$ den \textbf{reduzierten Automaten}, den man aus $\A$ durch eliminieren unerreichbarer Zustände und Zusammenfassen äquivalenter Zustände enthält.
+\end{definition}
+
+%Um von einem DEA $\A$ einen reduzierten DEA $\A_\red$ zu erhalten, tue folgendes:
+%\begin{enumerate}
+%	\item Entferne unerreichbare Zustände und erhalte $\A_0$.
+%	\item Fasse äquivalente Zustände zusammen.
+%\end{enumerate}
+
+Im Folgenden zeigen wir:
+\begin{itemize}
+	\item $\A_\red$ ist minimal, d.h. der kleinste DEA, der $L(\A)$ akzeptiert.
+	\item $\A_\red$ hängt nur von $L(\A)$ und nicht von $\A$, d.h.
+	\begin{align*}
+		L(\A)=L(\mathcal{B})\implies\A_\red\simeq\mathcal{B}_\red
+	\end{align*}
+\end{itemize}
+
+\begin{definition}\label{def2.13}
+	Sei $L\subseteq\Sigma^\ast$ eine Sprache und $u,v\in\Sigma^\ast$.\\
+	Die \textbf{Nerode-Rechtskongruenz} ist definiert als
+	\begin{align*}
+		u \simeq_L v:\Longleftrightarrow\Big(\forall w\in\Sigma^\ast:uw\in L\gdw vw\in L\Big)
+	\end{align*}
+\end{definition}
+
+\begin{lemma}\label{lemma2.15}\
+	\begin{enumerate}[label=\arabic*)]
+		\item $\simeq_L$ ist Äquivalenzrelation auf $\Sigma^\ast$.
+		\item $\simeq_L$ ist \textbf{Rechtskongruenz}, d.h. 1) und 
+		\begin{align*}
+			u\simeq_L v\implies\forall w\in\Sigma^\ast:uw\simeq_L vw
+		\end{align*}
+		\item $L$ ist Vereinigung von $\simeq_L$-Klassen:
+		\begin{align*}
+			L=\bigcup\limits_{u\in L}[u]_{\simeq_L}
+		\end{align*}
+		\item Ist $L=L(\A)$ für einen DEA $\A$, so ist die Anzahl der Index von $\simeq_L$ (= Anzahl der Klassen) $\leq Q$.
+	\end{enumerate}
+\end{lemma}
+
+Man kann die $\simeq_L$-Klassen nun als Zustände eines Automaten verwenden, der $L$ erkennt.
 
 \subsection{Nachweis der Nichterkennbarkeit}
 

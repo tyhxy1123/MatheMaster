@@ -3,41 +3,6 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\documentclass[12pt,a4paper]{article} 
-
-\input{../../latex/packages}
-\input{../../latex/theoremenvironments}
-\input{../../latex/commands}
-\input{../../latex/commands_Willi}
-
-\author{Willi Sontopski}
-
-\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
-
-\usepackage{pdflscape}
-\usepackage{rotating}
-\usepackage{scrpage2}
-\pagestyle{scrheadings}
-\clearscrheadfoot
-
-\ihead{Willi Sontopski}
-\chead{Formale Systeme WiSe 18 19}
-\ohead{}
-\ifoot{Probeklausur}
-\cfoot{Version: \today}
-\ofoot{Seite \pagemark}
-
-\renewcommand{\L}{\mathcal{L}} %sonst nicht nichtbar
-\newcommand{\RR}{\mathcal{R}} %\R sind reelle Zahlen
-\newcommand{\PP}{\mathcal{P}} %\P ist W-Maß oder Sonderzeichen
-\renewcommand{\S}{\mathcal{S}} %sonst Paragraph
-\newcommand{\F}{\mathcal{F}}
-\newcommand{\G}{\mathcal{G}}
-\newcommand{\W}{\mathcal{W}} 
-
-\begin{document}
-%\setcounter{section}{1}
-
 \section*{Aufgabe 1 (14 Punkte)}
 Geben Sie die Definitionen für folgende Begriffe:
 \begin{enumerate}
@@ -49,7 +14,7 @@ Geben Sie die Definitionen für folgende Begriffe:
 \end{enumerate}
 \begin{lösung}\
 \begin{enumerate}
-\item Siehe Definiton 3.5.\\
+\item Siehe Definiton \ref{def3.5Formel}.\\
 Eine (aussagenlogische) Formel ist ein Element der Menge aller (aussagenlogischen) Formeln. Diese ist die kleinste Menge $\L(\RR)$ von Zeichenreihen über $\RR$ (Menge der aussagenlogischen Variablen), den Junktoren und den Sonderzeichen, die die folgenden Eigenschaften erfüllen:
 \begin{enumerate}
 \item $F\in\RR\implies F\in\L(\RR)$
@@ -60,7 +25,7 @@ Eine (aussagenlogische) Formel ist ein Element der Menge aller (aussagenlogische
 Wenn $F$ ein Atom ist, dann ist $F$ eine Formel.\\
 Wenn $F$ eine Formel ist, dann ist $\neg F$ ein Formel.\\
 Wenn $F,G$ Formeln sind, dann ist $(F\circ G)$ eine Formel mit $\circ\in\lbrace\wedge, \vee,\to,\longleftrightarrow\rbrace$
-\item Siehe Definiton 3.9.\\
+\item Siehe Definiton \ref{def3.9}\\
 Eine (aussagenlogische) Interpretation $I=(\W,\cdot^I)$ besteht aus der Menge $\W:=\lbrace\bot,\top\rbrace$ der Wahrheitswerte und einer Abbildung $\cdot^I:\L(\RR)\to\W$, welche die folgende Bedingung erfüllt:
 \begin{align*}
 [F]^I=\left\lbrace\begin{array}{cl}
@@ -68,20 +33,19 @@ Eine (aussagenlogische) Interpretation $I=(\W,\cdot^I)$ besteht aus der Menge $\
 \big([G_1]^I\circ^\ast[G_2]^I\big), &\falls F\text{ von der Form }(G_1\circ G_2)
 \end{array}\right.
 \end{align*}
-\item Siehe Definition 3.12.\\
+\item Siehe Definition \ref{def3.12}\\
 Eine Formel $F\in\L(\RR)$ heißt allgemeingültig / Tautologie, wenn für alle Interpretationen $I=(\W,\cdot^I)$ gilt: $F^I=\top$.
-\item Siehe Definition 3.16.\\
+\item Siehe Definition \ref{def3.16}\\
 Eine aussagenlogische Formel $F\in\L(\RR)$ ist genau dann eine (aussagen-)logische Konsequenz einer Menge von Formeln $\G$, i.Z. $\G\models F$, wenn für jede Interpretation $I=(\W,\cdot^I)$ gilt:\\
 Wenn $I$ Modell für $\G$ ist, dann ist $I$ auch Modell für $F$.
-\item Siehe Definition 3.27.\\
+\item Siehe Definition \ref{def3.27}\\
 Eine Formel ist in konjunktiver Normalform gdw. sie von der Form verallgemeinerte Konjunktion $\langle C_1,\ldots,C_m\rangle,m\geq0$ ist und jedes $C_j,~1\leq j\leq m$ eine Klausel ist.\\
 Eine Klausel ist eine verallgemeinerte Diskunktion  $[L_1,\ldots,L_n],~n\geq0$, wobei jedes $L_i,~1\leq i\leq n$ ein Literal (aussagenlogische Variable oder dessen Negat) ist.
 \end{enumerate}
 \end{lösung}
 
 \section*{Aufgabe 2 (8 Punkte)}
-Seien $p,q,r,s$ aussagenlogische Variablen. Geben Sie für jede der genannten Aussagen an, ob diese wahr oder falsch sind.\\
-
+Seien $p,q,r,s$ aussagenlogische Variablen. Geben Sie für jede der genannten Aussagen an, ob diese wahr oder falsch sind.\nl
 Hinweis: Falsche Antworten führen zu Punktabzug, wobei die gesamte Aufgabe mit mindestens 0 Punkten bewertet wird.
 
 \begin{enumerate}[label=\alph*)]
@@ -129,7 +93,7 @@ Sei $F\in\L(\RR)$ eine aussagenlogische Formel. Sei $\S(F)$ die  \textbf{Menge a
 \begin{enumerate}
 \item Bestimmen Sie, ob folgende Aussage gilt:
 \begin{align*}
-\big|\S(F)\big|=\big|\PP_F\big|
+\big|\S(F)\big|=\big|\P_F\big|
 \end{align*}
 \item Beweisen oder widerlegen Sie die Aussage schrittweise.\\
 (Zur Lösung der Aufgabe dürfen Sie alle in der Vorlesung und/oder Übung bewiesenen Resultate (Theoreme, Sätze, etc.) benutzt werden.)
@@ -140,7 +104,7 @@ Nein, die Aussage stimmt nicht.
 Setze $F:=(p\vee p)$. Dann gilt:
 \begin{align*}
 \big|\S(F)\big|=\big|\lbrace(p\vee p),p\rbrace\big|=2\\
-\big|\PP_F\big|=\big|\lbrace\Lambda,1\Lambda,2\Lambda\rbrace\big|=3
+\big|\P_F\big|=\big|\lbrace\Lambda,1\Lambda,2\Lambda\rbrace\big|=3
 \end{align*}
 \end{proof}
 \end{lösung}
@@ -161,6 +125,3 @@ Es gibt $2^{2^n}$ verschiedene Äquivalenzklassen bzgl. $\L(\RR,n)$ erzeugt durc
 Es gibt ein Modell $I$ für $G_1,\ldots,G_k\in\G_n$, die die $k$ Äquivalenzklassen repräsentieren, da $\lbrace G_1,\ldots G_k\rbrace$ eine endliche Teilmenge von $F$ ist.\\
 Diese Interpretation $I$ ist also auch ein Modell für $\G_n$, da mit jedem $G_i$ auch alle anderen Formeln der gegebenen Äquivalenzklasse auf wahr unter $I$ abgebildet werden (vermöge $\equiv$).
 \end{proof}
-
-
-\end{document}

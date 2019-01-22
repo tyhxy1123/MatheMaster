@@ -26,7 +26,7 @@
 	Die Elemente von $\RR$ heißen auch \textbf{Atome / atomare Formeln}.
 \end{definition}
 
-\begin{definition}\label{defFormel}
+\begin{definition}\label{def3.5Formel}
 	Eine \textbf{aussagenlogische Formel} ist wie folgt definiert:
 	\begin{enumerate}
 		\item Wenn $F\in\RR$, dann ist $F$ eine Formel.
@@ -70,7 +70,7 @@ Mit dem folgenden nützlichem Tool können wir Eigenschaften über aussagenlogis
 
 \begin{proof}
 	Sei $\E\subseteq\L(\RR)$ die Menge aller Formeln, die Eigenschaft $E$ erfüllen.
-	Da $\E$ die drei Bedingungen in Definition \ref{defFormel} erfüllt, gilt $\L(\RR)\subseteq\E$, da $\L(\RR)$ nach Definition die kleinste solche Menge ist.
+	Da $\E$ die drei Bedingungen in Definition \ref{def3.5Formel} erfüllt, gilt $\L(\RR)\subseteq\E$, da $\L(\RR)$ nach Definition die kleinste solche Menge ist.
 \end{proof}
 
 \begin{lemma}[Strukturelle Induktion über Zeichenreihen]\enter
@@ -178,7 +178,7 @@ Wir betrachten zusätzlich Funktionen zu Junktoren um kennzeichnen diese mit ein
 	\end{tabular}
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{def3.9}
 	Eine \textbf{(aussagenlogische) Interpretation} $I=(\W,\cdot^I)$ besteht aus einer Menge $\W$ von Wahrheitswerten und einer Abbildung $\cdot^I:=I:\L(\RR)\to\W$ die folgende Bedingung erfüllt:
 	\begin{align*}
 		[F]^I=\left\lbrace\begin{array}{cl}
@@ -212,7 +212,7 @@ Wir betrachten zusätzlich Funktionen zu Junktoren um kennzeichnen diese mit ein
 
 Wir identifizieren eine Interpretation mit der Menge der Variablen, die auf \w abgebildet werden.
 
-\begin{definition}
+\begin{definition}\label{def3.12}
 	Sei $F\in\L(\RR)$.
 	\begin{itemize}
 		\item $F$ heißt \textbf{erfüllbar} $:\Longleftrightarrow\exists I:F^I=\top$.
