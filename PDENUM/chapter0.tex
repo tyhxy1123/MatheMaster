@@ -3298,13 +3298,16 @@ Sei $v\in W\subseteq V$ beliebig.
 Finde $(u,p)\in V\times Q:$
 \begin{align*}
 	a(u,v)-b(p,v)&=f(v) &\forall&v\in V\\
-	b(q,u)&= &\forall& q\in Q
+	b(q,u)&=0 &\forall& q\in Q
 \end{align*}
 
 \underline{Problem (2):}
 Finde $u\in W$
 \begin{align*}
-	a(u,v)&=f(v) \qquad\forall v\in W\mit\\
+	a(u,v)&=f(v) \qquad\forall v\in W
+\end{align*}
+Mit 
+\begin{align*}
 	W&=\big\lbrace v\in V:b(q,v)=0~\forall q\in Q\big\rbrace
 \end{align*}
 
@@ -3319,7 +3322,9 @@ Für $w\in W:$
 	b(p,w)=a(u,w)-f(w)\overset{(2)}{=}0
 \end{align*}
 mit $V=W+W^\perp$ und $W^\perp:=\big\lbrace v\in V:(v,w)=0~\forall w\in W\big\rbrace$
-$v\in V\implies\exists! w\in W,w^\perp\in W^\perp:v=w+w^\perp$
+\begin{align*}
+v\in V\implies\exists! w\in W,w^\perp\in W^\perp:v=w+w^\perp
+\end{align*}
 Es reichte auch zu zeigen:
 \begin{align}\label{eqProblem3}\tag{3}
 	b(p,v)=a(u,v)-f(v)\qquad\forall v\in W^\perp
