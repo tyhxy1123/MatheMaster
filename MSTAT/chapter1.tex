@@ -4517,17 +4517,225 @@ Folgender Satz gibt Antwort.
 	\end{align}
 	Falls zusätzlich $A(Z)=\lbrace\sigma\rbrace$ für eine Zufallsvariable $\sigma$
 	(d.h. $Z$ hat f.s. eine eindeutige Minimalstelle, nämlich $\sigma$), dann gilt
-	\begin{align*}
+	\begin{align}\label{eqSatz8.9_c}\tag{c}
 		\sigma_n\overset{L}{\longrightarrow}\sigma\text{ in }\R.
-	\end{align*}
+	\end{align}
 \end{satz}
 
 %Ferger: "Ich weiß nicht mehr wie ich drauf gekommen bin. Aber ich bin darauf gekommen. Da habe ich mich gefreut wie so ein Brötchen."
 %Ferger: "Müssen Sie nicht mitschreiben, ich will jetzt hier nur zu einer didaktischen Meisterleistung auflaufen."
 
 \begin{proof}
-	
+	\underline{Zeig \eqref{eqSatz8.9_a}:}\\
+	Sei $K$ kompakt. Dann gilt:
+	\begin{align}\label{eqProofSatz8.9_i}\tag{i}
+		\big\lbrace\sigma_n\in K\big\rbrace
+		&\subseteq\left\lbrace\inf\limits{t\in K} Z_n(t)\leq\inf\limits_{t\not\in K} Z_n(t)\right\rbrace\\
+		&\subseteq\left\lbrace\inf\limits_{t\in K} Z_n(t)\leq\inf\limits_{t\in K^C\cap I_j}Z_n(t)\right\rbrace\label{eqProofSatz8.9_ii}\tag{ii}
+	\end{align}
+	wobei $I_j:=[-j,j],j\in\N$.\nl
+	\underline{Zeige \eqref{eqProofSatz8.9_i}:}\\
+	Sei $\sigma_n\in K$ und angenommen
+	\begin{align}\label{eqProofSatz8.9Stern}\tag{$\ast$}
+		\inf\limits_{t\in K} Z_n(t)>\inf\limits_{t\in K^C} Z_n(t)
+	\end{align}
+	Dann gilt:
+	\begin{align*}
+		Z_n(\sigma_n)
+		\overset{\sigma_n\in K}&\geq
+		\inf\limits_{t\in K} Z_n(t)
+		\overset{\eqref{eqProofSatz8.9Stern}}>
+		\inf\limits_{t\in K^C} Z_n(t)
+		\overset{K^C\subseteq\R}\geq
+		\inf\limits_{t\in\R} Z_n(t)
+		\overset{\sigma_n\in A(Z_n)}=
+		Z(\sigma_n)
+	\end{align*}
+	Das ist ein Widerspruch, weshalb \eqref{eqProofSatz8.9_i} folgt.\nl
+	Gleichung \eqref{eqProofSatz8.9_ii} folgt aus 
+	\begin{align*}
+		\inf\limits_{t\in K^C} Z_n(t)\leq\inf\limits_{t\in K^C\cap I_j}Z_n(t).
+	\end{align*}
+	Sei $K_j:=[-k_j,k_j]$ mit $k_j\in\N$ so, dass $K_j\supseteq K\cup I_j$.
+	Für jedes $M\subseteq K_j$ gilt:
+	Die Abbildung $f\mapsto\inf\limits_{t\in M} f(t)$ ist stetig auf $\big(C(K_j),\Vert\cdot\Vert_{K_j}\big)$,
+	denn:
+	\begin{align*}
+		\left|\inf\limits_{t\in M} f(t)-\inf\limits_{t\in M}g(t)\right|
+		&\leq \Vert f-g\Vert_M
+		\leq\Vert f-g\Vert_{K_j}
+	\end{align*}
+	Daraus folgt, dass die Abbildung
+	\begin{align*}
+		H_j:\left(C\big(K_j\big),\Vert\cdot\Vert_{K_j}\right)\to\R,\qquad
+		f\mapsto\inf\limits_{t\in K} f(t)-\inf\limits_{t\in K^C\cap I_j} f(t)
+	\end{align*}
+	stetig ist, denn $K^C\cap I_j\subseteq I_j\subseteq K\cup I_j\subseteq K_j$.
+	Somit folgt aus Satz \ref{satz7.23} und aus dem CMT \ref{satz4.10ContinuousMappingTheorem}:
+	\begin{align}\label{eqProofSatz8.9_iii}\tag{iii}
+		H_j(Z_n)\overset{\L}{\longrightarrow} H_j(Z)\qquad\forall j\in\N
+	\end{align}
+	Aus \eqref{eqProofSatz8.9_i} und \eqref{eqProofSatz8.9_ii} folgt:
+	\begin{align}\nonumber
+		\P\Big(\big\lbrace\sigma_n\in K\big\rbrace\Big)
+			&\leq\P\Bigg(\Bigg\lbrace\underbrace{\inf\limits_{t\in K} Z_n(t)-\inf\limits_{t\in K^C\cap I_j}Z_n(t)}_{=H_j(Z_n)}\leq0\Bigg\rbrace\Bigg)\\\nonumber
+		\implies		
+		\limsup\limits_{n\to\infty}\P\big(\sigma_n\in K\big)
+		\overset{\eqref{eqProofSatz8.9_i}+\eqref{eqProofSatz8.9_ii}}&\leq
+		\limsup\limits_{n\to\infty}\P\Big(H_j(Z_n)\in\underbrace{(-\infty,0]}_{\in\F(\R)}\Big)\\\nonumber
+		\overset{\eqref{eqProofSatz8.9_iii}+\text{Portmannteau}}&\leq
+		\P\Big(H_j(Z)\in(-\infty,0]\Big)\\
+		\overset{\text{Def }H_j}&=
+		\P\bigg(\underbrace{\bigg\lbrace\inf\limits_{t\in K}Z(t)\leq\inf\limits_{t\in K^C\cap I_j}Z(t)\bigg\rbrace}_{=:E_j}\qquad\forall j\in\N\label{eqProofSatz8.9_iv}\tag{iv}
+	\end{align}
+	Da $E_j$ monoton fallend ist, folgt (mit $\sigma$-Stetigkeit von oben):
+	\begin{align*}
+		\lim\limits_{j\to\infty}\P(E_j)
+		&=\P\left(\bigcap\limits_{j\in\N}E_j\right)\\
+		&=\P\left(\inf\limits_{t\in K}Z(t)\leq\inf\limits_{t\in K^C\cap I_j}Z(t)~\forall j\in\N\right)\\
+		&\leq \P\bigg(\inf\limits_{t\in K}Z(t)\leq\underbrace{\inf\limits_{j\in\N}\inf\limits_{t\in K^C\cap I_j}Z(t)}_{=\inf\limits_{\bigcup\limits_{j\in\N}\big(K^C\cap I_j\big)}Z(t)}\bigg)\\
+		\overset{\bigcup\limits_j(K^C\cap I_j)=K^C\cap\bigcap\limits_j I_j=K^C\cap\R}&=
+		\P\bigg(\underbrace{\bigg\lbrace\inf\limits_{t\in K} Z(t)\leq\inf\limits_{t\in K^C} Z(t)\bigg\rbrace}_{=:E}\bigg)
+	\end{align*}
+	Dahinter steckt die allgemeine Rechenregel
+	\begin{align*}
+		\inf\limits_{t\in A\cup B}f(t)=\inf\limits\left\lbrace\inf\limits_A f,\inf\limits_B f\right\rbrace.
+	\end{align*}
+	Grenzübergang $j\to\infty$ in \eqref{eqProofSatz8.9_iv} liefert:
+	\begin{align}\label{eqProofSatz8.9Plus}\tag{+}
+		\limsup\limits_{n\to\infty}\P\big(\sigma_n\in K\big)
+		\leq\lim\limits_{j\to\infty}\P(E_j)\leq\P(E)
+	\end{align}
+	Schließlich gilt
+	\begin{align}\label{eqProofSatz8.9_v}\tag{v}
+		E\subseteq\big\lbrace A(Z)\cap K\neq\emptyset\big\rbrace
+	\end{align}
+	denn:
+	\begin{align*}
+		&\inf\limits_{t\in K}Z(t)
+		\leq\inf\limits_{t\in K^C} Z(t)\\
+		&\implies
+		\inf\limits_\R Z(t)=\inf\limits_{K\cup K^C}Z(t)=\min\left\lbrace\inf\limits_{t\in K} Z(t),\inf\limits_{t\in K^C}Z(t)\right\rbrace=\inf_{t\in K}Z(t)
+		=Z(\tau)
+	\end{align*}
+	für ein $\tau\in K$, da $Z$ stetig und $K$ kompakt.
+	Also ist $\tau$ eine Minimalstelle von $Z$, i.Z. $\tau\in A(Z)$.
+	Da $\tau\in K$ ist, gilt
+	\begin{align*}
+		\tau\in A(Z)\cap K\\
+		\implies A(Z)\cap K\neq\emptyset
+	\end{align*}
+	Wegen \eqref{eqProofSatz8.9_v} gilt, dass
+	\begin{align*}
+		\P(E)\leq\P\big(A(Z)\cap K\neq\emptyset\big)=\mu^\ast(K)
+	\end{align*}
+	und \eqref{eqSatz8.9_a} folgt aus \eqref{eqProofSatz8.9Plus}.\nl
+	\underline{Zeige \eqref{eqSatz8.9_b}:}\\
+	Sei $F\in\F$. Dann gilt:
+	\begin{align}\nonumber
+		\big\lbrace\sigma_n\in F\big\rbrace
+		\overset{\text{Zerlegung}}&=
+		\big\lbrace\sigma_n\in F,\sigma_n\in I_j\big\rbrace
+		\dot{\cup}\big\lbrace\sigma_n\in F,\sigma_n\not\in I_j\big\rbrace\\\nonumber
+		&=\big\lbrace\sigma_n\in \underbrace{F\cap I_j}_{\text{kompakt}}\big\rbrace\dot{\cup}\big\lbrace |\sigma_n|>j\big\rbrace&\forall& j\in\N\\\nonumber
+		\implies
+		\P\Big(\big\lbrace\sigma_n\in F\big\rbrace\Big)
+		&\leq\P\Big(\big\lbrace\sigma_n\in F\cap I_j\big\rbrace\Big)+\P\Big(\big\lbrace |\sigma_n|>j\big\rbrace\Big)&\forall& j\in\N\\
+		\limsup\limits_{n\to\infty}\P(\sigma_n\in F)
+		&\leq\underbrace{\limsup\limits_{n\to\infty}\P\big(\sigma_n\in F\cap I_j)}_{
+			\overset{\eqref{eqSatz8.9_a}}{\leq}\P\big(\underbrace{\big\lbrace A(Z)\cap(F\cap I_j)\neq\emptyset\big\rbrace}_{=:B_j}
+		}+\underbrace{\limsup\limits_{n\to\infty}\P\big(|\sigma_n|>j\big)}_{
+			\overset{j\to\infty}{\longrightarrow}\text{ wegen }\eqref{eqSatz8.9_2}
+		} &\forall& j\in\N\label{eqProofSatz8.9PlusPlus}\tag{++}
+	\end{align}
+	Da
+	\begin{align*}
+		B_j\uparrow\big\lbrace A(Z)\cap F\neq\emptyset\big\rbrace
+	\end{align*}
+	 (zur Übung), liefert Grenzübergang $j\to\infty$ in \eqref{eqProofSatz8.9PlusPlus} und $\sigma$-Stetigkeit von unten und \eqref{eqSatz8.9_2} die Behauptung \eqref{eqSatz8.9_b}.\nl
+	 \underline{Zeige \eqref{eqSatz8.9_c}:}
+	 \begin{align*}
+	 	&A(Z)=\lbrace\sigma\rbrace\text{ f.s.}\\
+	 	&\implies\mu^\ast(F)=\P\big(A(Z)\cap F\neq\emptyset\big)
+	 	=\P\Big(\big\lbrace\sigma\rbrace\cap F\neq\emptyset\big\rbrace\Big)
+	 	=\P(\sigma\in F)\\
+	 	\overset{\eqref{eqSatz8.9_b}}&\implies
+	 	\limsup\limits_{n\to\infty}\P\big(\sigma_n\in F\big)\leq\mu^\ast(F)
+	 	=\P(\sigma\in F)\qquad\forall F\in F\\
+	 	\overset{\text{Portmannteau}}&{\implies}
+	 	\sigma_n\overset{\L}{\longrightarrow}\sigma
+	 \end{align*}
 \end{proof}
 
+%Ferger: "Ich war früher so ein richtiger Sport-Paul. Aber jetzt bin ich einfach zu faul. Ist nicht so, dass ich keine Zeit habe.
+
+\subsection*{Anwendung}
+
+Sei $X_1,\ldots,X_n$ i.i.d. Kopien von $X$ mit $\mu$-Dichte 
+\begin{align*}
+	f_\theta(x)&=c(\theta)\cdot h(x)\cdot\exp\big(q(\theta)\cdot T(x)\big)\qquad\forall x\in\X,\forall\theta\in\Theta=\R
+\end{align*}
+Sei $\theta_0$ der wahre Parameter.
+Dann gilt:
+
+\begin{align}\label{eqAnwendung_1}\tag{1}
+	\text{MLS $\hat{\theta}_n$ für $\theta$ ist }\hat{\theta}_n&=\argmin\limits_{t\in\R}M_n(t)\qquad\mit\\
+	M_n(t)&=-\log\big(c(t)\big)-q(t)\cdot\overline{T}_n,\qquad
+	\overline{T}_n=\frac{1}{n}\cdot\sum\limits_{i=1}^nt(X_i)\nonumber
+\end{align}
+Ziel: Nachweis von
+\begin{align*}
+	\sqrt{n}\cdot\big(\hat{\theta}_n-\theta_0\big)\overset{\L}{\longrightarrow}\xi
+\end{align*}
+und Identifizierung von $\xi$.\nl
+Dazu: Sei 
+\begin{align*}
+	Z_n(t):=n\cdot\left(M_n\left(\theta_0+\frac{t}{\sqrt{n}}\right)-M_n\big(\theta_0\big)\right)\qquad\forall t\in\R
+\end{align*}
+der \textbf{reskalierte Prozess} zu $M_n$.
+Offenbar ist $Z_n$ stetiger stochastischer Prozess \underline{und}
+\begin{align}\label{eqAnwendung_2}\tag{2}
+	\underbrace{\sqrt{n}\cdot\big(\hat{\theta}_n-\theta\big)}_{=:\sigma_n}
+	&=\argmin\limits_{t\in\R} Z_n(t)
+\end{align}
+denn:
+Zu zeigen: 
+\begin{align*}
+	Z_n(\sigma_n)\leq Z_n(t)\qquad\forall t\in\R
+\end{align*}
+Dazu nutze Äquivalenzen:
+\begin{align*}
+	&Z_n(\sigma_n)\leq Z_n(t) &\forall& t\in\R\\
+	\overset{t=\sigma_n}&\Longleftrightarrow
+	n\cdot\bigg(M_n\cdot\bigg(\underbrace{\theta_0+\frac{\sigma_n}{\sqrt{n}}}_{
+		=\theta_0+\frac{\sqrt{n}\big(\hat{\theta}_n-\theta_n\big)}{\sqrt{n}}=\theta_n
+	}\bigg)-M_n(\theta_0)\bigg)
+	\leq n\cdot\left(M_n\left(\theta_0+\frac{t}{\sqrt{n}}\right)-M_n(\theta_0)\right)&\forall& t\in\R\\
+	&\Longleftrightarrow n\cdot\Big(M_n\big(\hat{\theta}_n\big)-M_n\big(\theta_0\big)\Big)
+	\leq n\cdot\left(M_n\left(\theta_0+\frac{t}{\sqrt{n}}\right)-M_n(\theta_0)\right) &\forall&t\in\R\\
+	&\Longleftrightarrow M_n\big(\hat{\theta}_n\big)
+	\leq M_n\left(\theta_0+\frac{t}{\sqrt{n}}\right) &\forall&t\in\R\\
+	&\Longleftrightarrow M_n\big(\hat{\theta}_n\big)
+	\leq M_n\left(\theta_0+\frac{t}{\sqrt{n}}\right) &\forall& t\in\R\\
+	&\Longleftrightarrow M_n\big(\hat{\theta}_n\big)\leq M_n(u) &\forall& u\in\R\\
+	\overset{\eqref{eqAnwendung_1}}&\Longleftrightarrow \text{ True}
+\end{align*}
+Wegen \eqref{eqAnwendung_2} versuche Satz \ref{satz8.9} anzuwenden:\\
+Man kann zeigen:
+\begin{align}\label{eqAnwendung_i}\tag{i}
+	Z_n\overset{\L}{\longrightarrow} Z\text{ in }\big(C(\R),d\big)
+\end{align}
+wobei
+\begin{align*}
+	Z(t)
+	&=-q'(\theta_0)\cdot N\cdot t+\frac{1}{2}\cdot\big(q'(\theta_0)\big)^2\cdot\sigma^2(\theta_0)\cdot t^2 \qquad\forall t\in\R
+\end{align*}
+wobei wir fordern:
+\begin{align*}
+	\sigma^2(\theta_0)&:=\Var_{\theta_0}\big(T(X)\big)\overset{\text{Forderung}}>0\\
+	q'(\theta_0)\overset{\text{Forderung}}\neq0\\
+	N&\sim\Nor\big(0,\sigma^2(\theta_0)\big)
+\end{align*}
+Also ist $Z$ eine zufällige nach oben geöffnete Parabel.
 
 
