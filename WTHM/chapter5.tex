@@ -120,6 +120,7 @@
 		&\stackeq{X_N\leq N}p\cdot\E\left[Y\cdot\int\limits_0^{X_N} x^{p-2}\d x\right]\\
 		&=\frac{p}{p-1}\cdot\E\left[Y\cdot X_N^{p-1}\right]\\
 	\end{align*}
+	
 	\begin{align*}
 		\implies
 		\E\left[X_N^p\right]
@@ -129,6 +130,7 @@
 		&\left(\frac{1}{p} + \frac{1}{q} = 1 \implies \frac{1}{q} = \frac{p-1}{p}\right) \\
 		&=\frac{p}{p-1}\cdot\E\left[Y^p\right]^{\frac{1}{p}}\cdot\E\left[X_N^{p}\right]^{\frac{p-1}{p}}
 	\end{align*}
+	
 	\begin{align*}
 		\implies
 		\underbrace{\E\left[X_N^p\right]^{\frac{1}{p}}}_{=\Vert X_N\Vert_p}
@@ -248,10 +250,10 @@
 \end{proof}
 
 \setcounter{section}{1}
-\section{Rückwärtsmartingale (RWN)} %5.2
+\section{Rückwärtsmartingale (RWM)} %5.2
 \begin{defi}
 	Sei $(\G_n)_{n\in\N}$ eine \textbf{absteigende} (d.h. $\G_{n}\subseteq\G_{n-1}~\forall n\in\N$) Folge von $\sigma$-Algebren.\\
-	Ein stochastischer Prozess $(R_n)_{n\in\N}$ heißt \textbf{Rückwärtsmartingal (RWN)} bzgl. $(\G_n)_{n\in\N}$, falls folgende Eigenschaften gelten:
+	Ein stochastischer Prozess $(R_n)_{n\in\N}$ heißt \textbf{Rückwärtsmartingal (RWM)} bzgl.\\ $(\G_n)_{n\in\N}$, falls folgende Eigenschaften gelten:
 	\begin{enumerate}
 		\item $R_n$ ist $\G_n$-messbar $\forall n\in\N$
 		\item $\begin{aligned}

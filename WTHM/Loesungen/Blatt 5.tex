@@ -362,11 +362,11 @@ Aus dem Stetigkeitssatz von Lévy folgt:
 \section*{Aufgabe 4}
 Sei $X$ eine reellwertige Zufallsvariable mit Vertielung $F$ und seien $X_1,X_2,\ldots$ i.i.d. Kopien von $X$.
 Die Verteilung $F$ heißt \textbf{stabil}
-\begin{align*}
+\begin{align}\label{eqStabil}\tag{Stab}
 	:\Longleftrightarrow
 	\exists(a_n)_{n\in\N},(b_n)_{n\in\N}\subseteq\R_{\geq0}:\forall\in\N:
 	X_1+\ldots+X_n\overset{\d}{=}a_n\cdot X+b_n
-\end{align*}
+\end{align}
 Die Verteilung $F$ heißt \textbf{symmetrisch stabil}
 \begin{align*}
 	:\Longleftrightarrow
@@ -374,13 +374,19 @@ Die Verteilung $F$ heißt \textbf{symmetrisch stabil}
 \end{align*}
 
 \begin{enumerate}[label=\alph*)]
-	\item Zeige, dass die Normalverteilung und die Cauchyverteilung stabil sind und bestimme $a_n$ und $b_n$.
+	\item Die Normalverteilung ist stabil mit $a_n=\sqrt{n}$ und $b_n=\mu(n-\sqrt{n})$.
+	Die Cauchyverteilung ist stabil mit $a_n=n$ und $b_n=0$.
 	\item Sei $X$ symmetrisch stabil.
 	Zeige:
 	\begin{align*}
-		\big(\phi_X(u)\big)^n&=\phi_X(a_n\cdot u) & \forall n\in\N
+		\big(\phi_X(u)\big)^n&=\phi_X(a_n\cdot u) & \forall n\in\N:
 		a_{m\cdot n}&=a_n\cdot a_m &\forall m,n\in\N
 	\end{align*}		
+	%Folgender Aufgabenteil wurde in der VL ergänzt.
+	Sei $b_n=0$. Dann ist \eqref{eqStabil} äquivalent zu
+	\begin{align}\label{eq4Stern}\tag{$\ast$}
+		\big(\Phi_X(u)\big)^n=\Phi_X(u\cdot a_n)\qquad\forall n\in\N
+	\end{align}
 	\item Für alle $\alpha\in(0,2]$ und alle $c>0$ existieren Zufallsvariablen $X_{\alpha,c}$ mit CF 
 	\begin{align*}
 		\phi(u)=\exp\left(-c\cdot|u|^\alpha\right).
@@ -436,12 +442,60 @@ Die Verteilung $F$ heißt \textbf{symmetrisch stabil}
 		=\big(\Phi(u)\big)^{n\cdot m}=\Phi(a_{m\cdot n}\cdot u)
 	\end{align*}
 	
-	\underline{Zu c):}
+	\underline{Zu b) aus der VL:} Es gilt:
+	\begin{align*}
+		\big(\Phi_X(u)\big)^{m\cdot n}
+		&=\Big(\big(\Phi_X(u)\big)^m\Big)^n\\
+		\overset{\eqref{eq4Stern}}&=
+		\big(\Phi_X(a_m\cdot u)\big)^n\\
+		\overset{\eqref{eq4Stern}}&=
+		\Phi_X(a_m\cdot a_n\cdot u)\\
+		\Phi_X(u)^{m\cdot n}
+		\overset{\eqref{eq4Stern}}&=
+		\Phi_X(a_{m\cdot n}\cdot u)\\
+		\implies a_m\cdot a_n\cdot X\overset{\d}=a_{m\cdot n}\cdot X\\
+		\implies F\left(\frac{x}{a_m\cdot a_n}\right)
+		&=F\left(\frac{x}{a_{m\cdot n}}\right)\qquad\forall x\in\R\\
+		\implies
+		a_m\cdot a_n&=a_{m\cdot n}\qquad\forall m,n\in\N
+	\end{align*}
+	Welche Folgen erfüllen $a_n\cdot a_m=a_{m\cdot n}$?
+	Zum Beispiel $a_n=n^{\frac{1}{\alpha}}$ für $\alpha\in(0,\infty)$ erfüllt dies.
 	
+	\underline{Zu c):}
+	Die symmetrische $\alpha$-stabile Verteilung ist definiert durch 
+	\begin{align*}
+		\Phi_{c,\alpha}(u):=\exp\big(-c\cdot|u|\big)^\alpha\qquad\forall c>0,\forall\alpha\in(0,2]
+	\end{align*}
+	Es gilt:
+	\begin{align*}
+		\big(\Phi_{c,\alpha}(u)\big)^n
+		&=\exp\left(-c\cdot|u|^\alpha\right)
+		=\exp\left(-c\cdot\left|n^{\frac{1}{\alpha}}\cdot u\right|^\alpha\right)
+		=\Phi_{c,\alpha}\left(n^{\frac{1}{\alpha}}\cdot u\right)
+	\end{align*}
+	Also erfüllt $\big(\Phi_{c,\alpha}(u)\big)^n$ \eqref{eq4Stern} mit $a_n=n^{\frac{1}{\alpha}}$.\\
+	Spezialfälle: 
+	\begin{itemize}
+		\item $\alpha=2\longrightarrow$ Normalverteilung
+		\item $\alpha=1\longrightarrow$ Cauchyverteilung
+	\end{itemize}
 	
 	\underline{Zu d):}\\
-	Angenommen $\phi(u)$ ist die CF einer Zufallsvariable $X$.
-	Wir berechnen nun $\Var[X]$:
-	
+	Angenommen $\Phi(u)$ ist die CF einer Zufallsvariable $X$.
+	%Wir berechnen nun $\Var[X]$:
+	\begin{align*}
+		\Phi'(u)
+		&=-c\cdot|u|^{\alpha-1}\cdot\alpha\cdot\exp\left(-c\cdot|u|^\alpha\right)
+		\implies \Phi'(u)=0\\
+		\Phi''(u)
+		&=c^2\cdot|u|^{2\cdot(\alpha-1)}\cdot\alpha^2\cdot\exp\left(-c\cdot|u|^\alpha\right)-c\cdot\alpha\cdot(\alpha-1)\cdot|u|^{\alpha-2}\cdot\exp\left(-c\cdot|u|^\alpha\right)\\
+		&\implies\Phi''(0)=0
+	\end{align*}
+	Der Erwartungswert $\E\big[X^2\big]$ existiert, $\E[X]=0$, $\E[X^2]$ und somit $\Var(X)=0$.
+	Also ist $X=0$ fast sicher. Somit
+	\begin{align*}
+		\Phi_X(u)=\E\big[\exp(i\cdot u\cdot 0)\big]=1
+	\end{align*}
 \end{lösung}
 \end{document}

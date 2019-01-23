@@ -15,37 +15,44 @@
 
 \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 
-\title{%
+\title{
   Vorlesung\\
   Wahrscheinlichkeitstheorie mit Martingalen\\
   }
 \subtitle{Wintersemester 2018/2019}
-\author{Vorlesung: Prof. Dr. Martin Keller-Ressel\\Mitschrift: Willi Sontopski \& Robert Walter}
-
+\author{
+	Vorlesung: Prof. Dr. Martin Keller-Ressel\\
+	Mitschrift: Willi Sontopski \& Robert Walter
+}
 
 \begin{document}
-\pagenumbering{gobble}	% disable pagenumbering
+	% begin hack: fix overfull hbox warning caused by \tableofcontents when exceeding 100 pages	
+	\makeatletter
+  	\renewcommand{\@pnumwidth}{2em}
+  	%\renewcommand{\@tocrmarg}{3em} % currently unnecessary
+  	\makeatother
+  	% end hack
 
-\maketitle
-\doclicenseThis
-\epigraph{Das Leben ist ein Supermartingal - die Erwartung fällt mit der Zeit.}{\textit{Unbekannt}}
-\tableofcontents % Inhaltsverzeichnis
-\pagenumbering{arabic}	%enable pagenumbering
+	\pagenumbering{gobble}	% disable pagenumbering
+	\maketitle
+	\doclicenseThis
+	\epigraph{Das Leben ist ein Supermartingal - die Erwartung fällt mit der Zeit.}{\textit{Unbekannt}}
+	\tableofcontents % Inhaltsverzeichnis
+	\pagenumbering{arabic}	% enable pagenumbering
 
-\input{chapter0}
-\input{chapter1}
-\input{chapter2}
-\input{chapter3}
-\input{chapter4}
-\input{chapter5}
-\input{chapter6}
-\input{chapter7}
-\input{chapter8}
-\input{chapter9}
+	\input{chapter0}
+	\input{chapter1}
+	\input{chapter2}
+	\input{chapter3}
+	\input{chapter4}
+	\input{chapter5}
+	\input{chapter6}
+	\input{chapter7}
+	\input{chapter8}
+	\input{chapter9}
+	\input{chapter10}
 
-\listoffigures 
-%\listoftables
-%\bibliography{literatur}
-
-
+	\listoffigures 
+	%\listoftables
+	%\bibliography{literatur}
 \end{document}

@@ -236,7 +236,114 @@ Nächstes Ziel: Abschwächen der Annahme der gleichen Verteilungen
 	\end{align*}
 \end{proof}
 
-\begin{proof}[Beweis des ZGS von Lindeberg-Feller, Theorem \ref{theorem9.4ZGSLindebergFeller}]\enter
-	Sei
+\setcounter{satz}{6} %War in der VL so. Hat Marvin verkackt.
+\begin{lemma}\label{lemma9.7}
+	Seien $(a_j)_{j\in\N},(b_j)_{j\in\N}$ Folgen in $\C$ mit $|a_j|\leq 1,|b_j|\leq 1~\forall j\in\N$.
+	Dann gilt:
+	\begin{align*}
+		\left|\prod\limits_{j=1}^n a_j-\prod\limits_{j=1}^n b_j\right|
+		\leq\sum\limits_{j=1}^n\big| a_j-b_j\big|\qquad\forall n\in\N
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Induktion über $n\in\N$:\\
+	\underline{IA:} Für $n=1$ gilt $|a_1-b_1|\leq|a_1-b_1|$.\\
+	\underline{IS: $n\to n+1$}
+	Setze
+	\begin{align*}
+		A_n:=\prod\limits_{j=1}^na_j,\qquad B_n:=\prod\limits_{j=1}^n b_j
+	\end{align*}
+	Dann gilt
+	\begin{align*}
+		\big| A_n\cdot a_{n+1}-B_n\cdot b_{n+1}\big|
+		&\leq\big|A_n\cdot a_{n+1}-B_n\cdot a_{n+1}\big|+\big|B_n\cdot a_{n+1}-B_n\cdot b_{n+1}\big|\\
+		&\leq\big|A_n-B_n\big|\cdot\underbrace{|a_{n+1}|}_{\leq1}+\underbrace{|B_n|}_{\leq 1}\cdot\big|a_{n+1}-b_{n+1}\big|\\
+		&\leq\big|A_n-B_n\big|+\big|a_{n+1}-b_{n+1}\big|\\
+		\overset{\text{IV}}&\leq
+		\sum\limits_{j=1}^n\big|a_j-b_{j+1}\big|+\big|a_{n+1}-b_{n+1}\big|\\
+		&\leq\sum\limits_{j=1}^{n+1}\big|a_j-b_{j}\big|
+	\end{align*}
 \end{proof}
 
+\begin{proof}[Beweis des ZGS von Lindeberg-Feller, Theorem \ref{theorem9.4ZGSLindebergFeller}]\enter
+	\textbf{Vorüberlegung:}
+	Restglieg $g_2$ in \eqref{eqVorueberlegungChapter9Exp} in Lemma \ref{lemma9.2}:
+	\begin{align*}
+		\E\left[\left|g_2\left(\frac{u\cdot X_j}{s_n}\right)\right|\right]
+		&\leq u^2\cdot\E\Bigg[\underbrace{\min\left\lbrace\frac{X_j^2}{s_n^2},\frac{|u|\cdot|X_j|^3}{\sigma\cdot s_n^3}\right\rbrace}_{=:Y}\Bigg]
+	\end{align*}
+	Weitere Abschätzung:
+	\begin{align}\nonumber
+		\E[Y]&=\E\bigg[Y\cdot\indi_{\big\lbrace|X_j|<\varepsilon\cdot s_u\big\rbrace}\bigg]+
+			\E\bigg[Y\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\\\nonumber
+			&\leq \frac{|u|}{6}\cdot\E\bigg[\underbrace{\frac{|X_j|}{s_n}}_{\leq\varepsilon}\cdot\frac{X_j^2}{s_n^2}\cdot\indi_{\big\lbrace|X_j|<\varepsilon\cdot s_u\big\rbrace}\bigg]+\frac{1}{s_n^2}\cdot\E\bigg[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\\
+			&\leq\frac{\varepsilon\cdot|u|}{6}\cdot\frac{\E\big[X_j^2\big]}{s_n^2}+\frac{1}{s_n^2}\cdot\E\bigg[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\label{eqProof9.4Stern}\tag{$\ast$}
+	\end{align}
+	
+	\textbf{Moment Matching:} Zur gegebenen Folge $(X_j)_{j\in\N}$ definiere weitere Folge $(G_j)_{j\in\N}$ von unabhängigen, normalverteilten Zufallsvariablen $G_j\sim\Nor(0,\sigma_j^2)$, d.h. mit übereinstimmendem ersten und zweiten Moment (sogenanntes \textbf{Moment Matching}).
+	\begin{align*}
+		\E\big[X_j\big]&=\E\big[G_j\big]=0\\
+		\E\big[X_j^2\big]&=\E\big[G_j^2\big]=\sigma_j^2
+	\end{align*}		
+	Die $(G_j)_{j\in\N}$ erfüllen den ZGS, denn
+	\begin{align*}
+		G_1+\ldots+G_n\sim\Nor\big(0,\sigma_1^2+\ldots+\sigma_n^2\big)=\Nor(0,s_n^2)\\
+		\implies
+		\frac{1}{s_n}\cdot\big(a_1+\ldots+a_n\big)\sim\Nor(0,1)\qquad\forall n\in\N
+	\end{align*}
+
+	\textbf{Idee:} Schätze Abstand der charakteristischen Funktionen von $\frac{X_j}{s_n}$ und $\frac{G_j}{s_n}$ ab.
+	Wegen Moment Matching stimmen die charakteristischen Funktionen bis zur Ordnung 2 überein!
+	\begin{align*}
+		\Phi_{\frac{X_j}{s_n}}(u)
+		&=\E\left[\exp\left(i\cdot u\cdot\frac{X_j}{s_n}\right)\right]
+		=1-\frac{u^2}{2}\cdot\frac{\sigma_j^2}{s_n^2}+\E\left[g_2\left(\frac{u\cdot X_j}{s_n}\right)\right]\\
+		\Phi_{\frac{G_j}{s_n}}(u)
+		&=\E\left[\exp\left(i\cdot u\cdot\frac{G_j}{s_n}\right)\right]
+		=1-\frac{u^2}{2}\cdot\frac{\sigma_j^2}{s_n^2}+\E\left[g_2\left(\frac{u\cdot G_j}{s_n}\right)\right]
+	\end{align*}
+	Wir wissen:
+	\begin{align*}
+		\left|\Phi_{\frac{X_j}{s_n}}(u)\right|\leq 1
+		\qquad\text{ und }\qquad
+		\left|\Phi_{\frac{G_j}{s_n}}(u)\right|\leq 1\qquad\forall u\in\R
+	\end{align*}
+	Also gilt mit Lemma \ref{lemma9.7}:
+	\begin{align*}
+		\Bigg|\Phi_{\frac{X_1+\ldots+X_n}{s_n}}(u)-\underbrace{\Phi_{\frac{G_1+\ldots+G_n}{s_n}}(u)}_{\text{CF von }\Nor(0,1)}\Bigg|
+		&=\left|\prod\limits_{j=1}^n\Phi_{\frac{X_j}{s_n}}(u)-\prod\limits_{j=1}^n\Phi_{\frac{G_j}{s_n}}(u)\right|\\
+		&\leq\sum\limits_{j=1}^n\left|\Phi_{\frac{X_j}{s_n}}(u)-\Phi_{\frac{G_j}{s_n}}(u)\right|\\
+		&\leq\sum\limits_{j=1}^n\left|\E\left[g_2\left(\frac{u\cdot X_j}{s_n}\right)-g_2\left(\frac{u\cdot G_j}{s_n}\right)\right]\right|\\
+		\overset{\text{DU}}&\leq
+		\underbrace{\sum\limits_{j=1}^n\E\left[\left|g_2\left(\frac{u\cdot X_j}{s_n}\right)\right|\right]}_{=:A_n}+\underbrace{\sum\limits_{j=1}^n\E\left[\left|g_2\left(\frac{u\cdot G_j}{s_n}\right)\right|\right]}_{=:B_n}
+	\end{align*}
+	Abschätzung für $A_n$:
+	\begin{align*}
+		A_n\overset{\eqref{eqProof9.4Stern}}&\leq
+		\frac{|u|\cdot\varepsilon}{6}\cdot\underbrace{\frac{\big(\sigma_1^2+\ldots+\sigma_n^2\big)}{s_n^2}}_{=1}+\underbrace{\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\bigg[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]}_{\overset{n\to\infty}{\longrightarrow}~\forall\varepsilon>0}\\
+		&\implies
+		\limn A_n\leq\frac{|u|\cdot\varepsilon}{6}\qquad\forall\varepsilon>0\\
+		&\implies\limn A_n=0
+	\end{align*}	
+	Abschätzung für $B_n$:
+	\begin{align*}
+		B_n\overset{\eqref{eqProof9.4Stern}}&\leq
+		\frac{|u|\cdot\varepsilon}{6}+\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\bigg[G_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\\
+		&=\frac{|u|\cdot\varepsilon}{6}+\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\sigma_j^2\cdot\E\Bigg[\underbrace{\left(\frac{G_j}{\sigma_j}\right)^2}_{\sim\Nor(0,1)}\cdot\indi_{\Big\lbrace\frac{G_j}{\sigma_j}\geq\varepsilon\cdot \frac{s_n}{\sigma_j}\Big\rbrace}\Bigg]\\
+		%&=\frac{|u|\cdot\varepsilon}{6}+\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n \sigma_j^2\cdot\int\limits_{|x|\geq\varepsilon\cdot\frac{s_n}{\sigma_j}}x^2\cdot\underbrace{\varphi(x)}_{\text{Dichte v.}\Nor(0,1)}\d x\\
+		%&\leq\frac{|u|\cdot\varepsilon}{6}+\underbrace{\frac{\sigma_1^2+\ldots\sigma_n^2}{s_n^2}}_{=1}\cdot\int\limits_{K_n}x^2\cdot\varphi(x)\d x\mit K_n:=\left\lbrace x:|x|\geq\min\limits_{1\leq j\leq n}\frac{s_n}{\sigma_j}\right\rbrace
+	\end{align*}
+	Feller-Bedingung:
+	\begin{align*}
+		\limn\max\limits_{1\leq j\leq n}\frac{\sigma_j^2}{s_n^2}=0\implies\limn\min\limits_{0\leq j\leq n}\frac{s_n}{\sigma_j}=0\\\
+		\implies K_n\downarrow\emptyset
+	\end{align*}
+	Insgesamt:
+	\begin{align*}
+		&\limn B_n\leq\frac{|u|\cdot\varepsilon}{6}\qquad\forall\varepsilon>0\\
+		&\implies\limn B_n=0\\
+		&\implies\Phi_{\frac{X_1+\ldots+X_n}{s_n}}(u)\overset{n\to\infty}{\longrightarrow}\exp\left(-\frac{u^2}{2}\right)\\
+		&\implies\frac{X_1+\ldots+X_n}{s_n}\overset{\d}{\longrightarrow} X\sim\Nor(0,1)
+	\end{align*}
+\end{proof}
