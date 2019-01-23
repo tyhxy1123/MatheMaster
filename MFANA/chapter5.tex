@@ -879,7 +879,7 @@ Genauer:\\ Für $\Omega$ mit $C^1$-Rand $\partial\Omega$ setzt sich die Spur-Abb
 \end{align*}
 zu einem beschränkten, linearen Operator 
 \begin{align*}
-	\tr:V(\Omega)\to L_{\text{loc}}^1(\partial\Omega)
+	\tr:V(\Omega)\to L_{\loc}^1(\partial\Omega)
 \end{align*}
 fort und 
 \begin{align*}
@@ -946,7 +946,7 @@ Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
 	P_C u:=P_C(u):=\argmin\limits_{v\in C}\Vert u-v\Vert_H\qquad\forall u\in H
 \end{align*}
 
-\begin{theorem}
+\begin{theorem}\label{theorem5.3.1}
 	Sei $A\subseteq H\times H$ $m$-akkretiv und sei $S$ die von $A$ erzeugte Halbgruppe auf $\overline{\dom(A)}$.
 	Betrachte:
 	\begin{enumerate}[label=(\roman*)]
@@ -957,7 +957,7 @@ Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
 		 	\forall\lambda>0:J_\lambda C\subseteq C
 		 \end{aligned}$ Also: $C$ ist invariant unter der Resolvente von $A$.
 	\end{enumerate}
-	Dann gilt (i) $\Longleftrightarrow$ (ii).
+	Dann gilt (i) $\Longleftrightarrow$ (ii).\\
 	Falls $A=\partial\E$ für eine konvexe, unterhalbstetige Energie $\E:H\to\R\cup\lbrace+\infty\rbrace$, dann sind (i) und (ii) äquivalent zu 
 	\begin{enumerate}[label=(\roman*)]
 		 \setcounter{enumi}{2}
@@ -968,7 +968,7 @@ Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
 \end{theorem}
 
 \begin{proof}[Beweis von (iii) $\implies$ (ii) $\implies$ (i)]\enter
-	\underline{Zeige (iii) $\implies$ (ii):}\\
+	\underline{Zeige (ii) $\implies$ (i):}
 	Folgt aus der Exponentialformel
 	\begin{align*}
 		S(t)u_0&=\limn\left(J_{\frac{t}{n}}\right)^n u_0\\
@@ -979,13 +979,234 @@ Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
 		S(t) u_0\in C
 	\end{align*}
 	
-	\underline{Zeige (ii) $\implies$ (i):}
-	
+	\underline{Zeige (iii) $\implies$ (ii):}\\
+	Sei $f\in C$ und $\lambda>0$.
+	Zu zeigen: $J_\lambda f\in C$.
+	Zur Erinnerung: $J_\lambda f$ ist der eindeutige Minimierer der Funktion 
+	\begin{align*}
+		v\mapsto\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert v-f\Vert_H^2
+	\end{align*}
+	Es gilt:
+	\begin{align*}
+		\E\big(J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f\big\Vert_H^2
+		&\leq\E\big(P_C J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2
+	\end{align*}
+	und somit durch Umsortierung
+	\begin{align*}
+		0\overset{\text{Vor}}&\leq
+		\E\big(J_\lambda f\big)-\E\big(P_C J_\lambda f\big)\\
+		&\leq\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2-\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f-f\big\Vert_H^2\\
+		&=\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2-\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f+\underbrace{-J_\lambda f+J_\lambda f}_{=0}-f\big\Vert_H^2\\
+		&=\frac{1}{2\cdot\lambda}\cdot\bigg(\underbrace{-\big\Vert P_C J_\lambda f-J_\lambda f\big\Vert^2}_{\leq0}+\underbrace{\cdot\big\langle P_C J_\lambda f-J_\lambda f,P_C J_\lambda f-f\big\rangle}_{\leq0}\bigg)\\
+		&\leq 0\\
+		&\implies
+		\E\big(J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f-f\big\Vert^2
+		=\E\big(P_C J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2\\
+		&\implies P_C J_\lambda f=J_\lambda f\\
+		&\implies J_\lambda f\in C
+	\end{align*}
 \end{proof}
 
+Folgendes Theorem ist eine Randnotiz auf Anfrage eines Studenten:
 
+\begin{theorem}
+	Sei $A\subseteq H\times H$ mit $H$ Hilbertraum. Dann sind äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			A\subseteq\partial\E
+		\end{aligned}$
+		\item $A$ \textbf{zyklisch monoton}, d.h.
+		\begin{align*}
+			\sum\limits_{k=0}^{n-1}\big\langle y_{k+1}-y_k,x_{k+1}-x_k\big\rangle_H\geq0
+			\qquad\forall(x_0,y_0,(x_1,y_1),\ldots,(x_n,y_n)=(x_0,y_0)\in A
+		\end{align*}
+	\end{enumerate}
+\end{theorem}
 
+Anwendungen von Theorem \ref{theorem5.3.1}:\\
+Sei $(\Omega,\A,\mu)$ beliebiger Maßraum und $\E\colon L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace$ konvex, unterhalbstetig, $\not\equiv+\infty$.
+Sei $S$ die von $\E$ bzw. $\partial\E$ erzeugte Halbgruppe auf $\overline{\dom(\E)}\subseteq L^2(\Omega)$.
+Die Halbgruppe $S$ heißt \textbf{positiv}
+\begin{align*}
+	:\Longleftrightarrow\underbrace{\forall u_0\in L^2(\Omega)^+}_{u_0\geq0\text{ f.ü.}},\forall t\geq0: S(t)u_0\in L^2(\Omega)^+
+\end{align*}
+Äquivalent: $S$ lässt $C:=L^2(\Omega)^+$ invariant.
+Der Kegel $L^2(\Omega)^+$ ist nichtleer, konvex und abgeschlossen.
+Die orthogonale Projektion $P_C$ auf dem Kegel $L^2(\Omega)^+$ ist gegeben durch: 
+\begin{align*}
+	P_C f(x)
+	&=f^+(x)
+	=(f\vee 0)(x)
+	=\left\lbrace\begin{array}{cl}
+		f(x), &\falls f(x)\geq0\\
+		0 ,&\falls f(x)<0
+	\end{array}\right.
+	\qquad\forall f\in L^2(\Omega)
+\end{align*}
+Denn es gilt:
+\begin{align*}
+	\int\limits_\Omega\big|P_C f-f\big|^2
+	&=\big\Vert P_C f-f\big\Vert^2
+	=\inf\limits\left\lbrace\int\limits_\Omega |v-f|^2:v\in L^2(\Omega)^+\right\rbrace
+\end{align*}
 
+\begin{korollar}
+	Seien $\E$ und $S$ wie oben.
+	Dann sind äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $S$ ist positiv
+		\item $\begin{aligned}
+			\forall f\in L^2(\Omega):\E\big(f^+\big)\leq\E(f)
+		\end{aligned}$
+	\end{enumerate}
+\end{korollar}
 
+\begin{beispiel}[Wieder $p$-Laplaceoperator]\enter
+	Sei $\Omega\subseteq\R^N$ offen, $p\in]1,\infty[$ und 
+	\begin{align*}
+		\E\colon L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
+		\E(u):=\left\lbrace\begin{array}{cl}
+			\frac{1}{p}\cdot\int\limits_\Omega|\nabla u|^p, &\falls \nabla u\in L^p(\Omega)\\
+			+\infty,&\sonst
+		\end{array}\right.
+	\end{align*}
+	(Energie des $p$-Laplaceoperatos mit Neumannrandbedingungen)
+	
+	\begin{lemma}
+		Sei $u\in L^1_{\loc}(\Omega)$ schwach differenzierbar mit $\nabla u\in L^1_\loc(\Omega)$.\\
+		Dann ist $u^+$ schach differenzerbar und 
+		\begin{align*}
+			\nabla\big(u^+\big)=\nabla u-\indi_{\lbrace u>0\rbrace}\mit
+			\indi_A(x):=\left\lbrace\begin{array}{cl}
+				1, &\falls x\in A\\
+				0, &\sonst
+			\end{array}\right.
+		\end{align*}
+		(siehe Mazya, Adams, Brezis)
+	\end{lemma}
+	
+	Aus dem Lemma folgt
+	\begin{align*}
+		\forall u\in\dom(\E):\nabla u^+\in L^p(\Omega)\text{ und }
+		\E\big(u^+\big)
+		&=\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u^+\big|^p\\
+		&=\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p\cdot\indi_{\lbrace u>0\rbrace}\\
+		&\leq  \frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p\\
+		&=\E(u)
+	\end{align*}
+	Somit erfüllt Diffusionsgleichung
+	\begin{align*}
+		\left\lbrace\begin{array}{rl}
+			\partial_t u-\Delta_p u=0&\text{in }(0,\infty)\times\Omega\\
+			\frac{\partial u}{\partial n}=0 &\text{auf }(0,\infty)\times\partial\Omega\\
+			u(0,x)=u_0(x) &\falls x\in\Omega
+		\end{array}\right.
+	\end{align*}
+	diese Eigenschaft.	
+\end{beispiel}
+
+\begin{beispiel}
+	Situation wie im Beispiel zuvor.\\
+	Die von $\E$ bzw. $\partial\E$ erzeugt Halbgruppe heißt \textbf{ordnungserhaltend}
+	\begin{align*}
+		\forall t>0,\forall u_0,v_0\in\overline{\dom(\E)}:
+		u_0\leq v_0\implies S(t) u_0\leq S(t) v_0
+	\end{align*}
+	Definiere auf $L^2(\Omega)\times L^2(\Omega)$ die Energie
+	\begin{align*}
+		\hat{\E}\colon L^2(\Omega)\times L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
+		\hat{\E}(u,v):=\E(u)+\E(v)
+	\end{align*}		
+	Dann ist $\hat{\E}$ konvex, unterhalbstetig, $\not\equiv+\infty$ und die von $\hat{\E}$ bzw. $\partial\hat{\E}$ erzeugte Halbgruppe $\hat{S}$ ist gegeben durch 
+	\begin{align*}
+		\hat{S}(t)(u_0,v_0)
+		&=\big(S(t)u_0,S(t)v_0)\big)
+		\left(=\begin{pmatrix}
+			S(t) & 0\\
+			0 & S(t)
+		\end{pmatrix}\cdot\begin{pmatrix}
+			u_0\\
+			v_0
+		\end{pmatrix}\right)
+	\end{align*}
+	(Nachrechnen.)\\
+	Die Halbgruppe $S$ ist ordnungserhaltend genau dann, wenn $\hat{S}$ die konvexe, abgeschlossene Menge
+	\begin{align*}
+		C:=\left\lbrace(u,v)\in L^2\times L^2:u\leq v\right\rbrace
+	\end{align*}
+	invariant lässt.
+	%TODO Hier könnte man eine Skizze einfügen
+	% L^2 wird durch \R ersetzt. Betrachte \R^2 und darin die \graph(\id). Dann ist C die Halbebene über \id.
+	\begin{align*}
+		P_C^{\R^2}\underbrace{(u,v)}_{\in\R\times\R}&=
+		\left\lbrace\begin{array}{cl}
+			(u,v),&\falls u\leq v\\
+			\left(\frac{u+v}{2},\frac{u+v}{2}\right) ,&\falls u\geq v
+		\end{array}\right.\\
+		P_C^{L^2\times L^2}(u,v)(x)&=P_C^{\R^2}\big(u(x),v(x)\big)
+	\end{align*}
+	
+	\begin{korollar}
+		Seien $\E$ und $S$ wie oben. Dann sind äquivalent:
+		\begin{enumerate}[label=(\roman*)]
+			\item $S$ ist ordnungserhaltend.
+			\item $\begin{aligned}
+				\forall u,v\in L^2(\Omega):
+				\E\bigg(\underbrace{P_C(u,v)_1}_{\text{1. Komponente}}\bigg)+\E\bigg(P_c(u,v)_2\bigg)
+				\leq\E(u)+\E(v)
+			\end{aligned}$
+			\item $\begin{aligned}
+				\forall u,vin L^2(\Omega):
+				\E(u\wedge v)+\E(u\vee v)\leq\E(u)+\E(v)
+			\end{aligned}$
+		\end{enumerate}
+	\end{korollar}
+	
+	\begin{proof}
+		\underline{Zeige (iii) $\implies$ (ii):}
+		\begin{align*}
+			P_C(u,v)&=\frac{1}{2}\cdot\Big((u\wedge v),(u\vee v)\Big)+\frac{1}{2}\cdot(u,v)\\
+			\implies
+			\hat{\E}\big(P_C(u,v)\big)
+			\overset{\hat{\E}\text{ konvex}}&\leq
+			\frac{1}{2}\cdot\hat{\E}\Big((u\wedge v),(u\vee v)\Big)+\frac{1}{2}\cdot\hat{\E}(u,v)
+		\end{align*}
+		Für die linke Seite gilt
+		\begin{align*}
+			\hat{\E}\big(P_C(u,v)\big)
+			&=\E\big(P_C(u,v)_1\big)+\E\big(P_C(u,v)_2\big)
+		\end{align*}
+		und für die rechte Seite gilt
+		\begin{align*}
+			\frac{1}{2}\cdot\hat{\E}\Big((u\wedge v),(u\vee v)\Big)+\frac{1}{2}\cdot\hat{\E}(u,v)
+			&=\frac{1}{2}\cdot\Big(\E(u\wedge v)+\E(u\vee v)+\E(u)+\E(v)\Big)\\
+			\overset{(iii)}&\leq
+			\E(u)+\E(v)
+		\end{align*}
+		Also
+		\begin{align*}
+			\E\big(P_C(u,v)_1\big)+\E\big(P_C(u,v)_2\big)
+			\leq\E(u)+\E(v)
+		\end{align*}
+	\end{proof}
+	
+	\begin{beispiel}
+		Sei $\E$ Energie des $p$-Laplaceoperators.
+		Dann gilt:
+		\begin{align*}
+			\forall u,v\in\dom(\E):
+			u\vee v=\frac{u+v}{2}+\frac{1}{2}\cdot(u-v)^+
+		\end{align*}
+		d.h. nach dem Lemma gilt $\nabla(u\vee v)\in L^p$ und
+		\begin{align*}
+			\nabla(u\vee v)=\nabla u\cdot\indi_{\lbrace u>v\rbrace}+\nabla v\cdot\indi_{\lbrace u<v\rbrace}
+		\end{align*}
+		und ähnlich ist der Gradient
+		\begin{align*}
+			\nabla(u\wedge v)
+			&=\nabla u\cdot\indi_{\lbrace u<v\rbrace}+\nabla v\cdot\indi_{\lbrace u>v\rbrace}
+		\end{align*}
+	\end{beispiel}
+\end{beispiel}
 
 
