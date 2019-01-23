@@ -10,10 +10,10 @@
 
 	\documentclass[12pt,a4paper]{article} 
 	
-	\input{packages}
-	\input{theoremenvironments}
-	\input{commands}
-	\input{commands_Willi}
+	\input{\directoryPrefix packages}
+	\input{\directoryPrefix theoremenvironments}
+	\input{\directoryPrefix commands}
+	\input{\directoryPrefix commands_Willi}
 
 	\author{#1}
 	\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
@@ -23,8 +23,8 @@
 	\clearscrheadfoot
 
 	\ihead{#1}
-	\chead{#2}
-	\ohead{}
+	\chead{}
+	\ohead{#2}
 	\ifoot{Blatt #3}
 	\cfoot{Version: \today}
 	\ofoot{Seite \pagemark}
@@ -37,10 +37,10 @@
 
 	\documentclass[12pt,a4paper]{article} 
 	
-	\input{packages}
-	\input{theoremenvironments}
-	\input{commands}
-	\input{commands_Willi}
+	\input{\directoryPrefix packages}
+	\input{\directoryPrefix theoremenvironments}
+	\input{\directoryPrefix commands}
+	\input{\directoryPrefix commands_Willi}
 
 	\author{#1}
 	\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
