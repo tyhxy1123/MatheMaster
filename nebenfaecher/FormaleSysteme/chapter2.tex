@@ -1,0 +1,285 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Automatentheorie}
+\section{Endliche Automaten}
+\subsection{Grundlagen}
+
+\begin{itemize}
+	\item \textbf{Alphabet} $\Sigma$ ist endliche Menge von Zeichen.
+	\item Ein \textbf{Wort} über $\Sigma$ ist eine endliche Folge von Buchstaben $w=a_1\ldots a_n$ mit $a_i\in\Sigma$.
+	\item Länge des Wortes $w$ ist $|w|=|a_1\ldots a_n|=n$.
+	\item Anzahl der Vorkommen von Buchstaben: $|w|_a$ zählt die Vorkommen von $a$ in $w$.
+	\item Leeres Wort $\varepsilon$ hat Länge 0.
+	\item Menge aller Wörter über $\Sigma$ ist $\Sigma^\ast$. Setze $\Sigma^+:=\Sigma^\ast\setminus\lbrace\varepsilon\rbrace$.
+	\item $L\subseteq\Sigma^\ast$ heißt \textbf{formale Sprache}.
+	\item Boolsche Operationen: $L_1\cup L_2,L_1\cap L_2,\overline{L_1}:=\Sigma^\ast\setminus L_1,L_1\setminus L_2:=L_\cap\overline{L_2}$
+	\item Konkatenation: $u\cdot v:=uv$, $L_1\cdot L_2:=\big\lbrace u\cdot v:u\in L_1,v\in L_2\big\rbrace$
+	\item Kleene-Stern: $
+	\begin{aligned}
+		L^0=\lbrace\varepsilon\rbrace,L^{n+1}:=L^m\cdot L,L^\ast:=\bigcup\limits_{n=0}^\infty L^n, L^+:=\bigcup\limits_{n=1}^\infty L^n
+	\end{aligned}$
+	\item $u$ ist \textbf{Präfix} von $v:\gdw\exists w\in\Sigma^\ast:v=uw$
+	\item $u$ ist \textbf{Suffix} von $v:\gdw\exists w\in\Sigma^\ast:v=wu$
+	\item $u$ ist \textbf{Infix} von $v:\gdw\exists w_1,w_2\in\Sigma^\ast:v=w_1 uw_2$
+\end{itemize}
+
+\subsection{Nichtdeterministische endliche Automaten}
+
+\begin{definition}\label{def1.1}
+	Ein \textbf{Transitionssystem} ist $\A=(Q,\Sigma,I,\Delta,F)$ wobei
+	\begin{itemize}
+		\item $Q$ eine Menge von \textbf{Zuständen} ist (kann undlich groß sein)
+		\item $\Sigma$ ein endliches Alphabet
+		\item $I\subseteq Q$ eine Menge von \textbf{Anfangszuständen}
+		\item $\Delta\subseteq Q\times \Sigma\times Q$ eine \textbf{Übergangsrelation / Transitionsrelation} ist
+		\item $F\subseteq Q$ eine Menge von \textbf{Endzuständen} ist
+	\end{itemize}
+\end{definition}
+
+\begin{definition}\label{def1.2}
+	Ein \textbf{nichtdeterministischer endlicher Automat (NEA)} ist ein Transitionssystem $\A=(Q,\Sigma,I,\Delta,F)$ mit $|Q|<\infty$ und $|I|=1$.
+\end{definition}
+
+\begin{definition}\label{def1.4}
+	Ein \textbf{Pfad $\pi$ von $p_0$ nach $p_n$} in einem Transitionssystem $\A$ ist eine endliche Folge von Übergängen
+	\begin{align*}
+		\pi:=\Big((p_0,a_1,p_1)(p_1,a_2,p_2)\ldots(p_{n-1},a_n,p_n)\Big)\subseteq\Delta
+	\end{align*}
+	mit \textbf{Beschriftung} $\beta(\pi):=a_i\cdot\ldots\cdot a_n$ und \textbf{Länge} $n$, i.Z.
+	\begin{align*}
+		p_0\overset{\beta(\pi)}{\longrightarrow}_\A p_n=p_0\overset{a_1\ldots a_n}{\longrightarrow}_\A p_n.
+	\end{align*}
+	Für $n=0$ sprechen wir vom \textbf{leeren Pfad} mit Beschriftung $\varepsilon$.\\
+	Für Mengen $Q_1,Q_2\subseteq Q$ setze:
+	\begin{align*}
+		Q_1\overset{w}{\longrightarrow}_\A Q_2:\Longleftrightarrow\exists p_1\in Q_1,\exists p_2\in Q_2:p_1\overset{w}{\longrightarrow}_\A p_2\qquad\forall w\in\Sigma^\ast
+	\end{align*}
+\end{definition}
+
+\begin{definition}\label{def1.5}
+	Das Transitionssystem $\A=(Q,\Sigma,I,\Delta,F)$ \textbf{akzeptiert} das Wort $w\in\Sigma^\ast$
+	\begin{align*}
+		:\Longleftrightarrow I\overset{w}{\longrightarrow}_\A F
+	\end{align*}
+	Die von $\A$ \textbf{akzeptierte / erkannte Sprache} ist
+	\begin{align*}
+		L(\A):=\big\lbrace w\in\Sigma^\ast:\A\text{ akzeptiert }w\big\rbrace
+	\end{align*}
+\end{definition}
+
+\begin{definition}\label{def1.6}
+	Eine Sprache $L\subseteq\Sigma^\ast$ heißt \textbf{erkennbar} $:\Longleftrightarrow\exists\text{ NEA }\A:L=L(\A)$.\\
+	Zwei Transitionssysteme $\A_1,\A_2$ heißen \textbf{äquivalent} $:\Longleftrightarrow L(\A_1)=L(\A_2)$.
+\end{definition}
+
+\begin{definition}\label{def1.8}
+	Ein \textbf{NEA mit Wortübergängen} ist $\A=(Q,\Sigma,q_0,\Delta,F)$, wobei wie bein NEA definiert sind und $\Delta\subseteq Q\times\Sigma^\ast\times Q$ eine endliche Menge von \textbf{Wortübergängen} ist.\\
+	Beachte: Ein NEA mit Wortübergängen ist \underline{kein} NEA!
+	Umgekehrt ist aber jeder NEA ein NEA mit Wortübergängen, da $\Sigma\subseteq\Sigma^\ast$.\\
+	Ein $\varepsilon$-\textbf{NEA} ist ein NEA mit Wortübergängen, wobei
+	\begin{align*}
+		\forall(q,w,q')\in\Delta:\underbrace{|w|\leq 1}_{\gdw w\in\Sigma\vee w=\varepsilon}
+	\end{align*}
+\end{definition}
+
+\begin{satz}\label{satz1.9}
+	Endliche Transitionssysteme, NEA, $\varepsilon$-NEA und NEA mit Wortübergängen sind \textit{gleichmächtig}. 
+\end{satz}
+
+\begin{proof}
+	Offenbar ist jeder NEA ein $\varepsilon$-NEA und jeder $\varepsilon$-NEA ein NEA mit Wortübergängen.\nl
+	\underline{Zu jedem NEA mit Wortübergängen gibt es einen äquivalenten $\varepsilon$-NEA:}\\
+	Man ersetzt jeden Wortübergang $(q,a_1,\ldots a_n,q')$ mit $n>1$ durch Buchstabenübergänge $(q,a_1,p_1),(p_1,a_2,p_2),\ldots,(p_{n-1},a_n,q')$ wobei $p_1,\ldots,p_{n-1}$ jeweils neue Hilfszustände sind.\nl	
+	\underline{Zeige: Zu jedem $\varepsilon$-NEA gibt es einen äquivalenten NEA:}\\
+	Sei der $\varepsilon$-NEA $\A=(Q,\Sigma,q_0,\Delta,F)$ gegeben.
+	Dann ist $\A':=(Q,\Sigma,q_0,\Delta', F')$ ein NEA ohne $\varepsilon$-Übergänge, wobei
+	\begin{align*}
+		\Delta'&:=\left\lbrace (p,a,q)\in Q\times \Sigma\times Q:p\overset{a}{\longrightarrow}_\A q\right\rbrace &\text{(behalte alle nicht-$\varepsilon$-Übergänge)}\\
+		F'&:=\left\lbrace\begin{array}{cl}
+			F\cup\lbrace q_0\rbrace ,&\falls q_o\overset{\varepsilon}{\longrightarrow}\A F\\
+			F ,&\sonst
+		\end{array}\right. &\text{(ergänze ggf. Endzustand)}
+	\end{align*}
+	\underline{Zeige: Zu jedem endlichen Transitionssystem gibt es einen äquivalenten NEA:}\\
+	Sei also $\A:=(Q,\Sigma,I,\Delta,F)$ ein endliches Transitionssystem.
+	Definiere für neuen Zustand $q_0\not\in Q$ einen $\varepsilon$-NEA
+	\begin{align*}
+		\A''&:=\big(Q\cup\lbrace q_0\rbrace,\Sigma,q_0,\Delta'',F\big)\qquad\mit\qquad
+		\Delta'':=\Delta\cup\big\lbrace(q_0,\varepsilon,q):q\in I\big\rbrace
+	\end{align*}
+	Dann ist $\A''$ äquivalent zu $\A$ und mit obiger Äquivalenz folgt die Behauptung.
+\end{proof}
+
+\subsection{Deterministische endliche Automaten}
+
+\begin{definition}\label{def2.1}
+	Ein NEA $\A=(Q,\Sigma,q_0,\Delta,F)$ heißt \textbf{deterministisch (DEA)} 
+	\begin{align*}
+		:\Longleftrightarrow\forall q\in Q,\forall a\in\Sigma:\exists! q'\in Q:(q,a,q')\in\Delta
+	\end{align*}
+	Anstelle der Übergangsrelation $\Delta$ können wir nun die \textbf{Übergangsfunktion} $\delta$ nutzen:
+	\begin{align*}
+		\delta:Q\times\Sigma\to Q,\qquad\delta(q,a)=q:\Longleftrightarrow(q,a,q)\in\Delta
+	\end{align*}
+\end{definition}
+
+Man kann \textit{Papierkorbzustände} hinzufügen, um DEAs näher zu kommen. %TODO
+
+\begin{definition}\label{def2.3}
+	Für die Übergangsfunktion eines DEAs gibt es eine \textbf{kanonische Fortsetzung}:
+	\begin{align*}
+		\delta^\ast:Q\times\Sigma^\ast\to Q,\qquad
+		\delta^\ast(q,\varepsilon):=q,\qquad
+		\delta^\ast(q,wa):=\delta\big(\delta^\ast(q,w),a\big)\qquad\forall w\in\Sigma^\ast
+	\end{align*}
+\end{definition}
+
+\begin{bemerkung}
+	Für einen DEA $\A=(Q,\Sigma,q_0,\delta,F)$ gilt:
+	\begin{enumerate}
+		\item $\begin{aligned}
+			\delta(q,w)=q'\Longleftrightarrow g'\text{ ist der eindeutige Zustand mit }q\overset{w}{\longrightarrow}_\A q'
+		\end{aligned}$
+		\item $\begin{aligned}
+			L(\A)=\big\lbrace w\in\Sigma^\ast:\delta(q_0,w)\in F\big\rbrace
+		\end{aligned}$
+		\item $\begin{aligned}
+			\delta(q,uv)=\delta\big(\delta(q,u=,v)
+		\end{aligned}$
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{satz}\label{satz2.4}
+	Zu jedem NEA kann man effektiv einen äquivalenten DEA konstruieren, d.h. NEAs und DEAs sind \textit{gleichmächtig}.
+\end{satz}
+
+\begin{proof}
+	Wir verwenden die sogenannte \textbf{Potenzmengenkonstruktion}. Siehe Übung.
+\end{proof}
+
+\begin{definition}
+	Ein Zustand $q\in Q$ des DEA $\A=(Q,\Sigma,q_0,\delta,F)$ heißt \textbf{erreichbar}
+	\begin{align*}
+		:\Longleftrightarrow\exists w\in\Sigma^\ast:\delta(q_0,w)=q
+	\end{align*}
+\end{definition}
+
+Man erhält durch weglassen unerreichbarer Zustände eine äquivalenten DEA:
+\begin{align*}
+	\A_0&:=\big(Q_0,\Sigma,q_0,\delta_0,F_0\big)\mit\\
+	Q_0&:=\big\lbrace q\in Q:q\text{ erreichbar}\big\rbrace\\
+	\delta_0&:=\delta|_{Q_0\times\Sigma}\qquad\text{ Beachte: }\forall q\in Q_0,\forall a\in\Sigma:\delta(q,a)\in Q_0\\
+	F_0&:=F\cap Q_0
+\end{align*}
+
+\begin{definition}\label{def2.8}
+	Sei $\A=(Q,\Sigma,q_0,\delta,F)$ ein DEA.
+	Zwei Zustände $q,q'\in Q$ heißen \textbf{äquivalent}, i.Z.
+	\begin{align*}
+		q\sim_\A q':\Longleftrightarrow L(\A_q)=L(\A_{q'})
+		\qquad\mit\qquad
+		\A_q(Q,\Sigma,q,\delta,F)
+	\end{align*}
+\end{definition}
+
+\begin{lemma}\label{lemma2.9}\
+	\begin{enumerate}[label=\arabic*)]
+		\item $\sim_\A$ ist eine Äquivalenzrelation auf $Q$ (reflexiv, transitiv und symmetrisch).
+		\item $\sim_\A$ ist verträglich mit der Übergangsfunktion, d.h.
+		\begin{align*}
+			q\sim_\A q'\implies \forall a\in \Sigma:\delta(q,a)\sim_\A\delta(q',a)
+		\end{align*}
+		\item $\sim_\A$ kann effektiv bestimmt werden.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\underline{Zu 1):} ist klar, da "=" reflexiv, transitiv und symmetrisch ist.\nl
+	\underline{Zu 2):} Nachrechnen.\nl
+	\underline{Zu 3):} Wir definieren die Approximation $\sim_k$ von $\sim_\A$:
+	\begin{align*}
+		q\sim_0 q'&:\Longleftrightarrow\Big( q\in F\gdw q'\in F\Big)\\
+		q\sim_{k+1}&:\Longleftrightarrow\Big(q\sim_k q'\text{ und }\forall a\in\Sigma:\delta(q,a)\sim_k\delta(q',a)\Big)\forall k\in\N_0
+	\end{align*}
+	Es gilt $Q\times Q\supseteq\sim_0\supseteq\sim_1\supseteq\ldots\supseteq\sim_\A$.
+	Da $Q$ endlich ist, gibt es ein $k\in\N$ mit $\sim_k=\sim_{k+1}$.
+	Dann gilt $\sim_k=\sim_\A$.
+\end{proof}
+
+\begin{definition}\label{def2.10}
+	Der \textbf{Quotientenautomat} $\tilde{\A}=\big(\tilde{Q},\Sigma,\tilde{q}_0,\tilde{\delta},\tilde{F}\big)$ zu\\ $\A=(Q,\Sigma,q_0,\delta,F)$ ist definiert durch
+	\begin{align*}
+		\tilde{Q}&:=\big\lbrace[q]_{\sim_\A}:q\in Q\big\rbrace\\
+		\tilde{\delta}([q]_{\sim_\A},a)&:=[\delta(q,a)]_{\sim_\A}=:\widetilde{\delta(q,a)}\\
+		\tilde{F}&:=\lbrace[q]_{\sim_\A}\mid q\in F\rbrace
+	\end{align*}
+\end{definition}
+
+\begin{lemma}\label{lemma2.11}
+	$\tilde{\A}$ ist äquivalent zu $\A$.
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		w\in L(\A)
+		&\Longleftrightarrow \delta(q_0,w)\in F\\
+		&\Longleftrightarrow\widetilde{\delta(q_0,w)}\in\tilde{F}\\
+		&\Longleftrightarrow\tilde{\delta}\big(\tilde{q}_0,w\big)\in\tilde{F}\\
+		&\Longleftrightarrow w\in L(\tilde{A})
+	\end{align*}
+\end{proof}
+
+\begin{definition}\label{def2.12}
+	Für einen DEA $\A$ bezeichnet $\A_{\red}:=\tilde{\A}_0$ den \textbf{reduzierten Automaten}, den man aus $\A$ durch eliminieren unerreichbarer Zustände und Zusammenfassen äquivalenter Zustände enthält.
+\end{definition}
+
+%Um von einem DEA $\A$ einen reduzierten DEA $\A_\red$ zu erhalten, tue folgendes:
+%\begin{enumerate}
+%	\item Entferne unerreichbare Zustände und erhalte $\A_0$.
+%	\item Fasse äquivalente Zustände zusammen.
+%\end{enumerate}
+
+Im Folgenden zeigen wir:
+\begin{itemize}
+	\item $\A_\red$ ist minimal, d.h. der kleinste DEA, der $L(\A)$ akzeptiert.
+	\item $\A_\red$ hängt nur von $L(\A)$ und nicht von $\A$, d.h.
+	\begin{align*}
+		L(\A)=L(\mathcal{B})\implies\A_\red\simeq\mathcal{B}_\red
+	\end{align*}
+\end{itemize}
+
+\begin{definition}\label{def2.13}
+	Sei $L\subseteq\Sigma^\ast$ eine Sprache und $u,v\in\Sigma^\ast$.\\
+	Die \textbf{Nerode-Rechtskongruenz} ist definiert als
+	\begin{align*}
+		u \simeq_L v:\Longleftrightarrow\Big(\forall w\in\Sigma^\ast:uw\in L\gdw vw\in L\Big)
+	\end{align*}
+\end{definition}
+
+\begin{lemma}\label{lemma2.15}\
+	\begin{enumerate}[label=\arabic*)]
+		\item $\simeq_L$ ist Äquivalenzrelation auf $\Sigma^\ast$.
+		\item $\simeq_L$ ist \textbf{Rechtskongruenz}, d.h. 1) und 
+		\begin{align*}
+			u\simeq_L v\implies\forall w\in\Sigma^\ast:uw\simeq_L vw
+		\end{align*}
+		\item $L$ ist Vereinigung von $\simeq_L$-Klassen:
+		\begin{align*}
+			L=\bigcup\limits_{u\in L}[u]_{\simeq_L}
+		\end{align*}
+		\item Ist $L=L(\A)$ für einen DEA $\A$, so ist die Anzahl der Index von $\simeq_L$ (= Anzahl der Klassen) $\leq Q$.
+	\end{enumerate}
+\end{lemma}
+
+Man kann die $\simeq_L$-Klassen nun als Zustände eines Automaten verwenden, der $L$ erkennt.
+
+\subsection{Nachweis der Nichterkennbarkeit}
+
+\subsection{Abschlusseigenschaften und Entscheidungsprobleme}
+
+\subsection{Reguläre Ausdrücke und Sprache}
+
+\section{Grammatiken, kontextfreie Sprachen und Kellerautomaten}

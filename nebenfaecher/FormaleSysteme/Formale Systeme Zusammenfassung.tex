@@ -1,0 +1,38 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[]{scrreprt}
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{commands_FORM}
+
+\setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
+
+\title{%
+  Vorlesung\\
+  Formale Systeme (Zusammenfassung) \\
+  }
+\subtitle{Wintersemester 2018/2019}
+\author{Vorlesung: Prof. Dr. rer. nat. habil. Steffen Hölldobler\\Mitschrift: Willi Sontopski}
+
+\begin{document}
+	\pagenumbering{gobble}	% disable pagenumbering
+
+	\maketitle
+	\doclicenseThis
+	\tableofcontents % Inhaltsverzeichnis
+	\pagenumbering{arabic}	%enable pagenumbering
+
+	\input{chapter1}
+	\input{chapterProbeklausur}
+	\input{chapter2}
+
+	\listoffigures 
+	%\listoftables
+	%\bibliography{literatur}
+\end{document}
