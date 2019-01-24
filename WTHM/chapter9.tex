@@ -22,21 +22,328 @@ Beweismethode: Charakteristische Funktionen und Stetigkeitssatz von Lévy \ref{t
 
 \begin{vorüberlegung}
 	Taylor-Entwicklung der Exponentialfunktion mit Rekursion für Restglied
-	\begin{align}\label{eqVorueberlegungChapter9Exp}\tag{Exp}
+	\begin{align}\label{eqVorueberlegungChapter9Exp}\tag{ExpTay}
 		\exp(i\cdot x)=\sum\limits_{k=0}^n\frac{(i\cdot x)^k}{k!}+g_n(x)
 	\end{align}
 	Es gilt:
 	\begin{align*}
 		\int\limits_0^x g_n(y)\d y
-		&=\int\limits_0^x\left(\exp(i\cdot x)-\sum\limits_{k=0}^n\frac{(i\cdot y)^k}{k!}\right)\d y\\
-		&=(-i)\cdot\left(\big(\exp(i\cdot x)\-1\big)-\sum\limits_{k=0}^n\frac{(i\cdot x)^{k+1}}{(k+1)!}\right)\\
+		&=\int\limits_0^x\left(\exp(i\cdot y)-\sum\limits_{k=0}^n\frac{(i\cdot y)^k}{k!}\right)\d y\\
+		&=(-i)\cdot\left(\big(\exp(i\cdot x)-1\big)-\sum\limits_{k=0}^n\frac{(i\cdot x)^{k+1}}{(k+1)!}\right)\\
 		\overset{\text{Indexshift}}&=
 		(-i)\cdot\underbrace{\left(\exp(i\cdot x)-\sum\limits_{k=0}^{n+1}\frac{(i\cdot x)^k}{k!}\right)}_{=g_{n+1}(x)}\\
 		&=-i\cdot g_{n+1}(x)
 	\end{align*}
 \end{vorüberlegung}
 
+\begin{lemma}\label{lemma9.1}
+	Sei $g_n(x)$ das Restglied in \eqref{eqVorueberlegungChapter9Exp}.
+	Dann gilt:
+	\begin{align*}
+		\big|g_n(x)\big|\leq\min\left\lbrace\frac{2\cdot|x|^n}{n!},\frac{|x|^{n+1}}{(n+1)!}\right\rbrace
+	\end{align*}
+	Die linke Ungleichung ist besser für großes $|x|$ und die rechte Ungleichung ist besser für $|x|$ klein.
+\end{lemma}
 
+\begin{proof}
+	Induktion nach $n$.\\
+	\underline{IA:} $n=0$:
+	\begin{align*}
+		\big|g_0(x)\big|
+		&=\exp(i\cdot x)-1
+		\leq\left\lbrace\begin{array}{cl}
+			\big|\exp(i\cdot x)|+|1|&\leq 2\\
+			\left|\int\limits_0^x\exp(i\cdot y)\d y\right|&\leq\int\limits_0^{|x|}\big|\exp(i\cdot y)\big|\d y\leq |x|
+		\end{array}\right.\\
+		\implies
+		\big|g_0(x)\big|&\leq\min\big\lbrace 2,|x|\big\rbrace
+	\end{align*}
+	\underline{IS:} $n\to n+1$:
+	\begin{align*}
+		\big|g_n(x)\big|
+		\overset{\text{VÜ}}&=
+		\left|\int\limits_0^x g_n(y)\d y\right|
+		\leq\int\limits_0^{|x|}\big|g_n(y)\big|\d y
+		\overset{\text{IV}}\leq
+		\left\lbrace\begin{array}{cl}
+			\int\limits_0^{|x|}\frac{2\cdot y^{n}}{n!}\d y &=\frac{2\cdot|y|^{n+1}}{(n+1)!}\\
+			\int\limits_0^{|x|}\frac{y^{n+1}}{(n+1)!}\d y &=\frac{|x|^{n+2}}{(n+2)!}
+		\end{array}\right.\\
+		&=\min\left\lbrace\frac{2\cdot|x|^{n+1}}{(n+1)!},\frac{|x|^{n+2}}{(n+2)!}\right\rbrace
+	\end{align*}
+\end{proof}
 
+\begin{bemerkung}
+	 Sei $X\in L_2(\d\P)$, $u\in\R$.
+	 Dann folgt aus Lemma \ref{lemma9.1}
+	 \begin{align}\label{eqBemerkungUnder9.1A}\tag{A}
+	 	\Big|\E\big[g_n(u\cdot X)\big]\Big|
+	 	&\leq u^2\cdot\E\left[\min\left\lbrace X^2,\frac{|X|^3\cdot|u|}{6}\right\rbrace\right]
+	 \end{align}
+	 Diese Abschätzung wird im Beweis der ZGS verwendet.
+	 Beachte außerdem, dass die dritten Momente nicht existieren müssen, damit diese Gleichung gilt.
+\end{bemerkung}
 
+\begin{lemma}\label{lemma9.2}
+	Sei $(a_n)_{n\in\N}\subseteq\R$ mit $\limn a_n=a$.
+	Dann gilt
+	\begin{align*}
+		\limn\left(1-\frac{a_n}{n}\right)^n=\exp(-a)
+	\end{align*}
+\end{lemma}
 
+\begin{proof}
+	Logarithmieren liefert:	
+	\begin{align*}
+		\log\left(\left(1-\frac{a_n}{n}\right)^n\right)
+		&=n\cdot\log\left(1-\frac{a_n}{n}\right)
+		=\underbrace{a_n}_{\longrightarrow a}\cdot\frac{\overbrace{\log\left(1-\frac{a_n}{n}\right)}^{\longrightarrow0}}{\underbrace{\frac{a_n}{n}}_{\longrightarrow0}}\\
+		\lim\limits_{x\to0}\frac{\log(1-x)}{x}="\frac{0}{0}"
+		\overset{\text{L'Hospital}}&=
+		\lim\limits_{x\to0}\frac{1}{x-1}=-1\\
+	\end{align*}
+	Insgesamt:
+	\begin{align*}
+		\limn\log\left(\left(1-\frac{a_n}{n}\right)^n\right)&=-a\\
+		\implies \limn\left(1-\frac{a_n}{n}\right)^n&=\exp(-a)
+	\end{align*}
+\end{proof}
+
+\begin{theorem}[ZGS von Moivre-Laplace]\label{theorem9.3ZGSMoivreLaplace}\enter
+	% 1733 gezeigt von De Moivre für die Binomialverteilung
+	% 1820 gezeigt von Laplace allgemeiner bewiesen
+	Sei $(X_j)_{j\in\N}$ eine Folge unabhängiger reellwertiger Zufallsvariablen mit der gleichen Verteilung (i.i.d.)
+	und $\E[X_1]=0$, $\Var(X_1)=\sigma^2\in(0,\infty)$.
+	Dann gilt:
+	\begin{align*}
+		G_n&:=\frac{1}{\sigma\cdot\sqrt{n}}\cdot\big(X_1+\ldots+X_n\big)
+	\end{align*}
+	konvergiert in Verteilung gegen eine standardnormalverteilte ZV $G\sim\Nor(0,1)$.
+\end{theorem}
+
+\begin{proof}
+	Berechne die charakteristische Funktion von $G_n$:
+	\begin{align}\nonumber
+		\Phi_{G_n}(u)
+		&=\E\Big[\exp(i\cdot u\cdot G_n)\Big]\\\nonumber
+		&=\E\left[\exp\left(\frac{i\cdot u}{\sigma\cdot\sqrt{n}}\cdot\big(X_1+\ldots+X_n\big)\right)\right]\\\nonumber
+		\overset{\text{iid}}&=
+		\E\left[\exp\left(\frac{i\cdot u}{\sigma\cdot\sqrt{n}}\cdot X_1\right)\right]\\\nonumber
+		\overset{\eqref{eqVorueberlegungChapter9Exp}}&{=}
+		\bigg(1+\frac{i\cdot u}{\sigma\cdot\sqrt{n}}\cdot\underbrace{\E[X_1]}_{=0}-\frac{u^2}{2\cdot\sigma^2\cdot n}\cdot\underbrace{\E\big[X_1^2\big]}_{=\Var(X_1)=\sigma^2}+\E\left[g_n\left(\frac{u}{\sigma\cdot\sqrt{n}}\cdot X_1\right)\right]\bigg)^n\\
+		&=\Bigg(1-\underbrace{\frac{u^2}{2\cdot n}\cdot\bigg(1+\frac{2\cdot n}{u^2}\cdot\E\left[g_n\left(\frac{u}{\sigma\cdot\sqrt{n}}\cdot X_1\right)\right]\bigg)}_{=:\frac{a_n}{n}}\Bigg)^n\label{eqProof9.3Stern}\tag{$\ast$}
+	\end{align}
+	
+	\begin{align*}
+		\left|\frac{n}{u^2}\cdot\E\left[g_n\left(\frac{u}{\sigma\cdot\sqrt{n}}\cdot X_1\right)\right]\right|
+		\overset{\eqref{eqBemerkungUnder9.1A}}{\leq}
+		\frac{1}{\sigma^2}\cdot\underbrace{\E\left[\min\left\lbrace X_1^2,\left|\frac{u}{\sigma\cdot\sqrt{n}}\right|\cdot\frac{|X_1|^3}{6}\right\rbrace\right]}_{\overset{n\to\infty}{\longrightarrow}0\text{ mit dom. Konv.}}
+	\end{align*}
+	Also gilt $a_n\overset{n\to\infty}{\longrightarrow}\frac{u^2}{2}$.
+	Aus Lemma \ref{lemma9.2} folgt:
+	\begin{align*}
+		\limn\Phi_{a_n}(u)
+		&=\limn\left(1-\frac{a_n}{n}\right)
+		=\exp\left(-\frac{u^2}{2}\right)
+	\end{align*}
+	Die Funktion $\exp\left(-\frac{u^2}{2}\right)$ ist die charakteristische Funktion von $\Nor(0,1)$ und ist stetig in 0.
+	Aus dem Stetigkeitssatz von Lévy \ref{theorem8.1StetigkeitssatzVonLevy} folgt nun
+	\begin{align*}
+		G_n\overset{\d}{\longrightarrow} G\sim\Nor(0,1)
+	\end{align*}
+\end{proof}
+
+\begin{bemerkung}
+	Folgendes Beispiel zeigt was passieren kann, wenn $\E[X_1^2]=\infty$ (also die Varianz nicht endlich ist). 
+\end{bemerkung}
+
+\begin{beisp}
+	Sei $(X_j)_{j\in\N}$ iid mit $X_1\sim\Cauchy$ 
+	(d.h. mit Dichte $f(x)=\frac{1}{\pi}\cdot\frac{1}{1+x^2}$ und CF $\Phi(u)=\exp\big(-|u|\big)$).
+	Setze
+	\begin{align*}
+		H_n:=\frac{1}{n}\cdot\big(X_1+\ldots+X_n\big)\qquad\text{(Beachte das im Nenner nun $\frac{1}{n}$ ohne Wurzel steht.)}
+	\end{align*}
+	Es gilt:
+	\begin{align*}
+		\Phi_{H_n}(u)
+		&=\E\left[\exp\left(\frac{i\cdot u}{n}\cdot\big(X_1+\ldots+X_n\big)\right)\right]\\
+		\overset{\text{iid}}&=
+		\E\left[\exp\left(\frac{i\cdot u\cdot X_1}{n}\right)\right]^n\\
+		&=\exp\left(-n\cdot\left|\frac{u}{n}\right|\right)\\
+		&=\exp\big(-|u|\big)\\
+		\implies H_n&\sim\Cauchy
+	\end{align*}
+	Insbesondere $H_n\overset{\d}{\longrightarrow} H\sim\Cauchy$.
+	Also kann 
+	\begin{align*}
+		G_n=\frac{1}{\sqrt{n}}\cdot\big(X_1+\ldots+ X_n\big)=\sqrt{n}\cdot H_n
+	\end{align*}
+	nicht in Verteilung konvergieren.
+	Der ZGS gilt also \underline{nicht}.
+\end{beisp}
+
+Nächstes Ziel: Abschwächen der Annahme der gleichen Verteilungen
+
+\begin{theorem}[ZGS von Lindeberg-Feller]\label{theorem9.4ZGSLindebergFeller}\enter
+	% 1920 von Lindeberg gezeigt
+	% Feller hat DInge vereinfacht
+	Sei $(X_j)_{j\in\N}$ unabhängiger reellwertiger Zufallsvariablen mit $\E[X_j]=0$ und \\$\Var(X_j)=\sigma_j^2\in(0,\infty)$.
+	Setze $s_n^2:=\sigma_1^2+\ldots+\sigma_n^2$.
+	Wenn die \textbf{Lindeberg-Bedingung}
+	\begin{align}\label{eqTheorem9.4LindebergBedingungL}\tag{L}
+		\limn\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\left[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_n\big\rbrace}\right]=0\qquad\forall\varepsilon>0
+	\end{align}
+	erfüllt ist, dann gilt:
+	\begin{align*}
+		G_n:=\frac{1}{s_n^2}\cdot\big(X_1+\ldots+X_n\big)\overset{\d}{\longrightarrow}G\sim\Nor(0,1)
+	\end{align*}
+\end{theorem}
+
+\begin{bemerkung}
+	 Die Bedingung \eqref{eqTheorem9.4LindebergBedingungL} drückt aus, dass kein $\sigma_j^2$ zu stark "dominiert".
+	 Konkret gilt:
+\end{bemerkung}
+
+\begin{lemma}\label{lemma9.5}
+	Die Lindebergbedingung \eqref{eqTheorem9.4LindebergBedingungL} impliziert die \textbf{Feller-Bedingung}
+	\begin{align}\label{eqLemma9.5FellerbedingungF}\tag{F}
+		\limn\frac{1}{s_n^2}\cdot\max\limits_{1\leq j\leq n}\sigma_j^2=0
+	\end{align}
+	\underline{Interpretation:}
+	$s_n^2=\sigma_1^2+\ldots+\sigma_n^2$ wächst echt schneller als $\max\limits_{1\leq j\leq n}\sigma_j^2$.\nl
+	Es gilt: \eqref{eqLemma9.5FellerbedingungF} + (ZGS) $\implies$ \eqref{eqTheorem9.4LindebergBedingungL}
+\end{lemma}
+
+\begin{proof}
+	Sei $\varepsilon>0,n\in\N$. Für $j\in\lbrace 1,\ldots,n\rbrace$ gilt:
+	\begin{align*}
+		\sigma_j^2
+		&=\Var(X_j)
+		=\E\bigg[\underbrace{X_j^2\cdot\indi_{\big\lbrace|X_j|<\varepsilon\cdot s_n\big\rbrace}}_{\leq\varepsilon^2\cdot s_n^2}+X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_n\big\rbrace}\bigg]\\
+		&\implies 
+		\frac{\sigma_j^2}{s_n^2}
+		\leq\varepsilon^2+\frac{1}{s_n^2}\cdot\E\left[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_n\big\rbrace}\right]
+		\overset{\text{grob}}\leq
+		\varepsilon^2+\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\left[X_j^2\cdot\indi_{\big\lbrace |X_j|\geq\varepsilon\cdot s_n\big\rbrace}\right]\\
+		&\implies
+		\frac{1}{s_n^2}\cdot\max\limits_{1\leq j\leq n}\sigma_j^2
+		\leq\varepsilon^2+\underbrace{\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\left[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_n\big\rbrace}\right]}_{\overset{n\to\infty}{\longrightarrow}0\text{ wegen \eqref{eqTheorem9.4LindebergBedingungL}}}\\
+		&\implies
+		\limn\frac{1}{s_n^2}\cdot\max\limits_{1\leq j\leq n}\sigma_j^2
+		\leq\varepsilon^2\qquad\forall\varepsilon>0\\
+		&\implies\limn\frac{1}{s_n^2}\cdot\max\limits_{1\leq j\leq n}\sigma_j^2=0
+	\end{align*}
+\end{proof}
+
+\setcounter{satz}{6} %War in der VL so. Hat Marvin verkackt.
+\begin{lemma}\label{lemma9.7}
+	Seien $(a_j)_{j\in\N},(b_j)_{j\in\N}$ Folgen in $\C$ mit $|a_j|\leq 1,|b_j|\leq 1~\forall j\in\N$.
+	Dann gilt:
+	\begin{align*}
+		\left|\prod\limits_{j=1}^n a_j-\prod\limits_{j=1}^n b_j\right|
+		\leq\sum\limits_{j=1}^n\big| a_j-b_j\big|\qquad\forall n\in\N
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Induktion über $n\in\N$:\\
+	\underline{IA:} Für $n=1$ gilt $|a_1-b_1|\leq|a_1-b_1|$.\\
+	\underline{IS: $n\to n+1$}
+	Setze
+	\begin{align*}
+		A_n:=\prod\limits_{j=1}^na_j,\qquad B_n:=\prod\limits_{j=1}^n b_j
+	\end{align*}
+	Dann gilt
+	\begin{align*}
+		\big| A_n\cdot a_{n+1}-B_n\cdot b_{n+1}\big|
+		&\leq\big|A_n\cdot a_{n+1}-B_n\cdot a_{n+1}\big|+\big|B_n\cdot a_{n+1}-B_n\cdot b_{n+1}\big|\\
+		&\leq\big|A_n-B_n\big|\cdot\underbrace{|a_{n+1}|}_{\leq1}+\underbrace{|B_n|}_{\leq 1}\cdot\big|a_{n+1}-b_{n+1}\big|\\
+		&\leq\big|A_n-B_n\big|+\big|a_{n+1}-b_{n+1}\big|\\
+		\overset{\text{IV}}&\leq
+		\sum\limits_{j=1}^n\big|a_j-b_{j+1}\big|+\big|a_{n+1}-b_{n+1}\big|\\
+		&\leq\sum\limits_{j=1}^{n+1}\big|a_j-b_{j}\big|
+	\end{align*}
+\end{proof}
+
+\begin{proof}[Beweis des ZGS von Lindeberg-Feller, Theorem \ref{theorem9.4ZGSLindebergFeller}]\enter
+	\textbf{Vorüberlegung:}
+	Restglieg $g_2$ in \eqref{eqVorueberlegungChapter9Exp} in Lemma \ref{lemma9.2}:
+	\begin{align*}
+		\E\left[\left|g_2\left(\frac{u\cdot X_j}{s_n}\right)\right|\right]
+		&\leq u^2\cdot\E\Bigg[\underbrace{\min\left\lbrace\frac{X_j^2}{s_n^2},\frac{|u|\cdot|X_j|^3}{\sigma\cdot s_n^3}\right\rbrace}_{=:Y}\Bigg]
+	\end{align*}
+	Weitere Abschätzung:
+	\begin{align}\nonumber
+		\E[Y]&=\E\bigg[Y\cdot\indi_{\big\lbrace|X_j|<\varepsilon\cdot s_u\big\rbrace}\bigg]+
+			\E\bigg[Y\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\\\nonumber
+			&\leq \frac{|u|}{6}\cdot\E\bigg[\underbrace{\frac{|X_j|}{s_n}}_{\leq\varepsilon}\cdot\frac{X_j^2}{s_n^2}\cdot\indi_{\big\lbrace|X_j|<\varepsilon\cdot s_u\big\rbrace}\bigg]+\frac{1}{s_n^2}\cdot\E\bigg[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\\
+			&\leq\frac{\varepsilon\cdot|u|}{6}\cdot\frac{\E\big[X_j^2\big]}{s_n^2}+\frac{1}{s_n^2}\cdot\E\bigg[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\label{eqProof9.4Stern}\tag{$\ast$}
+	\end{align}
+	
+	\textbf{Moment Matching:} Zur gegebenen Folge $(X_j)_{j\in\N}$ definiere weitere Folge $(G_j)_{j\in\N}$ von unabhängigen, normalverteilten Zufallsvariablen $G_j\sim\Nor(0,\sigma_j^2)$, d.h. mit übereinstimmendem ersten und zweiten Moment (sogenanntes \textbf{Moment Matching}).
+	\begin{align*}
+		\E\big[X_j\big]&=\E\big[G_j\big]=0\\
+		\E\big[X_j^2\big]&=\E\big[G_j^2\big]=\sigma_j^2
+	\end{align*}		
+	Die $(G_j)_{j\in\N}$ erfüllen den ZGS, denn
+	\begin{align*}
+		G_1+\ldots+G_n\sim\Nor\big(0,\sigma_1^2+\ldots+\sigma_n^2\big)=\Nor(0,s_n^2)\\
+		\implies
+		\frac{1}{s_n}\cdot\big(a_1+\ldots+a_n\big)\sim\Nor(0,1)\qquad\forall n\in\N
+	\end{align*}
+
+	\textbf{Idee:} Schätze Abstand der charakteristischen Funktionen von $\frac{X_j}{s_n}$ und $\frac{G_j}{s_n}$ ab.
+	Wegen Moment Matching stimmen die charakteristischen Funktionen bis zur Ordnung 2 überein!
+	\begin{align*}
+		\Phi_{\frac{X_j}{s_n}}(u)
+		&=\E\left[\exp\left(i\cdot u\cdot\frac{X_j}{s_n}\right)\right]
+		=1-\frac{u^2}{2}\cdot\frac{\sigma_j^2}{s_n^2}+\E\left[g_2\left(\frac{u\cdot X_j}{s_n}\right)\right]\\
+		\Phi_{\frac{G_j}{s_n}}(u)
+		&=\E\left[\exp\left(i\cdot u\cdot\frac{G_j}{s_n}\right)\right]
+		=1-\frac{u^2}{2}\cdot\frac{\sigma_j^2}{s_n^2}+\E\left[g_2\left(\frac{u\cdot G_j}{s_n}\right)\right]
+	\end{align*}
+	Wir wissen:
+	\begin{align*}
+		\left|\Phi_{\frac{X_j}{s_n}}(u)\right|\leq 1
+		\qquad\text{ und }\qquad
+		\left|\Phi_{\frac{G_j}{s_n}}(u)\right|\leq 1\qquad\forall u\in\R
+	\end{align*}
+	Also gilt mit Lemma \ref{lemma9.7}:
+	\begin{align*}
+		\Bigg|\Phi_{\frac{X_1+\ldots+X_n}{s_n}}(u)-\underbrace{\Phi_{\frac{G_1+\ldots+G_n}{s_n}}(u)}_{\text{CF von }\Nor(0,1)}\Bigg|
+		&=\left|\prod\limits_{j=1}^n\Phi_{\frac{X_j}{s_n}}(u)-\prod\limits_{j=1}^n\Phi_{\frac{G_j}{s_n}}(u)\right|\\
+		&\leq\sum\limits_{j=1}^n\left|\Phi_{\frac{X_j}{s_n}}(u)-\Phi_{\frac{G_j}{s_n}}(u)\right|\\
+		&\leq\sum\limits_{j=1}^n\left|\E\left[g_2\left(\frac{u\cdot X_j}{s_n}\right)-g_2\left(\frac{u\cdot G_j}{s_n}\right)\right]\right|\\
+		\overset{\text{DU}}&\leq
+		\underbrace{\sum\limits_{j=1}^n\E\left[\left|g_2\left(\frac{u\cdot X_j}{s_n}\right)\right|\right]}_{=:A_n}+\underbrace{\sum\limits_{j=1}^n\E\left[\left|g_2\left(\frac{u\cdot G_j}{s_n}\right)\right|\right]}_{=:B_n}
+	\end{align*}
+	Abschätzung für $A_n$:
+	\begin{align*}
+		A_n\overset{\eqref{eqProof9.4Stern}}&\leq
+		\frac{|u|\cdot\varepsilon}{6}\cdot\underbrace{\frac{\big(\sigma_1^2+\ldots+\sigma_n^2\big)}{s_n^2}}_{=1}+\underbrace{\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\bigg[X_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]}_{\overset{n\to\infty}{\longrightarrow}~\forall\varepsilon>0}\\
+		&\implies
+		\limn A_n\leq\frac{|u|\cdot\varepsilon}{6}\qquad\forall\varepsilon>0\\
+		&\implies\limn A_n=0
+	\end{align*}	
+	Abschätzung für $B_n$:
+	\begin{align*}
+		B_n\overset{\eqref{eqProof9.4Stern}}&\leq
+		\frac{|u|\cdot\varepsilon}{6}+\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\E\bigg[G_j^2\cdot\indi_{\big\lbrace|X_j|\geq\varepsilon\cdot s_u\big\rbrace}\bigg]\\
+		&=\frac{|u|\cdot\varepsilon}{6}+\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n\sigma_j^2\cdot\E\Bigg[\underbrace{\left(\frac{G_j}{\sigma_j}\right)^2}_{\sim\Nor(0,1)}\cdot\indi_{\Big\lbrace\frac{G_j}{\sigma_j}\geq\varepsilon\cdot \frac{s_n}{\sigma_j}\Big\rbrace}\Bigg]\\
+		%&=\frac{|u|\cdot\varepsilon}{6}+\frac{1}{s_n^2}\cdot\sum\limits_{j=1}^n \sigma_j^2\cdot\int\limits_{|x|\geq\varepsilon\cdot\frac{s_n}{\sigma_j}}x^2\cdot\underbrace{\varphi(x)}_{\text{Dichte v.}\Nor(0,1)}\d x\\
+		%&\leq\frac{|u|\cdot\varepsilon}{6}+\underbrace{\frac{\sigma_1^2+\ldots\sigma_n^2}{s_n^2}}_{=1}\cdot\int\limits_{K_n}x^2\cdot\varphi(x)\d x\mit K_n:=\left\lbrace x:|x|\geq\min\limits_{1\leq j\leq n}\frac{s_n}{\sigma_j}\right\rbrace
+	\end{align*}
+	Feller-Bedingung:
+	\begin{align*}
+		\limn\max\limits_{1\leq j\leq n}\frac{\sigma_j^2}{s_n^2}=0\implies\limn\min\limits_{0\leq j\leq n}\frac{s_n}{\sigma_j}=0\\\
+		\implies K_n\downarrow\emptyset
+	\end{align*}
+	Insgesamt:
+	\begin{align*}
+		&\limn B_n\leq\frac{|u|\cdot\varepsilon}{6}\qquad\forall\varepsilon>0\\
+		&\implies\limn B_n=0\\
+		&\implies\Phi_{\frac{X_1+\ldots+X_n}{s_n}}(u)\overset{n\to\infty}{\longrightarrow}\exp\left(-\frac{u^2}{2}\right)\\
+		&\implies\frac{X_1+\ldots+X_n}{s_n}\overset{\d}{\longrightarrow} X\sim\Nor(0,1)
+	\end{align*}
+\end{proof}

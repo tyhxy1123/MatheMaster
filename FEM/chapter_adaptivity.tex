@@ -1,0 +1,212 @@
+\section{Adaptive refinement / coarsening}
+Assume $\T$ of $\Omega$, $u_h\in V_h$ is a FEM-solution \nl
+a posteori error estimate 
+\begin{equation*}
+	\|u-u_h\| \leq \eta(u_h) = \left( \displaystyle \sum_{T\in \T} (\eta_T(u_h))^p\right)^{1/p}, \quad p\in [1,\infty)
+\end{equation*}
+$\eta$ is a computable funtion, only dependable on FEM-solution. If $\tol$ is a given tolerance and $\eta(u_h) > \tol$. Where to refine $\T$ in order to reduce the error?
+\subsection{General strategy for elliptic problems}
+start with $\T_0$ and $\tol$
+\begin{align*}
+	{}&k=0\\
+	{}&\text{solve discrete problem on }\T_h \text{ compute global error estimate }\\
+	{}& \eta \text{ and local error estimation } \eta_T \text{ for } T\in \T_k\\
+	{}& \text{while }\eta > \tol \text{ do:}\\
+	{}& \quad \text{mark elements for refinement}\\
+	{}& \quad \text{adapt mesh}\\
+	{}& \quad k=k+1\\
+	{}& \quad \text{solve discrete problem on }\T_h\\
+	{}& \quad \text{compute }\eta \text{ and }\eta_T \text{ for } T\in \T_k\\
+	{}& \text{end while	} 
+\end{align*}
+strategy: local error is similiar for all elements $\implies$ elements with large local error can be coarsed
+\begin{enumerate}[label=\alph*)]
+	\item global refinement
+	\item maximum strategy, $\gamma \in(0,1)$ refine all elements with 
+	\begin{equation*}
+		\eta_T > \gamma \underset{T'\in\T_K}{\max} \eta_{T'}
+	\end{equation*}
+	typical $\gamma=\frac{1}{2}$ 
+	\item equidistribution strategy\\
+	$N_K$ number of elements in $\T_K$, assuming equal distribution of the error, e.g.
+	\begin{align*}
+		\eta_T &= \eta_{T'} \quad \forall T,T' \in \T_K\\
+		\eta &= \left(\displaystyle \sum_{T \in \T_K} (\eta_T)^p \right)^{\frac{1}{p}} = (N_K)^{\frac{1}{p}} \eta_T \overset{!}{=} \tol
+	\end{align*}
+	\begin{equation*}
+		\eta_T = \frac{\tol}{(N_K)^\frac{1}{p}}
+	\end{equation*}
+	choose $\Theta \in (0,1)$, $\Theta \approx1 $, refine all elements with 
+	\begin{equation*}
+		\eta_T > \Theta \frac{\tol}{(N_K)^\frac{1}{p}}
+	\end{equation*}
+	
+	\item guaranteed error reduction\\
+	usually it is not clear, that the error is reduced and the strategy converges\\
+	idea: refine a subset of triangulation, whose element errors sum up to a fixed amount of $\eta$
+\end{enumerate}
+
+\subsection{Coarsening}
+refinement is sufficient for linear elliptic problems, but for time dependent problems coarsening is needed too.
+\begin{itemize}
+	\item for maximum strategy: $\gamma > \gamma_C$: coarsen all elements with
+	\begin{equation*}
+		\eta_T^p + \underbrace{\eta_{C,T}^p}_{\text{loss through coarsening}} \leq \gamma_C \underset{T'\in\T_K}{\max} \eta_{T'}
+	\end{equation*}
+	\item for equidistribution strategy $\Theta_C \in(0,1)$ coarsen all elements with 
+	\begin{equation*}
+		\eta_T + \eta_{C,T} \leq \Theta_C \frac{\tol}{(N_K)^\frac{1}{p}}
+	\end{equation*}
+\end{itemize}
+
+\underline{time-dependent problems}:
+\begin{itemize}
+	\item explicit strategy: do iteration only once $\to$ next timestep
+	\item semi-implicit: do a adaption only once
+	\item implicit strategy: adapt until $\tol$ is reached in each timestep
+	\begin{itemize}
+		\item start with coarse mesh
+		\item start with the mesh from the previous time step
+	\end{itemize}
+\end{itemize}
+How to compute $\eta_T$?\vspace{1cm}
+\begin{example}
+	Compute drag coefficient in an incompressible flow around a cylinder(fine mesh needed at green parts)\\
+	%TODO add pic 
+	Navier-Stokes equation
+	\begin{align*}
+	\begin{cases}
+	\partial_t v - \nu \laplace v + v \cdot \nabla v + \nabla p = f\\
+	\hspace{3.4cm}\nabla \cdot v = 0
+	\end{cases}
+	\end{align*}
+	with unknowns: velocity $v$ and pressure $p$.\\
+	drag coefficient 
+	%TODO is that right?
+	\begin{equation*}
+		\exists (v,p) = \frac{2}{\bar{u}^2D}\int \limits_S n^T \left(2v \tau -p I\right) \partial \partial S
+	\end{equation*}
+	\begin{align*}
+		&S && \text{surface of cylinder}\\
+		&D && \text{diameter of cylinder}\\
+		&\bar{u} && \text{maximum inflow velocity}\\
+		&\tau \approx \frac{1}{2}(\nabla v + (\nabla v )^T) && \text{stress tensor}\\
+		&n && \text{normal}\\
+		&d=(0,1)^T && \text{flow direction}\\
+	\end{align*}
+	%TODO ist die Aufteilung richtig hier?
+	\begin{itemize}
+		\item heuristic indicator: $\eta_T$
+		\item verticity: $\eta_T = h_T \|\nabla \times v_h\|_T$
+		\item first order pressure gradient:  $\eta_T = h_T \|\nabla p_h\|_T$
+		\item second order velocity gradient:  $\eta_T = h_T \|\nabla^2 v_h\|_T$
+		\item residual based indicator: 
+		\begin{equation*}
+			\eta_T = h_T \|R_h\|_T +  h_T^{(1/2)} \|r_h\|_T + h_T \|\nabla v_h\|_T
+		\end{equation*}
+		with 
+		\begin{align*}
+			R_h &= f + \nu \laplace v_h - v_h \cdot \nabla v_h -  \nabla p \\
+			r_h &= 
+			\begin{cases}
+				\frac{1}{2}(\nu ?? v_h - n p_h), &\text{for }\Gamma \nsubseteq \partial \Omega\\
+				0 ,&\text{for }\Gamma \subset \Gamma_{\text{rigid}}\cup\Gamma_{\text{in}}\\
+				-\nu ?? v_h + n p_h, &\text{for }\Gamma \subset \Gamma_{\text{out}}
+			\end{cases} 
+		\end{align*}
+	\end{itemize}
+	comment on residuals(lin. alg.)
+	\begin{align*}
+		Ax&=b &  A_h x_h &= b_h &&A,A_h \in \R^{n\times n},x,x_h,b,b_h\in\R^n \\
+		A_h&\to A & b_h &\to b  &&(h\to 0)\\
+	\end{align*}
+	\begin{align*}
+		e&= x-x_h &&\text{error}\\
+		\rho&= b-Ax_h&&\text{residual}
+	\end{align*}
+	%TODO ist die strukturierung richtig?
+\end{example}
+\subsection{a posteriori error analysis uses}
+\begin{equation*}
+	Ae = Ax-Ax_h = b - Ax_h = \rho
+\end{equation*}
+$\implies \|e\| \leq c_T \|\rho\|$, with $c_T = \|A^{-1}\|$
+\begin{align*}
+	-\laplace u &= f \tin \Omega \\
+	u &= 0 \ton \partial \Omega
+\end{align*}
+\begin{align*}
+	\laplace u_h +f &= R_T= R_T(u_h) \quad (\text{volume residual on T}) \\
+	\left[\frac{\partial u_h}{\partial n}\right] &= R_e= R_e(u_h) \quad (\text{edge residual on e}) \\
+\end{align*}
+$\implies$ residual error estimate(local)
+\begin{align*}
+	\eta_{T,R} = \left( h_T^2 \|R_T\|^2  + \frac{1}{2}\displaystyle \sum_{e\in \partial T}  h_e \|R_e\|^2\right)^{1/2}
+\end{align*}
+$\implies$ it holds:
+\begin{align}\label{lem_cea}
+	\|u-u_h\|_1 \leq c \left( \sum \limits_{T \in \T} \eta_T^2 \right)^{1/2}
+\end{align}
+residual error estimate(global)
+\begin{equation*}
+	\eta_T = \left(  \sum \limits_{T \in \T_K} \|R_T\|^2  +  \sum \limits_{e \in \Gamma_K} \|R_e\|^2 \right)^{1/2}
+\end{equation*}
+\begin{proof_}
+	(of Lemma of Cea \eqref{lem_cea}))
+	\begin{align*}
+		a(u,v) &= \langle l,v\rangle\quad \forall v\in V \\
+		a(u_h,v) &=\langle l,v\rangle \quad \forall v\in V_h \\
+		\implies a(u-u_h,v) &=0 \quad \forall v\in V_h \\
+	\end{align*}
+	\begin{align}
+		\implies ( \nabla(u-u_h),\nabla v_h )  =0 \quad \forall u \in V_h 
+	\end{align} 
+	Let's consider $w \in V$:
+	\begin{align*}
+		\langle l,w\rangle &= (\nabla(u-u_h),\nabla w) =\underbrace{(\nabla u,\nabla w)}_{=(-\laplace u,w) } - (\nabla u_h,\nabla w) \\
+		&= (f,w) - \sum\limits_T (\nabla u_h,\nabla w)\\
+		&\stackeq{\text{Int.by parts}} (f,w) - \sum \limits_T \left( (l-\laplace u_h,w)_T + \sum \limits_{e\in\partial T} (\nabla u_n \cdot n,w)_e \right)\\
+		&= \sum \limits_T  (\laplace u_h +f,w)_T + \sum \limits_{\Gamma_h} \left(\left[\frac{\partial u_h}{\partial n}\right],w\right)_e \\
+		&\stackeq{R_T,R_e} \sum \limits_T  (R_T,w)_T + \sum \limits_{\Gamma_h} \left(R_e,w\right)_e
+	\end{align*}
+\end{proof_}
+
+Approximation property of of the interpolation:\nl
+for each $w\in V\ (H^1_0)$ exists $I_hw\in V_h$ with 
+\begin{align*}
+	\|w-I_hw\|_T &\leq c h_T \|\nabla w\|_{\hat{w}_T}\\
+	\|w-I_hw\|_e &\leq c h^{1/2}_e \|\nabla w\|_{\hat{w}_T}
+\end{align*}
+with $\hat{w}_T = \bigcup\{w_x:x\in T\}, w_x = \bigcup \{T'\in\T_h,x\in T'\}$.
+\begin{align*}
+	\langle l,\underbrace{w}_{\in V} \rangle &\stackeq{(*)} \langle l,w-\underbrace{I_hw}_{\in V_h} \rangle\\
+	&= \sum \limits_T  (R_T,w-I_hw)_T + \sum \limits_{\Gamma_h} \left(R_e,w-I_hw\right)_e\\
+	&\leq c\sum \limits_T h_T  \|R_T\|_T |w|_{1,T} + c\sum \limits_{\Gamma_h} h^{1/2}_e \|R_e\|_e |w|_{1,e}\\
+	&\stackrel{\text{C.S.}}{\leq} c\sum \limits_T \eta_{T,R} |w|_{1,T}
+\end{align*}
+
+\underline{duality argument}
+\begin{equation*}
+	|u-u_h|_1 = \underset{\substack{|w|_1=1 \\w\in H^1_0}}{\sup} ( \nabla(u-u_h),\nabla w)
+\end{equation*}
+\underline{poincaré inequality}
+\begin{equation*}
+	\|v\|_0 \leq \gamma |v|_1 \quad \forall v \in H^1_0(\Omega)
+\end{equation*}
+$\implies$
+\begin{equation*}
+	\|u-u_h\|_0 \leq \gamma \left( \sum \limits_{T \in \T_h}\right)^{1/2}
+\end{equation*}
+
+\underline{other useful estimtates}:
+\begin{enumerate}[label= (\alph*)]
+	\item consider local problem on each element $T$ or small domain $\hat{w}_r$ 
+	\begin{align*}
+		Az &= R_T \tin T  &&\text{or}& -\laplace z&= f \ton \hat{w}_T\\
+		\frac{\partial z}{\partial n} &= R_e \ton \partial T  &&& z &= u_h \ton \partial \hat{w}_T
+	\end{align*}
+	solve this with Finite elements which are one degree higher than original problem, use $\|z\|_1$ or $\|z-u_h\|_1$ as estimate of error(Babusha, Reinhold 1978) (more effort: need to solve for all T)
+	\item consider averaging\nl
+	conpute on each vertex an approximation of $\laplace u$ by averaging gradients of neighboring elements( with weights according to size of elements) and define approximation by interpolation in the element.\nl
+	difference between $\nabla $ and this approximation is indicatior for the error (Rewize, Zhon 1987)(especially for time deoendent problems, very expensive -> quite good for elliptic problems)
+\end{enumerate}

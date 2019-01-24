@@ -1,2 +1,5 @@
-- Galerkin Orthogonalität
-- Schwache Formulierung
+Prüfungen
+=========
+- 20 Minuten pro Prüfung
+- Daten: 25.2, 14.2
+- Details folgen am 21.01.2019

@@ -1,0 +1,1212 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Anwendungen} %eigentlich ist das das dritte Kapitel
+\section{Approximation}
+
+\begin{theorem}[Trotter-Kato-Miyadera]\label{theoremTrotterKatoMiyadera}\enter
+	Sei $(A_n)_{n\in\N}$ ein Folge von $m$-akkretiven Operatoren (vom uniformen Typ $\omega\in\R$, d.h. $\omega$ hängt nicht von $n$ ab) auf einem Banachraum $X$. Sei $(S_n)_{n\in\N}$ die zugehörige Folge von nichtlinearen Halbgruppen ($S_n$ ist Halbgruppe auf $D_n:=\overline{\dom(A_n)}$). Betrachte die folgenden Aussagen:
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und\\ $u_0:=\limn u_{0,n}$ existiert
+		\begin{align*}
+			\limn S_n(t) u_{0,n}=:S(t) u_0
+		\end{align*}
+		gleichmäßig für $t$ in kompakten Teilmengen in $\R_+$.
+		\item Es existiert ein $\lambda_0>0$ mit $\lambda_0\cdot\omega<1$ so, dass für alle $f\in X$
+		\begin{align*}
+			\limn J_{\lambda_0}^{A_n} f=:J_{\lambda_0}f\qquad \Big(\mit J_{\lambda_0}^{A_n}=\big(I+\lambda_0\cdot A_n\big)^{-1}\Big)
+		\end{align*}
+		existiert.
+		\item Für alle $\lambda>0$ mit $\lambda\cdot\omega<1$ und alle $f\in X$ existiert
+		\begin{align*}
+			\limn J_\lambda^{A_n} f=:J_\lambda f
+		\end{align*}
+		\item Für alle $\lambda>0$ mit $\lambda\cdot\omega<1$ und alle konvergenten Folgen $(f_n)_{n\in\N}$ in $X$ mit $f:=\limn f_n$ existiert
+		\begin{align*}
+			\limn J_\lambda^{A_n}f_n=:J_\lambda f
+		\end{align*}
+		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und\\ $u_0=\limn u_{0,n}$ und jede konvergente Folge $(f_n)_{n\in\N}$ in $L^1(0,T;X)$ mit $f=\limn f_n$ gilt:
+		Sind $u,u_0\in C\big([0,1];X\big)$ die eindeutigen Integrallösungen von
+		\begin{align*}
+			\left\lbrace\begin{array}{r}
+				\dot{u}+A_n u_n\ni f_n\\
+				u_n(0)=u_{0,n}
+			\end{array}\right.\qquad\text{und}\qquad
+			\left\lbrace\begin{array}{r}
+				\dot{u}+A u\ni f\\
+				u(0)=u_{0}
+			\end{array}\right.
+		\end{align*}
+		wobei $A\subseteq X\times X$ der Operator ist mit $J_\lambda^A=J_\lambda$ (wie in (iii) und (iv)), dann gilt
+		\begin{align*}
+			\limn\big\Vert u_n-u\big\Vert_{C\big([0,T];X\big)}=0
+		\end{align*}
+	\end{enumerate}
+	Dann gilt: (i) $\Longleftarrow$ (ii) $\Longleftrightarrow$ (iii) $\Longleftrightarrow$ (iv) $\Longleftrightarrow$ (v)\\
+	Falls $X$ ein Hilbertraum ist, dann gilt auch (i) $\Longleftrightarrow$ (ii).\nl
+	Zu (iv) $\Longrightarrow$ (v): Wenn die äquivalenten Aussagen (ii),(iii),(iv) gelten, dann ist $J_\lambda$ Resolvente eines $m$-akkretiven Operators $A$ vom Typ $\omega$. Die von $A$ erzeugte Halbgruppe ist die Halbgruppe $S$ aus (i).
+\end{theorem}
+
+\begin{proof}
+	Wir zeigen hier nur (i) $\Longleftarrow$ (ii) $\Longleftrightarrow$ (iii) $\Longleftrightarrow$ (iv).\nl
+	\underline{Vorbetrachtung:}\\
+	Auf dem Raum $c(\N,X)$ aller konvergenten Folgen in $X$(Banachraum  bzgl. Supremumsnorm $\Vert\cdot\Vert_\infty$) betrachten wir den Operator
+	\begin{align*}
+		\A=\Big\lbrace\big((u_n)_{n\in\N},(f_n)_{n\in\N}\big)\in c(\N,X)\times c(\N,X):\big(u_n,f_n)\in A_n~\forall n\in\N\Big\rbrace
+	\end{align*}	 
+	Weil die $A_n$ akkretiv vom Typ $\omega$ sind, gilt für alle $(u_n,f_n),(\hat{u}_n,\hat{f}_n)\in A_n$ und alle $\lambda>0$ mit $\lambda\cdot\omega<1$:
+	\begin{align*}
+		\Big\Vert u_n-\hat{u}_n+\lambda\cdot(f_n-\hat{f}_n)\Big\Vert_X
+		&\geq(1-\lambda\cdot\omega)\cdot\big\Vert u_n-\hat{u}_n\big\Vert
+	\end{align*}
+	Also gilt (nehme Supremum auf beiden Seiten) für alle\\ $\big((u_n)_{n\in\N},(f_n)_{n\in\N}\big),\big((\hat{u}_n)_{n\in\N},(\hat{f}_n)_{n\in\N}\big)\in\A$ und alle $\lambda>0$ mit $\lambda\cdot\omega<1$
+	\begin{align*}
+		\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}+\lambda\cdot\big((f_n)_{n\in\N}-(\hat{f}_n)_{n\in\N}\big)\Big\Vert_\infty
+		&\geq(1-\lambda\cdot\omega)\cdot\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}\Big\Vert_\infty
+	\end{align*}
+	Also ist $\A$ akkretiv vom Typ $\omega$.\nl
+	%\underline{Es gelte nun Aussage (ii):}\\
+	\underline{Zeige (ii)$\implies$(iv):}
+	Sei $(f_n)_{n\in\N}\in c(\N,X),~f:=\limn f_n$. Dann gilt:
+	\begin{align*}
+		\Big\Vert J_{\lambda_0}^{A_n} f_n-J_{\lambda_0} f\Big\Vert
+		&=\Big\Vert J_{\lambda_0}^{A_n} f_n\underbrace{-J_{\lambda_0}^{A_n} f+J_{\lambda_0}^{A_n} f}_{=0}-J_{\lambda_0} f\Big\Vert_X\\
+		\overset{\text{DU}}&\leq
+		\Big\Vert J_{\lambda_0}^{A_n} f_n-J_{\lambda_0}^{A_n} f\Big\Vert_X+\Big\Vert J_{\lambda_0}^{A_n} f-J_{\lambda_0} f\Big\Vert_X\\
+		\overset{(\ast)}&\leq
+		\frac{1}{1-\lambda_0\cdot\omega}\cdot\big\Vert f_n-f\big\Vert+\Big\Vert J_{\lambda_0}^{A_n} f-J_{\lambda_0}f\Big\Vert_X\stackrel{n\to\infty}{\longrightarrow} 0
+	\end{align*}
+	Bei $(\ast)$ wird verwendet, dass $J_{\lambda_0}^{A_n}$ Lipschitzstetig mit Lipschitzkonstante $\frac{1}{1-\lambda_0\cdot\omega}$ ist. 
+	Folglich ist 
+	\begin{align*}
+		(u_n)_{n\in\N}:=\Big(J_{\lambda_0}^{A_n} f_n\Big)_{n\in\N}\in c(\N,X)
+	\end{align*}
+	Damit ist $(u_n)_{n\in\N}\in\dom(\A)$ und 
+	\begin{align*}
+		\big(I+\lambda_0\cdot\A\big)(u_n)_{n\in\N}\ni (f_n)_{n\in\N}
+	\end{align*}
+	(Es gilt
+	\begin{align*}
+		u_n+\lambda_0\cdot A_n u_n\ni f_n
+		\quad\text{bzw.}\quad
+		A_n u_n\ni\frac{f_n-u_n}{\lambda_0}		
+		\quad\text{bzw.}\quad
+		\left(u_n,\frac{f_n-u_n}{\lambda_0}\right)\in A_n\quad\forall n\in\N
+	\end{align*}
+	und somit $\left((u_n)_{n\in\N},\left(\frac{f_n-u_n}{\lambda_0}\right)_{n\in\N}\right)\in\A$.)\nl
+	Wir haben gezeigt, dass $I+\lambda_0\cdot\A$ surjektiv ist. Weil $\A$ akkretiv vom Typ $\omega$ ist, ist damit  $A$ $m$-akkretiv vom Typ $\omega$ und damit ist $I+\lambda\cdot\A$ surjektiv (bijektiv) für alle $\lambda>0$ mit $\lambda\cdot\omega<1$.
+	Daraus folgt Eigenschaft (iv).\nl
+	\underline{Zeige (iv)$\implies$(iii)$\implies$(ii):} Trivial.\nl
+	Nachrechnen: Die $J_\lambda$ sind von der Form $J_\lambda^A$ für einen $m$-akkretiven Operator vom Typ $\omega$.\nl
+	\underline{Zeige (ii)$\implies$(i):}\\
+	Es gelte nun eine der äquivalenten Aussagen (ii),(iii),(iv). Dann ist der Operator $\A$ $m$-akkretiv vom Typ $\omega$.
+	Der Operator $\A$ erzeugt also eine Halbgruppe $\mathcal{S}$ auf dem Raum $c(\N,X)$.\\
+	Die Exponentialformel zeigt:
+	\begin{align*}
+		\mathcal{S}(t)(u_{0,n})
+		\overset{\text{Exp-Formel}}&=
+		\lim\limits_{k\to\infty}\left(J_{\frac{t}{k}}^{\A}\right)^k(u_{0,n})_{n\in\N}\\
+		&=\lim\limits_{k\to\infty}\left(\left(J_{\frac{t}{k}}^{A_n}\right)^k u_{0,n}\right)_{n\in\N}\\
+		\overset{\text{Exp-Formel}}&=
+		\left(S_n(t) u_{0,n}\right)\in  c(\N,X)
+		\qquad\forall (u_{0,n})_{n\in\N}\in\overline{\dom(\A)}
+	\end{align*}
+	Daraus folgt (i). (Zeige dafür:
+	\begin{align*}
+		\overline{\dom(\A)}=\Big\lbrace(u_{0,n})_{n\in\N}\in c(\N,X)~\Big|~ u_{0,n}\in D_n\Big\rbrace~)
+	\end{align*}
+\end{proof}
+
+\textbf{Erinnerung.}
+Seien $A_n$ akkretiv vom Typ $\omega\in\R$. Dann gilt:
+\begin{align*}
+	\Big(\exists\lambda>0\mit\lambda\cdot\omega<1:\forall x\in X:
+	J_\lambda^{A_n} x\longrightarrow J_\lambda^A x\Big)\implies\forall x\in X:S_n(t)x\longrightarrow S(t)x
+\end{align*}
+Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmengen von $[0,\infty)$).
+
+\section{Yosidaapproximation}
+\begin{definition}
+	Sei $A\subseteq X\times X$ $m$-akkretiv vom Typ $\omega\in\R$, $\lambda>0,\lambda\cdot\omega<1$.
+	Dann heißt
+	\begin{align*}
+		A^\lambda:=\frac{1}{\lambda}\left(I-J_\lambda^A\right)
+	\end{align*}
+	\textbf{Yosidaapproximation} von $A$ ($J_\lambda^A:=(I-\lambda\cdot A)^{-1}$)
+\end{definition}
+
+\begin{theorem}[Eigenschaften der Yosidaapproximationen]\
+	\begin{enumerate}[label=(\alph*)]
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in X:\big(J_\lambda u,A^\lambda u\big)\in A
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1
+		\end{aligned}$ ist $A^\lambda$ Lipschitzstetig mit Lipschitzkonstante $\frac{2-\lambda\cdot\omega}{\lambda\cdot(1-\lambda\cdot\omega)}$.
+		\item $\forall\lambda>0\mit\lambda\cdot\omega<1$ ist $A^\lambda$ $m$-akkretiv vom Typ $\frac{\omega}{1-\lambda\cdot\omega}$.
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in\dom(A):			
+		\end{aligned}$
+		\begin{align*}
+			(1-\lambda\cdot\omega)\cdot\Vert A^\lambda u\Vert_X\leq\Vert A u\Vert:=\inf\big\lbrace\Vert f\Vert_X:(u,f)\in A\big\rbrace
+		\end{align*}
+		\item $\begin{aligned}
+			\forall\lambda,\mu>0\mit(\mu+\lambda)\cdot\omega<1:
+			A^{\lambda+\mu}=\big(A^\lambda\big)^\mu
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in X:
+			\lim\limits_{\mu\to0^+}J_\lambda^{A^\mu}f=J_\lambda^A f
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\underline{Zeige (a):}
+	\begin{align*}
+		A J_\lambda u
+		&=\frac{-I+I+\lambda\cdot A}{\lambda}J_\lambda u
+		\ni\frac{1}{\lambda}\cdot(I-J_\lambda)u
+		=A^\lambda u
+	\end{align*}
+	Hierbei geht ein, dass $u\in(I+\lambda\cdot A)J_\lambda u$ gilt)
+	Folglich ist $\big(J_\lambda u,A^\lambda u\big)\in A$.\nl
+	\underline{Zeige (b):}\\
+	$J_\lambda$ ist Lipschitzstetig mit Konstante $\frac{1}{1-\lambda\cdot\omega}$.\nl
+	\underline{Zeige (c):}
+	Allgemein gilt:\\
+	Ist $S$ Lipschitzstetig mit Lipschitzkonstante $L$, dann ist $L\cdot I-S$ $m$-akkretiv (vom Typ 0), siehe Beispiele von akkretiven Operatoren). ($m$-Akkretivität ist Übung!). Also ist
+	\begin{align*}
+		\frac{1}{\lambda}\cdot\left(\frac{1}{1-\lambda\cdot\omega}-J_\lambda\right)
+	\end{align*}
+	$m$-akkretiv, d.h. $\frac{\omega}{1-\lambda\cdot\omega}+A^\lambda$ ist $m$-akkretiv, d.h. $A^\lambda$ ist $m$-akkretiv vom Typ $\frac{w}{1-\lambda\cdot\omega}$.\nl
+	\underline{Zeige (e):}\\
+	Seien $\lambda,\mu>0$ mit $(\lambda+\mu)\cdot\omega<1$.
+	Es gilt
+	\begin{align*}
+		A^\mu u=f
+		&\Longleftrightarrow \frac{I-J_\mu^A}{\mu} u=f\\
+		&\Longleftrightarrow J_\mu^A u=u-\mu\cdot f\\
+		&\Longleftrightarrow(u-\mu\cdot f)+\mu\cdot A(u-\mu\cdot f)\ni u\\
+		&\Longleftrightarrow A(u-\mu\cdot f)\ni f
+	\end{align*}
+	Diese Äquivalenz gilt auch für $A^\lambda$ anstelle von $A$, d.h.
+	\begin{align*}
+		\big(A^\lambda)^\mu u=f
+		&\Longleftrightarrow A^\lambda(u-\mu f)\ni u\\
+		\overset{\text{Äquivalenz für }A}&{\Longleftrightarrow}
+		A\big(u-(\mu+\lambda)\cdot f\big)\ni f\\
+		\overset{\text{Äquivalenz für }A}&{\Longleftrightarrow}
+		A^{\lambda+\mu} u=f
+	\end{align*}
+	\underline{Zeige (d):}\\
+	Sei $u\in\dom(A),\lambda>0$ mit $\lambda\cdot\omega<1$.
+	Sei $f\in A u$.
+	Nach (a) gilt $A^\lambda u\in A J_\lambda u$.
+	Weil $A$ akkretiv vom Typ $\omega$ ist, folgt daraus 
+	\begin{align*}
+		\hspace{5pt}\big[u-J_\lambda u,f-A^\lambda u\big]+\omega\cdot\big\Vert u-J_\lambda u\big\Vert&\geq0\\
+		\implies
+		\big[u-J_\lambda u,f-A^\lambda u\big]+\lambda\cdot\omega\cdot\frac{\big\Vert u-J_\lambda u\big\Vert_X}{\lambda}&\geq0\\
+		\implies
+		0&\leq\lambda\cdot\omega\cdot\big\Vert A^\lambda u\big\Vert_X+\big[A^\lambda u,f-A^\lambda u\big]\\
+		&\leq\lambda\cdot\big\Vert A^\lambda u\big\Vert_X+\big[A^\lambda u,f\big]+\big[A^\lambda u,-A^\lambda u\big]\\
+		&\leq\lambda\cdot\omega\cdot\big\Vert A^\lambda u\big\Vert+\Vert f\Vert_X-\big\Vert A^\lambda\big\Vert_X\\
+		\implies\big\Vert A^\lambda u\big\Vert_X
+		&\leq\frac{1}{1-\lambda\cdot\omega}\cdot\Vert f\Vert_X
+		\qquad\forall f\in Au
+	\end{align*}
+	\underline{Zeige (f):}\\
+	Aus (e) folgt
+	\begin{align*}
+		A^{\mu+\lambda}
+		\overset{\text{(e)}}&=
+		\left(A^\mu\right)^\lambda
+		\overset{\text{Def}}=
+		\frac{I-J_\lambda^{A^\mu}}{\lambda}
+	\end{align*}
+	Somit gilt für alle $f\in X$:
+	\begin{align*}
+		J_\lambda^{A^\mu} f
+		&= f-\lambda\cdot A^{\mu+\lambda} f
+		=f-\lambda\cdot\left(\frac{f-J_{\mu+\lambda}^A}{\mu+\lambda}\right)
+		=\frac{\mu}{\mu+\lambda}\cdot f+\frac{\lambda}{\mu+\lambda}\cdot J_{\mu+\lambda}^A f
+		\overset{\mu\to0^+}{\longrightarrow}J_\lambda^A f
+	\end{align*}
+	Beim Grenzübergang wird die Stetigkeit der Resolvente $A$ verwendet, in Abhängigkeit von $\lambda$.
+\end{proof}
+
+\begin{bemerkung}
+	Aus der Eigenschaft (f) der Yosidaapproximation und aus dem Theorem von Trotter-Kato-Miyadera \ref{theoremTrotterKatoMiyadera} folgt, dass die von $A^mu$ erzeugten Halbgruppen $S_\mu$ 
+	(hier genügt der Satz von Picard-Lindelöf!)
+	stark gegen die von $A$ erzeugte Halbgruppe $S$ konvergieren
+	(für $\mu\to0^+$).
+	\begin{align*}
+		S_\mu(t)u_0\overset{\mu\to0^+}{\longrightarrow} S(t)u_0
+		\qquad\forall u_0\in\overline{\dom(A)},\forall t\geq0
+	\end{align*}
+\end{bemerkung}
+
+\begin{definition}
+	Sei $H$ ein Hilbertraum und sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv+\infty$, semikonvex von Typ $\omega\in\R$, d.h.
+	\begin{align*}
+		u\mapsto\E(u)+\frac{\omega}{2}\cdot\Vert u\Vert^2_H\text{ ist konvex.}
+	\end{align*}
+	Dann heißt (für $\lambda>0$ mit $\lambda\cdot\omega<1$
+	\begin{align*}
+		\E^\lambda:H\to\R,\qquad
+		\E^\lambda(u):=\inf\limits_{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2_H\right)
+	\end{align*}
+	\textbf{Moreau-Yosida-Approximation} von $\E$.
+\end{definition}
+
+\begin{theorem}[Eigenschaften der Moreau-Yosida-Approximationen]\label{theoremEigenschaftenDerMoreuaYosiaApproximation}\
+	\begin{enumerate}[label=(\alph*)]
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H:
+		\end{aligned}$
+		\begin{align*}
+			\E^\lambda(u)
+			=\E\left(J_\lambda u\right)+\frac{1}{2\cdot\lambda}\cdot\big\Vert u-J_\lambda^{\partial\E} u\big\Vert_H^2
+			=\E\big(J_\lambda u\big)+\frac{\lambda}{2}\cdot\big\Vert(\partial\E)^\lambda u\big\Vert_H^2
+		\end{align*}				
+		 wobei $\partial\E$ der Subgradient von $\E$, $(\partial\E)^\lambda$ die Yosidaapproximation von $\partial\E$ und $J_\lambda=\big(I+\lambda\cdot\partial\E\big)^{-1}$ die Resolvente von $\partial\E$ ist.
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1
+		\end{aligned}$ ist $\E^\lambda$ stetig differenzierbar und semikonvex vom Typ $\frac{\omega}{1-\lambda\cdot\omega}$.
+		\item $\begin{aligned}
+			\forall u\in H
+		\end{aligned}$ ist die Funktion $\lambda\mapsto\E^\lambda(u)$ monoton fallend und 
+		\begin{align*}
+			\sup\limits_{\lambda>0}\E^\lambda(u)=\lim\limits_{\lambda\to0^+}\E^\lambda(u)\overset{!}{=}\E(u)
+		\end{align*}
+		\item $\begin{aligned}
+			\forall u\in H
+		\end{aligned}$ ist die Funktion $\lambda\mapsto\lambda\cdot\E^\lambda(u)$ konkav und stetig differenzierbar und 
+		\begin{align*}
+			\frac{\d}{\d\lambda}\big(\lambda\cdot\E^\lambda(u)\big)=\E\big(J_\lambda^{\partial\E} u\big)
+		\end{align*}
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1:\partial\big(\E^\lambda\big)=(\partial\E)^\lambda
+		\end{aligned}$\\
+		Auf der linken Seite steht der Subgradient (=Frechétableitung) von $\E^\lambda$ und auf der rechten Seite die Yosidaableitung von $\partial\E$.
+		\item $\begin{aligned}
+			\forall f\in H,\forall\lambda>0\mit\lambda\cdot\omega<1:
+			\lim\limits_{\mu\to0^+}J_\lambda^{\partial\E^\mu}f=J_\lambda^{\partial\E} f
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\underline{Zeige (a):}\\
+	$J_\lambda u$ ist der globale Minimierer der Funktion 
+	\begin{align*}
+		v\mapsto\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2_H
+	\end{align*}
+	(siehe Beweis, dass $\partial\E$ $m$-akkretiv vom Typ $\omega$ ist, also die Surjektivität)\nl
+	\underline{Zeige (b):} Ohne Beweis.\nl
+	\underline{Zeige (c):} Es gilt:
+	\begin{align*}
+		\E^\lambda(u)
+		&=\inf\limits{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2\right)\\
+		\overset{\text{wähle }v=u}&{\leq}
+		\E(u)\qquad\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H
+	\end{align*}
+	Außerem ist $\forall v\in H$ die Funktion $\lambda\mapsto\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert_H^2$ monoton fallend und damit ist 
+	$\E^\lambda(u)=\inf\limits{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2\right)$ monoton fallend.
+	Damit ist
+	\begin{align*}
+		\sup\limits_{\lambda>0}\E^\lambda(u)
+		&=\lim\limits_{\lambda\to0^+}\E^\lambda(u)\leq\E(u)
+	\end{align*}
+	Die Abschätzung $\ldots\geq\E(u)$ ist Übung.\nl
+	\underline{Zeige (d):}\\
+	Für alle $v\in H$ ist die Funktion $\lambda\mapsto\lambda\cdot\E(u)+\frac{1}{2}\cdot\Vert v-u\Vert^2_H$ konkav, 
+	und damit ist $\lambda\mapsto\lambda\cdot\E^\lambda(u)=\inf\limits_{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert u-v\Vert^2\right)$
+	konkav (punktweise Infimum konkaver Funktionen ist konkav).
+	Damit ist $\lambda\mapsto\lambda\cdot\E^\lambda(u)$ insbesondere stetig.
+	Seien $\lambda_1,\lambda_2>0$ mit $\lambda_1\cdot\omega,\lambda_2\cdot\omega<1$ und sei $u\in H$.
+	Dann ist
+	\begin{align*}
+		&\lambda_1\cdot\E^{\lambda_1}(u)-\lambda_2\cdot\E^{\lambda_2}(u)\\
+		\overset{\text{(a)}}&=
+		\lambda_1\cdot\inf\limits_{v\in H}\left(\E(v)+\frac{1}{2\cdot\lambda_1}\cdot\Vert u-v\Vert^2_H\right)
+		-\left(\lambda_2\cdot\E\big(J_{\lambda_2} u\big)+\frac{1}{2\cdot\lambda_2}\cdot\big\Vert u-J_{\lambda_2} u\big\Vert_H^2\right)\\
+		\overset{\text{setze }v=J_{\lambda_2}u}&\leq
+		\lambda_1\cdot\E\big(J_{\lambda_2} u\big)+\frac{1}{2}\cdot\big\Vert u-J_{\lambda_2} u\big\Vert^2_H
+		-\lambda_2\cdot\E\big(J_{\lambda_2} u\big)-\frac{1}{2}\cdot\big\Vert u-J_{\lambda_2} u\big\Vert^2_H\\
+		&=\big(\lambda_1-\lambda_2\big)\cdot\E\big(J_{\lambda_2}u\big)
+	\end{align*}
+	Vertausche Rollen von $\lambda_1$ und $\lambda_2$:
+	\begin{align*}
+		\big(\lambda_1-\lambda_2\big)\cdot\E\big(J_{\lambda_1} u\big)
+		&\leq \lambda_1\cdot\E^{\lambda_1}(u)-\lambda_2\cdot\E^{\lambda_2}(u)\\
+		&\leq\big(\lambda_1-\lambda_2\big)\cdot\E\big(J_{\lambda_2}u\big)
+	\end{align*}
+	Da $\lambda\mapsto\E\big(J_{\lambda} u\big)$ stetig ist, folgt die Behauptung.\nl
+	\underline{Zeige (e):} Ohne Beweis.\nl
+	\underline{Zeige (f):}\\
+	Folgt aus (e) und den Eigenschaften der Yosidaapproximationen.
+\end{proof}
+
+\begin{definition}
+	Sei $H$ ein Hilbertraum und seien $\E,\E_n:H\to\R\cup\lbrace+\infty\rbrace$ Funktionen.
+	Die Folge $(\E_n)_{n\in\N}$ heißt \textbf{Mosco-konvergent} gegen $\E:\gdw$
+	\begin{enumerate}[label=(\roman*)]
+		\item für jede schwach konvergente Folge $(u_n)_{n\in\N}$ in $H$ mit $u=\weaklim\limits_{n\to\infty} u_n$ gilt
+		\begin{align*}
+			\E(u)\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+		\end{align*}
+		\item Für jedes $u\in H$ gibt es eine "recovery sequence" $(u_n)_{n\in\N}$ in $H$ mit $\limn u_n=u$ 
+		(starke (übliche) Konvergenz!) und 
+		\begin{align*}
+			\E(u)\geq\limsup\limits_{n\to\infty}\E_n(u_n)\\
+			\Big(\overset{\text{wg. (i)}}{\Longleftrightarrow}
+			\E(u)=\limn\E_n(u_n)\Big)
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+	Die bekannte \textit{$\Gamma$-Konvergenz} unterscheidet sich von der Moscow-\\Konvergenz nur dadurch, dass die (i) starke Konvergenz gefordert wird.
+	\begin{align*}
+		\E_n\overset{\text{Moscow}}{\longrightarrow}\E\implies\E_n\overset{\Gamma}{\longrightarrow}\E
+	\end{align*}
+\end{bemerkung}
+
+\begin{lemma}
+	Seien $\E,\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv0$, konvexe so, dass 
+	\begin{align*}
+		\E_n\overset{\text{Moscow}}{\longrightarrow}\E.
+	\end{align*}
+	Dann gibt es Konstanten $c\in\R,r>0$ so, dass 
+	\begin{align*}
+		\forall n\in\N,\forall u\in H:
+		\E_n(u)\geq c-r\cdot\Vert u\Vert_H
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Übung.
+\end{proof}
+
+\begin{theorem}
+	Seien $\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig und konvex.
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item Wenn $(\E_n)_{n\in\N}$ monoton wachsend und konvergent ist, dann ist $(\E_n)_{n\in\N}$ Mosco-konvergent mit
+		\begin{align*}
+			\E_n\overset{\text{Mosco}}{\longrightarrow}\sup\limits_{n\in\N}\E_n
+		\end{align*}
+		\item Wenn $(\E_n)_{n\in\N}$ monoton fallend und von unten durch eine unterhalbstetige Funktion beschränkt ist,
+		dann ist $(\E_n)_{n\in\N}$ Mosco-konvergent mit
+		\begin{align*}
+			\E_n\overset{\text{Mosco}}{\longrightarrow}\overline{\inf\limits_{n\in\N}\E_n}
+		\end{align*}
+		Hierbei meint die Überstreichung die \textbf{unterhalbtstetige Hülle}, d.h. die größte unterhalbstetige Funktion, die kleiner als dieses Infimum ist.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\underline{Zeige (a):}\\
+	Sei $(u_n)_{n\in\N}$ schwach konvergent in $H$, $u:=\weaklim\limits_{n\to\infty} u_n$.\\
+	Für $n\geq m~(m,n\in\N)$ gilt
+	\begin{align*}
+		\E_m(u_n)
+		&\leq\E_n(u_n)
+	\end{align*}
+	Es gilt:
+	\begin{align*}
+		\E_n\text{ unterhalbstetig (Norm)}
+		&\Longleftrightarrow
+		\big\lbrace\E_n\leq c\big\rbrace\text{ abgeschlossen in }H &\forall c\in \R\\
+		\overset{\E_m\text{ konvex+Hahn-B.}}&{\Longleftrightarrow}
+		\big\lbrace\E_m\leq c\big\rbrace\text{ schwach abgeschlossen in }H &\forall c\in\R\\
+		&\Longleftrightarrow\E_m\text{ unterhalbstetig bzgl. schwacher Topologie}
+	\end{align*}
+	Erinnerung: schwach abgeschlossen bedeutet abgeschlossen in der schwachen Topologie.
+	Also gilt:
+	\begin{align*}
+		\E_m(u)
+		&\leq\liminf\limits_{n\to\infty}\E_m(u_n)
+		\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+		\qquad\forall m\\ %\leq n\\
+		\implies
+		\E(u)&:=\sup\limits_{m\in\N}\E_m(u)
+		\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+	\end{align*}
+	Außerdem sei $u\in H$.
+	Setze $u_n:=u$.
+	Dann gilt:
+	\begin{align*}
+		\sup\limits_{m}\E_m(u)=\E(u)=\limn\E_n(u_n)
+	\end{align*}
+
+	\underline{Zeige (b):}\\
+	Sei $\E_n)_{n\in\N}$ monoton fallend, $\E_n\leq\mathcal{F}$, wobei $\mathcal{F}:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig.
+	Sei $\E:=\overline{\inf\limits_{n\in\N}\E_n}(\geq\mathcal{F})$.
+	Sei $(u_n)_{n\in\N}$ schwach konvergent in $H$, $u:=\weaklim\limits_{n\to\infty} u_n$.
+	\begin{align*}
+		\implies\E(u)\overset{\E\text{ konvex}}{\leq}\liminf\limits_{n\to\infty}\E(u_n)\leq\liminf\limits_{n\to\infty}\E_n(u_n)
+	\end{align*}
+	Außerdem: sei $u\in H$.
+	Sei $\E^0(u):=\inf\limits_{n\in\N}\E_n(u)$ (so, dass $\E=\overline{\E^0}$).\\
+	Dann existiert eine Folge $(v_n)_{n\in\N}$ in $H$ mit
+	\begin{align*}
+		\E(u)
+		&=\limn\E^0(v_n)
+		\qquad\text{und}\qquad
+		\limn v_n=u
+	\end{align*}
+	(Der Epigraph von $\E$ ist der Abschluss in $H\times\R$ des Epigraphen von $\E^0$!)\\
+	Nach Definition von $\E^0$ existiert für jedes $n\in\N$ ein $m_n\in\N$ so, dass
+	\begin{align*}
+		\E_{m_n}(v_n)\leq\E^0(v_n)+\frac{1}{n}
+	\end{align*}
+	O.B.d.A. (weil $(\E_m)_{m\in\N}$ monoton fallend ist) ist $(m_n)_{n\in\N}$ streng monoton wachsend.
+	Setze nun $u_m:=v_1$ für $m\leq m_1$ und $u_m:=v_n$ für $m_{n-1}\leq m\leq m_n$.
+\end{proof}
+
+\begin{korollar}
+	Sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig,$\not\equiv\infty$ und semikonvex vom Typ $\omega\in\R$.
+	Dann gilt:
+	\begin{align*}
+		\E^\lambda+\frac{\omega}{2\cdot(1-\lambda\cdot\omega)}\cdot\Vert\cdot\Vert_H^2
+		\stackrelnew{\lambda\to0^+}{\text{Mosco}}{\longrightarrow}
+		\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2
+	\end{align*}
+\end{korollar}
+
+\begin{proof}
+	$\E^\lambda$ ist monoton wachsend 
+	(siehe Eigenschaften der \\Moreau-Yoshida-Approximation)
+\end{proof}
+
+\begin{theorem}[ATTOUCH]\label{theoremATTOUCH}\enter
+	Seien $\E_n,\E:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv+\infty$ und semikonvex vom Typ $\omega\in\R$
+	auf einem Hilbertraum $H$.
+	Seien $S_n$ und $S$ die von Subgradienten $\partial\E_n$ und $\partial\E$ erzeugten Halbgruppen.
+	Dann sind folgende Aussagen äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede konvergente Folge $(u_n^0)_{n\in\N}$ (0 ist Anfangswert) in $H$ mit $u_n^0\in\overline{\dom(\partial\E_n)}$ und 
+		mit $u^0:=\limn u_n^0$ gilt
+		\begin{align*}
+			u_0\in\overline{\dom(\partial\E)}
+			\qquad\text{ und }\qquad
+			\limn S_n(t)u_n^0=S(t) u^0
+			\text{ lokal glm. in }t\in\R_{\geq0}
+		\end{align*}
+		und es gilt die Normalisierung
+		\begin{align}\label{eqAttouchAN}\tag{N}
+			\exists\big(\hat{u}_n,\hat{f}_n\big)\in\partial\E,\exists\big(\hat{u},\hat{f}\big)\in\partial\E:
+			\limn\big(\hat{u}_n\hat{f}_n\big)=\big(\hat{u},\hat{f}\big)
+			%\text{ in }H\times H
+			\text{ und }\limn \E_n\big(\hat{u}_n\big)=\E\big(\hat{u}\big)
+		\end{align}
+		\item $\begin{aligned}
+			\exists\lambda>0\mit\lambda\cdot\omega<1:\forall f\in H:
+			\limn J_\lambda^{\partial\E_n} f=J_\lambda^{\partial\E} f\text{ in }H
+			\text{ und }\eqref{eqAttouchAN}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in H:
+			\limn J_\lambda^{\partial\E_n}f=J_\lambda^{\partial\E} f\text{ in }H
+			\text{ und }\eqref{eqAttouchAN}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in H:
+			\weaklim\limits_{n\to\infty} J_\lambda^{\partial\E_n} f=J_\lambda^{\partial\E}f
+			\text{ und }\eqref{eqAttouchAN}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H:
+			\lim\E_n^\lambda(u)=\E^\lambda(u)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2
+			\overset{\text{Mosco}}{\longrightarrow}
+			\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+% Das Theorem existiert in der Form zum aktuellen Zeitpunkt nirgends in der Literatur. 
+% Höchstens einzelne Äquivalenzen lassen sich finden.
+
+\begin{proof}
+	(i) $\gdw$ (ii) $\gdw$ (iii) folgt aus Trotter-Kato-Miyadera \ref{theoremTrotterKatoMiyadera}.\nl
+	(iii) $\implies$ (iv) ist klar, da starke Konvergenz in jedem Banachraum schwache Konvergenz impliziert.\nl
+	\underline{Zeige (vi) $\implies$ (iii)/(ii):}\\
+	Sei $\lambda>0\mit\lambda\cdot\omega<1$.
+	Sei $f\in H$.
+	Aus dem Lemma oben %TODO add reference
+	folgt die Existenz von $c,r>0$ so, dass $\forall u\in H,\forall n\in\N$:
+	\begin{align*}
+		\E_n(u)+\frac{\omega}{2}\cdot\Vert u\Vert^2
+		&\geq -c-r\cdot\Vert u\Vert
+	\end{align*}
+	Sei $v\in H$.
+	Wähle eine "recovery sequence" $(v_n)_{n\in\N}$ in $H$ mit $\limn\Vert v_n-v\Vert_H=0$
+	und
+	\begin{align*}
+		\limn\E_n(v_n)+\frac{\omega}{2}\cdot\Vert v_n\Vert^2_H
+		=\E(v)+\frac{\omega}{2}\cdot\Vert v\Vert^2_H
+	\end{align*}
+	Dann gilt (bei $(\ast)$ wird benutzt, dass $J_\lambda^{\partial\E_n}$ globaler Minimierer ist):
+	\begin{align*}
+		&\overbrace{\E_n(v_n)}^{\longrightarrow\E(v)}+\overbrace{\frac{1}{2\cdot\lambda}\cdot\Vert v_n-f\Vert_H^2}^{\longrightarrow\frac{1}{2\cdot\lambda}\cdot\Vert v-f\Vert^2}\\
+		\overset{(\ast)}&\geq
+		\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\\
+		&=\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2
+		+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert^2_H\\
+		\overset{\text{CS}}&\geq
+		\E_n\Big(J_\lambda^{\partial\E_n}f\Big)+\frac{\omega}{2}\cdot\Big\Vert j_\lambda^{\partial\E_n} f\Big\Vert_H^2
+		-|\omega|\cdot\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H\cdot\Vert f\Vert+\frac{\omega}{2}\cdot\Vert f\Vert_H^2\\
+		&~~+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\\
+		&\geq-c-r\cdot\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H
+		-|\omega|\cdot\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H\cdot\Vert f\Vert+\frac{\omega}{2}\cdot\Vert f\Vert_H^2+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2
+	\end{align*}
+	Es folgt also:
+	\begin{enumerate}
+		\item Die Folge $\big(J_\lambda^{\partial\E_n} f\big)_{n\in\N}$ ist beschränkt.
+		\item Die Folge $\Big(\E_n\big(J_\lambda^{\partial\E_n} f\big)\Big)_{n\in\N}$ ist beschränkt.
+	\end{enumerate}
+	Nach Auswahl einer Teilfolge von 2. (wieder mit $(\E_n)_{n\in\N}$ bezeichnet) gilt:\\
+	$\big(J_\lambda^{\partial\E_n} f\big)_{n\in\N}$ ist schwach konvergent.
+	Setze $u:=\weaklim\limits_{n\to\infty} J_\lambda^{\partial\E_n} f$.\\
+	Wir zeigen: $u=J_\lambda^{\partial\E} f$.\\
+	Sei noch einmal $v\in H$ und $(v_n)_{n\in\N}$ eine "recovery sequence" für $v$
+	($v_n\overset{}{\longrightarrow} v$ und $\E_n(v_n)\overset{}{\longrightarrow}\E(v)$).
+	Dann gilt:
+	\begin{align*}
+		\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert_H^2
+		\overset{\text{(i) von Mosco-Konv}}&\leq 
+		\liminf\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\
+		&\leq\limsup\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\
+		&\leq\limsup\limits_{n\to\infty}\left(\E_n(v_n)+\frac{1}{2\cdot\lambda}\cdot\Vert v_n-f\Vert_H^2\right)\\
+		&=\E(v)+\frac{1}{2 \cdot\lambda}\cdot\Vert v-f\Vert_H^2
+	\end{align*}
+	Da diese Abschätzung für alle $v\in H$ gilt, ist $u$ globaler Minimierer von 
+	$v\mapsto\E(v)+\frac{1}{2}\cdot\Vert v-f\Vert_H^2$, d.h. $u=J_\lambda^{\partial\E} f$.
+	Setzt man außerdem $v=u=J_\lambda^{\partial\E_n} f$ in die Abschätzung ein, dann folgt
+	\begin{align}\label{eqProofAttouchStern}\tag{$\ast$}
+		&\limn\left(\E_n\Big(J_\lambda^{\partial\E_n}f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)
+		=\E\Big(J_\lambda^{\partial\E}f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2\\\nonumber
+		&\implies\limsup\limits_{n\to\infty}\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\\\nonumber
+		&\leq\limsup\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\\nonumber
+		&~~~-\liminf\limits_{n\to\infty}\left(\E_n\Big(J_\lambda^{\partial\E_n} f\Big)+\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E_n} f-f\Big\Vert_H^2\right)\\\nonumber
+		%+\liminf\limits_{n\to\infty}\Big\Vert J_\lambda^{\partial\E_n} f\Big\Vert_H^2\\ %wurde an der Tafel gelöscht
+		\overset{(\ast)}&\leq 
+		\E\Big(J_\lambda^{\partial\E} f\Big)+\frac{1}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2
+		-\E\Big(J_\lambda^{\partial\E} f\Big)-\frac{\omega}{2}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2\\\nonumber
+		&=\frac{1-\lambda\cdot\omega}{2\cdot\lambda}\cdot\Big\Vert J_\lambda^{\partial\E} f-f\Big\Vert_H^2	
+	\end{align}
+	Bei $(\ast)$ geht erneut Eigenschaft (i) der Mosco-Konvergenz ein.
+	\begin{lemma}
+		Aus $v_n\overset{n\to\infty}{\longrightarrow} v$ schwach in $H$ und $\limsup\limits_{n\to\infty}\Vert v_n\Vert\leq\Vert v\Vert$ folgt
+		\begin{align*}
+			\big\Vert v_n-v\big\Vert_H\overset{n\to\infty}{\longrightarrow}0.
+		\end{align*}
+	\end{lemma}
+	
+	\begin{proof}
+		\begin{align*}
+			\limsup\limits_{n\to\infty}\big\Vert v_n-v\big\Vert^2
+			&=\limsup\limits_{n\to\infty}\Big(\Vert v_n\Vert^2-2\cdot\Re\big(\langle v_n,v\rangle\big)+\Vert v\Vert_H^2\Big)\\
+			&\leq \Vert v\Vert^2-2\cdot\Vert v\Vert^2+\Vert v\Vert^2\\
+			&=0
+		\end{align*}
+	\end{proof}
+	
+	Mit dem Lemma erhalten wir
+	\begin{align*}
+		\limn\Big\Vert J_\lambda^{\partial\E_n}f-J_\lambda f\Big\Vert_H^2=0
+	\end{align*}
+	
+	Aus der Normkonvergenz $\big(J_\lambda^{\partial\E_n}f\big)$ gegen $J_\lambda^{\partial\E} f$ und (*) %TODO
+	folgt
+	\begin{align*}
+		\limn E_n\Big(J_\lambda^{\partial\E_n}f\Big)=\E\big(J_\lambda^{\partial\E}f\Big)
+	\end{align*}
+	Jede Folge der Form $\left(\left(J_\lambda^{\partial\E_n} f,\frac{I-J_\lambda^{\partial\E_n}}{\lambda}\cdot f\right)\right)$ 
+	($f\in H$) ist gut für die Normalisierungsbedingung \eqref{eqAttouchAN}.\nl
+	Der Beweis der Rückrichtung entfällt.
+\end{proof}
+
+\begin{lemma}
+	Sei $I\subseteq\R$ Intervall und seien $f_n,f:I\to\R$ stetig differenzierbare, konvexe Funktionen.
+	Falls $f_n\overset{n\to\infty}{\longrightarrow} f$ punktweise überall,
+	dann $f_n'\overset{n\to\infty}{\longrightarrow} f'$ lokal gleichmäßig.
+\end{lemma}
+
+\begin{proof}
+	Übung.
+\end{proof}
+
+\subsection{Anwendungen des Theorems von Attouch} %nonumber
+\subsubsection{Moreau-Yosida-Approximation}
+Bereits gesehen.
+Es sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ semikonvex vom Typ $\omega$, $\not\equiv+\infty$ und unterhalbstetig,
+$\E^\lambda$ die Moreau-Yosida-Approximation.
+Dann gilt für ein $\omega'>\omega$:
+\begin{align*}
+	\E^\lambda+\frac{\omega'}{2}\cdot\Vert\cdot\Vert_H^2
+	\stackrelnew{\text{Mosco}}{\lambda\to 0^+}{\longrightarrow}
+	\E+\frac{\omega'}{2}\cdot\Vert\cdot\Vert_H^2
+\end{align*}
+
+\subsubsection{Galerkinapproximation (Finite Elemente)}
+Sei $\E:H\to\R\cup\lbrace+\infty\rbrace$ semikonvex vom Typ $\omega\in\R$, $\not\equiv+\infty$ und unterhalbstetig.
+Sei $\dom(\E)=\lbrace\E<+\infty\rbrace$ der effektive Definitionsbereich.
+Es gebe eine abzählbare Menge $D=\big\lbrace v_n:v\in\N\big\rbrace\subseteq\dom(\E)$, die "dicht" in $\dom(\E)$ ist im folgenden Sinne:
+\begin{align*}
+	\forall u\in\dom(\E):\exists\text{ Teilfolge }\big(v_{n_k}\big)_{k\in\N}:
+	V_{N_k}\cap D\ni v_{n_k}\overset{k\to\infty}{\longrightarrow} u\text{ in }H
+	\text{ und }\E\big(v_{n_k}\big)\overset{k\to\infty}{\longrightarrow}\E(u)
+\end{align*}
+
+$\dom(\E)$ ist metrischer Raum bzgl. der Metrik
+\begin{align*}
+	d_\varepsilon(u,v):=\Vert u-v\Vert_H+\big|\E(u)-\E(v)\big|\qquad\forall u,v\in\dom(\E).
+\end{align*}
+Die Voraussetzung besagt also, dass $D$ dicht in dem metrischen Raum $(\dom(\E),d_\varepsilon)$ ist.
+
+\begin{beispiel}[Standardbeispiel für die gesamte Theorie]
+	\begin{align*}
+		H&=L^2(\Omega)\\
+		\E(u)&=\left\lbrace\begin{array}{cl}
+			\frac{1}{2}\cdot\int\limits_\Omega\big|\nabla u\big|^2, &\falls \nabla u\in L^2\\
+			+\infty, &\sonst		
+		\end{array}\right.\\
+		\dom(\E)&=\left\lbrace u\in L^2(\Omega):\nabla u\in L^2\right\rbrace=W^{1,2}(\Omega)\text{ ist Hilbertraum bzgl.}\\
+		\langle u,v\rangle_{W^{1,2}}
+		&=\langle u,v\rangle_{L^2}+\langle\nabla u,\nabla v\rangle_{L^2}
+	\end{align*}
+	Falls man für eine Folge $(u_n)_{n\in\N}$ Konvergenz hat, also
+	\begin{align*}
+		u_n\overset{n\to\infty}{\longrightarrow} u\text{ in }\big(\dom(\E),d_\varepsilon\big)\\
+		\Longleftrightarrow\Vert u_n-u\Vert_{L^2}\overset{n\to\infty}{\longrightarrow}0\\
+		\E(u_n)\overset{n\to\infty}{\longrightarrow}\E(u)
+	\end{align*}
+	Insbesondere ist $(u_n)_{n\in\N}$ beschränkt in $\left(W^{1,2},\Vert\cdot\Vert_{W^{1,2}}\right)$.
+	Nach Übergang zur Teilfolge:
+	\begin{align*}
+		u_n\overset{n\to\infty}{\longrightarrow}u\text{ schwache Konvergenz}
+	\end{align*}
+	Aber auch
+	\begin{align*}
+		\Vert u_n\Vert^2_{W^{1,2}}
+		&=\Vert u_n\Vert_{L^2}^2+\Vert\nabla u\Vert_{L^2}^2
+		\overset{n\to\infty}{\longrightarrow}
+		\Vert u\Vert_{L^2}^2+\Vert\nabla u\Vert_{L^2}^2\\
+		\implies u_n\overset{n\to\infty}{\longrightarrow} u\text{ in }W^{1,2}
+	\end{align*}
+\end{beispiel}
+
+Zurück zum abstraktem, allgemeinen Fall:
+Setze
+\begin{align*}
+	V_n:=\linspan\big\lbrace v_1,\ldots,v_n\big\rbrace
+\end{align*}
+und
+\begin{align*}
+	\E_n&\colon H\to\R\cup\lbrace+\infty\rbrace,\qquad
+	\E_n(u):=\left\lbrace\begin{array}{cl}
+		\E(u) ,&\falls u\in V_n\\
+		+\infty, &\sonst
+	\end{array}\right.
+	=:\E(u)+\chi_{V_n}(u)
+\end{align*}
+Dann ist $\E_n$ unterhalbstetig, semikonvex vom Typ $\omega$ und $\not\equiv+\infty$ ($\E_n(v_1)<\infty$).
+Außerdem ist $(\E_n)_{n\in\N}$ monoton fallend, nach unten beschränkt durch $\E$ 
+(bzw. $\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2$) monoton fallend und nach unten beschränkt durch $\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2$.
+Damit ist die Folge
+\begin{align*}
+	\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2\right)_{n\in\N}
+\end{align*}
+Moscokonvergent gegen 
+\begin{align*}
+	\overline{\inf\limits_{n\in\N}\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2\right)}=:\F
+\end{align*}
+Nach Definition ist 
+\begin{align*}
+	\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert-H^2\leq \F.
+\end{align*}
+Behauptung:
+\begin{align*}
+	\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2=\F
+\end{align*}
+
+Nachdem der Epigraph von $\F$ der Abschluss des Epigraphen von
+\begin{align*}
+	\inf\limits_{n\in\N}\left(\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2\right)=:\F_0
+\end{align*}
+ist, gilt für alle $(u_n)_{n\in\N}\subseteq\F_0$, $(\lambda_n)_{n\in\N}\subseteq\R$ mit $u_n\longrightarrow u,\lambda_n\longrightarrow\lambda$ und $\lambda_n\geq\F_0(u_n)$: $\lambda\geq\F(u)$.
+% das folgende wurde gelöscht in der VL
+%gibt es für jedes $u\in\dom(\F)$ eine Folge $(u_n)_{n\in\N}$ in $\dom(\F_0)$, $\lambda\geq\F(u)$, $(\lambda_n)_{\n\in\N}\subseteq\R$ mit $\lambda\geq\F_0(u_n)$
+%\begin{align*}
+	%u_n\overset{n\to\infty}{\longrightarrow}u\text{ in }H
+	%\qquad\text{und}\qquad
+	%\F_0(u_n)\overset{n\to\infty}{\longrightarrow}\F(u)
+	%\lambda_n\overset{n\to\infty}{\longrightarrow}\lambda
+%\end{align*}
+Mit Voraussetzung folgt $\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2=\F$.
+Wir haben also
+\begin{align*}
+	\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2
+	\stackrelnew{n\to\infty}{\text{Mosco}}{\longrightarrow}
+	\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert_H^2
+\end{align*}
+gezeigt.
+(Die Grundidee ist, die DGL in $V_n$ zu lösen und $n\to\infty$ zu betrachten, da $u_n\longrightarrow u$ gleichmäßig und $u$ Lösung).
+Sind also $u_n$ Lösungen von 
+\begin{align*}
+	\dot{u}_n+\partial\E_n(u)\ni 0\text{ in }V_n,\quad u_n(0)=u_n^0
+\end{align*}
+und konvergiert $u_n^0\overset{n\to\infty}{\longrightarrow}u^0$ in $H$, dann konvergiert $u_n\overset{n\to\infty}{\longrightarrow}u$ lokal gleichmäßig auf $\R_+$, z.B.
+\begin{align*}
+	\limn\sup\limits_{t\in[0,T]}\big\Vert u_n(t)-u(t)\big\Vert_H=0\qquad\forall T>0
+\end{align*}
+$u$ ist Lösung von
+\begin{align*}
+	\left\lbrace	
+	\begin{array}{rl}
+		\dot{u}+\partial\E(u)&\ni0\\
+		u(0)&=u^0
+	\end{array}\right.
+\end{align*}
+
+(Am Rand des effektiven Definitionsbereich geschehen komische Dinge. 
+Da kommt die Mehrwertigkeit dann rein.)
+
+\begin{beispiel}
+	 Betrachte $H=L^2(\Omega)$ mit $\Omega\subseteq\R^n$ offen.
+	 Sei $p\in]1,+\infty[$ und 
+	 \begin{align*}
+	 	\E&:L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
+	 	\E(u)=\left\lbrace\begin{array}{cl}
+	 		\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p, &\falls \nabla u\in L^p\\
+	 		+\infty, &\sonst
+	 	\end{array}\right.\\
+	 	\dom(\E)&=\left\lbrace u\in L^2(\Omega):\nabla u\in L^p(\Omega)\right\rbrace
+	 \end{align*}
+	 Die Metrik $d_\varepsilon$ ist äquivalent zur Norm
+	 \begin{align*}
+	 	\Vert u\Vert=\Vert u\Vert_{L^2}+\Vert\nabla u\Vert_{L^p}.
+	 \end{align*}
+	 Wähle $(v_n)_{n\in\N}$ sicht in $\big(\dom(\E),\Vert\cdot\Vert\big)$ und setze
+	 \begin{align*}
+	 	\E(u)=\left\lbrace\begin{array}{cl}
+	 		\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p , &\falls \nabla u\in L^p\text{ und }u\in V_n:=\spann\big\lbrace v_1,\ldots,v_n\big\rbrace\\
+	 		+\infty, &\sonst
+	 	\end{array}\right.
+	 \end{align*}
+	 Dann ist
+	 \begin{align*}
+	 	\dot{u}_n+\partial\E_n(u_n)\ni 0\text{ in }L^2(\Omega)
+	 	\qquad\mit u_n\colon [0,T]\to V_n
+	 \end{align*}
+	 eine gewöhnliche DGL in $V_n$ (endlich dimensional). Für $C^1$-Funktionen ist dann der Subgradient einfach die Ableitung.
+	 Es gilt:
+	 \begin{align*}
+	 	u_n(0)\overset{n\to\infty}{\longrightarrow}u^0\in L^2(\Omega)
+	 	\implies &u_n\overset{n\to\infty}{\longrightarrow} u\text{ lokal glm. und $u$ ist Lösung von}\\
+	 	&\left\lbrace\begin{array}{rl}
+	 		u_t-\Delta_p u =0 &\text{in }(0,\infty)\times\Omega\\
+	 		\frac{\partial u}{\partial n}=0 &\text{in }(0,\infty)\times\partial\Omega\\
+	 		u(0,x)=u^0(x) &x\in\Omega
+	 	\end{array}\right.
+	 \end{align*}
+\end{beispiel}
+
+\subsubsection{Stabilität bzgl. des Gebiets}
+
+Sei $\Omega\subseteq\R^N$ offen, $p\in]1,\infty[$.
+Sei $V_0$ der Abschluss der Testfunktionen $C_c^1(\Omega)$ in\\
+$V:=\big\lbrace u\in L^2(\Omega):\nabla u\in L^p(\Omega)\big\rbrace$ bzgl. der Norm 
+$\Vert u\Vert_V:=\Vert u\Vert_{L^2}+\Vert\nabla u\Vert_{L^p}$.
+Wir fassen in natürlicher Weise $L^2(\Omega)$ als Unterraum von $L^2(\R^n)$ auf
+\begin{align*}
+	L^2(\Omega)\cong\Big\lbrace u\in L^2(\R^n):u=0\text{ f.ü. auf }\R^N\setminus\Omega\Big\rbrace
+\end{align*}
+und ebenso als Unterraum $C_c^1(\Omega)$ als Unterraum von $C_c^1(\R^N)$, 
+und schließlich $V_0=V_0(\Omega)$ als Unterraum von
+\begin{align*}
+	V(\R^N):=\Big\lbrace u\in L^2(\R^N):\nabla u\in L^p(\R^N)\Big\rbrace.
+\end{align*}
+Wir betrachten dann die Energie 
+\begin{align*}
+	\E^\Omega\colon L^2(\R^N)\to\R\cup\lbrace+\infty\rbrace,\qquad
+	\E^\Omega(u):=\left\lbrace\begin{array}{cl}
+		\frac{1}{p}\cdot\int\limits_\Omega|\nabla u|^p,&\falls u\in V_o(\Omega)\\
+		+\infty,&\sonst
+	\end{array}\right.
+\end{align*}
+
+Die Energie $\E^\Omega$ ist konvex, unterhalbstetig, $\not\equiv+\infty$.
+
+\begin{proof}
+	Genau wie bei der Energie des $p$-Laplaceoperators mit Neumannrandbedingungen (Reflexivität geht ein).
+\end{proof}
+
+\begin{align*}
+	\partial\E^\Omega&=\Bigg\lbrace(u,f)\in L^2(\R^N)\times L^2(\R^N)\Bigg|
+	\begin{array}{c}
+		u\in\overbrace{V_0(\Omega)}^{=\dom(\E^\Omega)}\text{ und }\forall v\in L^2(\R^N):\\
+		\lim\limits_{t\to 0^+}\frac{\E^\Omega(u+t\cdot v)-\E^\Omega(u)}{t}\geq\int\limits_{\R^N} f\cdot v
+	\end{array}\Bigg\rbrace\\
+	&=\Bigg\lbrace(u,f)\in L^2(\R^N)\times L^2(\R^N)\Bigg|
+	\begin{array}{c}
+		u\in V_0(\Omega)\text{ und }\forall v\in V_0(\Omega):\\
+		\int\limits_{\R^N}|\nabla u|^{p-2}\nabla u\cdot\nabla v=\int\limits_{\R^N} f\cdot v
+	\end{array}		
+	\Bigg\rbrace
+\end{align*}
+
+d.h. $(u,f)\in\partial\E^\Omega
+\Longleftrightarrow
+\div\left(|\nabla u|^{p-2}\cdot\nabla u\right)=f\text{ in }\Omega$ 
+in dem schwachen Sinn, dass
+\begin{align*}
+	\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v\qquad\forall v\in V_0(\Omega)
+\end{align*}
+und $u\in V_0(\Omega)$, was in einem schwachen Sinn $u=0$ auf $\partial\Omega$ impliziert.
+Genauer:\\ Für $\Omega$ mit $C^1$-Rand $\partial\Omega$ setzt sich die Spur-Abbildung
+\begin{align*}
+	\tr:V(\Omega)\cap C(\overline{\Omega})\to C(\partial\Omega),\qquad u\mapsto u|_{\partial\Omega}(=\tr~u)
+\end{align*}
+zu einem beschränkten, linearen Operator 
+\begin{align*}
+	\tr:V(\Omega)\to L_{\loc}^1(\partial\Omega)
+\end{align*}
+fort und 
+\begin{align*}
+	V_0(\Omega)=\big\lbrace u\in V(\Omega):\tr(u)=0\big\rbrace.
+\end{align*}
+
+Wir nennen den Subgradienten $\partial\E^\Omega$ den \textbf{(negativen) $p$-Lapplaceoperator mit Dirichletrandbedingungen}.
+Das Cauchy-Problem $\dot{u}+\partial\E^\Omega(u)\ni 0$ ist eine abstrakte Umschreibung der nichtlinearen Diffusionsgleichung
+\begin{align*}
+	\left\lbrace\begin{array}{rl}
+		\partial_t u-\Delta_p u=0&\text{ in }(0,\infty)\times\Omega\\
+		u=0 &\text{ auf }(0,\infty)\times\partial\Omega\\
+		\text{+ Anfangsbedingung }&
+	\end{array}\right.	
+\end{align*}
+Beachte: oben ist $u\colon \R_+\to L^2(\R^N)$ und unten $u:\R_+\times\Omega\to\R$,\\ $u_0\in\overline{\dom(\E^\Omega)}^{L^2(\R^N)}=L^2(\Omega)$.\nl
+Sei nun $(\Omega_n)_{n\in\N}$ ein Folge von offenen Mengen in $\R^N$.
+Wunsch: charakterisiere Moscokonvergenz der $\big(\E^{\Omega_n}\big)$ und damit Konvergenz der zugehörigen Halbgruppen.\nl
+Beobachtung:
+Falls die Folge $(\Omega_n)_{n\in\N}$ monoton fallend ist 
+(d.h. $\Omega_{n+1}\subseteq\Omega_n~\forall n\in\N$, $V_0(\Omega_{n+1})\subseteq V_0(\Omega_n)$), 
+dann ist die Folge $\big(\E^{\Omega_n}\big)_{n\in\N}$ monoton wachsend und damit Moscokonvergent gegen $\sup\limits_{n\in\N}\E^{\Omega_n}$.\\
+Frage: Gilt
+\begin{align*}
+	\sup\limits_{n\in\N}\E^{\Omega_n}\overset{?}{=}\E^\Omega
+\end{align*}
+für ein $\Omega\subseteq\R^N$? Wenn ja, welches?
+
+\begin{theorem}
+	Falls die Folge $(\Omega_n)_{n\in\N}$ monoton wachsend ist (d.h. $\Omega_n\subseteq\Omega_{n+1}$),
+	dann ist $\big(\E^{\Omega_n}\big)_{n\in\N}$ Moscokonvergent gegen $\E^\Omega$ mit $\Omega=\bigcup\limits_{n\in\N}\Omega_n$.
+\end{theorem}
+
+\begin{proof}
+	Die Folge $\big(\E^{\Omega_n}\big)_{n\in\N}$ ist nach unten durch $\E^\Omega$ beschränkt und sie ist monoton fallend. 
+	Also ist $\big(\E^{\Omega_n}\big)_{n\in\N}$ Moscokonvergent gegen 
+	$\overline{\inf\limits_{n\in\N}\E^{\Omega_n}}=:\F$.
+	Da $\E^\Omega$ unterhalbstetig und $\E^\Omega\leq\inf\limits_{n\in\N}\E^{\Omega_n}$ ist, ist $\E^\Omega\leq\F$.
+	Für alle Testfunktionen $u\in C_c^1(\Omega)\subseteq V_0(\Omega)$ gilt $\supp(u)\subseteq\Omega_n$ für ein $n\in\N$ groß genug. 
+	Also ist $u\in C^1_c(\Omega_n)\subseteq V_0(\Omega_n)=\dom(\E^{\Omega_m})$ für ein $n\in\N$ groß genug.
+	Wegen Monotonie folgt dann 
+	\begin{align*}
+		&u\in C_c^1(\Omega_n)
+		\quad\text{und}\quad
+		\E^{\Omega_n}(u)=\E^{\Omega}(u)
+		&\forall& n\in\N\text{ groß genug}\\
+		&\implies
+		\F(u)=\E^\Omega(u)&\forall& u\in C_c^1(\Omega)\\
+		&\implies
+		\F=\E^\Omega\text{ auf }\dom(\E^\Omega)
+	\end{align*}
+	Außerhalb von $\dom(\E^\Omega)$ gilt
+	\begin{align*}
+		+\infty\leq\E^\Omega\leq\F
+	\end{align*}
+	und somit $\E^\Omega=\F$ auch auf $L^2\setminus\dom(\E)$.\\
+	Weiterführend: D. Bucur 2005.
+\end{proof}
+
+\section{Invarianz konvexer Mengen}
+Sei $H$ ein Hilbertraum und $C\subseteq H$ eine abgeschlossene, nichtleere, konvexe Teilmenge.
+Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
+\begin{align*}
+	P_C u:=P_C(u):=\argmin\limits_{v\in C}\Vert u-v\Vert_H\qquad\forall u\in H
+\end{align*}
+
+\begin{theorem}\label{theorem5.3.1}
+	Sei $A\subseteq H\times H$ $m$-akkretiv und sei $S$ die von $A$ erzeugte Halbgruppe auf $\overline{\dom(A)}$.
+	Betrachte:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			\forall t\geq0:S(t)\big(C\cap\overline{\dom(A)}\big)\subseteq C
+		\end{aligned}$ Also: $C$ ist invariant unter der Halbgruppe $S$.
+		 \item $\begin{aligned}
+		 	\forall\lambda>0:J_\lambda C\subseteq C
+		 \end{aligned}$ Also: $C$ ist invariant unter der Resolvente von $A$.
+	\end{enumerate}
+	Dann gilt (i) $\Longleftrightarrow$ (ii).\\
+	Falls $A=\partial\E$ für eine konvexe, unterhalbstetige Energie $\E:H\to\R\cup\lbrace+\infty\rbrace$, dann sind (i) und (ii) äquivalent zu 
+	\begin{enumerate}[label=(\roman*)]
+		 \setcounter{enumi}{2}
+		\item $\begin{aligned}
+			\forall u\in H:\E\big(P_C u\big)\leq\E(u)
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Beweis von (iii) $\implies$ (ii) $\implies$ (i)]\enter
+	\underline{Zeige (ii) $\implies$ (i):}
+	Folgt aus der Exponentialformel
+	\begin{align*}
+		S(t)u_0&=\limn\left(J_{\frac{t}{n}}\right)^n u_0\\
+		u_0\in C\cap\dom(A),t>0,n\in\N
+		&\implies J_{\frac{t}{n}} u_0\in C\\
+		&\implies\left(J_{\frac{t}{n}}\right)^n u_0\in C\\
+		\overset{C\text{ abgeschlossen}}&\implies
+		S(t) u_0\in C
+	\end{align*}
+	
+	\underline{Zeige (iii) $\implies$ (ii):}\\
+	Sei $f\in C$ und $\lambda>0$.
+	Zu zeigen: $J_\lambda f\in C$.
+	Zur Erinnerung: $J_\lambda f$ ist der eindeutige Minimierer der Funktion 
+	\begin{align*}
+		v\mapsto\E(v)+\frac{1}{2\cdot\lambda}\cdot\Vert v-f\Vert_H^2
+	\end{align*}
+	Es gilt:
+	\begin{align*}
+		\E\big(J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f\big\Vert_H^2
+		&\leq\E\big(P_C J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2
+	\end{align*}
+	und somit durch Umsortierung
+	\begin{align*}
+		0\overset{\text{Vor}}&\leq
+		\E\big(J_\lambda f\big)-\E\big(P_C J_\lambda f\big)\\
+		&\leq\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2-\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f-f\big\Vert_H^2\\
+		&=\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2-\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f+\underbrace{-J_\lambda f+J_\lambda f}_{=0}-f\big\Vert_H^2\\
+		&=\frac{1}{2\cdot\lambda}\cdot\bigg(\underbrace{-\big\Vert P_C J_\lambda f-J_\lambda f\big\Vert^2}_{\leq0}+\underbrace{\cdot\big\langle P_C J_\lambda f-J_\lambda f,P_C J_\lambda f-f\big\rangle}_{\leq0}\bigg)\\
+		&\leq 0\\
+		&\implies
+		\E\big(J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f-f\big\Vert^2
+		=\E\big(P_C J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2\\
+		&\implies P_C J_\lambda f=J_\lambda f\\
+		&\implies J_\lambda f\in C
+	\end{align*}
+\end{proof}
+
+Folgendes Theorem ist eine Randnotiz auf Anfrage eines Studenten:
+
+\begin{theorem}
+	Sei $A\subseteq H\times H$ mit $H$ Hilbertraum. Dann sind äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			A\subseteq\partial\E
+		\end{aligned}$
+		\item $A$ \textbf{zyklisch monoton}, d.h.
+		\begin{align*}
+			\sum\limits_{k=0}^{n-1}\big\langle y_{k+1}-y_k,x_{k+1}-x_k\big\rangle_H\geq0
+			\qquad\forall(x_0,y_0,(x_1,y_1),\ldots,(x_n,y_n)=(x_0,y_0)\in A
+		\end{align*}
+	\end{enumerate}
+\end{theorem}
+
+Anwendungen von Theorem \ref{theorem5.3.1}:\\
+Sei $(\Omega,\A,\mu)$ beliebiger Maßraum und $\E\colon L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace$ konvex, unterhalbstetig, $\not\equiv+\infty$.
+Sei $S$ die von $\E$ bzw. $\partial\E$ erzeugte Halbgruppe auf $\overline{\dom(\E)}\subseteq L^2(\Omega)$.
+Die Halbgruppe $S$ heißt \textbf{positiv}
+\begin{align*}
+	:\Longleftrightarrow\underbrace{\forall u_0\in L^2(\Omega)^+}_{u_0\geq0\text{ f.ü.}},\forall t\geq0: S(t)u_0\in L^2(\Omega)^+
+\end{align*}
+Äquivalent: $S$ lässt $C:=L^2(\Omega)^+$ invariant.
+Der Kegel $L^2(\Omega)^+$ ist nichtleer, konvex und abgeschlossen.
+Die orthogonale Projektion $P_C$ auf dem Kegel $L^2(\Omega)^+$ ist gegeben durch: 
+\begin{align*}
+	P_C f(x)
+	&=f^+(x)
+	=(f\vee 0)(x)
+	=\left\lbrace\begin{array}{cl}
+		f(x), &\falls f(x)\geq0\\
+		0 ,&\falls f(x)<0
+	\end{array}\right.
+	\qquad\forall f\in L^2(\Omega)
+\end{align*}
+Denn es gilt:
+\begin{align*}
+	\int\limits_\Omega\big|P_C f-f\big|^2
+	&=\big\Vert P_C f-f\big\Vert^2
+	=\inf\limits\left\lbrace\int\limits_\Omega |v-f|^2:v\in L^2(\Omega)^+\right\rbrace
+\end{align*}
+
+\begin{korollar}
+	Seien $\E$ und $S$ wie oben.
+	Dann sind äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $S$ ist positiv
+		\item $\begin{aligned}
+			\forall f\in L^2(\Omega):\E\big(f^+\big)\leq\E(f)
+		\end{aligned}$
+	\end{enumerate}
+\end{korollar}
+
+\begin{beispiel}[Wieder $p$-Laplaceoperator]\enter
+	Sei $\Omega\subseteq\R^N$ offen, $p\in]1,\infty[$ und 
+	\begin{align*}
+		\E\colon L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
+		\E(u):=\left\lbrace\begin{array}{cl}
+			\frac{1}{p}\cdot\int\limits_\Omega|\nabla u|^p, &\falls \nabla u\in L^p(\Omega)\\
+			+\infty,&\sonst
+		\end{array}\right.
+	\end{align*}
+	(Energie des $p$-Laplaceoperatos mit Neumannrandbedingungen)
+	
+	\begin{lemma}
+		Sei $u\in L^1_{\loc}(\Omega)$ schwach differenzierbar mit $\nabla u\in L^1_\loc(\Omega)$.\\
+		Dann ist $u^+$ schach differenzerbar und 
+		\begin{align*}
+			\nabla\big(u^+\big)=\nabla u-\indi_{\lbrace u>0\rbrace}\mit
+			\indi_A(x):=\left\lbrace\begin{array}{cl}
+				1, &\falls x\in A\\
+				0, &\sonst
+			\end{array}\right.
+		\end{align*}
+		(siehe Mazya, Adams, Brezis)
+	\end{lemma}
+	
+	Aus dem Lemma folgt
+	\begin{align*}
+		\forall u\in\dom(\E):\nabla u^+\in L^p(\Omega)\text{ und }
+		\E\big(u^+\big)
+		&=\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u^+\big|^p\\
+		&=\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p\cdot\indi_{\lbrace u>0\rbrace}\\
+		&\leq  \frac{1}{p}\cdot\int\limits_\Omega\big|\nabla u\big|^p\\
+		&=\E(u)
+	\end{align*}
+	Somit erfüllt Diffusionsgleichung
+	\begin{align*}
+		\left\lbrace\begin{array}{rl}
+			\partial_t u-\Delta_p u=0&\text{in }(0,\infty)\times\Omega\\
+			\frac{\partial u}{\partial n}=0 &\text{auf }(0,\infty)\times\partial\Omega\\
+			u(0,x)=u_0(x) &\falls x\in\Omega
+		\end{array}\right.
+	\end{align*}
+	diese Eigenschaft.	
+\end{beispiel}
+
+\begin{beispiel}
+	Situation wie im Beispiel zuvor.\\
+	Die von $\E$ bzw. $\partial\E$ erzeugt Halbgruppe heißt \textbf{ordnungserhaltend}
+	\begin{align*}
+		\forall t>0,\forall u_0,v_0\in\overline{\dom(\E)}:
+		u_0\leq v_0\implies S(t) u_0\leq S(t) v_0
+	\end{align*}
+	Definiere auf $L^2(\Omega)\times L^2(\Omega)$ die Energie
+	\begin{align*}
+		\hat{\E}\colon L^2(\Omega)\times L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace,\qquad
+		\hat{\E}(u,v):=\E(u)+\E(v)
+	\end{align*}		
+	Dann ist $\hat{\E}$ konvex, unterhalbstetig, $\not\equiv+\infty$ und die von $\hat{\E}$ bzw. $\partial\hat{\E}$ erzeugte Halbgruppe $\hat{S}$ ist gegeben durch 
+	\begin{align*}
+		\hat{S}(t)(u_0,v_0)
+		&=\big(S(t)u_0,S(t)v_0)\big)
+		\left(=\begin{pmatrix}
+			S(t) & 0\\
+			0 & S(t)
+		\end{pmatrix}\cdot\begin{pmatrix}
+			u_0\\
+			v_0
+		\end{pmatrix}\right)
+	\end{align*}
+	(Nachrechnen.)\\
+	Die Halbgruppe $S$ ist ordnungserhaltend genau dann, wenn $\hat{S}$ die konvexe, abgeschlossene Menge
+	\begin{align*}
+		C:=\left\lbrace(u,v)\in L^2\times L^2:u\leq v\right\rbrace
+	\end{align*}
+	invariant lässt.
+	%TODO Hier könnte man eine Skizze einfügen
+	% L^2 wird durch \R ersetzt. Betrachte \R^2 und darin die \graph(\id). Dann ist C die Halbebene über \id.
+	\begin{align*}
+		P_C^{\R^2}\underbrace{(u,v)}_{\in\R\times\R}&=
+		\left\lbrace\begin{array}{cl}
+			(u,v),&\falls u\leq v\\
+			\left(\frac{u+v}{2},\frac{u+v}{2}\right) ,&\falls u\geq v
+		\end{array}\right.\\
+		P_C^{L^2\times L^2}(u,v)(x)&=P_C^{\R^2}\big(u(x),v(x)\big)
+	\end{align*}
+	
+	\begin{korollar}
+		Seien $\E$ und $S$ wie oben. Dann sind äquivalent:
+		\begin{enumerate}[label=(\roman*)]
+			\item $S$ ist ordnungserhaltend.
+			\item $\begin{aligned}
+				\forall u,v\in L^2(\Omega):
+				\E\bigg(\underbrace{P_C(u,v)_1}_{\text{1. Komponente}}\bigg)+\E\bigg(P_c(u,v)_2\bigg)
+				\leq\E(u)+\E(v)
+			\end{aligned}$
+			\item $\begin{aligned}
+				\forall u,vin L^2(\Omega):
+				\E(u\wedge v)+\E(u\vee v)\leq\E(u)+\E(v)
+			\end{aligned}$
+		\end{enumerate}
+	\end{korollar}
+	
+	\begin{proof}
+		\underline{Zeige (iii) $\implies$ (ii):}
+		\begin{align*}
+			P_C(u,v)&=\frac{1}{2}\cdot\Big((u\wedge v),(u\vee v)\Big)+\frac{1}{2}\cdot(u,v)\\
+			\implies
+			\hat{\E}\big(P_C(u,v)\big)
+			\overset{\hat{\E}\text{ konvex}}&\leq
+			\frac{1}{2}\cdot\hat{\E}\Big((u\wedge v),(u\vee v)\Big)+\frac{1}{2}\cdot\hat{\E}(u,v)
+		\end{align*}
+		Für die linke Seite gilt
+		\begin{align*}
+			\hat{\E}\big(P_C(u,v)\big)
+			&=\E\big(P_C(u,v)_1\big)+\E\big(P_C(u,v)_2\big)
+		\end{align*}
+		und für die rechte Seite gilt
+		\begin{align*}
+			\frac{1}{2}\cdot\hat{\E}\Big((u\wedge v),(u\vee v)\Big)+\frac{1}{2}\cdot\hat{\E}(u,v)
+			&=\frac{1}{2}\cdot\Big(\E(u\wedge v)+\E(u\vee v)+\E(u)+\E(v)\Big)\\
+			\overset{(iii)}&\leq
+			\E(u)+\E(v)
+		\end{align*}
+		Also
+		\begin{align*}
+			\E\big(P_C(u,v)_1\big)+\E\big(P_C(u,v)_2\big)
+			\leq\E(u)+\E(v)
+		\end{align*}
+	\end{proof}
+	
+	\begin{beispiel}
+		Sei $\E$ Energie des $p$-Laplaceoperators.
+		Dann gilt:
+		\begin{align*}
+			\forall u,v\in\dom(\E):
+			u\vee v=\frac{u+v}{2}+\frac{1}{2}\cdot(u-v)^+
+		\end{align*}
+		d.h. nach dem Lemma gilt $\nabla(u\vee v)\in L^p$ und
+		\begin{align*}
+			\nabla(u\vee v)=\nabla u\cdot\indi_{\lbrace u>v\rbrace}+\nabla v\cdot\indi_{\lbrace u<v\rbrace}
+		\end{align*}
+		und ähnlich ist der Gradient
+		\begin{align*}
+			\nabla(u\wedge v)
+			&=\nabla u\cdot\indi_{\lbrace u<v\rbrace}+\nabla v\cdot\indi_{\lbrace u>v\rbrace}
+		\end{align*}
+	\end{beispiel}
+\end{beispiel}
+
+
