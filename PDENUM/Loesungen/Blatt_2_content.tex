@@ -1,0 +1,284 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Aufgabenblatt 2}
+\subsection{Aufgabe 2.1}
+Seien $V$ ein normierter Raum, $a(\cdot,\cdot)$ eine symmetrische Bilinearform auf $V$ mit
+\begin{align*}
+	a(v,v)>0\qquad\forall v\in V\setminus\lbrace0\rbrace
+\end{align*}
+und $f$ ein lineares Funktional auf $V$. Dann sind für $u\in V$ äquivalent:
+\begin{enumerate}[label=(\roman*)]
+	\item $u$ minimiert das Funktional 
+	\begin{align}\label{Variationsproblem}\tag{Variationsproblem}
+		J(v):=\frac{1}{2}\cdot a(v,v)-f(v)
+	\end{align}
+	\item 
+	\begin{align}\label{Variationsgleichung}\tag{Variationsgleichung}
+		a(u,v)=f(v)\qquad\forall v\in V
+	\end{align}
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige (i) $\implies$ (ii):}\\
+	Gelte also 
+	\begin{align*}
+		u=\arg\min\limits_{v\in V} J(v).
+	\end{align*}
+	Dann folgt aus dem notwendigen Kriterium für die Minimalstelle:
+	\begin{align*}
+		\phi(t)&:=J(u+t\cdot v)\qquad\phi'(v)=0\\
+		\implies
+		\phi'(v)&=a(u,v)-l(v)=0
+	\end{align*}
+
+	\underline{Zeige (ii) $\implies$ (i):}\\
+	Sei $t\in\R$.
+	\begin{align*}
+		J(u+t\cdot v)&=
+		\frac{1}{2}\cdot a\big(u+t\cdot v,u+t\cdot v\big)-l(u+t\cdot t)\\
+		\overset{\text{Lin}}&=
+		\frac{1}{2}\cdot a(u,u)+t\cdot (u,v)+\frac{t^2}{2}\cdot a(v,v)-l(u)\\
+		&=J(u)+t\cdot\big(\underbrace{a(u,v)-l(v)}_{=0}\big)+\frac{t^2}{2}\cdot \underbrace{a(v,v)}_{>0}
+	\end{align*}
+	Mit $t=1$ folgt
+	\begin{align*}
+		J(u+v)>J(u)\qquad\forall v\in V\setminus\lbrace 0\rbrace
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 2.2}
+Seien $V$ linearer Raum und $a:V\times V\to\R$ eine symmetrische Bilinearform mit
+\begin{align*}
+	a(v,v)>0\qquad\forall v\in V\setminus\lbrace0\rbrace.
+\end{align*}
+Ferner seien $l:V\to\R$ ein lineares Funktional und $W\subseteq V$ eine konvexe Teilmenge. 
+Dann sind äquivalent:
+\begin{enumerate}[label=(\roman*)]
+	\item Die Größe
+	\begin{align}\label{eq1}
+		J(v):=\frac{1}{2}\cdot a(v,v)-f(v)
+	\end{align}
+	nimmt ihr Minimum in $W$ bei $u\in W$ an.
+	\item Es gilt:
+	\begin{align}\label{eq2}
+		a(u,w-u)\geq l(w-u)\qquad\forall w\in W
+	\end{align}
+\end{enumerate}
+Außerdem ist das Minimum $u\in W$ von \eqref{eq1} eindeutig.
+
+\begin{proof}
+	Es gilt
+	\begin{align*}
+		\eqref{eq1}\implies
+		J(u)&\leq J(v)\qquad\forall v\in W\\
+		\Longleftrightarrow
+		J(u)&\leq J\big(\underbrace{u+\alpha\cdot(w-u)}_{\stackeq{\text{konvex}}\alpha\cdot w+(1-\alpha)\cdot u\in W}\big)\qquad\forall w\in W,\alpha\in[0,1]
+	\end{align*}
+	\underline{Zeige (i) $\implies$ (ii):}\nl
+	%TODO
+	\underline{Zeige (ii) $\implies$ (i):}
+	\begin{align*}
+		&a(u,w-u)\geq l(w-u)\\
+		&\implies
+		a(u,w-u)+\frac{1}{2}\cdot\underbrace{a(w-u,w-u)}_{>0}\geq l(w-u)\\
+		&\Longleftrightarrow
+		\frac{1}{2}\cdot a(w+u,w-u)\geq l(w-u)\\
+		&\Longleftrightarrow
+		\frac{1}{2}\cdot\Big(a(w,w)+\underbrace{a(u,w)-a(w,u)}_{\stackeq{\text{Sym}}0}-a(u,u)\Big)\geq l(w-u)=l(w)-l(u)\\
+		&\Longleftrightarrow
+		J(w)=\frac{1}{2}\cdot a(w,w)-l(w)\geq\frac{1}{2}\cdot a(u,u)-l(u)=J(u)
+	\end{align*}
+	Die Richtungsableitung
+	\begin{align*}
+		&\left.\frac{\d J\big(u+\alpha\cdot (w-u)\big)}{\d\alpha}\right|_{\alpha=x}\geq0\qquad\forall x\in\big[0,\underbrace{\alpha^\ast(w)}_{>0}\big] \\
+		\overset{x=0}{\implies}
+		&\left.\frac{\d J(u+\alpha\cdot(w-u))}{\d\alpha}\right|_{\alpha=0}
+		=a(u,w-u)+\underbrace{\alpha\cdot a(w-u,w-u)}_{\stackeq{\alpha=0}0}-l(w-u)\\
+		&\implies a(u,w-u)\geq l(w-u)
+	\end{align*}
+
+	\underline{Zeige Eindeutigkeit des Minimums}\\
+	Angenommen $u,v\in W$ minimieren \eqref{eq1} in $W$, dann
+	\begin{align*}
+		a(u,w-u)&\geq l(w-u) &\forall w\in W\\
+		a(v,w-v)&\geq l(w-v) &\forall w\in W
+	\end{align*}
+	Addiert man diese Ungleichungen voneinander erhält man
+	\begin{align*}
+		&a(u,v-u)+a(v,u-v)\geq l(v-u)+l(u-v)\stackeq{\text{Lin}}0\\
+		&\implies -a(u-v,u-v)\geq0\\
+		&\implies a(u-v,u-v)\leq 0\\
+		\overset{a(z,z)>0~\forall z\neq0}&{\implies}
+		a(u-v,u-v)=0\implies u-v=0\implies u=v
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 2.3}
+Seien $V$ ein Vektorraum und $a(\cdot,\cdot)$ eine Bilinearform auf $V$ mit
+\begin{align*}
+	a(v,v)>0\qquad\forall v\in V\setminus\lbrace0\rbrace.
+\end{align*}
+Dann gilt: Sind $u_1,u_2$ Lösungen von
+\begin{align}\label{eq3}
+	a(u,v)=g(v)\qquad\forall v\in V
+\end{align}
+so gilt $u_1=u_2$.
+
+\begin{proof}
+	Seien also $u_1,u_2\in V$ Lösungen von \eqref{eq3}. 
+	Dann gilt:
+	\begin{align*}
+		a(u_1,v)=f(v) \quad&\forall v\in V\\
+		a(u_2,v)=f(v) \quad&\forall v\in V
+	\end{align*}
+	Subtrahieren voneinander liefert
+	\begin{align*}
+		&a(u_1,v)-a(u_2,v)=0 &\forall v\in V\\
+		\overset{\text{Lin}}&{\implies}
+		a(u_1-u_2,v)=0
+	\end{align*}
+	Da die Aussage für alle $v\in V$, gilt sie insbesondere für $v:=u_1-u_2\in V$, also mit Elliptizität:
+	\begin{align*}
+		0=a(u_1-u_2,u_1-u_2)\geq \alpha \|u_1-u_2\|^2_V\implies u_1-u_2=0\implies u_1=u_2
+	\end{align*}
+\end{proof}
+
+
+\subsection{Aufgabe 2.4}
+Seien $V$ ein Hilbertraum, $a(\cdot,\cdot)$ eine symmetrische, stetige, $V$-elliptische Bilinearform auf $V$ und $f$ ein lineares, stetiges Funktional auf $V$. Dann gilt:
+
+\begin{enumerate}[label=(\alph*)]
+	\item $a(\cdot,\cdot)$ ist ein Skalarprodukt auf $V$ und daher
+	\begin{align*}
+		\Vert v\Vert_E:=\sqrt{a(v,v)}\qquad\forall v\in V
+	\end{align*}
+	eine Norm auf $V$.
+	\item Die Variationsgleichung
+	\begin{align*}
+		a(u,v)=g(v)\qquad\forall v\in V
+	\end{align*}
+	besitzt eine eindeutige Lösung.
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige (a):}\\
+	Nach Voraussetzung ist $a$ bereits bilinear und symmetrisch. 
+	Außerdem ist $a$ positiv definit, da $a$ $V$-elliptisch ist. 
+	Das sieht man durch
+	\begin{align*}
+		|a(v,v)|=a(v,v)\stackrel{V\text{-ell}}{\geq}
+		\alpha\cdot\Vert v\Vert^2_V\geq0
+	\end{align*}
+	für ein $\alpha>0$. 
+	Also $a(\cdot,\cdot)$ ein Skalarprodukt und $\Vert\cdot\Vert_E$ eine (Energie-)Norm.\nl
+	\underline{Zeige (b):}\\
+	Da $a$ $V$-elliptisch ist, gilt für $\alpha>0$:
+	\begin{align*}
+		\alpha\cdot\Vert v\Vert_V^2
+		\overset{V\text{-ell}}{leq}
+		a(v,v)=\Vert v\Vert_E^2
+		\overset{\text{stetig}}{\leq}
+		M\cdot\Vert v\Vert_V^2
+	\end{align*}
+	Die Normen $\Vert\cdot\Vert_E$ und $\Vert\cdot\Vert_V$ sind also äquivalent. 
+	Somit ist $V$ auch ein Hilbertraum bgzl. dem Skalarprodukt $a(\cdot,\cdot)$.\nl
+	Aus dem Riesz'schen Darstellungssatz folgt:
+	\begin{align*}
+		\exists! u\in V:a(u,v)=f(v)\qquad\forall v\in V
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 2.5}
+Seien $\Omega=(0,1)$ und $V:=\big(L^2(\Omega)\big)^2$. 
+Als Norm für $v=(v_1,v_2)\in V$ verwenden wir
+\begin{align*}
+	\Vert u\Vert_V:=\left(\Vert v_1\Vert_{0,2}^2+\Vert v_2\Vert^2_{0,2}\right)^{\frac{1}{2}}
+\end{align*}
+Dann ist die auf $V$ definierte Bilinearform
+\begin{align*}
+	a(v,w):=\int\limits_0^1 v_1(x)\cdot w_1(x)+\Big(\big(v_2(x)-v_1(x)\big)\cdot\big(w_2(x)-w_1(x)\big)\Big)\d x
+\end{align*}
+koerziv. 
+Bestimmen Sie auch die möglichst große Koerzivitätskonstante $\alpha$.
+
+\begin{proof}
+	Betrachte die Abschätzung
+	\begin{align}\label{Hinweis2.5}
+		2\cdot a\cdot b\leq\gamma\cdot a^2+\frac{b^2}{\gamma}\qquad\forall a,b\in\R,\forall\gamma>0
+	\end{align}
+	als gegeben.
+	\begin{align*}
+		a(v,v)&:=\int\limits_0^1 \big(v_1(x)\big)^2+\big(v_2(x)-v_1(x)\big)^2\d x\\
+		&=\int\limits_0^1 \big(v_1(x)\big)^2+\big(v_2(x)\big)^2-2\cdot v_2(x)\cdot v_1(x)+\big(v_1(x)\big)^2\d x\\
+		&=\int\limits_0^1 \big(v_2(x)\big)^2-2\cdot v_2(x)\cdot v_1(x)+2\cdot\big(v_1(x)\big)^2\d x\\
+		\overset{\eqref{Hinweis2.5}}{\geq}&=
+		\int\limits_0^1 2\cdot\big(v_1(x)\big)^2+\big(v_2(x)\big)^2-\left(\frac{1}{\gamma}\cdot\big(v_1(x)\big)^2+\gamma\cdot\big(v_2(x)\big)^2\right)\d x\\
+		&\stackeq{(\ast)}
+		\left(1-\frac{-1+\sqrt{5}}{2}\right)\cdot\int\limits_0^1 \big(v_1(x)\big)^2+\big(v_2(x)\big)^2\d x\\
+		&=\frac{3-\sqrt{5}}{2}\cdot\Vert v\Vert^2_V
+	\end{align*}
+	Zu ($\ast$): Finde $\gamma$ so, dass $2-\frac{1}{\gamma}=1-\gamma$, also
+	\begin{align*}
+		\gamma=\frac{-1+\sqrt{5}}{2}.
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 2.6}
+Sei $V$ ein Hilbertraum und  $a(\cdot,\cdot)$ eine stetige
+\begin{align*}
+	a(v,w)\leq M\cdot\Vert v\Vert_V\cdot\Vert w\Vert_V,
+\end{align*}
+$V$-elliptische
+\begin{align*}
+	\alpha\cdot\Vert v\Vert^2_V\leq a(v,v)
+\end{align*}
+und symmetrische Bilinearform.\\
+Dann ist
+\begin{align*}
+	\Vert e\Vert_E:=\sqrt{a(v,v)}\qquad\forall v\in V
+\end{align*}
+eine Norm. 
+Seien außerdem $V^N\subseteq V$ ein endlichdimensionaler Teilraum von $V$ und $u\in V,u^N\in V^N$ Lösungen von
+\begin{align*}
+	a(u,v)=f(v)\quad\forall v\in V,\qquad a(u^N,v^N)=f(v^N)\quad\forall v^N\in V^N\subseteq V
+\end{align*}
+Außerdem gilt für den Fehler des \textit{Ritz-Galerkin-Verfahrens}:
+\begin{enumerate}[label=(\alph*)]
+	\item $\begin{aligned}
+		\Vert u-u^N\Vert_E=\min\limits_{v^n\in V^n}\Vert u-v^N\Vert_E
+	\end{aligned}$
+	\item $\begin{aligned}
+		\Vert u-u^N\Vert_V\leq\left(\frac{M}{\alpha}\right)^{\frac{1}{2}}\cdot\min\limits_{v^N\in V^N}\Vert u-v^N\Vert_V
+	\end{aligned}$
+\end{enumerate}
+
+\begin{proof}
+	Die Energienorm $\Vert\cdot\Vert_E$ ist eine Norm auf $V$ wie in Aufgabe 2.4 gezeigt wurde.\nl
+	\underline{Zeige (a):}
+	\begin{align*}
+		\Vert u-u^N\Vert_E^2
+		&=a\big(u-u^N,u-u^N\big) \\
+		&=a\big(u-u^N,u\big) - \underbrace{a\big(u-u^N,u^N\big)}_{=0~(\text{Galerkin O.})} \\
+		&=a\big(u-u^N,u\big) - \underbrace{a\big(u-u^N,v^N\big)}_{=0~(\text{Galerkin O.})} \\
+		&=a(u-u^N,u-v^N)\\
+		\overset{\text{CS}}&{\leq}
+		\Vert u-u^N\Vert_E\cdot\Vert u-v^N\Vert_E
+	\end{align*}
+
+	\underline{Zeige (b):}
+	\begin{align*}
+		\alpha\Vert u-u^N\Vert_V
+		\overset{V\text{-ell}}&{\leq}
+		a\big(u-u^N,u-u^N\big)\\
+		&=\big\Vert u-u^N\big\Vert^2_E\\
+		\overset{\text{(a)}}&{\leq}
+		\big\Vert u-v^N\big\Vert^2_E\\
+		&=a\big(u-v^N,u-v^N\big)\\
+		\overset{\text{stetig}}&{\leq}
+		M\cdot\big\Vert u-v^n\big\Vert^2_V
+	\end{align*}
+\end{proof}
+
