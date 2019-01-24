@@ -1,0 +1,1000 @@
+% !TEX root = ORDSTR.tex
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Measurement Setups}
+% {\footnote{vormals \enquote{Mini-Ausflug}}}
+\begin{definition}
+Ein MEASUREMENT SETUP ist ein Tripel $\mathcal{M}=(\mathbb{G},\mathbb{M},\Delta)$ bestehend aus einem \textbf{Aktionsnetzwerk} $\mathbb{G}=(G,\ast,\id)$ mit zugrundeliegendem \textbf{Netzwerk} $G=(V,E,\rho)$, einem Monoid $\mathbb{M}=(M,\ast,\varepsilon)$ und einer \textbf{funktoriellen} Abbildung $\Delta:E\to M$ bzgl. $(\mathbb{G},\mathbb{M})$.
+\end{definition}
+
+Interpretation:
+\begin{itemize}
+\item $\mathbb{G}$ ist WAS ich messe.
+\item $\mathbb{M}$ ist WORIN ich messe.
+\item $\Delta$ ist WIE ich (be)messe.
+\end{itemize}
+Weitere Einschränkungen: Ein \textbf{Netzwerk} ist definiert als Tripel $G=(V,E,\rho)$ bestehend aus Mengen $V,E$ sowie einer Abbildung $\rho:E\to V\times V$\\
+Interpretation: $V$ ist Knotenmenge / Pfeilmenge (vertex set) und $E$ ist Kantenmenge(edge set) und $\rho$ ist Strukturabbilung und wir setzen
+\begin{align*}
+(\sigma e,\tau e):=\rho e:=\rho(e)\qquad\forall e\in E\\
+\mit\sigma:=\pi_1\circ\rho,\qquad\tau:=\pi_2\circ\rho
+\end{align*}
+wobei $\pi_1,\pi_2$ die Projektionen auf die erste bzw. die zweite Komponente sind.\\
+Ein Tripel $\mathbb{G}=(G,\ast,\id)$ heißt \textbf{Aktionsnetzwerk (ANW)}, falls $G=(V,E,\rho)$ Netzwerk ist und 
+\begin{align*}
+\ast:E^{\langle 2\rangle}\to E, (a,b)\mapsto a\ast b
+\end{align*}
+Abbildung ist, wobei
+\begin{align*}
+E^{\langle 2\rangle}:=\big\lbrace (a,b)\in E\times E~\big|~\tau a =\sigma b\big\rbrace
+\end{align*}
+die Menge der Pfade der Länge 2 ist und $\id:V\to E$ Abbildung ist, derart, dass die \textbf{Verkettungsaxiome} gelten:
+\begin{align*}
+\rho(a\ast b)&=(\sigma a,\tau b) &\forall& (a,b)\in E^{\langle 2\rangle}\\
+(a\ast b)\ast c&=a\ast(b\ast c) &\forall& (a,b,c)\in E^{\langle 3\rangle}\text{ Assoziativität}
+\end{align*}
+wobei 
+\begin{align*}
+E^{\langle 3\rangle}:=\big\lbrace(a,b,c)\in E^3~\big|~\tau a=\sigma b\text{ und }\tau b=\sigma c\big\rbrace
+\end{align*}
+die Menge der Pfade der Länge 3 in $G$.
+\textbf{Neutralitäts-Axiome:}
+\begin{align*}
+\rho (\id p)&=(p,p) &\forall& p\in V\\
+\id(\sigma e)\ast e&=e=e\ast\id(\tau e) &\forall& e\in E
+\end{align*}
+Kanten interpretieren wir als Aktionen und Knoten als Zustände.
+
+\begin{beispiel}\
+\begin{itemize}
+\item Jedes Aktionsnetzwerk $(G, \ast, \id)$ lässt sich als Netzwerk interpretieren \\$(V, \im(E^{\langle 2 \rangle}), \rho)$
+Dies ist aber im Allgemeinen keine Oberstruktur von $G$!
+\item Pfadaktionsnetzwerk zu einem Netzwerk
+\item logistisches Aktionsnetzwerk zu einer Menge $P$:
+\begin{align*}
+    \mathbb{G}_P&:=(G\P,\ast,\id)\\
+    \id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
+    G_P&:=(P,P\times P,\id_{P\times P})\\
+    (p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
+\end{align*}
+\item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
+Sind bis auf Isomorphie einknotige Netzwerke.
+\end{itemize}
+\end{beispiel}
+
+\section{Funktorialität und Netzwerkmorphismen}
+\begin{definition}
+Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. eines ANW $(\mathbb{G},\mathbb{M}):\gdw$ 
+\begin{enumerate}
+\item $\Delta \id_p=\varepsilon\qquad\forall p\in V$
+\item $\Delta (\underbrace{a\ast b}_{\text{in} E})=\underbrace{\Delta a\ast\Delta b}_{\text{in }\mathbb{M}}\qquad\forall(a,b)\in E^{\langle2\rangle}$
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}
+Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
+\end{bemerkung}
+
+\begin{definition}
+    Seien $G = (V,E, \rho), G'= (V', E', \rho')$ Netzwerke.
+    Ein \textbf{Netzwerkmorphismus} von $G$ nach $G'$ ist ein Tripel $(G, G', \Phi := (\Phi_{\text{vert}}, \Phi_{\text{edge}}))$  wobei
+    \begin{align*}
+        \Phi_{\text{vert}}:& V \to V',\qquad p \mapsto p' \text{ und}\\
+        \Phi_{\text{edge}}:& E \to E',\qquad e \mapsto e',
+    \end{align*}
+    sodass für $i=1,2$ gilt:
+    \begin{align*}
+        \pi_i \circ \rho' \circ \Phi_{\text{edge}} = \Phi_{\text{vert}} \circ \pi_i \circ \rho.
+    \end{align*}
+    Als kommutatives Diagramm:
+    $$\begin{tikzcd}[column sep=huge, row sep=huge]
+        E \dar{\pi_i \circ \rho} \rar{\Phi_{\text{edge}}} & E' \dar{\pi_i \circ \rho'}\\
+        V \rar{\Phi_{\text{vert}}} & V' 
+    \end{tikzcd}$$
+    "\textit{Das \underline{Bild} des Anfangsknotens einer Kante ist stets der Anfangsknoten der \underline{Bildkante}.}"\nl
+    Ein Netzwerkmorphismus heißt Netzwerk\textbf{isomorphismus}, falls $\Phi_{\text{vert}}$ und $\Phi_{\text{edge}}$ bijektiv sind.
+\end{definition}
+
+\begin{definition}
+    Seien $\mathbb{G} = (G, \ast_\mathbb{G}, \id_\mathbb{G}), \mathbb{G}' = (G', \ast_{\mathbb{G}'}, \id_{\mathbb{G}'})$
+    zwei Aktionsnetzwerke über den Netzwerken $G,G'$.
+    Ein \textbf{Funktor (Aktionsnetzwerksmorphismus)} ist ein Netzwerkmorphismus $(G, G', \Phi := (\Phi_{\text{vert}}, \Phi_{\text{edge}}))$ von $G$ nach $G'$, 
+    sodass für alle $(a,b) \in E^{\langle 2 \rangle}$ und alle $p \in V$ gilt
+    \begin{enumerate}[label=(M\arabic*)]
+        \item $\Phi_{\text{edge}}(a \ast_{\mathbb{G}} b) = \Phi_{\text{edge}}(a) \ast_{\mathbb{G}'} \Phi_{\text{edge}}(b)$
+        \item $\Phi_{\text{edge}}(\id_\mathbb{G} p) = \id_{\mathbb{G}'}(\Phi_{\text{vert}} p)$.
+    \end{enumerate}
+    Beachte dass
+    $$ E^{\langle n \rangle} = \{(e_1,\ldots,e_n) \in E^n \mid \forall i \in [n-1]: ( \tau e_i = \sigma e_{i+1})\}, $$
+    wobei $[n-1] := \{1, \ldots, n-1\}$.
+\end{definition}
+
+\begin{definition}
+Sei $\mathbb{P}:=(P,R)$ ein binäres Relat. Definiere $G\mathbb{P}:=(P,R,\rho)$ mit $\rho:R\hookrightarrow P\times P$ als das \textbf{zu $\mathbb{P}$ gehörige Netzwerk}.
+\end{definition}
+
+\begin{definition}
+    Ein Netzwerk $G=(V,E,\rho)$ heißt \textbf{dünn}, 
+    falls $\rho:R\to V\times V$ injektiv.\\
+    Das binäre Relat
+    $$ \Red G := G(V, \rho E) := (V, \rho E, i)$$
+    heißt \textbf{Reduktion} von $G$, wobei
+    $i: \rho E \to V \times V$ die identische Einbettung.
+\end{definition}
+
+\begin{beispiel}
+    Sei $\mathbb{P} := (R, R)$ ein binäres Relat.
+    Dann ist $G\P := (P, R \subseteq P \times P, i)$, wobei
+    $i: R \to P \times P$ die identische Einbettung ist,
+    ein Netzwerk.
+    Es folgt offensichtlich das es sich dabei um ein dünnes Netzwerk handelt.
+\end{beispiel}
+
+\begin{korollar}
+    Die Reduktion eines Netzwerks ist stets dünn.
+\end{korollar}
+
+\begin{definition}
+    Sind $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke, so bildet
+    \begin{align*}
+        \Phi:\left\lbrace\begin{array}{rl}
+        \Phi_{\text{vert}}:&V\to V'\\
+        \Phi_{\text{edge}}:&E\to E'
+        \end{array}\right.
+    \end{align*}
+    einen Morphismus von $G$ nach $G'$, falls gilt:
+    \begin{align*}
+        \Phi_{\text{vert}}\circ\sigma&=\sigma'\circ\Phi_{\text{edge}}\\
+        \Phi_{\text{vert}}\circ\tau&=\tau'\circ\Phi_{\text{edge}}
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Ein Morphismus $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ zwischen Netzwerken heißt \textbf{Isomorphismus} $:\gdw\Phi_{\text{vert}}$ und $\Phi_{\text{edge}}$ bijektiv sind.
+\end{definition}
+
+\begin{bemerkungnr}[Der Reduktionsmorphismus]\enter
+    Sei $G = (V, E, \rho)$ ein Netzwerk.
+    Wir definieren $ \Phi^{\text{red}} := (\id_V, \rho^{\text{red}})$, wobei
+    $$ \rho^{red} : \begin{cases}
+        E \to \rho E\\ 
+        e\mapsto \rho e.\end{cases} = \rho|_{\rho E}$$
+    Dieses $ \Phi^{\text{red}} $ bildet einen Morphismus von $G$ nach $\Red G$.\\
+    Zusätzlich gilt offenbar:
+    $$ \Phi^{\text{red}} \text{ Isomorphismus } \iff G \text{ dünn}.$$
+\end{bemerkungnr}
+
+\section{Unterstrukturen von (Aktions-)Netzwerken}
+\begin{definition}
+    Seien $G=(V,E,\rho)$, $G'=(V',E',\rho')$ Netzwerke. Dann heißt $G$ \textbf{Unternetzwerk} von $G:\Longleftrightarrow$
+    \begin{enumerate}
+        \item $V'\subseteq V$ und $E'\subseteq E$
+        \item $\forall e'\in E':\rho'(e')=\rho(e')$\\
+        d.h. $\rho|_{G'}=\rho'$ oder $\rho|_{(E'\to V'\times V')}=\rho'$)
+    \end{enumerate}
+\end{definition}
+
+\begin{notation}
+    Einschränkungen: Sei $f:A\to B$ Abbildung, $A_0\subseteq A$, $B_0\subseteq B$, $f(A_0)\subseteq_0$
+    \begin{align*}
+        f|_{(A_0\to B_0)}:=f|_{A_0}:A_0\to B_0,\qquad a\to f_a
+    \end{align*}
+\end{notation}
+
+Konstruktion von Unternetzwerken:\\
+Sei $G=(V,E,\rho)$ ein Netzwerk und $E_0\subseteq E$, $V_0\subseteq V$ mit $\rho(E_0)\subseteq V_0\times V_0$, dann ist $G_0:=(V_0,E_0,\rho|_{E_0})$ ein Unternetzwerk von $G$.\\
+Spezialfall: $V=V_0$
+\begin{align*}
+    G|_{E_0}:=G_0:=(V,E_0,\rho|_{E_0})
+\end{align*}
+heißt \textbf{knotenvollständige Einschränkung}.
+
+\begin{definition}[Unterstrukturen von ANM]\enter
+    Seien $\G=(G,\ast,\id)$ mit $G=(V,E,\rho)$ und $\G'=(G',\ast',\id')$ mit $G'=(V',E',\rho')$ Aktionswerke. Dann heißt $\G'$ \textbf{Unterstruktur} von $\G$ $:\Longleftrightarrow$
+    \begin{enumerate}
+        \item $V'=V$, $E'\subseteq E$ und $\rho'=\rho|_{E'}$ (d.h. $G'=G|_E$)
+        \item $\ast'=\ast|_{E'^{\langle 2\rangle}}$ (2 Pfade in $\G'$)
+        \item $\id'=\id|_{(V'\to E')}$
+    \end{enumerate}
+    Die letzten Bedingungen besagen:
+    \begin{align*}
+        \forall (a,c)\in E^{\langle2\rangle}:(a,c)\in E'^{\langle2\rangle}\Longleftrightarrow a\ast c\in E'\\
+        \id V'\subseteq E'
+    \end{align*}
+\end{definition}
+
+Wir nennen dann $\G|_{E'}=\G'$ die \textbf{Einschränkung von $\G$ auf $E'$}. (Denn $\G'$ ist durch $\G$ und $E'$ eindeutig bestimmt.)\nl
+Unsere Überlegungen folgen allgemeinen Konstruktionen von UnterANWs:
+
+\begin{definition}
+    Sei $\G=(G,\ast,\id)$ ANW mit $D\subseteq E$. Dann \textbf{induziert $D$ eine Unterstruktur} in $\G:\Longleftrightarrow$
+    \begin{enumerate}
+        \item $\forall a,b\in E^{\langle2\rangle}:\big(a,b\in D\implies a\ast b\in D\big)$
+        \item $\id V\subseteq D$
+    \end{enumerate}
+    Die Struktur $\G'=\G|_D$ ist eindeutig bestimmt.
+\end{definition}
+
+\begin{beispiel}
+    $\G=(\N,+,0),~E=\N,~A=\lbrace 4,5\rbrace$ Dann folgt
+    \begin{align*}
+        D:=\langle A\rangle=\big\lbrace m\cdot 4+n\cdot 5\mid m,n\in\N\big\rbrace
+    \end{align*}
+    \begin{tabular}{c|cccc}
+        4$\setminus$5 & 0 & 1 & 2 & 3\\ \hline
+        0 & 0 & 5 & 10 & 15\\
+        1 & 4 & 9 & 14 & 19\\
+        2 & 8 & 13 & 18 & 23\\
+        3 & 12 & 17 & 22 & 27
+    \end{tabular}
+\end{beispiel}
+
+\begin{proposition}[Erzeugung von Unterstrukturen in ANWen]\enter
+    Sei $\G=(G,\ast,\id)$ ein ANW mit $G=(V,E,\rho)$ zugehöriges Netzwerk. Dann sei für $A,C\in 2^E$ stets das \textbf{Minkowski-Produkt} von $A$ und $C$ in $\G$ definiert als
+    \begin{align*}
+        A\ast C
+        :=A\ast_{\text{Mink}} C
+        A\ast_{\text{Mink}(\G)} C
+        :=\left\lbrace a\ast c~\left|~(a,c)\in (A\times C)\cap E^{\langle2\rangle}\right.\right\rbrace
+    \end{align*}
+    Sei $\mathbb{M}$ Vektorraum. Für $A,C\in 2^M$ heißt
+    \begin{align*}
+        A+C:=\big\lbrace a+c\mid (a,c)\in A\times C\big\rbrace
+    \end{align*}
+    \textbf{Minkowski-Summe} von $A$ und $C$ in $\mathbb{M}$.
+
+    Für $A\in 2^E$ sei die $n$-fache \textbf{Minkowski-Potenz} von $A\in 2^E$ in $\G$ definiert als
+    \begin{align*}
+        A^{(n)}
+        := A^{(n)\ast}
+        := A^{(n)_\G}
+        :=\Big\lbrace a_1\ast\ldots\ast a_n~\Big|~(a_1,\ldots,a_n)\in \underbrace{A^n\cap E^{\langle n\rangle}}_{=:A^{\langle n\rangle}}\Big\rbrace
+    \end{align*}
+    %für jedes $n\in\N$. D.h.
+    %\begin{align*}
+    %A^{(n)_\G}=A\ast_{\text{Mink}_\G}\ldots\ast_{\text{Mink}_\G} A
+    %\end{align*}
+    Sei $A^{(0)}:=\id V$, d.h. $A^{(0)}=\lbrace\id(p):p\in V\rbrace$. Hierbei ist $A^{(0)}$ die Menge aller \textbf{ID-Loops} in $\G$.
+    Dann heiße
+    \begin{align*}
+        A^{(\ast)}:=A^{(\ast)_\G}:=\bigcup\limits_{n\in\N} A^{(n)}
+    \end{align*}
+    der \textbf{Kleene-Star / Kleenscher Stern} von $A$ in $\G$, d.h.
+    \begin{align*}
+        A^{(\ast)}=\id~V\cup A\cup (A\ast A)\cup (A\ast A\ast A)\cup\ldots\qquad\forall A\in 2^E
+    \end{align*}
+    Für $A\in 2^E$ bildet $A^{(\ast)}$ stets die bzgl. ``$\subseteq$'' kleinste Unterstruktur von $\G$, die $A$ enthält. Man nennt $A^{(\ast)}$ daher auch das \textbf{Erzeugnis} von $A$ in $\G$ und schreibt auch
+    \begin{align*}
+        \langle A\rangle &:=\langle A\rangle_\G:=(A)^{(\ast)_\G}\\
+        \langle A\rangle&:=A^{(\ast)}
+    \end{align*}
+\end{proposition}
+
+\begin{beispiel}
+    Für $A:=\lbrace 4,5\rbrace\in 2^\N$ ist 
+    \begin{align*}
+        \langle A\rangle=A^{(\ast)}=\lbrace0,4,5,8,9,10,12,13,14,\ldots\rbrace=\N\setminus\lbrace1,2,3,6,7,11\rbrace
+    \end{align*}
+    in $\G=\G(\N,+,0)$. D.h. $\N\setminus\lbrace1,2,3,6,7,11\rbrace$ ist der von $\lbrace4,5\rbrace$ in $(\N,+,0)$ erzeugte Untermonoid.
+\end{beispiel}
+
+Sei $B$ eine Menge (von Buchstaben). Dann ist 
+\begin{align*}
+    K_B:=\big(\lbrace\perp\rbrace,B,B\to\lbrace(\perp,\perp)\rbrace\Big)
+\end{align*}
+ein 1-knotiges Netzwerk, das sogenannte \textbf{Kleeblatt-Netzwerk} zu $B$.($\lbrace\perp\rbrace$ ist der eine Knoten, $B$ die Kantenmenge (Buchstaben) und $B\to\lbrace(\perp,\perp)\rbrace$ die Strukturabbildung)\nl
+\textbf{Allgemeine Notation:} Sei $G=(V,E,\rho)$ Netzwerk und sei
+\begin{align*}
+    E^{\langle+\rangle}:=\bigcup\limits_{n\in\N_+} E^{\langle n\rangle}
+\end{align*}
+die Menge aller Pfade (``positiver Länge'') in $G$ und sei $\omega:V\to W$ Bijektion mit $W\cap E^{\langle +\rangle}=\emptyset$.\\
+Dann definieren wir das \textbf{Pfad-ANW} zu $(G,\omega)$ durch
+\begin{align*}
+    \mathbb{P}(G,\omega):=\big(P(G,\omega),\circledast,\id)
+\end{align*}
+via
+\begin{align*}
+    P(G,\omega)=(V,E^{\langle\ast\rangle},\tilde{\rho})\mit E^{\langle\ast\rangle}:=\bigcup\limits_{n\in\N} E^{\langle n\rangle}
+\end{align*}
+wobei $E^{\langle0\rangle}:=W$ und
+\begin{align*}
+    \tilde{\rho}:E^{\langle\ast\rangle}\to V\times V,\qquad\tilde{\rho}(a_1,\ldots,a_n):=\big(\sigma a_1,\tau a_n\big)
+    \qquad\forall(a_1,\ldots,a_n)\in E^{\langle+\rangle}
+\end{align*}
+und $\tilde{\rho}(\omega p):=(p,p)$ für $p\in V$.
+\begin{align*}
+    (a_1,\ldots,a_m)\circledast(c_1,\ldots,c_n)
+    :=\big(a_1,\ldots,a_m,c_1,\ldots, c_n\big)
+\end{align*}
+ist formales Aneinanderhängen von Pfaden 
+\begin{align*}
+    \omega(p)\circledast(a_1,\ldots,a_n):=(a_1,\ldots,a_n)=:(a_1,\ldots,a_n)\circledast\omega(p)
+\end{align*}
+für $p:=\sigma a_1$ und $q:=\tau a_n$.
+\begin{align*}
+    \id:V\to E^{\langle\ast\rangle},\qquad p\to\omega p
+\end{align*}
+
+\textbf{Beobachtung:} Das Erzeugnis von $E$ in $\mathbb{P}(\G,\omega)$ ist der Kleene Star von $E$:
+\begin{align*}
+    \langle E\rangle_{\mathbb{P}(G,\omega)}
+    &=E^{(\circledast)}
+    =\underbrace{\id~V}_{E^{\langle0\rangle}}\cup \underbrace{E}_{=E^{\langle1\rangle}}\cup \underbrace{(E\circledast E)}_{E^{\langle2\rangle}}\cup\underbrace{(E\circledast E\circledast E)}_{=E^{\langle3\rangle}}\cup\ldots\\
+    &=\bigcup\limits_{n\in\N} E^{(n)\circledast}
+    =\bigcup\limits_{n\in\N} E^{\langle n\rangle}
+    =E^{\langle\ast\rangle}
+\end{align*}
+Hierbei heißt $\circledast$ das \textbf{Pfadprodukt} in $\mathbb{P}(G,\omega)$ (formales aneinanderhängen von Pfaden). Beachte
+\begin{align*}
+    E^{(n)\circledast}=E^{\langle n\rangle}\qquad\forall n\in\N
+\end{align*}
+Ergebnis:
+\begin{align*}
+    \langle E\rangle_{\P(G,\omega)}=E^{(\circledast)}=E^{\langle\ast\rangle}
+\end{align*}
+Das heißt, das Erzeugnis von $E$ in $\mathbb{P}(G,\omega)$ ist $E^{\langle\ast\rangle}$, d.h. $E$ erzeugt $\mathbb{P}(G,\omega)$.\\
+Alle Kanten aus $G$ (interpretiert als Pfade der Länge 1) erzeugt das Pfad-ANN zu $(G,\omega)$.\\
+$G$ ist Unter-Netzwerk von $P(G,\omega)$, also ``liegt'' $G$ in $\mathbb{P}(G,\omega)$ als Netzwerk.\\
+Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht UnterANW!
+
+\begin{proposition}
+    Sei $G=(V,E,\rho)$ ein Netzwerk und sei $\omega: V \to W$ eine Bijektion mit $W \cap E^{\langle\ast\rangle} = \emptyset$.
+    Dann ist $\Gamma := (\id_V, \Gamma_{\text{edge}}$) mit 
+    $$ \Gamma_{\text{edge}}: E \to E^{\langle\ast\rangle}, e \mapsto e $$ ein Morphismus [sogar eine Einbettung] von $G$ nach $P(G,\omega)$, wobei
+    $P(G,\omega)$ das zu $(G,\omega)$ gehörige Pfadnetzwerk ist, und es existiert zu jedem ANW $\G':=(G',\ast',\id')$ mit
+    $G'=(V',E',\rho')$ und jedem Morphismus [Netzwerk-Morphismus!]
+    $ \Psi = (\Psi_{\text{vert}}, \Psi_{\text{edge}})$ von $G$ nach $G'$ genau ein Funktor $\Phi=(\Phi_{\text{vert}},\Phi_{\text{edge}})$ von 
+    $\P(G,\omega)$ nach $\G'$ derart, dass das folgende Diagramm kommutiert:
+    $$ \begin{tikzcd}
+        \dar{\Gamma}G\drar{\Psi} &\\
+        P(G,\omega) \rar{\Phi} & G'
+    \end{tikzcd}$$
+\end{proposition}
+\begin{proof}
+    \underline{Eindeutigkeit:} Beachte dass für $(e_1,\ldots,e_n) \in E^{\langle n\rangle}, n \in \N_+$,stets gilt
+    $$  (e_1,\ldots, e_n) = e_1 \circledast \ldots \circledast e_n.$$
+    Also gilt in der Situation vom Diagramm stets:
+    $$ \Phi_{\text{edge}}(e_1, \ldots, e_n) = \Phi_{\text{edge}}e_1 \ast' \ldots \ast' \Phi_{\text{edge}}e_n = \Psi_{\text{edge}}e_1 \ast' \ldots \ast' \Psi_{\text{edge}} e_n.$$
+
+    \underline{Existenz:} $ \Phi_{\text{edge}}(e_1,\ldots,e_n) := \Psi e_1 \ast' \ldots \ast' \Psi e_n$.
+\end{proof}
+
+\begin{bemerkung}[Anwendung ID-Loop bereinigt]
+    Sei $\G = (G, \ast, \id)$ ANW. Sei $G := (V, E^\bullet, \rho^\bullet)$ mit $E^\bullet := E - \id V$ und
+    $\rho^\bullet := \rho|_{E^\bullet}$. Und sei $\omega := \id|_{(V \to \id V)}$. Dann ist $\Psi:= (\id_V, i_{E^\bullet,E})$ ein 
+    Morphismus von $G^\bullet$ nach $G$ und es existiert genau ein Funktor $\Phi$ von $\P(G^\bullet, \omega)$ nach $\G$ mit
+    $\begin{tikzcd}
+        G^\bullet \dar{\Gamma} \drar{\Psi}\\
+        P(G^\bullet,\omega) \rar{\Phi} & G
+    \end{tikzcd}$ ist kommutativ. In der Tat ist $\Phi=(\id_V, \varphi)$ mit $\varphi:(E^\bullet)^{\langle\ast\rangle} \to E$
+    via $$\varphi(e_1, \ldots, e_n) := \varphi e_1 \ast \ldots \ast e_n$$
+    für $(e_1, \ldots, e_n) \in (E^\bullet)^{\langle +\rangle}$ und $\varphi(\id p):= \id p$ für $p \in P$.
+\end{bemerkung}
+
+\begin{bemerkung}[Anwendung unbereinigt]
+    Sei $\G = (G, \ast, \id)$ ANW mit $G=(V,E,\rho)$ und sei $\omega: V \to W$ Bijektion mit $W \cap E^{\langle + \rangle} = \emptyset$.
+    Dann existiert genau ein Funktor $\Phi$ von $\P(G, \omega)$ nach $\G$ mit
+    $\begin{tikzcd}
+        G \dar{\Gamma} \drar{\id_G:=(\id_V, \id_E)}\\
+        P(G,\omega) \rar{\Phi} & G
+    \end{tikzcd}$ ist kommutativ.
+\end{bemerkung}
+
+\begin{definition}
+    Ein Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$ \textbf{geschlossen}, falls $\sigma e_1 = \tau e_n$, oder
+    $$ (e_1,\ldots,e_n, e_1) \in E^{\<n+1\>}.$$
+\end{definition}
+
+\begin{definition}
+    Ein \textbf{Kreis} ist ein geschlossener Pfad $(e_1,\ldots,e_n) \in E^{\<n\>}$, sodass für alle $i,j \in \{1,\ldots,n\}$ 
+    $$ i \neq j \implies \sigma e_i \ne \tau e_j .$$
+\end{definition}
+
+\begin{definition}
+    Ein Netzwerk $G=(V,E,\rho)$ heißt \textbf{azyklisch} (acyclic), falls es keine geschlossenen Pfade besitzt (das ist dazu
+    äquivalent, dass das Netzwerk keine Kreise besitzt).
+\end{definition}
+
+\begin{definition}
+    Sei $\P = (P,R)$ binäres Relat. $\P$ heißt \textbf{azyklisch}, falls $G\P$ azyklisch ist.
+\end{definition}
+
+\begin{erinnerungnr}
+    Sei $P$ Menge. Dann bezeichne $\G_P$ das \textbf{logistische ANW} zu $P$, d.h. $\G_P=(G_P, \ast, \id)$
+    mit $G_P := G(P, P \times P)$ und $(p,t)\ast(t,q) := (p,q)$ für alle $p,t,q \in P$ sowie 
+    $\id(p) := (p,p)$ für alle $p \in P$.
+
+    Ist $\G=(G,\ast, \id)$ ANW mit $G=(V,E,\rho)$, so bildet eine Kantenmenge $D \subseteq E$ eine Unterstruktur
+    von $\G$, falls gilt
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\forall (a,b) \in E^{\<2\>}(a\in D \land b \in D \implies a \ast b \in D)$
+        \item $\id V \subseteq D$.
+    \end{enumerate}
+
+    Eine Kantenmenge $R \subseteq P \times P$ von $G_P$ bildet also eine Unterstruktur genau dann, wenn
+    $(P,R)$ Präordnung ist.\\
+    \textit{Denn:} (1) bedeutet, dass $(P,R)$ transitiv ist und (2) bedeutet, dass $(P,R)$ reflexiv ist.
+
+    Das zugehörige ANW sei mit $\G\P := \G_P|_R$ bezeichnet. Sprechweise "$\G\P$ ist $\P$ als ANW aufgefasst".
+\end{erinnerungnr}
+
+\begin{definition}
+    Man nennt ein ANW $\G = (G, \ast, \id)$ mit $G=(V,E,\rho)$ \textbf{azyklisch}, falls 
+    $G^\bullet =(V,E^\bullet, \rho^\bullet)$ mt $E^\bullet := E \setminus \id V$ und $\rho^\bullet := \rho|_E$
+    ein azyklisches Netzwerk ist.
+
+    $G^\bullet$ heiße die \textbf{ID-Loop-Bereinigung} von $\G$ (\underline{nicht} von $G$).
+\end{definition}
+
+\begin{bemerkungnr}
+    In der obigen Definition kann $G$ nicht azyklisch sein, da $\rho(\id p) = (p,p)$ nach Neutralitätsaxiom des Aktionsnetzwerkes.
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    Insbesondere gilt: Ist $\P = (P,R)$ Ordnung, so bildet $R$ eine Unterstruktur von $\G_P$, 
+    also fassen wir $\P$ auch als ANW $\G\P$ auf.
+\end{bemerkungnr}
+
+\begin{beispiel}
+    Sei $\P=(P,R)$ nichtleere Präordnung. Dann gilt $\P$ \underline{ist als ANW $\G\P$} azyklisch genau
+    dann, wenn $\P$ eine Ordnung ist. $\P$ als Netzwerk ist aber nicht azyklisch, da 
+    $\Delta:P := \{(p,p) \mid p \in P\} \subseteq R$ ist.
+\end{beispiel}
+
+\begin{satz}
+    Jede maximale Ordnung ist linear.
+\end{satz}
+\begin{proof}
+    Wäre maximale Ordnung $(P,R)$ nicht linear, so gibt es zwei nicht vergleichbare Elemente $p,q \in P$.
+    Dann gibt es aber eine Obermenge $O$ von $R$, welche wieder eine Ordnung ist.
+    Wähle einfach $(p,q) \in O$. 
+    Es genügt die Antisymmetrie nachzuweisen.
+    Wäre $O$ nicht antisymmetretisch, so gäbe es wegen der Transitivität von $R$ einen Pfad von $q$ nach $p$, Widerspruch.
+\end{proof}
+
+\section{Erweiterungen von (Aktions-)Netzwerken}
+\begin{definition}
+    Sind $G=(V,E,\rho)$ und $\overline{G} = (V, \overline{E}, \overline{\rho})$ Netzwerke, so heiße
+    $\overline{G}$ eine \textbf{echte Kantenerweiterung} von $G$, falls $E \subsetneqq \overline{E}$ und $G = \overline{G}|_E$ gilt.
+    Gilt $\#(\overline{E}-E) = n$, so heiße $\overline{G}$ \textbf{$n$-kantige Erweiterung} von $G$.
+\end{definition}
+
+\begin{lemma}
+    Sei $G=(V,E,\rho)$ ein azyklisches Netzwerk und seien $p,q \in V$ mit $p \ne q$.
+    Es sind äquivalent:
+    \begin{enumerate}[label=(\arabic*)]
+        \item Es existiert eine 1-kantige azyklische Erweiterung $\overline{G} = (V,\overline{E}, \overline{\rho})$ von $G$
+        derart, dass es ein $\overline{e} \in \overline{E}$ gibt mit $\overline{\rho}\overline{e} = (p,q)$,
+
+        \item  In $G$ gibt es keinen Pfad von $q$ nach $p$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \underline{(1) $\implies$ (2):} Gelte (1). Angenommen es existiert ein Pfad $(e_1, \ldots,e_n)$ in $G$ von $q$ nach $p$. Dann ist
+    $(\overline{e},e_1,\ldots,e_n)$ ein Pfad von $p$ nach $q$, d.h. ein geschlossener Pfad, in $\overline{G}$, was im Widerspruch zu (1) steht.\nl
+    \underline{(2) $\implies$ (1):} Wähle $\overline{e} \notin E$ und setze $\overline{E} := E \cup \{\overline{e}\}$ und setze
+    $\overline{\rho}\overline{e}:=(p,q)$ und erhalte 1-kantige Erweiterung $\overline{G} := (V, \overline{E}, \overline{\rho})$
+    von $G$. Angenommen $\overline{G}$ nicht azyklisch. Dann existiert ein geschlossener Pfad $(e_1, \ldots,e_n)$ in $\overline{G}$.
+    Wenn $(e_1, \ldots,e_n)$ ein Pfad in $G$ wäre so stünde dies im Widerspruch dazu, dass $G$ azyklisch ist.
+    Also gilt $\overline{e} \in \{e_1, \ldots,e_n\}$. Sei ohne Einschränkung $\overline{e} = e_1$. Dann ist $(e_2, \ldots, e_n)$ ein
+    Pfad von $q$ nach $p$ in $G$ was im Widerspruch zu (2) steht.
+\end{proof}
+
+% @Lukas: Ich schreibe mal neu auf, da ich in deinen Aufzeichnungen nicht rumpfuschen will.
+%TODO bitte mergen (die beiden Lemmas müssten semantisch ja äquivalent sein. Kannst aber auch einfach beide stehen lassen.
+
+\begin{lemma}\label{lemmaAnwendung}
+Sei $G=(V,E,\rho)$ azyklisches Netzwerk. Dann gilt genau eine der folgenden Aussagen:
+	\begin{enumerate}[label=(\roman*)]
+		\item In $G$ existiert für zwei verschiedene Knoten $p$ und $q$ stets ein Pfad entweder von $p$ nach $q$ oder von $q$ nach $p$.
+		\item Es existiert azyklische 1-kantige Erweiterung $\overline{G}=\big(V,\overline{E},\overline{\rho}\big)$ von $G$ um eine Kante $\overline{e}\in\overline{E}$ derart, dass in  $G$ kein Punkt $\overline{\sigma}e$ nach $\overline{\tau}e$ führt.\\
+		(d.h. es gibt verschiedene Knoten $p$ und $q$ in $G$ derart, dass weder ein Pfad von $p$ nach $q$ noch von $q$ nach $p$ existiert.)
+	\end{enumerate}
+\end{lemma}
+
+\begin{bemerkung}
+	Ist (i) erfüllt, so sagen wir auch, dass $G$ \textbf{Pfad-linear} ist.
+\end{bemerkung}
+
+\begin{proposition}[Claim 1]
+	Sei $G=(V,E,\rho)$ Netzwerk. Dann gilt:
+	\begin{align*}
+		G\text{ Pfad-linear}\Longleftrightarrow\Red G:=\Red(G):=G(V,\rho E)\text{ Pfad-linear}
+	\end{align*}
+\end{proposition}
+
+\begin{proposition}[Claim 0]
+	Sei $G=(V,E,\rho)$ Netzwerk. Dann gilt:
+	\begin{align*}
+		G\text{ azyklisch}\Longleftrightarrow\Red G\text{ azyklisch}
+	\end{align*}
+\end{proposition}
+
+\begin{proof}
+	\underline{Fall 1:} $G$ nicht azyklisch. Dann gilt:
+	\begin{align*}
+		\exists n\in\N_+,\exists\big(e_1,\ldots,e_n\big)\in E^{\langle n\rangle}:\sigma e_1=\tau e_1\\
+		\implies\big(\rho e_1,\ldots,\rho e_n\big)\text{ ist geschlossener Pfad in $\Red G$}.
+	\end{align*}
+	\underline{Fall 2:} $G$ ist azyklisch. Dann gilt:
+	\begin{align*}
+		\exists n\in\N,\exists p_0,\ldots,p_n\in V:
+		(p_0,p_1),\ldots,(p_{n-1},p_n)\in\rho E\text{ und }p_0=p_n\\
+		\implies\forall i\in[n]:\exists e_i\in E:\rho e_i=\big(p_{i-1},p_i\big)
+	\end{align*}
+	Dann ist $\big(e_1,\ldots,e_n\big)$ geschlossener Pfad in $G$. Widerspruch!
+\end{proof}
+
+\begin{proposition}[Claim 2]
+	Seien $G$ und $G'$ Netzwerke und ist $\Phi$ ein Morphismus von $G$ nach $G'$. Dann gilt:
+	\begin{align*}
+		G\text{ \underline{nicht} azyklisch}\Longleftrightarrow G'\text{ \underline{nicht} azyklisch}
+	\end{align*}
+\end{proposition}
+
+\begin{proof}
+	Nach Voraussetzung gilt:
+	\begin{align*}
+		\exists n\in\N_+:\exists\big(e_1,\ldots,e_n\big)\in E^{\langle n\rangle}:\sigma e_1=\tau e_n
+	\end{align*}
+	Dann ist auch $\big(e_1',\ldots,e_n'\big)$ geschlossener Pfad in $G'$, wobei
+	\begin{align*}
+		\forall i\in[n]:e_i:=\Phi_{\text{edge}}(e_i)
+	\end{align*}
+	Siehe Fall 1 von Claim 0.
+\end{proof}
+
+\begin{theorem}\
+	\begin{enumerate}
+		\item Mit Zorns Lemma folgt, dass jedes azyklische Netzwerk in eine azyklische Pfad-lineare Erweiterung besitzt.
+		\item Jedes endliche azyklische Netzwerk hat eine endlichen azyklische Pfad-lineare Erweiterung.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	2. folgt bereits aus Lemma \ref{lemmaAnwendung} durch sukzessive azyklische 1-kantiger Erweterungen. (terminiert, da $V\times V$-$\Delta_V$ endlich ist, $\Delta_V:=\big\lbrace(p,p)\mid p\in V\big\rbrace$)
+\end{proof}
+
+\begin{bemerkung}
+	Ordnungstheoretisch betrachtet umfassen die azyklischen Netzwerke die strikten Ordnungen.
+\end{bemerkung}
+
+\begin{lemma}
+	Sei $G=(V,E,\rho)$ und $\omega:V\to W$ Bijektion mit 
+	\begin{align*}
+		W\cap E^{\langle+\rangle}=\emptyset,\qquad\text{wobei }
+		E^{\langle +\rangle}=\bigcup_{n\in\N_+}E^{\langle n\rangle}\text{ Menge aller Pfade in }G
+	\end{align*}
+	Dann ist
+	\begin{align*}
+		\underbrace{E^{(\ast)}_{\P(G,\omega)}}_{\langle E\rangle_{\P(G,\omega)}}=E^{\langle\ast\rangle}=\bigcup\limits_{n\in\N} E^{\langle n\rangle},\qquad E^{(0)}:=W,\qquad
+		E\equiv E^1
+	\end{align*}
+	D.h. $E$ erzeugt in $\P(G,\omega)$ alle "Metakanten", d.h.
+	\begin{align*}
+		\langle E\rangle_{\P(G,\omega)}=E^{\langle\ast\rangle}.
+	\end{align*}
+	Für $D\subseteq E$ gilt dann 
+	\begin{align*}
+		\langle D\rangle_{\P(G,\omega)}&=D^{\langle\ast\rangle}=\bigcup\limits_{n\in\N} D^{\langle n\rangle}\\
+		D^{\langle0\rangle}:&=W\\
+		D^{\langle n\rangle}:&=\left\lbrace\big(d_1,\ldots,d_n\big)\in D^n~\Big|~\big(d_1,\ldots,d_n\big)\in E^{\langle n\rangle}\right\rbrace=E^{\langle n\rangle}\cap D^n\qquad\forall n\in\N_+
+	\end{align*}
+	Also gilt:
+	\begin{align*}
+		\Red\P(G,\omega)&=G\left(V,\tilde{\rho} E^{\langle\ast\rangle}\right) &\P&(G,\omega)=\big(P(G,\omega),\circledast,\id\big)\\
+		\Red \G:&=\big(\Red G,\ast,\id\big) &P&(G,\omega)=\big(V,E^{\langle\ast\rangle},\tilde{\rho}\big)\\
+		\mathbb{G}&=\big(G,\ast,\id\big)\text{ ANW} &G&=(V,E,\rho)\\
+		\Red G&=G(V,\rho E)=\big(V,\rho E,\rho E\hookrightarrow V\times V\big)
+	\end{align*}
+	Hierbei ist $(V,\rho E)$ binäres Relat (ist hier Präordnung) und $E\hookrightarrow V\times V$ die identische Einbettung. Außerdem ist $\big(V,\tilde{\rho}E^{\langle\ast\rangle}\big)$ Präordnung (reflexiv und transitiv) und $\P=(P,R)$ Präordnung und $\mathbb{G}\P:=\mathbb{G}_P|R$\\
+	Beachte:
+	\begin{align*}
+		\tilde{\rho} E^{\langle\ast\rangle}&=\underbrace{\Delta_V}_{=\lbrace(p,p)\mid p\in V\rbrace}\cup\big\lbrace(p,q)\in V\times V\mid\exists\text{ Pfad von $p$ nach $q$ in }G\big\rbrace
+	\end{align*}
+	Wenn $\vec{a}$ Pfad von $p$ nach $q$ und $\vec{c}$ Pfad von $q$ nach $r$, dann ist $\vec{a}\circledast\vec{c}$ Pfad von $p$ nach $r$.
+\end{lemma}
+
+\textbf{Frage:} Wann ist $\big(V,\tilde{\rho}E^{\langle\ast\rangle}\big)$ eine Ordnung?
+\begin{itemize}
+	\item $\Red \P(G,\omega)$ Ordnung $\Longleftarrow G$ azyklisch.
+	\item $\mathbb{G}$ Aktionsnwetzwerk $\implies \Red\G := \G_V|\rho_E$ Präordnung
+	\item $\mathbb{G}$ azyklisch Aktionsnetzwerk $\implies\Red G$ Ordnung
+	\item $G$ azyklisch $\implies\P(G,\omega)$ azyklisch
+\end{itemize}
+
+\begin{proposition}
+    Ist ein Aktionsnetzwerk azyklisch, so ist seine Reduktion azyklisch, d.h.
+    ist $\G =(G, \ast, \id)$ ein azyklische Aktionsnetzwerk mit $G =(V,E,\rho)$, so ist $(V, \rho E)$ Ordnung ist. [d.h. $(V,\rho E)$ ist antisymmetrisch]
+\end{proposition}
+\begin{proof}
+    Sei $\G$ azyklisch. Angenommen $(V, \rho E)$ ist nicht antisymmetrisch. Dann existiert $p,q \in V$ mit $p\ne q$ und $(p,q),(q,p) \in \rho E$.
+    D.h. es existieren $a,b \in E$ mit $\rho a =(p,q)$ und $\rho b = (q,p)$. Dann ist aber $(a,b)$ ein geschlossener Pfad.
+\end{proof}
+
+\begin{bemerkungnr}
+    Die Rückrichtung gilt nicht, denn jedes 1-knotige Aktionsnetzwerk hat eine 1-elementige Ordnung als Reduktion. Jedes mehrkantige
+    1-knotige Aktionsnetzwerk ist aber nicht azyklisch.
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+    Hat ein Aktionsnetzwerk $\G =(G, \ast, \id)$ mit $G=(V,E,\rho)$ keine Loops außer den ID-Loops, so ist $\G$ azyklisch genau dann, wenn 
+    $(V, \rho E)$ antisymmetrisch ist.
+\end{bemerkungnr}
+\begin{proof}
+    Sei $(V, \rho E)$ antisymmetrisch. Angenommen $\G$ ist nicht azyklisch, so existiert ein $n \in \N_+$ und ein geschlossener Pfad
+    $(e_1, \ldots,e_n)$ in $\G$. Ohne Einschränkung folgt $\sigma e_1 \ne \tau e_1$. Dann ist aber $(\sigma e_1, \tau e_1)=\rho e_1,
+    (\tau e_1, \sigma e_1)=\rho(e_2\ast\ldots\ast e_n) \in \rho E$ was im Widerspruch zur Antisymmetrie von $(V, \rho E)$.
+\end{proof}
+
+\begin{definition}
+    Ein Aktionsnetzwerk $\G =(G, \ast, \id)$ mit $G =(V,E,\rho)$ heiße \textbf{linear}, falls für $p,q \in V$ stets ein $e \in E$ mit
+    $\rho e \in \{(p,q),(q,p)\}$ existiert, d.h. $(V,\rho E)$ ist linear.
+    \textit{Ein Augenmerk haben wir auf azyklische, lineare Aktionsnetzwerke.}
+\end{definition}
+
+\begin{proposition}
+    Sei $\G = (G, \ast, \id)$ mit $G=(V, E,\rho)$ Aktionsnetzwerk.
+    Dann ist $\Phi := (\id_V, \varphi)$ mit $\varphi: E \to \rho E, e\mapsto \rho e$ ein Funktor von
+    $\G$ nach $\Red \G$.
+\end{proposition}
+\begin{proof}
+    Wir wissen schon, das $\Phi$ Morphismus von $G$ nach $\Red G := G(V, \rho E)$ ist [ist sowieso klar].
+    Außerdem gilt für $(a,b) \in E^{\<2\>}$ stets 
+    $$ \varphi(a \ast b) = \rho (a\ast b) = (\sigma a, \tau b) = (\sigma a, \tau a) \ast (\sigma b, \tau b) = 
+    = \rho a \ast \rho b = \varphi a \ast \varphi b.$$ 
+    Und für $p \in V$ ist stets 
+    $$ \varphi (\id p) = \rho(\id p) = (p,p)=\id_{\G_V}p = \id_{\G_V} (\id_V p)$$
+\end{proof}
+
+\section{Measurement Setups}
+\newcommand*{\Meas}{\mathcal{M}}
+Zurück zum Begriff des Measurement Setups.
+\begin{definition}
+    Ein Tripel $\mathcal{M} =(\G, \M, \Delta)$ bestehend aus einem Aktionsnetzwerk $\G = (G, \ast, \id)$ mit $G =(V,E,\rho)$, einem Monoid 
+    $\M = (M, \ast, \epsilon)$ und einer funktoriellen Abbildung $\Delta: E \to M$ von $\G$ nach $\M$ heiße \textbf{Measurement Setup}.
+
+    Dabei heißt $\Delta$ funktoriell, falls gilt: $\forall~(a,b)\in E^{\<2\>} : \Delta (a\ast b) = \Delta a \ast \Delta b$ und
+    $\forall~p\in V: \Delta (\id p) = \epsilon$.
+
+    D.h. $\Phi := (\Phi_{\text{vert}}, \Phi_{\text{edge}})$ mit $\Phi_{\text{vert}}: V \to \{\perp\}, p \mapsto \perp$ und
+    $\Phi_{\text{edge}} := \Delta$ ist Funktor von $\G$ nach $\G(\M,\perp)$, wobei $\perp$ ein geeignetes Symbol ist.
+\end{definition}
+
+\begin{beispiel}[Gegenbeispiel]
+    Sei $\Omega$ Menge. Dann ist $M:=(\G_P, \M, d)$ mit $P := 2^\Omega$ und $\M := (M, \cup, \emptyset)$ mit $M := 2^\Omega$ und
+    $$ d: P \times P \to M, (X,Y) \mapsto Y - X. $$ im Allgemeinen kein Measurement Setup.
+    
+    Ansonsten müsste gelten: für alle $X,Y,Z \in P$ gilt $$d(X,Z) = d((X,Y) \ast (Y,Z)) = d(X,Y) \cup d(Y,Z)$$
+    d.h. $Z-X = (Y-X)\cup (Z-Y)$.
+    Das gilt im Allgemeinen nicht. Zum Beispiel wenn $Y \subsetneqq X \subseteq Z$.
+
+    Immerhin gilt aber: für alle $X,Y,Z \in P$ ist $d(X,Z) \subseteq d(X,Y) \cup d(Y,Z)$.
+\end{beispiel}
+
+\begin{beispiel}
+    \label{ex:TeilmengenMeasurementSetup}
+    $\mathcal{M} := (\G\P, \M, \Delta)$ mit $\G\P := \G_P|R$ für $\P:=(P,R)$ wobei $R := \{(X,Y) \in P\times P \mid X \subseteq Y\}$
+    und $\Delta: R \to M, (X,Y) \mapsto Y-X$.\nl
+    Die Dimensionsformel gilt hier:
+
+    Für $X,Y \in P$ gilt stets $$\Delta(X,X\cup Y) = \Delta(X\cap Y,Y).$$
+    Also ist $\Delta$ Dimensionsfunktion bzgl. $(\G\P,\M)$.\nl
+    Dies gilt auch, falls $(\Omega, \mathscr{A})$ eine $\sigma$-Algebra ist --
+    oder man nur das Folgende fordert:
+
+    Sei $\Omega$ Menge ($\ne \emptyset$) und sei $\mathscr{A} \subseteq 2^\Omega$ mit:
+    \begin{itemize}
+        \item $\emptyset\in \mathscr{A}$
+        \item $A \in \mathscr{A} \implies A^c \in \mathscr{A}$
+        \item $A,B \in \mathscr{A} \implies A \cup B \in \mathscr{A}$
+    \end{itemize}
+
+    Sei dann $R := \{(X,Y) \in \mathscr{A}\times \mathscr{A} \mid X \subseteq Y\}$. Dann ist $(\G\P,\M,\Delta)$ ein Measurement Setup
+    für $\P := (\mathscr{A},R)$, $\M:=(\mathscr{A}, \sup, \emptyset)$, $\Delta: R \to \mathscr{A}, (X,Y)\mapsto Y-X$.\nl
+    Ferner sei $\mathscr{S} = (S, \ast, \varepsilon, \leq)$ ein geordnetes Monoid, d.h. $(S, \ast, \varepsilon)$ ist Monoid
+    und $(S, \leq)$ ist Ordnung mit $\forall~s,t,u\in S(s\leq t\implies u \ast s\leq u\ast t \land s\ast u \leq t \ast u)$.
+    Außerdem sei $\mu:\mathscr{A} \to S$ mit
+    \begin{enumerate}[label=(\roman*)]
+        \item $\mu \emptyset = \varepsilon$
+        \item $\forall~ A,B \in \mathscr{A}(A\subseteq B \implies \mu A \leq \mu B)$ \textit{"isoton"}
+        \item $\forall~A,B\in \mathscr{A}(\mu(A\cup B)\ast \mu(A\cap B)=\mu A \ast \mu B)$ \textit{"modular bezüglich $((\mathscr{A},\subseteq),\mathscr{S})$"}
+    \end{enumerate}
+    \underline{Übung:} Sind $A,B \in \mathscr{A}$ mit $A\cap B = \emptyset$, so ist $\mu(A \cup B) = \mu A \ast \mu B$.\\
+    \textit{Beweis.} Es gilt: 
+    \begin{align*}
+        \mu(A\cup B) & = \mu(A\cup B) \ast \varepsilon\\
+        & \stackeq{\text{(i)}}\mu(A\cup B)\ast\mu(A \cap B)\\
+        & \stackeq{\text{(iii)}} \mu A \ast \mu B.
+    \end{align*}
+    \underline{Exploration:} Sei $A,B \in \mathscr{A}$ mit $A \subseteq B \subseteq C$.\\
+    Dann $\mu\Delta(A,C)=\mu(C-A)$\\
+    und $\mu\Delta(A,B) = \mu(B-A)$, sowie $\mu\Delta(B,C)=\mu(C-B)$.
+    Also gilt 
+    \begin{align*}
+        \mu\Delta(A,B)\ast\mu\Delta(B,C) &= \mu(B-A) \ast \mu(C-B)\\
+        & = \mu(B-A \cup C-B)\\
+        & = \mu(C-A) = \mu\Delta(A,C).
+    \end{align*}
+    Außerdem gilt für alle $A \in \mathscr{A}$:
+    $$ \mu\Delta(A,A) = \mu(A-A) = \varepsilon.$$
+    \underline{Zwei etwas unterschiedliche Konzepte von "modular":}
+    \begin{enumerate}
+        \item $\Delta(A,A\cup B) = \Delta(A \cap B, B)$ \textit{"$\Delta$ \textbf{modular} bzgl. $(\G\P,\M)$"}
+        \item $\mu(A \cup B) \ast \mu(A \cap B) = \mu A \ast \mu B$ \textit{"$\mu$ \textbf{modular} bzgl. $((\mathscr{A},\subseteq),(S,\ast,\varepsilon))$"}
+    \end{enumerate}
+    \begin{proposition}
+        \label{prop:FunktAbelschModular}
+        Bildet $(S,\ast,\varepsilon)$ eine abelsche Gruppe, so ist eineAbbildung $\mu\colon\mathscr{A} \to S$ modular bzgl.~$((\mathscr{A},\subseteq),(S,\ast,\varepsilon))$ genau dann,
+        wenn $\Delta^\mu\cong R \to S, (A,B) \mapsto (\mu A)^{-1}\ast \mu B$ modular bzgl.~$(\G(\mathscr{A},R),(S,\ast,\varepsilon))$ ist.
+        \begin{proof}
+            Dies folgt, da, falls $\mu$ modular, für $(A,B) \in R$ stets gilt
+            \begin{align*}
+                \Delta^\mu(A, A \cup B) = \Delta^\mu(A \cap B, B) & \iff (\mu A)^{-1} \ast \mu(A \cup B) = \mu(A \cup B)^{-1} \ast \mu B\\
+                & \iff \mu(A \cup B) \ast \mu(A\cap B) = \mu A \ast \mu B.
+            \end{align*}
+        \end{proof}
+    \end{proposition}
+    \underline{Zusatz:} Falls $\mu$ modular gilt:
+    \begin{align*}
+        \mu\Delta(A,B) =(\mu A)^{-1}\ast \mu B &\iff \mu A \ast \mu\Delta(A,B) = \mu B\\
+        & \iff \mu A \ast \mu (B-A) = \mu B\\
+        & \iff \mu ( \underbrace{A \cup (B-A)}_{=B})= \mu B,
+    \end{align*}
+\end{beispiel}
+
+\subsection{Ordnungen und Verbände}
+\begin{proposition}
+    \label{prop:MeasSetupÜberGruppe}
+    Sei $\P = (P, R)$ Präordnung und sei $\mathcal{S} = (S,\ast,\varepsilon)$ Gruppe.
+    Dann gilt für jede Abbildung $\mu\colon P \to S$ und $\Delta^\mu\colon R \to S, (a,b) \mapsto (\mu a)^{-1} \ast \mu b$,
+    dass $(\G\P, \mathcal{S}, \Delta^\mu)$ Measurement Setup ist.
+    \begin{proof}
+        Wir müssen zeigen, dass $\Delta^\mu$ funktoriell, also
+        \begin{itemize}
+            \item Für $p \in P$ ist stets $\Delta^\mu(p,p) = (\mu p)^{-1} \ast \mu p = \varepsilon$.
+            \item Für $p,t,q \in P$ ist stets
+            $$ \Delta^\mu(p,t)\ast\Delta^\mu(t,q) = (\mu p)^{-1} \ast \mu t \ast (\mu t)^{-1} \ast \mu q = (\mu p)^{-1} \ast \mu q = \Delta^\mu(p,q). $$
+        \end{itemize}
+        Ergebins: $(\G(\mathscr{A},R),(S,\ast,\varepsilon),\mu\circ\Delta = \Delta^\mu)$ ist Measurement Setup.
+    \end{proof}
+\end{proposition}
+\begin{definition}[Verband]
+    Sei $\P = (P, \leq_\P)$ eine Ordnung derart, dass zu jedem $p,q\in P$ stets $s, u\in P$ existieren mit
+    \begin{equation}
+        \label{eqn:VerbandInfSup}
+        u \leq_\P p \leq_\P s \qquad\text{und}\qquad u \leq_\P q \leq_\P s.
+    \end{equation}
+    Falls es weitere $u', s'\in P$ gibt, die \eqref{eqn:VerbandInfSup} erfüllen, so gilt $u'\leq_\P u \land s \leq_\P s'$.
+    Dann heißt $\P$ \textbf{Verband}.
+    Wir nennen $p\land_\P q := u$ das \textbf{Infimum} (größte untere Schranke) von $(p, q) \in P$ und $p \lor_\P q := s$ \textbf{Supremum} (kleinste obere Schranke).
+    Also sind $\land_\P, \lor_\P\colon P\times P\to P$ 2-stellige Operationen auf $P$, welche Infimum- bzw.~Supremum-Operation heißen.
+    Ein Verband heißt \textbf{vollstädig}, falls \emph{jede beliebige} Teilmenge $X\subset P$ ein Infimum und Supremum besitzt.
+    Das heißt: es existieren $u, s\in P$, sodass für alle $p\in X$ gilt:
+    \begin{align}
+            u\leq_\P p
+            &\quad\text{und}\quad
+            \forall u'\in P\colon u'\leq_\P p\implies u'\leq_\P u \\
+            p\leq_\P s
+            &\quad\text{und}\quad
+            \forall s'\in P\colon p\leq_\P s'\implies s\leq_\P s'
+    \end{align}
+    Wir schreiben $\inf_\P X := u$ für das Infimum von $X$, bzw.~$\sup_\P X := s$ für das Supremum von $X$.
+    \begin{beispiel}
+        Seien $P_1, P_2$ Mengen.
+        Dann ist $P := P_1\times P_2$ eine Menge mit den Projektionen $\pi_1, \pi_2$, welche wir als \enquote{Pfeile} zwischen Mengen als Knoten interpretieren.
+        Sind dann $\varphi_1\colon P'\to P_1$ und $\varphi_2\colon P'\to P_2$ Abbildungen,
+        so existiert genau eine Abbildung $\varphi\colon P'\to P$ mit $\varphi * \pi_1 = \varphi_1$\footnote{kovariant verkettet} und $\varphi * \pi_2 = \varphi_2$.
+        Wir nennen $(P; \pi_2, \pi_2)$ das (kartesische) Produkt von $P_1$ und $P_2$ (in der kovarianten Kategorie der Mengen und Abbildungen).
+        Ist $\P = (\mathcal{P}, \subset)$ ein geordnetes Mengensystem,
+        so bildet $\G\P$ einen vollstädigen Verband mit dem Produkt als Infimum
+        (analog mit Koprodukt als Supremum).
+    \end{beispiel}
+\end{definition}
+\begin{proposition}
+    Bilde $\P = (P, \leq)$ einen Verband und $\mathcal{S} = (S,\ast,\varepsilon)$ eine abelsche Gruppe, dann sind für jede Abbildung $\mu: P \to S$ äquivalent:
+    \begin{enumerate}[label=(\alph*)]
+        \item $\mu$ ist modular bezüglich $(\P,\mathcal{S})$
+        \item $\Delta^\mu\colon {}\leq_\P{} \to S, (p,q) \mapsto (\mu p)^{-1} \ast \mu q$ ist modular bezüglich $(\G\P,\mathcal{S})$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{beispiel}
+    Sei $A = (P,B,I, \parallel)$ ein axiomatischer affiner Raum bestehend aus Punktmenge $P$, Beradenmenge $B$, eine
+    Inzidenzrelation $I \subseteq P\times B$ und Parallelitätsrelation ${}\parallel{} \subseteq B \times B$.
+
+    \underline{Ziel:} Führe ein Measurement Setup für $A$ ein, falls $A$ hinreichend gutartig.
+    \textit{Modelltheoretisch ist dies eine 2-sorted first-order language model with two relation symbols.}
+
+    \begin{enumerate}[label=(Axiom \arabic{*})]
+        \item Any two different points are incident with exactly one line.
+        \item There are 3 points not incident with one line.
+        \item Any line is incident with at least two points.
+        \item For every point $p$ and every line $b$ there is exactly one line $c$ which is parallel to $b$ and incident with $p$.
+        \textit{"Euclid's parallel postulate"}
+    \end{enumerate}
+
+    Namen: "Max Dehn", "David Hilbert"(Grundlagen der Geometrie ende des 19.Jh)\nl
+    Damit können wir ein Measurement Setup $(\G_P, \M, \Delta)$ folgendermaßen einführen:
+    \begin{itemize}
+        \item $\M = (\text{Translationen}, \ast, \id_p)$
+        \item $\Delta: P\times P, (p,q) \mapsto \tau_{(p,q)} \in \text{Translationen}$.
+    \end{itemize}
+\end{beispiel}
+
+\begin{definition}[Dimensionsfunktion]
+    Sei $\P = (P, \leq)$ ein Verband und $\M := (M, *, \varepsilon)$ ein Monoid.%
+    \footnote{oftmals kommutativ}
+    Dann heißt eine Abbildung $\Delta\colon (\leq) \to M$ \textbf{Dimensionsfunktion} bzgl.~$(\P, \M)$, falls für alle $p, t, q\in P$ gilt, dass
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\Delta(p, p) = \varepsilon$
+            \label{def:DimFktRefl}
+        \item $p\leq t \land t\leq q \implies \Delta(p, q) = \Delta(p, t) * \Delta(t, q)$
+            \label{def:DimFktTrans}
+        \item $\Delta(p\land q, q) = \Delta(p, p\lor q)$
+            \label{def:DimFktDimFormel}
+    \end{enumerate}
+    Dabei heißen \ref{def:DimFktRefl} und \ref{def:DimFktTrans}, dass $\Delta$ Funktor von $\G\P$ nach $\G\M$ induziert;
+    \ref{def:DimFktDimFormel} dass die Dimensionsformel gilt.
+    Wir interpretieren $\Delta$ als gerichteten Abstand von $p$ nach $q$ falls $p\leq q$.
+\end{definition}
+So ist $\Delta$ aus \autoref{ex:TeilmengenMeasurementSetup} eine Dimensionsfunktion bezüglich $((\mathcal{A}, R), M)$.
+
+\newcommand*{\Dphi}{\ensuremath{\Delta^\varphi}}
+\begin{proposition}
+    Ist $\P$ Ordnung mit kleinstem Element $0$ und bildet $\M$ eine Gruppe, so
+    gilt:
+    \begin{enumerate}[label=(\arabic*)]
+        \item
+            \label{prop:FunktorialitätInInvMeasSetup_1}
+            Für jede Abbildung $\varphi\colon P\to M$ ist
+            $\Dphi\colon (\leq_\P) \to M,\,
+                (p, q) \mapsto (\varphi p)^{-1}*\varphi q$
+            funktoriell.
+        \item
+            \label{prop:FunktorialitätInInvMeasSetup_2}
+            Ist $\Delta\colon (\leq_\P)\to \M$ eine funktorielle Abbildung bzgl.~$(\P, \M)$,
+            so gilt für $\varphi\colon P\to M,\, p\mapsto \Delta(0, p)$ stets $\Delta = \Dphi$.
+    \end{enumerate}
+    \begin{proof}
+
+        Zuerst \autoref{prop:FunktorialitätInInvMeasSetup_1}.
+        Seien $p, t, q\in P$.
+        Dann gilt $\Dphi(p, p) = (\varphi p)^{-1}*\varphi p = \varepsilon$, und
+        genau so $\Dphi(p, t)*\Dphi(t, q) = (\varphi p)^{-1}*\varphi t*(\varphi
+        t)^{-1}*\varphi q = \Dphi(p, q)$.
+        Somit ist $\Dphi$ funktoriell.
+        Nun \autoref{prop:FunktorialitätInInvMeasSetup_2}.
+        Seien $p, q\in P$ mit $p \leq q$.
+        Da $0$ kleinstes Element in $\P$ ist, gilt $0\leq p \leq q$, also folgt die Behauptung, da $\Delta$ eine funktorielle Abbildung ist:
+        \begin{align*}
+            \Dphi(p, q)
+                &= (\varphi p)^{-1}*\varphi q \\
+                &= \Delta(0, p)^{-1}*\Delta(0, q) \\
+                &= \Delta(0, p)^{-1}*\Delta(0, p)*\Delta(p, q) \\
+                &= \Delta(p, q) \qedhere
+        \end{align*}
+    \end{proof}
+\end{proposition}
+
+Wir fassen die obigen Ergebinsse über Ordnungen und Gruppen zusammen:
+\begin{definition}
+    Ein Measurement Setup $\Meas = (\G, \M, \Delta)$ heißt \textbf{reversibel},
+    falls $\M$ eine Gruppe bildet.
+    $\Meas$ heißt \textbf{initial}, falls $\G$ \textbf{initial} ist:
+    Ein ANW $\G = (G, *, \id)$ mit $G = (V, E, \rho)$ heißt initial, falls es in $G$ einen \textbf{initialen Knoten} $p\in V$ gibt:
+    \[
+        \forall q\in V\exists!e\in E\colon \rho e = (p, q)
+    \]
+    Wir nennen dann auch $G$ initial.
+    Ist jeder Knoten in $G$ initial, so heißt $G$ \textbf{total initial};
+    analog heißen dann auch $\G$ und $\Meas$ total initial.
+\end{definition}
+Mit den Bezeichnungen von eben sehen wir:
+\begin{itemize}
+    \item $G~\text{inital} \iff G = G(P, P\times P)$
+    \item $\G~\text{total inital} \iff \G~\text{ist logistisches ANW}$
+    \item $\G$ inital $\iff$ $\G$ besitzt ein initales Objekt im Sinne der Kategorientheorie
+\end{itemize}
+Das duale Konzept sind \textbf{terminale Knoten} bzw.~\textbf{terminale Objekte}.
+\begin{beispiel}
+    Set $\Omega$ eine Menge, $V = 2^\Omega$ deren Potenzmenge.
+    Wir beschreiben das Netzwerk von Teilengen $A, B\subset \Omega$ als Knoten und Kanten $f\colon A\to B$.
+    Sei also $E := \bigcup_{A, B\in V} B^A$ mit den Beziehungen
+    $\rho\colon E\to V\times V,\, (A\xrightarrow{f} B) \mapsto (A, B)$,
+    und $G = (V, E, \rho)$.
+
+    Dann ist $\G = (G, *, \id)$ ein initales ANW bezüglich kovarianter Verknüpfung $(*)$ von Abbildungen und initalem Knoten $\emptyset$.
+\end{beispiel}
+
+\newcommand*{\Init}[1][p]{\ensuremath{e_{\sigma, {#1}}}}
+\begin{proposition}
+    Sei $\Meas = (\G, \M, \Delta)$ ein initiales und reversibles Measurement Setup,
+    mit $\G = (G, *, \id)$, $G = (V, E, \rho)$ und $\M = (M, \bullet, \varepsilon)$.
+    Sei $\sigma$ der initale Knoten von $\G$ und bezeichne $\Init$ für jedes $p\in V$ die eindeutig bestimmte Kante mit $\rho \Init = (\sigma, p)$.
+    Dann gilt für jede Kante $p\xrightarrow{a} q$:
+    \[
+        \Delta a = (\Delta \Init[p])^{-1}\bullet \Delta \Init[q]
+    \]
+    % \[
+    %     \begin{tikzcd}
+    %         p
+    %             \ar[r, "a"]
+    %             &
+    %         q
+    %             \\
+    %         \sigma
+    %             \ar[u, "\Init[p]"]
+    %             \ar[ur, "\Init[q]"]
+    %             &
+    %     \end{tikzcd}
+    % \]
+    \begin{proof}
+        Da $\Delta$ funktoriell ist, gilt
+        \[
+            \Delta\Init[q]
+                = \Delta(\Init[p]*a)
+                = \Delta(\Init[p])\bullet\Delta(a),
+        \]
+        das heißt
+        \[
+            \Delta a = (\Delta\Init[p])^{-1} \bullet \Delta\Init[q]
+                \qedhere
+        \]
+    \end{proof}
+\end{proposition}
+Sind $a, b$ Kanten in einem ANW $\G$ mit $a*b, b*a\in \id V$.
+% \[
+%     \begin{tikzcd}
+%         \circ \ar[r, "a", bend left] &
+%         \circ \ar[l, "b", bend left]
+%     \end{tikzcd}
+% \]
+Dann ist $b$ eindeutig bestimmt und wir setzen $a^{-1} := b$.
+In einem reversiblen Measurement Setup gilt dann
+\[
+    \Delta\left(a^{-1}\right) = (\Delta a)^{-1},
+\]
+denn
+\[
+    \Delta a*\Delta(a^{-1})
+        = \Delta(a*a^{-1})
+        = \Delta\id(\sigma a)
+        = \varepsilon
+        = \Delta\id(\tau a)
+        = \Delta(a^{-1}*a)
+        = \Delta a^{-1}*\Delta(a),
+\]
+d.h.~$\Delta(a^{-1}) = (\Delta a)^{-1}$.
+
+\begin{proposition}
+    Set $\G$ eine Measurement Setup mit den üblichen Bezeichnungen, $\M = (M, \bullet, \varepsilon)$ eine Gruppe.
+    \begin{enumerate}[label=(\arabic*)]
+        \item Für jede Abbildung $\varphi\colon V\to M$ ist
+            $\Dphi\colon E\to M,\, e\mapsto (\varphi\sigma e)^{-1}\bullet \varphi\tau e$
+            funktoriell bzgl.~$(\G, \M)$, d.h.~$(\G, \M, \Dphi)$ ist Measurement Setup.
+        \item Ist $\G$ inital und ist $\Delta\colon E\to M$ funktorielle Abbildung bzgl.~$(\G, \M)$,
+            so gilt $\Delta = \Dphi$ für $\varphi\colon V\to M,\, p\mapsto\Delta \Init[p]$
+            für jeden fest gewählten initialen Knoten $\sigma$ von $\G$.
+    \end{enumerate}
+    \begin{beispiel}
+        Sei $\G = \G\P$ für eine Präordnung $\P = (P, R)$ mit kleinstem Element $0$,
+        d.h.~ $(0, p) \in R$ für alle $p\in P$.
+        Dann ist $0$ initaler Knoten $\G\P$.
+    \end{beispiel}
+    \begin{proof}
+        Zu (a): Für $p\in V$ gilt stets
+        \[
+            \Dphi\id p = (\varphi p)^{-1}\bullet \varphi p = \varepsilon
+        \]
+        Für Kanten $p\xrightarrow{a} q\xrightarrow{b} r$ gilt stets
+        \[
+            \Dphi(a*b)
+                = (\varphi\sigma(a*b))^{-1}\bullet \varphi\tau(a*b)
+                = (\varphi\sigma a)^{-1}\bullet \varphi\tau b
+        \]
+    \end{proof}
+\end{proposition}
