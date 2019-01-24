@@ -10,14 +10,14 @@ start with $\T_0$ and $\tol$
 \begin{align*}
 	{}&k=0\\
 	{}&\text{solve discrete problem on }\T_h \text{ compute global error estimate }\\
-	{}& \eta \text{ and local error estimation} \eta_T \text{ for} T\in \T_k\\
-	{}&while \eta > \tol do\\
-	{}& \quad mark elements for retirement\\
-	{}& \quad adapt mesh\\
+	{}& \eta \text{ and local error estimation } \eta_T \text{ for } T\in \T_k\\
+	{}& \text{while }\eta > \tol \text{ do:}\\
+	{}& \quad \text{mark elements for refinement}\\
+	{}& \quad \text{adapt mesh}\\
 	{}& \quad k=k+1\\
-	{}& \quad solve discrete problem on \T_h\\
-	{}& \quad compute \eta and \eta_T for T\in \T_k\\
-	{}&end while	 
+	{}& \quad \text{solve discrete problem on }\T_h\\
+	{}& \quad \text{compute }\eta \text{ and }\eta_T \text{ for } T\in \T_k\\
+	{}& \text{end while	} 
 \end{align*}
 strategy: local error is similiar for all elements $\implies$ elements with large local error can be coarsed
 \begin{enumerate}[label=\alph*)]

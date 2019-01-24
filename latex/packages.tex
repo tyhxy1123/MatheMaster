@@ -12,17 +12,16 @@
 \usepackage{amsthm} % damit kann man eigene Theorem-Umgebungen definieren, proof-Umgebungen, etc.
 \usepackage{mathrsfs} % für \mathscr
 \usepackage[backref]{hyperref} % Inhaltsverzeichnis und \ref-Befehle werden in der PDF-klickbar
-\usepackage[english, ngerman, capitalise]{cleveref}
 \usepackage{graphicx}
 \usepackage{grffile}
 \usepackage{setspace} % wichtig für Lesbarkeit. Schöne Zeilenabstände
-
 \usepackage{enumitem} % für custom Liste mit default Buchstaben
 \usepackage{ulem} % für bessere Unterstreichung
 \usepackage{contour} % für bessere Unterstreichung
 \usepackage{epigraph} % für das coole Zitat
-\usepackage{float}
+\usepackage{float}            % figure-Umgebungen besser positionieren
 \usepackage{xfrac}
+\usepackage{bbm} %sorgt für Symbol für Indikatorfunktion
 \usepackage{color} % bringt Farbe ins Spiel
 \usepackage{aligned-overset} % besseres Einrücken, siehe: https://tex.stackexchange.com/questions/257529/overset-and-align-environment-how-to-get-correct-alignment
 
@@ -33,12 +32,16 @@
 ]{doclicense} % für CC Lizenz-Vermerk
 
 \usepackage{tikz}
-\usetikzlibrary{matrix}
-\usetikzlibrary{cd}
+	\usetikzlibrary{matrix}
+	\usetikzlibrary{cd}
+	
 \usepackage{csquotes}
-\MakeOuterQuote{"}
+	\MakeOuterQuote{"}
 
 \usepackage{xargs} % for multiple optional args in newcommand
 \usepackage{lmodern} % provides a bigger set of font sizes
 \usepackage{anyfontsize} % supports fallback scaling for non-existing font size
 \usepackage{scrhack} % provides a hack for deprecated float environments used by some libs
+
+% Ich habe gelesen, dass man folgendes Package zuletzt einbinden soll:
+\usepackage[english, ngerman, capitalise]{cleveref} % bessere Verweise

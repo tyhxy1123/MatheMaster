@@ -1448,22 +1448,22 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 	\begin{align*}
 		C_c(\Omega)&:=\big\lbrace u\in C(\Omega):\supp(u)\text{ kompakt}\big\rbrace\\
 		C_c^k(\Omega)&:=C_c(\Omega)\cap C^k(\Omega)\qquad\forall k\in\N\cup\lbrace\infty\rbrace\\
-		L^1_{\text{loc}}&:=\Big\lbrace u:\Omega\to\C\text{ messbar }~\big|~\forall K\subseteq\Omega\text{ kompakt}:u\big|_K\in L^1(K)\Big\rbrace
+		L^1_{\loc}&:=\Big\lbrace u:\Omega\to\C\text{ messbar }~\big|~\forall K\subseteq\Omega\text{ kompakt}:u\big|_K\in L^1(K)\Big\rbrace
 	\end{align*}
 	Es gilt
 	\begin{align*}
 		C_c^\infty(\Omega)\subseteq C^1_c(\Omega)\subseteq C_c(\Omega)\begin{array}{l}
 			\subseteq C(\Omega)\subseteq\\
 			\subseteq L^p(\Omega)\subseteq
-		\end{array} L^1_{\text{loc}}(\Omega)\qquad\forall 1\leq p\leq\infty
+		\end{array} L^1_{\loc}(\Omega)\qquad\forall 1\leq p\leq\infty
 	\end{align*}
-	Eine Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach partiell nach $x_i$ differenzierbar}
+	Eine Funktion $u\in L^1_{\loc}(\Omega)$ heißt \textbf{schwach partiell nach $x_i$ differenzierbar}
 	\begin{align*}
-		:\Longleftrightarrow\exists g\in L^1_{\text{loc}}:\forall\varphi\in C^\infty_c(\Omega):\int\limits_\Omega u(\omega)\cdot\frac{\partial\varphi(\omega)}{\partial x_i}\d\omega=-\int\limits_\Omega g(\omega)\cdot\varphi(\omega)\d\omega
+		:\Longleftrightarrow\exists g\in L^1_{\loc}:\forall\varphi\in C^\infty_c(\Omega):\int\limits_\Omega u(\omega)\cdot\frac{\partial\varphi(\omega)}{\partial x_i}\d\omega=-\int\limits_\Omega g(\omega)\cdot\varphi(\omega)\d\omega
 	\end{align*}
 	Schreibweise: $g=:\frac{\partial u}{\partial x_i}$ ist die \textbf{schwache partielle Ableitung} nach $x_i$\\
 	Ohne Beweis: $g=\frac{\partial u}{\partial x_i}$ ist eindeutig bestimmt.\\
-	Die Funktion $u\in L^1_{\text{loc}}(\Omega)$ heißt \textbf{schwach differenzierbar} $:\gdw$ sie für alle $i\in\lbrace1,\ldots,n\rbrace$ schwach partiell nach $x_i$ differenzierbar ist. 
+	Die Funktion $u\in L^1_{\loc}(\Omega)$ heißt \textbf{schwach differenzierbar} $:\gdw$ sie für alle $i\in\lbrace1,\ldots,n\rbrace$ schwach partiell nach $x_i$ differenzierbar ist. 
 	In diesem Fall schreiben wir
 	\begin{align*}
 		\nabla u=\begin{pmatrix}
@@ -1627,9 +1627,9 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 	\end{align*}
 
 	Erinnerung (schwache Ableitung)\\
-	$u\in L^1_{\text{loc}}\big((0,1)\big)$ ist schwach differenzierbar
+	$u\in L^1_{\loc}\big((0,1)\big)$ ist schwach differenzierbar
 	\begin{align*}
-		:\Longleftrightarrow\exists g\in L^1_{\text{loc}}\big((0,1)\big):\forall\varphi\in C_c^\infty\big((0,1)\big):
+		:\Longleftrightarrow\exists g\in L^1_{\loc}\big((0,1)\big):\forall\varphi\in C_c^\infty\big((0,1)\big):
 		\int\limits_0^1 u(x)\cdot\varphi'(x)\d x=-\int\limits_0^1 g(x)\cdot\varphi(x)\d x
 	\end{align*}
 	Im diesem Fall heißt $g=:u'$ \textbf{schwache Ableitung} von $u$. 

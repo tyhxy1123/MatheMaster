@@ -263,11 +263,24 @@ Sei $(D,d)$ ein metrischer Raum.
 \end{proof}
 
 Linearer Fall:
-%TODO Add Tikz CD picture
-%$$\begin{tikzcd}
-%S\drar{Def. (Abl. in 0)} \\
-%A \ar[leftrightarrow]{\text{Invertieren von Operatoren}}& (\lambda -A) ^{-1}
-%\end{tikzcd}$$
+$$
+\begin{tikzcd}[sep=tiny]
+	& & S \arrow[drr, dash, bend left] \arrow[ddr, dash, bend right] \arrow[ddl, dash, bend left] \arrow[dll, dash, bend right]
+	& & \\
+	\parbox{50pt}{\scriptsize Definition\\(Ableitung\\in $0$)} 
+	\arrow[dd, bend right]
+	& & & 
+	& \parbox{70pt}{\scriptsize Laplacetrans-\\formation}
+	\arrow[dd, bend left]	\\
+	&\parbox{50pt}{\scriptsize Lösung von \\$\dot{u}-Au=0$} 
+	\arrow[uur, bend right]
+	& 
+	&\parbox{70pt}{\scriptsize Inversion der\\Laplacetrans-\\formation,\\Exponentialformel}
+	\arrow[uul, bend left] 
+	\\
+	A \arrow[ur, dash, bend right] & & \arrow[ll, bend left] \parbox{70pt}{\scriptsize Invertieren von\\Operatoren} \arrow[rr, bend right]& & (\lambda - A)^{-1} \arrow[ul, dash, bend left]
+\end{tikzcd}
+$$
 
 \begin{align*}
 	f\colon\R_+\to X,\qquad\big\Vert f(t)\big\Vert\leq M\cdot\exp(\omega\cdot t)\\
@@ -417,13 +430,22 @@ Mit diesem Theorem (+ obiger Bemerkung) sind alle Erzeuger von linearen Halbgrup
 \end{proof}
 
 Im nichtlinearen Fall:
-%TODO Hier bitte das zweite Tikz CD einfügen :) @Lukas
-%A -> S: Crandall-Ligget (Wohlgest. von $\dot{u}+Au\ni0$)
-%S -> A: ???
-%S -> $(I+h\cdot A)^{-1}=J_h$: ???
-%$(I+h\cdot A)^{-1}=J_h$ -> S: Exponentialformel
-%A <-> $(I+h\cdot A)^{-1}=J_h$: Inversion von nichtlinearen Operatoren
-
-
-
-
+$$
+\begin{tikzcd}[sep=small]
+	& & S \arrow[drr, dash, bend left] \arrow[ddr, dash, bend right] \arrow[ddl, dash, bend left] \arrow[dll, dash, bend right]
+	& & \\
+	\parbox{50pt}{\scriptsize noch nicht\\ bekannt} 
+	\arrow[dd, bend right]
+	& & & 
+	& \parbox{50pt}{\scriptsize noch nicht\\ bekannt}
+	\arrow[dd, bend left]	\\
+	&\parbox{60pt}{\scriptsize Crandall-\\Ligget,\\Wohlgestelltheit\\ von $\dot{u}+Au\ni0$} 
+	\arrow[uur, bend right]
+	& 
+	&\parbox{70pt}{\scriptsize Exponentialformel}
+	\arrow[uul, bend left]
+	\\
+	A \arrow[ur, dash, bend right] & & \arrow[ll, bend left] \parbox{50pt}{\scriptsize Inversion von\\ nichtlinearen\\Operatoren} \arrow[rr, bend right]& 
+	& (\lambda - A)^{-1} \arrow[ul, dash, bend left]
+\end{tikzcd}
+$$
