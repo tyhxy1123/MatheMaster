@@ -5,39 +5,32 @@
 
 \documentclass[]{scrreprt}
 
-\input{../latex/packages}
-\input{../latex/theoremenvironments}
-\input{../latex/font}
-\input{../latex/commands}
-\input{../latex/commands_Willi}
-\input{PDENM_commands}
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{commands_FORM}
 
 \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 
-\renewcommand{\thesection}{\arabic{section}}
-
 \title{%
   Vorlesung\\
-  Numerik partieller Differentialgleichungen \\
+  Formale Systeme (Zusammenfassung) \\
   }
 \subtitle{Wintersemester 2018/2019}
-\author{
-	Vorlesung: Prof. Dr. Gunar Matthies\\
-	Mitschrift: Willi Sontopski \& Robert Walter
-}
+\author{Vorlesung: Prof. Dr. rer. nat. habil. Steffen Hölldobler\\Mitschrift: Willi Sontopski}
 
 \begin{document}
 	\pagenumbering{gobble}	% disable pagenumbering
+
 	\maketitle
 	\doclicenseThis
 	\tableofcontents % Inhaltsverzeichnis
 	\pagenumbering{arabic}	%enable pagenumbering
 
-	\input{chapter0}
-	\input{anhang}
-	
-	\newcommand{\pathInfix}{Loesungen/}
-	\input{chapter_loesungen}
+	\input{chapter1}
+	\input{chapterProbeklausur}
+	\input{chapter2}
 
 	\listoffigures 
 	%\listoftables
