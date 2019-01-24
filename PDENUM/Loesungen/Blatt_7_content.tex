@@ -1,0 +1,138 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt,a4paper]{article} 
+
+\input{../../latex/packages}
+\input{../../latex/theoremenvironments}
+\input{../../latex/commands}
+\input{../../latex/commands_Willi}
+\input{../../PDENUM/PDENM_commands}
+
+\author{Willi Sontopski}
+
+\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+\ihead{Willi Sontopski}
+\chead{PDENM WiSe 18 19}
+\ohead{}
+\ifoot{Blatt 6}
+\cfoot{Version: \today}
+\ofoot{Seite \pagemark}
+
+
+\begin{document}
+%\setcounter{section}{1}
+
+Hier nur die Lösungen. Aufgabenstellungen siehe Vorlesungswebsite.
+
+\section*{Aufgabe 6.3}
+Betrachte
+\begin{align*}
+	-\varepsilon\Delta u+b\cdot\nabla u+cu=f\text{ in }u=0\text{ auf}\partial\Omega
+\end{align*}
+mit $0<\varepsilon<<1$ unter der Annahme
+\begin{align*}
+	c-\frac{1}{2}\div(b)\geq c_0>0\text{ in }\Omega
+\end{align*}
+Weiter untersuchen wir das Standard-Galerkin-FEM Verfahren auf einer regulären, affin äquivalenten Zerlegung von $\Omega$. 
+Es ist bekannt, dass die entstehende Bilinearform $a$ koerziv auf $H_0^(\Omega)$ bezüglich der Norm
+\begin{align*}
+	\Vert\cdot\Vert:=\big(\varepsilon|\cdot|_1^2+\Vert\cdot\Vert_0^2\big)^{\frac{1}{2}}
+\end{align*}
+ist.
+\subsection*{Aufgabe 6.3 (a)}
+Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas) in diesem Fall keine von $\varepsilon$ unabhängige Fehlerschätzung in der $\Vert\cdot\Vert_\varepsilon$-Norm möglich?
+
+\begin{lösung}
+	%TODO
+\end{lösung}
+
+\subsection*{Aufgabe 6.3 (b)}
+Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschätzung der Form
+\begin{align*}
+	\Vert u-u_h\Vert_\varepsilon\leq C\left(\varepsilon^{\frac{1}{2}}h+h+h^2\right)|u|_2.
+\end{align*}
+
+\begin{proof}
+	Wir nutzen die Galerkin-Orthogonalität.
+	%TODO
+\end{proof}
+
+\section*{Aufgabe 7.1}
+Sei $\Omega\subseteq\R^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\partial\Omega$.
+Die primale gemischte Methode für die Poisson-Gleichung
+\begin{align*}
+	-\Delta u=-\div(\grad((u))=f\text{ in }\Omega
+\end{align*}
+mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\partial\Omega$ ist gegeben durch:\nl
+Finde $(\sigma,u)\in L^2(\Omega)^d\times H_0^1(\Omega)$ so, dass
+\begin{align*}
+	\begin{array}{rll}
+		(\sigma,\tau)_{0,\Omega}-(\tau,\nabla u)_{0,\Omega}&=0 &\forall\tau\in L^2(\Omega)^d\\
+		-(\sigma,\nabla v)_{0,\Omega}&=-(f,v)_{0,\Omega} &\forall v\in H_0^1(\Omega)
+	\end{array}
+\end{align*}
+
+\subsection*{Aufgabe 7.1 (a)}
+Leiten Sie die Formulierung im Detail her.
+Schreiben Sie dazu die Poisson-Gleichung zunächst durch Einführung einer zweiten Variable $\sigma=\nabla u$ in ein System partieller Differentialgleichungen erster Ordnung um.
+
+\begin{lösung}
+	%TODO
+\end{lösung}
+
+\subsection*{Aufgabe 7.1 (b)}
+Obiges gemischtes Problem liefert ein stabiles Sattelpunktproblem.
+
+\begin{proof}
+	%TODO
+\end{proof}
+
+\section*{Aufgabe 7.2}
+Sei $\Omega\subseteq\R^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\partial\Omega$.
+Die duale gemischte Methode für die Poisson-Gleichung 
+\begin{align*}
+	-\Delta u=-\div(\grad((u))=f\text{ in }\Omega
+\end{align*}
+mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\partial\Omega$ ist gegeben durch:\nl
+Finde $(\sigma,u)\in H(\div,\Omega)\times L^2(\Omega)$: so, dass
+\begin{align*}
+	\begin{array}{rll}
+		(\sigma,\tau)_{0,\Omega}+(\div(\tau),u)_{0,\Omega}&=0&\forall\tau\in H(\div,\Omega)\\
+		(\div(\sigma),v)_{0,\Omega} &=-(f,v)_{0,\Omega} &\forall v\in L^2(\Omega)
+	\end{array}
+\end{align*}
+Der verwendete Raum
+\begin{align*}
+	H(\div,\Omega):=\left\lbrace\tau\in L^2(\Omega)^d:\div(\tau)\in L^2(\Omega)\right\rbrace
+\end{align*}
+kann auch als Vervollständigung von $C^\infty(\Omega)^d$ bzgl. der Norm 
+\begin{align*}
+	\Vert v\Vert_{H(\div,\Omega)}:=\left(\Vert v\Vert_{0,\Omega}^2+\Vert\div(v)\Vert_{0,\Omega}^2\right)^{\frac{1}{2}}
+\end{align*}
+definiert werden.
+
+\subsection*{Aufgabe 7.2 (a)}
+Auf den ersten Blick schein $u$ nur in $L^2(\Omega)$ zu liegen.
+Zeigen Sie, dass tatsächlich aber $u\in H_0^1(\Omega)$ ist.
+Was fällt bei den Randbedingungen auf?
+
+\begin{proof}
+	%TODO
+\end{proof}
+
+\subsection*{Aufgabe 7.2 (b)}
+Obige gemischte Formulierung liefert ein stabiles Sattelpunktsproblem.
+
+\begin{proof}
+	%TODO
+\end{proof}
+
+\end{document}

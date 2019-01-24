@@ -21,23 +21,25 @@
   Numerik partieller Differentialgleichungen \\
   }
 \subtitle{Wintersemester 2018/2019}
-\author{Vorlesung: Prof. Dr. Gunar Matthies\\Mitschrift: Willi Sontopski \& Robert Walter}
-
+\author{
+	Vorlesung: Prof. Dr. Gunar Matthies\\
+	Mitschrift: Willi Sontopski \& Robert Walter
+}
 
 \begin{document}
-\pagenumbering{gobble}	% disable pagenumbering
+	\pagenumbering{gobble}	% disable pagenumbering
+	\maketitle
+	\doclicenseThis
+	\tableofcontents % Inhaltsverzeichnis
+	\pagenumbering{arabic}	%enable pagenumbering
 
-\maketitle
-\doclicenseThis
-\tableofcontents % Inhaltsverzeichnis
-\pagenumbering{arabic}	%enable pagenumbering
+	\input{chapter0}
+	\input{anhang}
+	
+	\newcommand{\pathInfix}{Loesungen/}
+	\input{chapter_loesungen}
 
-\input{chapter0}
-\input{anhang}
-
-\listoffigures 
-%\listoftables
-%\bibliography{literatur}
-
-
+	\listoffigures 
+	%\listoftables
+	%\bibliography{literatur}
 \end{document}
