@@ -4707,8 +4707,11 @@ Dazu nutze Äquivalenzen:
 \begin{align*}
 	&Z_n(\sigma_n)\leq Z_n(t) &\forall& t\in\R\\
 	\overset{t=\sigma_n}&\Longleftrightarrow
-	n\cdot\bigg(M_n\cdot\bigg(\underbrace{\theta_0+\frac{\sigma_n}{\sqrt{n}}}_{
-		=\theta_0+\frac{\sqrt{n}\big(\hat{\theta}_n-\theta_n\big)}{\sqrt{n}}=\theta_n
+	n\bigg(M_n\cdot\bigg(\underbrace{\theta_0+\frac{\sigma_n}{\sqrt{n}}}_{
+		\begin{subarray}{c}
+			=\theta_0+\frac{\sqrt{n}\big(\hat{\theta}_n-\theta_n\big)}{\sqrt{n}}\\
+			=\theta_n
+		\end{subarray}
 	}\bigg)-M_n(\theta_0)\bigg)
 	\leq n\cdot\left(M_n\left(\theta_0+\frac{t}{\sqrt{n}}\right)-M_n(\theta_0)\right)&\forall& t\in\R\\
 	&\Longleftrightarrow n\cdot\Big(M_n\big(\hat{\theta}_n\big)-M_n\big(\theta_0\big)\Big)
@@ -4737,5 +4740,9 @@ wobei wir fordern:
 	N&\sim\Nor\big(0,\sigma^2(\theta_0)\big)
 \end{align*}
 Also ist $Z$ eine zufällige nach oben geöffnete Parabel.
+
+
+
+
 
 
