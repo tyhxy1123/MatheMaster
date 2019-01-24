@@ -4,20 +4,19 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 % Commands für WTHM
-\newcommand{\F}{\mathcal{F}}				% Standard-Unter-Sigma-Algebra / Filtration
-\newcommand{\G}{\mathcal{G}}				% Gegenstück zu \F für Rückwärtsmartingale
+\newcommand{\F}{\mathcal{F}}				      % Unter-Sigma-Algebra / Filtration
+\newcommand{\G}{\mathcal{G}}				      % Gegenstück zur Filtration \F für Rückwärtsmartingale
+\newcommand{\BedE}[2]{\E\left[{#1}~|~{#2}\right]} % Bedingte Erwartung
+\newcommand{\hut}[1]{\check{#1}}                  % inverse Fouriertransformation
+\newcommand{\M}{\mathcal{M}}                      % Raum der (beschränkten) Borel-Maße
+\newcommand{\w}{\text{w}}                         % schwache (weak) Konvergenz
 
 % independent symbol from:
 % https://tex.stackexchange.com/questions/79434/double-perpendicular-symbol-for-independence
 \newcommand{\unab}{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 
-\newcommand{\BedE}[2]{\E\left[{#1}~|~{#2}\right]} % Bedingte Erwartung
-\newcommand{\graph}{\text{graph}}
-\newcommand{\hut}[1]{\check{#1}} %inverse Fouriertransformation
-\newcommand{\M}{\mathcal{M}} %Raum der (beschränkten) Borel-Maße
-\newcommand{\w}{\text{w}}               % schwache (weak) Konvergenz
 
-%\newcommand{\binom}[2]{\begin{pmatrix}	{#1}\\{#2} \end{pmatrix}} %this command doesn't compile for me
+
 
 
