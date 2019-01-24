@@ -67,16 +67,56 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     wobei $a_i \in K$ die Koeffizienten von $p$ sind.
 \end{beispiel}
 
+\begin{erinnerung}
+    Ist $E|F$ eine algebraische Körpererweiterung und $R$ ein Ring. So gilt
+    $$ F \subseteq R \subseteq E \implies R \text{ ist Körper.} $$
+\end{erinnerung}
+\begin{proof}
+    \begin{align*}
+        \alpha \in R & \stackrel{\alpha \text{ alg.}}{\implies} \exists a_0,\ldots, a_{n-1} \in F: \alpha^n + a_{n-1}\alpha^{n-1}+\ldots+a_0 = 0\\
+        & \implies \alpha^{-1} = -\frac{1}{a_0}\left(\alpha^{n-1} + a_{n-1}\alpha^{n-2} + \ldots + a_1\right) \in F[\alpha] \subseteq R
+    \end{align*}
+\end{proof}
+
 \begin{lemma}\label{lemma:finiteExp}
     Ist $L|K$ eine endliche Körpererweiterung,
     so ist $$ [L(T):K(T)] = [L:K]. $$
 \end{lemma}
 \begin{proof}
-    Zunächst folgt aus $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig, dass
-    $x_1,...,x_n \in L$ $K$-linear unabhängig. 
-    Daraus folgt$$ [L(T):K(T)] \leq [L:K]. $$
-    % L = \sum K x_i
-    % K(T) \subseteq \sum K(x) x_i \subseteq L(T)
+    Sei $x_1, \ldots, x_n$ eine Basis von $L$, d.h. 
+    $$ L = \bigoplus_{i=1}^n Kx_i. $$
+    Setze $ M := \sum\limits_{i=1}^n K(T)x_i$. Da $1 \in L$ gibt es $\lambda_1, \ldots \lambda_n \in K$, sodass
+    $$ 1 = \sum_{i=1}^n \lambda_i x_i 
+        \implies \forall f \in K(T)\colon f=\sum_{i=1}^n f\lambda_ix_i 
+        \implies K(T) \subsetneqq \sum_{i=1}^n K(T)x_i. $$
+    Also gilt
+    $$ K(T) \subsetneqq \sum_{i=1}^n K(T)x_i \subseteq L(T). $$
+    \begin{itemize}
+        \item \textit{$M$ ist Teilring von $L(T)$:}
+        Offenbar enthält $M$ die $0$ und die $1$. Seien $x,y \in M$. Es gilt
+        \begin{align*}
+            x\cdot y &= \left(\sum_{i=1}^n \lambda_i x_i \right)\cdot\left(\sum_{i=1}^n \mu_i x_i\right) 
+                = \sum_{i,j=1}^n \lambda_i \mu_j \underbrace{x_i \cdot x_j}_{\in L}
+                =\sum_{i,j=1}^n \lambda_i \mu_j \sum_{k=1}^n \kappa_{i,j,k} x_k\\
+                &= \sum_{k=1}^n \underbrace{\left(\sum_{i,j=1}^n \lambda_i \mu_j \kappa_{i,j,k}\right)}_{\in K(T)} x_k \in M\\
+            x + y &= \left(\sum_{i=1}^n \lambda_i x_i \right)+\left(\sum_{i=1}^n \mu_i x_i\right)
+                = \sum_{i=1}^n \underbrace{(\lambda_i + \mu_i)}_{\in K(T)}x_i \in M
+        \end{align*}
+
+        \item \textit{$L(T)|K(T)$ ist algebraisch:} Aus $L(T) = K(L)(T) = K(T)(L)$ folgt die Behauptung, 
+        da $L$ algebraisch über $K$ und damit auch über $K(T)$.
+
+        \item \textit{$M$ ist Körper:} Da $L(T)$ algebraisch über $K(T)$ und $K(T) \subseteq M \subseteq L(T)$ 
+        folgt aus der Erinnerung die Behauptung.
+    \end{itemize}
+
+    Da $M$ ein Körper ist und $L \subseteq M$ sowie $K(T) \subseteq M$ folgt aus $L(T) = K(T)(L)$
+    $$ L(T) \subseteq M \implies M = L(T) \implies [L(T):K(T)] \leq [L:K].$$
+    % Zunächst folgt aus $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig, dass
+    % $x_1,...,x_n \in L$ $K$-linear unabhängig. 
+    % Daraus folgt$$ [L(T):K(T)] \leq [L:K]. $$
+    % $$L = \sum K x_i
+    % K(T) \subseteq \sum K(x) x_i \subseteq L(T)$$
 
     Sei also $x_1,...,x_n \in L$ $K$-linear unabhängig. Wir zeigen nun, dass dann
     $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig ist.
