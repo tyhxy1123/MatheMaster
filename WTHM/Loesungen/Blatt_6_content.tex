@@ -1,0 +1,127 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Aufgabenblatt 6}
+\subsection{Aufgabe 6.1}
+Sei $B$ eine Brownsche Bewegung.
+Dann sind die folgenden Prozesse ebenfalls Brownsche Bewegungen:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		T_t:=c\cdot B_{\frac{t}{c^2}}\mit c\neq0
+	\end{aligned}$
+	\item $\begin{aligned}
+		U_t:=-B_t
+	\end{aligned}$
+	\item $\begin{aligned}
+		V_t:=\big(B_{t+s}-B_s\big)_{t\geq0}\mit s>0
+	\end{aligned}$
+	\item $\begin{aligned}
+		W_t:=\left\lbrace\begin{array}{cl}
+			t\cdot B_{\frac{1}{t}} ,&\falls t>0\\
+			0, &\falls t=0
+		\end{array}\right.
+	\end{aligned}$
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}
+	%TODO
+
+	\underline{Zeige b):}
+	%TODO
+
+	\underline{Zeige c):}
+	%TODO
+
+	\underline{Zeige d):}
+	%TODO
+
+\end{proof}
+
+\subsection{Aufgabe 6.2}
+Sei $B$ eine Brownsche Bewegung.
+Die folgenden Prozesse sind Martingale bzgl. der von $B$ erzeugten Filtration:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		\big(B_t\big)_{t\geq0}
+	\end{aligned}$
+	\item $\begin{aligned}
+		\big(B_t^2-t\big)_{t\geq0}
+	\end{aligned}$
+	\item $\begin{aligned}
+		\left(\exp\left(c\cdot B_t-\frac{c^2}{2}\cdot t\right)\right)_{t\geq0}\mit c\in\R
+	\end{aligned}$
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}
+	%TODO
+
+	\underline{Zeige b):}
+	%TODO
+
+	\underline{Zeige c):}
+	%TODO
+\end{proof}
+
+\subsection{Aufgabe 6.3}
+Sei $B$ eine Brownsche Bewegung und $a,b\in(0,\infty)$.
+Sei
+\begin{align*}
+	\tau:=\Big\lbrace t>0:B_t\in\lbrace+a,-b\rbrace\Big\rbrace.
+\end{align*}
+Zeige:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		\P\big(\tau=+a\big)=\frac{b}{a+b}
+	\end{aligned}$
+	\item $\begin{aligned}
+		\E[\tau]=a\cdot b
+	\end{aligned}$
+\end{enumerate}
+
+\begin{proof}
+	Wir nutzen die Sätze  von optionalen Stoppen 8die für stetige Martingale mit $t\geq0$ weiterhin gelten).\nl
+	\underline{Zeige a):}
+	%TODO
+
+	\underline{Zeige b):}
+	%TODO
+
+\end{proof}
+
+\subsection{Aufgabe 6.4}
+Sei $B$ eine Brownsche Bewegung, $a>0$ und
+\begin{align*}
+	\tau_a:=\inf\big\lbrace t>0:B_t=a\big\rbrace.
+\end{align*}
+Dann gilt:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		\E\big[\exp(-\lambda\cdot x)\big]=\exp\big(-a\cdot\sqrt{2\cdot\lambda}\big)\qquad\forall \lambda\geq0
+	\end{aligned}$
+	\item Die Verteilung von $\tau_a$ ist stabil (siehe Blatt 5, Aufgabe 4) mit Parameter $\alpha=\frac{1}{2}$.
+	\item Die Verteilung von $\tau_a$ besitzt die Dichte
+	\begin{align*}
+		f(x)=\frac{a}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{a^2}{2\cdot x}\right)\cdot x^{-\frac{3}{2}}\qquad\forall x\geq0.
+	\end{align*}
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}
+	%TODO
+
+	\underline{Zeige b):}
+	%TODO
+
+	\underline{Zeige c):}\\
+	Eine Dichte wird durch ihre \textbf{Laplace-Transformation}
+	\begin{align*}
+		\L[f](\lambda):=\int\limits_0^\infty\exp(-\lambda\cdot x)\cdot f(x)\d x\qquad\forall\lambda\geq0
+	\end{align*}
+	eindeutig bestimmt.
+
+	%TODO
+\end{proof}
