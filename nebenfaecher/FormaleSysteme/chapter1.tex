@@ -484,11 +484,11 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 		\item Wähle ein Element $K$ aus $H$ aus, dass kein Literal ist.
 		\item Wende eine der folgenden Regeln an, die anwendbar ist:
 		\begin{align}
-			&\frac{\neg\neg D}{D}\label{KNF1}\tag{KNF1}\\
-			&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\tag{KNF2}\\
-			&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{KNF3}\tag{KNF3}\\
-			&\frac{(D_1\vee D_2)}{D_1, D_2}\label{KNF4}\tag{KNF4}\\
-			&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{KNF5}\tag{KNF5}
+			&\frac{\neg\neg D}{D}\label{eqKNF1}\tag{KNF1}\\
+			&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{eqKNF2}\tag{KNF2}\\
+			&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{eqKNF3}\tag{KNF3}\\
+			&\frac{(D_1\vee D_2)}{D_1, D_2}\label{eqKNF4}\tag{KNF4}\\
+			&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{eqKNF5}\tag{KNF5}
 		\end{align}
 	\end{itemize}		
 	} Bei Anwendung einer Regel $\frac{E}{E_1\mid E_2}$ wird $H$ durch zwei Disjunktionen ersetzt: 

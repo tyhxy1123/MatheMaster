@@ -91,9 +91,8 @@ Es erscheint sinnvoll, sich stets zuerst den NEA zu überlegen und danach diesen
 \begin{align*}
 	L_1=\big\lbrace a^n bac^m\mid m,n>0\text{ $n$ ist gerade und $m$ ist ungerade}\big\rbrace
 \end{align*}
-Wir konstruieren zuerst einen NEA, der $L_a$ akzeptiert:\\
+Wir konstruieren zuerst einen NEA, der $L_a$ akzeptiert:
 
-\usetikzlibrary{positioning,automata}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.3cm,on grid]
   \node[state,initial]   (q_0)                {$q_0$};
   \node[state]           (q_1) [right=of q_0] {$q_1$};
@@ -122,7 +121,6 @@ Um daraus einen DEA zu machen müssen wir:
 
 Hier nun die Lösung aus der Übung (der Tutor stellte direkt den DEA auf und ging nicht obigen Umweg):
 
-\usetikzlibrary{positioning,automata}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.3cm,on grid]
   \node[state,initial]   (q_0)                {$q_0$};
   \node[state]           (q_1) [right=of q_0] {$q_1$};
@@ -149,14 +147,14 @@ Hier nun die Lösung aus der Übung (der Tutor stellte direkt den DEA auf und gi
 
 \subsubsection{Aufgabe b)}
 \begin{align*}
-	L_2=\big\lbrace w\in\lbrace0,1\rbrace^\ast\mid\exists i\in\lbrace0,1\rbrace:w\text{ endet mit $i$ und enthält eine ungerade Anzahl von $i$'s}\big\rbrace
+	L_2=\big\lbrace w\in\lbrace0,1\rbrace^\ast\mid\exists i\in\lbrace0,1\rbrace:w\text{ endet mit $i$ \& enthält eine ungerade Anzahl $i$'s}\big\rbrace
 \end{align*}
 
 Konstruiere zuerst Automaten, welche Wörter über $\Sigma=\lbrace 0,1\rbrace$ erkennen, die mit $i$ enden und eine gerade Anzahl an $i$'s enthalten (für $i\in\lbrace0,1\rbrace$. 
 Dann ``vereinige'' diese beiden Automaten in $\varepsilon$-NEA: 
 
 \usetikzlibrary{positioning,automata}
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 	\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
   \node[state,initial]   (q_0)                {$q_0$};
   \node[state]           (q_1) [below left=of q_0] {$q_1$};
@@ -169,7 +167,7 @@ Dann ``vereinige'' diese beiden Automaten in $\varepsilon$-NEA:
                   edge [bend left=30] node [above] {0} (q_0);
 	\end{tikzpicture}
 \end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 	\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
   \node[state,initial]   (p_0)                {$p_0$};
   \node[state]           (p_1) [below left=of p_0] {$p_1$};

@@ -33,13 +33,13 @@ Operatorpriorität: $\ast$ vor Exponent vor $\cdot$ vor $\cup,\cap$.
 \subsubsection{Aufgabe 2 a)}
 \begin{align*}
 	&w\in L_1\cdot(L_2\cup L_3)\\
-	&\Longleftrightarrow\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_2\cup L_3\wedge w=uv\\
-	&\Longleftrightarrow\exists u,v\in\Sigma^\ast:u\in L_1\wedge \big(v\in L_2\vee v\in L_3\wedge w=uv\\
-	&\Longleftrightarrow\exists u,v\in\Sigma^\ast:\big(u\in L_1\wedge v\in L_2\wedge v\in L_3\big)\vee\big(u\in L_1\wedge v\in L_3\wedge w=uv\big)\\
-	&\Longleftrightarrow\Big(\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_2\wedge v\in L_3\Big)\vee
+	&\gdw\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_2\cup L_3\wedge w=uv\\
+	&\gdw\exists u,v\in\Sigma^\ast:u\in L_1\wedge \big(v\in L_2\vee v\in L_3\wedge w=uv\\
+	&\gdw\exists u,v\in\Sigma^\ast:\big(u\in L_1\wedge v\in L_2\wedge v\in L_3\big)\vee\big(u\in L_1\wedge v\in L_3\wedge w=uv\big)\\
+	&\gdw\Big(\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_2\wedge v\in L_3\Big)\vee
 	\Big(\exists u,v\in\Sigma^\ast:u\in L_1\wedge v\in L_3\wedge w=uv\Big)\\
-	&\Longleftrightarrow w\in L_1\cdot L_2\vee w\in L_1\cdot L_3\\
-	&\Longleftrightarrow w\in L_1\cdot L_2\cup L_1\cdot L_3
+	&\gdw w\in L_1\cdot L_2\vee w\in L_1\cdot L_3\\
+	&\gdw w\in L_1\cdot L_2\cup L_1\cdot L_3
 \end{align*}
 
 \subsubsection{Aufgabe 2 b)}
@@ -97,7 +97,8 @@ Dann existiert $k\in\N$ mit $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^k$.
 Zeige nun per Induktion über $n\in\N$: $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^n\implies L^\ast$.\nl
 \ul{IA}: $n=0$: $\big(L\cup\lbrace\varepsilon\rbrace\big)^0=\lbrace\varepsilon\rbrace=L^0\subseteq L^\ast$\nl
 \ul{IH:} Für $n\in\N$ gelte: $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^n\implies w\in L^\ast$\nl
-\ul{IS:} Sei $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^{n+1}=\big(L\cup\lbrace\varepsilon\rbrace\big)^n\cdot\big(L\cup\lbrace\varepsilon\rbrace\big)$. Dann existiert $u\in\big(L\cup\lbrace\varepsilon\rbrace\big)^n$ und $v\in\big(L\cup\lbrace\varepsilon\rbrace\big)$ mit $w=uv$.\\
+\ul{IS:} Sei $w\in\big(L\cup\lbrace\varepsilon\rbrace\big)^{n+1}=\big(L\cup\lbrace\varepsilon\rbrace\big)^n\cdot\big(L\cup\lbrace\varepsilon\rbrace\big)$. Dann existiert $u\in\big(L\cup\lbrace\varepsilon\rbrace\big)^n$ und $v\in\big(L\cup\lbrace\varepsilon\rbrace\big)$ mit $w=uv$.
+
 \begin{itemize}
 	\item $v=\varepsilon$: Dann $w=u$. Aus IH folgt dann $w\in L^\ast$.
 	\item $v\in L\setminus\lbrace\varepsilon\rbrace$: Aus IH $u\in L^\ast$, d.h. es existiert $m\in\N$ mit $u\in L^m$. 
