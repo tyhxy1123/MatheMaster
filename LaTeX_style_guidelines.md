@@ -25,7 +25,7 @@
 6. Labelnamen für Gleichungen fangen stets mit "eq" an und werden ausschließlich mit `\eqref{eq...}` referenziert.
 7. Es wird empfohlen, hinter einem abgeschlossenem (sprachlichen) Satz eine neue Codezeile zu beginnen.
 8. Commands etc. werden immer in einer dafür vorgesehenen Datei auslagern (z.B. `commands_ANGA.tex`, oder `commands_Maik.tex`, je nach Zweck).
-9. Von `\begin{...}` gefolgten `\end{...}` Befehlen immer durch leere Codezeile trennen (z. B. `\end{theorem}\begin{proof}`).
+9. Von `\begin{...}` gefolgten `\end{...}` Befehlen immer durch leere Codezeile trennen (z. B. `\end{theorem}\begin{proof}`). Das gilt nicht für `align`-Umgebungen.
 10. Labels von Sätzen mit Namen müssen diesen Namen enthalten (z.B. `\label{satz7.4DreiecksungleichFuerPros}`).
 
 ## Grafiken und Tikz
