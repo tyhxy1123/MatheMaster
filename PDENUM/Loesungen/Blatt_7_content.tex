@@ -8,29 +8,97 @@
 \subsection*{Aufgabe 6.3}
 Betrachte
 \begin{align*}
-	-\varepsilon\Delta u+b\cdot\nabla u+cu=f\text{ in }u=0\text{ auf }\partial\Omega
+	-ε Δ u + b·∇u + cu = f \text{ in } u=0 \text{ auf } \Rand{Ω}
 \end{align*}
-mit $0<\varepsilon<<1$ unter der Annahme
+mit $0 < ε \ll 1$ unter der Annahme
 \begin{align*}
-	c-\frac{1}{2}\div(b)\geq c_0>0\text{ in }\Omega
+	c-\frac12 \div(b)\geq c_0 > 0 \text{ in } Ω
 \end{align*}
-Weiter untersuchen wir das Standard-Galerkin-FEM Verfahren auf einer regulären, affin äquivalenten Zerlegung von $\Omega$. 
-Es ist bekannt, dass die entstehende Bilinearform $a$ koerziv auf $H_0^(\Omega)$ bezüglich der Norm
+Weiter untersuchen wir das Standard-Galerkin-FEM Verfahren auf einer regulären, affin äquivalenten Zerlegung von $Ω$. 
+Es ist bekannt, dass die entstehende Bilinearform $a$ koerziv auf $H_0^1(Ω)$ bezüglich der Norm
 \begin{align*}
-	\Vert\cdot\Vert:=\big(\varepsilon|\cdot|_1^2+\Vert\cdot\Vert_0^2\big)^{\frac{1}{2}}
+	\norm{·} \coloneq \left(ε \halfnorm{·}_{1, 2, Ω}^2+ \norm{·}_{0, 2, Ω}^2\right)^{\frac12}
 \end{align*}
 ist.
 \subsubsection*{Aufgabe 6.3 (a)}
-Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas) in diesem Fall keine von $\varepsilon$ unabhängige Fehlerschätzung in der $\Vert\cdot\Vert_\varepsilon$-Norm möglich?
+Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas \ref{theorem2.2CeasLemma}) in diesem Fall keine von $ε$ unabhängige Fehlerschätzung in der $\norm{·}_{ε}$-Norm möglich?
 
 \begin{lösung}
-	%TODO
+	Da die Rechnung mit der Divergenz des Vektorfeldes $b$ zwei Mal auftaucht,
+	erwähne ich sie hier.%
+  %
+	\begin{lemma}[Divergenz-Lemma]\enter \label{thm:aufg6.3-divergenz_lemma}
+		Für $b ∈ C^1(Ω)$ und $u, v ∈ H_0^1(Ω)$ gilt
+		\begin{align*} 
+			∫_{Ω} b · ∇u v &= - ∫_{Ω} u b · ∇v + \div b u v \\
+			\text{und } ∫_Ω \left(b·∇u\right) u &= -\frac 12 ∫_{Ω} \div b \abs u^2.
+		\end{align*}
+	\end{lemma}
+
+	\begin{proof}
+		Die Produktregel für $b_i u$ ($i$ durchläuft die Koordinaten in $Ω$) ergibt
+		$(b_i u)_{x_i} = (b_i)_{x_i} u + b_i u_{x_i}$, also
+		$(b_i u)_{x_i} - (b_i)_{x_i} u = b_i u_{x_i}$.
+		Mit partieller Integration sehen wir für $u, v ∈ H_0^1(Ω)$
+		\begin{align*}
+			∫_{Ω} \left(b · ∇u\right) v
+			= ∫_{Ω} Σ_i b_i u_{x_i} v
+			&= ∫_{Ω} Σ_i {(b_i u)}_{x_i} v - {(b_i)}_{x_i} u v
+			= - ∫_{Ω} Σ_i b_i u v_{x_i} + {(b_i)}_{x_i} u v \\
+			&= - ∫_{Ω} u \left(b · ∇v\right) + \div(b) u v. \\
+			\intertext{Für den Fall $u = v$ vereinfacht sich dies zu}
+			∫_{Ω} \left(b · ∇u\right) u
+			&= - ∫_{Ω} \left(b · ∇u\right) u + \div b \abs u^2 \\
+			⇒ ∫_Ω \left(b·∇u\right) u &= -\frac 12 ∫_{Ω} \div b \abs u^2. \qedhere
+		\end{align*}
+	\end{proof}
+
+	Die Bedingung an $c$ und $b$ garantiert, dass es eine eindeutige Lösung der
+	Gleichung gibt. Céas Lemma \ref{theorem2.2CeasLemma} gibt uns eine Fehlerschranke,
+	die von der Stetigkeits- und Koerzivitätsschranke der Bilinearform abhängig ist.
+	Die Bilinearform $a$ ist
+	\begin{align*}
+		a(u, v) = ∫_{Ω} ε ∇u · ∇v + b·∇u v + cuv \quad u, v ∈ H_0^1(Ω)
+	\end{align*}
+	Um die Stetigkeit von $a$ nachzuweisen, rechne, wie üblich:
+	\begin{align*}
+		\abs {a(u, v)} & \leq \left(∫_{Ω} ε \abs{∇ u}^2 \right)^{\frac12}
+		\left(∫_{Ω} ε \abs{∇ v}^2 \right)^{\frac12}
+		+ \norm{b}_{∞} \left(∫_{Ω} \abs{∇u}^2\right)^{\frac12}
+		\left(∫_{Ω} \abs{v}^2\right)^{\frac12} \\
+		&\tab + \norm{c}_{∞} \left(∫_{Ω} \abs{u}^2\right)^{\frac12}
+		\left(∫_{Ω} \abs{v}^2\right)^{\frac12} \\
+		&= ε^{\frac12} \halfnorm{u}_{1, 2, Ω} ε^{\frac12} \halfnorm{v}_{1,2,Ω}
+		+ \norm{b}_{∞} \halfnorm{u}_{1, 2, Ω} \norm{v}_{0, 2, Ω}
+		+ \norm{c}_{∞} \norm{u}_{0, 2, Ω} \norm{v}_{0, 2, Ω} \\
+		&\leq ε^{-\frac12}\tilde M(b, c) \left(ε \halfnorm{u}_{1, 2, Ω} + \norm{u}_{0, 2, Ω} \right)^{\frac12}
+		\left(ε \halfnorm{v}_{1, 2, Ω} + \norm{v}_{0, 2, Ω}\right)^{\frac12} \\
+		&= M(ε, b, c) \norm{u}_{ε} \norm{v}_{ε}.
+	\end{align*}
+	Die Stetigkeitskonstante $M$ ist also von $ε$ abhängig und steigt mit fallendem $ε$.
+	Das wird auch nicht durch die Koerzivitätskonstante $α$ ausgeglichen.
+	Berechne diese
+	\begin{align*}
+		a(u, u)
+		&= ∫_{Ω} ε \abs{∇u}^2 + b · ∇u u + c u^2 \\
+		\overset{\ref{thm:aufg6.3-divergenz_lemma}}&=
+		ε \halfnorm u_{1, 2, Ω}^2 + ∫_{Ω} \left(c - \frac12 \div b\right) \abs u^2 \\
+		\overset{\text{Vor.}}&{\geq}
+		ε \halfnorm u_{1, 2, Ω}^2 + c_0 \norm{u}_{0, 2, Ω}^2
+		\geq \min\{1, c_0\} \norm u_ε.
+	\end{align*}
+	Die Koerzivitätskonstante ist also $α = \min\{1, c_0\}$ und damit von $ε$ unabhängig.
+	Damit ergibt Céas Lemma keine $ε$-unabhängige Abschätzung, denn
+	es besagt
+	\begin{align*}
+		\norm{u - u_h}_{ε} \leq \frac M{α} \inf_{v_h ∈ V} \norm{u - v_h}_{ε}.
+	\end{align*}
 \end{lösung}
 
 \subsubsection*{Aufgabe 6.3 (b)}
 Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschätzung der Form
 \begin{align*}
-	\Vert u-u_h\Vert_\varepsilon\leq C\left(\varepsilon^{\frac{1}{2}}h+h+h^2\right)|u|_2.
+	\norm {u-u_h}_{ε} \leq C \left(ε^{\frac12}h + h + h^2 \right)\halfnorm{u}_{2, 2, Ω}.
 \end{align*}
 
 \begin{proof}
