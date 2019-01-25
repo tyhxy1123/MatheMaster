@@ -5,10 +5,28 @@
 
 \section{Aufgabenblatt 12}
 \subsection*{Aufgabe $\ast$)}
-%TODO
+Die dritte Bedingung in $L$ sagt, dass die Wörter in $L$ nicht mit $a$ beginnen dürfen.
+Kurz geschrieben (Achtung, keine offizielle Notation!)
+\begin{align*}
+	L=\Big\lbrace w=u_1 babc u_2,w=u_3 ccc u_4,w\neq a u_5:u_1,\ldots,u_5\in\Sigma^\ast\Big\rbrace
+\end{align*}
+Somit erhält man den Regulären Ausdruck 
+\begin{align*}
+	r=(b+c)^\ast\cdot(a+b+c)^\ast\cdot(b\cdot a\cdot b\cdot c+c\cdot c\cdot c)\cdot(a+b+c)^\ast
+\end{align*}
 
 \subsection*{Aufgabe $\ast\ast$)}
-%TODO
+\begin{enumerate}[label=(\alph*)]
+	\item $\begin{aligned}
+		L(r_1)=\Big\lbrace b^m a^n:m\in\N_{\geq0},n\in\lbrace0,1\rbrace\Big\rbrace
+	\end{aligned}$
+	\item $\begin{aligned}
+		L(r_1)=\Big\lbrace b^m a^n:m\in\N_{\geq0},n\in\lbrace0,1\rbrace\Big\rbrace
+	\end{aligned}$
+	\item $\begin{aligned}
+		L(r_1)=\Big\lbrace b^m a^n:m\in\N_{\geq0},n\in\lbrace0,1\rbrace\Big\rbrace
+	\end{aligned}$
+\end{enumerate}
 
 \subsection{Aufgabe 1}
 
