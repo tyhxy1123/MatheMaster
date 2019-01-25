@@ -1,7 +1,7 @@
 ﻿# Unsere LaTeX style guidelines
 
 ## Grundlegende Regeln
-1. LaTeX-Code immer einrücken. Eingerücken wird stets zwischen `\begin{...}` und `\end{...}`.
+1. LaTeX-Code immer einrücken. Eingerücken wird stets zwischen `\begin{...}` und `\end{...}`. Es wird mit einem Tab eingerückt.
 2. Die Nummerierung sowie Formelnummern (sofern vorhanden) müssen exakt mit der Vorlesung übereinstimmen (nutze `\tag` und `\setcounter`).
 3. Alle LaTeX-Warnungen beheben. Nur Warning-free code wird gepusht. 
  (Tipp: Der `\nl`-command kann underfull boxes vermeiden und dennoch optische Leerzeilen erzeugen.)
