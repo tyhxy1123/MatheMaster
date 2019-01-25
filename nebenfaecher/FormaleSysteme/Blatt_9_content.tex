@@ -21,7 +21,7 @@
 		q\sim_\A q':\Longleftrightarrow L(\A_q)=L(\A_{q'})
 	\end{align*}
 	\item Quotientenautomat: Der \textbf{Quotientenautomat} 
-	$\tilde{\A}=(\tilde{Q},\Sigma,\tilde{q}_0,\tilde{\delta},\tilde{F})$ zu $\A=(Q,\Sigma,q_0,\delta,F)$ ist definiert durch
+	$\tilde{\A}=(\tilde{Q},\Sigma,\tilde{q}_0,\tilde{\delta},\tilde{F})$ zu\\ $\A=(Q,\Sigma,q_0,\delta,F)$ ist definiert durch
 	\begin{itemize}
 		\item $\tilde{Q}:=\lbrace[q]_\sim\mid q\in Q\rbrace$
 		\item $\tilde{\delta}([q]_\sim,a):=[\delta(q,a)]_\sim=:\widetilde{\delta(q,a)}$
@@ -206,7 +206,7 @@ Setze dann
 \end{align*}
 Dann gibt es zwei Möglichkeiten für $x_j,y_j$:
 \begin{enumerate}
-	\item $x_j=a$ und $y_j=b$:\\
+	\item $x_j=a$ und $y_j=b$:
 	\begin{align*}
 		xw&=x_1\hdots x_{j-1}\underbrace{ a x_{j+1}\hdots x_n\underbrace{a\hdots a}_{j-1\text{ viele}}}_{n-(j-1)+(j-1)=n}\in L(\A_n)\\
 		yw&=y_1\hdots y_{j-1}\underbrace{ b y_{j+1}\hdots x_n\underbrace{a\hdots a}_{j-1\text{ viele}}}_{n-(j-1)+(j-1)=n}\not\in L(\A_n)

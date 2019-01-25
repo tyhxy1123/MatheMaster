@@ -5,15 +5,16 @@
 
 \section{Aufgabenblatt 5}
 \subsection{Aufgabe 5.1 (Beispiele zur NNF und KF Transformation}
-\textbf{Negationsnormalform:} ``Negation immer nur vor Variablen''\\
+\textbf{Negationsnormalform:} ``Negation immer nur vor Variablen''
+
 \begin{align}
 	&\frac{\neg\neg H}{H}\label{Neg1}\\
 	&\frac{\neg(G_1\wedge G_2)}{(\neg G_1\vee G_2)}\label{Neg2}\\
 	&\frac{\neg(G_1\vee G_2)}{(\neg G_1\wedge G_2)}\label{Neg3}
 \end{align}
-Die Symbole $\to, \leftrightarrow$ müssen zuerst umgeschrieben werden.\\
+Die Symbole $\to, \leftrightarrow$ müssen zuerst umgeschrieben werden.\nl
+\textbf{Klauselform / konjunktive Normalform /CNF:}
 
-\textbf{Klauselform / konjunktive Normalform /CNF:}\\
 \begin{align}
 	&\frac{\neg\neg D}{D}\label{KNF1}\tag{KNF1}\\
 	&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\tag{KNF2}\\
@@ -325,7 +326,7 @@ Ersetze $\langle,\rangle$ durch $[,]$ und umgekehrt, negiere alle Atome alle aus
 \subsubsection{Aufgabe 5.5 (d)}
 %TODO
 
-\subsection{Sudoku $n^2\times n^2$}
+\subsection{Sudoku}
 Problem: Existiert eine Zuweisung, welche jeder Zelle einen Wert von 1 bis $n^2$ zuweist so, dass in jeder Zeile, in jeder  Spalte und in jedem Block jede Zahl aus $\lbrace1,2,\ldots,n^2\rbrace$ genau einmal vorkommt?
 
 \begin{aufgabe}

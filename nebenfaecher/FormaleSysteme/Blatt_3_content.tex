@@ -24,9 +24,9 @@ Die Aussage stimmt, denn:
 
 \subsubsection{Aufgabe 3.1 (b)}
 Die Aussage stimmt nicht, Gegenbeispiel:
-$\F_1:=\lbrace p\rbrace$ und $\F_2:=\lbrace\neg p\rbrace$ sind erfüllbar, aber $\F_1\cup\F_2=\lbrace p ,\neg p\rbrace$ ist nicht erfüllbar.\\
+$\F_1:=\lbrace p\rbrace$ und $\F_2:=\lbrace\neg p\rbrace$ sind erfüllbar, aber $\F_1\cup\F_2=\lbrace p ,\neg p\rbrace$ ist nicht erfüllbar.
 
-%TODO: das folgende ist falsch.
+%TODO das folgende ist falsch.
 %\begin{align*}
 %&\F_1\text{ erfüllbar }
 %\stackrel{\text{Def}}{\implies}
@@ -171,10 +171,9 @@ Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:
 		Somit ist (5)$\Longleftrightarrow\F\models G$.
 	\item $\begin{aligned}
 		\Big(\forall\text{ Modell $I$ von }G:\exists F\in\F:F^I=\top\Big)
-		\overset{}&{\Longleftrightarrow}
+		\overset{}&{\gdw}
 		\Big(\forall I:\big(I\models G\implies \exists F\in\F:I\models F\big)\Big)\\
-		%&\stackrel{}{\Longleftrightarrow}
-	\end{aligned}$
+	\end{aligned}$\\
 	ist nicht äquivalent. 
 \end{enumerate}
 
@@ -261,7 +260,8 @@ Dann gilt:
 \end{proof}
 
 \subsection{Aufgabe 3.6}
-\textit{``Aus Falschem folgt beliebiges.''}\\
+\textit{``Aus Falschem folgt beliebiges.''}
+
 \begin{proof}
 	Da $F,\neg F\in\F$, ist $\F$ unerfüllbar. 
 	Somit gibt es keine Modell für $\F$. 
