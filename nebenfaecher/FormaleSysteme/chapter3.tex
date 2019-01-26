@@ -1,0 +1,36 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Grammatiken, kontextfreie Sprachen und Kellerautomaten}
+
+\section{Die Chomsky-Hierarchie}
+
+\begin{definition}\label{def6.2}
+	Eine \textbf{Grammatik} ist von der Form $G(N,\Sigma,P,S)$ wobei
+	\begin{itemize}
+		\item $N$ und $\Sigma$ endliche disjunkte Alphabete sind.
+		\item $\Sigma$ ist die Menge der \textbf{Terminalsymbole} (meist klein geschrieben).
+		\item $N$ ist die Menge der \textbf{Nichtterminalsymbole} (meist groß geschrieben).
+		\item $S\in N$ ist das \textbf{Startsymbol}
+		\item $P\subseteq(N\cup\Sigma)^+\times(N\cup\Sigma)^\ast$ eine endliche Menge von \textbf{Ersetzungsregeln / Produktionen}
+	\end{itemize}
+	Produktionen $(u,v)\in P$ schreibt man gewöhnlich als $u\to v$.
+\end{definition}
+
+\begin{definition}\label{def6.4}
+	Sei $G=(N,\Sigma,P,S)$ eine Grammatik und seien $x,y\in(N\cup\Sigma)^\ast$ Wörter. Definiere
+	\begin{enumerate}[label=\arabic*)]
+		\item \textbf{$y$ ist aus $x$ direkt ableitbar}, i.Z.:
+		\begin{align*}
+			x\vdash_G y:\Longleftrightarrow\exists x_1,x_2\in (N\cup\Sigma)^\ast,\exists u\to v\in P: x=x_1 ux_2\wedge y=x_1 vx_2
+		\end{align*}
+		\item \textbf{$y$ aus $x$ in $n$ Schritte ableitbar}, i.Z.
+		\begin{align*}
+			x\vdash_G^n y:\Longleftrightarrow\exists x_0,x_1,\ldots,x_n\in (N\cup\Sigma)^\ast:\forall 0\leq i<n:x_0=x\wedge x_n=y\wedge x_i\vdash_G x_{i+1}
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+\section{Rechtslineare Grammatiken und reguläre Sprachen}
