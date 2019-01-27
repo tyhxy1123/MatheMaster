@@ -218,9 +218,10 @@ Obiges gemischtes Problem liefert ein stabiles Sattelpunktsproblem.
 	\end{align*}
 	Es ist also zuerst zu zeigen, dass $a$ koerziv auf $W$ ist, wobei
 	\begin{align*}
-		W \overset{\text{Def}}= \setDef{τ ∈ L^2(Ω)^d}{\scaProd{τ}{∇v} = 0 ∀ v ∈ H_0^1(Ω).
+		W \overset{\text{Def}}=
+		\setDef{τ ∈ L^2(Ω)^d}{\scaProd{τ}{∇v} = 0\; ∀ v ∈ H_0^1(Ω)}.
 	\end{align*}
-	Da $a(w, w) = \scaProd{w}{w} = \norm{w}_{L^2(Ω)^d}^2$ ist $a$ koerziv mit Koerzivitätskonstante $1$, sogar auf ganz $L^2(Ω)^d$, nicht nur auf $W$.
+	Da $a(w, w) = \scaProd ww = \norm{w}_{L^2(Ω)^d}^2$ ist $a$ koerziv mit Koerzivitätskonstante $1$, sogar auf ganz $L^2(Ω)^d$, nicht nur auf $W$.
 
 	Nun betrachte die $\inf$-$\sup$-Bedingung. Sei $v ∈ H_0^1(Ω)$ mit $\norm v_{1, 2, Ω} = 1$ beliebig.
 	Dann
@@ -252,17 +253,20 @@ mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\Rand Ω$ ist gegeben durch:\
 Finde $(σ, u) ∈ H(\div, Ω) \times L^2(Ω)$: so, dass
 \begin{align*}
 	\begin{array}{rll}
-		\scaProd{σ}{τ}_{0,Ω}+ \scaProd{\div(τ)}{u}_{0,Ω} &= 0 & ∀ τ ∈ H(\div,Ω)\\
-		\scaProd{\div(σ)}{v}_{0,Ω} &= -\scaProd{f,v}_{0,Ω} & ∀ v ∈ L^2(Ω)
+		\scaProd{σ}{τ}_{0, Ω} + \scaProd{\div(τ)}{u}_{0, Ω} &= 0 & ∀ τ ∈ H(\div,Ω)\\
+		\scaProd{\div(σ)}{v}_{0, Ω} &= -\scaProd{f}{v}_{0, Ω} & ∀ v ∈ L^2(Ω)
 	\end{array}
 \end{align*}
 Der verwendete Raum
 \begin{align*}
-	H(\div,Ω):=\setDef{τ ∈ L^2(Ω)^d}{\div(τ)∈ L^2(Ω)}
+	H(\div,Ω) := %\coloneqq
+	\setDef{τ ∈ L^2(Ω)^d}{\div(τ)∈ L^2(Ω)}
 \end{align*}
 kann auch als Vervollständigung von $C^{∞}(Ω)^d$ bzgl. der Norm 
 \begin{align*}
-	\norm v_{H(\div,Ω)} \overset{\text{Def}}= \left(\norm v_{0, 2, Ω}^2+ \norm \div(v)_{0, 2, Ω}^2\right)^{\frac12}
+	\norm v_{H(\div,Ω)}
+	\overset{\text{Def}}=
+	\left(\norm v_{0, 2, Ω}^2+ \norm {\div(v)}_{0, 2, Ω}^2\right)^{\frac12}
 \end{align*}
 definiert werden.
 
