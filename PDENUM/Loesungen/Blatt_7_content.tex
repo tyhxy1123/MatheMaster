@@ -167,26 +167,39 @@ Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschä
 \end{proof}
 
 \subsection{Aufgabe 7.1}
-Sei $\Omega\subseteq\R^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\partial\Omega$.
+Sei $Ω \subseteq ℝ^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\Rand{Ω}$.
 Die primale gemischte Methode für die Poisson-Gleichung
 \begin{align*}
-	-\Delta u=-\div(\grad((u))=f\text{ in }\Omega
+	-\Lap u=-\div(\grad(u))=f \text{ in } Ω
 \end{align*}
-mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\partial\Omega$ ist gegeben durch:\nl
-Finde $(\sigma,u)\in L^2(\Omega)^d\times H_0^1(\Omega)$ so, dass
+mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\Rand Ω$ ist gegeben durch:\nl
+Finde $(σ, u)\in L^2(Ω)^d \times H_0^1(Ω)$ so, dass
 \begin{align*}
 	\begin{array}{rll}
-		(\sigma,\tau)_{0,\Omega}-(\tau,\nabla u)_{0,\Omega}&=0 &\forall\tau\in L^2(\Omega)^d\\
-		-(\sigma,\nabla v)_{0,\Omega}&=-(f,v)_{0,\Omega} &\forall v\in H_0^1(\Omega)
+		\scaProd{σ}{τ}_{0, Ω}- \scaProd{τ}{∇ u}_{0, Ω}&=0 & ∀ τ ∈ L^2(Ω)^d\\
+		-\scaProd{σ}{∇ v}_{0, Ω}&=-\scaProd f v_{0, Ω} & ∀ v ∈ H_0^1(Ω)
 	\end{array}
 \end{align*}
 
 \subsubsection{Aufgabe 7.1 (a)}
 Leiten Sie die Formulierung im Detail her.
-Schreiben Sie dazu die Poisson-Gleichung zunächst durch Einführung einer zweiten Variable $\sigma=\nabla u$ in ein System partieller Differentialgleichungen erster Ordnung um.
+Schreiben Sie dazu die Poisson-Gleichung zunächst durch Einführung einer zweiten Variable $σ = ∇u$ in ein System partieller Differentialgleichungen erster Ordnung um.
 
 \begin{lösung}
-	%TODO
+	Die schwache Formulierung für die Poisson-Gleichung mit Dirichlet-Randbedingungen ist
+	\begin{align*}
+		\scaProd {∇u}{∇v}_{0, Ω} = \scaProd fv_{0, Ω} && ∀ v ∈ H_0^1(Ω).
+	\end{align*}
+	Bezeichnet man nun $σ \overset{\text{Def}} = ∇u$ ergibt das
+	\begin{align*}
+		\scaProd {σ}{∇v}_{0, Ω} = \scaProd fv_{0, Ω} && ∀ v ∈ H_0^1(Ω)
+	\end{align*}
+	mit $σ ∈ L^2(Ω)$.
+	Wir schreiben zusätzlich die Bedingung $σ - ∇u = 0$ in der schwachen Formulierung:
+	\begin{align*}
+		0 = \scaProd{σ - ∇u}{τ}_{0, Ω} = \scaProd{σ}{τ}_{0, Ω} - \scaProd{∇u}{τ} && ∀ τ ∈ L^2(Ω)^d
+	\end{align*}
+	Wie üblich sind diese beiden schwachen Formulierungen im Fall $u ∈ H^2(Ω) ∩ H^1_0(Ω)$ äquivalent zur starken Formulierung.
 \end{lösung}
 
 \subsubsection{Aufgabe 7.1 (b)}
