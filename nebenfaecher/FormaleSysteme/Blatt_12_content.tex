@@ -5,32 +5,106 @@
 
 \section{Aufgabenblatt 12}
 \subsection*{Aufgabe $\ast$)}
-%TODO
+Mir ist hierfür kein Algorithmus bekannt, deshalb nutze ich \textit{Methode des scharfen Hinsehens}.
+Die dritte Bedingung in $L$ sagt, dass die Wörter in $L$ nicht mit $a$ beginnen dürfen.
+Kurz geschrieben (Achtung, keine offizielle Notation!)
+\begin{align*}
+	L=\Big\lbrace w=u_1 babc u_2,w=u_3 ccc u_4,w\neq a u_5:u_1,\ldots,u_5\in\Sigma^\ast\Big\rbrace
+\end{align*}
+Somit erhält man den Regulären Ausdruck 
+\begin{align*}
+	r=(b+c)^\ast\cdot(a+b+c)^\ast\cdot(b\cdot a\cdot b\cdot c+c\cdot c\cdot c)\cdot(a+b+c)^\ast
+\end{align*}
 
 \subsection*{Aufgabe $\ast\ast$)}
-%TODO
+Hierfür nutzen wir einfach Definition 5.3:
+
+\begin{lösung}
+	\underline{Zu (a):}
+	\begin{align*}
+		L(r_1)
+		&=L(((b(b)^\ast)+(bb)^\ast a))\\
+		&=L((b(b)^\ast)\cup L((bb)^\ast a)\\
+		&=L(b)\cdot L(b^\ast)\cup L((bb)^\ast)\cdot L(a)\\
+		&=\lbrace b\rbrace\cdot (L(b))^\ast\cup(L(bb))^\ast\cdot L(a)\\
+		&=\lbrace b\rbrace\cdot\lbrace b\rbrace^\ast\cup\lbrace bb\rbrace^\ast\cdot\lbrace a\rbrace\\
+		&=\Big\lbrace b^m, b^{2\cdot n}a:m\in\N_{\geq1},n\in\N_{\geq0}\Big\rbrace
+	\end{align*}
+	
+	Letztlich kann man sich die aufwendigen Umformungen sparen: Man ersetzt einfach + durch $\cup$ und, packt die Zeichen in Mengenklammern und fertig:
+		
+	\underline{Zu (b):}
+	\begin{align*}
+		L(r_2)&=L(((a)^\ast b(a(a)^\ast)b)^\ast b(a+b)^\ast))\\
+		&=\lbrace a\rbrace^\ast\cdot\lbrace b\rbrace\cdot(\lbrace a\rbrace\cdot\lbrace a\rbrace^\ast\cdot\lbrace b \rbrace)^\ast\cdot\lbrace b\rbrace\cdot(\underbrace{\lbrace a\rbrace\cup\lbrace b\rbrace}_{=\lbrace a,b\rbrace})^\ast
+	\end{align*}
+	
+	\underline{Zu (c):}
+	\begin{align*}
+		L(r_3)&=L(((a)^\ast+((((a)^\ast\cdot(b+b\cdot b))(a(a)^\ast(b+b\cdot b))^\ast)(a)^\ast))\\
+		&=\lbrace a\rbrace^\ast\cup\Big(\lbrace a\rbrace^\ast\cdot\lbrace b,bb\rbrace\cdot\big(\lbrace a\rbrace\cdot\lbrace a\rbrace^\ast\cdot\lbrace b,bb\rbrace\big)^\ast\cdot\lbrace a\rbrace^\ast\Big)
+	\end{align*}
+\end{lösung}
 
 \subsection{Aufgabe 1}
 
 \begin{lösung}
-	\underline{Zeige a):}
-	
-	\underline{Zeige b):}
-	
-	
-	\underline{Zeige c):}
-	
-	
-	\underline{Zeige e):}
-		
-	\underline{Zeige f):}
-	
+	Außer a) sind alle aufgeführten Quadupel Grammatiken, denn $\varepsilon\to...$ ist nicht zulässige nach Definition 6.2.
+	Somit sind b), c), d), e), f) Grammatiken vom Typ 0 nach Definiton 6.6.\nl
+	\underline{Zu b):}
+	$G_2$ ist nicht vom Typ 1, da $S\to\varepsilon$ und $S$ auf rechter Seite vorkommt und nicht vom Typ 3, aber vom Typ 2.\nl
+	\underline{Zu c):}
+	$G_2$ ist offenbar nicht vom Typ 2 oder 3, da $XY\not\in N$.\\
+	$G_2$ ist auch nicht vom Typ 1, denn:\\
+	\underline{Fall 1:} $X=A\implies u_1=\varepsilon,u_2=Y\implies w=\varepsilon\implies |w|=0<1$\\
+	\underline{Fall 2:} $Y=A\implies u_1=X$, was auch nicht möglich ist.\nl
+	\underline{Zu d):}
+	$G_4$ ist vom Typ 0,1,2,3.\nl
+	\underline{Zu e):}
+	$G_5$ ist nicht vom Typ $2$ oder Typ 3, aber vom Typ 1.\nl
+	\underline{Zu f):}
+	$G_6$ ist nicht vom Typ 1, da $S\to\varepsilon$ und $S$ auf rechter Seite vorkommt.\\
+	$G_6$ ist auch nicht vom Typ 2 oder 2, da $ZY\not\in N$.
 \end{lösung}
 
 \subsection{Aufgabe 2}
 
 \begin{lösung}
-	
+	\underline{Zu $G_1$:}	\\
+	$G_1$ ist offenbar nicht vom Typ 1, aber vom Typ 2 und nicht vom Typ 3.
+	 \begin{align*}
+	 	L(G_1)=\big\lbrace a^n b^n:n\in\N_{\geq0}\big\rbrace
+	 \end{align*}
+	 Da $G_1$ Grammatik vom Typ 2 ist, ist $L(G_1)$ eine $\L_2$-Sprache. 
+	 Eine $\L_3$-Sprache kann es nicht sein, da es keinen DEA gibt, der $L(G_1)$ erzeugt.\nl
+	 \underline{Zu $G_2$:}\\
+	 $G_2$ ist nicht vom Typ 1, aber vom Typ 2 und nicht vom Typ 3. 
+	 \begin{align*}
+	 	L(G_2)=\big\lbrace a,bb\big\rbrace^\ast
+	 \end{align*}
+	 Es gibt einen NEA mit Wortübergängen, der $L(G_2)$ akzeptiert.
+	 Deshalb liegt $L(G_2)$ in der Sprachklasse $\L_3$.
+	 
+
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial, accepting]   (q_0)                {$q_0$};
+  \path[->] (q_0) edge [loop right] node [right] {bb} ()
+                  edge [loop above] node [above] {a} ();
+\end{tikzpicture}
+
+	\underline{Zu $G_3$:}\\
+	$G_3$ ist nicht vom Typ 1, $aB\to a$ der Definition widerspricht. 
+	Aber $G_2$ ist vom Typ 2 und nicht vom Typ 3.
+	\begin{align*}
+		L(G_3)=L(G_1)=\big\lbrace a^n b^n:n\in\N_{\geq0}\big\rbrace
+	\end{align*}
+	Somit ist $L(G_3)$ eine $\L_3$-Sprache.\nl
+	\underline{Zu $G_4$:}
+	$G_4$ ist Typ 0, nicht Typ 1,2,3.
+	\begin{align*}
+		L(G_4)=L(G_3)=L(G_1)=\big\lbrace a^n b^n:n\in\N_{\geq0}\big\rbrace
+	\end{align*}
+	Somit ist auch $L(G_4)$ eine $\L_3$-Sprache.
 \end{lösung} 
 
 \subsection{Aufgabe 3}
@@ -52,14 +126,43 @@ Betrachte die Grammatik
 Geben Sie zu $G_0$ alle nicht-terminierenden Symbole und nicht-erreichbaren Symbole an und geben Sie eine zu $G_0$ äquivalente reduzierte Grammatik $G_1$ an.
 
 \begin{lösung}
-	%TODO
+	Nicht-terminierend sind $T,U$.\\
+	Nicht-erreichbar: $V$.\\
+	Wir konstruieren die äquivalente reduzierte Grammatik:\\
+	\underline{Schritt 1:} Eliminieren nicht terminierender Symbole:
+	\begin{align*}
+		G'&:=\big(N',\Sigma,P',S\big)\mit\\
+		N'&:=\lbrace S,V,R\rbrace\\
+		P'&:=\big\lbrace
+			S\to\varepsilon, S\to aSb,S\to R,V\to bSa,R\to\varepsilon,R\to bSa
+		\big\rbrace
+	\end{align*}
+	
+	\underline{Schritt 2:} Eliminieren unerreichbarer Symbole:
+	\begin{align*}
+		G_1&:=\big(N'',\Sigma,P'',S\big)\mit\\
+		N''&:=\lbrace S,R\rbrace\\
+		P''&:=\big\lbrace
+			S\to\varepsilon, S\to aSb,S\to R,R\to\varepsilon,R\to bSa
+		\big\rbrace
+	\end{align*}
 \end{lösung}
 
 \subsubsection{Aufgabe 3 b)}
 Konstruieren Sie eine Grammatik $G_2$ mit $L(G_2)=L(G_1)\setminus\lbrace\varepsilon\rbrace$, die keine Regeln der Form $A\to\varepsilon$ für $A\in N$ enthält.
 
 \begin{lösung}
-	%TODO
+	\begin{align*}
+		L(G_1)=\lbrace a\rbrace\cdot\big\lbrace w\in\lbrace a,b\rbrace^\ast:|w|_a=|w|_b\big\rbrace\cdot\lbrace b\rbrace\cup\lbrace\varepsilon\rbrace
+	\end{align*}
+	Ich glaube folgende tut es:
+	\begin{align*}
+		G_2&:=\big(\hat{N},\Sigma,\hat{P},S\big)\mit\\
+		\hat{N}&:=\lbrace S,R,T\rbrace\\
+		\hat{P}&:=\big\lbrace
+			S\to aTb, T\to aTb,T\to R,R\to\varepsilon,R\to bTa
+		\big\rbrace
+	\end{align*}
 \end{lösung}
 
 \subsubsection{Aufgabe 3 c)}
@@ -67,7 +170,14 @@ Geben Sie ein zu $G_1$ äquivalente $\varepsilon$-freie Grammatik $G_3$ an.
 Erweitern Sie dazu, wenn nötig, die Grammatik $G_2$ um ein neues Startsymbol $S_3$ und entsprechende Regeln.
 
 \begin{lösung}
-	%TODO
+	Einfach mal ins blaue geraten:
+	\begin{align*}
+		G_3&:=\big(\lbrace S_3,S,R\rbrace,\Sigma,P,S_3\big)\mit\\
+		P&:=\big\lbrace
+			S_3\to\varepsilon, S_3\to S, S\to aSb, S\to ab, S\to R,R\to ba,R\to bSa
+		\big\rbrace
+	\end{align*}
+	Offenbar ist $S_3$ $\varepsilon$-frei.
 \end{lösung}
 
 \subsubsection{Aufgabe 3 d)}

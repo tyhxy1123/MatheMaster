@@ -3,7 +3,7 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\section{Aufgabenblatt 9}
+\section{Aufgabenblatt 10}
 \subsection*{Aufgabe $\ast$)}
 Gegeben ist der $\varepsilon$-NEA
 \begin{align*}
@@ -27,15 +27,16 @@ Gegeben ist der $\varepsilon$-NEA
             (q_4) edge [loop right] node [right] {a} ();
 \end{tikzpicture}
 
+(Es fällt auf, dass $L(\A)=\lbrace a\rbrace$ ist.)
 Zuerst entfernen wir die $\varepsilon$-Transitionen auf naheliegende Weise:
 
 \usetikzlibrary{positioning,automata}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
   \node[state,initial]   	(q_0)                		{$q_0$};
-  \node[state] 				(q_1) [above right=of q_0] 	{$q_1$};
+  \node[state, accepting]   (q_1) [above right=of q_0] 	{$q_1$};
   \node[state, accepting] 	(q_2) [right=of q_1] 		{$q_2$};
   \node[state] 				(q_3) [below right=of q_0] 	{$q_3$};
-  \node[state, accepting] 				(q_4) [right=of q_3]		{$q_4$};
+  \node[state] 				(q_4) [right=of q_3]		{$q_4$};
   \path[->] (q_0) edge [bend left=0] node [above] {a} (q_1)
                   edge [bend left=0] node [above] {b} (q_3)
             (q_1) edge [bend left=0] node [above] {a} (q_4) %Diese Transition wurde geändert
@@ -46,16 +47,16 @@ Zuerst entfernen wir die $\varepsilon$-Transitionen auf naheliegende Weise:
             (q_4) edge [loop right] node [right] {a} ();
 \end{tikzpicture}
 
-Wichtig ist hierbei, dass nun $q_4$ auch ein Endzustand geworden ist.
+Wichtig ist hierbei, dass nun $q_1$ auch ein Endzustand geworden ist.
 Nun erzeugen wir den äquivalenten DEA mithilfe der Potenzmengenkonstruktion:
 
 \usetikzlibrary{positioning,automata}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
   \node[state,initial]   	(q_0)                		{$\lbrace q_0\rbrace$};
-  \node[state] 				(q_1) [above right=of q_0] 	{$\lbrace q_1\rbrace$};
-  \node[state, accepting] 	(q_3q_4) [right=of q_1] 		{$\lbrace q_3,q_4\rbrace$};
+  \node[state, accepting]   (q_1) [above right=of q_0] 	{$\lbrace q_1\rbrace$};
+  \node[state]			 	(q_3q_4) [right=of q_1] 		{$\lbrace q_3,q_4\rbrace$};
   \node[state] 				(q_3) [below right=of q_0] 	{$\lbrace q_3\rbrace$};
-  \node[state, accepting] 	(q_4) [right=of q_3]		{$q_4$};
+  \node[state]			 	(q_4) [right=of q_3]		{$\lbrace q_4\rbrace$};
   \node[state]				(T)	  [below right =of q_3q_4] {$\emptyset$};
   \path[->] (q_0) edge [bend left=0] node [above] {a} (q_1)
                   edge [bend left=0] node [above] {b} (q_3)
@@ -72,23 +73,54 @@ Nun erzeugen wir den äquivalenten DEA mithilfe der Potenzmengenkonstruktion:
 
 Den unerreichbaren Zustand $q_2$ braucht man nicht beachten. Den Papierkorbzustand $\emptyset$ nicht vergessen. Also ist der äquivalente DEA:
 \begin{align*}
-	\A'&=\Big(\big\lbrace q_0\rbrace,\lbrace q_1\rbrace,\lbrace q_3\rbrace,\lbrace q_3,q_4\rbrace,\lbrace q_4\rbrace,\emptyset\big\rbrace,\lbrace a,b\rbrace,\lbrace q_0\rbrace,\delta,\big\lbrace\lbrace q_3,q_4\rbrace,\lbrace q_4\rbrace\big\rbrace\Big)\\
+	\A'&=\Big(\big\lbrace q_0\rbrace,\lbrace q_1\rbrace,\lbrace q_3\rbrace,\lbrace q_3,q_4\rbrace,\lbrace q_4\rbrace,\emptyset\big\rbrace,\lbrace a,b\rbrace,\lbrace q_0\rbrace,\delta,\big\lbrace\lbrace q_1\rbrace\big\rbrace\Big)\\
 	\overset{\text{Umbennung}}&{=:}
-	\Big(\underbrace{\lbrace p_0, p_1,p_3,p_2,p_4, p_5\rbrace}_{=:P},\lbrace a,b\rbrace,p_0,\delta,\lbrace p_2,p_4\rbrace\Big)
+	\Big(\underbrace{\lbrace p_0, p_1,p_3,p_2,p_4, p_5\rbrace}_{=:P},\lbrace a,b\rbrace,p_0,\delta,\lbrace p_1\rbrace\Big)
 \end{align*}
 
 Da $\A'$ keine unerreichbaren Zustände mehr besitzt, gilt $\A_0=\A'$.
 Um $\A_{\text{red}}$ zu berechnen, berechnen wir $\sim_{\A}$ schrittweise durch $\sim_k$:
 \begin{itemize}
-	\item $P|_{\sim_0}=\big\lbrace\lbrace p_2,p_4\rbrace,\lbrace p_0,p_1,p_3,p_5\rbrace\big\rbrace$ (Startzustände und Endzustände trennen)
-	\item $P|_{\sim_1}=\big\lbrace\lbrace p_2\rbrace,\lbrace p_4\rbrace,\lbrace p_0, p_5\rbrace,\lbrace p_1\rbrace,\lbrace p_3\rbrace\big\rbrace$
-	\item $P|_{\sim_2}=\big\lbrace\lbrace p_2\rbrace,\lbrace p_4\rbrace,\lbrace p_0\rbrace,\lbrace p_5\rbrace,\lbrace p_1\rbrace,\lbrace p_3\rbrace\big\rbrace$
+	\item $P|_{\sim_0}=\big\lbrace\lbrace p_1\rbrace,\lbrace p_0,p_2,p_3,p_4,p_5\rbrace\big\rbrace$ (Startzustände und Endzustände trennen)
+	\item $P|_{\sim_1}=\big\lbrace\lbrace p_1\rbrace,\lbrace p_0\rbrace,\lbrace p_2,p_3,p_4,p_5\rbrace\big\rbrace$
+	\item $P|_{\sim_2}=\big\lbrace\lbrace p_1\rbrace,\lbrace p_0\rbrace,\lbrace p_2,p_3,p_4,p_5\rbrace\big\rbrace$
 \end{itemize}
-Es gilt also $\sim_3=\sim_2\implies\sim_\A=\sim_2$. 
-Da hier alle Zustände paarweise nicht äquivalent zueinander sind, gilt:
+Es gilt also $\sim_2=\sim_1\implies\sim_\A=\sim_1$. 
+Der Quotientenautomat
+\begin{align*}
+	\tilde{A}&=\big(\tilde{Q},\Sigma,\tilde{q}_0,\tilde{\delta},\tilde{F}\big)\mit\\
+	\tilde{Q}&=\big\lbrace\lbrace p_1\rbrace,\lbrace p_0\rbrace,\lbrace p_2,p_3,p_4,p_5\rbrace\big\rbrace
+	=
+	\big\lbrace [p_1]_{\sim},[p_0]_\sim,[p_2]_\sim\big\rbrace\\
+	\Sigma&=\lbrace a,b\rbrace\\
+	\tilde{q}_0&=\lbrace p_0\rbrace=[p_0]_\sim\\
+	\tilde{\delta}&=\left\lbrace
+		\begin{array}{l}
+			\big([p_0]_{\sim},a,[p_1]_{\sim}\big), \big([p_0]_{\sim},b,[p_2]_{\sim}\big),\\
+			\big([p_1]_{\sim},a,[p_2]_{\sim}\big), \big([p_1]_{\sim},b,[p_2]_{\sim}\big),\\
+			\big([p_2]_{\sim},a,[p_2]_{\sim}\big), \big([p_2]_{\sim},b,[p_2]_{\sim}\big)
+		\end{array}
+	\right\rbrace\\
+	\tilde{F}&=\big\lbrace \lbrace p_1\rbrace\big\rbrace=\big\lbrace [p_1]_\sim\big\rbrace
+\end{align*}
+erfüllt also
 \begin{align*}
 	\A_{\text{red}}=\tilde{\A_0}\cong\A_0=\A'
 \end{align*}
+und insbesondere gilt
+\begin{align*}
+	L\big(\A_\red\big)=\lbrace a\rbrace.
+\end{align*}
+
+\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+  \node[state,initial]   	(q_0)                		{$[p_0]_{\sim}$};
+  \node[state, accepting]   (q_1) [above right=of q_0] 	{$[p_1]_{\sim}$};
+  \node[state] 				(q_2) [below right=of q_0] 	{$[p_2]_{\sim}$};
+  \path[->] (q_0) edge [bend left=0] node [above] {a} (q_1)
+                  edge [bend left=0] node [above] {b} (q_2)
+            (q_1) edge [bend left=0] node [right] {a,b} (q_2)
+            (q_2) edge [loop right]  node [above] {a,b} ();
+\end{tikzpicture}
 
 \subsection{Aufgabe 1}
 \textbf{Konvention.} Bei mir ist $\N:=\lbrace 1,2,3,\ldots\rbrace$.\nl
