@@ -313,5 +313,98 @@ Was fällt bei den Randbedingungen auf?
 Obige gemischte Formulierung liefert ein stabiles Sattelpunktsproblem.
 
 \begin{proof}
-	%TODO
+	Die Übersetzung von den Variablen im allgemeinen Fall zu denen in unserem Problem ist:
+	\begin{align*}
+		X &= H(\div, Ω) & M &= L^2(Ω) & a &= \scaProd{·}{·}_{0, Ω} & b &= \scaProd{\div(·)}{·}_{0, Ω} \\
+		f &= 0 & g &= - \scaProd f{·}_{0, Ω} & u &= σ & λ &= u \\
+		v &= τ & μ &= v & V &= W,
+	\end{align*}
+	wobei
+	\begin{align*}
+		W &=
+		\setDef{τ ∈ H(\div, Ω)}{\scaProd{\div τ}{v}_{0, Ω} = 0\; ∀ v ∈ L^2(Ω)} \\
+		&= \setDef{τ ∈ H(\div, Ω)}{\div τ = 0},
+	\end{align*}
+	also der Raum der Divergenz-freien $L^2(Ω)^d$-Funktionen.
+	$a$ ist offensichtlich symmetrisch.
+	Für $w ∈ W$ ist
+	\begin{align*}
+		a(w, w)
+		&= \scaProd ww_{0, Ω}
+		= \norm w_{0, 2, Ω}^2 + \underbrace{\scaProd{\div w}{\div w}_{0, Ω}}_{= 0, \text{ da } w ∈ W} \\
+		&= \norm w_{0, 2, Ω}^2 + \norm{\div w}_{0, 2, Ω}^2
+		= \norm w_{H(\div, Ω)}^2.
+	\end{align*}
+	Also ist $a$ auf $W$ mit Koerzivitätskonstante $1$ koerziv.
+
+	Jetzt ist noch die $\inf$-$\sup$-Bedingung zu zeigen.
+	Sei dafür $v ∈ L^2(Ω)$ mit $\norm v_{0, 2, Ω}$ beliebig.
+	Wir wollen ein $τ ∈ H(\div, Ω)$ finden, sodass $\div τ$ möglichst nah dran ist an einem Vielfachen von $v$, damit $⟨\div τ, v⟩_{0, 2}$ maximal wird.
+	Um Rechnungen zu vereinfachen, setzen wir $τ_i = 0$ für $i ∈ \{2, \dots, d\}$,
+	denn dann ist $\div τ = (τ_1)_{x_1}$.
+	Also sollte $τ_1$ eine Art Stammfunktion von $v$ sein.
+	Damit punktweise Integration möglich ist, nehmen wir nicht $v$, sondern eine Approximation $φ ∈ C^{∞}_c(Ω)$ mit $\norm{v - φ}_{0, 2, Ω} \leq \frac12 \norm{v}_{0, 2, Ω}$.
+	Dieser Schritt scheint viel zu verschenken und er tut es auch und eine bessere Annährung ergibt ein größeres $β$, aber wir sind gerade nur an einem beliebigen $β > 0$ interessiert.
+
+	Damit $(τ_1)_{x_1} = φ$, setze
+	\begin{align*}
+		\tilde {τ_1}(x)
+		&= ∫_{- ∞}^x φ(t, x_2, \dots x_d) \d t \\
+		τ_1 &=
+		\begin{cases}
+			\tilde {τ_1}(x), &\text{für } x ∈ Ω \\
+		0 &\text{sonst}
+		\end{cases}
+	\end{align*}
+	$τ_1$ ist wohldefiniert, da $Ω$ beschränkt ist und daher tatsächlich nur über ein endliches Intervall integriert wird und $φ ∈ C^{∞}_c(Ω)$ darauf beschränkt ist.
+	Nach dem Hauptsatz der Integral- und Differentialrechnung gilt tatsächlich $(τ_1)_{x_1} = φ$, zumindest im Inneren von $Ω$.
+
+	Nun müssen wir zeigen, dass $τ_1 ∈ L^2(Ω)$, damit $τ ∈ H(\div, Ω)$.
+	\begin{align*}
+		\norm{τ_1}_{0, 2, Ω}^2
+		% \leq \norm{\tilde τ_1}_{0, 2, ℝ^d}^2
+		&= ∫_{Ω} \abs{∫_{- ∞}^x φ(t, x_2, \dots, x_d) \d t}^2 \d x
+		\leq ∫_{Ω} \left( ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)} \d t \right)^2 \d x \\
+		&= ∫_{Ω} \left( ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)} · 1 \d t \right)^2 \d x \\
+		\overset{\text{Cauchy-Schwarz}}&{\leq}
+		∫_{Ω}\left( \left( ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)}^2 \d t \right)^{\frac 12} \left(∫_{Ω} 1^2\right)^{\frac 12} \right)^2 \d x \\
+		&= ∫_{Ω} ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)}^2 \d t \abs{Ω} \d x \\
+		&\leq \abs{Ω} \abs{Ω_1} ∫_{Ω} \abs{φ(x_1, x_2, \dots, x_d)}^2 \d x \\
+		&\leq \abs{Ω} \abs{Ω_1} \norm{φ}_{0, 2, Ω}^2
+	\end{align*}
+	Hierbei bezeichnet $\abs{Ω}$ das Maß von $Ω$ und $\abs{Ω_1}$ die maximale Ausdehnung von $Ω$ in die Richtung $x_1$.
+	Der Integrand nach der ersten Abschätzung ist unabhängig von $x_1$ und daher kann $\abs{Ω_1}$ herausgezogen werden.
+	Die Integrationsgrenzen $∞$ und $-∞$ sind tatsächlich auch beschränkt, da $Ω$ beschränkt ist und $φ$ Träger in $Ω$ hat.
+	Damit gilt
+	\begin{align*}
+		\norm{τ}_{H(\div, Ω)}^2 &= \norm{τ}_{0, 2, Ω}^2 + \norm{\div τ}_{0, 2, Ω}^2 \leq \abs{Ω} \abs{Ω_1} \norm{φ}_{0, 2, Ω}^2 + \norm{φ}_{0, 2, Ω}^2 \\
+		⇒ \norm{τ}_{H(\div, Ω)} &\leq \underbrace{\left(\abs{Ω} + \abs{Ω_1}\right)^{\frac 12}}_{:= C} \norm{φ}_{0, 2, Ω} % \coloneqq C
+	\end{align*}
+	Für das Supremum gilt demnach
+	\begin{align*}
+		\sup_{ρ ∈ H(\div, Ω)\setminus \{0\}} \frac {\scaProd{\div ρ}v_{0, Ω}}
+		{\norm{ρ}_{H(\div, Ω)}}
+		&\geq \frac {\scaProd{\div τ}v_{0, Ω}}
+		{\norm{τ}_{H(\div, Ω)}} \\
+		&\geq \frac {\scaProd{φ}v_{0, Ω}}
+		{C \norm{φ}_{0, 2, Ω}} \\
+		&\geq \frac{\scaProd vv_{0, Ω} - \scaProd {v - φ}v_{0, Ω}}
+		{C \left(\norm{v}_{0, 2, Ω} + \norm{φ - v}_{0, 2, Ω}\right)} \\
+		\overset{\text{Cauchy-Schwarz}}&{\geq}
+		\frac{\norm v_{0, 2, Ω}^2 - \norm{v - φ}_{0, 2, Ω}\norm{v}_{0, 2, Ω}}
+		{C \left(\norm{v}_{0, 2, Ω} + \frac 12\norm v_{0, 2, Ω}\right)} \\
+		&\geq \frac{\norm v_{0, 2, Ω}^2 - \frac 12 \norm{v}_{0, 2, Ω}^2}
+		{\frac 32 C \norm{v}_{0, 2, Ω}} \\
+		&= \frac2{3·2C} \norm v_{0, 2, Ω}
+	\end{align*}
+	Damit lässt sich dann auch einfach das Infimum bestimmen:
+	\begin{align*}
+		\inf_{\substack{v ∈ L^2(Ω) \\ \norm v_{0, 2, Ω} = 1}}
+		\sup_{ρ ∈ H(\div, Ω)\setminus \{0\}} \frac {\scaProd{\div ρ}v_{0, Ω}}
+		{\norm{ρ}_{H(\div, Ω)}}
+		\geq 
+		\inf_{\substack{v ∈ L^2(Ω) \\ \norm v_{0, 2, Ω} = 1}}
+		\frac 1{3C} \norm v_{0, 2, Ω} = \frac 1{3C} > 0.
+	\end{align*}
+	Damit handelt es sich um ein stabiles Sattelpunktsproblem.
 \end{proof}
