@@ -5,7 +5,9 @@
 % vim: set noexpandtab:
 
 \section{Aufgabenblatt 7}
-\subsection*{Aufgabe 6.3}
+\setcounter{section}{6}
+\setcounter{subsection}{2}
+\subsection{Aufgabe 6.3}
 Betrachte
 \begin{align*}
 	-ε Δ u + b·∇u + cu = f \text{ in } u=0 \text{ auf } \Rand{Ω}
@@ -20,7 +22,7 @@ Es ist bekannt, dass die entstehende Bilinearform $a$ koerziv auf $H_0^1(Ω)$ be
 	\norm{·} \coloneq \left(ε \halfnorm{·}_{1, 2, Ω}^2+ \norm{·}_{0, 2, Ω}^2\right)^{\frac12}
 \end{align*}
 ist.
-\subsubsection*{Aufgabe 6.3 (a)}
+\subsubsection{Aufgabe 6.3 (a)}
 Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas \ref{theorem2.2CeasLemma}) in diesem Fall keine von $ε$ unabhängige Fehlerschätzung in der $\norm{·}_{ε}$-Norm möglich?
 
 \begin{lösung}
@@ -108,7 +110,7 @@ Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas \ref{theorem2.2CeasLemm
 	\end{bemerkungnr}
 \end{lösung}
 
-\subsubsection*{Aufgabe 6.3 (b)}
+\subsubsection{Aufgabe 6.3 (b)}
 Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschätzung der Form
 \begin{align*}
 	\norm {u-u_h}_{ε} \leq C \left(ε^{\frac12}h + h + h^2 \right)\halfnorm{u}_{2, 2, Ω}.
@@ -165,7 +167,8 @@ Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschä
 	\end{align*}
 	Das ist das angekündigte Ergebnis. Die Konstante $C$ hängt unter anderem von $b$, $c$, der Formregularität der Triangulierung, aber nicht von $ε$ und $h$ ab.
 \end{proof}
-
+\setcounter{section}{7}
+\setcounter{subsection}{0}
 \subsection{Aufgabe 7.1}
 Sei $Ω \subseteq ℝ^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\Rand{Ω}$.
 Die primale gemischte Methode für die Poisson-Gleichung
