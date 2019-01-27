@@ -203,10 +203,40 @@ Schreiben Sie dazu die Poisson-Gleichung zunächst durch Einführung einer zweit
 \end{lösung}
 
 \subsubsection{Aufgabe 7.1 (b)}
-Obiges gemischtes Problem liefert ein stabiles Sattelpunktproblem.
+Obiges gemischtes Problem liefert ein stabiles Sattelpunktsproblem.
 
 \begin{proof}
-	%TODO
+	Was allgemein unter einem Sattelpunktsproblem zu verstehen ist und unter welchen Bedingungen so eines stabil ist, ist in der Bemerkung am Ende dieses Aufgabenblattes beschrieben.
+	Die Übersetzung von den Variablen im Allgemeinen Fall zu denen in unserem Problem ist:
+	\begin{align*}
+		X &= L^2(Ω)^d & M &= H_0^1(Ω) & a &= \scaProd{·}{·}_{0, Ω} & b &= \scaProd{·}{∇·}_{0, Ω} \\
+		f &= 0 & g &= \scaProd f{·}_{0, Ω} & u &= σ & λ &= u \\
+		v &= τ & μ &= v & V &= W
+	\end{align*}
+	Es ist also zuerst zu zeigen, dass $a$ koerziv auf $W$ ist, wobei
+	\begin{align*}
+		W \overset{\text{Def}}= \setDef{τ ∈ L^2(Ω)^d}{\scaProd{τ}{∇v} = 0 ∀ v ∈ H_0^1(Ω).
+	\end{align*}
+	Da $a(w, w) = \scaProd{w}{w} = \norm{w}_{L^2(Ω)^d}^2$ ist $a$ koerziv mit Koerzivitätskonstante $1$, sogar auf ganz $L^2(Ω)^d$, nicht nur auf $W$.
+
+	Nun betrachte die $\inf$-$\sup$-Bedingung. Sei $v ∈ H_0^1(Ω)$ mit $\norm v_{1, 2, Ω} = 1$ beliebig.
+	Dann
+	\begin{align*}
+		\sup_{\substack{τ ∈ L^2(Ω)^d \\ \norm{τ}_{0, 2, Ω} = 1}} \scaProd{τ}{∇v}_{0, Ω}
+		= \scaProd{\frac{∇v}{\norm{∇v}_{0, 2, Ω}}}{∇v}_{0, Ω}
+		= \halfnorm{v}_{1, 2, Ω},
+	\end{align*}
+	da ein Skalarprodukt auf einer Kugel maximiert wird, wenn beide Argumente kollinear sind.
+	Damit folgt mit der Friedrichsungleichung \ref{prop1.13FriedrichsUngleichung} für $H_0^1(Ω)$
+	\begin{align*}
+		\inf_{\substack{v ∈ H_0^1(Ω) \\ \norm v_{1, 2, Ω} = 1}}
+		\sup_{\substack{τ ∈ L^2(Ω)^d \\ \norm{τ}_{0, 2, Ω} = 1}}
+		\scaProd{τ}{∇v}_{0, Ω}
+		= \inf_{\substack{v ∈ H_0^1(Ω) \\ \norm v_{1, 2, Ω} = 1}} \halfnorm v_{1, 2, Ω}
+		\geq \inf_{\substack{v ∈ H_0^1(Ω) \\ \norm v_{1, 2, Ω} = 1}} \frac 1C \norm v_{1, 2, Ω}
+		= \frac 1C > 0.
+	\end{align*}
+	Damit ist die $\inf$-$\sup$-Bedingung erfüllt und das Sattelpunktsproblem stabil.
 \end{proof}
 
 \subsection{Aufgabe 7.2}
