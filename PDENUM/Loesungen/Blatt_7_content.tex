@@ -243,36 +243,66 @@ Obiges gemischtes Problem liefert ein stabiles Sattelpunktsproblem.
 \end{proof}
 
 \subsection{Aufgabe 7.2}
-Sei $\Omega\subseteq\R^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\partial\Omega$.
+Sei $Ω \subseteq ℝ^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\Rand{Ω}$.
 Die duale gemischte Methode für die Poisson-Gleichung 
 \begin{align*}
-	-\Delta u=-\div(\grad((u))=f\text{ in }\Omega
+	-\laplace u=-\div(\grad(u))=f \text{ in } Ω
 \end{align*}
-mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\partial\Omega$ ist gegeben durch:\nl
-Finde $(\sigma,u)\in H(\div,\Omega)\times L^2(\Omega)$: so, dass
+mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\Rand Ω$ ist gegeben durch:\nl
+Finde $(σ, u) ∈ H(\div, Ω) \times L^2(Ω)$: so, dass
 \begin{align*}
 	\begin{array}{rll}
-		(\sigma,\tau)_{0,\Omega}+(\div(\tau),u)_{0,\Omega}&=0&\forall\tau\in H(\div,\Omega)\\
-		(\div(\sigma),v)_{0,\Omega} &=-(f,v)_{0,\Omega} &\forall v\in L^2(\Omega)
+		\scaProd{σ}{τ}_{0,Ω}+ \scaProd{\div(τ)}{u}_{0,Ω} &= 0 & ∀ τ ∈ H(\div,Ω)\\
+		\scaProd{\div(σ)}{v}_{0,Ω} &= -\scaProd{f,v}_{0,Ω} & ∀ v ∈ L^2(Ω)
 	\end{array}
 \end{align*}
 Der verwendete Raum
 \begin{align*}
-	H(\div,\Omega):=\left\lbrace\tau\in L^2(\Omega)^d:\div(\tau)\in L^2(\Omega)\right\rbrace
+	H(\div,Ω):=\setDef{τ ∈ L^2(Ω)^d}{\div(τ)∈ L^2(Ω)}
 \end{align*}
-kann auch als Vervollständigung von $C^\infty(\Omega)^d$ bzgl. der Norm 
+kann auch als Vervollständigung von $C^{∞}(Ω)^d$ bzgl. der Norm 
 \begin{align*}
-	\Vert v\Vert_{H(\div,\Omega)}:=\left(\Vert v\Vert_{0,\Omega}^2+\Vert\div(v)\Vert_{0,\Omega}^2\right)^{\frac{1}{2}}
+	\norm v_{H(\div,Ω)} \overset{\text{Def}}= \left(\norm v_{0, 2, Ω}^2+ \norm \div(v)_{0, 2, Ω}^2\right)^{\frac12}
 \end{align*}
 definiert werden.
 
 \subsubsection{Aufgabe 7.2 (a)}
-Auf den ersten Blick schein $u$ nur in $L^2(\Omega)$ zu liegen.
-Zeigen Sie, dass tatsächlich aber $u\in H_0^1(\Omega)$ ist.
+Auf den ersten Blick schein $u$ nur in $L^2(Ω)$ zu liegen.
+Zeigen Sie, dass tatsächlich aber $u∈ H_0^1(Ω)$ ist.
 Was fällt bei den Randbedingungen auf?
 
 \begin{proof}
-	%TODO
+	Wir zeigen, dass aus der ersten Bedingung
+	\begin{align}\label{eqaufg7.2a-1}
+		\scaProd{σ}{τ}_{0,Ω}+ \scaProd{\div(τ)}{u}_{0,Ω} &= 0 & ∀ τ ∈ H(\div,Ω)\\
+	\end{align}
+	folgt, dass $u$ schwach differenzierbar ist und $∇ u = σ$ in $Ω$ gilt.
+	Dafür betrachte beliebige $φ ∈ C^{∞}_c(Ω)$ und $τ = φe_i ∈ H(\div, Ω)$, wobei $i ∈ \{1, \dots, d\}$ alle Komponenten durchläuft.
+	Dafür gilt $\div τ = Σ_{j = 1}^d (τ_j)_{x_j} = φ_{x_j}$ und
+	\begin{align*}
+		∫_{Ω} σ_i φ
+		= ∫_{Ω} Σ_{j = 1}^d σ_j (φe_i)_j
+		\scaProd{σ}{τ}_{0, Ω}
+		\overset{\eqref{eqaufg7.2a-1}}=
+		\scaProd{\div τ}u_{0, Ω}
+		= \scaProd{φ_{x_i}}u_{0, Ω}
+		\quad ∀ φ ∈ C^{∞}_c(Ω)
+	\end{align*}
+	Also ist $u$ in die Richtung $x_i$ schwach differenzierbar mit der partiellen Ableitung $σ_i$. Da $i$ beliebig ist und $σ ∈ L^2(Ω)$ ist $u ∈ H^1(Ω)$ mit $∇u = σ$.
+
+	Der Satz von Gauß erlaubt uns, Aussagen über Randintegrale zu finden.
+	Randwerte von $u$ im $L^2(\Rand{Ω})$-Sinn sind wohldefiniert, da $u ∈ H^1(Ω)$.
+	Für $τ ∈ H^1_0(Ω)^d \subseteq H(\div, Ω)$ gilt nun
+	\begin{align*}
+		∫_{Ω} (\div τ) u
+		&= ∫_{\Rand{Ω}} (τu) · η \d S - ∫_{Ω} τ · ∇u
+		= ∫_{\Rand{Ω}} (τu) · η \d S - ∫_{Ω} τ · σ \\
+		\overset{\eqref{eqaufg7.2a-1}}{⇒}
+		0 &= ∫_{\Rand{Ω}} (τu) · η \d S,
+		= ∫_{\Rand{Ω}} (τ · η)u \d S,
+	\end{align*}
+	wobei $η$ der Einheitsnormalenvektor auf dem Rand ist.
+	Da unter den betrachteten $τ ∈ H^1_0(Ω)^d$ alle möglichen Randwerte existieren, sind die Randwerte von $u$ gleich $0$ als $L^2(\Rand{Ω})$-Funktion, sprich $u ∈ H^1_0(Ω)$.
 \end{proof}
 
 \subsubsection{Aufgabe 7.2 (b)}
