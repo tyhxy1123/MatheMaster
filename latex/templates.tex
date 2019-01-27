@@ -45,5 +45,16 @@
 	\author{#1}
 	\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
 
-	%TODO Schreibe Aktuelles Datum, Titel, Seitennummern, Autor, Blatt-Nr. in Kopf / Fußzeile
+	\usepackage{fancyhdr} %für Kopf und Fußzeile
+		\pagestyle{fancy}	
+	\usepackage[left=20mm,right=30mm,top=25mm,bottom=25mm]{geometry} % Randeinstellungen
+	
+	\setlength{\headheight}{15pt}% ...at least 14.9998 pt
+	
+	\rhead{#1}
+	\chead{}
+	\lhead{#2}
+	\rfoot{Blatt #3}
+	\cfoot{Version: \today}
+	\lfoot{Seite \thepage}
 }
