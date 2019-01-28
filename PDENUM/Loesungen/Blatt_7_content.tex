@@ -19,7 +19,7 @@ mit $0 < ε \ll 1$ unter der Annahme
 Weiter untersuchen wir das Standard-Galerkin-FEM Verfahren auf einer regulären, affin äquivalenten Zerlegung von $Ω$. 
 Es ist bekannt, dass die entstehende Bilinearform $a$ koerziv auf $H_0^1(Ω)$ bezüglich der Norm
 \begin{align*}
-	\norm{·} \coloneq \left(ε \halfnorm{·}_{1, 2, Ω}^2+ \norm{·}_{0, 2, Ω}^2\right)^{\frac12}
+	\norm{·} \coloneqq \left(ε \halfnorm{·}_{1, 2, Ω}^2+ \norm{·}_{0, 2, Ω}^2\right)^{\frac12}
 \end{align*}
 ist.
 \subsubsection{Aufgabe 6.3 (a)}
@@ -62,7 +62,7 @@ Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas \ref{theorem2.2CeasLemm
 	\begin{align*}
 		a(u, v) = ∫_{Ω} ε ∇u · ∇v + b·∇u v + cuv \quad u, v ∈ H_0^1(Ω)
 	\end{align*}
-	Um die Stetigkeit von $a$ nachzuweisen, rechne, wie üblich:
+	Um die Stetigkeit von $a$ nachzuweisen, rechne wie üblich:
 	\begin{align*}
 		\abs {a(u, v)} & \leq \left(∫_{Ω} ε \abs{∇ u}^2 \right)^{\frac12}
 		\left(∫_{Ω} ε \abs{∇ v}^2 \right)^{\frac12}
