@@ -900,6 +900,9 @@ Mit den Bezeichnungen von eben sehen wir:
     \item $\G$ inital $\iff$ $\G$ besitzt ein initales Objekt im Sinne der Kategorientheorie
 \end{itemize}
 Das duale Konzept sind \textbf{terminale Knoten} bzw.~\textbf{terminale Objekte}.
+\begin{displayquote}
+    \textit{\enquote{Im Pfadnetzwerk Europas ist Rom terminaler Knoten.}}
+\end{displayquote}
 \begin{beispiel}
     Set $\Omega$ eine Menge, $V = 2^\Omega$ deren Potenzmenge.
     Wir beschreiben das Netzwerk von Teilengen $A, B\subset \Omega$ als Knoten und Kanten $f\colon A\to B$.
@@ -910,11 +913,12 @@ Das duale Konzept sind \textbf{terminale Knoten} bzw.~\textbf{terminale Objekte}
     Dann ist $\G = (G, *, \id)$ ein initales ANW bezüglich kovarianter Verknüpfung $(*)$ von Abbildungen und initalem Knoten $\emptyset$.
 \end{beispiel}
 
-\newcommand*{\Init}[1][p]{\ensuremath{e_{\sigma, {#1}}}}
+\newcommand*{\Init}[1][p]{\ensuremath{e_{0, {#1}}}}
 \begin{proposition}
+    \label{prop:DarstDeltaInitialerKnoten}
     Sei $\Meas = (\G, \M, \Delta)$ ein initiales und reversibles Measurement Setup,
     mit $\G = (G, *, \id)$, $G = (V, E, \rho)$ und $\M = (M, \bullet, \varepsilon)$.
-    Sei $\sigma$ der initale Knoten von $\G$ und bezeichne $\Init$ für jedes $p\in V$ die eindeutig bestimmte Kante mit $\rho \Init = (\sigma, p)$.
+    Sei $0$ der initale Knoten von $\G$ und bezeichne $\Init$ für jedes $p\in V$ die eindeutig bestimmte Kante mit $\rho \Init = (0, p)$.
     Dann gilt für jede Kante $p\xrightarrow{a} q$:
     \[
         \Delta a = (\Delta \Init[p])^{-1}\bullet \Delta \Init[q]
@@ -972,29 +976,87 @@ d.h.~$\Delta(a^{-1}) = (\Delta a)^{-1}$.
 
 \begin{proposition}
     Set $\G$ eine Measurement Setup mit den üblichen Bezeichnungen, $\M = (M, \bullet, \varepsilon)$ eine Gruppe.
-    \begin{enumerate}[label=(\arabic*)]
+    \begin{enumerate}[label=(\alph*)]
         \item Für jede Abbildung $\varphi\colon V\to M$ ist
             $\Dphi\colon E\to M,\, e\mapsto (\varphi\sigma e)^{-1}\bullet \varphi\tau e$
             funktoriell bzgl.~$(\G, \M)$, d.h.~$(\G, \M, \Dphi)$ ist Measurement Setup.
+            \label{prop:DphiFunktoriell}
         \item Ist $\G$ inital und ist $\Delta\colon E\to M$ funktorielle Abbildung bzgl.~$(\G, \M)$,
             so gilt $\Delta = \Dphi$ für $\varphi\colon V\to M,\, p\mapsto\Delta \Init[p]$
             für jeden fest gewählten initialen Knoten $\sigma$ von $\G$.
+            \label{prop:DphiIstDeltaBzglInitKnoten}
     \end{enumerate}
     \begin{beispiel}
         Sei $\G = \G\P$ für eine Präordnung $\P = (P, R)$ mit kleinstem Element $0$,
         d.h.~ $(0, p) \in R$ für alle $p\in P$.
-        Dann ist $0$ initaler Knoten $\G\P$.
+        Dann ist $0$ initaler Knoten von $\G\P$.
     \end{beispiel}
     \begin{proof}
-        Zu (a): Für $p\in V$ gilt stets
+        Zu \autoref{prop:DphiFunktoriell}: Für $p\in V$ gilt stets
         \[
             \Dphi\id p = (\varphi p)^{-1}\bullet \varphi p = \varepsilon
         \]
         Für Kanten $p\xrightarrow{a} q\xrightarrow{b} r$ gilt stets
-        \[
+        \begin{align*}
             \Dphi(a*b)
-                = (\varphi\sigma(a*b))^{-1}\bullet \varphi\tau(a*b)
-                = (\varphi\sigma a)^{-1}\bullet \varphi\tau b
-        \]
+                &= (\varphi\sigma(a*b))^{-1}\bullet \varphi\tau(a*b) \\
+                &= (\varphi\sigma a)^{-1}\bullet \varphi\tau b \\
+                &= (\varphi\sigma a)^{-1}
+                    \bullet \varphi q
+                    \bullet (\varphi q)^{-1}
+                    \bullet \varphi\tau b \\
+                &= (\varphi\sigma a)^{-1}
+                    \bullet \varphi \tau a
+                    \bullet (\varphi \sigma b)^{-1}
+                    \bullet \varphi\tau b \\
+                &= \Dphi(a)\bullet \Dphi(b)
+        \end{align*}
+        Zu \autoref{prop:DphiIstDeltaBzglInitKnoten}:
+        Sei $p\xrightarrow{a} q$ Kante.
+        Dann gilt:
+        \begin{align*}
+            \Dphi(a)
+                &= (\varphi\sigma a)^{-1} \bullet \varphi\tau a \\
+                &= (\varphi p)^{-1} \bullet \varphi q \\
+                &= (\Delta\Init)^{-1} \bullet \Delta\Init[q] \\
+                \overset{\autoref{prop:DarstDeltaInitialerKnoten}}
+                &= \Delta(a) \qedhere
+        \end{align*}
     \end{proof}
 \end{proposition}
+
+\subsection{Der Skalen-Manipulationssatz}
+
+\begin{definition}
+    Sei $\G$ ein ANW mit den üblichen Bezeichnungen.
+    Eine Kantenmenge $D\subset E$ von $G$ heißt \emph{azyklisch in $G$}, falls $G|D$ azyklisch ist.
+    Für $A,B\in 2^E$ sei
+    \begin{align}
+        A\GTimes_G B
+            &:= \{(a, b)\in A\times B \mid (a, b)\in E^{\<2\>}\} \\
+            &= (A\times B) \cap E^{\<2\>} \nonumber
+    \end{align}
+    das Komplexprodukt von Kanten.
+    Damit ist $A*B = \{a*b\mid (a, b)\in A\GTimes B\}$.
+    Es ist
+    \[
+        D^{\<n\>}
+            := \underbrace{D\GTimes \ldots\GTimes D}_{n\text{-mal}}
+            = D^n \cap E^{\<n\>}
+            \qquad \forall n\in\N_{+}
+    \]
+    die Menge der Pfade in $G$ mit Länge $n$, die vollstädig in $D$ liegen.
+\end{definition}
+
+\begin{satz}[Skalen-Manipulationssatz]
+    Seien $R, S\in 2^E$ azyklisch in $G$ derart, dass
+    \begin{gather}
+        R*R \subset R \tag{$*1$} \\
+        S\GTimes R\GTimes S\subset S^{\<3\>} \tag{$*2$}
+    \end{gather}
+    gelten.
+    Dann ist $R\cup S$ azyklisch in $G$.
+    \begin{proof}
+        Setzt $T := R\cup S$ und zeige indirekt, dass es in $G|T$ keinen geschlossenen Pfad gibt.
+    \end{proof}
+\end{satz}
