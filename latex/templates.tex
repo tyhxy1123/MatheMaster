@@ -3,12 +3,53 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
+\newcommand{\TemplateUebung}[3]{
+	% Argument no. 1 is the author
+	% Argument no. 2 is the name of the lecture
+	% Argument no. 3 is the worksheet number
+
+	\documentclass[12pt,a4paper]{article} 
+	
+	\input{\directoryPrefix packages}
+	\input{\directoryPrefix theoremenvironments}
+	\input{\directoryPrefix commands}
+	\input{\directoryPrefix commands_Willi}
+
+	\author{#1}
+	\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
+
+	\usepackage{fancyhdr} %für Kopf und Fußzeile
+		\pagestyle{fancy}	
+	\usepackage[left=30mm,right=33mm,top=25mm,bottom=25mm]{geometry} % Randeinstellungen
+	% Skript-Vorlage hat eine Breite von 418.25555pt
+	% Die Randeinstellungen für left und right sind so gewählt, dass die Breite des templates genau mit der Skript-Vorlagen-Breite übereinstimmt.
+	% Es gilt also: Overfull-box im Template gdw. overfull box im Skript.
+	% Diese Eigenschaft ist wichtig, da der content in beiden Wrappern eingebunden wird.
+	
+	\setlength{\headheight}{15pt}% ...at least 14.9998 pt
+	
+	\rhead{#1}
+	\chead{}
+	\lhead{#2}
+	\rfoot{Blatt #3}
+	\cfoot{Version: \today}
+	\lfoot{Seite \thepage}
+}
+
+% der folgende Command ist veraltet und sollte nicht mehr genutzt werden.
+% Aber wem das Design besser gefällt, kann es gern verwenden.
 \newcommand{\TemplateUebungAlt}[3]{
 	% Argument no. 1 is the author
 	% Argument no. 2 is the name of the lecture
 	% Argument no. 3 is the worksheet number
 
 	\documentclass[12pt,a4paper]{article} 
+	
+	% Throw warning to inform about usage of wrong template
+	\PackageWarning{MyTemplates}{
+		Hinweis: Du nutzt ein veraltetes Template. 
+		Nutze \space \protect\templateUebung\space statt \protect\TemplateUebungAlt
+	}
 	
 	\input{\directoryPrefix packages}
 	\input{\directoryPrefix theoremenvironments}
@@ -28,33 +69,4 @@
 	\ifoot{Blatt #3}
 	\cfoot{Version: \today}
 	\ofoot{Seite \pagemark}
-}
-
-\newcommand{\TemplateUebung}[3]{
-	% Argument no. 1 is the author
-	% Argument no. 2 is the name of the lecture
-	% Argument no. 3 is the worksheet number
-
-	\documentclass[12pt,a4paper]{article} 
-	
-	\input{\directoryPrefix packages}
-	\input{\directoryPrefix theoremenvironments}
-	\input{\directoryPrefix commands}
-	\input{\directoryPrefix commands_Willi}
-
-	\author{#1}
-	\parindent0cm %Ist wichtig, um führende Leerzeichen zu entfernen
-
-	\usepackage{fancyhdr} %für Kopf und Fußzeile
-		\pagestyle{fancy}	
-	\usepackage[left=20mm,right=30mm,top=25mm,bottom=25mm]{geometry} % Randeinstellungen
-	
-	\setlength{\headheight}{15pt}% ...at least 14.9998 pt
-	
-	\rhead{#1}
-	\chead{}
-	\lhead{#2}
-	\rfoot{Blatt #3}
-	\cfoot{Version: \today}
-	\lfoot{Seite \thepage}
 }
