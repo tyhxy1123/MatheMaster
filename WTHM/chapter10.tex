@@ -130,28 +130,28 @@ Betrachte den Hilbertraum $L_2([0,1])$ mit ONB $(\psi_k)_{k\in\N}$. (Später Haa
 
 Zu zeigen:
 \begin{enumerate}[label=\alph*)]
-	\item Summe konvergiert in $L_2([0,1])=L_2(\d\P)$ für jedes $t\in[0,1]$ Beachte $L_2([0,1])\neq L_2(\d\P)$)
+	\item Summe konvergiert in $L_2(\d\P)$ für jedes $t\in[0,1]$.
 	\item $\begin{aligned}
 		\E\big[B_t\big]=0\text{ und }\Cov\big(B_t-B_s\big)=\min\lbrace s,t\rbrace
 	\end{aligned}$
-	\item $B$ ist gaußscher Prozess
+	\item $B$ ist Gaußscher Prozess
 	\item Summe in \eqref{eqWaveletKonstruktionStern} konvergiert fast sicher gleichmäßig in $t$
 	\begin{align*}
 		\implies B\text{ ist stetiger Prozess.}
 	\end{align*}
 \end{enumerate}
 
-Für $(\psi_k)_{k\in\N}$ verwenden wir die \textbf{Haar-Basis} $\big(h_k(s)\big)_{k\in\N}$:
+Für $(\psi_k)_{k\in\N}$ verwenden wir die \textbf{Haar-Basis} $\big(h_k(s)\big)_{k\in\N}$: $h_0 = 1$
 
 \begin{figure}[H]
 	\begin{center}
 		%TODO Besser Skizze der Haar-Basis einfügen, mit mehr Details, die in der Vorlesungen gemacht wurden
 		\includegraphics[width=1\textwidth]{./pics/Haar.png}
-		\caption{Generation $j=1,2,3$ der Haar-Basis}
+		\caption{Generation $j=0,1,2$ der Haar-Basis}
 		\label{AbbHaarBasis}
 	\end{center}
 \end{figure}
-
+Die allgemeine Höhe der Wavelets beträgt: $\frac{1}{2}2^{-\frac{j}{2}}$.
 Jetzt integrieren wir die Wavelets aus Abbildung \ref{AbbHaarBasis} und erhalten die integierte Haar-Basis
 \begin{align*}
 	H_k(t):=\int\limits_0^t h_k(s)\d s
@@ -164,7 +164,7 @@ Approximation der Brownschen Bewegung:\\
 %TODO Hier Skizze einfügen.
 \underline{$n=1$ ($j=0$):}\nl
 %TODO Hier Skizze einfügen.
-\underline{$n=2$ ($j=2$):}\nl
+\underline{$n=3$ ($j=2$):}\nl
 %TODO Hier Skizze einfügen.
 Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 \underline{$n$ groß:}
@@ -184,10 +184,6 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 	\end{align*}
 	
 	\underline{Zeige a):}
-	Setze
-	\begin{align*}
-		B_t^N:=\sum\limits_{n=0}^N Z_n\cdot\int\limits_0^t h_n(s)\d s
-	\end{align*}
 	Dann gilt:
 	\begin{align*}
 		\big\Vert B_t^N-B_t^M\big\Vert_{L_2(\d\P)}^2
@@ -219,7 +215,7 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 		&=\E\big[B_t\cdot B_s\big]\\
 		&=\E\left[\sum\limits_{k=0}^\infty Z_k\cdot H_k(t)\cdot\sum\limits_{j=0}^\infty Z_j\cdot H_j(s)\right]\\
 		&=\sum\limits_{k=0}^\infty\underbrace{\E\big[Z_k\cdot Z_j\big]}_{=\delta_{i,j}}\cdot H_k(t)\cdot H_j(s)\\
-		&=\sum\limits_{k=0}^\infty H_k(t)\cdot H_j(s)\\
+		&=\sum\limits_{k=0}^\infty H_k(t)\cdot H_k(s)\\
 		&=\sum\limits_{k=0}^\infty \int\limits_0^t h_k(r)\d r\cdot\int\limits_0^s h_k(r)\d r\\
 		&=\sum\limits_{k=0}^\infty\left\langle h_k,\indi_{[0,t]}\right\rangle\cdot\left\langle h_k,\indi_{[0,t]}\right\rangle\\
 		\overset{\text{Parseval}}&=
@@ -231,7 +227,7 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 	\underline{Zeige c:)}\\
 	Berechne die charakteristische Funktion der Inkremente 
 	\begin{align*}
-		\Big(B_{t_1}-B_{t_1},B_{t_3}-B_{t_2},\ldots,B_{t_N}-B_{t_{N-1}}\Big)
+		\Big(B_{t_2}-B_{t_1},B_{t_3}-B_{t_2},\ldots,B_{t_N}-B_{t_{N-1}}\Big)
 		\qquad\mit 0\leq t_1<t_2<\ldots<t_N\leq 1
 	\end{align*}
 	Setze $u:=\big(u_1,\ldots,u_{N-1}\big)\in\R^{N-1}$.
@@ -301,7 +297,7 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 	%TODO Skizze einfügen: In einer Generation gibt es für jeden Punkt $p$ genau ein Wavelet $w$ mit $p\in w$ und $w(p)\neq0$.
 	Für die Höhe gilt:
 	\begin{align*}
-		\big|h(x)\big|\leq\frac{1}{2}\cdot 2^{-\frac{j}{2}}
+		\big|H(x)\big|\leq\frac{1}{2}\cdot 2^{-\frac{j}{2}}
 	\end{align*}
 	Nun zeigen wir die gleichmäßige Konvergenz:
 	\begin{align*}
@@ -335,7 +331,7 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 				 t\cdot B_{\frac{1}{t}},&\falls t>0\\
 				 0 ,&\falls t=0
 			\end{array}\right.	
-		\end{aligned}$
+		\end{aligned}$(Inversion)
 	\end{enumerate}
 \end{theorem}
 
@@ -357,8 +353,8 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 	Dyadische Partition bedeutet $[0,1]=[0,\frac{1}{2}]\cup[\frac{1}{2},1]=[0,\frac{1}{4}]\cup[\frac{1}{4},\frac{1}{2}]\cup[\frac{1}{2},\frac{3}{4}]\cup[\frac{3}{4},1]$.
 	Setze also 
 	\begin{align*}
-		P_n&:=\Big\lbrace t_k=k\cdot 2^{-n}:k=0,\ldots,2^{n}-1\Big\rbrace
-		V_n&:=\sum\limits_{k=0}^{2^n-1}\underbrace{\Big|B_{(k+1)\cdot 2^{-n}}-B_{k\cdot 2{-n}}}_{\sim\Nor(0,2^{-n})}
+		P^n&:=\Big\lbrace t_k=k\cdot 2^{-n}:k=0,\ldots,2^{n}-1\Big\rbrace\\
+		V_n&:=\sum\limits_{k=0}^{2^n-1}\underbrace{\Big|B_{(k+1)\cdot 2^{-n}}-B_{k\cdot 2^{-n}}}_{\sim\Nor(0,2^{-n})}|
 	\end{align*}
 	Hierbei ist $V_n$ die Totalvariation über $P_n$.
 	Berechne
@@ -368,7 +364,7 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 		\overset{\text{Skalierung}}=
 		2^n\cdot 2^{-\frac{n}{2}}\cdot\underbrace{\E\Big[\big|B_n\big|\Big]}_{=\sqrt{\frac{2}{\pi}}\approx0,8}\\
 		&=2^{\frac{n}{2}}\cdot\sqrt{\frac{2}{\pi}}\\
-		&:=\Var(V_n)
+		b_n&:=\Var(V_n)
 		=2^n\cdot\Var\big(B_{2^{-n}}\big)
 		=2^n\cdot 2^{-n}
 		=1
@@ -390,8 +386,10 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 	\end{align*}
 	Einsetzen liefert:
 	\begin{align*}
-		\underbrace{2^{\frac{n}{2}}}_{\to+\infty}\cdot\underbrace{\left(\sqrt{\frac{2}{\pi}}-\frac{1}{2}\right)}_{>0}<V_n(\omega)<\underbrace{2^{\frac{n}{2}}}_{\to+\infty}\cdot\underbrace{\left(\frac{1}{2}+\sqrt{\frac{\pi}{2}}\right)}_{>0}\\
-		\limn V_n=+\infty\text{ f.s.}
+		\underbrace{2^{\frac{n}{2}}}_{\to+\infty}\cdot\underbrace{\left(\sqrt{\frac{2}{\pi}}-\frac{1}{2}\right)}_{>0}<V_n(\omega)<\underbrace{2^{\frac{n}{2}}}_{\to+\infty}\cdot\underbrace{\left(\frac{1}{2}+\sqrt{\frac{\pi}{2}}\right)}_{>0}
+	\end{align*}
+	\begin{align*}
+		\implies \limn V_n=+\infty\text{ f.s.}
 	\end{align*}
 \end{proof}
 
