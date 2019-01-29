@@ -1050,13 +1050,59 @@ d.h.~$\Delta(a^{-1}) = (\Delta a)^{-1}$.
 
 \begin{satz}[Skalen-Manipulationssatz]
     Seien $R, S\in 2^E$ azyklisch in $G$ derart, dass
-    \begin{gather}
-        R*R \subset R \tag{$*1$} \\
-        S\GTimes R\GTimes S\subset S^{\<3\>} \tag{$*2$}
-    \end{gather}
+    \begin{align}
+        R*R &\subset R \label{thm:ScaleManipRTransitive}\\
+        S\GTimes R\GTimes S &\subset S^{\<3\>} \label{thm:ScaleManipSContractive}
+    \end{align}
     gelten.
     Dann ist $R\cup S$ azyklisch in $G$.
     \begin{proof}
         Setzt $T := R\cup S$ und zeige indirekt, dass es in $G|T$ keinen geschlossenen Pfad gibt.
+        Sei $P := e_0\to e_1 \to \ldots \to e_0$ ein geschlossener Pfad in $G|T$.
+        Nach Voraussetzung kann $P$ weder ganz in $R$, noch in $S$ liegen.
+        Der Pfad muss also von $S$ nach $R$ und wieder nach $S$ führen, wegen
+        \eqref{thm:ScaleManipRTransitive} können wir den Teil in $R$ auf $p_i$ kürzen.
+        Somit gibt es (ohne Einschränkung) einen Teilpfad $e_{i-1} \to e_i \to e_{i+1}$, sodass $e_{i-1}, e_{i+1}\in S$ und $e_i\in R$.
+        Aus \eqref{thm:ScaleManipSContractive} folgt, dass dann ganz $P$ in $S$
+        liegt, im Widerspruch zur Annahme, das $S$ azyklisch ist.
     \end{proof}
 \end{satz}
+
+Eine Anwendung zum (\emph{a posteriori-}) Schummeln im Sport:
+\begin{beispiel}
+    \newcommand{\Lm}{\mathbb{L}}
+    Sei $\Lm = (L, \leq)$ eine geordnete Menge, zum Beispiel eine Multi-Skala
+    \[
+        \Lm = (\Q_{\geq 0}^D, \leq) := (\Q_{\geq 0}, \leq)^D,
+    \]
+    wobei $D$ eine Menge von Disziplinen ist, mit Ergebnissen in $\Q_{\geq 0}$ (Hochsprung, Weitsprung, 100m-Lauf).
+    Sei $P\subset L$ eine Menge von Ergebnissen.
+    Dann ist $\P := \Lm|P := (P, \leq_\P)$ mit $(\leq_\P) := (\leq) \cap (P\times P)$ eine Ordnung.
+    Sei $\alpha$ maximales Element in $\P$.
+    Ziel ist es, die zu $\alpha$ gehörige Person zum Sieger zu küren.
+
+    Sei $\sqsubseteq$ eine lineare Erweiterung von $\leq_\P$ in $P$ derart ist, dass $\alpha$ maximal bezüglich $P$.
+    Dies funktioniert; wir wählen $\sqsubseteq$ als maximale Ordnung mit $(\leq_\P)\subset (\sqsubseteq)$.
+    Jede maximale Ordnung auf $P$ ist linear (Zorn), deshalb auch $\sqsubseteq$.
+
+    Setze $\G := \G\Lm$ und $R := (<_\Lm)$, sowie $S := (\sqsubset)$.
+    Dann sind $R$ und $S$ als strikte Ordnungen azyklisch in $\G\Lm$
+    und es gilt $R*R\subset R$ \eqref{thm:ScaleManipRTransitive}, da $(L, R)$ transitivbezüglich des Minkowski-Produktes $(*)$ zu $\G\Lm$ ist.
+    Außerdem gilt \eqref{thm:ScaleManipSContractive}, denn für
+    \[
+        P :=
+            q_1 \xrightarrow{e_1}
+            q_2 \xrightarrow{e_2}
+            q_3 \xrightarrow{e_3}
+            q_4
+            \qquad\text{(in $\G\Lm$)}
+    \]
+    folgt für $e_1, e_3\in S$ und $e_2\in R$ stets $e_2\in S$:
+    \[
+        q_1 \sqsubset q_2 < q_3 \sqsubset q_4
+        \implies q_1, q_2, q_3, q_4\in P,
+    \]
+    also $q_2\sqsubset q_3$, da $(\leq_\Lm) \cap (P\times P) \subset
+    (\sqsubseteq)$.
+    Also ist $T := R\cup S$ azyklisch, somit ist der transitive und reflexive Abschluss $T^{(*)}$ eine Ordnungsrelation, welche die gewünschte lineare Erweiterung besitzt.
+\end{beispiel}
