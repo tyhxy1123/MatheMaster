@@ -1146,7 +1146,7 @@ Denn es gilt:
 		P_C^{L^2\times L^2}(u,v)(x)&=P_C^{\R^2}\big(u(x),v(x)\big)
 	\end{align*}
 	
-	\begin{korollar}
+	\begin{korollar}\label{korollarLetzeVL}
 		Seien $\E$ und $S$ wie oben. Dann sind äquivalent:
 		\begin{enumerate}[label=(\roman*)]
 			\item $S$ ist ordnungserhaltend.
@@ -1156,7 +1156,7 @@ Denn es gilt:
 				\leq\E(u)+\E(v)
 			\end{aligned}$
 			\item $\begin{aligned}
-				\forall u,vin L^2(\Omega):
+				\forall u,v\in L^2(\Omega):
 				\E(u\wedge v)+\E(u\vee v)\leq\E(u)+\E(v)
 			\end{aligned}$
 		\end{enumerate}
@@ -1180,7 +1180,7 @@ Denn es gilt:
 		\begin{align*}
 			\frac{1}{2}\cdot\hat{\E}\Big((u\wedge v),(u\vee v)\Big)+\frac{1}{2}\cdot\hat{\E}(u,v)
 			&=\frac{1}{2}\cdot\Big(\E(u\wedge v)+\E(u\vee v)+\E(u)+\E(v)\Big)\\
-			\overset{(iii)}&\leq
+			\overset{\text{(iii)}}&\leq
 			\E(u)+\E(v)
 		\end{align*}
 		Also
@@ -1191,22 +1191,127 @@ Denn es gilt:
 	\end{proof}
 	
 	\begin{beispiel}
-		Sei $\E$ Energie des $p$-Laplaceoperators.
+		Sei $\E$ Energie des $p$-Laplaceoperators mit Neumannrandbedingungen.
 		Dann gilt:
 		\begin{align*}
-			\forall u,v\in\dom(\E):
-			u\vee v=\frac{u+v}{2}+\frac{1}{2}\cdot(u-v)^+
+			u\wedge v=u-(v-u)^+
+			\qquad\text{und}\qquad
+			u\vee v=u+(v-u)^+
+			\qquad\forall u,v\in\dom(\E)
 		\end{align*}
 		d.h. nach dem Lemma gilt $\nabla(u\vee v)\in L^p$ und
 		\begin{align*}
-			\nabla(u\vee v)=\nabla u\cdot\indi_{\lbrace u>v\rbrace}+\nabla v\cdot\indi_{\lbrace u<v\rbrace}
+			\nabla(u\vee v)
+			&=\nabla u+\nabla (v-u)\cdot\indi_{\lbrace v>u\rbrace}+\nabla v\cdot\indi_{\lbrace u>v\rbrace}
+			=\nabla v\cdot\indi_{\lbrace v>u\rbrace}+\nabla u\cdot\indi_{\lbrace v\leq u\rbrace}
 		\end{align*}
-		und ähnlich ist der Gradient
+		und ähnlich ist der Gradient (beachte $f^-=0\vee(-f)=(-f)^+$)
 		\begin{align*}
 			\nabla(u\wedge v)
-			&=\nabla u\cdot\indi_{\lbrace u<v\rbrace}+\nabla v\cdot\indi_{\lbrace u>v\rbrace}
+			&=\nabla u-\nabla (u-v)\cdot\indi_{\lbrace v<u\rbrace}
+			=\nabla v\cdot\indi_{\lbrace v<u\rbrace}+\nabla u\cdot\indi_{\lbrace v\geq u\rbrace}
 		\end{align*}
+		Somit ist $u\wedge v,u\vee v\in\dom(\E)$ und 
+		\begin{align*}
+			\E(u\wedge v)+\E(u\vee v)
+			&=\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla (u\wedge v)\big|^p+\frac{1}{p}\cdot\int\limits_\Omega\big|\nabla (u\vee v)\big|^p\\
+			&=\frac{1}{p}\cdot\left(\int\limits_{\lbrace v<u\rbrace}|\nabla v|^p+\int\limits_{\lbrace v\geq u\rbrace}|\nabla u|^p
+				+\int\limits_{\lbrace v\geq u\rbrace}|\nabla v|^p+\int\limits_{\lbrace v< u\rbrace}|\nabla u|^p\right)\\
+				&=\E(u)+\E(v)
+		\end{align*}
+		Somit ist die Halbgruppe ordnungserhaltend nach Korollar \ref{korollarLetzeVL} ordnungserhaltend.
 	\end{beispiel}
 \end{beispiel}
 
+\begin{beispiel}
+	Sei $\E:L^2(\Omega)\to\R\cup\lbrace +\infty\rbrace$ konvex, unterhalbstetig, $\not\equiv+\infty$ und sei $S$ die von $\E$ bzw. $\partial\E$ erzeugte Halbgruppe.
+	Die Halbgruppe heißt \textbf{$L^\infty$-kontraktiv}
+	\begin{align*}
+		:\Longleftrightarrow\forall u_0,v_0\in\overline{\dom(\E)},\forall t\geq0:
+		\big\Vert S(t)u_0-S(t)v_0\big\Vert_{L^\infty}\leq\Vert u_0-v_0\Vert_{L^\infty}
+	\end{align*}
+	Hier interpretieren wir 
+	\begin{align*}
+		\Vert u_0-v_0\Vert_{L^\infty}=\infty,\falls u_0-v_0\not\in L^\infty(\Omega)
+	\end{align*}
+	und falls die linke Seite endlich ist, dann $S(t)u_0-S(t)v_0\in L^\infty(\Omega)$.
+	Erinnerung:
+	\begin{align*}
+		\Vert u\Vert_{L^\infty}=\inf\limits\Big\lbrace C\geq0:|u|\leq c\text{ fast überall}\Big\rbrace=:\esssup\limits_{x\in\Omega}\big|f(x)\big|
+	\end{align*}
+	Betrachte auf $L^2(\Omega)\times L^2(\Omega)$ wieder die Produkthalbgruppe $\hat{S}$ mit
+	\begin{align*}
+		\hat{S}(t)(u,v)=\big(S(t)u,S(t)v\big)
+	\end{align*}		
+	(erzeugt vom Subgradienten von $\hat{\E}$ mit
+	\begin{align*}
+		\hat{\E}(u,v)=\E(u)+\E(v))
+	\end{align*}
+	Nebenrechnung:
+	\begin{align*}
+		\partial\hat{\E}
+		&=\Bigg\lbrace\big((u,v)(f,g)\big)\in L^2(\Omega)^4\Bigg|
+		\begin{array}{c}
+			(u,v)\in\dom(\hat{\E})~\forall(\varphi,\psi)\in L^2\times L^2:\\
+			\lim\limits_{t\to 0^+}\frac{\hat{\E}(u+t\varphi,v+t\psi)-\hat{\E}(u,v)}{t}\geq\big\langle(f,g),(\varphi,\psi)\big\rangle_{L^2\times L^2}
+		\end{array}\Bigg\rbrace\\
+		&=\Bigg\lbrace\big((u,v),(f,g)\big)\in (L^2)^4\Bigg|
+		\begin{array}{c}
+			u,v\in\dom(\E)~\forall\varphi,\psi\in L^2:\\
+		\lim\limits_{t\to 0^+}\frac{\E(u+t\varphi)-\E(u)+\E(v+t\psi)-\E(v)}{t}\geq\int\limits_\Omega f\cdot\varphi+\int\limits_\Omega g\cdot\psi
+		\end{array}\Bigg\rbrace\\
+		&=\left\lbrace\big((u,v),(f,g)\big)\in(L^2)^4\Bigg|
+		\begin{array}{c}
+			u,v\in\dom(\E)~\forall\varphi,\psi\in L^2(\Omega):\\
+			\lim\limits_{t\to0^+}\frac{\E(u+t\varphi)-\E(u)}{t}=\int\limits_\Omega f\varphi
+			\text{ und }\\
+			\lim\limits_{t\to0^+}\frac{\E(v+t\psi)-\E(v)}{t}=\int\limits_\Omega g\psi
+		\end{array}\right\rbrace\\
+		&=\Big\lbrace\big((u,v),(f,g)\big)\in(L^2)^4\Big|
+			(f,g),(\varphi,\psi)\in H\times H:
+			(u,f)\in\partial\E\text{ und }(v,g)\in\partial\E
+		\Big\rbrace
+	\end{align*}
+	Die Halbgruppe $S$ ist $L^\infty$-kontraktiv genau dann, wenn für alle $\alpha\in\R_{>0}$ die Halbgruppe $\hat{S}$ die abgeschlossene, konvexe, nichtleere Menge 
+	\begin{align*}
+		C_\alpha:=\Big\lbrace(u,v)\in L^2\times L^2\Big|\Vert u-v\Vert_{L^\infty}\leq\alpha\Big\rbrace
+	\end{align*}
+	invariant lässt.
+	$C_\alpha$ invariant lassen bedeutet:
+	\begin{align*}
+		\forall(u_0,v_0)\in C_\alpha~&(\text{d.h. }\Vert u_0-v_0\Vert_{L^\infty}\leq\alpha):\\
+		&\hat{S}(t)(u_0,v_0)
+		=\big(S(t)u_0,S(t)v_0\big)\in C_\alpha\qquad
+		\text{ d.h. }\big\Vert S(t)u_0-S(t)v_0\big\Vert_{L^\infty}\leq\alpha
+	\end{align*}
+	Projektion auf $C_\alpha$?
+	%TODO hier könnte man eine Skizze einfügen, aber nicht so wichtig
+	%Plot $\R^2$, y_1(x)=x, y_2(x)=x+\beta, y_3(x)=x-\beta$
+	\begin{align*}
+		C_\alpha=\Big\lbrace(u,v)\in\R\times\R:|u-v|\leq\alpha\Big\rbrace\\
+		P_{C_\alpha}(u,v)(x)=\left\lbrace\begin{array}{cl}
+			\big(u(x),v(x)\big),&\falls \big|u(x)-v(x)\big|\leq\alpha\\
+			\left(\frac{u(x)+v(x)+\alpha}{2},\frac{u(x)+v(x)-\alpha}{2}\right),&\falls u(x)>v(x)+\alpha\\
+			\left(\frac{u(x)+v(x)-\alpha}{2},\frac{u(x)+v(x)+\alpha}{2}\right),&\falls u(x)<v(x)-\alpha
+		\end{array}\right.\\
+		=\left(v+\frac{1}{2}\cdot\Big((u-v+\alpha)^+-(u-v-\alpha)^-\Big),
+		u+\frac{1}{2}\cdot\Big((u-v+\alpha)^+-(u-v-\alpha)^-\Big)\right)
+	\end{align*}		
+	
+	\begin{korollar}
+		Voraussetzungen wie oben.
+		Folgende Aussagen sind äquivalent:
+		\begin{enumerate}[label=(\roman*)]
+			\item $S$ ist $L^\infty$-kontraktiv.
+			\item $\begin{aligned}
+				\forall\alpha>0,\forall u,v\in L^2(\Omega):
+			\end{aligned}$
+			\begin{align*}
+				&\E\left(v+\frac{1}{2}\Big((u-v+\alpha)^+-(u-v-\alpha)^-\Big)\right)\\
+				&+\E\left(u+\frac{1}{2}\Big((u-v+\alpha)^+-(u-v-\alpha)\Big)\right)\\
+				&\leq\E(u)+\E(v)
+			\end{align*}
+		\end{enumerate}
+	\end{korollar}
+\end{beispiel}
 
