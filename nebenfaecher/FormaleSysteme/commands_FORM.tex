@@ -3,15 +3,15 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
+% Commands für Aussagenlogik
 \newcommand{\RR}{\mathcal{R}}          % Menge der aussagenlogischen Variablen, \R sind reelle Zahlen
 \newcommand{\J}{\mathcal{J}}           % Menge der Junktoren
 \renewcommand{\L}{\mathcal{L}}         % Menge aller aussagenlogischen Formeln
-\newcommand{\E}{\mathcal{E}}           % Menge
+\renewcommand{\E}{\mathcal{E}}         % Menge
 \DeclareMathOperator{\pos}{pos}        % Menge aller Positionen in $F$
 \renewcommand{\P}{\mathcal{P}}         % Menge aller Positionen in $F$
 \renewcommand{\S}{\mathcal{S}}         % Menge der Teilausdrücke, Teilformeln
 \renewcommand{\div}{\divison}          % Divisionszeichen (Workaround)
-\newcommand{\A}{\mathcal{A}}           % Menge aller arithmetischen Ausdrücken über $\Q$ und Transitionssystem
 \newcommand{\W}{\mathcal{W}}           % Menge der Wahrheitswerte: wahr oder falsch
 \newcommand{\w}{$\top$}                % wahr
 \newcommand{\f}{$\bot$}                % falsch
@@ -19,7 +19,19 @@
 \newcommand{\G}{\mathcal{G}}           % Menge von Formeln
 \renewcommand{\H}{\mathcal{H}}         % Menge von Formeln
 
-\newcommand{\red}{\text{red}}          % redutzierter DEA
+% Commands für Automatentheorie
+\newcommand{\red}{\text{red}}          % reduzierter DEA
+\DeclareMathOperator{\Reg}{Reg}        % Menge der regulären Ausdrücke
 
-\usepackage{tikz-qtree}
-\usetikzlibrary{positioning,automata}
+% Commands für Übungsblätter
+\DeclareMathOperator{\ok}{oK}
+\DeclareMathOperator{\sk}{sK}
+\renewcommand{\k}{\text{K}}
+\DeclareMathOperator{\bj}{bJ}
+
+\DeclareMathOperator{\depth}{depth}
+\DeclareMathOperator{\length}{length}
+
+\DeclareMathOperator{\Res}{Res}
+\newcommand{\Reso}{\overset{\Res}{\implies}}
+

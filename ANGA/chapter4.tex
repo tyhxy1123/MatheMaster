@@ -157,3 +157,279 @@ Sei $K =\F_q$ ein endlicher Körper, $F|K$ Funktionenkörper vom Geschlecht $g$.
     Die Potenzreihe $Z(t)$ konvergiert für $|t| < q^{-1}$, und diese Funktion setzt sich zu einer rationalen Funktion
     auf $\C$ mit einfachem Pol bei $t=1$ fort.
 \end{korollar}
+
+\begin{bemerkungnr}
+    Setzt man $t = q^{-s}$, so erhält man die (vollständige) Dedekindsche Zetafunktion von $F|K$
+    $$ \zeta(s) := \zeta_{F|K}(s) := Z(q^{-s}), s \in \C .$$ 
+    Für $\Re(s) > 1$ ist $|q^{-s}| < q^{-1}$, somit 
+    $$\zeta(s) = \sum_{i=1}^\infty\sum_{\substack{\deg D=n,\\D\geq 0}} (q^n)^{-s} = \sum_{D\geq 0} N(D)^{-s}.$$ 
+\end{bemerkungnr}
+
+\begin{satz}
+    Für $|t| < q^{-1}$ ist
+    $$ Z(t) = \prod_{P \in S(F|K)}(1-t^{\deg P})^{-1}, $$
+    wobei das Produkt in diesem Bereich absolut konvergiert.
+\end{satz}
+\begin{proof}
+    Für $|t| < q^{-1}$ ist 
+    \begin{align*}
+        &\sum_{P\in S(F|K)} |t|^{\deg P} = \sum_{n=1}^\infty |S^n(F|K)|\cdot|t|^n \leq \sum_{n=0}^\infty a_n |t|^n \stackrel{2.3}{<} \infty\\
+        &\implies \prod_{P\in S(F|K)} (1-t^{\deg P})^{-1} = \prod_{p \in S(F|K)}\sum_{n=0}^\infty t^{\deg nP} = \sum_{A \geq 0} t^{\deg A}
+        = \sum_{n=0}^\infty a_nt^n
+    \end{align*}
+\end{proof}
+
+\begin{korollar}
+    $Z(t)$ hat keine Nullstellen mit $|t| < q^{-1}$.
+\end{korollar}
+
+\begin{definition}
+    Für $r \in \N$ sei
+    \begin{align*}
+        & K_r := \F_{q^r}\\
+        & F_r := FK_r \\
+        & N_r := |S^1(F_r|K_r)| \\
+        & Z_r := Z_{F_r|K_r}
+    \end{align*}
+\end{definition}
+
+\begin{lemma}
+    $$ P\in S^d(F|K) \implies \Con_{F_r|F}(P)=P_1 + \ldots + P_m, $$
+    wobei $m = \ggT(d,r)$ paarweise verschieden, $P_i \in S^{\frac{d}{m}}(F_r|K_r)$.
+\end{lemma}
+\begin{proof}
+    Seien $P_1, \ldots, P_m$ die Primstellen von $F_r$ über $P$
+    $$ \implies \Con_{F_r|F}(P) = \sum_{i=1}^m e_{P_i|P}P_i. $$
+    \begin{itemize}
+        \item \textit{$e_{P_i|P}=1$:} III.7.3(a)
+        \item \textit{$\deg P_i = \frac{d}{\ggT(d,r)}$:} $(F_r)_{P_i} \stackeq{\text{III.7.3(d)}} F_P\cdot\F_{q^r} = \F_{q^d}\cdot\F_{q^r} = \F_{q^{\kgV(d,r)}}$
+        $$ \implies \deg P_i = [(F_r)_{P_i}:K_r] = \frac{\kgV(d,r)}{r} = \frac{d}{\ggT(d,r)}$$
+        \item \textit{$M=\ggT(d,r)$:} $d = \deg P \stackeq{III.7.3(c)} \deg \Con(P) = m \cdot \deg P_i$
+    \end{itemize}
+\end{proof}
+
+\begin{lemma}
+    Mit $r,d \in \N, m = \ggT(d,r)$ ist 
+    $$ (1-t^{\frac{rd}{m}})^m = \prod_{\zeta \in \mu_r}(1-(\zeta t)^d) \quad \text{in } \C[t],$$
+    wobei $\mu_r = \{\zeta \in \C \mid \zeta^r = 1\}$.
+\end{lemma}
+\begin{proof}
+    $(t^{\frac{r}{m}}-1)^m = \prod\limits_{\zeta\in\mu_r}(t-\zeta^d)$, denn beide Seiten sind normiert vom Grad $r$, und jedes $\zeta \in \mu_{\frac{r}{m}}$ ist eine $m$-fache Nullstelle.
+\end{proof}
+
+\begin{satz}
+    $$ Z_r(t^r) = \prod_{\zeta \in \mu_r} Z(\zeta t) $$
+\end{satz}
+\begin{proof}
+    Es genügt dies für $|t| < q^{-1}$ zu zeigen:
+    \begin{align*}
+        \implies Z_r(t^r) &= \prod_{P' \in S(F_r|K_r)} (1 - t^{r\cdot \deg P'})^{-1}\\
+            &= \prod_{P \in S(F|K)}\prod_{P'|P} (1 - t^{r\cdot \deg P'})^{-1}
+    \end{align*}
+    Für $P \in S(F|K)$ sei $d = \deg P, m=\ggT(d,r)$
+    \begin{align*}
+        & \implies \prod_{P'|P} (1 - t^{r\cdot \deg P'}) \stackeq{2.8} (1 - t^{\frac{r\cdot d}{m}})^m \stackeq{2.9} \prod_{\zeta \in \mu_r}(1-(\zeta t)^d)\\
+        & \implies Z_r(t^r) = \prod_{P \in S(F|K)}\prod_{\zeta \in \mu_r}(1-(\zeta t)^{\deg P})^{-1} \stackeq{2.5} \prod_{\zeta \in \mu_r} Z(\zeta t)
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[F.K. Schmidt]
+    $$ \delta = 1 $$
+\end{theorem}
+\begin{proof}
+    Für $r = \delta$ ist
+    \begin{align*}
+        Z_r(t^r) &= \prod_{\zeta \in \mu_r} Z(\zeta t) = \prod_{\zeta \in \mu_r} \prod_{P \in S(F|K)} (1-(\zeta t)^{\deg P})^{-1}
+            \stackeq{\zeta^d=1} \prod_{\zeta \in \mu_r}\prod_P (1-t^{\deg P})^{-1} \\
+            &= Z(t)^r\\
+        &\left.\begin{array}{l}
+            \ord_{t=1}Z(t) = -1 \implies \ord_{t=1}Z(t)^r = -r \\
+            \ord_{t=1}Z_r(t) = -1 \implies \ord_{t=1} Z(t^r) = -1
+        \end{array}\right\} \implies \delta = r = 1.
+    \end{align*}
+\end{proof}
+
+\begin{beispiel}
+    Ist \emph{$g=0$}, so ist $F|K$ rational (\#23), und 
+    $$Z(t) = \frac{1}{(1-t)(1-qt)}.$$
+    Ist \emph{$g=1$}, so ist $F|K$ elliptisch (d.h. $S^1(F|K) \ne \emptyset$):
+    $$ \deg D = 1 \implies \dim D = \deg D + 1 -g = 1 \implies D \sim P \in S^1(F|K). $$
+\end{beispiel}
+
+\begin{satz}[Funktionalgleichung]
+    $$ Z(t) = q^{g-1}t^{2g -2}Z\left(\frac{1}{q^t}\right) $$
+\end{satz}
+\begin{proof}
+    \begin{align*}
+        g=0:& \text{ aus 2.12}\\
+        g \geq 1:&~ q^{g -1}t^{2g-2}\left(hq^{1-g}\left(\frac{1}{t}\right)^{2g -1}\frac{1}{1-\frac{1}{t}}-h\frac{1}{1-\frac{1}{qt}}\right)\\
+        & = h \frac{1}{t-1} - \underbrace{q^{g-1}t^{2g-2}h\frac{1}{1-\frac{1}{qt}}}_{= q^gt^{2g-1}h\frac{1}{qt -1}}
+    \end{align*}
+    Sei $W$ ein kanonischer Divisor von $F|K$.
+    \begin{align*}
+        \sum_{0 \leq \deg [C] \leq 2g -2} q^{\dim[C]}t^{\deg [C]} &= \sum_{0 \leq \deg [C] \leq 2g -2} q^{\deg[C] + 1 - g + \dim[W-C]}t^{\deg [C]}\\
+            &= q^{g -1}t^{2g-2} \sum_{0 \leq \deg [C] \leq 2g -2} q^{\deg[C-W]+\dim[W-C]}t^{\deg [C-W]}\\
+            &= q^{g-1}t^{2g-2} \sum_{0 \leq \deg[D]\leq2,-2} q^{-\deg[D]+\dim[D]}t^{-\deg[D]}\\
+            &= q^{g-1}t^{2g-2} \sum_{0 \leq \deg[D]\leq2,-2} q^{\dim [D]}\left(\frac{1}{qt}\right)^{\deg[D]}
+    \end{align*}
+\end{proof}
+
+\section{Der Satz von Hasse-Weil}
+
+\begin{definition}
+    $$ L(t) := L_{F|K}(t): = (1-t)(1-qt)Z_{F|K}(t) \in \C[t] $$  
+\end{definition}
+
+\begin{beispiel}
+    $g=0 \implies L=1$
+\end{beispiel}
+
+\begin{lemma}
+    \begin{enumerate}[label=(\alph*)]
+        \item $L \in \Z[t]$
+        \item $\deg L = 2g$
+        \item $L(1) = h$
+        \item $L(t) = q^gt^{2g}L\left(\frac{1}{qt}\right)$
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    o.E. $g\geq 1$.
+    \emph{(a):} $L \in \C[t] \cap \Z[t] = \Z[t]$\nl
+    \emph{(b):} 2.2\nl
+    \emph{(c):} $L(1) = \frac{1}{q-1} \left(0 + hq^{1-g}q^{2g-1}\cdot 0 - h(1-q)\right) = h$\nl
+    \emph{(d):} 2.13
+\end{proof}
+
+\begin{satz}
+    Für die Koeffizienten von $ L = \sum\limits_{i=0}^{2g} c_it^i$ gelten:
+    \begin{enumerate}[label=(\alph*)]
+        \item $c_0=1, c_{2g}=q^g$
+        \item $c_{2g-i} = q^{g-i}c_i$ für $0 \leq i \leq g$
+        \item $c_1 = N_1 - (q + 1)$, erinnere $ N_r = |S^1(F_r|K_r)|.$
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    \emph{$g=0$:} $L=1, |S^1(K(T)|K)|=q+1$\\
+    \emph{$g \geq 1$:} Aus 2.3(d) folgt
+    \begin{align*}
+        &c_0 + \ldots + c_{2g}t^{2g} = q^g c_0 t^{2g} + q^{g-1} c_1 t^{2g-1} + \ldots + c_{2g-1} q^{1-g}t + c_{2g} q^{-g}\\
+        &\implies \text{(b)}\\
+        & L = (1-t)(1-qt)\sum_{i=0}^\infty a_i t^i\\
+        & \implies c_0 = a_0 = 1 \implies c_{2g} = q^g c_0 = q\\
+        & \implies c_1 = a_1 - a_0 - qa_0 = |S^1(F|K)| - (q+1)
+    \end{align*}
+\end{proof}
+
+\begin{satz}
+    $L$ zerfällt in $\C[t]$ zu
+    $$ L(t) = \prod_{i=1}^{2g} (1-\alpha_it), $$
+    wobei $\alpha_1, \ldots, \alpha_{2g}$ ganze algebraische Zahlen mit 
+    $\alpha_i \alpha_{i+g} = q$ für $i=1,\ldots,g$ sind. Es gilt
+    $$ L_r (t) := L_{F_r|K_r}(t) := \prod_{i=1}^{2g}(1-\alpha_i^r t).$$ 
+\end{satz}
+\begin{proof}
+    $$ L^\ast(t) := t^{2g}L\left(\frac{1}{t}\right) = t^{2g} + c_1 t^{2g -1} + \ldots + q^g = \prod (t - \alpha_i)$$
+    mit $\alpha_1,\ldots,\alpha_{2g} \in \C$ ganz über $\Z$.
+    \begin{align*}
+        \prod (t - \alpha_i) &= L^\ast(t) = t^{2g}L\left(\frac{1}{t}\right) \stackeq{t=qu} q^{2g}u^{2g}L\left(\frac{1}{qu}\right)
+            \stackeq{\text{2.3(d)}} q^g L(u) \\
+            & = q^g \prod (1- \alpha_i u) = q^g \prod \left(1-\alpha_i\frac{t}{q}\right)\\
+            & = \underbrace{q^g\prod_{i=1}^{2g}\frac{\alpha_i}{q}}_{= 1}\prod_{i=1}^{2g} \left(t-\frac{q}{\alpha_i}\right)\\
+    \end{align*}
+    \begin{align*}
+        & \implies \text{ Die Nullstellen sind o.E. } \alpha_1, \frac{q}{\alpha_1}, \alpha_2, \frac{q}{\alpha_2}, \ldots, \alpha_k,
+            \frac{q}{\alpha_k}, \underbrace{q^{\frac{1}{2}}, \ldots, q^{\frac{1}{2}}}_{m}, \underbrace{-q^{\frac{1}{2}}, \ldots, -q^{\frac{1}{2}}}_{n}\\
+        & \implies g = k + \frac{m}{2} + \frac{n}{2} \stackrel{\prod \alpha_i = q^g}{\implies} n \text{ gerade } \implies m \text{ gerade}
+    \end{align*}
+    \begin{align*}
+        Z_r(t^r) &= \prod_{\zeta \in \mu_r} Z(\zeta t)\\
+        L_r(t^r) &= (1-t^r)(1-q^rt^r)Z_r(t^r)\\
+            &= (1-t^r)(1-q^rt^r)\prod_\zeta Z(\zeta t)\\
+            &= (1-t^r)(1-q^rt^r)\prod_{\zeta} \frac{L(\zeta t)}{(1-\zeta t)(1 - q^\zeta t)}\\
+            & \stackeq{\text{2.9}} \prod_\zeta L(\zeta t)\\
+            &= \prod_\zeta \prod_i (1-\alpha_i \zeta t)\\
+            &= \prod_{i=1}^{2g} (1 - (\alpha_i t)^r)\\
+        & \implies L_r(t) = \prod_{i=1}^{2g} (1 - \alpha_i^r t)
+    \end{align*}
+\end{proof}
+
+\begin{korollar}
+    Für jedes $r \geq 1$ ist
+    $$ N_r = q^r + 1 - \sum_{i=1}^{2g} \alpha_i^r.$$
+\end{korollar}
+\begin{proof}
+    Mit $L_r(t) = \sum\limits_{i=0}^{2g} d_i t^i = \prod\limits_{i=1}^{2g} (1-\alpha_i^r t) \implies
+    - \sum \alpha_i^r = d_1 \stackeq{\text{3.4}} N_r - (q+1)$.
+\end{proof}
+
+\begin{theorem}[Weil 1948]
+    Für alle $i$ ist $|\alpha_i| = q^\frac{1}{2}$.
+\end{theorem}
+
+\begin{bemerkungnr}
+    Dies bedeutet, dass alle Nullstellen von $\zeta_F(s) = Z(q^{-s})$ auf der Geraden $\Re(s) = \frac{1}{2}$ liegen (erweiterte Riemannsche Vermutung für $F|K$).
+\end{bemerkungnr}
+
+\begin{korollar}[Hasse-Weil-Schranke]
+    $\left| |S^1(F|K)| - (q+1) \right| \leq 2g \sqrt{q}$
+\end{korollar}
+\begin{proof}
+    $|N_1 - (q+1)| = |\sum\alpha_i| \leq \sum\limits_{i=1}^{2g}|\alpha_i| \stackeq{\text{3.7}} 2g \sqrt{q}$
+\end{proof}
+
+\begin{beispiel}
+    Es folgt $q \gg g$, so ist $S^1(F|K) \ne \emptyset$.
+\end{beispiel}
+
+\begin{bemerkungnr}
+    Ist $f \in K[X,Y]$ irreduzibel in $\overline{K}[X,Y]$ vom Grad $d$ und $F = \Quot(\sfrac{K[X,Y]}{(f)})$, so gilt
+    \begin{equation}\tag{\text{Plücker-Formel}}
+        g_F \leq \frac{(d-1)(d-2)}{2}.
+    \end{equation}
+    Damit folgt aus 3.9 die Aussage I.4.14 übe ebene Kurven.
+\end{bemerkungnr}
+
+\section{Beweis von 3.7 nach Bombien}
+\begin{satz}
+    Sei $r \geq 1$. Genau dann gilt 3.7 für $F$, wenn 3.7 für $F_r$ gilt.
+\end{satz}
+\begin{proof}
+    Nach 3.6 gilt
+    \begin{align*}
+        & L(t) = \prod_{i=1}^{2g} (1-\alpha_it),\\
+        & L_r(t) = \prod_{i=1}^{2g} (1-\alpha_i^rt)
+    \end{align*}
+    und $|\alpha_i| = q^\frac{1}{2} \iff |\alpha_i^r| = (q^r)^\frac{1}{2}$.
+\end{proof}
+
+\begin{bemerkungnr}
+    Um 3.7 zu zeigen, können wir daher ab jetzt annehmen, dass
+    \begin{enumerate}[label=(\roman*)]
+        \item $g > 0$
+        \item $q = q_0^2$ für ein $q_0 \in \N$
+        \item $q > (g+1)^4$
+    \end{enumerate}
+\end{bemerkungnr}
+
+\begin{satz}
+    Gibt es $c_1, c_2$ mit
+    $$ q^r + 1 - c_2 q^\frac{r}{2} \leq N_r \leq q^r + 1 + c_1 q^\frac{r}{2}$$
+    für alle $r \geq 1$, so gilt 3.7 für $F$.
+\end{satz}
+\begin{proof}
+    o.E. $c_1 = c_2 =: c$\\
+    Nach 3.6 folgt $\left|\sum \alpha_i^r \right| = \left| N_r - (q^r + 1)\right| \leq c q^\frac{r}{2}$. Definiere
+    $$ f(z) := \sum_{i=1}^{2g} \frac{\alpha_it}{1-\alpha_iz} = \sum_{r=1}^\infty\left(\sum_{i=1}^{2g} \alpha_i^r\right)z^r \in \C\llbracket z\rrbracket \cap \C(z).$$
+    \begin{align*}
+        &\implies \text{ Konvergenzradius } \rho := \rho(f) = \min\{|\alpha_i|^{-1} \mid i = 1,\ldots,2g\}\\
+        & \left|\sum \alpha_i^r\right| \leq c q^\frac{r}{2} \implies \rho \geq q^{-\frac{1}{2}}\\
+        & \implies |\alpha_i| \leq q^\frac{1}{2}
+    \end{align*}
+    Da $\prod\limits_{i=1}^{2g}\alpha_i = q^g$ folgt 
+    $$ |\alpha_i| = q^\frac{1}{2} \forall i. $$
+\end{proof}
+
+\begin{satz}
+    Unter (i)-(iii) ist 
+    $$ N_1 < q +1 (2g +1)q^\frac{1}{2}. $$
+\end{satz}

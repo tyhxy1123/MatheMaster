@@ -5,7 +5,7 @@ Der jeweilige Hauptverantwortliche für das Skript steht ganz links.
 
 | Modul  | Autoren              			|
 | ------ | ------               			|
-| PDENM  | Willi, Robert, Henrik, Marvin  	|
+| PDENM  | Willi, Robert, Henrik, Felix, Marvin  	|
 | ORDSTR | Lukas Z., Willi, Philipp			|
 | MFANA  | Willi, Lukas Z.			|
 | WTHM   | Willi, Robert, Philipp, Marvin	|
