@@ -3357,7 +3357,7 @@ $B^\ast$ ist injektiv ist äquivalent zu
 \end{align*}
 Die letzte Ungleichung heißt \textbf{inf-sup-Bedingung / LBB-Bedingung}
 
-\begin{thm} %nonumber
+\begin{thm}%nonumber
 	Für eine stetige Bilinearform $b$ auf $Q\times V$ mit zugehörigen Operatoren
 	$B\colon v\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
 	\begin{enumerate}[label=(\roman*)]
@@ -3693,21 +3693,21 @@ führen.
 Die inf-sup-Bedingung spielt eine große in der Theorie, ist aber in der Praxis oft schwer zu zeigen.
 
 \subsection{Nachweis der inf-sup-Bedingung (diskrete Version)}
-Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
+%Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 
 \begin{lemma}[Fortin, 1977]\label{lemmaFortin}\enter
 	Angenommen die stetige inf-sup-Bedingung
 	\begin{align*}
-		\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(v,q)}{\Vert v \Vert\Vert q\Vert_Q}\geq\beta>0
+		\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(v,q)}{\Vert v \Vert_V\Vert q\Vert_Q}\geq\beta>0
 	\end{align*}
 	gilt. Dann gilt die diskrete inf-sup-Bedingung
 	\begin{align*}
-		\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h \Vert\Vert q_h\Vert_Q}\geq\beta^\ast>0
+		\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}\geq\beta^\ast>0
 	\end{align*}
 	gleichmäßig im Gitterparameter $h$ genau dann, wenn
-	es einen linearen Interpolationsoperator $I_h\colon V\to V_h$ gibt, so, dass
+	es einen linearen Interpolationsoperator $I_h\colon V\to V_h$ gibt, so dass
 	\begin{align}\label{eqLemmaFortinBed1}
-		b(q_h,v)=b(q_h,I_h v)\qquad\forall q_h\in Q,\forall v\in V
+		b(q_h,v)=b(q_h,I_h v)\qquad\forall q_h\in Q_h,\forall v\in V
 	\end{align}
 	und 
 	\begin{align}\label{eqLemmaFortinBed2}
@@ -3718,10 +3718,10 @@ Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 
 \begin{proof}\
 	\begin{enumerate}[label=(\roman*)]
-		\item Angenommen es gibt $I_h$ mit den beiden obigen Eigenschafen \eqref{eqLemmaFortinBed1}, \eqref{eqLemmaFortinBed2}.
-		Sei $q_h\in Q$ beliebig.
+		\item Angenommen es gibt $I_h$ mit den beiden obigen Eigenschaften \eqref{eqLemmaFortinBed1}, \eqref{eqLemmaFortinBed2}.
+		Sei $q_h\in Q_h$ beliebig.
 		\begin{align*}
-			\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h \Vert\Vert q_h\Vert_Q}
+			\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}
 			\overset{I_h V\subseteq V_h}&\geq
 			\sup\limits_{v\in V}\frac{b(q_h,I_h v)}{\Vert I_h v\Vert_V\Vert q_h\Vert_Q}\\
 			\overset{\eqref{eqLemmaFortinBed1}}&=
@@ -3731,19 +3731,19 @@ Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 			&\geq\frac{\beta}{c}>0
 		\end{align*}
 		Das $\beta$ kommt aus der stetigen inf-sup-Bedingung.
-		Wir haben als die diskrete inf-sup-Bedingung (u.a.) aus der stetigen inf-sup-Bedingung gefolgert.
+		Wir haben also die diskrete inf-sup-Bedingung (u.a.) aus der stetigen inf-sup-Bedingung gefolgert.
 		\item Angenommen die diskrete inf-sup-Bedingung ist erfüllt.
 		\footnote{$Q_h^\ast$ ist der Dualraum von $Q_h$}
 		\begin{align*}
 			B_h\colon V_h\to Q_h^\ast,\qquad
 			\big\langle B_h v_h,q_h\big\rangle:=b(q_h,v_h)\qquad\forall q_h\in Q_h,\forall v_h\in V_h
 		\end{align*}
-		Also ist $B_h:W_h^\perp\to Q_h^\ast$ ein Isomorphismus.
+		Also ist $B_h:W_h^\perp\to Q_h^\ast$ ein Isomorphismus ( Äquivalenz gemäß Theorem vor Theorem \ref{theorem8.1} ).
 		\begin{align*}
 			\Vert v_h\Vert_V
 			&\leq\frac{1}{\beta^\ast}\Vert B_h v_h\Vert_{Q_h^\ast}
 			\overset{\text{Def Norm}}=
-			\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q}
+			\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q}  \quad \forall v_h \in W_h^{\perp}
 		\end{align*}
 		Für ein gegebenes $v\in V$ definieren wir $I_h v\in W_h^\perp\subseteq V_h$ als Lösung von
 		\begin{align*}
@@ -3751,7 +3751,7 @@ Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 		\end{align*}
 		wobei
 		\begin{align*}
-			\langle q_h,q_h\rangle:=b(q_h,v)\qquad\forall q_h\in Q_h
+			\langle g_h,q_h\rangle:=b(q_h,v)\qquad\forall q_h\in Q_h
 		\end{align*}
 		Also gilt
 		\begin{align*}
@@ -3764,7 +3764,7 @@ Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 		Somit haben wie die erste Bedingung \eqref{eqLemmaFortinBed1} gezeigt.
 		Nur zur zweiten Bedingung \eqref{eqLemmaFortinBed2}:
 		\begin{align*}
-			\Vert I_h v\Vert
+			\Vert I_h v\Vert_V
 			&=\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{b(q_h,I_h v)}{\Vert q_h\Vert_Q}\\
 			&=\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{b(q_h,v)}{\Vert q_h\Vert_Q}\\
 			&\leq\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{c_b\Vert q_h\Vert_{Q}\Vert v\Vert_V}{\Vert q_h\Vert_Q}\\
@@ -3775,7 +3775,7 @@ Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 \end{proof}
 
 \begin{bemerkung}
-	In nichtkonforme Räume $V_h$ ändert sich folgendes:
+	Für nichtkonforme Räume $V_h$ ändert sich folgendes:
 	\begin{align*}
 		\Vert v_h\Vert_V&\leadsto\Vert v_h\Vert_h\\
 		\Vert I_h v\Vert_V&\leadsto\Vert I_h v\Vert_h\\
@@ -3783,12 +3783,12 @@ Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 	\end{align*}
 \end{bemerkung}
 
-Sei $V_h$ $P_1^{hc}$ das Crouzeix-Raviart-Element und $Q_h$ stückweise konstantes $P_0$.
+Sei $V_h$ $P_1^{hc}$ das Crouzeix-Raviart-Element und $Q_h$ stückweise konstant, also $P_0$.
 Wir wollen Lemma \ref{lemmaFortin} anwenden. 
-Wie wählen wir $I_h\colon V_h\to V$?\nl
+Wie wählen wir $I_h\colon V\to V_h$? Oft ist $V = H^1_0(\Omega)^d$ und auf diesem ergibt klassische Interpolation keinen Sinn.\nl
 Der natürliche Weg ist folgender:
 \begin{align*}
-	\frac{1}{|E|}\int\limits_E I_h v\d\gamma=\frac{1}{|E|}\int\limits c\d\gamma=(I_h v)(m_E)
+	\frac{1}{|E|}\int\limits_E I_h v\d\gamma=\frac{1}{|E|}\int\limits v\d\gamma=(I_h v)(m_E)
 \end{align*}
 Also bleibt das Integralmittel erhalten.
 $m_E$ ist hier der Mittelpunkt der Kange $E$.
@@ -3798,18 +3798,18 @@ Dann ist $I_h$ ein \textbf{Fortin-Operator}, d.h. er er erfüllt die beiden Bedi
 	&=\sum\limits_{K}\int\limits_K \underbrace{q_K}_{\text{konstant auf }K}\div(I_h v)\d x\\
 	&=\sum\limits_{K} q_K\int\limits_K \div(I_h v)\d x\\
 	\overset{\text{Gauß}}&=
-	\sum\limits_{K} q_K\int\limits_{\partial K} \div(I_h v)\cdot n_K\d \gamma\\
-	&=\sum\limits_K q_K\sum\limits_{E\subseteq\partial K}\int\limits_E(I_h v)\cdot n_K\d\gamma\\
+	\sum\limits_{K} q_K\int\limits_{\partial K} (I_h v)\cdot n_K\d \gamma\\
+	\overset{n_E\text{ konst. auf }E}&=\sum\limits_K q_K\sum\limits_{E\subseteq\partial K}\int\limits_E(I_h v)\cdot n_E\d\gamma\\
 	\overset{\text{Def }I_h}&=
-	\sum\limits_K q_K\sum\limits_{E\subseteq\partial K}\int\limits_E v\cdot n_K\d\gamma\\
+	\sum\limits_K q_K\sum\limits_{E\subseteq\partial K}\int\limits_E v\cdot n_E\d\gamma\\
 	\overset{\text{selbe Argumente rückwärts}}&=
 	b(q_h,v)
 \end{align*}
 
 \begin{align*}
-	I_h v|^2_{1,K}
+	|I_h v|^2_{1,K}
 	&=\int\limits_K\nabla I_h v:\nabla I_h v\d x\\
-	&=-\int\limits_K I_h v\cdot\underbrace{\laplace I_h v}_{\overset{\text{stückweise linear}}{=}\vec{0}}\d x+\int\limits_{\partial K}I_h v\cdot\underbrace{\big(\nabla I_h v\cdot n_K\big)}_{\text{konstant auf jeder Ecke $E\subseteq\partial K$}}\d\gamma\\
+	&=-\int\limits_K I_h v\cdot\underbrace{\laplace I_h v}_{\overset{\text{stückweise linear}}{=}\vec{0}}\d x+\int\limits_{\partial K}I_h v\cdot\underbrace{\big(\nabla I_h v\cdot n_K\big)}_{\text{konstant auf jeder Kante $E\subseteq\partial K$}}\d\gamma\\
 	&=-\int\limits_K v\cdot\underbrace{\laplace I_h v}_{=\vec{0}}\d x+\sum\limits_{E\subseteq\partial K}\int\limits_{E} v\cdot\big(\nabla I_h v\cdot n_K\big)\d\gamma\\
 	\overset{\text{selbe Schritte rückwärts}}&=
 	\int\limits_K\nabla v\cdot\nabla I_h v\d x\\
