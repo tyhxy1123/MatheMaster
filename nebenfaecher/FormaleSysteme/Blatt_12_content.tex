@@ -49,22 +49,24 @@ Hierfür nutzen wir einfach Definition 5.3:
 \subsection{Aufgabe 1}
 
 \begin{lösung}
-	Außer a) sind alle aufgeführten Quadupel Grammatiken, denn $\varepsilon\to...$ ist nicht zulässige nach Definition 6.2.
-	Somit sind b), c), d), e), f) Grammatiken vom Typ 0 nach Definiton 6.6.\nl
+	Außer a) sind alle aufgeführten Quadrupel Grammatiken, denn $\varepsilon\to\ldots$ ist nicht zulässige nach Definition 6.2 ($\varepsilon\not\in(\Sigma\cup N)^+$).
+	Somit sind b), c), d), e), f) Grammatiken vom Typ 0 nach Definition 6.6.\nl
 	\underline{Zu b):}
-	$G_2$ ist nicht vom Typ 1, da $S\to\varepsilon$ und $S$ auf rechter Seite vorkommt und nicht vom Typ 3, aber vom Typ 2.\nl
+	$G_2$ ist nicht vom Typ 1, da $S\to\varepsilon$ und $S$ auf rechter Seite vorkommt und nicht vom Typ 3 (da $S\to aBb\in P$), aber vom Typ 2.\nl
 	\underline{Zu c):}
-	$G_2$ ist offenbar nicht vom Typ 2 oder 3, da $XY\not\in N$.\\
+	$G_3$ ist offenbar nicht vom Typ 2 oder 3, da $XY\not\in N$.\\
 	$G_2$ ist auch nicht vom Typ 1, denn:\\
 	\underline{Fall 1:} $X=A\implies u_1=\varepsilon,u_2=Y\implies w=\varepsilon\implies |w|=0<1$\\
-	\underline{Fall 2:} $Y=A\implies u_1=X$, was auch nicht möglich ist.\nl
+	\underline{Fall 2:} $Y=A\implies u_1=X$, was auch nicht möglich ist.
+	Somit ist $G_2$ eine Typ-0-Grammatik.\nl
 	\underline{Zu d):}
 	$G_4$ ist vom Typ 0,1,2,3.\nl
 	\underline{Zu e):}
-	$G_5$ ist nicht vom Typ $2$ oder Typ 3, aber vom Typ 1.\nl
+	$G_5$ ist nicht vom Typ $2$ oder Typ 3 (da $ZY\to ZX$), aber vom Typ 1.\nl
 	\underline{Zu f):}
 	$G_6$ ist nicht vom Typ 1, da $S\to\varepsilon$ und $S$ auf rechter Seite vorkommt.\\
 	$G_6$ ist auch nicht vom Typ 2 oder 2, da $ZY\not\in N$.
+	Also ist $G_6$ vom Typ 0.
 \end{lösung}
 
 \subsection{Aufgabe 2}
@@ -76,7 +78,8 @@ Hierfür nutzen wir einfach Definition 5.3:
 	 	L(G_1)=\big\lbrace a^n b^n:n\in\N_{\geq0}\big\rbrace
 	 \end{align*}
 	 Da $G_1$ Grammatik vom Typ 2 ist, ist $L(G_1)$ eine $\L_2$-Sprache. 
-	 Eine $\L_3$-Sprache kann es nicht sein, da es keinen DEA gibt, der $L(G_1)$ erzeugt.\nl
+	 Eine $\L_3$-Sprache kann es nicht sein, da es keinen DEA gibt, der $L(G_1)$ erzeugt.\\
+	 Also $i=2,j=2$.\nl
 	 \underline{Zu $G_2$:}\\
 	 $G_2$ ist nicht vom Typ 1, aber vom Typ 2 und nicht vom Typ 3. 
 	 \begin{align*}
@@ -84,13 +87,13 @@ Hierfür nutzen wir einfach Definition 5.3:
 	 \end{align*}
 	 Es gibt einen NEA mit Wortübergängen, der $L(G_2)$ akzeptiert.
 	 Deshalb liegt $L(G_2)$ in der Sprachklasse $\L_3$.
+	 $i=i,j=3$.
 	 
-
-\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
-  \node[state,initial, accepting]   (q_0)                {$q_0$};
-  \path[->] (q_0) edge [loop right] node [right] {bb} ()
+	\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
+		\node[state,initial, accepting]   (q_0)                {$q_0$};
+		\path[->] (q_0) edge [loop right] node [right] {bb} ()
                   edge [loop above] node [above] {a} ();
-\end{tikzpicture}
+	\end{tikzpicture}
 
 	\underline{Zu $G_3$:}\\
 	$G_3$ ist nicht vom Typ 1, $aB\to a$ der Definition widerspricht. 
@@ -98,13 +101,13 @@ Hierfür nutzen wir einfach Definition 5.3:
 	\begin{align*}
 		L(G_3)=L(G_1)=\big\lbrace a^n b^n:n\in\N_{\geq0}\big\rbrace
 	\end{align*}
-	Somit ist $L(G_3)$ eine $\L_3$-Sprache.\nl
+	Somit ist $L(G_3)$ eine $\L_2$-Sprache. $i=0,j=3$\nl
 	\underline{Zu $G_4$:}
 	$G_4$ ist Typ 0, nicht Typ 1,2,3.
 	\begin{align*}
 		L(G_4)=L(G_3)=L(G_1)=\big\lbrace a^n b^n:n\in\N_{\geq0}\big\rbrace
 	\end{align*}
-	Somit ist auch $L(G_4)$ eine $\L_3$-Sprache.
+	Somit ist auch $L(G_4)$ eine $\L_3$-Sprache. $i=0,j=2$
 \end{lösung} 
 
 \subsection{Aufgabe 3}
@@ -121,13 +124,28 @@ Betrachte die Grammatik
 			 R\to bSa
 		\end{array}\right\rbrace		
 \end{align*}
+
+Beobachtung: Die Grammatik ist vom Typ 2 (aber nicht vom Typ 1), also kontextfrei.
 	
 \subsubsection{Aufgabe 3 a)}
 Geben Sie zu $G_0$ alle nicht-terminierenden Symbole und nicht-erreichbaren Symbole an und geben Sie eine zu $G_0$ äquivalente reduzierte Grammatik $G_1$ an.
 
 \begin{lösung}
 	Nicht-terminierend sind $T,U$.\\
+	Ausführlich: Berechne terminierende Symbole:
+	\begin{align*}
+		T_1&:=\big\lbrace A\in N\mid\exists w\in\Sigma^\ast:A\to w\in P\big\rbrace\\
+		T_{i+1}&:=T_i\cup\big\lbrace A\in N\mid\exists e\in (\Sigma\cup T_i)^\ast:A\to w\in P\big\rbrace\\
+		&\rightsquigarrow T_1\lbrace S,R\rbrace,~T_2=\lbrace S,R\rbrace\cup\lbrace V\rbrace=\lbrace S,R,V\rbrace=T_3
+	\end{align*}
 	Nicht-erreichbar: $V$.\\
+	Ausführlich: Berechnung der erreichbaren Symbole:
+	\begin{align*}
+		E_0&:=\lbrace S\rbrace\\
+		E_{i+1}&:=E_i\cup\big\lbrace A\in N\mid \exists B\in E_i,\exists u_1,u_2\in(\Sigma\cup N)^\ast:B\to u_1 Au_2\in P\big\rbrace\\
+		&\quad\text{Idee: es gibt $B$, mit dem wir $A$ erreichen}\\
+		E_0&=\lbrace S\rbrace,~E_1=\lbrace S\rbrace\cup\lbrace R\rbrace=\lbrace S,R\rbrace=E_2
+	\end{align*}
 	Wir konstruieren die äquivalente reduzierte Grammatik:\\
 	\underline{Schritt 1:} Eliminieren nicht terminierender Symbole:
 	\begin{align*}
@@ -140,9 +158,9 @@ Geben Sie zu $G_0$ alle nicht-terminierenden Symbole und nicht-erreichbaren Symb
 	
 	\underline{Schritt 2:} Eliminieren unerreichbarer Symbole:
 	\begin{align*}
-		G_1&:=\big(N'',\Sigma,P'',S\big)\mit\\
-		N''&:=\lbrace S,R\rbrace\\
-		P''&:=\big\lbrace
+		G_1&:=\big(N_1,\Sigma,P_1,S\big)\mit\\
+		N_1&:=\lbrace S,R\rbrace\\
+		P_1&:=\big\lbrace
 			S\to\varepsilon, S\to aSb,S\to R,R\to\varepsilon,R\to bSa
 		\big\rbrace
 	\end{align*}
@@ -152,17 +170,26 @@ Geben Sie zu $G_0$ alle nicht-terminierenden Symbole und nicht-erreichbaren Symb
 Konstruieren Sie eine Grammatik $G_2$ mit $L(G_2)=L(G_1)\setminus\lbrace\varepsilon\rbrace$, die keine Regeln der Form $A\to\varepsilon$ für $A\in N$ enthält.
 
 \begin{lösung}
+	Verwende Lemma 8.7:
+	Berechnung aller Symbole, die nach $\varepsilon$ abgeleitet werden können:
 	\begin{align*}
-		L(G_1)=\lbrace a\rbrace\cdot\big\lbrace w\in\lbrace a,b\rbrace^\ast:|w|_a=|w|_b\big\rbrace\cdot\lbrace b\rbrace\cup\lbrace\varepsilon\rbrace
+		N_1'&:=\big\lbrace A\in N:A\to\varepsilon\in P\\
+		N_{i+1}'&:=N_i'\cup\big\lbrace A\in N:A\to B_1\ldots B:n\in P\text{ für }B_1,\ldots,B_n\in N_i'\big\rbrace\\
+		\rightsquigarrow N_1'&=\lbrace S,R\rbrace=N_2'
 	\end{align*}
-	Ich glaube folgende tut es:
+	Berechnung der Grammatik $G_2(N_2,\Sigma,P_2,S)$ mit 
 	\begin{align*}
-		G_2&:=\big(\hat{N},\Sigma,\hat{P},S\big)\mit\\
-		\hat{N}&:=\lbrace S,R,T\rbrace\\
-		\hat{P}&:=\big\lbrace
-			S\to aTb, T\to aTb,T\to R,R\to\varepsilon,R\to bTa
+		N_2&:=N_1=\lbrace S,R\rbrace\\
+		P_2&:=\big(P_1\lbrace S\to\varepsilon,R\to\varepsilon)\big)\cup\lbrace S\to ab, R\to ba\rbrace\\
+		&~=\big\lbrace
+			S\to ab, S\to aSb,S\to R,R\to ba,R\to bSa
 		\big\rbrace
 	\end{align*}
+	
+	Nun gilt $L(G_2)=L(G_1)\setminus\lbrace\varepsilon\rbrace$.
+	%\begin{align*}
+		%L(G_1)=\lbrace a\rbrace\cdot\big\lbrace w\in\lbrace a,b\rbrace^\ast:|w|_a=|w|_b\big\rbrace\cdot\lbrace b\rbrace\cup\lbrace\varepsilon\rbrace
+	%\end{align*}
 \end{lösung}
 
 \subsubsection{Aufgabe 3 c)}
@@ -170,26 +197,65 @@ Geben Sie ein zu $G_1$ äquivalente $\varepsilon$-freie Grammatik $G_3$ an.
 Erweitern Sie dazu, wenn nötig, die Grammatik $G_2$ um ein neues Startsymbol $S_3$ und entsprechende Regeln.
 
 \begin{lösung}
-	Einfach mal ins blaue geraten:
+	Verwende Satz 8.9:
+	$\varepsilon$-freie Grammatiken erlauben $\varepsilon$ alleine auf der rechten Seite einer Regel nur dann, wenn das Startsymbol $S$ auf $\varepsilon$ abgebildet wird und $S$ nie auf der rechten Seite einer Regel erscheint.
 	\begin{align*}
-		G_3&:=\big(\lbrace S_3,S,R\rbrace,\Sigma,P,S_3\big)\mit\\
-		P&:=\big\lbrace
+		G_3&:=\big(N_3,\Sigma,P_3,S_3\big)\mit\\
+		N_4&:=\lbrace S_3\rbrace\cup N_2=\lbrace S_3,S,R\rbrace\\
+		P_3&:=P_2\cup\lbrace S_3\to S,S_3\to\varepsilon\rbrace\\
+		&=\big\lbrace
 			S_3\to\varepsilon, S_3\to S, S\to aSb, S\to ab, S\to R,R\to ba,R\to bSa
 		\big\rbrace
 	\end{align*}
 	Offenbar ist $S_3$ $\varepsilon$-frei.
+	Nun gilt $L(G_3)=L(G_1)$ und $G_3$ ist auch kontextsensitiv.
 \end{lösung}
 
 \subsubsection{Aufgabe 3 d)}
 Geben Sie eine zu $G_3$ äquivalente Grammatik $G_4$ an, die keine Produktionen der Form $A\to B$ mit Nichtterminalsymbolen $A,B$ enthält.
 
 \begin{lösung}
-	%TODO
+	Verwende Satz 8.11:
+	Bestimme zu jedem $A\in N$ die Menge 
+	\begin{align*}
+		N(A)&:=\big\lbrace B\in N:A\vdash_G^\ast B\big\rbrace\\
+		\rightsquigarrow N(S_3)&=\lbrace S_3,S,R,~N(S)=\rbrace S,R\rbrace,~N(R)=\lbrace R\rbrace
+	\end{align*}
+	Dann ist $G_4=(N_4,\Sigma,P_4,S_3)$ mit
+	\begin{align*}
+		N_4&:=N_3=\lbrace S_3,S,R\rbrace\\
+		P_4&:=\big\lbrace A\to w\mid B\to w\in P,B\in N(A),w\not\in N_4\big\rbrace\\
+		&=\left\lbrace\begin{array}{l}
+				S_3\to\varepsilon, S_3\to ab,S_3\to aSb,S_3\to ba,S_3\to bSa\\
+			S\to ab, S\to aSb,S\to ba, S\to bSa\\
+			R\to ba, R\to bSa
+		\end{array}\right\rbrace
+	\end{align*}
 \end{lösung}
 
 \subsubsection{Aufgabe 3 e)}
 Geben Sie eine zu $G_4$ äquivalente Grammatik $G_5$ in Chomsky-Normalform an.
 
 \begin{lösung}
-	%TODO
+	Verwende Satz 8.12:
+	Chomsky-Normalform: es gibt nur noch Regeln der Form $A\to a$, $A\to BC$
+	\begin{enumerate}
+		\item $G_4$ ist bereits $\varepsilon$-frei ohne Regeln der Form $A\to B$ mit $A,B\in N$.
+		\item Einführung neuer Nichtterminalsymbole $X_a$ für jedes Terminalsymbol $a\in\Sigma$ und neue Regeln $X_a\to a$.
+		\item Ersetze alle Vorkommen von $a$ und $b$ durch $X_a$  und $X_b$ .
+		\item Ersetze alle Regeln der Form $A\to B_1\ldots B_n$ mit $n>2$ durch 
+		\begin{align*}
+			A\to B_1C_1,C_1\to B_2C_2,\ldots,C_{n-2}\to B_{n-1}B_n
+		\end{align*}
+	\end{enumerate}
+	Somit erhalten wir $G_5=(N_5,\Sigma,P_5,S_0)$ mit
+	\begin{align*}
+		N_5&:=\big\lbrace X_a,X_b,S_0,S,R\big\rbrace\\
+		P_5&:=\left\lbrace\begin{array}{l}
+			S_0\to\varepsilon, S_0\to X_a X_b, S\to X_b X_a, S_0\to X_a C_1,S_0\to X_b C_2\\
+			C_1\to SX_b,C_2\to SX_a\\
+			S\to X_aX_b,S\to X_bX_a,S\to X_aC_1, S\to X_b C_2\\
+			R\to X_bX_a, R\to X_bC_2,X_a\to a,X_b\to b
+		\end{array}\right\rbrace
+	\end{align*}
 \end{lösung}
