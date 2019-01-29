@@ -4994,3 +4994,186 @@ Gemäß \ref{korollar9.3} sind $M_n,n\in\N$ und $M$ als	 konvexe stochastische P
 	Folgt aus Satz \ref{satz9.9} und Lemma \ref{lemma9.10SubspaceLemma}.
 \end{proof}
 
+\section{Argmin-Theoreme in \texorpdfstring{$C_c(\R)$}{C\_c(R)}}
+
+\begin{lemma}\label{lemma10.1}
+	Seien $f\colon\R^d\to\R$ konvex, $g\colon\R^d\to\R$ stetig, $A(f)\neq\emptyset$, $A(g)=\lbrace\sigma\rbrace$.\\
+	Für $\varepsilon>0$ seien
+	\begin{align*}
+		\overline{B}(\sigma,\varepsilon)&:=\big\lbrace t\in\R^d:|t-\sigma|\leq\varepsilon\big\rbrace\\
+		m(\varepsilon)&:=\inf\limits\big\lbrace g(t9:|t-\sigma|=\varepsilon\big\rbrace\\
+		b(\varepsilon)&:=\frac{1}{2}\cdot\big(m(\varepsilon)-g(\sigma)\big)
+	\end{align*}
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			%\exists\varepsilon_0>0:\forall\varepsilon\in(0,\varepsilon_0]:b(\varepsilon)>0 %wurde gestrichen
+			\forall\varepsilon>0:b(\varepsilon)>0
+		\end{aligned}$
+		%\item Für $\varepsilon\in(0,\varepsilon_0]$ gilt: %wurde geändert
+		\item Für alle $\varepsilon>0$ gilt:
+		\begin{align*}
+			\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}<b(\varepsilon)
+			\implies|\tau-\sigma|\leq\varepsilon\qquad\forall\tau\in A(f)
+		\end{align*}
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\underline{Zeige (1):}\
+		Sei $\varepsilon>0$ und angenommen $b(\varepsilon)=0$.
+		Dann:
+		\begin{align*}
+			g(\sigma)=m(\varepsilon)=g(t_\varepsilon)
+			\text{ für ein }t_\varepsilon\in
+			\big\lbrace t\in\R^d:|t-\sigma|=\varepsilon\big\rbrace=:S(\sigma,\varepsilon),
+		\end{align*}
+		da $S(\sigma,\varepsilon)$ kompakt und $g$ stetig (stetige Funktionen nehmen auf kompakten Mengen ihr Infimum an!).
+		Somit ist $t_\varepsilon\in A(g)$ und $t_\varepsilon=\sigma$ im Widerspruch zu $t_\varepsilon\in S(\sigma,\varepsilon)$.\nl
+	\underline{Zeige (2):}
+	Sei $t\not\in\overline{B}(\sigma,\varepsilon)$ und $\lambda:=\frac{\varepsilon}{\Vert t-\sigma\Vert}\in(0,1)$.
+	Für
+	\begin{align*}
+		s:=(1-\lambda)\cdot\sigma+\lambda\cdot t
+		=\sigma+\lambda\cdot(t-\sigma)
+	\end{align*}
+	folgt
+	\begin{align}\label{eqProofLemma10.1Stern}\tag{$\ast$}
+		\Vert S-\sigma\Vert=\lambda\cdot\Vert t-\sigma\Vert
+		=\varepsilon
+	\end{align}
+	Da $f$ konvex, folgt
+	\begin{align}\nonumber
+		f(s)
+		&\leq(1-\lambda)\cdot f(\sigma)+\lambda\cdot f(t)\\\nonumber
+		&=f(\sigma)+\lambda\cdot\big(f(t)-f(\sigma)\big)\\\nonumber
+		&=\lambda\cdot\big(f(t)-f(\sigma)\big)\\\nonumber
+		&\geq f(s)-f(\sigma)\\\nonumber
+		&=g(s)-g(\sigma)+\underbrace{f(s)-g(s)}_{
+			\overset{s\in\overline{B}(\sigma,\varepsilon)}{\geq}-\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}
+		}-\underbrace{\big(f(\sigma)-g(\sigma)\big)}_{
+			\leq\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}
+		}\\\nonumber
+		&\geq \underbrace{\underbrace{g(s)}_{
+			\overset{s\in S(\sigma,\varepsilon)}{\geq}m(\varepsilon)
+		}-g(\sigma)}_{
+			\geq m(\varepsilon)-g(\sigma)=2\cdot b(\varepsilon)
+		}-2\cdot\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}\\\nonumber
+		&\geq 2\cdot\underbrace{\Big(b(\varepsilon)-\Vert f-f\Vert_{\overline{B}(\sigma,\varepsilon)}}_{
+			>0\text{ nach Annahme}
+		}\Big)\\
+		\implies f(t)>f(\sigma)\qquad\forall t\not\in \overline{B}(\sigma,\varepsilon)\label{eqProofLemma10.1Plus}\tag{+}
+	\end{align}
+	Somit folgt $\tau\in\overline{B}(\sigma,\varepsilon)$, da sonst wegen \eqref{eqProofLemma10.1Plus} folgen würde, dass $f(\tau)>f(\sigma)$.
+	Dies ist aber ein Widerspruch, wann immer $\tau\in A(f)$.
+	Schließlich folgt $|\tau-\sigma|\leq\varepsilon$.
+\end{proof}
+
+%Ferger: "Das schafft nicht einmal bis Chuck Norris."
+
+Lemma \ref{lemma10.1} geht zurück auf Hjorth und Pollard (1993), Preprint.
+Wir erhalten folgendes Argmin-Theorem für konvexe Funktionen:
+
+\begin{satz}\label{satz10.2}
+	Sei $D\subseteq\R^d$ dicht in $\R^d$ (z.B. $D=\Q^d$) und seien $f,f_n,n\in\N$ konvexe Funktionen auf $\R^d$, wobei $f$ eine eindeutige Minimalstelle $\tau$ besitze ($A(f)=\lbrace\tau\rbrace$).
+	Seien $\tau_n\in A(f_n)\neq\Phi$ $\forall n\geq N_0\in\N$.
+	Dann gilt:
+	\begin{align}\label{eqSatz10.2Stern}\tag{$\ast$}
+		\Big(f_n(t)\overset{n\to\infty}{\longrightarrow} f(t)\qquad\forall t\in D\Big)\implies \tau_n\overset{n\to\infty}{\longleftarrow}\tau
+	\end{align}
+\end{satz}
+
+\begin{proof}
+	Konvexe Funktionen sind immer stetig, also ist $f$ stetig.
+	Lemma \ref{lemma10.1} mit $f\hat{=}f_n$, $g\hat{=}f$ liefert:
+	\begin{align*}
+		b(\varepsilon)>0\qquad\forall\varepsilon>0
+	\end{align*}
+	Gemäß Theorem \ref{theorem9.8} folgt aus \eqref{eqSatz10.2Stern}:
+	\begin{align*}
+		\big\Vert f_n-f\big\Vert_{\overline{B}(\tau,\varepsilon)}\overset{n\to\infty}{\longrightarrow}0
+	\end{align*}
+	(weil $\overline{B}(\tau,\varepsilon)$ kompakt.)
+	Somit folgt:
+	\begin{align*}
+		&\forall\varepsilon>0:\exists n_0=n_0(\varepsilon):\forall n\geq n_0(\varepsilon):
+		\underbrace{\big\Vert f_n-f\big\Vert_{\overline{B}(\tau,\varepsilon)}<b(\varepsilon)}_{\overset{\ref{lemma10.1}(2)}{\implies}|\tau_n-\tau|\leq\varepsilon}\\
+		&\implies \tau_n\overset{n\to\infty}{\longrightarrow}\tau
+	\end{align*}
+\end{proof}
+
+Satz \ref{satz10.2} liefert Argmin-Theorem für konvexe stochastische Prozesse bzgl. fast sicherer Konvergenz.
+
+\begin{satz}\label{satz10.3}
+	Seien $M,M_n,n\in\N$ konvexe stochastische Prozesse auf $\R^d$ über $(\Omega,\A,\P)$.
+	Es gelte:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			A(M)=\lbrace\tau\rbrace
+		\end{aligned}$ f.s. für eine Zufallsvariable $\tau$.
+		\item $\begin{aligned}
+			M_n(t)\overset{n\to\infty}{\longrightarrow} M(t)~\P\text{-f.s.}\qquad\forall t\in\R^d
+		\end{aligned}$
+	\end{enumerate}
+	Seien $\tau_n$ Zufallsvariablen mit $\tau_n\in A(M_n)$ f.s. $\forall n\in\N$.
+	Dann gilt:
+	\begin{align*}
+		\tau_n\overset{n\to\infty}{\longrightarrow}\tau~~\P\text{-f.s.}\text{ in }\R^d
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Seien
+	\begin{align*}
+		\Omega_1&:=\big\lbrace A(M)=\tau\big\rbrace\\
+		\Omega_2&:=\bigcap\limits_{t\in\Q^d}\Big\lbrace M_n\overset{n\to\infty}{\longrightarrow}M(t)\Big\rbrace\\
+		\Omega_3&:=\bigcap\limits_{n\in\N}\big\lbrace\tau_n\in A(M_n)\big\rbrace\\
+		\Omega_0&:=\Omega_1\cap\Omega_2\cap\Omega_3
+	\end{align*}
+	Aus den Voraussetzungen folgt, dass $\Omega_0$ eine Einsmenge ist (abzählbarer Schnitt von Einsmengen ist Einsmenge), d.h. $\P(\Omega_0)=1$.
+	Aus Satz \ref{satz10.2} folgt ($f\hat{=}M_n(\omega,\cdot)$, $f\hat{=}M(\omega,\cdot)$, $\tau\hat{=}\tau(\omega)$, $\tau_n(\omega)\hat{=}\tau_n$):
+	\begin{align*}
+		\Omega_0\subseteq\Big\lbrace\tau_n\overset{n\to\infty}{\longrightarrow}\tau\Big\rbrace\\
+		\implies \P\Big(\tau\overset{n\to\infty}{\longrightarrow}\tau\Big)=1
+	\end{align*}
+\end{proof}
+
+\subsection{Anwendung: Starke Konsistenz des empirischen Medians} %noNumber
+
+\begin{align*}
+	M_n(t)&:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big|X_i-t\big|&\forall& t\in\R\\
+	\overset{\text{SGGZ}}{\implies}
+	M_n(t)\overset{n\to\infty}&{\longrightarrow}\E\Big[\big|X_1-t\big|\Big]
+	\overset{\text{Def}}= M(t)\text{ f.s.} &\forall& t\in\R^d
+\end{align*}
+Falls der Median $m$ von $F$ \underline{eindeutig}, d.h. $A(M)=\lbrace m\rbrace$ (Beachte: hier ist $M$ deterministisch, also konstanter stochastischer Prozess), so folgt aus Satz \ref{satz10.3} sofort für jede messbare Auswahl $\hat{m}_n\in A(M_n)$:
+\begin{align*}
+	\hat{m}_n\overset{n\to\infty}{\longrightarrow} m~~\P\text{-f.s.}
+\end{align*}
+Zum Beispiel $\hat{m}_n:=F^{-1}\left(\frac{1}{2}\right)$.\nl
+Das Argmin-Theorem für Verteilungskonvergenz ist:
+
+\begin{satz}\label{satz10.4}
+	Seien $Z,Z_n,n\in\N$ konvexe stochastische Prozesse auf $\R$ über $(\Omega,\A,\P)$.
+	Es gelte:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			A(Z)=\lbrace\sigma\rbrace
+		\end{aligned}$ f.s. für eine Zufallsvariable $\sigma$.
+		\item $\begin{aligned}
+			Z_n\overset{\text{fd}}{\longrightarrow} Z
+		\end{aligned}$
+	\end{enumerate}
+	Dann gilt für jede messbare Auswahl $\sigma_n\in A(Z_n)$:
+	\begin{align*}
+		\sigma_n\overset{\L}{\longrightarrow}\sigma
+	\end{align*}
+\end{satz}
+
+\begin{proof}[Beweisskizze]
+	\begin{align*}
+		(2) &\implies Z_n\overset{n\to\infty}{\longrightarrow}Z\text{ in }\big(C(\R),d\big)\\
+		&\implies\limsup\limits_{n\to\infty}\P\big(\sigma_n\in K\big)\leq\P\big(\lbrace\sigma\rbrace\cap K\neq\emptyset\big\rbrace
+		=\P\big(\sigma\in K\big)\qquad\forall K\in \mathcal{K}
+	\end{align*}
+\end{proof}
