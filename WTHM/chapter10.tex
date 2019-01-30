@@ -145,35 +145,33 @@ Für $(\psi_k)_{k\in\N}$ verwenden wir die \textbf{Haar-Basis} $\big(h_k(s)\big)
 
 \begin{figure}[H]
 	\begin{center}
-		%TODO Besser Skizze der Haar-Basis einfügen, mit mehr Details, die in der Vorlesungen gemacht wurden
-		\includegraphics[width=1\textwidth]{./pics/Haar.png}
+		\includegraphics[width=1\textwidth]{./pics/WTHMscan001.png}
 		\caption{Generation $j=0,1,2$ der Haar-Basis}
 		\label{AbbHaarBasis}
 	\end{center}
 \end{figure}
-Die allgemeine Höhe der Wavelets beträgt: $\frac{1}{2}2^{-\frac{j}{2}}$.
+Die allgemeine Höhe der Wavelets beträgt: $\frac{1}{2}\cdot2^{-\frac{j}{2}}$.
 Jetzt integrieren wir die Wavelets aus Abbildung \ref{AbbHaarBasis} und erhalten die integierte Haar-Basis
 \begin{align*}
 	H_k(t):=\int\limits_0^t h_k(s)\d s
 \end{align*}
 
-%TODO Hier Skizze der integierten Wavelets einfügen (aus den Rechtecken werden Dreiecke)
-
-Approximation der Brownschen Bewegung:\\
-\underline{$n=0$}: Man erhält eine zufällige Lineare Funktion.\nl
-%TODO Hier Skizze einfügen.
-\underline{$n=1$ ($j=0$):}\nl
-%TODO Hier Skizze einfügen.
-\underline{$n=3$ ($j=2$):}\nl
-%TODO Hier Skizze einfügen.
-Es kommen also immer neue, zufällige Auslenkungen dazu.\\
-\underline{$n$ groß:}
 \begin{figure}[H]
 	\begin{center}
-		%TODO evtl. bessere Skizze erstellen
-		\includegraphics[width=1\textwidth]{./pics/BB.png}
-		\caption{Approximation der Brownschen Bewegung für $n$ groß}
-		\label{AbbBBngross}
+		\includegraphics[width=1\textwidth]{./pics/WTHMscan002.png}
+		\caption{Integrierte Wavelets}
+		\label{AbbHaarIntegrierteWavelets}
+	\end{center}
+\end{figure}
+
+Approximation der Brownschen Bewegung:
+Es kommen also immer neue, zufällige Auslenkungen dazu.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{./pics/WTHMscan003.png}
+		\caption{Approximation der Brownschen Bewegung}
+		\label{AbbBBn}
 	\end{center}
 \end{figure}
 
@@ -294,7 +292,6 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 	Betrachte die (integrierten) Haar-Wavelets $H_n$ der Generation $j$, d.h. $n\in\big[2^j,2^{j+1}\big)$.
 	Für jedes $x\in[0,1]$ gibt es \underline{genau ein} Wavelet der Generation $j$ mit $H_n(x)\neq0$.
 	Dies ist die sogenannte \textbf{lokalisierende Eigenschaft (LE)}.
-	%TODO Skizze einfügen: In einer Generation gibt es für jeden Punkt $p$ genau ein Wavelet $w$ mit $p\in w$ und $w(p)\neq0$.
 	Für die Höhe gilt:
 	\begin{align*}
 		\big|H(x)\big|\leq\frac{1}{2}\cdot 2^{-\frac{j}{2}}
@@ -336,7 +333,85 @@ Es kommen also immer neue, zufällige Auslenkungen dazu.\\
 \end{theorem}
 
 \begin{proof}
-	Übung. %TODO Beweis hier einfügen.
+	\underline{Zeige a):}
+	$T_t$ ist stetig.
+	Für $0=t_0<t_1<\ldots<t_n$ sind die Inkremente
+	\begin{align*}
+		B_{\frac{t_i}{c^2}}-B_{\frac{t_{i-1}}{c^2}}\qquad\forall i\in\lbrace 1,\ldots,n\rbrace
+	\end{align*}
+	unabhängig und $\Nor\left(0,\frac{t_i}{c^2}-\frac{t_{i-1}}{c^2}\right)$-verteilt und damit folgt
+	\begin{align*}
+		c\cdot B_{\frac{t_i}{c^2}}-c\cdot B_{\frac{t_{i-1}}{c^2}}\qquad\forall i\in\lbrace 1,\ldots,n\rbrace
+	\end{align*}
+	auch unabhängig $\Nor\big(0,t_i-t_{i-1}\big)$-verteilt.\nl
+	\underline{Zeige b):}
+	Folgt aus a) mit $c=-1$.\nl
+	\underline{Zeige c):}
+	$V$ ist stetig, da $B$ stetig ist nach Voraussetzung.\\
+	$V_0=0$ ist auch klar.
+	$V$ ist Gaußscher Prozess.
+	\begin{align*}
+		\E\big[V_t\big]
+		&=\E\big[B_{t+s}-B_s\big]
+		=0\\
+		\Cov\big(V_T,V-t\big)
+		\overset{t<T}&=
+		\E\big[V_T\cdot V_t\big]
+		=\E\big[(B_{T+s}-B_s)\cdot(B_{t+s}-B_s)\big]\\
+		&=\E\Big[B_{T+s}\cdot B_{t+s}-B_s\cdot B_{t+s}-B_s\cdot B_{T+s}+B_s^2\Big]\\
+		\overset{B\text{ BB}}&=
+		t+s-s-s+s\\
+		&=t\\
+		&=\min(T,t)
+	\end{align*}
+	Der Fall $t>T$ geht analog.\nl
+	\underline{Zeige d):}
+	$W$ ist Gaußscher Prozess, da lineare Transformation.
+	Außerdem gilt $W_0=0$.
+	\begin{align*}
+		\E[W_t]&=t\cdot\E\big[B_{\frac{1}{t}}\big]=\\
+		\Cov(W_t,W_s)
+		&=\E\big[W_t\cdot W_s]\\
+		&=t\cdot s\cdot\E\big[B_{\frac{1}{t}}\cdot B_{\frac{1}{s}}\big]\\
+		&=t\cdot s\cdot\min\left(\frac{1}{s},\frac{1}{t}\right)\\
+		&=t\cdot s\cdot\frac{1}{t}\\
+		&=s\\
+		&=\min(s,t)
+	\end{align*}
+	Stetig an der Stelle 0?
+	D.h. gilt $\lim\limits_{t\downarrow0} t\cdot B_{\frac{1}{t}}=0$ f.s.
+	\begin{align}\label{eqAufg6.1Stern_script}\tag{$\ast$}
+		\lim\limits_{t\downarrow0}t\cdot B_{\frac{1}{t}}
+		&=\lim\limits_{T\to\infty}\frac{1}{T}\cdot B_T
+		\overset{?}{=}0
+	\end{align}
+	Dies ist das starke Gesetz der großen Zahlen (SGGZ).
+	Leicht zu zeigen:
+	\begin{align*}
+		\limn\frac{1}{n}\cdot B_n
+		&=\frac{1}{n}\cdot\underbrace{\Big(\big(B_n-B_{n-1}\big)+\ldots+\big(B_1-0\big)\Big)}_{n \text{ iid ZVen}}
+		\overset{\text{SGGZ}}{=}\E[B_1]=0
+	\end{align*}
+	Wenn wir
+	\begin{align*}
+		\limn\sup\limits_{n\leq t<n+1}\left|\frac{B_t-B_n}{n}\right|=0
+	\end{align*}
+	zeigen können, dann folgt die \eqref{eqAufg6.1Stern_script}.
+	Es gilt:
+	\begin{align*}
+		X_n\overset{\d}&{=}\frac{1}{n}\cdot X_1\\
+		\E\big[X_1^2\big]
+		&=\E\left[\left(\sup\limits_{1\leq t\leq 2}\big|B_t-B_1\big|\right)^2\right]
+		\overset{\text{Doobs $L_2$-Ungl}}&\leq
+		4\cdot\E\left[(B_2-B_1)^2\right]
+		=4\\
+		\E\left[\sum\limits_{n=1}^\infty X_n^2\right]
+		&=\sum\limits_{n=1}^\infty\frac{1}{n^2}\cdot\E\big[X_1^2\big]
+		<\infty\\
+		&\implies
+		\sum\limits_{n=1}^\infty X_n^2\text{ konvergiert f.s.}\\
+		&\implies\limn X_n=0
+	\end{align*}
 \end{proof}
 
 \begin{theorem}\label{theorem10.5}
