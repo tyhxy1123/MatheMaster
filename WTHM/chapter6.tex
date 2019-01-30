@@ -187,7 +187,6 @@ Wichtige Anwendungen:
 		Gleichvtl. auf $[-1,1]$ & $f(x)=\frac{1}{2}\cdot\indi_{[-1,1]}(x)$ & $\frac{\sin(u)}{u}$\\ &&\\ \hline &&\\
 		Cauchyvtl. & $f(x)=\frac{1}{\pi}\cdot\frac{1}{1+x^2}$ & $\exp\big(-|u|\big)$
 	\end{tabular}
-	%TODO Tabelle hübscher machen
 \end{beisp}
 
 Als nächstes: partielle Ableitungen von charakteristischen Funktionen.
@@ -395,8 +394,8 @@ Zwei weitere wichtige Resultate zu charakteristischen Funktionen:
 		&=\int\limits_{\R^d}\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot y)\cdot\exp(i\cdot\xi^T\cdot(x-y))\cdot f(y)\cdot g(x)\d y\d x\\
 		&\overset{(\ast)}{=}
 		\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot y)\cdot f(y)\d y\cdot\int\limits_{\R^d}\exp(i\cdot\xi^T\cdot zu)\cdot g(z)\d z\\
-		%&=\hat{f}(\xi)\cdot\hat{g}(\xi)
-	\end{align*} %TODO Warum ist das auskommentiert?
+		&=\hat{f}(\xi)\cdot\hat{g}(\xi)
+	\end{align*}
 	Bei $(\ast)$ wird substituiert: $z=x-y$, $\d z=\d x$
 \end{proof}
 
