@@ -116,7 +116,29 @@ Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschä
 	\norm {u-u_h}_{ε} \leq C \left(ε^{\frac12}h + h + h^2 \right)\halfnorm{u}_{2, 2, Ω}.
 \end{align*}
 
-\begin{proof}
+\begin{proof}[Simon Bechers erfolgreiche Variante]
+	Die Koerzivität von $a$ können wir nutzen, um $\norm{u-u_h}_{ε}$ abzuschätzen.
+	Dabei sei $v_h ∈ V_h$ erstmal beliebig, sodass wir später einen passenden Kandidaten wählen können.
+	\begin{align*}
+		α \norm{u-u_h}_{ε}^2
+		&\leq a(u-u_h, u-u_h)
+		= a(u-u_h, u-v_h) \quad ∀ v_h ∈ V_h \text{ (Galerkin-Orthogonalität)} \\
+		&= ε \scaProd{∇(u-u_h)}{∇(u-v_h)}_{0, Ω} + \scaProd{b · ∇(u-u_h)}{u-v_h}_{0, Ω}
+		+ \scaProd{c (u-u_h)}{u-v_h}_{0, Ω} \\
+		ε \scaProd{∇(u-u_h)}{∇(u-v_h)}_{0, Ω}
+		\overset{\text{Cauchy-Schwarz}}&{\leq}
+		ε \halfnorm{u-u_h}_{1,2,Ω} \halfnorm{u-v_h}_{1,2,Ω}
+		\leq \norm{u-u_h}_{ε} ε^{\frac 12}\halfnorm{u-v_h}_{1,2,Ω} \\
+		\scaProd{b · ∇(u-u_h)}{u-v_h}_{0, Ω}
+		\overset{\ref{thm:aufg6.3-divergenz_lemma}}&=
+		\scaProd{-(u-u_h)}{b · ∇(u-v_h)}_{0, Ω} - \scaProd{\div b(u-u_h)}{u-v_h}_{0,Ω} \\
+		\scaProd{-(u-u_h)}{b · ∇(u-v_h)}_{0, Ω}
+		\overset{\text{Cauchy-Schwarz}}&{\leq}
+		\norm{u-u_h}_{0,2,Ω}\norm{b}_{0,∞,Ω}\halfnorm{u-v_h}_{1,2,Ω}
+		\leq \norm{u-u_h}_{ε}\norm{b}_{0,∞,Ω}\halfnorm{u-v_h}_{1,2,Ω} \\
+	\end{align*}
+\end{proof}
+\begin{proof}[Felix schlechte Variante]
 	Wir nutzen die Ideen aus Theorem \ref{theorem7.2} um den Fehler $\norm{u - u_h}_{ε}$ abzuschätzen. Leider kommt lediglich das Ergebnis
 	\begin{align*}
 		\norm{u - u_h}_{ε} \leq C (ε^{\frac 12} h + \frac {h^2}{ε^{\frac 12}} + h^2) \halfnorm u_{2, 2, Ω},
