@@ -5,105 +5,406 @@
 % vim: set noexpandtab:
 
 \section{Aufgabenblatt 7}
-\subsection*{Aufgabe 6.3}
+\setcounter{section}{6}
+\setcounter{subsection}{2}
+\subsection{Aufgabe 6.3}
 Betrachte
 \begin{align*}
-	-\varepsilon\Delta u+b\cdot\nabla u+cu=f\text{ in }u=0\text{ auf }\partial\Omega
+	-ε Δ u + b·∇u + cu = f \text{ in } u=0 \text{ auf } \Rand{Ω}
 \end{align*}
-mit $0<\varepsilon<<1$ unter der Annahme
+mit $0 < ε \ll 1$ unter der Annahme
 \begin{align*}
-	c-\frac{1}{2}\div(b)\geq c_0>0\text{ in }\Omega
+	c-\frac12 \div(b)\geq c_0 > 0 \text{ in } Ω
 \end{align*}
-Weiter untersuchen wir das Standard-Galerkin-FEM Verfahren auf einer regulären, affin äquivalenten Zerlegung von $\Omega$. 
-Es ist bekannt, dass die entstehende Bilinearform $a$ koerziv auf $H_0^(\Omega)$ bezüglich der Norm
+Weiter untersuchen wir das Standard-Galerkin-FEM Verfahren auf einer regulären, affin äquivalenten Zerlegung von $Ω$. 
+Es ist bekannt, dass die entstehende Bilinearform $a$ koerziv auf $H_0^1(Ω)$ bezüglich der Norm
 \begin{align*}
-	\Vert\cdot\Vert:=\big(\varepsilon|\cdot|_1^2+\Vert\cdot\Vert_0^2\big)^{\frac{1}{2}}
+	\norm{·} \coloneqq \left(ε \halfnorm{·}_{1, 2, Ω}^2+ \norm{·}_{0, 2, Ω}^2\right)^{\frac12}
 \end{align*}
 ist.
-\subsubsection*{Aufgabe 6.3 (a)}
-Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas) in diesem Fall keine von $\varepsilon$ unabhängige Fehlerschätzung in der $\Vert\cdot\Vert_\varepsilon$-Norm möglich?
+\subsubsection{Aufgabe 6.3 (a)}
+Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas \ref{theorem2.2CeasLemma}) in diesem Fall keine von $ε$ unabhängige Fehlerschätzung in der $\norm{·}_{ε}$-Norm möglich?
 
 \begin{lösung}
-	%TODO
+	Da die Rechnung mit der Divergenz des Vektorfeldes $b$ zwei Mal auftaucht,
+	erwähne ich sie hier.%
+  %
+	\begin{lemma}[Divergenz-Lemma]\enter \label{thm:aufg6.3-divergenz_lemma}
+		Für $b ∈ C^1(Ω)$ und $u, v ∈ H_0^1(Ω)$ gilt
+		\begin{align*} 
+			∫_{Ω} b · ∇u v &= - ∫_{Ω} u b · ∇v + \div b u v \\
+			\text{und } ∫_Ω \left(b·∇u\right) u &= -\frac 12 ∫_{Ω} \div b \abs u^2.
+		\end{align*}
+	\end{lemma}
+
+	\begin{proof}
+		Die Produktregel für $b_i u$ ($i$ durchläuft die Koordinaten in $Ω$) ergibt
+		$(b_i u)_{x_i} = (b_i)_{x_i} u + b_i u_{x_i}$, also
+		$(b_i u)_{x_i} - (b_i)_{x_i} u = b_i u_{x_i}$.
+		Mit partieller Integration sehen wir für $u, v ∈ H_0^1(Ω)$
+		\begin{align*}
+			∫_{Ω} \left(b · ∇u\right) v
+			= ∫_{Ω} Σ_i b_i u_{x_i} v
+			&= ∫_{Ω} Σ_i {(b_i u)}_{x_i} v - {(b_i)}_{x_i} u v
+			= - ∫_{Ω} Σ_i b_i u v_{x_i} + {(b_i)}_{x_i} u v \\
+			&= - ∫_{Ω} u \left(b · ∇v\right) + \div(b) u v. \\
+			\intertext{Für den Fall $u = v$ vereinfacht sich dies zu}
+			∫_{Ω} \left(b · ∇u\right) u
+			&= - ∫_{Ω} \left(b · ∇u\right) u + \div b \abs u^2 \\
+			⇒ ∫_Ω \left(b·∇u\right) u &= -\frac 12 ∫_{Ω} \div b \abs u^2. \qedhere
+		\end{align*}
+	\end{proof}
+
+	Die Bedingung an $c$ und $b$ garantiert, dass es eine eindeutige Lösung der
+	Gleichung gibt. Céas Lemma \ref{theorem2.2CeasLemma} gibt uns eine Fehlerschranke,
+	die von der Stetigkeits- und Koerzivitätsschranke der Bilinearform abhängig ist.
+	Die Bilinearform $a$ ist
+	\begin{align*}
+		a(u, v) = ∫_{Ω} ε ∇u · ∇v + b·∇u v + cuv \quad u, v ∈ H_0^1(Ω)
+	\end{align*}
+	Um die Stetigkeit von $a$ nachzuweisen, rechne wie üblich:
+	\begin{align*}
+		\abs {a(u, v)} & \leq \left(∫_{Ω} ε \abs{∇ u}^2 \right)^{\frac12}
+		\left(∫_{Ω} ε \abs{∇ v}^2 \right)^{\frac12}
+		+ \norm{b}_{∞} \left(∫_{Ω} \abs{∇u}^2\right)^{\frac12}
+		\left(∫_{Ω} \abs{v}^2\right)^{\frac12} \\
+		&\tab + \norm{c}_{∞} \left(∫_{Ω} \abs{u}^2\right)^{\frac12}
+		\left(∫_{Ω} \abs{v}^2\right)^{\frac12} \\
+		&= ε^{\frac12} \halfnorm{u}_{1, 2, Ω} ε^{\frac12} \halfnorm{v}_{1,2,Ω}
+		+ \norm{b}_{∞} \halfnorm{u}_{1, 2, Ω} \norm{v}_{0, 2, Ω}
+		+ \norm{c}_{∞} \norm{u}_{0, 2, Ω} \norm{v}_{0, 2, Ω} \\
+		&\leq ε^{-\frac12}\tilde M(b, c) \left(ε \halfnorm{u}_{1, 2, Ω} + \norm{u}_{0, 2, Ω} \right)^{\frac12}
+		\left(ε \halfnorm{v}_{1, 2, Ω} + \norm{v}_{0, 2, Ω}\right)^{\frac12} \\
+		&= M(ε, b, c) \norm{u}_{ε} \norm{v}_{ε}.
+	\end{align*}
+	Die Stetigkeitskonstante $M$ ist also von $ε$ abhängig und steigt mit fallendem $ε$.
+	Das wird auch nicht durch die Koerzivitätskonstante $α$ ausgeglichen.
+	Berechne diese
+	\begin{align*}
+		a(u, u)
+		&= ∫_{Ω} ε \abs{∇u}^2 + b · ∇u u + c u^2 \\
+		\overset{\ref{thm:aufg6.3-divergenz_lemma}}&=
+		ε \halfnorm u_{1, 2, Ω}^2 + ∫_{Ω} \left(c - \frac12 \div b\right) \abs u^2 \\
+		\overset{\text{Vor.}}&{\geq}
+		ε \halfnorm u_{1, 2, Ω}^2 + c_0 \norm{u}_{0, 2, Ω}^2
+		\geq \min\{1, c_0\} \norm u_ε.
+	\end{align*}
+	Die Koerzivitätskonstante ist also $α = \min\{1, c_0\}$ und damit von $ε$ unabhängig.
+	Damit ergibt Céas Lemma \ref{theorem2.2CeasLemma} keine $ε$-unabhängige Abschätzung, denn es besagt
+	\begin{align*}
+		\norm{u - u_h}_{ε} \leq \frac {ε^{-\frac12}M}{α} \inf_{v_h ∈ V} \norm{u - v_h}_{ε}
+		\leq \frac {ε^{-\frac12}M}{α} C \halfnorm u_{2, 2, Ω}
+	\end{align*}
+	\begin{bemerkungnr} \label{bemerkung-aufg6.3Interpolationsfehler}
+		Um einzuschätzen wie gut diese Abschätzung ist, sei hier eine Abschätzung für den Interpolationsfehler erwähnt, die in Lemma \ref{theorem4.16} gezeigt wurde:
+		\begin{align*}
+			% \norm{u - u_h}_{ε} & \leq \frac M{α} \inf_{v_h ∈ V} \norm{u - v_h}_{ε} \\
+			\norm{u - I_hu}_{ε}
+			& = \left(ε \halfnorm{u - I_h u}_{1, 2, Ω}^2 + \norm{u - I_hu}_{0, 2, Ω}^2\right)^{\frac12} \\
+			& \leq \left(C ε h^2 \halfnorm u_{2, 2, Ω}^2 + C h^4 \halfnorm u_{2, 2, Ω}^2\right)^{\frac 12} \\
+			& \leq C \left(ε^{\frac 12} h + h^2 \right) \halfnorm u_{2, 2, Ω} \\
+			⇒ \norm{u - u_h}_{ε}
+			& \leq \frac{\tilde M}{α} ε^{- \frac 12} C \left(ε^{\frac 12} h + h^2\right) \halfnorm u_{2, 2, Ω} \\
+			&= C \left(h + \frac {h^2}{ε^{\frac 12}}\right) \halfnorm u_{2, 2, Ω}
+		\end{align*}
+	\end{bemerkungnr}
 \end{lösung}
 
-\subsubsection*{Aufgabe 6.3 (b)}
+\subsubsection{Aufgabe 6.3 (b)}
 Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschätzung der Form
 \begin{align*}
-	\Vert u-u_h\Vert_\varepsilon\leq C\left(\varepsilon^{\frac{1}{2}}h+h+h^2\right)|u|_2.
+	\norm {u-u_h}_{ε} \leq C \left(ε^{\frac12}h + h + h^2 \right)\halfnorm{u}_{2, 2, Ω}.
 \end{align*}
 
 \begin{proof}
-	Wir nutzen die Galerkin-Orthogonalität.
-	%TODO
-\end{proof}
+	Wir nutzen die Ideen aus Theorem \ref{theorem7.2} um den Fehler $\norm{u - u_h}_{ε}$ abzuschätzen. Leider kommt lediglich das Ergebnis
+	\begin{align*}
+		\norm{u - u_h}_{ε} \leq C (ε^{\frac 12} h + \frac {h^2}{ε^{\frac 12}} + h^2) \halfnorm u_{2, 2, Ω},
+	\end{align*}
+	wobei $C$ von $ε$ und $h$ unabhängig ist.
+	Das ist für $h > ε^{\frac 12}$ schlechter als die geforderte Schranke.
+	Im Theorem \ref{theorem7.2} kommt der Term $\frac {h^2}{ε^{\frac 12}}$ nicht vor, denn die dort genutzte $\norm{·}_{\text{SD}}$ beinhaltet einen Anteil in Richtung $b$, der in der $\norm{·}_{ε}$-Norm nicht auftaucht.
+	Daher bezweifle ich (Felix), dass es besser geht.
 
+	Wie im Beweis von Theorem \ref{theorem7.2} sei
+	\begin{align*}
+		I_h u &∈ V_h \text{ die Interpolierte von $u$} \\
+		w_h \overset{\text{Def}}&= I_hu - u_h ∈ V_h, \\
+		z_h \overset{\text{Def}}&= I_hu - u.
+	\end{align*}
+	Wir nutzen die Dreiecksungleichung
+	\begin{align*}
+		\norm{u - u_h}_{ε} \leq \norm{u - I_h u}_{ε} + \norm{I_h - u_h}_{ε} = \norm{w_h}_{ε} + \norm{z_h}_{ε}.
+	\end{align*}
+	Um den ersten Term abzuschätzen, nutze die Koerzivität von $a$ und die Galerkin-Orthogonalität:
+	\begin{align*}
+		\norm{w_h}_{ε}^2
+		\leq α^{-1} a(w_h, w_h)
+		&= α^{-1} (a(z_h, w_h) + \underbrace{a(u - u_h, w_h)}_{w_h ∈ V_h ⇒ = 0}) \\
+		&\leq α^{-1} \abs{∫_{Ω} ε ∇z_h · ∇w_h} + \abs{∫_{Ω} (b · ∇z_h) w_h + c z_h w_h}.
+	\end{align*}
+	Nun schätze die einzelnen Terme mit Cauchy-Schwarz und Theorem \ref{theorem7.2} ab:
+	\begin{align*}
+		\abs{∫_{Ω} ε ∇z_h · ∇w_h}
+		&\leq ε^{\frac 12} \halfnorm{z_h}_{1, 2, Ω} ε^{\frac 12} \halfnorm{w_h}_{1, 2, Ω} \\
+		&\leq C ε^{\frac 12} h \halfnorm{u}_{2, 2, Ω} \norm{w_h}_{ε} \\
+		\abs{∫_{Ω} (b · ∇z_h) w_h + c z_h w_h}
+		\overset{\ref{thm:aufg6.3-divergenz_lemma}}&=
+		\abs{∫_{Ω} -z_h b · ∇w_h - (\div b) z_h w_h + c z_h w_h} \\
+		&\leq \norm b_{0, ∞, Ω} \norm{z_h}_{0, 2, Ω} \halfnorm{w_h}_{1, 2, Ω} \\
+		&\tab + \norm{c - \div b}_{0, ∞, Ω} \norm{z_h}_{0, 2, Ω} \norm{w_h}_{0, 2, Ω} \\
+		&\leq \norm{b}_{0, ∞, Ω} C h^2 \halfnorm{u}_{2, 2, Ω} ε^{- \frac 12} \norm{w_h}_{ε} \\
+		&\tab + \norm{c - \div b}_{0, ∞, Ω} C h^2 \halfnorm u_{2, 2, Ω}\norm{w_h}_{ε} \\
+		&\leq C h^2 \halfnorm u_{2, 2, Ω} ε^{-\frac 12} \norm{w_h}_{ε} \\
+		⇒ \norm{w_h}_{ε}^2
+		&\leq C(ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω} \norm{w_h}_ε \\
+		⇒ \norm{w_h}_{ε}
+		&\leq C(ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω}.
+	\end{align*}
+	Mit der Abschätzung für $\norm{z_h}_{ε}$ aus der Bemerkung \ref{bemerkung-aufg6.3Interpolationsfehler} ergibt sich
+	\begin{align*}
+		\norm{u - u_h}_{ε} \leq C (h + ε^{- \frac12}h^2 + ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω}.
+	\end{align*}
+	Das ist das angekündigte Ergebnis. Die Konstante $C$ hängt unter anderem von $b$, $c$, der Formregularität der Triangulierung, aber nicht von $ε$ und $h$ ab.
+\end{proof}
+\setcounter{section}{7}
+\setcounter{subsection}{0}
 \subsection{Aufgabe 7.1}
-Sei $\Omega\subseteq\R^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\partial\Omega$.
+Sei $Ω \subseteq ℝ^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\Rand{Ω}$.
 Die primale gemischte Methode für die Poisson-Gleichung
 \begin{align*}
-	-\Delta u=-\div(\grad((u))=f\text{ in }\Omega
+	-\laplace u=-\div(\grad(u))=f \text{ in } Ω
 \end{align*}
-mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\partial\Omega$ ist gegeben durch:\nl
-Finde $(\sigma,u)\in L^2(\Omega)^d\times H_0^1(\Omega)$ so, dass
+mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\Rand Ω$ ist gegeben durch:\nl
+Finde $(σ, u)∈ L^2(Ω)^d \times H_0^1(Ω)$ so, dass
 \begin{align*}
 	\begin{array}{rll}
-		(\sigma,\tau)_{0,\Omega}-(\tau,\nabla u)_{0,\Omega}&=0 &\forall\tau\in L^2(\Omega)^d\\
-		-(\sigma,\nabla v)_{0,\Omega}&=-(f,v)_{0,\Omega} &\forall v\in H_0^1(\Omega)
+		\scaProd{σ}{τ}_{0, Ω}- \scaProd{τ}{∇ u}_{0, Ω}&=0 & ∀ τ ∈ L^2(Ω)^d\\
+		-\scaProd{σ}{∇ v}_{0, Ω}&=-\scaProd f v_{0, Ω} & ∀ v ∈ H_0^1(Ω)
 	\end{array}
 \end{align*}
 
 \subsubsection{Aufgabe 7.1 (a)}
 Leiten Sie die Formulierung im Detail her.
-Schreiben Sie dazu die Poisson-Gleichung zunächst durch Einführung einer zweiten Variable $\sigma=\nabla u$ in ein System partieller Differentialgleichungen erster Ordnung um.
+Schreiben Sie dazu die Poisson-Gleichung zunächst durch Einführung einer zweiten Variable $σ = ∇u$ in ein System partieller Differentialgleichungen erster Ordnung um.
 
 \begin{lösung}
-	%TODO
+	Die schwache Formulierung für die Poisson-Gleichung mit Dirichlet-Rand\-be\-din\-gun\-gen ist
+	\begin{align*}
+		\scaProd {∇u}{∇v}_{0, Ω} = \scaProd fv_{0, Ω} && ∀ v ∈ H_0^1(Ω).
+	\end{align*}
+	Bezeichnet man nun $σ \overset{\text{Def}} = ∇u$ ergibt das
+	\begin{align*}
+		\scaProd {σ}{∇v}_{0, Ω} = \scaProd fv_{0, Ω} && ∀ v ∈ H_0^1(Ω)
+	\end{align*}
+	mit $σ ∈ L^2(Ω)$.
+	Wir schreiben zusätzlich die Bedingung $σ - ∇u = 0$ in der schwachen Formulierung:
+	\begin{align*}
+		0 = \scaProd{σ - ∇u}{τ}_{0, Ω} = \scaProd{σ}{τ}_{0, Ω} - \scaProd{∇u}{τ} && ∀ τ ∈ L^2(Ω)^d
+	\end{align*}
+	Wie üblich sind diese beiden schwachen Formulierungen im Fall $u ∈ H^2(Ω) ∩ H^1_0(Ω)$ äquivalent zur starken Formulierung.
 \end{lösung}
 
 \subsubsection{Aufgabe 7.1 (b)}
-Obiges gemischtes Problem liefert ein stabiles Sattelpunktproblem.
+Obiges gemischtes Problem liefert ein stabiles Sattelpunktsproblem.
 
 \begin{proof}
-	%TODO
+	Was allgemein unter einem Sattelpunktsproblem zu verstehen ist und unter welchen Bedingungen so eines stabil ist, ist in der Bemerkung am Ende dieses Aufgabenblattes beschrieben.
+	Die Übersetzung von den Variablen im Allgemeinen Fall zu denen in unserem Problem ist:
+	\begin{align*}
+		X &= L^2(Ω)^d & M &= H_0^1(Ω) & a &= \scaProd{·}{·}_{0, Ω} & b &= \scaProd{·}{∇·}_{0, Ω} \\
+		f &= 0 & g &= \scaProd f{·}_{0, Ω} & u &= σ & λ &= u \\
+		v &= τ & μ &= v & V &= W
+	\end{align*}
+	Es ist also zuerst zu zeigen, dass $a$ koerziv auf $W$ ist, wobei
+	\begin{align*}
+		W \overset{\text{Def}}=
+		\setDef{τ ∈ L^2(Ω)^d}{\scaProd{τ}{∇v} = 0\; ∀ v ∈ H_0^1(Ω)}.
+	\end{align*}
+	Da $a(w, w) = \scaProd ww = \norm{w}_{L^2(Ω)^d}^2$ ist $a$ koerziv mit Koerzivitätskonstante $1$, sogar auf ganz $L^2(Ω)^d$, nicht nur auf $W$.
+
+	Nun betrachte die $\inf$-$\sup$-Bedingung. Sei $v ∈ H_0^1(Ω)$ mit $\norm v_{1, 2, Ω} = 1$ beliebig.
+	Dann
+	\begin{align*}
+		\sup_{\substack{τ ∈ L^2(Ω)^d \\ \norm{τ}_{0, 2, Ω} = 1}} \scaProd{τ}{∇v}_{0, Ω}
+		= \scaProd{\frac{∇v}{\norm{∇v}_{0, 2, Ω}}}{∇v}_{0, Ω}
+		= \halfnorm{v}_{1, 2, Ω},
+	\end{align*}
+	da ein Skalarprodukt auf einer Kugel maximiert wird, wenn beide Argumente kollinear sind.
+	Damit folgt mit der Friedrichsungleichung \ref{prop1.13FriedrichsUngleichung} für $H_0^1(Ω)$
+	\begin{align*}
+		\inf_{\substack{v ∈ H_0^1(Ω) \\ \norm v_{1, 2, Ω} = 1}}
+		\sup_{\substack{τ ∈ L^2(Ω)^d \\ \norm{τ}_{0, 2, Ω} = 1}}
+		\scaProd{τ}{∇v}_{0, Ω}
+		= \inf_{\substack{v ∈ H_0^1(Ω) \\ \norm v_{1, 2, Ω} = 1}} \halfnorm v_{1, 2, Ω}
+		\geq \inf_{\substack{v ∈ H_0^1(Ω) \\ \norm v_{1, 2, Ω} = 1}} \frac 1C \norm v_{1, 2, Ω}
+		= \frac 1C > 0.
+	\end{align*}
+	Damit ist die $\inf$-$\sup$-Bedingung erfüllt und das Sattelpunktsproblem stabil.
 \end{proof}
 
 \subsection{Aufgabe 7.2}
-Sei $\Omega\subseteq\R^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\partial\Omega$.
+Sei $Ω \subseteq ℝ^d$ ein beschränktes Gebiet mit Lipschitz-Rand $\Rand{Ω}$.
 Die duale gemischte Methode für die Poisson-Gleichung 
 \begin{align*}
-	-\Delta u=-\div(\grad((u))=f\text{ in }\Omega
+	-\laplace u=-\div(\grad(u))=f \text{ in } Ω
 \end{align*}
-mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\partial\Omega$ ist gegeben durch:\nl
-Finde $(\sigma,u)\in H(\div,\Omega)\times L^2(\Omega)$: so, dass
+mit homogenen Dirichlet-Randbedingungen $u=0$ auf $\Rand Ω$ ist gegeben durch:\nl
+Finde $(σ, u) ∈ H(\div, Ω) \times L^2(Ω)$: so, dass
 \begin{align*}
 	\begin{array}{rll}
-		(\sigma,\tau)_{0,\Omega}+(\div(\tau),u)_{0,\Omega}&=0&\forall\tau\in H(\div,\Omega)\\
-		(\div(\sigma),v)_{0,\Omega} &=-(f,v)_{0,\Omega} &\forall v\in L^2(\Omega)
+		\scaProd{σ}{τ}_{0, Ω} + \scaProd{\div(τ)}{u}_{0, Ω} &= 0 & ∀ τ ∈ H(\div,Ω)\\
+		\scaProd{\div(σ)}{v}_{0, Ω} &= -\scaProd{f}{v}_{0, Ω} & ∀ v ∈ L^2(Ω)
 	\end{array}
 \end{align*}
 Der verwendete Raum
 \begin{align*}
-	H(\div,\Omega):=\left\lbrace\tau\in L^2(\Omega)^d:\div(\tau)\in L^2(\Omega)\right\rbrace
+	H(\div,Ω) := %\coloneqq
+	\setDef{τ ∈ L^2(Ω)^d}{\div(τ)∈ L^2(Ω)}
 \end{align*}
-kann auch als Vervollständigung von $C^\infty(\Omega)^d$ bzgl. der Norm 
+kann auch als Vervollständigung von $C^{∞}(Ω)^d$ bzgl. der Norm 
 \begin{align*}
-	\Vert v\Vert_{H(\div,\Omega)}:=\left(\Vert v\Vert_{0,\Omega}^2+\Vert\div(v)\Vert_{0,\Omega}^2\right)^{\frac{1}{2}}
+	\norm v_{H(\div,Ω)}
+	\overset{\text{Def}}=
+	\left(\norm v_{0, 2, Ω}^2+ \norm {\div(v)}_{0, 2, Ω}^2\right)^{\frac12}
 \end{align*}
 definiert werden.
 
 \subsubsection{Aufgabe 7.2 (a)}
-Auf den ersten Blick schein $u$ nur in $L^2(\Omega)$ zu liegen.
-Zeigen Sie, dass tatsächlich aber $u\in H_0^1(\Omega)$ ist.
+Auf den ersten Blick schein $u$ nur in $L^2(Ω)$ zu liegen.
+Zeigen Sie, dass tatsächlich aber $u∈ H_0^1(Ω)$ ist.
 Was fällt bei den Randbedingungen auf?
 
 \begin{proof}
-	%TODO
+	Wir zeigen, dass aus der ersten Bedingung
+	\begin{align}\label{eqaufg7.2a-1}
+		\scaProd{σ}{τ}_{0,Ω}+ \scaProd{\div(τ)}{u}_{0,Ω} &= 0 & ∀ τ ∈ H(\div,Ω)\\
+	\end{align}
+	folgt, dass $u$ schwach differenzierbar ist und $∇ u = σ$ in $Ω$ gilt.
+	Dafür betrachte beliebige $φ ∈ C^{∞}_c(Ω)$ und $τ = φe_i ∈ H(\div, Ω)$, wobei $i ∈ \{1, \dots, d\}$ alle Komponenten durchläuft.
+	Dafür gilt $\div τ = Σ_{j = 1}^d (τ_j)_{x_j} = φ_{x_j}$ und
+	\begin{align*}
+		∫_{Ω} σ_i φ
+		= ∫_{Ω} Σ_{j = 1}^d σ_j (φe_i)_j
+		\scaProd{σ}{τ}_{0, Ω}
+		\overset{\eqref{eqaufg7.2a-1}}=
+		\scaProd{\div τ}u_{0, Ω}
+		= \scaProd{φ_{x_i}}u_{0, Ω}
+		\quad ∀ φ ∈ C^{∞}_c(Ω)
+	\end{align*}
+	Also ist $u$ in die Richtung $x_i$ schwach differenzierbar mit der partiellen Ableitung $σ_i$. Da $i$ beliebig ist und $σ ∈ L^2(Ω)$ ist $u ∈ H^1(Ω)$ mit $∇u = σ$.
+
+	Der Satz von Gauß erlaubt uns, Aussagen über Randintegrale zu finden.
+	Randwerte von $u$ im $L^2(\Rand{Ω})$-Sinn sind wohldefiniert, da $u ∈ H^1(Ω)$.
+	Für $τ ∈ H^1_0(Ω)^d \subseteq H(\div, Ω)$ gilt nun
+	\begin{align*}
+		∫_{Ω} (\div τ) u
+		&= ∫_{\Rand{Ω}} (τu) · η \d S - ∫_{Ω} τ · ∇u
+		= ∫_{\Rand{Ω}} (τu) · η \d S - ∫_{Ω} τ · σ \\
+		\overset{\eqref{eqaufg7.2a-1}}{⇒}
+		0 &= ∫_{\Rand{Ω}} (τu) · η \d S,
+		= ∫_{\Rand{Ω}} (τ · η)u \d S,
+	\end{align*}
+	wobei $η$ der Einheitsnormalenvektor auf dem Rand ist.
+	Da unter den betrachteten $τ ∈ H^1_0(Ω)^d$ alle möglichen Randwerte existieren, sind die Randwerte von $u$ gleich $0$ als $L^2(\Rand{Ω})$-Funktion, sprich $u ∈ H^1_0(Ω)$.
 \end{proof}
 
 \subsubsection{Aufgabe 7.2 (b)}
 Obige gemischte Formulierung liefert ein stabiles Sattelpunktsproblem.
 
 \begin{proof}
-	%TODO
+	Die Übersetzung von den Variablen im allgemeinen Fall zu denen in unserem Problem ist:
+	\begin{align*}
+		X &= H(\div, Ω) & M &= L^2(Ω) & a &= \scaProd{·}{·}_{0, Ω} & b &= \scaProd{\div(·)}{·}_{0, Ω} \\
+		f &= 0 & g &= - \scaProd f{·}_{0, Ω} & u &= σ & λ &= u \\
+		v &= τ & μ &= v & V &= W,
+	\end{align*}
+	wobei
+	\begin{align*}
+		W &=
+		\setDef{τ ∈ H(\div, Ω)}{\scaProd{\div τ}{v}_{0, Ω} = 0\; ∀ v ∈ L^2(Ω)} \\
+		&= \setDef{τ ∈ H(\div, Ω)}{\div τ = 0},
+	\end{align*}
+	also der Raum der Divergenz-freien $L^2(Ω)^d$-Funktionen.
+	$a$ ist offensichtlich symmetrisch.
+	Für $w ∈ W$ ist
+	\begin{align*}
+		a(w, w)
+		&= \scaProd ww_{0, Ω}
+		= \norm w_{0, 2, Ω}^2 + \underbrace{\scaProd{\div w}{\div w}_{0, Ω}}_{= 0, \text{ da } w ∈ W} \\
+		&= \norm w_{0, 2, Ω}^2 + \norm{\div w}_{0, 2, Ω}^2
+		= \norm w_{H(\div, Ω)}^2.
+	\end{align*}
+	Also ist $a$ auf $W$ mit Koerzivitätskonstante $1$ koerziv.
+
+	Jetzt ist noch die $\inf$-$\sup$-Bedingung zu zeigen.
+	Sei dafür $v ∈ L^2(Ω)$ mit $\norm v_{0, 2, Ω}$ beliebig.
+	Wir wollen ein $τ ∈ H(\div, Ω)$ finden, sodass $\div τ$ möglichst nah dran ist an einem Vielfachen von $v$, damit $⟨\div τ, v⟩_{0, 2}$ maximal wird.
+	Um Rechnungen zu vereinfachen, setzen wir $τ_i = 0$ für $i ∈ \{2, \dots, d\}$,
+	denn dann ist $\div τ = (τ_1)_{x_1}$.
+	Also sollte $τ_1$ eine Art Stammfunktion von $v$ sein.
+	Damit punktweise Integration möglich ist, nehmen wir nicht $v$, sondern eine Approximation $φ ∈ C^{∞}_c(Ω)$ mit $\norm{v - φ}_{0, 2, Ω} \leq \frac12 \norm{v}_{0, 2, Ω}$.
+	Dieser Schritt scheint viel zu verschenken und er tut es auch und eine bessere Annährung ergibt ein größeres $β$, aber wir sind gerade nur an einem beliebigen $β > 0$ interessiert.
+
+	Damit $(τ_1)_{x_1} = φ$, setze
+	\begin{align*}
+		\tilde {τ_1}(x)
+		&= ∫_{- ∞}^x φ(t, x_2, \dots x_d) \d t \\
+		τ_1 &=
+		\begin{cases}
+			\tilde {τ_1}(x), &\text{für } x ∈ Ω \\
+		0 &\text{sonst}
+		\end{cases}
+	\end{align*}
+	$τ_1$ ist wohldefiniert, da $Ω$ beschränkt ist und daher tatsächlich nur über ein endliches Intervall integriert wird und $φ ∈ C^{∞}_c(Ω)$ darauf beschränkt ist.
+	Nach dem Hauptsatz der Integral- und Differentialrechnung gilt tatsächlich $(τ_1)_{x_1} = φ$, zumindest im Inneren von $Ω$.
+
+	Nun müssen wir zeigen, dass $τ_1 ∈ L^2(Ω)$, damit $τ ∈ H(\div, Ω)$.
+	\begin{align*}
+		\norm{τ_1}_{0, 2, Ω}^2
+		% \leq \norm{\tilde τ_1}_{0, 2, ℝ^d}^2
+		&= ∫_{Ω} \abs{∫_{- ∞}^x φ(t, x_2, \dots, x_d) \d t}^2 \d x
+		\leq ∫_{Ω} \left( ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)} \d t \right)^2 \d x \\
+		&= ∫_{Ω} \left( ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)} · 1 \d t \right)^2 \d x \\
+		\overset{\text{Cauchy-Schwarz}}&{\leq}
+		∫_{Ω}\left( \left( ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)}^2 \d t \right)^{\frac 12} \left(∫_{Ω} 1^2\right)^{\frac 12} \right)^2 \d x \\
+		&= ∫_{Ω} ∫_{-∞}^{∞} \abs{φ(t, x_2, \dots, x_d)}^2 \d t \abs{Ω} \d x \\
+		&\leq \abs{Ω} \abs{Ω_1} ∫_{Ω} \abs{φ(x_1, x_2, \dots, x_d)}^2 \d x \\
+		&\leq \abs{Ω} \abs{Ω_1} \norm{φ}_{0, 2, Ω}^2
+	\end{align*}
+	Hierbei bezeichnet $\abs{Ω}$ das Maß von $Ω$ und $\abs{Ω_1}$ die maximale Ausdehnung von $Ω$ in die Richtung $x_1$.
+	Der Integrand nach der ersten Abschätzung ist unabhängig von $x_1$ und daher kann $\abs{Ω_1}$ herausgezogen werden.
+	Die Integrationsgrenzen $∞$ und $-∞$ sind tatsächlich auch beschränkt, da $Ω$ beschränkt ist und $φ$ Träger in $Ω$ hat.
+	Damit gilt
+	\begin{align*}
+		\norm{τ}_{H(\div, Ω)}^2 &= \norm{τ}_{0, 2, Ω}^2 + \norm{\div τ}_{0, 2, Ω}^2 \leq \abs{Ω} \abs{Ω_1} \norm{φ}_{0, 2, Ω}^2 + \norm{φ}_{0, 2, Ω}^2 \\
+		⇒ \norm{τ}_{H(\div, Ω)} &\leq \underbrace{\left(\abs{Ω} + \abs{Ω_1}\right)^{\frac 12}}_{:= C} \norm{φ}_{0, 2, Ω} % \coloneqq C
+	\end{align*}
+	Für das Supremum gilt demnach
+	\begin{align*}
+		\sup_{ρ ∈ H(\div, Ω)\setminus \{0\}} \frac {\scaProd{\div ρ}v_{0, Ω}}
+		{\norm{ρ}_{H(\div, Ω)}}
+		&\geq \frac {\scaProd{\div τ}v_{0, Ω}}
+		{\norm{τ}_{H(\div, Ω)}} \\
+		&\geq \frac {\scaProd{φ}v_{0, Ω}}
+		{C \norm{φ}_{0, 2, Ω}} \\
+		&\geq \frac{\scaProd vv_{0, Ω} - \scaProd {v - φ}v_{0, Ω}}
+		{C \left(\norm{v}_{0, 2, Ω} + \norm{φ - v}_{0, 2, Ω}\right)} \\
+		\overset{\text{Cauchy-Schwarz}}&{\geq}
+		\frac{\norm v_{0, 2, Ω}^2 - \norm{v - φ}_{0, 2, Ω}\norm{v}_{0, 2, Ω}}
+		{C \left(\norm{v}_{0, 2, Ω} + \frac 12\norm v_{0, 2, Ω}\right)} \\
+		&\geq \frac{\norm v_{0, 2, Ω}^2 - \frac 12 \norm{v}_{0, 2, Ω}^2}
+		{\frac 32 C \norm{v}_{0, 2, Ω}} \\
+		&= \frac2{3·2C} \norm v_{0, 2, Ω}
+	\end{align*}
+	Damit lässt sich dann auch einfach das Infimum bestimmen:
+	\begin{align*}
+		\inf_{\substack{v ∈ L^2(Ω) \\ \norm v_{0, 2, Ω} = 1}}
+		\sup_{ρ ∈ H(\div, Ω)\setminus \{0\}} \frac {\scaProd{\div ρ}v_{0, Ω}}
+		{\norm{ρ}_{H(\div, Ω)}}
+		\geq 
+		\inf_{\substack{v ∈ L^2(Ω) \\ \norm v_{0, 2, Ω} = 1}}
+		\frac 1{3C} \norm v_{0, 2, Ω} = \frac 1{3C} > 0.
+	\end{align*}
+	Damit handelt es sich um ein stabiles Sattelpunktsproblem.
 \end{proof}
