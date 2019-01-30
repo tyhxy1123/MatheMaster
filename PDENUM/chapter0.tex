@@ -3355,7 +3355,7 @@ $B^\ast$ ist injektiv ist äquivalent zu
 	&\Longleftrightarrow\exists\beta>0:
 	\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
 \end{align*}
-Die letzte Ungleichung heißt \textbf{inf-sup-Bedingung / LBB-Bedingung}
+Die letzte Ungleichung heißt \textbf{$\inf$-$\sup$-Bedingung / LBB-Bedingung}
 
 \begin{thm}%nonumber
 	Für eine stetige Bilinearform $b$ auf $Q\times V$ mit zugehörigen Operatoren
@@ -3426,7 +3426,7 @@ Unsere Setting ist
 	\Vert q\Vert_Q&=\inf\limits_{c\in\R}\Vert q+c\Vert_{0,2,\Omega}=\Vert q\Vert_{0,2,\Omega}\text{ für }q\in L^2_0(\Omega)
 \end{align*}
 
-Die inf-sup-Bedingung ist erfüllt für $(V,Q)$.
+Die $\inf$-$\sup$-Bedingung ist erfüllt für $(V,Q)$.
 
 \subsection{Konforme Diskretisierungen} %8.3
 Wähle Finite-Elemente-Räume $V_h\subseteq V,Q_h\subseteq Q$.
@@ -3459,13 +3459,13 @@ Seien $\lbrace\varphi_i\rbrace$, $\lbrace\psi_i\rbrace$ Basen von $V_h$ bzw. $Q_
 
 \subsection*{Lösbarkeit von diskreten Problemen}
 Stetigkeit und Elliptizität vererben sich für stetige Probleme.
-Eine \textbf{diskrete Version der inf-sup-Bedingung} muss angenommen / geprüft werden.
+Eine \textbf{diskrete Version der $\inf$-$\sup$-Bedingung} muss angenommen / geprüft werden.
 \begin{align*}
 	\exists\beta>0:\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h\Vert_V\cdot\Vert q_h\Vert_V}\geq\beta
 \end{align*}
 Wir nehmen an, dass $\beta$ ist unabhängig von Netzparameter $h$ ist.
 Folglich ist das diskrete Problem eindeutig lösbar.\\
-Paare von $(V_h,Q_h)$ erfüllen diese diskrete inf-sup-Bedingung:
+Paare von $(V_h,Q_h)$ erfüllen diese diskrete $\inf$-$\sup$-Bedingung:
 \begin{align*}
 	V_h:S_{h,0}^{r,0},\qquad Q:S_h^{r-1,0},\qquad r\geq2,\qquad P_2/P_1\\
 	r\geq 2,\qquad Q_h=S_h^{r-1,1},\qquad V_h=P_r+\text{ Bereicherung}\supseteq S_{h,0}^{r,0}
@@ -3482,11 +3482,11 @@ $b\colon Q\times V\to\R$ sei bilinear, stetig mit Konstante $C_b$:
 \begin{align*}
 	\big|b(q,v)\big|&\leq C_b\Vert q\Vert_Q\Vert v\Vert_V
 \end{align*}
-Die inf-sup-Bedingung für $(V,Q)$
+Die $\inf$-$\sup$-Bedingung für $(V,Q)$
 \begin{align*}
 	\exists\beta>0:\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(q,v)}{\Vert q\Vert_Q\Vert v\Vert_V}\geq\beta
 \end{align*}
-ist erfüllt. Ebenso die uniforme inf-sup-Bedingung für $(V_h,Q_h)$:
+ist erfüllt. Ebenso die uniforme $\inf$-$\sup$-Bedingung für $(V_h,Q_h)$:
 \begin{align*}
 	\exists\tilde{\beta}>0:\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q\Vert v_h\Vert_V}\geq\tilde{\beta}
 \end{align*}
@@ -3554,7 +3554,7 @@ Diskretes Problem: ($P_h$)\\
 		&\Longleftrightarrow \Big(b(q_h,v_h)+b(q_h,r_h)=b(q_h,u) &\forall&q_h\in Q_h\Big)\\
 		&\Longleftrightarrow\Big( b(q_h,r_h)=b(q_h,u-v_h) &\forall&q_h\in Q_h\Big)
 	\end{align*}
-	Aus der diskreten inf-sup-Bedingung folgt, dass es eine eindeutige Lösung $r_h\in W_h^\perp$ von
+	Aus der diskreten $\inf$-$\sup$-Bedingung folgt, dass es eine eindeutige Lösung $r_h\in W_h^\perp$ von
 	\begin{align*}
 		b(q_h,r_h)=b(q_h,u-v_h)\qquad\forall q_h\in Q_h
 	\end{align*}
@@ -3629,7 +3629,7 @@ Diskretes Problem: ($P_h$)\\
 \end{theorem}
 
 \begin{proof}
-	Sei $q_h\in Q$ beliebig. Dann gilt aus der inf-sup-Bedingung:
+	Sei $q_h\in Q$ beliebig. Dann gilt aus der $\inf$-$\sup$-Bedingung:
 	\begin{align*}
 		\Vert p_h-q_h\Vert_Q
 		&\leq\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{b(p_h-q_h,v_h)}{\Vert v_h\Vert_V}
@@ -3690,17 +3690,17 @@ führen.
 	\end{enumerate}
 \end{beispiel}
 
-Die inf-sup-Bedingung spielt eine große in der Theorie, ist aber in der Praxis oft schwer zu zeigen.
+Die $\inf$-$\sup$-Bedingung spielt eine große in der Theorie, ist aber in der Praxis oft schwer zu zeigen.
 
-\subsection{Nachweis der inf-sup-Bedingung (diskrete Version)}
-Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
+\subsection{Nachweis der \texorpdfstring{$\inf$-$\sup$}{inf-sup}-Bedingung (diskrete Version)}
+Man nimmt stets an, dass die stetige Version der $\inf$-$\sup$-Bedingung gilt.
 
 \begin{lemma}[Fortin, 1977]\label{lemmaFortin}\enter
-	Angenommen die stetige inf-sup-Bedingung
+	Angenommen die stetige $\inf$-$\sup$-Bedingung
 	\begin{align*}
-		\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(v,q)}{\Vert v \Vert_V\Vert q\Vert_Q}\geq\beta>0
+		\inf_{q\in Q\setminus\{0\}}\sup_{v\in V\setminus\{0\}}\frac{b(v,q)}{\Vert v \Vert_V\Vert q\Vert_Q}\geq\beta>0
 	\end{align*}
-	gilt. Dann gilt die diskrete inf-sup-Bedingung
+	gilt. Dann gilt die diskrete $\inf$-$\sup$-Bedingung
 	\begin{align*}
 		\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}\geq\beta^\ast>0
 	\end{align*}
@@ -3730,9 +3730,9 @@ Man nimmt stets an, dass die stetige Version der inf-sup-Bedingung gilt.
 			\frac{1}{c}\sup\limits_{v\in V}\frac{b(q_h,v)}{\Vert v\Vert_V\Vert q_h\Vert_Q}\\
 			&\geq\frac{\beta}{c}>0
 		\end{align*}
-		Das $\beta$ kommt aus der stetigen inf-sup-Bedingung.
-		Wir haben also die diskrete inf-sup-Bedingung (u.a.) aus der stetigen inf-sup-Bedingung gefolgert.
-		\item Angenommen die diskrete inf-sup-Bedingung ist erfüllt.
+		Das $\beta$ kommt aus der stetigen $\inf$-$\sup$-Bedingung.
+		Wir haben also die diskrete $\inf$-$\sup$-Bedingung (u.a.) aus der stetigen inf-sup-Bedingung gefolgert.
+		\item Angenommen die diskrete $\inf$-$\sup$-Bedingung ist erfüllt.
 		\footnote{$Q_h^\ast$ ist der Dualraum von $Q_h$}
 		\begin{align*}
 			B_h\colon V_h\to Q_h^\ast,\qquad
