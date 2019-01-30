@@ -26,7 +26,7 @@ and
 The following boundary conditions are assumed
 \begin{align*}
 	v|_{\text{rigid}} &= 0\\
-	v|_{\tin} &= v^{\tin}\\
+	v|_{\text{in}} &= v^{\tin}\\
 	\nu \partial_nv+ pn|_{\text{out}} &=0\\
 \end{align*}
 where $n$ is the outer normal. The initial condition is
@@ -39,8 +39,8 @@ We define the following spaces for this example:
 	H^1(\Omega)^2 &:= \left \{ v \in L^2(\Omega)\colon \partial_i v \in L^2(\Omega), i=1,2  \right\}^2\\
 	H^1_0(\Gamma,\Omega)^2 &:= \left \{ v \in H^1(\Omega)\colon v|_\Gamma =0 \right\}^2, \quad \Gamma \subset \partial \Omega\\
 \end{align*}
-p is uniquely determinde by the velocity v, but only up to a constant.\\
-(every bounded functional $F(\cdot)$ onj $H^1_0(\Gamma,\Omega)$ which vanishes on 
+p is uniquely determined by the velocity v, but only up to a constant.\\
+(every bounded functional $F(\cdot)$ on $H^1_0(\Gamma,\Omega)$ which vanishes on 
 \begin{equation*}
 	I_1(\Gamma,\Omega) := \{v \in H^1_0(\Gamma,\Omega)\colon \nabla\cdot v =0 \}
 \end{equation*}
@@ -65,7 +65,7 @@ Our task is now to find $v \in v^{\tin} + H(=H^1_0(\Gamma,\Omega)^2)$ and $p \in
 	(\partial_tv,f) + n(v,v,\varphi) + a(v,\varphi) + b(p,\varphi) &= (f,\varphi)\quad \forall \varphi \in H\nonumber\\
 	(\nabla \cdot v, \psi) &= 0 \quad \forall \psi \in L \label{div_v}
 \end{align}
-If $\Gamma_{\text{out}} = \emptyset $ in 2D there is a unique solution on [0,T]. In 3D results exist only for small $T$ on small data. How to deal with $\nabla\dot v= 0$, decouple the continuity equation from momentum equation in an iterative process.\nl
+If $\Gamma_{\text{out}} = \emptyset $ in 2D there is a unique solution on [0,T]. In 3D results exist only for small $T$ on small data. How to deal with $\nabla\cdot v= 0$, decouple the continuity equation from momentum equation in an iterative process.\nl
 \underline{Idea:} supplement $\nabla \cdot v =0$ by stabilisation involving $p$ (try to get $p$ in eq. \eqref{div_v})
 \begin{itemize}
 	\item $\nabla \cdot v + \varepsilon p =0$ (penelisation method)
