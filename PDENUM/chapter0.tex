@@ -3356,8 +3356,8 @@ $B^\ast$ ist injektiv ist äquivalent zu
 	\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
 \end{align*}
 Die letzte Ungleichung heißt \textbf{$\inf$-$\sup$-Bedingung / LBB-Bedingung}
-
-\begin{thm}%nonumber
+\setcounter{satz}{-1}
+\begin{satz}\label{theorem8.0infsupAequivalenz}%nonumber
 	Für eine stetige Bilinearform $b$ auf $Q\times V$ mit zugehörigen Operatoren
 	$B\colon v\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
 	\begin{enumerate}[label=(\roman*)]
@@ -3377,7 +3377,7 @@ Die letzte Ungleichung heißt \textbf{$\inf$-$\sup$-Bedingung / LBB-Bedingung}
 			\big\Vert B^\ast q\big\Vert_{V^\ast}\geq\beta\cdot\Vert q\Vert_Q\qquad\forall q\in Q
 		\end{align*}
 	\end{enumerate}
-\end{thm}
+\end{satz}
 
 \setcounter{satz}{0} %Die Nummerierung war in der VL so.
 \begin{theorem}\label{theorem8.1}
@@ -3702,48 +3702,50 @@ Man nimmt stets an, dass die stetige Version der $\inf$-$\sup$-Bedingung gilt.
 	\end{align*}
 	gilt. Dann gilt die diskrete $\inf$-$\sup$-Bedingung
 	\begin{align*}
-		\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}\geq\beta^\ast>0
+		\inf_{q_h\in Q_h\setminus\{0\}}\sup_{v_h\in V_h\setminus\{0\}}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}\geq\beta^\ast>0
 	\end{align*}
 	gleichmäßig im Gitterparameter $h$ genau dann, wenn
-	es einen linearen Interpolationsoperator $I_h\colon V\to V_h$ gibt, so dass
+	es eine Familie von linearen Interpolationsoperatoren $\{I_h\colon V\to V_h\}_h$ gibt, so dass
 	\begin{align}\label{eqLemmaFortinBed1}
 		b(q_h,v)=b(q_h,I_h v)\qquad\forall q_h\in Q_h,\forall v\in V
 	\end{align}
 	und 
 	\begin{align}\label{eqLemmaFortinBed2}
-		\Vert I_h v\Vert_V\leq c\Vert v\Vert_V\qquad\forall v\in V
+		\Vert I_h v\Vert_V\leq C\Vert v\Vert_V\qquad\forall v\in V
 	\end{align}
-	wobei $c$ unabhängig von $h$ ist.
+	gilt, wobei $C$ unabhängig von $h$ ist.
 \end{lemma}
 
 \begin{proof}\
 	\begin{enumerate}[label=(\roman*)]
-		\item Angenommen es gibt $I_h$ mit den beiden obigen Eigenschaften \eqref{eqLemmaFortinBed1}, \eqref{eqLemmaFortinBed2}.
-		Sei $q_h\in Q_h$ beliebig.
+		\item Angenommen es gibt die Familie der $I_h$ mit den beiden obigen Eigenschaften \eqref{eqLemmaFortinBed1} und \eqref{eqLemmaFortinBed2}.
+			Sei $q_h\in Q_h\setminus\{0\}$ beliebig. Dann
+			% Ich (Felix) mag ja die Variante mit \norm{q_h}_Q = 1 lieber....
 		\begin{align*}
-			\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}
+			\sup\limits_{v_h\in V_h\setminus\{0\}}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}
 			\overset{I_h V\subseteq V_h}&\geq
-			\sup\limits_{v\in V}\frac{b(q_h,I_h v)}{\Vert I_h v\Vert_V\Vert q_h\Vert_Q}\\
+			\sup\limits_{v\in V\setminus\{0\}}\frac{b(q_h,I_h v)}{\Vert I_h v\Vert_V\Vert q_h\Vert_Q}\\
 			\overset{\eqref{eqLemmaFortinBed1}}&=
-			\sup\limits_{v\in V}\frac{b(q_h,v)}{\Vert I_h v\Vert_V\Vert q_h\Vert_Q}\\
+			\sup\limits_{v\in V\setminus\{0\}}\frac{b(q_h,v)}{\Vert I_h v\Vert_V\Vert q_h\Vert_Q}\\
 			\overset{\eqref{eqLemmaFortinBed2}}&\geq
-			\frac{1}{c}\sup\limits_{v\in V}\frac{b(q_h,v)}{\Vert v\Vert_V\Vert q_h\Vert_Q}\\
-			&\geq\frac{\beta}{c}>0
+			\frac{1}{C}\sup\limits_{v\in V\setminus\{0\}}\frac{b(q_h,v)}{\Vert v\Vert_V\Vert q_h\Vert_Q}\\
+			&\geq\frac{\beta}{C}>0
 		\end{align*}
 		Das $\beta$ kommt aus der stetigen $\inf$-$\sup$-Bedingung.
 		Wir haben also die diskrete $\inf$-$\sup$-Bedingung (u.a.) aus der stetigen inf-sup-Bedingung gefolgert.
 		\item Angenommen die diskrete $\inf$-$\sup$-Bedingung ist erfüllt.
+			Definiere wie in der Herleitung der $\inf$-$\sup$-Bedingung.
 		\footnote{$Q_h^\ast$ ist der Dualraum von $Q_h$}
 		\begin{align*}
 			B_h\colon V_h\to Q_h^\ast,\qquad
-			\big\langle B_h v_h,q_h\big\rangle:=b(q_h,v_h)\qquad\forall q_h\in Q_h,\forall v_h\in V_h
+		\dualpair{B_h v_h}{q_h}\coloneqq b(q_h,v_h)\qquad\forall q_h\in Q_h,\forall v_h\in V_h
 		\end{align*}
-		Also ist $B_h:W_h^\perp\to Q_h^\ast$ ein Isomorphismus ( Äquivalenz gemäß Theorem vor Theorem \ref{theorem8.1} ).
+		Also ist $B_h\colon W_h^\perp\to Q_h^\ast$ ein Isomorphismus (Äquivalenz gemäß Theorem \ref{theorem8.0infsupAequivalenz}.) % vor Theorem \ref{theorem8.1}). % TODO: Die Referenz im pdf schickt einen zum Beispiel 8.1, das in der Vorlesung keine Nummer hatte und das eigentlich referenzierte Theorem hat keine Nummer.
 		\begin{align*}
 			\Vert v_h\Vert_V
 			&\leq\frac{1}{\beta^\ast}\Vert B_h v_h\Vert_{Q_h^\ast}
 			\overset{\text{Def Norm}}=
-			\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q}  \quad \forall v_h \in W_h^{\perp}
+			\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q}  \quad \forall v_h \in W_h^{\perp}
 		\end{align*}
 		Für ein gegebenes $v\in V$ definieren wir $I_h v\in W_h^\perp\subseteq V_h$ als Lösung von
 		\begin{align*}
@@ -3751,26 +3753,28 @@ Man nimmt stets an, dass die stetige Version der $\inf$-$\sup$-Bedingung gilt.
 		\end{align*}
 		wobei
 		\begin{align*}
-			\langle g_h,q_h\rangle:=b(q_h,v)\qquad\forall q_h\in Q_h
+			\dualpair{g_h}{q_h} \coloneqq b(q_h,v)\qquad\forall q_h\in Q_h
 		\end{align*}
 		Also gilt
 		\begin{align*}
 			b(q_h,I_h v)
 			\overset{\text{Def}}=
-			\big\langle B_h(I_h v),q_h\big\rangle
-			=\langle g_h,q_h\rangle
+			\dualpair{B_h(I_h v)}{q_h}
+			=\dualpair{g_h}{q_h}
 			=b(q_h,v)\qquad\forall q_h\in Q_h
 		\end{align*}
 		Somit haben wie die erste Bedingung \eqref{eqLemmaFortinBed1} gezeigt.
-		Nur zur zweiten Bedingung \eqref{eqLemmaFortinBed2}:
+		Nun zur zweiten Bedingung \eqref{eqLemmaFortinBed2}:
 		\begin{align*}
 			\Vert I_h v\Vert_V
-			&=\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{b(q_h,I_h v)}{\Vert q_h\Vert_Q}\\
-			&=\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{b(q_h,v)}{\Vert q_h\Vert_Q}\\
-			&\leq\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}\frac{c_b\Vert q_h\Vert_{Q}\Vert v\Vert_V}{\Vert q_h\Vert_Q}\\
-			&=\frac{1}{\beta^\ast}\sup\limits_{q_h\in Q_h}c_b\Vert v\Vert_V\\
-			&=\frac{c_b}{\beta^\ast}\Vert v\Vert_V
+			&\leq \frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{b(q_h,I_h v)}{\Vert q_h\Vert_Q}
+			=\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{b(q_h,v)}{\Vert q_h\Vert_Q}\\
+			&\leq\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{c_b\Vert q_h\Vert_{Q}\Vert v\Vert_V}{\Vert q_h\Vert_Q}
+			=\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}c_b\Vert v\Vert_V
+			=\frac{c_b}{\beta^\ast}\Vert v\Vert_V
+			% ein bisschen Platz eingespart mit weniger \\
 		\end{align*}
+
 	\end{enumerate}
 \end{proof}
 
@@ -3779,20 +3783,22 @@ Man nimmt stets an, dass die stetige Version der $\inf$-$\sup$-Bedingung gilt.
 	\begin{align*}
 		\Vert v_h\Vert_V&\leadsto\Vert v_h\Vert_h\\
 		\Vert I_h v\Vert_V&\leadsto\Vert I_h v\Vert_h\\
-		b(q,v)&=\sum\limits_{K\in\T}\int\limits_K q\div(v)\d x
+		b(q,v)&=\sum\limits_{K\in\T}\int\limits_K q\div(v)\d x \text{ für das Stokes-Problem}
 	\end{align*}
 \end{bemerkung}
 
-Sei $V_h$ $P_1^{hc}$ das Crouzeix-Raviart-Element und $Q_h$ stückweise konstant, also $P_0$.
+Sei $V_h = P_1^{nc}$ das Crouzeix-Raviart-Element und $Q_h$ stückweise konstant, also $P_0$. % nc für non-conforming
+Das Crouzeix-Raviart-Element ist stückweise linear und nur in den Mittelpunkten der Dreiecksseiten stetig.
 Wir wollen Lemma \ref{lemmaFortin} anwenden. 
-Wie wählen wir $I_h\colon V\to V_h$? Oft ist $V = H^1_0(\Omega)^d$ und auf diesem ergibt klassische Interpolation keinen Sinn.\nl
+Wie wählen wir $I_h\colon V\to V_h$? Oft ist $V = H^1_0(\Omega)^d$ und auf diesem ergibt klassische Interpolation mit Punktwerten keinen Sinn. %\nl % einfach neuer Absatz ist sinnvoll
+
 Der natürliche Weg ist folgender:
 \begin{align*}
-	\frac{1}{|E|}\int\limits_E I_h v\d\gamma=\frac{1}{|E|}\int\limits v\d\gamma=(I_h v)(m_E)
+	\frac{1}{\measure E}\int\limits_E I_h v\d\gamma=\frac{1}{\measure E}\int\limits_E v\d\gamma=(I_h v)(m_E).
 \end{align*}
 Also bleibt das Integralmittel erhalten.
 $m_E$ ist hier der Mittelpunkt der Kange $E$.
-Dann ist $I_h$ ein \textbf{Fortin-Operator}, d.h. er er erfüllt die beiden Bedingungen \eqref{eqLemmaFortinBed1},\eqref{eqLemmaFortinBed2} in Lemma \ref{lemmaFortin}.
+Dann ist $I_h$ ein \textbf{Fortin-Operator}, d.h. er er erfüllt die beiden Bedingungen \eqref{eqLemmaFortinBed1},\eqref{eqLemmaFortinBed2} in Lemma \ref{lemmaFortin}:
 \begin{align*}
 	b(q_h,I_h v)
 	&=\sum\limits_{K}\int\limits_K \underbrace{q_K}_{\text{konstant auf }K}\div(I_h v)\d x\\
@@ -3805,7 +3811,7 @@ Dann ist $I_h$ ein \textbf{Fortin-Operator}, d.h. er er erfüllt die beiden Bedi
 	\overset{\text{selbe Argumente rückwärts}}&=
 	b(q_h,v)
 \end{align*}
-
+Um die in $h$ gleichmäßige Stetigkeit von $I_h$ nachzuweisen, nutze die $\halfnorm{·}_{1, K}$-Halbnorm, denn sie ist äquivalent zur vollen Norm und leichter zu handhaben.
 \begin{align*}
 	|I_h v|^2_{1,K}
 	&=\int\limits_K\nabla I_h v:\nabla I_h v\d x\\
@@ -3815,7 +3821,24 @@ Dann ist $I_h$ ein \textbf{Fortin-Operator}, d.h. er er erfüllt die beiden Bedi
 	\int\limits_K\nabla v\cdot\nabla I_h v\d x\\
 	\overset{\text{CS}}&\leq		
 	|v|_{1,K}|I_h v|_{1,K}\\
-	&\implies\Vert I_h v\Vert_h\leq\vert v\vert_1
+	\implies\Vert I_h v\Vert_h&\leq\vert v\vert_1
 \end{align*}
 
+\subsection{Ausblick}
+Hier folgt eine Sammlung von Themen, die in der Vorlesung nicht behandelt wurden und von weiterführendem Interesse sind.
 
+Wie die linearen Gleichungssysteme, die aus den diskreten Problemen herauskommen, gelöst werden, haben wir nicht betrachtet.
+Dafür gibt es zum Beispiel multi-mesh-Methoden.
+
+Wie die Integrale, gerade die der Datenfunktionen berechnet wurden, haben wir nicht betrachtet.
+Häufig ist dies nicht exakt möglich, sodass die diskreten Probleme numerische Integration benötigt.
+Häufig ist es auch ausreichend, nur Integrale der Form $∫uv$ oder $∫∇u·∇v$ exakt zu berechnen.
+Wie exakt die Quadraturformeln sein müssen, hängt davon ab, wie gut dann tatsächlich die restliche Lösungsverfahren ist.
+
+Wir haben immer angenommen, das das Gebiet ein Polygon ist, sodass es mit Dreiecken aufgeteilt werden kann.
+Eine runde Form kann mit immer mehr Dreiecken immer besser angenähert werden, häufig sind aber auch Elemente mit gekrümmten Kanten nötig und möglich.
+Es muss auch geklärt werden, wie überhaupt der Fehler gemessen wird und wie Randwerte auf den Rand des diskreten Gebietes projiziert werden.
+
+Wir haben keine Gleichungen höherer Ordnung betrachtet.
+
+Wir haben keine zeitabhängigen Systeme betrachtet. Bei diesen werden die betrachteten Wege mit ODE-Lösern kombiniert.
