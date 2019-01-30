@@ -32,7 +32,7 @@
 Grafiken und Tikz-Pictures sind immer grundsätzlich in Unterordner "pics" bzw. "tikz" auszulagern.
 Das Einbinden von Grafiken sollte stets die folgende Form haben:
 ```
-\begin{figure}[ht!]
+\begin{figure}[H] % oder ht!
 	\begin{center}
 		\includegraphics[width=0.75\textwidth]{./pics/grafik1.png}
 		\caption{Bildunterschrift}
@@ -42,7 +42,7 @@ Das Einbinden von Grafiken sollte stets die folgende Form haben:
 ```
 Analog für Tikz:
 ```
-\begin{figure}[ht!]
+\begin{figure}[H] % oder ht!
 	\begin{center}
 		\input{./tikz/tikz.png}
 		\caption{Bildunterschrift}
