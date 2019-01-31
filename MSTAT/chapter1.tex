@@ -539,25 +539,26 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 \end{bemerkungnr}
 
 \section{Zufallsvariablen in metrischen Räumen}
-\begin{definition} %3.1
-	Die \textbf{Borel-$\sigma$-Algebra} auf dem metrischen Raum $(\S,d)$ ist %definiert als
+\begin{definition}\label{def3.1}
+	Die durch den metrischen Raum $(\S,d)$ induzierte $\sigma$-Algebra  
 	\begin{align*}
-		\B(\S):=\sigma\big(\mathcal{G}(\S)\big).
+		\B(\S):=\sigma\big(\G(\S)\big).
 	\end{align*}
+	heißt \textbf{Borel-$\sigma$-Algebra}.
 	Elemente $B\in\B(\S)$ heißen \textbf{Borel-Mengen} in $\S$.\\
 	Beachte: $\B(\S)=\B_d(\S)$ hängt i. A. von der Metrik $d$ ab.
 \end{definition}
 
-\begin{lemma}\label{Lemma3.2} %3.2
+\begin{lemma}\label{Lemma3.2}
 	Es gilt:
 	\begin{enumerate}[label=(\arabic*)]
 		\item 
 		$\begin{aligned}
 			\B(\S)=\sigma\big(\mathcal{F}(\S)\big)
 		\end{aligned}$
-		\item $\begin{aligned}
+		\item Ist $\begin{aligned}
 			f:(\S,d)\to(\S',d)
-		\end{aligned}$ ist stetig und damit $\B_d(\S)-\B_d(\S')$ %TODO
+		\end{aligned}$ stetig, so ist $f$ $\B_d(\S)$-$\B_d(\S')$-messbar.
 		\item Sei $\mathcal{G}_0$ abzählbare Basis von $\mathcal{G}(\S)$. Dann gilt:
 		\begin{align*}
 			\sigma(\mathcal{G}_0)=\B(\S)
@@ -567,6 +568,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 
 \begin{proof}\enter
 	\underline{Zu (1), zeige ``$\subseteq$'':}
+	Sei $G\in\G(\S)$. Dann gilt:
 	\begin{align*}
 		G^C\in\mathcal{F}(\S)\subseteq\sigma\big(\mathcal{F}(\S)\big)
 		\implies
@@ -586,17 +588,20 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 		&=\B(\S)
 	\end{align*}
 	\underline{Zu (3), zeige ``$\subseteq$'':}\\
-	Klar wegen $\mathcal{G}_0\subseteq\mathcal{G}$ und $\sigma$ monoton.\\
+	Klar wegen $\mathcal{G}_0\subseteq\mathcal{G}(\S)$ und $\sigma$ monoton.\\
 	\underline{Zu (3), zeige ``$\supseteq$'':} Sei $G\in\mathcal{G}$. Dann:
 	\begin{align*}
 		G&=\bigcup\limits_{i\in\N} G_i\mit\text{geeigneten }G_i\in\mathcal{G}_0\subseteq\sigma(\mathcal{G}_0)\\
 		&\implies
 		G\in\sigma(\mathcal{G}_0)
 	\end{align*}
-	Aus der Stabilität unter Vereinigungen folgt die Behauptung.
+	Aus der Stabilität unter Vereinigungen folgt die Behauptung:
+	\begin{align*}
+		G=\bigcup\limits_{i\in\N} G_i\subseteq\sigma\big(\G_0\big)=\B(\S)
+	\end{align*}
 \end{proof}
 
-\begin{satz}\label{satz3.3} %3.3
+\begin{satz}\label{satz3.3}
 	Sei $(\S,d)$ separabler metrischer Raum. Dann gilt:
 	\begin{align*}
 		\B_{d\times d}(\S\times\S)=\B(S)\otimes\B(\S)
@@ -658,7 +663,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 
 	Bleibt Nachweis von ($\ast$):\\
 	``$\subseteq$'': ist klar (gilt auch ohne Separabilität)\\
-	``$\supseteq$'': Gemäß 2.9 existiert abzählbare Basis $\mathcal{G}_0$  von $\mathcal{G}$. Sei
+	``$\supseteq$'': Gemäß Satz \ref{satz2.9} existiert abzählbare Basis $\mathcal{G}_0$  von $\mathcal{G}$. Sei
 	\begin{align*}
 		G^\ast&=\bigcup\limits_{\begin{subarray}{c}
 			G\in\mathcal{O}\\
@@ -682,14 +687,14 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	\end{align*}
 \end{proof}
 
-\begin{definition} %3.4
+\begin{definition}\label{def3.4}
 	Sei $(\Omega,\A)$ ein Messraum.
 	Eine Abbildung
 	$X:\Omega\to\S$, die $\A$-$\B(\S)$-messbar ist, heißt \textbf{Zufallsvariable (ZV)} in den metrischen Raum $(\S,d)$ über $(\Omega,\A)$.\nl
 	Sei $\P$ ein Wahrscheinlichkeitsmaß auf $(\Omega,\A)$, also $(\Omega,\A,\P)$ ein Wahrscheinlichkeitsraum. 
 	Das Bildmaß
 	\begin{align*}
-		\P\circ X^{-1}&:=:\P_X:=:\mathcal{L}:=:\mathcal{L}(X~|~\P)\\
+		\P\circ X^{-1}&:=:\P_X:=:\L(X):=:\L(X~|~\P)\\
 		(\P\circ X^{-1})(B)&:=\P\left(X^{-1}(B)\right)=\P\Big(\big\lbrace\omega\in\Omega:X(\omega)\in B\big\rbrace\Big)
 		=: \P[X\in B]
 		\qquad\forall B\in\B(\S)
@@ -697,7 +702,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	heißt \textbf{Verteilung} von $X$ unter $\P$.
 \end{definition}
 
-\begin{satz}\label{Satz3.5} %3.5
+\begin{satz}\label{Satz3.5}
 	Sei $(\S,d)$ separabler metrischer Raum und seien $X,Y$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A)$.\\
 	Dann ist $d(X,Y)$ eine reelle Zufallsvariable.
 \end{satz}
@@ -720,8 +725,8 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	Damit folgt die Behauptung, denn $d(X,Y)=d\circ(X,Y)$ ist messbar als Komposition von messbaren Abbildungen.
 \end{proof}
 
-\subsection*{Fast sichere Konvergenz} %NoNumber
-\begin{definition} %3.6
+\subsection{Fast sichere Konvergenz} %NoNumber
+\begin{definition}\label{def3.6}
 	Seien $X,X_n,n\in\N$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A,\P)$. 
 	Dann:
 	\begin{align*}
@@ -740,7 +745,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 
 Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lassen sich mühelos verallgemeinern. Dazu z. B.:
 
-\begin{satz}\label{Satz3.7} %3.7
+\begin{satz}\label{Satz3.7}
 	\begin{align*}
 		X_n
 		\stackrel{n\to\infty}{\longrightarrow}
@@ -765,12 +770,14 @@ Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lasse
 		&\implies
 		\P[X_n\not\to X]+\P[X_n\not\to X']=0+0\\
 		&\implies
-		\P[X\neq X']=0
+		\P[X\neq X']=0\\
+		&\implies\P\big(X=X'\big)=1-\underbrace{\P\big(X\neq X'\big)}_{=0}=1
 	\end{align*}
 \end{proof}
 
-\begin{satz}\label{Satz3.8} %3.8
-	Seien $X,X_n,n\in\N$ Zufallsvariablen im metrischen Raum $(\S,d)$ und sei $f:(\S,d)\to(\S',d')$ messbar und stetig in $X$ $\P$-fast sicher.
+\begin{satz}\label{Satz3.8}
+	Seien $X,X_n,n\in\N$ Zufallsvariablen im metrischen Raum $(\S,d)$ und sei\\
+	$f:(\S,d)\to(\S',d')$ messbar und stetig in $X$ $\P$-fast sicher.
 	Dann gilt:
 	\begin{align*}
 		X_n
@@ -793,13 +800,18 @@ Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lasse
 		\stackrel{n\to\infty}{\longrightarrow}
 		f(X)\rbrace
 	\end{align*}
-	Damit folgt die Behauptung, denn zur Erinnerung:
+	Mit
 	\begin{align*}
 		\big(\forall i\in\N:\P(E_i)=1\big)\implies\P\left(\bigcap\limits_{i\in\N} E_i\right)=1
 	\end{align*}
+	folgt
+	\begin{align*}
+		1=\P\Big(\Big\lbrace X_n\overset{n\to\infty}{\longrightarrow}X\text{ und $f$ stetig in }X\Big\rbrace\Big)\leq\P\Big(\Big\lbrace f(X_n)\overset{n\to\infty}{\longrightarrow} f(X)\Big\rbrace\Big)\\
+		\implies \P\Big(\Big\lbrace f(X_n)\overset{n\to\infty}{\longrightarrow} f(X)\Big\rbrace\Big)
+	\end{align*}
 \end{proof}
 
-\begin{satz}[Konvergenz-Kriterium]\label{Satz3.9} %3.9
+\begin{satz}[Konvergenz-Kriterium]\label{Satz3.9}
 	\begin{align*}
 		X_n
 		\stackrel{n\to\infty}{\longrightarrow}
@@ -815,9 +827,9 @@ Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lasse
 \end{proof}
 
 Ein sehr nützliches Kriterium ist Folgendes:
-\begin{satz}\label{Satz3.10} %3.10
+\begin{satz}\label{Satz3.10}
 	\begin{align*}
-		\sum\limits_{n\in\N_{>0}}\P\big(d(X_n,X)>\varepsilon\big)<\infty\qquad\forall\varepsilon>0
+		\sum\limits_{n\in\N_{\geq1}}\P\big(d(X_n,X)>\varepsilon\big)<\infty\qquad\forall\varepsilon>0
 		\implies
 		X_n
 		\stackrel{n\to\infty}{\longrightarrow}
@@ -849,14 +861,17 @@ Ein sehr nützliches Kriterium ist Folgendes:
 	\end{align*}
 	Da Abzählbare Durchschnitte von Eins-Mengen (also Mengen mit $\P$-Maß 1) wieder Eins-Mengen sind, folgt schließlich:
 	\begin{align*}
-		\P\Bigg(\underbrace{\bigcap\limits_{0<\varepsilon\in\Q}\bigcup\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace}_{\lbrace X_n\to X\rbrace=\lbrace d(X_n,X)\to0\rbrace}\Bigg)=1
+		\P\Bigg(\underbrace{
+			\bigcap\limits_{0<\varepsilon\in\Q}\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace
+		}_{\lbrace X_n\to X\rbrace=\lbrace d(X_n,X)\to0\rbrace}\Bigg)=1
 	\end{align*}
 \end{proof}
 
-Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metrischen Räumen finden sich z. B. in \textit{``Wahrscheinlichkeitstheorie'' Gäussler u. Stute (1977), Kapitel 8.2}
+Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metrischen Räumen finden sich z. B. in \textit{Wahrscheinlichkeitstheorie} von Gäussler und Stute (1977), Kapitel 8.2.
 
-\subsection*{Stochastische Konvergenz} %NoNumber
-\begin{definition} %3.11
+\subsection{Stochastische Konvergenz} %NoNumber
+\begin{definition}\label{def3.11}
+	$X_n$ \textbf{konvergiert stochastisch gegen $X$}, i.Z.:
 	\begin{align*}
 		X_n
 		\stackrelnew{n\to\infty}{\P}{\longrightarrow}
@@ -889,7 +904,7 @@ Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metri
 	gemäß Satz \ref{Satz3.9}.
 \end{proof}
 
-Die Umkehrung in 3.12 gilt i. A. \underline{nicht}, aber es gilt das folgende Teilfolgenkriterium:
+Die Umkehrung von Satz \ref{Satz3.12} gilt i. A. \underline{nicht}, aber es gilt das folgende Teilfolgenkriterium:
 
 \begin{satz}[Teilfolgenkriterium für stochastische Konvergenz]\label{satz3.13}\enter
 	Folgende Aussagen sind äquivalent:
@@ -956,8 +971,8 @@ Mit dem Teilfolgenkriterium lassen sich Rechenregeln für fast sichere Konvergen
 	\underline{Zeige (2):} Zur Übung.
 \end{proof}
 
-\subsection*{Konvergenz in Produkträumen} %noNumber
-Seien $(\S,d)$ und $(\S',d')$ separable metrische Räume. Dann ist auch $(\S\times\S',d\times d')$ ein metrischer Raum. 
+\subsection{Konvergenz in Produkträumen} %noNumber
+Seien $(\S,d)$ und $(\S',d')$ separable metrische Räume. Dann ist auch $(\S\times\S',d\times d')$ ein separabler metrischer Raum. 
 Dies folgt z. B. aus dem \textit{Satz von der koordinatenweise Konvergenz}:
 
 \begin{align}\label{eq3.1KoordinatenweissKonvergenz}\tag{3.1}
@@ -1036,7 +1051,7 @@ Es ``stochastische Versionen'' dieses Satzes.
 	Und es gilt analog: $X_n'\to X'$.
 \end{proof}
 
-\subsection*{Gleichheit in Verteilung} %NoNumber
+\subsection{Gleichheit in Verteilung} %NoNumber % Hier weiter
 \begin{definition}\label{def3.16}
 	Zufallsvariablen $X,Y$ in $(\S,d)$ über $(\Omega,\A,\P)$ heißen \textbf{gleich in Verteilung}, in Zeichen $X\stackeq{\mathcal{L}} Y$
 	\begin{align*}
