@@ -5,6 +5,30 @@
 
 \chapter{Übungsaufgaben und Lösungen}
 
+\begin{tabular}{l|l|l|l}
+	Sprachkl. & Automaten & Abschlusseigenschaften & entscheidbare Prob.\\ \hline
+	$\L_3$ & DEA, NEA & \\
+	$\L_2$ & DPDA $\neq$ NPDA & \\
+	$\L_1$ & LBA, DLBA$\overset{?}{=}$NLBA & $\cup,\cdot,\ast,\cap,C$ & WP, $\emptyset$\\
+	$\L_0$ & DTM=NTM & $\cup,\cdot,\ast,\cap$ & alle unentscheidbar\\ 
+\end{tabular}
+
+Abkürzungen:
+\begin{itemize}
+	\item WP = Wortproblem
+	\item $\emptyset$ = Leerheitsproblem
+	\item $C$ steht für Mengenkomplement
+\end{itemize}
+
+\begin{itemize}
+	\item Turingmaschine zum Wortproblem: Nicht entscheidbar\\
+	Falls $w\in L$ geht TM in akzeptierenden Stoppzustand über\\
+	Falls $w\not\in L$ bleibt TM stehen, akzeptiert aber nicht\\
+	Falls $w\not\in L$ läuft die TM unendlich lange\\
+	(Beides möglich, also unentscheidbar)
+	\item Ob das Äquivalenzproblem für $\L_0$ entscheidbar ist, weiß man noch nicht.
+\end{itemize}
+
 \input{Blatt_1_content}
 \input{Blatt_2_content}
 \input{Blatt_3_content}
