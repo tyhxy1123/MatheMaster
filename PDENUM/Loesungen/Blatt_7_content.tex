@@ -27,12 +27,12 @@ Warum ist auf dem Standardweg (mit Hilfe des Céa-Lemmas \ref{theorem2.2CeasLemm
 
 \begin{lösung}
 	Da die Rechnung mit der Divergenz des Vektorfeldes $b$ zwei Mal auftaucht,
-	erwähne ich sie hier.%
-  %
-	\begin{lemma}[Divergenz-Lemma]\enter \label{thm:aufg6.3-divergenz_lemma}
-		Für $b ∈ C^1(Ω)$ und $u, v ∈ H_0^1(Ω)$ gilt
-		\begin{align*} 
-			∫_{Ω} b · ∇u v &= - ∫_{Ω} u b · ∇v + \div b u v \\
+	erwähne ich sie hier.
+
+\begin{lemma}[Divergenz-Lemma]\label{thm:aufg6.3-divergenz_lemma}\}\enter
+	Für $b ∈ C^1(Ω)$ und $u, v ∈ H_0^1(Ω)$ gilt
+	\begin{align*} 
+		∫_{Ω} b · ∇u v &= - ∫_{Ω} u b · ∇v + \div b u v \\
 			\text{und } ∫_Ω \left(b·∇u\right) u &= -\frac 12 ∫_{Ω} \div b \abs u^2.
 		\end{align*}
 	\end{lemma}
@@ -116,57 +116,96 @@ Beweisen Sie stattdessen Term für Term für lineare Elemente eine Fehlerabschä
 	\norm {u-u_h}_{ε} \leq C \left(ε^{\frac12}h + h + h^2 \right)\halfnorm{u}_{2, 2, Ω}.
 \end{align*}
 
-\begin{proof}
-	Wir nutzen die Ideen aus Theorem \ref{theorem7.2} um den Fehler $\norm{u - u_h}_{ε}$ abzuschätzen. Leider kommt lediglich das Ergebnis
+\begin{proof} %[Simon Bechers erfolgreiche Variante]
+	Die Koerzivität von $a$ und die Galerkin-Orthogonalität können wir nutzen, um $\norm{u-u_h}_{ε}$ abzuschätzen.
+	Dabei sei $v_h ∈ V_h$ erstmal beliebig, sodass wir später einen passenden Kandidaten wählen können.
 	\begin{align*}
-		\norm{u - u_h}_{ε} \leq C (ε^{\frac 12} h + \frac {h^2}{ε^{\frac 12}} + h^2) \halfnorm u_{2, 2, Ω},
-	\end{align*}
-	wobei $C$ von $ε$ und $h$ unabhängig ist.
-	Das ist für $h > ε^{\frac 12}$ schlechter als die geforderte Schranke.
-	Im Theorem \ref{theorem7.2} kommt der Term $\frac {h^2}{ε^{\frac 12}}$ nicht vor, denn die dort genutzte $\norm{·}_{\text{SD}}$ beinhaltet einen Anteil in Richtung $b$, der in der $\norm{·}_{ε}$-Norm nicht auftaucht.
-	Daher bezweifle ich (Felix), dass es besser geht.
-
-	Wie im Beweis von Theorem \ref{theorem7.2} sei
-	\begin{align*}
-		I_h u &∈ V_h \text{ die Interpolierte von $u$} \\
-		w_h \overset{\text{Def}}&= I_hu - u_h ∈ V_h, \\
-		z_h \overset{\text{Def}}&= I_hu - u.
-	\end{align*}
-	Wir nutzen die Dreiecksungleichung
-	\begin{align*}
-		\norm{u - u_h}_{ε} \leq \norm{u - I_h u}_{ε} + \norm{I_h - u_h}_{ε} = \norm{w_h}_{ε} + \norm{z_h}_{ε}.
-	\end{align*}
-	Um den ersten Term abzuschätzen, nutze die Koerzivität von $a$ und die Galerkin-Orthogonalität:
-	\begin{align*}
-		\norm{w_h}_{ε}^2
-		\leq α^{-1} a(w_h, w_h)
-		&= α^{-1} (a(z_h, w_h) + \underbrace{a(u - u_h, w_h)}_{w_h ∈ V_h ⇒ = 0}) \\
-		&\leq α^{-1} \abs{∫_{Ω} ε ∇z_h · ∇w_h} + \abs{∫_{Ω} (b · ∇z_h) w_h + c z_h w_h}.
-	\end{align*}
-	Nun schätze die einzelnen Terme mit Cauchy-Schwarz und Theorem \ref{theorem7.2} ab:
-	\begin{align*}
-		\abs{∫_{Ω} ε ∇z_h · ∇w_h}
-		&\leq ε^{\frac 12} \halfnorm{z_h}_{1, 2, Ω} ε^{\frac 12} \halfnorm{w_h}_{1, 2, Ω} \\
-		&\leq C ε^{\frac 12} h \halfnorm{u}_{2, 2, Ω} \norm{w_h}_{ε} \\
-		\abs{∫_{Ω} (b · ∇z_h) w_h + c z_h w_h}
+		α \norm{u-u_h}_{ε}^2
+		&\leq a(u-u_h, u-u_h) \\ %& \text{(Koerzivität)}\\
+		&= a(u-u_h, u-v_h) \quad ∀ v_h ∈ V_h & \text{(Galerkin)} \\
+		&= ε \scaProd{∇(u-u_h)}{∇(u-v_h)}_{0, Ω} & \eqqcolon \text{(I)} \\
+		& \tab + \scaProd{b · ∇(u-u_h)}{u-v_h}_{0, Ω} & \eqqcolon \text{(II)} \\
+		& \tab + \scaProd{c (u-u_h)}{u-v_h}_{0, Ω} & \eqqcolon \text{(III)}\\
+		\text{(I)} %ε \scaProd{∇(u-u_h)}{∇(u-v_h)}_{0, Ω}
+		\overset{\text{CS}}&{\leq}
+		ε \halfnorm{u-u_h}_{1,2,Ω} \halfnorm{u-v_h}_{1,2,Ω} \\
+		&\leq \norm{u-u_h}_{ε} ε^{\frac 12}\halfnorm{u-v_h}_{1,2,Ω} \\
+		\text{(II)} %scaProd{b · ∇(u-u_h)}{u-v_h}_{0, Ω}
 		\overset{\ref{thm:aufg6.3-divergenz_lemma}}&=
-		\abs{∫_{Ω} -z_h b · ∇w_h - (\div b) z_h w_h + c z_h w_h} \\
-		&\leq \norm b_{0, ∞, Ω} \norm{z_h}_{0, 2, Ω} \halfnorm{w_h}_{1, 2, Ω} \\
-		&\tab + \norm{c - \div b}_{0, ∞, Ω} \norm{z_h}_{0, 2, Ω} \norm{w_h}_{0, 2, Ω} \\
-		&\leq \norm{b}_{0, ∞, Ω} C h^2 \halfnorm{u}_{2, 2, Ω} ε^{- \frac 12} \norm{w_h}_{ε} \\
-		&\tab + \norm{c - \div b}_{0, ∞, Ω} C h^2 \halfnorm u_{2, 2, Ω}\norm{w_h}_{ε} \\
-		&\leq C h^2 \halfnorm u_{2, 2, Ω} ε^{-\frac 12} \norm{w_h}_{ε} \\
-		⇒ \norm{w_h}_{ε}^2
-		&\leq C(ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω} \norm{w_h}_ε \\
-		⇒ \norm{w_h}_{ε}
-		&\leq C(ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω}.
+		\scaProd{-(u-u_h)}{b · ∇(u-v_h)}_{0, Ω}
+		& \eqqcolon \text{(IV)} \\
+		& \tab - \scaProd{\div(b)(u-u_h)}{u-v_h}_{0,Ω} & \eqqcolon \text{(V)}\\
+		\text{(IV)} %\scaProd{-(u-u_h)}{b · ∇(u-v_h)}_{0, Ω}
+		\overset{\text{CS}}&{\leq}
+		\norm{u-u_h}_{0,2,Ω}\norm{b}_{0,∞,Ω}\halfnorm{u-v_h}_{1,2,Ω} \\
+		&\leq \norm{u-u_h}_{ε}\norm{b}_{0,∞,Ω}\halfnorm{u-v_h}_{1,2,Ω} \\
+		\text{(III)} + \text{(V)}
+		\overset{\text{CS}}&{\leq}
+		\norm{c - \div(b)}_{0, ∞, Ω} \norm{u - u_h}_{0, 2, Ω} \norm{u - v_h}_{0, 2, Ω} \\
+		&\leq \norm{c - \div b}_{0, ∞, Ω} \norm{u - u_h}_{ε} \norm{u - v_h}_{0, 2, Ω}
+		\intertext{Alles zusammen ergibt}
+		α \norm{u - u_h}_{ε}^2
+		&\leq \norm{u - u_h}_{ε}
+		\bigg( \left(ε^{\frac12} + \norm{b}_{0, ∞, Ω}\right) \underbrace{\halfnorm{v - v_h}_{1, 2, Ω}}_{\leq C h \halfnorm u_{2, 2, Ω}} \\
+		& \tab + \norm{c - \div(b)}_{0, ∞, Ω} \underbrace{\norm{u - v_h}_{0, 2, Ω}}_{\leq C h^2 \halfnorm u_{2, 2, Ω}} \bigg) \\
+		&\leq C \norm{u - u_h}_{ε} (ε^{\frac12}h + h + h^2) \halfnorm u_{2, 2, Ω} \\
+			⇒ \norm{u - u_h}_{ε}
+			&\leq C \left(ε^{\frac12}h + h + h^2\right) \halfnorm u_{2, 2, Ω} \\
 	\end{align*}
-	Mit der Abschätzung für $\norm{z_h}_{ε}$ aus der Bemerkung \ref{bemerkung-aufg6.3Interpolationsfehler} ergibt sich
-	\begin{align*}
-		\norm{u - u_h}_{ε} \leq C (h + ε^{- \frac12}h^2 + ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω}.
-	\end{align*}
-	Das ist das angekündigte Ergebnis. Die Konstante $C$ hängt unter anderem von $b$, $c$, der Formregularität der Triangulierung, aber nicht von $ε$ und $h$ ab.
+	Damit ist die geforderte Schranke gefunden. $C$ hängt von $α$, $b$ und $c$ ab, aber nicht von $ε$ und $h$.
+	Leider ist diese Abschätzung wenig hilfreich, denn $\halfnorm u_{2, 2, Ω}$ steigt unbeschränkt für $ε → 0$.
 \end{proof}
+% \begin{proof}[Felix' schlechte Variante]
+% 	Wir nutzen die Ideen aus Theorem \ref{theorem7.2} um den Fehler $\norm{u - u_h}_{ε}$ abzuschätzen. Leider kommt lediglich das Ergebnis
+% 	\begin{align*}
+% 		\norm{u - u_h}_{ε} \leq C (ε^{\frac 12} h + \frac {h^2}{ε^{\frac 12}} + h^2) \halfnorm u_{2, 2, Ω},
+% 	\end{align*}
+% 	wobei $C$ von $ε$ und $h$ unabhängig ist.
+% 	Das ist für $h > ε^{\frac 12}$ schlechter als die geforderte Schranke.
+% 	Im Theorem \ref{theorem7.2} kommt der Term $\frac {h^2}{ε^{\frac 12}}$ nicht vor, denn die dort genutzte $\norm{·}_{\text{SD}}$ beinhaltet einen Anteil in Richtung $b$, der in der $\norm{·}_{ε}$-Norm nicht auftaucht.
+% 	Daher bezweifle ich (Felix), dass es besser geht.
+%
+% 	Wie im Beweis von Theorem \ref{theorem7.2} sei
+% 	\begin{align*}
+% 		I_h u &∈ V_h \text{ die Interpolierte von $u$} \\
+% 		w_h \overset{\text{Def}}&= I_hu - u_h ∈ V_h, \\
+% 		z_h \overset{\text{Def}}&= I_hu - u.
+% 	\end{align*}
+% 	Wir nutzen die Dreiecksungleichung
+% 	\begin{align*}
+% 		\norm{u - u_h}_{ε} \leq \norm{u - I_h u}_{ε} + \norm{I_h - u_h}_{ε} = \norm{w_h}_{ε} + \norm{z_h}_{ε}.
+% 	\end{align*}
+% 	Um den ersten Term abzuschätzen, nutze die Koerzivität von $a$ und die Galerkin-Orthogonalität:
+% 	\begin{align*}
+% 		\norm{w_h}_{ε}^2
+% 		\leq α^{-1} a(w_h, w_h)
+% 		&= α^{-1} (a(z_h, w_h) + \underbrace{a(u - u_h, w_h)}_{w_h ∈ V_h ⇒ = 0}) \\
+% 		&\leq α^{-1} \abs{∫_{Ω} ε ∇z_h · ∇w_h} + \abs{∫_{Ω} (b · ∇z_h) w_h + c z_h w_h}.
+% 	\end{align*}
+% 	Nun schätze die einzelnen Terme mit Cauchy-Schwarz und Theorem \ref{theorem7.2} ab:
+% 	\begin{align*}
+% 		\abs{∫_{Ω} ε ∇z_h · ∇w_h}
+% 		&\leq ε^{\frac 12} \halfnorm{z_h}_{1, 2, Ω} ε^{\frac 12} \halfnorm{w_h}_{1, 2, Ω} \\
+% 		&\leq C ε^{\frac 12} h \halfnorm{u}_{2, 2, Ω} \norm{w_h}_{ε} \\
+% 		\abs{∫_{Ω} (b · ∇z_h) w_h + c z_h w_h}
+% 		\overset{\ref{thm:aufg6.3-divergenz_lemma}}&=
+% 		\abs{∫_{Ω} -z_h b · ∇w_h - (\div b) z_h w_h + c z_h w_h} \\
+% 		&\leq \norm b_{0, ∞, Ω} \norm{z_h}_{0, 2, Ω} \halfnorm{w_h}_{1, 2, Ω} \\
+% 		&\tab + \norm{c - \div b}_{0, ∞, Ω} \norm{z_h}_{0, 2, Ω} \norm{w_h}_{0, 2, Ω} \\
+% 		&\leq \norm{b}_{0, ∞, Ω} C h^2 \halfnorm{u}_{2, 2, Ω} ε^{- \frac 12} \norm{w_h}_{ε} \\
+% 		&\tab + \norm{c - \div b}_{0, ∞, Ω} C h^2 \halfnorm u_{2, 2, Ω}\norm{w_h}_{ε} \\
+% 		&\leq C h^2 \halfnorm u_{2, 2, Ω} ε^{-\frac 12} \norm{w_h}_{ε} \\
+% 		⇒ \norm{w_h}_{ε}^2
+% 		&\leq C(ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω} \norm{w_h}_ε \\
+% 		⇒ \norm{w_h}_{ε}
+% 		&\leq C(ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω}.
+% 	\end{align*}
+% 	Mit der Abschätzung für $\norm{z_h}_{ε}$ aus der Bemerkung \ref{bemerkung-aufg6.3Interpolationsfehler} ergibt sich
+% 	\begin{align*}
+% 		\norm{u - u_h}_{ε} \leq C (h + ε^{- \frac12}h^2 + ε^{\frac 12} h + ε^{-\frac 12}h^2) \halfnorm u_{2, 2, Ω}.
+% 	\end{align*}
+% 	Das ist das angekündigte Ergebnis. Die Konstante $C$ hängt unter anderem von $b$, $c$, der Formregularität der Triangulierung, aber nicht von $ε$ und $h$ ab.
+% \end{proof}
 \setcounter{section}{7}
 \setcounter{subsection}{0}
 \subsection{Aufgabe 7.1}
@@ -210,7 +249,7 @@ Obiges gemischtes Problem liefert ein stabiles Sattelpunktsproblem.
 
 \begin{proof}
 	Was allgemein unter einem Sattelpunktsproblem zu verstehen ist und unter welchen Bedingungen so eines stabil ist, ist in der Bemerkung am Ende dieses Aufgabenblattes beschrieben.
-	Die Übersetzung von den Variablen im Allgemeinen Fall zu denen in unserem Problem ist:
+	Die Übersetzung von den Variablen im allgemeinen Fall zu denen in unserem Problem ist:
 	\begin{align*}
 		X &= L^2(Ω)^d & M &= H_0^1(Ω) & a &= \scaProd{·}{·}_{0, Ω} & b &= \scaProd{·}{∇·}_{0, Ω} \\
 		f &= 0 & g &= \scaProd f{·}_{0, Ω} & u &= σ & λ &= u \\
