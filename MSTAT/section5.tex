@@ -1,0 +1,75 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Verteilungskonvergenz in \texorpdfstring{$\R^d$}{R\textasciicircum d}} %5
+Korollar \ref{korollar4.5} bzw. dessen Erweiterungen \ref{lemma4.6Einhalb} (2) liefern eine \textbf{analytische} Methode zum Nachweis von $X_n\stackrel{\L}{\longrightarrow}X\text{ in }\R^d$. 
+Eine weitere Methode fußt auf
+
+\begin{definition}\label{def5.1}
+	Sei $X$ Zufallsvariable in $\R^d$ über $(\Omega,\A,\P)$ und
+	\begin{align*}
+		\langle x,y\rangle:=:x'y:=\sum\limits_{i=1}^d x_i\cdot y_i\qquad x=(x_1,\ldots,x_d),y=(y_1,\ldots,y_d)\in\R^d
+	\end{align*}
+	das Standard-Skalarprodukt in $\R^d$. Dann heißt
+	\begin{align*}
+		\varphi_X(t):=\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]\qquad\forall t\in\R^d
+	\end{align*}
+\end{definition}
+heißt \textbf{charakteristische Funktion} von $X$.
+
+\begin{satz}[Eindeutigkeitssatz]\label{satz5.2Eindeutigkeitssatz}
+	\begin{align*}
+		X\stackeq{\L} Y\Longleftrightarrow\varphi_X\equiv\varphi_Y
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Siehe Buch \textit{Essentials in Probability} von Jacod und Protter (2000), Seite 107-108.
+\end{proof}
+
+\begin{satz}[Stetigkeitssatz]\label{satz5.3Stetigkeitssatz}
+	\begin{align*}
+		X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^d\Longleftrightarrow\forall t\in\R^d: \varphi_{X_n}(t)\stackrel{n\to\infty}{\longrightarrow}\varphi_X(t)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Siehe Vorlesung Wahrscheinlichkeitstheorie (Bachelor) oder Jacod und Protter (2000), Seite 163 ff.
+\end{proof}
+
+Sehr nützlich ist:
+
+\begin{satz}[Cramér-Wold-Device]\label{satz5.4CramerWoldDevice}\enter
+	%Device bedeutet u. A. Trick. Das ist kein Name.
+	Folgende Aussagen sind äquivalent:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			X_n\stackrel{\L}{\longrightarrow} X\text{ in }\R^d
+		\end{aligned}$
+		\item $\begin{aligned}
+			\langle t, X_n\rangle\stackrel{\L}{\longrightarrow}\langle t, X\rangle\text{ in }\R\qquad\forall t\in\R^d
+		\end{aligned}$
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		\varphi_X(t)
+		&\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]\qquad\forall t\in\R^d
+		\stackeq{d=1}\E\big[\exp(i\cdot X\cdot t)\big]
+	\end{align*}
+	\underline{Zeige (1) $\implies$ (2):}\\
+	Sei $t\in\R^d$. Dann ist $x\mapsto\langle t,x\rangle$ stetig auf $\R^d$. 
+	Und aus Satz \ref{satz4.10ContinuousMappingTheorem} (CMT) folgt dann (2).\nl
+	\underline{Zeige (2) $\implies$ (1):}
+	\begin{align*}
+		&\varphi_{X_n}(t)
+		\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X_n\rangle\cdot 1\big)\Big]
+		\stackeq{\text{Def}}\varphi_{\langle t,X_n\rangle}(1)
+		\stackrelnew{\ref{satz5.3Stetigkeitssatz}}{n\to\infty}{\longrightarrow}\underbrace{\varphi_{\langle t,X\rangle}(1)}_{=\varphi_X(t)}\\
+		&\implies\varphi_{X_n}\stackrel{n\to\infty}{\longrightarrow}\varphi_X\text{ auf }\R^d
+		\stackrel{\ref{satz5.3Stetigkeitssatz}}{\implies}(1)
+	\end{align*}
+\end{proof}

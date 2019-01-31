@@ -1,0 +1,238 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Verteilungskonvergenz im Raum konvexer Funktionen} %noNumber / 9
+
+\begin{definition}\label{def9.1}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Eine Menge $\emptyset\neq O\subseteq\R$ heißt \textbf{konvex}
+		\begin{align*}
+			:\Longleftrightarrow x,y\in O\implies\forall\lambda\in(0,1):\lambda\cdot x+(1-\lambda)\cdot y\in O
+		\end{align*}
+		\item Sei $O$ konvex. Eine Funktion $f\colon O\to\R$ heißt \textbf{konvex}
+		\begin{align*}
+			:\Longleftrightarrow 
+			f\big(\lambda\cdot x+(1-\lambda)\cdot y\big)\leq\lambda\cdot f(x)+(1-\lambda)\cdot f(y)\qquad\forall x,y\in,\forall\lambda\in(0,1)
+		\end{align*}
+		\item $\begin{aligned}
+			C_c(O):=\big\lbrace f\colon O\to\R:f\text{ konvex}\big\rbrace
+		\end{aligned}$
+		\item Ein stochastischer Prozess
+		\begin{align*}
+			X=\big\lbrace X(t):t\in O\big\rbrace
+		\end{align*}				
+		über $(\Omega,\A)$ mit Pfaden in $C_c(O)$ heißt \textbf{konvexer stochastischer Prozess} auf $O$.
+	\end{enumerate}
+\end{definition}
+
+Im Folgenden sei $O=(a,b)$ mit $-\infty\leq a<b\leq\infty$ und $d$ die Metrik der gleichmäßigen Konvergenz auf $C_c(O)$.
+Bekanntlich ist $C_c(O)\subseteq C(O)$, also $\big(C_c(O),d\big)$ als Unterraum von $\big(C(O),d\big)$ ebensfalls separabel.
+Seien $\pi_t$ und $\pi_T$ die Projektionen eingeschränkt auf $C_c(O)$.
+
+\begin{satz}\label{satz9.2}
+	\begin{align*}
+		\B_d\big(C_c(O)\big)=\sigma\big(\pi_t:t\in O\big)=\sigma\big(\pi_T:T\subseteq O\text{ endlich}\big)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Analog zu Satz \ref{satz7.2}.
+\end{proof}
+
+%Ferger: "Ich bin zu gut für diese Welt." (also er einen Satz nochmals anschrieb, weil einige Stundenten nicht hinterher kamen)
+
+Wir erhalten folgende Korollare:
+
+\begin{korollar}\label{korollar9.3}
+	 Sei $X$ konvexer stochastischer Prozess über $(\Omega,\A)$ auf $O$.\\
+	 Dann ist die Pfadabbildung
+	 \begin{align*}
+	 	X\colon(\Omega,\A)\to\Big(\C_c(O),\B_d\big(C_c(O)\big)\Big)
+	 \end{align*}
+	 messbar.
+\end{korollar}
+
+\begin{korollar}\label{korollar9.4} %9.3 in VL
+	Seien $X,Y$ Zufallsvariablen in $\big(C_c(O),d\big)$.
+	Dann gilt:
+	\begin{align*}
+		X\overset{\L}{=} Y\Longleftrightarrow
+		\big(X(t_1),\ldots,X(t_k)\big)
+		\overset{\L}{=}
+		\big(Y(t_1),\ldots,Y(t_k)\big)
+		\qquad\forall t_1,\ldots,t_k\in O,\forall k\in\N
+	\end{align*}
+	(Die endlich dimensionalen Randverteilungen sind gleich.)
+\end{korollar}
+
+\begin{beispiel}\label{beispiel9.5}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $f(x):=|x|,x\in\R$ ist konvex.
+		\begin{proof}
+			Folgt aus Dreiecksungleichung.
+		\end{proof}
+		\item Sei $f\colon\R\to\R$ konvex und $a\in\R$.
+		Dann ist auch $f_a(x):=f(x-a),x\in\R$ konvex.
+		\begin{proof}
+			Nachrechnen.
+		\end{proof}
+	\end{enumerate}
+\end{beispiel}
+
+\begin{lemma}\label{lemma9.6}
+	Sei $F$ Verteilungsfunktion auf $\R$ mit
+	\begin{align*}
+		\int\limits_\R |x|~F(\d x)<\infty
+	\end{align*}
+	Dann ist die Funktion
+	\begin{align*}
+		M\colon\R\to\R,\qquad M(t):=\int\limits_\R|x-t|~F(\d x)\qquad\forall t\in\R
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Folgt aus \ref{beispiel9.5} und der Monotonie und Linearität des Integrals.
+\end{proof}
+
+Erinnere an:\\
+$m$ ist \textbf{Median} von $F$
+\begin{align*}
+	:\Longleftrightarrow m\in A(M)
+\end{align*}
+$\hat{m}_n$ ist \textbf{empirischer Median} zu $X_1,\ldots,X_n$
+\begin{align*}
+	:\Longleftrightarrow&\hat{m}_n\in A(M_n)
+	\qquad\mit\qquad
+	\hat{M}_n(t):=\int\limits_\R|x-t| F_n(\d x)
+\end{align*}
+wobei $F_n$ die \textit{empirische Verteilungsfunktion} zu $X_1,\ldots,X_n$ ist.
+Also:
+\begin{align*}
+	M_n(t)=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big|X_i-t\big|\qquad\forall t\in\R
+\end{align*}
+Gemäß \ref{korollar9.3} sind $M_n,n\in\N$ und $M$ als	 konvexe stochastische Prozesse Zufallsvariablen in $\big(C_r(\R),d\big)$.
+
+\begin{satz}\label{satz9.7}
+	Sei $D\subseteq O$ dicht in $O=(a,b)\subseteq\R$ (z. B. $D=\Q\cap O$) und $K\subseteq O$ kompakt.
+	Dann existieren eine universelle Konstante $c$ und Punkte $b_1,\ldots,b_m\in D$ so, dass für jede Konvexe Funktion $f\colon O\to\R$ gilt:
+	\begin{align*}
+		\big|f(x)-f(y)\big|\leq c\cdot\sum\limits_{i=1}^n\big|f(b_i)\big|\cdot|x-y|\qquad\forall x,y\in O
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Siehe Liese und Mischka (2008) \textit{Statistical decision theory} Seite 402 bis 403.
+\end{proof}
+
+% Ferger: "Da sehe ich mich noch Samstagsmittags nach einem gut gekühlten Weißwein und blättere in dem Buch und stoße auf dieses Ergebnis. Da bin ich erst mal vor Freude hin und her gehopst."
+
+\begin{theorem}\label{theorem9.8}
+	Seien $f_n,n\in\N$ konvexe Funktionen auf $O$, $D\subseteq O$ dicht in $O$.
+	Sei $f\colon O\to\R$ eine Funktion.
+	Falls 
+	\begin{align}\label{eqtheorem9.8Stern}\tag{$\ast$}
+		f_n(x)\overset{n\to\infty}{\longrightarrow} f(x)\qquad\forall x\in D
+	\end{align}
+	gilt, so gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			f(x)=\limn f_n(x)\text{ existiert }\qquad\forall x\in O
+		\end{aligned}$
+		\item $f$ ist konvex.
+		\item $\begin{aligned}
+			\big\Vert f_n-f\big\Vert_K\overset{n\to\infty}{\longrightarrow}0\qquad\forall K\subseteq O
+		\end{aligned}$
+	\end{enumerate}
+\end{theorem}
+
+% Ferger kommt aus Westerwald, Westerburg
+
+\begin{proof}
+	Siehe Rockafellar (1972) \textit{Convex Analysis} Theorem 10.8.
+\end{proof}
+
+\begin{satz}\label{satz9.9}
+	Seien $X_n,n\in\N$ konvexe stochastische Prozesse und sei $X$ stetiger stochastischer Prozess auf $\R$ über $(\Omega,\A,\P)$.
+	Dann sind (1) $\gdw$ (2) $\implies$ (3):
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			X_n\overset{\text{fd}}{\longrightarrow}X\qquad\text{Konvergenz der fidis}
+		\end{aligned}$
+		\item $\begin{aligned}
+			X_n\overset{\L}{\longrightarrow} X\text{ in }\big(C(\R),d\big)
+		\end{aligned}$
+		\item In jedem Fall ist $X$ ein \underline{konvexer} stochastischer Prozess.
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\underline{Zeige (1) $\implies$ (2):}\\
+	Gemäß Satz \ref{satz7.23} ist zu zeigen:
+	\begin{align}\label{eqProofSatz9.9Stern}\tag{$\ast$}
+		X_n^{(j)}\overset{\L}{\longrightarrow} X^{(j)}\text{ in }\big(C(I_j),d_j\big)\qquad\forall j\in\N\mit I_j:=[-j,j]
+	\end{align}		
+	Nachweis von \eqref{eqProofSatz9.9Stern} mit Satz \ref{satz7.9}.
+	Voraussetzung (1) in Satz \ref{satz7.9} ist nach Voraussetzung erfüllt.
+	Betrachte den \textbf{Oszillationsmodul}
+	\begin{align*}
+		q\left(X_n^{(ij)},\delta\right)
+		\overset{\text{Def}}&=
+		\sup\limits\Big\lbrace\big|X_n(s)-X_n(t)\big|:s,t\in I_j,|s-t|\leq\delta\Big\rbrace\\
+		&\leq \underbrace{c\cdot\sum\limits_{i=1}^m\big|X_n(b_i)\big|}_{=:Z_n}\cdot\delta\mit c>0\text{ und }b_1,\ldots,b_m\in I_j
+	\end{align*}
+	
+	Wegen (1) gilt 
+	\begin{align*}
+		X_n(b_1),\ldots,X_n(b_m)\big)\overset{\L}&{\longrightarrow}\big(X(b_1),\ldots,X(b_m)\big)\\
+		\overset{\ref{satz4.10ContinuousMappingTheorem}}\implies
+		Z_n\overset{\L}{\longrightarrow} Z&=c\cdot\sum\limits_{i=1}^m\big|X(b_i)\big|\\
+		\implies
+		0&\leq\limsup\limits_{n\to\infty}\P\Big(\underbrace{w\Big(X_n^{(j)},\delta_k\Big)}_{\leq Z_n\cdot\delta_k}\geq\varepsilon\Big)\\
+		&\leq\limsup\limits_{n\to\infty}\P\left(Z_n\geq\frac{\varepsilon}{\delta_k}\right)\\
+		\overset{\text{Portmannteau}}&\leq
+		\P\left(Z\geq\frac{\varepsilon}{\delta_k}\right)
+		\qquad\forall\varepsilon>0,\forall(\delta_k)_{k\in\N}\subseteq(0,\infty)
+	\end{align*}
+	Für $\delta_k\downarrow0$ folgt $\frac{\varepsilon}{\delta_k}\overset{k\to\infty}{\longrightarrow}+\infty$, also
+	\begin{align*}
+		\P\left(Z\geq\frac{\varepsilon}{\delta_k}\right)\overset{k\to\infty}{\longrightarrow}0
+	\end{align*}
+	Somit ist Voraussetzung (2) in Satz \ref{satz7.9} erfüllt. 
+	Daraus folgt (2).\nl
+	\underline{Zeige (2) $\implies$ (1):}
+	Folgt direkt aus dem CMT \ref{satz4.10ContinuousMappingTheorem}.\nl
+	\underline{Zeige (2) $\implies$ (3):} 
+	Ohne Beweis.
+\end{proof}
+
+\begin{lemma}[Subspace-Lemma]\label{lemma9.10SubspaceLemma}\enter
+	Sei $U\subseteq\S$ ein Unterraum des metrischen Raumes $(\S,d)$.
+	Seien $Z,Z_n,n\in\N$ Zufallsvariablen in $\big(U,\B_d(U)\big)$.
+	Dann gilt:
+	\begin{align*}
+		Z_n\overset{\L}{\longrightarrow} Z\text{ in }(\S,d)
+		\Longleftrightarrow
+		Z_n\overset{\L}{\longrightarrow} Z\text{ in }(U,d)
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Siehe Kallenberg (1997) \textit{Foundations of modern probability}, Lemma 3.2
+\end{proof}
+
+\begin{korollar}\label{korollar9.11}
+	Seien $X,X_n,n\in\N$ konvexe stochastische Prozesse über $(\Omega,\A)$ auf $\R$ nach $\R$ mit 
+	\begin{align*}
+		X_n\overset{\text{fd}}{\longrightarrow}X
+	\end{align*}
+	Dann folgt
+	\begin{align*}
+		X_n\overset{\L}{\longrightarrow} X\text{ in }\big(C_c(\R),d\big)
+	\end{align*}
+\end{korollar}
+
+\begin{proof}
+	Folgt aus Satz \ref{satz9.9} und Lemma \ref{lemma9.10SubspaceLemma}.
+\end{proof}
