@@ -12,7 +12,7 @@ Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stoc
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
 			A(f)=\argmin(f):=\left\lbrace t\in\R:f(t)=\inf\limits_{s\in\R} f(s)\right\rbrace
-		\end{aligned}$ = Menge aller Minimalstellen von $f$
+		\end{aligned}$ = Menge aller Minimalstellen
 		\item $\tau\in A(f)$ heißt \textbf{wohl-separiert} 
 		\begin{align*}
 			:\Longleftrightarrow\inf\Big\lbrace f(t):|t-\tau|\geq\varepsilon\Big\rbrace>f(\tau)\qquad\forall 0<\varepsilon\in\Q
@@ -46,9 +46,16 @@ Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stoc
 	\end{enumerate}
 \end{bemerkungnr}
 
-%TODO 2x Skizze einfügen
-%links: $\tau$ ist wohl-separiert
-%rechts: $\tau$ eindeutig, aber nicht wohl-separiert
+\begin{beisp}
+	Wann ist eine Minimalstelle eindeutig, aber nicht wohlsepariert?
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=1\textwidth]{./pics/MSTAT003.png}
+			\caption{$\tau$ eindeutig, aber Infimum von $(\tau-\varepsilon,\tau+\varepsilon)$ ist auch $f(\tau)$!}
+			\label{AbbMinimalstelleEindeutigNichtWohlsepariert}
+		\end{center}
+	\end{figure}
+\end{beisp}
 
 \begin{satz}\label{satz8.3}
 	Seien $f,f_n,n\in\N$ aus $C(\R)$, $\tau_n\in A(f_n)\neq\emptyset~\forall n\geq N_0\in\N$ 
@@ -96,7 +103,7 @@ Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stoc
 	\end{align*}
 \end{proof}
 
-Satz 8.3 lässt sich problemlos von $\R$ auf offene Intervalle $I=(a,b)$ übertragen.\nl
+Satz \ref{satz8.3} lässt sich problemlos von $\R$ auf offene Intervalle $I=(a,b)$ übertragen.\nl
 Für kompakte Intervalle $I=[a,b]$, $a<b\in\R$ muss $\tau$ nur eindeutig sein.
 Es gilt:
 
@@ -105,7 +112,7 @@ Es gilt:
 	Dann gilt:
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
-			A(f_n)\neq\emptyset
+			A(f_n)\neq\emptyset\qquad\forall n\in\N
 		\end{aligned}$
 		\item Falls $\tau$ \underline{eindeutige} Minimalstelle von $f$ ist und falls
 		\begin{align*}
@@ -201,7 +208,7 @@ Analog erhält man mit Satz \ref{satz8.4}:
 	Da $\Omega_0\overset{\ref{satz8.4}}{\subseteq}\Big\lbrace\tau_n\overset{n\to\infty}{\longrightarrow}\tau\Big\rbrace$, folgt die Behauptung.
 \end{proof}
 
-\subsection{Anwedung in der Statistik} %nonumber
+\subsection{Anwendung in der Statistik} %nonumber
 Maximum-Likelihood-Schätzung in 1-parametrigen Exponentialfamilien
 Seien $(X_n)_{n\geq1}$ i.i.d. Kopien von Zufallsvariablen $X$, (d.h. $X_i\sim X$ bzw. $X_i\overset{\L}{=}X$)
 mit Werten im Messraum $(\X,\F)$ und mit $\mu$-Dichte 
@@ -386,8 +393,16 @@ Eine elementare Rechnung zeigt (zur Übung):
 	\end{array}\right.\\
 	&\implies\tau_n=\argmax\limits_{0\leq k\leq n}\big|\E[S_k]\big|\nonumber
 \end{align}
-%TODO Hier könnte man eine Skizze einfügen
-% monoton linear wachsend bis zu einem punkt, dann fallend, sieht aus wie ein Dreieck
+
+Daraus folgt, dass $\E[S_k]$ (in Abhängigkeit von $k$) erst monoton wachsend und ab $k=\tau_n$ monoton fallend ist.
+
+\begin{figure}[H] % oder ht!
+	\begin{center}
+		\includegraphics[width=1\textwidth]{./pics/MSTAT004.png}
+		\caption{Plot von $\E[S_k]$}
+		%\label{Abb}
+	\end{center}
+\end{figure}
 
 Dies motiviert folgenden Schätzer (ersetze unbekannte $\big|\E[S_k)\big]$ durch bekannte $|S_k|$):
 \begin{align*}
@@ -421,7 +436,8 @@ Da wegen \eqref{eqUnder8.2_1}
 \begin{align*}
 	\overline{M}_n\left(\frac{k}{n}\right)
 	&=\frac{1}{n}\cdot\E\big[S_k\big]
-	\overset{\eqref{eqUnder8.2_1}}&=
+	\overset{\eqref{eqUnder8.2_1}}
+	=
 	\left\lbrace\begin{array}{cl}
 		\frac{k}{n}\cdot(1-\theta_n)\cdot(\mu-\nu) &\falls \frac{k}{n}\leq\frac{\tau_n}{n}=\theta_n\\
 		\left(1-\frac{k}{n}\right)\cdot\theta_n\cdot(\mu-\nu), & \falls \frac{k}{n}>\theta_n
@@ -451,8 +467,13 @@ Eine Fallunterscheidung ($t\leq\theta_n$; $\theta_n<t\leq\theta$; $t>\theta$) li
 	\end{array}\right.
 \end{align}
 
-%TODO Evtl. Skizze einfügen, plot(\overline{M}) auf [0,1]
-% Wieder so ein Zelt mit Maximum in \theta
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{./pics/MSTAT005.png}
+		\caption{Plot von $M(t)$}
+		%\label{AbbTitel}
+	\end{center}
+\end{figure}
 
 Somit ist dieses $\theta$ charakterisierbar als Maximalstelle:
 \begin{align*}
@@ -466,7 +487,9 @@ Zeige:
 \end{align*}
 Da
 \begin{align}\label{eqUnder8.2_3}\tag{3}
-	0\leq\big\Vert M_n-M\big\Vert\leq\big\Vert M_n-\overline{M}_n\big\Vert+\underbrace{\overline{M}_n-M\big\Vert}_{\stackrelnew{\eqref{eqUnder8.2_2}}{n\to\infty}{\longrightarrow}0}
+	0\leq\big\Vert M_n-M\big\Vert\leq\big\Vert M_n-\overline{M}_n\big\Vert+\underbrace{\big\Vert\overline{M}_n-M\big\Vert}_{
+		\stackrelnew{\eqref{eqUnder8.2_2}}{n\to\infty}{\longrightarrow}0
+	}
 \end{align}
 
 Betrachte den ersten Summanden
@@ -675,7 +698,7 @@ Folgender Satz gibt Antwort.
 %Ferger: "Müssen Sie nicht mitschreiben, ich will jetzt hier nur zu einer didaktischen Meisterleistung auflaufen."
 
 \begin{proof}
-	\underline{Zeig \eqref{eqSatz8.9_a}:}\\
+	\underline{Zeige \eqref{eqSatz8.9_a}:}\\
 	Sei $K$ kompakt. Dann gilt:
 	\begin{align}\label{eqProofSatz8.9_i}\tag{i}
 		\big\lbrace\sigma_n\in K\big\rbrace

@@ -4,7 +4,11 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \section{Verteilungskonvergenz im Raum stetiger Funktionen} %7
-Sei $I:=[a,b]$ mit $a<b$ und $C:=C(I):=\big\lbrace f:I\to\R\mid f\text{ stetig }\big\rbrace$ versehen mit der Supremumsmetrik
+Sei $I:=[a,b]$ mit $a<b$ und
+\begin{align*}
+	C:=C(I):=\big\lbrace f:I\to\R\mid f\text{ stetig}\big\rbrace
+\end{align*}
+versehen mit der Supremumsmetrik
 \begin{align*}
 	d(f,g)&:=\sup\limits_{t\in I}\big|f(t)-g(t)\big|\qquad\forall f,g\in C.
 \end{align*}
@@ -38,6 +42,7 @@ Dazu:
 		=\sigma\Big(\pi_t:t\in I\Big)=\sigma\Big(\pi_T:T\subseteq I,T\text{ endlich}\Big)
 		=\sigma\Big(\big\lbrace \pi_t^{-1}(B):t\in I,B\in\B(\R)\big\rbrace\Big)
 	\end{align*}
+	"kleinste $\sigma$-Algebra, sodass alle $\pi_t$ messbar sind"
 \end{satz}
 
 \begin{proof}
@@ -93,21 +98,23 @@ Dazu:
 \end{proof}
 %Ferger hat Borel-Mengen am Anfang des Studiums gehasst, weil er sie nicht verstanden hat. Jetzt sieht er das anders.
 
-Ein stochastischer Prozess $\big\lbrace X(t):t\in I\big\rbrace$ heißt \textbf{indiziert nach $I$ (über $(\Omega,\A)$)}
-\begin{align*}
+\begin{defi}
+	Ein stochastischer Prozess $\big\lbrace X(t):t\in I\big\rbrace$ heißt \textbf{indiziert nach $I$ (über $(\Omega,\A)$)}
+		\begin{align*}
 	:\Longleftrightarrow X(t):(\Omega,\A)\to(\R,\B(\R)),
-	\qquad\omega\mapsto X(t)(\omega)\quad
-	\text{ist messbar}\qquad\forall t\in I
-\end{align*}
-%Ferger: "Trage ich zu einer Verwirrung bei?"
-Schreibweise: $X(t,\omega):=X(t)(\omega)$\\
-Falls die \textbf{Pfade / Trajektorien}
-\begin{align*}
-	X(\cdot,\omega):I\to\R,\qquad t\mapsto X(t,\omega)\qquad\forall \omega\in\Omega
-\end{align*}
-stetig sind (für alle $\omega\in\Omega$), so liefert die Zuordnung $\omega\mapsto X(\cdot,\omega)$ eine Abbildung $X:\Omega\to C(I)$. 
-Diese Abbildung $X$ heißt \textbf{Pfadabbildung} des stochastischen Prozesses und wird mit diesem identifiziert.\nl
-%TODO Hier kann man eine Skizze einfügen
+		\qquad\omega\mapsto X(t)(\omega)\quad
+		\text{ist messbar}\qquad\forall t\in I
+	\end{align*}
+	%Ferger: "Trage ich zu einer Verwirrung bei?"
+	Schreibweise: $X(t,\omega):=X(t)(\omega)$\\
+	Falls die \textbf{Pfade / Trajektorien}
+	\begin{align*}
+		X(\cdot,\omega):I\to\R,\qquad t\mapsto X(t,\omega)\qquad\forall \omega\in\Omega
+	\end{align*}
+	stetig sind (für alle $\omega\in\Omega$), so liefert die Zuordnung $\omega\mapsto X(\cdot,\omega)$ eine Abbildung $X:\Omega\to C(I)$. 
+	Diese Abbildung $X$ heißt \textbf{Pfadabbildung} des stochastischen Prozesses und wird mit diesem identifiziert.
+\end{defi}
+
 Satz \ref{satz7.2} liefert ein sehr handliches Kriterium für die Messbarkeit von allgemeinen Abbildungen $X:\Omega\to X$.
 
 \begin{satz}\label{satz7.3}
@@ -144,7 +151,13 @@ Jeder stetige stochastische Prozess indiziert nach $I$ kann aufgefasst werden al
 		S_k:=\sum\limits_{i=1}^k\xi_i\qquad\forall0\leq k\leq n\qquad S_0:=0
 	\end{align*}
 	Der Polygonzug $X_n$ durch die Punkte $\left(\frac{k}{n},\frac{1}{\sqrt{n}}\cdot S_k\right),0\leq k\leq n$ heißt \textbf{$n$-ter Partialsummenprozess}.
-	%TODO Hier Skizze einfügen (ist echt eine schöne Skizze)
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=1\textwidth]{./pics/MSTAT001.png}
+			\caption{Partialsummenprozess mit $n=10$, $k=6$}
+			\label{AbbPartialsummenprozess}
+		\end{center}
+	\end{figure}
 	Mit der Zwei-Punkte-Formel der Geradengleichung folgt:
 	\begin{align*}
 		X_n(t)=\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^{\lfloor n\cdot t\rfloor}\xi_i+\frac{1}{\sqrt{n}}\cdot\big(n\cdot t-\lfloor n\cdot t\rfloor\big)\cdot\xi_{\lfloor n\cdot t\rfloor+1}\qquad\forall t\in[0,1]=I
@@ -225,7 +238,7 @@ Jeder stetige stochastische Prozess indiziert nach $I$ kann aufgefasst werden al
 
 Nächstes Ziel: Handhabbare Kriterien für den Nachweis der Verteilungskonvergenz in $C$. Dazu:
 
-\begin{definition} %7.z
+\begin{definition} %7.7
 	Für eine Funktion $f\colon I\to\R$ und $\delta>0$ definiere den \textbf{Stetigkeitsmodul / Oszillationsmodul}
 	\begin{align*}
 		\omega(f,\delta):=\sup\limits\Big\lbrace \big|f(s)-f(t)\big|:s,t\in I\mit |s-t|\leq\delta\Big\rbrace
@@ -310,7 +323,7 @@ Erstes Kriterium in:
 		\begin{align*}
 			\sum\limits_{j=1}^k\lambda_j\cdot X_n(t_j)\stackrel{\L}{\longrightarrow}\sum\limits_{j=1}^k\lambda_j\cdot X(t_j)\text{ in }\R\qquad\forall\lambda=\big(\lambda_1,\ldots,\lambda_k\big)\in\R^k
 		\end{align*}
-%Ich wurde von Prof Ferger bemitleidet, weil ich in Tex nicht alles umsetzen kann, was in der Tafel durch Wisch-Technik erzeugt.
+%Ich wurde von Prof Ferger bemitleidet, weil ich in Tex nicht alles umsetzen kann, was er an der Tafel durch Wisch-Technik erzeugt.
 		Dazu: 
 		\begin{align*}
 			\sum\limits_{j=1}^k\lambda_j\cdot X_n(t_j)
@@ -798,14 +811,10 @@ folgt
 	&=0+\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=\tau_n+1}^k\frac{\overbrace{\E[X_{i,n}]}^{=\nu}-\mu}{\sigma}
 	=\frac{1}{\sqrt{n}}\cdot\big(k-\tau_n\big)\cdot\frac{\nu-\mu}{\sigma}\qquad\forall\tau_n<k\leq n
 \end{align*}
-%TODO Hier Plot von $(k,\E[S_k)]$ einfügen 
-%für k\leq\tau_n ist es immer 0,
-%für k>\tau_n wächst es monoton
-%TODO Hier Plot von $(k,S_k)$ einfügen, unter H_1:
-%für k\leq\tau_n ist es ein "rumzappeln" um die X-Achse
-%für k>\tau_n gibt es dann einen "Drift" nach oben
-%TODO Hier Plot von $(k,S_k)$ einfügen, unter H_0:
-%hier kein Drift nach oben, nur herumzappeln um die x_Achse
+%TODO 3x Plots einfügen
+% 1. Plot von $(k,\E[S_k)]$ einfügen: für k\leq\tau_n ist es immer 0, für k>\tau_n wächst es monoton
+% 2.Plot von $(k,S_k)$ einfügen: unter H_1: für k\leq\tau_n ist es ein "rumzappeln" um die X-Achse; für k>\tau_n gibt es dann einen "Drift" nach oben
+% 3. Plot von $(k,S_k)$ einfügen, unter H_0: hier kein Drift nach oben, nur herumzappeln um die x_Achse
 
 Planversibler Test:
 $H_0$ verwerfen $:\Longleftrightarrow T_n:=\max\limits_{0\leq k\leq n} S_k>k_\alpha$\nl
@@ -818,7 +827,6 @@ $H_0$ verwerfen $:\Longleftrightarrow T_n:=\max\limits_{0\leq k\leq n} S_k>k_\al
 		\item $\begin{aligned}
 			\max\limits_{0\leq k\leq n}y_k=\max\limits_{0\leq t\leq 1} h(\ul{y})(t)
 		\end{aligned}$
-		%TODO Hier  könnte man eine Skizze einfügen
 		\item $\begin{aligned}
 			\max\limits_{0\leq k\leq n}\big|y_k\big|=\max\limits_{0\leq t\leq 1} \big|h(\ul{y})(t)\big|
 		\end{aligned}$
@@ -1018,9 +1026,13 @@ liefert
 	heißt \textbf{Brownsche Brücke}.
 \end{definition}
 
-%TODO Hier könnte man eine Skizze einfügen
-%B_0(0)=B_0(1)=0
-%Zwischen 0 und 1 gezitterter Sinus
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{./pics/MSTAT002.png}
+		\caption{Brownsche Brücke}
+		\label{AbbBrownscheBruecke}
+	\end{center}
+\end{figure}
 %Ferger: "Also über die Brücke würde ich jetzt nicht gehen. Kein Ahnung, warum man Brücke dazu sagt."
 
 %T_n^\ast ist Supremumsnorm von Partialsummenprozess?+
@@ -1247,7 +1259,6 @@ Satz \ref{satz7.23} geht auf Whitt (1970) zurück. Ein (relativ) einfacher Bewei
 	 	X_n(t)&:=\frac{1}{\sqrt{n}}\cdot S_{\lceil n\cdot t\rceil}+\frac{1}{\sqrt{n}}\cdot\big(n\cdot t-\lceil n\cdot t\rceil\big)\cdot\xi_{\lceil n\cdot t\rceil+1}\qquad\forall t\in[0,\infty)
 	 \end{align*}
 	 D.h. $X_n$ ist Polygonzug durch $\left(\frac{k}{n},\frac{1}{\sqrt{n}\cdot S_n}\right),k\in\N_0$.
-	 %TODO Hier Skizze einfügen
 	 Aus Satz \ref{satz7.16Donsker} folgt:
 	 \begin{align*}
 	 	&X_n^{(j)}\stackrel{\L}{\longrightarrow}B^{(j)}\qquad\forall j\in\N\\

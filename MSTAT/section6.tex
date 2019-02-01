@@ -69,13 +69,17 @@ Es gelte die \textbf{zeilenweise Unabhängigkeit}:
 %Ferger arbeitet auch am Buß- und Bettag in der Uni. Er ist evangelisch getauft worden und sogar konfirmiert. 
 Also die Vektoren seien unabhängig. Daraus folgt nicht, dass deren Komponenten unabhängig sind.
 \begin{align}\label{eq6.4}\tag{6.4}
-	\E\big[X_{n,k}\big]:=\left(\E\left[X_{n,k}^{(j)}\right]\right)_{1\leq j\leq d}=0:=(0,\ldots,0)\qquad\forall k,n\in\N\\
+	\E\big[X_{n,k}\big]:=\left(\E\left[X_{n,k}^{(j)}\right]\right)_{1\leq j\leq d}&=0:=(0,\ldots,0)
+	&\forall& k,n\in\N\\
 	\label{eq6.5}\tag{6.5}
-	\E\left[\left(X_{n,k}^{(j)}\right)\right]<\infty\qquad\forall 1\leq j\leq d,\forall n,k\in\N
+	\E\left[\left(X_{n,k}^{(j)}\right)\right]&<\infty
+	&\forall& 1\leq j\leq d,\forall n,k\in\N
 \end{align}
 Wegen \eqref{eq6.4} und \eqref{eq6.5} ist die so genannte \textbf{Kovarianzmatrix}
 \begin{align*}
-	\Cov\left(X_{n,k}\right):=\Big(\underbrace{\Cov\left(X_{n,k}^{(i)},X_{n,k}^{(j)}\right)}_{=\E\left(X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right)}\Big)_{1\leq i,j\leq d}\in\R^{d\times d}
+	\Cov\left(X_{n,k}\right):=\Big(\underbrace{\Cov\left(X_{n,k}^{(i)},X_{n,k}^{(j)}\right)}_{
+		=\E\left[X_{n,k}^{(i)}\cdot X_{n,k}^{(j)}\right]
+	}\Big)_{1\leq i,j\leq d}\in\R^{d\times d}
 \end{align*}
 
 \begin{satz}[Multivariater Zentraler Grenzwertsatz (ZGWS)]\label{satz6.2MultivariaterZGWS}\enter
@@ -94,7 +98,7 @@ Wegen \eqref{eq6.4} und \eqref{eq6.5} ist die so genannte \textbf{Kovarianzmatri
 	\end{align*}
 \end{satz}
 %Ferger kennt die Dichte die Normalverteilung im Mehrdimensionalen nicht und versucht sie trotzdem aus dem Gedächtnis an die Tafel zu schreiben. Wieder 5 Minuten weg :D
-%"Mir persönlich reicht es, das Ding hat eine Dichte!" :D
+%"Mir persönlich reicht es, dass das Ding hat eine Dichte!" :D
 %"Manchmal ist weniger mehr!"
 \begin{proof}
 	Sei $N\sim\mathcal{N}_d(0,\Gamma)$. Mit \ref{satz5.4CramerWoldDevice} bleibt zu zeigen:

@@ -19,7 +19,6 @@
 			%\exists\varepsilon_0>0:\forall\varepsilon\in(0,\varepsilon_0]:b(\varepsilon)>0 %wurde gestrichen
 			\forall\varepsilon>0:b(\varepsilon)>0
 		\end{aligned}$
-		%\item Für $\varepsilon\in(0,\varepsilon_0]$ gilt: %wurde geändert
 		\item Für alle $\varepsilon>0$ gilt:
 		\begin{align*}
 			\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}<b(\varepsilon)
@@ -71,7 +70,7 @@
 		&\geq 2\cdot\underbrace{\Big(b(\varepsilon)-\Vert f-f\Vert_{\overline{B}(\sigma,\varepsilon)}}_{
 			>0\text{ nach Annahme}
 		}\Big)\\
-		\implies f(t)>f(\sigma)\qquad\forall t\not\in \overline{B}(\sigma,\varepsilon)\label{eqProofLemma10.1Plus}\tag{+}
+		&\implies f(t)>f(\sigma)\qquad\forall t\not\in \overline{B}(\sigma,\varepsilon)\label{eqProofLemma10.1Plus}\tag{+}
 	\end{align}
 	Somit folgt $\tau\in\overline{B}(\sigma,\varepsilon)$, da sonst wegen \eqref{eqProofLemma10.1Plus} folgen würde, dass $f(\tau)>f(\sigma)$.
 	Dies ist aber ein Widerspruch, wann immer $\tau\in A(f)$.
@@ -319,10 +318,11 @@ Da $\psi$ integrierbar auf $[0,t]$ (vergleiche Bemerkung \ref{bemerkung10.7} unt
 \begin{align*}
 	\limn\E\Big[D_n(t)\Big]=2\cdot\int\limits_0^t\psi(u)\d u
 \end{align*}
-Betrachte nun die Varianz %TODO
+Betrachte nun die Varianz 
 \begin{align*} 
 	&\Var\Big(D_n(t)\Big)\\
-	&=a_n^2\cdot\frac{1}{n}\cdot n\cdot\Var\left(R\left(X_1-m,\frac{t}{a_n}\right)\right)\\
+	\overset{\text{unab}}&=
+	a_n^2\cdot\frac{1}{n}\cdot n\cdot\Var\left(R\left(X_1-m,\frac{t}{a_n}\right)\right)\\
 	&=a_n^2\cdot\Var\left(R\left(X_1-m,\frac{t}{a_n}\right)\right)\\
 	&\leq a_n^2\cdot\E\left[\left(R\left(X_1-m,\frac{t}{a_n}\right)\right)^2\right]\\
 	\overset{\ref{lemma10.5KeithKnight}}&=
