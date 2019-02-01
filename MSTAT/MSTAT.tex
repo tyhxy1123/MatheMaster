@@ -21,25 +21,40 @@
   Mathematische Statistik \\
   }
 \subtitle{Wintersemester 2018/2019}
-\author{Vorlesung: Prof. Dr. Dietmar Ferger\\Mitschrift: Willi Sontopski}
-
+\author{
+	Vorlesung: Prof. Dr. Dietmar Ferger\\
+	Mitschrift: Willi Sontopski
+}
 
 \begin{document}
-\pagenumbering{gobble}	% disable pagenumbering
+	% begin hack: fix overfull hbox warning caused by \tableofcontents when exceeding 100 pages	
+	\makeatletter
+  	\renewcommand{\@pnumwidth}{2em}
+  	%\renewcommand{\@tocrmarg}{3em} % currently unnecessary
+  	\makeatother
+	% end hack
 
-\maketitle
-\doclicenseThis
-\tableofcontents % Inhaltsverzeichnis
-\pagenumbering{arabic}	%enable pagenumbering
+	\pagenumbering{gobble}	% disable pagenumbering
+	\maketitle
+	\doclicenseThis
+	\tableofcontents        % Inhaltsverzeichnis
+	\pagenumbering{arabic}	% enable pagenumbering
 
+	\input{section1}
+	\input{section2}
+	\input{section3}
+	\input{section4}
+	\input{section5}
+	\input{section6}
+	\input{section7}
+	\input{section8}
+	\input{section9}
+	\input{section10}
+	\input{anhang}
 
-\input{chapter1}
-%\input{chapter2}
-\input{anhang}
-
-%\listoffigures 
-%\listoftables
-%\bibliography{literatur}
-
-
+	\listoffigures 
+	%\listoftables
+	
+	\nocite{*} % erstellt Literaturverzeichnus ohne Verweise
+	\bibliography{literatur}
 \end{document}

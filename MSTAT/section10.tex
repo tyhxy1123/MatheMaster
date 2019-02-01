@@ -1,0 +1,416 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Argmin-Theoreme in \texorpdfstring{$C_c(\R)$}{C\_c(R)}} %10
+
+\begin{lemma}\label{lemma10.1}
+	Seien $f\colon\R^d\to\R$ konvex, $g\colon\R^d\to\R$ stetig, $A(f)\neq\emptyset$, $A(g)=\lbrace\sigma\rbrace$.\\
+	Für $\varepsilon>0$ seien
+	\begin{align*}
+		\overline{B}(\sigma,\varepsilon)&:=\big\lbrace t\in\R^d:|t-\sigma|\leq\varepsilon\big\rbrace\\
+		m(\varepsilon)&:=\inf\limits\big\lbrace g(t9:|t-\sigma|=\varepsilon\big\rbrace\\
+		b(\varepsilon)&:=\frac{1}{2}\cdot\big(m(\varepsilon)-g(\sigma)\big)
+	\end{align*}
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			%\exists\varepsilon_0>0:\forall\varepsilon\in(0,\varepsilon_0]:b(\varepsilon)>0 %wurde gestrichen
+			\forall\varepsilon>0:b(\varepsilon)>0
+		\end{aligned}$
+		\item Für alle $\varepsilon>0$ gilt:
+		\begin{align*}
+			\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}<b(\varepsilon)
+			\implies|\tau-\sigma|\leq\varepsilon\qquad\forall\tau\in A(f)
+		\end{align*}
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\underline{Zeige (1):}\
+		Sei $\varepsilon>0$ und angenommen $b(\varepsilon)=0$.
+		Dann:
+		\begin{align*}
+			g(\sigma)=m(\varepsilon)=g(t_\varepsilon)
+			\text{ für ein }t_\varepsilon\in
+			\big\lbrace t\in\R^d:|t-\sigma|=\varepsilon\big\rbrace=:S(\sigma,\varepsilon),
+		\end{align*}
+		da $S(\sigma,\varepsilon)$ kompakt und $g$ stetig (stetige Funktionen nehmen auf kompakten Mengen ihr Infimum an!).
+		Somit ist $t_\varepsilon\in A(g)$ und $t_\varepsilon=\sigma$ im Widerspruch zu $t_\varepsilon\in S(\sigma,\varepsilon)$.\nl
+	\underline{Zeige (2):}
+	Sei $t\not\in\overline{B}(\sigma,\varepsilon)$ und $\lambda:=\frac{\varepsilon}{\Vert t-\sigma\Vert}\in(0,1)$.
+	Für
+	\begin{align*}
+		s:=(1-\lambda)\cdot\sigma+\lambda\cdot t
+		=\sigma+\lambda\cdot(t-\sigma)
+	\end{align*}
+	folgt
+	\begin{align}\label{eqProofLemma10.1Stern}\tag{$\ast$}
+		\Vert S-\sigma\Vert=\lambda\cdot\Vert t-\sigma\Vert
+		=\varepsilon
+	\end{align}
+	Da $f$ konvex, folgt
+	\begin{align}\nonumber
+		f(s)
+		&\leq(1-\lambda)\cdot f(\sigma)+\lambda\cdot f(t)\\\nonumber
+		&=f(\sigma)+\lambda\cdot\big(f(t)-f(\sigma)\big)\\\nonumber
+		&=\lambda\cdot\big(f(t)-f(\sigma)\big)\\\nonumber
+		&\geq f(s)-f(\sigma)\\\nonumber
+		&=g(s)-g(\sigma)+\underbrace{f(s)-g(s)}_{
+			\overset{s\in\overline{B}(\sigma,\varepsilon)}{\geq}-\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}
+		}-\underbrace{\big(f(\sigma)-g(\sigma)\big)}_{
+			\leq\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}
+		}\\\nonumber
+		&\geq \underbrace{\underbrace{g(s)}_{
+			\overset{s\in S(\sigma,\varepsilon)}{\geq}m(\varepsilon)
+		}-g(\sigma)}_{
+			\geq m(\varepsilon)-g(\sigma)=2\cdot b(\varepsilon)
+		}-2\cdot\Vert f-g\Vert_{\overline{B}(\sigma,\varepsilon)}\\\nonumber
+		&\geq 2\cdot\underbrace{\Big(b(\varepsilon)-\Vert f-f\Vert_{\overline{B}(\sigma,\varepsilon)}}_{
+			>0\text{ nach Annahme}
+		}\Big)\\
+		&\implies f(t)>f(\sigma)\qquad\forall t\not\in \overline{B}(\sigma,\varepsilon)\label{eqProofLemma10.1Plus}\tag{+}
+	\end{align}
+	Somit folgt $\tau\in\overline{B}(\sigma,\varepsilon)$, da sonst wegen \eqref{eqProofLemma10.1Plus} folgen würde, dass $f(\tau)>f(\sigma)$.
+	Dies ist aber ein Widerspruch, wann immer $\tau\in A(f)$.
+	Schließlich folgt $|\tau-\sigma|\leq\varepsilon$.
+\end{proof}
+
+%Ferger: "Das schafft nicht einmal bis Chuck Norris."
+
+Lemma \ref{lemma10.1} geht zurück auf Hjorth und Pollard (1993), Preprint.
+Wir erhalten folgendes Argmin-Theorem für konvexe Funktionen:
+
+\begin{satz}\label{satz10.2}
+	Sei $D\subseteq\R^d$ dicht in $\R^d$ (z.B. $D=\Q^d$) und seien $f,f_n,n\in\N$ konvexe Funktionen auf $\R^d$, wobei $f$ eine eindeutige Minimalstelle $\tau$ besitze ($A(f)=\lbrace\tau\rbrace$).
+	Seien $\tau_n\in A(f_n)\neq\Phi$ $\forall n\geq N_0\in\N$.
+	Dann gilt:
+	\begin{align}\label{eqSatz10.2Stern}\tag{$\ast$}
+		\Big(f_n(t)\overset{n\to\infty}{\longrightarrow} f(t)\qquad\forall t\in D\Big)\implies \tau_n\overset{n\to\infty}{\longleftarrow}\tau
+	\end{align}
+\end{satz}
+
+\begin{proof}
+	Konvexe Funktionen sind immer stetig, also ist $f$ stetig.
+	Lemma \ref{lemma10.1} mit $f\hat{=}f_n$, $g\hat{=}f$ liefert:
+	\begin{align*}
+		b(\varepsilon)>0\qquad\forall\varepsilon>0
+	\end{align*}
+	Gemäß Theorem \ref{theorem9.8} folgt aus \eqref{eqSatz10.2Stern}:
+	\begin{align*}
+		\big\Vert f_n-f\big\Vert_{\overline{B}(\tau,\varepsilon)}\overset{n\to\infty}{\longrightarrow}0
+	\end{align*}
+	(weil $\overline{B}(\tau,\varepsilon)$ kompakt.)
+	Somit folgt:
+	\begin{align*}
+		&\forall\varepsilon>0:\exists n_0=n_0(\varepsilon):\forall n\geq n_0(\varepsilon):
+		\underbrace{\big\Vert f_n-f\big\Vert_{\overline{B}(\tau,\varepsilon)}<b(\varepsilon)}_{\overset{\ref{lemma10.1}(2)}{\implies}|\tau_n-\tau|\leq\varepsilon}\\
+		&\implies \tau_n\overset{n\to\infty}{\longrightarrow}\tau
+	\end{align*}
+\end{proof}
+
+Satz \ref{satz10.2} liefert Argmin-Theorem für konvexe stochastische Prozesse bzgl. fast sicherer Konvergenz.
+
+\begin{satz}\label{satz10.3}
+	Seien $M,M_n,n\in\N$ konvexe stochastische Prozesse auf $\R^d$ über $(\Omega,\A,\P)$.
+	Es gelte:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			A(M)=\lbrace\tau\rbrace
+		\end{aligned}$ f.s. für eine Zufallsvariable $\tau$.
+		\item $\begin{aligned}
+			M_n(t)\overset{n\to\infty}{\longrightarrow} M(t)~\P\text{-f.s.}\qquad\forall t\in\R^d
+		\end{aligned}$
+	\end{enumerate}
+	Seien $\tau_n$ Zufallsvariablen mit $\tau_n\in A(M_n)$ f.s. $\forall n\in\N$.
+	Dann gilt:
+	\begin{align*}
+		\tau_n\overset{n\to\infty}{\longrightarrow}\tau~~\P\text{-f.s.}\text{ in }\R^d
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Seien
+	\begin{align*}
+		\Omega_1&:=\big\lbrace A(M)=\tau\big\rbrace\\
+		\Omega_2&:=\bigcap\limits_{t\in\Q^d}\Big\lbrace M_n\overset{n\to\infty}{\longrightarrow}M(t)\Big\rbrace\\
+		\Omega_3&:=\bigcap\limits_{n\in\N}\big\lbrace\tau_n\in A(M_n)\big\rbrace\\
+		\Omega_0&:=\Omega_1\cap\Omega_2\cap\Omega_3
+	\end{align*}
+	Aus den Voraussetzungen folgt, dass $\Omega_0$ eine Einsmenge ist (abzählbarer Schnitt von Einsmengen ist Einsmenge), d.h. $\P(\Omega_0)=1$.
+	Aus Satz \ref{satz10.2} folgt ($f\hat{=}M_n(\omega,\cdot)$, $f\hat{=}M(\omega,\cdot)$, $\tau\hat{=}\tau(\omega)$, $\tau_n(\omega)\hat{=}\tau_n$):
+	\begin{align*}
+		\Omega_0\subseteq\Big\lbrace\tau_n\overset{n\to\infty}{\longrightarrow}\tau\Big\rbrace\\
+		\implies \P\Big(\tau\overset{n\to\infty}{\longrightarrow}\tau\Big)=1
+	\end{align*}
+\end{proof}
+
+\subsection{Anwendung: Starke Konsistenz des empirischen Medians} %noNumber
+
+\begin{align*}
+	M_n(t)&:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big|X_i-t\big|&\forall& t\in\R\\
+	\overset{\text{SGGZ}}{\implies}
+	M_n(t)\overset{n\to\infty}&{\longrightarrow}\E\Big[\big|X_1-t\big|\Big]
+	\overset{\text{Def}}= M(t)\text{ f.s.} &\forall& t\in\R^d
+\end{align*}
+Falls der Median $m$ von $F$ \underline{eindeutig}, d.h. $A(M)=\lbrace m\rbrace$ (Beachte: hier ist $M$ deterministisch, also konstanter stochastischer Prozess), so folgt aus Satz \ref{satz10.3} sofort für jede messbare Auswahl $\hat{m}_n\in A(M_n)$:
+\begin{align*}
+	\hat{m}_n\overset{n\to\infty}{\longrightarrow} m~~\P\text{-f.s.}
+\end{align*}
+Zum Beispiel $\hat{m}_n:=F^{-1}\left(\frac{1}{2}\right)$.\nl
+Das Argmin-Theorem für Verteilungskonvergenz ist:
+
+\begin{satz}\label{satz10.4}
+	Seien $Z,Z_n,n\in\N$ konvexe stochastische Prozesse auf $\R$ über $(\Omega,\A,\P)$.
+	Es gelte:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			A(Z)=\lbrace\sigma\rbrace
+		\end{aligned}$ f.s. für eine Zufallsvariable $\sigma$.
+		\item $\begin{aligned}
+			Z_n\overset{\text{fd}}{\longrightarrow} Z
+		\end{aligned}$
+	\end{enumerate}
+	Dann gilt für jede messbare Auswahl $\sigma_n\in A(Z_n)$:
+	\begin{align*}
+		\sigma_n\overset{\L}{\longrightarrow}\sigma\qquad\Big(\argmin(Z_n)\overset{\L}{\longrightarrow}\sigma\Big)
+	\end{align*}
+\end{satz}
+
+\begin{proof}[Beweisskizze]
+	\begin{align*}
+		(2) &\implies Z_n\overset{n\to\infty}{\longrightarrow}Z\text{ in }\big(C(\R),d\big)\\
+		&\implies\limsup\limits_{n\to\infty}\P\big(\sigma_n\in K\big)\leq\P\big(\lbrace\sigma\rbrace\cap K\neq\emptyset\big\rbrace
+		=\P\big(\sigma\in K\big)\qquad\forall K\in \mathcal{K}
+	\end{align*}
+\end{proof}
+
+\subsection{Anwendung: Verteilungskonvergenz des Medians} %nonumber
+Seien $X_1,\ldots,X_n$ i.i.d. $\sim F$.
+$F$ besitze Median $m\in\R$ und erfülle
+\begin{align}\label{eqAnwendungVerteilungskonv_B}\tag{B}
+	\exists\psi\colon\R\to\R,\exists(a_n)_{n\in\N}\mit a_n\to\infty:
+	\limn\sqrt{n}\cdot\left(F\left(m+\frac{t}{a_n}\right)-F(m)\right)=\psi(t)
+	~~\forall t\in\R
+\end{align}
+
+\begin{beisp} %nonumber
+	Sei $F$ differenzierbar an der Stelle $m$.
+	Dann gilt:
+	\begin{align*}
+		\underbrace{\frac{F\left(m+\frac{t}{\sqrt{n}}\right)-F(m)}{\frac{1}{\sqrt{n}}\cdot t}}_{
+			\overset{n\to\infty}{\longrightarrow}F'(m)
+		}\cdot t
+		\overset{n\to\infty}{\longrightarrow}F'(m)\cdot t\\
+		\psi(t)=\left\lbrace\begin{array}{cl}
+			F_+'(m)\cdot t, &\falls t\leq 0\\
+			F_-'(m)\cdot t,&\falls t<0
+		\end{array}\right.
+	\end{align*}
+\end{beisp}
+
+Erinnerung:
+\begin{align*}
+	\hat{m}_n&:=\argmin\limits_{t\in\R} M_n(t),\qquad
+	m_n(t)=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big|X_i-t\big|
+\end{align*}
+Idee: Betrachte den \textbf{reskalierten Prozess zu $a_n$}:
+\begin{align*}
+	Z_n(t)&:=a_n\cdot\sqrt{n}\cdot\left(M_n\left(m+\frac{t}{a_n}\right)-M_n(m)\right)\qquad\forall t\in\R
+\end{align*}
+Dann gilt (bereits gesehen):
+\begin{align*}
+	a_n\big(\hat{m}_n-m\big)
+	&=\argmin\limits_{t\in\R} Z_n(t)
+\end{align*}
+Die $T_n$ sind konvexe stochastische Prozesse.
+\underline{Ziel:} Konvergenz der fidis $Z_n\overset{\text{fd}}{\longrightarrow}Z$\\
+Dazu verwende
+
+\begin{lemma}[Keith Knight]\label{lemma10.5KeithKnight}
+	\begin{align*}
+		|x-y|-|x|&=-y\cdot\left(1-2\cdot\indi_{\lbrace x\leq 0\rbrace}\right)+R(x,y)
+		\qquad\forall x\neq y\in\R\quad\mit\\
+		R(x,y)&:=2\cdot\int\limits_0^y\indi_{(\infty,s]}(x)-\indi_{(-\infty,0]}(x)~\lambda(\d s)
+	\end{align*}
+\end{lemma}
+
+Somit folgt für uns:
+\begin{align*}
+	Z_n(t)
+	&=a_n\cdot\sqrt{n}\cdot\left(M_n\left(m+\frac{t}{a_n}\right)-M_n(m)\right)\\
+	&=\frac{a_n}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\bigg|\underbrace{X_i-m}_{\hat{=}x}-\underbrace{\frac{t}{a_n}}_{\hat{=}y}\bigg|-|\underbrace{X_i-m}_{\hat{=}x}|\\
+	\overset{\ref{lemma10.5KeithKnight}}&=
+	\frac{a_n}{\sqrt{n}}\cdot\sum\limits_{i=1}^n
+	-\frac{t}{a_n}\cdot\left(1-2\cdot\indi_{\lbrace X_i\leq m\rbrace}\right)+R\left(X_i-m_i\cdot\frac{t}{a_n}\right)\\
+	&=\underbrace{-t\cdot\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n	\left(1-2\cdot\indi_{\lbrace X_i\leq m\rbrace}\right)}_{
+		=:S_n(t)
+	}+\underbrace{a_n\cdot\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^m R\left(X_i-m_i\cdot\frac{t}{a_n}\right)}_{
+		:=D_n(t)
+	}
+\end{align*}
+Mit 
+\begin{align*}
+	\xi_i&:=1-2\cdot\indi_{\lbrace X_i\leq m\rbrace} \qquad	\implies\xi_i\text{ i.i.d.}
+\end{align*}
+gilt
+\begin{align*}
+	\E\big[\xi_i\big]
+	&=1-2\cdot \underbrace{F(m)}_{=\frac{1}{2}}=0
+\end{align*}
+Hier geht Lemma (1.1) %TODO
+ein. Das $F$ stetig ist, folgt aus \eqref{eqAnwendungVerteilungskonv_B}.
+\begin{align*}
+	\Var(\xi_i)
+	&=4\cdot F(m)\cdot\big(1-F(m)\big)=1\\
+	\overset{\text{ZGWS}}&{\implies}
+	\frac{1}{\sqrt{n}}\cdot\sum\limits_{i=1}^n\xi_i
+	\overset{\L}{\longrightarrow}\Nor(0,1)\\
+	\overset{\text{CMT}}&{\implies}
+	S_n(t)
+	\overset{\L}{\longrightarrow}-N\cdot t\qquad\forall t\in\R
+\end{align*}
+
+Für die Behandlung von $D_n(t)$ verwende:
+
+\begin{lemma}\label{lemma10.6}
+	Seien $U_n,n\in\N$ reelle Zufallsvariablen mit
+	\begin{align*}
+		 \E\big[U_n\big]\overset{n\to\infty}{\longrightarrow}
+		 \qquad\text{und}\qquad
+		 \Var(U_n)\overset{n\to\infty}{\longrightarrow}0.
+	\end{align*}		
+	Dann gilt
+	\begin{align*}
+		U_n\overset{\P}{\longrightarrow}\mu.
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		\P\Big(\big|U_n-\E[U_n]\big|>\varepsilon\Big)
+		\overset{\text{Markov}}&\leq
+		\varepsilon^{-2}\cdot\Var\big(U_n\big)\overset{n\to\infty}{\longrightarrow}0\\
+		U_n-\E[U_n]\overset{\P}{\longrightarrow}0
+		\implies U_n=\underbrace{(U_n-\E[U_n]}_{\overset{\P}{\longrightarrow}0}+\underbrace{\E[U_n]}_{\overset{}{\longrightarrow}\mu}
+	\end{align*}
+\end{proof}
+
+Somit erhalten wir (hier der Fall $t>0$):
+\begin{align*}
+	\E\big[D_n(t)\big]
+	&=a_n\cdot\sqrt{n}\cdot\E\left[R\left(X_1-m,\frac{t}{a_n}\right)\right]\\
+	&=-2\cdot a_n\cdot\sqrt{n}\cdot\E\Bigg[\int\limits_0^{\frac{t}{a_n}}\underbrace{\indi_{\lbrace X_1\leq s+m\rbrace}-\indi_{\lbrace X_1\leq m\rbrace}}_{
+		\geq 0,~\falls t\geq0
+	}~\lambda(\d s)\Bigg]\\
+	\overset{\text{Fubini}}&=
+	2\cdot a_n\cdot\sqrt{n}\cdot\int\limits_0^{\frac{t}{a_n}}F(m+s)-F(m)~\underbrace{\lambda(\d s}_{=\d s})\\
+	\overset{\text{Subs}}&=
+	2\cdot a_n\cdot\sqrt{n}\cdot\frac{1}{a_n}\cdot\int\limits_0^{t}F\left(m+\frac{u}{a_n}\right)-F(m)\d u\\
+	&=2\cdot\int\limits_0^t\underbrace{\sqrt{n}\cdot\left(F\left(m+\frac{u}{a_n}\right)-F(m)\right)}_{
+		\overset{n\to\infty}{\longrightarrow}\psi(u)\text{ gemäß }\eqref{eqAnwendungVerteilungskonv_B}
+	}\d u\\
+\end{align*}
+Bei der Substitution wurde benutzt:
+$u=s\cdot a_n$, $s=\frac{u}{a_n}$, $\frac{\d s}{\d u}=\frac{1}{a_n}$.\\
+Da $\psi$ integrierbar auf $[0,t]$ (vergleiche Bemerkung \ref{bemerkung10.7} unten) folgt mit dem Satz der dominierten Konvergenz:
+\begin{align*}
+	\limn\E\Big[D_n(t)\Big]=2\cdot\int\limits_0^t\psi(u)\d u
+\end{align*}
+Betrachte nun die Varianz 
+\begin{align*} 
+	&\Var\Big(D_n(t)\Big)\\
+	\overset{\text{unab}}&=
+	a_n^2\cdot\frac{1}{n}\cdot n\cdot\Var\left(R\left(X_1-m,\frac{t}{a_n}\right)\right)\\
+	&=a_n^2\cdot\Var\left(R\left(X_1-m,\frac{t}{a_n}\right)\right)\\
+	&\leq a_n^2\cdot\E\left[\left(R\left(X_1-m,\frac{t}{a_n}\right)\right)^2\right]\\
+	\overset{\ref{lemma10.5KeithKnight}}&=
+	a_n^2\cdot4\cdot\E\left[\int\limits_0^{\frac{t}{a_n}}\int\limits_0^{\frac{t}{a_n}}\left(
+		\indi_{\lbrace X_1\leq m+s\rbrace}
+		-\indi_{\lbrace X_1\leq m\rbrace}
+	\right)\cdot\left(
+		\indi_{\lbrace X_1\leq m+u\rbrace}
+		-\indi_{\lbrace X_1\leq m\rbrace}
+	\right)\d s\d u\right]\\
+	\overset{s,u\geq0}&{=}
+	a_n^2\cdot4\cdot\E\left[\int\limits_0^{\frac{t}{a_n}}\int\limits_0^{\frac{t}{a_n}}\indi_{\lbrace X_1\leq m+(s\wedge u)\rbrace}-\indi_{\lbrace X_1\leq m\rbrace}\d s\d u\right]\\
+	\overset{\text{Fubini}}&=
+	4\cdot a_n^2\cdot\int\limits_0^{\frac{t}{a_n}}\int\limits_0^{\frac{t}{a_n}} F\big(m+(s\wedge u)\big)-F(m)\d s\d u\\
+	\overset{\text{2x Subs}}&=
+	4\cdot\int\limits_0^t\int\limits_0^t\underbrace{ F\left(m+\frac{s\wedge u}{a_n}\right)-F(m)}_{
+		\overset{n\to\infty}{\longrightarrow}0\text{, da $F$ stetig in }m
+	}\d s\d u\\
+	\overset{n\to\infty}&{\longrightarrow}0\text{ gemäß dominierter Konvergenz}\\
+	\overset{\ref{lemma10.6}}&\implies
+	D_n(t)\overset{\P}{\longrightarrow}2\cdot\int\limits_0^t\psi(u)\d u=:D(t)\\
+	&\implies
+	Z_n(t)=\underbrace{S_n(t)}_{\overset{\L}{\longrightarrow}-N\cdot t}+\underbrace{D_n(t)}_{\overset{\P}{\longrightarrow}D(t)}
+	\overset{\L}{\longrightarrow}-N\cdot t+D(t):=Z(t)
+\end{align*}
+Die letzte Verteilungskonvergenz geht wegen Cramér-Slutsky \ref{satz4.15CramerSlutsky} und CMT \ref{satz4.10ContinuousMappingTheorem}.\nl
+Oben geht auch ein allgemeines Prinzip ein:
+\begin{align*}
+	\left(\int\limits_0^af(u)\d u\right)^2=\int\limits_0^a\int\limits_0^a f(u)\cdot f(y)\d u\d y
+\end{align*}
+
+%Ferger: "Die jungen Studentinnen hätten mir zum Geburtstag doch mal einen Kuchen backen können. Oder eine Flasche Bier."
+%Ferger: "Kennen Sie den Kollegen Matthies? Da will ich modisch auch noch hin! Der Kollege Matthies so einen Wischer. Die wünsche ich mir zu Weihnachten."
+
+Also haben wir insgesamt gezeigt $(t\leq 0$ geht analog):
+\begin{align*}
+	Z_n(t)\overset{\L}{\longrightarrow}Z(t)\overset{\text{Def}}{=}-N\cdot t+2\cdot\int\limits_0^t\psi(u)\d u\qquad\forall t\in\R
+\end{align*}
+
+Dies zeigt die Konvergenz der \underline{eindimensionalen} fidis.
+Mit dem Cramér-Wold-Device \ref{satz5.4CramerWoldDevice} folgt tatsächlich
+\begin{align*}
+	\Big(Z_n(t_1),\ldots,Z_n(t_k)\Big)
+	\overset{\L}{\longrightarrow}
+	\Big(Z(t_1),\ldots,Z(t_k)\Big)
+	\qquad\forall t_1,\ldots,t_2\in\R,\forall k\in\N
+\end{align*}
+
+Es ist $\psi$ insbesondere (zwei Mal) stetig differenzierbar auf $\R\setminus\lbrace0\rbrace$ (vergleiche Bemerkung \ref{bemerkung10.7} unten) und streng monoton wachsend.
+Dann folgt
+\begin{align*}
+	Z'(t)&=- N+2\cdot\psi(t),\qquad N\sim\Nor(0,1)\\
+	Z'(t)\overset{!}&{=}0\implies\psi(t)=\frac{1}{2}\cdot N\\
+	&\implies \sigma:=\psi^{-1}\left(\frac{1}{2}\cdot N\right)\text{ ist Nullstelle von }Z'\\
+	Z''(t)&=2\cdot\psi'(t)\overset{\text{strenge Monotonie}}{>0}\qquad\forall t\neq 0\\
+	&\implies Z''(\sigma)>0\quad\P\text{-f.s.}
+\end{align*}
+Also ist $\sigma$ f.s. eindeutige Minimalstellen von $Z$.
+Aus Satz \ref{satz10.4} folgt schließlich Satz \ref{satz10.8}.
+
+\begin{bemerkungnr}[Smirnov]\label{bemerkung10.7}\enter
+	$F$ besitze eindeutigen Median $m\in\R$ und erfülle die Bedingung \eqref{eqAnwendungVerteilungskonv_B}.
+	Dann gilt:
+	\begin{align*}
+		\exists \beta,c,d>0:\psi(t)=\left\lbrace\begin{array}{cl}
+			c\cdot t^\beta, &\falls t\geq0\\
+			-d\cdot|t|^\beta,&\falls t<0
+		\end{array}\right.
+	\end{align*}
+\end{bemerkungnr}
+
+\begin{satz}\label{satz10.8}
+	\begin{align*}
+		a_n\cdot\big(\hat{m}_n-m\big)\overset{\L}{\longrightarrow}\psi^{-1}\left(\frac{1}{2}\cdot N(0,1)\right)
+	\end{align*}
+\end{satz}
+
+\begin{beispiel}\label{beispiel10.9}
+	Es gelte für beliebig kleines $\delta>0$:
+	\begin{align*}
+		F(x):=\left\lbrace\begin{array}{cl}
+			c\cdot|x-m|^\beta+\frac{1}{2},&\falls m\leq x\leq m+\delta\\
+			-d\cdot|x-m|^\beta+\frac{1}{2},&\falls m-\delta\leq x<m
+		\end{array}\right.\qquad\forall x\in\R
+	\end{align*}
+	Dann erfüllt $F$ die Bedingung \eqref{eqAnwendungVerteilungskonv_B} mit $a_n=n^{\frac{1}{2\cdot\beta}}$ und $\psi$ wie in Bemerkung \ref{bemerkung10.7}.
+	Dann gilt
+	\begin{align*}
+		n^{\frac{1}{2\cdot\beta}}\cdot\Big(\hat{m}_n-m\Big)\overset{\L}{\longrightarrow}\psi^{-1}\left(\frac{1}{2}\cdot N\right)
+	\end{align*}
+\end{beispiel}

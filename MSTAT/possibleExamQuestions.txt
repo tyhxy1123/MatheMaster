@@ -3,3 +3,6 @@ MSTAT: potenzielle Prüfungsfragen:
 - Was ist Zufallsvariable?
 - Continous Mapping Theorem + Beweis
 - Cramer-Wold-Deive + Beweis (Satz 5.4)
+- Portmannteau-Theorem -> Definitionen
+- "Wie bekommen wir die Konvergenz von stochastischen Prozessen hin?" -> "Konvergenz der Fidis + Straffheit (mit Momentenkriterium)"
+ -> bei konvexen Prozessen ist die Straffheit automatisch erfüllt, Konvergenz der fidis reicht, siehe Satz 9.9

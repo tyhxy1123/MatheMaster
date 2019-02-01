@@ -1,0 +1,604 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Zufallsvariablen in metrischen Räumen} %3
+\begin{definition}\label{def3.1}
+	Die durch den metrischen Raum $(\S,d)$ induzierte $\sigma$-Algebra  
+	\begin{align*}
+		\B(\S):=\sigma\big(\G(\S)\big).
+	\end{align*}
+	heißt \textbf{Borel-$\sigma$-Algebra}.
+	Elemente $B\in\B(\S)$ heißen \textbf{Borel-Mengen} in $\S$.\\
+	Beachte: $\B(\S)=\B_d(\S)$ hängt i. A. von der Metrik $d$ ab.
+\end{definition}
+
+\begin{lemma}\label{Lemma3.2}
+	Es gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item 
+		$\begin{aligned}
+			\B(\S)=\sigma\big(\mathcal{F}(\S)\big)
+		\end{aligned}$
+		\item Ist $\begin{aligned}
+			f:(\S,d)\to(\S',d)
+		\end{aligned}$ stetig, so ist $f$ $\B_d(\S)$-$\B_d(\S')$-messbar.
+		\item Sei $\mathcal{G}_0$ abzählbare Basis von $\mathcal{G}(\S)$. Dann gilt:
+		\begin{align*}
+			\sigma(\mathcal{G}_0)=\B(\S)
+		\end{align*}
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}\enter
+	\underline{Zu (1), zeige ``$\subseteq$'':}
+	Sei $G\in\G(\S)$. Dann gilt:
+	\begin{align*}
+		G^C\in\mathcal{F}(\S)\subseteq\sigma\big(\mathcal{F}(\S)\big)
+		\implies
+		G=\big(G^C\big)^C\in\mathcal{F}(\S)
+	\end{align*}
+	da $\sigma\big(\mathcal{F}(\S)\big)$ Komplement-stabil ist. Also folgt
+	\begin{align*}
+		\mathcal{G}\subseteq\sigma(\mathcal{F})
+		\implies\sigma(\mathcal{G})\subseteq\sigma(\mathcal{F})
+	\end{align*}
+	\underline{Zu (1), zeige ``$\supseteq$'':} Analog.\nl
+	\underline{Zeige (2):}
+	\begin{align*}
+		f^{-1}\big(\B_{d'}(\S')\big)&=f^{-1}\Big(\sigma\big(\mathcal{G}(\S')\big)\Big)\\
+		&=\sigma\Big(\underbrace{f^{-1}\big(\mathcal{G}(\S')\big)}_{\stackrel{f\text{ stetig}}{\subseteq}\mathcal{G}(S)}\Big)\\
+		&\subseteq\sigma\big(\mathcal{G}(\S)\big)\\
+		&=\B(\S)
+	\end{align*}
+	\underline{Zu (3), zeige ``$\subseteq$'':}\\
+	Klar wegen $\mathcal{G}_0\subseteq\mathcal{G}(\S)$ und $\sigma$ monoton.\\
+	\underline{Zu (3), zeige ``$\supseteq$'':} Sei $G\in\mathcal{G}$. Dann:
+	\begin{align*}
+		G&=\bigcup\limits_{i\in\N} G_i\mit\text{geeigneten }G_i\in\mathcal{G}_0\subseteq\sigma(\mathcal{G}_0)\\
+		&\implies
+		G\in\sigma(\mathcal{G}_0)
+	\end{align*}
+	Aus der Stabilität unter Vereinigungen folgt die Behauptung:
+	\begin{align*}
+		G=\bigcup\limits_{i\in\N} G_i\subseteq\sigma\big(\G_0\big)=\B(\S)
+	\end{align*}
+\end{proof}
+
+\begin{satz}\label{satz3.3}
+	Sei $(\S,d)$ separabler metrischer Raum. Dann gilt:
+	\begin{align*}
+		\B_{d\times d}(\S\times\S)=\B(S)\otimes\B(\S)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Seien
+	\begin{align*}
+		&\pi_1:\S\times\S\to\S,\qquad \pi_1(x,y):=x\qquad\forall(x,y)\in\S\times S\\
+		&\pi_2:\S\times\S\to\S,\qquad \pi_2(x,y):=y\qquad\forall(x,y)\in\S\times S
+	\end{align*}
+	die \textbf{Projektionsabbildungen}. Dann gilt
+	\begin{align*}
+		\B(\S)\otimes\B(\S) 
+		\overset{\text{Def}}&=
+		\sigma(\pi_1,\pi_2)\\
+		\overset{\text{Def}}&=
+		\sigma\Big(\pi_1^{-1}\big(\sigma(\mathcal{G})\big)\cup\pi_2^{-1}\big(\sigma(\mathcal{G})\big)\Big)\\
+		\overset{(+)}&=
+		\sigma\Big(\sigma\big(\pi_1^{-1}(\mathcal{G})\big)\cup\sigma\big(\pi_2^{-1}(\mathcal{G})\big)\Big)\\
+		&=
+		\sigma\Big(\pi_1^{-1}(\mathcal{G})\big)\cup\pi_2^{-1}(\mathcal{G})\Big)\\
+		&=\sigma\Big(\big\lbrace G\times S,S\times G':G,G'\in\mathcal{G}\big\rbrace\Big)\\
+		&=
+		\sigma\Big(\big\lbrace \overbrace{G\times G'}^{=(G\times S)\cap(S\times G')}:G,G'1\in\mathcal{G}\big\rbrace\Big)\\
+		\overset{\text{($\ast$)}}&=
+		\sigma\left(\left\lbrace\bigcup\limits_{\begin{subarray}{c}
+			G\in\mathcal{O}\\
+			G'\in\mathcal{O}'
+		\end{subarray}}G\times G':\mathcal{O},\mathcal{O}'\subseteq\mathcal{G}\right\rbrace\right)\\
+		\overset{2.10~(3)}&=
+		\sigma\Big(\mathcal{G}(\S\times\S)\Big)\\
+		\overset{\text{Def}}&=
+		\B(\S\times\S)
+	\end{align*}
+	Zum Nachweis von (+):\\
+	Zeige ``$\supseteq$'': Setze
+	\begin{align*}
+		\xi&:=
+		\underbrace{\sigma\big(\pi_1^{-1}(\mathcal{G})\big)}_{\supseteq \pi_1^{-1}(\mathcal{G})}\cup\underbrace{\sigma\big(\pi_2^{-1}(\mathcal{G})\big)}_{\pi_2^{-1}(\mathcal{G})}\\
+		&\supseteq
+		\pi_1^{-1}(\mathcal{G})\cup\pi_2^{-1}(\mathcal{G})\\
+		&=:\mathcal{H}\\
+		&\implies\sigma(\xi)\supseteq\sigma(\mathcal{H})
+	\end{align*}
+	Zeige ``$\subseteq$'': Es gilt
+	\begin{align*}
+		&\pi_1^{-1}(\mathcal{G})\subseteq\big(\pi_1^{-1}(\mathcal{G})\cup\pi_2^{-1}(\mathcal{G})\big)=\mathcal{H}\\
+		&\implies
+		\sigma\big(\pi_1^{-1}(\mathcal{G})\big)\subseteq\sigma(\mathcal{H})\text{ und analog }\\
+		&\implies
+		\sigma\big(\pi_2^{-1}(\mathcal{G})\big)\subseteq\sigma(\mathcal{H})\\
+		&\implies
+		\xi=\underbrace{\sigma\big(\pi_1^{-1}(\mathcal{G})\big)}_{\subseteq\sigma(\mathcal{H})}\cup\underbrace{\sigma\big(\pi_2^{-1}(\mathcal{G})\big)}_{\subseteq\sigma(\mathcal{H})}\subseteq\sigma(\mathcal{H})\\
+		&\implies
+		\sigma(\xi)\subseteq\sigma(\mathcal{H})
+	\end{align*}
+
+	Bleibt Nachweis von ($\ast$):\\
+	``$\subseteq$'': ist klar (gilt auch ohne Separabilität)\\
+	``$\supseteq$'': Gemäß Satz \ref{satz2.9} existiert abzählbare Basis $\mathcal{G}_0$  von $\mathcal{G}$. Sei
+	\begin{align*}
+		G^\ast&=\bigcup\limits_{\begin{subarray}{c}
+			G\in\mathcal{O}\\
+			G'\in\mathcal{O}'
+		\end{subarray}}G\times G'\text{ und }\mathcal{O},\mathcal{O}'\subseteq\mathcal{G}\\
+		&\stackeq{(!)}
+		\bigcup\limits_{\begin{subarray}{c}
+			G,G'\text{ offen}\\
+			G,G'\subseteq G^\ast
+		\end{subarray}}
+		G\times G'\\
+		&\stackeq{(!)}
+		\bigcup\limits_{\begin{subarray}{c}
+			G_0,G_0'\in\mathcal{G}_0\\
+			G\times G_0'\subseteq G^\ast
+		\end{subarray}}
+		G_0\times G_0'\\
+		&=\text{ abzählbare Vereinigung, da $\mathcal{G}_0$ abzählbare Basis }\\
+		&\implies
+		G^\ast\in\sigma\Big(\big\lbrace G\times G':G,G'\in\mathcal{G}\big\rbrace\Big)
+	\end{align*}
+\end{proof}
+
+\begin{definition}\label{def3.4}
+	Sei $(\Omega,\A)$ ein Messraum.
+	Eine Abbildung
+	$X:\Omega\to\S$, die $\A$-$\B(\S)$-messbar ist, heißt \textbf{Zufallsvariable (ZV)} in den metrischen Raum $(\S,d)$ über $(\Omega,\A)$.\nl
+	Sei $\P$ ein Wahrscheinlichkeitsmaß auf $(\Omega,\A)$, also $(\Omega,\A,\P)$ ein Wahrscheinlichkeitsraum. 
+	Das Bildmaß
+	\begin{align*}
+		\P\circ X^{-1}&:=:\P_X:=:\L(X):=:\L(X~|~\P)\\
+		(\P\circ X^{-1})(B)&:=\P\left(X^{-1}(B)\right)=\P\Big(\big\lbrace\omega\in\Omega:X(\omega)\in B\big\rbrace\Big)
+		=: \P[X\in B]
+		\qquad\forall B\in\B(\S)
+	\end{align*}
+	heißt \textbf{Verteilung} von $X$ unter $\P$.
+\end{definition}
+
+\begin{satz}\label{Satz3.5}
+	Sei $(\S,d)$ separabler metrischer Raum und seien $X,Y$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A)$.\\
+	Dann ist $d(X,Y)$ eine reelle Zufallsvariable.
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		X,Y:(\Omega,\A)\to(\S,\B(\S))\text{ sind messbar }\\
+		\stackrel{\text{MINT}}{\Longleftrightarrow}
+		(X,Y):(\Omega,\A)\to\big(\S\times\S,\underbrace{\B(\S)\otimes\B(\S)}_{\stackeq{\ref{satz3.3}}\B(\S\times\S)}\big)\text{ ist messbar}\\
+	\end{align*}
+	Jede Metrik ist bekanntlich stetig, also auch
+	\begin{align*}
+		d:\big(\S\times\S,\G(\S\times\S)\big)\to\R.
+	\end{align*}
+	Dann folgt aus Lemma \ref{Lemma3.2}, dass
+	\begin{align*}
+		d:\B(\S\times\S)\to\B(\R)
+	\end{align*}
+	messbar ist.
+	Damit folgt die Behauptung, denn $d(X,Y)=d\circ(X,Y)$ ist messbar als Komposition von messbaren Abbildungen.
+\end{proof}
+
+\subsection{Fast sichere Konvergenz} %NoNumber
+\begin{definition}\label{def3.6}
+	Seien $X,X_n,n\in\N$ Zufallsvariablen in $(\S,d)$ über $(\Omega,\A,\P)$. 
+	Dann:
+	\begin{align*}
+		X_n\stackrel{n\to\infty}{\longrightarrow} X\quad\P\text{-fast sicher }:\Longleftrightarrow
+		\P\Big(\underbrace{\big\lbrace\omega\in\Omega:d\big(X_n(\omega),X(\omega)\big)\stackrel{n\to\infty}{\longrightarrow} 0\big\rbrace}_{=:M}\Big)=1
+	\end{align*}
+	Beachte: Die Definition von Konvergenz mengentheoretisch aufgeschrieben (Schnitt $\hat{=}$ ``für alle''; Vereinigung $\hat{=}$ ``Es gibt''):
+	\begin{align*}
+		\bigcap\limits_{0<\varepsilon\in\Q}
+		\bigcup\limits_{m\in\N}
+		\bigcap\limits_{n\geq m}
+		\big\lbrace\underbrace{d(X_n,X)}_{=:\xi_n}<\varepsilon\big\rbrace\stackrel{\ref{Satz3.5}}{\in}\A\\
+		\text{denn }\xi_n^{-1}\big((-\infty,\varepsilon)\big)\in\A
+	\end{align*}
+\end{definition}
+
+Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lassen sich mühelos verallgemeinern. Dazu z. B.:
+
+\begin{satz}\label{Satz3.7}
+	\begin{align*}
+		X_n
+		\stackrel{n\to\infty}{\longrightarrow}
+		X\quad\P\text{-fast sicher }\wedge
+		X_n
+		\stackrel{n\to\infty}{\longrightarrow}
+		X'\quad\P\text{-fast sicher }
+		\implies
+		X=X'\quad\P\text{-fast sicher}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		\lbrace X\neq X'\rbrace
+		&\subseteq\lbrace X_n
+		\stackrel{n\to\infty}{\not\longrightarrow}
+		X\rbrace
+		\cup\lbrace X_n
+		\stackrel{n\to\infty}{\not\longrightarrow}
+		X'\rbrace\\
+		&\implies
+		\P[X_n\not\to X]+\P[X_n\not\to X']=0+0\\
+		&\implies
+		\P[X\neq X']=0\\
+		&\implies\P\big(X=X'\big)=1-\underbrace{\P\big(X\neq X'\big)}_{=0}=1
+	\end{align*}
+\end{proof}
+
+\begin{satz}\label{Satz3.8}
+	Seien $X,X_n,n\in\N$ Zufallsvariablen im metrischen Raum $(\S,d)$ und sei\\
+	$f:(\S,d)\to(\S',d')$ messbar und stetig in $X$ $\P$-fast sicher.
+	Dann gilt:
+	\begin{align*}
+		X_n
+		\stackrel{n\to\infty}{\longrightarrow}
+		X\quad\P\text{-fast sicher }
+		\implies
+		f(X_n)
+		\stackrel{n\to\infty}{\longrightarrow}
+		f(X)\quad\P\text{-fast sicher}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		\lbrace X_n
+		\stackrel{n\to\infty}{\longrightarrow}
+		X\rbrace\cap\lbrace f\text{ stetig in }X\rbrace\rbrace
+		\stackrel{\text{Folgen-Stetigkeit}}{\subseteq}
+		\lbrace f(X_n)
+		\stackrel{n\to\infty}{\longrightarrow}
+		f(X)\rbrace
+	\end{align*}
+	Mit
+	\begin{align*}
+		\big(\forall i\in\N:\P(E_i)=1\big)\implies\P\left(\bigcap\limits_{i\in\N} E_i\right)=1
+	\end{align*}
+	folgt
+	\begin{align*}
+		1=\P\Big(\Big\lbrace X_n\overset{n\to\infty}{\longrightarrow}X\text{ und $f$ stetig in }X\Big\rbrace\Big)\leq\P\Big(\Big\lbrace f(X_n)\overset{n\to\infty}{\longrightarrow} f(X)\Big\rbrace\Big)\\
+		\implies \P\Big(\Big\lbrace f(X_n)\overset{n\to\infty}{\longrightarrow} f(X)\Big\rbrace\Big)
+	\end{align*}
+\end{proof}
+
+\begin{satz}[Konvergenz-Kriterium]\label{Satz3.9}
+	\begin{align*}
+		X_n
+		\stackrel{n\to\infty}{\longrightarrow}
+		X\quad\P\text{-fast sicher}
+		\Longleftrightarrow
+		\forall\varepsilon>0:\limn\P\left(\sup\limits_{m\geq n} d(X_m,X)>\varepsilon\right)=0
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Man ersetze im Beweis für den Fall reeller Zufallsvariablen $|X_n-X|$ durch $d(X_n,X)$. 
+	Und beachte, dass alle Schlussfolgerungen bestehen bleiben.
+\end{proof}
+
+Ein sehr nützliches Kriterium ist Folgendes:
+\begin{satz}\label{Satz3.10}
+	\begin{align*}
+		\sum\limits_{n\in\N_{\geq1}}\P\big(d(X_n,X)>\varepsilon\big)<\infty\qquad\forall\varepsilon>0
+		\implies
+		X_n
+		\stackrel{n\to\infty}{\longrightarrow}
+		X\quad\P\text{-fast sicher}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Setze
+	\begin{align*}
+		A_n(\varepsilon):=\big\lbrace d(X_n,X)>\varepsilon\big\rbrace\stackrel{\ref{Satz3.5}}{\in}\A
+	\end{align*}
+	Dann folgt aus dem \textit{ersten Borel-Cantelli-Lemma}:
+	\begin{align*}
+		&\P\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)=0\qquad\forall\varepsilon>0
+	\end{align*}
+		Mit
+	\begin{align*}
+		\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)
+		\stackeq{\text{Def}}
+		\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big(A_n(\varepsilon)\big)^C
+		=
+		\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace
+	\end{align*}
+	folgt dann
+	\begin{align*}
+		1=\P\left(\left(\limsup\limits_{n\to\infty} A_n(\varepsilon)\right)^C\right)
+		=\P\left(\liminf\limits_{n\to\infty}\big(A_n(\varepsilon)\big)\right)\qquad\forall\varepsilon>0
+	\end{align*}
+	Da Abzählbare Durchschnitte von Eins-Mengen (also Mengen mit $\P$-Maß 1) wieder Eins-Mengen sind, folgt schließlich:
+	\begin{align*}
+		\P\Bigg(\underbrace{
+			\bigcap\limits_{0<\varepsilon\in\Q}\bigcup\limits_{m\in\N}\bigcap\limits_{n\geq m}\big\lbrace d(X_n,X)\leq\varepsilon\big\rbrace
+		}_{\lbrace X_n\to X\rbrace=\lbrace d(X_n,X)\to0\rbrace}\Bigg)=1
+	\end{align*}
+\end{proof}
+
+Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metrischen Räumen finden sich z. B. in \textit{Wahrscheinlichkeitstheorie} von Gäussler und Stute (1977), Kapitel 8.2.
+
+\subsection{Stochastische Konvergenz} %NoNumber
+\begin{definition}\label{def3.11}
+	$X_n$ \textbf{konvergiert stochastisch gegen $X$}, i.Z.:
+	\begin{align*}
+		X_n
+		\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+		X:\Longleftrightarrow\forall\varepsilon>0:
+		\P\Big(\big\lbrace d(X_n,X)>\varepsilon\big\rbrace\Big)
+		\stackrel{n\to\infty}{\longrightarrow}
+		0
+	\end{align*}
+\end{definition}
+
+\begin{satz}\label{Satz3.12}
+	\begin{align*}
+		X_n
+		\stackrel{n\to\infty}{\longrightarrow}
+		X\quad\P\text{-fast sicher }
+		\implies X_n
+		\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+		X
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		\forall\varepsilon>0:
+		0\leq\P\big(d(X_n,X)>\varepsilon\big)
+		\leq\P\left(\sup\limits_{m\geq n}d(X_m,X)>\varepsilon\right)
+		\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+		0
+	\end{align*}
+	gemäß Satz \ref{Satz3.9}.
+\end{proof}
+
+Die Umkehrung von Satz \ref{Satz3.12} gilt i. A. \underline{nicht}, aber es gilt das folgende Teilfolgenkriterium:
+
+\begin{satz}[Teilfolgenkriterium für stochastische Konvergenz]\label{satz3.13}\enter
+	Folgende Aussagen sind äquivalent:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			X_n
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			X
+		\end{aligned}$
+		\item Zu jeder Teilfolge (TF) $(X_{n'})$ von $(X_n)_{n\in\N}$ existiert eine Teilfolge $(X_{n''})$ von $(X_{n'})$ derart, dass $X_{n''}
+		\stackrel{n''\to\infty}{\longrightarrow} X$ $\P$-fast sicher.
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Wie im Reellen.
+\end{proof}
+
+Mit dem Teilfolgenkriterium lassen sich Rechenregeln für fast sichere Konvergenz auf stochastische Konvergenz übertragen.
+
+\begin{korollar}\label{Korollar3.14}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			X_n
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			X\wedge X_n
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			X'
+			\implies X=X'\quad\P\text{-fast sicher}
+		\end{aligned}$
+		\item $\begin{aligned}
+			X_n
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			X\text{ in }(\S,d),~f:(\S,d)\to(\S',d')\text{ messbar mit $f$ stetig in $X$ $\P$-fast sicher }
+		\end{aligned}$
+		\begin{align*}
+			\implies f(X_n)
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			f(X)
+		\end{align*}
+	\end{enumerate}
+\end{korollar}
+
+\begin{proof}
+	\underline{Zeige (1):}
+	\begin{align*}
+		X_n
+		\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+		X
+		\stackrel{\ref{satz3.13}}{\implies}
+		\exists\text{ TF }(X_{n'})\subseteq(X_n)_{n\in\N}\mit X_{n'}
+		\stackrel{n'\to\infty}{\longrightarrow}
+		X\text{ fast sicher}
+	\end{align*}
+	Zu $(X_{n'})$ existiert (wegen $X_n\stackrelnew{n\to\infty}{\P}{\longrightarrow} X'$ und Satz \ref{satz3.3}) eine Teilfolge
+	$(X_{n''})\subseteq(X_{n'})$ mit
+	\begin{align*}
+		X_{n''}
+		\stackrel{n\to\infty}{\longrightarrow} X'\text{ fast sicher}
+		\stackrel{\ref{Satz3.7}}{\implies}
+		X=X'\text{ fast sicher }
+	\end{align*}
+
+	\underline{Zeige (2):} Zur Übung.
+\end{proof}
+
+\subsection{Konvergenz in Produkträumen} %noNumber
+Seien $(\S,d)$ und $(\S',d')$ separable metrische Räume. Dann ist auch $(\S\times\S',d\times d')$ ein separabler metrischer Raum. 
+Dies folgt z. B. aus dem \textit{Satz von der koordinatenweise Konvergenz}:
+
+\begin{align}\label{eq3.1KoordinatenweissKonvergenz}\tag{3.1}
+	\big(a_n,a_n'\big)
+	\stackrelnew{d\times d'}{n\to\infty}{\longrightarrow}
+	(a,a')
+	\Longleftrightarrow
+	(a_n)
+	\stackrelnew{d}{n\to\infty}{\longrightarrow}
+	a
+	\wedge
+	(a_n')
+	\stackrelnew{d'}{n\to\infty}{\longrightarrow}
+	(a')
+\end{align}
+
+Es ``stochastische Versionen'' dieses Satzes.
+
+\begin{satz}\label{satz3.15}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			(X_n,X_n')
+			\stackrelnew{}{n\to\infty}{\longrightarrow}
+			(X,X')~\P\text{-f.s.}
+			\Longleftrightarrow
+			X_n
+			\stackrelnew{}{n\to\infty}{\longrightarrow}
+			X~\P\text{-f.s. }\wedge
+			X_n'
+			\stackrelnew{}{n\to\infty}{\longrightarrow}
+			X'~\P\text{-f.s.}
+		\end{aligned}$
+		\item $\begin{aligned}
+			(X_n,X_n')
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			(X,X')
+			\Longleftrightarrow
+			X_n
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			X\wedge
+			X_n'
+			\stackrelnew{n\to\infty}{\P}{\longrightarrow}
+			X'
+		\end{aligned}$
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\underline{Zu (1):}
+	\begin{align*}
+		(1)\text{, linke Seite }
+		&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+		X_n\to X,~X_n'\to X'\quad\P\text{-fast sicher}\\
+		&\stackrel{\cap\text{ Eins-Mengen}}{\Longleftrightarrow}
+		(1),\text{ rechte Seite}
+	\end{align*}
+
+	\underline{Zu (2):}
+	\begin{align*}
+		(2)\text{, linke Seite}
+		&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+		\forall\text{ TF }(X_{n'},X_{n'}')\subseteq(X_n,X_n'):\\
+		&\qquad\exists\text{ TTF }(X_{n''},X_{n''}')\subseteq(X_{n'},X_{n'}'):
+		(X_{n''},X_{n''}')\stackrel{n\to\infty}{\longrightarrow}\text{ f.s.}
+	\end{align*}
+	Also wegen Teil (1) mit
+	\begin{align*}
+		X_{n''}\to X\text{ f.s. und }X_{n''}'\to X'\text{ f.s.}
+	\end{align*}
+	Somit:
+	\begin{align*}
+		\forall\text{ TF }(X_{n'})\subseteq(X_n):\exists\text{ TTF }(X_{n''})\subseteq(X_{n'}):X_{n''}\to X\text{ f.s. }
+		&\stackrel{\eqref{eq3.1KoordinatenweissKonvergenz}}{\Longleftrightarrow}
+		X_n\stackrelnew{n\to\infty}{\P}{\longrightarrow} X
+	\end{align*}
+	Und es gilt analog: $X_n'\to X'$.
+\end{proof}
+
+\subsection{Gleichheit in Verteilung} %NoNumber
+\begin{definition}\label{def3.16}
+	Zufallsvariablen $X,Y$ in $(\S,d)$ über $(\Omega,\A,\P)$ heißen \textbf{gleich in Verteilung}, in Zeichen
+	\begin{align*}
+		X\stackeq{\mathcal{L}} Y:\Longleftrightarrow \P\circ X^{-1}=\P\circ Y^{-1}
+	\end{align*}
+\end{definition}
+
+\begin{bemerkung} %noNomber
+	Definition \ref{def3.16} kann erweitert werden auf Zufallsvariablen\\ $X:(\Omega,\A,\P)\to(\S,d)$ und $Y:(\tilde{\Omega},\tilde{\A},\tilde{\P})\to(\S,d)$ durch
+	\begin{align*}
+		X\stackeq{\mathcal{L}} Y:\Longleftrightarrow\P\circ X^{-1}=\tilde{\P}\circ Y^{-1}
+	\end{align*}
+\end{bemerkung}
+
+Charakterisierung von Verteilungsgleichheit in folgendem Satz:
+
+\begin{satz}\label{satz3.17}\
+	Es gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Seien $\P,Q$ Wahrscheinlichkeitsmaße auf $\B(\S)$. Dann gilt:
+		\begin{align*}
+			\P\equiv Q\Longleftrightarrow
+			\int\limits f\d\P=\int\limits f\d Q\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+		\end{align*}
+		\item $\begin{aligned}
+			X\stackeq{\mathcal{L}} Y\Longleftrightarrow
+			\E\big[f(X)\big]=\E\big[f(Y)\big]\qquad\forall f\in C^b(\S)\text{ glm. stetig}
+		\end{aligned}$
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\underline{Zu (1) zeige ``$\implies$'':} Klar.\nl
+	\underline{Zu (1) zeige ``$\Longleftarrow$'':}
+	\begin{align*}
+		\B(\S)\stackeq{\ref{Lemma3.2}(1)}\sigma\big(\mathcal{F}(\S)\big)
+	\end{align*}
+	und $\F$ ist Durchschnittsstabil. Wegen dem Maßeindeutigkeitssatz reicht es zu zeigen:
+	\begin{align*}
+		\P(F)=Q(F)\qquad\forall F\in\mathcal{F}(\S)
+	\end{align*}
+	Sei $F\subseteq\S$ abgeschlossen. Setze
+	\begin{align*}
+		f_k(x):=\varphi\Big(k\cdot d(x,F)\Big)
+	\end{align*}
+	(vgl. Satz \ref{Satz2.4}).
+	Aus dem Lemma \ref{lemma2.3} folgt, dass die $f_k$ beschränkt und gleichmäßig stetig sind mit $f_k\stackrel{k\to\infty}{\downarrow}\indi_F$. 
+	Also gilt:
+	\begin{align*}
+		\P(F)
+		\overset{\text{Def}}&=
+		\int\limits\indi_F\d\P\\
+		&=\int\limits\lim\limits_{k\to\infty} f_k\d\P\\
+		\overset{\text{Mono-Konv}}&=
+		\lim\limits_{k\to\infty}\int\limits f_k\d\P\\
+		\overset{\text{Vor}}&=
+		\lim\limits_{k\to\infty}\int\limits f_k\d Q\\
+		\overset{\text{Mono-Konv}}&=
+		\int\limits\lim\limits_{k\to\infty} f_k\d Q\\
+		&=\int\limits\indi_F\d Q\\
+		\overset{\text{Def}}&=
+		Q(F)
+	\end{align*}
+	Da $F$ beliebig war, folgt die Behauptung.\nl
+	\underline{Zu (2):} folgt aus (1) mit dem Transformationssatz \eqref{eqTrafo}:
+	\begin{align*}
+		X\stackeq{\mathcal{L}} Y
+		&\stackrel{\ref{def3.16}}{\Longleftrightarrow}
+		\P\circ X^{-1}=\P\circ Y^{-1}\\
+		&\stackrel{(1)}{\Longleftrightarrow}
+		\int\limits_{\S} f\d(\P\circ X^{-1})=\int\limits_{\S} f\d(\P\circ Y^{-1})
+		&\forall f\in C^b(\S)\text{ glm. stetig}\\
+		\overset{\eqref{eqProof3.17}}&\Longleftrightarrow
+		\E\big[f(X)\big]=\E\big[f(Y)\big]
+		&\forall f\in C^b(\S)\text{ glm. stetig}\\
+	\end{align*}
+	Verwende dafür:
+	\begin{align}\label{eqProof3.17}\tag{$\ast$}
+		\int\limits_{\S} f\d(\P\circ X^{-1})
+		\stackeq{\text{Trafo}}
+		\int\limits_{\Omega}\underbrace{f\circ X}_{=:f(X)}\d\P
+		\stackeq{\text{Def}}
+		\E\big[f(X)\big]
+	\end{align}
+\end{proof}
