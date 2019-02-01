@@ -1,3 +1,12 @@
-- mündliche Prüfung
+- mündliche Prüfung (20 - 25 Minuten)
 - Terminvergabe relativ frei, bis Ende März
 - in Schulferien (die hinteren beiden Februarwochen?) nicht möglich
+
+Mögliche Fragen:
+- Was ist akkretiever Operator?
+- Wieso erzeugt der Halbgruppe?
+- Wie kann man die approsimieren? (Euler / Yoshida)
+- Invarianz konvexer Mengen (kurze Beweis)
+- Exponentialform für Halbgruppen
+- Charakterisierung der Resolvente als Minimalstelle
+- evtl. Beispiel des p-Lapplaceoperators

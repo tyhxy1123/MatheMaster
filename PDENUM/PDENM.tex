@@ -2,6 +2,7 @@
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+% vim: set noexpandtab:
 
 \documentclass[]{scrreprt}
 
@@ -10,6 +11,7 @@
 \input{../latex/font}
 \input{../latex/commands}
 \input{../latex/commands_Willi}
+\input{../latex/commands_Felix}
 \input{PDENM_commands}
 
 \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
@@ -21,23 +23,32 @@
   Numerik partieller Differentialgleichungen \\
   }
 \subtitle{Wintersemester 2018/2019}
-\author{Vorlesung: Prof. Dr. Gunar Matthies\\Mitschrift: Willi Sontopski \& Robert Walter}
-
+\author{
+	Vorlesung: Prof. Dr. Gunar Matthies\\
+	Mitschrift: Willi Sontopski \& Robert Walter
+}
 
 \begin{document}
-\pagenumbering{gobble}	% disable pagenumbering
+	% begin hack: fix overfull hbox warning caused by \tableofcontents when exceeding 100 pages	
+	\makeatletter
+  	\renewcommand{\@pnumwidth}{2em}
+  	%\renewcommand{\@tocrmarg}{3em} % currently unnecessary
+  	\makeatother
+  	% end hack
+  	
+	\pagenumbering{gobble}	% disable pagenumbering
+	\maketitle
+	\doclicenseThis
+	\tableofcontents % Inhaltsverzeichnis
+	\pagenumbering{arabic}	%enable pagenumbering
 
-\maketitle
-\doclicenseThis
-\tableofcontents % Inhaltsverzeichnis
-\pagenumbering{arabic}	%enable pagenumbering
+	\input{chapter0}
+	\input{anhang}
+	
+	\newcommand{\pathInfix}{Loesungen/}
+	\input{chapter_loesungen}
 
-\input{chapter0}
-\input{anhang}
-
-\listoffigures 
-%\listoftables
-%\bibliography{literatur}
-
-
+	\listoffigures 
+	%\listoftables
+	%\bibliography{literatur}
 \end{document}

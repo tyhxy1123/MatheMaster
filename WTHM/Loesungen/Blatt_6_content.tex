@@ -1,0 +1,304 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Aufgabenblatt 6}
+\subsection{Aufgabe 6.1}
+Sei $B$ eine Brownsche Bewegung.
+Dann sind die folgenden Prozesse ebenfalls Brownsche Bewegungen:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		T_t:=c\cdot B_{\frac{t}{c^2}}\mit c\neq0
+	\end{aligned}$
+	\item $\begin{aligned}
+		U_t:=-B_t
+	\end{aligned}$
+	\item $\begin{aligned}
+		V_t:=\big(B_{t+s}-B_s\big)_{t\geq0}\mit s>0
+	\end{aligned}$
+	\item $\begin{aligned}
+		W_t:=\left\lbrace\begin{array}{cl}
+			t\cdot B_{\frac{1}{t}} ,&\falls t>0\\
+			0, &\falls t=0
+		\end{array}\right.
+	\end{aligned}$
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}
+	$T_t$ ist stetig.
+	Für $0=t_0<t_1<\ldots<t_n$ sind die Inkremente
+	\begin{align*}
+		B_{\frac{t_i}{c^2}}-B_{\frac{t_{i-1}}{c^2}}\qquad\forall i\in\lbrace 1,\ldots,n\rbrace
+	\end{align*}
+	unabhängig und $\Nor\left(0,\frac{t_i}{c^2}-\frac{t_{i-1}}{c^2}\right)$-verteilt und damit folgt
+	\begin{align*}
+		c\cdot B_{\frac{t_i}{c^2}}-c\cdot B_{\frac{t_{i-1}}{c^2}}\qquad\forall i\in\lbrace 1,\ldots,n\rbrace
+	\end{align*}
+	auch unabhängig $\Nor\big(0,t_i-t_{i-1}\big)$-verteilt.\nl
+	\underline{Zeige b):}
+	Folgt aus a) mit $c=-1$.\nl
+	\underline{Zeige c):}
+	$V$ ist stetig, da $B$ stetig ist nach Voraussetzung.\\
+	$V_0=0$ ist auch klar.
+	$V$ ist Gaußscher Prozess.
+	\begin{align*}
+		\E\big[V_t\big]
+		&=\E\big[B_{t+s}-B_s\big]
+		=0\\
+		\Cov\big(V_T,V-t\big)
+		\overset{t<T}&=
+		\E\big[V_T\cdot V_t\big]
+		=\E\big[(B_{T+s}-B_s)\cdot(B_{t+s}-B_s)\big]\\
+		&=\E\Big[B_{T+s}\cdot B_{t+s}-B_s\cdot B_{t+s}-B_s\cdot B_{T+s}+B_s^2\Big]\\
+		\overset{B\text{ BB}}&=
+		t+s-s-s+s\\
+		&=t\\
+		&=\min(T,t)
+	\end{align*}
+	Der Fall $t>T$ geht analog.\nl
+	\underline{Zeige d):}
+	$W$ ist Gaußscher Prozess, da lineare Transformation.
+	Außerdem gilt $W_0=0$.
+	\begin{align*}
+		\E[W_t]&=t\cdot\E\big[B_{\frac{1}{t}}\big]=\\
+		\Cov(W_t,W_s)
+		&=\E\big[W_t\cdot W_s]\\
+		&=t\cdot s\cdot\E\big[B_{\frac{1}{t}}\cdot B_{\frac{1}{s}}\big]\\
+		&=t\cdot s\cdot\min\left(\frac{1}{s},\frac{1}{t}\right)\\
+		&=t\cdot s\cdot\frac{1}{t}\\
+		&=s\\
+		&=\min(s,t)
+	\end{align*}
+	Stetig an der Stelle 0?
+	D.h. gilt $\lim\limits_{t\downarrow0} t\cdot B_{\frac{1}{t}}=0$ f.s.
+	\begin{align}\label{eqAufg6.1Stern}\tag{$\ast$}
+		\lim\limits_{t\downarrow0}t\cdot B_{\frac{1}{t}}
+		&=\lim\limits_{T\to\infty}\frac{1}{T}\cdot B_T
+		\overset{?}{=}0
+	\end{align}
+	Dies ist das starke Gesetz der großen Zahlen (SGGZ).
+	Leicht zu zeigen:
+	\begin{align*}
+		\limn\frac{1}{n}\cdot B_n
+		&=\frac{1}{n}\cdot\underbrace{\Big(\big(B_n-B_{n-1}\big)+\ldots+\big(B_1-0\big)\Big)}_{n \text{ iid ZVen}}
+		\overset{\text{SGGZ}}{=}\E[B_1]=0
+	\end{align*}
+	Wenn wir
+	\begin{align*}
+		\limn\sup\limits_{n\leq t<n+1}\left|\frac{B_t-B_n}{n}\right|=0
+	\end{align*}
+	zeigen können, dann folgt die \eqref{eqAufg6.1Stern}.
+	Es gilt:
+	\begin{align*}
+		X_n\overset{\d}&{=}\frac{1}{n}\cdot X_1\\
+		\E\big[X_1^2\big]
+		&=\E\left[\left(\sup\limits_{1\leq t\leq 2}\big|B_t-B_1\big|\right)^2\right]
+		\overset{\text{Doobs $L_2$-Ungl}}&\leq
+		4\cdot\E\left[(B_2-B_1)^2\right]
+		=4\\
+		\E\left[\sum\limits_{n=1}^\infty X_n^2\right]
+		&=\sum\limits_{n=1}^\infty\frac{1}{n^2}\cdot\E\big[X_1^2\big]
+		<\infty\\
+		&\implies
+		\sum\limits_{n=1}^\infty X_n^2\text{ konvergiert f.s.}\\
+		&\implies\limn X_n=0
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 6.2}
+Sei $B$ eine Brownsche Bewegung.
+Die folgenden Prozesse sind Martingale bzgl. der von $B$ erzeugten Filtration:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		\big(B_t\big)_{t\geq0}
+	\end{aligned}$
+	\item $\begin{aligned}
+		\big(B_t^2-t\big)_{t\geq0}
+	\end{aligned}$
+	\item $\begin{aligned}
+		\left(\exp\left(c\cdot B_t-\frac{c^2}{2}\cdot t\right)\right)_{t\geq0}\mit c\in\R
+	\end{aligned}$
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}\\
+	Adaptiertheit ist klar.
+	Bleibt nur die Martingaleigenschaft zu zeigen:
+	\begin{align*}
+		\E\big[B_t~\big|~\F_{s}\big)
+		&=\E\big[B_{s}+b_t~\big|~\F_{s}\big]\quad\mit b_{t-s}\sim\Nor(0,t-s)\\
+		&=\underbrace{\E\big[b_t\big]}_{=0}+b_s\\
+		&=0
+	\end{align*}
+
+	\underline{Zeige b):}
+	Integrierbarkeit und Adaptiertheit ist klar.
+	\begin{align*}
+		\E\big[B_t^2-t~\big|~\F_{t-s}\big]
+		&=\E\Big[\big(B_{t-s}+b_{t-s}\big)^2-(t-s)-s~\big|~\F_{t-s}\Big]\\
+		&=\E\Big[B_{t-s}^2+2\cdot b_{t-s}\cdot B_{t-s}+b_{t-s}^2-(t-s)-s~\big|~\F_{t-s}\Big]\\
+		&=B_{t-s}^2+2\cdot0+s-(t-s)-s\\
+		&=B_{t-s}-(t-s)
+	\end{align*}
+	
+	\underline{Zeige b), Variante des Profs:}
+	\begin{align*}
+		\E\Big[\big(B_t^2-t\big)~\big|~\F_t\Big]
+		&=\E\Big[\big(B_r+(B_t-B_r)\big)^2-t~\Big|~\F_r\Big]\\
+		&=\E\Big[B_r^2+2\cdot B_r\cdot(B_t-B_r)+(B_t-B_r)^2-t~\Big|~\F_r\Big]\\
+		&=B_r^2-2\cdot B_r\cdot\underbrace{\E\big[B_t-B_r~\Big|~\F_r\Big]}_{=0}+\E\Big[(B_t-B_r)^2\Big]-t\\
+		&=B_r^2+(t-r)-t\\
+		&=B_r^2-r
+	\end{align*}
+
+	\underline{Zeige c):}
+	Martingalbedingung überprüfen:
+	\begin{align*}
+		\E\left[\exp\left(c\cdot B_t-\frac{c^2\cdot t}{2}\right)~\Bigg|~\F_s\right]
+		&=\E\Bigg[\exp\Bigg(c\cdot \underbrace{(B_t-B_s)}_{\unab\F_r}-\frac{c^2\cdot t}{2}\Bigg)\cdot\exp(c\cdot B_s)~\Bigg|~\F_s\Bigg]\\
+		&=\exp\left(c\cdot B_s-\frac{c^2\cdot t}{2}\right)\cdot\E\Big[\exp\big(c\cdot\underbrace{(B_t-B_s)}_{\sim\Nor(0,t-s)}\big)\Big]\\
+		&=\exp\left(c\cdot B_s-\frac{c^2\cdot t}{2}\right)\cdot\exp\left(\frac{c^2}{2}\cdot(t-s)\right)\\
+		&=\exp\left(c\cdot B_s-\frac{c^2\cdot s}{2}\right)\qquad\forall c\in\R
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 6.3}
+Sei $B$ eine Brownsche Bewegung und $a,b\in(0,\infty)$.
+Sei
+\begin{align*}
+	\tau:=\Big\lbrace t>0:B_t\in\lbrace+a,-b\rbrace\Big\rbrace.
+\end{align*}
+Zeige:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		\P\big(\tau=+a\big)=\frac{b}{a+b}
+	\end{aligned}$
+	\item $\begin{aligned}
+		\E[\tau]=a\cdot b
+	\end{aligned}$
+\end{enumerate}
+
+\begin{proof}
+	Wir nutzen die Sätze  von optionalen Stoppen (die für stetige Martingale mit $t\geq0$ weiterhin gelten).\nl
+	\underline{Zeige a):}
+	Setze
+	\begin{align*}
+		\tau_a&:=\inf\limits\big\lbrace t>0:B_t=+a\big\rbrace\\
+		\tau_b&:=\inf\limits\big\lbrace t>0:B_t=-b\big\rbrace\\
+		\implies\tau=\tau_a\wedge\tau_b(=\min\lbrace\tau_a,\tau_b\rbrace)
+	\end{align*}
+	Sei $\F_t=\sigma\big((B_s)_{s\leq t}\big)$ die von $B$ erzeugte Filtration.
+	$(B_t)_{t\geq0}$ ist Martingal (wegen Aufgaben 2).
+	Somit ist ist $\big(B_t\wedge\tau\big)_{t\geq0}$ Martingal \underline{und} beschränkt.
+	\begin{align*}
+		\E\big[B_\tau\big]
+		&=\lim\limits_{t\to\infty}\E\big[B_{t\wedge\tau}\big]=B_0=0
+	\end{align*}
+	Andererseits
+	\begin{align*}
+		\E\big[B_\tau\big]
+		&=\E\bigg[\indi_{\lbrace\tau_a<\tau_b\rbrace}\cdot\underbrace{B_{\tau_a}}_{+a}+\indi_{\lbrace\tau_b<\tau_a\rbrace}\cdot\underbrace{B_{\tau_b}}_{-b}\bigg]\\
+		&=p\cdot a+(1-p)\cdot(-b)\\
+		&=p\cdot(a+b)-b\\
+		p\cdot(a+b)=b&\implies p=\frac{b}{a+b}
+	\end{align*}
+	Hierbei ist $p:=\P\big(\tau_a<\tau_b\big)$ die Wahrscheinlichkeit $+a$ vor $-b$ zu erreichen.\nl
+	\underline{Zeige b):}
+	$M_t=B_t^2-t$ ist Martingal.
+	Somit ist $M_{t\wedge\tau}$ ebenfalls ein Martinal.
+	\begin{align*}
+		\E\big[M_\tau\big]
+		&=\lim\limits_{t\to\infty}\E\big[M_{\tau\wedge t}\big]=0
+	\end{align*}
+	Andererseits
+	\begin{align*}
+		\E\big[M_\tau\big]
+		&=\E\big[B_\tau^2\big]-\E[\tau]\\
+		&=\E\bigg[\indi_{\lbrace\tau_a<\tau_b\rbrace}\cdot a^2+\indi_{\lbrace\tau_b<\tau_a\rbrace}\cdot b^2\bigg]-\E[\tau]\\
+		&=\frac{a^2\cdot b}{a+b}+\frac{b^2\cdot a}{a+b}-\E[\tau]\\
+		&=a\cdot b-\E[\tau]\\
+		\implies \E[\tau]&=a\cdot b
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 6.4}
+Sei $B$ eine Brownsche Bewegung, $a>0$ und
+\begin{align*}
+	\tau_a:=\inf\big\lbrace t>0:B_t=a\big\rbrace.
+\end{align*}
+Dann gilt:
+\begin{enumerate}[label=\alph*)]
+	\item $\begin{aligned}
+		\E\big[\exp(-\lambda\cdot x)\big]=\exp\big(-a\cdot\sqrt{2\cdot\lambda}\big)\qquad\forall \lambda\geq0
+	\end{aligned}$
+	\item Die Verteilung von $\tau_a$ ist stabil (siehe Blatt 5, Aufgabe 4) mit Parameter $\alpha=\frac{1}{2}$.
+	\item Die Verteilung von $\tau_a$ besitzt die Dichte
+	\begin{align*}
+		f(x)=\frac{a}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{a^2}{2\cdot x}\right)\cdot x^{-\frac{3}{2}}\qquad\forall x\geq0.
+	\end{align*}
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige a):}\\
+	Die \textit{Laplace-Transformation} von $\tau_a$ ist $\E\big[\exp(-\lambda\cdot x)\big]$.\\
+	Betrachte 
+	\begin{align*}
+		M_t:=\exp\left(c\cdot B_t-\frac{c^2\cdot t}{2}\right)\qquad\forall t\geq0
+	\end{align*}
+	Wir haben bereits gezeigt, dass $M_t$ ein Martingal ist.
+	\begin{align*}
+		\E\big[m_{\tau_a}\big]
+		&=\lim\limits_{t\to\infty}\E\big[M_{t\wedge\tau_a}\big]=1	
+	\end{align*}		
+	Andererseits:
+	\begin{align*}
+		\E\big[M_{\tau_a}\big]
+		&=\E\bigg[\exp\Big(c\cdot\underbrace{B_{\tau_a}}_{=a}-\frac{c^2\cdot \tau_a}{2}\Big)\bigg]\\
+		&=\exp(c\cdot a)\cdot\E\left[\exp\left(-\frac{c^2}{2}\cdot\tau_a\right)\right]\\
+		\E\left[\exp\left(-\frac{c^2}{2}\cdot\tau_a\right)\right]
+		&=\exp(-c\cdot a)
+	\end{align*}
+	Einsetzen von $c=\sqrt{2\cdot\lambda}$ liefert:
+	\begin{align*}
+		\E\Big[\exp(-\lambda\cdot\tau_a)\big]=\exp\big(-a\cdot\sqrt{2\cdot\lambda}\big)
+	\end{align*}
+	
+	\underline{Zeige b):}
+	$\alpha$-stabil: $\qquad X_1+\ldots+X_n\overset{\d}{=}n^{\frac{1}{\alpha}}\cdot X$\\
+	Sei $\L(\lambda)=\E\big[\exp(-\lambda\cdot x)\big]$ die Laplace-Transformation.
+	Linke Seite:
+	\begin{align*}
+		\E\Big[\exp\big(-\lambda\cdot(X_1+\ldots+X_n)\big)\Big]
+		\overset{\text{unab}}&{=}
+		\E\Big[\exp(-\lambda\cdot x)\Big]
+		=\L(\lambda)^n
+	\end{align*}
+	Rechte Seite:
+	\begin{align*}
+		\E\Big[\exp\Big(-\lambda_n^{\frac{1}{\alpha}}\cdot X\Big)\Big]
+		=\L\left(\lambda\cdot n^{\frac{1}{\alpha}}\right)
+	\end{align*}
+	
+	Zu zeigen: $\L(\lambda)=\L\left(\lambda\cdot n^{\frac{1}{\alpha}}\right)$\\
+	Einsetzen:
+	\begin{align*}
+		\L(\lambda)&=\exp(-a\cdot\sqrt{2\cdot\lambda})\\
+		\L(\lambda)^n&=\exp(-a\cdot n\cdot\sqrt{2\cdot\lambda})
+		=\exp(-a\cdot \sqrt{2\cdot\lambda\cdot n^2})
+		=\L(\lambda\cdot n^2)
+	\end{align*}
+	d.h. Verteilung $\alpha$-stabil mit $\alpha=\frac{1}{2}$ (auch \textbf{Lévy-Verteilung} genannt).\nl
+	\underline{Zeige c):}\\
+	Eine Dichte wird durch ihre \textbf{Laplace-Transformation}
+	\begin{align*}
+		\L[f](\lambda):=\int\limits_0^\infty\exp(-\lambda\cdot x)\cdot f(x)\d x\qquad\forall\lambda\geq0
+	\end{align*}
+	eindeutig bestimmt.\\
+	Zu zeigen:
+	\begin{align*}
+		\L(\lambda)=\int\limits_0^\infty\exp(-\lambda\cdot x)\cdot\frac{a}{\sqrt{2\cdot\pi}}\cdot\exp\left(-\frac{a^2}{2\cdot x}\right)\cdot x^{-\frac{3}{2}}\d x=\exp(-a\cdot\sqrt{2\cdot\lambda})
+	\end{align*}
+	Dies kann man mit viele Rechentricks zeigen. 
+\end{proof}

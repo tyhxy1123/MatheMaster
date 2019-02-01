@@ -1,0 +1,234 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Grammatiken, kontextfreie Sprachen und Kellerautomaten}
+
+\section{Die Chomsky-Hierarchie}
+
+\begin{definition}\label{def6.2}
+	Eine \textbf{Grammatik} ist von der Form $G(N,\Sigma,P,S)$ wobei
+	\begin{itemize}
+		\item $N$ und $\Sigma$ endliche disjunkte Alphabete sind.
+		\item $\Sigma$ ist die Menge der \textbf{Terminalsymbole} (meist klein geschrieben).
+		\item $N$ ist die Menge der \textbf{Nichtterminalsymbole} (meist groß geschrieben).
+		\item $S\in N$ ist das \textbf{Startsymbol}
+		\item $P\subseteq(N\cup\Sigma)^+\times(N\cup\Sigma)^\ast$ eine endliche Menge von \textbf{Ersetzungsregeln / Produktionen}
+	\end{itemize}
+	Produktionen $(u,v)\in P$ schreibt man gewöhnlich als $u\to v$.\\
+	Beachte: Typ 2 $\not\implies$ Typ 1.
+\end{definition}
+
+\begin{definition}\label{def6.4}
+	Sei $G=(N,\Sigma,P,S)$ eine Grammatik und seien $x,y\in(N\cup\Sigma)^\ast$ Wörter. Definiere
+	\begin{enumerate}[label=\arabic*)]
+		\item \textbf{$y$ ist aus $x$ direkt ableitbar}, i.Z.:
+		\begin{align*}
+			x\vdash_G y:\Longleftrightarrow\exists x_1,x_2\in (N\cup\Sigma)^\ast,\exists u\to v\in P: x=x_1 ux_2\wedge y=x_1 vx_2
+		\end{align*}
+		\item \textbf{$y$ aus $x$ in $n$ Schritte ableitbar}, i.Z.
+		\begin{align*}
+			x\vdash_G^n y:\Longleftrightarrow\exists x_0,\ldots,x_n\in (N\cup\Sigma)^\ast:\forall 0\leq i<n:x_0=x\wedge x_n=y\wedge x_i\vdash_G x_{i+1}
+		\end{align*}
+		\item \textbf{$y$ aus $x$ ableitbar}, i.Z.
+		\begin{align*}
+			x\vdash_G^\ast y:\Longleftrightarrow\exists n\geq 0:x\vdash_G^n y
+		\end{align*}
+		\item Die \textbf{durch $G$ erzeugte Sprache} ist
+		\begin{align*}
+			L(G):=\big\lbrace w\in\Sigma^\ast:S\vdash_G^\ast w\big\rbrace
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}[Chomsky-Hierarchie]\label{def6.6ChomskyHierarchie}\enter
+	Sei $G=(N,\Sigma,P,S)$ eine Grammatik.
+	\begin{itemize}
+		\item Jede Grammatik $G$ heißt Grammatik vom \textbf{Typ 0}.
+		\item $G$ heißt Grammatik vom \textbf{Typ 1 (kontextsensitiv} $:\Longleftrightarrow$ jede Produktion in $P$ die Form
+		\begin{itemize}
+			\item $S\to\varepsilon$ oder
+			\item $u_1 Au_2\to u_1 wu_2$ mit $A\in N$, $u_1,u_2,w\in(N\cup\Sigma^\ast)$ und $|w|\geq1$
+		\end{itemize}
+		hat. Ist $S\to\varepsilon\in P$, so kommt $S$ nicht auf der rechten Seite einer Produktion vor.
+		\item $G$ heißt Grammatik vom \textbf{Typ 2 (kontextfrei)} $:\Longleftrightarrow$ jede Regel in $P$ die Form $A\to w$ hat mit $A\in N$, $w\in(\Sigma\cup N)^\ast$.
+		\item $G$ heißt Grammatik vom \textbf{Typ 3 (rechtslinear)} $:\Longleftrightarrow$ jede Regel in $P$ die Form $A\to uB$ oder $A\to u$ hat mit $A,B\in N,u\in\Sigma^\ast$.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}\label{def6.7Sprachklassen}
+	Für $i\in\lbrace0,1,2,3\rbrace$ ist die \textbf{Klasse der Typ-$i$-Sprachen} definiert als
+	\begin{align*}
+		\L_i:=\big\lbrace L(G):G\text{ ist Grammatik vom Typ }i\big\rbrace
+	\end{align*}
+\end{definition}
+
+\begin{satz}[Hierarchie der Sprachklassen]
+	\begin{align*}
+		\L_3\varsubsetneqq\L_2\varsubsetneqq\L_2\varsubsetneqq\L_0
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Nach Definition der Grammatiktypen \ref{def6.6ChomskyHierarchie} gilt offenbar $\L_3\subseteq \L_2$ und $\L_1\subseteq\L_0$.\nl
+	\underline{Zeige $\L_3\varsubsetneqq\L_2$:} 
+	$L:=\big\lbrace a^nb^n:n\geq0\big\rbrace\in\L^2$ und da es keinen NEA dafür gibt, nicht in $\L_3$.\nl
+	\underline{Zeige $\L_2\subseteq\L_1$:} Korollar \ref{korollar8.10}.\nl
+	\underline{Zeige $\L_2\varsubsetneqq\L_1$:} Sehr technisch
+\end{proof}
+
+\section{Rechtslineare Grammatiken und reguläre Sprachen}
+
+\begin{satz}\label{satz7.1}
+	Die Typ-3-Sprachen sind genau die regulären / erkennbaren Sprachen.%, d.h. $\L_3=\lbrace L:L\text{ regulär}\rbrace$.
+\end{satz}
+
+\section{Normalformen kontextfreier Grammatiken}
+
+Zwei Grammatiken heißen \textbf{äquivalent}, wenn sie dieselbe Sprache erzeugen.
+
+\begin{definition}\label{def8.1}
+	Sei $G=(N,\Sigma,P,S)$ eine kontextfreie Grammatik (Typ 2).
+	\begin{enumerate}[label=\arabic*)]
+		\item $A\in N$ heißt \textbf{terminierend}
+		\begin{align*}
+			:\Longleftrightarrow\exists w\in \Sigma^\ast:A\vdash_G^\ast w
+		\end{align*}
+		\item $A\in N$ heißt \textbf{erreichbar}
+		\begin{align*}
+			:\Longleftrightarrow\exists u,v\in(\Sigma\cup N)^\ast:S\vdash_G^\ast uAv
+		\end{align*}
+		\item $G$ heißt \textbf{reduziert}, falls alle Elemente von $N$ erreichbar und terminierend sind.
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{satz8.5}
+	Das Leerheitsproblem "$L=\emptyset$?" ist für kontextfreie Sprachen entscheidbar:
+	\begin{align*}
+		L(G)\neq\emptyset\Longrightarrow\exists w\in\Sigma^\ast:S\vdash_G^\ast w
+		\Longleftrightarrow S\text{ terminierend}
+	\end{align*}
+\end{satz}
+
+\begin{lemma}\label{lemma8.6}
+	Zu jeder kontextfreien Grammatik $G=(N,\Sigma,P,S)$ kann man effektiv eine äquivalente reduzierte Grammatik $G''$ erzeugen.
+\end{lemma}
+
+\begin{proof}
+	\textbf{Erster Schritt:} Eliminieren nicht terminierender Symbole:
+	\begin{align*}
+		G'&:=\big(N',\Sigma,P',S\big)\\
+		N'&:=\big\lbrace A\in N:A\text{ terminierend in }G\big\rbrace\qquad L(G)\neq\emptyset\implies S\in N'\\
+		P'&:=\big\lbrace A\to w\in P:A\in N',w\in(N'\cup\Sigma)^\ast\big\rbrace
+	\end{align*}
+	\textbf{Zweiter Schritt:} Eliminieren von unerreichbaren Symbolen:
+	\begin{align*}
+		G''&:=\big(N'',\Sigma,P'',S\big)\\
+		N''&:=\big\lbrace A\in N':A\text{ erreichbar in }G'\big\rbrace\\
+		P''&:=\big\lbrace A\to w\in P':A\in N''\big\rbrace
+	\end{align*}
+	Beachte:
+	\begin{align*}
+		A\in n''\wedge A\to u_1 Bu_2\in P'\implies B\in N''
+	\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma8.7}
+	Zu jeder kontextfreien Grammatik $G$ lässt sich eine "äquivalente" Grammatik $G'$ ohne Regeln der Form $A\to\varepsilon$ konstruieren mit $L(G')=L(G)\setminus\lbrace\varepsilon\rbrace$.
+\end{lemma}
+
+\begin{proof}
+	%TODO
+\end{proof}
+
+\begin{definition}\label{def8.8}
+	Eine kontextfreie Grammatik heißt $\varepsilon$\textbf{-frei} $:\Longleftrightarrow$
+	\begin{enumerate}[label=\arabic*)]
+		\item Sie enthält keine Regeln $A\to\varepsilon$ für $A\neq S$.
+		\item Ist $S\to\varepsilon$ enthalten, so kommt $S$ nicht auf der rechten Seite einer Regel vor.
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{atz8.9}
+	Zu jeder kontextfreien Grammatik $G$ kann man effektiv eine äquivalente $\varepsilon$-freie Grammatik konstruieren.
+\end{satz}
+
+\begin{proof}
+	Konstruiere $G'$ wie im Beweis von Lemma \ref{lemma8.7}.\nl
+	\underline{Falls $\varepsilon\not\in L(G)$:} Dann ist $G'$ die gesuchte $\varepsilon$-freie Grammatik.\nl
+	\underline{Ansonsten:} Erweitere $G'$ um ein neues Startsymbol $S_0$ und die Produktionen $S_0\to S$, $S_0\to\varepsilon$.
+\end{proof}
+
+\begin{korollar}\label{korollar8.10}
+	$\L_2\subseteq \L_1$
+\end{korollar}
+
+\begin{proof}
+	Offenbar ist jede $\varepsilon$-freie kontextfrei Grammatik eine Typ 1 Grammatik:
+	\begin{itemize}
+		\item Produktionen: $u_1 A u_2\to u_1 wu_2\mit |w|\geq 1$
+		\item kontextfrei: $u_i=\varepsilon$, $S\to\varepsilon$ und $S$ nicht auf rechter Seite.
+	\end{itemize}
+\end{proof}
+
+Man kann auch auf Regeln der Form $A\to B$ verzichten:
+
+\begin{satz}\label{satz8.11}
+	Zu jeder kontextfreien Grammatik kann man effektiv eine äquivalente kontextfreie Grammatik konstruieren, die keine Regeln der Form $A\to B$ mit $A,B\in N$ enthält.
+\end{satz}
+
+\begin{proof}[Beweisskizze]\
+	\begin{enumerate}
+		\item Bestimmt zu jedem $A\in $N die Menge $N(A):=\big\lbrace B\in N:A\vdash_G^\ast B\big\rbrace$.
+		\begin{align*}
+			N_0(A)&:=\lbrace A\rbrace\\
+			N_{i+1}(A)&:=N_i(A)\cup\big\lbrace B\in N:\exists B'\in N_i(A):B'\to B\in P\big\rbrace
+		\end{align*}
+		Es gibt ein $k$ mit $N_k(A)=N_{k+1}(A)$ und für dieses $k$ ist $N(A)=N_k(A)$.
+		\item $\begin{aligned}
+			Ü':=\big\lbrace A\to w:B\to w\in P,B\in N(A),w\not\in N\big\rbrace
+		\end{aligned}$
+	\end{enumerate}
+\end{proof}
+
+%TODO evtl. Beispiel
+
+\begin{satz}[Chomsky-Normalform]\label{atz8.12ChomskyNormalform}\enter
+	Jede kontextfreie Grammtik lässt sich umformen in eine äquivalente Grammatik in \textbf{Chomsky-Normalform}, d.h. eine Grammatik mit Regeln in folgender Form:
+	\begin{itemize}
+		\item $A\to a,A\to BC$ mit $A,B,C\in N,a\in\Sigma$
+		\item und eventuell $S\to\varepsilon$ wobei $S$ nicht rechts vorkommt.
+	\end{itemize}
+\end{satz}
+
+\begin{proof}
+	%TODO
+\end{proof}
+
+\section{Abschlusseigenschaften kontextfreier Sprachen} %mehr als der Satz ist aus dem Abschnitt wirklich nicht interessant
+
+\begin{satz}\label{satz9.1}
+	$\L_2$ ist unter Vereinigung, Konkatenation und Kleene-Stern abgeschlossen. 
+	Abschluss unter Durchschnitt und Komplement gilt \underline{nicht}.
+\end{satz}
+
+\section{Kellerautomaten}
+NEAs sind nicht in der Lage, alle kontextfreien Sprachen zu akzeptieren.
+Dafür brauchen wir eine Speicherkomponente \textbf{Keller}.
+
+\begin{definition}\label{def10.1Kellerautomat}
+	Ein \textbf{Kellerautomat (PDA)} hat die Form $\A=(Q,\Sigma,\Gamma,q_0,Z_0,\Delta,F)$ wobei
+	\begin{itemize}
+		\item $Q$ eine endliche Menge von \textbf{Zuständen}
+		\item $\Sigma$ das \textbf{Eingabealphabet}
+		\item $\Gamma$ das \textbf{Kelleralphabet}
+		\item $q_0\in Q$ der \textbf{Anfangszustand}
+		\item $Z_0\in\Gamma$ das \textbf{Kellerstartsymbol}
+		\item $\Delta\subseteq Q\times\big(\Sigma\cup\lbrace\varepsilon\rbrace\big)\times\Gamma\times\Gamma^\ast\times Q$ eine endliche \textbf{Übergangsrelation}
+		\item $F\subseteq Q$ eine Menge von \textbf{Endzuständen}
+	\end{itemize}
+\end{definition}
+
+%TODO
+

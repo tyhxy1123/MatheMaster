@@ -1,0 +1,122 @@
+\section{Discretization schemes for Navier-Stokes Equation}
+incompressible Navier-Stokes eq.
+\begin{align*}
+	\begin{cases}
+	\partial_t v + v \cdot \nabla v - \nu \laplace v + \nabla p &= f \quad \tin \Omega \times [0,T]\\
+	\nabla \cdot v &=0 \quad \tin \Omega 
+	\end{cases}
+\end{align*}
+with 
+\begin{align*}
+	v \cdot \nabla v  =
+	\begin{pmatrix}
+	v_1 \partial_{x_1}v_1& v_1\partial_{x_2}v_1\\
+	v_2 \partial_{x_1}v_2& v_2\partial_{x_2}v_2\\
+	\end{pmatrix}.
+\end{align*}
+and 
+\begin{align*}
+	v &= (v_1,v_2) && \text{velocity}\\
+	p&&& \text{pressure}\\
+	\nu &&& \text{kinematic viscosity (often } Re = \frac{UL}{\nu})\\
+	U && &\text{charakteristic velocity}\\
+	L && &\text{charakteristic lenght}\\
+	f && &\text{force }
+\end{align*}.
+The following boundary conditions are assumed
+\begin{align*}
+	v|_{\text{rigid}} &= 0\\
+	v|_{\text{in}} &= v^{\tin}\\
+	\nu \partial_nv+ pn|_{\text{out}} &=0\\
+\end{align*}
+where $n$ is the outer normal. The initial condition is
+\begin{equation*}
+	v|_{t=0}=v^0.
+\end{equation*}
+We define the following spaces for this example:
+\begin{align*}
+	L^2_0(\Omega) &:= \left \{ \varphi \in L^2(\Omega)\colon (\varphi,1)=0  \right\}\\
+	H^1(\Omega)^2 &:= \left \{ v \in L^2(\Omega)\colon \partial_i v \in L^2(\Omega), i=1,2  \right\}^2\\
+	H^1_0(\Gamma,\Omega)^2 &:= \left \{ v \in H^1(\Omega)\colon v|_\Gamma =0 \right\}^2, \quad \Gamma \subset \partial \Omega\\
+\end{align*}
+p is uniquely determined by the velocity v, but only up to a constant.\\
+(every bounded functional $F(\cdot)$ on $H^1_0(\Gamma,\Omega)$ which vanishes on 
+\begin{equation*}
+	I_1(\Gamma,\Omega) := \{v \in H^1_0(\Gamma,\Omega)\colon \nabla\cdot v =0 \}
+\end{equation*}
+can be expressed as 
+\begin{equation*}
+	F(\varphi) = (p, \nabla \cdot \varphi)
+\end{equation*}
+for $p \in L^2(\Omega)$ )\\
+\subsection{stability estimate ("inf-sup"-condition) or LBB}
+\begin{equation*}
+	\inf_{q \in L^2(\Omega)} \left(  \sup_{\varphi \in H^1_0(\Gamma,\Omega)} \frac{(q,\nabla \cdot \varphi )}{\|\nabla\varphi\|} \right) \geq \gamma_0 > 0.
+\end{equation*}
+Notation:
+\begin{align*}
+	a(u,v) &= \nu \cdot (\nabla u, \nabla v)\\
+	n(n,v,w)&= (u \cdot \nabla v, w)\\
+	b(p,v)&= -(p,\nabla\cdot v)
+\end{align*}
+Our task is now to find $v \in v^{\tin} + H(=H^1_0(\Gamma,\Omega)^2)$ and $p \in L(=L^2(\Omega))$ s.t. 
+\begin{align}
+	v(t=0) &= v^0 \nonumber\\
+	(\partial_tv,f) + n(v,v,\varphi) + a(v,\varphi) + b(p,\varphi) &= (f,\varphi)\quad \forall \varphi \in H\nonumber\\
+	(\nabla \cdot v, \psi) &= 0 \quad \forall \psi \in L \label{div_v}
+\end{align}
+If $\Gamma_{\text{out}} = \emptyset $ in 2D there is a unique solution on [0,T]. In 3D results exist only for small $T$ on small data. How to deal with $\nabla\cdot v= 0$, decouple the continuity equation from momentum equation in an iterative process.\nl
+\underline{Idea:} supplement $\nabla \cdot v =0$ by stabilisation involving $p$ (try to get $p$ in eq. \eqref{div_v})
+\begin{itemize}
+	\item $\nabla \cdot v + \varepsilon p =0$ (penelisation method)
+	\item $\nabla \cdot v - \varepsilon\laplace p =0$, $\partial_n p|_{\partial\Omega}=0$ (least square pressure stabilisation)
+	\item $\nabla \cdot v + \varepsilon \partial_t p =0$, $p|_{t=0}=0$ (quasi incompressible method)
+\end{itemize}
+There exists a relation to classical projection methods (Chorin)
+\begin{enumerate}[label = \roman*)]
+	\item $\hat{v}^n \in H$ discretize time, ignore pressure
+	\begin{equation*}
+		\frac{1}{\tau} \left( \hat{v}^n - v^{n-1} \right)- \nu \laplace \hat{v}^n + \hat{v}^n \cdot \nabla \hat{v}^n = f^n
+	\end{equation*}(related to burgers equation)
+	\item $v^n \in \mathsf{P}v$ (with $\mathsf{P}$ as projection operator) can be reformulated as 
+	\begin{equation*}
+		v^n = \hat{v}^n - \tau \nabla \hat{p}^n
+	\end{equation*}
+	with 
+	\begin{equation*}
+		\laplace \hat{p}^n = \underbrace{\frac{1}{\tau} \nabla \cdot \hat{v}^n }_{\text{given}}
+	\end{equation*}
+	poisson equation for pressure with Neumann boundary conditions ($\partial_n \hat{p}^n =0$)(which is not physical).
+	Here $\hat{v}^n$ is not incompressible but after the \glqq correction\grqq \ $v^n$ is. This approach can be viewed as a pressure stabilisation. Plug 
+	\begin{equation*}
+		v^n = \hat{v}^n - \tau \nabla \hat{p}^n \tin \nabla \cdot v =0
+	\end{equation*}
+	$\implies \nabla \cdot \hat{v}^n - \tau \laplace \hat{p} = 0$, $\partial_n \hat{p}^n|_{\partial\Omega}=0$. 
+\end{enumerate}
+improvement (Chorin-Uzawa-scheme)
+\begin{enumerate}[label = \roman*)]
+	\item 
+	\begin{equation*}
+		\frac{1}{\tau} \left( \hat{v}^n - v^{n-1} \right)- \nu \laplace \hat{v}^n + \hat{v}^n \cdot \nabla \hat{v}^n + \nabla ( \hat{p}^{n-1} - p^{n-1})= f^n
+	\end{equation*}
+	\item 
+	\begin{equation*}
+		\laplace \hat{p}^n = \frac{1}{\tau} \nabla \cdot \hat{v}^n ,\quad \partial_n \hat{p}^n|_{\partial \Omega} =0
+	\end{equation*}
+	\item 
+	\begin{equation*}
+		v^n = \hat{v}^n - \tau \nabla \hat{p}^n, \quad p^n =p^{n-1} - \alpha \nabla \cdot \hat{v}^n ,\quad \alpha >0
+	\end{equation*}
+\end{enumerate}
+This correspondes to a quasi incompressibility method.\nl
+\underline{discretization} of $\hat{v}^n \cdot \nabla \hat{v}^n$, $n(\hat{v}^n,\hat{v}^n,w) = (\hat{v}^n\cdot \nabla \hat{v}^n ,w)$ by linearization, e.q.
+\begin{equation*}
+	(v^{n-1}\cdot \nabla \hat{v}^n) \text{ or } (\hat{v}^n \cdot \nabla v^{n-1,w}) 
+\end{equation*}
+or combinations or Newton or fixpoint iterations.
+
+\begin{itemize}
+	\item for all these projection methods stability estimates are no longer relevant e.g. piecewise linear functions ($\mathbb{P}_1$) for $v_1,v_2,p$
+	\item for coupled system use e.g. Taylor-Hood element e.g. $v_1,v_2 \in \mathbb{P}_2$ and $ p \in \mathbb{P}_1$
+	\item way out is to use different meshes, finer meshes for $v$ !
+\end{itemize}

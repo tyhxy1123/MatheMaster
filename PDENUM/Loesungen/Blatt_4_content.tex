@@ -1,0 +1,323 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+% vim: set noexpandtab:
+
+\section{Aufgabenblatt 4}
+\subsection{Aufgabe 4.1}
+Gegeben sei die Randwertaufgabe
+\begin{align*}
+	-u''\equiv f,\qquad u(0)=0,~u(1)=0
+\end{align*}
+Dann liefert die Finite-Elemente-Methode mit linearen Elementen in den Gitterpunkten die exakten Werte der Lösung.
+
+\begin{proof}
+	Setze
+	\begin{align*}
+		\G_\xi:\R\to\R,\qquad
+		\G_\xi(x):=\left\lbrace\begin{array}{cl}
+			(1-\xi)\cdot x, &\falls x<\xi\\
+			\xi\cdot(1-x), &\falls x\geq\xi
+		\end{array}\right.\qquad\forall\xi\in\R.
+	\end{align*}
+	Sei $v\in H_0^1((0,1))$ beliebig. 
+	Dann gilt:
+	\begin{align*}
+		\G_\xi'(x)=\left\lbrace\begin{array}{cl}
+			(1-\xi), &\falls x<\xi\\
+			-\xi, &\falls x\geq\xi
+		\end{array}\right.\qquad\forall\xi\in\R.
+	\end{align*}
+	und damit
+	\begin{align*}
+		\int\limits_0^1\G_\xi'(x)\cdot v'(x)\d x
+		&=\int\limits_0^\xi\G_\xi'(x)\cdot v'(x)\d x+\int\limits_\xi^1\G_\xi'(x)\cdot v'(x)\d x\\
+		&=\int\limits_0^\xi (1-\xi)\cdot v'(x)\d x+\int\limits_\xi^1-\xi\cdot v'(x)\d x\\
+		&=(1-\xi)\cdot\int\limits_0^\xi v'(x)\d x-\xi\cdot\int\limits_\xi^1 v'(x)\d x\\
+		\overset{\text{HS}}&=
+		(1-\xi)\cdot\big(v(\xi)-\underbrace{v(0)}_{=0}\big)-\xi\cdot\big(\underbrace{v(1)}_{=0}-v(\xi)\big)\\
+		&=v(\xi)
+	\end{align*}
+	Schwache Formulierung $u,v\in H_0^1\big((0,1)\big)=V$: 
+	Multiplikation mit $v$ und Integration liefert
+	\begin{align*}
+		-\int\limits_0^1 u''(x)\cdot v(x)\d x=\int\limits_0^1 f(x)\cdot v(x)\d x
+	\end{align*}
+	Setze (partielle Integration)
+	\begin{align*}
+		a(u,v)&:=\int\limits_0^1 u'\cdot v'\d x=\int\limits_0^1 f\cdot v=:f(v)\qquad\forall v\in V
+	\end{align*}
+	Nun nutzen wir den diskreten Raum $V_h\subseteq V$ anstelle von $V$, wobei $V_h$ der Raum der linearen Finiten-Elemente ist:
+	\begin{align*}
+		a(u_h,v_h)=l(v_2)\qquad\forall v_h\in V_h\subseteq V
+	\end{align*}
+	%TODO Hier könnte man eine Skizze einfügen (optional)
+	Nun nutzen wir die \ul{Galerkin-Orthogonalität}:
+	\begin{align*}
+		a(u-u_h,v_h)
+		&=l(v_h)-l(v_h)=0\\
+		\implies 0
+		&=a(u-u_h,v_h)
+		=\int\limits_0^1 v_h'\cdot(u-u_h)'\d x
+	\end{align*}
+	Betrachte die diskrete Testfunktion $v_h:=\G_{x_i}$.
+	\begin{align*}
+		v_h=\G_{x_i}\in V_h\qquad\forall x_i\\
+		\implies
+		0=a(u-u_h,v_h)
+		&=\int\limits_0^1\G_{x_i}\cdot(u-u_h)'\d x=(u-u_h)(x_i)
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 4.2}
+Seien $\hat{K}:=(-1,1)^2$ das (große) Einheitsquadrat und $\hat{\Sigma}:=\left\lbrace\hat{N}_1,\hat{N}_2,\hat{N}_3,\hat{N}_4\right\rbrace$ mit den Knotenfunktionalen 
+\begin{align*}
+	\hat{N}_1(\hat{v}):=\hat{v}(0,-1),\quad
+	\hat{N}_2(\hat{v}):=\hat{v}(1,0),\quad
+	\hat{N}_3(\hat{v}):=\hat{v}(0,1),\quad
+	\hat{N}_4(\hat{v}):=\hat{v}(-1,0)
+\end{align*}
+gegeben. Weiterhin seien 
+\begin{align*}
+	\hat{V}_1:=\hat{Q}_1:=\spann\big(1,\hat{x},\hat{y},\hat{x}\cdot\hat{y}\big)
+\end{align*}
+der Raum der bilinearen Funktionen und
+\begin{align*}
+	\hat{V}_2:=\hat{Q}_1^{\text{rot}}:=\spann\big(1,\hat{x},\hat{y},\hat{x}^2-\hat{y}^2\big)
+\end{align*}
+der Raum der rotiert bilinearen Funktionen.
+\begin{enumerate}[label=(\alph*)]
+	\item $\hat{\Sigma}$ ist bzgl. $\hat{V}_1$ nicht unisolvent.
+	\item $\hat{\Sigma}$ ist bzgl. $\hat{V}_2$ unisolvent.
+	\item Bestimmen Sie die (nodalen) Basisfunktionen $\hat{\varphi}_i,i=1,\ldots,4$ für $\hat{\Sigma}$ und $\hat{V}_2$.
+\end{enumerate}
+
+\begin{proof}
+	\underline{Zeige (a):}
+	\begin{align*}
+		N_1(\hat{x}\cdot\hat{y})&=(\hat{x}\cdot\hat{y})(0,-1)=0\\
+		\implies N_i(\hat{x}\cdot\hat{y})&=0\qquad\forall i\in\lbrace1,2,3,4\rbrace
+	\end{align*}
+	Also ist $\hat{Q}_1$ nicht unisolvent für $\hat{\Sigma}$.\nl
+	\underline{Zeige (b):}\\
+	\begin{tabular}{c|cccc}
+		& 1 & $\hat{x}$ & $\hat{y}$ & $\hat{x}^2-\hat{y}^2$\\ \hline
+		$N_1$ & 1 & 0 & -1 & -1\\
+		$N_2$ & 1 & 1 & 0 & 1\\
+		$N_3$ & 1 & 0 & 1 & -1\\
+		$N_4$ & 1 & -1 & 0 & 1
+	\end{tabular}
+	Diese Matrix hat Determinante $\det(A)=8\neq0$.\nl
+	\underline{Zeige (c):} 
+	Idee: $N_i(\hat{\varphi})=\delta_{i,j}$.
+	\begin{align*}
+		\hat{\varphi}_1&=\frac{1}{4}\cdot\left(1-\left(\hat{x}^2-\hat{y}^2\right)-2\cdot y\right)\\
+		\hat{\varphi}_2&=\frac{1}{4}\cdot\left(1+\left(\hat{x}^2-\hat{y}^2\right)+2\cdot x\right)\\
+	\end{align*}
+	
+	\textbf{Alternative vom Tutor:}\\
+	Benutze erneut obige Matrix:
+	\begin{align*}
+		M:=\begin{pmatrix}
+			1 & 0 & -1 & -1\\
+			1 & 1 & 0 & 1\\
+			1 & 0 & 1 & -1\\
+			1 & -1 & 0 & 1
+		\end{pmatrix}^T
+	\end{align*}
+	Auch hier ist die Grundidee wieder 
+	\begin{align*}
+		\hat{N}_j(\hat{\varphi}_i)&=\delta_{i,j},\qquad
+		\hat{b}_k=\sum\limits_{i=1}^4 w_i^k\cdot\hat{\varphi}_i\\
+		\implies
+		\sum\limits_{j=1}^4\hat{N}_j(\hat{b}_k)\cdot\hat{\varphi}_j
+		&=\sum\limits_{j=1}^4\sum\limits_{i=1}^4 w_i^k\cdot\underbrace{\hat{N}_j(\hat{\varphi}_i)}_{=\delta_{i,j}}\cdot\hat{\varphi}_j\\
+		&=\sum\limits_{j=1}^4 w_j^k\cdot\hat{\varphi}_j\\
+		&=\hat{b}_k\\
+		\implies
+		M\cdot\begin{pmatrix}
+			\hat{\varphi}_1\\ 
+			\hat{\varphi}_2 \\ 
+			\hat{\varphi}_3 \\ 
+			\hat{\varphi}_4
+		\end{pmatrix}
+		&=\begin{pmatrix}
+			\hat{b}_1\\ 
+			\hat{b}_2 \\ 
+			\hat{b}_3 \\ 
+			\hat{b}_4
+		\end{pmatrix}
+		=\begin{pmatrix}
+			1\\ 
+			\hat{x} \\ 
+			\hat{y} \\
+			\hat{x}^2-\hat{y}^2
+		\end{pmatrix}\\
+		M^{-1}&=\begin{pmatrix}
+			\frac{1}{4} & 0 & -\frac{1}{2} & -\frac{1}{4}\\
+			\frac{1}{4} & \frac{1}{2} & 0 & \frac{1}{4}\\
+			\frac{1}{4} & 0 & \frac{1}{2} & -\frac{1}{4}\\
+			\frac{1}{4} & -\frac{1}{2} & 0 & \frac{1}{4}
+		\end{pmatrix}\\
+		\implies\begin{pmatrix}
+			\hat{\varphi}_1\\ 
+			\hat{\varphi}_2 \\ 
+			\hat{\varphi}_3 \\ 
+			\hat{\varphi}_4
+		\end{pmatrix}&=M^{-1}\cdot\begin{pmatrix}
+			\hat{b}_1\\ 
+			\hat{b}_2 \\ 
+			\hat{b}_3 \\ 
+			\hat{b}_4
+		\end{pmatrix}
+	\end{align*}
+\end{proof}
+
+\subsection{Aufgabe 4.3}
+Seien $\hat{K}:=(0,1)^2$ mit den Ecken 
+\begin{align*}
+	\hat{P}_1=(0,0),\qquad
+	\hat{P}_2(1,0),\qquad
+	\hat{P}_3(1,1),\qquad
+	\hat{P}_4(0,1)
+\end{align*}
+das (kleine) Einheitsquadrat und $K$ mit den Ecken
+\begin{align*}
+	P_1(x_1,y_1),\qquad
+	P_2(x_2,y_2),\qquad
+	P_1(x_3,y_3),\qquad
+	P_1(x_4,y_4)
+\end{align*}
+ein beliebiges Viereck.
+\begin{enumerate}[label=(\alph*)]
+	\item Bestimmen Sie die Koeffizienten der bilinearen Abbildung $F:\hat{K}\to K$, die $\hat{P}_i$ auf $P_i$, $i=1,\ldots,4$ abbildet. 
+	Die Abbildung $F$ heißt \textbf{bilinear} $:\gdw F\in\left(\hat{Q}_1\right)^2$.
+	\item Zeigen Sie, dass die Determinante der Jacobi-Matrix $DF(\hat{x},\hat{y})$ der Abbildung $F$ eine affine Funktion ist.
+	\item Unter welchen Bedingungen an die Koeffizienten von $F$ stellt $F$ eine affine Abbildung dar? Deuten Sie diese Bedingungen geometrisch.
+\end{enumerate}
+
+\begin{lösung}
+	%TODO Hier könnte man eine Skizze einfügen.
+	\underline{Zu (a):}\\
+	Bilinear bedeutet von folgender Form:
+	\begin{align*}
+		F(\hat{x},\hat{y})&\begin{pmatrix}
+			b_1\\ 
+			b_2
+		\end{pmatrix}
+		+\begin{pmatrix}
+			b_{1,1} & b_{1,2}\\
+			b_{2,1} & b_{2,2}
+		\end{pmatrix}\cdot\begin{pmatrix}
+			\hat{x}\\
+			\hat{y}
+		\end{pmatrix}+\begin{pmatrix}
+			\delta_1\\
+			\delta_2
+		\end{pmatrix}\cdot\hat{x}\cdot\hat{y}\\
+		\begin{pmatrix}
+			x_1\\ 
+			y_1
+		\end{pmatrix}
+		&=P_1=F(\hat{P}_1)=F(0,0)=\begin{pmatrix}
+			b_1\\ 
+			b_2
+		\end{pmatrix}\\
+		\implies
+		\begin{pmatrix}
+			b_1\\ 
+			b_2
+		\end{pmatrix}&=
+		\begin{pmatrix}
+			x_1\\ 
+			y_1
+		\end{pmatrix},\qquad\begin{pmatrix}
+			b_{1,1} & b_{1,2}\\
+			b_{2,1} & b_{2,2}
+		\end{pmatrix}=\Big ( P_2-P_1\quad P_4-P_1  \Big )
+	\end{align*}
+
+	\underline{Zeige (b):} Nachrechnen.\nl
+	\underline{Zu (c):}
+	\begin{align*}
+		F\text{ affin}&\Longrightarrow\begin{pmatrix}
+		\delta_1\\\delta_2
+		\end{pmatrix}=0=\Big (P_1-P_2+P_3-P_4\Big )\\
+		&\Longleftrightarrow P_1-P_2=P_4-P_3\\
+		&\Longleftrightarrow P_1-P_4=P_2-P_3\\
+		&\implies K\text{ ist ein Parallelogramm}
+	\end{align*}
+\end{lösung}
+
+\subsection{Aufgabe 4.4}
+Für ein achsenparalleles Rechteck $K$ sei $Q_2$ die Menge der Polynome auf $K$, die bezüglich $x$ und $y$ höchstens zweiten Grades sind. 
+Es seien $(e_j)_{j=1}^4$ die vier Kanten und $(x_j)_{j=1}^4$ die vier Ecken von $K$. 
+Untersuchen Sie, ob durch die neun Freiheitsgrade
+\begin{enumerate}[label=(\roman*)]
+	\item Funktionswerte $f(x_j)$ in den Ecken,
+	\item $\int\limits_{e_j} f\d s$ und $\int\limits_K f\d(x,y)$
+\end{enumerate}
+einer Funktion $f\in Q_2$ die Unisolvenz sichergestellt wird.
+
+\begin{lösung}
+	\underline{Fall 1: Referenzquadrat}\\
+	Wir untersuchen die Aussage zunächst für das Referenzquadrat $\hat{K}:=(0,1)^2$.
+	\begin{align*}
+		Q_2=\spann\left\lbrace 1,x,y,x\cdot y,x^2,y^2,x\cdot y^2,x^2\cdot y,x^2\cdot y^2\right\rbrace
+	\end{align*}
+	%TODO Hier Skizze einfügen
+	Es genügt zu zeigen, dass\\
+	"Wenn $v\in Q_2$ für alle $\d\circ F$ verschwindet, folgt $v\equiv0$."\\
+	Auf jeder Kante $e_j$, $v$ ist ein Polynom zweiten Grades, also
+	\begin{align*}
+		v=c_j\cdot(1-s)\cdot s
+	\end{align*}
+	da $v$ in den Ecken verschwindet. 
+	Es folgt
+	\begin{align*}
+		0\stackeq{!}\int\limits_{e_j} v=c_j\cdot\frac{1}{6}\implies c_j=0
+	\end{align*}
+	Also verschwindet $v$ auf den Kanten. 
+	Somit ist $v$ 0 auf dem Rand von $K$. 
+	Folglich können wir $v$ schreiben als
+	\begin{align*}
+		v(x,y)=c\cdot(1-x)\cdot x\cdot(1-y)\cdot y
+		\stackrel{0\stackeq{!}\int v\d (x,y)=0}{\implies}\cdot\frac{1}{36}\implies c=0
+	\end{align*}
+	da dies die einzige Funktion ist, die komplett auf dem Rand verschwindet. 
+	Damit ist die Unisolvenz gezeigt.\nl
+	\underline{Fall 2: Allgemeiner Fall}\\
+	Wir können den allgemeinen Fall auf den Fall des Referenzquadrates (Fall 1) zurückführen.
+\end{lösung}
+
+\subsection{Aufgabe 4.5}
+Seien $\hat{K}:=(0,1)$ und $K:=(a,a+h)$ mit $a\in\R$ und $h>0$ zwei offene Intervalle. 
+Weiterhin sei $F:\hat{K}\to K$ die affine Abbildung, die $F(0)=1$ und $F(1)=a+h$ erfüllt.\\
+Dann besteht für $\varphi\in W^{m,p}(K),m\in\N_0,p\in[1,\infty)$ und\\ 
+$\hat{\varphi}:=\varphi\circ F\in W^{m,p}(\hat{K})$ der Zusammenhang
+\begin{align*}
+	\big|\hat{\varphi}\big|_{m,p,\hat{K}}=h^m\cdot \left(\frac{1}{h}\right)^{\frac{1}{p}}\cdot|\varphi|_{m,p,K}.
+\end{align*}
+
+\begin{proof}
+	%TODO Hier könnte man eine Skizze einfügen
+	Setze
+	\begin{align*}
+		F:\hat{K}&=(0,1)\to K=(a,a+h),\qquad F(\hat{x}):=a+\hat{x}\cdot h\\
+		\hat{\varphi}&=\varphi\big(F(\hat{x})\big)\\
+		\implies
+		\frac{\partial\hat{\varphi}(\hat{x})}{\partial\hat{x}}&\stackeq{\text{KR}}\frac{\partial\varphi\big(F(\hat{x})\big)}{\partial x}\cdot
+		\underbrace{\frac{\partial F(\hat{x})}{\partial\hat{ x}}}_{=h}
+		\implies
+		\hat{\varphi}^{(m)}(\hat{x})=\varphi^{(m)}\big(F(\hat{x})\big)\cdot h^m\\
+		\big|\hat{\varphi}\big|_{m,p,\hat{K}}
+		&=\int\limits_{\hat{K}}\left|\hat{\varphi}^{(m)}(\hat{x})\right|^p\d x\\
+		&=\int\limits_{\hat{K}}\left|\varphi^{(m)}\big(F(\hat{x})\big)\right|^p\cdot h^{m\cdot p}\d\hat{x}\\
+		\overset{(\ast)}&=
+		\int\limits_K\left|\varphi^{(m)}(x)\right|^p\cdot h^{m\cdot p}\cdot\frac{1}{h}\d x\\
+		&=h^{m\cdot p}\cdot\frac{1}{h}\cdot|\varphi|^p_{m,p,K}
+	\end{align*}
+	$(\ast)$: Integration durch Substitution: $\hat{x}=\frac{x-a}{h}$, $\d\hat{x}=\frac{1}{h}\d x$.\\
+	Das Ziehen der $p$-ten Wurzel liefert die Behauptung.
+\end{proof}

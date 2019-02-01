@@ -4,10 +4,11 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \newcommand{\directoryPrefix}{} % Je nach Ordnertiefe muss dieser Command angepasst werden, z.B: ../../latex/
+\newcommand{\pathInfix}{}       % Hier sind keine Ändernugen notwendig
 \input{\directoryPrefix templates}
-\TemplateUebungAlt{Autor}{Titel}{42}
+\TemplateUebung{Autor}{Titel}{42}
 
 \begin{document}
 	\setcounter{section}{5} % Für den Wrapper.
-	\input{demo_content}  % Lade Content, falls ausgelagert.
+	\input{demo_content}    % Wrap it!
 \end{document}
