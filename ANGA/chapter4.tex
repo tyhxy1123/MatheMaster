@@ -431,5 +431,155 @@ Sei $K =\F_q$ ein endlicher Körper, $F|K$ Funktionenkörper vom Geschlecht $g$.
 
 \begin{satz}
     Unter (i)-(iii) ist 
-    $$ N_1 < q +1 (2g +1)q^\frac{1}{2}. $$
+    $$ N_1 < q +1 + (2g +1)q^\frac{1}{2}. $$
 \end{satz}
+\begin{proof}
+    \emph{$N_1=0$:} $\checkmark$\nl
+    \emph{$N_1 > 0$:} Wähle $P_0 \in S^1(F|K)$. Setze 
+    \begin{align*}
+        m&:= q_0 -1,\\
+        n&:= 2g + q_0,\\
+        l&:=m+nq_0=q-1 + (2g-1)q^\frac{1}{2}.
+    \end{align*}
+    \emph{Ziel:} es gibt $0 \ne x \in \L(lP_0)$ mit 
+    $$v_p(x)>0 \forall P \in S^1(F|K)\setminus \{P_0\},$$
+    denn dann ist
+    $$ N_1 -1 = |S^1(F|K)\setminus \{P_0\}| \leq \deg(x)_0 = \deg (x)_\infty \leq \deg (lP_0) = l.$$
+    Definiere
+    \begin{align*}
+        \L_0 &:= \Span_K \{xy^{q_0} \mid x \in \L(mP_0), y \in \L(nP_0)\} \subseteq \L(lP_0) \\
+        M_0 &:= \{0 \leq i \leq m \mid \exists x \in F: (x)_\infty = i P_o\}
+    \end{align*}
+    für $i \in M_0$ wähle $u_i \in F$ mit $(u_i)_\infty = i P_0$.\nl\nl
+    \emph{Behauptung 1:} $(u_i)_{i \in M_0}$ ist Basis von $\L(mP_0)$
+
+    \emph{Beweis.} Die lineare Unabhängigkeit ist klar, da $$ v_{P_0}(\sum \lambda_i u_i) = \infty.$$
+    Es gilt offenbar
+    $$ \dim_K \L(mP_0) = q_0 -g.$$
+    Desweiteren gilt
+    $$ i \in M_0 \iff \L(iP_0) \supsetneqq \L((i-1)P_0).$$
+    Da $$\dim_K(iP_0) - \dim_K ((i-1)P_0) \stackrel{II.5.4}{\leq} \deg P_0 = 1$$ 
+    sind $$ \L(0) \subseteq \L (P_0) \subseteq \ldots \subseteq \L(mP_0)$$
+    genau $\dim(mP_0) - \dim (0) = q_0 - g -1 = m-g$ viele Inkulsionen sind echt.
+    Somit $|M_0| = 1 + m -g = \dim \L(mP_0)$.\nl\nl
+    \emph{Behauptung 2:} Jedes $z \in \L_0$ kann eindeutig geschrieben werden als 
+    $$ z = \sum_{i \in M_0} u_i y_i, y_i \in \L(nP_0).$$
+    \emph{Beweis.} Die Existenz folgt aus Behauptung 1, mit $(a+b)^{q_0} = a^{q_0} + b^{q_0}$. 
+    Es gilt
+    \begin{align*}
+        &\sum u_i y_i^{q_0} = 0, y_i \ne 0 \text{ für ein } i_0\\
+        \implies & v_{P_0} (u_iy_i^{q_0}) \equiv -i \mod q_0 \text{ falls } y_i \ne 0\\
+        \implies & \text{ alle verschieden modulo } q_0 \stackrel{m < q_0}{\implies} \text{ alle verschieden}.
+    \end{align*}
+    Und somit folgt die Eindeutigkeit.\nl\nl
+    Definiere nun
+    $$ \lambda: \begin{cases}
+        \L_0 \to \L((q_0m+n)P_0)\\
+        \sum_{i\in M_0}u_iy_i^{q_0} \mapsto \sum_{i\in M_0}u_i^{q_0}y_i.
+    \end{cases}$$
+    Aus Behauptung 2 folgt $\lambda$ ist wohldefiniert. Offenbar ist $\lambda$ auch ein Gruppenhomomorphismus.
+    Um zu zeigen, dass $\ker (\lambda) \ne \{0\}$ genügt es zu zeigen, dass
+    $$ \dim_{\F_q} \L_0 > \dim (q_0m+n) \implies \lambda \text{ nicht injektiv}.$$
+    Es gilt 
+    $$ \dim_{\F_q} \L_0 = (m+1-g)(n+1-g) > q_0m + n + 1 -g = \dim (q_0m + n). $$
+    Für $0 \ne x \in \ker (\lambda)$ ist $v_P (x) > 0 \forall P\in S^1(F|K)\setminus \{P_0\}$.
+    Daraus folgt
+    \begin{align*}
+        &x \in \L(lP_0) \implies v_P(x) \geq 0, \text{ analog } v_P(u_i) \geq 0 \forall i\\
+        &P \in S^1(F|K) \implies F_p = \F_q \implies x(P)^q = x(P).
+    \end{align*}
+    Schreibe $x = \sum\limits_{i \in M_0} u_i y_i^{q_0}$
+    \begin{align*}
+        \implies x(P)^{q_0} &= \left(\sum_{i \in M_0} u_i(P) y_i(P)^{q_0}\right)^{q_0} \\
+        &= \sum_{i \in M_0} u_i(P)^{q_0} y_i(P) = \left(\sum_{i \in M_0} u_i^{q_0} y_i\right)(P) = (\lambda(x))(P)\\
+        \implies x(P) &= 0 \implies v_P(x) > 0.
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    Sei $G' = C_r \times G, |G| = m| r$.\\
+    Ist $H \leq G'$ mit $|H| = re, |H \cap G| = e$ \\
+    so existieren genau $e$ viele $U \leq H$ mit $U \cong C_r$ und $U\cap G=1$. 
+\end{lemma}
+
+\begin{satz}
+    Ist $E|K$ eine geometrische galoissche Erweiterung von $F|K$ vom Grad $m$, und $r = mn, E' = E\F_{q^r}$,
+    dann gibt es genau $m$ Zwischenkörper $E_1, \ldots, E_m$ von $E'|F$ mit $\Gal(E'|E_i)$ zyklisch der Ordnung $r$, und
+    $E_i\F_{q^r} = E'$.
+    Für jedes $i$ gilt:
+    \begin{enumerate}[label=(\alph*)]
+        \item Der Konstantenkörper von $E_i$ ist $\F_q$.
+        \item $g_{E_i}=g_E$
+        \item $m |S^1(F|K)| = \sum\limits_{i=1}^m |S^(E_i|K)|$
+    \end{enumerate}
+\end{satz}
+\begin{proof}
+    $$\begin{tikzcd}[cramped]
+        E \ar[rr, dash]{C_r} \ar[dd, dash, "G"', "m"] & & E' \ar[dd, dash]{G}\\
+        & E_i \ar[ur, dash]{H_i} &\\
+        F \ar[ur, dash] \ar[rr, dash]{C_r} \dar[dash]& & F_r \dar[dash] \\
+        \F_q \ar[rr, dash]{C_r}& & \F_{q^r}
+    \end{tikzcd}$$
+    \begin{align*}
+        &\Gamma := \Gal(E'|F) = \underbrace{\Gal(F_r|F)}_{\langle\sigma\rangle \cong C-r} \times \underbrace{\Gal(E|F)}_{=:G}\\
+        &\stackrel{4.6}{\implies}\text{ genau $m$ viele } H_i \leq r \text{ mit } H_i \cong C_r, H_i \cap H = 1\\
+        & \implies \text{ genau $m$ viele } E_i \text{ mit } \Gal(E'|E_i) \cong C_r, E_iF_r =E
+    \end{align*}
+    \emph{(a):}
+    \begin{align*}
+        &E_i \cap \F_{q^r} = (E')^{H_i} \cap \F_{q^r} = \left(\F_{q^r}^{\res_{E'|\F_{q^r}}}\right)^{H_i} = \F_q \text{, denn}\\
+        &\ker (\res_{E'|\F_{q^r}}: \Gal(E'|F) \to \Gal(\F_{q^r}|\F_q)) = \Gal(E'|\F_r) = G \\
+        &\implies \res_{E'|\F_{q}}(H_i) \cong H_i \cong C_r
+    \end{align*}
+    \emph{(b):} $$ E_i\F_{q^r} = E_iF_r = E' \implies g_{E_i}=g_{E'}=g_E$$
+    $$\begin{tikzcd}
+        E \dar[dash] \drar[dash]{\text{galoissch}}\\
+        F \dar[dash] \rar[dash]& F_r \dar[dash]\\
+        \F_q(t) \dar[dash] \rar[dash]& \F_{q^r}(t)\dar[dash] \\
+        \F_q \rar[dash]& \F_{q^r}
+    \end{tikzcd}$$
+\end{proof}
+
+\begin{bemerkungnr}
+    Wegen 4.1 können wir zusätzlich folgende Situation annehmen:
+    \begin{itemize}
+        \item[(iv)] $F_0 = K(t) \subseteq F \subseteq E$ mit $E|F_0$ galoissch und geometrisch
+        \item[(iii')] $q > (g_E +1)^4$ 
+    \end{itemize}
+\end{bemerkungnr}
+
+\begin{satz}
+    Unter (i)-(iv),(iii') gilt $N_r \geq q^r +1 -c_2q^\frac{1}{2}$, für ein $c_2$.
+\end{satz}
+\begin{proof}
+    Sei $m = [E:F]$, $n = [F:F_0]$, $r=mn$, $E'=E\F_{q^r}$, $F'=F\F_{q^r}$, $F_0'=F_0\F_{q^r}$.
+    $$\begin{tikzcd}
+        E \rar[dash]{r} \dar[dash]{m}& E' \dar[dash]{m}\\
+        F \rar[dash]{r} \dar[dash]{n}& F' \dar[dash]{n}\\
+        F_0 \rar[dash]{r}\dar[dash]& F_0'\dar[dash]\\
+        \F_q \rar[dash]{r}& \F_{q^r}
+    \end{tikzcd}$$
+    Nach 4.6 gibt es:
+    \begin{itemize}
+        \item genau $m$ viele $V_1, \ldots, V_m \subseteq \Gal(E'|F)$ mit $V_i \cong C_r$ und $V_i \cap \Gal(E'|F) = 1$,
+        \item genau $r$ viele $U_1, \ldots, U_r \leq \Gal(E'|F_0)$ mit $ U_i \cong C_r$ und $U_i \cap \Gal(E'|F_0) = 1$.
+    \end{itemize}
+    Da $E'^{V_i}F_0' \supseteq E'^{V_i}FF_0' = E'^{V_i}F'=E'$ ist $V_i \cap \Gal(E'|F_0')=1$,
+    somit o.E. $U_i = V_i$ für $i=1, \ldots,m$.
+    Sei $E_i = E'^{U_i}$. Nach 4.7(c) ist
+    \begin{itemize}
+        \item $m |S^1(F|K)| = \sum\limits_{i=1}^m |S^1(E_i|K)|$
+        \item $r|S^1(F_0|K)| = \sum\limits_{i=1}^r |S^1(E_i|K)|$
+    \end{itemize}
+    Wir wissen
+    \begin{itemize}[label=-]
+        \item $|S^1(F_0|K)|=q+1$
+        \item $|S^1(E_i|K)| \stackrel{4.4}{\leq} q+1 + (2g_E + 1)q^\frac{1}{2}$
+    \end{itemize}
+    \begin{align*}
+        \implies & m |S^1(F|K)| = r (q+1) - \sum_{i=m+1}^r |S^1(E_i|K)|\\
+        & \geq r(q+1) + (rm)(q+1+(2g_E + 1)q^\frac{1}{2})\\
+        & = m(q+1) + (r-m)(2g_E+1)q^\frac{1}{2}\\
+        \implies & |S^1(F|K)| \geq q +1 - \frac{mn -m}{m}(2g_E + 1)q^\frac{1}{2}
+    \end{align*}
+\end{proof}
