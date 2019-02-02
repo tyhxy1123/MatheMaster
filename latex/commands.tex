@@ -26,6 +26,7 @@
 \DeclareMathOperator{\supp}{supp}                 % Träger
 \newcommandx{\bracket}[2][1=\cdot, 2=\cdot]{[#1,#2]}
 \DeclareMathOperator{\graph}{graph}       % Graph einer Funktion
+\newcommand{\und}{\text{ und }}
 
 % ETWAS SPEZIELLERE ZEICHEN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,13 +60,6 @@
 % TEXT ÜBER UND UNTER ZEICHEN
 \newcommand{\stackrelnew}[3]{\underset{#1}{\overset{#2}{#3}}}
 
-% UNDERLINE (wird nicht mehr genutzt)
-% besseres underline 
-%\renewcommand{\ULdepth}{1pt}
-%\contourlength{0.5pt}
-%\newcommand{\ul}[1]{
-%	\uline{\phantom{#1}}\llap{\contour{white}{#1}}
-%}
 \newcommand{\ul}[1]{\underline{#1}} %Umleitung des Commands, da man sich gegen obigen entschieden hat. Dieser erzeugt zu viel Whitespace vor und nach dem Unterstrichenem.
 
 % Commands für Stochastik / Statistik

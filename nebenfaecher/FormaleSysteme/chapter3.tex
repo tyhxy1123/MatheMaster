@@ -139,7 +139,27 @@ Zwei Grammatiken heißen \textbf{äquivalent}, wenn sie dieselbe Sprache erzeuge
 \end{lemma}
 
 \begin{proof}
-	%TODO
+	\begin{enumerate}
+		\item Finde alle $A\in N$ mit $A\vdash_G^\ast\varepsilon$:
+		\begin{align*}
+			N_1&:=\big\lbrace A\in N:A\to\varepsilon\in P\big\rbrace\\
+			N_{i+1}&:=N_i\cup\big\lbrace A\in N:A\to B_1\ldots B_n\in P\text{ für }B_j\in N_j\big\rbrace
+		\end{align*}
+		Es gibt ein $k\in\N$ mit $N_k=N_{k+1}=\bigcup\limits_{i\geq1}N_i$. Für dieses $k$ gilt:
+		\begin{align*}
+			A\in N_k\Longleftrightarrow A\vdash_G^\ast\varepsilon
+		\end{align*}
+		\item Eliminiere in $G$ alle Regeln $A\to\varepsilon$.
+		Um dies auszugleichen, nimmt man für alle Regeln
+		\begin{align*}
+			A\to u_1B_1\ldots u_nB_nu_{n+1}\mit B_i\in N_k\text{ und }u_i\in(\Sigma\cup N\setminus N_i)^\ast
+		\end{align*}
+		die Regeln
+		\begin{align*}
+			A\to u_1\beta_1 u_2\ldots u_n\beta_n u_{n+1}\mit\beta\in\lbrace B_i,\varepsilon\rbrace\text{ und }u_1\beta_1 u_2\ldots u_n\beta_n u_{n+1}\neq\varepsilon
+		\end{align*}
+		hinzu.
+	\end{enumerate}
 \end{proof}
 
 \begin{definition}\label{def8.8}
@@ -150,7 +170,7 @@ Zwei Grammatiken heißen \textbf{äquivalent}, wenn sie dieselbe Sprache erzeuge
 	\end{enumerate}
 \end{definition}
 
-\begin{satz}\label{atz8.9}
+\begin{satz}\label{satz8.9}
 	Zu jeder kontextfreien Grammatik $G$ kann man effektiv eine äquivalente $\varepsilon$-freie Grammatik konstruieren.
 \end{satz}
 
@@ -180,19 +200,17 @@ Man kann auch auf Regeln der Form $A\to B$ verzichten:
 
 \begin{proof}[Beweisskizze]\
 	\begin{enumerate}
-		\item Bestimmt zu jedem $A\in $N die Menge $N(A):=\big\lbrace B\in N:A\vdash_G^\ast B\big\rbrace$.
+		\item Bestimme zu jedem $A\in N$ die Menge $N(A):=\big\lbrace B\in N:A\vdash_G^\ast B\big\rbrace$.
 		\begin{align*}
 			N_0(A)&:=\lbrace A\rbrace\\
-			N_{i+1}(A)&:=N_i(A)\cup\big\lbrace B\in N:\exists B'\in N_i(A):B'\to B\in P\big\rbrace
+			N_{i+1}(A)&:=N_i(A)\cup\Big\lbrace B\in N\mid\exists B'\in N_i(A):B'\to B\in P\Big\rbrace
 		\end{align*}
 		Es gibt ein $k$ mit $N_k(A)=N_{k+1}(A)$ und für dieses $k$ ist $N(A)=N_k(A)$.
-		\item $\begin{aligned}
-			Ü':=\big\lbrace A\to w:B\to w\in P,B\in N(A),w\not\in N\big\rbrace
+		\item Definiere $\begin{aligned}
+			P':=\Big\lbrace A\to w:B\to w\in P,B\in N(A)\und w\not\in N\Big\rbrace
 		\end{aligned}$
 	\end{enumerate}
 \end{proof}
-
-%TODO evtl. Beispiel
 
 \begin{satz}[Chomsky-Normalform]\label{atz8.12ChomskyNormalform}\enter
 	Jede kontextfreie Grammtik lässt sich umformen in eine äquivalente Grammatik in \textbf{Chomsky-Normalform}, d.h. eine Grammatik mit Regeln in folgender Form:
@@ -202,8 +220,21 @@ Man kann auch auf Regeln der Form $A\to B$ verzichten:
 	\end{itemize}
 \end{satz}
 
-\begin{proof}
-	%TODO
+\begin{proof}\
+	\begin{enumerate}
+		\item Konstruiere zu der gegebenen Grammatik eine äquivalente $\varepsilon$-freie ohne Regeln der Form $A\to B$.
+		\item Führe für jedes $a\in\Sigma$ ein neues Nichtterminalsymbol $X_a$ und die Produktion $X_a\to a$ ein.
+		\item Ersetze in jeder Produktion $A\to w$ mit $w\not\in\Sigma$ alle Terminalsymbole $a$ durch die zugehörigen $X_a$.
+		\item Produktionen 
+		\begin{align*}
+			A\to B_1\ldots B_2\mit n>2
+		\end{align*}
+		werden ersetzt durch
+		\begin{align*}
+			A\to B_1C_1,\qquad C_1\to B_2C_2\ldots C_{n-2}\to B_{n-1}B_n
+		\end{align*}
+		wobei die $C_i$ jeweils neue Symbole sind.
+	\end{enumerate}
 \end{proof}
 
 \section{Abschlusseigenschaften kontextfreier Sprachen} %mehr als der Satz ist aus dem Abschnitt wirklich nicht interessant
@@ -230,5 +261,57 @@ Dafür brauchen wir eine Speicherkomponente \textbf{Keller}.
 	\end{itemize}
 \end{definition}
 
-%TODO
+Bedeutung der Übergangsrelation $(q,a,Z,\gamma,q')$:
+Im Zustand $q$ mit aktuellem Eingabesymbol $a$ und oberstem Kellersymbol $Z$ darf der Automat $Z$ durch $\gamma$ ersetzen und in den Zustand $q'$ und zum nächsten Eingabesymbol übergehen.
+
+\begin{definition}\label{def10.2}
+	Eine \textbf{Konfiguration} von $\A$ hat die Form
+	\begin{align*}
+		\K=(q,w,\gamma)\in Q\times\Sigma^\ast\times\Gamma^\ast
+	\end{align*}
+	wobei
+	\begin{itemize}
+		\item $q\in Q$ der aktuelle Zustand ist
+		\item $w\in\Sigma^\ast$ der \textbf{noch zu lesende Rest} der Eingabe ist (Lesekopf steht auf dem ersten Symbol von $w$
+		\item $\gamma\in\Gamma^\ast$ der \textbf{Kellerinhalt} ist (Schreiblesekopf steht auf dem ersten Symbol von $\gamma$)
+	\end{itemize}
+	Die Übergangsrelation ermöglicht die folgenden \textbf{Konfigurationsübergänge}:
+	\begin{itemize}
+		\item $(q,aw,Z\gamma)\vdash(q',w,\beta\gamma)$ falls $(q,a,Z,\beta,q')\in\Delta$
+		\item $(q,w,Z\gamma)~\vdash(q',w,\beta\gamma)$ falls $(q,\varepsilon,Z,\beta,q')\in\Delta$
+		\item $\begin{aligned}
+			\K\vdash^\ast\K':\Longleftrightarrow\exists n\in\N_{\geq0}:\exists\K_0,\ldots,\K_n:\K=\K_0\vdash\K_1\vdash\ldots\vdash\K_n=\K'
+		\end{aligned}$
+	\end{itemize}
+	Der Automat $\A$ \textbf{akzeptiert} das Wort $w\in\Sigma^\ast$
+	\begin{align*}
+		:\Longleftrightarrow\exists q\in F,\gamma\in\Gamma^\ast:\big(q_0,w,Z_0\big)\vdash^\ast(q,\varepsilon,\gamma)
+	\end{align*}
+	(also Eingabewort ganz gelesen und Endzustand erreicht).
+	Die von $\A$ \textbf{akzeptierte Sprache} ist
+	\begin{align*}
+		L(\A):=\big\lbrace w\in\Sigma^\ast:\A\text{ akzeptiert }w\big\rbrace
+	\end{align*}
+\end{definition}
+
+\begin{definition}\label{def10.5}
+	Ein PDA $\A=(Q,\Sigma,\Gamma,q_0,Z_0,\Delta)$ heißt \textbf{deterministisch} $:\Longleftrightarrow$
+	\begin{enumerate}
+		\item $\forall q\in Q,\forall a\in\Sigma\cup\lbrace\varepsilon,\forall Z\in\Gamma$ existiert \underline{höchstens ein} Übergang der Form\\ $(q,a,Z,\ldots,\ldots)\in\Delta$.
+		\item Existiert ein Tupel $(q,\varepsilon,\Sigma,\ldots,\ldots)\in\Delta$, so existiert \underline{kein} Tupel der Form\\ $(q,a,Z,\ldots,\ldots)\in\Delta$ mit $a\in\Sigma$.
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{satz10.8}
+	Für eine formale Sprache $L$ sind äquivalent:
+	\begin{enumerate}
+		\item $L=L(G)$ für eine kontextfreie Grammatik $G$.
+		\item $L=N(\A)$ für einen PDA $\A$.
+	\end{enumerate}
+\end{satz}
+
+\begin{korollar}\label{korollar10.9}
+	Sei $L\subseteq\Sigma^\ast$ und $R\subseteq\Sigma^\ast$ regulär.
+	Dann ist $L\cap R$ kontextfrei.
+\end{korollar}
 
