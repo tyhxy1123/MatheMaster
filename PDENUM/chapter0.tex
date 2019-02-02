@@ -1993,20 +1993,22 @@ Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u_h\in
 \end{bemerkung}
 
 \begin{proof}
-	Sei $v_h\in V_h$ beliebig, $w_h:=v_h-u_h$. Dann gilt:
+	Sei $v_h\in V_h$ beliebig, $w_h\coloneqq v_h-u_h$. Dann gilt:
 	\begin{align*}
-		\alpha\cdot\big\Vert\underbrace{v_h-u_h}_{=w_h\in V_h}\big\Vert^2
-		&\leq a_h\big(v_h-u_h,v_h-u_h\big)\\
+		α \norm{v_h-u_h}_h^2
+		&\leq a_h\big(v_h-u_h,v_h-u_h\big) = a_h\big(v_h-u_h, w_h\big)\\
 		&=a_h\big(v_h,w_h\big)-\underbrace{a_h\big(u_h,w_h\big)}_{=f_h(w_h)}\\
 		&=a_h\big(v_h-u,w_h\big)+a_h\big(u,w_h\big)-f_h\big(w_h\big)\cdot\frac{\Vert w_h\Vert_h}{\Vert w_h\Vert_h}\\
 		&\leq M\cdot\big\Vert v_h-u\big\Vert_h\cdot\big\Vert w_h\big\Vert_h+\Vert w_h\Vert_h\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}\\
 		\implies
-		\underbrace{\Vert w_h\Vert_h}_{=\Vert v_h-u_h\Vert_h}&\leq\frac{M}{\alpha}\cdot\big\Vert v_h-u\big\Vert+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
+		\underbrace{\norm{w_h}_h}_{=\norm{v_h-u_h}_h}
+		&\leq\frac M{α} · \norm{v_h-u}_h
+		+ \frac1{α} · \sup_{z_h ∈ V_h} \frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\norm{z_h}_h}
 	\end{align*}
 	Mit der Dreicksungleichung folgt:
 	\begin{align*}
-		\Vert u-u_h\Vert
-		&\leq\Vert u-v_h\Vert+\Vert v_h-u_h\Vert_h\\
+		\norm{u-u_h}_h
+		&\leq \norm{u-v_h}_h + \norm{v_h-u_h}_h\\
 		&\leq\left(1+\frac{M}{\alpha}\right)\cdot\Vert u-v_h\Vert_h+\frac{1}{\alpha}\cdot\sup\limits_{z_h\in V_h}\frac{a_h\big(u,z_h\big)-f_h\big(z_h\big)}{\Vert z_h\Vert_h}
 	\end{align*}
 	Bilden des Infimums $\inf\limits_{v_h\in V_h}$ liefert die Behauptung.
