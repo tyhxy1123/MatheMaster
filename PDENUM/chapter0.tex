@@ -2066,21 +2066,21 @@ Bisher:
 \end{align*}
 Sei $f\in L^2(\Omega)$ und $u\in H^2(\Omega)$. Dann:
 \begin{align*}
-	-\Delta u=f\text{ im $L^2$-Sinn auf jedem }K\in T_h
+	-\laplace u=f \text{ im $L^2$-Sinn auf jedem } K ∈ \T_h
 \end{align*}
 Sei nun $z_h\in V_h$ beliebig. Dann gilt:
 \begin{align*}
-	\sum\limits_{K\in\T_h}\int\limits_K-\Delta u\cdot z_h\d x
-	&=\sum\limits_{K\in\T_h}\int\limits_K f\cdot z_h\d x\\
-	\sum\limits_{K\in\T_h}\int\limits_K-\Delta u\cdot z_h\d x
+	Σ_{K∈\T_h}∫\limits_K-\laplace u · z_h\d x
+	&=Σ_{K∈\T_h}∫\limits_K f · z_h\d x\\
+	Σ_{K∈\T_h}∫\limits_K-\laplace u · z_h\d x
 	\overset{\text{part Int}}&=
-	\sum\limits_{K\in\T_h}\left(\int\limits_K\nabla u\cdot\nabla z_h\d x-\int\limits_{\partial K}\underbrace{\frac{\partial u}{\partial n_K}}_{=\nabla u\cdot n_K}z_h\d\gamma\right)\\
+	Σ_{K∈\T_h}\left(∫\limits_K∇ u · ∇ z_h\d x-∫\limits_{\Rand K}\underbrace{\frac{∂ u}{∂ n_K}}_{=∇ u · n_K}z_h\d γ \right)\\
 	\implies L_h(z_h)
-	:&=a_h(u,z_h)-f_h(z_h)\\
-	&=\sum\limits_{K\in\T_h}\int\limits_{\partial K}\frac{\partial u}{\partial n_K}z_h\d\gamma\\
-	&=\sum\limits_{E}\int\limits_E\underbrace{\left[\frac{\partial u}{\partial u_E}z_h\right]_E}_{=\frac{\partial u}{\partial u_E}[z_h]_E}\d\gamma\\
-	&=\sum\limits_E\int\limits_E\frac{\partial u}{\partial u_E}[z_h]_E\d\gamma\\
-	[v]_E :&=v|_{K_1}-v|_{K_2}
+	&\coloneqq a_h(u,z_h)-f_h(z_h)\\
+	&=Σ_{K∈\T_h}∫\limits_{\Rand K}\frac{∂ u}{∂ n_K}z_h\d γ \\
+	&=Σ_{E}∫\limits_E\underbrace{\left[\frac{∂ u}{∂ u_E}z_h\right]_E}_{=\frac{∂ u}{∂ u_E}[z_h]_E}\d γ \\
+	&=Σ_E∫\limits_E\frac{∂ u}{∂ u_E}[z_h]_E\d γ \\
+	\text{wobei } [v]_E &\coloneqq v|_{K_1}-v|_{K_2}
 \end{align*}
 \begin{figure}[!ht]
 	\begin{center}
