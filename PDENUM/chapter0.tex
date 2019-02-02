@@ -1955,18 +1955,18 @@ Diskretes Problem: Finde $u_h\in V_h$ so, dass
 \begin{itemize}
 	\item $V$ sei ein Hilbertraum
 	\item $V_h$ sei ein diskreter Finite-Elemente-Raum mit Norm $\Vert\cdot\Vert_h$
-	\item $a:V\times V\to\R$ sei stetige, $V$-elliptische Bilinearform  
+	\item $a\colon V\times V\to\R$ sei ein stetige, $V$-elliptische Bilinearform
 	\item $f\colon V\to\R$ sei linear und stetig
 \end{itemize}
 Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V$, welches das Problem löst.\nl
 \textbf{Weitere Annahmen:}
 \begin{itemize}
-	\item $a_h$ sei Bilinearform auf $V+ V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
+	\item $a_h$ sei eine Bilinearform auf $V+ V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
 	\item $a_h$ sei \textbf{gleichmäßig stetig auf $V+ V_h$}, d. h.
 	\begin{align*}
 		\exists M>0\text{ unabhängig von }h:\big|a_h(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V+ V_h
 	\end{align*}
-	\item $f_h:V_h\cup V\to\R$ sei linear und stetig
+	\item $f_h\colon V_h + V\to\R$ sei linear und stetig % orig: \cup, aber warum, wir haben doch überall + ?!
 	\item $a_h$ ist \textbf{gleichmäßig $V_h$-elliptisch}, d.h.
 	\begin{align*}
 		\alpha\cdot\Vert V_h\Vert^2_h\leq a_h(v_h,v_h)\qquad\forall v_h\in V_h
