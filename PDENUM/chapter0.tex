@@ -2121,9 +2121,8 @@ Berechne nun für die Differenz: $z_h-\overline{z}_h$:
 \end{align*}
 Der Operator
 \begin{align*}
-	L\colon H^1(\hat{K})\to L_2(\hat{E}),\qquad
-	\hat{v}\mapsto\rest{\left(\hat{v}-\overline{\hat v}\right)}{\hat{E}}
-		\mit \overline{\hat{v}}=\frac1{\measure{\hat{E}}}\cdot\int\limits_{\hat{E}}\hat{v}\d\gamma
+	L\colon H^1(\hat{K})\to L_2(\hat{E}),\qquad\hat{v}\mapsto\left(\hat{v}-\overline{\hat{v}}\right)|_{\hat{E}}
+	\mit \overline{\hat{v}}=\frac{1}{|\hat{E}|}\cdot\int\limits_{\hat{E}}\hat{v}\d\gamma
 \end{align*}
 ist linear und stetig. Folglich gilt:
 \begin{align*}
