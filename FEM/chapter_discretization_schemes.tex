@@ -21,8 +21,8 @@ and
 	\nu &&& \text{kinematic viscosity (often } Re = \frac{UL}{\nu})\\
 	U && &\text{charakteristic velocity}\\
 	L && &\text{charakteristic lenght}\\
-	f && &\text{force }
-\end{align*}.
+	f && &\text{force}.
+\end{align*}
 The following boundary conditions are assumed
 \begin{align*}
 	v|_{\text{rigid}} &= 0\\
@@ -59,7 +59,7 @@ Notation:
 	n(n,v,w)&= (u \cdot \nabla v, w)\\
 	b(p,v)&= -(p,\nabla\cdot v)
 \end{align*}
-Our task is now to find $v \in v^{\tin} + H(=H^1_0(\Gamma,\Omega)^2)$ and $p \in L(=L^2(\Omega))$ s.t. 
+Our task is now to find $v = v^{\text{in}} \in H (=H^1_0(\Gamma,\Omega)^2)$ and $p \in L (=L^2(\Omega))$ s.t. 
 \begin{align}
 	v(t=0) &= v^0 \nonumber\\
 	(\partial_tv,f) + n(v,v,\varphi) + a(v,\varphi) + b(p,\varphi) &= (f,\varphi)\quad \forall \varphi \in H\nonumber\\

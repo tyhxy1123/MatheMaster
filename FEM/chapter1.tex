@@ -40,7 +40,7 @@ Now we call
 We call u
 \begin{enumerate}[label=(\alph*)]
 \item \textbf{weak solution}, if $u \in  H^1_0(\Omega)$ and $u$ is solution of \eqref{weak_form}
-\item \textbf{classical solution} of (\ref{poisson}), if it is also a weak solution of \eqref{weak_form}. 
+\item \textbf{classical solution} of (\ref{poisson}), then it is also a weak solution of \eqref{weak_form}. 
 \end{enumerate}
 
 If $u$ is a weak solution of \eqref{weak_form} and $u \in C^2(\Omega)\cap C(\overline{\Omega})$, u is a classical solution of (\ref{poisson}) Because for $v \in C^\infty_0(\Omega) \subset H^1_0(\Omega)$
@@ -180,7 +180,7 @@ Show $T^{-1}$ exists and is continuous and linear.
 	\end{align*}
 	with 
 	\begin{equation*}
-		Lu = - \displaystyle \sum^d_{i,j} \frac{\partial}{\partial x_i} \left(  a_{ij}(x) \frac{\partial u}{\partial x_j} \right) + c(x)u.
+		Lu = - \displaystyle \sum^d_{i,j} \left(  a_{ij}(x)  u_{x_j} \right)_{x_i} + c(x)u.
 	\end{equation*}
 	\begin{example}
 		\begin{align*}
@@ -188,7 +188,7 @@ Show $T^{-1}$ exists and is continuous and linear.
 			  &    &            &				  &     &  \\
 			d &= 2,&   a_{11}(x)&= a_{22}(x) = 1, & c(x)&=0 \\ 
 			  &    &   a_{12}(x)&= a_{21}(x) = 0  &     &   \\
-		  	  &    &         Lu &= -\laplace      &     &   \\
+		  	  &    &         L &= -\laplace      &     &   \\
 		\end{align*}
 	\end{example}
 	\begin{definition_}
@@ -199,17 +199,17 @@ Show $T^{-1}$ exists and is continuous and linear.
 	\end{definition_}
 	weak form 
 	\begin{align*}
-		a(u,v) &= \displaystyle \sum_{i,j} \int \limits_\Omega a_{ij}(x)\frac{\partial u}{\partial x_i} \frac{\partial v}{\partial x_j} \diff x + \int \limits_\Omega cuv \diff x \\
+		a(u,v) &= \displaystyle \sum_{i,j} \int \limits_\Omega a_{ij}(x) u_{x_i} v_{x_j} \diff x + \int \limits_\Omega cuv \diff x \\
 		F(v)&= \int \limits_\Omega fv \diff x
 	\end{align*}
-	Look for $u$ with $u = g \in H^1_0(\Omega)$ and transform equation to homogenous BC. $w = u - g \in H^1_0(\Omega)$ is solution of 
+	Look for $u$ with $u - g \in H^1_0(\Omega)$ and transform equation to homogenous BC. $w = u - g \in H^1_0(\Omega)$ is solution of 
 	\begin{align*}
 		Lw &= f -Lg \qquad \text{in } \Omega\\
 		 w &= 0 \qquad \qquad \ \,\text{on } \partial\Omega.
 	\end{align*}
 	Define right hand side
 	\begin{equation*}
-		G(v) = F(v) - \displaystyle \sum^d_{i,j} \int \limits_\Omega a_{ij} \frac{\partial g}{\partial x_j}\frac{\partial v}{\partial x_i} \diff x - \int \limits_\Omega cgv \diff x \quad \forall v\in H^1_0(\Omega).
+		G(v) = F(v) - \displaystyle \sum^d_{i,j} \int \limits_\Omega a_{ij}\; g_{x_j} v_{x_i} \diff x - \int \limits_\Omega cgv \diff x \quad \forall v\in H^1_0(\Omega).
 	\end{equation*}
 	Weak formulation: find $w\in H^1_0(\Omega)$ 
 	\begin{equation*}
@@ -221,7 +221,7 @@ Show $T^{-1}$ exists and is continuous and linear.
 	\end{comment_}
 
 	\begin{thrm}
-		If $\Omega \subset \R^d\ (d\geq1)$ bounded, $a_{ij},c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g\in H^(\Omega),\ L$ is elliptic, then there exists a unique solution $u \in H^1(\Omega)$ of $Lu=f$ with  $u-g \in H^1_0(\Omega)$ and 
+		If $\Omega \subset \R^d\ (d\geq1)$ bounded, $a_{ij},c \in L^\infty(\Omega), c\geq 0, f\in L^2(\Omega), g\in H^1(\Omega),\ L$ is elliptic, then there exists a unique solution $u \in H^1(\Omega)$ of $Lu=f$ with  $u-g \in H^1_0(\Omega)$ and 
 		\begin{equation*}
 			\|u\|_{H^1} \leq C\left( \|f\|_{L^2} \|g\|_{H^1} \right)
 		\end{equation*}  
@@ -234,15 +234,15 @@ Show $T^{-1}$ exists and is continuous and linear.
 			\item a is continuous:\enter
 			Cauchy-Schwartz inequality
 			\begin{align*}
-				|a(u,v)| &\leq \displaystyle \sum^d_{i,j=1} \int \limits_\Omega |a_{ij}| |\frac{\partial u}{\partial x_i}| |\frac{\partial v}{\partial x_j}| \diff x + \int \limits_\Omega |c||u||v| \diff x \\
-				& \leq \underset{i,j = 1,\dots,d}{\max} \Big\{ \|a_{ij}\|_{L^\infty}, \|c\|_{L^\infty} \Big\}\left( \displaystyle \sum^d_{i,j=1} \|\frac{\partial u}{\partial x_j}\| \|\frac{\partial v}{\partial x_i}\| + \|u\|\|v\| \right)\\
+				|a(u,v)| &\leq \displaystyle \sum^d_{i,j=1} \int \limits_\Omega |a_{ij}| |u_{x_i}| |v_{x_j}| \diff x + \int \limits_\Omega |c||u||v| \diff x \\
+				& \leq \underset{i,j = 1,\dots,d}{\max} \Big\{ \|a_{ij}\|_{L^\infty}, \|c\|_{L^\infty} \Big\}\left( \displaystyle \sum^d_{i,j=1} \|u_{x_j}\| \|v_{x_i}\| + \|u\|\|v\| \right)\\
 				&= K \Big ( \|\nabla u\|_{L^2}\|\nabla v\|_{L^2} + \|u\|_{L^2}\|v\|_{L^2} \Big )\\
 				&\leq K \|u\|_{H^1}\|v\|_{H^1}
 			\end{align*}
 			\item a is coercive: \enter
 			$ u \in H^1_0(\Omega), L$ elliptic, $c \geq 0$
 			\begin{align*}
-				a(u,u) &\geq \lambda \displaystyle\sum^d_{i=1} \int \limits_\Omega |\frac{\partial u}{\partial x_i}|^2 \diff x\\
+				a(u,u) &\geq \lambda \displaystyle\sum^d_{i=1} \int \limits_\Omega |u_{x_i}|^2 \diff x\\
 					   &= \lambda\|\nabla u\|_{L^2}\\
 					   &\geq \lambda_0 \|u\|^2_{H^1}
 			\end{align*}
@@ -254,7 +254,7 @@ Show $T^{-1}$ exists and is continuous and linear.
 			Cauchy-Schwartz inequality
 			\begin{align*}
 				|G(v)| & \leq \|f\|_{L^2}\|v\|_{L^2} + \underset{i,j=1, \dots, d}{\max} \|a_{ij}\|_{L^\infty} \|\nabla v\|_{L^2} \|\nabla g\|_{L^2} + \|c\|_{L^\infty}\|g\|_{L^2}\|v\|_{L^2}\\
-					   & \leq \big (  \|f\|_{L^1} + C_i\|g\|_{H^1} \big ) \|v\|_{H^1}\\ 
+					   & \leq \big (  \|f\|_{L^2} + C_i\|g\|_{H^1} \big ) \|v\|_{H^1}\\ 
 			\end{align*}
 			with $C_i =  \underset{i,j=1, \dots, d}{\max} \|a_{ij}\|_{L^\infty} + \|c\|_{L^\infty}$
 			\begin{equation*}
@@ -297,11 +297,11 @@ Show $T^{-1}$ exists and is continuous and linear.
 	\begin{comment_}
 		If $c \equiv 0, -\laplace u=f$ in $\Omega$, $\nabla u\cdot\vartheta = g$ on $\partial \Omega$.
 		\begin{align*}
-			\int \limits_\Omega f \diff x &= \int \limits_\Omega \text{div}(\nabla u) \diff x\\
+			\int \limits_\Omega f \diff x &= -\int \limits_\Omega \text{div}(\nabla u) \diff x\\
 			&= -\int \limits_{\partial \Omega} \nabla u \cdot  \vartheta \diff s\\
 			&= -\int \limits_{\partial \Omega} g \diff s.
 		\end{align*}
-		The problem is only solvable if $F(1)=0$. If $u$ is a solution, also $u +$ constant is a solution.\enter
+		The problem is only solvable if $F(1)=0$. If $u$ is a solution, also $u +$constant is a solution.\enter
 		Lax-Milgram with space $V = H^1(\Omega)$ does not work as $a(u,u)=0$ for constant functions $u \implies a$ is not coercive.\enter
 		Use $V = \{ u \in H^1(\Omega), \int \limits_\Omega u \diff x =0 \}$ guarantees uniqueness and excludes constant functions. For $c \neq 0$ it holds 
 		\begin{equation*}
@@ -357,7 +357,7 @@ Show $T^{-1}$ exists and is continuous and linear.
 				Lax-Milgram: existence and uniqueness and continuous dependency on data.
 		\end{itemize}
 	\end{proof_}
-	\item \textbf{Neumann BC}:
+	\item \textbf{Robin BC}:
 	\begin{align*}
 				   	  -\laplace u &= f \qquad \text{in }\Omega\\
 			 				    u &= 0 \qquad \text{on }\Gamma_D\\
@@ -434,9 +434,9 @@ If $a(\cdot,\cdot)$ is coercive in $V$, then it is also coercive in $V_h \implie
 A is injectiv, invertable $\implies$ unique solution.
 \begin{lemma_}
 	(Lemma of Cea)\\
-	$V$ Hilbert space,$a(\cdot,\cdot)$ continuous, coerciv, bilinearform on $V$, $F \in V'$,$V_h \subset V$.\\
-	$u\in V$ is solution of $a(u,v) = F(v) \forall v\in V$\\
-	$u_h\in V_h$ is solution of $a(u_h,v) = F(v) \forall v\in V_h$
+	$V$ Hilbert space, $a(\cdot,\cdot)$ continuous, coerciv, bilinearform on $V$, $F \in V'$,$V_h \subset V$.\\
+	$u\in V$ is solution of $a(u,v) = F(v) \ \forall v\in V$.\\
+	$u_h\in V_h$ is solution of $a(u_h,v) = F(v)\ \forall v\in V_h$.
 	\begin{equation*}
 		\implies \|u-u_h\|_V \leq \frac{K}{\lambda}\underset{v \in V_h}{\inf}\|u-v\|_V
 	\end{equation*} 
@@ -527,7 +527,7 @@ consists of 3 characteristics:
 	\begin{enumerate}[label=(\roman*)]
 		\item $\tau \subset \R^d$ closed
 		\item $P_{\tau}$ finite element space of functions: $\tau \to \R$, $n = \dim P_{\tau}$
-		\item $\Sigma_{\tau}$ linearly independent, continuous functions $B_1,\dots,B_n:C^s(\tau) \to \R$, $s \in \N_0$ with $\forall \alpha_1, \dots, \alpha_n \in \R$ exists $p \in P_{\tau}$ s.t. $B_i (P) = \alpha_i$, $i = 1, \dots,n$
+		\item $\Sigma_{\tau}$ linearly independent, continuous functionals $B_1,\dots,B_n:C^s(\tau) \to \R$, $s \in \N_0$ with $\forall \alpha_1, \dots, \alpha_n \in \R$ exists $p \in P_{\tau}$ s.t. $B_i (P) = \alpha_i$, $i = 1, \dots,n$
 	\end{enumerate}
 \end{definition_}
 $B_i$ are the degrees of freedom (DoFs) of the finite element $p_i$ basis functions of the finite element. The space of all polynomials $\Omega \to R$ of degree $\leq k$ is $P_k(\Omega)$.
@@ -643,24 +643,21 @@ $\tau = F_{\tau}(\hat{\tau})$ the basisfunctions on $\tau$.
 \begin{align*}
 	F_{\tau}(e_i) &= a_i, \qquad i=1,2,3\\
 	F_{\tau}(a) &= (a_2-a_1,a_3-a_1)a + a_1\\
-	B &=
-	\begin{pmatrix}
-	a_2-a_1\\
-	a_3-a_1
-	\end{pmatrix}
-	,\quad a \in \hat{\tau}
+	B &= (a_2-a_1, a_3-a_1)	,\quad a \in \hat{\tau}
 \end{align*}
+$\implies$
 \begin{equation*}
 	|\det B| = (a_2-a_1)(a_3-a_1)\sin \Theta
 \end{equation*}
-$\implies$
+because of the following equation. Let
 \begin{equation*}
 	B(u,v) = 
 	\begin{pmatrix}
 	u_1 & v_1\\
 	u_2 & v_2
-	\end{pmatrix}
+	\end{pmatrix}.
 \end{equation*}
+Now calculate $\det B$:
 \begin{align*}
 	(\det B)^2 & = (u_1v_2 - u_2v_1)^2\\
 	& = (u^2_1+ u^2_2)(v^2_1+v^2_2)-(u_1v_1-u_2v_2)^2\\

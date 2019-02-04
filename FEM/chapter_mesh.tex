@@ -29,7 +29,7 @@ Questions:
 
 Method of Bisection:
 \begin{itemize}
-	\item define a refinemnt edge
+	\item define a refinement edge
 	\item insert node in the middle
 	\item replace old triangle with 2 new ones 
 \end{itemize}
@@ -112,7 +112,7 @@ Thus not so good for moving regions of interest.
 \underline{hierarchical storage}
 \begin{itemize}
 	\item start from a coarse \glqq macro mesh \grqq
-	\item store all refonement steps not only the current mesh
+	\item store all refinement steps not only the current mesh
 	\item well suited dara structure: \textbf{binary tree}
 \end{itemize}
 
@@ -148,7 +148,7 @@ Mesh:
 \begin{itemize}
 	\item (coarse) macro mesh explicitly defined
 	\item every macro mesh cell ist \underline{root} of a tree
-	\item current mesh os given by all \underline{leaves}
+	\item current mesh is given by all \underline{leaves}
 	\input{tikz/chapter_mesh/mix_tree_triang}
 \end{itemize}
 

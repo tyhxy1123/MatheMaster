@@ -184,7 +184,7 @@ In this section $\Omega \in \R^d$ ($d \geq 1$) is an open domain.
 Let $ u \in L^p(\Omega)$, $1 \leq p< \infty$, $\alpha \in \N^d_0$ (multiindex).\enter
 The function u has a \textbf{weak derivative} $ D^\alpha u \in L^p(\Omega) $ 
 \begin{equation*}
-	:\iff (D^\alpha,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2} \qquad \forall v \in C^\infty_0(\Omega)
+	:\iff \exists \psi: (\psi,v)_{L^2} = (-1)^{|\alpha|} (u,D^\alpha v)_{L^2} \qquad \forall v \in C^\infty_0(\Omega)
 \end{equation*}
 \end{defi}
 
@@ -221,7 +221,7 @@ With the norm
 
 \begin{itemize}
 	\item $\| u\|_{W^{m,p}} := \Big ( \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^p}  \Big )^{\frac{1}{p}} \qquad 1\leq p < \infty$
-	\item  $\| u\|_{W^{m,\infty}} :=  \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|^p_{L^\infty}   \qquad  p = \infty$
+	\item  $\| u\|_{W^{m,\infty}} :=  \displaystyle\sum_{|\alpha|\leq m}  \| D^\alpha u \|_{L^\infty}   \qquad  p = \infty$
 \end{itemize}
 
 these spaces are Banach spaces.
