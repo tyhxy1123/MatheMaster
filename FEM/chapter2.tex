@@ -5,8 +5,6 @@
 
 \subsection{Triangulation}
 
-%\Large{ $B_h$ oder $B_b$ ???}
-
 \begin{definition_}
 	Let $\Omega \subset \R^d$ ($d \geq 1$) bounded domain. A partition $T_h$ of $\Omega$ with $\tau \in T_h$ is a \textit{triangulation} if
 	\begin{enumerate}[label=\alph*)]
@@ -24,8 +22,6 @@
 		\rho &= \underset{\tau \in T_h}{\max} \rho_{\tau}
 	\end{align*}
 \end{definition_}
-%TODO add picture
-
 We further require that all faces of $\tau_i \in T_h$ are faces of $\tau_i \in T_h$ or part of $\partial \Omega$.
 \input{tikz/chapter2/triang_not_allowed}
 Hanging nodes cannot guarantee continuity of functions.
@@ -78,17 +74,17 @@ $X_h$ is a finite dimensional space, has a basis
 	\item $\varphi_i(b_j) = \delta_{ij}$ for $i,j = 1,\dots,N$ with 
 	\item $b_j \in N_h$ vertices of all $\tau \in T_h$.
 \end{itemize}
-
-\begin{tabular}{c|c}
-	global  & local \\ \hline 
-	&\\
-	$\overline{\Omega} $&  ($\tau , P_\tau, \Sigma_\tau$) \\
-	$X_h$ & $P_\tau = \{ v|_\tau :v \in X_h  \}$ \\
-	global basis $\varphi_1,\dots,\varphi_N$ & local basis $p_1,\dots,p_N$ on $\tau$\\
-	$\Sigma_h$ Dofs on $X$ & $\Sigma_\tau$ DoFs on $\tau$\\
-	$b_1,\dots,b_N$ vertices of $\overline{\Omega}$ & $a_1,\dots,a_N$ vertices on $\tau$		
-\end{tabular}
-%%%TODO fix distances 
+\begin{center}
+	\begin{tabular}{c|c}
+		global  & local \\ \hline 
+		&\\
+		$\overline{\Omega} $&  ($\tau , P_\tau, \Sigma_\tau$) \\
+		$X_h$ & $P_\tau = \{ v|_\tau :v \in X_h  \}$ \\
+		global basis $\varphi_1,\dots,\varphi_N$ & local basis $p_1,\dots,p_N$ on $\tau$\\
+		$\Sigma_h$ DoFs on $X$ & $\Sigma_\tau$ DoFs on $\tau$\\
+		$b_1,\dots,b_N$ vertices of $\overline{\Omega}$ & $a_1,\dots,a_N$ vertices on $\tau$		
+	\end{tabular}
+\end{center}
 
 \begin{example}
 	\begin{align*}
@@ -143,8 +139,8 @@ $X_h$ is a finite dimensional space, has a basis
 	and 9 DoFs. As $\varphi_i = P^\tau_i$ in $\tau \in T_h(a_i)$
 	\begin{align*}
 		a(\varphi_i, \varphi_i) &= \displaystyle \sum^8_{i=1} \int \limits_{\tau_i} |\nabla \varphi_i|^2 \diff x\\
-		&= 2 \int \limits_{\tau_3 } |\nabla P_1|^2 \diff x + 4 \int \limits_{\tau_i} |\nabla P_2|^2 \diff x\\
-		&= 2 \frac{2}{h^2} \underbrace{\meas(\tau_3)}_{=\frac{h^2}{2}}  +4 \frac{1}{h^2} \underbrace{\meas(\tau_i)}_{=\frac{h^2}{2}}\\
+		\overset{\text{sym}}&{=} 2 \int \limits_{\tau_3 } |\nabla P_1|^2 \diff x + 4 \int \limits_{\tau_1} |\nabla P_2|^2 \diff x\\
+		&= 2 \frac{2}{h^2} \underbrace{\meas(\tau_3)}_{=\frac{h^2}{2}}  +4 \frac{1}{h^2} \underbrace{\meas(\tau_1)}_{=\frac{h^2}{2}}\\
 		&=4
 	\end{align*}
 	 We will see that

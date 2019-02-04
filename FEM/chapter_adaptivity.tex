@@ -102,16 +102,16 @@ How to compute $\eta_T$?\vspace{1cm}
 		\item second order velocity gradient:  $\eta_T = h_T \|\nabla^2 v_h\|_T$
 		\item residual based indicator: 
 		\begin{equation*}
-			\eta_T = h_T \|R_h\|_T +  h_T^{(1/2)} \|r_h\|_T + h_T \|\nabla v_h\|_T
+			\eta_T = h_T \|R_h\|_T +  h_T^{\frac{1}{2}} \|r_h\|_T + h_T \|\nabla v_h\|_T
 		\end{equation*}
 		with 
 		\begin{align*}
 			R_h &= f + \nu \laplace v_h - v_h \cdot \nabla v_h -  \nabla p \\
 			r_h &= 
 			\begin{cases}
-				\frac{1}{2}(\nu ?? v_h - n p_h), &\text{for }\Gamma \nsubseteq \partial \Omega\\
+				\frac{1}{2}(\nu \cdot v_h - n p_h), &\text{for }\Gamma \nsubseteq \partial \Omega\\
 				0 ,&\text{for }\Gamma \subset \Gamma_{\text{rigid}}\cup\Gamma_{\text{in}}\\
-				-\nu ?? v_h + n p_h, &\text{for }\Gamma \subset \Gamma_{\text{out}}
+				-\nu \cdot v_h + n p_h, &\text{for }\Gamma \subset \Gamma_{\text{out}}
 			\end{cases} 
 		\end{align*}
 	\end{itemize}
@@ -198,7 +198,7 @@ $\implies$
 	\|u-u_h\|_0 \leq \gamma \left( \sum \limits_{T \in \T_h}\right)^{1/2}
 \end{equation*}
 
-\underline{other useful estimtates}:
+\underline{other useful estimates}:
 \begin{enumerate}[label= (\alph*)]
 	\item consider local problem on each element $T$ or small domain $\hat{w}_r$ 
 	\begin{align*}

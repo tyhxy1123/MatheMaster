@@ -19,7 +19,6 @@
 	with $u$ as concentration(phase variable), $\mu$ as chemical potential and $w(u) = \frac{1}{4} (1-u^2)^2$ as the double-well potential and a small parameter $\varepsilon$.
 	\input{tikz/chapter_multimesh/hahn_hilliard}
 \end{example}
-\textbf{eventuell fehler in der obigen Gleichung}
 \begin{example}
 	for illustration , biharmonic equation
 	\begin{align*}
@@ -70,7 +69,7 @@
 	\begin{align*}
 		\int \limits_{T_i  \in \T^0_h} \psi_{k,l} \varphi_{i,j}
 	\end{align*}
-	for so,e $l,j$ with elemtn $T_k \in \T^1_h$ with $T_i \subset T_k$. $\implies$ $\psi_{k,l}$ is not a local basisfunction on $T_i$.\nl
+	for some $l,j$ with element $T_k \in \T^1_h$ with $T_i \subset T_k$. $\implies$ $\psi_{k,l}$ is not a local basisfunction on $T_i$.\nl
 	Idea: define $\psi_{k,l}$ as linear combination of local basisfunctions of $T_i$.
 	\begin{align*}
 		\int \limits_{T \in \T^0_h} \psi_{k,l}\varphi_{i,j} = \int \limits_{T \in \T^0_h} \sum \limits_m \left( c_{k,m} \varphi_{i,m} \right)\varphi_{i,j}
