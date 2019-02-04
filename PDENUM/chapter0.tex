@@ -2089,17 +2089,16 @@ Sei nun $z_h\in V_h$ beliebig. Dann gilt:
 		\label{AbbNormalvectors}
 	\end{center}
 \end{figure}
-Seien $\overline{z}_h$ und $\overline{\frac{\partial u}{\partial u_E}}$ die konstanten Integral-Mittelwerte von $z_h$ und $\frac{\partial u}{\partial u_E}$ auf jeder Kante $E$, formal:
+Seien $\overline{z}_h$ und $\overline{\frac{\partial u}{\partial u_E}}$ die konstanten Integral-Mittelwerte von $z_h$ und $\frac{\partial u}{\partial u_E}$ auf jedem $E$, formal:
 \begin{align*}
-	\rest{\overline z_h}E
-	&\coloneqq \frac1{\measure E} · ∫\limits_E z_h\d γ,\qquad
-	\rest{\overline{\frac{∂u}{∂u_E}}}E \coloneqq \frac1{\measure E} · ∫\limits_E	\frac{∂ u}{∂ u_E}\d γ
+	\overline{z}_h|_E
+	:&=\frac{1}{|E|}\cdot\int\limits_E z_h\d\gamma,\qquad\left.\overline{\frac{\partial u}{\partial u_E}}\right|_E \coloneqq \frac{1}{|E|}\cdot\int\limits_E \frac{\partial u}{\partial u_E}\d\gamma
 \end{align*}
 Mit
 \begin{align*}
 	\int\limits_E[z_h]_E\d\gamma=0\text{ wegen }z_h\in V_h
 \end{align*}
-und da $\overline{\frac{\partial u}{\partial u_E}}$ eine Konstante ist,
+und da $\overline{\frac{\partial u}{\partial u_E}}$ eine Konstante ist
 folgt
 \begin{align*}
 	\int\limits_E\frac{\partial u}{\partial u_E}[z_h]_E\d\gamma
