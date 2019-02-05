@@ -14,36 +14,34 @@
 
 \setlength{\parindent}{0px} % dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 
-\title{%
+\title{
 	Vorlesung\\
 	FEM}
 \subtitle{Wintersemester 2018/2019}
-\author{Vorlesung: Prof. Dr. Axel Voigt}% \\Mitschrift: Henrik Stolzmann}
-
+\author{
+	Vorlesung: Prof. Dr. Axel Voigt\\
+	%Mitschrift: Henrik Stolzmann
+}
 
 \begin{document}
-\pagenumbering{gobble}	% disable pagenumbering
+	\pagenumbering{gobble}	% disable pagenumbering
+	\maketitle
+	\doclicenseThis
+	\tableofcontents % Inhaltsverzeichnis
+	\pagenumbering{arabic}	% enable pagenumbering
 	
-\maketitle
-\doclicenseThis
-\tableofcontents % Inhaltsverzeichnis
-\pagenumbering{arabic}	% enable pagenumbering
-
-\newpage
+	\newpage
 	
-\input{chapter0}
-\input{chapter1}
-\input{chapter2}
-\input{chapter_mesh}
-\input{chapter_quad}
-\input{chapter_adaptivity}
-\input{chapter_multimesh}
-\input{chapter_discretization_schemes}
-
+	\input{chapter0}
+	\input{chapter1}
+	\input{chapter2}
+	\input{chapter_mesh}
+	\input{chapter_quad}
+	\input{chapter_adaptivity}
+	\input{chapter_multimesh}
+	\input{chapter_discretization_schemes}
 	
-\listoffigures 
-%\listoftables
-%\bibliography{literatur}
-	
-	
+	\listoffigures 
+	%\listoftables
+	%\bibliography{literatur}
 \end{document}
