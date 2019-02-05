@@ -5,14 +5,12 @@
 % vim: set noexpandtab:
 
 \section{Finite-Elemente Räume} %4
-\begin{definition}[1D finite Elemente]\enter
+\begin{definition}[1D-Finite-Elemente]\enter
 	Sei $\Omega=(0,1)\subseteq\R$. Sei
 	\begin{align*}
-		\mathcal{T}_n:=\big\lbrace I_j:0\leq j\leq n\big\rbrace\mit I_j:=\big(t_j,t_{j+1}\big)
-	\end{align*}
-	und
-	\begin{align*}
-		0=t_0<t_1<\ldots<t_n< t_{n+1}=1
+		\mathcal{T}_n&:=\big\lbrace I_j:0\leq j\leq n\big\rbrace\\
+		I_j&:=\big(t_j,t_{j+1}\big)\\
+		0&=t_0<t_1<\ldots<t_n< t_{n+1}=1
 	\end{align*}
 	eine Zerlegung von $(0,1)$. Weiterhin setze
 	\begin{align*}
@@ -20,17 +18,20 @@
 	\end{align*}
 	Für $k\in\N_0$ und $m\in\N_0$ definiere
 	\begin{align*}
-		S_h^{k,-1}&:=\Big\lbrace\varphi:[0,1]\to\R:\varphi\big|_{I_j}\in P_k,~0\leq j\leq n\Big\rbrace\\
-		S_h^{k,m}&:=S_n^{k,-1}\cap C^m\big([0,1]\big)\\
-		S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_n^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbrace
+		S_h^{k,-1}&:=\Big\lbrace\varphi:[0,1]\to\R:\varphi\big|_{I_j}\in P_k,~0\leq j\leq n\Big\rbrace
+		\quad\text{stückweise Grad-$k$-Polynome}\\
+		S_h^{k,m}&:=S_h^{k,-1}\cap C^m\big([0,1]\big)
+		\quad\text{stückweise Grad-$k$-Polynome $m$-glatt}\\
+		S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_h^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbrace
+		\quad\ldots\text{ mit kompaktem Träger}
 	\end{align*}
 	Hierbei ist $P_k$ der Raum der Polynome von höchstens Grad $k$.\\
-	Die Funktionen in $S_h^{k,m}$ heißen \textbf{finite-Elemente-Funktionen}.
+	Die Funktionen in $S_h^{k,m}$ heißen \textbf{Finite-Elemente-Funktionen}.
 
-	\begin{figure}[!ht]
+	\begin{figure}[ht!]
 		\begin{center}
 			\includegraphics[width=0.75\textwidth]{pics/Sketch0.png}
-			\caption{Beispiel für finite-Elemente-Funktionen}
+			\caption{Beispiel für finite-Elemente-Funktionen in 1D}
 			\label{AbbFiniteFunktionen}
 		\end{center}
 	\end{figure}
@@ -49,14 +50,14 @@
 		\begin{align*}
 			\dim\left(S_h^{k,-1}\right)&=(n+1)\cdot(k+1)\\
 			\dim\left(S_h^{k,m}\right)&=\dim\left(S_h^{k,-1}\right)-n\cdot(m+1)\\
-			\dim\left(S_{h,0}^{k,m}\right)&=\dim\left(S_h^{k,m}\right)-2\\
+			\dim\left(S_{h,0}^{k,m}\right)&=\dim\left(S_h^{k,m}\right)-2
 		\end{align*}
 		Konkrete wichtige Beispiele:
 		\begin{align*}
 			\dim\left(S_h^{k,0}\right)&=(n+1)\cdot(k+1)-n\\
 			\dim\left(S_{h,0}^{k,0}\right)&=(n+1)\cdot(k+1)-n-2=(n+1)\cdot(k-1)+n\\
 			\dim\left(S_{h,0}^{1,0}\right)&=(n+1)\cdot 2-n-2=n\\
-			\dim\left(S_{h,0}^{2,0}\right)&=(n+1)\cdot 3-n-2=2\cdot n+1\\
+			\dim\left(S_{h,0}^{2,0}\right)&=(n+1)\cdot 3-n-2=2\cdot n+1
 		\end{align*}
 	\end{itemize}
 \end{bemerkung}
@@ -235,7 +236,7 @@ wobei
 	\end{align*}
 \end{theorem}
 
-Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polygon. Nun zerlegen wir das Polygon in Dreiecke. Dieses Verfahren heißt \textbf{Dekomposition / Triangulierung.} Dadurch erhalten wir eine Menge von \underline{offenen} (nach Konvention) Dreiecken $\lbrace K_i\rbrace_{i\in\lbrace1,\ldots,N\rbrace}$ mit den Eigenschaften:
+Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polygon. Nun zerlegen wir das Polygon in Dreiecke. Dieses Verfahren heißt \textbf{Dekomposition / Triangulation.} Dadurch erhalten wir eine Menge von \underline{offenen} (nach Konvention) Dreiecken $\lbrace K_i\rbrace_{i\in\lbrace1,\ldots,N\rbrace}$ mit den Eigenschaften:
 
 \begin{enumerate}[label=(\roman*)]
 	\item $\begin{aligned}
@@ -254,7 +255,7 @@ Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polyg
 	\begin{figure}[!ht]
 		\begin{center}
 			\input{tikz/triang_example1}
-			\caption{beispielhafte Triangluierung, $K_i$ disjunkt}
+			\caption{beispielhafte Triangulation, $K_i$ disjunkt}
 			\label{AbbTriangulierung}
 		\end{center}
 	\end{figure}
@@ -262,40 +263,45 @@ Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polyg
 	\begin{figure}[!ht]
 		\begin{center}
 			\input{tikz/triang_example3}
-			\caption{Unzulässige Triangulierung}
+			\caption{Unzulässige Triangulation}
 			\label{AbbUnzulaessigeTriangulierung}
 		\end{center}
 	\end{figure}
 \end{enumerate}
 
+Die Triangulation $\T$ ist formal definiert als Menge der Teildreiecke, also
+\begin{align*}
+	\T:=\lbrace K_1,\ldots,K_N\rbrace.
+\end{align*} 
+
 \subsection*{Raum der stetigen stückweise linearen Funktionen}
 \begin{align*}
 	V_h&:=\left\lbrace
 	\begin{array}{rl}
-		v\in C(\overline{\Omega}) : &v|_{K_i}\in P_1(K)~\forall i=1,\ldots,N,\\
+		v\in C(\overline{\Omega}) : &v|_{K_i}\in P_1(K_i)~\forall i=1,\ldots,N,\\
 		&v|_{\partial\Omega}=0
 	\end{array}\right\rbrace
 	\subseteq H^1_0(\Omega)\\
-	P_1(K_i)&=\spann(1,x,y)\\
-	P_2(K)&=\spann\big( x^\alpha, |\alpha|\leq k\big)\mit K\subseteq\R^d,~ x^{\alpha}:=x_1^{\alpha_1},\ldots,x_d^{\alpha_d}\\
-	Q_k(K)&=\spann\big(x^\alpha,\max\limits_i |\alpha_i|\leq k\big)\\
-	Q_1(K)&=\spann(1,x,y,xy)\\
+	P_1(K_i)&=\spann(\lbrace1,x,y\rbrace)\text{ (zwei-Dimensional, deshalb }x,y)\\
+	P_2(K_i)&=\spann\big(\big\lbrace x^\alpha, |\alpha|\leq k\big\rbrace\big)\mit K\subseteq\R^d,~ x^{\alpha}:=x_1^{\alpha_1},\ldots,x_d^{\alpha_d}\\
+	Q_k(K_i)&=\spann\big(\big\lbrace x^\alpha,\max\limits_i |\alpha_i|\leq k\big\rbrace\big)\\
+	Q_1(K_i)&=\spann(\lbrace 1,x,y,xy\rbrace)\\
 	\dim(V_h)&=\text{ Anzahl der inneren Knoten von der zulässigen Triangulierung}\\
 \end{align*}
 
 \begin{definition}[Finites Element]\enter %4.5
 	Ein \textbf{finites Element} ist ein Tripel $(K,V,\Sigma)$ mit:
 	\begin{enumerate}[label=(\roman*)]
-		\item $K\subseteq\R^d$ ist nichtleere offene, beschränkt und Lipschitz-berandet.
-		\item $V$ ist endlich-dimensionaler Funktionenraum von Funktionen mit Definitionsbereich $K$. $m:=\dim(V)$
-		\item $\Sigma$ ist eine Menge von $m$ linearen Funktionalen $\Sigma=\lbrace N_i\rbrace_{i\in\lbrace1,\ldots,m\rbrace}$, welche mindestens für alle 	 Funktionen in $V$ definiert sind.
+		\item $K\subseteq\R^d$ ist nichtleer, offen, beschränkt und Lipschitz-berandet.
+		\item $V$ ist endlich-dimensionaler Funktionenraum von Funktionen mit Definitionsbereich $K$. $m:=\dim(V)<\infty$
+		\item $\Sigma=\lbrace N_i\rbrace_{i\in\lbrace1,\ldots,m\rbrace}$ ist eine Menge von $m$ linearen Funktionalen\\ $N_1,\ldots,N_m:V\to\R^m$, welche mindestens für alle Funktionen in $V$ definiert sind.
 		Sie werden als \textbf{$V$-unisolvent} angenommen, d. h.:
 		\begin{align*}
-			\forall \alpha_1,\ldots\alpha_m:\exists! v\in V:\forall i\in\lbrace1,\ldots,m\rbrace:N_i(v)=\alpha_i
+			\forall (\alpha_1,\ldots,\alpha_m)\in\R^m:\exists! v\in V:\forall i\in\lbrace1,\ldots,m\rbrace:N_i(v)=\alpha_i
 		\end{align*}
-		Das bedeutet, es gibt Funktionen $v_i\in V$ mit
+		Das bedeutet, es gibt Funktionen $v_j\in V$ mit
 		\begin{align*}
-			N_i(v_j)=\delta_{i,j}\qquad\forall i,j\in\lbrace1,\ldots m,\rbrace
+			N_i(v_j)=\delta_{i,j}\qquad\forall i,j\in\lbrace1,\ldots m\rbrace
 		\end{align*}
 		Die linearen Funktionale $N_i$ heißen \textbf{Nodal-Funktionen} oder \textbf{Freiheitsgrade (degrees of freedom / dof)}.
 		Die Funktionen $v_i$ sind die \textbf{lokale Basis} oder \textbf{Shape-Funktionen / Formfunktionen}.
@@ -314,10 +320,10 @@ Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polyg
 			K=F(\hat{K})
 		\end{aligned}$
 		\item $\begin{aligned}
-			V=\Big\lbrace v: K\to\R:v=\hat{v}\circ F^{-1},\hat{v}\in\hat{V}\Big\rbrace
+			V=\Big\lbrace v: K\to\R~\Big|~\exists\hat{v}\in\hat{V}: v=\hat{v}\circ F^{-1}\Big\rbrace
 		\end{aligned}$
 		\item $\begin{aligned}
-			\Sigma=\Big\lbrace N:V\to\R:N(v)=\hat{N}(v\circ F),~\hat{N}\in\hat{\Sigma}\Big\rbrace
+			\Sigma=\Big\lbrace N:V\to\R~\Big|~\exists\hat{N}\in\hat{\Sigma}: N(v)=\hat{N}(v\circ F)\Big\rbrace
 		\end{aligned}$
 	\end{enumerate}
 \end{definition}
@@ -326,7 +332,7 @@ Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polyg
 	\begin{figure}[!ht]
 		\begin{center}
 			\input{tikz/plot_affin_equiv_triang}
-			\caption{affin äquivalente Triangulierung}
+			\caption{affin äquivalente Triangulation}
 			\label{AbbAffinEquivTriang}
 		\end{center}
 	\end{figure}
@@ -352,7 +358,7 @@ Sei $V$ ein Vektorraum mit Basis $\lbrace\varphi_1,\ldots,\varphi_m\rbrace$. Set
 	M&=(m_{i,j}),\qquad m_{i,j}:=N_i(\varphi_j)\\
 	M&\text{ invertierbar }\Longleftrightarrow \text{ unisolvent}
 \end{align*}
-Unisolvenz: Gegeben $\alpha_1,\ldots\alpha_m\in\R$. Gibt es ein eindeutiges $v\in V$
+Unisolvenz: Gegeben $\alpha_1,\ldots,\alpha_m\in\R$. Gibt es ein eindeutiges $v\in V$
 \begin{align*}
 	N_i(v)&=\alpha_i,\qquad i\in\lbrace1,\ldots,m\rbrace\\
 	\stackrel{v=\sum\limits_{j=1}^m c_j\cdot\varphi_j}{\Longleftrightarrow}\quad
@@ -373,7 +379,7 @@ Unisolvenz: Gegeben $\alpha_1,\ldots\alpha_m\in\R$. Gibt es ein eindeutiges $v\i
 \end{definition}
 
 \begin{definition}[Raum der finiten Elemente]\enter
-	Sei $\T_h$ eine Triangulierung von $\Omega$. Ein \textbf{Raum der finiten Elemente} $V_h$ ist gegeben durch
+	Sei $\T_h$ eine Triangulation von $\Omega$. Ein \textbf{Finite-Elemente-Raum} $V_h$ ist gegeben durch
 	\begin{align*}
 		V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):
 		\begin{array}{cl}
@@ -386,7 +392,7 @@ Unisolvenz: Gegeben $\alpha_1,\ldots\alpha_m\in\R$. Gibt es ein eindeutiges $v\i
 	Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$ von dem globalen Freiheitsgrad.
 \end{definition}
 
-Familie aller affin äquivlenten finiten Elementen
+Familie aller affin äquivalenten Finiten-Elementen
 \begin{align*}
 	\big(K,V(K),\Sigma(K)\big)\sim\big(\hat{K},\hat{V},\hat{\Sigma}\big)
 \end{align*}
@@ -647,7 +653,7 @@ $:\gdw$
 		\item $\begin{aligned}
 			\exists\sigma>0:\frac{h_K}{\rho_K}\leq\sigma \qquad\forall K\in\T_h\;\forall\T_h
 		\end{aligned}$
-		\item Der Familienparameter h geht nach 0 $\iff$ die Dreiecke werden verfeinert, siehe Bild
+		\item Der Familienparameter h geht nach 0 $\iff$ die Dreiecke werden verfeinert, siehe \ref{AbbFamilienparameterKonvergenz}.
 		\begin{figure}[!ht]
 			\begin{center}
 				\includegraphics[width=0.75\textwidth]{pics/Sketch3.png}

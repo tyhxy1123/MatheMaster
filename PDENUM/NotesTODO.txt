@@ -9,3 +9,4 @@ Fragen:
 - Spursatz, n oder u?
 - Satz 1.10, 1.: Was ist q?
 - Bemerkung p=2?
+- Finite-Elemente-Raum
