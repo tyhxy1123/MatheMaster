@@ -152,7 +152,7 @@ Sei $x,y\in\Omega$. Dann hat $\lbrace x,y\rbrace$ ein kleinstes Element bzgl. $(
 
 \begin{satz}
 Sei $(\Omega,\leq)$ Wohlordnung und sei $(S,\leq)$ lineare Ordnung.\\
-Dann ist $(S^\Omega,\sqsubseteq)$ lineare Ordnung, die $(S,\leq)\Omega$ erweitert, vermöge
+Dann ist $(S^\Omega,\sqsubseteq)$ lineare Ordnung, die $(S,\leq)^\Omega$ erweitert, vermöge
 \begin{align*}
 \Omega(\alpha<\beta)&:=\lbrace x\in\Omega:\alpha x<\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\\
 \Omega(\alpha=\beta)&:=\lbrace x\in\Omega\mid\alpha x=\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\\
@@ -198,11 +198,11 @@ Eine Ordnung $(P,\leq)$ heißt
 \begin{itemize}
 \item \textbf{ACC / noethersch}
 \begin{align*}
-:\Longleftrightarrow\forall(a_1\leq a_2\leq\ldots):\exists n\in\N:m\geq n\implies a_m=a_n
+:\Longleftrightarrow\forall(a_1\leq a_2\leq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n
 \end{align*}
 \item \textbf{DCC / artinsch}
 \begin{align*}
-:\Longleftrightarrow\forall(a_1\geq a_2\geq\ldots):\exists n\in\N:m\geq n\implies a_m=a_n
+:\Longleftrightarrow\forall(a_1\geq a_2\geq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n
 \end{align*}
 \end{itemize}
 \end{definition}
@@ -295,7 +295,7 @@ Sei $\P=(P,R)$ eine Präordnung (d.h. reflexiv + transitiv) und sei $\mathbb{M}=
 \begin{align*}
 \Delta:R\to M
 \end{align*}
-\textbf{funktoriell} bzgl. $(\P,\mathbb{M}):\gdw\forall p~R~t,t~R~q\text{ in }P:$
+\textbf{funktoriell} bzgl. $(\P,\mathbb{M}):\gdw\forall pRt, tRq$:
 \begin{enumerate}
 \item $\Delta(p,p)=\varepsilon$
 \item $\Delta(p,t)\ast\Delta(t,q)=\Delta(p,q)$
