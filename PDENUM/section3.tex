@@ -1,0 +1,323 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+% vim: set noexpandtab:
+
+\section{Schwache Lösungen} %3.
+Hier: skalare, lineare, elliptische partielle Differentialgleichungen zweiter Ordnung, also
+\begin{align*}
+	-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u=f(x)\text{ in }\Omega
+\end{align*}
+Vereinfachende Annahmen:
+\begin{align*}
+	\begin{array}{ll}
+		f\in L^2(\Omega)&\alpha \in C(\Omega)\\
+		a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace\\
+		A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots a_d\big)^T\\
+		A=\big(A_{i,j}\big)^d_{i,j=1},& 0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
+	\end{array}
+\end{align*}
+
+\subsection*{Einige Spezialfälle}
+\begin{itemize}
+	\item Poisson-Gleichung: $\alpha\equiv 0,~a\equiv0,~A=I$
+	\item Membran-Gleichung: $\alpha\equiv0,~a\equiv 0$
+	\item Reaktionsdiffusionsgleichung: $a\equiv 0$
+	\item Konvektions-Diffusions-Gleichung: ist der allgemeine Fall
+\end{itemize}
+
+\subsection*{Randbedingungen}
+\begin{itemize}
+	\item Die \textbf{homogene Dirichlet-Randbedingung} ist
+	\begin{align*}
+		u\equiv0\qquad\text{auf}\qquad\Gamma:=\partial\Omega
+	\end{align*}
+	\item Die \textbf{Neumann-Randbedingung} ist
+	\begin{align*}
+		n^T\cdot A\cdot\nabla u\equiv q\qquad\text{auf}\qquad\Gamma,\qquad\forall g\in L^2(\Gamma)
+	\end{align*}
+	wobei $n$ der äußere Normalenvektor ist.
+	\item Mischform: Dirichlet-Randbegingung auf $\Gamma_D$ und Neumann-Randbedingung auf $\Gamma_N$ für
+	$\Gamma=\Gamma_D\stackrel{\cdot}{\cup}\Gamma_N,~\Gamma_D\cap\Gamma_N=\emptyset$
+	\item Die \textbf{Robin-Randbedingung} ist
+	\begin{align*}
+		\gamma\cdot u+n^T\cdot A\cdot\nabla u\equiv h\qquad\text{auf}\qquad\Gamma
+	\end{align*}
+\end{itemize}
+
+%Was ist das hier? %TODO
+Nun bringen wir die allgemeine Form der Gleichung von oben in eine lesbare Form.
+Sei dazu $v\in C_0^\infty(\Omega)$.
+Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$.
+Dann gilt:
+\begin{align*}
+	\int\limits_\Omega f\cdot v\d x
+	\overset{\text{Def}}&=
+	\int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
+	\overset{\text{partGauß}}&=
+	\int\limits_\Omega\sum\limits_{i,j=1}^d A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\cdot\frac{\partial v}{\partial x_i}\d x+\int\limits_\Omega\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
+	&\qquad
+	-\underbrace{\int\limits_\Gamma\underbrace{\sum\limits_{i,j=1}^d n_i\cdot A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}}_{=n^T\cdot A\cdot\nabla u}\cdot v\d\gamma}_{=0}\\
+	&=
+	\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+\end{align*}
+
+\begin{definition}[Schwache Lösung]\ %3.1
+	\begin{enumerate}[label=(\roman*)]
+		\item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
+		\begin{align*}
+			:\Longleftrightarrow
+			\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+			=\int\limits_\Omega f(x)\cdot v\d x
+			\qquad\forall v\in H_0^1(\Omega)
+		\end{align*}
+		\item Eine Funktion
+		\begin{align*}
+			u\in H_D^1(\Omega):=\big\lbrace\varphi\in H^1(\Omega):\varphi|_{\Gamma_D}\equiv 0\big\rbrace
+		\end{align*}
+		heißt \textbf{schwache Lösung einer Konvektions-Diffusions-Gleichung  mit gemischten Randbedingungen}
+		\begin{align*}
+			:\Longleftrightarrow
+			\int\limits_\Omega \nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+			=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
+			\qquad\forall v\in H^1_D(\Omega)
+		\end{align*}
+		\item Eine Funktion $u\in H^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit Neumann-Randbedingung}
+		\begin{align*}
+			:\Longleftrightarrow
+			\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
+			=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma} g\cdot v\d\gamma\\
+			\qquad\forall v\in H^1(\Omega)
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}\ %NoNumber
+	\begin{itemize}
+		\item Jede "klassische" Lösung ist auch eine schwache Lösung.
+		\item Jede schwache Lösung, welche glatt genug ist ($C^2$) ist auch eine "klassische" Lösung.
+		\item schwächere Annahmen an die Problemdaten:
+		\begin{align*}
+			&\alpha\in L^\infty(\Omega), &&\alpha\geq0\\
+			&a_i\in L^\infty(\Omega), &&\div(a)=\sum\limits_{i=1}^d\frac{\partial a_i}{\partial x_i}\in L^\infty(\Omega)\\
+			&A_{i,j}\in L^\infty(\Omega)
+		\end{align*}
+		\item Unter der inhomogenen Dirichletbedingung
+		\begin{align*}
+			u|_\Gamma\equiv u_D
+		\end{align*}
+		gehört die schwache Lösung zu
+		\begin{align*}
+			u_D+H_0^1(\Omega)=\big\lbrace v\in H^1(\Omega):v|_\Gamma\equiv u_D\big\rbrace
+		\end{align*}
+		Der Testraum ist immer $H^1_0(\Omega)$.
+	\end{itemize}
+\end{bemerkung}
+
+\begin{theorem}[Existenz und Eindeutigkeit von schwachen Lösungen]\
+	\begin{enumerate}[label=(\roman*)]
+		\item Sei
+		\begin{align*}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0.
+		\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit homogenen\\ Dirichlet-Randbedingungen eine eindeutige schwache Lösung.
+		\item Sei
+		\begin{align*}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0\qquad\text{ und }\qquad a\cdot n\geq0\text{ auf }\Gamma_N.
+		\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit gemischten Randbedingungen eine eindeutige Lösung.
+		\item Sei
+		\begin{align*}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0,\qquad \alpha\geq\alpha_0>0\qquad\text{ und }\qquad a\cdot n\geq 0\text{ auf }\Gamma.
+		\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige Lösung.
+		\item Sei
+		\begin{align*}
+			\alpha=0,\qquad-\frac{1}{2}\cdot\div(a)=0\qquad\text{und}\qquad a\cdot n\geq 0\text{ auf }\Gamma\\
+		\end{align*}
+		und gelte
+		\begin{align*}
+		\int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma=0.
+	\end{align*}
+		Dann hat die Konvektions-Diffusions-Gleichung mit Neumann-Randbedingung eine eindeutige schwache Lösung $u$, welche
+		\begin{align*}
+			\int\limits_\Omega u(x)\d x=0
+		\end{align*}
+		erfüllt.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	\underline{Zeige (i):}\\
+	$V=H_0^1(\Omega)$, $\Vert\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\sim\vert\cdot\vert_{1,2,\Omega}$.
+	Zeige zunächst, dass $l(v)$ stetig ist.
+	%Zuerst die rechte Seite: <- steht bei mir ursprünglich auch so im Skript, aber ich versteh es nicht. Macht wenig Sinn an der Stelle.
+	\begin{align*}
+		l(v)&=\int\limits_\Omega f\cdot v\d x\\
+		|l(v)|&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{0,2}\\
+		&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{1,2}
+	\end{align*}
+	Bilinearform:
+	\begin{align*}
+		a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x
+	\end{align*}
+	Stetigkeit:
+	\begin{align*}
+		\big|a(v,w)\big|&=\left|\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x\right|\\
+		&\leq
+		\Vert A\Vert_{L^\infty}\cdot\Vert\nabla v\Vert_{0,2}\cdot\Vert\nabla w\Vert_{0,2}\\
+		&\quad+\Vert a\Vert_{L^\infty} \cdot\Vert\nabla v\Vert_{0}\cdot\Vert w\Vert_{0,2}\\
+		&\quad+\Vert\alpha\Vert_{L^\infty}\cdot\Vert v\Vert_{0,2}\cdot\Vert w\Vert_{0,2}\\
+		&\leq
+		\left(\Vert A\Vert_{L^\infty}+\Vert a\Vert_{L^\infty}+\Vert\alpha\Vert_{L^\infty}\right)\cdot\Vert v\Vert_{1,2}\cdot\Vert w\Vert_{1,2}
+	\end{align*}
+	Koerzivität:
+	\begin{align*}
+		a(v,v)&\geq\underbrace{\beta}_{>0}\cdot\Vert v\Vert^2_{1,2}\qquad\forall v\in V=H_0^1(\Omega)\\
+		a(v,v)&=
+		\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot v\d x\\
+		&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\big(a\cdot\nabla v\big) v+\alpha\cdot v^2\d x\\
+		&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+\frac{a}{2}\nabla \left(v^2\right)+\alpha\cdot v^2\d x\\
+		&=\int\limits_\Omega\underbrace{\nabla v^T\cdot A\cdot\nabla v}_{\geq\lambda_0\cdot|\nabla v(x)|^2\geq0}+\underbrace{\left(\alpha-\frac{1}{2}\cdot			\div(a)\right)}_{\stackrel{\text{Vor}}{\geq}0}\cdot v^2\d x+\underbrace{\int\limits_{\Gamma}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}\\
+		&\geq
+		\lambda_0\cdot |v|^2_{1,2}\\
+		\overset{\text{Fried}}&{\geq}
+		\frac{\lambda_0}{C_f^2}\cdot\Vert v\Vert^2_{1,2}
+	\end{align*}
+
+	\underline{Zeige (ii):}\\
+	Homogene Dirichlet-Randbedingungen auf $\Gamma_D$ und Neumann-Randbedingungen auf $\Gamma_N$.
+	\begin{align*}
+		\left\{\begin{array}{rl}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0 &\text{ in }\Omega\\
+			a\cdot n\geq0&\text{ auf }\Gamma_N
+		\end{array}\right.
+	\end{align*}
+	Also gilt
+	\begin{align*}
+		l(v)&=\int\limits_\Omega f\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
+		\big|l(v)\big|&\leq\underbrace{\Vert f\Vert_{0,2}}_{\leq\Vert v\Vert_{1,2}}\cdot\Vert v\Vert_{0,2}+\Vert g\Vert_{0,2,\Gamma}\cdot\underbrace{\Vert v\Vert_{0,2,\Gamma_N}}_{\leq\Vert v\Vert_{1,2,\Omega}}
+	\end{align*}
+	Erinnerung:
+	\begin{align*}
+		H^1_D(\Omega)=\big\lbrace v\in H^1(\Omega):v|_{\Gamma_D}\equiv 0\big\rbrace
+	\end{align*}
+	Die Abschätzung für $a$ ist analog zu (a), nur ist das letzte Integral nicht Null, sondern:
+	\begin{align*}
+		\int\limits_\Gamma\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma
+		&=\underbrace{\int\limits_{\Gamma_D}\frac{1}{2}\cdot(a\cdot n)\cdot v^2\d\gamma}_{=0}+\underbrace{\int\limits_{\Gamma_N}\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{\geq0}\cdot v^2\d\gamma}_{\geq0}
+	\end{align*}
+
+	\underline{Zeige (iii):}
+	\begin{align*}
+		\left\{\begin{array}{rl}
+			\alpha-\frac{1}{2}\cdot\div(a)\geq0&\text{ in }\Omega\\
+			\alpha\geq\alpha_0>0&\text{ in }\Omega\\
+			a\cdot n\geq0&\text{ auf }\Gamma
+		\end{array}\right.
+	\end{align*}
+	Wende Theorem \ref{theorem2.4} an:
+	\begin{align*}
+		X&=H^1(\Omega),\qquad Y=L^2(\Omega)\\
+		l(v)&=\int\limits_\Omega f\cdot v\d x+\int\limits_\Gamma g\cdot v\d\gamma\\
+		a_0(v,w)&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\alpha\cdot v\cdot w\d x\\
+		a_1(v,w)&=\int\limits_\Omega(a\cdot\nabla v)\cdot v\d x
+	\end{align*}
+	Stetigkeit von $l$ und $a_0$ sowie Symmetrie sind klar. Bleibt nur Koerzivität zu zeigen:
+	\begin{align*}
+		a(v,v)&=\int\limits_\Omega\nabla v^T \cdot A \cdot \nabla v+\underbrace{\alpha}_{\geq\alpha_0>0}\cdot v^2\d x\\
+		&\geq\lambda_0\cdot|v|^2_{1,2,\Omega}+\alpha_0\cdot\Vert v\Vert^2_{0,2,\Omega}\\
+		&\geq\underbrace{\min\lbrace\lambda_0,\alpha_0\rbrace}_{>0}\cdot\Vert v\Vert^2_{1,2,\Omega}
+	\end{align*}
+	Stetigkeit von $a_1$:
+	\begin{align*}
+		\big| a_1(v,w)\big|&\leq\Vert a\Vert_{L^\infty}\cdot\underbrace{|\nabla v|_{0,2,\Omega}}_{\leq\Vert v\Vert_{1,2,\Omega}}\cdot\underbrace{\Vert w		\Vert_{0,2,\Omega}}_{\leq\Vert w\Vert_{1,2,\Omega}}
+	\end{align*}
+	Es bleibt nur noch zu zeigen, dass
+	\begin{align*}
+		a(v,v)>0\qquad\forall v\in H^1(\Omega)\setminus\lbrace0\rbrace
+	\end{align*}
+	Also
+	\begin{align*}
+		a(v,v)
+		&=\int\limits_{\Omega} \nabla v^T\cdot A\cdot \nabla v+\underbrace{(a\cdot\nabla v)\cdot v}_{=\frac{a}{2}\cdot\nabla(v^2)}+\alpha\cdot v^2\d x\\
+		&=\int\limits_{\Omega}\nabla v^T\cdot A\cdot\nabla v+\underbrace{\left(\alpha-\frac{1}{2}\cdot\div(a\right)}_{\geq0}\cdot v^2\d x+\int\limits_\Gamma\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{\geq0}\cdot v^2\d\gamma\\
+		&\geq\lambda_0\cdot |v|^2_{1,2,\Omega}\\
+		&\geq 0\qquad\forall v\in H^1(\Omega)
+	\end{align*}
+	Aber wir müssen noch den Fall "$=0$" ausschließen. 
+	Also ist zu zeigen, dass
+	\begin{align*}
+		a(v,v)=0\implies v\equiv 0
+	\end{align*}
+	gilt.
+	\begin{align*}
+		0&=a(v,v)\geq\underbrace{\lambda_0}_{>0}\cdot|v|^2_{1,2,\Omega}\geq0 \\
+		\implies& |v|_{1,2,\Omega}=0 \\
+		\implies& v\equiv c\text{ konstant auf }\Omega\\
+		0&=a(c,c)=\int\limits_\Omega\underbrace{\nabla c^T}_{=0}\cdot A\cdot\underbrace{\nabla c}_{=0}+(a\cdot\underbrace{\nabla c}_{=0})\cdot c+\alpha\cdot c^2\d x\\
+		&=\int\limits_\Omega\alpha\cdot c^2\d x\\
+		&\geq\underbrace{\alpha_0}_{>0}\cdot\Vert c\Vert^2_{0,2,\Omega}\\
+		&\implies\Vert c\Vert_{0,2,\Omega}=0\\
+		&\implies c=0\\
+		&\implies v\equiv 0
+	\end{align*}
+
+	\underline{Zeige (iv):}
+	\begin{align*}
+		&\left\{\begin{array}{rl}
+			a\cdot n=0&\text{ auf }\Gamma\\
+			\alpha=0,~\div(a)=0&\text{ in  }\Omega\\
+		\end{array}\right. \\
+		&V=\left\lbrace v\in H^1(\Omega):\int\limits_\Omega v(x)\d x=0\right\rbrace\mit|\cdot|_{1,2}\sim\Vert\cdot\Vert_{1,2}\text{ (siehe Poincaré-Ungleichung)}
+	\end{align*}
+	Also sind die Bilinearform
+	\begin{align*}
+		a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+(a\cdot\nabla v)\d x
+	\end{align*}
+	und die Linearform
+	\begin{align*}
+		l(v)=\int\limits_\Omega f(x)\cdot v(x)\d x+\int\limits_\Gamma g\cdot v\d\gamma
+	\end{align*}
+	stetig. Zur Koerzivität:
+	\begin{align*}
+		a(v,v)&=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla v+(a\cdot\nabla v)\cdot v\d x\\
+		&=\int\limits_\Omega\nabla v^T\cdot A\cdot \nabla v-\Big(\frac{1}{2}\cdot\underbrace{\div(a)}_{=0}\Big)\cdot v^2\d x+\int\limits_\Gamma\frac{1}{2}\cdot\underbrace{(a\cdot n)}_{=0}\cdot v^2\d\gamma\\
+		&\geq\lambda_0\cdot|v|_{1,2,\Omega}^2\\
+		&\geq\frac{\lambda_0}{C^2_p}\cdot\Vert v\Vert^2_{1,2,\Omega}
+	\end{align*}
+	Aus Lax Milgram \ref{theorem2.1LaxMilgram} folgt, dass das Variationsproblem eine eindeutig Lösung \ul{in $V$} hat.
+	Aber: Die schwache Lösung benötigt $X=H^1(\Omega)$.
+	Wir wissen, dass das Problem
+	\begin{align*}
+		\text{Finde $u\in V$ so, dass }a(u,v)=l(v)\qquad\forall v\in V
+	\end{align*}
+	eine eindeutige Lösung besitzt.
+	Es bleibt zu zeigen, dass $a(u,\indi)=l(\indi)$ für eine konstante Funktion $\indi$ gilt.
+	\begin{align*}
+		a(u,\indi)=l(\indi)
+		&\Longleftrightarrow
+		\int\limits_\Omega\underbrace{\nabla u^T\cdot A\cdot\nabla\indi}_{=0}+(a\cdot\nabla u)\cdot\indi\d x
+		=
+		\int\limits_\Omega f(x)\d x+\int\limits_\Gamma g\d\gamma\stackeq{\text{Vor}}0\\
+		&\Longleftrightarrow
+		a\cdot \nabla u=0\\
+		\overset{\text{part. Int.}}&{\Longleftrightarrow}
+		0=-\int\limits_\Omega\underbrace{(\div(a))}_{\equiv0}\cdot u\d x+\int\limits_\Gamma\underbrace{(a\cdot n)}_{\equiv 0}\cdot u\d\gamma
+	\end{align*}
+	Also ist die schwache Lösung in $V$ die schwache Lösung in $H^1$, die wir gesucht haben.
+\end{proof}
+
+\begin{theorem}[Regularität]\label{theorem3.3}\enter
+	Sei $\Gamma$ eine $C^1$-Mannigfaltigkeit oder $\Omega$ konvex und $f\in L^2(\Omega)$.
+	Wenn wir Neumann-Randbedingungen betrachten und wir annehmen, 	dass es eine Funktion
+	\begin{align*}
+		u_g\in H^2(\Omega)\mit g=\tilde{\gamma}_{1,N}(u_g)
+	\end{align*}
+	gibt. Dann gilt:
+	\begin{align*}
+		\Vert u\Vert_{2,2,\Omega}\leq C\cdot\Big(\Vert f\Vert_{0,2,\Omega}+\Vert u\Vert_{0,2}\Big)
+	\end{align*}
+	wobei $C$ nur von $\Omega, A,a,\alpha$ abhängt (also nicht von $f$).
+\end{theorem}

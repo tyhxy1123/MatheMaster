@@ -3,64 +3,19 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-% STANDARD SHORTCUTS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\R}{\mathbb{R}}				 % reelle Zahlen
-\newcommand{\Rn}{\R^n}					 % der R^n
-\newcommand{\N}{\mathbb{N}}				 % natürliche Zahlen
-\newcommand{\Q}{\mathbb{Q}}				 % rationale Zahlen
-\newcommand{\Z}{\mathbb{Z}}				 % ganze Zahlen
-\newcommand{\C}{\mathbb{C}}			   % komplexe Zahlen
-\renewcommand{\mit}{\text{ mit }}   % mit
-\newcommand{\falls}{\text{falls }} % falls
-\renewcommand{\d}{\text{ d}}        % Differential d
-\DeclareMathOperator{\tr}{tr} % spur
-\DeclareMathOperator{\diag}{diag}
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Span}{span}
-\DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\SO}{SO}
-\newcommand{\Def}{\text{Def}}
-\newcommand{\ideal}{\trianglelefteq} %Ideal
-\newcommand{\properideal}{\mathrel{\ooalign{$\lneqq$\cr\raise.51ex\hbox{$\lhd$}\cr}}} %echtes Ideal
-\DeclareMathOperator{\supp}{supp}                 % Träger
-\newcommandx{\bracket}[2][1=\cdot, 2=\cdot]{[#1,#2]}
-\DeclareMathOperator{\graph}{graph}       % Graph einer Funktion
+% Wichtige Mengen
+\newcommand{\R}{\mathbb{R}}              % reelle Zahlen
+\newcommand{\Rn}{\R^n}                   % der R^n
+\newcommand{\N}{\mathbb{N}}              % natürliche Zahlen
+\newcommand{\Q}{\mathbb{Q}}              % rationale Zahlen
+\newcommand{\Z}{\mathbb{Z}}              % ganze Zahlen
+\newcommand{\C}{\mathbb{C}}              % komplexe Zahlen
+\renewcommand{\L}{\mathcal{L}}           % L_p-Räume
+
+% Schlüsselwörter
+\renewcommand{\mit}{\text{ mit }}
+\newcommand{\falls}{\text{falls }}
 \newcommand{\und}{\text{ und }}
-
-% ETWAS SPEZIELLERE ZEICHEN
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% disjunkte Vereinigung
-\newcommand{\bigcupdot}{
-	\mathop{\vphantom{\bigcup}\mathpalette\setbigcupdot\cdot}\displaylimits
-}
-\newcommand{\setbigcupdot}[2]{\ooalign{\hfil$#1\bigcup$\hfil\cr\hfil$#2$\hfil\cr\cr}}
-% großes Kreuz
-\newcommand*{\bigtimes}{\mathop{\raisebox{-.5ex}{\hbox{\huge{$\times$}}}}} 
-% dreifach gestrichene Norm
-\newcommand{\Vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
-    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
-% korrektes argmin und argmax
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\esssup}{ess\,sup} %essenzielles Supremum
-
-% WHITESPACE COMMANDS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Zeilenumbruch mit freier Zeile darunter OHNE underfull-hbox-warning
-\newcommand{\nl}{\\[\baselineskip]}
-% nicht restriktiver newline command
-\newcommand{\enter}{$ $\newline} 
-% praktischer Tabulator
-\newcommand\tab[1][1cm]{\hspace*{#1}}
-
-% TEXT ÜBER ZEICHEN
-\newcommand{\stackeq}[1]{\stackrel{#1}{=}} 
-
-% TEXT ÜBER UND UNTER ZEICHEN
-\newcommand{\stackrelnew}[3]{\underset{#1}{\overset{#2}{#3}}}
-
-\newcommand{\ul}[1]{\underline{#1}} %Umleitung des Commands, da man sich gegen obigen entschieden hat. Dieser erzeugt zu viel Whitespace vor und nach dem Unterstrichenem.
 
 % Commands für Stochastik / Statistik
 \newcommand{\A}{\mathcal{A}}
@@ -70,7 +25,6 @@
 \newcommand{\Var}{\mathbb{V}\text{ar}}
 \newcommand{\Cov}{\mathbb{C}\text{ov}} %Kovarianz
 \newcommand{\indi}{\mathbbm{1}} % Indikatorfunktion
-\renewcommand{\L}{\mathcal{L}} %L_p-Räume
 
 % Verteilungen
 \DeclareMathOperator{\Bin}{Bin}       %Binomialverteilung
@@ -79,3 +33,46 @@
 \DeclareMathOperator{\Exp}{Exp}       %Exponentialverteilung
 \DeclareMathOperator{\Cauchy}{Cauchy} %Cauchyverteilung
 
+% Wichtige Operatoren (alphabetisch)
+\DeclareMathOperator*{\argmax}{arg\,max} % argmax
+\DeclareMathOperator*{\argmin}{arg\,min} % argmin
+\newcommand{\bigcupdot}{
+	\mathop{\vphantom{\bigcup}\mathpalette\setbigcupdot\cdot}\displaylimits
+}                                        % Disjunkte Vereinigung
+	\newcommand{\setbigcupdot}[2]{\ooalign{\hfil$#1\bigcup$\hfil\cr\hfil$#2$\hfil\cr\cr}}
+\newcommand*{\bigtimes}{
+	\mathop{\raisebox{-.5ex}{\hbox{\huge{$\times$}}}}
+}                                        % Kartesisches Produkt / Kreuzprodukt 
+\renewcommand{\d}{\text{ d}}             % Differential d
+\newcommand{\Def}{\text{Def}}            % wird genutzt für z.B. $\overset{\Def}{=}$
+\DeclareMathOperator{\diag}{diag}        % Diagonalmatrix
+\DeclareMathOperator*{\esssup}{ess\,sup} % essenzielles Supremum
+\DeclareMathOperator{\grad}{grad}        % Gradient, alternativ zu \nabla
+\DeclareMathOperator{\graph}{graph}      % Graph einer Funktion
+\DeclareMathOperator{\Hom}{Hom}          % Raum linearer Funktionen
+\newcommand{\ideal}{\trianglelefteq}     % Ideal
+\DeclareMathOperator{\im}{im}            % Bild
+\newcommand{\laplace}{\triangle}         % Laplace Operator
+\DeclareMathOperator{\meas}{meas}        % Das Maß einer Menge, meist Lebesguemaß gemeint
+\newcommand{\properideal}{
+	\mathrel{\ooalign{$\lneqq$\cr\raise.51ex\hbox{$\lhd$}\cr}}
+}                                        % echtes Ideal
+\DeclareMathOperator{\SO}{SO}            % Orthogonale Gruppe
+\DeclareMathOperator{\Span}{span}        % Span / Lineare Hülle
+\DeclareMathOperator{\supp}{supp}        % Träger
+\DeclareMathOperator{\tr}{tr}            % Spur
+\newcommand{\Vertiii}[1]{
+	{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1\right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}
+}                                        % dreifach gestrichene Norm
+
+% WHITESPACE COMMANDS
+\newcommand{\nl}{\\[\baselineskip]}      % Zeilenumbruch mit freier Zeile darunter OHNE underfull-hbox-warning
+\newcommand{\enter}{$ $\newline}         % Zeilenumbruch ohne Einschränkungen
+\newcommand\tab[1][1cm]{\hspace*{#1}}    % praktischer Tabulator
+
+% Folgende Commands sollten nicht mehr genutzt werden und sind nur noch zwecks "Abwärtskompatibilität" vorhanden
+\newcommand{\stackeq}[1]{\stackrel{#1}{=}} 
+\newcommand{\ul}[1]{\underline{#1}}      
+
+% TEXT ÜBER UND UNTER ZEICHEN
+\newcommand{\stackrelnew}[3]{\underset{#1}{\overset{#2}{#3}}}

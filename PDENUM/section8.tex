@@ -1,0 +1,732 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+% vim: set noexpandtab:
+
+
+\section{Gemischte Methoden} %8
+\subsection{Startpunkt}
+Idee: Minimierung auf einem Unterraum\\
+Gegeben: Funktional $\Phi\colon V\to\R,u\mapsto\frac{1}{2}a(u,u)-\underbrace{(f,u)}_{=f(u)}$\\
+Wir wollen dieses Funktional minimieren ($\Phi\to\min$) auf $W\subseteq V$ wobei
+\begin{align*}
+	W:=\Big\lbrace v\in V:b(q,v)=0~\forall q\in Q\Big\rbrace
+\end{align*}
+$a\colon V\times V\to\R$: ist eine koerzive, stetige Bilinearform\\
+$f(\cdot)=(f,\cdot)$: ist stetige Lineaform $f(\cdot)\colon V\to\R$ \\
+$b\colon Q\times V\to\R$: stetige Bilinearform\\
+$Q$: passender Funktionenraum\nl
+$b$ hat verschwindes Integral-Mittel:
+\begin{align*}
+	b(q,v)=\int\limits_\Omega q\cdot v\d x,\qquad
+	Q=\spann\lbrace\indi\rbrace\hat{=}\R
+\end{align*}
+Folglich ist $W$ der Raum aller Funktionen aus $V$, bei welchem das Integral-Mittel verschwindet.\nl
+Bezeichne $u^\ast$ eine Lösung des Minimierungsproblems mit Bedingung
+\begin{align*}
+	\frac{\d}{\d t}\Phi\big(u^\ast+t\cdot w\big)\Big|_{t=0}=0\qquad\forall w\in W
+\end{align*}
+Also:
+\begin{align*}
+	\Phi\big(u^\ast+t\cdot w\big)
+	&=\frac{1}{2}a\big(u^\ast+t\cdot w,u^\ast+t\cdot w\big)-f\big(u^\ast+t\cdot w\big)\\
+	0&=a\big(u^\ast,w\big)-f(w)\qquad\forall w\in W
+\end{align*}
+Das ist ein Variationsproblem in $W$.\\
+Problem: Es ist oftmals scher $W$ durch konforme Finite-Elemente-Räume zu approximieren.
+
+\begin{beispiel}\label{beispiel8.1} %nonumber in Lecture, but i'll give one
+	\begin{align*}
+		V:&=\big(H_0^1(\Omega)\big)^d,d\in\lbrace1,2\rbrace,\qquad Q=L^2(\Omega)\\
+		a(v,w)&=\int\limits_\Omega\nabla v:\nabla w\d x\\
+		b(q,v)&=\int\limits_\Omega q\div(v)\d x\\
+		f(v)&=\int\limits_\Omega f\cdot v\d x\mit\\
+		\Big( A:B:&=\sum\limits_{i,j=1}^d A_{i,j}\cdot B_{i,j}\qquad\forall A,B\in\R^{d\times d} \Big)\\
+		W&=\big\lbrace v\in V:b(q,v)=0~\forall q\in Q\big\rbrace\\
+		&=\left\lbrace v\in\big(H_0^1(\Omega)\big)^d:\int\limits_\Omega q\div(v)\d x=0~\forall q\in L^2(\Omega)\right\rbrace\\
+		&=\left\lbrace v\in\big(H_0^1(\Omega)\big)^d:\div(v)=0\right\rbrace
+	\end{align*}
+	$W$ ist also der Raum der Divergenzfreien Funktionen
+\end{beispiel}
+
+Kurzer Exkurs zu Minimierung mit Nebenbedingungen:
+\begin{align*}
+	f(x,y)&=x\cdot y\to\min\quad\text{unter}\quad x^2+y^2=1\\
+	F(x,y,\lambda):&=f(x,y)+\lambda\cdot\big(x^2+y^2-1\big)
+\end{align*}
+$F$ ist die sogenannte Lagrange-Funktion und $\lambda$ der Lagrange-Multiplikator.\\
+Optimalitätsbedingungen:
+\begin{align*}
+	\frac{\partial F}{\partial x}=0\qquad
+	\frac{\partial F}{\partial y}=0\qquad
+	\frac{\partial F}{\partial\lambda}=0
+\end{align*}
+Nun versuchen wir dies auf unser Problem anzuwenden:
+Wir betrachten also die Funktion (mit Lagrange-Mulitplikator $p$):
+%Ich weiß, dass es deine Regel bricht, aber an dieser Stelle sieht es besser auf, wenn man die align Umgebungen direkt hintereinander macht.
+\begin{align*}
+	F(u,p):&=\Phi(u)-b(p,u)\\
+	&=\frac{1}{2}a(u,u)-f(u)-b(p,u)
+\end{align*}
+\begin{align*}
+	\frac{\partial}{\partial t}F\big(u+tv,p+sq\big)\Big|_{s=t=0}
+	&=0
+	\qquad\forall v\in V,\forall q\in Q\\
+	\frac{\partial}{\partial s}F\big(u+tv,p+sq\big)\Big|_{s=t=0}
+	&=0
+	\qquad\forall v\in V,\forall q\in Q
+\end{align*}
+\begin{align*}
+	F\big(u+tv,p+sq\big)
+	&=\frac{1}{2}a\big(u+tv,u+tv\big)-f\big(u+tv\big)-b\big(p+sq,u+tv\big)
+\end{align*}
+\begin{align*}
+	&\implies \left\lbrace\begin{array}{rl}
+		a(u,v)-f(v)-b(p,v)=0 &\forall v\in V\\
+		-b(q,u) =0 &\forall q\in Q
+	\end{array}\right.
+\end{align*}
+ \begin{align*}
+	a(u,w)&=f(w) \qquad\forall w\in W
+\end{align*}
+
+\begin{beispiel}[Weiter Beispiel \ref{beispiel8.1}]
+	\begin{align*}
+		\int\limits_\Omega\nabla u:\nabla v\d x-\int\limits_\Omega p\div(v)\d x
+		&=\int\limits_\Omega f\cdot v\d x
+		&&\forall v\in V\\
+		\int\limits_\Omega q\div(u)\d x
+		&=0
+		&&\forall q\in Q=L^2(\Omega)\\
+		\overset{q=\div(u)\in L^2(\Omega)}{\implies}
+		\div(u)&=0
+		&& \text{ in } \Omega
+	\end{align*}
+	Für $u\in\big(H^2(\Omega)\big)^d$ und $p\in H^1(\Omega)$ gilt:
+	\begin{align*}
+		\int\limits_\Omega\nabla u:\nabla v\d x
+		\overset{\text{part Int}}&=
+		-\int\limits_\Omega \Delta u\cdot v\d x\\
+		\int\limits_\Omega p\div(v)\d x
+		\overset{\text{part Int}}&=
+		-\int\limits_\Omega v\cdot\nabla p\d x\\
+		\implies
+		\int\limits_\Omega\big(-\Delta u+\nabla p\big)\cdot v\d x
+		&=\int\limits_\Omega f\cdot v\d x\qquad\forall v\in V\\
+	\end{align*}
+	\begin{align*}
+		\stackrelnew{\text{der Variationsanalysis}}{\text{Fundamentallemma}}{\implies}
+		\left\lbrace\begin{array}{rl}
+			-\Delta u+\nabla p &=f\text{ in }\Omega\\
+			\div(u)&=0\text{ in }\Omega
+		\end{array}\right.
+	\end{align*}
+	Das entstandene Problem heißt \textbf{Stokes-Problem}.
+\end{beispiel}
+
+\subsection{Lösbarkeit von gemischten Problemen}
+Seien $V,Q$ Hilberträume, $a\colon V\times V\to\R$ bilinear, stetig und koerziv, $b\colon Q\times V\to\R$ bilinear und stetig.\nl
+Finde $(u,p)\in V\times Q$ so, dass
+\begin{align*}
+	a(u,v)-b(p,v)&=f(v) &\forall v\in V\\
+	b(q,u) &=0 &\forall q\in Q
+\end{align*}
+Setze
+\begin{align*}
+	A\big((u,p),(v,q)\big) &:=a(u,v)-b(p,v)+b(q,v)\\
+	B\big((v,q)\big) &:= f(v)
+\end{align*}
+Damit erhalten wir das äquivalente Problem:
+Finde $(u,p)\in V\times Q$ so, dass
+\begin{align*}
+	A\big((u,p),(v,q)\big)=F\big(v,q)\big) \qquad\forall(v,q)\in V\times Q
+\end{align*}
+Setze $X:=V\times Q$ mit der kanonischen Norm
+\begin{align*}
+	\big\Vert(v,q)\big\Vert_X:=\sqrt{\Vert v\Vert_V^2+\Vert q\Vert_Q^2}
+\end{align*}
+$A$ ist stetig und bilinear auf $X$ und $F$ ist stetig auf $X$.\\
+Ist $A$ koerziv auf $X$?
+\begin{align*}
+	A\big((v,q),(v,q)\big)
+	&=a(v,v)-b(q,v)+b(q,v)
+	=a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V\\
+	\implies
+	A\big((0,q),(0,q)\big)&=0\qquad\forall q\in Q
+\end{align*}
+Somit ist $A$ \underline{nicht} koerziv.
+Folglich kann Lax-Milgram nicht angewandt werden.
+
+\begin{align}\label{eq8.2Problem1MixedForm}\tag{1}
+		\left\lbrace
+		\begin{array}{rlrr}
+			\text{Finde }(u,p)\in V\times Q\text{ so, dass }&\\
+			a(u,v)-b(p,v)&=f(v) &\forall v\in V\\
+			b(q,u)&=0 &\forall q\in Q
+		\end{array}\right.\\
+		\label{eq8.2Problem2MixedForm}\tag{2}
+		\text{Finde $u\in W$ so, dass }
+		a(u,v)= f(v)\qquad\forall v\in W
+\end{align}
+
+Wenn $\big(u^\ast,p^\ast\big)$ eine Lösung von \eqref{eq8.2Problem1MixedForm} ist, dann löst $u^\ast$ \eqref{eq8.2Problem2MixedForm}.\\
+Aus $\big(u^\ast,p^\ast\big)$ löst\eqref{eq8.2Problem1MixedForm} folgt:
+\begin{align*}
+	b\big(q,u^\ast\big)=0\qquad\forall q\in Q
+	\implies u^\ast\in W
+	\implies u^\ast\text{ löst }\eqref{eq8.2Problem2MixedForm}
+\end{align*}
+
+Sei $v\in W\subseteq V$ beliebig.
+\begin{align*}
+	a\big(u^\ast,v\big)-\underbrace{b(p^\ast,v)}_{\overset{v\in W}{=}0}=f(v)\\
+	a(u^\ast,v)=f(v)\qquad\forall v\in W
+	\implies u^\ast\text{ löst }\eqref{eq8.2Problem2MixedForm}
+\end{align*}
+
+\underline{Problem (1):}
+Finde $(u,p)\in V\times Q:$
+\begin{align*}
+	a(u,v)-b(p,v)&=f(v) &\forall&v\in V\\
+	b(q,u)&=0 &\forall& q\in Q
+\end{align*}
+
+\underline{Problem (2):}
+Finde $u\in W$
+\begin{align*}
+	a(u,v)&=f(v) \qquad\forall v\in W
+\end{align*}
+Mit
+\begin{align*}
+	W&=\big\lbrace v\in V:b(q,v)=0~\forall q\in Q\big\rbrace
+\end{align*}
+
+Angenommen $u\in W$ löst Problem (2).
+Also erfüllt $u$ die zweite Gleichung in Problem (1).
+Um eine Funktion $p\in Q$ in (1) zu finden, wir brauchen
+\begin{align*}
+	b(p,v)=a(u,v)-f(v)\qquad\forall v\in V
+\end{align*}
+Für $w\in W:$
+\begin{align*}
+	b(p,w)=a(u,w)-f(w)\overset{(2)}{=}0
+\end{align*}
+mit $V=W+W^\perp$ und $W^\perp:=\big\lbrace v\in V:(v,w)=0~\forall w\in W\big\rbrace$
+\begin{align*}
+v\in V\implies\exists! w\in W,w^\perp\in W^\perp:v=w+w^\perp
+\end{align*}
+Es reichte auch zu zeigen:
+\begin{align}\label{eqProblem3}\tag{3}
+	b(p,v)=a(u,v)-f(v)\qquad\forall v\in W^\perp
+\end{align}
+Sei $B:V\to Q^\ast$ eine Funktion wobei $Q^\ast$ die Menge aller linearen stetigen Funktionale auf $Q$ ist.
+\begin{align*}
+	\langle Bv,q\rangle&:=b(q,v)\qquad\forall q\in Q,\forall v\in V
+\end{align*}
+$B^\ast:Q\to V^\ast$:
+\begin{align*}
+	\langle B^\ast q,v\rangle&:=b(q,v)\qquad\forall q\in Q,\forall v\in V
+\end{align*}
+$B$ und $B^\ast$ sind offenbar stetig und linear.
+Außerdem gilt:
+\begin{align*}
+	\eqref{eqProblem3}&\Longleftrightarrow\big\langle B^\ast p,v\big\rangle
+	=\underbrace{a(u,v)-f(v)}_{=:\langle g,v\rangle,g\in V^\ast}\qquad\forall v\in V\\
+	&\Longleftrightarrow B^\ast p=g\text{ in }V^\ast
+\end{align*}
+
+$B^\ast$ ist injektiv ist äquivalent zu
+\begin{align*}
+	\overset{B^\ast\text{ linear}}&{\Longleftrightarrow}
+	\exists\beta>0:\big\Vert B^\ast p\big\Vert_{V^\ast}\geq\beta\cdot\Vert p\Vert_Q &\forall& p\in Q\\
+	\overset{\text{Def }\Vert\cdot\Vert}&\Longleftrightarrow \exists\beta>0:
+	\sup\limits_{v\in V\setminus\lbrace0\rbrace}\frac{b(p,v)}{\Vert v\Vert_V}\geq\beta\Vert p\Vert_Q &\forall&p\in Q\\
+	&\Longleftrightarrow\exists\beta>0:
+	\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
+\end{align*}
+Die letzte Ungleichung heißt \textbf{$\inf$-$\sup$-Bedingung / LBB-Bedingung}
+\setcounter{satz}{-1}
+\begin{satz}\label{theorem8.0infsupAequivalenz}%nonumber
+	Für eine stetige Bilinearform $b$ auf $Q\times V$ mit zugehörigen Operatoren
+	$B\colon v\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			\exists\beta>0:\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace 0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
+		\end{aligned}$
+		\item $\begin{aligned}
+			B\colon W^\perp\to Q^\ast
+		\end{aligned}$ ist ein Isomorphismus mit
+		\begin{align*}
+			\Vert B v\Vert_{Q^\ast}\geq\beta\cdot\Vert v\Vert_V\qquad\forall v\in W^\perp
+		\end{align*}
+		\item $\begin{aligned}
+			B^\ast\colon Q\to\big\lbrace g\in V^\ast:\langle g,v\rangle=0~\forall v\in W\big\rbrace
+		\end{aligned}$ ist ein Isomorphismus mit
+		\begin{align*}
+			\big\Vert B^\ast q\big\Vert_{V^\ast}\geq\beta\cdot\Vert q\Vert_Q\qquad\forall q\in Q
+		\end{align*}
+	\end{enumerate}
+\end{satz}
+
+\setcounter{satz}{0} %Die Nummerierung war in der VL so.
+\begin{theorem}\label{theorem8.1}
+	Seien $Q,V$ Hilberträume.
+	Sei $a\colon V\times V\to\R$ stetig, $V$-elliptisch (= koerziv), bilinear.
+	Sei $b\colon V\to\R$ stetig, bilinear mit
+	\begin{align*}
+		\exists\beta>0:\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(q)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
+	\end{align*}
+	Dann gibt es für jedes $f\in V^\ast$ eine eindeutige Lösung des Problems
+	\begin{align*}
+		\text{Finde }u\in W:a(u,v)=f(v)\qquad\forall v\in W
+	\end{align*}
+	Zusätzlich existiert ein eindeutiges $p\in Q$ mit
+	\begin{align*}
+		b(p,v)=a(u,v)-f(v)\qquad\forall v\in W^\perp
+	\end{align*}
+	Das Paar $(u,p)\in V\times Q$ löst:\\
+	\tab Finde $(u,p)\in V\times Q$ so, dass
+	\begin{align*}
+		a(v,v)-b(p,v)&=f(v) &\forall& v\in V\\
+		b(q,u)&=0 &\forall& q\in Q
+	\end{align*}
+\end{theorem}
+
+\begin{bemerkung}
+	Man kann die Voraussetzungen abschwächen.
+	Es reicht aus, dass $a$ elliptisch (koerziv) auf $W$ ist.
+\end{bemerkung}
+
+Betrachte erneut unser Beispiel, das Stokes Problem:
+\begin{align*}
+	\left\lbrace\begin{array}{rl}
+		-\Delta u+\nabla p=f&\text{ in }\Omega\\
+		\div(u)=0&\text{ in }\Omega\\
+		u=0&\text{ auf }\partial\Omega
+	\end{array}\right.
+\end{align*}
+
+Wähle $V=\big(H_0^1(\Omega)\big)^d$ und $Q=L_0^2(\Omega):=\left\lbrace q\in L^2(\Omega):\int\limits_\Omega q(x)\d x=0\right\rbrace$.
+Unsere Setting ist
+\begin{align*}
+	a(v,w&)=\int\limits_\Omega\nabla v:\nabla w\d x,\qquad
+	b(q,v)=\int\limits_\Omega q\div(v)\d x\\
+	\Vert v\Vert_V&=\Vert v\Vert_{1,2,\Omega}=\left(\sum\limits_{i=1}^d\Vert v_i\Vert^2_{1,2,\Omega}\right)^{\frac{1}{2}}\\
+	\Vert q\Vert_Q&=\inf\limits_{c\in\R}\Vert q+c\Vert_{0,2,\Omega}=\Vert q\Vert_{0,2,\Omega}\text{ für }q\in L^2_0(\Omega)
+\end{align*}
+
+Die $\inf$-$\sup$-Bedingung ist erfüllt für $(V,Q)$.
+
+\subsection{Konforme Diskretisierungen} %8.3
+Wähle Finite-Elemente-Räume $V_h\subseteq V,Q_h\subseteq Q$.
+Diskretes Problem:\\
+Finde $(u_h,p_h)\in V_h\times Q_h$ so, dass
+\begin{align*}
+	a(u_h,v_h)-b(p_h,v_h)&=f(v_h) &\forall& v_h\in V_h\\
+	b(q_n,u_n)&=0 &\forall& q_h\in Q_h
+\end{align*}
+
+Seien $\lbrace\varphi_i\rbrace$, $\lbrace\psi_i\rbrace$ Basen von $V_h$ bzw. $Q_h$.
+\begin{align*}
+	A&:=(a_{i,j}), &a_{i,j}&:=a(\varphi_j,\varphi_i)\\
+	B&:=(b_{i,j}), &b_{i,j}&:=b(\psi_i,\varphi_j)\\
+	F&:=(f_i), &f_i&:=f(\varphi_i)\\
+	AU-B^T p&~=F &U&:=(u_i),~P(p_i)\\
+	BU&~=0 &u_h&:=\sum\limits_i u_i\varphi_i,~p_h:=\sum\limits_i p_i\psi_i\\
+	\begin{pmatrix}
+		A & -B^T\\
+		B & 0
+	\end{pmatrix}\cdot\begin{pmatrix}
+		U\\
+		p
+	\end{pmatrix}
+	=\begin{pmatrix}
+		F\\
+		0
+	\end{pmatrix}
+\end{align*}
+
+\subsection*{Lösbarkeit von diskreten Problemen}
+Stetigkeit und Elliptizität vererben sich für stetige Probleme.
+Eine \textbf{diskrete Version der $\inf$-$\sup$-Bedingung} muss angenommen / geprüft werden.
+\begin{align*}
+	\exists\beta>0:\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert v_h\Vert_V\cdot\Vert q_h\Vert_V}\geq\beta
+\end{align*}
+Wir nehmen an, dass $\beta$ ist unabhängig von Netzparameter $h$ ist.
+Folglich ist das diskrete Problem eindeutig lösbar.\\
+Paare von $(V_h,Q_h)$ erfüllen diese diskrete $\inf$-$\sup$-Bedingung:
+\begin{align*}
+	V_h:S_{h,0}^{r,0},\qquad Q:S_h^{r-1,0},\qquad r\geq2,\qquad P_2/P_1\\
+	r\geq 2,\qquad Q_h=S_h^{r-1,1},\qquad V_h=P_r+\text{ Bereicherung}\supseteq S_{h,0}^{r,0}
+\end{align*}
+Die Variante in der ersten Zeile wird \textbf{Taylor-Hood-Element} genannt.
+
+\subsubsection*{Fehlerschätzung}
+$a\colon V\times V\to\R$ sei bilinear, stetig mit Konstante $M$ und koerziv (V-elliptisch) mit Konstante $\alpha$, also
+\begin{align*}
+	\big|a(v,w)\big|&\leq M\Vert v\Vert_V\Vert w\Vert_V\\
+	a(v,v)&\geq\alpha\Vert v\Vert_V^2
+\end{align*}
+$b\colon Q\times V\to\R$ sei bilinear, stetig mit Konstante $C_b$:
+\begin{align*}
+	\big|b(q,v)\big|&\leq C_b\Vert q\Vert_Q\Vert v\Vert_V
+\end{align*}
+Die $\inf$-$\sup$-Bedingung für $(V,Q)$
+\begin{align*}
+	\exists\beta>0:\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(q,v)}{\Vert q\Vert_Q\Vert v\Vert_V}\geq\beta
+\end{align*}
+ist erfüllt. Ebenso die uniforme $\inf$-$\sup$-Bedingung für $(V_h,Q_h)$:
+\begin{align*}
+	\exists\tilde{\beta}>0:\inf\limits_{q_h\in Q_h}\sup\limits_{v_h\in V_h}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q\Vert v_h\Vert_V}\geq\tilde{\beta}
+\end{align*}
+wobei $\tilde{\beta}$ unabhängig von $h$ ist.
+
+\begin{align*}
+	W&=\Big\lbrace v\in V:b(q,v)=0~\forall q\in Q\Big\rbrace\text{ divergenzfreie Funktionen}\\
+	W^\perp&=\Big\lbrace v\in V:(v,w)=0~\forall w\in W\Big\rbrace\\
+	W_h&=\Big\lbrace v_h\in V_h:b(q_h,v_h)=0~\forall q_h\in Q_h\Big\rbrace\text{ diskrete divergenzfreie Funktionen}\\
+	W_h^\perp&=\Big\lbrace v_h\in V_h:(v_h,w_h)=0~\forall w_h\in W_h\Big\rbrace
+\end{align*}
+
+Stetiges Problem: (P)
+
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $(u,p)\in V\times Q$:
+	\begin{align*}
+		a(u,v)-b(p,v)&=f(v) &\forall&v\in V\\
+		b(q,v)&=0 &\forall& q\in Q\\
+	\end{align*}
+\end{minipage} %zwischen Minipages darf kein leere Zeile stehen, da es sonst nicht funktioniert
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $u\in W$:
+	\begin{align*}
+		a(u,v)=f(v)\qquad\forall v\in W
+	\end{align*}
+\end{minipage}
+
+Diskretes Problem: ($P_h$)\\
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $(u_h,p_h)\in V_h\times Q_h$:
+	\begin{align*}
+		a(u_h,v_h)-b(p_h,v_h)&=f(v_h) &\forall&v_h\in V_h\\
+		b(q_h,v_h)&=0 &\forall& q_h\in Q_h
+	\end{align*}
+\end{minipage} %zwischen Minipages darf kein leere Zeile stehen, da es sonst nicht funktioniert
+\begin{minipage}[t]{0.49\textwidth}
+	Finde $u_h\in W_h$:
+	\begin{align*}
+		a(u_h,v_h)=f(v_h)\qquad\forall v_h\in W_h
+	\end{align*}
+\end{minipage}
+
+\begin{bemerkung}
+	Da im Allgemeinen $W_h\not\subseteq W$ gilt, werden Techniken wie Céas Lemma \ref{theorem2.2CeasLemma} nicht funktionieren.\\
+	Selbst wenn $W_h\subseteq W$ gilt, bleibt die Frage der Approximationseigenschaften von $W_h$.
+\end{bemerkung}
+
+\begin{theorem} %nonumber
+	Unter obigen Voraussetzungen gilt
+	\begin{align*}
+		\inf\limits_{w_h\in W_h}\big\Vert u-w_h\big\Vert_V\leq c\cdot\inf\limits_{v_h\in V_h}\big\Vert u-v_h\big\Vert_V
+	\end{align*}
+	d.h. der Raum $W_h$ hat dieselben Approximationseigenschaften wie $V_h$.
+\end{theorem}
+
+\begin{proof}
+	Sei $v_h\in V_h$ beliebig.
+	Wir konstruieren eine Funktion $r_h\in V_h$ so, dass $w_h:=v_h+r_h\in W_h$.
+	Wir wollen, dass $w_h\in W_h$.
+	Es gilt:
+	\begin{align*}
+		w_h\in W_h
+		&\Longleftrightarrow \Big(b(q_h,w_h)=0\qquad&\forall& q_h\in Q_h\Big)\\
+		&\Longleftrightarrow \Big(b(q_h,v_h)+b(q_h,r_h)=b(q_h,u) &\forall&q_h\in Q_h\Big)\\
+		&\Longleftrightarrow\Big( b(q_h,r_h)=b(q_h,u-v_h) &\forall&q_h\in Q_h\Big)
+	\end{align*}
+	Aus der diskreten $\inf$-$\sup$-Bedingung folgt, dass es eine eindeutige Lösung $r_h\in W_h^\perp$ von
+	\begin{align*}
+		b(q_h,r_h)=b(q_h,u-v_h)\qquad\forall q_h\in Q_h
+	\end{align*}
+	gibt. Es folgt:
+	\begin{align*}
+		\Vert r_h\Vert&\leq\frac{1}{\tilde{\beta}}\Vert B_h r_h\Vert_{Q_h^\ast}\\
+		&=\frac{1}{\tilde{p}}\sup\limits_{q_h\in Q_h}\frac{b(q_h,r_h)}{\Vert q_h\Vert_Q}\\
+		&=\frac{1}{\tilde{\beta}}\sup\limits_{q_h\in Q_h}\frac{b(q_h,u-v_h)}{\Vert q_h\Vert_Q}\\
+		&\leq\frac{c_b}{\tilde{\beta}}\Vert u-v_h\Vert_V
+	\end{align*}
+
+	\begin{align*}
+		\Vert u-w_h\Vert_V
+		&\leq\Vert u-v_h\Vert_V+\Vert\underbrace{v_h-w_h}_{=r_h}\Vert_V
+		\leq\left(1-\frac{c_b}{\tilde{\beta}}\right)\Vert u-v_h\Vert_V\\
+		\inf\limits_{z_h\in W_h}\Vert u-z_h\Vert_V
+		&\leq\Vert u-w_h\Vert_V
+		\leq\left(1+\frac{c_b}{\tilde{\beta}}\right)\Vert u-v_h\Vert_V\qquad\forall v_h\in V_h\\
+		\implies
+		\inf\limits_{z_h\in W_h}\Vert u-z_h\Vert_V
+		&\leq\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V\left(1+\frac{c_b}{\tilde{\beta}}\right)
+	\end{align*}
+\end{proof}
+
+\begin{theorem} %nonumber
+	Unter obigen Voraussetzungen gilt
+	\begin{align*}
+		\Vert u-u_h\Vert_V&\leq\left(1+\frac{M}{\alpha}\right)\inf\limits_{v_h\in W_h}\Vert u-v_h\Vert_V+\frac{c_b}{\alpha}\inf\limits_{q_h\in Q_h}\Vert p-q_h\Vert_Q
+	\end{align*}
+\end{theorem}
+
+\begin{bemerkung}
+	Die Abschätzung von $u$ hängt im Allgemeinen vom Raum $Q_h$ ab.
+\end{bemerkung}
+
+\begin{proof}
+	$V_h\subseteq V$
+	Für die Probleme (P) bzw. ($P_h$) gilt:
+	\begin{align*}
+		&(P) &a&(u,v_h)-b(p,v_h)-b(p,v_h)&=&f(v_h) &\forall&v_h\in V_h\subseteq V\\
+		&(P_h) &a&(u_h,v_h)-b(p_h,v_h)-b(p,v_h)&=&f(v_h) &\forall&v_h\in V_h\\
+		&\implies
+		&a&(u-u_h,v_h)&=&b(p-p_h,v_h) &\forall&v_h\in V
+	\end{align*}
+	Dies wird auch \textbf{Galerkin Orthogonalität} genannt.
+	Sei $w_h\in W_h$ beliebig und setze $v_h:=w_h-u_h\in W_h$.
+	Dann gilt:
+	\begin{align*}
+		\alpha\Vert\underbrace{w_h-u_h}_{=v_h}\Vert_V^2
+		&\leq a(w_h-u_h,v_h)\\
+		&=a(w_h-u,v_h)+a(u-u_h,v_h)\\
+		&=a(w_h-u,v_h)+b(p-p_h,v_h)-\underbrace{b(q_h-p_h,v_h)}_{=0~\forall q_h\in Q_h}\\
+		&=a(w_h-u,v_h)+b(p-q_h,v_h)\\
+		\overset{\text{stetig}}&\leq
+		M\Vert u-w_h\Vert_V\Vert v_h\Vert_V+c_b\Vert p-q_h\Vert_Q\Vert v_h\Vert_V\\
+		\implies
+		\Vert w_h-u_h\Vert_V
+		&\leq \frac{M}{\alpha}\Vert u-w_h\Vert_V+\frac{c_b}{\alpha}\Vert p-q_h\Vert_Q &\forall& q_h\in Q_h,\forall w_h\in W_h\\
+		\implies
+		\Vert u-u_h\Vert_V
+		&\leq\Vert u-w_h\Vert_V+\Vert w_h-u_h\Vert_V\\
+		&\leq\left(1+\frac{M}{\alpha}\right)\Vert u-w_h\Vert_V+\frac{c_b}{\alpha}\Vert p-q_h\Vert_Q &\forall& q_h\in Q_h,\forall w_h\in W_h
+	\end{align*}
+	Bilden des Infimums $\inf\limits_{q_h\in W_h}$ liefert die Behauptung.
+\end{proof}
+
+\begin{theorem}
+	Gelten obige Voraussetzungen. Dann gilt:
+	\begin{align*}
+		\Vert p-p_h\Vert_Q&\leq\left(1+\frac{c_b}{\tilde{\beta}}\right)\inf\limits_{q_h\in Q_h}\Vert p-q_h\Vert_Q+\frac{M}{\tilde{\beta}}\Vert u-u_h\Vert_V
+	\end{align*}
+\end{theorem}
+
+\begin{proof}
+	Sei $q_h\in Q$ beliebig. Dann gilt aus der $\inf$-$\sup$-Bedingung:
+	\begin{align*}
+		\Vert p_h-q_h\Vert_Q
+		&\leq\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{b(p_h-q_h,v_h)}{\Vert v_h\Vert_V}
+	\end{align*}
+	Nun setzen wir
+	\begin{align*}
+		b(p_h-q_h,v_h)
+		&=b(p_h-p,v_h)+b(p-q_h,v_h)\\
+		&=a(u_h-u,v_h)+b(p-q_h,v_h)
+	\end{align*}
+	in obige Ungleichung ein und erhalten
+	\begin{align*}
+		\Vert p_h-q_h\Vert_Q
+		&\leq\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{b(p_h-q_h,v_h}{\Vert v_h\Vert_V}\\
+		&=\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{a(u_h-u,v_h)+b(p-q_h,v_h)}{\Vert v_h\Vert_V}\\
+		&=\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{b(p-q_h,v_h)-a(u-u_h,v_h)}{\Vert v_h\Vert_V}\\
+		&\leq\frac{1}{\tilde{\beta}}\sup\limits_{v_h\in V_h}\frac{c_b\Vert p-q_h\Vert_Q\Vert v_h\Vert_V+M\Vert u-u_h\Vert_V\Vert v_h\Vert_V}{\Vert v_h\Vert_V}\\
+		&=\frac{1}{\tilde{\beta}}c_b\Vert p-q_h\Vert_Q+M\Vert u-u_h\Vert_V\\
+		&=\frac{1}{\tilde{\beta}}\Big(c_b\Vert p-q_h\Vert-Q+M\Vert u-v_h\Vert_V\Big)\qquad\forall q_h\in Q_h
+	\end{align*}
+
+	\begin{align*}
+		\Vert p-p_h\Vert_Q
+		&\leq\Vert p-q_h\Vert_Q+\Vert q_h-p_h\Vert_Q\\
+		&\leq \left(1+\frac{c_b}{\tilde{\beta}}\right)\Vert p-q_h\Vert_Q+\frac{M}{\tilde{\beta}}\Vert u-u_h\Vert_V\qquad\forall q_h\in Q_h
+	\end{align*}
+	Bilden des Infimums liefert die Behauptung.
+\end{proof}
+
+\begin{bemerkung}
+	\begin{align*}
+		\Vert p-p_h\Vert_Q
+		&\leq c\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V+c\inf\limits_{q_h\in Q_h}\Vert p-q_h\Vert_Q
+	\end{align*}
+\end{bemerkung}
+
+\textbf{Stokes}:
+\begin{align*}
+	V&=\big(H_0^1(\Omega)\big)^d, &\Vert&\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\\
+	Q&=L_0^2(\Omega), &\Vert&\cdot\Vert_Q=\Vert\cdot\Vert_{0,2,\Omega}
+\end{align*}
+
+Wähle Elemente der Ordnung $r$ für $V_h$ und Elemente der Ordnung $r-1$ für $Q_h$ würde zu
+\begin{align*}
+	\Vert p-p_h\Vert_{0,2}&=\O(h^r)\\
+	\Vert u-u_h\Vert_{1,2}&=\O(h^r)
+\end{align*}
+führen.
+
+\begin{beispiel}[Beispiele für Stokes-Probleme]\
+	\begin{enumerate}
+		\item Mini-Element
+		%TODO Add Sketch for $u,p,p_1$
+		\item (klassisches) Taylor-Hood Element
+		%TODO Add Sketch with $P_2,P_r,P_1,P_{r-1},r\geq2$
+		\item Bernardi-Rangel Element
+		%TODO Add Sketch
+	\end{enumerate}
+\end{beispiel}
+
+Die $\inf$-$\sup$-Bedingung spielt eine große in der Theorie, ist aber in der Praxis oft schwer zu zeigen.
+
+\subsection{Nachweis der \texorpdfstring{$\inf$-$\sup$}{inf-sup}-Bedingung (diskrete Version)}
+Man nimmt stets an, dass die stetige Version der $\inf$-$\sup$-Bedingung gilt.
+
+\begin{lemma}[Fortin, 1977]\label{lemmaFortin}\enter
+	Angenommen die stetige $\inf$-$\sup$-Bedingung
+	\begin{align*}
+		\inf_{q\in Q\setminus\{0\}}\sup_{v\in V\setminus\{0\}}\frac{b(v,q)}{\Vert v \Vert_V\Vert q\Vert_Q}\geq\beta>0
+	\end{align*}
+	gilt. Dann gilt die diskrete $\inf$-$\sup$-Bedingung
+	\begin{align*}
+		\inf_{q_h\in Q_h\setminus\{0\}}\sup_{v_h\in V_h\setminus\{0\}}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}\geq\beta^\ast>0
+	\end{align*}
+	gleichmäßig im Gitterparameter $h$ genau dann, wenn
+	es eine Familie von linearen Interpolationsoperatoren $\{I_h\colon V\to V_h\}_h$ gibt, so dass
+	\begin{align}\label{eqLemmaFortinBed1}
+		b(q_h,v)=b(q_h,I_h v)\qquad\forall q_h\in Q_h,\forall v\in V
+	\end{align}
+	und
+	\begin{align}\label{eqLemmaFortinBed2}
+		\Vert I_h v\Vert_V\leq C\Vert v\Vert_V\qquad\forall v\in V
+	\end{align}
+	gilt, wobei $C$ unabhängig von $h$ ist.
+\end{lemma}
+
+\begin{proof}\
+	\begin{enumerate}[label=(\roman*)]
+		\item Angenommen es gibt die Familie der $I_h$ mit den beiden obigen Eigenschaften \eqref{eqLemmaFortinBed1} und \eqref{eqLemmaFortinBed2}.
+			Sei $q_h\in Q_h\setminus\{0\}$ beliebig. Dann
+			% Ich (Felix) mag ja die Variante mit \norm{q_h}_Q = 1 lieber....
+		\begin{align*}
+			\sup\limits_{v_h\in V_h\setminus\{0\}}\frac{b(q_h,v_h)}{\Vert v_h \Vert_V\Vert q_h\Vert_Q}
+			\overset{I_h V\subseteq V_h}&\geq
+			\sup\limits_{v\in V\setminus\{0\}}\frac{b(q_h,I_h v)}{\Vert I_h v\Vert_V\Vert q_h\Vert_Q}\\
+			\overset{\eqref{eqLemmaFortinBed1}}&=
+			\sup\limits_{v\in V\setminus\{0\}}\frac{b(q_h,v)}{\Vert I_h v\Vert_V\Vert q_h\Vert_Q}\\
+			\overset{\eqref{eqLemmaFortinBed2}}&\geq
+			\frac{1}{C}\sup\limits_{v\in V\setminus\{0\}}\frac{b(q_h,v)}{\Vert v\Vert_V\Vert q_h\Vert_Q}\\
+			&\geq\frac{\beta}{C}>0
+		\end{align*}
+		Das $\beta$ kommt aus der stetigen $\inf$-$\sup$-Bedingung.
+		Wir haben also die diskrete $\inf$-$\sup$-Bedingung (u.a.) aus der stetigen inf-sup-Bedingung gefolgert.
+		\item Angenommen die diskrete $\inf$-$\sup$-Bedingung ist erfüllt.
+			Definiere wie in der Herleitung der $\inf$-$\sup$-Bedingung.
+		\footnote{$Q_h^\ast$ ist der Dualraum von $Q_h$}
+		\begin{align*}
+			B_h\colon V_h\to Q_h^\ast,\qquad
+		\dualpair{B_h v_h}{q_h}\coloneqq b(q_h,v_h)\qquad\forall q_h\in Q_h,\forall v_h\in V_h
+		\end{align*}
+		Also ist $B_h\colon W_h^\perp\to Q_h^\ast$ ein Isomorphismus (Äquivalenz gemäß Theorem \ref{theorem8.0infsupAequivalenz}.) % vor Theorem \ref{theorem8.1}). % TODO: Die Referenz im pdf schickt einen zum Beispiel 8.1, das in der Vorlesung keine Nummer hatte und das eigentlich referenzierte Theorem hat keine Nummer.
+		\begin{align*}
+			\Vert v_h\Vert_V
+			&\leq\frac{1}{\beta^\ast}\Vert B_h v_h\Vert_{Q_h^\ast}
+			\overset{\text{Def Norm}}=
+			\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{b(q_h,v_h)}{\Vert q_h\Vert_Q}  \quad \forall v_h \in W_h^{\perp}
+		\end{align*}
+		Für ein gegebenes $v\in V$ definieren wir $I_h v\in W_h^\perp\subseteq V_h$ als Lösung von
+		\begin{align*}
+			B_h(I_h v)=g_h\text{ in }Q_h^\ast
+		\end{align*}
+		wobei
+		\begin{align*}
+			\dualpair{g_h}{q_h} \coloneqq b(q_h,v)\qquad\forall q_h\in Q_h
+		\end{align*}
+		Also gilt
+		\begin{align*}
+			b(q_h,I_h v)
+			\overset{\text{Def}}=
+			\dualpair{B_h(I_h v)}{q_h}
+			=\dualpair{g_h}{q_h}
+			=b(q_h,v)\qquad\forall q_h\in Q_h
+		\end{align*}
+		Somit haben wie die erste Bedingung \eqref{eqLemmaFortinBed1} gezeigt.
+		Nun zur zweiten Bedingung \eqref{eqLemmaFortinBed2}:
+		\begin{align*}
+			\Vert I_h v\Vert_V
+			&\leq \frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{b(q_h,I_h v)}{\Vert q_h\Vert_Q}\\
+			&=\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{b(q_h,v)}{\Vert q_h\Vert_Q}\\
+			&\leq\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}\frac{c_b\Vert q_h\Vert_{Q}\Vert v\Vert_V}{\Vert q_h\Vert_Q}\\
+			&=\frac{1}{\beta^\ast}\sup_{q_h\in Q_h\setminus\{0\}}c_b\Vert v\Vert_V\\
+			&=\frac{c_b}{\beta^\ast}\Vert v\Vert_V
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{bemerkung}
+	Für nichtkonforme Räume $V_h$ ändert sich folgendes:
+	\begin{align*}
+		\Vert v_h\Vert_V&\leadsto\Vert v_h\Vert_h\\
+		\Vert I_h v\Vert_V&\leadsto\Vert I_h v\Vert_h\\
+		b(q,v)&=\sum\limits_{K\in\T}\int\limits_K q\div(v)\d x \text{ für das Stokes-Problem}
+	\end{align*}
+\end{bemerkung}
+
+Sei $V_h = P_1^{nc}$ das Crouzeix-Raviart-Element und $Q_h$ stückweise konstant, also $P_0$. % nc für non-conforming
+Das Crouzeix-Raviart-Element ist stückweise linear und nur in den Mittelpunkten der Dreiecksseiten stetig.
+Wir wollen Lemma \ref{lemmaFortin} anwenden.
+Wie wählen wir $I_h\colon V\to V_h$? Oft ist $V = H^1_0(\Omega)^d$ und auf diesem ergibt klassische Interpolation mit Punktwerten keinen Sinn. %\nl % einfach neuer Absatz ist sinnvoll
+
+Der natürliche Weg ist folgender:
+\begin{align*}
+	\frac{1}{\measure E}\int\limits_E I_h v\d\gamma=\frac{1}{\measure E}\int\limits_E v\d\gamma=(I_h v)(m_E).
+\end{align*}
+Also bleibt das Integralmittel erhalten.
+$m_E$ ist hier der Mittelpunkt der Kange $E$.
+Dann ist $I_h$ ein \textbf{Fortin-Operator}, d.h. er er erfüllt die beiden Bedingungen \eqref{eqLemmaFortinBed1},\eqref{eqLemmaFortinBed2} in Lemma \ref{lemmaFortin}:
+\begin{align*}
+	b(q_h,I_h v)
+	&=\sum\limits_{K}\int\limits_K \underbrace{q_K}_{\text{konstant auf }K}\div(I_h v)\d x\\
+	&=\sum\limits_{K} q_K\int\limits_K \div(I_h v)\d x\\
+	\overset{\text{Gauß}}&=
+	\sum\limits_{K} q_K\int\limits_{\partial K} (I_h v)\cdot n_K\d \gamma\\
+	\overset{n_E\text{ konst. auf }E}&=\sum\limits_K q_K\sum\limits_{E\subseteq\partial K}\int\limits_E(I_h v)\cdot n_E\d\gamma\\
+	\overset{\text{Def }I_h}&=
+	\sum\limits_K q_K\sum\limits_{E\subseteq\partial K}\int\limits_E v\cdot n_E\d\gamma\\
+	\overset{\text{selbe Argumente rückwärts}}&=
+	b(q_h,v)
+\end{align*}
+Um die in $h$ gleichmäßige Stetigkeit von $I_h$ nachzuweisen, nutze die $\halfnorm{·}_{1, K}$-Halbnorm, denn sie ist äquivalent zur vollen Norm und leichter zu handhaben.
+\begin{align*}
+	|I_h v|^2_{1,K}
+	&=\int\limits_K\nabla I_h v:\nabla I_h v\d x\\
+	&=-\int\limits_K I_h v\cdot\underbrace{\laplace I_h v}_{\overset{\text{stückweise linear}}{=}\vec{0}}\d x+\int\limits_{\partial K}I_h v\cdot\underbrace{\big(\nabla I_h v\cdot n_K\big)}_{\text{konstant auf jeder Kante $E\subseteq\partial K$}}\d\gamma\\
+	&=-\int\limits_K v\cdot\underbrace{\laplace I_h v}_{=\vec{0}}\d x+\sum\limits_{E\subseteq\partial K}\int\limits_{E} v\cdot\big(\nabla I_h v\cdot n_K\big)\d\gamma\\
+	\overset{\text{selbe Schritte rückwärts}}&=
+	\int\limits_K\nabla v\cdot\nabla I_h v\d x\\
+	\overset{\text{CS}}&\leq
+	|v|_{1,K}|I_h v|_{1,K}\\
+	\implies\Vert I_h v\Vert_h&\leq\vert v\vert_1
+\end{align*}
+
+\subsection{Ausblick}
+Hier folgt eine Sammlung von Themen, die in der Vorlesung nicht behandelt wurden und von weiterführendem Interesse sind.
+
+Wie die linearen Gleichungssysteme, die aus den diskreten Problemen herauskommen, gelöst werden, haben wir nicht betrachtet.
+Dafür gibt es zum Beispiel multi-mesh-Methoden.
+
+Wie die Integrale, gerade die der Datenfunktionen berechnet wurden, haben wir nicht betrachtet.
+Häufig ist dies nicht exakt möglich, sodass die diskreten Probleme numerische Integration benötigt.
+Häufig ist es auch ausreichend, nur Integrale der Form $∫uv$ oder $∫∇u·∇v$ exakt zu berechnen.
+Wie exakt die Quadraturformeln sein müssen, hängt davon ab, wie gut dann tatsächlich die restliche Lösungsverfahren ist.
+
+Wir haben immer angenommen, das das Gebiet ein Polygon ist, sodass es mit Dreiecken aufgeteilt werden kann.
+Eine runde Form kann mit immer mehr Dreiecken immer besser angenähert werden, häufig sind aber auch Elemente mit gekrümmten Kanten nötig und möglich.
+Es muss auch geklärt werden, wie überhaupt der Fehler gemessen wird und wie Randwerte auf den Rand des diskreten Gebietes projiziert werden.
+
+Wir haben keine Gleichungen höherer Ordnung betrachtet.
+
+Wir haben keine zeitabhängigen Systeme betrachtet. Bei diesen werden die betrachteten Wege mit ODE-Lösern kombiniert.

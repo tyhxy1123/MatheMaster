@@ -39,10 +39,20 @@
 	\pagenumbering{gobble}	% disable pagenumbering
 	\maketitle
 	\doclicenseThis
-	\tableofcontents % Inhaltsverzeichnis
-	\pagenumbering{arabic}	%enable pagenumbering
-
-	\input{chapter0}
+	\tableofcontents
+	\pagenumbering{arabic}	% enable pagenumbering
+	
+	\addchap{Die Finite-Elemente-Methode}
+	\setcounter{section}{-1}
+	\input{section0}
+	\input{section1}
+	\input{section2}
+	\input{section3}
+	\input{section4}
+	\input{section5}
+	\input{section6}
+	\input{section7}
+	\input{section8}
 	\input{anhang}
 	
 	\newcommand{\pathInfix}{Loesungen/}
