@@ -1,0 +1,74 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{palatino,setspace,fancyhdr}
+\usepackage[left=10mm,right=10mm,top=25mm,bottom=25mm]{geometry}
+\onehalfspacing
+\pagestyle{fancy}
+\chead{Zusammenfassung PDENM}
+\lfoot{Version: \today}
+\rfoot{Seite \thepage}
+\lhead{}
+\rhead{Willi Sontopski}
+
+\input{../latex/packages}
+\input{../latex/theoremenvironments}
+\input{../latex/commands}
+\input{../latex/commands_Willi}
+
+\begin{document}
+	\section{Sobolev-Räume}
+	$\Omega\subseteq\R^d$ offen und beschränkt.
+	Aus dem Divergenz-Satz von Gauß folgt die erste Greensche Formel:
+	\begin{align}\label{eqGreen}
+		\int\limits_\Omega\nabla u\cdot\nabla v\d x
+		&=\int\limits_{\partial\Omega}v\cdot\nabla u\cdot n\d S+\int\limits_\Omega v\cdot\Delta u\d x\quad\mit\\
+		\div(\nabla u)&=\laplace u\nonumber
+	\end{align}
+	$\psi$ heißt \textbf{$\alpha$-te schwache Ableitung} von $\varphi\in L^1(\Omega)\gdw
+	%\begin{align*}
+		\forall v\in C_0^\infty(\Omega):\int\limits_\Omega\varphi\cdot \underbrace{D^\alpha v}_{\overset{\alpha=1}=v'}\d x
+		=\underbrace{(-1)^{|\alpha|}}_{\overset{\alpha=1}{=}-1}\cdot\int\limits_\Omega\psi\cdot v\d x$
+	%\end{align*}
+	Kurzschreibweise: $\psi=D^\alpha\varphi=\varphi'$; eindeutig bestimmt, stimmt mit klassischer Ableitung überein, $|x|$
+	\begin{align*}
+		W^{k,p}(\Omega)
+		&:=\Big\lbrace\varphi\in L^p(\Omega):D^\alpha\varphi\text{ (schwache Abl.) existiert und }D^\alpha\varphi\in L^p(\Omega)~\forall|\alpha|\leq k\Big\rbrace
+		\quad k\in\N_0,p\in[1,\infty)\\
+		\Vert\varphi\Vert_{k,p,\Omega}
+		&:=\left(\sum\limits_{|\alpha|\leq k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
+		=\left(\sum\limits_{|\alpha|\leq k}\int\limits_\Omega\left| D^\alpha\varphi(x)\right|^p\d x\right)^{\frac{1}{p}}\qquad\Big(W^{k,p}(\Omega),\Vert\cdot\Vert_{k,p,\Omega}\Big)\text{ ist BR}\\
+		|\varphi|_{k,p,\Omega}
+		&:=\left(\sum\limits_{|\alpha|= k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}\qquad\text{ ist Halbnorm, also }\big|\varphi|=0\not\implies\varphi=0\\
+		\langle \varphi,\psi\rangle_k&:=\sum\limits_{|\alpha|\leq k}\int\limits_\Omega D^\alpha\varphi\cdot D^\alpha\psi\d x\quad\text{Für $p=2$ ist $H^k(\Omega):=W^{k,2}(\Omega)$ mit $\langle\cdot,\cdot\rangle$ Hilbertraum.}
+	\end{align*}
+	$C^\infty(\overline{\Omega})$ liegt dicht in $W^{k,p}(\Omega)$.
+	Stückweise glatte Funkt. sind glatt:
+	$\varphi\in W^{k,p}(\Omega)\overset{\varphi|_{\Omega_i}\in C^k(\overline{\Omega_i})}{\Longleftrightarrow}\varphi\in C^{k-1}(\Omega)$\\
+	Die Vervollständigung des $C_0^\infty(\Omega)$ bzgl. der Norm $\Vert\cdot\Vert_{k,p,\Omega}$ wird mit $W_0^{k,p}(\Omega)$ bezeichnet.
+	$H_0^k(\Omega):=W_0^{k,2}(\Omega)$.\\
+	Eine Menge $\Omega$ ist \textbf{Lipschitz-berandet / -Gebiet}, wenn $\partial\Omega$ stückweise als Graph Lipschitz-stetiger ist.\\
+	Auf Lipschitz-Gebieten existiert der äußere Normalenvektor fast überall auf $\partial\Omega$.\\
+	\textbf{Spursatz:} Sei $\Omega$ Lipschitz-Gebiet. Dann existiert stetiger linearer Op. $\gamma_l:W^{k,p}(\Omega)\rightarrow L^p(\partial\Omega)$ mit\\ 
+	$\gamma_l(\varphi)=\frac{\partial^l}{\partial n^l}\varphi|_{\partial\Omega}\quad\forall\varphi\in C^k(\overline{\Omega}),l<k$, also $\gamma_0(\varphi)=\varphi|_{\partial\Omega},~\gamma_1(\varphi)=\frac{\partial}{\partial n}\varphi_{\partial\Omega},\overset{\text{stetig}}{\implies}
+	\Vert\gamma_l(\varphi)\Vert_{L^p}\leq c\Vert\varphi\Vert_{W^{k,p}(\Omega)}$\\
+	$W_0^{k,p}(\Omega)=\left\lbrace\varphi\in W^{k,p}(\Omega):
+		\forall l\in\lbrace0,\ldots,k-1\rbrace:\gamma_l(\varphi)=0\right\rbrace$\\
+	$W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)$, 
+	Für $p=2$, $d\in\lbrace2,3\rbrace$, $q<6$:
+	$H^2(\Omega)\hookrightarrow C(\overline{\Omega}),~H^1(\Omega)\stackrel{C}{\hookrightarrow} L^q(\Omega)$\\
+	\textbf{Poincaré-U:} $\Vert\cdot\Vert_{1,2,\Omega}\cong\big(|\cdot|_{1,2,\Omega}+|\int_\Omega(\cdot)(x)\d x|\big)$ und $\Vert\cdot\Vert_{1,2,\Omega}\cong|\cdot|_{1,2,\Omega}$ auf $\lbrace\varphi\in H^1(\Omega):\int_\Omega u(x)\d x=0\rbrace$\\
+	\textbf{Friedrichs-U:} $|\cdot|_{k,p,\Omega}$ ist Norm auf $W_0^{k,p}(\Omega)$ mit $|\cdot|_{k,p,\Omega}\cong\Vert\cdot\Vert_{k,p,\Omega}$, also $\Vert\cdot\Vert_\ast\leq c|\cdot|_{k,p,\Omega},*\in\lbrace(k,p,\Omega),L^p(\Omega)\rbrace$
+	
+	\section{Abstrakte Variations-Analysis}
+	
+	\section{Schwache Lösung}
+	
+	\section{Finite-Elemente-Räume}
+	
+	\section{Nichtkonforme Methoden}
+	
+	\section{A posteriori Fehlerschätzer}
+	
+	\section{Stromlinien-Diffusionsmethode (SDFEM)}
+	
+	\section{Gemischte Methoden}
+\end{document}
