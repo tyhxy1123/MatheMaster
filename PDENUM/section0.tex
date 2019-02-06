@@ -1,0 +1,67 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+% vim: set noexpandtab:
+
+\section{Einleitung}
+In diesem Dokument werden folgende Notationen verwendet:
+\begin{itemize}
+	\item $u_x:=\frac{\partial u(x)}{\partial x}$ für die Ableitung einer diffbaren Funktion $u, x\mapsto u(x)$
+	\item $\frac{\partial u}{\partial n}:=\nabla u\cdot n$ wobei $n$ die Normale an $u$ ist
+\end{itemize}
+
+\subsection*{Durchbiegung einer Membran}
+\begin{itemize}
+	\item Gegeben ist eine Membran als Graph der Funktion $u:\Omega\subseteq\R^2\to\R$.
+	\item Aus der Physik ist bekannt, dass die Deformationsarbeit proportional zur Flächenänderung ist.
+	Die Flächenänderung ist
+	\begin{align*}
+		\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y
+	\end{align*}
+	\item Die Energie des Systems ist
+	\begin{align*}
+		\frac{1}{2}\cdot\int\limits_\Omega\left(u^2_x+u_y^2\right)\d x\d y-\int\limits_\Omega f\cdot u\d x\d y
+	\end{align*}
+	wobei $f$ eine von außen einwirkende Kraft ist
+	\item Es wirkt das \textbf{physikalische Minimierungsprinzip}, d.h. das System strebt stets einen Zustand minimaler Gesamtenergie an.
+	Gesucht ist also eine Funktion $u$ derart, dass
+	\begin{align*}
+		E(u)&\leq E(v)&\forall v\in\tilde{V}\\
+		\gdw ~ E(u)&\leq E(u+t\cdot v)\forall t\in\R,~&\forall v\in V
+	\end{align*}
+	Dabei ist $V$ ein Funktionenraum, dessen Funktionen auf dem Rand verschwinden.
+	\item Setze $\varphi(v,t):=E(u+t\cdot v)$, wobei $v$ als Parameter und $t$ als Variable aufgefasst wird.
+	Somit lautet die notwendige Bedingung an das Energieminimum
+	\begin{align*}
+		\frac{\d\varphi}{\d t}(v,0)=0
+	\end{align*}
+\end{itemize}
+Nachrechnen:
+\begin{align*}
+	\frac{\d\varphi}{\d t}(v,t)
+	&=\frac{\d}{\d t}E(u+t\cdot v)\\
+	&=\frac{\d}{\d t}\int\limits_\Omega\left(\frac{1}{2}\cdot\left((u+t\cdot v)_x^2+(u+t\cdot v)_y^2\right)-f(u+t\cdot v)\right)\d x\d y\\
+	&=\int\limits_\Omega\left((u+t\cdot v)_x\cdot v_x+(u+t\cdot v)_y\cdot v_y-f\cdot v\right)\d x\d y
+\end{align*}
+Setze nun $t:=0$.
+Dann folgt aus der notwendigen Bedingung
+\begin{align*}
+	0=\int\limits_\Omega\left(u_x\cdot v_x+u_y\cdot v_y-f\cdot v\right)\d x\d y
+\end{align*}
+Es entsteht die Variationsaufgabe: Finde $u(t)$ so, dass
+\begin{align*}
+	\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y=\int\limits_\Omega f\cdot v\d x\d y\qquad\forall v\in V.
+\end{align*}
+
+Durch partielle Integration (siehe Anhang für nähere Erklärung) erhält man aus dem linken Integral
+\begin{align*}
+	\int\limits_\Omega u_x\cdot v_x+u_y\cdot v_y\d x\d y
+	=-\int\limits_\Omega\left(u_{xx}+u_{yy}\right)\cdot v
+	+\int\limits_{\partial\Omega}\underbrace{u_x\cdot v\cdot n_x+u_y\cdot v\cdot n_y}_{=(\nabla u\cdot n)\cdot v=0\text{, da $v=0$ auf }\partial\Omega}\d\gamma
+\end{align*}
+Somit folgt:
+\begin{align*}
+	-\int\limits_\Omega\big(\underbrace{u_{xx}+u_{yy}}_{=\Delta u}\big)\cdot v\d x\d y=\int\limits_\Omega f\cdot v\d x\d y~\forall v\in V\\
+	\Longrightarrow-\Delta u\equiv f\text{ auf }\Omega\Longrightarrow\textbf{``Poisson-Gleichung''}
+\end{align*}
