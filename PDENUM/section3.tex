@@ -4,17 +4,17 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 % vim: set noexpandtab:
 
-\section{Schwache Lösungen} %3.
+\section{Schwache Lösungen} %3
 Hier: skalare, lineare, elliptische partielle Differentialgleichungen zweiter Ordnung, also
-\begin{align*}
+\begin{align}\label{eqPDE}
 	-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u=f(x)\text{ in }\Omega
-\end{align*}
+\end{align}
 Vereinfachende Annahmen:
 \begin{align*}
 	\begin{array}{ll}
 		f\in L^2(\Omega)&\alpha \in C(\Omega)\\
-		a_i\in C^1(\Omega),i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega), i,j\in\lbrace1,\ldots,d\rbrace\\
-		A_{i,j}(x)=A_{j,i}(x)\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots a_d\big)^T\\
+		a_i\in C^1(\Omega)~\forall i\in\lbrace1,\ldots,d\rbrace, & A_{i,j}\in C^1(\Omega)~\forall i,j\in\lbrace1,\ldots,d\rbrace\\
+		A_{i,j}(x)=A_{j,i}(x)~\forall x\in\Omega, i,j\in\lbrace1,\ldots,d\rbrace, & a=\big(a_1,\ldots, a_d\big)^T\\
 		A=\big(A_{i,j}\big)^d_{i,j=1},& 0<\lambda_0:=\inf\limits_{x\in\Omega}\inf\limits_{z\in\R^d\setminus\lbrace0\rbrace}\frac{z^T\cdot A(x)\cdot z}{z^T\cdot z}
 	\end{array}
 \end{align*}
@@ -46,15 +46,17 @@ Vereinfachende Annahmen:
 	\end{align*}
 \end{itemize}
 
-%Was ist das hier? %TODO
-Nun bringen wir die allgemeine Form der Gleichung von oben in eine lesbare Form.
+Nun bringen wir die allgemeine Form der Gleichung \eqref{eqPDE} in eine lesbare Form.
 Sei dazu $v\in C_0^\infty(\Omega)$.
 Wir multiplizieren auf beiden Seiten mit v und integrieren anschließend über ganz $\Omega$.
 Dann gilt:
 \begin{align*}
 	\int\limits_\Omega f\cdot v\d x
-	\overset{\text{Def}}&=
+	\overset{\eqref{eqPDE}}&=
 	\int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
+	&=
+	\int\limits_\Omega-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)\cdot v\d x
+	+\int\limits_\Omega\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
 	\overset{\text{partGauß}}&=
 	\int\limits_\Omega\sum\limits_{i,j=1}^d A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\cdot\frac{\partial v}{\partial x_i}\d x+\int\limits_\Omega\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}\cdot v+\alpha(x)\cdot u\cdot v\d x\\
 	&\qquad
@@ -63,13 +65,15 @@ Dann gilt:
 	\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
 \end{align*}
 
+Dies ist die \textbf{schwache Formulierung} von \eqref{eqPDE}.
+
 \begin{definition}[Schwache Lösung]\ %3.1
 	\begin{enumerate}[label=(\roman*)]
 		\item Eine Funktion $u\in H_0^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit homogener Dirichlet-Randbedingung}
 		\begin{align*}
 			:\Longleftrightarrow
 			\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
-			=\int\limits_\Omega f(x)\cdot v\d x
+			=\int\limits_\Omega f\cdot v\d x
 			\qquad\forall v\in H_0^1(\Omega)
 		\end{align*}
 		\item Eine Funktion
@@ -80,7 +84,7 @@ Dann gilt:
 		\begin{align*}
 			:\Longleftrightarrow
 			\int\limits_\Omega \nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x
-			=\int\limits_\Omega f(x)\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
+			=\int\limits_\Omega f\cdot v\d x+\int\limits_{\Gamma_N}g\cdot v\d\gamma\\
 			\qquad\forall v\in H^1_D(\Omega)
 		\end{align*}
 		\item Eine Funktion $u\in H^1(\Omega)$ heißt \textbf{schwache Lösung einer Konvektions-\\Diffusions-Gleichung mit Neumann-Randbedingung}
@@ -150,24 +154,33 @@ Dann gilt:
 
 \begin{proof}
 	\underline{Zeige (i):}\\
-	$V=H_0^1(\Omega)$, $\Vert\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\sim\vert\cdot\vert_{1,2,\Omega}$.
-	Zeige zunächst, dass $l(v)$ stetig ist.
-	%Zuerst die rechte Seite: <- steht bei mir ursprünglich auch so im Skript, aber ich versteh es nicht. Macht wenig Sinn an der Stelle.
+	$V=H_0^1(\Omega)$, $\Vert\cdot\Vert_V=\Vert\cdot\Vert_{1,2,\Omega}\cong\vert\cdot\vert_{1,2,\Omega}$.
+	Die Linearform
 	\begin{align*}
-		l(v)&=\int\limits_\Omega f\cdot v\d x\\
-		|l(v)|&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{0,2}\\
-		&\leq\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{1,2}
+		l\colon V\to\R,\qquad l(v):=\int\limits_\Omega f\cdot v\d x\qquad\forall v\in V
+	\end{align*}		
+	 ist stetig, denn es gilt:
+	\begin{align*}
+		|l(v)|
+		\overset{\Def}=
+		\left|\int\limits_\Omega f\cdot v\d x\right|
+		\overset{\eqref{eqCSW02}}&\leq
+		\Vert f\Vert_{0,2}\cdot\Vert v\Vert_{0,2}
+		\overset{\Def}\leq
+		\underbrace{\Vert f\Vert_{0,2}}_{\overset{\overset{\text{Vor}}{\in}\L^2}{<}\infty,\text{ konst.}}\cdot\Vert v\Vert_{1,2}
 	\end{align*}
-	Bilinearform:
+	Betrachte die Bilinearform
 	\begin{align*}
-		a(v,w)=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x
+		a(v,w):=\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x\qquad\forall v,w\in V.
 	\end{align*}
-	Stetigkeit:
+	Sie ist stetig, denn:
 	\begin{align*}
-		\big|a(v,w)\big|&=\left|\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x\right|\\
+		\big|a(v,w)\big|
+		\overset{\Def}&=
+		\left|\int\limits_\Omega\nabla v^T\cdot A\cdot\nabla w+\big(a\cdot\nabla v+\alpha\cdot v\big)\cdot w\d x\right|\\
 		&\leq
 		\Vert A\Vert_{L^\infty}\cdot\Vert\nabla v\Vert_{0,2}\cdot\Vert\nabla w\Vert_{0,2}\\
-		&\quad+\Vert a\Vert_{L^\infty} \cdot\Vert\nabla v\Vert_{0}\cdot\Vert w\Vert_{0,2}\\
+		&\quad+\Vert a\Vert_{L^\infty}\cdot\Vert\nabla v\Vert_{0,2}\cdot\Vert w\Vert_{0,2}\\
 		&\quad+\Vert\alpha\Vert_{L^\infty}\cdot\Vert v\Vert_{0,2}\cdot\Vert w\Vert_{0,2}\\
 		&\leq
 		\left(\Vert A\Vert_{L^\infty}+\Vert a\Vert_{L^\infty}+\Vert\alpha\Vert_{L^\infty}\right)\cdot\Vert v\Vert_{1,2}\cdot\Vert w\Vert_{1,2}

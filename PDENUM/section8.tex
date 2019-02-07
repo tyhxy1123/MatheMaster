@@ -17,7 +17,7 @@ $a\colon V\times V\to\R$: ist eine koerzive, stetige Bilinearform\\
 $f(\cdot)=(f,\cdot)$: ist stetige Lineaform $f(\cdot)\colon V\to\R$ \\
 $b\colon Q\times V\to\R$: stetige Bilinearform\\
 $Q$: passender Funktionenraum\nl
-$b$ hat verschwindes Integral-Mittel:
+$b$ hat verschwindendes Integral-Mittel:
 \begin{align*}
 	b(q,v)=\int\limits_\Omega q\cdot v\d x,\qquad
 	Q=\spann\lbrace\indi\rbrace\hat{=}\R
@@ -34,7 +34,7 @@ Also:
 	0&=a\big(u^\ast,w\big)-f(w)\qquad\forall w\in W
 \end{align*}
 Das ist ein Variationsproblem in $W$.\\
-Problem: Es ist oftmals scher $W$ durch konforme Finite-Elemente-Räume zu approximieren.
+Problem: Es ist oftmals schwer $W$ durch konforme Finite-Elemente-Räume zu approximieren.
 
 \begin{beispiel}\label{beispiel8.1} %nonumber in Lecture, but i'll give one
 	\begin{align*}
@@ -249,7 +249,7 @@ Die letzte Ungleichung heißt \textbf{$\inf$-$\sup$-Bedingung / LBB-Bedingung}
 \setcounter{satz}{-1}
 \begin{satz}\label{theorem8.0infsupAequivalenz}%nonumber
 	Für eine stetige Bilinearform $b$ auf $Q\times V$ mit zugehörigen Operatoren
-	$B\colon v\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
+	$B\colon V\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
 	\begin{enumerate}[label=(\roman*)]
 		\item $\begin{aligned}
 			\exists\beta>0:\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace 0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta

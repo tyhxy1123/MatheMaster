@@ -13,6 +13,11 @@ Im Beispiel aus der Vorlesung erhalten wir folgende Gleichheit:
 \begin{align}
 	\int_{\Omega} u_xv_x + u_yv_y \d x\d y = -\int_{\Omega} (u_{xx} + u_{yy})v\d x\d y + \int_{\partial\Omega} u_x v n_x + u_y v n_y \d\gamma
 \end{align}
+bzw. die \textbf{erste Greensche Formel}, in Kurzschreibweise:
+\begin{align}\label{eqGreen}
+	\int\limits_\Omega\nabla u\cdot\nabla v\d x
+	=\int\limits_{\partial\Omega}v\cdot\nabla u\cdot n\d S
+\end{align}
 Dies wird hier noch einmal im Detail erklärt.\nl
 Zunächst gehen wir zu einer kürzeren und allgemeineren Notation über. 
 Wir schreiben die Summen der partiellen Ableitungen als Skalarprodukt von Gradienten auf, z.B. :
@@ -52,7 +57,49 @@ Nun können wir (A.2) beweisen:
 \begin{proof}
 	Siehe Forster \textit{Analysis 2}.
 \end{proof}
-	
+
+\section{Cauchy-Schwarz-Ungleichung auf Sobolevräumen}
+Es gilt
+\begin{align}\label{eqCS}\tag{CS}
+	\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
+	&\leq\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
+	&\forall& u,v\in W^{1,2}(\Omega)\\
+	\left|\int\limits_\Omega u\cdot v\d x\right|&\leq\Vert u\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
+	&\forall& u,v\in W^{0,2}(\Omega)\label{eqCSW02}\tag{CS}
+\end{align}
+
+\begin{proof}
+	Seien $u,v\colon \Omega\subseteq\R^d\to\R$ aus $W^{1,2}(\Omega)$ beliebig.
+	Bezeichne $E:=\lbrace e_1,\ldots,e_d\rbrace$ die Standardbasis des $\R^d$.
+	Dann gilt:
+	\begin{align*}
+		\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
+		\overset{\Def~\nabla}&{=}		
+		\left|\int\limits_\Omega\left(\sum\limits_{i=1}^d\frac{\partial u}{\partial_i}e_i\right)\cdot\left(\sum\limits_{j=1}^d\frac{\partial v}{\partial_j}e_j\right)\d x\right|\\
+		&=\Bigg|\int\limits_\Omega\sum\limits_{i,j=1}^d\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_j}\underbrace{e_i\cdot e_j}_{=\delta_{i,j}}\d x\Bigg|\\
+		&=\left|\int\limits_\Omega\sum\limits_{i=1}^d\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_i}\d x\right|\\
+		\overset{\text{Lin}}&=
+		\left|\sum\limits_{i=1}^d\int\limits_\Omega\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_i}\d x\right|\\
+		\overset{\text{DU}}&\leq
+		\sum\limits_{i=1}^d\left|\int\limits_\Omega\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_i}\d x\right|\\
+		&=
+		\sum\limits_{|\alpha|=1}^d\left|\int\limits_\Omega D^\alpha u D^\alpha v\d x\right|\qquad(\alpha\in E)\\
+		&\leq
+		\sum\limits_{|\alpha|\leq1}^d\left|\int\limits_\Omega D^\alpha u D^\alpha v\d x\right|\\
+		\overset{\Def}&=
+		\big|\langle u,v\rangle_1\big|\\
+		\overset{\text{CF}}&\leq
+		|u|_{1,2,\Omega}\cdot|v|_{1,2,\Omega}\\
+		\overset{\Def}&\leq
+		\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
+	\end{align*}
+	Bei CF wird die gewöhnliche Cauchy-Schwartz-Ungleichung benutzt:
+	\begin{align}\label{eqCSAllgemein}\tag{CS}
+		\big|\langle u,v\rangle\big|_H\leq\Vert u\Vert_H\cdot\Vert v\Vert_H\qquad\forall u,v\in H
+	\end{align}
+	Die zweite Ungleichung zeigt man analog.
+\end{proof}
+
 \section{Fixpunktsätze}
 \begin{satz}[Banach'scher Fixpunktsatz]\label{BanachscherFixpunktsatz}\enter
 	Sei $W$ ein Banachraum, $Q:N\to N$ mit $N\subseteq W$ sei eine Kontraktion, d. h.

@@ -13,15 +13,17 @@
 \input{../latex/theoremenvironments}
 \input{../latex/commands}
 \input{../latex/commands_Willi}
+\input{PDENM_commands}
 
 \begin{document}
 	\section{Sobolev-Räume}
+	
 	$\Omega\subseteq\R^d$ offen und beschränkt.
 	Aus dem Divergenz-Satz von Gauß folgt die erste Greensche Formel:
 	\begin{align}\label{eqGreen}
 		\int\limits_\Omega\nabla u\cdot\nabla v\d x
-		&=\int\limits_{\partial\Omega}v\cdot\nabla u\cdot n\d S+\int\limits_\Omega v\cdot\Delta u\d x\quad\mit\\
-		\div(\nabla u)&=\laplace u\nonumber
+		=\int\limits_{\partial\Omega}v\cdot\nabla u\cdot n\d S-\int\limits_\Omega v\cdot\Delta u\d x\quad\mit\quad
+		\div(\nabla u)=\laplace u=\sum\limits_{k=1}^n\frac{\partial^2 f}{\partial x_k^2}
 	\end{align}
 	$\psi$ heißt \textbf{$\alpha$-te schwache Ableitung} von $\varphi\in L^1(\Omega)\gdw
 	%\begin{align*}
@@ -35,7 +37,7 @@
 		\quad k\in\N_0,p\in[1,\infty)\\
 		\Vert\varphi\Vert_{k,p,\Omega}
 		&:=\left(\sum\limits_{|\alpha|\leq k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}
-		=\left(\sum\limits_{|\alpha|\leq k}\int\limits_\Omega\left| D^\alpha\varphi(x)\right|^p\d x\right)^{\frac{1}{p}}\qquad\Big(W^{k,p}(\Omega),\Vert\cdot\Vert_{k,p,\Omega}\Big)\text{ ist BR}\\
+		=\left(\sum\limits_{|\alpha|\leq k}\int\limits_\Omega\left| D^\alpha\varphi(x)\right|^p\d x\right)^{\frac{1}{p}};~\Big(W^{k,p}(\Omega),\Vert\cdot\Vert_{k,p,\Omega}\Big)\text{BR};\Vert\cdot\Vert_{k,p,\Omega}\leq\Vert\cdot\Vert_{k+1,p,\Omega}\\
 		|\varphi|_{k,p,\Omega}
 		&:=\left(\sum\limits_{|\alpha|= k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}\qquad\text{ ist Halbnorm, also }\big|\varphi|=0\not\implies\varphi=0\\
 		\langle \varphi,\psi\rangle_k&:=\sum\limits_{|\alpha|\leq k}\int\limits_\Omega D^\alpha\varphi\cdot D^\alpha\psi\d x\quad\text{Für $p=2$ ist $H^k(\Omega):=W^{k,2}(\Omega)$ mit $\langle\cdot,\cdot\rangle$ Hilbertraum.}
@@ -60,9 +62,88 @@
 	
 	\section{Abstrakte Variations-Analysis}
 	
+	\textbf{Poisson:} $-\laplace u=f$ auf $\Omega$, $u=0$ auf $\partial\Omega=:\Gamma$; Schwache Formulierung:\\
+	$l(v):=
+	\int\limits_\Omega f\cdot v\d x
+	\overset{\text{Poi}}=
+	\int\limits_\Omega-\laplace u\cdot v\d x
+	\overset{\eqref{eqGreen}}=
+	\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x=\int\limits_\Omega\nabla u\cdot\nabla v\d x:=a(u,v),~u,v\in H_0^1(\Omega)$\\
+	$a$ ist stetig auf $V$, d.h. $\exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V$ und koerziv / $V$-elliptisch, d.h. $\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V$\\
+	\textbf{CS:} $|\int_\Omega\nabla u\cdot\nabla v\d x|\leq\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}~\forall u,v\in W_0^{1,2}(\Omega)$ und $\left|\int\limits_\Omega u\cdot v\d x\right|\leq\Vert u\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}~\forall u,v\in W^{0,2}(\Omega)$\\
+	\textbf{Lax-Milgram:} $V$ HR, $a$ stetige Bilinearform, $b$ stetige Linearform $\implies\exists!u\in V\colon\forall v\in V\colon a(u,v)=l(v)$.\\
+	\textit{Beweis.} Trafo dualer Operator $Au:V\to\R,u\mapsto a(u,v)\leadsto A$ stetig und lineare auf $V\leadsto$ Konstruiere Kontraktion $\leadsto$ B. Fixpunksatz $\leadsto\square$\\
+	\underline{Idee:} Approximation des Variationsproblems auf endlich dimensionalem Unterraum $V_h\subseteq V$.
+	Auf $V_h$ gibt es wegen Lax-Milgram auch eindeutige Lösung.
+	Das Variationsproblem auf $V_h$ lässt sich stets als LGS umschreiben und damit lösen:
+	\begin{align*}
+		\Big(a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h\Big)\overset{\text{Basis}}&\Longleftrightarrow
+		\Big(a(u_n,\varphi_i)=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\Big)\\
+		u_n\overset{\text{Basis}}&=\sum\limits_{j=1}^n u_j\cdot\varphi_j &\exists&u_1,\ldots,u_n\in\R\\
+		\implies\sum\limits_{j=1}^n a(\varphi_j,\varphi_i)\cdot u_j
+		&=a\left(\sum\limits_{j=1}^n u_j\cdot\varphi_j,\varphi_i\right)	
+		\overset{\text{Lin}}=l(\varphi_i)&\forall& i\in\lbrace1,\ldots,n\rbrace\\
+		\overset{\text{LGS}}\implies
+		&\left.\begin{array}{ll}
+			A:=(a_{i,j})_{i,j=1,\ldots,n} &a_{i,j}:=a\big(\varphi_j,\varphi_i\big)\\
+			b:=(b_i)_{i=1,\ldots,n} &b_i:=l(\varphi_i)\\
+			u:=(u_j)_{j=1,\ldots,n}
+		\end{array}\right\rbrace A\cdot u=b
+	\end{align*}
+	\textbf{Céas-Lemma:} $V$ HR, $V\subseteq V_h$ UVR, $a$ $M$-stetige $\alpha$-koerzive Linearform auf $V$ und $l$ stetige Linearform $\implies\exists C=\frac{M}{\alpha}>0:\Vert u-u_h\Vert_V\leq C\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V$
+	"Approximation $u_h$ von $u$ höchstens $\frac{M}{\alpha}$ schlechter als beste Approximation für $u$ im Raum $V_h$, quasi-optimal."\\
+	\textit{Beweis.} stetige minus diskretes Problem ergibt \textbf{Galerkin Orthogonalität} 
+	$a(u-u_h,v_h)=0\qquad v_h\in V_h$
+	\begin{align*}
+		\alpha\cdot\Vert u-u_h\Vert^2_V
+		\overset{\text{koerziv}}&\leq
+		a(u-u_h,u-u_h)\\
+		&=a(u-u_h,u-v_v+v_h- u_h)\\
+		\overset{\text{bilin}}&=
+		a(u-u_h,u-v_h)+\underbrace{a(u-u_h,\underbrace{v_h-u_h}_{\in V_h})}_{\overset{\text{GO}}=0}\\
+		\overset{\text{stetig}}&{\leq}
+		M\cdot\Vert u-u_h\Vert_V\cdot\Vert u-v_h\Vert_V\\
+		\implies
+		\Vert u-u_h\Vert_V&\leq\frac{M}{\alpha}\cdot\Vert u-v_h\Vert_V\qquad\forall v_h\in V_h\\
+		\implies
+		\Vert u-u_h\Vert_V&\leq \frac{M}{\alpha}\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
+	\end{align*}
+	
 	\section{Schwache Lösung}
 	
+	Hier: skalare, lineare PDE zweiter Ordnung\\
+	homogene DB ist $u=0$ auf $\partial\Omega$, Neumann-Randbedingung ist $\frac{\partial u}{\partial n}=g$ auf $\partial\Omega,g\in L^2$, Mischformen\\
+	Die \textbf{Konvektions-Diffusionsgl.} mit homo-Neumann-RB ist eindeutig schwach lösbar für $\alpha-\frac{1}{2}\div(a)\geq0$:
+	\begin{align*}
+	-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u&=f(x)\text{ in }\Omega\\
+	\overset{\text{weak}}{\rightleftarrows}
+	\int\limits_\Omega\nabla u^T\cdot A\cdot\nabla v+a\cdot\nabla u\cdot v+\alpha\cdot u\cdot v\d x&=\int\limits_\Omega f\cdot v\d x
+	\end{align*}
+	
 	\section{Finite-Elemente-Räume}
+
+	Für $\Omega=(0,1)\subseteq\R$, $k\in\N_0$ und $m\in\N_0$ und Zerlegung $\mathcal{T}_n:=\big\lbrace I_j:0\leq j\leq n\big\rbrace,~I_j:=\big(t_j,t_{j+1}\big)$, $h:=\max\limits_{0\leq j\leq n} h_j,h_j:=t_{j+1}-t_j$ definiere
+	\begin{align*}
+		S_h^{k,-1}&:=\Big\lbrace\varphi:[0,1]\to\R:\varphi\big|_{I_j}\in P_k,~0\leq j\leq n\Big\rbrace
+		\quad\text{stückweise Grad-$k$-Polynome}\\
+		S_h^{k,m}&:=S_h^{k,-1}\cap C^m\big([0,1]\big)\overset{\text{Glätte}}{\subseteq} H^{m+1}(\Omega)
+		\quad\text{stückweise Grad-$k$-Polynome $m$-glatt}\\
+		S_{h,0}^{k,m}&:=\Big\lbrace\varphi\in S_h^{k,m}:\varphi(0)=\varphi(1)=0\Big\rbrace
+		\quad\ldots\text{ mit kompaktem Träger}
+	\end{align*}
+	Auch hier kann man das Problem wieder diskretisieren und durch Wahl einer Basis auf ein LGS gelangen (\textbf{Stiffness-Matrix)}. Approximationseigenschaft von 1DFEM: $\inf\limits_{v_h\in S_{h,0}^{k,0}}\big|u-v_h\big|_{1,2}\leq h^k\cdot|u|_{k+1,2}~\forall u$\\%\in H^{k+1}(\Omega)\cap H^{1}_0(\Omega)$
+		2D-FEM: Sei $\Omega\subseteq\R^2$ beschränktes Polygon.
+		Dies wird mittels \textbf{Triangulation} in offene disjunkte Teildreiecke $\T=\lbrace K_1,\ldots,K_N\rbrace$ zerlegt, $\overline{\Omega}=\bigcup_{i=1}^N\overline{K_i}$. 
+		Die Zerlegung ist \textbf{zulässig}, falls $\overline{K_i}\cap\overline{K_j}$ leer, ein Eckpunkt oder eine gemeinsame Kante.
+		Der Raum der stetigen stückweise linearen Funktionen ist\\
+		$V_h:=\left\lbrace
+		v\in C(\overline{\Omega}) : v|_{K_i}\in P_1(K_i)~\forall i=1,\ldots,N,\\
+		v|_{\partial\Omega}=0\right\rbrace\subseteq H^1_0(\Omega)$\\
+		Finites-Element ist $(K,V,\Sigma)$ mit $K\subseteq\R^d$ nichtleer, offen, beschränkt und Lipschitz-berandet; \\$V=\lbrace f:K\to\R\rbrace$ mit $\dim(V)=m<\infty$ Funktionenraum der \textbf{Formfunktionen} (z. B. Polynome); $\Sigma=\lbrace N_1,\ldots,N_m\rbrace:V\to\R\rbrace$ mit \textbf{Nodal-Funktionalen / DOFs} $N_i$ (Knotenvariablen).
+		Sie werden als \textbf{$V$-unisolvent} angenommen, also $\forall\alpha_1,\ldots,\alpha_m\in\R:\exists! v\in V:N_1(v)=\alpha_1,\ldots,N_m(v)=\alpha_m$\\
+		Es gibt als Funktionen $v_i\in V:N_i(v_j)=\delta_{i,j}~\forall i,j\in\lbrace1,\ldots,m\rbrace$\\
+		Sei $V$ mit $\lbrace\varphi_1,\ldots,\varphi_m\rbrace$, $\Sigma=\lbrace N_1,\ldots,N_m\rbrace$. Dann ist $\Sigma$ unisolvent $\gdw M:=(m_i,j)$ invertierbar mit $m_{i,j}:=N_i(\varphi_i)$
+			
 	
 	\section{Nichtkonforme Methoden}
 	
@@ -70,5 +151,23 @@
 	
 	\section{Stromlinien-Diffusionsmethode (SDFEM)}
 	
+	Ziel: Stabileres Verfahren konstruieren, welches für Finite-Elemente beliebiger Ordnung genutzt werden kann mit höherer Konvergenzordnung
+	
 	\section{Gemischte Methoden}
+	
+	Problem: Es ist oftmals schwer Lösungen durch konforme Finite-Elemente-Räume zu approximieren.\\
+	\textbf{Satz.} Für eine stetige Bilinearform $b:Q\times V\to\R$ mit zugehörigen Operatoren
+	$B\colon V\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\inf\limits_{q\in Q\setminus\lbrace0\rbrace}\sup\limits_{v\in V\setminus\lbrace0\rbrace}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta$, die \textbf{inf-sup-Bedingung / LBB-Bedingung} ist 
+		\item $\begin{aligned}
+			B\colon W^\perp\to Q^\ast
+		\end{aligned}$ ist ein Isomorphismus mit $\Vert B v\Vert_{Q^\ast}\geq\beta\cdot\Vert v\Vert_V\qquad\forall v\in W^\perp$
+		\item $\begin{aligned}
+			B^\ast\colon Q\to\big\lbrace g\in V^\ast:\langle g,v\rangle=0~\forall v\in W\big\rbrace
+		\end{aligned}$ ist ein Isomorphismus mit $\big\Vert B^\ast q\big\Vert_{V^\ast}\geq\beta\cdot\Vert q\Vert_Q\qquad\forall q\in Q$
+	\end{enumerate}
+	\textbf{Theorem.} Seien $Q,V$ HR, $a\colon V\times V\to\R$ stetig, koerzive Bilinearform und $b\colon V\to\R$ stetige Bilinearform ???. Dann: LBB $\implies a(u,v)=f(v)$ hat für jedes $f\in V^\ast$ eindeutige Lösung\\
+	\textbf{Lemma Fortin:} Angenommen stetige LBB. Dann: diskrete LBB $\Leftrightarrow\exists$ Familie von Interpolationsoperatoren $\lbrace I_h:V\to V_h\rbrace_h$ mit $b(q_h,v)=b(q_h,I_h v)\forall q_h\in Q_h,\forall v\in V$ und $\Vert I_h v\Vert_V\leq c\Vert v\Vert_V\forall v\in V$. Wähle meist Integralmittel als \textbf{Fortin-Operator}.
+	
 \end{document}

@@ -17,8 +17,10 @@ Durch Multiplikation mit $v$ und Integration erhalten wir
 \begin{align*}
 	&\stackrel{ v|_{\partial\Omega}\equiv0}{\implies}
 	\int\limits_\Omega f\cdot v\d x
-	=\int\limits_\Omega-\Delta u\cdot v\d x
-	=\int\limits_\Omega\nabla u\cdot\nabla v\d x-\underbrace{\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x}_{=0}
+	\overset{\eqref{PoissonEquation}}=
+	\int\limits_\Omega-\laplace u\cdot v\d x
+	\overset{\eqref{eqGreen}}=
+	\int\limits_\Omega\nabla u\cdot\nabla v\d x-\underbrace{\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x}_{=0}
 \end{align*}
 Definiere:
 \begin{align*}
@@ -48,9 +50,9 @@ Eigenschaften der oben definieren Bilinearform $a$:
 	denn:
 	\begin{align*}
 		\big| a(u,v)\big|=\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
-		\leq
-		|u|_{1,2,\Omega}\cdot|v|_{1,2,\Omega}
-		\leq
+		\overset{\eqref{eqCS}}\leq
+		%|u|_{1,2,\Omega}\cdot|v|_{1,2,\Omega} % stand so drin, aber macht wenig Sinn
+		% \overset{\Def}\leq
 		\underbrace{1}_{=:M}\cdot\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
 	\end{align*}
 	\item $a$ ist \textbf{koerziv}, d. h.
@@ -60,9 +62,12 @@ Eigenschaften der oben definieren Bilinearform $a$:
 	denn:
 	\begin{align*}
 		a(v,v)
-		=\int\limits_\Omega\nabla v\cdot\nabla v\d x
-		=\int\limits_\Omega\sum\limits_{i=1}^d\left(\frac{\partial v}{\partial x_i}\right)^2\d x
-		=|v|^2_{1,2,\Omega}
+		\overset{\Def}=
+		\int\limits_\Omega\nabla v\cdot\nabla v\d x
+		\overset{\Def}=
+		\int\limits_\Omega\sum\limits_{i=1}^d\left(\frac{\partial v}{\partial x_i}\right)^2\d x
+		\overset{\Def}=
+		|v|^2_{1,2,\Omega}
 		\stackrel{\text{Fried}}{\geq}
 		\frac{1}{c_F^2}\cdot\Vert v\Vert^2_{1,2,\Omega}
 	\end{align*}
@@ -76,10 +81,12 @@ Eigenschaften der oben definierten Linearform $l$:
 	\end{align*}
 	denn:
 	\begin{align*}
-		\big| l(v)\big|=\left|\int\limits_\Omega f\cdot v\d x\right|
-		\stackrel{\text{CS}}{\leq}
+		\big| l(v)\big|
+		\overset{\Def}=
+		\left|\int\limits_\Omega f\cdot v\d x\right|
+		\overset{\eqref{eqCSW02}}{\leq}
 		\Vert f\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
-		\stackrel{\text{CS}}{\leq}
+		\stackrel{\Def}{\leq}
 		\underbrace{\Vert f\Vert_{0,2,\Omega}}_{=:M^\ast}\cdot\Vert v\Vert_{1,2,\Omega}
 	\end{align*}
 \end{itemize}
@@ -96,8 +103,11 @@ Eigenschaften der oben definierten Linearform $l$:
 \begin{proof}
 	\underline{Schritt 1:}\\
 	Transformation in einen dualen Operator über dem Dualraum $V^\ast$ von $V$.
-	Die Abbildung $v\mapsto a(u,v)$ definiert für alle festen $u\in V$ eine stetige Linearform auf $V$.
-	Wir bezeichnen diese mit $Au\in V^\ast$
+	Betrachte also für festes $u\in V$ den Operator
+	\begin{align*}
+		Au:V\to \R,\qquad v\mapsto Au(v):=a(u,v)
+	\end{align*}
+	Offenbar ist $Au$ eine stetige Linearform auf $V$, also $ Au\in V^\ast$. Dann gilt:
 	\begin{align*}
 		\langle Au,v\rangle=(Au)(v):&=a(u,v)\qquad\forall u,v\in V \\
 		b\in V^\ast: \langle b,v\rangle&=b(v)
@@ -109,7 +119,7 @@ Eigenschaften der oben definierten Linearform $l$:
 	\end{align*}
 
 	\underline{Schritt 2:}\\
-	Die Abbildung $V\to V^\ast$ kann auch als Abbildung $A:V\to V$ aufgefasst werden.
+	Die Abbildung $A:V\to V^\ast$ ($u\mapsto Au$) kann auch als Abbildung $A:V\to V$ aufgefasst werden.
 	Eigenschaften von $A$:
 	\begin{enumerate}[label=(\alph*)]
 		\item $A$ ist linear auf $V$
@@ -175,13 +185,15 @@ Betrachte das Problem
 Da $a$ und $l$ auf $V_h$ die Voraussetzungen des Satzes von Lax-Milgram auf $V_h$ erfüllen, gibt es ein eindeutiges $u_n\in V_h$, das das Problem löst.\nl
 Sei $\lbrace\varphi_i\rbrace_{i=1}^n$ eine Basis von $V_h$.
 \begin{align*}
-	\Big(a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h\Big)\Longleftrightarrow
+	\Big(a(u_n,v_h)=l(v_h)\qquad\forall v_h\in V_h\Big)\overset{\text{Basis}}\Longleftrightarrow
 	\Big(a(u_n,\varphi_i)=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\Big)
 \end{align*}
 und
 \begin{align*}
-	u_n=\sum\limits_{j=1}^n u_j\cdot\varphi_j,\qquad u_1,\ldots,u_n\in\R\\
-	\sum\limits_{j=1}^n a(\varphi_j,\varphi_i)\cdot u_j=l(\varphi_i)\qquad\forall i\in\lbrace1,\ldots,n\rbrace\\
+	u_n\overset{\text{Basis}}&=\sum\limits_{j=1}^n u_j\cdot\varphi_j &\exists&u_1,\ldots,u_n\in\R\\
+	\implies\sum\limits_{j=1}^n a(\varphi_j,\varphi_i)\cdot u_j
+	&=a\left(\sum\limits_{j=1}^n u_j\cdot\varphi_j,\varphi_i\right)	
+	\overset{\text{Lin}}=l(\varphi_i)&\forall& i\in\lbrace1,\ldots,n\rbrace
 \end{align*}
 Daraus ergibt sich ein lineares Gleichungssystem:
 \begin{align*}
@@ -189,11 +201,11 @@ Daraus ergibt sich ein lineares Gleichungssystem:
 		A:=(a_{i,j})_{i,j=1,\ldots,n} &a_{i,j}:=a\big(\varphi_j,\varphi_i\big)\\
 		b:=(b_i)_{i=1,\ldots,n} &b_i:=l(\varphi_i)\\
 		u:=(u_j)_{j=1,\ldots,n}
-	\end{array}\right\rbrace A\cdot u=b\qquad\text{ LGS}
+	\end{array}\right\rbrace A\cdot u=b
 \end{align*}
 
 \begin{theorem}[Céa's Lemma]\enter\label{theorem2.2CeasLemma}
-	Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a$ eine stetige, koerzive Bilinearform auf $V$ und $l$ eine stetige Linearform.
+	Sei $V$ ein Hilbertraum, $V_h\subseteq V$ ein abgeschlossener Unterraum, $a:V\times V\to\R$ eine $M$-stetige (beschränkte), $\alpha$-koerzive Bilinearform auf $V$ und $l:V\to\R$ eine stetige Linearform.
 	Dann gilt:
 	\begin{align*}
 		\exists C=\frac{M}{\alpha}>0:\Vert u-u_h\Vert_V\leq C\cdot\inf\limits_{v_h\in V_h}\Vert u-v_h\Vert_V
@@ -208,16 +220,17 @@ Daraus ergibt sich ein lineares Gleichungssystem:
 	\end{align*}
 	Wir erhalten die sogenannte \textbf{Galerkin Orthogonalität}, indem wir die Differenz dieser beiden Gleichungen bilden 
 	(mit $v=v_h$ in der ersten Gleichung, da $V_h\subseteq V$):
-	\begin{align}\label{eqGalerkinOrthogonalitaet}\tag{GalerkinOrtho}
+	\begin{align}\label{eqGalerkinOrthogonalitaet}\tag{GO}
 		a(u-u_h,v_h)=0\qquad v_h\in V_h
 	\end{align}
 	Also:
 	\begin{align*}
 		\alpha\cdot\Vert u-u_h\Vert^2_V
-		&\leq
+		\overset{\text{koerziv}}&\leq
 		a(u-u_h,u-u_h)\\
 		&=a(u-u_h,u-v_v+v_h- u_h)\\
-		&=a(u-u_h,u-v_h)+\underbrace{a(u-u_h,\underbrace{v_h-u_h}_{\in V_h})}_{=0}\\
+		\overset{\text{bilin}}&=
+		a(u-u_h,u-v_h)+\underbrace{a(u-u_h,\underbrace{v_h-u_h}_{\in V_h})}_{\overset{\eqref{eqGalerkinOrthogonalitaet}}=0}\\
 		\overset{\text{stetig}}&{\leq}
 		M\cdot\Vert u-u_h\Vert_V\cdot\Vert u-v_h\Vert_V\\
 		\implies
