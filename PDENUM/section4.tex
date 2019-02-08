@@ -293,20 +293,49 @@ Die Triangulation $\T$ ist formal definiert als Menge der Teildreiecke, also
 	Ein \textbf{finites Element} ist ein Tripel $(K,V,\Sigma)$ mit:
 	\begin{enumerate}[label=(\roman*)]
 		\item $K\subseteq\R^d$ ist nichtleer, offen, beschränkt und Lipschitz-berandet.
-		\item $V$ ist endlich-dimensionaler Funktionenraum von Funktionen mit Definitionsbereich $K$. $m:=\dim(V)<\infty$
-		\item $\Sigma=\lbrace N_i\rbrace_{i\in\lbrace1,\ldots,m\rbrace}$ ist eine Menge von $m$ linearen Funktionalen\\ $N_1,\ldots,N_m:V\to\R^m$, welche mindestens für alle Funktionen in $V$ definiert sind.
-		Sie werden als \textbf{$V$-unisolvent} angenommen, d. h.:
+		\item $V=\big\lbrace f:K\to\R\big\rbrace$ ist endlich-dimensionaler Funktionenraum mit $m:=\dim(V)<\infty$. Sei $B_V:=\lbrace\varphi_1,\ldots,\varphi_m\rbrace$ eine Basis von $V$.
+		Die Funktionen $v_i\in V$ heißen \textbf{lokale Basis / Shape-Funktionen / Form-Funktionen} genannt.
+		\item Sei $\Sigma:=\lbrace N_1,\ldots,N_m\rbrace$ die eindeutige duale Basis zu $B_V$, d.h. es gilt (aus LAAG bekannt):
 		\begin{align*}
-			\forall (\alpha_1,\ldots,\alpha_m)\in\R^m:\exists! v\in V:\forall i\in\lbrace1,\ldots,m\rbrace:N_i(v)=\alpha_i
-		\end{align*}
-		Das bedeutet, es gibt Funktionen $v_j\in V$ mit
-		\begin{align*}
-			N_i(v_j)=\delta_{i,j}\qquad\forall i,j\in\lbrace1,\ldots m\rbrace
-		\end{align*}
-		Die linearen Funktionale $N_i$ heißen \textbf{Nodal-Funktionen} oder \textbf{Freiheitsgrade (degrees of freedom / dof)}.
-		Die Funktionen $v_i$ sind die \textbf{lokale Basis} oder \textbf{Shape-Funktionen / Formfunktionen}.
+			\forall i\in\lbrace 1,\ldots,m\rbrace:\exists! N_i\colon V\to\R:\forall j\in\lbrace1,\ldots,m\rbrace: N_i(\varphi_j)=\delta_{i,j}
+		\end{align*}				
+		Somit ist $\Sigma$ eine Basis von $V^\ast$ bestehend aus $m$ linearen Funktionalen $N_i$, den sogenannten \textbf{Nodal-Funktionalen / Freiheitsgrade / DOFs.}
 	\end{enumerate}
 \end{definition}
+
+\begin{bemerkung} % war in VL anders
+	Die Nodal-Funktional-Menge $\Sigma$ gilt: 
+		\begin{align*}
+			\Sigma\text{ ist Basis von }V^\ast\Longleftrightarrow\Sigma\text{ ist \textbf{$V$-unisolvent}, d. h.:}\\
+			\forall (\alpha_1,\ldots,\alpha_m)\in\R^m:\exists! v\in V:\forall i\in\lbrace1,\ldots,m\rbrace:N_i(v)=\alpha_i
+		\end{align*}
+\end{bemerkung}
+
+\begin{proof}
+	\underline{Zeige Basis $\implies V$-unisolvenz:}\\
+	Sei $i\in\lbrace1,\ldots,m\rbrace$ und $\alpha_i\in\R$ beliebig.\nl
+	\underline{Existenz}:
+	Da $B_V$ eine Basis von $V$ ist, gilt 
+	\begin{align*}
+		\forall v\in V:\exists v_1,\ldots,v_m\in\R:v=\sum\limits_{j=1}^m\varphi_j\cdot v_j
+	\end{align*}
+	und somit
+	\begin{align*}
+		N_i(v)
+		=N_i\left(\sum\limits_{j=1}^m\varphi_j\cdot v_j\right)
+		\overset{\text{Lin}}=
+		\sum\limits_{j=1}^m v_j\cdot \underbrace{N_i(\varphi_j)}_{=\delta_{i,j}}=v_i\qquad\forall v\in V.
+	\end{align*}
+	Wähle als $v_i:=\alpha_i\in\R$.\nl
+	\underline{Eindeutigkeit:}
+	Seien $v,\tilde{v}\in V$ mit $N_i(v)=\alpha_i=N_i(\tilde{v})$.
+	Dann gilt schon $v=\tilde{v}$, denn:
+	\begin{align*}
+		v_i=N_i(v)=\alpha_i=N_i(\tilde{v})=\tilde{v_i}\qquad\forall i\in\lbrace1,\ldots,m\rbrace	
+	\end{align*}	
+	\underline{Zeige $V$-unisolvenz $\implies$ Basis}:
+	Nachrechnen. 
+\end{proof}
 
 \begin{definition}[affin äquivalente finite Elemente]\enter %4.6
 	Zwei finite Elemente $(K,V,\Sigma)$ und $(\hat{K},\hat{V},\hat{\Sigma})$ heißen \textbf{affin äquivalent}
@@ -329,7 +358,7 @@ Die Triangulation $\T$ ist formal definiert als Menge der Teildreiecke, also
 \end{definition}
 
 \begin{beisp}\
-	\begin{figure}[!ht]
+	\begin{figure}[H]
 		\begin{center}
 			\input{tikz/plot_affin_equiv_triang}
 			\caption{affin äquivalente Triangulation}
@@ -368,28 +397,41 @@ Unisolvenz: Gegeben $\alpha_1,\ldots,\alpha_m\in\R$. Gibt es ein eindeutiges $v\
 \end{align*}
 
 \begin{definition}[globales Nodal-Funktional / globale Freiheitsgrade (dof)]\enter
-	Seien $N_i^K$ und $N_j^{K'}$ zwei lokale Nodal-Funktionale von den finiten Elementen $(K,V,\Sigma)$ und $(K',V',\Sigma')$.
-	Wir sagen, diese beiden lokalen Freiheitsgrade \textbf{gehören zum selben globalen Freiheitsgrad}
+	Seien $(K,V,\Sigma)$ und $(K',V',\Sigma')$ Finite-Elemente.
+	Zwei lokale Nodal-Funktionale $N_i^K\in\Sigma$ und $N_j^{K'}\in\Sigma'$ \textbf{gehören zum selben globalen Freiheitsgrad}, i.Z.
 	\begin{align*}
-		:\Longleftrightarrow N_i^K(\varphi|_K)=N_j^{K'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)
+		N_i^K\sim N_j^{K'}:\Longleftrightarrow N_i^K(\varphi|_K)=N_j^{K'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)
 	\end{align*}
-	wobei $U$ eine offene Menge mit der Eigenschaft $\overline{K\cup K'}\subseteq U$ ist.\\
-	Die Menge aller globalen Freiheitsgrade bezeichnen wir mit $\Sigma_h$.
-	Für $N\in\Sigma_h$ bezeichne $\Lambda(N)$ die Menge alle lokalen Freiheitsgrade, die zu $N$ gehören.
+	wobei $U\subseteq\Omega$ eine offene Menge mit der Eigenschaft $\overline{K\cup K'}\subseteq U$ ist.\\
+	Die \textbf{Menge aller globalen Freiheitsgrade} einer Triangulation $\T=\lbrace K_1,\ldots,K_N\rbrace$ bezeichnen wir mit
+	\begin{align*}
+		\Sigma_h:=\Big\lbrace (N_1,\ldots,N_N)\in\Sigma_1\times\ldots\times\Sigma_N~\Big|N_i\sim N_j~\forall i,j\in\lbrace1,\ldots,N\rbrace\Big\rbrace
+	\end{align*}
+	Für $\vec{N}\in\Sigma_h$ bezeichne
+	\begin{align*}
+		\Lambda(\vec{N}):=\left\lbrace N\in\bigcup\limits_{i=1}^N\Sigma_i~\Big|~N\in\vec{N}\right\rbrace
+	\end{align*}		
+	die Menge alle lokalen Freiheitsgrade $N$, die zu $\vec{N}$ gehören.
 \end{definition}
 
 \begin{definition}[Raum der finiten Elemente]\enter
-	Sei $\T_h$ eine Triangulation von $\Omega$. Ein \textbf{Finite-Elemente-Raum} $V_h$ ist gegeben durch
+	Sei $\T_h=\lbrace K_1,\ldots,K_N\rbrace$ eine Triangulation von $\Omega$ und seien\\ $\big((K_i,V_i(K_i),\Sigma_i(K_i)\big),i\in\lbrace1,\ldots,N\rbrace$ die zugehörigen Finite-Elemente.\\
+	Ein \textbf{Finite-Elemente-Raum} $V_h$ ist gegeben durch
 	\begin{align*}
-		V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\in\prod\limits_{K\in\mathcal{T}_h} V(K):
+		V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\colon\Omega^\circ\to\R\Bigg|
 		\begin{array}{cl}
-			N_i^K(v|_K)=N_j^{K'}(v|_{K'}) &\forall N_i^K\\
-			N_j^{K'}\in\Lambda(N) &\forall N\in\Sigma_h
+			N_i^{K_i}(v|_K)=N_j^{K_j}(v|_{K'}) &\forall N_i^{K_i},N_j^{K_j}\in\bigcup\limits_{i=1}^N\Sigma_i\\
+			N_j^{K'}\in\Lambda(\vec{N}) &\forall \vec{N}\in\Sigma_h
 		\end{array}
 		\right\rbrace
 	\end{align*}
-	wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind.
-	Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$ von dem globalen Freiheitsgrad.
+	wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind und $\Omega^\circ:=\bigcup\limits_{i=1}^N K_i$.
+	Der Versuch einer Erklärung: Im FEM-Raum liegen praktisch alle Funktionen $v:\Omega\to\R$, wobei alle Nodal-Funktionale zum selben globalen Freiheitsgrad gehören, den man sich als
+	\begin{align*}
+		N\colon(\Omega^0\to\R)\to\R\qquad\mit\qquad N(v|_{K_i})\text{ unabhängig von }i\in\lbrace1,\ldots,m\rbrace
+	\end{align*}		
+	vorstellen kann.
+	Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$.
 \end{definition}
 
 Familie aller affin äquivalenten Finiten-Elementen
@@ -646,15 +688,15 @@ wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots
 	\end{align*}
 \end{proof}
 
-\begin{definition}[Formreguläre Familie von Triangulierungen]\enter %4.15
-	Eine Familie $\lbrace\T_h\rbrace$ von geeigneten Triangulierungen vom $\Omega$  heißt \textbf{formregulär}
-$:\gdw$
+\begin{definition}[Formreguläre Familie von Triangulationen]\enter %4.15
+	Eine Familie $\lbrace\T_h\rbrace_{h}$ von geeigneten Triangulationen von $\Omega$ heißt Skizze \textbf{formregulär}
+$:\Longleftrightarrow$
 	\begin{enumerate}[label=(\roman*)]
 		\item $\begin{aligned}
-			\exists\sigma>0:\frac{h_K}{\rho_K}\leq\sigma \qquad\forall K\in\T_h\;\forall\T_h
+			\exists\sigma>0:\forall h:\forall K\in\T_h:h_K\leq\sigma\cdot \rho_K
 		\end{aligned}$
-		\item Der Familienparameter h geht nach 0 $\iff$ die Dreiecke werden verfeinert, siehe \ref{AbbFamilienparameterKonvergenz}.
-		\begin{figure}[!ht]
+		\item Der Familienparameter h geht nach 0 $\iff$ die Dreiecke werden verfeinert, siehe Abbildung \ref{AbbFamilienparameterKonvergenz}.
+		\begin{figure}[H]
 			\begin{center}
 				\includegraphics[width=0.75\textwidth]{pics/Sketch3.png}
 				\caption{Beispielhafte Verfeinerung der Triangulierung mit einhergehender Konvergenz des Familienparameters}
@@ -779,5 +821,5 @@ Dann gibt es eine konstante $c$, unabhängig von $h$, so, dass
 		&\leq c\cdot h_K^{-1}\cdot\big|\det(B_K)\big|^{\frac{1}{2}}\cdot\underbrace{\Vert B_K\Vert^0}_{=1}\cdot\big|\det(B_K)\big|^{-\frac{1}{2}}\cdot\Vert w_h\Vert_{0,2,K}\\
 		&= c\cdot h_K^{-1}\cdot\Vert w_h\Vert_{0,2,K}
 	\end{align*}
-	Bei ($\ast$) wird die Normäquivalenz auf endlichen dimensionalen $\hat{V}$ benutzt.
+	Bei ($\ast$) wird die Normäquivalenz auf endlichen-dimensionalen $\hat{V}$ benutzt.
 \end{proof}

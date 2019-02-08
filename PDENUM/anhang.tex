@@ -14,7 +14,7 @@ Im Beispiel aus der Vorlesung erhalten wir folgende Gleichheit:
 	\int_{\Omega} u_xv_x + u_yv_y \d x\d y = -\int_{\Omega} (u_{xx} + u_{yy})v\d x\d y + \int_{\partial\Omega} u_x v n_x + u_y v n_y \d\gamma
 \end{align}
 bzw. die \textbf{erste Greensche Formel}, in Kurzschreibweise:
-\begin{align}\label{eqGreen}
+\begin{align}\label{eqGreen}\tag{Green}
 	\int\limits_\Omega\nabla u\cdot\nabla v\d x
 	=\int\limits_{\partial\Omega}v\cdot\nabla u\cdot n\d S
 \end{align}
@@ -62,16 +62,23 @@ Nun können wir (A.2) beweisen:
 Es gilt
 \begin{align}\label{eqCS}\tag{CS}
 	\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
-	&\leq\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
-	&\forall& u,v\in W^{1,2}(\Omega)\\
+	&\leq\vert u\vert_{1,2,\Omega}\cdot\vert v\vert_{1,2,\Omega}
+	&\forall& u,v\in W_0^{1,2}(\Omega)\\
 	\left|\int\limits_\Omega u\cdot v\d x\right|&\leq\Vert u\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
 	&\forall& u,v\in W^{0,2}(\Omega)\label{eqCSW02}\tag{CS}
 \end{align}
 
 \begin{proof}
-	Seien $u,v\colon \Omega\subseteq\R^d\to\R$ aus $W^{1,2}(\Omega)$ beliebig.
+	\underline{Zur ersten Ungleichung:}
+	Seien $u,v\colon \Omega\subseteq\R^d\to\R$ aus $W_0^{1,2}(\Omega)$ beliebig.
 	Bezeichne $E:=\lbrace e_1,\ldots,e_d\rbrace$ die Standardbasis des $\R^d$.
-	Dann gilt:
+	Wir wissen aus der Friedrichs-Ungleichung \ref{prop1.13FriedrichsUngleichung}, dass $\big(W_0^{1,2}(\Omega),\vert\cdot\vert_{1,2,\Omega}\big)$ ein normierter Raum ist.
+	Man sieht leicht, dass $\big(W_0^{1,2}(\Omega),\langle\cdot,\cdot\rangle_{1,2,\Omega,H}\big)$ ein Hilbertraum ist mit Skalarprodukt
+	\begin{align*}
+		\langle u,v\rangle_{1,2,\Omega,H}
+		:=\sum\limits_{|\alpha|=1}\int\limits_\Omega D^\alpha u\cdot D^\alpha v\d x
+	\end{align*}
+	Also haben wir eine Cauchy-Schwarz-Ungleichung für die Semi-Norm zur Verfügung und es gilt:
 	\begin{align*}
 		\left|\int\limits_\Omega\nabla u\cdot\nabla v\d x\right|
 		\overset{\Def~\nabla}&{=}		
@@ -80,24 +87,30 @@ Es gilt
 		&=\left|\int\limits_\Omega\sum\limits_{i=1}^d\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_i}\d x\right|\\
 		\overset{\text{Lin}}&=
 		\left|\sum\limits_{i=1}^d\int\limits_\Omega\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_i}\d x\right|\\
-		\overset{\text{DU}}&\leq
-		\sum\limits_{i=1}^d\left|\int\limits_\Omega\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_i}\d x\right|\\
+		%\overset{\text{DU}}&\leq
+		%\sum\limits_{i=1}^d\left|\int\limits_\Omega\frac{\partial u}{\partial_i}\frac{\partial v}{\partial_i}\d x\right|\\
 		&=
-		\sum\limits_{|\alpha|=1}^d\left|\int\limits_\Omega D^\alpha u D^\alpha v\d x\right|\qquad(\alpha\in E)\\
-		&\leq
-		\sum\limits_{|\alpha|\leq1}^d\left|\int\limits_\Omega D^\alpha u D^\alpha v\d x\right|\\
+		\left|\sum\limits_{|\alpha|=1}\int\limits_\Omega D^\alpha u D^\alpha v\d x\right|\qquad(|\alpha|=1\gdw\alpha\in E)\\
+		%&\leq
+		%\left|\sum\limits_{|\alpha|\leq1}\int\limits_\Omega D^\alpha u D^\alpha v\d x\right|\\
 		\overset{\Def}&=
-		\big|\langle u,v\rangle_1\big|\\
+		\big|\langle u,v\rangle_{1,2,\Omega,H}\big|\\
 		\overset{\text{CF}}&\leq
-		|u|_{1,2,\Omega}\cdot|v|_{1,2,\Omega}\\
-		\overset{\Def}&\leq
-		\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}
+		\vert u\vert_{1,2,\Omega}\cdot\vert v\vert_{1,2,\Omega}
 	\end{align*}
 	Bei CF wird die gewöhnliche Cauchy-Schwartz-Ungleichung benutzt:
 	\begin{align}\label{eqCSAllgemein}\tag{CS}
 		\big|\langle u,v\rangle\big|_H\leq\Vert u\Vert_H\cdot\Vert v\Vert_H\qquad\forall u,v\in H
 	\end{align}
-	Die zweite Ungleichung zeigt man analog.
+	\underline{Zur zweiten Ungleichung:}
+	\begin{align*}
+		\left|\int\limits_\Omega u\cdot v\d x\right|
+		&=\left|\sum\limits_{|\alpha|\leq 0}\int\limits_\Omega D^\alpha u\cdot D^\alpha v\d x\right|\\
+		\overset{\Def}&=
+		\Big|\langle u,v\rangle_{0,2,\Omega}\Big|\\
+		\overset{\text{CS}}&\leq
+		\Vert u\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}
+	\end{align*}
 \end{proof}
 
 \section{Fixpunktsätze}

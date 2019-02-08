@@ -42,6 +42,7 @@
 		&:=\left(\sum\limits_{|\alpha|= k}\left\Vert D^\alpha\varphi\right\Vert^p_{L^p}\right)^{\frac{1}{p}}\qquad\text{ ist Halbnorm, also }\big|\varphi|=0\not\implies\varphi=0\\
 		\langle \varphi,\psi\rangle_k&:=\sum\limits_{|\alpha|\leq k}\int\limits_\Omega D^\alpha\varphi\cdot D^\alpha\psi\d x\quad\text{Für $p=2$ ist $H^k(\Omega):=W^{k,2}(\Omega)$ mit $\langle\cdot,\cdot\rangle$ Hilbertraum.}
 	\end{align*}
+	$(W^{0,p}(\Omega),\Vert\cdot\Vert_{0,p,\Omega})=(L^p(\Omega),\Vert\cdot\Vert_{L^p(\Omega)})$.\\
 	$C^\infty(\overline{\Omega})$ liegt dicht in $W^{k,p}(\Omega)$.
 	Stückweise glatte Funkt. sind glatt:
 	$\varphi\in W^{k,p}(\Omega)\overset{\varphi|_{\Omega_i}\in C^k(\overline{\Omega_i})}{\Longleftrightarrow}\varphi\in C^{k-1}(\Omega)$\\
@@ -57,7 +58,7 @@
 	$W^{k,p}(\Omega)\stackrel{C}{\hookrightarrow} W^{k-1,p}(\Omega)$, 
 	Für $p=2$, $d\in\lbrace2,3\rbrace$, $q<6$:
 	$H^2(\Omega)\hookrightarrow C(\overline{\Omega}),~H^1(\Omega)\stackrel{C}{\hookrightarrow} L^q(\Omega)$\\
-	\textbf{Poincaré-U:} $\Vert\cdot\Vert_{1,2,\Omega}\cong\big(|\cdot|_{1,2,\Omega}+|\int_\Omega(\cdot)(x)\d x|\big)$ und $\Vert\cdot\Vert_{1,2,\Omega}\cong|\cdot|_{1,2,\Omega}$ auf $\lbrace\varphi\in H^1(\Omega):\int_\Omega u(x)\d x=0\rbrace$\\
+	\textbf{Poincaré-U:} $\Vert\cdot\Vert_{1,2,\Omega}\cong\big(|\cdot|_{1,2,\Omega}+|\int_\Omega(\cdot)(x)\d x|\big)$ und $\Vert\cdot\Vert_{1,2,\Omega}\cong|\cdot|_{1,2,\Omega}$ auf $\lbrace\varphi\in H^1(\Omega):\int_\Omega \varphi(x)\d x=0\rbrace$\\
 	\textbf{Friedrichs-U:} $|\cdot|_{k,p,\Omega}$ ist Norm auf $W_0^{k,p}(\Omega)$ mit $|\cdot|_{k,p,\Omega}\cong\Vert\cdot\Vert_{k,p,\Omega}$, also $\Vert\cdot\Vert_\ast\leq c|\cdot|_{k,p,\Omega},*\in\lbrace(k,p,\Omega),L^p(\Omega)\rbrace$
 	
 	\section{Abstrakte Variations-Analysis}
@@ -70,7 +71,7 @@
 	\overset{\eqref{eqGreen}}=
 	\int\limits_\Omega\nabla u\cdot\nabla v\d x-\int\limits_{\partial\Omega}\frac{\partial u}{\partial n}v\d x=\int\limits_\Omega\nabla u\cdot\nabla v\d x:=a(u,v),~u,v\in H_0^1(\Omega)$\\
 	$a$ ist stetig auf $V$, d.h. $\exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V$ und koerziv / $V$-elliptisch, d.h. $\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V$\\
-	\textbf{CS:} $|\int_\Omega\nabla u\cdot\nabla v\d x|\leq\Vert u\Vert_{1,2,\Omega}\cdot\Vert v\Vert_{1,2,\Omega}~\forall u,v\in W_0^{1,2}(\Omega)$ und $\left|\int\limits_\Omega u\cdot v\d x\right|\leq\Vert u\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}~\forall u,v\in W^{0,2}(\Omega)$\\
+	\textbf{CS:} $|\int_\Omega\nabla u\cdot\nabla v\d x|\leq\vert u\vert_{1,2,\Omega}\cdot\vert v\vert_{1,2,\Omega}~\forall u,v\in W_0^{1,2}(\Omega)$ und $\left|\int\limits_\Omega u\cdot v\d x\right|\leq\Vert u\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}~\forall u,v\in W^{0,2}(\Omega)$\\
 	\textbf{Lax-Milgram:} $V$ HR, $a$ stetige Bilinearform, $b$ stetige Linearform $\implies\exists!u\in V\colon\forall v\in V\colon a(u,v)=l(v)$.\\
 	\textit{Beweis.} Trafo dualer Operator $Au:V\to\R,u\mapsto a(u,v)\leadsto A$ stetig und lineare auf $V\leadsto$ Konstruiere Kontraktion $\leadsto$ B. Fixpunksatz $\leadsto\square$\\
 	\underline{Idee:} Approximation des Variationsproblems auf endlich dimensionalem Unterraum $V_h\subseteq V$.
@@ -132,20 +133,26 @@
 		\quad\ldots\text{ mit kompaktem Träger}
 	\end{align*}
 	Auch hier kann man das Problem wieder diskretisieren und durch Wahl einer Basis auf ein LGS gelangen (\textbf{Stiffness-Matrix)}. Approximationseigenschaft von 1DFEM: $\inf\limits_{v_h\in S_{h,0}^{k,0}}\big|u-v_h\big|_{1,2}\leq h^k\cdot|u|_{k+1,2}~\forall u$\\%\in H^{k+1}(\Omega)\cap H^{1}_0(\Omega)$
-		2D-FEM: Sei $\Omega\subseteq\R^2$ beschränktes Polygon.
-		Dies wird mittels \textbf{Triangulation} in offene disjunkte Teildreiecke $\T=\lbrace K_1,\ldots,K_N\rbrace$ zerlegt, $\overline{\Omega}=\bigcup_{i=1}^N\overline{K_i}$. 
-		Die Zerlegung ist \textbf{zulässig}, falls $\overline{K_i}\cap\overline{K_j}$ leer, ein Eckpunkt oder eine gemeinsame Kante.
-		Der Raum der stetigen stückweise linearen Funktionen ist\\
-		$V_h:=\left\lbrace
-		v\in C(\overline{\Omega}) : v|_{K_i}\in P_1(K_i)~\forall i=1,\ldots,N,\\
-		v|_{\partial\Omega}=0\right\rbrace\subseteq H^1_0(\Omega)$\\
-		Finites-Element ist $(K,V,\Sigma)$ mit $K\subseteq\R^d$ nichtleer, offen, beschränkt und Lipschitz-berandet; \\$V=\lbrace f:K\to\R\rbrace$ mit $\dim(V)=m<\infty$ Funktionenraum der \textbf{Formfunktionen} (z. B. Polynome); $\Sigma=\lbrace N_1,\ldots,N_m\rbrace:V\to\R\rbrace$ mit \textbf{Nodal-Funktionalen / DOFs} $N_i$ (Knotenvariablen).
-		Sie werden als \textbf{$V$-unisolvent} angenommen, also $\forall\alpha_1,\ldots,\alpha_m\in\R:\exists! v\in V:N_1(v)=\alpha_1,\ldots,N_m(v)=\alpha_m$\\
-		Es gibt als Funktionen $v_i\in V:N_i(v_j)=\delta_{i,j}~\forall i,j\in\lbrace1,\ldots,m\rbrace$\\
-		Sei $V$ mit $\lbrace\varphi_1,\ldots,\varphi_m\rbrace$, $\Sigma=\lbrace N_1,\ldots,N_m\rbrace$. Dann ist $\Sigma$ unisolvent $\gdw M:=(m_i,j)$ invertierbar mit $m_{i,j}:=N_i(\varphi_i)$
-			
+	2D-FEM: Sei $\Omega\subseteq\R^2$ beschränktes Polygon.
+	Dies wird mittels \textbf{Triangulation} in offene disjunkte Teildreiecke $\T=\lbrace K_1,\ldots,K_N\rbrace$ zerlegt, $\overline{\Omega}=\bigcup_{i=1}^N\overline{K_i}$. 
+	Die Zerlegung ist \textbf{zulässig}, falls $\overline{K_i}\cap\overline{K_j}$ leer, ein Eckpunkt oder eine gemeinsame Kante.
+	Der Raum der stetigen stückweise linearen Funktionen ist\\
+	$V_h:=\left\lbrace
+	v\in C(\overline{\Omega}) : v|_{K_i}\in P_1(K_i)~\forall i=1,\ldots,N,\\
+	v|_{\partial\Omega}=0\right\rbrace\subseteq H^1_0(\Omega)$\\
+	Finites-Element ist $(K,V,\Sigma)$ mit $K\subseteq\R^d$ nichtleer, offen, beschränkt und Lipschitz-berandet; \\$V=\lbrace f:K\to\R\rbrace$ mit $\dim(V)=m<\infty$ Funktionenraum der \textbf{Formfunktionen} (z. B. Polynome); $\Sigma=\lbrace N_1,\ldots,N_m:V\to\R\rbrace$ mit \textbf{Nodal-Funktionalen / DOFs} $N_i$ (Knotenvariablen).
+	Ist $\lbrace\varphi_1,\ldots,\varphi_m\rbrace$ Basis von $V$, so ist $\Sigma$ die Basis des Dualraums $V^\ast$, also $\forall i\in\lbrace 1,\ldots,m\rbrace:\exists! N_i\colon V\to\R:\forall j\in\lbrace1,\ldots,m\rbrace: N_i(\varphi_j)=\delta_{i,j}$\\
+	Dies ist äquivalent zur \textbf{$V$-Unisolvenz}, d.h. $\forall\alpha_1,\ldots,\alpha_m\in\R:\exists! v\in V:N_1(v)=\alpha_1,\ldots,N_m(v)=\alpha_m$\\
+	$\Sigma$ ist unisolvent $\gdw M:=(m_{i,j})$ invertierbar mit $m_{i,j}:=N_i(\varphi_i)$\\
+	
+	
+	
+	Familie $\lbrace\T_h\rbrace_h$ heißt \textbf{form-regulär} $:\gdw\exists\sigma>0:\forall h:\forall K\in\T_h:h_K\leq\sigma\cdot \rho_K$
 	
 	\section{Nichtkonforme Methoden}
+	
+	Nichtkonform bedeutet $V_h\not\in V$, konform bedeutet $V_h\subseteq V$.
+	Besser für Probleme höherer Ordnung, sonst Probleme mit Einschränkungen.
 	
 	\section{A posteriori Fehlerschätzer}
 	

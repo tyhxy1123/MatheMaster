@@ -150,6 +150,10 @@ Bezeichnungen für dieses Kapitel:
 	\begin{align*}
 		\gamma_l(\varphi)=\frac{\partial^l}{\partial n^l}\varphi|_{\partial\Omega}\qquad\forall\varphi\in C^k(\overline{\Omega}).
 	\end{align*}
+	Da $\gamma_l$ stetig und linear ist, ist $\gamma_l$ auch beschränkt und man erhält die \textbf{Spurungleichung}
+	\begin{align}\label{eqSpurungleichung}\tag{Spur}
+		\exists c>0:\forall\varphi\in W^{k,p}(\Omega):\big\Vert\gamma_l\big\Vert_{L^p(\Omega)}\leq c\cdot\Vert\varphi\Vert_{W^{k,p}(\Omega)}
+	\end{align}
 \end{satz}
 
 \begin{bemerkung}\
@@ -374,7 +378,7 @@ Bezeichnungen für dieses Kapitel:
 	\end{align*}
 	Setze
 	\begin{align*}
-		V:=\left\lbrace\varphi\in H^1(\Omega):\int\limits_\Omega u(x)\d x=0\right\rbrace.
+		V:=\left\lbrace\varphi\in H^1(\Omega):\int\limits_\Omega \varphi(x)\d x=0\right\rbrace.
 	\end{align*}
 	Dann sind sogar $\Vert\cdot\Vert_{1,2,\Omega}$ und $|\cdot|_{1,2,\Omega}$ äquivalent auf $V$.
 \end{korollar}

@@ -1,5 +1,0 @@
-- Eine Diffbare Funktion ist Lipschitz-stetig gdw ihre Ableitung beschränkt.
-- Poincare-Ungleichung umschreiben in Zusammenfassung
-- Ceas Lemma + Galerkin-Orthogonalität
-- Aubin-Nietsche Anwendungen?
-- Neumann-Randbedingungen umschreiben
