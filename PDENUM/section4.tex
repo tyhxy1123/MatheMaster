@@ -5,6 +5,8 @@
 % vim: set noexpandtab:
 
 \section{Finite-Elemente Räume} %4
+
+\subsection{FEM in 1D}
 \begin{definition}[1D-Finite-Elemente]\enter
 	Sei $\Omega=(0,1)\subseteq\R$. Sei
 	\begin{align*}
@@ -236,7 +238,12 @@ wobei
 	\end{align*}
 \end{theorem}
 
-Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polygon. Nun zerlegen wir das Polygon in Dreiecke. Dieses Verfahren heißt \textbf{Dekomposition / Triangulation.} Dadurch erhalten wir eine Menge von \underline{offenen} (nach Konvention) Dreiecken $\lbrace K_i\rbrace_{i\in\lbrace1,\ldots,N\rbrace}$ mit den Eigenschaften:
+\subsection{FEM in 2D}
+
+Nun der zweidimensionale Fall: Sei $\Omega\subseteq\R^2$ ein beschränktes Polygon. 
+Nun zerlegen wir das Polygon in Dreiecke. 
+Dieses Verfahren heißt \textbf{Dekomposition / Triangulation.} 
+Dadurch erhalten wir eine Menge von \underline{offenen} (nach Konvention) Dreiecken $\lbrace K_i\rbrace_{i\in\lbrace1,\ldots,N\rbrace}$ mit den Eigenschaften:
 
 \begin{enumerate}[label=(\roman*)]
 	\item $\begin{aligned}
@@ -337,6 +344,8 @@ Die Triangulation $\T$ ist formal definiert als Menge der Teildreiecke, also
 	Nachrechnen. 
 \end{proof}
 
+Es ist sinnvoll und naheliegend für ein Finites-Element $(K,V,\Sigma)$ $\dim(V)=|\Sigma|=n$ zu wählen, mit $n$ Anzahl der Ecken des Polygons $K\subseteq\R^2$.
+
 \begin{definition}[affin äquivalente finite Elemente]\enter %4.6
 	Zwei finite Elemente $(K,V,\Sigma)$ und $(\hat{K},\hat{V},\hat{\Sigma})$ heißen \textbf{affin äquivalent}
 	\begin{align*}
@@ -403,35 +412,41 @@ Unisolvenz: Gegeben $\alpha_1,\ldots,\alpha_m\in\R$. Gibt es ein eindeutiges $v\
 		N_i^K\sim N_j^{K'}:\Longleftrightarrow N_i^K(\varphi|_K)=N_j^{K'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)
 	\end{align*}
 	wobei $U\subseteq\Omega$ eine offene Menge mit der Eigenschaft $\overline{K\cup K'}\subseteq U$ ist.\\
+	Anschaulich: Zwei Nodal-Funktionale sind $\sim$-äquivalent, wenn sie dieselbe Ecke beschreiben.
+	$\sim$ ist eine Äquivalenzrelation.\\
 	Die \textbf{Menge aller globalen Freiheitsgrade} einer Triangulation $\T=\lbrace K_1,\ldots,K_N\rbrace$ bezeichnen wir mit
 	\begin{align*}
-		\Sigma_h:=\Big\lbrace (N_1,\ldots,N_N)\in\Sigma_1\times\ldots\times\Sigma_N~\Big|N_i\sim N_j~\forall i,j\in\lbrace1,\ldots,N\rbrace\Big\rbrace
+		\Sigma_h:=\left.\left(\bigcup\limits_{i=1}^N\bigcup\limits_{j=1}^m N_j^{K_i}\right)\right/\sim
 	\end{align*}
-	Für $\vec{N}\in\Sigma_h$ bezeichne
+	Für $[N]_\sim\in\Sigma_h$ bezeichne
 	\begin{align*}
-		\Lambda(\vec{N}):=\left\lbrace N\in\bigcup\limits_{i=1}^N\Sigma_i~\Big|~N\in\vec{N}\right\rbrace
+		\Lambda\big([N]_\sim\big):=\left\lbrace N\in[N]_\sim\right\rbrace
 	\end{align*}		
-	die Menge alle lokalen Freiheitsgrade $N$, die zu $\vec{N}$ gehören.
+	die Menge alle lokalen Freiheitsgrade $N$, die zu $[N]_\sim$ gehören.
 \end{definition}
+
+\begin{figure}[H] % oder ht!
+	\begin{center}
+		\input{./tikz/global_degrees_of_freedom}
+		\caption{Hier werden die 12 DOFs der 4 FEMs per Äquivalenzrelation (rot) zu 5 globalen DOFs zusammengefasst.}
+		\label{AbbGlobalDegreesOfFreedom}
+	\end{center}
+\end{figure}
 
 \begin{definition}[Raum der finiten Elemente]\enter
 	Sei $\T_h=\lbrace K_1,\ldots,K_N\rbrace$ eine Triangulation von $\Omega$ und seien\\ $\big((K_i,V_i(K_i),\Sigma_i(K_i)\big),i\in\lbrace1,\ldots,N\rbrace$ die zugehörigen Finite-Elemente.\\
 	Ein \textbf{Finite-Elemente-Raum} $V_h$ ist gegeben durch
 	\begin{align*}
-		V_h:=\left\lbrace v=(v_{K})_{K\in\T_h}\colon\Omega^\circ\to\R\Bigg|
-		\begin{array}{cl}
-			N_i^{K_i}(v|_K)=N_j^{K_j}(v|_{K'}) &\forall N_i^{K_i},N_j^{K_j}\in\bigcup\limits_{i=1}^N\Sigma_i\\
-			N_j^{K'}\in\Lambda(\vec{N}) &\forall \vec{N}\in\Sigma_h
+		V_h:=\Bigg\lbrace v=(v_{K})_{K\in\T_h}\colon\bigcup\limits_{i=1}^N K_i\to\R\Bigg|
+		\begin{array}{c}
+			\forall [N]_\sim\in\Sigma_h:\forall N_i^{K},N_j^{K'}\in\Lambda([N]_\sim):\\
+			N_i^{K}(v|_K)=N_j^{K'}(v|_{K'})
 		\end{array}
-		\right\rbrace
+		\Bigg\rbrace
 	\end{align*}
-	wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind und $\Omega^\circ:=\bigcup\limits_{i=1}^N K_i$.
-	Der Versuch einer Erklärung: Im FEM-Raum liegen praktisch alle Funktionen $v:\Omega\to\R$, wobei alle Nodal-Funktionale zum selben globalen Freiheitsgrad gehören, den man sich als
-	\begin{align*}
-		N\colon(\Omega^0\to\R)\to\R\qquad\mit\qquad N(v|_{K_i})\text{ unabhängig von }i\in\lbrace1,\ldots,m\rbrace
-	\end{align*}		
-	vorstellen kann.
-	Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte von $N(v_h)$.
+	wobei $(K,V(K),\Sigma(K)),K\in\T_h$ finite Elemente sind.
+	Im FEM-Raum liegen praktisch alle Funktionen $v:\Omega\to\R$ und es gibt eine Art globales Nodal-Funktional $N:(\Omega\to\R)\to\R$ (globales DOF), siehe Abbildung \ref{AbbGlobalDegreesOfFreedom}.
+	Eine Funktion $v_h\in V_h$ ist eindeutig bestimmt durch die Werte des globalen DOFs $N(v_h)$.
 \end{definition}
 
 Familie aller affin äquivalenten Finiten-Elementen
@@ -443,7 +458,7 @@ Interpolation:
 	I_h(v):=\sum\limits_{i=1}^n N_i(v)\cdot\varphi_i\in V_h
 \end{align*}
 wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots,\varphi_n\rbrace$ eine Basis von $V_h$ ist mit der Eigenschaft $N_i(\varphi_j)=\delta_{i,j}$.\nl
-\textbf{Wichtig: }
+\textbf{Wichtig:} Die Interpolationsfunktion erfüllt eine Lokalisierungseigenschaft:
 \begin{align*}
 	\big(I_h(v)\big)\big|_K&=I_h^K\big(v|_K\big)\quad\text{wobei}\\ I_h^K(v)&=\sum\limits_{i=1}^{m_K} N_i^{(K)}(v)\cdot\varphi_i^K,\qquad N_i^K(\varphi_j^K)=\delta_{i,j}\qquad\Sigma(K)=\left\lbrace N_1^K,\ldots,N_{m_K}^K\right\rbrace
 \end{align*}
@@ -489,7 +504,7 @@ wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots
 \begin{lemma}[Deny-Lions]\label{lemma4.11DenyLions}\enter
 	Sei $P_r(K)$ der Raum aller Polynome mit höchstens Grad $r$. Dann gilt:
 	\begin{align*}
-		\exists c(K)>0:\inf\limits_{p\in P_r(K)}\Vert v+p\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)
+		\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v+P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)
 	\end{align*}
 \end{lemma}
 

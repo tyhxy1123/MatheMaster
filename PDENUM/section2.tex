@@ -101,6 +101,16 @@ Eigenschaften der oben definierten Linearform $l$:
 \end{theorem}
 
 \begin{proof}
+	Wir verwenden in diesem Beweis folgendes Resultat der Funktionalanalysis:
+
+	\begin{thm}[Darstellungssatz von Riesz-Fréchet]\enter
+		Sei $(H,\langle\cdot,\cdot\rangle)$ ein Hilbertraum. Dann existiert zu jedem stetigen Funktional $A\in H^\ast$ genau ein $h\in H$ so, dass
+		\begin{align*}
+			A(h)=\langle A(h),v\rangle\qquad\forall v\in H
+			\qquad\und\qquad\Vert A\Vert_{H^\ast}=\Vert h\Vert_H
+		\end{align*}
+	\end{thm}
+	
 	\underline{Schritt 1:}\\
 	Transformation in einen dualen Operator über dem Dualraum $V^\ast$ von $V$.
 	Betrachte also für festes $u\in V$ den Operator
@@ -109,8 +119,8 @@ Eigenschaften der oben definierten Linearform $l$:
 	\end{align*}
 	Offenbar ist $Au$ eine stetige Linearform auf $V$, also $ Au\in V^\ast$. Dann gilt:
 	\begin{align*}
-		\langle Au,v\rangle=(Au)(v):&=a(u,v)\qquad\forall u,v\in V \\
-		b\in V^\ast: \langle b,v\rangle&=b(v)
+		\langle Au,v\rangle\overset{\text{Riesz}}{=}(Au)(v)\overset{\Def}&=a(u,v)&\forall& u,v\in V \\
+		b\overset{\text{Vor}}{\in} V^\ast\implies \langle b,v\rangle\overset{\text{Riesz}}&{=}b(v) &\forall& v\in V
 	\end{align*}
 	Damit folgt:
 	\begin{align*}
@@ -119,7 +129,7 @@ Eigenschaften der oben definierten Linearform $l$:
 	\end{align*}
 
 	\underline{Schritt 2:}\\
-	Die Abbildung $A:V\to V^\ast$ ($u\mapsto Au$) kann auch als Abbildung $A:V\to V$ aufgefasst werden.
+	Die Abbildung $Au\colon V\to\R$ kann auch als Abbildung $A:V\to V^\ast$ ($u\mapsto Au$) aufgefasst werden.
 	Eigenschaften von $A$:
 	\begin{enumerate}[label=(\alph*)]
 		\item $A$ ist linear auf $V$

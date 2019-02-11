@@ -73,7 +73,7 @@
 	$a$ ist stetig auf $V$, d.h. $\exists M>0:\forall u,v\in V:\big|a(u,v)\big|\leq M\cdot\Vert u\Vert_V\cdot\Vert v\Vert_V$ und koerziv / $V$-elliptisch, d.h. $\exists\alpha>0:\forall v\in V:a(v,v)\geq\alpha\cdot\Vert v\Vert^2_V$\\
 	\textbf{CS:} $|\int_\Omega\nabla u\cdot\nabla v\d x|\leq\vert u\vert_{1,2,\Omega}\cdot\vert v\vert_{1,2,\Omega}~\forall u,v\in W_0^{1,2}(\Omega)$ und $\left|\int\limits_\Omega u\cdot v\d x\right|\leq\Vert u\Vert_{0,2,\Omega}\cdot\Vert v\Vert_{0,2,\Omega}~\forall u,v\in W^{0,2}(\Omega)$\\
 	\textbf{Lax-Milgram:} $V$ HR, $a$ stetige Bilinearform, $b$ stetige Linearform $\implies\exists!u\in V\colon\forall v\in V\colon a(u,v)=l(v)$.\\
-	\textit{Beweis.} Trafo dualer Operator $Au:V\to\R,u\mapsto a(u,v)\leadsto A$ stetig und lineare auf $V\leadsto$ Konstruiere Kontraktion $\leadsto$ B. Fixpunksatz $\leadsto\square$\\
+	\textit{Beweis.} Darstellungssatz Riesz-Fréchet $\leadsto$ Trafo dualer Operator $Au:V\to\R,u\mapsto a(u,v)\leadsto A$ stetig und lineare auf $V\leadsto$ Konstruiere Kontraktion $\leadsto$ B. Fixpunksatz $\leadsto\square$\\
 	\underline{Idee:} Approximation des Variationsproblems auf endlich dimensionalem Unterraum $V_h\subseteq V$.
 	Auf $V_h$ gibt es wegen Lax-Milgram auch eindeutige Lösung.
 	Das Variationsproblem auf $V_h$ lässt sich stets als LGS umschreiben und damit lösen:
@@ -144,21 +144,55 @@
 	Ist $\lbrace\varphi_1,\ldots,\varphi_m\rbrace$ Basis von $V$, so ist $\Sigma$ die Basis des Dualraums $V^\ast$, also $\forall i\in\lbrace 1,\ldots,m\rbrace:\exists! N_i\colon V\to\R:\forall j\in\lbrace1,\ldots,m\rbrace: N_i(\varphi_j)=\delta_{i,j}$\\
 	Dies ist äquivalent zur \textbf{$V$-Unisolvenz}, d.h. $\forall\alpha_1,\ldots,\alpha_m\in\R:\exists! v\in V:N_1(v)=\alpha_1,\ldots,N_m(v)=\alpha_m$\\
 	$\Sigma$ ist unisolvent $\gdw M:=(m_{i,j})$ invertierbar mit $m_{i,j}:=N_i(\varphi_i)$\\
-	
-	
-	
-	Familie $\lbrace\T_h\rbrace_h$ heißt \textbf{form-regulär} $:\gdw\exists\sigma>0:\forall h:\forall K\in\T_h:h_K\leq\sigma\cdot \rho_K$
+	Zwei lokale Nodal-Funktionale $N_i^K\in\Sigma$ und $N_j^{K'}\in\Sigma'$ \textbf{gehören zum selben globalen Freiheitsgrad} $N_i^K\sim N_j^{K'}:\Longleftrightarrow N_i^K(\varphi|_K)=N_j^{K'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)\mit\overline{K\cup K'}\subseteq U$.
+	Sei $\Sigma_h$ Menge aller globalen Freiheitsgrade einer Triangulation $\T$ und für $\vec{N}\in\Sigma_h$ bezeichne $\Lambda(\vec{N})$ die Menge alle lokalen Freiheitsgrade $N$, die zu $\vec{N}$ gehören.\\
+	\textbf{FEM-Raum:} $V_h:=\lbrace v=(v_{K})_{K\in\T_h}\colon\Omega^\circ\to\R\mid \forall \vec{N}\in\Sigma_h:\forall N_i^{K},N_j^{K'}\in\Lambda(\vec{N}):N_i^{K}(v|_K)=N_j^{K'}(v|_{K'})\rbrace$\\
+	$v_h\in V_h$ ist eindeutig bestimmt durch die Werte des globalen DOFs $N(v_h)$.\\
+	Interpolation: $I_h(v):=\sum\limits_{i=1}^n N_i(v)\cdot\varphi_i\in V_h$ mit $\Sigma=\lbrace N_1,\ldots,N_n\rbrace$ und $\lbrace\varphi_1,\ldots,\varphi_n\rbrace$ Basis von $V_h$ mit $N_i(\varphi_j)=\delta_{i,j}$ und $(I_h(v))|_K=I_j^K(v|_K)$\\
+	\textbf{Lemma von Deny-Lions:} $\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v+P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)$\\
+	Familie $\lbrace\T_h\rbrace_h$ heißt \textbf{form-regulär} $:\gdw\exists\sigma>0:\forall h:\forall K\in\T_h:h_K\leq\sigma\cdot \rho_K$ mit $h_K:=\diam(K)$ und $\rho_K:=\sup\lbrace\diam(S):S\subseteq K\text{ Sphäre}\rbrace\leq h_K$
 	
 	\section{Nichtkonforme Methoden}
 	
 	Nichtkonform bedeutet $V_h\not\in V$, konform bedeutet $V_h\subseteq V$.
 	Besser für Probleme höherer Ordnung, sonst Probleme mit Einschränkungen.
+	Konform: Punkte liegen immer auf den Ecken, nichtkonform beliebig.\\
+	\textbf{Nichtkonformes $P_1$-Element:} $K=$Dreieck, $V=P_1(K)=\spann\lbrace 1,x,y\rbrace,\Sigma=\lbrace N_1,N_2,N_3\rbrace$ mit $N_i(v)=$ Integralmittelwert von $v\in V$ auf den Kanten, also $N_i(v)=\frac{1}{\L(E)}\int\limits_E v\d\gamma$\\
+	FEM-Raum: $V_h=\lbrace v\in L^2(\Omega)\mid	v|_K\in P_1(K),\int\limits_E [v]_E\d\gamma=0~\forall	\text{ inn. K. $E$},	\frac{1}{|E|}\cdot\int\limits_E v\d\gamma=0~\forall\text{ äuß. K. }E\rbrace$\\
+	Hierbei ist $[v]_E$ der Sprung von $v$ über Kante $E$. Raum der stetigen stückweise linearen Funktionen ist Teilmenge von $v_h$.\\
+	Da im nichtkonformen Fall die Bilinarform $a$ nicht immer für $u,v\in V_h\not\subseteq V$ definiert ist, setzen wir $a_h(v_h,u_h):=\sum_{K\in\T_h}\int_K \nabla v_h\cdot\nabla w_h\d x$\\
+	\textbf{Zweites Lemma von Strang:} $\Vert u-u_h\Vert(1+\frac{M}{\alpha})\inf\limits_{v_h\in V}\Vert u-v_h\Vert_h+\frac{1}{\alpha}\sup\limits_{z_h\in V_h}\frac{a_h(u,z_h)-f_h(z_h)}{\Vert z_h\Vert_h}$ (Approximationsfehler + Konsistenzfehler (=0 für konform))\\
+	\textbf{Thm:} Für $P_1$ nicht-konf. FEM-Räume $u_h\in V_h$ $v\in V\cap H^2(\Omega)$ gilt $\Vert u-u_h\Vert_h\leq c\cdot h\cdot\Vert u\Vert_{2,2,\Omega}$
 	
 	\section{A posteriori Fehlerschätzer}
 	
+	A priori Fehlerschätzungen haben folgende Nachteile: $c$ unbekannt, nur globale Information über Fehler, hängen von globalen Eigenschaften ab (Regularität)\\
+	\textbf{Posteriori-Fehlerschätzer} ist berechenbar aus Problemdaten und der diskreten Lösung.
+	Ein Fehlerschätzer $\eta$ heißt \textbf{zuverlässig} wenn es obere Schranke für globalen Fehler gibt: $\Vert u-u_h\Vert_\Omega\leq c\cdot\eta$
+	Ein Fehlerschätzer $\eta$ heißt \textbf{effizient} falls es untere Schranke für lokalen Fehler gibt $\eta_{\text{lokal}}\leq c\cdot\Vert u-u_h\Vert_{\text{lokal}}$ + Datenoszillation.
+	Da wir später $f$ durch ein Approximationspolynom ersetzen, kommt ein Fehlerterm hinzu, welchen wir \textbf{Daten-Oszillation} nennen.\\
+	Effiziente Fehlerschätzer soll eine Überschätzung der lokalen Verfeinerung verhindern.\\
+	\textbf{Algo: Adaotive Gitterverfeinerung} Wähle Start-Triangulation $\T_0,l:=0$; Löse diskretes Problem auf $\T_l$; Berechne $\eta_T$, $\eta_l:=\max_{T\in\T_l}\eta_T,~\eta:=(\sum_{T\in\T_l}\eta_T^2)^{1/2}$; Falls $\eta_l\leq\varepsilon$ STOP; Verfeinere Zellen $T$ mit $\eta_T\geq\gamma\cdot\eta_l$ (Wähle $\gamma\in[0,1]$ fix), verfeinere Dreiecke um Regularität sicherzustellen; $l:=l+1$
+	
+	
 	\section{Stromlinien-Diffusionsmethode (SDFEM)}
 	
-	Ziel: Stabileres Verfahren konstruieren, welches für Finite-Elemente beliebiger Ordnung genutzt werden kann mit höherer Konvergenzordnung
+	Ziel: Stabileres Verfahren konstruieren, welches für Finite-Elemente beliebiger Ordnung genutzt werden kann mit höherer Konvergenzordnung.
+	\begin{align*}
+\left\lbrace
+	\begin{array}{rl}
+	-\varepsilon\cdot\Delta u+b\cdot \nabla u+c\cdot u=f&\text{ in }\Omega\\
+	u=g&\text{ auf }\Gamma=\partial\Omega\\
+	0<\varepsilon\ll 1&
+	\end{array}
+	\right.
+\end{align*}
+
+	Für $\varepsilon=0$ ist dies eine PDE erster Ordnung, aber für $\varepsilon>0$ eine PDE zweiter Ordnung.
+	Beim Grenzübergang passieren "magische Dinge", die sich mit den bisher bekannten Verfahren nicht sinnvoll lösen lassen.
+	Es kommt zu Oszillationen.
+	Deshalb wurden die SDFEM-Verfahren erfunden.
+	Die Idee besteht darin aus das diskrete Problem noch $\delta_K$-mal das glatte Problem dazu zu addieren.
 	
 	\section{Gemischte Methoden}
 	
@@ -174,7 +208,7 @@
 			B^\ast\colon Q\to\big\lbrace g\in V^\ast:\langle g,v\rangle=0~\forall v\in W\big\rbrace
 		\end{aligned}$ ist ein Isomorphismus mit $\big\Vert B^\ast q\big\Vert_{V^\ast}\geq\beta\cdot\Vert q\Vert_Q\qquad\forall q\in Q$
 	\end{enumerate}
-	\textbf{Theorem.} Seien $Q,V$ HR, $a\colon V\times V\to\R$ stetig, koerzive Bilinearform und $b\colon V\to\R$ stetige Bilinearform ???. Dann: LBB $\implies a(u,v)=f(v)$ hat für jedes $f\in V^\ast$ eindeutige Lösung\\
+	\textbf{Theorem.} Seien $Q,V$ HR, $a\colon V\times V\to\R$ stetig, koerzive Bilinearform und $b\colon V\to\R$ stetige Bilinearform. Dann: LBB $\implies a(u,v)=f(v)$ hat für jedes $f\in V^\ast$ eindeutige Lösung\\
 	\textbf{Lemma Fortin:} Angenommen stetige LBB. Dann: diskrete LBB $\Leftrightarrow\exists$ Familie von Interpolationsoperatoren $\lbrace I_h:V\to V_h\rbrace_h$ mit $b(q_h,v)=b(q_h,I_h v)\forall q_h\in Q_h,\forall v\in V$ und $\Vert I_h v\Vert_V\leq c\Vert v\Vert_V\forall v\in V$. Wähle meist Integralmittel als \textbf{Fortin-Operator}.
 	
 \end{document}

@@ -124,7 +124,7 @@ Diskretes Problem: Finde $u_h\in V_h$ so, dass
 Dann sagt Lax-Milgram \ref{theorem2.1LaxMilgram}: Es existiert genau ein $u\in V$, welches das Problem löst.\nl
 \textbf{Weitere Annahmen:}
 \begin{itemize}
-	\item $a_h$ sei eine Bilinearform auf $V+ V_h$ %kein Plan warum er hier $V+V_h$ schreibt. Ich ziehe das mal konsequent durch.
+	\item $a_h$ sei eine Bilinearform auf $V+ V_h:=\big\lbrace v+v_h: v\in V,v_h\in V_h\big\rbrace$
 	\item $a_h$ sei \textbf{gleichmäßig stetig auf $V+ V_h$}, d. h.
 	\begin{align*}
 		\exists M>0\text{ unabhängig von }h:\big|a_h(u,v)\big|\leq M\cdot\Vert u\Vert_h\cdot\Vert v\Vert_h\qquad\forall u,v\in V+ V_h

@@ -1,0 +1,3 @@
+
+- Poisson, welche Konvergenzordnung für P_3 Splines in welcher Norm? 3 in H^2? 4
+

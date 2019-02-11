@@ -273,9 +273,9 @@ Die letzte Ungleichung heißt \textbf{$\inf$-$\sup$-Bedingung / LBB-Bedingung}
 \begin{theorem}\label{theorem8.1}
 	Seien $Q,V$ Hilberträume.
 	Sei $a\colon V\times V\to\R$ stetig, $V$-elliptisch (= koerziv), bilinear.
-	Sei $b\colon V\to\R$ stetig, bilinear mit
+	Sei $b\colon V\times V\to\R$ stetig, bilinear mit
 	\begin{align*}
-		\exists\beta>0:\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(q)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
+		\exists\beta>0:\inf\limits_{q\in Q}\sup\limits_{v\in V}\frac{b(q,v)}{\Vert v\Vert_V\cdot\Vert q\Vert_Q}\geq\beta
 	\end{align*}
 	Dann gibt es für jedes $f\in V^\ast$ eine eindeutige Lösung des Problems
 	\begin{align*}

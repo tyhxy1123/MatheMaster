@@ -18,6 +18,11 @@ Hughes / Brooks 1979
 	\right.
 \end{align*}
 
+Für $\varepsilon=0$ ist dies eine PDE erster Ordnung, aber für $\varepsilon>0$ eine PDE zweiter Ordnung.
+Beim Grenzübergang passieren "magische Dinge", die sich mit den bisher bekannten Verfahren nicht sinnvoll lösen lassen.
+Es kommt zu Oszillationen.
+Deshalb wurden die SDFEM-Verfahren erfunden.
+Die Idee besteht darin aus das diskrete Problem noch $\delta_K$-mal das glatte Problem dazu zu addieren.\nl
 \textbf{1D:}
 \begin{align*}
 	-\varepsilon\cdot u''+u'=0\text{ auf }(0,1),\qquad u(0)=0,\qquad u(1)=1
