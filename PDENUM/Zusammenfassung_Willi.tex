@@ -144,12 +144,23 @@
 	Ist $\lbrace\varphi_1,\ldots,\varphi_m\rbrace$ Basis von $V$, so ist $\Sigma$ die Basis des Dualraums $V^\ast$, also $\forall i\in\lbrace 1,\ldots,m\rbrace:\exists! N_i\colon V\to\R:\forall j\in\lbrace1,\ldots,m\rbrace: N_i(\varphi_j)=\delta_{i,j}$\\
 	Dies ist äquivalent zur \textbf{$V$-Unisolvenz}, d.h. $\forall\alpha_1,\ldots,\alpha_m\in\R:\exists! v\in V:N_1(v)=\alpha_1,\ldots,N_m(v)=\alpha_m$\\
 	$\Sigma$ ist unisolvent $\gdw M:=(m_{i,j})$ invertierbar mit $m_{i,j}:=N_i(\varphi_i)$\\
+	Affin äquivalent: $F:\R^d\to\R^d$ affin und invertierbar mit $K=F(\hat{K})$, $v=\hat{v}\circ F$, $N(v)=\hat{N}(v\circ F)$\\
 	Zwei lokale Nodal-Funktionale $N_i^K\in\Sigma$ und $N_j^{K'}\in\Sigma'$ \textbf{gehören zum selben globalen Freiheitsgrad} $N_i^K\sim N_j^{K'}:\Longleftrightarrow N_i^K(\varphi|_K)=N_j^{K'}(\varphi|_{K'})\qquad\forall\varphi\in C^\infty(U)\mit\overline{K\cup K'}\subseteq U$.
 	Sei $\Sigma_h$ Menge aller globalen Freiheitsgrade einer Triangulation $\T$ und für $\vec{N}\in\Sigma_h$ bezeichne $\Lambda(\vec{N})$ die Menge alle lokalen Freiheitsgrade $N$, die zu $\vec{N}$ gehören.\\
 	\textbf{FEM-Raum:} $V_h:=\lbrace v=(v_{K})_{K\in\T_h}\colon\Omega^\circ\to\R\mid \forall \vec{N}\in\Sigma_h:\forall N_i^{K},N_j^{K'}\in\Lambda(\vec{N}):N_i^{K}(v|_K)=N_j^{K'}(v|_{K'})\rbrace$\\
 	$v_h\in V_h$ ist eindeutig bestimmt durch die Werte des globalen DOFs $N(v_h)$.\\
 	Interpolation: $I_h(v):=\sum\limits_{i=1}^n N_i(v)\cdot\varphi_i\in V_h$ mit $\Sigma=\lbrace N_1,\ldots,N_n\rbrace$ und $\lbrace\varphi_1,\ldots,\varphi_n\rbrace$ Basis von $V_h$ mit $N_i(\varphi_j)=\delta_{i,j}$ und $(I_h(v))|_K=I_j^K(v|_K)$\\
-	\textbf{Lemma von Deny-Lions:} $\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v-P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)$\\
+	\textbf{Deny-Lions:} $\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v\pm P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)$\\
+	\textbf{Bramble-Hilbert:} Sei $(Y,\Vert\cdot\Vert_Y)$ BR und $F:W^{r+1,p}(K)\to Y$ linear mit $\big\Vert F(u)\Vert_Y\leq c_1\cdot\Vert u\Vert_{r+1,p,K}~\forall u\in W^{r+1,p}(K)$ und $F(p)=0~\forall p\in P_r(K)$.\\
+	Dann: $\exists c,\tilde{c}>0:\big\Vert F(u)\big\Vert_Y
+		\leq c\cdot\inf\limits_{p\in P_r(K)}\Vert u+p\Vert_{r+1,p,K}
+		\overset{\text{Deny-Lions}}{\leq}
+		\tilde{c}\cdot |u|_{r+1,p,K}\qquad\forall u\in W^{r+1,p}(K)$\\
+	\textit{Beweis.} $F(u)\overset{\text{Lin + Vor}}{=}F(u)+F(p)\forall p\in P_r\leadsto
+		\Vert F(u)\Vert_Y
+		=\inf\limits_{p\in P_r(K)}\Vert F(u+p)\big\Vert_Y
+		\overset{\text{Vor}}{\leq}
+		c_1\cdot\inf\limits_{p\in P_r(K)}\Vert u+p\Vert_{r+1,p,K}$\\
 	Familie $\lbrace\T_h\rbrace_h$ heißt \textbf{form-regulär} $:\gdw\exists\sigma>0:\forall h:\forall K\in\T_h:h_K\leq\sigma\cdot \rho_K$ mit $h_K:=\diam(K)$ und $\rho_K:=\sup\lbrace\diam(S):S\subseteq K\text{ Sphäre}\rbrace\leq h_K$
 	
 	\section{Nichtkonforme Methoden}
@@ -172,9 +183,10 @@
 	Ein Fehlerschätzer $\eta$ heißt \textbf{effizient} falls es untere Schranke für lokalen Fehler gibt $\eta_{\text{lokal}}\leq c\cdot\Vert u-u_h\Vert_{\text{lokal}}$ + Datenoszillation.
 	Da wir später $f$ durch ein Approximationspolynom ersetzen, kommt ein Fehlerterm hinzu, welchen wir \textbf{Daten-Oszillation} nennen.\\
 	Effiziente Fehlerschätzer soll eine Überschätzung der lokalen Verfeinerung verhindern.\\
-	\textbf{Algo: Adaotive Gitterverfeinerung} Wähle Start-Triangulation $\T_0,l:=0$; Löse diskretes Problem auf $\T_l$; Berechne $\eta_T$, $\eta_l:=\max_{T\in\T_l}\eta_T,~\eta:=(\sum_{T\in\T_l}\eta_T^2)^{1/2}$; Falls $\eta_l\leq\varepsilon$ STOP; Verfeinere Zellen $T$ mit $\eta_T\geq\gamma\cdot\eta_l$ (Wähle $\gamma\in[0,1]$ fix), verfeinere Dreiecke um Regularität sicherzustellen; $l:=l+1$
-	
-	
+	\textbf{Bubble-Funktion}: 0 auf dem Rand, 1 in der Mitte (oder 0 auf dem Rand, 1 in der Mitte der Kante)\\
+	\textbf{Algo: Adaptive Gitterverfeinerung} \texttt{Wähle Start-Triangulation $\T_0,l:=0$;\\ Löse diskretes Problem auf $\T_l$; Berechne $\eta_T$, $\eta_l:=\max_{T\in\T_l}\eta_T,~\eta:=(\sum_{T\in\T_l}\eta_T^2)^{1/2}$;\\ Falls $\eta_l\leq\varepsilon$ STOP; Verfeinere Zellen $T$ mit $\eta_T\geq\gamma\cdot\eta_l$ (Wähle $\gamma\in[0,1]$ fix), verfeinere Dreiecke um Regularität sicherzustellen; $l:=l+1$}\\
+	\input{tikz/refinement_types}
+		
 	\section{Stromlinien-Diffusionsmethode (SDFEM)}
 	
 	Ziel: Stabileres Verfahren konstruieren, welches für Finite-Elemente beliebiger Ordnung genutzt werden kann mit höherer Konvergenzordnung.
