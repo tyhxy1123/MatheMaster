@@ -345,6 +345,7 @@ Die Triangulation $\T$ ist formal definiert als Menge der Teildreiecke, also
 \end{proof}
 
 Es ist sinnvoll und naheliegend für ein Finites-Element $(K,V,\Sigma)$ $\dim(V)=|\Sigma|=n$ zu wählen, mit $n$ Anzahl der Ecken des Polygons $K\subseteq\R^2$.
+Nodal-Funktionale bilden Funktionen auf deren Werte an den "Ecken" ab.
 
 \begin{definition}[affin äquivalente finite Elemente]\enter %4.6
 	Zwei finite Elemente $(K,V,\Sigma)$ und $(\hat{K},\hat{V},\hat{\Sigma})$ heißen \textbf{affin äquivalent}
@@ -504,7 +505,7 @@ wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots
 \begin{lemma}[Deny-Lions]\label{lemma4.11DenyLions}\enter
 	Sei $P_r(K)$ der Raum aller Polynome mit höchstens Grad $r$. Dann gilt:
 	\begin{align*}
-		\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v+P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)
+		\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v-P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K) % war in der VL $v+P$, aber Minus ist äquivalent
 	\end{align*}
 \end{lemma}
 

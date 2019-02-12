@@ -1,7 +1,7 @@
 PDENM: potenzielle Prüfungsfragen:
 - Leiten Sie die schwache Formulierung folgender PDE her (siehe Übungsblatt 3)
   Dabei wichtig: 
-	- Satz von Gauß + seltsame partielle Integration
+	- erste Greensche Formel
 	- Cauchy-Schwarz-Ungleichung
 	- Spurungleichung
 	- Friedrichs Ungleichung

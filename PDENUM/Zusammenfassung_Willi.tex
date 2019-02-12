@@ -114,7 +114,7 @@
 	
 	Hier: skalare, lineare PDE zweiter Ordnung\\
 	homogene DB ist $u=0$ auf $\partial\Omega$, Neumann-Randbedingung ist $\frac{\partial u}{\partial n}=g$ auf $\partial\Omega,g\in L^2$, Mischformen\\
-	Die \textbf{Konvektions-Diffusionsgl.} mit homo-Neumann-RB ist eindeutig schwach lösbar für $\alpha-\frac{1}{2}\div(a)\geq0$:
+	Die \textbf{Konvektions-Diffusionsgl.} mit homo-Dirichlet-RB ist eindeutig schwach lösbar für $\alpha-\frac{1}{2}\div(a)\geq0$:
 	\begin{align*}
 	-\sum\limits_{i,j=1}^d\frac{\partial}{\partial x_i}\left(A_{i,j}(x)\cdot\frac{\partial u}{\partial x_j}\right)+\sum\limits_{i=1}^d a_i(x)\cdot\frac{\partial u}{\partial x_i}+\alpha(x)\cdot u&=f(x)\text{ in }\Omega\\
 	\overset{\text{weak}}{\rightleftarrows}
@@ -149,7 +149,7 @@
 	\textbf{FEM-Raum:} $V_h:=\lbrace v=(v_{K})_{K\in\T_h}\colon\Omega^\circ\to\R\mid \forall \vec{N}\in\Sigma_h:\forall N_i^{K},N_j^{K'}\in\Lambda(\vec{N}):N_i^{K}(v|_K)=N_j^{K'}(v|_{K'})\rbrace$\\
 	$v_h\in V_h$ ist eindeutig bestimmt durch die Werte des globalen DOFs $N(v_h)$.\\
 	Interpolation: $I_h(v):=\sum\limits_{i=1}^n N_i(v)\cdot\varphi_i\in V_h$ mit $\Sigma=\lbrace N_1,\ldots,N_n\rbrace$ und $\lbrace\varphi_1,\ldots,\varphi_n\rbrace$ Basis von $V_h$ mit $N_i(\varphi_j)=\delta_{i,j}$ und $(I_h(v))|_K=I_j^K(v|_K)$\\
-	\textbf{Lemma von Deny-Lions:} $\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v+P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)$\\
+	\textbf{Lemma von Deny-Lions:} $\exists c(K)>0:\inf\limits_{P\in P_r(K)}\Vert v-P\Vert_{r+1,p,K}\leq c(K)\cdot |v|_{r+1,p,K}\qquad\forall v\in W^{r+1,p}(K)$\\
 	Familie $\lbrace\T_h\rbrace_h$ heißt \textbf{form-regulär} $:\gdw\exists\sigma>0:\forall h:\forall K\in\T_h:h_K\leq\sigma\cdot \rho_K$ mit $h_K:=\diam(K)$ und $\rho_K:=\sup\lbrace\diam(S):S\subseteq K\text{ Sphäre}\rbrace\leq h_K$
 	
 	\section{Nichtkonforme Methoden}
@@ -195,7 +195,7 @@
 	Die Idee besteht darin aus das diskrete Problem noch $\delta_K$-mal das glatte Problem dazu zu addieren.
 	
 	\section{Gemischte Methoden}
-	
+	Idee: Mehr unabhängige Variablen (Nodal-Funktionale) welche durch Lagrange-Multiplikatoren beschränkt sind.\\
 	Problem: Es ist oftmals schwer Lösungen durch konforme Finite-Elemente-Räume zu approximieren.\\
 	\textbf{Satz.} Für eine stetige Bilinearform $b:Q\times V\to\R$ mit zugehörigen Operatoren
 	$B\colon V\to Q^\ast$ und $B^\ast\colon Q\to V^\ast$ sind die folgenden Bedingungen äquivalent:
@@ -210,5 +210,26 @@
 	\end{enumerate}
 	\textbf{Theorem.} Seien $Q,V$ HR, $a\colon V\times V\to\R$ stetig, koerzive Bilinearform und $b\colon V\to\R$ stetige Bilinearform. Dann: LBB $\implies a(u,v)=f(v)$ hat für jedes $f\in V^\ast$ eindeutige Lösung\\
 	\textbf{Lemma Fortin:} Angenommen stetige LBB. Dann: diskrete LBB $\Leftrightarrow\exists$ Familie von Interpolationsoperatoren $\lbrace I_h:V\to V_h\rbrace_h$ mit $b(q_h,v)=b(q_h,I_h v)\forall q_h\in Q_h,\forall v\in V$ und $\Vert I_h v\Vert_V\leq c\Vert v\Vert_V\forall v\in V$. Wähle meist Integralmittel als \textbf{Fortin-Operator}.
+	
+	\section{Konkrete FEM}
+	
+	\begin{minipage}{0.49\textwidth}
+		Dreiecke:
+		\begin{itemize}
+			\item $P_0$: stückweise konstante FEM,\\ $\dim(P_0(K))=1$
+			\item $P_1$: konformes stückweises linearen FEM, $\dim(P_1(K))=d+1\overset{d=2}{=}3$
+			\item $P_2$: konforme stückweise quadratische FEM, $\dim(P_2(K))=\frac{(d+1)\cdot(d+2)}{2}=\overset{d=2}{=}6$
+			\item $P_3$: konforme stückweise kubische FEM, $\dim(P_3(K))=\frac{(d+1)\cdot(d+2)\cdot(d+3)}{6}\overset{d=2}{=}10$
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+		Quadrate:
+		\begin{itemize}
+			\item $Q_0$: stückweise konstantes FEM: $\dim(Q_0(K))=1$
+			\item $Q_1$: konforme stückweise $d$-lineare FEM, $\dim(Q_1(K))=2^d\overset{d=2}{=}4$
+			\item $Q_2$: konforme stückweise $d$-dimensionalen FEM, $\dim(Q_2(K))=3^d\overset{d=2}{=}8$
+			\item $Q_3$: konforme stückweise $d$-kubische FEM, $\dim(Q_3(K))=4^d\overset{d=2}{=}16$.
+		\end{itemize}
+	\end{minipage}
 	
 \end{document}
