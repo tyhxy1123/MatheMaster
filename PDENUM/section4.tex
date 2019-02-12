@@ -406,6 +406,40 @@ Unisolvenz: Gegeben $\alpha_1,\ldots,\alpha_m\in\R$. Gibt es ein eindeutiges $v\
 	M\cdot c&=\alpha
 \end{align*}
 
+\begin{beispiel} % war nicht in VL
+	Dreiecke:
+	\begin{itemize}
+		\item $P_0$: stückweise konstante FEM,\\ $\dim(P_0(K))=1$
+		\item $P_1$: konformes stückweises linearen FEM, $\dim(P_1(K))=d+1\overset{d=2}{=}3$
+		\item $P_2$: konforme stückweise quadratische FEM, $\dim(P_2(K))=\frac{(d+1)\cdot(d+2)}{2}=\overset{d=2}{=}6$
+		\item $P_3$: konforme stückweise kubische FEM, $\dim(P_3(K))=\frac{(d+1)\cdot(d+2)\cdot(d+3)}{6}\overset{d=2}{=}10$
+	\end{itemize}
+	
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\includegraphics[width=1\textwidth]{./pics/FEM_Dreieck.png}
+			\caption{Nodal Functionals für $P_0,P_1,P_2,P_3$}
+			\label{AbbFEM-Dreieck}
+		\end{center}
+	\end{figure}
+
+	Quadrate:
+	\begin{itemize}
+		\item $Q_0$: stückweise konstantes FEM: $\dim(Q_0(K))=1$
+		\item $Q_1$: konforme stückweise $d$-lineare FEM, $\dim(Q_1(K))=2^d\overset{d=2}{=}4$
+		\item $Q_2$: konforme stückweise $d$-dimensionalen FEM, $\dim(Q_2(K))=3^d\overset{d=2}{=}8$
+		\item $Q_3$: konforme stückweise $d$-kubische FEM, $\dim(Q_3(K))=4^d\overset{d=2}{=}16$.
+	\end{itemize}
+	
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\includegraphics[width=1\textwidth]{./pics/FEM_Quadrat.png}
+			\caption{Nodal Functionals für $Q_1,Q_2,Q_3$}
+			\label{AbbFEM-Qudrat}
+		\end{center}
+	\end{figure}
+\end{beispiel}
+
 \begin{definition}[globales Nodal-Funktional / globale Freiheitsgrade (dof)]\enter
 	Seien $(K,V,\Sigma)$ und $(K',V',\Sigma')$ Finite-Elemente.
 	Zwei lokale Nodal-Funktionale $N_i^K\in\Sigma$ und $N_j^{K'}\in\Sigma'$ \textbf{gehören zum selben globalen Freiheitsgrad}, i.Z.
