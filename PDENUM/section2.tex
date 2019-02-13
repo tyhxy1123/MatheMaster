@@ -106,7 +106,7 @@ Eigenschaften der oben definierten Linearform $l$:
 	\begin{thm}[Darstellungssatz von Riesz-Fréchet]\enter
 		Sei $(H,\langle\cdot,\cdot\rangle)$ ein Hilbertraum. Dann existiert zu jedem stetigen Funktional $A\in H^\ast$ genau ein $h\in H$ so, dass
 		\begin{align*}
-			A(h)=\langle A(h),v\rangle\qquad\forall v\in H
+			A(v)=\langle v,h\rangle\qquad\forall v\in H
 			\qquad\und\qquad\Vert A\Vert_{H^\ast}=\Vert h\Vert_H
 		\end{align*}
 	\end{thm}
@@ -119,7 +119,7 @@ Eigenschaften der oben definierten Linearform $l$:
 	\end{align*}
 	Offenbar ist $Au$ eine stetige Linearform auf $V$, also $ Au\in V^\ast$. Dann gilt:
 	\begin{align*}
-		\langle Au,v\rangle\overset{\text{Riesz}}{=}(Au)(v)\overset{\Def}&=a(u,v)&\forall& u,v\in V \\
+		\langle \underbrace{Au}_{\hat{=}h},v\rangle\overset{\text{Riesz}}{=}(Au)(v)\overset{\Def}&=a(u,v)&\forall& u,v\in V \\
 		b\overset{\text{Vor}}{\in} V^\ast\implies \langle b,v\rangle\overset{\text{Riesz}}&{=}b(v) &\forall& v\in V
 	\end{align*}
 	Damit folgt:
