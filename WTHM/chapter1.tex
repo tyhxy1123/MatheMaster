@@ -8,7 +8,9 @@
 Betrachte den Wahrscheinlichkeitsraum $(\Omega,\A,\P)$.\\
 Für Zufallsvariable $X:\Omega\to\R$ und $p\in[1,\infty)$ definiere die $L_p$-Norm
 \begin{align*}
-	\Vert X\Vert_p:=\E\left[|X|^p\right]=\left(\int\limits_\Omega|X(\omega)|^p\d\P(\omega)\right)^{\frac{1}{p}}
+	\Vert X\Vert_p
+	:=\Big(\E\big[|X|^p\big]\Big)^{\frac{1}{p}}
+	=\left(\int\limits_\Omega|X(\omega)|^p\d\P(\omega)\right)^{\frac{1}{p}}
 \end{align*}
 und die Räume
 \begin{align*}
@@ -54,23 +56,32 @@ Aus der Maßtheorie ist bekannt:
 	Zwei Zufallsvariablen $X,Y\in L_2$ heißen \textbf{orthogonal} $:\gdw\langle X,Y\rangle=0$.
 \end{bemerkung}
 
-\begin{proposition}
+\begin{proposition}\label{prop1.2}
 	Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$ und $p\in[1,\infty)$.\\
 	Dann ist $L_p(\Omega,\mathcal{F},\P)$ ein abgeschlossener Unterraum von $L_p(\Omega,\A,\P)$.
 \end{proposition}
 
 \begin{proof}
-	Es gilt:
-	\[ X \text{ ist } \A-\text{messbar} \implies X \text{ ist } \F-\text{messbar}\]
+	\begin{align*}
+		X \text{ ist } \F\text{-messbar}
+		\overset{\Def}&{\Longleftrightarrow}
+		\Big(\forall B\in\B(\R):X^{-1}(B)\in\F\Big)\\
+		\overset{\F\subseteq\A}&{\implies}
+		\Big(\forall B\in\B(\R):X^{-1}(B)\in\A\Big)\\
+		\overset{\Def}&{\Longleftrightarrow}
+		X \text{ ist } \A\text{-messbar}
+	\end{align*}
 	Daraus können wir folgende Inklusion schlussfolgern:
-	\[\mathcal{L}_p(\Omega,\F,\P) \subseteq \mathcal{L}_p(\Omega,\A,\P)\]
-	$\mathcal{L}_p(\Omega,\F,\P)$ selbst ist Banachraum und damit abgeschlossener Unterraum.
+	\begin{align*}
+		\mathcal{L}_p(\Omega,\F,\P) \subseteq \mathcal{L}_p(\Omega,\A,\P)	
+	\end{align*}
+	$\mathcal{L}_p(\Omega,\F,\P)$ selbst ist Banachraum und damit abgeschlossener Unterraum (vollständig $\gdw$ abgeschlossen).
 \end{proof}
 
-\begin{defi}[Bedingte Erwartung in $L_2$]
-	Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\nl
+\begin{defi}[Bedingte Erwartung in $L_2$]\enter
+	Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.
 	Jedes $X\in L_2(\Omega,\mathcal{A},\P)$ hat eine eindeutige Orthogonalprojektion $Y$ auf $L_2(\Omega,\mathcal{F},\P)$.
-	Diese heißt \textbf{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
+	Diese heißt \define{bedingte Erwartung} von $X$ bzgl. $\mathcal{F}$ und wir schreiben 
 	\begin{align*}
 		\E[X~|~\mathcal{F}]:=Y.
 	\end{align*}
@@ -80,7 +91,7 @@ Aus der Maßtheorie ist bekannt:
 \begin{bemerkung}
 	Als Orthogonalprojektion gilt
 	\begin{align*}
-		\Vert X-\E[X~|~\mathcal{F}]\Vert_2=\inf\left\lbrace\Vert X-Y\Vert_2:Y\in L_2(\Omega,\mathcal{F},\P)\right\rbrace.
+		\Big\Vert X-\E[X~|~\mathcal{F}]\Big\Vert_2=\inf\Big\lbrace\Vert X-Y\Vert_2:Y\in L_2(\Omega,\mathcal{F},\P)\Big\rbrace.
 	\end{align*}
 	Interpretation: $\E[X~|~\mathcal{F}]$ ist die beste Näherung für $X$ durch Zufallsvariablen\\ $Y\in L_2(\Omega,\mathcal{F},\P)$.
 \end{bemerkung}
