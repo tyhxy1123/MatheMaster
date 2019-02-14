@@ -14,9 +14,11 @@
 \newcommand{\ii}{\mathrm{i}\mkern1mu}    % imaginäre Einheit
 
 % Schlüsselwörter
-\renewcommand{\mit}{\text{ mit }}
-\newcommand{\falls}{\text{falls }}
-\newcommand{\und}{\text{ und }}
+\renewcommand{\mit}{\text{ mit }}       % sprachliches mit für align-Umgebungen
+\newcommand{\falls}{\text{falls }}      % sprachliches falls für Fallunterscheidungen
+\newcommand{\und}{\text{ und }}         % sprachliches und für align-Umgebungen
+\newcommand{\Def}{\text{Def}}           % Voraussetzung, z.B. $\overset{\Def}{=}$
+\newcommand{\Vor}{\text{Vor}}           % Voraussetzung, z.B. $\overset{\Vor}{=}$
 
 % Commands für Stochastik / Statistik
 \newcommand{\A}{\mathcal{A}}           % Sigma-Algebra
@@ -73,8 +75,11 @@
 \newcommand\tab[1][1cm]{\hspace*{#1}}    % praktischer Tabulator
 
 % Folgende Commands sollten nicht mehr genutzt werden und sind nur noch zwecks "Abwärtskompatibilität" vorhanden
-\newcommand{\stackeq}[1]{\stackrel{#1}{=}} 
-\newcommand{\ul}[1]{\underline{#1}}      
+\newcommand{\stackeq}[1]{\stackrel{#1}{=}}   
 
 % TEXT ÜBER UND UNTER ZEICHEN
 \newcommand{\stackrelnew}[3]{\underset{#1}{\overset{#2}{#3}}}
+
+% Hervorhebungen
+\newcommand{\ul}[1]{\underline{#1}}    
+\newcommand{\define}[1]{\textbf{#1}}     % Definitionen werden standardmäßig untrerstrichen
