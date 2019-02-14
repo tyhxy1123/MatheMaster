@@ -277,8 +277,14 @@ Daraus ergibt sich ein lineares Gleichungssystem:
 		&=a(u-u_h,u_\varphi-v_h)\mit v_h\in V\text{ beliebig}\\
 		&\leq M\cdot\Vert u-u_h\Vert_V\cdot\Vert u_\varphi-v_h\Vert_V\\
 		\Vert u-u_h\Vert_H
-		&=\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\langle u-u_h,\varphi\rangle_H\\
-		&\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}\varphi\in H\\\Vert\varphi\Vert=1\end{subarray}}\inf\limits_{v_h\in V}\Vert u_\varphi-v_h\Vert_V
+		&=\sup\limits_{\begin{subarray}{c}
+			\varphi\in H\\
+			\Vert\varphi\Vert=1
+		\end{subarray}}\langle u-u_h,\varphi\rangle_H\\
+		&\leq M\cdot\Vert u-u_h\Vert_V\cdot\sup\limits_{\begin{subarray}{c}
+			\varphi\in H\\
+			\Vert\varphi\Vert=1
+		\end{subarray}}\inf\limits_{v_h\in V_h}\Vert u_\varphi-v_h\Vert_V
 	\end{align*}
 \end{proof}
 

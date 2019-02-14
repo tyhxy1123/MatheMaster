@@ -555,24 +555,24 @@ wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots
 		N_\alpha:W^{r+1,p}(K)\to\R,\qquad v\mapsto\int\limits_K D^\alpha v\d x\\
 		\alpha\longleftrightarrow x^\alpha =\prod\limits_{i=1}^d x_i^{\alpha_i}
 	\end{align*}
-	Also ist $\big\lbrace N_\alpha:|\alpha|\leq r\big\rbrace$ unisolvent auf $P_r(K)$.
+	$\big\lbrace N_\alpha:|\alpha|\leq r\big\rbrace$ ist unisolvent auf $P_r(K)$, denn:
 	\begin{align*}
-		\implies\left.
+		\left.
 		\begin{array}{cl}
 			N_\alpha(p)=0, &\forall |\alpha|\leq r \\
 			p\in P_r(K)&
 		\end{array}
 		\right\rbrace
-		\implies p\equiv 0
+		\implies p\equiv 0.
 	\end{align*}
 	Wir werden die Ungleichung
 	\begin{align}\label{eqProof4.11Stern}\tag{$\ast$}
-		\Vert v\Vert_{r+1,p,K}\leq c(K)\cdot\left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leq r}\big|N_\alpha (r)\big|\right)\qquad\forall v\in W^{r+1,p}(K)
+		\Vert v\Vert_{r+1,p,K}\leq c(K)\cdot\left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leq r}\big|N_\alpha (v)\big|\right)\qquad\forall v\in W^{r+1,p}(K)
 	\end{align}
 	indirekt zeigen. Angenommen, diese Ungleichung gilt nicht. Dann gibt es eine Folge $(v_l)_{l\in\N}$ mit
 	\begin{align}
 		\Vert v_l\Vert_{r+1,p,K}=1\qquad\forall l\in\N\nonumber\\
-		\lim\limits_{l\to\infty} \left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leq r}\big|N_\alpha (r)\big|\right)=0\label{eqProof4.11SternStern}\tag{$\ast\ast$}
+		\lim\limits_{l\to\infty} \left(|v|_{r+1,p,K}+\sum\limits_{|\alpha|\leq r}\big|N_\alpha (v_1)\big|\right)=0\label{eqProof4.11SternStern}\tag{$\ast\ast$}
 	\end{align}
 	Mit der kompakten Einbettung $W^{r+1,p}(K)\stackrel{c}{\hookrightarrow} W^{r,p}(K)$ erhalten wir:\\
 	Es gibt eine Teilfolge $(v_m)_{m\in\N}\subseteq(v_l)_{l\in\N}$, die in $W^{r,p}(K)$ gegen $v\in W^{r,p}(K)$ konvergiert.\\
@@ -600,7 +600,7 @@ wobei $\Sigma_h=\lbrace N_1,\ldots,N_n\rbrace\text{ und }\lbrace\varphi_1,\ldots
 		\inf\limits_{p\in P_r(K)}\Vert v+p\Vert_{r+1,p,K}
 		&\leq\Vert v+q\Vert_{r+1,p,K}\\
 		&\overset{\eqref{eqProof4.11Stern}}{\leq}
-		c(K)\cdot\Big(\underbrace{|v+p|_{r+1,p,K}}_{=|v|_{r+1,p,K}}+\sum\limits_{|\alpha|\leq r}\underbrace{|N_\alpha(\cdot v+q)|}_{=0}\Big)
+		c(K)\cdot\Big(\underbrace{|v+p|_{r+1,p,K}}_{=|v|_{r+1,p,K}}+\sum\limits_{|\alpha|\leq r}\underbrace{|N_\alpha(v+q)|}_{=0}\Big)
 	\end{align*}
 \end{proof}
 
