@@ -44,7 +44,8 @@
 \newcommand*{\bigtimes}{
 	\mathop{\raisebox{-.5ex}{\hbox{\huge{$\times$}}}}
 }                                        % Kartesisches Produkt / Kreuzprodukt 
-\renewcommand{\d}{\text{ d}}             % Differential d
+\renewcommand{\d}{\mathrm{d}}            % Differential d ohne Space
+\newcommand{\ds}{~\mathrm{d}}            % Differential d mit Space für Integrale
 \newcommand{\Def}{\text{Def}}            % wird genutzt für z.B. $\overset{\Def}{=}$
 \DeclareMathOperator{\diag}{diag}        % Diagonalmatrix
 \DeclareMathOperator*{\esssup}{ess\,sup} % essenzielles Supremum
