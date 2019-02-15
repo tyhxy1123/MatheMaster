@@ -112,7 +112,8 @@
 		\end{aligned}$
 		\item $\begin{aligned}
 			\E[X_t~|~\F_s]=X_s\qquad\forall s,t\in I\mit s\leq t
-		\end{aligned}$
+		\end{aligned}\qquad$ (Diskret:
+		$ \E[X_{n+1}~|~\F_n]=X_n~\forall n\in\N$) 
 	\end{enumerate}
 	Gilt statt (c) die Eigenschaft
 	\begin{align}\label{defSubmartingal}\tag{c'}
@@ -298,7 +299,7 @@ Für den Beweis benötigen wir die bedingte Jensensche Ungleichung:
 \end{proof}
 
 \begin{proof}[Beweis von Proposition \ref{Prop2.1}]
-	a) und b) folgen aus Linearität und Monotoni der bedingten Erwartung. f) ist klar.\nl
+	a) und b) folgen aus Linearität und Monotonie der bedingten Erwartung. f) ist klar.\nl
 	\underline{Zeige c):}
 	\begin{align*}
 		\E\big[(X_t\wedge Y_t)~\big|~\F_s\big]
@@ -481,13 +482,7 @@ Für den Beweis benötigen wir die bedingte Jensensche Ungleichung:
 \end{lemma}
 
 \begin{bemerkung}\ %noNumber
-	\begin{itemize}
-		\item $\langle M\rangle$ enthält alle Informationen über Kovarianzstruktur von $M$
-		\item Doob-Zerlegung von $(M_n^2)$:
-		\begin{align*}
-			M_n^2=M_0^2+\underbrace{\big(M_n^2-\langle M\rangle_n-M_0^2\big)}_{\text{Martingal}}+\underbrace{\langle M\rangle_n}_{\text{vorhersehbar + steigend}}
-		\end{align*}
-	\end{itemize}
+	$\langle M\rangle$ enthält alle Informationen über Kovarianzstruktur von $M$
 \end{bemerkung}
 
 \begin{beisp} %NoNumber
@@ -497,26 +492,54 @@ Für den Beweis benötigen wir die bedingte Jensensche Ungleichung:
 \end{beisp}
 
 \begin{proof}[Beweis von Lemma \ref{lemma2.4}]\enter
-	Erster Teil des Lemmas folgt aus der Doob-Zerlegung des Submartingals $M_n^2$. Zu zeigen bleibt \eqref{eqLemma2.4}:
-
+	\underline{Zeige $(M_n^2)_{n\in_N}$ ist Submartingal:}\\
+	Dies folgt aus Proposition \ref{Prop2.1} d) mit $\phi:\R\to\R,~x\mapsto x^2$ konvex und 
 	\begin{align*}
-		\E\Big[\big(M_n-M_{n-1}\big)^2~\Big|~\F_{n-1}\Big]
+		\E\big[\phi(M_n)\big|\overset{\Def}{=}\E\big[M_n^2\big]<\infty\qquad\forall n\in\N.
+	\end{align*}
+	
+	\underline{Zeige Existenz und Eindeutigkeit des Kompensators:}\\
+	Dies folgt aus der Doob-Zerlegung \ref{Theorem2.3DoobZerlegung}:
+	Da $(M_n^2)_{n\in\N}$ als Submartingal insbesondere ein adaptierter stochastischer Prozess ist, gilt:
+	\begin{align*}
+		M_n^2\overset{\eqref{eqDoobZerlegung}}{=} M_0^2+\langle \tilde{M}\rangle_n+\underbrace{A_n}_{=:\langle M\rangle_n}
+	\end{align*}	
+	für ein Martingal $\big(\tilde{M}_n\big)_{n\in\N}$ und einen steigenden vorhersehbaren stochastischen Prozess $\big(\langle M\rangle_n\big)_{n\in\N}$.
+	Aus dem Beweis der Doob-Zerlegung \ref{Theorem2.3DoobZerlegung} geht hervor, wie das Martingal genau aussieht: 
+	\begin{align*}
+		M_n^2=M_0^2+\underbrace{\big(M_n^2-\langle M\rangle_n-M_0^2\big)}_{=\tilde{M}_n\text{, Martingal}}+\underbrace{\langle M\rangle_n}_{\text{vorhersehbar + steigend}}
+	\end{align*}
+	Folglich ist (umstellen nach $\tilde{M}_n$)
+	\begin{align*}
+		\Big(M_n^2-\langle M\rangle_n\Big)_{n\in\N}-M_0^2
+	\end{align*}
+	ein Martingal und nach Proposition \ref{Prop2.1} a) ist dann auch
+	\begin{align*}
+		\Big(M_n^2-\langle M\rangle_n\Big)_{n\in\N}
+	\end{align*}
+	ein Martingal.\nl
+	\underline{Zeige Gleichung \eqref{eqLemma2.4}:}
+	\begin{align*}
+		&\E\Big[\big(M_n-M_{n-1}\big)^2~\Big|~\F_{n-1}\Big]\\
+		&=\E\Big[M_n^2-2\cdot M_n\cdot M_{n-1}+M_{n-1}^2~\Big|~\F_{n-1}\Big]\\
+		\overset{\text{Lin}}&=
+		\E\Big[M_n^2~\big|\F_{n-1}\big]-2\cdot\E\big[M_n\cdot M_{n-1}~\big|\F_{n-1}\big]+\E\big[M_{n-1}^2~\Big|~\F_{n-1}\Big]\\
 		&=\E\big[M_n^2~\big|~\F_{n-1}\big]-2\cdot M_{n-1}\cdot\underbrace{\E[M_n~|~\F_{n-1}]}_{=M_{n-1}}+M^2_{n-1}\\
 		&=\E\big[M_n^2~\big|~\F_{n-1}\big] - M_{n-1}^2
 	\end{align*}
-	Da $M_n^2-\langle M\rangle_n$ ein Martingal ist, folgt
+	Da wie oben gezeigt $M_n^2-\langle M\rangle_n$ ein Martingal ist, folgt
 	\begin{align*}
 		\E\big[M_n^2-M_{n-1}^2~\big|~\F_{n-1}\big]
 		=\E\big[\langle M\rangle_n-\langle M\rangle_{n-1}~\big|~\F_{n-1}\big]
-		\stackeq{\langle M\rangle_n\text{ ist vorhersehbar}}\langle M\rangle_n-\langle M\rangle_{n-1}
+		\stackeq{\langle M\rangle_n\text{ vorhersehbar}}\langle M\rangle_n-\langle M\rangle_{n-1}
 	\end{align*}
 \end{proof}
 
 \begin{defi} %noNumber
 	Sei $(M_n)_{n\in\N}$ ein (Sub-/Super-)Martingal und $(\vartheta_n)_{n\in\N}$ ein vorhersehbarer Prozess.
-	Dann heißt der stochastische Prozess
+	Dann heißt der stochastische Prozess $\big((\vartheta\bullet M)_n\big)_{n\in\N}$
 	\begin{align*}
-		(\vartheta\bullet M)_n:=\sum\limits_{i=1}^n\vartheta_i\cdot(M_i-M_{i-1}),\qquad(\vartheta\bullet M)_0:=0
+		(\vartheta\bullet M)_n:=\sum\limits_{i=1}^n\vartheta_i\cdot(M_i-M_{i-1})\qquad\forall n\in\N_{>0},\qquad(\vartheta\bullet M)_0:=0
 	\end{align*} 
 	\textbf{Martingaltransformation} von $M$ bzgl. $\vartheta$.
 \end{defi}

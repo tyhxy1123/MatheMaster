@@ -58,16 +58,59 @@
 			\end{aligned}$
 			\item $\begin{aligned}
 				\E[X_t~|~\F_s]=X_s\qquad\forall s,t\in I\mit s\leq t
-			\end{aligned}$
+			\end{aligned}\qquad$
+			(Diskret:
+		$ \E[X_{n+1}~|~\F_n]=X_n~\forall n\in\N$) 
 		\end{enumerate}
-		\item \textbf{Submartingal}: statt (c) gilt $\E[X_t~|~\F_s]\geq X_s$ (Der zukünftige Wert wird unterschätzt)
-		\item \textbf{Supermartingal}: statt (c) gilt $\E[X_t~|~\F_s]\leq X_s$ (Der zukünftige Wert wird überschätzt)
+		\item \textbf{Submartingal}: statt (c) gilt $\E[X_t~|~\F_s]\geq X_s$ (Der zukünftige Wert wird unterschätzt $\leadsto$ Gewinn)
+		\item \textbf{Supermartingal}: statt (c) gilt $\E[X_t~|~\F_s]\leq X_s$ (Der zukünftige Wert wird überschätzt $\leadsto$ Verlust)
 		\item \textit{"Das Leben ist wie ein Supermartingal - die Erwartung fällt mit der Zeit."}
+		\item Die Sub-/Super-Eigenschaft hängt von Filtration ab.
+		Ist $(M_t)_{t\in T}$ MG bzgl. $(\F_t)_{t\in T}$, dann auch bzgl. $(\F_t^E)_{t\in T}$ mit $\F_t^E:=(\sigma(M_s:s\leq t)$ (\define{erzeugte Filtration}
+		\item Das von ZG $X$ und Filtration $(\F_t)_{t\in T}$ erzeugte MG ist $X_t:=\E[X|\F_t]$.
+		\item Ein \define{Random Walk (RW) mit Schrittverteilung $F$} ist $S_N:=\sum_{i=1}^N\xi_i$ mit $(\xi_n)_{n\in\N}$ iid $\xi_1\sim F$.
+		Heißt \define{symmetrisch}, falls $F$ symmetrisch; \define{einfach} falls $\P[\xi\in\lbrace-1,1\rbrace)=1$
+		\item Ein RW ist Martingal, falls $\E[\xi_1]=0$; Sub-M., falls $\E[\xi_1]\geq0$; Super-M., falls $\E[\xi_1]\leq0$
+		\item $X\wedge Y:=\min\lbrace X,Y\rbrace$ und $X\vee Y:=\max\lbrace X,Y\rbrace$
+		\item Linearkombination von MG wieder MG; nichtnegative Linearkombination von Super/Sub-MG wieder Super/Sub-MG
+		\item $M_n$ SubM $\gdw -M_n$ SuperM.; $X_t,Y_t$ SuperM $\implies X_t\wedge Y_t$ SuperM; $X_t,Y_t$ Sub-M $\implies X_t\vee Y_t$ SubM
+		\item $X$ MG, $\phi$ konvex, $\E\big[\phi(X)\big]<\infty\implies \phi(X_t)$ ist SubM
+		\item $X_t$ MG $\gdw X_t$ Super- und Sub-Martingal
+		\item \define{Bedingte Jensen-U:} $\phi\big(\E[X|\F]\big)\leq\E\big[\phi(X)|\F\big]$ mit $\phi:\R\to\R$ konvex, $\E[\phi(X)]<\infty,~\F\subseteq\A$.
+		\item \define{Doob-Zerlegung:} Jeder adaptierte SP $(X_n)_{n\in\N}$ lässt sich zerlegen in $X_n=X_0+M_n+A_n$ mit MG $M_n$ (mit $M_0=0$) und $A_n$ vorhersehbar $(A_0=0)$. Die Zerlegung ist fast sicher eindeutig.
+		$X_n$ SubM $\implies A_n$ f.s. wachsend; $X_n$ SuperM $\implies A_n$ f.s. fallend.\\
+		\textit{Beweis.} VÜ: DZ $\implies A_n=\sum_{j=1}^n\E\big[X_j-X_{j-1}|\F_j\big]$; Existenz: $M_n:=X_n-X_0-A_n$ ist MG; Eindeutigkeit: Laut VÜ Wahl von $A$ notwendig, also $A_n=A_n'\leadsto M_n=M_n'~\square$
+		\item \textbf{Kompensator-Lemma:} Sei $(M_n)_{n\in\N}$ bzgl. $(\F_n)_{n\in\N}$ mit $\E[M_n^2]<\infty\implies M_n^2$ SubM \& $\exists!$ steigender vorhersehbarer SP (\define{Kompensator}) $\langle M\rangle_n$ so, dass $\big(M_n^2-\langle M\rangle_n\big)_n$ MG ist. Außerdem:
+		$\E\left[(M_n-M_{n-1})^2~\big|~\F_{n-1}\right]=\langle M\rangle_n-\langle M\rangle_{n-1}~\forall n\in\N$\\
+		\textit{Beweis.} $M_n^2$ ist MG wegen $\phi:x\mapsto x^2$ konvex; Doob-Zerlegung von $M_n^2$ ist\\
+		$M_n^2=M_0^2+\underbrace{\big(M_n^2-\langle M\rangle_n-M_0^2\big)}_{=\tilde{M}_n\text{, Martingal}}+\underbrace{\langle M\rangle_n}_{\text{vorhersehbar + steigend}}$; Gl nachrechnen $\square$
+		\item \define{Martingaltransformation} ist SP $(\vartheta\bullet M)_n:=\sum\limits_{i=1}^n\vartheta_i\cdot(M_i-M_{i-1}),(\vartheta\bullet M)_0:=0$
+		mit $M_n$ (Sub-/Super-)MG und $\vartheta_n$ vorhersehbarer SP. Interpretation: $(M_n-M_{n-1})$ ist Gewinn in der $n$-ten Runde, $\theta_n$ ist Einsatz in $n$-ter Runde, MG-Trafo ist Gesamtgewinn nach der $n$-ten Runde mit Einsatzverhalten $\vartheta_n$.
+		\item SP $\vartheta$ \define{lokal beschränkt} $:\gdw\exists(K_n)_{n\in\N}\subseteq\R:\forall n\in\N:\forall k\leq n:|\vartheta_k|\leq K_n$; beschränkt $\implies$ lokal beschränkt
+		\item MG-Trafo: $M\mapsto(\vartheta\bullet M)$ und $\vartheta\mapsto(\vartheta\bullet M)$ sind linear; $M$ MG \& $\vartheta_n$ lokal beschränkt $\implies(\vartheta\bullet M)$ MG; $M_n,\vartheta_n\subseteq L_2\implies(\vartheta\bullet M)$ MG; faires Spiel bringt für beliebige Strategie $\vartheta_n$  keinen Vorteil (da wieder MG)
 	\end{itemize}
 	
-	
 	\section{Stoppzeiten und Stoppen von stochastischen Prozessen}
-	
+	\begin{itemize}
+		\item \define{Stoppzeit (SZ)} $\tau:\Omega\to I\mit\lbrace \tau\leq t\rbrace\in\F_t~\forall t\in I\mit (\F_t)_{t\in I}$ Filtration.
+		Interpretation: Zu jedem Zeitpunkt $t\in I$ wissen wir, ob $\tau$ bereits eingetreten ist $\lbrace\tau\leq t\rbrace$ oder nicht.
+		\item Typisches Beispiel: Ersteintrittszeit von adaptierten SP $\tau(\omega)=\min\lbrace n\in\N_0:X_n(\omega)\geq k\rbrace$
+		\item $\lbrace \tau=n\in\F_n~\forall n;\lbrace \tau\geq n\rbrace\in\F_{n-1}~\forall n;\sigma\wedge\tau,\sigma\vee\tau$ sind SZ, $\inf_n\tau,\sup_n\tau_n$ sind SZ
+		\item $X_\tau\colon\Omega\to\R,\qquad \omega\mapsto X_{\tau(\omega)}(\omega)\qquad\forall \omega\in\lbrace\tau<\infty\rbrace$
+	und den \textbf{bei $\tau$ gestoppten stochastischen Prozess}
+	$X_t^\tau(\omega):=:X_{t\wedge\tau}(\omega):=\left\lbrace\begin{array}{cl}
+			X_t(\omega), & \falls \omega\in\lbrace t\leq\tau\rbrace\\
+			X_{\tau(\omega)}(\omega), &\falls\omega\in\lbrace t>\tau\rbrace
+		\end{array}\right.$
+		Interpretation: $X_t^\tau=X_t$, falls die Stoppzeit noch nicht eingetreten ist und $X_t^\tau=$ konstant dem Wert zum Stoppzeitpunkt.
+		\item Sei $(X_n)_{n\in\N}$ MG. Dann: $X_{n\wedge\tau}$ ist MG mit $\E[X_{n\wedge\tau}]=\E[X_0]$. \textit{Beweis.} Stoppen $\hat{=}$ MG-Trafo mit (lokal beschränktem) $\vartheta_{n}:=\indi_{n\leq\tau}\leadsto X_0+(\vartheta\bullet X)_n\leadsto\square$.
+		\item "Es gibt keine Stoppzeit, so dass der gestoppte Prozess in einer anderen Klasse liegt als der ursprüngliche Prozess." % siehe Wikipedia
+		\item \define{Doobs Optional Stopping Thm:} Sei $(X_n)_{n\in\N}$ MG und $\tau:N\cup\lbrace\infty\rbrace$. Dann $\E[X_\tau]=\E[X_0]$ in einem der Fälle:
+		\begin{enumerate}
+			\item $\tau$ beschränkt, d.h. $\exists K\in N_0:\P[\tau\leq K]=1$
+			\item $X^\tau$ beschränkt, d.h. $\exists K>0:\P
+		\end{enumerate}
+	\end{itemize}
 	
 	\section{Martingalkonvergenz und gleichgradige Integrierbarkeit (ggi)}
 	

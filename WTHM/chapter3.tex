@@ -18,9 +18,9 @@
 \begin{beisp}[Typisches Beispiel]\enter
 	\ul{Ersteintrittszeit} von adaptierten stochastischen Prozessen:
 	\begin{align*}
-		\tau:=\min\big\lbrace n\in\N_0:X_n\geq k\big\rbrace
+		\tau(\omega)=\min\big\lbrace n\in\N_0:X_n(\omega)\geq k\big\rbrace\in[k,\infty)
 	\end{align*}
-	ist die Ersteintrittszeit in $[k,\infty)$.
+	ist die Ersteintrittszeit.
 \end{beisp}
 
 \setcounter{section}{3}
@@ -91,7 +91,7 @@
 \begin{defi}
 	Sei $(X_t)_{t\in I}$ ein $(\F_t)_{t\in I}$-adaptierter stochastischer Prozess und $\tau$ eine Stoppzeit. Wir definieren die Zufallsvariable
 	\begin{align*}
-		X_\tau(\omega):=:X_{\tau(\omega)}(\omega)\qquad\forall \omega\in\lbrace\tau<\infty\rbrace
+		X_\tau\colon\Omega\to\R,\qquad \omega\mapsto X_{\tau(\omega)}(\omega)\qquad\forall \omega\in\lbrace\tau<\infty\rbrace
 	\end{align*} 
 	und den \textbf{bei $\tau$ gestoppten stochastischen Prozess}
 	\begin{align*}
@@ -100,6 +100,7 @@
 			X_{\tau(\omega)}(\omega), &\falls\omega\in\lbrace t>\tau\rbrace
 		\end{array}\right.
 	\end{align*}
+	Interpretation: $X_t^\tau=X_t$, falls die Stoppzeit noch nicht eingetreten ist und $X_t^\tau=$ konstant dem Wert zum Stoppzeitpunkt.
 \end{defi}
 
 \begin{bemerkung}
@@ -141,7 +142,7 @@
 \end{bemerkung}
 
 \begin{theorem}[Doob's Optional Stopping Theorem]\enter\label{theorem3.3}
-	Sei $(X_n)_{n\in\N_0}$ ein Martingal und $\tau$ eine endliche Stoppzeit, d. h. $\P[\tau<\infty]=1$. Dann gilt:
+	Sei $(X_n)_{n\in\N_0}$ ein Martingal und $\tau:\N\cup\lbrace+\infty\rbrace$ eine endliche Stoppzeit, d. h. $\P[\tau<\infty]=1$. Dann gilt:
 	\begin{align}\label{eqTheorem3.3}
 		\E\big[X_\tau\big]=\E\big[X_0\big]
 	\end{align}
