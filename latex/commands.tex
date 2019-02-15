@@ -10,12 +10,15 @@
 \newcommand{\Q}{\mathbb{Q}}              % rationale Zahlen
 \newcommand{\Z}{\mathbb{Z}}              % ganze Zahlen
 \newcommand{\C}{\mathbb{C}}              % komplexe Zahlen
+\newcommand{\K}{\mathbb{K}}              % Körper
 \renewcommand{\L}{\mathcal{L}}           % L_p-Räume
 \newcommand{\ii}{\mathrm{i}\mkern1mu}    % imaginäre Einheit
+\renewcommand{\O}{\mathcal{O}}           % Landau-O
 
 % Schlüsselwörter
 \renewcommand{\mit}{\text{ mit }}       % sprachliches mit für align-Umgebungen
 \newcommand{\falls}{\text{falls }}      % sprachliches falls für Fallunterscheidungen
+\newcommand{\sonst}{\text{sonst }}      % sprachliches sonst für Fallunterscheidungen
 \newcommand{\und}{\text{ und }}         % sprachliches und für align-Umgebungen
 \newcommand{\Def}{\text{Def}}           % Voraussetzung, z.B. $\overset{\Def}{=}$
 \newcommand{\Vor}{\text{Vor}}           % Voraussetzung, z.B. $\overset{\Vor}{=}$
@@ -49,19 +52,30 @@
 \renewcommand{\d}{\mathrm{d}}            % Differential d ohne Space
 \newcommand{\ds}{~\mathrm{d}}            % Differential d mit Space für Integrale
 \DeclareMathOperator{\diag}{diag}        % Diagonalmatrix
+\DeclareMathOperator{\diam}{diam}        % Diameter, Durchmesser einer Menge
+\let\divison\div                         % save it before overwriting:
+	\DeclareMathOperator{\Div}{div}      % Divergenz
+	\renewcommand{\div}{\Div}            % Divergenz
+\DeclareMathOperator{\dom}{dom}          % Domain, Definitionsbereich
 \DeclareMathOperator*{\esssup}{ess\,sup} % essenzielles Supremum
 \DeclareMathOperator{\grad}{grad}        % Gradient, alternativ zu \nabla
 \DeclareMathOperator{\graph}{graph}      % Graph einer Funktion
 \DeclareMathOperator{\Hom}{Hom}          % Raum linearer Funktionen
+\DeclareMathOperator{\id}{id}            % identische Abbildung
 \newcommand{\ideal}{\trianglelefteq}     % Ideal
 \DeclareMathOperator{\im}{im}            % Bild
+\DeclareMathOperator{\inner}{int}        % Das innere einer Menge
 \newcommand{\laplace}{\triangle}         % Laplace Operator
+\newcommand{\limn}{\lim\limits_{n\to\infty}} % Standard-Limes
 \DeclareMathOperator{\meas}{meas}        % Das Maß einer Menge, meist Lebesguemaß gemeint
 \newcommand{\properideal}{
 	\mathrel{\ooalign{$\lneqq$\cr\raise.51ex\hbox{$\lhd$}\cr}}
 }                                        % echtes Ideal
+\newcommand{\rand}{\partial}             % Rand einer Menge
+\DeclareMathOperator{\rg}{rg}            % Bild einer Funktion, Rang einer Matrix
 \DeclareMathOperator{\SO}{SO}            % Orthogonale Gruppe
 \DeclareMathOperator{\Span}{span}        % Span / Lineare Hülle
+	\newcommand{\spann}{\Span}           % Span / Lineare Hülle
 \DeclareMathOperator{\supp}{supp}        % Träger
 \DeclareMathOperator{\tr}{tr}            % Spur
 \newcommand{\Vertiii}[1]{
@@ -83,3 +97,6 @@
 \newcommand{\ul}[1]{\underline{#1}}    
 \newcommand{\define}[1]{\textbf{#1}}     % Definitionen sind standardmäßig fett
 \newcommand{\betone}[1]{\underline{#1}}  % Das zu Betonende ist standardmäßig unterstrichen
+
+% Warings and errors
+\newcommand{\throwWarning}[1]{\PackageWarning{42}{#1}} % Erzeugt LaTeX-Warnung mit Message = #1 
