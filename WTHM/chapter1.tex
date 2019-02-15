@@ -247,7 +247,7 @@ Aus der Maßtheorie ist bekannt:
 \setcounter{section}{1}
 Prinzip: stetige Fortsetzung.
 
-\setcounter{satz}{5} %Nr. 1.5 fehlt wurde ausgelassen vom Prof.
+\setcounter{satz}{5} %Nr. 1.5 wurde ausgelassen vom Prof.
 \begin{proposition}\label{Prop1.6} %1.6
 	Sei $\mathcal{F}\subseteq\A$ eine Unter-$\sigma$-Algebra von $\A$.\\
 	Die bedingte Erwartung hat eine eindeutige stetige Fortsetzung von $L_2(\Omega,\F,\P)$ auf $L_1(\Omega,\A,\P)$.
@@ -275,7 +275,7 @@ Prinzip: stetige Fortsetzung.
 	\begin{align*}
 		\E\Big[\big|\E[X_m~|~\F]-\E[X_n~|~\F]\big|\Big]
 		\leq\E\Big[\E\big[|X-M-X_n|\big]~\big|~\F\Big]
-		\stackeq{\text{Turm}}~
+		\stackeq{\eqref{Turmregel}}
 		\E\big[|X_n-X_n|\big]
 		\stackrel{m,n\to\infty}{\longrightarrow}
 		0
@@ -407,7 +407,7 @@ Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar}\}$
 	\end{align}
 	$X$ heißt \textbf{unabhängig} von einer Zufallsvariablen $Y$, in Zeichen $X\unab Y$ wenn eine der folgenden äquivalenten Bedingungen gilt:
 	\begin{enumerate}[label=(\alph*)]
-		\item $X\unab\sigma(Y)$
+		\item $X\unab\sigma(Y)\qquad$ (Erinnerung: $\sigma(Y):=\big\lbrace Y^{-1}(B):B\in\B(\R)\big\rbrace$)
 		\item 
 		$\begin{aligned}
 			\E[f(X)\cdot g(Y)]

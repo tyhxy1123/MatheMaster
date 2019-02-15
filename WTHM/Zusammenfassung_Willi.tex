@@ -17,9 +17,53 @@
 
 \begin{document}
 	\section{Bedingter Erwartungswert}
-	
+	\begin{itemize}
+		\item Bedingter Erwartungswert als $L_2$-Projektion auf abgeschlossenen Unterraum $L_2(\Omega,\F,\P)\ni\E[X|\F]$, $\gdw\langle X-\E[X|F]\rangle=0~\forall F\in\F$; hat eindeutige stetige Fortsetzung auf $L_1$
+		\item $X\in\L_2(\F)\implies\E[X|\F]=X$
+		\item $\E[a\cdot X+b\cdot Y|\F]=a\cdot\E[X|\F]+b\cdot\E[Y|\F]\qquad\forall a,b\in\R$ (Linearität)
+		\item $\big\langle\E[X|\F,Y\rangle=\langle X,\E[Y|\F]\rangle=\langle\E[X|\F],\E[Y|\F]\rangle$ (Symmetrie, gilt nur in $L_2$)
+		\item $\E\big[\E[X|\F]\big|\mathcal{H}\big]=\E[X|\mathcal{H}]$ für $\mathcal{H}\subseteq\F\subseteq\A$ (Turmregel)
+		\item $\E[Z\cdot X|\F]=Z\cdot\E[X|\F]$ für alle $Z$ beschränkt und messbar (also z.B. $Z\in L_2$) (Pull-Out-Property)
+		\item $X\leq Y\implies \E[X|F]\leq\E[Y|\F]$ (Monotonie)
+		\item $\big|\E[X|\F]\big|\leq\E\big[|X|\big|\F\big]$ (Dreiecksungleichung)
+		\item $Y=\E[X|\F]$ f.s. $\Longleftrightarrow\forall F\in\F:\E[X\cdot\indi_F]=\E[Y\cdot\indi_F]$
+		\item $\E[X]=\E\big[X\big|\lbrace\emptyset,\Omega\rbrace\big]$ und außerdem $\E\big[\E[X|\F]\big]=\E[X]~\forall\F\subseteq\A$ (totaler Erwartungswert)
+		\item $B_b(\R):=\lbrace f:\R\to\R\mid f$ beschränkt und Borel-messbar$\rbrace$
+		\item ZG $X$ heißt \define{unabhängig von} $\F\subseteq\A$, i.Z. $X\unab\F:\gdw\E\big[f(X)\cdot\indi_A\big]=\E\big[f(X)\big]\cdot\P(A)~\forall A\in\F,\forall f\in B_b(\R)$
+		\item ZG $X$ heißt \define{unabhängig von ZG} $Y$, i.Z. $X\unab Y:\gdw X\unab\sigma(Y)\gdw\E\big[f(X)\cdot g(Y)\big]=\E\big[f(X)\big]\cdot\E\big[g(Y)\big]~\forall f,g\in B_b(\R)$
+		\item $X\unab\F\implies\E[X|\F]=\E[X]$; der andere Extremfall war $X$ $\F$-messbar $\implies\E[X|\F]=X$.
+		\item $\E[X|Y_1,\ldots,Y_n]:=\E\big[X\big|\sigma(Y_1,\ldots,Y_n)\big]$ "Beste Vorhersage von $X$ gegeben $Y$."
+	\end{itemize}
 	
 	\section{Martingale}
+	\begin{itemize}
+		\item ist "faires Spiel" zwischen zwei Personen, bei dem keine Strategie einen systematischen Vorteil bringt
+		\item Eine Familie $(\F_t)_{t\in I}$ von $\sigma$-Algebren $\F_t\subseteq\A$ heißt \textbf{Filtration} 
+		$:\gdw\Big( s\leq t\implies\F_s\subseteq\F_t\Big)$
+		Eine Filtration ist also eine aufsteigenden Folge von $\sigma$-Algebren.
+		Interpretation: $\F_t$ beschreibt die zum Zeitpunkt $t$ verfügbare Information. Und der Informationsfluss wächst mit der Zeit an.
+		Außerdem setzen wir $\F_\infty:=\bigcup\limits_{t\in I}\F_t$.
+		\item Ein \textbf{stochastischer Prozess (SP)} ist eine Familie $(X_t)_{t\in I}$ von Zufallsvariablen.\\
+		Ein stochastischer Prozess $(X_t)_{t\in I}$ heißt \textbf{adaptiert} an die Filtration $(\F_t)_{t\in I}$
+		$:\gdw\forall t\in I: X_t$ ist messbar bzgl. $\F_t$
+		\item Eine Folge $(e_n)_{n\in\N}$ heißt \textbf{vorhersehbar} bzgl. einer Filtration $(F_t)_{n\in\N}$
+		$:\gdw\forall n\in\N:e_{n+1}$ ist messbar bzgl. $\F_n$
+		Vorhersehbarkeit ist stärker als Adaptiertheit.
+		\item Sei $X=(X_t)_{t\in I}$ SP und $(\F_t)_{t\in I}$ eine Filtration.
+		$X$ heißt \textbf{Martingal} $:\gdw$
+		\begin{enumerate}[label=(\alph*)]
+			\item $(X_t)_{t\in I}$ ist adaptiert an $(\F_t)_{t\in I}$
+			\item $\begin{aligned}
+				X_t\in L_1(\Omega,\A,\P) \qquad \forall t\in I\qquad(\text{ d. h. } \E\big[|X_t|\big]<\infty)
+			\end{aligned}$
+			\item $\begin{aligned}
+				\E[X_t~|~\F_s]=X_s\qquad\forall s,t\in I\mit s\leq t
+			\end{aligned}$
+		\end{enumerate}
+		\item \textbf{Submartingal}: statt (c) gilt $\E[X_t~|~\F_s]\geq X_s$ (Der zukünftige Wert wird unterschätzt)
+		\item \textbf{Supermartingal}: statt (c) gilt $\E[X_t~|~\F_s]\leq X_s$ (Der zukünftige Wert wird überschätzt)
+		\item \textit{"Das Leben ist wie ein Supermartingal - die Erwartung fällt mit der Zeit."}
+	\end{itemize}
 	
 	
 	\section{Stoppzeiten und Stoppen von stochastischen Prozessen}
