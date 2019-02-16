@@ -142,38 +142,48 @@
 \end{bemerkung}
 
 \begin{theorem}[Doob's Optional Stopping Theorem]\enter\label{theorem3.3}
-	Sei $(X_n)_{n\in\N_0}$ ein Martingal und $\tau:\N\cup\lbrace+\infty\rbrace$ eine endliche Stoppzeit, d. h. $\P[\tau<\infty]=1$. Dann gilt:
+	Sei $(X_n)_{n\in\N_0}$ ein Martingal und $\tau:\Omega\to\N\cup\lbrace+\infty\rbrace$ eine endliche Stoppzeit, d. h. $\P[\tau<\infty]=1$. Dann gilt
 	\begin{align}\label{eqTheorem3.3}
 		\E\big[X_\tau\big]=\E\big[X_0\big]
 	\end{align}
 	in jedem der folgenden Fälle:
 	\begin{enumerate}[label=\alph*)]
-		\item $\begin{aligned}
-			\tau\text{ ist beschränkt, d. h. }\exists K\in\N_0:\P[\tau\leq K]=1
+		\item $\tau$ ist f.s. beschränkt, d.h.
+		$\begin{aligned}
+			\exists K\in\N_0:\P[\tau\leq K]=1
 		\end{aligned}$
-		\item $
-		\begin{aligned}
+		\item Der gestoppte Prozess $X^\tau$ ist f.s. beschränkt, d.h.
+		$|X_{\tau\wedge n}|\leq K~\forall n\in\N$ f.s., formal:
+		\begin{align*}
 			X^\tau\text{ ist beschränkt, d. h. }\exists K\geq0:\P\left(\sup\limits_{n\in\N_0}\big| X_{\tau\wedge n}\big|\leq K\right)=1
-		\end{aligned}$
+		\end{align*}
 		\item $\begin{aligned}
 			\E[\tau]<\infty\text{ und }\exists K\geq0:\P\left(\sup\limits_{n\in\N_0}\Big|X_{\tau\wedge n}-X_{\tau\wedge(n-1)}\Big|\leq K\right)=1
 		\end{aligned}$
 	\end{enumerate}
 \end{theorem}
 
+\begin{bemerkung} % nicht in VL
+	Achtung: $\P[\tau<\infty]=1$ impliziert \betone{nicht} $\P[\tau<K]=1$ (für ein $K\in\N$), 
+	denn betrachte zum Beispiel: $\tau\colon\N\to\N\cup\lbrace+\infty\rbrace,~\tau:=\id$.
+	Dann gilt $\P[\tau<\infty]=1$ und $\P[\tau\leq K]=0$.	
+\end{bemerkung}
+
 \begin{proof}
 	Aus Theorem \ref{theorem3.2} folgt $\E\big[X_{\tau\wedge n}\big]=\E[X_0]$ für alle $n\in\N_0$.\nl
 	\underline{Fall a):}\\
-	Wähle $n=K$ in \eqref{eqTheorem3.2}:
+	Wähle $n=K$ in Gleichung \eqref{eqTheorem3.2}:
 	\begin{align*}
-		\E[X_0]=\E\big[X_{\tau\wedge n}\big]\stackeq{\tau\leq K}\E[X_\tau]
+		\E[X_0]\overset{\eqref{eqTheorem3.2}}{=}\E\big[X_{\tau\wedge K}\big]\stackeq{\tau\leq K\text{ f.s.}}\E[X_\tau]
 	\end{align*}
 
 	\underline{Fall b):} Es gilt
 	\begin{align*}
-		\limn X_{n\wedge\tau}=X_\tau\text{ fast sicher und }\big| X_{n\wedge\tau}\big|\leq K\qquad\forall n\in\N
+		\limn X_{n\wedge\tau}=X_\tau\text{ f.s.}
+		\qquad\und\qquad
+		\big| X_{n\wedge\tau}\big|\leq K\qquad\forall n\in\N
 	\end{align*}
-	Mit dominierter Konvergenz
+	Da $X^\tau$ nach Voraussetzung beschränkt ist, können wir dominierte Konvergenz anwenden:
 	\begin{align*}
 		\limn\E\big[X_{\tau\wedge n}\big]\stackeq{\text{dom}}\E\left[\limn X_{\tau\wedge n}\right]=\E[X_\tau]
 	\end{align*}
@@ -315,6 +325,7 @@
 \begin{lemma}\label{lemma3.3}
 	Sei $\F$ Filtration und $\sigma,\tau$ Stoppzeiten. Dann gilt:
 	\begin{enumerate}[label=(\alph*)]
+		\item $\F_\tau$ ist eine $\sigma$-Algebra
 		\item $\begin{aligned}
 			\big(\forall\omega\in\Omega:\sigma(\omega)\leq\tau(\omega)\big)\implies\F_\sigma\subseteq\F_\tau
 		\end{aligned}$
@@ -328,8 +339,76 @@
 	\end{enumerate}
 \end{lemma}
 
-\begin{proof}
-	Übungsaufgabe.
+\begin{proof} %Übungsaufgabe.
+	\underline{Zeige a):} Sei $n\in\N_0$ beliebig aber fest.
+	\begin{itemize} 
+		\item $\Omega\in\F_\tau$, denn $\Omega\in\A$ und 
+		$\begin{aligned}
+			\Omega\cap\lbrace\tau\leq n\rbrace=\lbrace\tau\leq n\rbrace \stackrel{\text{SZ}}{\in} \F_n
+		\end{aligned}$
+		\item Sei $A \in \F_\tau$. Dann gilt $A^C \in \F_\tau$, denn:
+		\begin{align*}
+			\lbrace\tau\leq n\rbrace &=\big(\lbrace\tau\leq n\rbrace\cap A\big)\dot{\cup}\big(\lbrace\tau\leq n\rbrace\cap A^C\big)\\
+			\implies A^C\cap\lbrace\tau\leq n\rbrace&=\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n}\setminus\big(\underbrace{\lbrace\tau\leq n\rbrace\cap A\big)}_{\stackrel{\text{Vor}}{\in}\F_n}\stackrel{\sigma\text{A}}{\in}\F_n
+		\end{align*}
+		Alternative: Sei $A \in \F_\tau$
+		\begin{align*}
+			A^C\cap \lbrace \tau \leq n \rbrace = \left(\underbrace{A}_{\stackrel{\text{Vor.}}{\in} \F_n} \cup \underbrace{\lbrace \tau \leq n \rbrace^C}_{\stackrel{\sigma\text{-Alg}}{\in} \F_n} \right)^C \stackrel{\sigma\text{-Alg}}{\in}\F_n
+		\end{align*}
+
+		\item Sei $(A_i)_{i\in\N}\subseteq\F_\tau$. 
+		Dann gilt $\bigcup\limits_{i\in\N} A_i  \in \F_\tau$, denn:\\
+		Offenbar ist $\bigcup\limits_{i\in\N} A_i  \in\A$ und nach Voraussetzung gilt $A_i\in\A$ und\\ $A_i\cap\lbrace\tau\leq n\rbrace\in\F_n~\forall i\in\N_0$. 
+		Folglich gilt:
+		\begin{align*}
+			\underbrace{\bigcup\limits_{i=1}^{\infty} \Big (A_i \cap \{\tau \leq n\} \Big )}_{\stackrel{\sigma\text{A}}{\in} \F_n} = \left( \bigcup\limits_{i=1}^{\infty} A_i \right)\cap \{\tau \leq n\} \implies  \bigcup\limits_{i=1}^{\infty} A_i \in \F_\tau
+		\end{align*}
+	\end{itemize}
+
+	\underline{Zeige b):}\\
+	Sei $A\in\F_\sigma$. 
+	Dann ist $A\in\A$ und $A\cap\lbrace\sigma\leq n\rbrace\in\F_n\forall n\in\N_0.$ 
+	Also gilt:
+	\begin{align*}
+		A \cap \lbrace\tau \leq n\rbrace
+		\overset{}=
+		\big(A \cap\lbrace\tau \leq n\rbrace\big)\cap\underbrace{\lbrace\sigma\leq\tau\rbrace}_{\stackeq{\text{Vor.}}\Omega}
+		=\underbrace{A\cap\lbrace\sigma\leq n\rbrace}_{\stackrel{\text{Vor}}{\in}\F_n}\cap\underbrace{\lbrace\tau\leq n\rbrace}_{\stackrel{\text{SZ}}{\in}\F_n} \stackrel{\sigma\text{A}}{\in} \F_n\\ \quad \forall n \in \N_0
+		\implies A\in\F_\tau
+	\end{align*}
+
+	\underline{Zeige c):}%\\
+	%Zu zeigen: $\lbrace\sigma\leq\tau\rbrace\in\F_\tau\cap\F_\sigma$
+	\begin{align*}
+		\lbrace\sigma\leq\tau\rbrace\cap\lbrace\tau\leq n\rbrace
+		&=\bigcup\limits_{k=0}^n\underbrace{\lbrace \sigma=k\rbrace}_{\in\F_n}\cap\underbrace{\lbrace k\leq\tau\rbrace}_{\in\F_n}\cap\underbrace{\lbrace\tau\leq n\rbrace}_{\in\F_n}\in\F_n &\forall n\in\N_0\\
+		\lbrace\sigma\leq\tau\rbrace\cap\lbrace\sigma\leq n\rbrace
+		&=\bigcup\limits_{k=0}^n\underbrace{\lbrace\sigma=k\rbrace}_{\in \F_n}\cap\underbrace{\lbrace k\leq n\rbrace}_{\in\F_n}\in\F_n &\forall n\in\N_0\\
+		&\implies\lbrace\sigma\leq\tau\rbrace\in\F_n
+	\end{align*}
+
+	\underline{Zeige d):}\
+	\begin{itemize}
+		\item Zeige ``$\subseteq$'':
+		Sei $A\in\F_\tau\cap\F_\sigma$. Dann ist $A\in\A$ und
+		\begin{align*}
+			\big(A\cap\lbrace\tau\leq n\rbrace\big),\big(A\cap\lbrace\sigma\leq n\rbrace\big)\in\F_n\qquad\forall n\in\N_0
+		\end{align*}
+		Da $\F_n$ eine $\sigma$-Algebra ist, ist auch die Vereinigung enthalten:
+		\begin{align*}
+			&\big(A\cap\lbrace\tau\leq n\rbrace\big)\cup\big(A\cap\lbrace\sigma\leq n\rbrace\big)\in\F_n\\
+			&\implies
+			\big(A\cap\lbrace\tau\leq n\rbrace\big)\cup\big(A\cap\lbrace\sigma\leq n\rbrace\big)
+			&=&A\cap\big(\lbrace\tau\leq n\rbrace\cup\lbrace\sigma\leq n\rbrace\big)\\
+			&&=&A\cap\lbrace\tau\wedge\sigma\leq n\rbrace\in\F_n\\
+			&\implies A\in\F_{\sigma\wedge\tau}\implies \F_\tau\cap\F_\sigma\subseteq\F_{\tau\wedge\sigma}
+		\end{align*}
+
+		\item Zeige ``$\supseteq$'':
+		\begin{align*}
+			\tau\wedge\sigma\stackrel{\text{Def}}{\leq}\tau,\sigma\stackrel{\text{(b)}}{\implies}\F_{\sigma\wedge\tau}\subseteq\F_\tau,\F_\sigma\implies\F_{\tau\wedge\sigma}\subseteq\F_\tau\cap\F_\sigma
+		\end{align*}
+	\end{itemize}
 \end{proof}
 
 \begin{theorem}[Doob's optional sampling]\enter\label{theorem3.4}
@@ -357,9 +436,18 @@
 
 \begin{proof}
 	\underline{Zeige (a) $\implies$ (b):} 
-	Folgt aus Theorem \ref{theorem3.3} (a)\nl
+	Folgt aus zweimaliger von Theorem \ref{theorem3.3} (a) auf $\sigma$ und $\tau$:
+	\begin{align*}
+		\E[X_\tau]\overset{\eqref{eqTheorem3.3}}{=}\E[X_0]\overset{\eqref{eqTheorem3.3}}{=}\E[X_\sigma]
+	\end{align*}
+	
 	\underline{Zeige (c) $\implies$ (a):}\\
-	Setze $\tau:=t$,$\sigma:=s$ mit $s,t\in\N\mit s\leq t$.\nl
+	Da (c) für alle beschränkten Stoppzeiten $\sigma\leq\tau$ gilt, gilt 
+	\begin{align*}
+		X_\sigma=\E[X_\tau~|\F_\sigma]
+	\end{align*}
+	insbesondere für die konstanten Stoppzeiten $\tau:\equiv t$,$\sigma:\equiv s$ mit $s,t\in\N\mit s\leq t$.
+	Dies ist dann genau die Martingaleigenschaft.\nl
 	\underline{Zeige (b) $\implies$ (c):}\\
 	Sei $A\in\F_\sigma$. Dann gilt $\stackrel{\ref{lemma3.3}}{\implies} A\in\F_\tau$. Definiere
 	\begin{align*}

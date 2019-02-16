@@ -18,6 +18,7 @@
 		\P\left(\max\limits_{j\leq n} M_j\geq r\right)\leq\frac{1}{r}\cdot\E\left[M_n^+\right]\qquad\forall n\in\N,\forall r\geq0
 	\end{align*}
 	Hierbei hängt die linke Seite vom gesamten Pfad ab, aber die rechte Seite hängt nur vom Endwert ab.
+	Man erhält eine obere Schranke für die Wahrscheinlichkeit, dass ein festes $r>0$ in einem festen Intervall überschritten wird.
 \end{theorem}
 
 \begin{bemerkung}\
@@ -161,7 +162,7 @@
 \begin{theorem}[Azumas Ungleichung]\label{theorem5.4AzumasUngleichung}\enter
 	Sei $(X_n)_{n\in\N}$ ein Martingal mit beschränkten Zuwächsen, also $\big|X_n-X_{n-1}\big|\leq c_n$ für deterministische Folge $(c_n)_{n\in\N}\subseteq\R_{\geq0}$. Dann gilt:
 	\begin{align*}
-		\P\Big(\big|X_n-\E[X_n]\big|\geq\lambda\Big)\leq2\cdot\exp\left(-\frac{\lambda^2}{2\cdot\sum\limits_{i=1}^n c_i^2}\right)\qquad\forall\lambda\geq0
+		\P\Big(\big|X_n-\E[X_n]\big|\geq\lambda\Big)\leq2\cdot\exp\left(-\frac{\lambda^2}{2\cdot\sum\limits_{i=1}^n c_i^2}\right)\qquad\forall\lambda\geq0,\forall n\in\N
 	\end{align*}
 	Hierbei ist die rechte Seite der Ungleichung proportional zur Dichte von $\mathcal{N}\left(0,\sum\limits_{i=1}^n c_i^2\right)$.
 	Man spricht auch von ``Subgaussian tails''.
