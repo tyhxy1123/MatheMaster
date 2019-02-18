@@ -15,7 +15,7 @@
 	\begin{align*}
 		\F_n:=\sigma\big(\xi_1,\ldots,\xi_n\big)
 	\end{align*}
-	die Information aus dem Spiel bis zum $n$-ten Zug. Somit ist er bedingte Erwartungswert
+	die Information aus dem Spiel bis zum $n$-ten Zug. Somit ist der bedingte Erwartungswert
 	\begin{align*}
 		\E\big[S_{n+k}~|~\F_n\big]
 	\end{align*}
@@ -24,7 +24,8 @@
 	\begin{align*}
 		\E\big[S_{n+k}~\big|~\F_n\big] 
 		&=\E\Big[S_n+\xi_{n+1}+\ldots+\xi_{n+k}~\Big|~\F_n\Big]\\
-		&=\E[S_n~|~\F_n]+\sum\limits_{i=1}^k\E\big[\underbrace{\xi_{n+i}~\big|~\F_n}_{\unab}\big]\\
+		\overset{\text{Lin}}&=
+		\E[S_n~|~\F_n]+\sum\limits_{i=1}^k\E\big[\underbrace{\xi_{n+i}~\big|~\F_n}_{\unab}\big]\\
 		&=S_n+\sum\limits_{i=1}^k\E\big[\xi_{n+i}\big]\\
 		\overset{\text{iid.}}&{=}
 		S_n+k\cdot\E[\xi_1]\\
@@ -35,7 +36,7 @@
 		\end{array}\right.
 	\end{align*}
 	\underline{Variante:} Variabler Einsatz erlaubt.
-	Der Einsatz im $(n+1)-k$-ten Zug wird durch 
+	Der Einsatz im $(n+1)$-ten Zug wird durch 
 	\begin{align*}
 		e_{n+1}:=:e_{n+1}\big(\xi_1,\ldots,\xi_n\big)
 	\end{align*}
@@ -52,10 +53,15 @@
 	Nun ergibt sich durch eine beliebige Einsatzstrategie mit Informationen aus $\F_n$ die Vorhersage der nächsten Runde des Spiels:
 	\begin{align*}
 		\E[\tilde{S}_{n+1}~|~\F_n] 
-		&=\E\big[\tilde{S}_n+ e_{n+1}\cdot\xi_{n+1}~\big|~\F_n\big]\\
-		&=\tilde{S}_n+\E\big[\underbrace{e_{n+1}}_{\in\F_n}\cdot\xi_{n+1}~\big|~\F_n\big]\\
-		&=\tilde{S}_n+e_{n+1}\cdot\E\big[\underbrace{\xi_{n+1}~\big|~\F_n}_{\unab}\big]\\
-		&=\tilde{S}_n+e_{n+1}\cdot\E[\xi_1]
+		\overset{\Def}&=
+		\E\big[\tilde{S}_n+ e_{n+1}\cdot\xi_{n+1}~\big|~\F_n\big]\\
+		\overset{\text{Lin}}&=
+		\E\big[\tilde{S}_n~\big|\F_n\big]+\E\big[e_{n+1}\cdot\xi_{n+1}~\big|~\F_n\big]\\
+		\overset{\ref{Prop1.3}(a)}&=
+		\tilde{S}_n+\E\big[\underbrace{e_{n+1}}_{\in\F_n}\cdot\xi_{n+1}~\big|~\F_n\big]\\
+		\overset{\ref{Prop1.3}(e)}&=
+		\tilde{S}_n+e_{n+1}\cdot\E\big[\underbrace{\xi_{n+1}~\big|~\F_n}_{\unab}\big]\\
+		&=\tilde{S}_n+e_{n+1}\cdot\underbrace{\E[\xi_{n+1}]}_{\overset{\text{iid}}{=}\E[\xi_1]}
 	\end{align*}
 	Nehmen wir ein faires Spiel an, also $\E[\xi_1]=0$, dann erhalten wir:
 	\begin{align*}
@@ -167,7 +173,7 @@
 			\end{array}\right.
 		\end{align*}
 		(siehe Anfang des Kapitels)
-		\item Sei $(S_n)_{n\in\N}$ ein Random Walk mit $\E[\xi_1]=0$ und $\Var[\xi_1]=\sigma^2$.\\
+		\item Sei $(S_n)_{n\in\N}$ ein Random Walk mit $\E[\xi_1]=0$ und $\Var[\xi_1]=\sigma^2<\infty$.\\
 		Dann ist 
 		\begin{align*}
 			(M_n)_{n\in\N}\mit M_n:=S_n^2-n\cdot\sigma^2,n\in\N
@@ -176,23 +182,44 @@
 		Dabei ist der Term $n\cdot\sigma^2$ ein \textbf{Kompensator}-Term, der $M_n$ Martingal erst zum Martingal macht.
 		Überprüfen der Eigenschaften:
 		\begin{itemize}
-			\item adaptiert: $M_n$ ist messbare Funktion von $\xi_1,\ldots,\xi_n$
+			\item Adaptiertheit: $M_n$ ist messbare Funktion von $\xi_1,\ldots,\xi_n$
 			\begin{align*}
 				\implies(M_n)_{n\in\N} \text{ ist } (\F_n)_{n\in\N}\text{-adaptiert}
 			\end{align*}
-			\item integrierbar: 
+			\item Integrierbarkeit: 
 			\begin{align*}
-				\sqrt{\E[S_n^2]}=\Vert\xi_1+\ldots\xi_n\Vert_2\stackrel{\Delta\text{-Ungl}}{\leq}\Vert\xi_1\Vert_2+\ldots+\Vert\xi_n\Vert_2\leq n\cdot\sigma<\infty
+				\E\Big[\big|M_n^2\big|\Big]
+				\overset{\Def}&=
+				\E\Big[\big|S_n^2-n\cdot\sigma^2\big|\Big]
+				\overset{\text{DU+Lin}}=
+				\E\Big[\big|S_n^2\big|\Big]+n\cdot\sigma^2
+			\end{align*}
+			Da nach Voraussetzung $\sigma^2<\infty$ genügt es, den ersten Summanden weiter abzuschätzen:
+			\begin{align*}
+				\E\Big[\big|S_n^2\big|\Big]
+				&=
+				\E\Big[S_n^2\Big]\\
+				\overset{\Def}&{=}
+				\E\left[\left(\sum\limits_{i=1}^n \xi_i\right)^2\right]\\
+				&=\E\left[\sum\limits_{i,j=1}^n \xi_i\cdot\xi_j\right]\\
+				\overset{\text{Lin}}&{=}
+				\sum\limits_{i,j=1}^n \E[\xi_i\cdot\xi_j]\\
+				\overset{\text{iid}}&=
+				\sum\limits_{i,j=1}^n\underbrace{\E[\xi_i]}_{\overset{\Vor}{=}0}\cdot\underbrace{\E[\xi_j]}_{\overset{\Vor}{=}0}\\
+				&=0\qquad
+				\implies \E\Big[\big|M_n\big|\Big]\leq n\cdot\sigma<\infty\qquad\forall n\in\N
 			\end{align*}
 			\item Martingaleigenschaft:
 			\begin{align*}
 				&\E[M_n~|~\F_{n-1}]\\
-				&=\E[S_n^2-n\cdot\sigma^2~|~\F_{n-1}]\\
+				\overset{\Def}&=
+				\E[S_n^2-n\cdot\sigma^2~|~\F_{n-1}]\\
 				&=\E\big[(S_{n-1}+\xi_n)^2~|~\F_{n-1}\big]-n\cdot\sigma^2\\
 				&=\E\big[S_{n-1}^2~|~\F_{n-1}\big]+2\cdot\E\big[S_{n-1}\cdot\xi_n~|~\F_{n-1}\big]+\E\big[\underbrace{\xi_n^2~|~\F_{n-1}}_{\unab}\big]-n\cdot\sigma^2\\
 				&=S_{n-1}^2+2\cdot S_{n-1}\cdot \underbrace{\E\big[\underbrace{\xi_n~|~\F_{n-1}}_{\unab}\big]}_{=\E[\xi_n]=0}+\underbrace{\E[\xi_n^2]}_{=\Var(\xi_n)=\sigma^2}-n\cdot\sigma^2\\
 				&=S_{n-1}^2-(n-1)\cdot\sigma^2\\
-				&=M_{n-1}
+				\overset{\Def}&=
+				M_{n-1}
 			\end{align*}
 		\end{itemize}
 		\item Sei $X_n=a_n$ mit $(a_n)_{n\in\N}$ eine deterministische aufsteigende Folge.\\
@@ -216,15 +243,15 @@
 				=\E\Big[\big|\E[X~|~\F_t]\big|\Big]
 				&\stackrel{\Delta\text{-Ungl}}{\leq}
 				\E\Big[\E\big[|X|~|~\F_t \big]\Big]
-				\stackeq{\text{Turm}}
+				\stackeq{\eqref{Turmregel}}
 				\E\big[|X|\big]
 				<\infty
 			\end{align*}
 			\item Martingaleigenschaft:
 			\begin{align*}
 				\E[X_t~|~\F_s]
-				\stackeq{\text{Def}}\E\Big[\E\big[X~|~\F_t\big]~\Big|~ \F_s\Big]
-				\stackeq{\text{Turm}}
+				\stackeq{\Def}\E\Big[\E\big[X~|~\F_t\big]~\Big|~ \F_s\Big]
+				\stackeq{\eqref{Turmregel}}
 				\E[X~|~\F_s]
 				=X_s
 				\qquad\forall s\leq t
@@ -502,7 +529,7 @@ Für den Beweis benötigen wir die bedingte Jensensche Ungleichung:
 	Dies folgt aus der Doob-Zerlegung \ref{Theorem2.3DoobZerlegung}:
 	Da $(M_n^2)_{n\in\N}$ als Submartingal insbesondere ein adaptierter stochastischer Prozess ist, gilt:
 	\begin{align*}
-		M_n^2\overset{\eqref{eqDoobZerlegung}}{=} M_0^2+\langle \tilde{M}\rangle_n+\underbrace{A_n}_{=:\langle M\rangle_n}
+		M_n^2\overset{\eqref{eqDoobZerlegung}}{=} M_0^2+\tilde{M}_n+\underbrace{A_n}_{=:\langle M\rangle_n}
 	\end{align*}	
 	für ein Martingal $\big(\tilde{M}_n\big)_{n\in\N}$ und einen steigenden vorhersehbaren stochastischen Prozess $\big(\langle M\rangle_n\big)_{n\in\N}$.
 	Aus dem Beweis der Doob-Zerlegung \ref{Theorem2.3DoobZerlegung} geht hervor, wie das Martingal genau aussieht: 
