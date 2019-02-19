@@ -22,10 +22,10 @@
 \begin{document}
 	\section{Bedingter Erwartungswert}
 	\begin{itemize}
-		\item Bedingter Erwartungswert als $L_2$-Projektion auf abgeschlossenen Unterraum $L_2(\Omega,\F,\P)\ni\E[X|\F]$, $\gdw\langle X-\E[X|F]\rangle=0~\forall F\in\F$; hat eindeutige stetige Fortsetzung auf $L_1$
+		\item Bedingter Erwartungswert als $L_2$-Projektion auf abgeschlossenen Unterraum $L_2(\Omega,\F,\P)\ni\E[X|\F]$, $\gdw\langle X-\E[X| \F,F]\rangle=0~\forall F\inL_2(\F)$; hat eindeutige stetige Fortsetzung auf $L_1$
 		\item $X\in\L_2(\F)\implies\E[X|\F]=X$
 		\item $\E[a\cdot X+b\cdot Y|\F]=a\cdot\E[X|\F]+b\cdot\E[Y|\F]\qquad\forall a,b\in\R$ (Linearität)
-		\item $\big\langle\E[X|\F,Y\rangle=\langle X,\E[Y|\F]\rangle=\langle\E[X|\F],\E[Y|\F]\rangle$ (Symmetrie, gilt nur in $L_2$)
+		\item $\langle\E[X|\F],Y\rangle=\langle X,\E[Y|\F]\rangle=\langle\E[X|\F],\E[Y|\F]\rangle$ (Symmetrie, gilt nur in $L_2$)
 		\item $\E\big[\E[X|\F]\big|\mathcal{H}\big]=\E[X|\mathcal{H}]$ für $\mathcal{H}\subseteq\F\subseteq\A$ (Turmregel)
 		\item $\E[Z\cdot X|\F]=Z\cdot\E[X|\F]$ für alle $Z$ beschränkt und messbar (also z.B. $Z\in L_2$) (Pull-Out-Property)
 		\item $X\leq Y\implies \E[X|F]\leq\E[Y|\F]$ (Monotonie)
