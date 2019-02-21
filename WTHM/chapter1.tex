@@ -380,9 +380,9 @@ Prinzip: stetige Fortsetzung.
 		\E[X]&=\E[X~|~\F]\text{, da $\F$ trivial.}
 	\end{align*}
 	Hier wird $\E[X]\in\R$ als konstante Zufallsgröße in $L_1(\Omega,\F,\P)$ aufgefasst. Damit gilt dann die Gleichung
-	\begin{align*}
+	\begin{align}\label{eqTowerKoro}
 		\E\big[\E[X~|~\mathcal{G}]\big]=\E[X]\qquad\forall \mathcal{G}\subseteq\A\text{ Unter-$\sigma$-Algebra}
-	\end{align*}
+	\end{align}
 	denn:
 	\begin{align*}
 		\E\big[\E[X~|~\mathcal{G}]\big]
@@ -425,13 +425,19 @@ Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar}\}$
 \end{theorem}
 
 \begin{proof}
-	Wegen $X\unab\F$ gilt:
+	Sei $F\in\F$ beliebig. Dann gilt wegen $X\unab\F$ gilt:
 	\begin{align*}
-		\forall F\in\F:\E[X\cdot\indi_F]
-		\overset{\ref{sigmaAlgebraUnabhaengig}}&=
-		\E[X]\cdot\P(F)
-		=\E\big[\E[X]\cdot\indi_F\big]
-		\stackrel{\text{Theorem \ref{theorem1.8}}}{\Longrightarrow} \E[X]=\E[X~|~\F]
+		\E[X\cdot\indi_F]
+		\overset{\eqref{sigmaAlgebraUnabhaengig}}&{=}
+		\P(F)\cdot\E[X]\\
+		\overset{\eqref{eqTowerKoro}}&{=}
+		\P(F)\cdot\underbrace{\E\big[\E[X~|~\F]}_{=:Y}\big]\\
+		\overset{\eqref{sigmaAlgebraUnabhaengig}}&{=}
+		\E\big[\indi_{F}\cdot Y]
+	\end{align*}
+	Nun wenden wir Theorem \ref{theorem1.8} an und erhalten
+	\begin{align*}
+		 \E[X]=\E[X~|~\F]=Y
 	\end{align*}
 \end{proof}
 
