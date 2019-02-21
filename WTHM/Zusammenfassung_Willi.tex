@@ -20,10 +20,10 @@
 \setkomafont{section}{\large}
 
 \begin{document}
-	\section{Bedingter Erwartungswert}
+	\section{Bedingter Erwartungswert (nicht direkt prüfungsrevelant)}
 	\begin{itemize}
-		\item Bedingter Erwartungswert als $L_2$-Projektion auf abgeschlossenen Unterraum $L_2(\Omega,\F,\P)\ni\E[X|\F]$, $\gdw\langle X-\E[X| \F,F]\rangle=0~\forall F\inL_2(\F)$; hat eindeutige stetige Fortsetzung auf $L_1$
-		\item $X\in\L_2(\F)\implies\E[X|\F]=X$
+		\item Bedingter Erwartungswert als $L_2$-Projektion auf abgeschlossenen Unterraum $L_2(\Omega,\F,\P)\ni\E[X|\F]$, $\gdw\langle X-\E[X| \F],F\rangle=0~\forall F\in L_2(\F)$; hat eindeutige stetige Fortsetzung auf $L_1$
+		\item $X\in\L_2(\F)\implies\E[X|\F]=X$ "$X$ ist $\F$-messbar"
 		\item $\E[a\cdot X+b\cdot Y|\F]=a\cdot\E[X|\F]+b\cdot\E[Y|\F]\qquad\forall a,b\in\R$ (Linearität)
 		\item $\langle\E[X|\F],Y\rangle=\langle X,\E[Y|\F]\rangle=\langle\E[X|\F],\E[Y|\F]\rangle$ (Symmetrie, gilt nur in $L_2$)
 		\item $\E\big[\E[X|\F]\big|\mathcal{H}\big]=\E[X|\mathcal{H}]$ für $\mathcal{H}\subseteq\F\subseteq\A$ (Turmregel)
@@ -43,12 +43,13 @@
 	\begin{itemize}
 		\item ist "faires Spiel" zwischen zwei Personen, bei dem keine Strategie einen systematischen Vorteil bringt
 		\item Familie $(\F_t)_{t\in I}$ von $\sigma$-Algebren $\F_t\subseteq\A$ heißt \textbf{Filtration} 
-		$:\gdw\Big( s\leq t\implies\F_s\subseteq\F_t\Big)$
-		Filtration ist aufsteigenden Folge von $\sigma$-Algebren.
-		Interpretation: $\F_t$ beschreibt die zum Zeitpunkt $t$ verfügbare Information. Und der Informationsfluss wächst mit der Zeit an.
-		Außerdem setzen wir $\F_\infty:=\bigcup\limits_{t\in I}\F_t$.
+		$:\gdw( s\leq t\implies\F_s\subseteq\F_t)$; 
+		ist aufsteigenden Folge von $\sigma$-Algebren.
+		Interpretation: $\F_t$ beschreibt die zum Zeitpunkt $t$ verfügbare Information;
+		Informationsfluss wächst mit der Zeit;
+		$\F_\infty:=\bigcup_{t\in I}\F_t$.
 		\item Ein \textbf{stochastischer Prozess (SP)} ist eine Familie $(X_t)_{t\in I}$ von Zufallsvariablen.\\
-		Ein stochastischer Prozess $(X_t)_{t\in I}$ heißt \textbf{adaptiert} an die Filtration $(\F_t)_{t\in I}$
+		Ein SP $(X_t)_{t\in I}$ heißt \textbf{adaptiert} an die Filtration $(\F_t)_{t\in I}$
 		$:\gdw\forall t\in I: X_t$ ist messbar bzgl. $\F_t$
 		\item Eine Folge $(e_n)_{n\in\N}$ heißt \textbf{vorhersehbar} bzgl. einer Filtration $(F_t)_{n\in\N}$
 		$:\gdw\forall n\in\N:e_{n+1}$ ist messbar bzgl. $\F_n$
@@ -86,10 +87,10 @@
 		\textit{Beweis.} VÜ: DZ $\implies A_n=\sum_{j=1}^n\E\big[X_j-X_{j-1}|\F_j\big]$; Existenz: $M_n:=X_n-X_0-A_n$ ist MG; Eindeutigkeit: Laut VÜ Wahl von $A$ notwendig, also $A_n=A_n'\leadsto M_n=M_n'~\square$
 		\item \textbf{Kompensator-Lemma:} Sei $(M_n)_{n\in\N}$ bzgl. $(\F_n)_{n\in\N}$ mit $\E[M_n^2]<\infty\implies M_n^2$ SubM \& $\exists!$ steigender vorhersehbarer SP (\define{Kompensator}) $\langle M\rangle_n$ so, dass $\big(M_n^2-\langle M\rangle_n\big)_n$ MG ist. Außerdem:\\
 		$\E\left[(M_n-M_{n-1})^2~\big|~\F_{n-1}\right]=\langle M\rangle_n-\langle M\rangle_{n-1}~\forall n\in\N$\\
-		\textit{Beweis.} $M_n^2$ ist MG wegen $\phi:x\mapsto x^2$ konvex; Doob-Zerlegung von $M_n^2$ ist\\
+		\textit{Beweis.} $M_n^2$ ist SubMG wegen $\phi:x\mapsto x^2$ konvex; Doob-Zerlegung von $M_n^2$ ist\\
 		$M_n^2=M_0^2+\underbrace{\big(M_n^2-\langle M\rangle_n-M_0^2\big)}_{=\tilde{M}_n\text{, Martingal}}+\underbrace{\langle M\rangle_n}_{\text{vorhersehbar + steigend}}$; Gl nachrechnen $\square$
 		\item \define{Martingaltransformation} ist SP $(\vartheta\bullet M)_n:=\sum\limits_{i=1}^n\vartheta_i\cdot(M_i-M_{i-1}),(\vartheta\bullet M)_0:=0$
-		mit $M_n$ (Sub-/Super-)MG und $\vartheta_n$ vorhersehbarer SP. Interpretation: $(M_n-M_{n-1})$ ist Gewinn in der $n$-ten Runde, $\theta_n$ ist Einsatz in $n$-ter Runde, MG-Trafo ist Gesamtgewinn nach der $n$-ten Runde mit Einsatzverhalten $\vartheta_n$.
+		mit $M_n$ (Sub-/Super-)MG und $\vartheta_n$ vorhersehbarer SP. Interpretation: $(M_n-M_{n-1})$ ist Gewinn in der $n$-ten Runde, $\vartheta_n$ ist Einsatz in $n$-ter Runde, MG-Trafo ist Gesamtgewinn nach der $n$-ten Runde mit Einsatzverhalten $\vartheta_n$.
 		\item SP $\vartheta$ \define{lokal beschränkt} $:\gdw\exists(K_n)_{n\in\N}\subseteq\R:\forall n\in\N:\forall k\leq n:|\vartheta_k|\leq K_n$; beschränkt $\Rightarrow$ lokal bs.
 		\item MG-Trafo: $M\mapsto(\vartheta\bullet M)$ und $\vartheta\mapsto(\vartheta\bullet M)$ sind linear; $M$ MG \& $\vartheta_n$ lokal beschränkt $\implies(\vartheta\bullet M)$ MG; $M_n,\vartheta_n\subseteq L_2\implies(\vartheta\bullet M)$ MG; faires Spiel bringt für beliebige Strategie $\vartheta_n$  keinen Vorteil (da wieder MG)
 	\end{itemize}
@@ -99,7 +100,7 @@
 		\item \define{Stoppzeit (SZ)} $\tau:\Omega\to I\mit\lbrace \tau\leq t\rbrace\in\F_t~\forall t\in I\mit (\F_t)_{t\in I}$ Filtration.
 		Interpretation: Zu jedem Zeitpunkt $t\in I$ wissen wir, ob $\tau$ bereits eingetreten ist $\lbrace\tau\leq t\rbrace$ oder nicht.
 		\item Typisches Beispiel: Ersteintrittszeit von adaptierten SP $\tau(\omega)=\min\lbrace n\in\N_0:X_n(\omega)\geq k\rbrace$
-		\item $\lbrace \tau=n\in\F_n~\forall n;\lbrace \tau\geq n\rbrace\in\F_{n-1}~\forall n;\sigma\wedge\tau,\sigma\vee\tau$ sind SZ, $\inf_n\tau,\sup_n\tau_n$ sind SZ
+		\item $\lbrace \tau=n\rbrace\in\F_n~\forall n;\lbrace \tau\geq n\rbrace\in\F_{n-1}~\forall n;\sigma\wedge\tau,\sigma\vee\tau$ sind SZ, $\inf_n\tau,\sup_n\tau_n$ sind SZ
 		\item $X_\tau\colon\Omega\to\R,\qquad \omega\mapsto X_{\tau(\omega)}(\omega)\qquad\forall \omega\in\lbrace\tau<\infty\rbrace$
 	und den \textbf{bei $\tau$ gestoppten stochastischen Prozess}
 	$X_t^\tau(\omega):=:X_{t\wedge\tau}(\omega):=\left\lbrace\begin{array}{cl}
@@ -109,7 +110,8 @@
 		Interpretation: $X_t^\tau=X_t$, falls die Stoppzeit noch nicht eingetreten ist und $X_t^\tau=$ konstant dem Wert zum Stoppzeitpunkt.
 		\item Sei $(X_n)_{n\in\N}$ MG. Dann: $X_{n\wedge\tau}$ ist MG mit $\E[X_{n\wedge\tau}]=\E[X_0]$. \textit{Beweis.} Stoppen $\hat{=}$ MG-Trafo mit (lokal beschränktem) $\vartheta_{n}:=\indi_{n\leq\tau}\leadsto X_0+(\vartheta\bullet X)_n\leadsto\square$.
 		\item "Es gibt keine Stoppzeit, sodass der gestoppte Prozess in einer anderen Klasse liegt als der Prozess" % siehe Wikipedia
-		\item \define{Doobs Optional Stopping Thm:} Sei $(X_n)_{n\in\N}$ MG und $\tau:N\cup\lbrace\infty\rbrace$. Dann $\E[X_\tau]=\E[X_0]$ in einem der Fälle:
+		\item \define{Doobs Optional Stopping Thm:} Sei $(X_n)_{n\in\N}$ MG und $\tau:\Omega\to\N\cup\lbrace\infty\rbrace$ mit $\P[\tau<\infty]=1$. 
+		Dann gilt $\E[X_\tau]=\E[X_0]$ in einem der Fälle: ("Stoppstrategie ändert nichts an Fairness")
 		\begin{enumerate}
 			\item $\tau$ f.s. beschränkt, d.h. $\exists K\in N_0:\P[\tau\leq K]=1$
 			\item $X^\tau$ f.s. beschränkt, d.h. $\exists K>0:\P(\sup_{n\in\N_0}|X_{\tau\wedge n}|\leq K)=1$
@@ -125,15 +127,18 @@
 	\section{Martingalkonvergenz und gleichgradige Integrierbarkeit (ggi)}
 	\begin{itemize}
 		\item VÜ: Für Folge $(a_n)_n$ gilt $\limn a_n$ existiert \betone{nicht} in $\overline{\R}\gdw(a_n)_n$ überquert unendlich oft aufsteigend den Streifen $[p,q]\times\N\gdw\exists p<q\in\Q:U[p,q]=\infty$
-		\item $U_N[p,q]$ ist Anzahl Upcrossings auf $[p,q]\times\lbrace0,1,\ldots,N\rbrace$ mit $U[p,q]=\limsup_{n\to\infty} U_n[p,q]$ (Defintion über Stoppzeiten-Gitter, maximale Gitterkonstante)
+		\item $U_N[p,q]$ ist Anzahl Upcrossings auf $[p,q]\times\lbrace0,1,\ldots,N\rbrace$ mit $U[p,q]=\limsup_{n\to\infty} U_n[p,q]$\\
+		$U_N[p,q]:=\max\lbrace k\in\N:\exists 0<\sigma_1\tau_1<\sigma_2a\tau_2<\ldots<\sigma_k<\tau_k\leq N:X_{\sigma_i}<p\und X_{\tau_i}>q~\forall i\leq k\rbrace$
 		\item \define{Doobs Upcrossing Lemma:} Sei $(X_n)_{n\in\N}$ SubMG und $p<q\in\R$. Dann:
-		$(q-p)\cdot\E[U_N[p,q]]\leq\\E[(X_N-p)^+]~\forall N\in\N$. Gewinn $\cdot$ Upcrossing $\leq$ Gesamtwachstum
+		$(q-p)\cdot\E[U_N[p,q]]\leq\E[(X_N-p)^+]~\forall N\in\N$. Gewinn $\cdot$ Upcrossing $\leq$ Gesamtwachstum
 		\item \define{Martingalkonvergenz-Thm:} Für SubMG $(X_n)_{n\in\N}$ mit $\sup_n\E[X_n^+]<\infty$ gilt $\limn X_n=X_\infty$ f.s. für ein $X_\infty\in L_1$. (Erinnerung: jedes MG ist SubMG)
-		\textit{Beweis.} zunächst $X_\infty$ mit Werten in $\overline{\R}$: VÜ + Upcrossing-Lemma; Dann zeige $\E[|X_\infty|]<\infty$ mit Fatou. $\square$ ($L_1$-Konvergenz ist stärker und folgt nicht)
-		\item Familie $(X_i)_{i\in I}$ \define{ggi} $:\gdw\lim\limits_{R\to\infty}\rho(R)=0$ mit Randmasse $\rho(R):=\sup\limits_{i\in I}\E[|X_i|\cdot\indi_{|X_i|\geq R\rbrace}]$ (verschwindet gleichmäßig)
+		\textit{Beweis.} zunächst $X_\infty$ mit Werten in $\overline{\R}$: VÜ + Upcrossing-Lemma:
+		Zeige $\P(X_n\to X)=1$ durch $\P(X_n\not\to X)\stackeq{\text{VÜ}}\P(\bigcup_{p<q\in\Q}U[p,q]=\infty)\overset{\sigma\text{-Add}}{\leq}\sum_{p<q\in\Q}\P(U_N[p,q]=\infty)=0$
+		 Dann zeige $\E[|X_\infty|]<\infty$ mit Fatou. $\square$ ($L_1$-Konvergenz ist stärker und folgt nicht)
+		\item Familie $(X_i)_{i\in I}$ \define{ggi} $:\gdw\lim\limits_{R\to\infty}\rho(R)=0$ mit Randmasse $\rho(R):=\sup\limits_{i\in I}\E[|X_i|\cdot\indi_{\lbrace|X_i|\geq R\rbrace}]$ (verschwindet gleichmäßig)
 		\item $\lbrace X\rbrace$ ggi $\gdw\lbrace\E[X\mid\F]:\F\subseteq\A\rbrace$ ist ggi; Wenn $X$ MG, so ist $(X_t)_{t\in[0,T]}$ ggi, aber $(X_t)_{t\geq0}$ i.A. \betone{nicht}!
 		\item hinreichende Bedingungen für ggi: $\exists p>1:\sup_{i}\E[|X_i|^p]<\infty$ oder $\exists Y\in L_1:\forall i\in I:|X_i|\leq Y$
-		\item Fast sichere Konvergenz + ggi $\implies L_1$ Konvergenz
+		\item Fast sichere Konvergenz + ggi $\implies L_1$ Konvergenz (für jede beliebigen SP!)
 		\item \define{$L_1$-Konvergenz von MG:} Sei $(X_n)_{n\in\N_0}$ ein $(\F_n)_{n\in\N_0}$-MG. 
 		TFSAE:
 		\begin{enumerate}[label=(\alph*)]
@@ -174,17 +179,18 @@
 		\item Setze $M_{-n}:=R_n$ ist $\F_{-n}=\G_n$. Dann ist $(M_k,\F_k)_{k\in-\N}$ ein MG mit Indexmenge $I:=-\N$.
 		\item RWMs konvergieren immer (punktweise und in $L_1$) gegen $R_\infty\in L_1(\G_\infty)$ mit \define{terminaler $\sigma$-Algebra} $\G_\infty:=\bigcap\G_k$. (folgt aus Doobs Upcrossing Lemma)
 		\item \define{Kolmogorovs-0-1-Gesetz:} Sei $(X_n)_{n\in\N}$ unabhängige ZV und $\G_n=(X_n,X_{n+1},\ldots)$. Dann ist $\G_\infty$ $\P$-trivial (d.h.$\forall A\in\G_\infty:\P(A)\in\lbrace0,1\rbrace$), Konsequenz:
-		\item \define{SGGZ:} Für $(X_n)_{n\in\N}\subseteq l_1$ iid gilt $\frac{1}{n}\sum_{i=1}^n X_i\overset{n\to\infty}{\longrightarrow}\E[X_1]~\P$ f.s.
+		\item \define{SGGZ:} Für $(X_n)_{n\in\N}\subseteq L_1$ iid gilt $\frac{1}{n}\sum_{i=1}^n X_i\overset{n\to\infty}{\longrightarrow}\E[X_1]~\P$ f.s. ("empirischer Erwartungswert")
+		\textit{Beweis.} $R_n:=\frac{1}{n}\sum_{i=1}^n X_n$ ist RWM bzgl. $\G_n:=\sigma(X_1+\ldots+X_n,X_{n+1},X_{n+2},\ldots)\leadsto$ konvergiert $\leadsto$ Kolmogorov %$\square$
 	\end{itemize}
 		
 	\section{Fouriertransformation und charakteristische Funktion}
 	
 	\begin{itemize}
-		\item \define{CF} von $X\colon\Omega\to\R^d$ ist $\Phi_X(\xi):=\E[\exp(i\cdot X^T\cdot\xi)$, \define{FT} ist für beschränkte Borelmaße analog definiert
-		\item CF der Normalverteilung ist proportional zu ihrer Dichte
+		\item \define{CF} von $X\colon\Omega\to\R^d$ ist $\Phi_X(\xi):=\E[\exp(i\cdot X^T\cdot\xi)$, \define{FT} $\F:\M_b(\R^d)\to(\R^d\to\C),~\hat{\mu}(\xi):=\int_{\R^d}\exp(i\xi^T x)~\mu(\d x)=\int_{\R^d}\exp(i\xi^T x)\cdot f(x)\ds x$; Bildmaß, $f$ Dichte von $\mu(\d x)$ bzgl. Lebesguemaß
+		\item CF der Normalverteilung ist proportional zu ihrer Dichte $\leadsto$ Fixpunkt
 		\item $\Phi_X(0)=1$; $|\Phi_X(\xi)|\leq1$ (Beschränktheit); $\xi\mapsto\Phi_X(\xi)$ ist stetig; $\Phi_X(-\xi)=\overline{\Phi_X(\xi)}$ (Hermitsch-Symmetrie); $\Phi_{(A\cdot X+b)}(\xi)=\exp(i\cdot b^T\cdot\xi)\cdot\Phi_X(A^T\cdot\xi)$
-		\item $C_\infty:=\left\lbrace f:\R^d\to\C:f\text{ stetig und }\lim\limits_{|x|\to\infty}f(x)=0\right\rbrace$
-		\item Für $X,Y$ unabhängige, $\R^d$-wertig gilt: $\Phi_{X+Y}(\xi)=\Phi_X(\xi)\cdot\Phi_Y(\xi)\qquad\forall\xi\in\R^d$
+		\item $C_\infty:=\lbrace f:\R^d\to\C:f\text{ stetig und }\lim\limits_{|x|\to\infty}f(x)=0\rbrace$
+		\item Für $X,Y$ unabhängig $\R^d$-wertig gilt: $\Phi_{X+Y}(\xi)=\Phi_X(\xi)\cdot\Phi_Y(\xi)~\forall\xi\in\R^d$
 		\item Für $f,g\in L_1(\R^d)$ gilt: $\big(\widehat{f\ast g}\big)(\xi)=\hat{f}(\xi)\cdot\hat{g}(\xi)$
 		mit $(f\ast g)(x):=\int\limits_{\R^d}f(y)\cdot g(x-y)\d y$;
 		Sei $f$ Dichte von $X$ und $g$ Dichte von $Y$. Dann ist $f\ast g$ die Dichte von $X+Y$.
@@ -195,9 +201,10 @@
 	\section{Inversion der Fouriertransformation und Eindeutigkeitssatz}
 	
 	\begin{itemize}
-		\item Raum der \textbf{Schwartz-Funktionen}: $S(\R^d):=\lbrace f\colon\R^d\to\C:$ alle Ableitungen fallen schneller als polynomiell$\rbrace$, z.b. $f(x)=\exp(-\frac{x^2}{2})$
+		\item Raum der \textbf{Schwartz-Funktionen}: $S(\R^d):=\lbrace f\colon\R^d\to\C\mid\sup_{x\in\R^d}|(1+|x|^2)^N\cdot\partial^\alpha f(x)|<\infty~\forall\alpha\in\N^d_0,\forall N\in\N\rbrace$ "alle Ableitungen fallen schneller als polynomiell", z.b. $f(x)=\exp(-\frac{x^2}{2})$
 		\item $C_c^\infty(\R^d)\subseteq S(\R^d)\overset{\text{dicht}}{\subseteq} L_p(\R^d)~\forall p\in[1,\infty)$
-		\item FT bildet $S(\R^d)$ \betone{bijektiv} auf $S(\R^d)$ ab; \define{Riemann-Lebesgue-Lem:} FT bildet $L_1(\R^d)$ nach $C_\infty(\R^d)$ ab.
+		\item FT bildet $S(\R^d)$ \betone{bijektiv} auf $S(\R^d)$ ab mit $\F^{-1}(g)(\xi)=\frac{1}{(2\pi)^d}\int_{\R^d}\exp(-t x^T\xi)\cdot g(\xi)\d\xi~\forall\xi\in\R^d$
+		\item \define{Riemann-Lebesgue-Lem:} FT bildet $L_1(\R^d)$ nach $C_\infty(\R^d)$ ab.
 		\item \define{Plaucharel-Satz:} Für $f\in L_1(\R^d)$ und $\mu\in\M_b(\R^d)$ gilt: $\int_{\R^d}\hat{f}(\xi)~\mu(\d\xi)=\int_{\R^d}\hat{\mu}(\xi)\cdot f(\xi)\ds\xi$ (FT ist selbstadjungiert bzgl. $\langle f,g\rangle:=\int_{\R^d} f\cdot g$, d.h. $\langle\F(f),g\rangle=\langle f,\F(g)\rangle$
 		\item \define{Eindeutigkeitssatz:} FT $\F:\M_b(\R^d)\to C(\R^d)$ ist injektiv: $\hat{\mu}=\hat{\nu}\implies \mu=\nu$; $\hat{f}\equiv\hat{g}\implies f\equiv g$ f.ü.
 	\end{itemize}
@@ -216,31 +223,40 @@
 		\mu_n\overset{\w}{\longrightarrow}\mu 
 		:\Longleftrightarrow\forall f\in C_b\big(\R^d\big):\int\limits f\d\mu_n\overset{n\to\infty}{\longrightarrow}\int\limits f\d\mu 
 		$
+		Schwache Konvergenz und Konvergenz in Verteilung sind äquivalent (über das von $Y$ induzierte Maß)
 		\item In $d=1$ gilt: $Y_n\overset{\d}{\longrightarrow}Y
 			\Longleftrightarrow\forall\text{ Stetigkeitspunkte $x$ von }F_X:
 			F_{X_n}(x)\overset{n\to\infty}{\longrightarrow} F_X(x)
 		$
-		\item \define{Stetigkeitssatz von Lévy}: 
+		\item \define{Stetigkeitssatz von Lévy}: "schwache Konvergenz der Maße $\Longleftrightarrow$ punktweise Konvergenz der FT"
 		\begin{enumerate}
-			\item Schwache Konvergenz der Maße impliziert punktweise Konvergenz der FT: $\mu\overset{\w}{\longrightarrow}\mu\implies\hat{\mu}_n(\xi)\overset{n\to\infty}{\longrightarrow}\hat{\mu}(\xi)~\forall\xi\in\R^d$
+			\item Schwache Konvergenz der Maße impliziert punktweise Konvergenz der FT:\\
+			$\mu\overset{\w}{\longrightarrow}\mu\implies\hat{\mu}_n(\xi)\overset{n\to\infty}{\longrightarrow}\hat{\mu}(\xi)~\forall\xi\in\R^d$
 			\item Punktweise Konvergenz der FT \betone{und} Grenzfunktion $\phi$ stetig in 0 impliziert schwache Konvergenz der Maße: $\hat{\mu}_n(\xi)\overset{n\to\infty}{\longrightarrow}\phi(\xi)$ und $\phi:\R^d\to\R^d$ stetig in 0 $\implies\exists\mu\in\M_b(\R^d):\mu_n\overset{\w}{\longrightarrow}\mu\und\phi=\hat{\mu}$
 		\end{enumerate}
 		\item Korollar: $\Phi_{Y_n}(\xi)\overset{n\to\infty}{\longrightarrow}\phi(\xi)~\forall\xi\in\R^d$ und $\phi$ stetig in 0$\implies\exists Y:V_n\overset{\d}{\longrightarrow}Y$ und $\Phi_Y=\phi$.
 		\item \textit{Beweis Lévy}: a) einfach; b) 
-		Wähle Kandidaten (Rieszschen Darstellungssatz); nutze Straffheit (bei straffer Folge verschwindet keine Masse nach unendlich; enthält schwach konvergente TF); zeige schwache Konvergenz $\square$
+		Wähle Kandidaten mit \define{Rieszschen Darstellungssatz}:
+		$\forall\Lambda\colon C(\R^d)\to\R$ stetig, linear und positiv $\exists!\mu\in\M_b(\R^d):\Lambda(f)=\inf f\d\mu$;
+		nutze \define{Straffheit}:
+		$(\mu_n)_{n\in\N}\subseteq\M_b(\R^d)$ \define{straff} $:\gdw\forall\varepsilon>0:\exists k_\varepsilon\subseteq\R^d$ kompakt, $\exists N_\varepsilon\in\N:\forall n\geq N_\varepsilon:\mu_n(\R^d\setminus K_\varepsilon)<\varepsilon$	
+		(bei straffer Folge verschwindet keine Masse nach unendlich; enthält schwach konvergente TF); zeige schwache Konvergenz $\square$
 	\end{itemize}
 	
 	\section{Zentrale Grenzwertsätze (ZGS)}
 	
 	\begin{itemize}
 		\item Summen von unabhängigen ZV konvergieren bei passender Normalisierung (Verschiebung + Skalierung) in Verteilung gegen eine (Standard-)Normalverteilte Zufallsvariable, wenn alle ZV endliche Varianzen $\sigma_j^2$ haben \betone{und} keine der $\sigma_j^2$ zu stark "dominiert".
-		\item \define{ZGWS Moivre-Laplace}: Sei $(X_j)_{j\in\N}$ iid-Folge $\R$-wertiger ZV. und $\E[X_1]=0,\Var(X_1)=\sigma^2\in(0,\infty)$. Dann: $G_n:=\frac{1}{\sigma\sqrt{n}}\sum\limits_{j=1}^n\overset{\d}{\longrightarrow} G\sim\Nor(0,1)$ (Folgt aus Lévy)
-		\item Abschwächen der Annahmen führt zu: \define{ZGWS Lindeberg Feller} Beachte: $s_n^2:=\sigma_1^2+\ldots+\sigma_n^2$
+		\item \define{ZGWS Moivre-Laplace}: Sei $(X_j)_{j\in\N}$ iid-Folge $\R$-wertiger ZV. und $\E[X_1]=0,\Var(X_1)=\sigma^2\in(0,\infty)$. Dann: $G_n:=\frac{1}{\sigma\sqrt{n}}\sum\limits_{j=1}^n X_i\overset{\d}{\longrightarrow} G\sim\Nor(0,1)$
+		\textit{Beweis.} Mit Lévy ist das zu zeigende Äquivalent zur punktweisen Konvergenz der CF; Da $X_i$ iid, ist nutze $\Phi_{X+Y}=\Phi_X\cdot\Phi_Y$; Taylorenwicklung $\square$
+		\item Moivre-Laplace ist auf Cauchy-Verteilung nicht anwendbar, da diese unendliche Varianz hat.
+		\item Abschwächen der Annahmen führt zu: \define{ZGWS Lindeberg Feller} Setze: $s_n^2:=\sigma_1^2+\ldots+\sigma_n^2$
 		\begin{itemize}
 			\item \define{Lindeberg-Bedingung}: $\limn\frac{1}{s_n^2}\sum_{j=1}^n\E\big[X_j^2\cdot\indi_{|X_j|\geq\varepsilon\cdot s_n\rbrace}\big]=0~\forall\varepsilon>0$; (L)$\implies$(F)
 			\item \define{Feller-Bedingung}: $\limn\frac{1}{s_n^2}\cdot\max_{1\leq j\leq n}\sigma_j^2=0$
-			"$s_n^2:=\sigma_1^2+\ldots+\sigma_n^2$ wächst echt schneller das Maximum"
-			\item Schwächere Annahmen sind: $(X_j)_{j\in\N}$ unabhängiger $\R$-wertiger ZV mit $\E[X_j]=0$ und $\Var(X_j)=\sigma_j^2\in(0,\infty)$ und gelte (L).
+			"$s_n^2$ wächst echt schneller das Maximum"
+			\item \define{ZGWS LF}: $(X_j)_{j\in\N}$ unabhängiger $\R$-wertiger ZV mit $\E[X_j]=0$ und $\Var(X_j)=\sigma_j^2\in(0,\infty)$ und gelte (L).
+			Dann: $G_n:=\frac{1}{\sigma\sqrt{s_n^2}}\sum\limits_{j=1}^n X_i\overset{\d}{\longrightarrow} G\sim\Nor(0,1)$
 			\item (F) + (ZGS)$\implies$(L); \define{Moment matching}: Zu gegebener Folge $(X_j)_{j\in\N}$ definiere weitere Folge $(G_j)_{j\in\N}$ von iid ZV $G_j\sim\Nor(0,\sigma_j^2)$ mit übereinstimmenden ersten und zweiten Momenten
 		\end{itemize}
 	\end{itemize}
@@ -261,12 +277,15 @@
 		\end{enumerate}
 		\item $(X_t)_{t\in[0,T]}$ \define{Gaußscher Prozess} wenn $ \Big(X_{t_1},X_{t_2},\ldots,X_{t_N}\Big)\text{ (multivariat) normalverteilt ist }\forall0\leq t_1\leq t_2\leq\ldots\leq t_n\leq T $ (die Vektoren heißen \define{endlichdimensionale Randverteilungen} 
 		\item Gaußscher Prozess $(X_t)_{t\in[0,T]}$ ist BB, falls $X_0=0$ und $\E[X_t]=0~\forall t\in[0,T]$ und $\Cov(X_t,X_s)=\min\lbrace s,t\rbrace~\forall s,t\in[0,T]$
-		\item Für jede iid-Folge $(Z_k)_{k\in\N}$ ist $B_t:=\sum_{k=0}^\infty\int_0^t\psi_k(s)\ds s~\forall t\in[0,1]$ BB ($\psi_k$ ist die Haar-Basis der Wavelets)
+		\item Für jede iid-Folge $(Z_k)_{k\in\N}$ ist $B_t:=\sum_{k=0}^\infty Z_k\cdot\int_0^t\psi_k(s)\ds s~\forall t\in[0,1]$ BB ($\psi_k$ ist die Haar-ONB der Wavelets)
 		\item Wenn $B$ eine BB ist, dann sind auch folgende Prozesse BBs:
 		$T_t:=\sqrt{c}\cdot B_{\frac{t}{c}}~\forall c>0$ (Skalierung); 
 		$U_t:=-B_t$ (Symmetrie / Spiegelung);
 		$V_t:=\big(B_{t+s}-B_s\big)\qquad\forall s\geq0$ (Verschiebung);
 		$W_t:=t\cdot B_{\frac{1}{t}}~t>0$ (0 sonst) (Inversion)
-		\item Die Pfade der BB haben \define{f.s. sicher unendliche Totalvariation}.
+		\item Die Pfade der BB haben \define{f.s. sicher unendliche Totalvariation}, d.h.
+		$\limn\sum\limits_{t_i\in P^n}|B_{t_{i+1}}(\omega)-B_{t_i}(\omega)|=+\infty~\forall\omega\in A\in\F\mit\P(A)=1$ und $P_n$ Folge von feiner werdenden Zerlegungen.
+		\item \define{Lokalisierungseigenschaft:} $\forall x\in[0,1],\forall$ Generation $j\in\N:\exists!$ Wavelet der Generation $j$ mit $h_k(x)\neq0$
 	\end{itemize}
+	\includegraphics[width=1\textwidth]{./pics/WTHMscan001.png}
 \end{document}
