@@ -101,7 +101,7 @@ Aus der Maßtheorie ist bekannt:
 	\renewcommand{\labelenumi}{(\alph{enumi})}
 	\begin{enumerate}
 		\item $Y$ ist die Orthogonalprojektion von $X$ auf $L_2(\Omega,\mathcal{F},\P)$ 
-		\item $\forall F\in\mathcal{F}\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
+		\item $\forall F\in L_2(\mathcal{F}):\langle X-Y,F\rangle=0$
 	\end{enumerate}
 \end{proposition}
 
@@ -427,7 +427,7 @@ Sei $B_b(\R):= \{f:\R\rightarrow\R ~|~f \text{ beschränkt und Borel-messbar}\}$
 \begin{proof}
 	Wegen $X\unab\F$ gilt:
 	\begin{align*}
-		\forall F\in\F:\E[X\cdot\indi_X]
+		\forall F\in\F:\E[X\cdot\indi_F]
 		\overset{\ref{sigmaAlgebraUnabhaengig}}&=
 		\E[X]\cdot\P(F)
 		=\E\big[\E[X]\cdot\indi_F\big]
@@ -487,7 +487,7 @@ Wir betrachten: $(X,Y)$ sei $\R^m\times\R^n$-wertige Zufallsvariable mit gemeins
 	Sei $(X,Y)$ eine $\R^m\times\R^n$-wertige Zufallsvariable mit Dichte $f_{XY}$.\\
 	Dann gilt für alle messbaren Funktionen $h:\R^m\times\R^n\to\R\mit\E\big[|h(X,Y)|\big]<\infty$:
 	\begin{align*}
-		\E\big[ h(X,Y)~\big|~Y\big]=\int\limits_{\R^m} h(x,y)\cdot f_{X|Y}(x,Y)\d x
+		\E\big[ h(X,Y)~\big|~Y\big]=\int\limits_{\R^m} h(x,Y)\cdot f_{X|Y}(x,Y)\d x
 	\end{align*}
 \end{theorem}
 
