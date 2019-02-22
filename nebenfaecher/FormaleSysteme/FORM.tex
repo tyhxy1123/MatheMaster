@@ -7,13 +7,14 @@
 
 \input{../../latex/packages}
 \input{../../latex/theoremenvironments}
+\input{../../latex/font}
 \input{../../latex/commands}
 \input{../../latex/commands_Willi}
 \input{commands_FORM}
 
 \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 
-\title{%
+\title{
   Vorlesung\\
   Formale Systeme (Zusammenfassung)
 }
@@ -25,6 +26,13 @@
 }
 
 \begin{document}
+	% begin hack: fix overfull hbox warning caused by \tableofcontents when exceeding 100 pages	
+	\makeatletter
+  	\renewcommand{\@pnumwidth}{2em}
+  	%\renewcommand{\@tocrmarg}{3em} % currently unnecessary
+  	\makeatother
+  	% end hack
+  	
 	\pagenumbering{gobble}	% disable pagenumbering
 	\maketitle
 	\doclicenseThis
@@ -37,6 +45,8 @@
 	\input{chapter3}
 	\input{chapter4}
 	
+	\setcounter{chapter}{0}
+	\renewcommand{\thechapter}{\Alph{chapter}}
 	\newcommand{\pathInfix}{}
 	\input{chapter_loesungen}
 

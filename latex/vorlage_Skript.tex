@@ -6,7 +6,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dies ist nur eine Vorlage und soll die künstlerische Freiheit des Autors einer Mitschrift in keiner Weise schmälern.
 % Der Inhalt dieser Vorlage soll eher Möglichkeiten anbieten und bewährte Lösungswege aufzeigen.
-% Wichtige Dinge sind enthälten, optionale Dinge sind auskommentiert.
+% Wichtige Dinge sind aktuell enthalten, optionale Dinge sind auskommentiert.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[]{scrreprt}
@@ -34,12 +34,12 @@
 }
 
 \begin{document}
-	% begin hack: fix overfull hbox warning caused by \tableofcontents when exceeding 100 pages	
+	%\begin{hack}: fix overfull hbox warning caused by \tableofcontents when exceeding 100 pages	
 	\makeatletter
   	\renewcommand{\@pnumwidth}{2em}
   	%\renewcommand{\@tocrmarg}{3em} % currently unnecessary
   	\makeatother
-  	% end hack
+  	%\end{hack}
   	
   	%\selectlanguage{english}
   	
