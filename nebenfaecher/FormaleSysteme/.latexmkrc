@@ -1,3 +1,3 @@
 $pdf_mode = 1;
-@default_files = ('Blatt\ *.tex', 'FORM.tex');
+@default_files = ('FORM.tex');
 $out_dir = '../../bin';
