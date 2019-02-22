@@ -214,6 +214,18 @@ Dann gilt:
 
 	\underline{Zeige ``$\Longleftarrow$'':} Entfällt.
 \end{proof}
+\begin{proof}[Beweis kürzer]
+	\begin{align*}
+		\not\models (\underbrace{((\ldots(F_1 \land F_2)\ldots)\land F_n)}_{=: G} \rightarrow F) 
+			& \iff \exists I:I\not \models G \rightarrow F\\
+			& \iff \exists I: [G \rightarrow F]^I = \bot\\
+			& \iff \exists I: [G]^I \rightarrow^* F^I = \bot\\
+			& \iff \exists I: [G]^I = \top \text{ und } F^I = \bot\\
+			& \iff \exists I: I \models G \text{ und } I \not \models F\\
+			& \iff \exists I \forall F_i \in \{F_1, \ldots F_n\}: I \models F_i \text{ und } I \not\models F\\
+			& \iff \{F_1, \ldots F_n\} \not\models F
+	\end{align*}
+\end{proof}
 
 \subsection{Aufgabe 3.5 (Logische Folgerung und Unerfüllbarkeit)}
 \begin{align*}
