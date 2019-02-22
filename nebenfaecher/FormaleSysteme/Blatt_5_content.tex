@@ -165,6 +165,16 @@ $C$ ist erfüllbar gdw. es ein Literal in $C$ gibt.
 	\end{align*}
 	Dann gilt: $L^I=\top$. Damit folgt $C^I=\top$ und somit ist gezeigt, dass
 \end{proof}
+\begin{proof}[Beweis alternativ]
+	Sei $L(C)$ die Menge der Literale aus $C$.
+	\begin{align*}
+		& C \text{ unerfüllbar}\\
+		& \iff \forall I : C^I = \bot\\
+		& \iff \forall I \forall P \in L(C): p^I = \bot\\
+		& \iff \forall p \in L(C) \forall I : p^I = \bot \quad \textit{ solch ein Literal existiert nicht}\\
+		& \iff L(C) = \emptyset
+	\end{align*}
+\end{proof}
 
 \subsection{Aufgabe 5.3 (Beweis von Lemma 3.29)}
 Lemma 3.29 wird benötigt um zeigen, dass der Algorithmus, welcher Formeln in CNF umformt, korrekt ist.
