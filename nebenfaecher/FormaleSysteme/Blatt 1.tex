@@ -9,8 +9,9 @@
 \TemplateUebung{Willi Sontopski}{Formale Systeme WS 18 19}{1}
 
 \input{commands_FORM}
+\externaldocument{\directoryPrefix ../bin/FORM} % checks the aux file for references (xr package); FORM.tex muss mit Latexmk vorher kompiliert werden
 
 \begin{document}
 	\setcounter{section}{0} % Für den Wrapper.
-	\input{Blatt_1_content}    % Wrap it!
+	\input{Blatt_1_content} 
 \end{document}
