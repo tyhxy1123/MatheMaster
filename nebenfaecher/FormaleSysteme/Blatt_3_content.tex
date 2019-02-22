@@ -26,32 +26,8 @@ Die Aussage stimmt, denn:
 Die Aussage stimmt nicht, Gegenbeispiel:
 $\F_1:=\lbrace p\rbrace$ und $\F_2:=\lbrace\neg p\rbrace$ sind erfüllbar, aber $\F_1\cup\F_2=\lbrace p ,\neg p\rbrace$ ist nicht erfüllbar.
 
-%TODO das folgende ist falsch.
-%\begin{align*}
-%&\F_1\text{ erfüllbar }
-%\stackrel{\text{Def}}{\implies}
-%\exists\text{ Modell für }\F_1
-%\stackrel{\text{Def}}{\implies}
-%\exists\text{ Interpretation }I:\forall F\in\F_1:I\text{ ist Modell für }F\\
-%&F_2\text{ hat Modell }
-%\stackrel{\text{Def}}{\implies}
-%\exists\text{ Interpretation }\tilde{I}:\forall G\in\F_2:I\text{ ist Modell für }G\\
-%\end{align*}
-%Dann ist 
-%\begin{align*}
-%\hat{I}(F):=\left\lbrace\begin{array}{cl}
-%I(F), &\falls F\in\F_1\\
-%\tilde{I}(F), &\falls F\in\F_2
-%\end{array}\right.
-%\end{align*}
-%eine Interpretation mit der Eigenschaft
-%\begin{align*}
-%\forall F\in \F_1\cup\F_2:\hat{I}\text{ ist Modell für }F.
-%\end{align*}
-%Folglich ist $\hat{I}$ ein Modell für $\F_1\cup\F_2$ und somit ist  $\F_1\cup\F_2$ per Definition erfüllbar.
-
 \subsubsection{Aufgabe 3.1 (c)}
-Nein, denn die Teilmenge $\lbrace p,\neg p\rbrace \subseteq\lbrace p\neq p\rbrace$ ist nicht erfüllbar, da sich die Elemente $p$ und $\neg p$ dieser Teilmenge sich gegenseitig ausschließen.
+Nein, denn die Teilmenge $\lbrace p,\neg p\rbrace \subseteq\lbrace p,\neg p\rbrace$ ist nicht erfüllbar, da sich die Elemente $p$ und $\neg p$ dieser Teilmenge sich gegenseitig ausschließen.
 
 \subsection{Aufgabe 3.2}
 \subsubsection{Aufgabe 3.2 (a)}
@@ -91,20 +67,20 @@ Der letzte Schritt ist aber keine Äquivalenz und somit gilt die Behauptung nich
 Gegenbeispiel:\\
 $\F:=\lbrace\neg p,p\rbrace$ ist nicht erfüllbar und $\neg p$ bzw. $p$ ist nicht allgemeingültig.
 
-\subsection{Aufgabe 3.3}
+\subsection{Aufgabe 3.3  (Kurze Fragen zu \texorpdfstring{$I\models F$}{I |= F} und \texorpdfstring{$\F\models G$}{F |= G})}
 Erfüllungsrelation: $I\models F:\Longleftrightarrow F^I=\top$ "Interpretation $I$ erfüllt Formel $F$"\\
 Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:(I\models\mathcal{G}\implies I\models F)$
 
 \subsubsection{Aufgabe 3.3 (a)}
 \begin{enumerate}[label=(\arabic*)]
-	\item $F$ ist erfüllbar $\Longleftarrow I\models F$, die Umkehrung gilt nicht.
-	\item $F^I=\top\stackrel{\text{Def}}{\Longleftrightarrow} I\models F$
-	\item $\big(\forall\text{ Interpreation }I:F^I=\top\big)\implies I\models F$
-	\item $\Big(\exists\text{ Modell für }F \Big)
+	\item Nein, denn: $F$ ist erfüllbar $\Longleftarrow \tilde{I}\models F$, die Umkehrung gilt nicht.
+	\item Ja, denn: $F^I=\top\stackrel{\text{Def}}{\Longleftrightarrow} I\models F$
+	\item Nein, denn: $\big(\forall\text{ Interpreation }I:F^I=\top\big)\implies I\models F$
+	\item Nein, denn: $\Big(\exists\text{ Modell für }F \Big)
 		\stackrel{\text{Def}}{\Longleftrightarrow}
 		\Big(\exists\text{ Interpretation }\tilde{I}:F^{\tilde{I}}=T\big)\not\Longleftrightarrow I\models F$\\
 		(gilt g.d.w. $I=\tilde{I}$)
-	\item $\begin{aligned}
+	\item Nein, denn: $\begin{aligned}
 		\lbrace F\rbrace\models F
 		\overset{\text{Def}}&{\Longleftrightarrow}
 		\big(\forall\text{ Interpretation }I:I\models\lbrace F\rbrace\Rightarrow I\models F\big)\\
@@ -113,12 +89,13 @@ Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:
 		&\Longleftrightarrow\top
 	\end{aligned}$\\
 	Die Aussage ist also nur äquivalent, g.d.w. $I\models F$ wahr ist.
-	\item $F$ ist unter $I$ wahr $\Longleftrightarrow F^I=\top\stackrel{\text{Def}}{\Longleftrightarrow} I\models F$
+	\item Ja, denn: $F$ ist unter $I$ wahr $\Longleftrightarrow F^I=\top\stackrel{\text{Def}}{\Longleftrightarrow} I\models F$
 \end{enumerate}
 
 \subsubsection{Aufgabe 3.3 (b)}
 \begin{enumerate}[label=(\arabic*)]
-	\item $\begin{aligned}
+	\item Ja, denn:
+	\begin{align*}
 		\Big(\forall I\mit (\forall F\in\F:F^I=\top):G^I=\top\Big)
 		&\Longleftrightarrow
 		\Big(\forall I:(\forall F\in\F:F^I=\top)\Rightarrow G^I=\top\Big)\\
@@ -128,12 +105,16 @@ Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:
 		\Big(\forall I:I\models\F\Rightarrow I\models G\Big)\\
 		\overset{\text{Def}}&{\Longleftrightarrow}
 		\F\models G
-	\end{aligned}$
-	\item $\F,G$ haben gleiche Modell\\
-		$\stackrel{\text{Def}}{\Longleftrightarrow}
-		\exists\text{ Interpretation } I:\forall F\in\F:I\models G\wedge I\models F$\nl
-		Es gibt hier keinen Grund für die Äquivalenz. Es sollte in beide Richtungen Gegenbeispiele geben.
-	\item $\begin{aligned} 
+	\end{align*}
+	\item Nein, denn: 
+	\begin{align*}
+		\F,G\text{ haben die gleichen Modelle}
+		&\Longleftrightarrow\Big(\forall I:I\models\F\gdw I\models G\Big)\\
+		&\Longleftarrow\Big(\forall I:I\models\F\implies I\models G\Big)\\
+		\overset{\Def}&{\Longleftrightarrow} \F\models G
+	\end{align*}
+	\item Nein, denn:
+	\begin{align*}
 		\Big(\big(\F\text{ erfüllbar }\implies G\text{ erfüllbar }\big)
 		\overset{\text{Def}}&{\Longleftrightarrow}
 		\Big(\big(\exists I:I\models\F\big)\implies\exists\tilde{I}:\tilde{I}\models G\Big)\\
@@ -141,16 +122,16 @@ Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:
 		\Big(\forall I:I\models\F\Rightarrow I\models G\Big)\\
 		\overset{\text{Def}}&{\Longleftrightarrow}
 		\F\models G
-	\end{aligned}$\nl
-	Also keine Äquivalenz.
-	\item $\begin{aligned}
+	\end{align*}
+	\item Ja, denn:
+	\begin{align*}
 		\text{Modelle von $\F$ sind Modelle von $G$ }
 		\overset{\text{Def}}&{\Longleftrightarrow}
 		\big(I\models\F\implies I\models G\big)\\
 		\overset{\text{Def}}&{\Longleftrightarrow}
 		\F\models G
-	\end{aligned}$
-	\item Betrachte die logische Äquivalenz
+	\end{align*}
+	\item Ja, denn: Betrachte die logische Äquivalenz
 		\begin{align}\label{eqLogicIndirect}
 			(A\implies B)\Longleftrightarrow(\neg B\implies\neg A)
 		\end{align}
@@ -169,15 +150,15 @@ Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:
 			\F\models G
 		\end{align*}
 		Somit ist (5)$\Longleftrightarrow\F\models G$.
-	\item $\begin{aligned}
+	\item Nein, denn:
+	\begin{align*}
 		\Big(\forall\text{ Modell $I$ von }G:\exists F\in\F:F^I=\top\Big)
-		\overset{}&{\gdw}
-		\Big(\forall I:\big(I\models G\implies \exists F\in\F:I\models F\big)\Big)\\
-	\end{aligned}$\\
-	ist nicht äquivalent. 
+		\overset{}&{\Longrightarrow}
+		\Big(\forall I:\big(I\models G\implies \exists F\in\F:I\models F\big)\Big)
+	\end{align*}
 \end{enumerate}
 
-\subsection{Aufgabe 3.4}
+\subsection{Aufgabe 3.4 (Deduktionstheorem)}
 Seien $F,F_1,\ldots F_n\in\mathcal{L}(\mathcal{R}),n\in\N$ aussagenlogische Formeln. 
 Dann gilt:
 \begin{align*}
@@ -234,7 +215,11 @@ Dann gilt:
 	\underline{Zeige ``$\Longleftarrow$'':} Entfällt.
 \end{proof}
 
-\subsection{Aufgabe 3.5}
+\subsection{Aufgabe 3.5 (Logische Folgerung und Unerfüllbarkeit)}
+\begin{align*}
+	F\models G\Longleftrightarrow F\cup\lbrace\neg G\rbrace\text{ unerfüllbar}
+\end{align*}
+
 \begin{proof}
 	Mit
 	\begin{align}\label{3.5}
@@ -259,11 +244,16 @@ Dann gilt:
 	\end{align*}
 \end{proof}
 
-\subsection{Aufgabe 3.6}
-\textit{``Aus Falschem folgt beliebiges.''}
+\subsection{Aufgabe 3.6 (Ex falso quodlibet seguitur)}
+\textit{``Aus Falschem folgt beliebiges.''}\nl
+Seien $F$ und $G$ aussagenlogische Formeln und sei $\F$ eine Menge aussagenlogischer Formeln. 
+Dann gilt:
+\begin{align*}
+	F,\neg F\in\F\implies\forall G\in\L(\RR): F\models G
+\end{align*}
 
 \begin{proof}
-	Da $F,\neg F\in\F$, ist $\F$ unerfüllbar. 
+	Da $F,\neg F\in\F$ ist $\F$ unerfüllbar. 
 	Somit gibt es keine Modell für $\F$. 
 	Somit sind alle Modelle von $\F$ (da es keine gibt) auch Modelle von $G$. 
 	Damit folgt $F\models G$.
