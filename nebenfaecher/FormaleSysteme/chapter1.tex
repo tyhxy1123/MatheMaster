@@ -329,7 +329,7 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 		(F\wedge G)&\equiv G\text{ wenn $F$ allgemeingültig} &&\text{Tautologie}\\[1ex]
 		(F\vee G)&\equiv G,\text{ wenn $F$ unerfüllbar}\\
 		(F\wedge G)&\equiv F,\text{ wenn $F$ unerfüllbar} &&\text{Unerfüllbarkeit}\\[1ex]
-		(F\leftrightarrow G)&\equiv((F\wedge G\vee(\neg G\wedge\neg F)) &&\text{Äquivalent}\\[1ex]
+		(F\leftrightarrow G)&\equiv((F\wedge G\vee(\neg G\wedge\neg F)) &&\text{Äquivalenz}\\[1ex]
 		(F\to G)&\equiv(\neg F\vee G) &&\text{Implikation}
 	\end{align*}
 \end{satz}
@@ -337,11 +337,11 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 \begin{definition}\label{def3.20}
 	Die Menge der \textbf{Positionen / Vorkommen} $\P_F$ in einer Formel $F\in\L(\RR)$ ist
 	\begin{align*}
-		&\pos\colon\L(\RR)\to\lbrace1,2\rbrace^\ast,\\
-		&F\mapsto\lbrace\lambda\rbrace\cup\left\lbrace\begin{array}{cl}
+		&\pos\colon\L(\RR)\to\mathfrak{P}\big(\lbrace1,2\rbrace^\ast\big),\\
+		&F\mapsto\lbrace\Lambda\rbrace\cup\left\lbrace\begin{array}{cl}
 			\emptyset ,&\falls F\in\RR\\
 			\lbrace 1\pi:\pi\in\pos(G)\rbrace, &\falls F=\neg G\\
-			\lbrace 2\pi:\pi_1\in\pos(G_1)\rbrace\cup\lbrace2\pi_2:\pi_2\in\pos(G_2)\rbrace
+			\lbrace 1\pi_1:\pi_1\in\pos(G_1)\rbrace\cup\lbrace2\pi_2:\pi_2\in\pos(G_2)\rbrace
 			,&\falls F=(G_1\circ G_2)
 		\end{array}\right.
 	\end{align*}
@@ -381,7 +381,7 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 	Die \textbf{Teilformel von $F$ an der Position $\pi\in\P_F$}, i.Z. $F\lceil\pi\rceil$, ist wie folgt definiert:
 	\begin{enumerate}
 		\item $F\lceil\lambda\rceil:=F$.
-		\item $F\lceil[1\pi\rceil:= G\lceil\pi\rceil$, wenn $F=\neg G$.
+		\item $F\lceil 1\pi\rceil:= G\lceil\pi\rceil$, wenn $F=\neg G$.
 		\item $F\lceil i\pi\rceil:=G_i\lceil\pi\rceil$, wenn $F=(G_1\circ G_2)$ und $i\in\lbrace1,2\rbrace$.
 	\end{enumerate}
 \end{definition}
@@ -484,11 +484,16 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 		\item Wähle ein Element $K$ aus $H$ aus, dass kein Literal ist.
 		\item Wende eine der folgenden Regeln an, die anwendbar ist:
 		\begin{align}
-			&\frac{\neg\neg D}{D}\label{eqKNF1}\tag{KNF1}\\
-			&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{eqKNF2}\tag{KNF2}\\
-			&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{eqKNF3}\tag{KNF3}\\
-			&\frac{(D_1\vee D_2)}{D_1, D_2}\label{eqKNF4}\tag{KNF4}\\
+			&\frac{\neg\neg D}{D}\label{eqKNF1}\tag{KNF1} 
+				&\langle[\neg\neg D,R]\rangle&\equiv\langle[D,R]\rangle\\
+			&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{eqKNF2}\tag{KNF2} 
+				&\langle[(D_1\wedge D_2),R]\rangle&\equiv \langle[D_1,R],[D_2,R]\rangle\\
+			&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{eqKNF3}\tag{KNF3}
+				&\langle[\neg(D_1\wedge D_2),R]\rangle&\equiv\langle[\neg D_1,\neg D_2,R]\rangle\\
+			&\frac{(D_1\vee D_2)}{D_1, D_2}\label{eqKNF4}\tag{KNF4}
+				&\langle[D_1\vee D_2,R]\rangle&\equiv\langle[D_1,D_2,R]\rangle\\
 			&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{eqKNF5}\tag{KNF5}
+				&\langle[\neg(D_1\vee D_2),R]\rangle&\equiv\langle[\neg D_1,R],[\neg D_2,R]\rangle
 		\end{align}
 	\end{itemize}		
 	} Bei Anwendung einer Regel $\frac{E}{E_1\mid E_2}$ wird $H$ durch zwei Disjunktionen ersetzt: 

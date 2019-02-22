@@ -4,8 +4,14 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \section{Aufgabenblatt 4}
-\subsection{Aufgabe 4.1}
-Zu zeigen:
+\subsection{Aufgabe 4.1 (Monotonie der klassischen Aussagenlogik)}
+Seien $G$ aussagenlogische Formel und seien $\F$ und $\F'$
+Mengen aussagenlogischer Formeln. 
+Dann gilt:
+\begin{align*}
+	\big(\F\models G\und \F\subseteq\F'\big)\implies\F'\models\F
+\end{align*}
+Erinnerung:
 \begin{align*}
 	\F'\models G:\Longleftrightarrow\big(\forall I:I\models\F'\implies I\models G\big)
 \end{align*}
@@ -24,7 +30,7 @@ Zu zeigen:
 	Da die Interpretation $I$ beliebig war, folgt die Behauptung $\F'\models G$. 
 \end{proof}
 
-\subsection{Aufgabe 4.2}
+\subsection{Aufgabe 4.2  (Wissenswertes über Nessie)}
 \subsubsection{Aufgabe 4.2 (a)}
 \begin{align*}
 	F_1 &=(m \to\neg s)\\
@@ -45,13 +51,10 @@ Frage: Gilt $\F\models m$?
 	$m^{I_2}=\bot,~s^{I_2}=\bot,~t^{I_2}=\top, d^{I_2}=\top,a^{I_2}=\top$\\
 	Dann gilt $I_1\models\F$ und $I_2\models\F$ aber $I_1\models m$ und $I_2\not\models m$. 
 	Also folgt $F\not\models m$ und $\F\not\models\neg m$.
-
-	%Kann beides nicht gefolgert werden, denn:\\
-	%\underline{Fall 1:} $m\to \neg s\to d\to a$\\
-	%\underline{Fall 2:} $\neg m\to s\wedge t\to d\to a$\\
+	Man kann also nichts folgern.
 \end{lösung}
 
-\subsection{Aufgabe 4.3}
+\subsection{Aufgabe 4.3 (Logische Äquivalenzen)}
 Beachte zunächst
 \begin{align*}
 	G\equiv F &\stackrel{\text{Def}}{\Longleftrightarrow}
@@ -68,21 +71,19 @@ Sei also $I$ eine beliebige Interpretation im Folgenden.
 	[(F\vee F)]^I=F^I\vee^\ast F^I\stackeq{\text{Tab}} F^I
 \end{align*}
 \begin{tabular}{c||c}
-	$F$ & $F\vee^\ast F$\\ \hline
-	$\top$ & $\top$\\% & $\top$\\
-	$\bot$ & $\bot$ %& $\top$\\
-	%$\bot$ & $\top$ & $\top$\\
-	%$\bot$ & $\bot$ & $\bot$
+	$F^I$ & $F^I\vee^\ast F^I$\\ \hline
+	$\top$ & $\top$\\
+	$\bot$ & $\bot$
 \end{tabular}
 
 \subsubsection{Aufgabe 4.3 (b)}
 \begin{align*}
 	[\neg(F\wedge G)]^I=\neg^\ast\left(F^I\wedge^\ast G^I\right)\stackeq{\text{Tab}}
-	\left(\neg^\ast F^I\vee^\ast\neg^\ast G^I\right)=\big[(\neg F\vee\neg G)\big]
+	\left(\neg^\ast F^I\vee^\ast\neg^\ast G^I\right)=\big[(\neg F\vee\neg G)\big]^I
 \end{align*}
 
 \begin{tabular}{c|c||c|c}
-	$F$ & $G$ & $\neg^\ast(F\wedge^\ast G)$ & $(\neg^\ast F\vee^\ast\neg^\ast G)$\\ \hline
+	$F^I$ & $G^I$ & $\neg^\ast(F^I\wedge^\ast G^I)$ & $(\neg^\ast F^I\vee^\ast\neg^\ast G^I)$\\ \hline
 	$\top$ & $\top$ & $\bot$ & $\bot$\\
 	$\top$ & $\bot$ & $\top$ & $\top$\\
 	$\bot$ & $\top$ & $\top$ & $\top$\\
@@ -108,74 +109,84 @@ Analog zu (a) und (b).
 \subsubsection{Aufgabe 4.3 (g)}
 Analog zu (a) und (b).
 
-\subsection{Aufgabe 4.4}
-Sei $\mathcal{R}=\lbrace p_1,p_2,\ldots\rbrace$ eine Menge von aussagenlogischen Variablen, $J_1:=\lbrace J_1^1,\ldots,J_1^4\rbrace$ die Menge der einstelligen Junktoren und $J_2:=\lbrace J_2^1,\ldots,J_2^{16}\rbrace$ die Menge der zweistelligen Junktoren. 
-(Es gibt nach Vorlesung genau 4 einstellige und 16 zweistellige Junktoren). 
-Nun zeigt man durch strukturelle Induktion die Behauptung mit 16 + 4 Induktionsschritten:
-\begin{enumerate}
-	\item $J_1^1 A\equiv\neg A$
-	\item $J_1^2 A\equiv\neg\neg A$
-	\item $J_1^3 A\equiv A\vee\neg A$
-	\item $J_1^4 A\equiv\neg(A\vee\neg A)$
-\end{enumerate}
-und
-\begin{enumerate}
-	\item $A J_2^1 B\equiv A\vee B$
-	\item $A J_2^2 B=A\wedge B\equiv\neg(\neg A\vee\neg B)$
-	\item $A J_2^3 B=A\to B\equiv\neg A\vee B$
-	\item $\ldots$
-\end{enumerate}
+\subsection{Aufgabe 4.4 (Das vollständige Junktorensystem \texorpdfstring{$\lbrace\neg, \vee\rbrace$}{lbrace neg,vee rbrace})}
+Zeigen Sie: Es gibt zu jeder aussagenlogischen Formel (mit was auch immer für ein-und zweistelligen Junktoren aus dem Reservoir der 4 bzw. 16 möglichen Junktoren) eine
+semantisch äquivalente Formel, welche nur die Junktoren $\neg$ und $\vee$ enthält.
 
-\textbf{Mitschrift aus der Übung:}\\
-Leite für jeden Junktor aus der Wahrheitswertetabelle eine äquivalente Formel und daraus dann eine Ersetzungsregel ab. 
-Dabei nutzen wir die de'Morgansche Regel:
-\begin{align*}
-	(\varphi_1\wedge\varphi_2)\equiv\neg(\neg\varphi_1\vee\neg\varphi_2)
-\end{align*}
-Daraus erhält man die Ersetzungsregel
-\begin{align}\label{4.4Ersetzungsregel}
-	\frac{(\varphi_1\wedge\varphi_2)}{\neg(\neg\varphi_1\vee\neg\varphi_2)}
-\end{align}
-Hier am Beispiel der Implikation:\\
-\begin{tabular}{c|c||c}
-	$\varphi_1^I$ & $\varphi_2^I$ & $\varphi_1^I\to^\ast\varphi_2^I$ \\ \hline
-	$\top$ & $\top$ & $\top$\\
-	$\top$ & $\bot$ & $\bot$\\
-	$\bot$ & $\top$ & $\top$\\
-	$\bot$ & $\bot$ & $\top$
-\end{tabular}
+\begin{lösung}
+	Sei $\mathcal{R}=\lbrace p_1,p_2,\ldots\rbrace$ eine Menge von aussagenlogischen Variablen, 
+	$J_1:=\lbrace J_1^1,\ldots,J_1^4\rbrace$ die Menge der einstelligen Junktoren und $J_2:=\lbrace J_2^1,\ldots,J_2^{16}\rbrace$ die Menge der zweistelligen Junktoren. 
+	(Es gibt nach Vorlesung genau 4 einstellige und 16 zweistellige Junktoren). 
+	Es müssen also zunächst folgende 16 + 4 Ersetzungsrelegung bzw. semantische Äquivalenzen gezeigt werden (analog zu Aufgabe 4.3):
+	\begin{enumerate}
+		\item $J_1^1 A\equiv\neg A$
+		\item $J_1^2 A\equiv\neg\neg A$
+		\item $J_1^3 A\equiv A\vee\neg A$
+		\item $J_1^4 A\equiv\neg(A\vee\neg A)$
+	\end{enumerate}
+	und
+	\begin{enumerate}
+		\item $A J_2^1 B\equiv A\vee B$
+		\item $A J_2^2 B=A\wedge B\equiv\neg(\neg A\vee\neg B)$
+		\item $A J_2^3 B=A\to B\equiv\neg A\vee B$
+		\item $\ldots$
+	\end{enumerate}
+	Nun können wir eine rekursive Funktion auf der Menge der Formeln über den 16+4 Junktoren definieren.
+	Diese konkret aufzuschreiben ist etwas awkward und wird hier nicht gemacht.
+\end{lösung}
 
-\begin{align*}
-	(\varphi_1\to\varphi_2)
-	&\equiv (\varphi_1\wedge\varphi_2)\vee(\neg\varphi_1\wedge\varphi_2)\vee(\neg\varphi_1\wedge\neg\varphi_2)\\
-	\overset{\eqref{4.4Ersetzungsregel}}&{\equiv}
-	\neg(\neg\varphi_1\vee\neg\varphi_2)\vee\neg(\neg\neg\varphi_1\vee\varphi_2)\vee\neg(\neg\neg\varphi_1\vee\neg\neg\varphi_2)\\
-	&\equiv(\neg\varphi_1\vee\varphi_2)
-\end{align*}
-Somit erhält man die Ersetzungsregel
-\begin{align*}
-	\frac{(\varphi_1\to\varphi_2)}{(\neg\varphi_1\vee\varphi_2)}
-\end{align*}
-Erhalte somit alle 16 + 4 Ersetzungsregel erschöpfend auf die Formel an (d.h. bis keine Ersetzungsregel mehr anwendbar ist). 
-Damit erhält man nach endlich vielen Schritten eine semantisch äquivalente Formel, welche nur noch $\neg$ und $\vee$ enthält.
+\textbf{Mitschrift aus der Übung:}
+\begin{lösung}
+	Leite für jeden Junktor aus der Wahrheitswertetabelle eine äquivalente Formel und daraus dann eine Ersetzungsregel ab. 
+	Dabei nutzen wir die de'Morgansche Regel:
+	\begin{align*}
+		(\varphi_1\wedge\varphi_2)\equiv\neg(\neg\varphi_1\vee\neg\varphi_2)
+	\end{align*}
+	Daraus erhält man die Ersetzungsregel
+	\begin{align}\label{4.4Ersetzungsregel}
+		\frac{(\varphi_1\wedge\varphi_2)}{\neg(\neg\varphi_1\vee\neg\varphi_2)}
+	\end{align}
+	Hier am Beispiel der Implikation:\\
+	\begin{tabular}{c|c||c}
+		$\varphi_1^I$ & $\varphi_2^I$ & $\varphi_1^I\to^\ast\varphi_2^I$ \\ \hline
+		$\top$ & $\top$ & $\top$\\
+		$\top$ & $\bot$ & $\bot$\\
+		$\bot$ & $\top$ & $\top$\\
+		$\bot$ & $\bot$ & $\top$
+	\end{tabular}
 
-\subsection{Aufgabe 4.5}
+	\begin{align*}
+		(\varphi_1\to\varphi_2)
+		&\equiv (\varphi_1\wedge\varphi_2)\vee(\neg\varphi_1\wedge\varphi_2)\vee(\neg\varphi_1\wedge\neg\varphi_2)\\
+		\overset{\eqref{4.4Ersetzungsregel}}&{\equiv}
+		\neg(\neg\varphi_1\vee\neg\varphi_2)\vee\neg(\neg\neg\varphi_1\vee\varphi_2)\vee\neg(\neg\neg\varphi_1\vee\neg\neg\varphi_2)\\
+		&\equiv(\neg\varphi_1\vee\varphi_2)
+	\end{align*}
+	Somit erhält man die Ersetzungsregel
+	\begin{align*}
+		\frac{(\varphi_1\to\varphi_2)}{(\neg\varphi_1\vee\varphi_2)}
+	\end{align*}
+	Erhalte somit alle 16 + 4 Ersetzungsregel erschöpfend auf die Formel an (d.h. bis keine Ersetzungsregel mehr anwendbar ist). 
+	Damit erhält man nach endlich vielen Schritten eine semantisch äquivalente Formel, welche nur noch $\neg$ und $\vee$ enthält.
+\end{lösung}
+
+\subsection{Aufgabe 4.5 (Positionen und Ersetzungen in Formeln)}
 \subsubsection{Aufgabe 4.5 (a)}
 \begin{tikzpicture}[node distance=5em]
-\tikzstyle{every state}=[shape=circle,draw=black]
-\node[state] (1) {$\neg:\Lambda$};
-\node[state] (2) [below = of 1] {$\wedge:1$};
-\node[state] (3) [below left = of 2] {$p:11$};
-\node[state] (4) [below right = of 2] {$\vee:12$};
-\node[state] (5) [below left = of 4] {$q:121$};
-\node[state] (6) [below right = of 4] {$\neg:122$};
-\node[state] (7) [below of =6] {$p:1221$};
-\path (2) edge [, -] node {} (1)
-      (3) edge [, -] node {} (2)
-	  (4) edge [, -] node {} (2)
-	  (5) edge [, -] node {} (4)
-	  (6) edge [, -] node {} (4)
-	  (7) edge [, -] node {} (6)
+	\tikzstyle{every state}=[shape=circle,draw=black]
+	\node[state] (1) {$\neg:\Lambda$};
+	\node[state] (2) [below = of 1] {$\wedge:1$};
+	\node[state] (3) [below left = of 2] {$p:11$};
+	\node[state] (4) [below right = of 2] {$\vee:12$};
+	\node[state] (5) [below left = of 4] {$q:121$};
+	\node[state] (6) [below right = of 4] {$\neg:122$};
+	\node[state] (7) [below of =6] {$p:1221$};
+	\path 	(2) edge [, -] node {} (1)
+   	   		(3) edge [, -] node {} (2)
+		 	(4) edge [, -] node {} (2)
+	  		(5) edge [, -] node {} (4)
+	 		(6) edge [, -] node {} (4)
+	  		(7) edge [, -] node {} (6)
 	;	
 \end{tikzpicture}
 
@@ -201,28 +212,29 @@ Formal:
 
 \subsubsection{Aufgabe 4.5 (b)}
 \begin{tikzpicture}[node distance=5em]
-\tikzstyle{every state}=[shape=circle,draw=black]
-\node[state] (1) {$\neg:\Lambda$};
-\node[state] (2) [below = of 1] {$\neg:1$};
-\node[state] (3) [below = of 2] {$\wedge:11$};
-\node[state] (4) [left = of 3] {$\vee:111$};
-\node[state] (5) [below left = of 4] {$p:1111$};
-\node[state] (6) [below right = of 4] {$q:1112$};
-\node[state] (7) [right = of 3] {$\vee:112$};
-\node[state] (8) [below left = of 7] {$q:1121$};
-\node[state] (9) [below right = of 7] {$\neg:1122$};
-\node[state] (10) [below = of 9] {$p:11221$};
-\path (2) edge [, -] node {} (1)
-      (3) edge [, -] node {} (2)
-	  (4) edge [, -] node {} (3)
-	  (5) edge [, -] node {} (4)
-	  (6) edge [, -] node {} (4)
-	  (7) edge [, -] node {} (3)
-	  (8) edge [, -] node {} (7)
-	  (9) edge [, -] node {} (7)
-	  (10) edge [, -] node {} (9)
+	\tikzstyle{every state}=[shape=circle,draw=black]
+	\node[state] (1) {$\neg:\Lambda$};
+	\node[state] (2) [below = of 1] {$\neg:1$};
+	\node[state] (3) [below = of 2] {$\wedge:11$};
+	\node[state] (4) [left = of 3] {$\vee:111$};
+	\node[state] (5) [below left = of 4] {$p:1111$};
+	\node[state] (6) [below right = of 4] {$q:1112$};
+	\node[state] (7) [right = of 3] {$\vee:112$};
+	\node[state] (8) [below left = of 7] {$q:1121$};
+	\node[state] (9) [below right = of 7] {$\neg:1122$};
+	\node[state] (10) [below = of 9] {$p:11221$};
+	\path 	(2) edge [, -] node {} (1)
+      		(3) edge [, -] node {} (2)
+	  		(4) edge [, -] node {} (3)
+	  		(5) edge [, -] node {} (4)
+	  		(6) edge [, -] node {} (4)
+	  		(7) edge [, -] node {} (3)
+	  		(8) edge [, -] node {} (7)
+	  		(9) edge [, -] node {} (7)
+	  		(10) edge [, -] node {} (9)
 	;	
 \end{tikzpicture}
+
 \begin{align*}
 	G\lceil 1122\Lambda\rceil
 	&=\Big[\neg\neg((p\vee q)\wedge(q\vee\neg p))\Big]\lceil 1122\Lambda\rceil\\
@@ -239,29 +251,29 @@ Formal:
 
 \subsubsection{Aufgabe 4.5 (c)}
 \begin{tikzpicture}[node distance=3em]
-\tikzstyle{every state}=[shape=circle,draw=black]
-\node[state] (1) {$\neg:\Lambda$};
-\node[state] (2) [below = of 1] {$\wedge:1$};
-\node[state] (3) [below left = of 2] {$\neg:11$};
-\node[state] (4) [below left = of 3] {$\vee:111$};
-\node[state] (5) [below left = of 4] {$p:1111$};
-\node[state] (6) [below right= of 4] {$q:1112$};
-\node[state] (7) [below right = of 2] {$\neg:12$};
-\node[state] (8) [below right = of 7] {$\vee:121$};
-\node[state] (9) [below left = of 8] {$q:1211$};
-\node[state] (10) [below right = of 8] {$\neg:1212$};
-\node[state] (11) [below = of 10] {$p:12121$};
-\path (2) edge [, -] node {} (1)
-      (3) edge [, -] node {} (2)
-	  (4) edge [, -] node {} (3)
-	  (5) edge [, -] node {} (4)
-	  (6) edge [, -] node {} (4)
-	  (7) edge [, -] node {} (2)
-	  (8) edge [, -] node {} (7)
-	  (9) edge [, -] node {} (8)
-	  (10) edge [, -] node {} (8)
-	  (11) edge [, -] node {} (10)
-	;	
+	\tikzstyle{every state}=[shape=circle,draw=black]
+	\node[state] (1) {$\neg:\Lambda$};
+	\node[state] (2) [below = of 1] {$\wedge:1$};
+	\node[state] (3) [below left = of 2] {$\neg:11$};
+	\node[state] (4) [below left = of 3] {$\vee:111$};
+	\node[state] (5) [below left = of 4] {$p:1111$};
+	\node[state] (6) [below right= of 4] {$q:1112$};
+	\node[state] (7) [below right = of 2] {$\neg:12$};
+	\node[state] (8) [below right = of 7] {$\vee:121$};
+	\node[state] (9) [below left = of 8] {$q:1211$};
+	\node[state] (10) [below right = of 8] {$\neg:1212$};
+	\node[state] (11) [below = of 10] {$p:12121$};
+	\path 	(2) edge [, -] node {} (1)
+   		   	(3) edge [, -] node {} (2)
+	  		(4) edge [, -] node {} (3)
+	  		(5) edge [, -] node {} (4)
+	  		(6) edge [, -] node {} (4)
+	  		(7) edge [, -] node {} (2)
+	  		(8) edge [, -] node {} (7)
+	  		(9) edge [, -] node {} (8)
+	  		(10) edge [, -] node {} (8)
+	  		(11) edge [, -] node {} (10)
+		;	
 \end{tikzpicture}
 
 \begin{align*}
@@ -287,7 +299,7 @@ Tatsächlich gilt
 \end{align*}
 Betrachte die Interpretation $I$ mit $p^I=q^I=\bot$.
 
-\subsection{Aufgabe 4.6}
+\subsection{Aufgabe 4.6 (Formelersetzungen)}
 \subsubsection{Aufgabe 4.6 (a)}
 Die Aussage gilt nicht, denn betrachte folgendes Gegenbeispiel:\\
 $F=(p\wedge p)=p\vee G$ mit $\pi=1$ und $H=\neg p$. 

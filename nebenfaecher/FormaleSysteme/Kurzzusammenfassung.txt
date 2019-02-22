@@ -1,0 +1,7 @@
+Form-Zusammenfassung der Übungsaufgaben:
+- Aussagen über Formeln beweits man durch strukturelle Induktion über den Aufbau dieser.
+- Definiere dazu ggf. noch Hilfsfunktionen auf L(R) (z.B. öffnende Klammern zählen)
+- allgemeingültig / widerlegbar / erfüllbar / unerfüllbar sollte man auch für Formelmengen können
+- Formelmenge lässt sich in dem Zusammenhang als Konjunktion der einzelnen Formeln auffassen
+- Positionen in Formeln und Ersetzungen FORMAL
+- NNF und KNF können

@@ -4,43 +4,48 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \section{Aufgabenblatt 5}
-\subsection{Aufgabe 5.1 (Beispiele zur NNF und KF Transformation}
+\subsection{Aufgabe 5.1 (Beispiele zur NNF und KF Transformation)}
 \textbf{Negationsnormalform:} ``Negation immer nur vor Variablen''
 
 \begin{align}
-	&\frac{\neg\neg H}{H}\label{Neg1}\\
-	&\frac{\neg(G_1\wedge G_2)}{(\neg G_1\vee G_2)}\label{Neg2}\\
-	&\frac{\neg(G_1\vee G_2)}{(\neg G_1\wedge G_2)}\label{Neg3}
+	&\frac{\neg\neg H}{H}\label{Neg1}\tag{NNF1}\\
+	&\frac{\neg(G_1\wedge G_2)}{(\neg G_1\vee\neg G_2)}\label{Neg2}\tag{NNF2}\\
+	&\frac{\neg(G_1\vee G_2)}{(\neg G_1\wedge\neg  G_2)}\label{Neg3}\tag{NNF3}
 \end{align}
 Die Symbole $\to, \leftrightarrow$ müssen zuerst umgeschrieben werden.\nl
 \textbf{Klauselform / konjunktive Normalform /CNF:}
 
 \begin{align}
-	&\frac{\neg\neg D}{D}\label{KNF1}\tag{KNF1}\\
-	&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\tag{KNF2}\\
-	&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{KNF3}\tag{KNF3}\\
-	&\frac{(D_1\vee D_2)}{D_1, D_2}\label{KNF4}\tag{KNF4}\\
-	&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{KNF5}\tag{KNF5}\\
+	&\frac{\neg\neg D}{D}\label{KNF1}\tag{KNF1} 
+		&\langle[\neg\neg D,R]\rangle&\equiv\langle[D,R]\rangle\\
+	&\frac{(D_1\wedge D_2)}{D_1\mid D_2}\label{KNF2}\tag{KNF2} 
+		&\langle[(D_1\wedge D_2),R]\rangle&\equiv \langle[D_1,R],[D_2,R]\rangle\\
+	&\frac{\neg(D_1\wedge D_2)}{\neg D_1,\neg D_2}\label{KNF3}\tag{KNF3}
+		&\langle[\neg(D_1\wedge D_2),R]\rangle&\equiv\langle[\neg D_1,\neg D_2,R]\rangle\\
+	&\frac{(D_1\vee D_2)}{D_1, D_2}\label{KNF4}\tag{KNF4}
+		&\langle[D_1\vee D_2,R]\rangle&\equiv\langle[D_1,D_2,R]\rangle\\
+	&\frac{\neg(D_1\vee D_2)}{\neg D_1\mid\neg D_2}\label{KNF5}\tag{KNF5}
+		&\langle[\neg(D_1\vee D_2),R]\rangle&\equiv\langle[\neg D_1,R],[\neg D_2,R]\rangle
 \end{align}
 
 \subsubsection{Aufgabe 5.1 (a)}
 Negationsnormalform:
 \begin{align*}
 	(\underline{\neg (( p\wedge q)\vee p)}\vee p)
-	\overset{\ref{Neg3}}&{\equiv}
+	\overset{\eqref{Neg3}}&{\equiv}
 	((\underline{\neg(p\wedge q)}\wedge\neg p)\vee q)\\
-	\overset{\ref{Neg2}}&{\equiv}
+	\overset{\eqref{Neg2}}&{\equiv}
 	(((\neg p\vee \neg q)\wedge\neg p)\vee p)
 \end{align*}
 Disjunktive Normalform:
 \begin{align*}
 	\langle[(\neg (( p\wedge q)\vee p)\underline{\vee} p)]\rangle
-	\overset{\ref{KNF4}}&{\equiv}
-	\langle[(\underline{\neg} (( p\wedge q)\vee p), p)]\rangle\\
-	\overset{\ref{KNF5}}&{\equiv}
-	\langle[(\neg (( p\wedge q)\vee p)],[\neg p,p)]\rangle\\
-	\overset{\ref{KNF3}}&{\equiv}
-	\langle[(\neg p,\neg, p)],[\neg p,p)]\rangle\\
+	\overset{\eqref{KNF4}}&{\equiv}
+	\langle[\underline{\neg} (( p\wedge q)\underline{\vee} p), p]\rangle\\
+	\overset{\eqref{KNF5}}&{\equiv}
+	\langle[\neg ( p\wedge q),p],[\neg p,p]\rangle\\
+	\overset{\eqref{KNF3}}&{\equiv}
+	\langle[\neg p,\neg q, p],[\neg p,p]\rangle\\
 \end{align*}
 Dies entspricht der Formel
 \begin{align*}
@@ -50,32 +55,32 @@ Dies entspricht der Formel
 \subsubsection{Aufgabe 5.1 (b)}
 Negationsnormalform:
 \begin{align*}
-	&~~~~\underline{\neg}(((p\vee q)\wedge(q\wedge r))\vee\neg((r\wedge q)\wedge(q\vee p)))\\
-	\overset{\ref{Neg3}}&{\equiv}
+	&\underline{\neg}(((p\vee q)\wedge(q\wedge r))\vee\neg((r\wedge q)\wedge(q\vee p)))\\
+	\overset{\eqref{Neg3}}&{\equiv}
 	(\underline{\neg}((p\vee q)\wedge(q\wedge r))\wedge\neg\neg((r\wedge q)\wedge(q\vee p)))\\
-	\overset{\ref{Neg2}}&{\equiv}
+	\overset{\eqref{Neg2}}&{\equiv}
 	((\underline{\neg}(p\vee q)\vee\underline{\neg}(q\wedge r))\wedge\neg\neg((r\wedge q)\wedge(q\vee p)))\\
-	\overset{\ref{Neg2},\ref{Neg3}}&{\equiv}
+	\overset{\eqref{Neg2},\eqref{Neg3}}&{\equiv}
 	(((\neg p\wedge\neg q)\vee(\neg q\vee\neg r))\wedge\underline{\neg\neg}((r\wedge q)\wedge(q\vee p)))\\
-	\overset{\ref{Neg1}}&{\equiv}
+	\overset{\eqref{Neg1}}&{\equiv}
 	(((\neg p\wedge\neg q)\vee(\neg q\vee\neg r))\wedge((r\wedge q)\wedge(q\vee p)))
 \end{align*}
 
 Disjunktive Normalform:
 \begin{align*}
-	&~~~~\langle[\underline{\neg}(((p\vee q)\wedge(q\wedge r))\underline{\vee}\neg((r\wedge q)\wedge(q\vee p)))]\rangle\\
-	\overset{\ref{KNF5}}&{\equiv}
+	&\langle[\underline{\neg}(((p\vee q)\wedge(q\wedge r))\underline{\vee}\neg((r\wedge q)\wedge(q\vee p)))]\rangle\\
+	\overset{\eqref{KNF5}}&{\equiv}
 	\langle[\neg((p\vee q)\wedge(q\wedge r))],[\underline{\neg\neg}((r\wedge q)\wedge(q\vee p))]\rangle\\
-	\overset{\ref{KNF1}}&{\equiv}
+	\overset{\eqref{KNF1}}&{\equiv}
 	\langle[\underline{\neg}((p\vee q)\underline{\wedge}(q\wedge r))],[((r\wedge q)\wedge(q\vee p))]\rangle\\
-	\overset{\ref{KNF3}}&{\equiv}
-	\langle[\neg(p\vee q),\underline{\neg}(q\wedge r)],[((r\wedge q)\wedge(q\vee p))]\rangle\\
-	\overset{\ref{KNF3}}&{\equiv}
+	\overset{\eqref{KNF3}}&{\equiv}
+	\langle[\neg(p\vee q),\underline{\neg}(q\underline{\wedge} r)],[((r\wedge q)\wedge(q\vee p))]\rangle\\
+	\overset{\eqref{KNF3}}&{\equiv}
 	\langle[\neg(p\vee q),\neg q, \neg r)],[((r\wedge q)\underline{\wedge}(q\vee p))]\rangle\\
-	\overset{\ref{KNF2}}&{\equiv}
-	\langle[\neg(p\vee q),\neg q, \neg r)],[((r\wedge q)],[(q\vee p)]\rangle\\
-	\overset{\ref{KNF5},\ref{KNF2},\ref{KNF4}}&{\equiv}
-	\langle[\neg p,\neg q,\neg r],[\neg q,,\neg q, \neg r],[r],[q],[q,p]\rangle\\
+	\overset{\eqref{KNF2}}&{\equiv}
+	\langle[\neg(p\vee q),\neg q, \neg r)],[(r\wedge q)],[(q\vee p)]\rangle\\
+	\overset{\eqref{KNF5},\eqref{KNF2},\eqref{KNF4}}&{\equiv}
+	\langle[\neg p,\neg q,\neg r],[\neg q,\neg q, \neg r],[r],[q],[q,p]\rangle\\
 \end{align*}
 
 \subsection{Aufgabe 5.2 ((Un-)erfüllbarkeit von Klausel(-mengen))}
@@ -163,7 +168,7 @@ $C$ ist erfüllbar gdw. es ein Literal in $C$ gibt.
 			\bot,&\sonst
 		\end{array}\right.\qquad\forall p\in\RR
 	\end{align*}
-	Dann gilt: $L^I=\top$. Damit folgt $C^I=\top$ und somit ist gezeigt, dass
+	Dann gilt: $L^I=\top$. Damit folgt $C^I=\top$ und somit ist gezeigt, dass $C$ erfüllbar ist.
 \end{proof}
 
 \subsection{Aufgabe 5.3 (Beweis von Lemma 3.29)}
@@ -171,7 +176,6 @@ Lemma 3.29 wird benötigt um zeigen, dass der Algorithmus, welcher Formeln in CN
 
 \begin{proof}
 	Sei $F$ eine verallgemeinerte Konjunktion von verallgemeinerten Disjunktionen
-	%, d.h. $F$ ist eine verallgemeinerte Konjunktion von Klauseln.
 	Die Umformungsregeln \eqref{KNF1}, \eqref{KNF3} und \eqref{KNF4} und ersetzen / modifizieren eine einzelne verallgemeinerte Disjunktion, liefern aber auch in der "Ausgabe" eine verallgemeinerte Disjunktion. 
 	Die Regeln \eqref{KNF2} und \eqref{KNF5} ersetzen eine verallgemeinerte Disjunktion durch zwei verallgemeinerte Disjunktionen.\\
 	Die semantische Äquivalenz von Regel \eqref{KNF1} folgt aus $\neg^\ast\circ\neg^\ast=\id$, von den Regeln \eqref{KNF3}, \eqref{KNF5} aus den De Morganschen  Regeln, sowie von den Regeln \eqref{KNF2} und \eqref{KNF4} aus 
@@ -330,7 +334,7 @@ Ersetze $\langle,\rangle$ durch $[,]$ und umgekehrt, negiere alle Atome alle aus
 Problem: Existiert eine Zuweisung, welche jeder Zelle einen Wert von 1 bis $n^2$ zuweist so, dass in jeder Zeile, in jeder  Spalte und in jedem Block jede Zahl aus $\lbrace1,2,\ldots,n^2\rbrace$ genau einmal vorkommt?
 
 \begin{aufgabe}
-	Finde eiene Formel (in CNF) für ein gegebenes Sudoku, sodass diese Formel genau dann erfüllbar ist, wenn das Soduku lösbar ist. 
+	Finde eine Formel (in CNF) für ein gegebenes Sudoku, sodass diese Formel genau dann erfüllbar ist, wenn das Soduku lösbar ist. 
 	Aus dem (erfüllenden) Modell soll dann eine konkrete Lösung abgeleitet werden.\\
 	Variablen: $R=\big\lbrace s_{x,y,z}\in\mathbb{B}^3\mid x,y,z\in\lbrace 1,\ldots,n\rbrace\big\rbrace$.
 	Dabei soll $s_{x,y,z}$ auf wahr abgebildet wird g.d.w. in Zeile $x$, Spalte $y$ die Zahl $z$ steht.\\
