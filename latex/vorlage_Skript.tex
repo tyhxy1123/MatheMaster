@@ -54,6 +54,11 @@
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
 	\input{demo_content}
 	
+	% ab hier kommt Anhang, Lösungen der Übungsaufgaben etc.
+	\setcounter{chapter}{0}
+	\renewcommand{\thechapter}{\Alph{chapter}}
+	%\input{anhang}
+	
 	\newcommand{\pathPrefix}{Loesungen/}
 	%\input{chapter_loesungen} % Falls es Übungsaufgaben gibt, sollte man diese miteinbinden
 
