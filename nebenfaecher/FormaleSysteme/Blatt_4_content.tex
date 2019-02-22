@@ -23,6 +23,16 @@ Zu zeigen:
 	Aus der Voraussetzung $\F\models G$ folgt nun $I\models G$. 
 	Da die Interpretation $I$ beliebig war, folgt die Behauptung $\F'\models G$. 
 \end{proof}
+\begin{proof}[Beweis alternativ]
+	\begin{align*}
+		& F \models G \text{ und } \mathcal{F} \subseteq \mathcal{F}'\\
+		& \implies \forall I : I \models \mathcal{F} \implies I \models G \text{ und } \mathcal{F} \subseteq \mathcal{F}'\\
+		& \implies \forall I : I \models \mathcal{F} \implies I \models G \text{ und } \forall I : I \models \mathcal{F}' \implies I \models \mathcal{F}\\
+		& \implies \forall I : I \models \mathcal{F}' \implies I \models \mathcal{F} \implies I \models G\\
+		& \implies \forall I : I \models \mathcal{F}' \implies I \models G\\
+		& \implies \mathcal{F}' \models G
+	\end{align*}
+\end{proof}
 
 \subsection{Aufgabe 4.2}
 \subsubsection{Aufgabe 4.2 (a)}
