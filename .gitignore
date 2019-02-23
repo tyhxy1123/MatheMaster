@@ -1,4 +1,7 @@
 # ignore these files
+*.idx
+*.ilg
+*.ind
 *.bak
 *.log
 *.aux

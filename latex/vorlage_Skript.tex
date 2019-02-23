@@ -20,16 +20,18 @@
 %\input{\directoryPrefix commands_Willi}
 %\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
 
-\setlength{\parindent}{0px} % dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
+\makeindex % erstellt Stichwortverzeichnis
+\setlength{\parindent}{0px} % verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 %\renewcommand{\thesection}{\arabic{section}} % nützlich, falls es keine Chapter, sondern nur sections gibt.
 
 \title{
-  Vorlesung\\
-  Optimierung und Numerik - Teil 2\\
-  Numerik gewöhnlicher Differentialgleichungen}
+	Vorlesung\\
+	Optimierung und Numerik - Teil 2\\
+	Numerik gewöhnlicher Differentialgleichungen
+}
 \subtitle{Wintersemester 2018/2019}
 \author{
-	Vorlesung: Prof. Dr. Oliver Sander\\
+	Vorlesung: Prof. Dr. Vorname Name\\
 	Mitschrift: Willi Sontopski
 }
 
@@ -52,6 +54,7 @@
 	\pagenumbering{arabic}	% enable pagenumbering
 	
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
+	\chapter{Demo Content}
 	\input{demo_content}
 	
 	\appendix
@@ -60,6 +63,7 @@
 	\newcommand{\pathPrefix}{Loesungen/}
 	%\input{chapter_loesungen} % Falls es Übungsaufgaben gibt, sollte man diese miteinbinden
 
+	\printindex % erstellt Stichwortverzeichnis
 	%\listoffigures 
 	%\listoftables
 	%\nocite{*} % erstellt Literaturverzeichnis selbst wenn nie auf die entsprechende Literatur im Dokument verwiesen wird
