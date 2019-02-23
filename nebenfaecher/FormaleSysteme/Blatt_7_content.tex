@@ -190,7 +190,7 @@ Für $\Sigma=\lbrace a\rbrace$:\\
 \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid]
   \node[state,initial,accepting]   (q_0)                {$q_0$};
   \node[state]           (q_1) [right=of q_0] {$q_1$};
-  \node[state,accepting] (q_2) [right=of q_1] {$q_2$};
+  \node[state] (q_2) [right=of q_1] {$q_2$};
   \path[->] (q_0) edge              node [above] {a} (q_1)
   			(q_1) edge              node [above] {a} (q_2)
   			(q_2) edge [bend right =25] node [above] {a} (q_0);
@@ -201,7 +201,7 @@ Für $\Sigma=\lbrace a,b\rbrace$:\\
 \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid]
   \node[state,initial,accepting]   (q_0)                {$q_0$};
   \node[state]           (q_1) [right=of q_0] {$q_1$};
-  \node[state,accepting] (q_2) [right=of q_1] {$q_2$};
+  \node[state] (q_2) [right=of q_1] {$q_2$};
   \path[->] (q_0) edge              node [above] {a} (q_1)
   				  edge [loop below] node [below] {b} ()
   			(q_1) edge              node [above] {a} (q_2)
@@ -215,7 +215,9 @@ Für $\Sigma=\lbrace a,b\rbrace$:\\
 	\Delta_1&=\big\lbrace(q_0,a,q_1),(q_1,a,q_2),(q_2,a,q_0)\big\rbrace
 \end{align*}
 Beachte: Das Tikz-Bild beschreibt genau die Definition von $\Delta_1$.
-\subsection*{Aufgabe 5 c)}
+
+\subsubsection{Aufgabe 5 c)}
 %TODO Tikz Bild
-\subsection*{Aufgabe 5 d)}
+
+\subsubsection{Aufgabe 5 d)}
 %TODO Tikz Bild
