@@ -78,6 +78,42 @@
 	\newcommand{\spann}{\Span}           % Span / Lineare Hülle
 \DeclareMathOperator{\supp}{supp}        % Träger
 \DeclareMathOperator{\tr}{tr}            % Spur
+
+% Normen, Betrag, Skalarprodukt
+% Quelle: https://tex.stackexchange.com/questions/94410/easily-change-behavior-of-declarepaireddelimiter
+% Beispiel: \set{...}; \set*{...}=\set[]{...}; \set[\big]{...}, \set[\Big]{...}, ...
+\NewDocumentCommand\xDeclarePairedDelimiter{mmm} % unär
+{
+	\NewDocumentCommand#1{som}{
+   		\IfNoValueTF{##2}
+	    {\IfBooleanTF{##1}{#2##3#3}{\mleft#2##3\mright#3}}
+    	{\mathopen{##2#2}##3\mathclose{##2#3}}
+	}
+}
+
+\NewDocumentCommand\xDeclarePairedDelimiterBin{mmm} % binär
+{
+	\NewDocumentCommand#1{somm}{
+   		\IfNoValueTF{##2}
+	    {\IfBooleanTF{##1}{#2##3,##4#3}{\mleft#2##3,##4\mright#3}}
+    	{\mathopen{##2#2}##3,##4\mathclose{##2#3}}
+	}
+}
+ 
+\xDeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+\xDeclarePairedDelimiter{\norm}{\Vert}{\Vert}
+\xDeclarePairedDelimiter{\abs}{\vert}{\vert}
+\xDeclarePairedDelimiterBin{\scaProd}{\langle}{\rangle}
+
+\NewDocumentCommand\normiii{som}{
+	\IfNoValueTF{#2} %falls optionales Argument leer (d.h. kein "\Big")
+	{\IfBooleanTF{#1}
+		{\vert\kern-0.25ex \vert\kern-0.25ex \vert #3 \vert\kern-0.25ex \vert\kern-0.25ex\vert} %normale Darstellung
+		{\mleft\vert\kern-0.25ex \mleft\vert\kern-0.25ex \mleft\vert #3 \mright\vert\kern-0.25ex \mright\vert\kern-0.25ex \mright\vert}
+	}
+    {\mathopen{#2\vert\kern-0.25ex #2\vert\kern-0.25ex #2\vert} #3 \mathclose{#2\vert\kern-0.25ex #2\vert\kern-0.25ex #2\vert}}
+}
+
 \newcommand{\Vertiii}[1]{
 	{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1\right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}
 }                                        % dreifach gestrichene Norm
@@ -87,16 +123,14 @@
 \newcommand{\enter}{$ $\newline}         % Zeilenumbruch ohne Einschränkungen
 \newcommand\tab[1][1cm]{\hspace*{#1}}    % praktischer Tabulator
 
-% Folgende Commands sollten nicht mehr genutzt werden und sind nur noch zwecks "Abwärtskompatibilität" vorhanden
-\newcommand{\stackeq}[1]{\stackrel{#1}{=}}   
-
-% TEXT ÜBER UND UNTER ZEICHEN
+% overset und Co.
 \newcommand{\stackrelnew}[3]{\underset{#1}{\overset{#2}{#3}}}
+\newcommand{\stackeq}[1]{\overset{#1}{=}}  
 
 % Hervorhebungen
 \newcommand{\ul}[1]{\underline{#1}}    
 \newcommand{\define}[1]{\textbf{#1}}     % Definitionen sind standardmäßig fett
 \newcommand{\betone}[1]{\underline{#1}}  % Das zu Betonende ist standardmäßig unterstrichen
 
-% Warings and errors
+% Warnings and errors
 \newcommand{\throwWarning}[1]{\PackageWarning{42}{#1}} % Erzeugt LaTeX-Warnung mit Message = #1 
