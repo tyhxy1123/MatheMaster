@@ -38,6 +38,7 @@
 
 \subsection*{Aufgabe $\ast\ast$)}
 \subsubsection*{Aufgabe $\ast\ast$) (a)}
+%TODO
 
 %\usetikzlibrary{positioning,automata}
 %\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
@@ -50,6 +51,7 @@
 %\end{tikzpicture}
 
 \subsubsection*{Aufgabe $\ast\ast$) (b)}
+%TODO
 
 %\usetikzlibrary{positioning,automata}
 %\begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
@@ -81,7 +83,7 @@ mit
 
 \textbf{Wiederholung:} Approximation $\sim_k$ von $\sim_\A$:
 \begin{itemize}
-	\item $q\sim_0 q':\Longleftrightarrow (g\in F\Leftrightarrow q'\in F)$
+	\item $q\sim_0 q':\Longleftrightarrow (q\in F\Leftrightarrow q'\in F)$
 	\item $q\sim_{k+1} q':\Longleftrightarrow(q\sim_k q\wedge\forall a\in\Sigma:\delta(q,a)\sim_k\delta(q',a)$
 \end{itemize}
 In Aufgabe 8.4 (b) wurde gezeigt:
@@ -98,7 +100,7 @@ Bestimme also $\sim_\A$ schrittweise durch Approximation:
 Mit $\tilde{q}:=[q|_{\sim_\A}=\lbrace q'\in Q\mid  q\sim_\A g'\rbrace$ erhalten wir:
 \begin{align*}
 	\tilde{A}&=\big(\lbrace\tilde{q}_1,\tilde{q}_0,\tilde{q}_5\rbrace,\lbrace a,b\rbrace,\tilde{q}_0,\tilde{\delta},
-	\underbrace{\lbrace\tilde{q}_1,\tilde{q}_2,\tilde{q}_4\rbrace}_{=\lbrace\tilde{q}_1}\big)\mit\\
+	\underbrace{\lbrace\tilde{q}_1,\tilde{q}_2,\tilde{q}_4\rbrace}_{=\lbrace\tilde{q}_1\rbrace}\big)\mit\\
 	\tilde{\delta}(\tilde{q},x)&:=\widetilde{\delta(q,x)}\mit x\in\lbrace a,b\rbrace
 \end{align*}
 
@@ -171,7 +173,7 @@ $\A_3$:\\
 \end{tikzpicture}
 
 Berechnung eines äquivalenten DEA $\A_3'$ durch Potenzmengenkonstruktion:
-%TODO tikz
+%TODO tikz-Bild
 
 Umbenennung der Zustände des Quotientenautomaten:
 \begin{itemize}

@@ -5,3 +5,10 @@ Form-Zusammenfassung der Übungsaufgaben:
 - Formelmenge lässt sich in dem Zusammenhang als Konjunktion der einzelnen Formeln auffassen
 - Positionen in Formeln und Ersetzungen FORMAL
 - NNF und KNF können
+- Resolutionsverfahren anwenden können
+
+- NEA, DEA, Epsilon-NEA, NEA mit Wortübergängen umwandeln können
+- Quotientenautomat, reduzierter Automat
+- Lemma von Arden und "Gleichungssysteme lösen
+- zu einem Regex die erzeugte Sprache angeben
+- Chomsky-Hierarchie und Chomsky-Normalform

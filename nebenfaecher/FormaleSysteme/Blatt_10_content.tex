@@ -33,12 +33,13 @@ Zuerst entfernen wir die $\varepsilon$-Transitionen auf naheliegende Weise:
 \usetikzlibrary{positioning,automata}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
   \node[state,initial]   	(q_0)                		{$q_0$};
-  \node[state, accepting]   (q_1) [above right=of q_0] 	{$q_1$};
+  \node[state]              (q_1) [above right=of q_0] 	{$q_1$};
   \node[state, accepting] 	(q_2) [right=of q_1] 		{$q_2$};
   \node[state] 				(q_3) [below right=of q_0] 	{$q_3$};
   \node[state] 				(q_4) [right=of q_3]		{$q_4$};
   \path[->] (q_0) edge [bend left=0] node [above] {a} (q_1)
                   edge [bend left=0] node [above] {b} (q_3)
+                  edge [bend left=60] node[above] {a} (q_2) % Diese Transition wurde ergänzt
             (q_1) edge [bend left=0] node [above] {a} (q_4) %Diese Transition wurde geändert
             	  edge [bend left=0] node [left] {a,b} (q_3)
             (q_2) edge [bend left=0] node [right] {a} (q_3)
@@ -47,33 +48,31 @@ Zuerst entfernen wir die $\varepsilon$-Transitionen auf naheliegende Weise:
             (q_4) edge [loop right] node [right] {a} ();
 \end{tikzpicture}
 
-Wichtig ist hierbei, dass nun $q_1$ auch ein Endzustand geworden ist.
 Nun erzeugen wir den äquivalenten DEA mithilfe der Potenzmengenkonstruktion:
 
 \usetikzlibrary{positioning,automata}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.7cm,on grid]
   \node[state,initial]   	(q_0)                		{$\lbrace q_0\rbrace$};
-  \node[state, accepting]   (q_1) [above right=of q_0] 	{$\lbrace q_1\rbrace$};
-  \node[state]			 	(q_3q_4) [right=of q_1] 		{$\lbrace q_3,q_4\rbrace$};
+  \node[state, accepting]   (q_1q_2) [above right=of q_0] 	{$\lbrace q_1,q_2\rbrace$};
+  \node[state]			 	(q_3q_4) [right=of q_1q_2] 		{$\lbrace q_3,q_4\rbrace$};
   \node[state] 				(q_3) [below right=of q_0] 	{$\lbrace q_3\rbrace$};
   \node[state]			 	(q_4) [right=of q_3]		{$\lbrace q_4\rbrace$};
   \node[state]				(T)	  [below right =of q_3q_4] {$\emptyset$};
-  \path[->] (q_0) edge [bend left=0] node [above] {a} (q_1)
+  \path[->] (q_0) edge [bend left=0] node [above] {a} (q_1q_2)
                   edge [bend left=0] node [above] {b} (q_3)
-            (q_1) edge [bend left=0] node [above] {a} (q_3q_4)
+            (q_1q_2)edge [bend left=0] node [above] {a} (q_3q_4)
             	  edge [bend left=0] node [left] {b} (q_3)
-            (q_3q_4) edge [bend left=0] node [right] {a,b} (T)
-                  %edge [bend left=0] node [right] {a} (q_4)
+            (q_3q_4) edge [bend left=0] node [right] {a,b} (q_4)
             (q_3) edge [bend left=0] node [above] {b} (q_4)
-            	  edge [bend left=30] node [below] {a} (T)
+            	  edge [bend left=50] node [below] {a} (T)
             (q_4) edge [loop right] node [right] {a} ()
             	  edge [bend left=0] node [below] {b} (T)
            	(T)   edge [loop right] node [above] {a,b} ();
 \end{tikzpicture}
 
-Den unerreichbaren Zustand $q_2$ braucht man nicht beachten. Den Papierkorbzustand $\emptyset$ nicht vergessen. Also ist der äquivalente DEA:
+Den Papierkorbzustand $\emptyset$ nicht vergessen. Also ist der äquivalente DEA:
 \begin{align*}
-	\A'&=\Big(\big\lbrace q_0\rbrace,\lbrace q_1\rbrace,\lbrace q_3\rbrace,\lbrace q_3,q_4\rbrace,\lbrace q_4\rbrace,\emptyset\big\rbrace,\lbrace a,b\rbrace,\lbrace q_0\rbrace,\delta,\big\lbrace\lbrace q_1\rbrace\big\rbrace\Big)\\
+	\A'&=\Big(\big\lbrace q_0\rbrace,\lbrace q_1,q_2\rbrace,\lbrace q_3\rbrace,\lbrace q_3,q_4\rbrace,\lbrace q_4\rbrace,\emptyset\big\rbrace,\lbrace a,b\rbrace,\lbrace q_0\rbrace,\delta,\big\lbrace\lbrace q_1,q_2\rbrace\big\rbrace\Big)\\
 	\overset{\text{Umbennung}}&{=:}
 	\Big(\underbrace{\lbrace p_0, p_1,p_3,p_2,p_4, p_5\rbrace}_{=:P},\lbrace a,b\rbrace,p_0,\delta,\lbrace p_1\rbrace\Big)
 \end{align*}

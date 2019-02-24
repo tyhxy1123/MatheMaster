@@ -262,13 +262,15 @@ Jetzt nutzen wir die Potenzmengenkonstruktion, um daraus einen DEA zu erhalten. 
          (q_0p_0) edge [bend left=30] node [right]{0} (q_2p_0)
          		  edge [bend left=30] node [right]{1} (q_0p_2)
          (q_1p_2) edge [bend right=0] node [right]{0} (q_0p_1)
-                  edge [bend right=0] node [right]{1} (q_1p_0)
+                  edge [bend left=30] node [right]{1} (q_1p_0)
          (q_2p_1) edge [bend right=0] node [below]{1} (q_1p_0)
-                  edge [bend right=0] node [right]{0} (q_0p_1)
+                  edge [bend right=0] node [left]{0} (q_0p_1)
          (q_0p_1) edge [bend left=30] node [right]{0} (q_2p_1)
-         		  edge [bend right=0] node [above]{1} (q_1p_0);
+         		  edge [bend right=0] node [above]{1} (q_0p_0)
+		 (q_1p_0) edge [bend left=300]node [above]{1} (q_1p_2)
+		          edge [bend left=0] node [below right]{0} (q_0p_0)         
+         ;
 \end{tikzpicture}
-%TODO Hier fehlen noch Kanten
 
 \subsection{Aufgabe 3}
 Zwei Transitionssysteme (NEAs sind Spezialfälle) heißen \textbf{äquivalent}, wenn sie dieselbe Sprache akzeptieren.\\
@@ -282,6 +284,24 @@ Diese sind äquivalent
 	\big\lbrace w\in\Sigma'^\ast:I'\stackrel{w}{\longrightarrow}_{\A_2} F'\big\rbrace
 \end{align*}
 
+Wir erhalten die Lösung mithilfe der Potenzmengenkonstruktion:
+
+\begin{tikzpicture}[shorten >=1pt,node distance=3.1cm,on grid]
+  \node[state,initial]   (q_0)                       {$\lbrace q_0\rbrace$};
+  \node[state,accepting] (q_0q_2) [right = of q_0]   {$\lbrace q_0,p_2\rbrace$};
+  \node[state,accepting] (q_2) [above=of q_0q_2]        {$\lbrace q_2\rbrace$};
+  \node[state,accepting] (q_1q_2) [below=of q_0q_2] {$\lbrace q_0,q_2\rbrace$};
+  \node[state]           (t)      [right = of q_0q_2] {$\emptyset$};
+  \path[->] (q_0) edge [bend right=0] node [left] {a} (q_2)
+                  edge [bend right=0] node [left] {b} (q_1q_2)
+         (q_2)    edge [bend right=0] node [right]{a,b} (t)
+         (q_0q_2) edge [bend right=0] node [right]{a} (q_2)
+                  edge [bend left=30] node [right]{b} (q_1q_2)
+         (q_1q_2) edge [bend left=0]  node [right]{a} (t)
+         		  edge [bend left=30] node [right]{b} (q_0q_2)     
+         ;
+\end{tikzpicture}
+
 \subsection{Aufgabe 4}
 Sei $\A=(Q,\Sigma,I,\delta,F)$ ein DEA.
 
@@ -291,8 +311,7 @@ Sei $\A=(Q,\Sigma,I,\delta,F)$ ein DEA.
 \end{align*}
 
 \begin{proof}
-	%Sei $\lbrace u,v\rbrace\subseteq\Sigma^\ast$ beliebige Teilmenge und  $q\in Q$ beliebig.\nl
-	Beweis durch Induktion über dieLänge von $v$ beliebigem $u\in\Sigma^\ast$.\\
+	Beweis durch Induktion über die Länge von $v$ beliebigem $u\in\Sigma^\ast$.\\
 	Erinnerung an die Definition:
 	\begin{align}
 		\delta^\ast(q,\varepsilon)&:=q\label{eq1}\\
