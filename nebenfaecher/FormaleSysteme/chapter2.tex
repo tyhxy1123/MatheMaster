@@ -257,7 +257,7 @@ Im Folgenden zeigen wir:
 		\begin{align*}
 			L=\bigcup\limits_{u\in L}[u]_{\simeq_L}
 		\end{align*}
-		\item Ist $L=L(\A)$ für einen DEA $\A$, so ist die Anzahl der Index von $\simeq_L$ (= Anzahl der Klassen) $\leq Q$.
+		\item Ist $L=L(\A)$ für einen DEA $\A$, so ist der Index von $\simeq_L$ (= Anzahl der Klassen) $\leq Q$.
 	\end{enumerate}
 \end{lemma}
 
@@ -337,6 +337,14 @@ Für den Nachweis der Nichterkennbarkeit nutzen wir:
 	\end{align*}
 \end{satz}	
 
+\begin{lemma}[Pumping-Lemma, verschärfte Version]\enter
+	Sei $L$ erkennbar.
+	Dann gilt:
+	\begin{align*}
+		\exists n_0\in\N_{>0}:\forall uvw\in L~(u,v,w\in L)\mit|v|\geq n_0:ux y^k zw\in L~\forall j\geq0,y\neq\varepsilon
+	\end{align*}
+\end{lemma}
+
 \section{Abschlusseigenschaften und Entscheidungsprobleme}
 
 \begin{satz}[Abschlusseigenschaften erkennbarer Sprachen]\label{satz4.1}\enter
@@ -346,11 +354,11 @@ Für den Nachweis der Nichterkennbarkeit nutzen wir:
 	\end{align*}
 \end{satz}
 
-\begin{proof}
+\begin{proof}\
 	\begin{itemize}
 		\item $\cup$: neuer Startzustand, der mit $\varepsilon$-Transitionen zu beiden alten Startzuständen geht.
 		\item $\overline{L}$ (Komplement): Mache DEA aus NEA (mit Potenzmengenkonstruktion).
-	Dann ist der DEA für $\overline{L}$: $\\overline{\A}:=\big(Q,\Sigma,q_0,\delta,Q\setminus F\big)$ ("flippe Endzustände")
+	Dann ist der DEA für $\overline{L}$: $\overline{\A}:=\big(Q,\Sigma,q_0,\delta,Q\setminus F\big)$ ("flippe Endzustände")
 		\item $\cap$: Produktautomat: $\A:=\big(Q_1\times Q_2,\Sigma,(q_{01},q_{02}),\Delta,F_1\times F_2\big)$
 		\item $\setminus$: Folgt aus obigem, da $L_1\setminus L_2=L_1\cap\overline{L_2}$.
 		\item $\cdot$ (Konkatenation): Die Endzustände des linken Automaten via $\varepsilon$-Transitionen mit Startzustand des rechten Automaten verbinden.

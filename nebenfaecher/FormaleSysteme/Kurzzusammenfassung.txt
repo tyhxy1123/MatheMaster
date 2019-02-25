@@ -1,9 +1,34 @@
-Form-Zusammenfassung der Übungsaufgaben:
+Was man können sollte
+=====================
+
+Zusammenfassung der Vorlesung:
+- Alphabet der Aussagenlogik
+- aussagenlogische Formel
+- Strukturelle Induktion über Formeln und Zeichenreihen
+- aussagenlogische Interpretation
+- allgemeingültig / widerlegbar / erfüllbar / unerfüllbar für Formeln und Formelmengen
+- Modell für Formeln und Formelmenge
+- Aussagenlogische Konsequenz(relation)
+- Semantische Äquivalenz
+- Klauseln, NNF, KNF
+- Resolutionsableitung, Resolutionswiderlegung, Resolutionsbeweis, Resolutionsregel
+- Korrektheit und Vollständigkeit des Resolutionsverfahrens
+	- Endlichkeitssatz + Beweis (siehe Probeklausur)
+
+- äquivalente Zustände + Approximationsrelation
+- nerode Rechtskongruenz
+- erkennbar <=> endlicher Index <=> existiert DEA <=> regulär
+- Pumpinglemma (einfach + verschärft)
+- Abschlusseigenschaften erkennbarer Sprachen + Automatenkonstruktionen
+- Menge der regulären Ausdrücke, reguläre Sprache
+- 
+- Zusammenfassende Tabelle
+
+
+Zusammenfassung der Übungsaufgaben:
 - Aussagen über Formeln beweits man durch strukturelle Induktion über den Aufbau dieser.
 - Definiere dazu ggf. noch Hilfsfunktionen auf L(R) (z.B. öffnende Klammern zählen)
-- allgemeingültig / widerlegbar / erfüllbar / unerfüllbar sollte man auch für Formelmengen können
-- Formelmenge lässt sich in dem Zusammenhang als Konjunktion der einzelnen Formeln auffassen
-- Positionen in Formeln und Ersetzungen FORMAL
+- Positionen in Formeln und Ersetzungen
 - NNF und KNF können
 - Resolutionsverfahren anwenden können
 

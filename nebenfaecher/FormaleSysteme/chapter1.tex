@@ -62,7 +62,7 @@ Mit dem folgenden nützlichem Tool können wir Eigenschaften über aussagenlogis
 		\item \underline{Induktionsanfang:} $\forall A\in\RR:A$ besitzt Eigenschaft $E$.
 		\item \underline{Induktionsschritte:}
 		\begin{itemize}
-			\item Wenn $F$ Eigenschaft $E$ besitzt, dann besitzt sie auch $\neq F$.
+			\item Wenn $F$ Eigenschaft $E$ besitzt, dann besitzt sie auch $\neg F$.
 			\item Wenn $\circ\in\J$ und $F,G\in\L(\RR)$ die Eigenschaft $E$ besitzen, dann besitzt auch $(F\circ G)$ die Eigenschaft $E$.
 		\end{itemize}
 	\end{enumerate}
@@ -270,7 +270,7 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 \begin{definition}\label{def3.15}
 	Sei $\G$ eine Menge von Formeln.
 	\begin{itemize}
-		\item Eine Interpretation $I$ heißt Modell für $\G$, i.Z.
+		\item Eine Interpretation $I$ heißt \define{Modell} für $\G$, i.Z.
 		\begin{align*}
 			I\models \G:\Longleftrightarrow\forall F\in\G:I\models F
 		\end{align*}
@@ -282,7 +282,7 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 \end{definition}
 
 \begin{definition}\label{def3.16}
-	Eine Formel $F\in\L(\RR)$ ist eine \textbf{(aussagen-)logische Konsequenz} einer Menge von Formelm $\G$, i.Z.
+	Eine Formel $F\in\L(\RR)$ ist eine \textbf{(aussagen-)logische Konsequenz} einer Menge von Formeln $\G$, i.Z.
 	\begin{align*}
 		\G\models F:\Longleftrightarrow\forall I:I\models\G\implies I\models F
 	\end{align*}
@@ -351,7 +351,7 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 	Für $F=\neg(p\wedge(q\vee\neg p))$ ist 
 	$\mathcal{P}_F=\lbrace\Lambda,1,11,12,121,122,1221\rbrace$.
 	
-	\begin{figure}[ht!]
+	\begin{figure}[H]
 		\begin{center}
 			\begin{tikzpicture}[node distance=5em]
 				\tikzstyle{every state}=[shape=circle,draw=black]
@@ -390,7 +390,7 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 	Die \textbf{Ersetzung von $F$ an der Position $\pi\in\P_F$ durch $H$}, i.Z. $F\lceil\pi\mapsto H\rceil$ ist:
 	\begin{enumerate}
 		\item $F\lceil\lambda\mapsto H\rceil:=H$
-		\item $F\lceil 1\pi\mapsto H\rceil:=\neg(G\pi\mapsto H\rceil)$, wenn $F=\neg G$.
+		\item $F\lceil 1\pi\mapsto H\rceil:=\neg(G\lceil\pi\mapsto H\rceil)$, wenn $F=\neg G$.
 		\item $F\lceil 1\pi\mapsto H\rceil:=\big(G_1\lceil\pi\mapsto H\rceil\circ G_2\big)$, wenn $F=(G_1\circ G_2)$.
 		\item $F\lceil2\pi\mapsto H\rceil:=\big(G_1\circ G_2\lceil\pi\mapsto H\rceil\big)$, wenn $F=(G_1\circ G_2)$
 	\end{enumerate}
@@ -416,7 +416,7 @@ Um eine Formel $F$ für alle möglichen Interpretationen auszuwerten nutzt man \
 \subsection{Negationsnormalform}
 
 \begin{definition}\label{def3.24}
-	Eine Formel $F$ ist in \textbf{Negationsnormalform}, wenn alls in $F$ vorkommenden Negationszeichen $\neg$ unmittelbar for aussagenlogischen Variablen stehen (also nicht vor Klammern).
+	Eine Formel $F$ ist in \textbf{Negationsnormalform}, wenn alls in $F$ vorkommenden Negationszeichen $\neg$ unmittelbar vor aussagenlogischen Variablen stehen (also nicht vor Klammern).
 \end{definition}
 
 \begin{proposition}\label{prop3.25}
@@ -522,7 +522,7 @@ Resolution ist also die Suche nach der leeren Klausel unter Verwendung der \text
 		\item Entferne alle Elemente der Form $\neg A$ aus $C_2$.
 		\item Verknüpfe die so erhaltenen Klauseln disjunktiv.
 	\end{enumerate}
-	Die ist die \textbf{Resolutionsregel} und $C$ die \textbf{Resolvente} von $C_1$ und $C_2$ bzgl. $A$. 
+	Dies ist die \textbf{Resolutionsregel} und $C$ die \textbf{Resolvente} von $C_1$ und $C_2$ bzgl. $A$. 
 	Kurzform zum Merken:
 	\begin{align*}
 		C_1=\big[ A,B\big],~
@@ -534,7 +534,7 @@ Resolution ist also die Suche nach der leeren Klausel unter Verwendung der \text
 	Sei $F=\langle C_1,\ldots C_n\rangle$ eine Formel in Klauselform.
 	\begin{enumerate}
 		\item Die Folge $(C_1,\ldots,C_n)$ heißt \textbf{Resolutionsableitung} für $F$.
-		\item Wenn $C_1,\ldots,C_m)$ eine Resolutionsableitung für $F$ ist und $C_{m+1}$ durch Anwendung der Resolutionsregel auf zwei Elemente $C_i,C_j,i,j\leq m$ entstanden ist, dann ist $C_1,\ldots,C_m,C_{m+1})$ eine \textbf{Resolutionsableitung} für $F$.
+		\item Wenn $(C_1,\ldots,C_m)$ eine Resolutionsableitung für $F$ ist und $C_{m+1}$ durch Anwendung der Resolutionsregel auf zwei Elemente $C_i,C_j,i,j\leq m$ entstanden ist, dann ist $C_1,\ldots,C_m,C_{m+1})$ eine \textbf{Resolutionsableitung} für $F$.
 		\item Eine Resolutionsableitung für $F$, die die leere Klausel $[~]$ enthält, heißt \textbf{Resolutionswiderlegung} für $F$.
 	\end{enumerate}
 \end{definition}
@@ -558,7 +558,7 @@ Idee: Um die Erfüllbarkeit einer unendlich großen Menge von Formeln zu betrach
 	\item $\equiv$ ist eine Äquivalenzrelarion auf $\L(\RR)$.
 	\item Sei $\L(\RR,n)\subseteq\L(\RR)$ die Menge aller Formeln mit höchstens $n$ Variablen.
 	\item Dann finden wir $2^n$ verschiedene Interpretationen für $\L(\RR,n)$.
-	\item Es gibt $2^{2^n}$ verschiedene durch $\equiv$ auf $\L(RR,n)$ definierte Äquivalenzklassen.
+	\item Es gibt $2^{2^n}$ verschiedene durch $\equiv$ auf $\L(\RR,n)$ definierte Äquivalenzklassen.
 \end{itemize}
 
 \begin{satz}[Endlichkeitssatz]\label{satz345Endlichkeitssatz}\enter
