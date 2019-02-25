@@ -8,21 +8,21 @@ Zusammenfassung der Vorlesung:
 - aussagenlogische Interpretation (check)
 - allgemeingültig / widerlegbar / erfüllbar / unerfüllbar für Formeln und Formelmengen (check)
 - Modell für Formeln und Formelmenge (check)
-- Aussagenlogische Konsequenz(relation)
-- Semantische Äquivalenz
-- Klauseln, NNF, KNF
-- Resolutionsableitung, Resolutionswiderlegung, Resolutionsbeweis, Resolutionsregel
-- Korrektheit und Vollständigkeit des Resolutionsverfahrens
-	- Endlichkeitssatz + Beweis (siehe Probeklausur)
+- Aussagenlogische Konsequenz(relation) (check)
+- Semantische Äquivalenz (check)
+- Klauseln, NNF, KNF (check)
+- Resolutionsableitung, Resolutionswiderlegung, Resolutionsbeweis, Resolutionsregel (check)
+- Korrektheit und Vollständigkeit des Resolutionsverfahrens (check)
+	- Endlichkeitssatz + Beweis (siehe Probeklausur) (check)
 
-- äquivalente Zustände + Approximationsrelation
-- nerode Rechtskongruenz
-- erkennbar <=> endlicher Index <=> existiert DEA <=> regulär <=> Chomsky-Typ 3
-- Pumpinglemma (einfach + verschärft)
-- Abschlusseigenschaften erkennbarer Sprachen + Automatenkonstruktionen
-- Menge der regulären Ausdrücke, reguläre Sprache
+- äquivalente Zustände + Approximationsrelation (check)
+- nerode Rechtskongruenz (check, but test again)
+- erkennbar <=> endlicher Index <=> existiert DEA <=> regulär <=> Chomsky-Typ 3 (check)
+- Pumpinglemma (einfach + verschärft) (TODO)
+- Abschlusseigenschaften erkennbarer Sprachen + Automatenkonstruktionen (TODO)
+- Menge der regulären Ausdrücke, reguläre Sprache (check)
 
-- Grammatik
+- Grammatik (check)
 - Chomsky-Hierarchie
 - äquivalente reduzierte Grammatik erzeugen
 - Chomsky-Normalform
@@ -30,14 +30,14 @@ Zusammenfassung der Vorlesung:
 
 
 Zusammenfassung der Übungsaufgaben:
-- Aussagen über Formeln beweits man durch strukturelle Induktion über den Aufbau dieser.
-- Definiere dazu ggf. noch Hilfsfunktionen auf L(R) (z.B. öffnende Klammern zählen)
-- Positionen in Formeln und Ersetzungen
-- NNF und KNF können
-- Resolutionsverfahren anwenden können
+- Aussagen über Formeln beweits man durch strukturelle Induktion über den Aufbau dieser. (check)
+- Definiere dazu ggf. noch Hilfsfunktionen auf L(R) (z.B. öffnende Klammern zählen) (check)
+- Positionen in Formeln und Ersetzungen (check)
+- NNF und KNF können (check)
+- Resolutionsverfahren anwenden können (check)
 
-- NEA, DEA, Epsilon-NEA, NEA mit Wortübergängen umwandeln können
-- Quotientenautomat, reduzierter Automat
-- Lemma von Arden und "Gleichungssysteme lösen
-- zu einem Regex die erzeugte Sprache angeben
-- Chomsky-Hierarchie und Chomsky-Normalform
+- NEA, DEA, Epsilon-NEA, NEA mit Wortübergängen umwandeln können (check)
+- Quotientenautomat, reduzierter Automat (check)
+- Lemma von Arden und "Gleichungssysteme lösen (TODO)
+- zu einem Regex die erzeugte Sprache angeben (check)
+- Chomsky-Hierarchie und Chomsky-Normalform (TODO)
