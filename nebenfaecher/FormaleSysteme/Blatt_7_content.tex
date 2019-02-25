@@ -213,28 +213,42 @@ Für $\Sigma=\lbrace a\rbrace$:\\
   			(q_2) edge [bend right =25] node [above] {a} (q_0);
 \end{tikzpicture}
 
-Für $\Sigma=\lbrace a,b\rbrace$:\\
-\usetikzlibrary{positioning,automata}
-\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid]
-  \node[state,initial,accepting]   (q_0)                {$q_0$};
-  \node[state]           (q_1) [right=of q_0] {$q_1$};
-  \node[state] (q_2) [right=of q_1] {$q_2$};
-  \path[->] (q_0) edge              node [above] {a} (q_1)
-  				  edge [loop below] node [below] {b} ()
-  			(q_1) edge              node [above] {a} (q_2)
-  			      edge [loop below] node [below] {b} ()
-  			(q_2) edge [bend right =25] node [above] {a} (q_0)
-  			      edge [loop below] node [below] {b} ();
-\end{tikzpicture}
-
 \begin{align*}
 	Q_1 &=\big\lbrace q_0,q_1,q_2\big\rbrace,\qquad I_1=\lbrace q_0\rbrace,\qquad F_1=\lbrace q_0\rbrace\\
 	\Delta_1&=\big\lbrace(q_0,a,q_1),(q_1,a,q_2),(q_2,a,q_0)\big\rbrace
 \end{align*}
-Beachte: Das Tikz-Bild beschreibt genau die Definition von $\Delta_1$.
+Beachte: Das Tikz-Bild beschreibt genau die Definition von $\Delta_1$.\nl
+Für $\Sigma=\lbrace a,b\rbrace$ erzeugt folgender DEA die gewünschte Sprache:\\
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid]
+  \node[state,initial,accepting]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state] (q_2) [right=of q_1] {$q_2$};
+  \node[state] (t)   [below=of q_1] {$q_t$};
+  \path[->] (q_0) edge              node [above] {a} (q_1)
+  				  edge [bend right=0] node [below] {b} (t)
+  			(q_1) edge              node [above] {a} (q_2)
+  			      edge [bend right=0] node [right] {b} (t)
+  			(q_2) edge [bend right =25] node [above] {a} (q_0)
+  			      edge [bend right=0] node [below] {b} (t);
+  			(t)   edge [loop right] node [above] {a,b} ();
+\end{tikzpicture}
 
 \subsubsection{Aufgabe 5 c)}
-%TODO Tikz Bild
+Hierfür nutzen wir ein unendliches Transitionssystem:
+
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid]
+  \node[state,initial,accepting]   (q_0)                {$q_0$};
+  \node[state]           (q_1) [right=of q_0] {$q_1$};
+  \node[state] (q_2) [right=of q_1] {$q_2$};
+  \node[state] (q_3)   [right=of q_2] {$\cdots$};
+  \path[->] (q_0) edge              node [above] {a} (q_1)
+  			(q_1) edge              node [above] {a} (q_2)
+  			      edge [bend right=30] node [above] {b} (q_0)
+  			(q_2) edge [bend right =0] node [above] {a} (q_3)
+  			      edge [bend right=30] node [above] {b} (q_1)
+  			 (q_3) edge [bend right=30] node [above] {b} (q_2)
+  			;
+\end{tikzpicture}
 
 \subsubsection{Aufgabe 5 d)}
-%TODO Tikz Bild
+%TODO Tikz Bild (Lukas hat Lösung)

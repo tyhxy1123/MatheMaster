@@ -1,4 +1,0 @@
-- Turingmaschine: Semi-entscheidbar
-- Resolutionsregel: Beweis Vollständigkeit + Korrektheit
-- Kompaktheitssatz, Endlichkeitssatz beweisen
-- DSM ungleich NDSM warum? Determistische wissen nicht wann angekommen bei abba

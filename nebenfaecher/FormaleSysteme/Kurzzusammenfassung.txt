@@ -17,11 +17,15 @@ Zusammenfassung der Vorlesung:
 
 - äquivalente Zustände + Approximationsrelation
 - nerode Rechtskongruenz
-- erkennbar <=> endlicher Index <=> existiert DEA <=> regulär
+- erkennbar <=> endlicher Index <=> existiert DEA <=> regulär <=> Chomsky-Typ 3
 - Pumpinglemma (einfach + verschärft)
 - Abschlusseigenschaften erkennbarer Sprachen + Automatenkonstruktionen
 - Menge der regulären Ausdrücke, reguläre Sprache
-- 
+
+- Grammatik
+- Chomsky-Hierarchie
+- äquivalente reduzierte Grammatik erzeugen
+- Chomsky-Normalform
 - Zusammenfassende Tabelle
 
 

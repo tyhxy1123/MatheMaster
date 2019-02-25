@@ -288,9 +288,9 @@ Wir erhalten die Lösung mithilfe der Potenzmengenkonstruktion:
 
 \begin{tikzpicture}[shorten >=1pt,node distance=3.1cm,on grid]
   \node[state,initial]   (q_0)                       {$\lbrace q_0\rbrace$};
-  \node[state,accepting] (q_0q_2) [right = of q_0]   {$\lbrace q_0,p_2\rbrace$};
+  \node[state,accepting] (q_0q_2) [right = of q_0]   {$\lbrace q_0,q_2\rbrace$};
   \node[state,accepting] (q_2) [above=of q_0q_2]        {$\lbrace q_2\rbrace$};
-  \node[state,accepting] (q_1q_2) [below=of q_0q_2] {$\lbrace q_0,q_2\rbrace$};
+  \node[state,accepting] (q_1q_2) [below=of q_0q_2] {$\lbrace q_1,q_2\rbrace$};
   \node[state]           (t)      [right = of q_0q_2] {$\emptyset$};
   \path[->] (q_0) edge [bend right=0] node [left] {a} (q_2)
                   edge [bend right=0] node [left] {b} (q_1q_2)

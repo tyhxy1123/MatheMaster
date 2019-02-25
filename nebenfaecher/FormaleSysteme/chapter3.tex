@@ -8,7 +8,7 @@
 \section{Die Chomsky-Hierarchie}
 
 \begin{definition}\label{def6.2}
-	Eine \textbf{Grammatik} ist von der Form $G(N,\Sigma,P,S)$ wobei
+	Eine \textbf{Grammatik} ist von der Form $G=(N,\Sigma,P,S)$ wobei
 	\begin{itemize}
 		\item $N$ und $\Sigma$ endliche disjunkte Alphabete sind.
 		\item $\Sigma$ ist die Menge der \textbf{Terminalsymbole} (meist klein geschrieben).
@@ -16,8 +16,7 @@
 		\item $S\in N$ ist das \textbf{Startsymbol}
 		\item $P\subseteq(N\cup\Sigma)^+\times(N\cup\Sigma)^\ast$ eine endliche Menge von \textbf{Ersetzungsregeln / Produktionen}
 	\end{itemize}
-	Produktionen $(u,v)\in P$ schreibt man gewöhnlich als $u\to v$.\\
-	Beachte: Typ 2 $\not\implies$ Typ 1.
+	Produktionen $(u,v)\in P$ schreibt man gewöhnlich als $u\to v$.
 \end{definition}
 
 \begin{definition}\label{def6.4}
@@ -55,6 +54,7 @@
 		\item $G$ heißt Grammatik vom \textbf{Typ 2 (kontextfrei)} $:\Longleftrightarrow$ jede Regel in $P$ die Form $A\to w$ hat mit $A\in N$, $w\in(\Sigma\cup N)^\ast$.
 		\item $G$ heißt Grammatik vom \textbf{Typ 3 (rechtslinear)} $:\Longleftrightarrow$ jede Regel in $P$ die Form $A\to uB$ oder $A\to u$ hat mit $A,B\in N,u\in\Sigma^\ast$.
 	\end{itemize}
+	Beachte: Typ 2 $\not\implies$ Typ 1.
 \end{definition}
 
 \begin{definition}\label{def6.7Sprachklassen}
@@ -66,7 +66,7 @@
 
 \begin{satz}[Hierarchie der Sprachklassen]
 	\begin{align*}
-		\L_3\varsubsetneqq\L_2\varsubsetneqq\L_2\varsubsetneqq\L_0
+		\L_3\varsubsetneqq\L_2\varsubsetneqq\L_1\varsubsetneqq\L_0
 	\end{align*}
 \end{satz}
 
@@ -130,7 +130,7 @@ Zwei Grammatiken heißen \textbf{äquivalent}, wenn sie dieselbe Sprache erzeuge
 	\end{align*}
 	Beachte:
 	\begin{align*}
-		A\in n''\wedge A\to u_1 Bu_2\in P'\implies B\in N''
+		A\in N''\wedge A\to u_1 Bu_2\in P'\implies B\in N''
 	\end{align*}
 \end{proof}
 
