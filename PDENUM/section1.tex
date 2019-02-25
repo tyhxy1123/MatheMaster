@@ -290,35 +290,35 @@ Bezeichnungen für dieses Kapitel:
 	Dann gilt:\\
 	Die Normen $\Vert\cdot\Vert_{1,2,\Omega}$ und
 	\begin{align*}
-		\Vertiii{f}:=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}
+		\normiii{f}:=\abs{f}_{1,2,\Omega}+\abs{F(f)}+\sqrt{B(f,f)}
 	\end{align*}
 	sind äquivalent auf $H^1(\Omega)$, d. h. es existieren $c_1,c_2>0$ so, dass
 	\begin{align*}
-		c_1\cdot\Vert f\Vert_{1,2,\Omega}\leq\Vertiii{f}
+		c_1\cdot\norm{f}_{1,2,\Omega}\leq\normiii{f}
 		\leq
-		c_2\cdot\Vert f\Vert_{1,2,\Omega}
+		c_2\cdot\norm{f}_{1,2,\Omega}
 		\qquad\forall f\in H^1(\Omega)
 	\end{align*}
 \end{proposition}
 
 \begin{proof}
-	\underline{Zeige $\Vertiii{\cdot}$ ist eine Norm:}
+	\underline{Zeige $\normiii{\cdot}$ ist eine Norm:}
 	Dies wird in der Übung gezeigt.\nl
-	\underline{Zeige $\Vertiii{f}\leq c_2\cdot\Vert f\Vert_{1,2,\Omega}$:}
+	\underline{Zeige $\normiii{f}\leq c_2\cdot\norm{f}_{1,2,\Omega}$:}
 	\begin{align*}
-		\Vertiii{f} &=
-		|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
+		\normiii{f} &=
+		\abs{f}_{1,2,\Omega}+\abs{F(f)}+\sqrt{B(f,f)}\\
 		&\leq
-		\Vert f\Vert_{1,2,\Omega} +c_F\cdot\Vert f\Vert_{1,2,\Omega}+\sqrt{c_B\cdot\Vert f\Vert^2_{1,2,\Omega}}\\
+		\norm{f}_{1,2,\Omega} +c_F\cdot\norm{f}_{1,2,\Omega}+\sqrt{c_B\cdot\norm{f}^2_{1,2,\Omega}}\\
 		&\leq
-		(1+c_F+\sqrt{c_B})\cdot\Vert f\Vert_{1,2,\Omega}
+		(1+c_F+\sqrt{c_B})\cdot\norm{f}_{1,2,\Omega}
 	\end{align*}
 
 	%(iii)
-	\underline{Zeige $\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}$ indirekt:}
+	\underline{Zeige $\norm{f}_{0,2,\Omega}\leq c\cdot\normiii{f}$ indirekt:}
 	Angenommen es gibt eine Folge $(f_n)_{n\in\N}\subseteq H^1(\Omega)$ mit
 	\begin{align}\label{proof1.9}\tag{$\ast$}
-		\Vert f_n\Vert_{0,2,\Omega}=1\text{ und }\Vertiii{f_n}<\frac{1}{n}~\forall n\in\N
+		\norm{f_n}_{0,2,\Omega}=1\text{ und }\normiii{f_n}<\frac{1}{n}~\forall n\in\N
 	\end{align}
 	Dann gilt für alle $n\in\N$:
 	\begin{align*}
@@ -338,10 +338,10 @@ Bezeichnungen für dieses Kapitel:
 		&\implies
 		f\text{ ist konstant, also } f\equiv \lambda\cdot g\mit\lambda\in\R
 	\end{align*}
-	Mit $\Vertiii{f}=0$ erhalten wir
+	Mit $\normiii{f}=0$ erhalten wir
 	\begin{align*}
-		\Vertiii{f} = 0
-		&=|f|_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
+		\normiii{f} = 0
+		&=\abs{f}_{1,2,\Omega}+|F(f)|+\sqrt{B(f,f)}\\
 		&=0+|\lambda|\cdot|F(g)|+|\lambda|\cdot\sqrt{B(g,g)}\\
 		&=|\lambda|\cdot\underbrace{\Big(|F(g)|+\sqrt{B(g,g)}\Big)}_{>0}\\
 		&\implies\lambda=0\implies f\equiv 0
@@ -349,18 +349,18 @@ Bezeichnungen für dieses Kapitel:
 	Das ist ein Widerspruch zur Annahme $\Vert f\Vert_{0,2,\Omega}=1$.
 	Also folgt
 	\begin{align*}
-		\Vert f\Vert_{0,2,\Omega}\leq c\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega).
+		\norm{f}_{0,2,\Omega}\leq c\cdot\normiii{f}\qquad\forall f\in H^1(\Omega).
 	\end{align*}
 
-	\underline{Zeige $\|f\|_{1,2,\Omega}\leq c_1 \Vertiii{f}$}
+	\underline{Zeige $\abs{f}_{1,2,\Omega}\leq c_1 \normiii{f}$}
 
 	\begin{align*}
-		\Vert f\Vert_{1,2,\Omega}
+		\norm{f}_{1,2,\Omega}
 		&\leq
-		|f|_{1,2,\Omega}+\Vert f\Vert_{0,2,\Omega}\\
+		\abs{f}_{1,2,\Omega}+\norm{f}_{0,2,\Omega}\\
 		&\leq
-		\Vertiii{f}+c\cdot\Vertiii{f}\\
-		&=c_1\cdot\Vertiii{f}\qquad\forall f\in H^1(\Omega)
+		\normiii{f}+c\cdot\normiii{f}\\
+		&=c_1\cdot\normiii{f}\qquad\forall f\in H^1(\Omega)
 	\end{align*}
 \end{proof}
 

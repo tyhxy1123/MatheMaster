@@ -309,41 +309,41 @@ Bezüglich der Wohlgestelltheit des Cauchyproblems mit \ul{linearem} $A$ gilt de
 		\Vert S_t\Vert_{\L(X)}\leq M\cdot\exp(\omega\cdot t)\qquad\forall t\in\R_+
 	\end{align*}
 	($M\geq1,\omega\in\R$). 
-	Dann gibt es auf dem Banachraum $X$ eine äquivalente Norm $\Vertiii{\cdot}$, so dass
+	Dann gibt es auf dem Banachraum $X$ eine äquivalente Norm $\normiii{\cdot}$, so dass
 	\begin{align*}
-		\Vertiii{S_t}_{\L(X)}\leq\exp(\omega\cdot t)\qquad\forall t\in\R_+
+		\normiii{S_t}_{\L(X)}\leq\exp(\omega\cdot t)\qquad\forall t\in\R_+
 	\end{align*} 
 \end{bemerkung}
 
 \begin{proof}
 	Setze
 	\begin{align*}
-		\Vertiii{x}:=\sup\limits_{t\geq0}\exp(-\omega\cdot t)\cdot\Vert S_t x\Vert\qquad\forall x\in X
+		\normiii{x}:=\sup\limits_{t\geq0}\exp(-\omega\cdot t)\cdot\Vert S_t x\Vert\qquad\forall x\in X
 	\end{align*}
 	Das ist offenbar eine Norm auf $XR$ und es gilt 
 	\begin{align*}
-		\Vertiii{x}\leq M\cdot\Vert x\Vert
+		\normiii{x}\leq M\cdot\Vert x\Vert
 	\end{align*}
 	(exponentielle Abschätzung für $S$) und 
 	\begin{align*}
-		\Vert x\Vert=\Vert S_0 x\Vert\leq\Vertiii{x},
+		\norm{x}=\norm{S_0 x}\leq\normiii{x},
 	\end{align*}
-	d.h. $\Vertiii{x}$ \underline{ist} äquivalente Norm auf $X$. 
+	d.h. $\normiii{x}$ \underline{ist} äquivalente Norm auf $X$. 
 	Außerdem gilt für alle $x\in X, s\in\R_+$:
 	\begin{align*}
-		\Vertiii{S_s x}
+		\normiii{S_s x}
 		&=\sup\limits_{t\geq0}\exp(-\omega\cdot t)\cdot\big\Vert S_t\cdot S_s\big\Vert\\
 		&=\sup\limits_{t\geq0}\exp(-\omega\cdot t)\cdot\big\Vert S_{t+s}\big\Vert\\
 		&=\sup\limits_{t\geq0}\exp\big(-\omega\cdot(t+s)\big)\cdot\big\Vert S_{t+s}\big\Vert\cdot\exp(\omega\cdot s)\\
 		&=\exp(\omega\cdot s)\cdot\sup\limits_{t\geq s}\exp(-\omega\cdot t)\cdot\big\Vert S_{t}\big\Vert\\\
-		&\leq\exp(\omega\cdot s)\cdot\Vertiii{x}\\
-		\implies \Vertiii{S_s}_{\L(X)}&\leq\exp(\omega\cdot s)
+		&\leq\exp(\omega\cdot s)\cdot\normiii{x}\\
+		\implies \normiii{S_s}_{\L(X)}&\leq\exp(\omega\cdot s)
 	\end{align*}
 \end{proof}
 
 \begin{theorem}[Ohne Namen]\enter
 	Ein linearer Operator $A$ auf einem Banachraum $X$ ist genau dann Erzeuger einer linearer Halbgruppe, 
-	wenn $\dom(A)$ dicht in $X$ ist und wenn es eine äquivalente Norm $\Vertiii{\cdot}$ auf $X$ gibt bzgl. der $-A$ $m$-akkretiv vom Typ $\omega$ ist.
+	wenn $\dom(A)$ dicht in $X$ ist und wenn es eine äquivalente Norm $\normiii{\cdot}$ auf $X$ gibt bzgl. der $-A$ $m$-akkretiv vom Typ $\omega$ ist.
 \end{theorem}
 
 Mit diesem Theorem (+ obiger Bemerkung) sind alle Erzeuger von linearen Halbgruppen auf Banachräumen charakterisiert.
