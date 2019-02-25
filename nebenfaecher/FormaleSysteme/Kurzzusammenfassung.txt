@@ -2,12 +2,12 @@ Was man können sollte
 =====================
 
 Zusammenfassung der Vorlesung:
-- Alphabet der Aussagenlogik
-- aussagenlogische Formel
-- Strukturelle Induktion über Formeln und Zeichenreihen
-- aussagenlogische Interpretation
-- allgemeingültig / widerlegbar / erfüllbar / unerfüllbar für Formeln und Formelmengen
-- Modell für Formeln und Formelmenge
+- Alphabet der Aussagenlogik (check)
+- aussagenlogische Formel (check)
+- Strukturelle Induktion über Formeln und Zeichenreihen  (check)
+- aussagenlogische Interpretation (check)
+- allgemeingültig / widerlegbar / erfüllbar / unerfüllbar für Formeln und Formelmengen (check)
+- Modell für Formeln und Formelmenge (check)
 - Aussagenlogische Konsequenz(relation)
 - Semantische Äquivalenz
 - Klauseln, NNF, KNF

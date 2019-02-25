@@ -170,7 +170,7 @@ $\A_3$:\\
             (q_2) edge [bend left=0] node [above] {a,b} (q_3);
 \end{tikzpicture}
 
-Berechnung eines äquivalenten DEA $\A_3'$ durch Potenzmengenkonstruktion:
+Berechnung eines äquivalenten DEA $\A_3'$ durch Potenzmengenkonstruktion: (Bild müsste mal hier rein geteXt werden ;)
 %TODO tikz-Bild
 
 Umbenennung der Zustände des Quotientenautomaten:
@@ -188,14 +188,14 @@ Umbenennung der Zustände des Quotientenautomaten:
 Berechnung des Quotientenautomaten (nach Konstruktion gibt es keine unerreichbaren Zustände in obiger Potenzmengenkonstruktion):
 \begin{itemize}
 	\item $Q/_{\sim_0}=\big\lbrace\lbrace p_4,p_5,p_6,p_7\rbrace,\lbrace p_0,p_1,p_2,p_3\rbrace\big\rbrace$
-	\item $Q/_{\sim_1}=\big\lbrace\lbrace p_4,p_5\rbrace,\lbrace p_6,p_7,\lbrace p_0,p_1\rbrace,\lbrace p_2,p_3\rbrace\big\rbrace$
-	\item $Q/_{\sim_2}=\big\lbrace\lbrace p_4\rbrace,\lbrace p_5\rbrace,\lbrace p_6\rbrace,\lbrace p_7,\lbrace p_0\rbrace,\lbrace p_1\rbrace,\lbrace p_2\rbrace,\lbrace p_3\rbrace\big\rbrace=Q|_{\sim_3}\implies\sim_2=\sim_3=\sim_{\A'}$
+	\item $Q/_{\sim_1}=\big\lbrace\lbrace p_4,p_5\rbrace,\lbrace p_6,p_7\rbrace,\lbrace p_0,p_1\rbrace,\lbrace p_2,p_3\rbrace\big\rbrace$
+	\item $Q/_{\sim_2}=\big\lbrace\lbrace p_4\rbrace,\lbrace p_5\rbrace,\lbrace p_6\rbrace,\lbrace p_7\rbrace,\lbrace p_0\rbrace,\lbrace p_1\rbrace,\lbrace p_2\rbrace,\lbrace p_3\rbrace\big\rbrace=Q|_{\sim_3}\implies\sim_2=\sim_3=\sim_{\A'}$
 \end{itemize}
 Daher gilt: $\A_3\cong(\A_3')_{\text{red}}$ (analog zu Aufgabe 2).
 
 \subsubsection{Aufgabe 3 c)}
 Seien also $x=x_1 x_2\hdots x_n\in\lbrace a,b\rbrace^n$ und $y=y_1 y_2\hdots y_n\in\lbrace a,b\rbrace^n$ mit $x\neq y$.\\
-Zu zeigen: $x\not\cong_{L(\A_n} y$, d.h.
+Zu zeigen: $x\not\cong_{L(\A_n)} y$, d.h.
 \begin{align*}
 	\exists w\in\lbrace a,b\rbrace^\ast:\big(xw\in L(\A_n)\wedge yw\not\in L(\A_n)\big)\vee\big(xw\not\in L(\A_n)\wedge yw\in L(\A_n)\big)
 \end{align*}
