@@ -16,10 +16,10 @@ Zusammenfassung der Vorlesung:
 	- Endlichkeitssatz + Beweis (siehe Probeklausur) (check)
 
 - äquivalente Zustände + Approximationsrelation (check)
-- nerode Rechtskongruenz (check, but test again)
+- nerode Rechtskongruenz (check)
 - erkennbar <=> endlicher Index <=> existiert DEA <=> regulär <=> Chomsky-Typ 3 (check)
-- Pumpinglemma (einfach + verschärft) (TODO)
-- Abschlusseigenschaften erkennbarer Sprachen + Automatenkonstruktionen (TODO)
+- Pumpinglemma (einfach + verschärft) (check)
+- Abschlusseigenschaften erkennbarer Sprachen + Automatenkonstruktionen (check)
 - Menge der regulären Ausdrücke, reguläre Sprache (check)
 
 - Grammatik (check)
@@ -38,6 +38,6 @@ Zusammenfassung der Übungsaufgaben:
 
 - NEA, DEA, Epsilon-NEA, NEA mit Wortübergängen umwandeln können (check)
 - Quotientenautomat, reduzierter Automat (check)
-- Lemma von Arden und "Gleichungssysteme lösen (TODO)
+- Lemma von Arden und "Gleichungssysteme lösen (check)
 - zu einem Regex die erzeugte Sprache angeben (check)
 - Chomsky-Hierarchie und Chomsky-Normalform (TODO)
