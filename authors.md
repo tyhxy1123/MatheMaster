@@ -3,6 +3,21 @@
 Die folgende Tabelle zeigt wer an welchen Modulen mitarbeitet. So kann man sich bei Fragen direkt an den jeweiligen Autor bzw. die jeweiligen Autoren wenden. 
 Der jeweilige Hauptverantwortliche für das Skript steht ganz links.
 
+## Sommersemester 2019
+
+| Modul  | Autoren              			|
+| ------ | ------               			|
+| STOCHP | Willi  	|
+| NLANA  | Willi   |
+| SCPROG | Willi	|
+| MMAM (Lineare Modelle)  | Willi	|
+| KONGEO  | Lukas Z.              			|
+| DISMAT | Lukas Z.         			|
+| ALGTOP  | Lukas Z.	|
+| Kategorientheorie    | Lukas Z., Willi		|
+
+## Wintersemester 2018/2019
+
 | Modul  | Autoren              			|
 | ------ | ------               			|
 | PDENM  | Willi, Robert, Henrik, Felix, Marvin  	|
