@@ -254,6 +254,43 @@ Dann gilt:
 	\end{enumerate}
 	Analog zum zweiten Fall kann auch für $2\pi\in\P_F$ argumentiert werden.
 \end{proof}
+\begin{proof}[Beweis alternativ]
+	Sei $F \in \mathcal{L}(R)$, $\pi \in \mathcal{P}_F$, $F\lceil\pi\rceil = G$ und $H \in \mathcal{L}(R)$ mit
+	$$ r(G) > r(H).$$
+	\emph{O.E. $\pi \ne \Lambda$.} Ist $\pi = \Lambda$ so folgt
+	\begin{align*}
+		& F = F \lceil \pi \rceil = G \text{ und } F\lceil\pi \mapsto H\rceil = H\\
+		& \implies r(F) = r(G) > r(H) = r(F\lceil\pi \mapsto H\rceil).
+	\end{align*}
+	Strukturelle Induktion über den Aufbau von $F$:
+
+	\emph{Induktionanfang.} Sei $F = p, p \in R$. Dann ist $\mathcal{P}_F = \{\Lambda\}$. Da O.E. $\pi \ne \Lambda$ ist nichts zu zeigen.
+
+	\emph{Induktionsvoraussetzung.} Es seien $A,B \in \mathcal{L}(R)$, sodass
+	für alle $\pi_A \in \mathcal{P}_A$ und $\pi_B \in \mathcal{P}_B$ mit 
+	$A\lceil\pi_A\rceil = G_A$ und $B\lceil\pi_B\rceil = G_B$ gilt
+	$$ r(G_A),r(G_B) > r(H) \implies r(A\lceil \pi_A \mapsto H\rceil) < r(A) \text{ und } r(B\lceil \pi_B \mapsto H\rceil) < r(B).$$
+	\emph{Induktionsschritt.} Sei zunächst $F = \neg A$. Da $\pi \ne \Lambda$ existiert $\pi_A \in \mathcal{P}_A$ mit
+	$$ A\lceil\pi_A\rceil = F\lceil\pi\rceil = (\neg A)\lceil\pi\rceil \implies \pi = 1\pi_A. $$
+	Also gilt folglich
+	\begin{align*}
+		r(F) &= r(\neg A) = 2 \cdot r(A) + 1\\
+			& > 2 \cdot r(A\lceil \pi_A \mapsto H\rceil) + 1\\
+			& = r(\neg (A\lceil \pi_A \mapsto H\rceil))\\
+			& = r((\neg A)\lceil 1\pi_A \mapsto H\rceil)\\
+			& = r(F\lceil\pi \mapsto H\rceil).
+	\end{align*}
+	Sei nun $F = (A \circ B)$. Da $\pi \ne \Lambda$ gibt es o.E. $\pi_A \in \mathcal{P}_A$ mit
+	$$ A\lceil\pi_A\rceil = F\lceil\pi\rceil = (A \circ B)\lceil\pi\rceil \implies \pi = 1\pi_A. $$
+	Also gilt folglich
+	\begin{align*}
+		r(F) &= r((A\circ B)) = r(A) + r(B) + 2\\
+			& > r(A\lceil \pi_A \mapsto H\rceil) + r(B) + 2\\
+			& = r(A\lceil \pi_A \mapsto H\rceil \circ B)\\
+			& = r((A \circ B)\lceil 1\pi_A \mapsto H\rceil)\\
+			& = r(F\lceil \pi \mapsto H \rceil).
+	\end{align*}
+\end{proof}
 
 \subsubsection{Aufgabe 5.4 (b)}
 Der NNF Transformationsalgorithmus terminiert.
