@@ -13,12 +13,14 @@ Sei $X:(\Omega,\A,\P)\to\R$ eine reelle Zufallsvariable mit Verteilungsfunktion\
 \begin{align}
 	Y(t)&:=\E\left(|X-t|\right)\label{DefY}\tag{1.0}\\ \nonumber
 	&=\int\limits_\Omega |X(\omega)-t|\d\P(\omega)\\ \nonumber
-	\overset{\text{Trafo}}&=
-	\int\limits_\R|x-t|\Big(\P\circ X\d x\Big)\\ \nonumber
+	\overset{\eqref{eqTrafoR}}&=
+	\int\limits_\R|x-t|\Big(\P\circ X^{-1}\d x\Big)\\ \nonumber
 	&=\int\limits_\R|x-t|(F\d x) \nonumber
 	\qquad\forall t\in\R\\
-	m&:=\argmin\limits_{t\in\R}Y(t):=\text{ (irgendeine) Minimalstelle der Funktion}\nonumber
+	m&:=\argmin\limits_{t\in\R}Y(t):=\text{ (irgendeine) Minimalstelle der Funktion}\label{eqMedianDef}\tag{M}
 \end{align} 
+
+Hierbei heißt $m\in\R$ \define{Median} von der Zufallsgröße $X$.
 
 \begin{notation}
 	$F(m-):=F(m-0):=\lim\limits_{t\uparrow m} F(t)$
@@ -82,7 +84,7 @@ Charakterisierung der Menge aller Mediane in folgendem kleinen Lemma:
 
 \begin{bemerkungnr}\
 	\begin{enumerate}
-		\item Lemma \ref{lemmaMedian} (a) besagt, dass $\lbrace m\in\R: m\text{ erfüllt } 1.\rbrace$ die Menge aller Mediane von $F$ ist.
+		\item Lemma \ref{lemmaMedian} (a) besagt, dass $\lbrace m\in\R: m\text{ erfüllt } \eqref{eqMedianDef}\rbrace$ die Menge aller Mediane von $F$ ist.
 		\item Im Allgemeinen gibt es mehrere Mediane. Üblicherweise \underline{wählt} man $m:=F^{-1}(\frac{1}{2})$, wobei
 		\begin{align*}
 			F^{-1}(u):=\inf\left\lbrace x\in\R:F(x)\geq u\right\rbrace\quad\forall u\in (0,1)
@@ -94,40 +96,70 @@ Charakterisierung der Menge aller Mediane in folgendem kleinen Lemma:
 		erfüllt $m=F^{-1}\left(\frac{1}{2}\right)$ die Bedingung (a) in Lemma \ref{lemmaMedian} und ist somit ein Median, nämlich der kleinste.
 		\item Die obige Funktion \eqref{DefY}, also
 		\begin{align*}
-			Y:\R\to\R,\qquad Y(t)=\int\limits|x-t|~F(\d x)\qquad\forall t\in\R,
+			Y:\R\to\R,\qquad Y(t)=\int\limits_\R|x-t|~F(\d x)\qquad\forall t\in\R,
 		\end{align*}
-		ist stetig (nutze Folgenkriterium + dominierte Konvergenz bzw. Satz von Lebesgue), aber im Allgemeinen nicht differenzierbar, z. B. falls $F\sim X$ 		eine diskrete Zufallsvariable ist. In diesem Fall ist somit die Minimierung über Differentiation nicht möglich!
+		ist stetig (nutze Folgenkriterium + dominierte Konvergenz / Satz von Lebesgue), aber im Allgemeinen nicht differenzierbar, z. B. falls $F\sim X$ eine diskrete Zufallsvariable ist. In diesem Fall ist somit die Minimierung über Differentiation nicht möglich!
 	\end{enumerate}
 \end{bemerkungnr}
 
+\begin{notation}
+	In der Statistik identifizieren wir oft stillschweigend Zufallsgrößen mit ihren Realisationen, also $X\leftrightsquigarrow x$ was sich formal $X(\omega_0)=x$ schreiben lässt.
+\end{notation}
+
 Zur Schätzung von $m$ seien $X_1,\ldots, X_n$ i.i.d.$\sim F$ mit zugehöriger \textbf{empirischer Verteilungsfunktion}
 \begin{align*}
-	F_n(x):=\frac{1}{n}\cdot\sum\limits_{i=1}^n\indi_{\lbrace X_i\leq x\rbrace}\qquad\forall x\in\R.
+	F_n\colon\R\to[0,1],\qquad	
+	F_n(x):=\frac{1}{n}\cdot\sum\limits_{i=1}^n\indi_{\lbrace x_i\leq x\rbrace}(x)\qquad\forall x\in\R.
 \end{align*}
 Tatsächlich ist $F_n$ die Verteilungsfunktion zum \textbf{empirischen Maß}
 \begin{align*}
-	Q_n:=\frac{1}{n}\cdot\sum\limits_{i=1}^n\delta_{X_i}\text{ wobei }\delta_x\text {das Dirac-Maß in}x\in\R
+	Q_n\colon\B(\R)\to[0,1],\qquad
+	Q_n(B):=\frac{1}{n}\cdot\sum\limits_{i=1}^n\delta_{x_i}(B)
+\end{align*}
+wobei das \define{Dirac-Maß} in $t$ definiert ist als
+\begin{align*}
+	\delta_t\colon\B(\R)\to[0,1],\qquad\delta_t(B):=\left\lbrace
+	\begin{array}{cl}
+		0, &\falls t\not\in B\\
+		1, &\falls t\in B
+	\end{array}\right.
+	\qquad\forall B\in\B(\R),\forall t\in\R
 \end{align*}
 
-Gemäß dem Satz von Gliwenko-Cantelli gilt:
+Gemäß dem Satz von \undefine{Gliwenko-Cantelli} gilt:
 \begin{align*}
-	\sup\limits_{x\in\R}|F_n(x)-F(x)|\stackrel{n\to\infty}{\longrightarrow}0\text{ konvergiert $\P$-fast sicher für alle Vereteilungsfunktionen }F
+	\sup\limits_{x\in\R}|F_n(x)-F(x)|\stackrel{n\to\infty}{\longrightarrow}0\text{ konvergiert $\P$-fast sicher für alle Verteilungsfunktionen }F
 \end{align*}
+(Die empirische Verteilungsfunktion konvergiert gegen die Verteilungsfunktion.)
 
 \begin{erinnerung}
 	Für das Dirac-Maß $\delta_x:\A\to\R_+,\qquad\delta_x(A):=\indi_A(x)$ gilt:
-	\begin{align*}
-		\int\limits f(t)~\delta_x(\d t)=f(x)
-	\end{align*}
+	\begin{align}\label{eqDirac}\tag{Dir}
+		\int\limits_\R f(t)~\delta_x(\d t)=f(x)\qquad\forall x\in\R
+	\end{align}
+\end{erinnerung}
+
+\begin{notation}
+	Wir identifizieren eine Verteilung $\P\circ X^{-1}$ mit der zugehörigen Verteilungsfunktion $F_X$, also 
+	$\P\circ X^{-1}\leftrightsquigarrow F_X$ und $(F_X~\d x):=(\P\circ X^{-1}~\d x)$.
+\end{notation}
+
+\begin{erinnerung}
+	Das Lebesgue-Maß ist linear im Maß, d.h.:
+	\begin{align}\label{eqLinMasse}\tag{Lin}
+		\int\limits_\Omega f\ds(a\cdot\mu+b\cdot\nu)=a\cdot\int\limits_\Omega f\ds\mu +b\cdot\int\limits_\Omega f\ds\nu
+	\end{align}
 \end{erinnerung}
 
 Ein vages Stetigkeitsargument motiviert folgenden Schätzer für $m$:
 \begin{align*}
 	\hat{m}_n&:=\argmin\limits_{t\in\R}Y_n(t):=\text{ (irgendeine) Minimalstelle der Funktion}\\
-	Y_n(t)&:=\int\limits_\Omega |x-t|F_n(\d x)\\ 
-	&=\int\limits_\Omega |x-t|Q_n(\d x)\\ 
-	&=\frac{1}{n}\cdot\sum\limits_{i=1}^n\int\limits|x-t|~\delta_{X_i}(\d x)\\
-	&=\frac{1}{n}\cdot\sum\limits_{i=1}^n|X_i-t|
+	Y_n(t)&:=\int\limits_\R |x-t|F_n(\d x)\\ 
+	&=\int\limits_\R |x-t|Q_n(\d x)\\ 
+	\overset{\Def~Q+\eqref{eqLinMasse}}&=
+	\frac{1}{n}\cdot\sum\limits_{i=1}^n\int\limits_\R |x-t|~\delta_{X_i}(\d x)\\
+	\overset{\eqref{eqDirac}}&=
+	\frac{1}{n}\cdot\sum\limits_{i=1}^n|X_i-t|
 \end{align*} 
 
 $\hat{m}_n$ heißt \textbf{empirischer Median} von $X_1,\ldots,X_n$ mit üblicher Auswahl $\hat{m}_n=F_n^{-1}\left(\frac{1}{2}\right)$ gemäß Lemma \ref{lemmaMedian} (da empirische Verteilungsfunktion eine Verteilungsfunktion ist).
@@ -139,8 +171,8 @@ $\hat{m}_n$ heißt \textbf{empirischer Median} von $X_1,\ldots,X_n$ mit übliche
 	\end{itemize}
 \end{bemerkung}
 
-Mit dem starken Gesetz der großen Zahlen (SGGZ) gilt
-\begin{align}\label{eq1.1}
+Mit dem starken \undefine{Gesetz der großen Zahlen (SGGZ)} gilt
+\begin{align}\label{eq1.1}\tag{1.1}
 	\forall t\in\R: \Big(Y_n(t)\stackrel{n\to\infty}{\longrightarrow}
 	\E[|X_1-t|]=Y(t)\text{ fast sicher}\Big)
 \end{align}
@@ -155,7 +187,7 @@ Dann folgte:
 \begin{align*}
 	\hat{m}_n
 	\stackrel{n\to\infty}{\longrightarrow}
-	m\text{ fast sicher (\textbf{starke Konvergenz})}
+	m\text{ fast sicher (\textbf{starke Konsistenz})}
 \end{align*}
 
 Wir formalisieren und verallgemeinern:
@@ -176,21 +208,21 @@ Wir formalisieren und verallgemeinern:
 	\end{align*}
 	heißt \textbf{stochastischer Prozess (SP)}. Die Abbildung
 	\begin{align*}
-		X_n(\cdot,\omega):\R\to\R,\qquad t\mapsto Y_n(t,\omega)
+		Y_n(\cdot,\omega):\R\to\R,\qquad t\mapsto Y_n(t,\omega)
 	\end{align*}
 	heißt \textbf{Trajektorie / Pfad} des SP $Y_n$ zu festem $\omega\in\Omega$.
 \end{defi}
 
 In unserem Beispiel sind für \underline{alle} $\omega\in\Omega$ die Pfade stetig auf $\R$. Die Abbildung
 \begin{align*}
-	Y_n:\Omega\to X C(\R,\R),\qquad\omega\mapsto Y_n(\cdot,\omega)
+	Y_n:\Omega\to C(\R,\R),\qquad\omega\mapsto Y_n(\cdot,\omega)
 \end{align*}
 heißt \textbf{Pfadabbildung} des SP $Y_n$. Wir identifizieren also den SP $Y_n$ mit seiner Pfadabbildung. Damit ist $Y_n$ eine Abbildung von $\Omega$ in den Funktionenraum 
 \begin{align*}
 	C(\R):=C(\R,\R):=\lbrace f:\R\to\R: f\text{ ist stetig }\rbrace.
 \end{align*}
 
-Sei $d:C(\R)\times C(\R\to\R$ die Metrik der gleichmäßigen Konvergenz der Kompakta auf $\C(\R)$ (formale Definition kommt später) und sei
+Sei $d:C(\R)\times C(\R\to\R)$ die Metrik der gleichmäßigen Konvergenz der Kompakta auf $\C(\R)$ (formale Definition kommt später) und sei
 \begin{align*}
 	\B(C(\R)):=\B_d\big(C(\R)\big)=\sigma\big(\lbrace G\subseteq C(\R):G\text{ ist offen bzgl. }d\rbrace\big)
 \end{align*}
@@ -204,19 +236,19 @@ messbar ist. $Y_n$ ist also eine Zufallsvariable mit Werten im metrischen Raum $
 Formulierung des Problems im allgemeinen Rahmen:
 Seien $Y_n,~n\in\N$ mit $Y$ SP mit stetigen Pfaden (stetige SP).
 Was lässt sich sagen über die Gültigkeit der folgenden Implikationen?
-\begin{align}
-	Y
+\begin{align}\label{eq1.2}\tag{1.2}
+	Y_n
 	\stackrel{n\to\infty}{\longrightarrow}
 	Y\text{ fast sicher }
 	\Longrightarrow
-	\argmin\limits_{t\in\R} Y(t)
+	\argmin\limits_{t\in\R} Y_n(t)
 	\stackrel{n\to\infty}{\longrightarrow}
 	\argmin\limits_{t\in\R} Y(t)\text{ fast sicher}
 \end{align}
 Ziel: Welche Art der Konvergenz $Y_n\stackrel{n\to\infty}{\longrightarrow} Y$ reicht für obige Implikation aus? Gleichmäßige Konvergenz, gleichmäßige Konvergenz auf Kompakta punktweise Konvergenz oder sogar nur \eqref{eq1.1}?\\
 $Y$ besitzt womöglich (unter positiven Wahrscheinlichkeiten) keine eindeutige Minimalstelle. Und dann?\nl
 Für die Konstruktion von (asymptotischen) Konfidenzintervallen für $m$ benötigt man \textbf{Verteilungskonvergenz}:
-\begin{align}\label{eq1.3}
+\begin{align}\label{eq1.3}\tag{1.3}
 	a_n(\hat{m}_n-m)
 	\stackrel{\mathcal{L}}{\longrightarrow}\xi\text{ in }\R
 \end{align}
@@ -225,12 +257,12 @@ wobei $a_n\to\infty$ in $\xi$ Grenzvariable, die es zu identifizieren gilt. Für
 	Z_n(t):=\beta_n\cdot\left( Y_n\left(m+\frac{t}{a_n}\right)-Y_n(m)\right)\qquad t\in\R
 \end{align*}
 der sogenannte \textbf{reskalierte Prozess zu $Y_n$}, wobei $\beta_n$ deine geeignete positive Folge ist. Damit folgt
-\begin{align}\label{1.4}
+\begin{align}\label{eq1.4}\tag{1.4}
 	a_n(\hat{m}_n-m)=\argmin\limits_{t\in\R} Z_n(t)
 \end{align}
 Klar: $Z_n$ ist wieder ein stetiger stochastischer Prozess und damit $(Z_n)_{n\in\N}$ eine Folge von Zufallsvariablen in $\big(C(\R),d\big)$.
 Wünschenswert auch hier wäre die Gültigkeit folgender Implikation:
-\begin{align}\label{eqSternchen}\tag{$\ast$}
+\begin{align}\label{eq1.5}\tag{1.5}
 	Z_n
 	\stackrel{\mathcal{L}}{\longrightarrow}
 	Z\text{ in } \big(C(\R),d\big)
@@ -239,11 +271,11 @@ Wünschenswert auch hier wäre die Gültigkeit folgender Implikation:
 	\stackrel{\mathcal{L}}{\longrightarrow}
 	\argmin\limits_{t\in\R} Z(t)
 \end{align}
-Dazu erforderlich ist das Konzept der \textbf{Verteilungskonvergenz} von Zufallsvariablen in metrischen Räumen, damit \eqref{eqSternchen} eine wohldefinierte Bedeutung erhält.
+Dazu erforderlich ist das Konzept der \textbf{Verteilungskonvergenz} von Zufallsvariablen in metrischen Räumen, damit \eqref{eq1.5} eine wohldefinierte Bedeutung erhält.
 Dies folgt später.
 Natürlich auch hier wieder das Problem: $Z$ besitzt mit positiver Wahrscheinlichkeit mindestens 2. Minimalstellen. 
 Und dann?\nl
-Im Falle einer fast sicher eindeutigen Minimalstelle von $Z$ würde aber aus (1.4) und (1.5) folgen:
+Im Falle einer fast sicher eindeutigen Minimalstelle von $Z$ würde aber aus \eqref{eq1.4} und \eqref{eq1.5} folgen:
 \begin{align*}
 	a_n(\hat{m}_n-m)
 	\stackrel{\mathcal{L}}{\longrightarrow}

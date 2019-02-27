@@ -11,14 +11,15 @@
 		\begin{align*}
 			:\Longleftrightarrow x,y\in O\implies\forall\lambda\in(0,1):\lambda\cdot x+(1-\lambda)\cdot y\in O
 		\end{align*}
+		Konvexe Teilmengen von $\R$ sind genau die Intervalle.
 		\item Sei $O$ konvex. Eine Funktion $f\colon O\to\R$ heißt \textbf{konvex}
 		\begin{align*}
 			:\Longleftrightarrow 
-			f\big(\lambda\cdot x+(1-\lambda)\cdot y\big)\leq\lambda\cdot f(x)+(1-\lambda)\cdot f(y)\qquad\forall x,y\in,\forall\lambda\in(0,1)
+			f\big(\lambda\cdot x+(1-\lambda)\cdot y\big)\leq\lambda\cdot f(x)+(1-\lambda)\cdot f(y)\qquad\forall x,y\in O,\forall\lambda\in(0,1)
 		\end{align*}
 		\item $\begin{aligned}
 			C_c(O):=\big\lbrace f\colon O\to\R:f\text{ konvex}\big\rbrace
-		\end{aligned}$
+		\end{aligned}$ (Erinnerung: Jede konvexe Funktion ist stetig!)
 		\item Ein stochastischer Prozess
 		\begin{align*}
 			X=\big\lbrace X(t):t\in O\big\rbrace
@@ -113,7 +114,7 @@ Also:
 \begin{align*}
 	M_n(t)=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big|X_i-t\big|\qquad\forall t\in\R
 \end{align*}
-Gemäß \ref{korollar9.3} sind $M_n,n\in\N$ und $M$ als	 konvexe stochastische Prozesse Zufallsvariablen in $\big(C_r(\R),d\big)$.
+Gemäß \ref{korollar9.3} sind $M_n,n\in\N$ und $M$ als	 konvexe stochastische Prozesse Zufallsvariablen in $\big(C_c(\R),d\big)$.
 
 \begin{satz}\label{satz9.7}
 	Sei $D\subseteq O$ dicht in $O=(a,b)\subseteq\R$ (z. B. $D=\Q\cap O$) und $K\subseteq O$ kompakt.
@@ -144,7 +145,7 @@ Gemäß \ref{korollar9.3} sind $M_n,n\in\N$ und $M$ als	 konvexe stochastische P
 		\item $f$ ist konvex.
 		\item $\begin{aligned}
 			\big\Vert f_n-f\big\Vert_K\overset{n\to\infty}{\longrightarrow}0\qquad\forall K\subseteq O
-		\end{aligned}$
+		\end{aligned}$ kompakt
 	\end{enumerate}
 \end{theorem}
 
@@ -156,7 +157,7 @@ Gemäß \ref{korollar9.3} sind $M_n,n\in\N$ und $M$ als	 konvexe stochastische P
 
 \begin{satz}\label{satz9.9}
 	Seien $X_n,n\in\N$ konvexe stochastische Prozesse und sei $X$ stetiger stochastischer Prozess auf $\R$ über $(\Omega,\A,\P)$.
-	Dann sind (1) $\gdw$ (2) $\implies$ (3):
+	Dann gilt (1) $\Longleftrightarrow$ (2) $\implies$ (3):
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
 			X_n\overset{\text{fd}}{\longrightarrow}X\qquad\text{Konvergenz der fidis}

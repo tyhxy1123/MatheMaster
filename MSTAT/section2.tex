@@ -4,11 +4,11 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \section{Konzepte aus metrischen Räumen} %2
-Sei $(\mathcal{S},d)$ metrischer Raum.
+Sei $(\S,d)$ metrischer Raum.
 
 \begin{beispiel}[Supremums-Metrik] %2.1
 	\begin{align*}
-		\mathcal{S}=C([0,1]):=\big\lbrace f:[0,1]\to\R: f\text{ stetig}\big\rbrace\\
+		\S=C([0,1]):=\big\lbrace f:[0,1]\to\R: f\text{ stetig}\big\rbrace\\
 		d(f,g):=\sup\limits_{t\in[0,1]}\big|f(t)-g(t)\big|,\qquad\forall f,g\in C([0,1])
 	\end{align*}
 \end{beispiel}
@@ -22,10 +22,10 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 		die offene Kugel um Mittelpunkt $x$ und Radius $r$.
 		\item Sei $A\subseteq\mathcal{S}$. Dann:
 		\begin{align*}
-			\stackrel{\circ}{A}&:=\inner(A):=\text{ das Innere von }A\\
+			A^\circ&:=\inner(A):=\text{ das Innere von }A\\
 			\overline{A}&:=\text{ Abschluss von }A\\
-			\partial A&:=\overline{A}\cap\overline{A^C}=\overline{A}\setminus\stackrel{\circ}{A}\text{ ist der Rand von }A\\
-			A^C&:=\mathcal{S}\setminus A
+			\rand A&:=\overline{A}\cap\overline{A^C}=\overline{A}\setminus A^\circ \text{ ist der Rand von }A\\
+			A^C&:=\S\setminus A
 		\end{align*}
 		\item \begin{align*}
 			\mathcal{G}:=\mathcal{G}(\mathcal{S})&:=\big\lbrace G\subseteq\mathcal{S}: G\text{ ist offen bzgl. }d\big\rbrace\\
@@ -48,7 +48,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	\end{enumerate}
 \end{definition}
 
-\begin{lemma}\label{lemma2.3}\ %2.3
+\begin{lemma}\label{lemma2.3}\
 	\begin{enumerate}[label={(\arabic*)}]
 		\item $\begin{aligned}
 			x\in\overline{A}\Longleftrightarrow d(x,A)=0
@@ -91,10 +91,10 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	\underline{Zeige (3):} Folgt aus (2) da, die Funktion $d(\cdot,A)$ Lipschitz-stetig und damit gleichmäßig stetig ist.
 \end{proof}
 
-\begin{satz}\label{Satz2.4} %2.4
+\begin{satz}\label{Satz2.4}
 	Zu $A\subseteq\mathcal{S}$ und $\varepsilon>0$ existiert ein gleichmäßig stetige Funktion 
 	\begin{align*}
-		f:\mathcal{S}\to[0,1]\text{ mit der Eigenschaft} f(x)=\left\lbrace\begin{array}{cl}
+		f:\mathcal{S}\to[0,1]\text{ mit der Eigenschaft}\qquad f(x)=\left\lbrace\begin{array}{cl}
 			1, & \falls x\in A\\
 			0, & \falls d(x,A)\geq\varepsilon
 		\end{array}\right.
@@ -106,7 +106,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	\begin{align*}
 		\varphi:\R\to[0,1],\qquad \varphi(t):=\left\lbrace\begin{array}{cl}
 			1 , & \falls t\leq0\\
-			1-t, & \falls 0<1<1\\
+			1-t, & \falls 0<t<1\\
 			0, & \falls t\geq1
 		\end{array}\right.
 	\end{align*}
@@ -117,7 +117,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	Dann hat dieses $f$ die gewünschte Eigenschaft wegen Lemma \ref{lemma2.3}.
 \end{proof}
 
-\begin{definition} %2.5
+\begin{definition}\label{def2.5}
 	Ein metrischer Raum $(\S,d)$ heißt \textbf{separabel}
 	\begin{align*}
 		&:\Longleftrightarrow\exists\text{ abzählbares } S_0\subseteq\S:\S\subseteq\overline{S_0}\\
@@ -126,7 +126,7 @@ Sei $(\mathcal{S},d)$ metrischer Raum.
 	\end{align*}
 \end{definition}
 
-\begin{beispiel}\label{beisp2.6} %2.6
+\begin{beispiel}\label{beisp2.6}
 	$C([0,1])$ mit Supremums-Metrik ist separabal.
 	
 	\begin{proof}

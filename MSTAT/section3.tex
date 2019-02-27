@@ -53,7 +53,7 @@
 		&=\B(\S)
 	\end{align*}
 	\underline{Zu (3), zeige ``$\subseteq$'':}\\
-	Klar wegen $\mathcal{G}_0\subseteq\mathcal{G}(\S)$ und $\sigma$ monoton.\\
+	Klar wegen $\mathcal{G}_0\subseteq\mathcal{G}(\S)$ und $\sigma$ monoton.\nl
 	\underline{Zu (3), zeige ``$\supseteq$'':} Sei $G\in\mathcal{G}$. Dann:
 	\begin{align*}
 		G&=\bigcup\limits_{i\in\N} G_i\mit\text{geeigneten }G_i\in\mathcal{G}_0\subseteq\sigma(\mathcal{G}_0)\\
@@ -265,14 +265,15 @@ Die bekannten Regeln (Ergebnisse) für \underline{reelle} Zufallsvariablen lasse
 		\stackrel{n\to\infty}{\longrightarrow}
 		f(X)\rbrace
 	\end{align*}
-	Mit
+	Da abzählbare Schnitte von Einsmengen stets Einsmengen sind, d.h.
 	\begin{align*}
 		\big(\forall i\in\N:\P(E_i)=1\big)\implies\P\left(\bigcap\limits_{i\in\N} E_i\right)=1
+		\qquad\forall E_i\subseteq\Omega\mit\P(E_i)=1
 	\end{align*}
 	folgt
 	\begin{align*}
 		1=\P\Big(\Big\lbrace X_n\overset{n\to\infty}{\longrightarrow}X\text{ und $f$ stetig in }X\Big\rbrace\Big)\leq\P\Big(\Big\lbrace f(X_n)\overset{n\to\infty}{\longrightarrow} f(X)\Big\rbrace\Big)\\
-		\implies \P\Big(\Big\lbrace f(X_n)\overset{n\to\infty}{\longrightarrow} f(X)\Big\rbrace\Big)
+		\implies \P\Big(\Big\lbrace f(X_n)\overset{n\to\infty}{\longrightarrow} f(X)\Big\rbrace\Big)=1
 	\end{align*}
 \end{proof}
 
@@ -336,7 +337,7 @@ Weitere Eigenschaften der fast sicheren Konvergenz von Zufallsvariablen in metri
 
 \subsection{Stochastische Konvergenz} %NoNumber
 \begin{definition}\label{def3.11}
-	$X_n$ \textbf{konvergiert stochastisch gegen $X$}, i.Z.:
+	$X_n$ \textbf{konvergiert stochastisch / in Wahrscheinlichkeit gegen $X$}, i.Z.:
 	\begin{align*}
 		X_n
 		\stackrelnew{n\to\infty}{\P}{\longrightarrow}
@@ -454,9 +455,9 @@ Dies folgt z. B. aus dem \textit{Satz von der koordinatenweise Konvergenz}:
 	(a')
 \end{align}
 
-Es ``stochastische Versionen'' dieses Satzes.
+Es gibt ``stochastische Versionen'' dieses Satzes.
 
-\begin{satz}\label{satz3.15}\
+\begin{satz}\label{satz3.15}[Koordinatenweise Konvergenz vom Zufallsgrößen]\
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
 			(X_n,X_n')

@@ -4,14 +4,14 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \section{Argmin-Theoreme in \texorpdfstring{$C(\R)$}{C(R)}} %8
-Erinnere an folgende Probleme, vergleiche  1.2 und 1.5 (Median)\\ %TODO
+Erinnere an folgende Probleme, vergleiche Gleichungen \eqref{eq1.2} und \eqref{eq1.5} in Kapitel 1 zum Median.\\
 Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stochastischen Prozessen auf deren Minimalstellen?
 
 \begin{definition}\label{definition8.1}
 	Sei $f\in C(\R)$.
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
-			A(f)=\argmin(f):=\left\lbrace t\in\R:f(t)=\inf\limits_{s\in\R} f(s)\right\rbrace
+			A(f):=\argmin(f):=\left\lbrace t\in\R:f(t)=\inf\limits_{s\in\R} f(s)\right\rbrace
 		\end{aligned}$ = Menge aller Minimalstellen
 		\item $\tau\in A(f)$ heißt \textbf{wohl-separiert} 
 		\begin{align*}
@@ -43,6 +43,8 @@ Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stoc
 			\inf\limits_{s\in\R} f(s)
 		\end{align}
 		Dies ist ein Widerspruch!
+		\item Wohl-Separiertheit ist also eine stärkere Bedingung als Eindeutigkeit der Minimalstelle.
+		Sie schließt "degenerierte" Fälle wie in Abbildung \ref{AbbMinimalstelleEindeutigNichtWohlsepariert} aus.
 	\end{enumerate}
 \end{bemerkungnr}
 
@@ -51,7 +53,7 @@ Wann überträgt sich die Konvergenz (f.s. oder in Verteilung) von stetigen stoc
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[width=1\textwidth]{./pics/MSTAT003.png}
-			\caption{$\tau$ eindeutig, aber Infimum von $(\tau-\varepsilon,\tau+\varepsilon)$ ist auch $f(\tau)$!}
+            \caption{$\tau$ eindeutig, aber das Infimum von $f$ außerhalb von $(\tau-\varepsilon,\tau+\varepsilon)$ ist auch $f(\tau)$!}
 			\label{AbbMinimalstelleEindeutigNichtWohlsepariert}
 		\end{center}
 	\end{figure}
@@ -118,7 +120,7 @@ Es gilt:
 		\begin{align*}
 			\Vert f_n-f\Vert_I:=\sup\limits_{t\in I}\big|f_n(t)-f(t)\big|\overset{n\to\infty}{\longrightarrow}0
 		\end{align*}
-		so gilt für \underline{jede} Auswahl $\tau_n\in A(f)$:
+		so gilt für \underline{jede} Auswahl $\tau_n\in A(f_n)$:
 		$\tau_n\overset{n\to\infty}{\longrightarrow}\tau$
 	\end{enumerate}
 \end{satz}
@@ -150,17 +152,20 @@ Es gilt:
 Es ergeben sich nun mühelos Argmin-Theoreme für fast sichere Konvergenz:
 
 \begin{satz}\label{satz8.5}
-	Seien $M,M_n,n\in\N$ stochastische Prozesse über $(\Omega,\A,\P)$ mit Pfaden in $C(\R)$.
+	Seien $M=\big\lbrace M(t):t\in \R\big\rbrace,M_n=\big\lbrace M_n(t):t\in \R\big\rbrace,n\in\N$ stochastische Prozesse über $(\Omega,\A,\P)$ mit Pfaden in $C(\R)$ (d.h. $M\colon \R\to\R,~t\mapsto M(t,\omega)$ stetig für alle $\omega\in\Omega$).
 	Es gelte:
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
-			\tau\in A(M)
-		\end{aligned}$ f.s. für eine Zufallsvariable $\tau$
+			\tau(\omega)\in A\big(M(\cdot,\omega)\big)\overset{\Def}{=}
+			\argmin\big(M(\cdot,\omega)\big)
+			\overset{\Def}{=}\set{t\in R:\inf\limits_{s\in\R}M(s,\omega)=M(t,\omega)}
+		\end{aligned}$ f.s.\\
+		für eine Zufallsvariable $\tau\colon\Omega\to\R$, also $\P\big(\big\lbrace\omega\in\Omega:\tau(\omega)\in A\big(M(\cdot,\omega)\big)\big\rbrace\big)=1$
 		\item $\begin{aligned}
 			\inf\limits\big\lbrace M(t):|t-\tau|\geq\varepsilon\big\rbrace>M(\tau)\text{ f.s.}\qquad\forall 0<\varepsilon\in\Q
-		\end{aligned}$
+		\end{aligned}$ (wohl-separiertheit)
 		\item $\begin{aligned}
-			\big\Vert M_n-M\big\Vert\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}
+			\norm[\big]{M_n-M}_\infty\overset{n\to\infty}{\longrightarrow}0\text{ f.s.}
 		\end{aligned}$
 	\end{enumerate}
 	Dann gilt für jede Folge $(\tau_n)_{n\in\N}$ von Zufallsvariablen mit $\tau_n\in A(M_n)$ f.s.:
@@ -172,7 +177,7 @@ Es ergeben sich nun mühelos Argmin-Theoreme für fast sichere Konvergenz:
 	\begin{align*}
 		\Omega_0:=\underbrace{\Big\lbrace\omega\in\Omega:\tau(\omega)\in A\big(M(\cdot,\omega)\big)\Big\rbrace}_{=:\big\lbrace\tau\in A(M)\big\rbrace\text{ Einsmenge wg (1)}}
 		&\cap\bigcap\limits_{0<\varepsilon\in\Q}
-		\underbrace{\Big\lbrace\inf\limits\big\lbrace M(t):|t-\tau|\geq\varepsilon\big\rbrace>M(\tau)\Big\rbrace}_{\text{Einsmenge wg. (2)}}\\
+		\overbrace{\underbrace{\Big\lbrace\inf\limits\big\lbrace M(t):|t-\tau|\geq\varepsilon\big\rbrace>M(\tau)\Big\rbrace}_{\text{Einsmenge wg. (2)}}}^{\hat{=}\text{wohl-separiert}}\\
 		&\cap\underbrace{\Big\lbrace\Vert M_n-M\Vert\overset{n\to\infty}{\longrightarrow}0\Big\rbrace}_{\text{Einsmenge wg (3)}}
 		\cap\bigcap\limits_{n\geq1}\underbrace{\Big\lbrace\tau_n\in A(M_n)\Big\rbrace}_{\text{Einsmenge nach Vor.}}
 	\end{align*}
@@ -291,7 +296,7 @@ Gemäß SGGZ gilt:
 	\E_{\theta_0}\big[T(X)\big]
 	&=\int\limits_\Omega T(X)\d\P_{\theta_0}
 	\overset{\eqref{eqTrafo}}{=}
-	\int\limits_{\X}T(x)\underbrace{\P_{\theta0}\circ X^{-1}}_{\text{hat $\mu$-Dichte}}(\d x)	
+	\int\limits_{\X}T(x)\underbrace{\P_{\theta_0}\circ X^{-1}}_{\text{hat $\mu$-Dichte}}(\d x)	
 	\int\limits_{\X}T(x)\cdot f_{\theta_0}(x)~\mu(\d x)\nonumber
 \end{align}
 
@@ -379,7 +384,7 @@ Schreibe im Folgenden: $X_i\equiv X_{i,n}$
 	\theta_n&:=\frac{\tau_n}{n} &\forall& n\in\N
 \end{align*}
 
-Eine elementare Rechnung zeigt (zur Übung):
+Eine elementare Rechnung zeigt (zur Übung, ist wirklich  einfach):
 \begin{align}\label{eqUnder8.2_1}\tag{1}
 	\E[S_k]
 	&=\left\lbrace\begin{array}{cll}
@@ -394,7 +399,7 @@ Eine elementare Rechnung zeigt (zur Übung):
 	&\implies\tau_n=\argmax\limits_{0\leq k\leq n}\big|\E[S_k]\big|\nonumber
 \end{align}
 
-Daraus folgt, dass $\E[S_k]$ (in Abhängigkeit von $k$) erst monoton wachsend und ab $k=\tau_n$ monoton fallend ist.
+Daraus folgt, dass $\big|\E[S_k]\big|$ (in Abhängigkeit von $k$) erst monoton wachsend und ab $k=\tau_n$ monoton fallend ist.
 
 \begin{figure}[H] % oder ht!
 	\begin{center}
@@ -404,7 +409,7 @@ Daraus folgt, dass $\E[S_k]$ (in Abhängigkeit von $k$) erst monoton wachsend un
 	\end{center}
 \end{figure}
 
-Dies motiviert folgenden Schätzer (ersetze unbekannte $\big|\E[S_k)\big]$ durch bekannte $|S_k|$):
+Dies motiviert folgenden Schätzer (ersetze unbekannte $\big|\E[S_k]\big|$ durch bekannte $|S_k|$):
 \begin{align*}
 	\hat{\tau}_n:=\argmax\limits_{0\leq k\leq n}\big|S_k\big|
 \end{align*}
@@ -665,7 +670,7 @@ Folgender Satz gibt Antwort.
 	Ferner sei $\sigma_n$ eine Zufallsvariable mit $\sigma_n\in A(Z_n)$.
 	Dann gilt: Falls
 	\begin{align}\label{eqSatz8.9_1}\tag{1}
-		Z_n\overset{L}{\longrightarrow} Z\text{ in }\big(C(\R),d\big)
+		Z_n\overset{\L}{\longrightarrow} Z\text{ in }\big(C(\R),d\big)
 	\end{align}
 	so folgt
 	\begin{align}\label{eqSatz8.9_a}\tag{a}
@@ -690,7 +695,7 @@ Folgender Satz gibt Antwort.
 	Falls zusätzlich $A(Z)=\lbrace\sigma\rbrace$ für eine Zufallsvariable $\sigma$
 	(d.h. $Z$ hat f.s. eine eindeutige Minimalstelle, nämlich $\sigma$), dann gilt
 	\begin{align}\label{eqSatz8.9_c}\tag{c}
-		\sigma_n\overset{L}{\longrightarrow}\sigma\text{ in }\R.
+		\sigma_n\overset{\L}{\longrightarrow}\sigma\text{ in }\R.
 	\end{align}
 \end{satz}
 

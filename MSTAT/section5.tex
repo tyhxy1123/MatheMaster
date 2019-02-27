@@ -57,18 +57,19 @@ Sehr nützlich ist:
 \begin{proof}
 	\begin{align*}
 		\varphi_X(t)
-		&\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]\qquad\forall t\in\R^d
+		&\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X\rangle\big)\Big]
 		\stackeq{d=1}\E\big[\exp(i\cdot X\cdot t)\big]
+		\qquad\forall t\in\R^d
 	\end{align*}
 	\underline{Zeige (1) $\implies$ (2):}\\
 	Sei $t\in\R^d$. Dann ist $x\mapsto\langle t,x\rangle$ stetig auf $\R^d$. 
-	Und aus Satz \ref{satz4.10ContinuousMappingTheorem} (CMT) folgt dann (2).\nl
+	Aus Satz \ref{satz4.10ContinuousMappingTheorem} (CMT) folgt (2).\nl
 	\underline{Zeige (2) $\implies$ (1):}
 	\begin{align*}
 		&\varphi_{X_n}(t)
 		\stackeq{\text{Def}}\E\Big[\exp\big(i\cdot\langle t,X_n\rangle\cdot 1\big)\Big]
 		\stackeq{\text{Def}}\varphi_{\langle t,X_n\rangle}(1)
-		\stackrelnew{\ref{satz5.3Stetigkeitssatz}}{n\to\infty}{\longrightarrow}\underbrace{\varphi_{\langle t,X\rangle}(1)}_{=\varphi_X(t)}\\
+		\stackrelnew{\ref{satz5.3Stetigkeitssatz}+(2)}{n\to\infty}{\longrightarrow}\underbrace{\varphi_{\langle t,X\rangle}(1)}_{=\varphi_X(t)}\\
 		&\implies\varphi_{X_n}\stackrel{n\to\infty}{\longrightarrow}\varphi_X\text{ auf }\R^d
 		\stackrel{\ref{satz5.3Stetigkeitssatz}}{\implies}(1)
 	\end{align*}

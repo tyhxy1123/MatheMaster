@@ -91,10 +91,18 @@
 
 \begin{satz}[Transformationssatz]\label{satzTransformationssatz}\enter
 	Seien $(\Omega,\A,\P)$ ein Wahrscheinlichkeitsraum und $(S,\mathcal{F})$ ein Messraum.
-	Sei $u:S\to\R$ eine messbare Funktion und $X:\Omega\to S$ eine Zufallsvariable. 
+	Sei $g:S\to\R$ eine messbare Funktion und $X:\Omega\to S$ eine Zufallsvariable. 
 	Dann gilt:
 	\begin{align}\label{eqTrafo}\tag{Trafo}
-		\int\limits_\Omega u(X(\omega))~\P(d\omega)=\int\limits_S u(s)~\P_X(\d s)
+		\int\limits_\Omega g(X(\omega))~\P(\d\omega)
+		=\int\limits_S g(s)~\P_X(\d s)
+	\end{align}
+	Hierbei ist $\P_X=\mu_X=\P\circ X^{-1}$ die Verteilung von $X$.
+	Für den Standardfall reeller Zahlen ergibt sich mit $f_X$ als Dichte von $X$:
+	\begin{align}\label{eqTrafoR}\tag{Trafo}
+		\int\limits_\Omega g(X(\omega))~\P(\d\omega)
+		=\int\limits_\R g(x)~\P_X(\d x)
+		=\int\limits_\R g(x)\cdot f_X(x)\ds x
 	\end{align}
 \end{satz}
 

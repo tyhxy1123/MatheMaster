@@ -10,7 +10,7 @@
 	Für $\varepsilon>0$ seien
 	\begin{align*}
 		\overline{B}(\sigma,\varepsilon)&:=\big\lbrace t\in\R^d:|t-\sigma|\leq\varepsilon\big\rbrace\\
-		m(\varepsilon)&:=\inf\limits\big\lbrace g(t9:|t-\sigma|=\varepsilon\big\rbrace\\
+		m(\varepsilon)&:=\inf\limits\big\lbrace g(t):|t-\sigma|=\varepsilon\big\rbrace\\
 		b(\varepsilon)&:=\frac{1}{2}\cdot\big(m(\varepsilon)-g(\sigma)\big)
 	\end{align*}
 	Dann gilt:
@@ -84,10 +84,10 @@ Wir erhalten folgendes Argmin-Theorem für konvexe Funktionen:
 
 \begin{satz}\label{satz10.2}
 	Sei $D\subseteq\R^d$ dicht in $\R^d$ (z.B. $D=\Q^d$) und seien $f,f_n,n\in\N$ konvexe Funktionen auf $\R^d$, wobei $f$ eine eindeutige Minimalstelle $\tau$ besitze ($A(f)=\lbrace\tau\rbrace$).
-	Seien $\tau_n\in A(f_n)\neq\Phi$ $\forall n\geq N_0\in\N$.
+	Seien $\tau_n\in A(f_n)\neq\emptyset$ $\forall n\geq N_0\in\N$.
 	Dann gilt:
 	\begin{align}\label{eqSatz10.2Stern}\tag{$\ast$}
-		\Big(f_n(t)\overset{n\to\infty}{\longrightarrow} f(t)\qquad\forall t\in D\Big)\implies \tau_n\overset{n\to\infty}{\longleftarrow}\tau
+		\Big(f_n(t)\overset{n\to\infty}{\longrightarrow} f(t)\qquad\forall t\in D\Big)\implies \tau_n\overset{n\to\infty}{\longrightarrow}\tau
 	\end{align}
 \end{satz}
 
@@ -213,7 +213,7 @@ $F$ besitze Median $m\in\R$ und erfülle
 Erinnerung:
 \begin{align*}
 	\hat{m}_n&:=\argmin\limits_{t\in\R} M_n(t),\qquad
-	m_n(t)=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big|X_i-t\big|
+	M_n(t)=\frac{1}{n}\cdot\sum\limits_{i=1}^n\big|X_i-t\big|
 \end{align*}
 Idee: Betrachte den \textbf{reskalierten Prozess zu $a_n$}:
 \begin{align*}

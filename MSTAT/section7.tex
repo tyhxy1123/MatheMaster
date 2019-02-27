@@ -40,10 +40,27 @@ Dazu:
 	\begin{align*}
 		\B(C)
 		=\sigma\Big(\pi_t:t\in I\Big)=\sigma\Big(\pi_T:T\subseteq I,T\text{ endlich}\Big)
-		=\sigma\Big(\big\lbrace \pi_t^{-1}(B):t\in I,B\in\B(\R)\big\rbrace\Big)
+		%=\sigma\Big(\big\lbrace \pi_t^{-1}(B):t\in I,B\in\B(\R)\big\rbrace\Big)
 	\end{align*}
 	"kleinste $\sigma$-Algebra, sodass alle $\pi_t$ messbar sind"
 \end{satz}
+
+\begin{erinnerung}
+	\begin{align*}
+		\sigma\Big(\pi_t:t\in I\Big)
+		\overset{\Def}&{=}
+		=\sigma\Big(\big\lbrace \pi_t^{-1}(B):t\in I,B\in\B(\R)\big\rbrace\Big)\\
+		\sigma\Big(\pi_T:T\subseteq I,T\text{ endlich}\Big)
+		\overset{\Def}&{=}
+		\sigma\Big(\big\lbrace \pi_T^{-1}(B):T\subseteq I\text{ endlich, }B\in\B(\R)\big\rbrace\Big)\\
+		\sigma\colon\Potenzmenge{\Potenzmenge{\Omega}}\to\Potenzmenge{\Potenzmenge{\Omega}},\qquad 
+		\sigma(\mathcal{M})&:=\bigcap\limits_{\begin{subarray}{c}
+			\A\subseteq\Potenzmenge{\Omega}~\sigma\text{-Algebra}\\
+			\mathcal{M}\subseteq\A
+		\end{subarray}}
+		\A
+	\end{align*}
+\end{erinnerung}
 
 \begin{proof}
 	Da $\pi_t=\pi_{\lbrace t\rbrace}$ und $T=\lbrace t\rbrace$, folgt
@@ -112,10 +129,22 @@ Dazu:
 		X(\cdot,\omega):I\to\R,\qquad t\mapsto X(t,\omega)\qquad\forall \omega\in\Omega
 	\end{align*}
 	stetig sind (für alle $\omega\in\Omega$), so liefert die Zuordnung $\omega\mapsto X(\cdot,\omega)$ eine Abbildung $X:\Omega\to C(I)$. 
-	Diese Abbildung $X$ heißt \textbf{Pfadabbildung} des stochastischen Prozesses und wird mit diesem identifiziert.
+	Diese Abbildung $X$ heißt \textbf{Pfadabbildung} des stochastischen Prozesses und wird mit diesem identifiziert, genauer:\\
+	Für einen stochastischen Prozess $X\colon I\times\Omega\to\R$ gilt:
+	\begin{itemize}
+		\item $X\colon I\to\R,\qquad t\mapsto X(t,\omega)$ heißt \define{Pfad} für jedes $\omega\in\Omega$
+		\item $X\colon\Omega\to\R,\qquad\omega\mapsto X(t,\omega)$ ist eine einzelne ZV für jedes $t\in I$
+		\item $X\colon\Omega\to (I\to\R),\qquad \omega\mapsto(t\mapsto X(t,\omega))$ heißt \define{Pfadabbildung}
+		\item Falls alle Pfade stetig (also $X$ ein \define{stetiger stochastischer Prozess} ist) sind, gilt $I\to\R=C(I)$.
+		\item Man kann einen (stetigen) stochastischen Prozess mit seiner Pfadabbildung identifizieren:
+		\begin{align}\label{eqIdentifiereSP}
+			\big\lbrace X(t)\mid t\in I, X(t)\colon\Omega\to\R\big\rbrace
+			\cong X\colon\Omega\to C(I)
+		\end{align}
+	\end{itemize}
 \end{defi}
 
-Satz \ref{satz7.2} liefert ein sehr handliches Kriterium für die Messbarkeit von allgemeinen Abbildungen $X:\Omega\to X$.
+Satz \ref{satz7.2} liefert ein sehr handliches Kriterium für die Messbarkeit von allgemeinen Abbildungen $X:\Omega\to C$.
 
 \begin{satz}\label{satz7.3}
 	Sei $(\Omega,\A)$ messbarer Raum und $C:=C(I)$ versehen mit der Borel-$\sigma$-Algebra $\B(C)$ sowie $X:\Omega\to C$. Dann gilt:
@@ -127,7 +156,7 @@ Satz \ref{satz7.2} liefert ein sehr handliches Kriterium für die Messbarkeit vo
 \begin{proof}
 	Erinnere an das Messbarkeitslemma:\nl
 	\textbf{Lemma. (Messbarkeitslemma)}\\
-	Sei $(\Omega,\A)$ messbarer Raum, $\Omega'\neq\emptyset$, $(f_t)_{t\in T}$ eine Familie von Abbildungen\\ $f_t:\Omega'\to(\Omega,\A)$ wobei $(\Omega_t,\A_t)$ messbarer Raum für alle $t\in T$, $T\neq\emptyset$ beliebige Indexmenge. 
+	Sei $(\Omega,\A)$ messbarer Raum, $\Omega\neq\emptyset$, $(f_t)_{t\in T}$ eine Familie von Abbildungen\\ $f_t:\Omega\to(\Omega_t,\A_t)$ wobei $(\Omega_t,\A_t)$ messbarer Raum für alle $t\in T$, $T\neq\emptyset$ beliebige Indexmenge. 
 	Ferner sei
 	\begin{align*}
 		\A':=\sigma\big(f_t:t\in T\big)\stackeq{\text{Def}}\sigma\left(\bigcup\limits_{t\in T} f_t^{-1}(\A_t)\right)
@@ -180,7 +209,7 @@ Jeder stetige stochastische Prozess indiziert nach $I$ kann aufgefasst werden al
 		\end{align*}
 		\item $X,Y$ seien Zufallsvariablen in $\big(C(I),d\big)$. Dann gilt:
 		\begin{align*}
-			X\stackeq{\L}Y\Longleftrightarrow \pi_T(X)\stackeq{\L}\pi_T(Y)
+			X\stackeq{\L}Y\Longleftrightarrow\forall T\subseteq I\text{ endlich }: \pi_T(X)\stackeq{\L}\pi_T(Y)
 		\end{align*}
 	\end{enumerate}
 \end{satz}
@@ -224,9 +253,11 @@ Jeder stetige stochastische Prozess indiziert nach $I$ kann aufgefasst werden al
 \end{proof}
 
 \begin{bemerkungnr} %7.6
-	Die Wahrscheinlichkeitsmaße $\P\circ\pi_T^{-1}$ bzw. die Verteilungen
+	Die Wahrscheinlichkeitsmaße $\P\circ\big(\pi_T\circ X)^{-1}$ bzw. die Verteilungen
 	\begin{align*}
-		\pi_T(X)=\big(X(t_1),\ldots,X(t_k)\big),\qquad T=\big\lbrace t_1,\ldots,t_k\rbrace\subseteq I
+		\pi_T(X)&=\big(X(t_1),\ldots,X(t_k)\big)&\forall& T=\big\lbrace t_1,\ldots,t_k\rbrace\subseteq I\text{, genauer:}\\
+		\pi_T\big(X(\omega)\big)&=\big(X(\omega)(t_1),\ldots,X(\omega)(t_k)\big)&\forall&\omega\in\Omega,\forall T=\big\lbrace t_1,\ldots,t_k\rbrace\subseteq I\\
+		&\pi_T\circ X\colon\Omega\to C\to\R_k
 	\end{align*}
 	heißen \textbf{endlich dimensionale Randverteilungen von $\P$} bzw. von $X$.\\
 	Insbesondere ist gemäß \ref{satz7.5} (2) die Verteilung eines stetigen stochastischen Prozesses $X$ aufgefasst als Zufallsvariable in $C$ eindeutig durch die Verteilungen der Vektoren
@@ -277,7 +308,7 @@ Aus der Analysis ist bekannt:
 	Das heißt, $\omega(\cdot,\delta)$ ist sogar Lipschitz-stetig.
 \end{proof}
 
-%Ferger: "Ich war übrigens gestern in der Stadt. Da bin ich eigentlich nie. Ich war in mindestens 7 oder Schuhgeschäften. Es war noch jemand dabei. Ich selber habe kein Schuhe gekauft. Und in jedem Geschäft war die Verweildauer sehr lang. Und jedes Schuhgeshcäft wurde GESCANNT: Jeder Schuh wurde angefasst und begutachtet. [...] Weihnachten ist was Schönes!"
+%Ferger: "Ich war übrigens gestern in der Stadt. Da bin ich eigentlich nie. Ich war in mindestens 7 oder Schuhgeschäften. Es war noch jemand dabei. Ich selber habe kein Schuhe gekauft. Und in jedem Geschäft war die Verweildauer sehr lang. Und jedes Schuhgeschäft wurde GESCANNT: Jeder Schuh wurde angefasst und begutachtet. [...] Weihnachten ist was Schönes!"
 
 %Ferger: "Wenn man sich rote Schuhe kauft, muss dazu auch noch eine passende rote Tasche kaufen. Wussten Sie das?"
 
@@ -287,7 +318,7 @@ Erstes Kriterium in:
 	Seien $X,X_n,n\in\N$ Zufallsvariablen in $C$ über $(\Omega,\A,\P)$. Falls
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
-			\big(X_n(t_1),\ldots,X_n(t_k)\big)\stackrel{\L}{\longrightarrow}\big(X(t_1),\ldots,X(t_k)\big)
+			\underbrace{\big(X_n(t_1),\ldots,X_n(t_k)\big)}_{=\pi_T\circ X_n}\stackrel{\L}{\longrightarrow}\underbrace{\big(X(t_1),\ldots,X(t_k)\big)}_{=\pi_T\circ X}
 			\qquad\forall t_1,\ldots,t_k\in I,\forall k\in\N
 		\end{aligned}$\\
 		so genannte \textbf{Konvergenz der fidis} (finite dimensional distributions).\\
@@ -378,11 +409,11 @@ Zweite Möglichkeit für den Nachweis der Verteilungskonvergenz in $C$ liefert:
 \begin{satz}[Momentenkriterium von Kolmogoroff]\label{satz7.11MomentenkriteriumVonKolmogoroff}\enter
 	Seien $X,X_n,n\in\N$ Zufallsvariablen in $C$ mit
 	\begin{align}\label{eqSatz7.11Vor1}\tag{1}
-		X_n\stackrelnew{\text{fd}}{}{\longrightarrow} X\qquad\text{(vgl. (1) in \ref{satz7.9})}
+		X_n\stackrelnew{\text{fd}}{}{\longrightarrow} X\qquad\text{(vgl. (1) in Satz \ref{satz7.9})}
 	\end{align}
 	Falls es eine Konstante $\gamma>0$ und $\alpha>1$ sowie eine stetige und monoton wachsende Funktion $F:I\to\R$ gibt, derart, dass
 	\begin{align}\label{eqSatz7.11VorM}\tag{M}
-		\E\Big[|X_n(s)-X_n(t)|^\gamma\Big]\leq\big(F(s)-F(t)\big)^\alpha\qquad\forall s>t,s,t\in I
+		\E\Big[|X_n(s)-X_n(t)|^\gamma\Big]\leq\big(F(s)-F(t)\big)^\alpha\qquad\forall s,t\in I\mit s>t
 	\end{align}
 	Dann gilt:
 	\begin{align*}
@@ -557,7 +588,7 @@ Die Verteilung $\P\circ B^{-1}=:W$ von  einer Brownschen Bewegung $B$ heißt \te
 		\big(X_n(t_i)\big)_{1\leq i\leq r}\qquad\text{und}\qquad\left(\frac{1}{\sqrt{n}}\cdot\sum\limits_{j=1}^{\lceil n\cdot t_i\rceil}\xi_j\right)_{1\leq i\leq r}
 	\end{align*}
 	stochastisch äquivalent. 
-	Wegen Cramér (Satz \ref{satz4.14Cramer} genügt reicht es
+	Wegen Cramér (Satz \ref{satz4.14Cramer}) genügt es
 	\begin{align}\label{eqProof7.16fd}\tag{fd}
 		\left(\frac{1}{\sqrt{n}}\cdot S_{\lceil n\cdot t_i\rceil}\right)_{1\leq i\leq r}\stackrel{\L}{\longrightarrow}\big(B(t_1),\ldots,B(t_r)\big)
 	\end{align}
@@ -574,8 +605,8 @@ Die Verteilung $\P\circ B^{-1}=:W$ von  einer Brownschen Bewegung $B$ heißt \te
 	\begin{align*}
 		h^{-1}(y_1,\ldots,y_r)=\big(y_1,y_1+y_2,\ldots,y_1+\ldots+y_r\big)
 	\end{align*}
-	Also ist \eqref{eqProof7.16fd} äquivalent zu \eqref{eqProof7.16Stern} gemäß CTM \ref{satz4.10ContinuousMappingTheorem}.\\
-	Beachte wegen Blockungslemma sind die Komponenten $\frac{1}{\sqrt{n}}\cdot\left(S_{\lceil n\cdot t_i\rceil}-S_{\lceil n\cdot t_{i-1}\rceil}\right)_{1\leq i\leq r}$ \underline{unabhängig} und gemäß \ref{def7.12} (2) sind auch $\big(B(t_i)-B(t_{i-1})\big)$, $a\leq i\leq r$ unabhängig. 
+	Also ist \eqref{eqProof7.16fd} äquivalent zu \eqref{eqProof7.16Stern} gemäß CMT \ref{satz4.10ContinuousMappingTheorem}.\\
+	Beachte wegen \undefine{Blockungslemma} sind die Komponenten $\frac{1}{\sqrt{n}}\cdot\left(S_{\lceil n\cdot t_i\rceil}-S_{\lceil n\cdot t_{i-1}\rceil}\right)_{1\leq i\leq r}$ \underline{unabhängig} und gemäß \ref{def7.12} (2) sind auch $\big(B(t_i)-B(t_{i-1})\big)$, $a\leq i\leq r$ unabhängig. 
 	Somit ist gemäß Satz \ref{satz4.21} \eqref{eqProof7.16Stern} äquivalent zu 
 	\begin{align}\label{eqProof7.16SternStern}\tag{$\ast\ast$}
 		\frac{1}{\sqrt{n}}\cdot\left(S_{\lceil n\cdot t_i\rceil}-S_{\lceil n\cdot t_{i-1}\rceil}\right)
@@ -763,8 +794,9 @@ Dann gilt wegen Satz \ref{satz7.16Donsker} und \ref{satz4.10ContinuousMappingThe
 	h(X_n)\stackrel{\L}{\longrightarrow} h(B)
 \end{align}
 Kennt man die Verteilung von $h(B)$ (=Funktional der Brownschen Bewegung, dazu existiert umfangreiche Literatur, z.B. Borodin und Salminen (2002),
-\textit{Handbook of Brownian motion}), so auch die Grenzverteilung von $h(X_n)$. Dies macht man sich in der asymptotischen Statistik zunutze.
-(siehe Beispiel später) Umgekehrt lässt sich oft die Grenzverteilung $h(W)$ für besonders einfache Verteilungfunktionen $F$ bestimmen.
+\textit{Handbook of Brownian motion}), so auch die Grenzverteilung von $h(X_n)$. Dies macht man sich in der asymptotischen Statistik zunutze
+(siehe Beispiel später).
+Umgekehrt lässt sich oft die Grenzverteilung $h(W)$ für besonders einfache Verteilungfunktionen $F$ bestimmen.
 \begin{align*}
 	h\big(X_n\big)\stackrel{\L}{\longrightarrow}Z
 	\overset{\eqref{eqUnder7.16Eins}~\&~\ref{lemma4.6Einhalb}}{\implies}
@@ -780,13 +812,13 @@ Damit ist der Satz \ref{satz7.16Donsker} von Donsker auch nützlich in der Wahrs
 	\end{align*}
 \end{notation}
 
-Wir betrachten das \underline{Change-Point-Problem:}
+Wir betrachten das \define{Change-Point-Problem:}
 % mit diesem Problem hat Ferger seine Uni-Karriere gestartet
 $X_{1,n},\ldots,X_{n,n},n\in\N$ unabhängig mit 
 \begin{align*}
 	\left\lbrace\begin{array}{cl}
 		X_{i,n}\text{ i.i.d.}\sim(\mu,\sigma^2), &\falls 1\leq i\leq\tau_n\\
-		X_{i,n}\text{ i.i.d.}\sim(\mu,\tau^2), &\falls \tau_n< i\leq n
+		X_{i,n}\text{ i.i.d.}\sim(\nu,\tau^2), &\falls \tau_n< i\leq n
 	\end{array}\right.
 \end{align*}
 wobei $\tau_n\in\lbrace1,\ldots,n\rbrace$ \ul{unbekannt} (der sogenannte \textbf{Change-point\\ (moment of change)}) 
@@ -1019,7 +1051,7 @@ liefert
 \end{proof}
 
 \begin{definition} %7.19
-	Sei $B$ ein Brownsche Bewegung aud $[0,1]$. Der stochastische Prozess
+	Sei $B$ ein Brownsche Bewegung auf $[0,1]$. Der stochastische Prozess
 	\begin{align*}
 		B_0(t):=B(t)-t\cdot B(1)\qquad\forall t\in[0,1]
 	\end{align*}
@@ -1119,10 +1151,10 @@ Andererseits führen die Gewichte in $\big(k\cdot(n-k)\big)^{-\frac{1}{2}}$ in $
 \end{align*}
 d.h. $\hat{k}_n$ ist die kleinste Maximalstelle von $|C_k|,k\in\lbrace1,\ldots,n-1\rbrace$. Erhalte:
 \begin{align*}
-	R_n=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\frac{\max\limits_{1\leq k\leq n-1}\left|\sum\limits_{i=1}^k\big)(X_i-\overline{X}_n\big)\right|}{\sqrt{\hat{k}_n\cdot(n-\hat{k}_n)}}
+	R_n=\sqrt{n}\cdot\frac{1}{\hat{\sigma}_n}\cdot\frac{\max\limits_{1\leq k\leq n-1}\left|\sum\limits_{i=1}^k(X_i-\overline{X}_n\big)\right|}{\sqrt{\hat{k}_n\cdot(n-\hat{k}_n)}}
 \end{align*}
 
-\begin{thm}[Dietmar Ferger, 2018]\label{theoremFerger2018} %nonumber
+\begin{thm}[Dietmar Ferger, 2018]%\label{theoremFerger2018} %nonumber
 	Sei $(X_i)_{i\in\N}$ eine Folge von i.i.d. Zufallsvariablen mit positiver endlicher Varianz. Dann gilt:
 	\begin{align}\label{eqTheoremFerger2018}\tag{3}
 		R_n&\stackrel{\L}{\longrightarrow} R
@@ -1134,7 +1166,8 @@ d.h. $\hat{k}_n$ ist die kleinste Maximalstelle von $|C_k|,k\in\lbrace1,\ldots,n
 	\end{align}
 \end{thm}
 
-In diesem Theorem \ref{theoremFerger2018} wird die Verteilungsfunktion $H$ von $R$ explizit bestimmt ($H$ hat Reihendarstellung).
+In diesem Theorem %\ref{theoremFerger2018} 
+wird die Verteilungsfunktion $H$ von $R$ explizit bestimmt ($H$ hat Reihendarstellung).
 %Ferger: "Sie müssen immer eine Anwendung haben. Am besten Sie retten die Welt."
 Falls $r_\alpha:=H^{-1}(1-\alpha)$, so liefert \eqref{eqTheoremFerger2018} für den Test
 \begin{align*}
@@ -1204,7 +1237,7 @@ Seien $\pi_t:C(\R)\to R$ und $\pi_T:C(\R)\to\R^{|T|}$ die Projektionsabbildungen
 Ebenfalls analog beweist man:
 
 \begin{satz}\label{satz7.21}
-	 Sei $(\Omega,\A)$ messbarer Raum und $C:=C(\R)$ versehen mit $\B_d(D)$.\\
+	 Sei $(\Omega,\A)$ messbarer Raum und $C:=C(\R)$ versehen mit $\B_d(C)$.\\
 	 Dann gilt für eine Abbildung $X:\Omega\to C(\R):$
 	 \begin{align*}
 	 	X~\A\text{-}\B_d(C)\text{-messbar}
@@ -1263,6 +1296,6 @@ Satz \ref{satz7.23} geht auf Whitt (1970) zurück. Ein (relativ) einfacher Bewei
 	 \begin{align*}
 	 	&X_n^{(j)}\stackrel{\L}{\longrightarrow}B^{(j)}\qquad\forall j\in\N\\
 	 	&\overset{\ref{bemerkung7.24}(1)+\ref{satz7.23}}&\Longleftrightarrow
-	 	X_n\stackrel{\L}{\longleftarrow} B\text{ in }\Big(C\big([0,\infty)\big),d\Big)
+	 	X_n\stackrel{\L}{\longrightarrow} B\text{ in }\Big(C\big([0,\infty)\big),d\Big)
 	 \end{align*}
 \end{beispiel}
