@@ -14,30 +14,28 @@
 
 % \setlength{\parindent}{0px} %dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 
-\title{%
+\title{
   Vorlesung\\
-  Ordnungsstrukturen \\
-  }
+  Ordnungsstrukturen\\
+}
 \subtitle{Wintersemester 2018/2019}
-\author{Vorlesung: Prof. Dr. Stefan E. Schmidt\\Mitschrift: Lukas Zenner \& Willi Sontopski}
-
+\author{
+	Vorlesung: Prof. Dr. Stefan E. Schmidt\\
+	Mitschrift: Lukas Zenner \& Willi Sontopski
+}
+\publishers{\url{https://github.com/LostInDarkMath/MatheMaster}}
 
 \begin{document}
-\pagenumbering{gobble}	% disable pagenumbering
+	\pagenumbering{gobble}	% disable pagenumbering
+	\maketitle
+	\doclicenseThis
+	\tableofcontents % Inhaltsverzeichnis
+	\pagenumbering{arabic}	%enable pagenumbering
 
-\maketitle
-\doclicenseThis
-\tableofcontents % Inhaltsverzeichnis
-\pagenumbering{arabic}	%enable pagenumbering
+	{\input{chapter0}}
+	{\input{chapter1}}
 
-{\input{chapter0}}
-{\input{chapter1}}
-
-%\input{chapter1}
-
-%\listoffigures 
-%\listoftables
-%\bibliography{literatur}
-
-
+	%\listoffigures 
+	%\listoftables
+	%\bibliography{literatur}
 \end{document}
