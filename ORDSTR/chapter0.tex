@@ -17,28 +17,27 @@
 \end{definition}
 
 \begin{definition}
-    Sei $\mathscr{R} = (P,R)$ ein binäres Relat. Es seien $p,t,q \in P$ beliebig.
+    Sei $\mathscr{R} = (P,R)$ ein binäres Relat. 
+    Es seien $p,t,q \in P$ beliebig.
     Wir nennen $\mathscr{R}$:
     \begin{enumerate}[label=(\arabic*)]
         \item \textbf{reflexiv}, falls $(pRp)$,
         \item \textbf{transitiv}, falls $pRt \land tRq \implies pRq$,
         \item \textbf{antisymmetrisch}, falls $pRq \land qRp \implies p=q$,
         \item \textbf{symmetrisch}, falls $pRq \implies qRp$ und
-        \item \textbf{linear / total}, falls $pRq\vee qRp$.
+        %\item \textbf{linear / total}, falls $pRq\vee qRp$. %gehört hier nicht wirklich hin
     \end{enumerate}
 
     Beachte, dass $pRq$ für $(p,q) \in R$ steht.
 \end{definition}
 
-\textit{Linearisierung} partieller Ordnung geht immer!
-
 \begin{definition}\
-\begin{itemize}
-\item Eine \textbf{Präordnung} ist ein reflexives und transitives binäres Relat.
-\item Eine \textbf{partielle Ordnung} ist eine antisymmetrische Präordnung.
-\item Eine partielle Ordnung $\mathscr{R} = (P,R)$ heißt \textbf{lineare} Ordnung (oder \textbf{Totalordnung})
-     $$:\Longleftrightarrow pRq \textrm{ oder } qRp\qquad\forall p,q \in P$$
-\end{itemize}
+	\begin{itemize}
+		\item Eine \textbf{Präordnung} ist ein reflexives und transitives binäres Relat.
+		\item Eine \textbf{partielle Ordnung} ist eine antisymmetrische Präordnung.
+		\item Eine partielle Ordnung $\mathscr{R} = (P,R)$ heißt \textbf{lineare} Ordnung (oder \textbf{Totalordnung})
+    	$$:\Longleftrightarrow pRq \textrm{ oder } qRp\qquad\forall p,q \in P$$
+	\end{itemize}
 \end{definition}
 
 \begin{notation}
@@ -46,75 +45,82 @@
 \end{notation}
 
 \begin{definition}
-Eine \textbf{Multimenge} $\mathcal{M}$ (von $M$) ist ein Element $\mathcal{M}\in\N^M$, also eine Abbildung $\mathcal{M}:M\to\N$.\\
-Anschaulich ist eine Multimenge eine Menge, in der die Elemente mehrfach vorkommen können.
+	Eine \textbf{Multimenge} $\mathcal{M}$ (von $M$) ist ein Element $\mathcal{M}\in\N^M$, also eine Abbildung $\mathcal{M}:M\to\N$.\\
+	Anschaulich ist eine Multimenge eine Menge, in der die Elemente mehrfach vorkommen können.
 \end{definition}
 
-\begin{lemma}
-Sei $(M,\leq)$ eine partielle Ordnung. Dann ist die Multimenge $\mathcal{M}$ per Dominanzordnung geordnet.
-\end{lemma}
+%\begin{lemma}
+%	Sei $(M,\leq)$ eine partielle Ordnung. 
+%	Dann ist die Multimenge $\mathcal{M}$ per \undefine{Dominanzordnung} geordnet.
+%\end{lemma}
 
 \begin{beispiel}
-\begin{align*}
-(\R^2,\leq)&=(\R,\leq)^2\\
-a=(a_1,a_2)&\leq(b_1,b_2)=b:\Longleftrightarrow a_1\leq b_1\wedge a_2\leq b_2
-\end{align*}
-$(R^2,\sqsubseteq)$ ist \textbf{lineare Erweiterung} von $(\R,\leq)^2$ via 
-\begin{align*}
-a\sqsubseteq b:\Longleftrightarrow a_1<b_1\vee a_1=b_1\wedge a_2\leq b_2
-\end{align*}
-Sei $(S,\leq)$ lineare Ordnung (d.h. reflexiv, transitiv, antisymmetretisch und linear. Dann ist $(S,\leq)^\Omega:=(S^\Omega,\leq)$ Ordnung via
-\begin{align*}
-\alpha\leq\beta:\Longleftrightarrow\forall\alpha,\beta\in S^\Omega,\forall x\in\Omega:\alpha x\leq\beta x
-\end{align*}
+	\begin{align*}
+		(\R^2,\leq)&=(\R,\leq)^2\\
+		a=(a_1,a_2)&\leq(b_1,b_2)=b:\Longleftrightarrow a_1\leq b_1\wedge a_2\leq b_2
+	\end{align*}
+	$(R^2,\sqsubseteq)$ ist \textbf{lineare Erweiterung} von $(\R,\leq)^2$ via 
+	\begin{align*}
+		a\sqsubseteq b:\Longleftrightarrow a_1<b_1\vee \big(a_1=b_1\wedge a_2\leq b_2\big)
+	\end{align*}
+	
+	% Folgendes habe ich mal rausgenommen, da Lemma 1.1.9 dies besser formuliert
+	%Sei $(S,\leq)$ lineare Ordnung (d.h. reflexiv, transitiv, antisymmetrisch und linear). 
+	%Dann ist $(S,\leq)^\Omega:=(S^\Omega,\leq)$ Ordnung via
+	%\begin{align*}
+	%	\alpha\leq\beta:\Longleftrightarrow\forall x\in\Omega:\alpha x\leq\beta x
+	%	\qquad\forall\alpha,\beta\in S^\Omega
+	%\end{align*}
 \end{beispiel}
 
 \begin{notation}
-Setze
-\begin{align*}
-\underline{n}&:=\big\lbrace 0,\ldots,n-1\big\rbrace\subseteq\N\\
-[n]&:=\big\lbrace1,\ldots,n\big\rbrace\subseteq\N
-\end{align*}
+	Setze
+	\begin{align*}
+		\underline{n}&:=\big\lbrace 0,\ldots,n-1\big\rbrace\subseteq\N\\
+		[n]&:=\big\lbrace1,\ldots,n\big\rbrace\subseteq\N
+	\end{align*}
 \end{notation}
 
 \begin{definition}
-Sei $\Omega$ beliebige Menge und $A\subseteq\Omega$. Dann ist die \textbf{charakteristische Funktion / Indikatorfunktion} definiert als
-\begin{align*}
-\chi_A^\Omega:\Omega\to\lbrace0,1\rbrace,\qquad\omega\mapsto\left\lbrace\begin{array}{cl}
-0, & \falls \omega\not\in A\\
-1, &\falls\omega\in A
-\end{array}\right.
-\end{align*}
+	Sei $\Omega$ beliebige Menge und $A\subseteq\Omega$. 
+	Dann ist die \textbf{charakteristische Funktion / Indikatorfunktion} definiert als
+	\begin{align*}
+		\chi_A^\Omega:\Omega\to\lbrace0,1\rbrace,\qquad\omega\mapsto\left\lbrace\begin{array}{cl}
+			0, & \falls \omega\not\in A\\
+			1, &\falls\omega\in A
+		\end{array}\right.
+	\end{align*}
 \end{definition}
 
 Somit können Teilmengen als Multimengen aufgefasst werden, denn $\chi_A$ ist eine Multimenge.
 
 \begin{beispiel}\
-\begin{itemize}
-\item $\underline{2}^\Omega$ ist die Potenzmenge
-\item $\N^\Omega$ sind die Multimengen
-\item $\Omega^{\N}$ sind die Folgen in $\Omega$
-\item $\R_{\geq0}^\Omega$ sind die reellen Multimengen über $\Omega$
-\end{itemize}
+	\begin{itemize}
+		\item $\underline{2}^\Omega\overset{\Def}{=}\lbrace0,1\rbrace^\Omega=\lbrace f\colon\Omega\to\lbrace0,1\rbrace\cong\Potenzmenge{\Omega}$ ist die Potenzmenge
+		\item $\N^\Omega$ sind die Multimengen
+		\item $\Omega^{\N}$ sind die Folgen in $\Omega$
+		\item $\R_{\geq0}^\Omega$ sind die reellen Multimengen über $\Omega$
+	\end{itemize}
 \end{beispiel}
 
 Allgemein: Seien $S,\Omega$ Mengen. Dann ist $S^\Omega$ die $S$-wertige Multimenge über $\Omega$.
 
 \begin{lemma}
-Ist $(S,\leq)$ Präordnung (transitiv + reflexiv), dann ist die Menge $S^\Omega$ auf naheliegende Weise durch die \textbf{Dominanzordnung}
-\begin{align*}
-\forall\alpha,\beta\in S^\Omega:\alpha\leqq\beta:\Longleftrightarrow\forall\omega\in\Omega:\alpha(\omega)\leq\beta(\omega)
-\end{align*}
-geordnet. Notation: $(S,\leq)^\Omega:=\big(S^\Omega,\leqq\big)$\\
-Ist $\alpha\leqq\beta$, so \textbf{dominiert} $\beta$ das $\alpha$.
+	Ist $(S,\leq)$ Präordnung (transitiv + reflexiv), dann ist die Menge $S^\Omega$ auf naheliegende Weise durch die \textbf{Dominanzordnung}
+	\begin{align*}
+		\alpha\leqq\beta:\Longleftrightarrow\forall\omega\in\Omega:\alpha(\omega)\leq\beta(\omega)
+		\qquad\forall\alpha,\beta\in S^\Omega
+	\end{align*}
+	geordnet. 
+	Notation: $(S,\leq)^\Omega:=\big(S^\Omega,\leqq\big)$\\
+	Ist $\alpha\leqq\beta$, so \textbf{dominiert} $\beta$ das $\alpha$.
 \end{lemma}
 
 \begin{aufgabe}
     Sei $N$ eine endliche Menge und 
     sei $\R^N$ mit der \textbf{Dominanzordnung}, d.h. für alle $u,v \in \R^N$ gilt
-    $$u \leq v :\iff \forall i \in N (u_i \leq v_i),$$
+    $$u \leq v :\iff \forall i \in N:u_i \leq v_i,$$
     gegeben.
-    
     Wie lässt sich $\R^N$ linear erweitern?
 \end{aufgabe}
 
@@ -125,194 +131,228 @@ Ist $\alpha\leqq\beta$, so \textbf{dominiert} $\beta$ das $\alpha$.
     $$ I^v_u := \{i \in N \| u_i \leq v_i\}.$$
 
     Nun definiere die lineare Ordnung wie folgt:
-    $$ u \leq_l v :\iff \min I^v_u \leq \min I^u_v.$$
+    $$ u \leq_l v :\iff \min I^v_u \leq \min I^u_v
+    \qquad\forall u,v\in\R^N.$$
 \end{lösung}
 
-\textbf{Frage:} Seien $(\Omega,\leq)$ und $(S,\leq)$ lineare Ordnungen. Existiert dann auch eine lineare Ordnung $(S^\Omega,\sqsubseteq)$, die $(S,\leq)^\Omega$ erweitert, d.h.
+\textbf{Frage:} Seien $(\Omega,\leq)$ und $(S,\leq)$ lineare Ordnungen. 
+Existiert dann auch eine lineare Ordnung $(S^\Omega,\sqsubseteq)$, die $(S,\leq)^\Omega$ erweitert, d.h.
 \begin{align*}
-\forall\alpha,\beta\in S^\Omega:\alpha\leq\beta\implies\alpha\sqsubseteq\beta
+	\forall\alpha,\beta\in S^\Omega:\alpha\leq\beta\implies\alpha\sqsubseteq\beta
 \end{align*}
+Die Antwort ist im Allgemeinen nein. Allerdings ist dies unter gewissen Voraussetzungen möglich (siehe unten).
 
 \begin{definition}
-Eine Ordnung $(\Omega,\leq)$ heißt \textbf{Wohlordnung} $:\gdw(\Omega,\leq)$ eine Ordnung derart ist, dass jede nichtleere Teilmenge ein (bzgl. der Ordnung) kleinstes Element enthält.
+	Eine Ordnung $(\Omega,\leq)$ heißt \textbf{Wohlordnung} 
+	$:\gdw(\Omega,\leq)$ eine Ordnung derart ist, dass jede nichtleere Teilmenge ein (bzgl. der Ordnung) kleinstes Element enthält.
 \end{definition}
 
 \begin{beispiel}
-$(\N,\leq)$ ist Wohlordnung.
+	$(\N,\leq)$ ist Wohlordnung.
+	$(\Z,\leq)$ ist \betone{keine} Wohlordnung.
 \end{beispiel}
 
 \begin{bemerkung}
-$(\Omega,\leq)$ Wohlordnung $\implies(\Omega,\leq)$ lineare Ordnung.
+	$(\Omega,\leq)$ Wohlordnung $\implies(\Omega,\leq)$ lineare Ordnung.
 \end{bemerkung}
+
 \begin{proof}
-Sei $x,y\in\Omega$. Dann hat $\lbrace x,y\rbrace$ ein kleinstes Element bzgl. $(\Omega,\leq)$. Also ist $(\Omega,\leq)$ linear.
+	Sei $x,y\in\Omega$. 
+	Dann hat $\lbrace x,y\rbrace$ ein kleinstes Element bzgl. $(\Omega,\leq)$ (da Wohlordnung). 
+	Also ist $(\Omega,\leq)$ linear.
 \end{proof}
 
-\textbf{Mitteilung.} Aus dem Auswahlaxiom bzw. dem Zornschen Lemma folgt, dass jede Menge eine Wohlordnung besitzt (d.h. zu jeder Menge $\Omega$ existiert $\leq$ derart, dass $(\Omega,\leq)$ Wohlordnung ist).
-
-\begin{satz}
-Sei $(\Omega,\leq)$ Wohlordnung und sei $(S,\leq)$ lineare Ordnung.\\
-Dann ist $(S^\Omega,\sqsubseteq)$ lineare Ordnung, die $(S,\leq)^\Omega$ erweitert, vermöge
-\begin{align*}
-\Omega(\alpha<\beta)&:=\lbrace x\in\Omega:\alpha x<\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\\
-\Omega(\alpha=\beta)&:=\lbrace x\in\Omega\mid\alpha x=\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\\
-\Omega(\alpha>\beta)&:=\lbrace x\in\Omega:\beta x<\alpha x\rbrace &\forall\alpha,\beta\in S^\Omega
-\end{align*}
-Setze dann
-$\alpha\sqsubseteq\beta:\gdw\Omega(\beta>\alpha)=\emptyset$ oder $\alpha=\beta$ oder $\Omega(\alpha<\beta)$ und $\Omega(\beta>\alpha)$ sind nichtleer und das kleinste Element von $\big(\Omega(\alpha<\beta),\leq\big)$ ist kleiner als das kleinste Element von $\big(\Omega(\beta<\alpha),\leq\big)$.
+\begin{satz}[Wohlordnungssatz]
+ Aus dem Auswahlaxiom bzw. dem Zornschen Lemma folgt, dass jede Menge eine Wohlordnung besitzt 
+(d.h. zu jeder Menge $\Omega$ existiert $\leq$ derart, dass $(\Omega,\leq)$ Wohlordnung ist).
 \end{satz}
 
-\begin{satz}
-Sei $(\Omega,\leq_\Omega)$ Wohlordnung und sei $(S,\leq_S)$ lineare Ordnung.\\
-Dann ist $(S^\Omega,\sqsubseteq)$ via
-\begin{align*}
-\alpha\sqsubseteq\beta:\Longleftrightarrow\alpha=\beta\vee\exists x\in\Omega:\Big(\alpha x<_S\beta x\wedge\forall t\in\Omega:\big(t<_\Omega x\implies \alpha t=\beta t\big)\Big)
-\\&\forall\alpha,\beta\in S^\Omega
-\end{align*}
-eine lineare Ordnung definiert, die $(S,\leq_S)^\Omega$ erweitert.
+%\begin{satz}
+%	Sei $(\Omega,\leq)$ Wohlordnung und sei $(S,\leq)$ lineare Ordnung.\\
+%	Dann ist $(S^\Omega,\sqsubseteq)$ lineare Ordnung, die $(S,\leq)^\Omega$ erweitert, vermöge
+%	\begin{align*}
+%		\Omega(\alpha<\beta)&:=\lbrace x\in\Omega:\alpha x<\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\\
+%		\Omega(\alpha=\beta)&:=\lbrace x\in\Omega\mid\alpha x=\beta x\rbrace &\forall \alpha,\beta\in S^\Omega\
+%		\Omega(\alpha>\beta)&:=\lbrace x\in\Omega:\beta x<\alpha x\rbrace &\forall\alpha,\beta\in S^\Omega
+%	\end{align*}
+%	Setze dann
+%	$\alpha\sqsubseteq\beta:\gdw\Omega(\beta>\alpha)=\emptyset$ oder $\alpha=\beta$ oder $\Omega(\alpha<\beta)$
+%	und $\Omega(\beta>\alpha)$ sind nichtleer und das kleinste Element von $\big(\Omega(\alpha<\beta),\leq\big)$ 
+%	ist kleiner als das kleinste Element von $\big(\Omega(\beta<\alpha),\leq\big)$.
+%\end{satz}
+
+\begin{satz}\label{satzLexiko}
+	Sei $(\Omega,\leq_\Omega)$ Wohlordnung und sei $(S,\leq_S)$ lineare Ordnung.\\
+	Dann ist $(S^\Omega,\sqsubseteq)$ via
+	\begin{align*}
+		\alpha\sqsubseteq\beta:\Longleftrightarrow\alpha=\beta\vee\exists x\in\Omega:\Big(\alpha x<_S\beta x\wedge\forall t\in\Omega:\big(t<_\Omega x\implies \alpha t=\beta t\big)\Big)
+		~\forall\alpha,\beta\in S^\Omega
+		\end{align*}
+	eine lineare Ordnung definiert, die die Dominanzordnung $(S,\leq_S)^\Omega$ erweitert.
 \end{satz}
 
 \begin{definition}
-Die \textbf{Lexikografische Ordnung} ist definiert als
-\begin{align*}
-\text{LEX}\big((\Omega,\leq),(S,\leq)\big):=\big(S^\Omega,\sqsubseteq\big)
-\end{align*}
+	Die \textbf{Lexikografische Ordnung} ist definiert als die Ordnung aus Satz \ref{satzLexiko}:
+	\begin{align*}
+		\text{LEX}\big((\Omega,\leq),(S,\leq)\big):=\big(S^\Omega,\sqsubseteq\big)
+	\end{align*}
 \end{definition}
 
 \begin{bemerkung}
-$(S^\Omega,\sqsubseteq)$ ist die \textbf{lexikografische} Ordnungserweiterung von $(S,\leq_S)^\Omega$ via $(\Omega,\leq_\Omega)$.
+	$(S^\Omega,\sqsubseteq)$ ist die \textbf{lexikografische} Ordnungserweiterung von $(S,\leq_S)^\Omega$ via $(\Omega,\leq_\Omega)$.
 \end{bemerkung}
 
-Ist $(S,\leq)$ nicht linear, dann ist $(S^\Omega,\sqsubseteq)$ immer noch Erweiterung von $(S,\leq)^\Omega$ Es gilt:
+\begin{beispiel}
+	Betrachte den $\R^{\underline{n}}$, also $\Omega=\underline{n}\overset{\Def}{=}\lbrace0,\ldots,n-1\rbrace$ und $S=\R$, beide versehen mit den Standardordnungen $(R,\leq_\R)$ und $(\underline{n},\leq_\N)$.
+	Dann haben wir zunächst die Dominanzordnung
+	\begin{align*}
+		u\leqq v:\Longleftrightarrow \forall i\in\underline{n}:u_i\leq_\R v_i\qquad\forall u,v\in\R^{\underline{n}}
+	\end{align*}
+	welche aber keine lineare Ordnung ist.
+	Jetzt kommt die lexikografische Ordnung
+	\begin{align*}
+		u\sqsubseteq v:\Longleftrightarrow u=v\vee\exists n\in\underline{n}:
+		\big(u_n\leq_\R v_n\wedge\forall m\leq_\N n: u_m=v_m\big)
+	\end{align*}
+	ins Spiel und liefert eine lineare Ordnung auf $\R^{\underline{n}}$.
+\end{beispiel}
+
+Ist $(S,\leq)$ nicht linear, dann ist $(S^\Omega,\sqsubseteq)$ immer noch Erweiterung von $(S,\leq)^\Omega$.
+Es gilt:
 \begin{align*}
-\big(S^\Omega,\sqsubseteq\big)\text{ linear}\Longleftrightarrow(S,\leq)\text{ linear}
+	\big(S^\Omega,\sqsubseteq\big)\text{ linear}\Longleftrightarrow(S,\leq)\text{ linear}
 \end{align*}
 und außerdem
 \begin{align*}
-(\Omega,\leq)\text{ Wohlord. und }(S,\leq)\text{ Ord. }\implies\big(S^\Omega,\sqsubseteq\big)\text{ Ord.}
+	(\Omega,\leq)\text{ Wohlord. und }(S,\leq)\text{ Ord. }\implies\big(S^\Omega,\sqsubseteq\big)\text{ Ord.}
 \end{align*}
 
 \section{Ascending / Descending chain condition (ACC / DCC)}
 \begin{definition}
-Eine Ordnung $(P,\leq)$ heißt
-\begin{itemize}
-\item \textbf{ACC / noethersch}
-\begin{align*}
-:\Longleftrightarrow\forall(a_1\leq a_2\leq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n
-\end{align*}
-\item \textbf{DCC / artinsch}
-\begin{align*}
-:\Longleftrightarrow\forall(a_1\geq a_2\geq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n
-\end{align*}
-\end{itemize}
+	Eine Ordnung $(P,\leq)$ heißt
+	\begin{itemize}
+		\item \define{ACC / noethersch} "Jede aufsteigende Kette terminiert"
+		\begin{align*}
+			:\Longleftrightarrow\forall(a_1\leq a_2\leq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n
+		\end{align*}
+		\item \textbf{DCC / artinsch} "Jede absteigende Kette terminiert"
+		\begin{align*}
+			:\Longleftrightarrow\forall(a_1\geq a_2\geq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n
+		\end{align*}
+	\end{itemize}
 \end{definition}
 
 \begin{lemma}
-Es gilt:
-\begin{enumerate}
-\item $(P,\leq)$ Wohlordnung $\Longleftrightarrow (P,\leq)$ DCC
-\item $(P,\leq)$ ACC und DCC $\Longleftrightarrow P$ endlich
-\end{enumerate}
+	Es gilt:
+	\begin{enumerate}
+		\item $(P,\leq)$ Wohlordnung $\Longleftrightarrow (P,\leq)$ DCC
+		\item $(P,\leq)$ ACC und DCC $\Longleftrightarrow P$ endlich
+	\end{enumerate}
 \end{lemma}
 
 \begin{bemerkung}\
-\begin{itemize}
-\item ACC: ``Jede aufsteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein maximales Element (aufsteigende Kettenbedingung)
-\item DCC: ``Jede absteigende Kette terminiert'' $\gdw$ jede Teilmenge hat ein minimales Element.
-\end{itemize}
+	\begin{itemize}
+		\item ACC $\gdw$ jede Teilmenge hat ein maximales Element (aufsteigende Kettenbedingung)
+		\item DCC $\gdw$ jede Teilmenge hat ein minimales Element.
+	\end{itemize}
 \end{bemerkung}
 
 \begin{beispiel}[Duale Verbände]\
-\begin{itemize}
-\item ACC: $\text{Id}(\Z)=\big\lbrace n\cdot\Z:n\in\N\big\rbrace$ mit $n\Z\leq m\Z:\Longleftrightarrow n\Z\subseteq m\Z$
-\item DCC: \textbf{Teilerordnung} $(\N,\leq_\tau)$ mit $n\leq_ \tau m:\Longleftrightarrow\exists t\in\N:n\cdot t=m$
-\end{itemize}
-Anti-Isomorphismus:
-\begin{align*}
-\varphi:(\N,\leq_\tau)\to\text{Id}(\Z),\qquad n\mapsto n\Z\\
-n\leq_\tau m\Longleftrightarrow n\Z\supseteq m\Z\\
-\implies(\N,\leq_\tau)^{\text{op}}\cong\text{Id}(\Z)
-\end{align*}
+	\begin{itemize}
+		\item ACC: $\text{Id}(\Z)=\big\lbrace n\cdot\Z:n\in\N\big\rbrace$ mit $n\Z\leq m\Z:\Longleftrightarrow n\Z\subseteq m\Z$
+		\item DCC: \textbf{Teilerordnung} $(\N,\leq_\tau)$ mit $n\leq_ \tau m:\Longleftrightarrow\exists t\in\N:n\cdot t=m$
+	\end{itemize}
+	Anti-Isomorphismus:
+	\begin{align*}
+		\varphi:(\N,\leq_\tau)\to\text{Id}(\Z),\qquad n\mapsto n\Z\\
+		n\leq_\tau m\Longleftrightarrow n\Z\supseteq m\Z\\
+		\implies(\N,\leq_\tau)^{\text{op}}\cong\text{Id}(\Z)
+	\end{align*}
 \end{beispiel}
 
 \begin{definition}
-Ist $f:A\to B$ eine Abbildung, dann ist der \textbf{Kern} von $f$ definiert als
-\begin{align*}
-\ker(f):=\big\lbrace(a_1,a_2)\in A^2:f(a_1)=f(a_2)\big\rbrace
-\end{align*}
+	Ist $f:A\to B$ eine Abbildung, dann ist der \textbf{Kern} von $f$ definiert als
+	\begin{align*}
+		\ker(f):=\big\lbrace(a_1,a_2)\in A^2:f(a_1)=f(a_2)\big\rbrace
+	\end{align*}
 \end{definition}
 
 \section{Das Delta}
+
 \begin{definition}
-\begin{align*}
-\delta:\big\lbrace(x,y)\in[0,\infty]^2:x\leq y\big\rbrace\to[0,\infty],\qquad (x,y)\mapsto\left\lbrace\begin{array}{cl}
-y-x,&\falls y\neq\infty\\
-\infty, &\falls x\neq\infty,y=\infty\\
-0, &\falls x=\infty
-\end{array}\right.
-\end{align*}
+	\begin{align*}
+		\delta:\big\lbrace(x,y)\in[0,\infty]^2:x\leq y\big\rbrace\to[0,\infty],\qquad (x,y)\mapsto\left\lbrace\begin{array}{cl}
+			y-x,&\falls y\neq\infty\\
+			\infty, &\falls x\neq\infty,y=\infty\\
+			0, &\falls x=\infty
+		\end{array}\right.
+	\end{align*}
 \end{definition}
 
 \begin{lemma}
-Eine mögliche Erweiterung von $\delta$ ist:
-\begin{align*}
-\overline{\delta}:[0,\infty]^2\to[0,\infty],\qquad
-(x,y)\mapsto\inf\big\lbrace t\in[0,\infty]:y\leq x+t\big\rbrace
-\end{align*}
+	Eine mögliche Erweiterung von $\delta$ ist:
+	\begin{align*}
+		\overline{\delta}:[0,\infty]^2\to[0,\infty],\qquad
+		(x,y)\mapsto\inf\big\lbrace t\in[0,\infty]:y\leq x+t\big\rbrace
+	\end{align*}
 \end{lemma}
 
 \begin{bemerkung}
-Für $x,y\in[0,\infty]$ mit $x\leq y$ ist also $\delta(x,y)$ das kleinste Element $t$ in $\big([0,\infty],\leq\big)$ mit $x+t=y$, d.h. $t$ ist die kleinste ``Ergänzung'' von $x$ zu $y$ im natürlich geordneten Monoid $\big([0,\infty],+,0\big)$\\
-Man erkennt hieraus leicht, dass $\delta$ \textit{funktoriell} ist:
-\begin{align*}
-\delta(x,x)=0,\qquad\delta(x,y)+\delta(y,z)=\delta (x,z)\qquad\forall x\leq y\leq z
-\end{align*}
-hingegen $\overline{\delta}$ nicht. Weiterhin ist $\delta$ modular:
-\begin{align*}
-\delta(x,x\vee y)=\delta(x\wedge y,y)
-\end{align*}
-genauso wie $\overline{\delta}$!\\
-Aber wenn $\overline{\delta}$ schon nicht funktoriell ist, dann gilt zumindest die Dreiecksungleichung
-\begin{align*}
-\overline{\delta}(x,z)\leq\overline{\delta}(x,y)+\overline{\delta}(y,z)
-\end{align*}
-Definieren wir $\overline{\delta}^{\text{op}}$ als $\overline{\delta}^{\text{op}}(y,x):=\overline{\delta}(x,y)$. Dann ist
-\begin{align*}
-d:[0,\infty]^2\to[0,\infty],\qquad (x,y)\mapsto\overline{\delta}(x,y)+\overline{\delta}^{\text{op}}(x,y)
-\end{align*}
-eine Metrik mit
-\begin{align*}
-d(x,y)=\left\lbrace\begin{array}{cl}
-|x-y|, &\falls x\neq\infty,y\neq0\\
-0, &\falls x=y=\infty\\
-\infty, &\sonst
-\end{array}\right.
-\end{align*}
+	Für $x,y\in[0,\infty]$ mit $x\leq y$ ist also $\delta(x,y)$ das kleinste Element $t$ in $\big([0,\infty],\leq\big)$ mit $x+t=y$, 
+	d.h. $t$ ist die kleinste ``Ergänzung'' von $x$ zu $y$ im natürlich geordneten Monoid $\big([0,\infty],+,0\big)$\\
+	Man erkennt hieraus leicht, dass $\delta$ \textit{funktoriell} ist:
+	\begin{align*}
+		\delta(x,x)=0,\qquad\delta(x,y)+\delta(y,z)=\delta (x,z)\qquad\forall x\leq y\leq z
+	\end{align*}
+	hingegen $\overline{\delta}$ nicht. 
+	Weiterhin ist $\delta$ modular:
+	\begin{align*}
+		\delta(x,x\vee y)=\delta(x\wedge y,y)
+	\end{align*}
+	genauso wie $\overline{\delta}$!\\
+	Aber wenn $\overline{\delta}$ schon nicht funktoriell ist, dann gilt zumindest die Dreiecksungleichung
+	\begin{align*}
+		\overline{\delta}(x,z)\leq\overline{\delta}(x,y)+\overline{\delta}(y,z)
+	\end{align*}
+	Definieren wir $\overline{\delta}^{\text{op}}$ als $\overline{\delta}^{\text{op}}(y,x):=\overline{\delta}(x,y)$. 
+	Dann ist
+	\begin{align*}
+		d:[0,\infty]^2\to[0,\infty],\qquad (x,y)\mapsto\overline{\delta}(x,y)+\overline{\delta}^{\text{op}}(x,y)
+	\end{align*}
+	eine Metrik mit
+	\begin{align*}
+		d(x,y)=\left\lbrace\begin{array}{cl}
+			|x-y|, &\falls x\neq\infty,y\neq0\\
+			0, &\falls x=y=\infty\\
+			\infty, &\sonst
+		\end{array}\right.
+	\end{align*}
 \end{bemerkung}
 
 \begin{definition}
-Sei $\P=(P,R)$ eine Präordnung (d.h. reflexiv + transitiv) und sei $\mathbb{M}=(M,\ast,\varepsilon)$ ein Monoid. Dann heiße eine Abbildung
-\begin{align*}
-\Delta:R\to M
-\end{align*}
-\textbf{funktoriell} bzgl. $(\P,\mathbb{M}):\gdw\forall pRt, tRq$:
-\begin{enumerate}
-\item $\Delta(p,p)=\varepsilon$
-\item $\Delta(p,t)\ast\Delta(t,q)=\Delta(p,q)$
-\end{enumerate}
+	Sei $\P=(P,R)$ eine Präordnung (d.h. reflexiv + transitiv) und sei $\mathbb{M}=(M,\ast,\varepsilon)$ ein Monoid. 
+	Dann heiße eine Abbildung
+	\begin{align*}
+		\Delta:R\to M
+	\end{align*}
+	\textbf{funktoriell} bzgl. $(\P,\mathbb{M}):\gdw\forall pRt, tRq$:
+	\begin{enumerate}
+		\item $\Delta(p,p)=\varepsilon$
+		\item $\Delta(p,t)\ast\Delta(t,q)=\Delta(p,q)$
+	\end{enumerate}
 \end{definition}
  
 \begin{beispiel}
-\begin{align*}
-&\left\lbrace\begin{matrix}
-\P=\big([0,\infty],\leq\big)\\
-\mathbb{M}=\big([0,\infty],+,0\big)
-\end{matrix}\right.\implies \mit\Delta:=\delta\\
-&\left\lbrace\begin{array}{l}
-\P=(P,R)\mit P:=[0,\infty]^{\N}\\
-\mathbb{M}=\big([0,\infty],+,0\big)\\
-\Delta:(\alpha,\beta)\mapsto\sum\limits_{n\in\N}\delta(\alpha n,\beta n)\cdot 2^{-n}
-\end{array}\right.
-\end{align*}
-Was ist mit Modularität? Definition ist zu allgemein. Join $(\vee)$ und meet $(\wedge)$ fehlen!
+	\begin{align*}
+		&\left\lbrace\begin{matrix}
+			\P=\big([0,\infty],\leq\big)\\
+			\mathbb{M}=\big([0,\infty],+,0\big)
+		\end{matrix}\right.\implies \mit\Delta:=\delta\\
+		&\left\lbrace\begin{array}{l}
+			\P=(P,R)\mit P:=[0,\infty]^{\N}\\
+			\mathbb{M}=\big([0,\infty],+,0\big)\\
+			\Delta:(\alpha,\beta)\mapsto\sum\limits_{n\in\N}\delta(\alpha n,\beta n)\cdot 2^{-n}
+		\end{array}\right.
+	\end{align*}
+	Was ist mit Modularität? Definition ist zu allgemein. Join $(\vee)$ und meet $(\wedge)$ fehlen!
 \end{beispiel}

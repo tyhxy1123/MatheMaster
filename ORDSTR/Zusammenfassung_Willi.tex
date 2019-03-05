@@ -1,0 +1,135 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\documentclass[12pt]{scrartcl}
+\usepackage{palatino,setspace,fancyhdr}
+\usepackage[left=10mm,right=10mm,top=25mm,bottom=25mm]{geometry}
+\onehalfspacing
+\pagestyle{fancy}
+\chead{Zusammenfassung ORDSTR}
+\lfoot{Version: \today}
+\rfoot{Seite \thepage}
+\lhead{}
+\rhead{Willi Sontopski}
+
+\input{../latex/packages}
+\input{../latex/theoremenvironments}
+\input{../latex/commands}
+\input{../latex/commands_Willi}
+\input{commands_ORDSTR}
+
+%%%% Platzsparungen:
+\setitemize{leftmargin=*} % itemize-Umbegungen werden nicht eingerückt
+\setkomafont{section}{\large}
+
+\begin{document}
+	\section{Ordnungsstrukturen}
+	\begin{itemize}
+		\item $R\subseteq P\times P$ \define{binäre Relation}, $\mathscr{R}:=(P,R)$ \define{binäres Relat}, $pRq:\gdw (p,q)\in R$
+		\item \define{reflexiv} $:\gdw pRp$; \define{transitiv} $:\gdw pRt\wedge tRq\Rightarrow pRq$; \define{antisym} $:\gdw pRq\wedge qRp\Rightarrow p=q$, \define{sym} $:\gdw pRq\Rightarrow qRp$; \define{linear/total} $:\gdw pRq\vee qRp$
+		\item \define{Präordnung} $:\gdw$ reflexiv + transitiv; \define{partielle O.} $:\gdw$ Präordnung + antisym; \define{lineare Ordnung / Totalordnung} $:\gdw$ Präordung + total
+		\item $B^A:=\lbrace f\colon A\to B\rbrace$;  \define{Mutimenge} ist $\M\in\N^M$, also $\MM\colon M\to\N$ (Elemente können mehrfach vork.)
+		\item Ist $(S,\leq)$ Präordnung, dann: $S^\Omega$ geordnet via \define{Dominanzordnung}\\
+		$
+		\alpha\leqq\beta:\gdw\forall\omega\in\Omega:\alpha(\omega)\leq\beta(\omega)~\forall\alpha,\beta\in S^\Omega
+		$, $(S,\leq)^\Omega:=\big(S^\Omega,\leqq\big)$
+		\item $\R^N$ mit Dominanzordnung $u\leq v:\gdw\forall i\in N:u_i\leq v_i$ kann linear erweitert werden\\
+		$I_u^v:=\lbrace i\in N: u_i\leq v_i\rbrace$, $u\leqq v:\gdw\min I_u^v\leq\min I_u^v$ via $(N,\leq)$ Totalordnung auf $N$.
+		\item $(\Omega,\leq)$ \define{Wohlordnung} $:\gdw$ jede nichtleere Teilmenge kleinstes "$\leq$" Element besitzt (z.B. $(N,\leq$);\\
+		Wohlordn. $\Rightarrow$ lineare O., \textit{Beweis.}  Sei $x,y\in\Omega\Rightarrow\lbrace x,y\rbrace$ hat Minimum $\Rightarrow\square$
+		\item \define{Wohlordnungssatz}: Auswahlaxiom $\gdw$ Zorn $\Rightarrow$ Jede Menge besitzt Wohlordnung $\Rightarrow$ Jede Menge besitzt lineare Ordnung
+		\item $(\Omega,\leq_\Omega)$ Wohlo. und $(S,\leq_S)$ lin. O.
+		Dann ist $(S^\Omega,\sqsubseteq)$ via \define{Lex-O.}\\
+		$
+		\alpha\sqsubseteq\beta:\Longleftrightarrow\alpha=\beta\vee\exists x\in\Omega:\Big(\alpha x<_S\beta x\wedge\forall t\in\Omega:\big(t<_\Omega x\implies \alpha t=\beta t\big)\Big)
+		~\forall\alpha,\beta\in S^\Omega
+		$
+		linear geordnet, die $(S,\leq_S)^\Omega$ erweitert (denke an den $\R^{\underline{n}}$); $\big(S^\Omega,\sqsubseteq\big)\text{ linear}\Longleftrightarrow(S,\leq)\text{ linear}$
+		\item \define{ACC / noethersch} $:\gdw$ "Jede aufsteigende Kette terminiert" $:\gdw\forall(a_1\leq a_2\leq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n\gdw$ jede Teilmenge hat maximales Element
+		\item \textbf{DCC / artinsch} $:\gdw$ "Jede absteigende Kette terminiert"
+		$:\gdw\forall(a_1\geq a_2\geq\ldots)\colon\exists n\in\N\colon m\geq n\implies a_m=a_n\gdw$ Jede Teilmenge hat minimales Element $\gdw$ Wohlordnung
+		\item ACC+ DCC $\gdw P$ endlich
+		\item \define{Monoid} $(M,\cdot,\varepsilon)$ ist Halbgruppe, also $\cdot$ assoziativ und $\varepsilon$ neutrales Element
+	\end{itemize}
+	
+	\section{Funktorielle Abbildungen}
+	\begin{itemize}
+		\item Sei $\P=(P,R)$ Präordnung u. $\mathbb{M}=(M,\cdot,\varepsilon)$ Monoid. $f:R\to M$ \define{funktoriell} $:\gdw f(p,p)=\varepsilon\und f(p,t)\cdot f(t,q)=f(p,q)$; Beispiel "Delta" 
+		\item \define{Verband} ist $(V,\vee,\wedge)$ meet = $\wedge$
+	    \item Sei $\P=(P,\leq)$ Verband und $\M=(M,\ast,\varepsilon)$ Monoid. 
+	    $\Delta\colon\P\to\M$ \define{Dimensionsabbildung} $:\gdw\Delta$ funktoriell und $\Delta(p\wedge q,q)=\Delta(p,p\wedge q)$
+		\item $\Delta\colon E\to M$ \define{funktoriell} bzgl. MS $(\G,\M):\gdw\Delta\id_p=\varepsilon~\forall p\in BV$ und $\Delta(a\ast b)=\Delta a\ast\Delta b$
+	\end{itemize}
+	
+	\section{Measurement Setups und Aktionsnetzwerke}
+	\begin{itemize}
+		\item \define{Measurement Setup (MS)} $\MM=(\G,\M,\Delta)$ mit
+			\begin{itemize}
+				\item \define{Aktionsnetzwerk (ANW)} $\G=(G,\ast,\id)$ mit
+				\define{Netzwerk} $G=(V,E,\rho)$, $\rho\colon E\to V\times V$
+				\item Monoid $\M=(M,\ast,\varepsilon)$
+				\item funktorieller Abbildung $\Delta\colon E\to M$ bzgl. $(\G,\M)$
+				\item \define{Verkettungsaxiome} für $\id\colon V\to E$: $\rho(a\ast b)=(\sigma a\tau b)~\forall (a,b)\in E^{\langle2\rangle}$ und $\ast$ Assoziativ
+				\item \define{Neutralitätaxiome}: $\rho(\id p)=(p,p)$ und $\id(\sigma e)\ast e=e=e\ast\id(\tau e)$
+			\end{itemize}
+		\item Sei $E^{\langle n\rangle}\subseteq E^n$ die Menge der Pfade der Länge $n$.
+		Für $\G=(G,\ast,\id)$ ANW ist $\ast:\E^{\langle2\rangle}\to E,~(a,b)\mapsto a\ast b$
+		\item Aktionsnetzwerk $\G$ ist WAS ich messe; Monoid $\M$ ist WORIN ich messe und f.A. $\Delta$ ist WIE ich messe
+		\item \define{Schreibtischtäter}: Netzwerk mit genau einem Knoten mit ID-Loop
+		\item \define{Logistiker}: Weglassprodukt $(p,t)\ast(t,q):=(p,q)$
+		\item \define{Pfadnetzwerk}: Kleene-Star: Zu Netzwerk konkateniere alle Kanten
+		\item Konstruktion von ANWn aus NWn: ergänze ID-Lopps an alle Kanten, $\ast$ Weglassprodukt
+		
+		\item Netzwerkmorphismus ist $(G,G',\Phi:=(\Phi_{\text{vert}},\Phi_{\text{edge}}))$ mit
+		$\begin{tikzcd}[column sep=small, row sep=small]
+        E \dar{\pi_i \circ \rho} \rar{\Phi_{\text{edge}}} & E' \dar{\pi_i \circ \rho'}\\
+        V \rar{\Phi_{\text{vert}}} & V' 
+    \end{tikzcd}$
+	    \item Netzwerk $G=(V,E,\rho)$ \define{dünn} $:\gdw\rho\colon R\to V\times V$ injektiv $\gdw G$ kein Multigraph; \define{Reduktion} ist echter Graph von einem Multigraph; ist stets dünn
+	    \item Reduktionsmorphismus $\Phi^{\text{red}}$ ist Isom. $\gdw G$ dünn
+		\item Präordnungen $(P,R)$ sind die Unterstrukturen von ANWn: $V=P$ und $(a,b)\in E:\gdw aRb$, $\ast$ ist Weglassprodukt	    
+	    \item \define{Kleene-Star} von $E$ aus $G=(V,E,\rho)$:
+	    $E^{\langle\ast\rangle}:=\bigcup\limits_{k\in\N_0} E^{\langle k\rangle}$,\\
+	    $E^{\langle k\rangle}:=\lbrace(p_1,\ldots,p_k)\in E^k:\tau p_1=\sigma p_2,\ldots,\tau p_{k-1}=\sigma p_n\rbrace$; 
+	    $G^\ast:=(V,E^\ast,\rho^\ast)$ mit\\ $\rho^\ast\colon E^\ast\to V\times V,~(p_1,\ldots,p_k)\mapsto(\sigma p_1,\tau p_k)$
+	    \item Jede maximale Ordnung ist linear.
+	    \item $G=(V,E\rho)$ \define{Pfad-linear} $:\gdw\forall p\neq q\in V:$ gibt es einen Pfad dazwischen
+	    
+	    \item $G$ Pfadlinear $\gdw\Red(G)$ Pfadlinear; $G$ azyklisch $\gdw\Red(G)$ azyklisch
+	    \item Mit Zorns Lemma folgt, dass jedes azyklische Netzwerk eine azyklische Pfadlineare Erweiterung besitzt.
+
+	\end{itemize}
+	
+	\section{Der Skalenmanipulationssatz}
+	\begin{itemize}
+		\item "Wann ist die Vereinigung azyklischer Kantenmengen in $G$ azyklisch?"	
+		\item Ein NW $G=(V,E,\rho)$ heißt \define{azyklisch} falls es keine geschlossenen Pfade (Kreise) besitzt.
+		\item Sei $\G=(G,\ast,\id)$ ein ANW und NW $G=(V,E,\rho)$. 
+		$D\subseteq E$ heißt \define{azyklisch in $G$} $:\gdw G|_D=(V,D,\rho\colon D\to V\times V$ azyklisch.
+		\item \define{Komplexprodukt von Kanten}:
+		$A\GTimes B:=(A\times B)\cap E^{\langle2\rangle}~\forall A,B\in E$
+		$D^{\langle n\rangle}:=D^n\cap E^{\langle2\rangle}$ die Menge der Pfade in $G$ mit Länge $n$, die vollständig in $D$ liegen.		
+		$A\ast B=\lbrace a\ast b:(a,b)\in A\GTimes B \rbrace$
+		
+		
+		
+		\item \define{Skalen-Manipulationssatz}:
+		Sei $R,S\in 2^E$ azyklisch in $G$ mit $R\ast R\subseteq R$ und $S\GTimes R\GTimes S\subseteq S^{\langle3\rangle}$.
+	    Dann ist $R\cup S$ azyklisch in $G$.
+	    \item Idee: Wähle Teilmenge einer Ordnung, die man dann nach belieben
+            linearisiert
+        \item Betrachte Ordnung $(L, \leq)$:
+        \begin{itemize}
+        	\item $P\subseteq L$, $R:=\leq$ auf $L$
+        	\item $S$ ist lineare strikte Ordnung auf $P$ mit $R\cap P\times P$ dicht in $S$
+        	\item Dann ist $T=R\cup S$ azyklisch im ANW zu $P$
+        	\item Dann ist $T^{(\ast)}$ Ordnung auf $L$ und hat lineare Erweiterung $U$ auf $L$
+        	\item Es folgt $S\subseteq T\subseteq T^{(\ast)}\subseteq U$
+        	\item Und somit $SU\cap P\times P$
+        	\item Also kurz: $R\cap P\times P$ auf $S$ erweitern und $U$ bestimmen
+        \end{itemize}
+	\end{itemize}
+	
+\end{document}

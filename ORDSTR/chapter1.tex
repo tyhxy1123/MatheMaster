@@ -6,76 +6,79 @@
 
 \chapter{Measurement Setups}
 % {\footnote{vormals \enquote{Mini-Ausflug}}}
+
 \begin{definition}
-Ein MEASUREMENT SETUP ist ein Tripel $\mathcal{M}=(\mathbb{G},\mathbb{M},\Delta)$ bestehend aus einem \textbf{Aktionsnetzwerk} $\mathbb{G}=(G,\ast,\id)$ mit zugrundeliegendem \textbf{Netzwerk} $G=(V,E,\rho)$, einem Monoid $\mathbb{M}=(M,\ast,\varepsilon)$ und einer \textbf{funktoriellen} Abbildung $\Delta:E\to M$ bzgl. $(\mathbb{G},\mathbb{M})$.
+	Ein \define{Measurement Setup} ist ein Tripel $\mathcal{M}=(\mathbb{G},\mathbb{M},\Delta)$ bestehend aus einem 
+	\textbf{Aktionsnetzwerk} $\mathbb{G}=(G,\ast,\id)$ mit zugrundeliegendem \textbf{Netzwerk} $G=(V,E,\rho)$, 
+	einem Monoid $\mathbb{M}=(M,\ast,\varepsilon)$ und einer funktoriellen Abbildung $\Delta:E\to M$ bzgl. $(\mathbb{G},\mathbb{M})$.
 \end{definition}
 
 Interpretation:
 \begin{itemize}
-\item $\mathbb{G}$ ist WAS ich messe.
-\item $\mathbb{M}$ ist WORIN ich messe.
-\item $\Delta$ ist WIE ich (be)messe.
+	\item $\mathbb{G}$ ist WAS ich messe.
+	\item $\mathbb{M}$ ist WORIN ich messe.
+	\item $\Delta$ ist WIE ich (be)messe.
 \end{itemize}
 Weitere Einschränkungen: Ein \textbf{Netzwerk} ist definiert als Tripel $G=(V,E,\rho)$ bestehend aus Mengen $V,E$ sowie einer Abbildung $\rho:E\to V\times V$\\
 Interpretation: $V$ ist Knotenmenge / Pfeilmenge (vertex set) und $E$ ist Kantenmenge(edge set) und $\rho$ ist Strukturabbilung und wir setzen
 \begin{align*}
-(\sigma e,\tau e):=\rho e:=\rho(e)\qquad\forall e\in E\\
-\mit\sigma:=\pi_1\circ\rho,\qquad\tau:=\pi_2\circ\rho
+	(\sigma e,\tau e):=\rho e:=\rho(e)\qquad\forall e\in E\\
+	\mit\sigma:=\pi_1\circ\rho,\qquad\tau:=\pi_2\circ\rho
 \end{align*}
 wobei $\pi_1,\pi_2$ die Projektionen auf die erste bzw. die zweite Komponente sind.\\
 Ein Tripel $\mathbb{G}=(G,\ast,\id)$ heißt \textbf{Aktionsnetzwerk (ANW)}, falls $G=(V,E,\rho)$ Netzwerk ist und 
 \begin{align*}
-\ast:E^{\langle 2\rangle}\to E, (a,b)\mapsto a\ast b
+	\ast:E^{\langle 2\rangle}\to E, (a,b)\mapsto a\ast b
 \end{align*}
 Abbildung ist, wobei
 \begin{align*}
-E^{\langle 2\rangle}:=\big\lbrace (a,b)\in E\times E~\big|~\tau a =\sigma b\big\rbrace
+	E^{\langle 2\rangle}:=\big\lbrace (a,b)\in E\times E~\big|~\tau a =\sigma b\big\rbrace
 \end{align*}
 die Menge der Pfade der Länge 2 ist und $\id:V\to E$ Abbildung ist, derart, dass die \textbf{Verkettungsaxiome} gelten:
 \begin{align*}
-\rho(a\ast b)&=(\sigma a,\tau b) &\forall& (a,b)\in E^{\langle 2\rangle}\\
-(a\ast b)\ast c&=a\ast(b\ast c) &\forall& (a,b,c)\in E^{\langle 3\rangle}\text{ Assoziativität}
+	\rho(a\ast b)&=(\sigma a,\tau b) &\forall& (a,b)\in E^{\langle 2\rangle}\\
+	(a\ast b)\ast c&=a\ast(b\ast c) &\forall& (a,b,c)\in E^{\langle 3\rangle}\text{ Assoziativität}
 \end{align*}
 wobei 
 \begin{align*}
-E^{\langle 3\rangle}:=\big\lbrace(a,b,c)\in E^3~\big|~\tau a=\sigma b\text{ und }\tau b=\sigma c\big\rbrace
+	E^{\langle 3\rangle}:=\big\lbrace(a,b,c)\in E^3~\big|~\tau a=\sigma b\text{ und }\tau b=\sigma c\big\rbrace
 \end{align*}
 die Menge der Pfade der Länge 3 in $G$.
 \textbf{Neutralitäts-Axiome:}
 \begin{align*}
-\rho (\id p)&=(p,p) &\forall& p\in V\\
-\id(\sigma e)\ast e&=e=e\ast\id(\tau e) &\forall& e\in E
+	\rho (\id p)&=(p,p) &\forall& p\in V\\
+	\id(\sigma e)\ast e&=e=e\ast\id(\tau e) &\forall& e\in E
 \end{align*}
 Kanten interpretieren wir als Aktionen und Knoten als Zustände.
 
 \begin{beispiel}\
-\begin{itemize}
-\item Jedes Aktionsnetzwerk $(G, \ast, \id)$ lässt sich als Netzwerk interpretieren \\$(V, \im(E^{\langle 2 \rangle}), \rho)$
-Dies ist aber im Allgemeinen keine Oberstruktur von $G$!
-\item Pfadaktionsnetzwerk zu einem Netzwerk
-\item logistisches Aktionsnetzwerk zu einer Menge $P$:
-\begin{align*}
-    \mathbb{G}_P&:=(G\P,\ast,\id)\\
-    \id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
-    G_P&:=(P,P\times P,\id_{P\times P})\\
-    (p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
-\end{align*}
-\item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
-Sind bis auf Isomorphie einknotige Netzwerke.
-\end{itemize}
+	\begin{itemize}
+		\item Jedes Aktionsnetzwerk $(G, \ast, \id)$ lässt sich als Netzwerk interpretieren \\$(V, \im(E^{\langle 2 \rangle}), \rho)$
+		Dies ist aber im Allgemeinen keine Oberstruktur von $G$!
+		\item Pfadaktionsnetzwerk zu einem Netzwerk
+		\item logistisches Aktionsnetzwerk zu einer Menge $P$:
+		\begin{align*}
+  			\mathbb{G}_P&:=(G\P,\ast,\id)\\
+    		\id p:=\id(p)&:=(p,p), \textit{"ID-Loop"}\\
+    		G_P&:=(P,P\times P,\id_{P\times P})\\
+    		(p,t)\ast(t,q)&:=(p,q)\text{ das Weglassprodukt}
+		\end{align*}
+		\item Monoide (1-wertige ANWs), der ``Schreibtischtäter''
+		Sind bis auf Isomorphie einknotige Netzwerke.
+	\end{itemize}
 \end{beispiel}
 
 \section{Funktorialität und Netzwerkmorphismen}
 \begin{definition}
-Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. eines ANW $(\mathbb{G},\mathbb{M}):\gdw$ 
-\begin{enumerate}
-\item $\Delta \id_p=\varepsilon\qquad\forall p\in V$
-\item $\Delta (\underbrace{a\ast b}_{\text{in} E})=\underbrace{\Delta a\ast\Delta b}_{\text{in }\mathbb{M}}\qquad\forall(a,b)\in E^{\langle2\rangle}$
-\end{enumerate}
+	Die Abbildung $\Delta:E\to M$ heiße \textbf{funktoriell} bzgl. eines Measurement Setup $(\mathbb{G},\mathbb{M}):\Longleftrightarrow$ 
+	\begin{enumerate}
+		\item $\Delta \id_p=\varepsilon\qquad\forall p\in V$
+		\item $\Delta (\underbrace{a\ast b}_{\text{in} E})=\underbrace{\Delta a\ast\Delta b}_{\text{in }\mathbb{M}}\qquad\forall(a,b)\in E^{\langle2\rangle}$
+	\end{enumerate}
 \end{definition}
 
 \begin{bemerkung}
-Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
+	Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
 \end{bemerkung}
 
 \begin{definition}
@@ -113,7 +116,8 @@ Bei einem Aktionsnetzwerk handelt es sich um eine kleine kovariante Kategorie.
 \end{definition}
 
 \begin{definition}
-Sei $\mathbb{P}:=(P,R)$ ein binäres Relat. Definiere $G\mathbb{P}:=(P,R,\rho)$ mit $\rho:R\hookrightarrow P\times P$ als das \textbf{zu $\mathbb{P}$ gehörige Netzwerk}.
+	Sei $\mathbb{P}:=(P,R)$ ein binäres Relat. 
+	Definiere $G\mathbb{P}:=(P,R,\rho)$ mit $\rho:R\hookrightarrow P\times P$ als das \textbf{zu $\mathbb{P}$ gehörige Netzwerk}.
 \end{definition}
 
 \begin{definition}
@@ -233,7 +237,8 @@ Unsere Überlegungen folgen allgemeinen Konstruktionen von UnterANWs:
 \end{beispiel}
 
 \begin{proposition}[Erzeugung von Unterstrukturen in ANWen]\enter
-    Sei $\G=(G,\ast,\id)$ ein ANW mit $G=(V,E,\rho)$ zugehöriges Netzwerk. Dann sei für $A,C\in 2^E$ stets das \textbf{Minkowski-Produkt} von $A$ und $C$ in $\G$ definiert als
+    Sei $\G=(G,\ast,\id)$ ein ANW mit $G=(V,E,\rho)$ zugehöriges Netzwerk. 
+    Dann sei für $A,C\in 2^E$ stets das \textbf{Minkowski-Produkt} von $A$ und $C$ in $\G$ definiert als
     \begin{align*}
         A\ast C
         :=A\ast_{\text{Mink}} C
@@ -285,7 +290,8 @@ Sei $B$ eine Menge (von Buchstaben). Dann ist
 \begin{align*}
     K_B:=\big(\lbrace\perp\rbrace,B,B\to\lbrace(\perp,\perp)\rbrace\Big)
 \end{align*}
-ein 1-knotiges Netzwerk, das sogenannte \textbf{Kleeblatt-Netzwerk} zu $B$.($\lbrace\perp\rbrace$ ist der eine Knoten, $B$ die Kantenmenge (Buchstaben) und $B\to\lbrace(\perp,\perp)\rbrace$ die Strukturabbildung)\nl
+ein 1-knotiges Netzwerk, das sogenannte \textbf{Kleeblatt-Netzwerk} zu $B$.
+($\lbrace\perp\rbrace$ ist der eine Knoten, $B$ die Kantenmenge (Buchstaben) und $B\to\lbrace(\perp,\perp)\rbrace$ die Strukturabbildung)\nl
 \textbf{Allgemeine Notation:} Sei $G=(V,E,\rho)$ Netzwerk und sei
 \begin{align*}
     E^{\langle+\rangle}:=\bigcup\limits_{n\in\N_+} E^{\langle n\rangle}
@@ -353,6 +359,7 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
         P(G,\omega) \rar{\Phi} & G'
     \end{tikzcd}$$
 \end{proposition}
+
 \begin{proof}
     \underline{Eindeutigkeit:} Beachte dass für $(e_1,\ldots,e_n) \in E^{\langle n\rangle}, n \in \N_+$,stets gilt
     $$  (e_1,\ldots, e_n) = e_1 \circledast \ldots \circledast e_n.$$
@@ -364,12 +371,14 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
 
 \begin{bemerkung}[Anwendung ID-Loop bereinigt]
     Sei $\G = (G, \ast, \id)$ ANW. Sei $G := (V, E^\bullet, \rho^\bullet)$ mit $E^\bullet := E - \id V$ und
-    $\rho^\bullet := \rho|_{E^\bullet}$. Und sei $\omega := \id|_{(V \to \id V)}$. Dann ist $\Psi:= (\id_V, i_{E^\bullet,E})$ ein 
+    $\rho^\bullet := \rho|_{E^\bullet}$. Und sei $\omega := \id|_{(V \to \id V)}$. 
+    Dann ist $\Psi:= (\id_V, i_{E^\bullet,E})$ ein 
     Morphismus von $G^\bullet$ nach $G$ und es existiert genau ein Funktor $\Phi$ von $\P(G^\bullet, \omega)$ nach $\G$ mit
     $\begin{tikzcd}
         G^\bullet \dar{\Gamma} \drar{\Psi}\\
         P(G^\bullet,\omega) \rar{\Phi} & G
-    \end{tikzcd}$ ist kommutativ. In der Tat ist $\Phi=(\id_V, \varphi)$ mit $\varphi:(E^\bullet)^{\langle\ast\rangle} \to E$
+    \end{tikzcd}$ ist kommutativ. 
+    In der Tat ist $\Phi=(\id_V, \varphi)$ mit $\varphi:(E^\bullet)^{\langle\ast\rangle} \to E$
     via $$\varphi(e_1, \ldots, e_n) := \varphi e_1 \ast \ldots \ast e_n$$
     für $(e_1, \ldots, e_n) \in (E^\bullet)^{\langle +\rangle}$ und $\varphi(\id p):= \id p$ für $p \in P$.
 \end{bemerkung}
@@ -482,9 +491,6 @@ Also ist jedes Netzwerk ein Unter-Netzwerk eines Aktionsnetzwerkes, i. A. nicht 
     Also gilt $\overline{e} \in \{e_1, \ldots,e_n\}$. Sei ohne Einschränkung $\overline{e} = e_1$. Dann ist $(e_2, \ldots, e_n)$ ein
     Pfad von $q$ nach $p$ in $G$ was im Widerspruch zu (2) steht.
 \end{proof}
-
-% @Lukas: Ich schreibe mal neu auf, da ich in deinen Aufzeichnungen nicht rumpfuschen will.
-%TODO bitte mergen (die beiden Lemmas müssten semantisch ja äquivalent sein. Kannst aber auch einfach beide stehen lassen.
 
 \begin{lemma}\label{lemmaAnwendung}
 Sei $G=(V,E,\rho)$ azyklisches Netzwerk. Dann gilt genau eine der folgenden Aussagen:
@@ -747,6 +753,7 @@ Zurück zum Begriff des Measurement Setups.
 \end{beispiel}
 
 \subsection{Ordnungen und Verbände}
+
 \begin{proposition}
     \label{prop:MeasSetupÜberGruppe}
     Sei $\P = (P, R)$ Präordnung und sei $\mathcal{S} = (S,\ast,\varepsilon)$ Gruppe.
@@ -762,6 +769,7 @@ Zurück zum Begriff des Measurement Setups.
         Ergebins: $(\G(\mathscr{A},R),(S,\ast,\varepsilon),\mu\circ\Delta = \Delta^\mu)$ ist Measurement Setup.
     \end{proof}
 \end{proposition}
+
 \begin{definition}[Verband]
     Sei $\P = (P, \leq_\P)$ eine Ordnung derart, dass zu jedem $p,q\in P$ stets $s, u\in P$ existieren mit
     \begin{equation}
@@ -817,7 +825,7 @@ Zurück zum Begriff des Measurement Setups.
         \textit{"Euclid's parallel postulate"}
     \end{enumerate}
 
-    Namen: "Max Dehn", "David Hilbert"(Grundlagen der Geometrie ende des 19.Jh)\nl
+    Namen: "Max Dehn", "David Hilbert"(Grundlagen der Geometrie Ende des 19.Jh)\nl
     Damit können wir ein Measurement Setup $(\G_P, \M, \Delta)$ folgendermaßen einführen:
     \begin{itemize}
         \item $\M = (\text{Translationen}, \ast, \id_p)$
@@ -936,6 +944,7 @@ Das duale Konzept sind \textbf{terminale Knoten} bzw.~\textbf{terminale Objekte}
     %             &
     %     \end{tikzcd}
     % \]
+    
     \begin{proof}
         Da $\Delta$ funktoriell ist, gilt
         \[
@@ -950,6 +959,7 @@ Das duale Konzept sind \textbf{terminale Knoten} bzw.~\textbf{terminale Objekte}
         \]
     \end{proof}
 \end{proposition}
+
 Sind $a, b$ Kanten in einem ANW $\G$ mit $a*b, b*a\in \id V$.
 % \[
 %     \begin{tikzcd}
@@ -1061,7 +1071,7 @@ d.h.~$\Delta(a^{-1}) = (\Delta a)^{-1}$.
         Sei $P := e_0\to e_1 \to \ldots \to e_0$ ein geschlossener Pfad in $G|T$.
         Nach Voraussetzung kann $P$ weder ganz in $R$, noch in $S$ liegen.
         Der Pfad muss also von $S$ nach $R$ und wieder nach $S$ führen, wegen
-        \eqref{thm:ScaleManipRTransitive} können wir den Teil in $R$ auf $p_i$ kürzen.
+        \eqref{thm:ScaleManipRTransitive} können wir den Teil in $R$ auf $e_i$ kürzen.
         Somit gibt es (ohne Einschränkung) einen Teilpfad $e_{i-1} \to e_i \to e_{i+1}$, sodass $e_{i-1}, e_{i+1}\in S$ und $e_i\in R$.
         Aus \eqref{thm:ScaleManipSContractive} folgt, dass dann ganz $P$ in $S$
         liegt, im Widerspruch zur Annahme, das $S$ azyklisch ist.
@@ -1076,7 +1086,7 @@ Eine Anwendung zum (\emph{a posteriori-}) Schummeln im Sport:
         \Lm = (\Q_{\geq 0}^D, \leq) := (\Q_{\geq 0}, \leq)^D,
     \]
     wobei $D$ eine Menge von Disziplinen ist, mit Ergebnissen in $\Q_{\geq 0}$ (Hochsprung, Weitsprung, 100m-Lauf).
-    Sei $P\subset L$ eine Menge von Ergebnissen.
+    Sei $P\subset L$ eine endliche Menge von Ergebnissen.
     Dann ist $\P := \Lm|P := (P, \leq_\P)$ mit $(\leq_\P) := (\leq) \cap (P\times P)$ eine Ordnung.
     Sei $\alpha$ maximales Element in $\P$.
     Ziel ist es, die zu $\alpha$ gehörige Person zum Sieger zu küren.
@@ -1087,7 +1097,7 @@ Eine Anwendung zum (\emph{a posteriori-}) Schummeln im Sport:
 
     Setze $\G := \G\Lm$ und $R := (<_\Lm)$, sowie $S := (\sqsubset)$.
     Dann sind $R$ und $S$ als strikte Ordnungen azyklisch in $\G\Lm$
-    und es gilt $R*R\subset R$ \eqref{thm:ScaleManipRTransitive}, da $(L, R)$ transitivbezüglich des Minkowski-Produktes $(*)$ zu $\G\Lm$ ist.
+    und es gilt $R*R\subset R$ \eqref{thm:ScaleManipRTransitive}, da $(L, R)$ transitiv bezüglich des Minkowski-Produktes $(*)$ zu $\G\Lm$ ist.
     Außerdem gilt \eqref{thm:ScaleManipSContractive}, denn für
     \[
         P :=
