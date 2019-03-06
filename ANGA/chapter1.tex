@@ -118,14 +118,14 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     Da $M$ ein Körper ist und $L \subseteq M$ sowie $K(T) \subseteq M$ folgt aus $L(T) = K(T)(L)$
     $$ L(T) \subseteq M \implies M = L(T) \implies [L(T):K(T)] \leq [L:K].$$
 
-    Sei also $x_1,...,x_n \in L$ $K$-linear unabhängig. Wir zeigen nun, dass dann
-    $x_1,...,x_n \in L(T)$ $K(T)$-linear unabhängig ist.
+    Sei also $x_1,\ldots,x_n \in L$ $K$-linear unabhängig. Wir zeigen nun, dass dann
+    $x_1,\ldots,x_n \in L(T)$ $K(T)$-linear unabhängig ist.
     
     Angenommen $$ \sum\limits_{i=1}^n f_i(T)x_i = 0$$ mit $f_i(T) \in K(T)$, nicht alle 0.
     O.E. seien $f_i(T) \in K[T]$ und es gibt keinen nicht-konstanten Teiler aller $f_i$.
     Dann folgt es existiert $i$ und $\tau \in K$ mit $f_i(\tau) \neq 0$. 
     Damit gilt also $$ \sum\limits_{i=1}^n f_i(\tau)x_i = 0.$$
-    Da $x_1,...,x_n$ $K$-linear unabhängig folgt aber $f_i(\tau) = 0$ für alle $i$.
+    Da $x_1,\ldots,x_n$ $K$-linear unabhängig folgt aber $f_i(\tau) = 0$ für alle $i$.
 
 \end{proof}
 
@@ -141,9 +141,9 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 
 \begin{definition}
     \begin{enumerate}[label=\arabic*)]
-        \item $a_1,...,a_n \in F$ \textbf{algebraisch unabhängig} über $K$,\\
-        wenn für alle $f \in K[X_1,...,X_n]$:
-        $$ f(a_1,...,a_n) = 0 \implies f=0. $$
+        \item $a_1,\ldots,a_n \in F$ \textbf{algebraisch unabhängig} über $K$,\\
+        wenn für alle $f \in K[X_1,\ldots,X_n]$:
+        $$ f(a_1,\ldots,a_n) = 0 \implies f=0. $$
 
         \item $(a_i)_{i \in I}$ Familie in $F$ ist \textbf{algebraisch unabhängig},
         wenn für alle endlichen Teilmengen $J \subseteq I$:
@@ -164,21 +164,23 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     $\X = (x_i)_{i \in I}$ ist genau dann Transzendenzbasis von $F|K$,
     wenn $\X$ maximal algebraisch unabhängig in $F$ über $K$ ist.
     
-    Insbesondere existiert ein Transzendenzbasis von $F|K$.
+    Insbesondere existiert eine Transzendenzbasis von $F|K$.
 \end{satz}
 
 \begin{proof}
     \begin{itemize}[label=]
         \item \underline{$\Leftarrow$:} $x \in F \setminus K(\X) \implies \X \cup \{x\}$ ist algebraisch abhängig, 
-        d.h es existieren $i_1,...,i_n$ und $f \in K[X_1,...,X_n, X] \setminus \{0\}$ mit 
-        $$ f(x_{i_1},...,x_{i_n},x) = 0. $$
-        Da $x_{i_1},...,x_{i_n}$ algebraisch unabhängig ist $\deg_X f > 0$ 
-        und somit ist $x$ algebraisch über $K(x_{i_1},...,x_{i_n})$.
+        d.h es existieren $i_1,\ldots,i_n$ und $f \in K[X_1,\ldots,X_n, X] \setminus \{0\}$ mit 
+        $$ f(x_{i_1},\ldots,x_{i_n},x) = 0. $$
+        Da $x_{i_1},\ldots,x_{i_n}$ algebraisch unabhängig ist $\deg_X f > 0$ 
+        und somit ist $x$ algebraisch über $K(x_{i_1},\ldots,x_{i_n})$.
         
-        \item \underline{$\Rightarrow$:} $x \in F \setminus \X \implies x$ algebraisch über $K(\X)$,
-        d.h. es gibt $0 \neq f \in K(\X)[X]$ mit $f(x) = 0$. 
-        $\implies$ es existiert $0\neq g \in K[X_1,...,X_n,X]$ und $i_1,...,i_n \in I$ mit
-        $g(x_{i_1},...,x_{i_n},x) = 0$ somit sind $x_{i_1},...,x_{i_n},x$ algebraisch abhängig.
+        \item \underline{$\Rightarrow$:} Sei $x \in F \setminus \X$. Dann ist $x$ algebraisch über $K(\X)$, d.h. 
+        $$ \text{es gibt } 0 \neq f \in K(\X)[X] \text{ mit } f(x) = \sum_{k=0}^m \underbrace{a_k}_{\in K(\X)} x^k = 0. $$
+        Daraus folgt die Menge $J := \{ 0 \leq j \leq m \mid a_j \ne 0\}$ ist nicht leer. 
+        Damit existiert für jedes $j \in J$ ein $0 \neq g_j \in K[X_1, \ldots,X_n]$ und $i_1,\ldots,i_n \in I$ mit
+        $g_j(x_{i_1},\ldots,x_{i_n}) = a_j$.  Also gibt es $0 \ne \sum\limits_{j \in J} g_j X^j =:g \in K[X_1, \ldots, X_n, X]$ mit 
+        $g(x_{i_1},\ldots,x_{i_n},x) = 0$ somit sind $x_{i_1},\ldots,x_{i_n},x$ algebraisch abhängig.
     \end{itemize}
 \end{proof}
 
@@ -213,7 +215,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
         Sowohl $\X$ als auch $\{x_1\} \cup (y_j)_{j \in J_0}$ sind Transzendenzbasen von $F|K$, die $x_1$ enthalten.
         Somit sind sowohl $\X^{'}:= (x_i)_{i \in I\setminus \{1\}}$ als auch $(y_j)_{j \in J_0}$ Transzendenzbasen von $F|K(x_1)$.
         \begin{align*}
-            &\implies |I \setminus\{1\}| \leq |J_0| \\
+            &\stackrel{\text{IV}}{\implies} |I \setminus\{1\}| \leq |J_0| \\
             &\implies |I| -1 \leq |J| -1 \\
             &\implies |I| \leq |J|            
         \end{align*}
@@ -221,13 +223,12 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
 \end{proof}
 
 \begin{definition}
-    Der \textbf{Transzendenzgrad} von $F|K$, 
-    $$ \trdeg(F|K) $$ ist die Mächtigkeit einer Transzendenzbasis.
+    Der \textbf{Transzendenzgrad} $\trdeg(F|K)$ von $F|K$, ist die Mächtigkeit einer Transzendenzbasis.
 \end{definition}
 
 \begin{korollar}
     Sind $K \subseteq L \subseteq F$ Körper, so ist 
-    $$ \trdeg(F|K) = \trdeg(L|K) + \trdeg(F|L). $$
+    $$ \trdeg(F|K) = \trdeg(F|L) + \trdeg(L|K). $$
 \end{korollar}
 \begin{proof}
     Ist $\mathfrak{X}$ Transzendenzbasis von $L|K$ und $\mathcal{Y}$ Transzendenzbasis von $F|L$, dann folgt
@@ -240,7 +241,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     \end{tikzcd}$$
 \end{proof}
 
-\begin{satz}
+\begin{satz}\label{satz:trdegFK}
     $F$ ist genau dann Funktionenkörper über $K$, wenn $F|K$ endlich erzeugt ist und 
     $$ \trdeg(F|K) = 1. $$
 \end{satz}
@@ -252,7 +253,7 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
             & = 0 + 1 = 1,
         \end{align*}
         denn $F|K(t)$ ist endlich, also algebraisch.
-        Sei $b_1,...,b_n$ eine Transzendenzbasis von $F|K(t)$, $\implies F=K(t, b_1,...,b_n)$ ist endlich erzeugt über $K$. 
+        Sei $b_1,\ldots,b_n$ eine Vektorraumbasis von $F|K(t)$, $\implies F=K(t, b_1,\ldots,b_n)$ ist endlich erzeugt über $K$. 
         \item \underline{$\Longleftarrow$:}
         $t$ sei Transzendenzbasis von $F|K$, daraus folgt $F|K(t)$ algebraisch.
         Aus $F|K$ endlich erzeugt, folgt $F|K(t)$ endlich erzeugt.
@@ -264,13 +265,23 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
     Ist $F$ ein Funktionenkörper über $K$ und $t \in F$, so gilt:
     $$ t \text{ ist transzendent über } K \iff F|K(t) \text{ endlich}.$$ 
 \end{korollar}
+\begin{proof}
+    Sei $t \in F$ transzendent über $K$. Wähle $\X$ Transzendenzbasis von $F|K$. Nach \cref{satz:trdegFK} gilt
+    $\X = \{a\}$, wobei $a \in F$. Aus $t$ transzendent folgt $t$ is algebraisch unabhängig. Mit \cref{lemma:exchange} folgt also
+    $\{t\}$ ist Transzendenzbasis von $F|K$. Also ist $F|K(t)$ algebraisch und nach \cref{satz:trdegFK} ist $F|K$ endlich erzeugt,
+    also ist $F|K(t)$ endlich.
+
+    Andererseits folgt aus $F|K(t)$ endlich
+    $$ \infty = [F:K] = \underbrace{[F:K(t)]}_{< \infty} + [K(t):K]. $$
+    Daraus folgt $[K(t):K] = \infty$ und somit ist $t$ transzendent über $K$.
+\end{proof}
 \begin{korollar}\label{korollar:1.20}
     Ist $F$ ein Funktionenkörper über $K$ und $K \subseteq E \subseteq F$ ein Zwischenkörper, so ist entweder
     \begin{enumerate}[label=(\arabic*)]
         \item $E|K$ algebraisch oder
         \item $E|K$ ein Funktionenkörper über $K$.
     \end{enumerate}
-    In beiden Fällen ist $F|K$ endlich erzeugt.
+    In beiden Fällen ist $E|K$ endlich erzeugt.
 \end{korollar}
 \begin{proof}
     \begin{itemize}[label=]
@@ -278,8 +289,9 @@ Sei $K$ ein Körper und $F|K$ eine Körpererweiterung.
         folgt aus \cref{satz:1.9}
         \item \underline{$E|K$ transzendent:}
         \begin{align*}
-            t \in E \text{ transzendent über } K \implies [E:K(t)] \leq [F:K(t)] < \infty\\
-            \trdeg(E|K) = \trdeg(F|K) - \trdeg(F|E) = 1
+            &t \in E \text{ transzendent über } K \implies [E:K(t)] \leq [F:K(t)] < \infty\\
+            &\implies E \text{ ist Funktionenkörper über } K\\
+            &\stackrel{\labelcref{satz:trdegFK}}{\implies} E|K \text{ endlich erzeugt}
         \end{align*}
     \end{itemize}
 \end{proof}
@@ -330,6 +342,46 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     "rationalen Funktionen"\ auf $C$, die in fast allen Punkten auf $C$ definiert sind.
 \end{bemerkungnr}
 
+\begin{erinnerung}
+    Sei $I \ideal K[X_1, \ldots, X_n]$. Dann gilt
+    $$ \sfrac{K[X_1, \ldots, X_n]}{I} = K[x_1, \ldots, x_n], \text{ wobei } x_i := X_i + I. $$
+\end{erinnerung}
+\begin{proof}
+    Es gelte die Multiindex Notation, d.h. $x := (x_1, \ldots, x_n)$ und für $\alpha \in \N^n$ ist
+    $$ x^\alpha = x_1^{\alpha_1}\cdot \ldots\cdot x_n^{\alpha_n}, $$
+    und
+    $$ | \alpha| := \sum_{i=0}^n \alpha_i .$$
+    Es gilt
+    \begin{align*}
+        & f \in K[x_1, \ldots, x_n]\\
+        \iff & f = \sum_{|\alpha| \leq n} a_\alpha x^\alpha = \sum_{|\alpha| \leq n} a_\alpha x_1^{\alpha_1}\cdot \ldots \cdot x_n^{\alpha_n}\\
+        \iff & f = \sum_{|\alpha| \leq n} a_\alpha (X_1 + I)^{\alpha_1}\cdot \ldots \cdot (X_n + I)^{\alpha_n}\\
+        \iff & f = \sum_{|\alpha| \leq n} a_\alpha (X_1^{\alpha_1} + I)\cdot \ldots \cdot (X_n^{\alpha_n} +I)\\
+        \iff & f = \sum_{|\alpha| \leq n} a_\alpha X_1^{\alpha_1}\cdot \ldots \cdot X_n^{\alpha_n} + I\\
+        \iff &f \in \sfrac{K[X_1, \ldots, X_n]}{I}, \text{ denn}
+    \end{align*}
+    nach Definition gilt für Nebenklassen $(a + I),(b + I) \in \sfrac{K[X_1, \ldots, X_n]}{I}$:
+    \begin{align*}
+        (a + I) + (b + I) &:= (a+b + I)\\
+        (a + I)(b + I) &:= (ab + I).
+    \end{align*}
+\end{proof}
+
+\begin{erinnerung}
+    Ist $E|K$ eine algebraische Körpererweiterung und $\Char (K) = 0$, dann ist $E|K$ separabel.
+\end{erinnerung}
+\begin{proof}
+    Sei $a \in E$. Und setze $m_a := \MinPol(a|K) \in K[X]$, $d := m_a'$ die formale Ableitung von $m_a$
+    und $L|K$ sei der Zerfällungskörper von $f$ über $K$.
+
+    Angenommen $a$ wäre nicht separabel, dann ist $m_a$ nicht separabel, d.h. es gibt $\alpha \in L$ mit
+    $$ (X - \alpha)^2 | m_a. $$
+    Daraus folgt (wegen $\Char K = 0$) aber
+    $$ (X - \alpha) | d.$$
+    Und somit $\ggT(d, m_a) \ne 1$
+    was im Widerspruch zur Irreduziblität von $m_a$ steht.
+\end{proof}
+
 \begin{satz}
     Ist $C = \mathcal{V}(f)$ eine irreduzible, ebene, affine, algebraische Kurve über $K$, so ist $K(C)$ ein
     algebraischer Funktionenkörper über $K$.
@@ -343,16 +395,21 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
         &x = X + (f), y = Y + (f)\\
         \implies & K(C) = K(x,y) \text{ und } f(x,y) = 0
     \end{align*}
-    Ohne Einschränkung $f \notin K[X] \implies$ $y$ ist algebraisch über $K(x)$,
+    Außerdem folgt 
+    $$ f(x,y) = \sum_{i+j \leq n} a_{ij}(X + (f))^i(Y+(f))^j = \sum_{i+j \leq n} a_{ij} X^iY^j + (f) = 0. $$
+    Wäre $f \in K[X]$, dann folgt $K(C) = K(y)$. Und wir wären fertig.
+    Also ohne Einschränkung $f \notin K[X] \implies$ $y$ ist algebraisch über $K(x)$, denn $f(x) \in K[x]$ und $f(x,y) = 0$, und
     $x$ ist transzendent über $K$, denn
     $$ K[X] \hookrightarrow K[X,Y] \to K[x,y] $$
-    ist injektiv. Somit $K(C)$ Funktionenkörper über $K$.
+    ist injektiv. Somit $K(C)$ Funktionenkörper über $K$, 
+    denn $K(C)|K = K(x,y)|K$ ist endlich erzeugt und $\{x\}$ ist Transzendenzbasis von $K(C)|K$, 
+    denn $K(C)|K(x)$ algebraisch (folgt aus $y$ algebraisch über $K(x)$) und $\{x\}$ algebraisch unabhängig.
 
     Ist $\Char(K) = 0$ so gilt der Satz vom primitiven Element:
-    Ist $E|K$ endlich, so ist $E = F(\alpha)$ für ein $\alpha \in E$.
+    Ist $E|K$ endlich, so ist $E$ algebraisch, also gilt nach dem Satz vom primitiven Element $E = K(\alpha)$ für ein $\alpha \in E$.
     Wähle $x \in F$ transzendent über $K$.
     \begin{align*}
-        \implies & K(x) \text{ endlich}\\
+        \implies & F|K(x) \text{ endlich}\\
         \implies & \text{es existiert } y \in F \text{ mit } F=K(x,y).
     \end{align*} 
     Wähle $0 \neq f \in K(x)[Y]$ mit $f(x,y) =0$, o.E. $f \in K[X,Y]$ irreduzibel.
@@ -425,13 +482,13 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     \end{enumerate}
 \end{bemerkungnr}
 
-\begin{theorem}
+\begin{theorem}\label{I.2.15}
     Sei $K = \K$. Ist $C$ eine glatte, irreduzible, projektive Kurve, so liefert
     $ P \mapsto \mathcal{O}_{C,P}$ eine Bijektion zwischen Punkten von $C$ und diskreten
     Bewertungsringen $K \subseteq R \subsetneqq K(C)$.
 \end{theorem}
 
-\begin{satz}
+\begin{satz}\label{I.2.16}
     Ist $R$ ein diskreter Bewertungsring von $F$ mit maximalem Ideal $m = (\pi)$, so lässt sich jedes Element $x \in F^\times$ 
     eindeutig schreiben als
     $$ x = u \cdot \pi^{v_\pi(x)}$$
@@ -453,7 +510,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     (Beachte $n + \infty = \infty + n = \infty + \infty = \infty$)
 \end{definition}
 
-\begin{satz}
+\begin{satz}\label{I2.18}
     Ist $R$ ein diskreter Bewertungsring von $F$ mit maximalem Ideal $m = (\pi)$, so ist $v_\pi$ eine 
     diskrete Bewertung auf $F$ (mit $v_\pi(0) := \infty$).
     Umgekehrt, wenn $v$ eine diskrete Bewertung auf $F$, so ist
@@ -463,8 +520,21 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     das maximale Ideal von $\mathcal{O}_v$.
 \end{satz}
 \begin{proof}
-    \underline{$\mathcal{O}_v$ ist ein Ring:} $\checkmark$\\
-    \underline{$m_v$ ist Ideal von $\mathcal{O}_v$ und $\mathcal{O}_v^\times = \mathcal{O}_v\setminus m_v$:}$\checkmark$\\
+    \underline{$v_\pi$ ist diskrete Bewertung:} Offenbar gilt $v_\pi : F \to \Z \cup \{\infty\}$ mit $$v(x) = \infty \iff x = 0.$$\nl
+    Desweiteren gilt für alle $x,y \in F^\times$:
+    \begin{align*}
+        &u_{xy} \pi^{v_\pi(xy)} = x\cdot y = u_x \pi^{v_\pi(x)} \cdot u_y \pi^{v_\pi(y)} = u_xu_y \pi^{v_\pi(x) + v_\pi(y)}\\
+        & \implies v_\pi(xy) = v_\pi(x) + v_\pi(y).
+    \end{align*}
+    O.E. $v_\pi(x) \geq v_\pi(y)$
+    \begin{align*}
+        &u_{x+y} \pi^{v_\pi(x+y)} = x + y = u_x \pi^{v_\pi(x)} + u_y \pi^{v_\pi(y)} = \pi^{v_\pi(y)}\cdot\left(u_x \pi^{v_\pi(x) - v_\pi(y)} + u_y\right)\\ 
+        & \implies u_{x+y} \pi^{v_\pi(x+y) - v_\pi(y)} =  u_x \pi^{v_\pi(x) - v_\pi(y)} + u_y \in R\\
+        & \implies v_\pi(x+y) - v_\pi(y) \geq 0 \implies v_\pi(x+y) \geq v_\pi(y) = \min \{v_\pi(x), v_\pi(y)\}.
+    \end{align*}
+    \underline{$\mathcal{O}_v$ ist ein Ring:} $\checkmark$\nl
+    \underline{$m_v$ ist Ideal von $\mathcal{O}_v$ und $\mathcal{O}_v^\times = \mathcal{O}_v\setminus m_v$:}
+    $$ a \in \mathcal{O}_v \setminus m_v \iff v(a) = 0 \iff -v(a) = 0 \iff v(a^{-1}) = 0 \iff a^{-1} \in \mathcal{O}_v \setminus m_v $$
     \underline{$I \ideal \mathcal{O}_v \implies I=(a)$ für $a \in \mathcal{O}_v$ mit $v(a) = \min\{v(x) \mid x \in I\}$:}
     \begin{align*}
         x \in I & \implies v(a) \leq v(x) \implies v\left(\frac{x}{a}\right) \geq 0\\
@@ -484,7 +554,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 
     Ist \underline{$l \geq 0$}, so ist $y \in R \subseteq S$.
 
-    Ist \underline{$l < 0$}, so ist $yx^l=\underbrace{wu^l}_{\in R^\times} \cdot \overbrace{\pi^{l+kl}}^{\geq 0}\in R$
+    Ist \underline{$l < 0$}, so ist $yx^l=\underbrace{wu^l}_{\in R^\times} \cdot \pi^{\overbrace{l+kl}^{\geq 0}}\in R$
     somit $y \in R[x] \subseteq S$.
 \end{proof}
 
@@ -492,8 +562,17 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     Sei $F = K(T) = K(\mathbb{P}^1)$. Da $K[T]$ faktoriell ist liefert jedes irreduzible normierte $p\in K[T]$ eine 
     diskrete Bewertung $v_p$ mit zugehörigem Bewertungsring
     $$ \mathcal{O}_p := \mathcal{O}_{v_p} = K[T]_{(p)}$$
-    mit Restklassenkörper
-    $$ \kappa_ := \kappa_{\mathcal{O}_{v_p}} = \sfrac{K[T]}{(p)}.$$
+    und maximalem Ideal
+    $$ m_p := m_{v_p} = pK[T]_{(p)}.$$
+    Der Restklassenkörper ist dann
+    $$ \kappa_p := \kappa_{\mathcal{O}_{v_p}} = \sfrac{K[T]}{(p)}, \text{ denn}$$
+    $$\begin{tikzcd}
+        K[T] \arrow[d, hook, "g"] \arrow[dr, "\phi"]\\
+        K[T]_{(p)} \arrow[r, two heads, "h"] & K[T]_{(p)}/pK[T]_{(p)}
+    \end{tikzcd}$$
+    \begin{align*}
+        \ker \phi = (p) \implies K[T]/(p) \cong \im \phi = \im h \circ g = K[T]_{(p)}/pK[T]_{(p)}
+    \end{align*}
     Desweiteren ist $\mathcal{O}_\infty := K[T^{-1}]_{(T^{-1})}$ ein diskreter Bewertungsring von $F$ mit zugehöriger diskreter Bewertung
     $$v_\infty\left(\frac{f}{g}\right) = \deg(g) - \deg(f) \qquad (f,g \in K[T]) .$$
     Das sind schon alle auf $\A^1 = \P^1 \cup \{\infty\}$.
@@ -506,13 +585,28 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 \begin{proof}
     Sei $m$ das maximale Ideal von $R$.\\
     \underline{$T\in R$:} Dann ist $K[T] \subseteq R$ und $\mathfrak{p} := m \cap K[T]$ ist ein Primideal von $K[T]$ mit
-    $K[T]_\mathfrak{p} \subseteq R$. Insbesondere ist $\mathfrak{p} \ne (0)$. Somit ist $\mathfrak{p} = (p)$ für ein irreduzibeles
+    $K[T]_\mathfrak{p} \subseteq R$, denn:
+    \begin{align*}
+        \frac{f}{g} \in K[T]_\mathfrak{p} & \iff f \in K[T] \text{ und } g \notin \mathfrak{p}
+            \iff f \in K[T] \text{ und } g \notin m\\
+            & \iff f \in K[T] \text{ und } g \in R^\times \implies \frac{f}{g} = f \cdot \underbrace{g^{-1}}_{\in R} \in R
+    \end{align*}
+    Insbesondere ist $\mathfrak{p} \ne (0)$, denn:
+    \begin{align*}
+        \mathfrak{p} = (0) & \implies m = (0) \implies R \text{ ist Körper} \implies R = K(T), \text{ da } T \in R
+    \end{align*}
+    was im Widerspruch zur Annahme $R \subsetneqq K(T)$ steht.
+
+    Somit ist $\mathfrak{p} = (p)$ für ein irreduzibeles
     normiertes $p \in K[T]$. Nach Lemma 2.19, angewandt auf den diskreten Bewertungsring $\mathcal{O}_p = K[T]_\mathfrak{p}$,
     folgt $\mathcal{O}_p = R$.\\
-    \underline{$T\notin R$:} Dann ist $T^{-1} \in R$, sogar $T^{-1} \in m$, dann
-    $$m=(\pi) \implies T = u \cdot \pi^k \implies k < 0 \implies T^{-1} = u^{-1}\cdot \pi^{-k} \in R.$$
-    Somit ist $K[T^{-1}] \subseteq R$ und $m \cap K[T^{-1}] = K[T^{-1}]T^{-1}$. Wie im ersten Fall folgert man daraus, dass
-    $$ \mathcal{O}_\infty = K[T^-1]_{K[T^{-1}]T^{-1}} = R.$$
+    \underline{$T\notin R$:} Dann ist $T^{-1} \in R$, sogar $T^{-1} \in m$, denn
+    \begin{align*}
+        m=(\pi) &\implies T = u \cdot \pi^{v_\pi(T)} \implies v_\pi(T) < 0\\
+            & \implies v_\pi(T^{-1}) > 0 \implies T^{-1} = u^{-1}\cdot \pi^{v_\pi(T^{-1})} \in m.
+    \end{align*}
+    Somit ist $K[T^{-1}] \subseteq R$ und $m \cap K[T^{-1}] = K[T^{-1}] \cdot T^{-1}$. Wie im ersten Fall folgert man daraus, dass
+    $$ \mathcal{O}_\infty = K[T^-1]_{K[T^{-1}]\cdot T^{-1}} = R.$$
 \end{proof}
 
 \begin{bemerkungnr}
@@ -530,7 +624,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 
 \begin{beispiel}
     \begin{enumerate}[label=\alph*.)]
-        \item $\mathbb{D} = \{t \in \C \mid |z| < 1\}$.
+        \item $\mathbb{D} = \{z \in \C \mid |z| < 1\}$.
         \item Ist $C$ eine glatte Kurve über $K = \K = \C$, so trägt $C = C(\C)$("Menge der komplexen Punkte")
         die Struktur einer Riemannschen Fläche.
 
@@ -564,7 +658,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
 \begin{bemerkungnr}
     \begin{enumerate}[label=\alph*.)]
         \item Umgekehrt ist jeder Funktionenkörper über $\C$ isomorph zu einem Körper der Form $\mathcal{M}(X)$,
-        nämlich für ein $X = C(\C)$, siehe 2.7
+        nämlich für ein $X = C(\C)$, wobei $C$ eine algebraische Kurve über $\C$ ist, siehe 2.7
         \item Vergessen wir die komplexe Struktur auf $X$, so ist $X$ eine orientierbare, zusammenhängende topologische Fläche.
     \end{enumerate}
 \end{bemerkungnr}
@@ -617,7 +711,7 @@ Sei $K$ ein Körper und $\K \supseteq K$ ein algebraisch abgeschlossener Körper
     \textbf{topologische Überlagerung}(d.h. für fast alle $x \in X$ gibt es offene Umgebungen $x \in U \subseteq X$ für die
     $f^{-1}(U)=\bigsqcup U_i$ mit $f|_{U_i}: U_i \to U$ Homöomorphismus $\forall i$).
 
-    Haben fast alle Punkte von $X$ genau $n$ Urbilder, so hat $f$ \textbf{Grad} $n$, und die Punkte mit weniger als $n$ Urbilder
+    Haben fast alle Punkte von $X$ genau $n$ Urbilder, so hat $f$ \textbf{Grad} $n$, und die Punkte mit weniger als $n$ Urbildern
     heißen \textbf{Verzweigungspunkte} von $f$.
 
     Die Abbildung $f: Y \to X$ induziert eine Einbettung
@@ -725,8 +819,8 @@ Sei $q = p^k$ eine Primpotenz.
 \begin{bemerkungnr}
     Ein Vertretersystem der Primelemente modulo Einheiten ist
     \begin{itemize}
-        \item $\Z=A$: positive Primzahlen
-        \item $\F_q[T]=A$: die normierten irreduziblen Polynome
+        \item $A = \Z$: positive Primzahlen
+        \item $A = \F_q[T]$: die normierten irreduziblen Polynome
     \end{itemize}
 \end{bemerkungnr}
 

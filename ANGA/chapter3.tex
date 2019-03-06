@@ -10,7 +10,7 @@ Sei $F|K$ ein Funktionenkörper.
 
 \begin{definition}
     Ein Funktionenkörper $E|L$ ist eine Erweiterung des Funktionenkörpers $F|K$, wenn $F \subseteq E$ und $K \subseteq L$.
-    Die Erweiterung $E|K$ von $F|K$ ist \textbf{algebraisch}, \textbf{separabel}, \textbf{galoissch}, oder \textbf{endlich}, falls
+    Die Erweiterung $E|L$ von $F|K$ ist \textbf{algebraisch}, \textbf{separabel}, \textbf{galoissch}, oder \textbf{endlich}, falls
     $E|F$ dies ist. Sie ist eine \textbf{Konstantenkörpererweiterung}, wenn $E = FL$, und \textbf{geometrisch}, wenn $K=L$.
 \end{definition}
 
@@ -33,9 +33,9 @@ Sei $F|K$ ein Funktionenkörper.
     Sei $E|L$ eine endliche Erweiterung von $F|K$, $Q \in S(E|L)$, $P \in S(F|K)$, $Q$ \textbf{liegt über} $P$ 
     (i.Z. $Q|P$, $Q|_F = P$) $: \iff$ $\mathcal{O}_{v_Q} \cap F = \mathcal{O}_{v_P}$ ($\mathcal{O}_Q \cap F = \mathcal{O}_P$).
     \begin{align*}
-        e_{Q|P} & := e(v_Q | v_Q|_F), \text{ der \textbf{Verzweigungsindex} von } Q \text{ über } P\\
-        f_{Q|P} & := f(v_Q | v_Q|_F), \text{ der \textbf{Restklassengrad} von } Q \text{ über } P\\
-        Q|P \text{ ist \textbf{verzweigt}} & :\iff e_{Q|P} > 1.
+        &e_{Q|P} := e(v_Q | v_Q|_F) = e(v_Q | v_P), \text{ der \textbf{Verzweigungsindex} von } Q \text{ über } P\\
+        &f_{Q|P} := f(v_Q | v_Q|_F) = f(v_Q | v_P), \text{ der \textbf{Restklassengrad} von } Q \text{ über } P\\
+        &Q|P \text{ ist \textbf{verzweigt}} :\iff e_{Q|P} > 1.
     \end{align*}
 \end{definition}
 
@@ -61,9 +61,9 @@ Sei $F|K$ ein Funktionenkörper.
         K \uar[dash] \rar[dash] & L \uar[dash]  
     \end{tikzcd}$$
     \begin{align*}
-        [E:K(x)] & = [E:F] \cdot [F:K(x)] \stackeq{II.5.7} \deg (x)_0^F \cdot [E:F] = v_P(x) \cdot \deg P \cdot [E:F]\\
-        [E:K(x)] & = [E:L(x)] \cdot [L(x) : K(x)] \stackeq{II.5.7 \& I.1.8} \deg (x)_0^E \cdot [L:K] \\
-        & = \sum\limits_{i=1}^m v_{Q_i}(x)\cdot \deg Q_i\cdot [L:K] = \sum\limits_{i=1}^m e_{Q_i|P} \cdot v_P(x) \cdot [E_{Q_i]:L}] \cdot [L:K]\\
+        [E:K(x)] & = [E:F] \cdot [F:K(x)] \stackeq{\text{II.5.7}} \deg (x)_0^F \cdot [E:F] = v_P(x) \cdot \deg P \cdot [E:F]\\
+        [E:K(x)] & = [E:L(x)] \cdot [L(x) : K(x)] \stackeq{\text{II.5.7 \& I.1.8}} \deg (x)_0^E \cdot [L:K] \\
+        & = \sum\limits_{i=1}^m v_{Q_i}(x)\cdot \deg Q_i\cdot [L:K] = \sum\limits_{i=1}^m e_{Q_i|P} \cdot v_P(x) \cdot [E_{Q_i}:L] \cdot [L:K]\\
         & = v_P(x) \cdot \sum\limits_{i=1}^m e_{Q_i|P} \cdot [E_{Q_i}:F_P] \cdot [F_P : K] = v_P(x) \cdot \deg P \cdot \sum\limits_{i=1}^m e_{Q_i|P} \cdot f_{Q_i|P}
     \end{align*}
 \end{proof}
@@ -101,12 +101,12 @@ Sei $F|K$ ein Funktionenkörper.
 
 \begin{satz}
     Ist $E|L$ eine endliche Erweiterung von $F|K$, und $A \in \Div(F|K)$, so ist
-    $$ \deg (\Con_{E|F}A) ) \frac{[E:F]}{[L:K]} \cdot \deg (A). $$
+    $$ \deg (\Con_{E|F}A ) = \frac{[E:F]}{[L:K]} \cdot \deg (A). $$
 \end{satz}
 \begin{proof}
     O.E. sei $A = P \in S(F|K)$.
     \begin{align*}
-        \deg \Con_{E|F}(P) & = \deg ( \sum\limits_{Q|P} e_{Q|P}Q) = \sum\limits_{Q|P}e_{Q|P}\cdot [E_Q:L]\\
+        \deg \Con_{E|F}(P) & = \deg \left( \sum\limits_{Q|P} e_{Q|P}Q\right) = \sum\limits_{Q|P}e_{Q|P}\cdot [E_Q:L]\\
         & = \frac{1}{[L:K]}\cdot \sum\limits_{Q|P} e_{Q|P} \cdot [E_Q: F_P] \cdot [F_P : K]\\
         & \stackeq{1.6} \frac{1}{[L:K]} \cdot [E:F] \cdot \deg P.
     \end{align*}
@@ -133,26 +133,26 @@ Sei $F|K$ ein Funktionenkörper, und $S := S(F|K)$.
 \begin{proof}
     (a) $\checkmark$ (b) Jedes $\mathcal{O}_P$ ganzabgeschlossen (II.1.6) $\implies$ $\mathcal{O}_{S_0}$ ganzabgeschlossen.
     Wähle $P_0 \in S_0$. Da $S_0 \subsetneqq S$ existiert nach II.7.12 ein $x \in F^\times$ mit
-    $$ v_{P_0} > 0 \text{ und } v_P(x) \geq 0 \quad \forall P \in S_0 \setminus \{P_0\} \implies x \in \mathcal{O}_{S_0}, x^{-1} \notin \mathcal{O}_{S_0}.$$
-    (c) Sei $x \in F^\times$. $\stackrel{II.7.12}{\implies}$ ex. $z \in F^\times$ mit $v_P(z)$ für $P$ mit $v_P(x) < 0$
+    $$ v_{P_0}(x) > 0 \text{ und } v_P(x) \geq 0 \quad \forall P \in S_0 \setminus \{P_0\} \implies x \in \mathcal{O}_{S_0}, x^{-1} \notin \mathcal{O}_{S_0}.$$
+    (c) Sei $x \in F^\times$. $\stackrel{\text{II.7.12}}{\implies}$ ex. $z \in F^\times$ mit $v_P(z) = -v_P(x)$ für $P$ mit $v_P(x) < 0$
     und $v_P(z) \geq 0$ für $P \in S_0$. $\implies$ $z \in \mathcal{O}_{S_0}$, $xz \in \mathcal{O}_{S_0}$, $\frac{xz}{z} \in \Quot(\mathcal{O}_{S_0})$.\\
     (d) Sei $P_1 \in S \setminus S_0$. Wähle $P_0 \in S_0$.\\
     Nach II.7.12 existiert $x \in F^\times$ mit $v_{P_0}(x) > 0, v_P(x) \geq 0 \quad \forall P \in S \setminus\{P_1\}$
     \begin{align*}
-        & \stackrel{\deg (x) = 0}{\implies} v_{P_1} < 0\\
+        & \stackrel{\deg (x) = 0}{\implies} v_{P_1}(x) < 0\\
         & \implies x \in \mathcal{O}_{S_0} \setminus \mathcal{O}_{P_1}.
     \end{align*}
 \end{proof}
 
 \begin{beispiel}
-    Sei $K = \overline{K}, F = K(T), S = \{P_a \mid a \in K\} \cup \{P_\infty\}$.
+    Sei $K = \overline{K}, F = K(T), S = \{P_a := P_{(T-a)} \mid a \in K\} \cup \{P_\infty\}$.
     \begin{itemize}
-        \item $S_0 = S \setminus \{P_\infty\}: \mathcal{O}_{S_0} = \{\frac{f}{g} \mid v_{P_a}(f) - v_{P_a}(g) \geq 0 \quad \forall a \in K\}$
+        \item $S_0 = S \setminus \{P_\infty\}: \mathcal{O}_{S_0} = \{\frac{f}{g} \mid v_{P_a}(f) - v_{P_a}(g) \geq 0 \quad \forall a \in K\} = K[T]$
         \item $S_0 = S$: $\mathcal{O}_{S_0} = K$
-        \item $S_0 = S \setminus \{P_0\}$: $\mathcal{O}_{S_0}=\{\frac{f}{g} \mid v_P(f) \geq v_P(g) \quad \forall P \in S_0\}$
+        \item $S_0 = S \setminus \{P_0\}$: $\mathcal{O}_{S_0}=\left\{\frac{f}{g} \mid v_P(f) \geq v_P(g) \quad \forall P \in S_0\right\}$
         \begin{align*}
-            & = \{\frac{f}{T^k} \mid v_{P_\infty} (f) \geq v_{P_\infty}(T^k)\}\\
-            & = \{\frac{f}{T^k} \mid \deg f \leq k\}\\
+            & = \left\{\frac{f}{T^k} \mid v_{P_\infty} (f) \geq v_{P_\infty}(T^k)\right\}\\
+            & = \left\{\frac{f}{T^k} \mid \deg f \leq k\right\}\\
             & = K[T^{-1}]
         \end{align*}
     \end{itemize}
@@ -165,7 +165,7 @@ Sei $F|K$ ein Funktionenkörper, und $S := S(F|K)$.
 \end{lemma}
 \begin{proof}
     $R$ ist kein Körper $\implies$ es gibt $(0) \neq \mathfrak{p} \in \Spec R$
-    $\stackrel{II.2.2}{\implies}$ es gibt $P \in S(F|K)$ mit $R \subseteq \mathcal{O}_P$ (und $m_\mathfrak{p} \cap R = \mathfrak{p}$)
+    $\stackrel{\text{II.2.2}}{\implies}$ es gibt $P \in S(F|K)$ mit $R \subseteq \mathcal{O}_P$ (und $m_\mathfrak{p} \cap R = \mathfrak{p}$)
     $\implies S(R) \ne \emptyset$.
 
     $R$ ist kein Körper $\implies$ $R \ne K$ $\implies$ es gibt $x \in R\setminus K$ $\implies$ $x$ hat Polstelle $P_0 \in S$
@@ -183,11 +183,11 @@ Sei $F|K$ ein Funktionenkörper, und $S := S(F|K)$.
     Für jedes $i$ wähle $a_i \in \mathfrak{a}$ mit
     \begin{align*}
         & v_{P_i}(a_i) = k_i := \min \{v_{P_i}(a) \mid a \in \mathfrak{a}\}\\
-        \stackrel{II.1.9}{\implies} & \text{es gibt } z_i \in F \text{ mit } v_{P_i}(z_i) = 0, v_{P_j}(z_i) > k_j \quad \forall j\ne i.
+        \stackrel{\text{II.1.9}}{\implies} & \text{es gibt } z_i \in F \text{ mit } v_{P_i}(z_i) = 0, v_{P_j}(z_i) > k_j \quad \forall j\ne i.
     \end{align*} 
     Setze $$x := \sum\limits_{i=1}^n z_i \cdot a_i$$
     Dann ist $z_i \in \O_{S_0}, v_{P_i}(z_i \cdot a_i) = k_i, v_{P_j}(z_i \cdot a_i) > k_j \quad \forall j \ne i$,
-    somit $x \in \mathfrak{a}$ und $v_{P_i}(x) = v_{P_i}(x_i\cdot a_i) = k_i$.
+    somit $x \in \mathfrak{a}$ und $v_{P_i}(x) = v_{P_i}(z_i\cdot a_i) = k_i$.
 
     Beh.: $\mathfrak{a} = (x)$: $a \in \mathfrak{a} \implies v_{P_i}(\frac{a}{x}) = v_{P_i}(a) - k_i \geq 0$
     $\implies \frac{a}{x} \in \O_{S_0} \implies a = \frac{a}{x} \cdot x \in (x)$.
@@ -207,7 +207,7 @@ $R'$ der ganze Abschluss von $R$ in $E$.
 \end{lemma}
 \begin{proof}
     $\implies$: $x_1, \ldots, x_n$ $F$-linear unabhängig $\implies$ $x_1, \ldots, x_n$ $R$-linear unabhängig\\
-    $\implies$: $x_1,\ldots,x_n$ $R$-linear unabhängig, $F=\Quot R$ $\implies$ $x_1,\ldots,x_n$ $F$-linear unabhängig.
+    $\Longleftarrow$: $x_1,\ldots,x_n$ $R$-linear unabhängig, $F=\Quot R$ $\implies$ $x_1,\ldots,x_n$ $F$-linear unabhängig.
     \begin{align*}
         \bigoplus\limits_{i=1}^n Rx_i = R' \text{ ist ein Ring} & \implies \bigoplus\limits_{i=1}^n Fx_i \text{ ist ein Ring der }F \text{ enthält}\\
         & \implies \bigoplus\limits_{i=1}^n Fx_i \text{ ist ein Körper} \\
@@ -218,7 +218,7 @@ $R'$ der ganze Abschluss von $R$ in $E$.
 \begin{erinnerungnr}
     Sei $M|K$ endlich, $x \in M$. Die $M|K$-Spur $\Tr_{M|K}(x)$ von $x$ kann beschrieben werden als
     \begin{enumerate}[label=(\arabic*)]
-        \item $\Tr_{M|K} = \Tr(\mu_x)$, wobei
+        \item $\Tr_{M|K}(x) = \Tr(\mu_x)$, wobei
         $$ \mu_x : \begin{cases}
             M \to M\\
             y \mapsto xy
