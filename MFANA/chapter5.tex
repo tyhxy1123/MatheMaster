@@ -7,7 +7,9 @@
 \section{Approximation}
 
 \begin{theorem}[Trotter-Kato-Miyadera]\label{theoremTrotterKatoMiyadera}\enter
-	Sei $(A_n)_{n\in\N}$ ein Folge von $m$-akkretiven Operatoren (vom uniformen Typ $\omega\in\R$, d.h. $\omega$ hängt nicht von $n$ ab) auf einem Banachraum $X$. Sei $(S_n)_{n\in\N}$ die zugehörige Folge von nichtlinearen Halbgruppen ($S_n$ ist Halbgruppe auf $D_n:=\overline{\dom(A_n)}$). Betrachte die folgenden Aussagen:
+	Sei $(A_n)_{n\in\N}$ ein Folge von $m$-akkretiven Operatoren (vom uniformen Typ $\omega\in\R$, d.h. $\omega$ hängt nicht von $n$ ab) auf einem Banachraum $X$.
+	Sei $(S_n)_{n\in\N}$ die zugehörige Folge von nichtlinearen Halbgruppen ($S_n$ ist Halbgruppe auf $D_n:=\overline{\dom(A_n)}$). 
+	Betrachte die folgenden Aussagen:
 	\begin{enumerate}[label=(\roman*)]
 		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und\\ $u_0:=\limn u_{0,n}$ existiert
 		\begin{align*}
@@ -28,10 +30,10 @@
 			\limn J_\lambda^{A_n}f_n=:J_\lambda f
 		\end{align*}
 		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und\\ $u_0=\limn u_{0,n}$ und jede konvergente Folge $(f_n)_{n\in\N}$ in $L^1(0,T;X)$ mit $f=\limn f_n$ gilt:
-		Sind $u,u_0\in C\big([0,1];X\big)$ die eindeutigen Integrallösungen von
+		Sind $u,u_n\in C\big([0,1];X\big)$ die eindeutigen Integrallösungen von
 		\begin{align*}
 			\left\lbrace\begin{array}{r}
-				\dot{u}+A_n u_n\ni f_n\\
+				\dot{u}_n+A_n u_n\ni f_n\\
 				u_n(0)=u_{0,n}
 			\end{array}\right.\qquad\text{und}\qquad
 			\left\lbrace\begin{array}{r}
@@ -103,14 +105,14 @@
 	\underline{Zeige (ii)$\implies$(i):}\\
 	Es gelte nun eine der äquivalenten Aussagen (ii),(iii),(iv). Dann ist der Operator $\A$ $m$-akkretiv vom Typ $\omega$.
 	Der Operator $\A$ erzeugt also eine Halbgruppe $\mathcal{S}$ auf dem Raum $c(\N,X)$.\\
-	Die Exponentialformel zeigt:
+	Die Exponentialformel \ref{theoremExponentialformel} zeigt:
 	\begin{align*}
-		\mathcal{S}(t)(u_{0,n})
-		\overset{\text{Exp-Formel}}&=
-		\lim\limits_{k\to\infty}\left(J_{\frac{t}{k}}^{\A}\right)^k(u_{0,n})_{n\in\N}\\
+		\mathcal{S}(t)\Big((u_{0,n})_{n\in\N}\Big)
+		\overset{\eqref{eqExpFormel}}&=
+		\lim\limits_{k\to\infty}\left(J_{\frac{t}{k}}^{\A}\right)^k\Big((u_{0,n})_{n\in\N}\Big)\\
 		&=\lim\limits_{k\to\infty}\left(\left(J_{\frac{t}{k}}^{A_n}\right)^k u_{0,n}\right)_{n\in\N}\\
-		\overset{\text{Exp-Formel}}&=
-		\left(S_n(t) u_{0,n}\right)\in  c(\N,X)
+		\overset{\eqref{eqExpFormel}}&=
+		\big(S_n(t) u_{0,n}\big)_{n\in\N}\in  c(\N,X)
 		\qquad\forall (u_{0,n})_{n\in\N}\in\overline{\dom(\A)}
 	\end{align*}
 	Daraus folgt (i). (Zeige dafür:
@@ -134,7 +136,7 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 	\begin{align*}
 		A^\lambda:=\frac{1}{\lambda}\left(I-J_\lambda^A\right)
 	\end{align*}
-	\textbf{Yosidaapproximation} von $A$ ($J_\lambda^A:=(I-\lambda\cdot A)^{-1}$)
+	\textbf{Yosidaapproximation} von $A$ ($J_\lambda^A:=(I+\lambda\cdot A)^{-1}$)
 \end{definition}
 
 \begin{theorem}[Eigenschaften der Yosidaapproximationen]\
@@ -171,7 +173,7 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 		\ni\frac{1}{\lambda}\cdot(I-J_\lambda)u
 		=A^\lambda u
 	\end{align*}
-	Hierbei geht ein, dass $u\in(I+\lambda\cdot A)J_\lambda u$ gilt)
+	Hierbei geht ein, dass $u\in(I+\lambda\cdot A)J_\lambda u$ gilt.
 	Folglich ist $\big(J_\lambda u,A^\lambda u\big)\in A$.\nl
 	\underline{Zeige (b):}\\
 	$J_\lambda$ ist Lipschitzstetig mit Konstante $\frac{1}{1-\lambda\cdot\omega}$.\nl
@@ -377,9 +379,9 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 \end{bemerkung}
 
 \begin{lemma}
-	Seien $\E,\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv0$, konvexe so, dass 
+	Seien $\E,\E_n:H\to\R\cup\lbrace+\infty\rbrace$ unterhalbstetig, $\not\equiv0$, konvex so, dass 
 	\begin{align*}
-		\E_n\overset{\text{Moscow}}{\longrightarrow}\E.
+		\E_n\overset{\text{Mosco}}{\longrightarrow}\E.
 	\end{align*}
 	Dann gibt es Konstanten $c\in\R,r>0$ so, dass 
 	\begin{align*}
@@ -500,8 +502,8 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 		\end{align*}
 		und es gilt die Normalisierung
 		\begin{align}\label{eqAttouchAN}\tag{N}
-			\exists\big(\hat{u}_n,\hat{f}_n\big)\in\partial\E,\exists\big(\hat{u},\hat{f}\big)\in\partial\E:
-			\limn\big(\hat{u}_n\hat{f}_n\big)=\big(\hat{u},\hat{f}\big)
+			\exists\big(\hat{u}_n,\hat{f}_n\big)\in\partial\E_n,\exists\big(\hat{u},\hat{f}\big)\in\partial\E:
+			\limn\big(\hat{u}_n,\hat{f}_n\big)=\big(\hat{u},\hat{f}\big)
 			%\text{ in }H\times H
 			\text{ und }\limn \E_n\big(\hat{u}_n\big)=\E\big(\hat{u}\big)
 		\end{align}
@@ -522,7 +524,7 @@ Die Konvergenz der $S_n$ ist hierbei gleichmäßig in $t$ (aus kompakten Teilmen
 		\end{aligned}$
 		\item $\begin{aligned}
 			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H:
-			\lim\E_n^\lambda(u)=\E^\lambda(u)
+			\limn\E_n^\lambda(u)=\E^\lambda(u)
 		\end{aligned}$
 		\item $\begin{aligned}
 			\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2
@@ -848,7 +850,8 @@ Wir betrachten dann die Energie
 Die Energie $\E^\Omega$ ist konvex, unterhalbstetig, $\not\equiv+\infty$.
 
 \begin{proof}
-	Genau wie bei der Energie des $p$-Laplaceoperators mit Neumannrandbedingungen (Reflexivität geht ein).
+	Genau wie bei der Energie des $p$-Laplaceoperators mit Neumann-\\
+	Randbedingungen (Reflexivität geht ein).
 \end{proof}
 
 \begin{align*}
@@ -886,7 +889,7 @@ fort und
 	V_0(\Omega)=\big\lbrace u\in V(\Omega):\tr(u)=0\big\rbrace.
 \end{align*}
 
-Wir nennen den Subgradienten $\partial\E^\Omega$ den \textbf{(negativen) $p$-Lapplaceoperator mit Dirichletrandbedingungen}.
+Wir nennen den Subgradienten $\partial\E^\Omega$ den \textbf{(negativen) $p$-Laplaceoperator mit Dirichletrandbedingungen}.
 Das Cauchy-Problem $\dot{u}+\partial\E^\Omega(u)\ni 0$ ist eine abstrakte Umschreibung der nichtlinearen Diffusionsgleichung
 \begin{align*}
 	\left\lbrace\begin{array}{rl}

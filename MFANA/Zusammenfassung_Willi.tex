@@ -1,0 +1,400 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\newcommand{\directoryPrefix}{../latex/} % Je nach Ordnertiefe muss dieser Command angepasst werden. Bei Fragen mich anschreiben.
+\input{\directoryPrefix templates}
+\TemplateSummary{Willi Sontopski}{MFANA}
+
+\begin{document}
+\setcounter{section}{-1}
+	\section{Einführung}
+	\define{gewöhnliches CP}: $u'(t)+Au(t)=0$, $t\geq0$, $u(0)=u_0$
+	\define{Picard-Lindelöf:} Falls $A\colon\R^n\to\R^n$, $A=A_0+A_1$ mit $A_0$ Lipschitz-stetig und $A_1$ monoton und stetig, dann hat CP eindeutige Lösung $\forall u_0\in\R^n$.\\
+	$f:\R^n\to\R^m$ \define{Lipschitzstetig} $:\gdw\exists L\geq0:\forall x,y\in\R^n:\norm{F(x)-F(y)}\leq L\cdot\norm{x-y}$
+	
+	\section{Akkretive Operatoren}
+	Sei stets $(X,\norm{\cdot})$ BR und $(H,\scaProd{\cdot}{\cdot})$ HR.
+	\define{Operator} ist Relation $A\subseteq X\times X$.
+	\begin{itemize}
+		\item $Au:=\lbrace f\in X:(u,f)\in A\rbrace~\forall u\in X$ "Bild von $u$"
+		\item $\dom(A):=\lbrace u\in X:Au\neq\emptyset\rbrace$ \textbf{Definitionsbereich} von $A$
+		\item $\rg(A):=\lbrace f\in X:\exists u\in X:(u,f)\in A\rbrace$ \textbf{Bild} von $A$
+		\item $A^{-1}:=\lbrace (f,u)\in X\times X:(u,f)\in A\rbrace$ \textbf{inverser Operator}, $\dom(A^{-1})=\rg(A)$
+		\item $I:=\lbrace(u,u)\in X\times X:u\in X\rbrace$ \textbf{identischer Operator}
+		\item Für $A,B\subseteq X\times X$, $\lambda\in\K$:
+		$
+			A+B:=\lbrace(u,f_1+f_2):(u,f_1)\in A,(u,f_2)\in B\rbrace~%\\
+			%:=\lbrace(u,f)\in X\times X:\exists f_1,f_2\in X:(u,f_1)\in A\wedge(u,f_2)\in B\wedge f=f_1+f_2\rbrace\\
+			\lambda\cdot A:=\lbrace(u,\lambda\cdot f):(u,f)\in A\rbrace%\\
+		%:=\lbrace(u,f)\in X\times X:\exists f_1\in X:(u,f_1)\in X\wedge f=\lambda\cdot f_1\rbrace
+		$
+		\item \define{Bracket}: $[\cdot,\cdot]\colon X\times X\to\R\cup\lbrace-\infty\rbrace,~[u,v]_\lambda:=\frac{\Vert u+\lambda\cdot v\Vert-\Vert u\Vert}{\lambda},~
+		[u,v]:=\inf\limits_{\lambda>0}[u,v]_\lambda=\lim\limits_{\lambda\to0}[u,v]_\lambda$\\
+		"Richtungsableitung der Norm im Punkt $u$ in Richtung $v$."
+		\item $[u,u]=\norm{u}$, $[0,v]=\norm{v}$, $[u,0]=0$, $v\mapsto[u,v]$ ist sublinear, $\lambda\mapsto[u,v]_\lambda$ ist monoton wachsend und beschränkt durch $\norm{v}$;  $\norm{u}=\sqrt{\scaProd{u}{u}}$; $[u,v]\overset{u\neq0}{=}\scaProd{\frac{u}{\norm{u}}}{v}$
+		\item $[\cdot,\cdot]$ ist \define{ohs}: $(u_n,v_u)_{n\in\N}\overset{n\to\infty}{\longrightarrow}(u,v)\text{ in }X\times X\Rightarrow\left[u,v\right]\geq\limsup_{n\to\infty}\left[u_n,v_n\right]$
+		\define{uhs}: $f(u)\leq\liminf\limits_{n\to\infty} f(u_n)$
+		\item $M$ MR. \define{Epigraph}: $\epi(f):=\lbrace(u,\lambda)\in M\times\R:f(u)\leq\lambda\rbrace$ "Menge der Punkte über dem Graphen"
+		\item $f\colon M\to\R\cup\set{+\infty}$. Dann: $f$ uhs $\gdw\set{f\leq c}$ abgeschlossen $\forall c\in\R\gdw\epi(f)$ abgeschlossen
+		\item Supremum von uhs ist uhs; $f$ konvex $\gdw\epi(f)$ konvex
+		\begin{align*}
+			&A\subseteq X\times X~\define{akkretiv vom Typ} \omega\in\Omega\\
+			:&\gdw\forall (u,v),(\hat{u},\hat{v})\in A:\left[ u-\hat{u},v-\hat{v}\right]+\omega\cdot\left\Vert u-\hat{u}\right\Vert\geq0\\
+			&\gdw A+\omega\cdot I\text{ ist akkretiv (v.T. 0)}\\
+			&\gdw \forall (u,v),(\hat{u},\hat{v})\in A,\forall\lambda>0:\Vert u-\hat{u}+\lambda\cdot(v-\hat{v})\Vert\geq(1-\lambda\cdot\omega)\cdot\Vert u-\hat{u}\Vert\\
+			\overset{X=H}&{\gdw} A\subseteq H\times H \define{~monoton v.T.~} \omega\\
+			:&\gdw\forall(u,v),(\hat{u},\hat{v})\in A:
+			\Re\big(\langle u-\hat{u},v-\hat{v}\rangle\big)+\omega\cdot\Vert u-\hat{u}\Vert^2\geq0\\ 
+			&\Rightarrow\overline{A}\text{ akkretiv v.T. $\omega$ (wegen Oberhalbstetigkeit des Brackets)}
+		\end{align*}
+		\item Für $A$ akk.v.T. $\omega$ ist $I+h\cdot A$ injektiv, da:
+		$u+h\cdot Au\ni f\gdw\big(u,\frac{f-u}{h}\big)\in A$ und 
+		$u+h\cdot Au\ni f$ höchstens eine Lösung $u\in\dom(A)$ hat $\forall f\in X,\forall h>0$ mit $h\omega<1$; folgt aus $\norm{u-\hat{u}}\leq\frac{\norm{f-\hat{f}}}{1-h\cdot\omega}$
+		%\item Sei $h>0$ mit $h\cdot\omega<1$ und $u+h\cdot Au\ni f$, $f\in\dom(A)$. Dann: $\norm{u-f}\leq\frac{h}{1-h\cdot\omega}\cdot\norm{Af}$ mit $\norm{Au}:=\inf\lbrace\norm{f}:(u,f)\in A\rbrace$
+		\item $A\subseteq X\times X$ heißt \textbf{M-akkretiv vom Typ $\omega\in\Omega$} $:\gdw A$ a.v.T. $\omega$ und $\Upsilon$.\\
+		$\Upsilon:\gdw(\exists\gdw\forall)h>0\mit h\cdot\omega<1:I+h\cdot A$ surjektiv $\overset{A\text{ abges.}}{\Longleftrightarrow}$ das Bild von $I+h\cdot A$ dicht in $X$.
+		
+		\item $A$ M-akkreiv $\Rightarrow I+h\cdot A$ bijektiv für alle $h>0\mit h\cdot\omega<1$
+		\define{Resolvente}: $J_h:=(I+h\cdot A)^{-1}$ ist Funktion mit $\dom(J_h)=X$ (diskrete Evolution des impl. Eulers)
+		%\item Beispiel für akkretiven und M-akkretiven Operator (1.2.8)
+		\item Resolvente $J_h$ ist Lip-stetig und 
+		$\big\Vert J_h f-f\big\Vert
+			\leq
+			h\cdot\Vert A f\Vert$ und
+		$\lim\limits_{h\to 0^+}J_h f=
+		\left\lbrace\begin{array}{cl}
+			f, &\forall f\in\dom(A)\\
+			P_{\text{orth}}(f), &\forall f\in H
+		\end{array}\right.$
+		\item $A\subseteq X\times X$ \define{maximal akkretiv} vom Typ $\omega:\gdw$ a.v.T. $\omega$  und $A$ besitzt keine echte akkretive Erweiterung vom Typ $\omega$; $\Rightarrow A$ abgeschlossen; akkretiv $\overset{\text{Zornlemma}}{\leadsto}$ maximal akkretiv
+		\item $A$ M-akkretiv $\Rightarrow A$ maximal akkretiv $\Rightarrow A$ akkretiv; $A+\omega\cdot I$ $*$-akkretiv $\gdw A$ $*$-akkretiv v.T. $\omega$
+		\item $A$ maximal akk. v.T.$\omega\Rightarrow Au$ abgeschlossen (und konvex, falls $X=H)$ %$\forall u\in\dom(A)$
+ 		\item $f\colon X\to\R\cup\set{+\infty}$ \define{koerziv} 
+ 		$:\gdw\forall c\in\R:\set{F\leq c}$ ist beschränkt $\gdw\lim\limits_{\norm{u}\to\infty}F(u)=+\infty$
+ 		\item BR $X$ \define{reflexiv} $:\gdw X\overset{i}{\hookrightarrow}X''$ surjektiv; in dem Fall $i$ isometrischer Isomorphismus $X\cong X''$
+ 		\item \define{Minimierung konvexer Fkt}: $X$ reflexiver BR, $F\colon X\to\R\cup\set{\infty}$ konvex, uhs und koerziv. Dann:\\ $\exists u_0\in X:F(u_0)=\inf\limits_{x\in X} F(x)$, also $F$ nimmt Minimum an.
+ 		\item \define{Minty}: $A\subseteq H\times H$ ist M-akkretiv (v.T. $\omega$) $\gdw A$ maximal akkretiv (v.T. $\omega$); gilt \betone{nicht} in BR
+ 		\item Sei $\E\colon H\to\R\cup\set{+\infty}$ stets konvex, uhs, $\E\not\equiv+\infty$.
+ 		\define{effekt. Defi-B.}: $\dom(\E):=\set{u\in H:\E(u)<+\infty}$
+ 		\item \define{Subgradient}: $\partial\E:=\set[\big]{(u,f)\in H^2:u\in\dom(\E)\wedge\forall v\in H:\Upsilon}$ mit\\
+ 		$\Upsilon:\gdw\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\scaProd{f}{v}\overset{\text{mono.wachs.}}{\Longleftrightarrow}\E(u+v)-\E(u)\geq\scaProd{f}{v}$
+		%\item $\exists c\geq0:\forall u\in H:\E(u)\geq-c\cdot(1+\norm{u})$
+		\item Für jede konvexe, uhs Fkt.$\E:H\to\R\cup\lbrace+\infty\rbrace,~\E\not\equiv+\infty$ ist der Subgradient $\partial\E$ M-akkretiv.
+		\textit{Beweis.}
+		\begin{itemize}
+			\item $\partial\E$ ist akkretiv:
+ 			Seien $(u,f),(\hat{u},\hat{f})\in\partial\E$. 
+			Dann $u,\hat{u}\overset{\Def}{\in}\dom(\E)$ und ($v=\hat{u}-u;v=u-\hat{u}$):
+			$
+			\E(\hat{u})-\E(u)\geq\big\langle f,\hat{u}-u\big\rangle
+			\und
+			\E(u)-\E(\hat{u})\geq\big\langle \hat{f},u-\hat{u}\big\rangle=\big\langle-\hat{f},\hat{u}-u\big\rangle\\
+			\stackrel{\text{addieren}}{\implies}
+			0\geq\big\langle f-\hat{f},\hat{u}-u\big\rangle
+			\text{ bzw. }
+			\big\langle u-\hat{u},f-\hat{f}\big\rangle\geq0
+			\implies\partial\E\text{ akkretiv v.T. 0}
+			$
+			\item $H\to\R\cup\set{+\infty},~u\mapsto\E(u)+\frac{1}{2\cdot\lambda}\cdot\norm{u-f}^2$ ist konvex (Zusammensetzung konvexer Fkt.), uhs (uhs + stetig = uhs) und koerziv (technisch) $\forall\lambda>0,\forall f\in H$.
+			\item Minimierung konvexer Funktionen (da jeder HR reflexiver BR) $\Rightarrow\exists u\in H$ globales Minimum
+			\item $\E(u+\lambda\cdot v)+\frac{1}{2\cdot h}\cdot\big\Vert u+\lambda\cdot v-f\big\Vert^2
+				\geq\E(u)+\frac{1}{2\cdot h}\cdot\Vert u-f\Vert^2$
+			\item $\E(u+\lambda\cdot v)-\E(u)
+				\geq\frac{1}{2\cdot h}\left(\Vert u-f\Vert^2-\Vert u+\lambda\cdot v-f\Vert^2\right)\\
+				=\frac{1}{2\cdot h}\cdot\left(\Vert u-f\Vert^2-\Vert u-f\Vert^2-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)\\
+				=\frac{1}{2\cdot h}\cdot\left(-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)$
+			\item 
+			$
+				\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\frac{1}{2\cdot h}\cdot\left(-2\cdot\langle u-f,v\rangle-\lambda\cdot\Vert v\Vert^2\right)
+				\implies
+				\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\left\langle\frac{f-u}{h},v\right\rangle
+				\overset{\Def~\partial\E}{\implies}
+				\left( u,\frac{f-u}{h}\right)\in\partial\E
+				\Longleftrightarrow\partial\E(u)\ni\frac{f-u}{h}
+				\Longleftrightarrow u+h\cdot\partial\E(u)\ni f
+			$
+			\item Da $h$ und $f$ beliebig waren, folgt
+			$
+				\rg(I+h\cdot\partial\E)=H\qquad\forall h>0
+				\overset{\text{Def. M-akkretiv}}{\implies}
+				\partial\E\text{ ist $m$-akkretiv}
+			$
+		\end{itemize}				
+		\item Korollar: $u_0\in\argmin\big(\E(u)+\frac{1}{2h}\norm{u-f}^2\big)\gdw u_0+h\cdot\partial\E(u_0)\ni f\gdw(I+h\cdot\partial\E)u_0\ni f\gdw J_h^{\partial\E}(f)\ni u_0$
+		\item Beispiel: $H=L^p(\Omega)$, $p\in]1,\infty[$, 
+		$\E(u):=\left\lbrace\begin{array}{cl}
+			\frac{1}{p}\cdot\int\limits_\Omega |\nabla u|^p\ds\omega, &\falls \nabla u\in L^p(\Omega,\R^n)\\
+			+\infty, &\sonst
+		\end{array}\right.$
+		$\E$ ist konvex, uhs, $\not\equiv+\infty$ und 
+		$\dom(\E)=\set[\big]{u\in L^p(\Omega)\mid\nabla u\in L^p(\Omega,\R^n)}$\\
+		$	\partial\E=\set[\Big]{(u,f)\in L^p\times L^p\mid
+			u\in\dom(\E)\wedge\forall v\in\dom(\E):
+			\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v}
+		$
+		\item \define{p-Laplaceoperator}: $\laplace_p u:=\div\big(|\nabla u|^{p-2}\cdot\nabla u\big)\overset{p=2}{=}\Delta u$ mit $|\nabla u|^{p-2}=\Big(\sum\limits_{i=1}^p\Big(\frac{\partial u}{\partial x_i}\Big)^2\Big)^{\frac{p-2}{2}}$
+	\end{itemize}
+	
+	\section{Das Cauchyproblem (CP)}
+	\begin{itemize}
+		\item \define{CP}: $\dot{u}+Au\ni f$ auf $[0,T]$ evtl. mit $u(0)=u_0$, $u_0\in X$, $f\in L^2([0,T];X)$, $A\subseteq X\times X$, $u\colon[0,T]\to X$.
+		\item \define{Bochner-Lebesgueraum}: $L^p(\Omega,X)$ ist BR
+		\define{Bochner-Sobolevraum:} für $I\subseteq\R$ offen:\\
+		$W^{1,p}(I,X):=\set[\big]{u\in L^p(I,X)\mid\exists g\in L^p(I,X):\forall\varphi\in C_c^\infty(I):\int_I u\cdot\varphi'=-\int_I g\cdot\varphi}$ (BR)
+		%\item $u':=g$ \define{schwache Ableitung}, $W^{1,1}$ ist BR mit $\norm{u}_{W^{1,1}}:=\norm{u}_{L^1}+\norm{u'}_{L^1}$
+		\item $u\in C([0,T],X)$ \define{klassische Lsg} 
+		$:\gdw u\in C^1\big([0,T],X\big)\text{ und für fast alle }t\in[0,T]:u$ erfüllt CP
+		\item $u\in C([0,T],X)$ \define{starke Lsg}
+		$:\gdw  u\in W^{1,1}\big([0,T],X\big)\text{ und für fast alle }t\in[0,T]:u$ erfüllt CP
+		\item $u\in C([0,T],X)$ \define{milde / schwache Lsg}
+		$:\gdw \exists$ Folge $(u_n)_{n\in\N}$ von starken Lösungen von CP
+		(mit Rechter Seite $f_n\in L^1\big([0,T],X\big)$!) so, dass
+		$\limn\Vert f_n-f\Vert_{L^1}=0\text{ und }\limn\Vert u_n-u\Vert_\infty=0$
+		\item $u\in C([0,T],X)$ \define{Integrallsg}
+		$:\gdw \exists\omega\in\R:\forall(\hat{u},\hat{f})\in A,\forall 0\leq s\leq t\leq T:\\
+		\big\Vert u(t)-\hat{u}\big\Vert\leq\big\Vert u(s)-\hat{u}\big\Vert+\omega\cdot\int\limits_s^t\big\Vert u(\tau)-\hat{u}\big\Vert\d\tau+\int\limits_s^t\big[u(\tau)-\hat{u},f(\tau)-\hat{f}\big]\d\tau$ (hängt von $\omega$ ab)
+		\item Ist $(u,f)\in A\subseteq X\times X$, dann ist die konstante Funktion $\equiv u$ klassische Lösung von CP zur konstanten rechten Seite $\equiv f$.
+		\item klassisch $\Rightarrow$ stark $\Rightarrow$ mild $\Rightarrow$ Integrallösung; CP hat höchstens eine milde Lsg. (Gronwall!)
+		\item $X$ separabel, $A$ maximal a.v.T. $\omega$. Dann ist jede Integrallösung $u\in W^{1,1}([0,T],X)$ schon starke Lösung
+		\item Diskr. Problem zu $E_\Theta$; $A$ akkretiv $\Rightarrow$ höchstens ein $u_\Theta$ löst $E_\Theta$; $A$ M-akkretiv $\Rightarrow$ genau ein $u_\Theta$ löst $E_\Theta$
+	\end{itemize}
+	
+	\section{Wohlgestelltheit des CPs}
+	\begin{itemize}
+		\item \define{Crandall-Liggett}: Sei $A\subseteq X\times X$ M-akkretiv v.T. $\omega$.
+		Dann: CP $\dot{u}+Au\ni 0$ in $[0,T]$, $u(0)=u_0$ für jedes $u_0\in\overline{\dom(A)}$ genau eine Integrallösung $u\in C([0,T],X)$\\
+		Für je zwei Integrallsg. $u,\hat{u}$ von CP zu AWen $u_0,\hat{u}_0\in\overline{\dom(A)}$ gilt
+		$\norm{u(t)-\hat{u}(t)}\leq\exp(\omega\cdot t)\cdot\norm{u_0-\hat{u}_0}~\forall t\in[0,T]$
+		Setze $S(t)u_0:=u(t)~\forall t\geq0,\forall u_0\in\overline{\dom(A)}$ mit $u$ eindeutiger Integrallösung von CP mit AW $u_0$.
+		Dann $S(t)u_0\colon\overline{\dom(A)}\to\overline{\dom(A)}$ Lips. mit Lipk. $S(0)=\id$ und $S(t+s)=S(t)\circ S(s)$\\
+		\textit{Beweis.}
+		$u\in C([0,T],X)$ \define{Eulerlösung} $:\gdw\exists$ Folge $(\Theta_n)_{n\in\N}=\big((\pi_{\Theta_n},f_{\Theta_n},u_{0,\Theta_n})\big)_{n\in\N}$ von Diskretisierungen und eine Folge $(u_n)_{n\in\N}$ von Lsg. des impliziten Eulerschemas $(E_{\Theta_n})$ gibt mit:
+		\begin{enumerate}
+			\item $\pi_{\Theta_n}$ ist Partition von $[0,T]$
+			\item $\limn\big|\pi_{\Theta_n}\big|=0$
+			\item $\limn\big\Vert f_{\Theta_n}-f\big\Vert_{L^1}=0$
+			\item $\limn\big\Vert u_{0,\Theta_n}-u_0\big\Vert=0$
+			\item $\limn\big\Vert u_n-u\big\Vert_{C\big([0,T],X\big)}=0$
+		\end{enumerate}	
+		Für Existenz einer Eulerlösung sei $(\Theta_n)=(\pi_\Theta,0,u_{0,\Theta_n})$ eine Folge von Diskretisierungen mit 
+		\begin{enumerate}
+			\item $\pi_{\Theta_n}$ ist Partition von $[0,T]$
+			\item $\limn\big|\pi_{\Theta_n}\big|=0$ und $\big|\pi_{\Theta_n}\big|\cdot\omega<1$
+			\item $\limn\big\Vert u_{0,\Theta_n}-u_0\big\Vert=0$; Bedingung 3. oben ist trivialerweise erfüllt. Bleibt 5. zu zeigen.
+		\end{enumerate}	
+		Weil $A$ M-akkretiv ist, besitzt das implizite Eulerschema $E_{\Theta_n}$ genau eine Lösung $u_{\Theta_n}\in C([0,T],X)$; Erinnerung:
+		$\left\lbrace\begin{array}{c}
+			u_{\Theta_n}(t_{i+1})+h_i\cdot A u_{\Theta_n}(t_{i+1})\ni u_{\Theta_n}(t_i)\\
+			u(\underbrace{0}_{=t_0})=u_{0,\Theta_n}
+		\end{array}\right.$
+		Grenzwert $u:=\limn u_{\Theta_n}$ ist also Eulerlösung von CP.
+		Konstante Lösungen sind zulässige Eulerlösungen; jede Eulerlösung ist Integrallösung; Gronwall $\Rightarrow$ Eindeutigkeit von Integral- und Eulerlsg. + Abschätzungen $\square$ 
+		\item \define{Regularität:} Sei $A$ M-akkretiv.
+		Dann eindeutige Integrallsg Lip-stetig mit Lipk. $\norm{Au_0}$%:=\inf\set{\norm{f}:f\in Au_0}$\\
+		Wenn BR $X$ die Radon-Nikodym-Eigenschaft besitzt, dann jede Integrallsg. starke Lsg. für $u_0\in\dom(A)$ und jede Integrallsg milde Lsg. für $u_0\in\overline{\dom(A)}$.
+		\item \define{Rademacher}: $W^{1,\infty}([0,T],\R)=\Lip([0,T],\R)$, gilt i.A. \betone{nicht} für BR $X$
+		\item BR $X$ hat \define{Radon-Nikodym-Eigenschaft} $:\gdw W^{1,\infty}([0,T],X)=\Lip([0,T],X)$; z.B. reflexive BR
+		\item Folgerungen aus Crandall-Ligget: Picard-Lindelöf, Diffusionsgleichung genau eine Lösung, verschobene Operator $A-f$ auch M-akkretiv, und somit CP $\dot{u}+Au\ni f$ auch eindeutig lösbar
+	\end{itemize}
+	
+	\section{Nichtlineare Halbgruppen}
+	Sei $(D,d)$ metrischer Raum.
+	\begin{itemize}
+		\item \define{(stark stetige) Halbgruppe} auf $D$ ist $S\colon[0,\infty]\to C(D,D)$ mit $S_0=\id$, $S_{t+s}=S_t\circ S_s$ für $s,t\geq0$, $[0,\infty)\to D,~t\mapsto S_t(x)$ stetig $\forall x\in D$; Beispiel: $S_t:=\exp(t\cdot A)$
+		\item \define{$C_0$-HG / lineare HG}: ist HG $S$ mit $D=X$ BR und $S_t$ lineare Operatoren $\forall t$
+		\item Für jede linear HG gilt: $\exists M\geq1,\omega\in\R:\norm{S_t}_{\L(X)}\leq M\cdot\exp(\omega\cdot t)~\forall t\geq0$
+		\item \define{Erzeuger} einer lin. HG $S$ ist $A:=\set[\big]{(u,f)\in X^2:f=\lim\limits_{t\to0^+}\frac{S_t u-u}{t}}$ mit\\ $\dom(A)=\set[\big]{u\in X:\lim\limits_{t\to 0^+}\frac{S_t u-u}{t}\text{ existiert}}$, $A$ linear und eindeutig
+		\item Sei $S$ lin. HG auf BR $X$ mit Erz. $A$. Dann:
+		\begin{itemize}
+			\item $S_t u\in\dom(A)$ für alle $u\in\dom(A)$ und $t\in\R_+$
+			\item $t\mapsto S_t$ ist diffbar mit $\frac{\d}{\d t}S_t u=A S_t u=S_t A u$
+			\item $\int_0^t S_s(u)\ds s\in\dom(A)$ und $A\int_0^t S_s(u)\ds s=S_t(u)-u$ für alle $u\in X$ und alle $t\in\R_+$
+			\item Erzeuger $A$ ist abgeschlossen und $\dom(A)$ ist dicht in $X$.
+		\end{itemize}
+		%\item $S$ lin. HG auf BR $X$ mit Erz $A$. Sei $M\geq1,\omega\in\R$ so, dass $\norm{S_t}\leq M\cdot\exp(\omega\cdot t)~\forall t\in\R_+$.
+		%Dann: Operator $\lambda-A:=\lambda\cdot\id-A=\lbrace(u,\lambda-f):(u,f)\in A\rbrace$ ist invertierbar für alle $\lambda>\omega$ und \\
+		%$(\lambda-A)^{-1}f=\int_0^\infty\exp(-\lambda\cdot t)\cdot S_tf\ds t$
+		\item Verhältnis von $S$ zu $A$: Ableitung in 0 und umgekehrt Lösung von $\dot{u}-Au=0$
+		\item \define{Lumer-Philips (Folgerung von Crandall-Ligget)}:
+		Ein linearer Operator $A\subseteq X\times X$ auf BR $X$ ist genau dann Erzeuger von lin. HG. $S$ von Kontraktionen (d.h. $\norm{S_t}_{\L(X)}\leq 1$), wenn $-A$ M-akkretiv ist und $\dom(A)$ dicht in $X$ liegt.
+		\item Ein linearer Operator $A$ auf BR $X$ ist genau dann Erzeuger einer lin. HG, wenn $\dom(A)$ dicht in $X$ und wenn es eine äquivalente Norm $\normiii{\cdot}$ auf $X$ gibt, bzgl. der $-A$ M-akkretiv ist vom Typ $\omega$ ist.
+		\item \define{Exponentialformel}: Sei $A$ M-akkretiv v.T. $\omega$ auf BR $X$. Dann\\
+		$S_tu_0=\limn\big(I+\frac{t}{n}\cdot A\big)^{-n} u_0=\limn \big(J_{\frac{t}{n}}^A\big)^n u_0~\forall u_0\in D:=\overline{\dom(A)},\forall t\in\R_+$ wobei $S$ von $A$ erzeugte HG.
+		(Beweis $S_tu_0$ sind genau die Lösungen des impliziten Eulerschemas)
+	\end{itemize}
+	
+	\section{Anwendungen}
+	\begin{itemize}
+		\item \define{Trotter-Kato-Miyadera}:
+		Sei $(A_n)_{n\in\N}$ ein Folge von $m$-akkretiven Operatoren (vom uniformen Typ $\omega\in\R$, d.h. $\omega$ hängt nicht von $n$ ab) auf einem BR $X$.
+	Sei $(S_n)_{n\in\N}$ die zugehörige Folge von nichtlinearen Halbgruppen ($S_n$ ist Halbgruppe auf $D_n:=\overline{\dom(A_n)}$). 
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und $u_0:=\limn u_{0,n}$ existiert
+		$
+			\limn S_n(t) u_{0,n}=:S(t) u_0
+		$
+		gleichmäßig für $t$ in kompakten Teilmengen in $\R_+$.
+		\item $\exists\lambda_0>0$ mit $\lambda_0\cdot\omega<1$ so, dass für alle $f\in X$
+		$
+			\limn J_{\lambda_0}^{A_n} f=:J_{\lambda_0}f\qquad \Big(\mit J_{\lambda_0}^{A_n}=\big(I+\lambda_0\cdot A_n\big)^{-1}\Big)
+		$
+		existiert. (\define{Resolventenkonvergenz})
+		\item Für alle $\lambda>0$ mit $\lambda\cdot\omega<1$ und alle $f\in X$ existiert
+		$
+			\limn J_\lambda^{A_n} f=:J_\lambda f
+		$
+		\item Für alle $\lambda>0$ mit $\lambda\cdot\omega<1$ und alle konvergenten Folgen $(f_n)_{n\in\N}$ in $X$ mit $f:=\limn f_n$ existiert
+		$
+			\limn J_\lambda^{A_n}f_n=:J_\lambda f
+		$
+		\item Für jede konvergente Folge $(u_{0,n})_{n\in\N}$ in $X$ mit $u_{0,n}\in D_n~\forall n\in\N$ und $u_0=\limn u_{0,n}$ und jede konvergente Folge $(f_n)_{n\in\N}$ in $L^1(0,T;X)$ mit $f=\limn f_n$ gilt:
+		Sind $u,u_n\in C\big([0,1];X\big)$ die eindeutigen Integrallösungen von
+		$
+			\left\lbrace\begin{array}{r}
+				\dot{u}_n+A_n u_n\ni f_n\\
+				u_n(0)=u_{0,n}
+			\end{array}\right.~\und~
+			\left\lbrace\begin{array}{r}
+				\dot{u}+A u\ni f\\
+				u(0)=u_{0}
+			\end{array}\right.
+		$
+		wobei $A\subseteq X\times X$ der Operator ist mit $J_\lambda^A=J_\lambda$ (wie in (iii) und (iv)), dann gilt
+		$
+			\limn\big\Vert u_n-u\big\Vert_{C\big([0,T];X\big)}=0
+		$
+	\end{enumerate}
+	Dann gilt: (i) $\Longleftarrow$ (ii) $\Longleftrightarrow$ (iii) $\Longleftrightarrow$ (iv) $\Longleftrightarrow$ (v) und (i) $\overset{X=H}{\Longleftrightarrow}$ (ii).
+	(iv)$\Rightarrow$(iii)$\Rightarrow$(ii) ist klar.\\
+	Zu (iv) $\Longrightarrow$ (v): Wenn die äquivalenten Aussagen (ii),(iii),(iv) gelten, dann ist $J_\lambda$ Resolvente eines $m$-akkretiven Operators $A$ vom Typ $\omega$. Die von $A$ erzeugte Halbgruppe ist die Halbgruppe $S$ aus (i).\\
+		\textit{Beweis. (nur (ii) $\Rightarrow$ (i):}\\
+	Auf dem Raum $c(\N,X)$ aller konvergenten Folgen in $X$(Banachraum  bzgl. Supremumsnorm $\Vert\cdot\Vert_\infty$) betrachten wir den Operator
+	$
+		\A=\Big\lbrace\big((u_n)_{n\in\N},(f_n)_{n\in\N}\big)\in c(\N,X)\times c(\N,X):\big(u_n,f_n)\in A_n~\forall n\in\N\Big\rbrace
+	$	 
+	Weil die $A_n$ akkretiv vom Typ $\omega$ sind, gilt für alle $(u_n,f_n),(\hat{u}_n,\hat{f}_n)\in A_n$ und alle $\lambda>0$ mit $\lambda\cdot\omega<1$:
+	$
+		\Big\Vert u_n-\hat{u}_n+\lambda\cdot(f_n-\hat{f}_n)\Big\Vert_X
+		\geq(1-\lambda\cdot\omega)\cdot\big\Vert u_n-\hat{u}_n\big\Vert
+	$
+	Also gilt (nehme Supremum auf beiden Seiten) für alle\\ $\big((u_n)_{n\in\N},(f_n)_{n\in\N}\big),\big((\hat{u}_n)_{n\in\N},(\hat{f}_n)_{n\in\N}\big)\in\A$ und alle $\lambda>0$ mit $\lambda\cdot\omega<1$:\\
+	$
+		\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}+\lambda\cdot\big((f_n)_{n\in\N}-(\hat{f}_n)_{n\in\N}\big)\Big\Vert_\infty
+		\geq(1-\lambda\cdot\omega)\cdot\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}\Big\Vert_\infty
+	$
+	Also ist $\A$ akkretiv vom Typ $\omega$.
+	Der Operator $\A$ erzeugt also eine Halbgruppe $\mathcal{S}$ auf dem Raum $c(\N,X)$.\\
+	$
+		\mathcal{S}(t)\Big((u_{0,n})_{n\in\N}\Big)
+		\overset{\text{Expf}}=
+		\lim\limits_{k\to\infty}\left(J_{\frac{t}{k}}^{\A}\right)^k\Big((u_{0,n})_{n\in\N}\Big)
+		=\lim\limits_{k\to\infty}\left(\left(J_{\frac{t}{k}}^{A_n}\right)^k u_{0,n}\right)_{n\in\N}
+		\overset{\text{Expf}}=
+		\big(S_n(t) u_{0,n}\big)_{n\in\N}\in  c(\N,X)\\
+		~\forall (u_{0,n})_{n\in\N}\in\overline{\dom(\A)}
+	~\square$
+		\item Sei $A\subseteq X\times X$ M-akkretiv v.T. $\omega$, $\lambda>0\mit\lambda\cdot\omega<1$. \define{Yosida-Approx.} von $A$ ist 
+		$A^\lambda:=\frac{1}{\lambda}(I-J_\lambda^A)$ mit $J_\lambda^A:=(I+\lambda\cdot A)^{-1}$
+			\begin{enumerate}[label=(\alph*)]
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in X:\big(J_\lambda u,A^\lambda u\big)\in A
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1
+		\end{aligned}$ ist $A^\lambda$ Lipschitzstetig mit Lipschitzkonstante $\frac{2-\lambda\cdot\omega}{\lambda\cdot(1-\lambda\cdot\omega)}$.
+		\item $\forall\lambda>0\mit\lambda\cdot\omega<1$ ist $A^\lambda$ $m$-akkretiv vom Typ $\frac{\omega}{1-\lambda\cdot\omega}$.
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in\dom(A):			
+		\end{aligned}$
+		$
+			(1-\lambda\cdot\omega)\cdot\Vert A^\lambda u\Vert_X\leq\Vert A u\Vert:=\inf\big\lbrace\Vert f\Vert_X:(u,f)\in A\big\rbrace
+		$
+		\item $\begin{aligned}
+			\forall\lambda,\mu>0\mit(\mu+\lambda)\cdot\omega<1:
+			A^{\lambda+\mu}=\big(A^\lambda\big)^\mu
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in X:
+			\lim\limits_{\mu\to0^+}J_\lambda^{A^\mu}f=J_\lambda^A f
+		\end{aligned}$
+	\end{enumerate}
+	\item (f) + Trotter-Kato $\Rightarrow$ die von $A^m u$ erzeugten HGen $S_\mu$ konvergieren stark gegen die von $A$ erzeugte HG $S$ für $\mu\to0$.
+	\item Sei $\E\colon H\to\R\cup\set{+\infty}$ uhs, $\not\equiv\infty$ und semikonvex v.T. $\omega$ (d.h. $u\mapsto\E(u)+\frac{\omega}{2}\norm{u}_H^2$ konvex);\\ $\lambda>0\mit\lambda\cdot\omega<1$;
+	\define{Moreau-Yosida-Approx.} von $\E$ ist $\E^\lambda\colon H\to\R,$\\ $\E^
+	\lambda(u):=\inf\limits_{v\in H}\big(\E(v)+\frac{1}{2\lambda}\cdot\norm{u-v}_H^2\big)
+	=\E\left(J_\lambda u\right)+\frac{1}{2\cdot\lambda}\cdot\big\Vert u-J_\lambda^{\partial\E} u\big\Vert_H^2
+			=\E\big(J_\lambda u\big)+\frac{\lambda}{2}\cdot\big\Vert(\partial\E)^\lambda u\big\Vert_H^2$ 
+	\item $\E^\lambda$ ist stetig diffbar und semikonvex v.T. $\frac{\omega}{1-\lambda\omega}$; $\lim\limits_{\lambda\to0^+}\E^\lambda(u)=\E(u)$
+	\item Seien $\E,\E_n\colon H\to\R\cup\set{+\infty}$. $(\E_n)_{n\in\N}$
+	\define{Mosco-konv.} gegen $\E:\gdw\E(u)\leq\liminf\limits_{n\to\infty}\E_n(u_n)$ für jede schwach konvergent Folge $u_n\overset{\text{w}}{\longrightarrow}u$ UND $\E(u)\geq\limsup\limits_{n\to\infty}\E_n(u_n)$ für alle $u\in H~\exists(u_n)_n$ mit $\limn u_n=u$
+	\item $(\E_n)_{n\in\N}$ uhs, konvex, mono-wachsend und konvergent $\Rightarrow\E_n\Moscok\sup\limits_{n\in\N}\E_n$
+	\item $(\E_n)_{n\in\N}$ uhs, konvex, mono-fallend, unten durch uhs-Funktion bechränkt $\Rightarrow\E_n\Moscok\overline{\inf\limits_{n\in\N}\E_n}$ (uhs-Hülle)
+	\item \define{Attouch}: $\E_n,\E\colon H\to\R\cup\set{+\infty}$ uhs, $\not\equiv+\infty$, semikonvex v.T. $\omega$, $S_n,S$ die vom Subgradienten $\partial\E_n$ und $\partial\E$ erzeugten HG. TFSAE:
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede konvergente Folge $(u_n^0)_{n\in\N}$ (0 ist Anfangswert) in $H$ mit $u_n^0\in\overline{\dom(\partial\E_n)}$ und 
+		mit $u^0:=\limn u_n^0$ gilt
+		$
+			u_0\in\overline{\dom(\partial\E)}
+			\und
+			\limn S_n(t)u_n^0=S(t) u^0
+			\text{ lokal glm. in }t\in\R_{\geq0}
+		$
+		und es gilt die Normalisierung (N)
+		$
+			\exists\big(\hat{u}_n,\hat{f}_n\big)\in\partial\E_n,\exists\big(\hat{u},\hat{f}\big)\in\partial\E:
+			\limn\big(\hat{u}_n\hat{f}_n\big)=\big(\hat{u},\hat{f}\big)
+			%\text{ in }H\times H
+			\text{ und }\limn \E_n\big(\hat{u}_n\big)=\E\big(\hat{u}\big)
+		$
+		\item $\begin{aligned}
+			\exists\lambda>0\mit\lambda\cdot\omega<1:\forall f\in H:
+			\limn J_\lambda^{\partial\E_n} f=J_\lambda^{\partial\E} f\text{ in }H
+			\text{ und }(N)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in H:
+			\limn J_\lambda^{\partial\E_n}f=J_\lambda^{\partial\E} f\text{ in }H
+			\text{ und }(N)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall f\in H:
+			\weaklim\limits_{n\to\infty} J_\lambda^{\partial\E_n} f=J_\lambda^{\partial\E}f
+			\text{ und }(N)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\forall\lambda>0\mit\lambda\cdot\omega<1,\forall u\in H:
+			\limn\E_n^\lambda(u)=\E^\lambda(u)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\E_n+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2
+			\overset{\text{Mosco}}{\longrightarrow}
+			\E+\frac{\omega}{2}\cdot\Vert\cdot\Vert^2
+		\end{aligned}$ (\textit{Beweis:} (i) $\gdw$ (ii) $\gdw$ (iii) folgt aus Trotter-Kato.)
+		\end{enumerate}
+		\item $(\Omega_n)_{n\in\N}$ monoton wachsend $\Rightarrow\E^{\Omega_n}\Moscok\E^\Omega$ mit $\Omega=\bigcup_n\Omega_n$
+		\item \define{Invarianz konvexer Mengen}: Sei $A\subseteq H\times H$ M-akkretiv und $S\leftrightarrow A$.
+		Für $C\subseteq H$ abgeschlossen konvex gilt (1)$\gdw$(2)$\overset{A=\partial\E\text{ konvex, uhs }\E\colon H\to\R\cup\set{\infty}}{\Longleftrightarrow}$(3)
+		\begin{enumerate}
+			\item $C\subseteq H$ konvex ist invariant unter Halbgruppe, d.h. 
+			$S(t)(C\cap\overline{\dom(A)})\subseteq C~\forall t\geq0$
+			\item $C$ invariant unter Resolvente von $A$ $\big(J_\lambda C\subseteq C~\forall\lambda\geq0$ ($J_\lambda:=J_\lambda^A:=(I+\lambda\cdot A)^{-1}\big)
+		$
+			\item $\E(P_C u)\leq\E(u)$ $\forall u\in H$
+		\end{enumerate}
+		\textit{Beweis. (iii)$\Rightarrow$(ii)$\Rightarrow$(i)}:
+		Zeige: (ii)$\Rightarrow$(i) mit Exponentialformel:\\
+		$S(t)u_0\overset{\text{Expf}}{=}\limn\left(J_{\frac{t}{n}}\right)^n u_0
+		u_0\in C\cap\dom(A),t>0,n\in\N
+		\Rightarrow J_{\frac{t}{n}} u_0\in C
+		\Rightarrow\left(J_{\frac{t}{n}}\right)^n u_0\in C
+		\overset{C\text{ abges.}}\Rightarrow
+		S(t) u_0\in C$\\
+		(iii)$\Rightarrow$(ii):
+		Sei $f\in C,\lambda>0$. Zeige $J_\lambda f\in C$. $J_\lambda$ ist eindeutiger Minimierer (!) $\leadsto 0\overset{\Vor}{<}\E(J_\lambda f)-\E(P_C J_\lambda f)\leq 0\leadsto P_C J_\lambda f=J_\lambda f\leadsto J_\lambda f\in C$.
+		\item \define{Anwendung}: Sei $S$ die von $\E\colon L^2(\Omega)\to\R\cup\lbrace+\infty\rbrace$ (konvex, uhs, $\not\equiv+\infty$) bzw. von $\partial\E$ erzeugte HG.
+		Dann lässt $S$ den \define{Kegel} $C:=L^2(\Omega)^+$ (konvex, nichtleer, abgeschlossen) invariant:
+		$S$ positiv $:\gdw S(t)u_0\in L^2(\Omega)^+~\forall u_0\in L^2(\Omega)^+\gdw S$ lässt $C$ invariant $\overset{3.\gdw1.}{\gdw}\E(f^+)\leq\E(f)~P_C(f)=f^+~\forall f\in L^2(\Omega)$
+	\end{itemize}
+\end{document}
