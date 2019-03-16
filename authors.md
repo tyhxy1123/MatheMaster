@@ -7,14 +7,18 @@ Der jeweilige Hauptverantwortliche für das Skript steht ganz links.
 
 | Modul  | Autoren              			|
 | ------ | ------               			|
-| STOCHP | Willi  	|
-| NLANA  | Willi   |
+| STOCHP | Willi, Henrik   |
+| NLANA  | Willi, Henrik   |
 | SCPROG | Willi	|
 | MMAM (Lineare Modelle)  | Willi	|
 | KONGEO  | Lukas Z.              			|
 | DISMAT | Lukas Z.         			|
 | ALGTOP  | Lukas Z.	|
 | Kategorientheorie    | Lukas Z., Willi		|
+| SCCOMP | Henrik     |
+| PDENMW | Henrik     |
+| DISOPT | Henrik     |
+
 
 ## Wintersemester 2018/2019
 
