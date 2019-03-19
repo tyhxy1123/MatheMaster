@@ -991,7 +991,7 @@ Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
 	\end{align*}
 	Es gilt:
 	\begin{align*}
-		\E\big(J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f\big\Vert_H^2
+		\E\big(J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f - f\big\Vert_H^2
 		&\leq\E\big(P_C J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2
 	\end{align*}
 	und somit durch Umsortierung
@@ -1000,7 +1000,7 @@ Sei $P_C$ die orthogonale Projektion von $H$ auf $C$, also
 		\E\big(J_\lambda f\big)-\E\big(P_C J_\lambda f\big)\\
 		&\leq\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2-\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f-f\big\Vert_H^2\\
 		&=\frac{1}{2\cdot\lambda}\cdot\big\Vert P_C J_\lambda f-f\big\Vert_H^2-\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f+\underbrace{-J_\lambda f+J_\lambda f}_{=0}-f\big\Vert_H^2\\
-		&=\frac{1}{2\cdot\lambda}\cdot\bigg(\underbrace{-\big\Vert P_C J_\lambda f-J_\lambda f\big\Vert^2}_{\leq0}+\underbrace{\cdot\big\langle P_C J_\lambda f-J_\lambda f,P_C J_\lambda f-f\big\rangle}_{\leq0}\bigg)\\
+		&=\frac{1}{2\cdot\lambda}\cdot\bigg(\underbrace{-\big\Vert P_C J_\lambda f-J_\lambda f\big\Vert^2}_{\leq0}+\underbrace{\big\langle P_C J_\lambda f-J_\lambda f,P_C J_\lambda f-f\big\rangle}_{\leq0}\bigg)\\
 		&\leq 0\\
 		&\implies
 		\E\big(J_\lambda f\big)+\frac{1}{2\cdot\lambda}\cdot\big\Vert J_\lambda f-f\big\Vert^2

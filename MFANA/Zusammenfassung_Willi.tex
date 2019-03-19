@@ -168,7 +168,7 @@
 		Für je zwei Integrallsg. $u,\hat{u}$ von CP zu AWen $u_0,\hat{u}_0\in\overline{\dom(A)}$ gilt
 		$\norm{u(t)-\hat{u}(t)}\leq\exp(\omega\cdot t)\cdot\norm{u_0-\hat{u}_0}~\forall t\in[0,T]$
 		Setze $S(t)u_0:=u(t)~\forall t\geq0,\forall u_0\in\overline{\dom(A)}$ mit $u$ eindeutiger Integrallösung von CP mit AW $u_0$.
-		Dann $S(t)u_0\colon\overline{\dom(A)}\to\overline{\dom(A)}$ Lips. mit Lipk. $S(0)=\id$ und $S(t+s)=S(t)\circ S(s)$\\
+		Dann $S(t)\colon\overline{\dom(A)}\to\overline{\dom(A)}$ Lips. mit Lipk. $S(0)=\id$ und $S(t+s)=S(t)\circ S(s)$\\
 		\textit{Beweis.}
 		$u\in C([0,T],X)$ \define{Eulerlösung} $:\gdw\exists$ Folge $(\Theta_n)_{n\in\N}=\big((\pi_{\Theta_n},f_{\Theta_n},u_{0,\Theta_n})\big)_{n\in\N}$ von Diskretisierungen und eine Folge $(u_n)_{n\in\N}$ von Lsg. des impliziten Eulerschemas $(E_{\Theta_n})$ gibt mit:
 		\begin{enumerate}
@@ -284,7 +284,7 @@
 		\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}+\lambda\cdot\big((f_n)_{n\in\N}-(\hat{f}_n)_{n\in\N}\big)\Big\Vert_\infty
 		\geq(1-\lambda\cdot\omega)\cdot\Big\Vert(u_n)_{n\in\N}-(\hat{u}_n)_{n\in\N}\Big\Vert_\infty
 	$
-	Also ist $\A$ akkretiv vom Typ $\omega$.
+	Also ist $\A$ akkretiv vom Typ $\omega$ (sogar m-akkretiv).
 	Der Operator $\A$ erzeugt also eine Halbgruppe $\mathcal{S}$ auf dem Raum $c(\N,X)$.\\
 	$
 		\mathcal{S}(t)\Big((u_{0,n})_{n\in\N}\Big)
