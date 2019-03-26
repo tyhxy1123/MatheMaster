@@ -31,3 +31,32 @@
 	\cfoot{Version: \today}
 	\ofoot{Seite \pagemark}
 }
+
+\newcommand{\TemplateSummary}[2]{
+	% Argument no. 1 is the author
+	% Argument no. 2 is the name of the lecture (short version, should match the file name of the corresponding local command file. See code below.)
+
+	\documentclass[12pt]{scrartcl}
+	\usepackage{palatino,setspace,fancyhdr}
+	\usepackage[left=10mm,right=10mm,top=25mm,bottom=25mm]{geometry}
+	\onehalfspacing
+	\pagestyle{fancy}
+	
+	\chead{Zusammenfassung #2}
+	\lfoot{Version: \today}
+	\rfoot{Seite \thepage}
+	\lhead{}
+	\rhead{#1}
+
+	\input{\directoryPrefix packages}
+	\input{\directoryPrefix theoremenvironments}
+	\input{\directoryPrefix commands}
+	\input{\directoryPrefix commands_Willi}
+	\IfFileExists{./commands_#2}{
+		\input{commands_#2}
+	}{}
+
+	% Platzeinsparungen:
+	\setitemize{leftmargin=*} % itemize-Umbegungen werden nicht eingerückt
+	\setkomafont{section}{\large}
+}

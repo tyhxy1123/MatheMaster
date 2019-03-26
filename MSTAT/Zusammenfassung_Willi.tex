@@ -3,26 +3,9 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\documentclass[12pt]{scrartcl}
-\usepackage{palatino,setspace,fancyhdr}
-\usepackage[left=10mm,right=10mm,top=25mm,bottom=25mm]{geometry}
-\onehalfspacing
-\pagestyle{fancy}
-\chead{Zusammenfassung MSTAT}
-\lfoot{Version: \today}
-\rfoot{Seite \thepage}
-\lhead{}
-\rhead{Willi Sontopski}
-
-\input{../latex/packages}
-\input{../latex/theoremenvironments}
-\input{../latex/commands}
-\input{../latex/commands_Willi}
-\input{MSTAT_commands}
-
-%%%% Platzsparungen:
-\setitemize{leftmargin=*} % itemize-Umbegungen werden nicht eingerückt
-\setkomafont{section}{\large}
+\newcommand{\directoryPrefix}{../latex/} % Je nach Ordnertiefe muss dieser Command angepasst werden. Bei Fragen mich anschreiben.
+\input{\directoryPrefix templates}
+\TemplateSummary{Willi Sontopski}{MSTAT}
 
 \begin{document}
 	\section{Der Median}

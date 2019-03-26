@@ -9,7 +9,7 @@ Im Folgenden sei $X$ ein Banachraum mit Norm $\Vert\cdot\Vert$ und $H$ ein Hilbe
 \begin{definition}
 	Ein \textbf{(nichtlinearer) Operator} auf $X$ ist eine Relation $A\subseteq X\times X$. Wir schreiben
 	\begin{itemize}
-		\item $Au:=\lbrace f\in X:(u,f)\in A\rbrace~\forall u\in X$
+		\item $Au:=\lbrace f\in X:(u,f)\in A\rbrace~\forall u\in X$ "Bild von $u$"
 		\item $\dom(A):=\lbrace u\in X:Au\neq\emptyset\rbrace$ \textbf{Definitionsbereich} von $A$
 		\item $\rg(A):=\lbrace f\in X:\exists u\in X:(u,f)\in A\rbrace$ \textbf{Bild} von $A$
 		\item $A^{-1}:=\lbrace (f,u)\in X\times X:(u,f)\in A\rbrace$ \textbf{inverser Operator}
@@ -17,7 +17,7 @@ Im Folgenden sei $X$ ein Banachraum mit Norm $\Vert\cdot\Vert$ und $H$ ein Hilbe
 		\item Offenbar gilt $\dom(A^{-1})=\rg(A)$
 		\item Sind $A,B\subseteq X\times X$ zwei Operatoren, $\lambda\in\K\in\lbrace\R,\C\rbrace$, dann ist
 		\begin{align*}
-			A+B&:=\lbrace(u,f_1+f_2):f_1\in A,f_2\in B\rbrace\\
+			A+B&:=\lbrace(u,f_1+f_2):(u,f_1)\in A,(u,f_2)\in B\rbrace\\
 			&:=\lbrace(u,f)\in X\times X:\exists f_1,f_2\in X:(u,f_1)\in A\wedge(u,f_2)\in B\wedge f=f_1+f_2\rbrace\\
 			\lambda\cdot A&:=\lbrace(u,\lambda\cdot f):(u,f)\in A\rbrace\\
 			&:=\lbrace(u,f)\in X\times X:\exists f_1\in X:(u,f_1)\in X\wedge f=\lambda\cdot f_1\rbrace
@@ -44,7 +44,7 @@ Im Folgenden sei $X$ ein Banachraum mit Norm $\Vert\cdot\Vert$ und $H$ ein Hilbe
 	\begin{enumerate}[label=(\roman*)]
 		\item $\left[\cdot,\cdot\right]\colon X\times X\to\R\cup\lbrace-\infty\rbrace$ ist \textbf{oberhalbstetig}, d.h. 
 		\begin{align*}
-			(u_n,v_u)_{n\in\N}\to(u,v)\text{ in }X\times X\Longrightarrow\left[u,v\right]\geq\limsup_{n\to\infty}\left[u_n,v_n\right]
+			(u_n,v_u)_{n\in\N}\overset{n\to\infty}{\longrightarrow}(u,v)\text{ in }X\times X\Longrightarrow\left[u,v\right]\geq\limsup_{n\to\infty}\left[u_n,v_n\right]
 		\end{align*}
 
 		\item Die Funktion $\left]0,\infty\right[\to\R$, $\lambda\mapsto\left[u,v\right]_\lambda$ ist monoton wachsend und beschränkt durch $\Vert v\Vert$.
@@ -57,6 +57,15 @@ Im Folgenden sei $X$ ein Banachraum mit Norm $\Vert\cdot\Vert$ und $H$ ein Hilbe
 	\end{enumerate}
 \end{lemma}
 
+\begin{erinnerung}
+	Eine Funktion $f\colon X\to\R$ heißt \define{sublinear}
+	\begin{align*}
+		:\Longleftrightarrow f(\alpha\cdot x)=\alpha\cdot f(x)~\forall\alpha>0
+		\quad\und\quad
+		f(x+y)\leq f(x)+f(y)~\forall x,y\in X
+	\end{align*}
+\end{erinnerung}
+
 \begin{definition}
 	Eine Funktion $f\colon M\to\R\cup\lbrace+\infty\rbrace$ auf einem metrischen Raum $M$ heißt \textbf{unterhalbstetig}
 	\begin{align*}
@@ -67,7 +76,7 @@ Im Folgenden sei $X$ ein Banachraum mit Norm $\Vert\cdot\Vert$ und $H$ ein Hilbe
 	\end{align*}
 	$f$ heißt \textbf{oberhalbstetig}
 	\begin{align*}
-		&:\Longleftrightarrow -f\text{ unterhalbstetig}\\
+		:&\Longleftrightarrow -f\text{ unterhalbstetig}\\
 		&\Longleftrightarrow
 		\forall(u_n)_{n\in\N}\subseteq M,\forall u\in M\mit
 		u_n\stackrel{n\to\infty}{\longrightarrow} u\text{ in }M:
@@ -315,7 +324,7 @@ Zu zeigen ist, dass $\lambda\mapsto\frac{f(\lambda)}{\lambda}$ monoton wachsend 
 		\end{align*}
 		existiert, dann existiert die rechtsseitige Ableitung von $\Vert\cdot\Vert\circ u$, also
 		\begin{align*}
-			D_t^R \Vert u(t)\Vert:=\dot{u}(t+):=\lim\limits_{h\to 0^+}\frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
+			D_t^R \Vert u(t)\Vert:=\norm{\dot{u}(t+)}:=\lim\limits_{h\to 0^+}\frac{\Vert u(t+h)\Vert-\Vert u(t)\Vert}{h}
 		\end{align*}
 		und es gilt
 		\begin{align*}
@@ -577,7 +586,7 @@ Zu zeigen ist, dass $\lambda\mapsto\frac{f(\lambda)}{\lambda}$ monoton wachsend 
 			u+h\cdot Au\ni f
 		\end{align*}
 		höchstens eine Lösung $u\in\dom(A)$.
-		\item Sei $h>0\mit h\cdot\omega<$ und sei $(u,f)\in X\times X$ so, dass 
+		\item Sei $h>0\mit h\cdot\omega<1$ und sei $(u,f)\in X\times X$ so, dass 
 		\begin{align*}
 			u+h\cdot Au\ni f.
 		\end{align*}
@@ -687,7 +696,7 @@ Zu zeigen ist, dass $\lambda\mapsto\frac{f(\lambda)}{\lambda}$ monoton wachsend 
 	Nach dem vorherigen Theorem, Aussage (b), ist $I+h\cdot A$ immer injektiv, also bijektiv. 
 	Setze
 	\begin{align*}
-		J_h:=\big(I+h\cdot A\big)^{-1}.
+		J_h:=\big(I+h\cdot A\big)^{-1}=\set[\big]{(h\cdot f+u,u):(u,f)\in A}.
 	\end{align*}
 	Dann ist wegen Theorem, Aussage (a), $J_h$ lipschitzstetig mit Lipschitzkonstante $\frac{1}{1-h\cdot\omega}$. 
 	Sei nun 
@@ -778,8 +787,8 @@ Zu zeigen ist, dass $\lambda\mapsto\frac{f(\lambda)}{\lambda}$ monoton wachsend 
 		ist akkretiv (``monoton wachsend''). Damit gilt
 		\begin{align*}
 			h\cdot A&=\big([-\infty,0]\times\lbrace-h\rbrace\big)\cup\big([0,\infty)\times\lbrace h\rbrace\big)\cup\big(\lbrace0\rbrace\times[-h,h]\big)\\
-			I+h\cdot A&=\graph\big(\R_{\leq0}\to\R_{\leq0},~x\mapsto x-1\big)\cup\big(\lbrace 0\rbrace\times [-h,h]\big)\\
-			&\qquad\cup\graph\big(\R_{\geq0}\to\R_{\geq0},x\mapsto x+1\big)
+			I+h\cdot A&=\graph\big(\R_{\leq0}\to\R_{\leq0},~x\mapsto x-h\big)\cup\big(\lbrace 0\rbrace\times [-h,h]\big)\\
+			&\qquad\cup\graph\big(\R_{\geq0}\to\R_{\geq0},x\mapsto x+h\big)
 		\end{align*}
 		Hierbei ist $I+h\cdot A$ $m$-akkretiv (also $m$-akkretiv vom Typ 0).
 		\begin{align*}
@@ -795,7 +804,7 @@ Zu zeigen ist, dass $\lambda\mapsto\frac{f(\lambda)}{\lambda}$ monoton wachsend 
 		Damit gilt
 		\begin{align*}
 			h\cdot A=A
-		\end{align*} %TODO warum gilt das?
+		\end{align*}
 		und $I+h\cdot A$ ist surjektiv, also ist $A$ akkretiv. $J_h=(I+h\cdot A)^{-1}$ ist eine Funktion.
 	\end{enumerate}
 \end{beispiel}
@@ -1075,7 +1084,7 @@ Aus einer Standardanwendung des Lemmas von Zorn folgt:
  		\item Ist $A$ maximal akkretiv vom Typ $\omega$ und $(u,f)\in X\times X$, dann gilt:
  		\begin{align*}
  			(u,f)\in A&\Longleftrightarrow\forall(\hat{u},\hat{f})\in A:\big[u-\hat{u},f-\hat{f}\big]+\omega\cdot\Vert u-\hat{u}\Vert\geq0\\
- 			&\stackrel{X\text{ HilbertR}}{\Longleftrightarrow}
+ 			\overset{X\text{ HilbertR}}&{\Longleftrightarrow}
  			\forall(\hat{u},\hat{f})\in A:\big\langle u-\hat{u},f-\hat{f}\big\rangle+\omega\cdot\Vert u-\hat{u}\Vert^2\geq0
  		\end{align*}
  		\item Sei $A$ maximal akkretiv vom Typ $\omega$. 
@@ -1282,12 +1291,12 @@ In diesem Abschnitt sei $H$ ein reeller Hilbertraum und $\E:H\to\R\cup\lbrace+\i
 		\partial\E&:=\left\lbrace (u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\lim\limits_{\lambda\to0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\langle f,v\rangle\right\rbrace\\
 		&=\Big\lbrace(u,f)\in H\times H\mid u\in\dom(\E)\wedge\forall v\in H:\E(u+v)-\E(u)\geq\langle f,v\rangle\Big\rbrace
 	\end{align*}
-	Bei der Gleichheit wird verwendet, dass die Funktion $\lambda\mapsto\frac{\E(u\lambda\cdot v)-\E(u)}{\lambda}$ monoton wachsend ist.
+	Bei der Gleichheit wird verwendet, dass die Funktion $\lambda\mapsto\frac{\E(u + \lambda\cdot v)-\E(u)}{\lambda}$ monoton wachsend ist.
 \end{definition}
 
 Ziel: $\partial\E$ ist $m$-akkretiv.
 
-\begin{lemma}
+\begin{lemma}\label{lemmaSubgradientistAkkretiv}
 	$\partial\E$ ist akkretiv ( = monoton).
 \end{lemma}
 
@@ -1331,7 +1340,7 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 	\end{align*}
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lemmaSubgradientMAkkretivHilfslemma}
 	Für alle $\lambda>0$ und alle $f\in H$ ist
 	\begin{align*}
 		H\to\R\cup\lbrace+\infty\rbrace,\qquad u\mapsto\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2
@@ -1343,7 +1352,7 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 	\underline{Zur Konvexität:}\\
 	Die Norm ist konvex und der Vorfaktor ist konvex. 
 	Da $\E$ konvex ist und die Summe konvexer Funktionen wieder konvex ist, folgt Konvexität.\nl
-	\underline{Zur Unterhalbstetigkeit:} Ist klar.\nl
+	\underline{Zur Unterhalbstetigkeit:} Ist klar, da $u\mapsto\E(u)$ nach Voraussetzung unterhalbstetig ist und $u\mapsto\E(u)+\frac{1}{2\cdot h}\cdot\norm{u-f}^2$ stetig.\nl
 	\underline{Zur Koerzivität:}\\
 	Sei $c\in\R$. 
 	Dann gilt für $u\in H$ mit
@@ -1370,46 +1379,47 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 	Folglich ist $u\in\overline{B}(f,R)$ und somit $\left\lbrace\E(u)+\frac{1}{2\cdot\lambda}\cdot\Vert u-f\Vert^2\leq c\right\rbrace$ ist beschränkt.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[Subgradienten sind M-akkretiv]\label{theoremSubgradientMAkkretiv}\enter
 	Sei $H$ ein Hilbertraum. 
 	Für jede konvexe, unterhalbstetige Funktion $\E:H\to\R\cup\lbrace+\infty\rbrace,~\E\not\equiv+\infty$ ist der Subgradient $\partial\E$ $m$-akkretiv.
 \end{theorem}
 
 \begin{proof}
-	Das $\partial\E$ akkretiv ist, wurde in einem Lemma oben bereits gezeigt.\\
+	Dass $\partial\E$ akkretiv ist, wurde in einem Lemma \ref{lemmaSubgradientistAkkretiv} bereits gezeigt.\\
 	Seien $h>0$ und $f\in H$. 
 	Damit ist die Funktion
 	\begin{align*}
 		v\mapsto \E(v)+\frac{1}{2\cdot h}\cdot\Vert v-f\Vert^2
 	\end{align*}
-	konvex, unterhalbstetig und koerziv. 
-	Aus dem Theorem über Minimieurng konvexer Funktionen \ref{theoremMinimieurngKonvexerFunktionen} folgt, dass diese Funktion ein globales Minimum $u\in H$ besitzt. 
+	wegen Lemma \ref{lemmaSubgradientMAkkretivHilfslemma} konvex, unterhalbstetig und koerziv. 
+	Da jeder Hilbertraum insbesondere ein reflexiver Banachraum ist (Stichwort Darstellungssatz von Riesz-Fréchet), folgt aus dem Theorem über Minimierung konvexer Funktionen \ref{theoremMinimieurngKonvexerFunktionen}, dass diese Funktion ein globales Minimum $u\in H$ besitzt. 
 	Für alle $v\in H$ und alle $\lambda>0$ gilt dann
 	\begin{align*}
 		\E(u+\lambda\cdot v)+\frac{1}{2\cdot h}\cdot\big\Vert u+\lambda\cdot v-f\big\Vert^2
 		&\geq\E(u)+\frac{1}{2\cdot h}\cdot\Vert u-f\Vert^2
 	\end{align*}
-	bzw. nach Umstellen 
+	und nach Umstellen:
 	\begin{align*}
 		\E(u+\lambda\cdot v)-\E(u)
 		&\geq\frac{1}{2\cdot h}\left(\Vert u-f\Vert^2-\Vert u+\lambda\cdot v-f\Vert^2\right)\\
 		&=\frac{1}{2\cdot h}\cdot\left(\Vert u-f\Vert^2-\Vert u-f\Vert^2-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)\\
 		&=\frac{1}{2\cdot h}\cdot\left(-2\cdot\langle u-f,\lambda\cdot v\rangle-\Vert \lambda\cdot v\Vert^2\right)
 	\end{align*}
-	bzw.
+	Jetzt teilen wir beide Seiten durch $\lambda>0$ und bilden dann den Grenzwert $\lambda\to 0^+$:
 	\begin{align*}
-		\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}=\left\langle\frac{f-u}{h},v\right\rangle
-	\end{align*}
-	d.h. 
-	\begin{align*}
-		&\left( u,\frac{f-u}{h}\right)\in\partial\E\\
+		&\hspace{55pt}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\frac{1}{2\cdot h}\cdot\left(-2\cdot\langle u-f,v\rangle-\lambda\cdot\Vert v\Vert^2\right)\\
+		&\implies
+		\lim\limits_{\lambda\to 0^+}\frac{\E(u+\lambda\cdot v)-\E(u)}{\lambda}\geq\left\langle\frac{f-u}{h},v\right\rangle\\
+		\overset{\Def~\partial\E}&{\implies}
+		\left( u,\frac{f-u}{h}\right)\in\partial\E\\
 		&\Longleftrightarrow\partial\E(u)\ni\frac{f-u}{h}\\
 		&\Longleftrightarrow u+h\cdot\partial\E(u)\ni f
 	\end{align*}
 	Da $h$ und $f$ beliebig waren, folgt
 	\begin{align*}
 		\rg(I+h\cdot\partial\E)=H\qquad\forall h>0\\
-		\implies\partial\E\text{ ist $m$-akkretiv}
+		\overset{\text{Def. M-akkretiv}}{\implies}
+		\partial\E\text{ ist $m$-akkretiv}
 	\end{align*}
 \end{proof}
 
@@ -1435,7 +1445,7 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 \end{beispiel}
 
 \begin{beispiel}[$p$-Laplace-Operator]\enter
-	Sei $\Omega\subseteq\R^n$ offen. Für $u\in C(\Omega)$ deifnieren wir den \textbf{Träger}
+	Sei $\Omega\subseteq\R^n$ offen. Für $u\in C(\Omega)$ definieren wir den \textbf{Träger}
 	\begin{align*}
 		\supp(u):=\overline{\big\lbrace x\in\Omega~\big|~u(x)\neq0\big\rbrace}^\Omega
 	\end{align*}
@@ -1492,9 +1502,9 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 			\partial\E=\left\lbrace(u,f)\in L^2(\Omega)\times L^2(\Omega)~\left|
 			\begin{array}{c}
 				u\in\dom(\E)\wedge\forall v\in\dom(\E):\\
-				\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot 
+				\int\limits_\Omega|\nabla u|^{p-2}\cdot\nabla u\cdot\nabla v=\int\limits_\Omega f\cdot v
 			\end{array}
-			v\right.\right\rbrace
+			\right.\right\rbrace
 		\end{align*}
 	\end{lemma}
 	
@@ -1609,6 +1619,29 @@ Ziel: $\partial\E$ ist $m$-akkretiv.
 			\right.\right\rbrace
 		\end{align*}
 		Da die Inklusion ``$\supseteq$'' klar ist, folgt die Behauptung.
+
+		\emph{Beweis (!!).} Zunächst betrachte den Operator 
+		$$\nabla: \dom \E \to L^p(\Omega), u \mapsto \nabla u.$$
+		Die rechtsseitige Gateaux-Ableitung von $\nabla$ an der Stelle $u$ in Richtung $v$ ist:
+		$$ \d_+ \nabla (u, v) = \lim_{\tau \to 0^+} \frac{1}{\tau}\left(\nabla (u + \tau v) - \nabla u\right) = \nabla v. $$
+		Nun betrachte den Operator
+		$$ A: \dom \E \to \R, u \mapsto |u|^p.$$
+		Die rechtsseitige Gateaux-Ableitung von $A$ an der Stelle $u$ in Richtung $v$ ist:
+		\begin{align*}
+			\d_+A(u,v) &= \d_+|\cdot|^p(\nabla u, \d_+\nabla(u,v))\\
+				&= \d_+|\cdot|^p(\nabla u, \nabla v)\\
+				&= \d_+(\cdot)^p(|\nabla u|, \d_+|\cdot|(\nabla u, \nabla v))\\
+				&= \d_+(\cdot)^p(|\nabla u|, \d_+\sqrt{\cdot}(\langle\nabla u, \nabla u\rangle, \d_+ \sum_{i=1}^n \pi_i(\cdot)(\nabla u, \nabla v)))\\
+			\d_+ \sum_{i=1}^n \pi_i(\cdot)(\nabla u, \nabla v) &= \lim_{\tau \to 0^+} \frac{1}{\tau} \left(\sum_{i=1}^n (\partial_i u + \tau \partial_i v)^2 - \sum_{i=1}^n (\partial_i u)^2\right)\\
+				&= \lim_{\tau \to 0^+} \frac{1}{\tau} \left(\sum_{i=1}^n (\partial_i u)^2 + 2\tau \partial_i u \partial_i v + (\tau \partial_i v)^2 - \sum_{i=1}^n (\partial_i u)^2\right)\\
+				&= 2 \cdot \langle\nabla u, \nabla v\rangle\\
+			\d_+A(u,v) &= \d_+(\cdot)^p(|\nabla u|, \d_+\sqrt{\cdot}(\langle\nabla u, \nabla u\rangle, 2 \cdot \langle\nabla u, \nabla v\rangle))\\
+			\d_+\sqrt{\cdot}(\langle\nabla u, \nabla u\rangle, 2 \cdot \langle\nabla u, \nabla v\rangle) &= \frac{1}{2} |\nabla u|^{-1} \cdot 2 \cdot \langle\nabla u, \nabla v\rangle\\
+				&= \frac{\langle\nabla u, \nabla v\rangle}{|\nabla u|}\\
+				\d_+A(u,v) &= \d_+(\cdot)^p(|\nabla u|, \frac{\langle\nabla u, \nabla v\rangle}{|\nabla u|})\\
+					&= p |\nabla u|^{p-1}\cdot \frac{\langle\nabla u, \nabla v\rangle}{|\nabla u|}\\
+					&= p |\nabla u|^{p-2}\cdot \langle\nabla u, \nabla v\rangle.
+		\end{align*}
 	\end{proof}
 	Spezialfälle:\\
 	$\Omega=(0,1)$ (offenes Intervall, $n=1$) und $p=2$, d. h. $H=L^2((0,1))$ und 

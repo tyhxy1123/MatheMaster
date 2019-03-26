@@ -132,7 +132,7 @@ Sei
 \end{align*}
 (linearer Unterraum) und setze
 \begin{align*}
-	L^P(\Omega,X):=\L^p(\Omega,X)/\mathcal{N}_p
+	L^p(\Omega,X):=\L^p(\Omega,X)/\mathcal{N}_p
 	=\big\lbrace \underbrace{f+\mathcal{N}_p}_{=[f]}~\big|~f\in\L^p(\Omega,X)\big\rbrace
 \end{align*}
 Dann ist
@@ -145,7 +145,7 @@ Wir definieren noch den \textbf{Bochner-Sobolevraum} für $I\subseteq\R$ offen:
 \begin{align*}
 	W^{1,1}(I,X):=\left\lbrace u\in L^1(I,X)~\left|~\exists g\in L^1(I,X):\forall\varphi\in C_c^\infty(I):\int\limits_I u\cdot\varphi'=-\int\limits_I g\cdot\varphi\right.\right\rbrace
 \end{align*}
-(schwach differenzierbare, $X$-wertige $L^1$-Funktionen, $g:=u'$ heißt \textbf{schwache Ableitung}) mit der Norm
+(schwach differenzierbare, $X$-wertige $L^1$-Funktionen, $g=:u'$ heißt \textbf{schwache Ableitung}) mit der Norm
 \begin{align*}
 	\Vert u\Vert_{W^{1,1}}:=\Vert u\Vert_{L^1}+\Vert u'\Vert_{L^1}
 \end{align*}
@@ -335,7 +335,7 @@ Integrallösung von $\dot{u}+Au\ni 0$
 		h_i&:=t_{i+1}-t_i\qquad\forall i\in\lbrace0,\ldots,N-1\rbrace\\
 		|\pi|&:=\sup\limits_{0\leq i\leq N-1} h_i\qquad\text{Feinheit}
 	\end{align*}
-	Sei $f\in L^1\big([0,T],X\big)$ adaptiert zu $\pi$ und stückweise konstant auf $[t_i,t_{i+1})$ für $i\leq i\leq N-1$.\\
+	Sei $f_\Theta\in L^1\big([0,T],X\big)$ adaptiert zu $\pi$ und stückweise konstant auf $[t_i,t_{i+1})$ für $i\leq i\leq N-1$.\\
 	Wir nennen $\Theta=\big(\pi,f_\Theta,u_{0,\Theta}\big)$ eine \textbf{Diskretisierung} $:\gdw\pi$ eine Partition, $f_\Theta$ adaptiert und $u_{\Theta,0}\in X$.
 \end{definition}
 
@@ -346,14 +346,15 @@ Betrachte das Problem
 		u_\Theta(0)=u_{0,\Theta}
 	\end{array}\right.
 \end{align}
-Diese Problem kann als \textit{explizites Eulerverfahren} aufgefasst werden. Es gilt:
+Dieses Problem kann als \textit{implizites Eulerverfahren} aufgefasst werden. 
+Es gilt:
 \begin{align*}
 	&\dot{u}+Au(t)\ni f\\
 	&\frac{u_\Theta(t_{i+1})-u_\Theta(t_i)}{h_i}+Au_\Theta(t_{i+1})\ni f_\Theta(t_{i+1})
 	\qquad\text{ und }\qquad
 	u_\Theta(0)=u_{\Theta,0}\\
-	&u_\Theta(t_{i+1})+h\cdot A u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)\\
-	&\Longleftrightarrow (\id+h\cdot A)u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)
+	&u_\Theta(t_{i+1})+h_i\cdot A u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)\\
+	&\Longleftrightarrow (\id+h_i\cdot A)u_\Theta(t_{i+1})\ni h_i\cdot f_\Theta+u_\Theta(t_i)
 \end{align*}
 Im Linearen:
 \begin{align*}

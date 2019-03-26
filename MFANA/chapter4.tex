@@ -61,7 +61,7 @@ Sei $(D,d)$ ein metrischer Raum.
 \end{lemma}
 
 \begin{proof}
-	Für alle $x\in X$ ist die Funktion $f\mapsto S_t x$ stetig auf $\R_+$ (Eigenschaft (iii)) und insbesondere auf dem Intervall $[0,1]$. 
+	Für alle $x\in X$ ist die Funktion $t\mapsto S_t x$ stetig auf $\R_+$ (Eigenschaft (iii)) und insbesondere auf dem Intervall $[0,1]$. 
 	Damit ist die lineare Abbildung 
 	\begin{align*}
 		T:X\to C\big([0,1],X\big),\qquad x\mapsto\big(t\mapsto S_t x\big)
@@ -109,7 +109,7 @@ Sei $(D,d)$ ein metrischer Raum.
 	Sei $S$ eine lineare Halbgruppe auf einem Banachraum $X$. 
 	Dann definieren wir den \textbf{Erzeuger} von $S$
 	\begin{align*}
-		A&:=\left\lbrace(u,f)\in X\times X~\left|~f=\lim\limits_{t\to0^+}\frac{S_t u-u}{t}\right.\right\rbrace\mit\\
+		A&:=\set[\bigg]{(u,f)\in X\times X:f=\lim\limits_{t\to0^+}\frac{S_t u-\overbrace{u}^{=S_0(u)}}{t}}\mit\\
 		\dom(A)&\hspace{3pt}=\left\lbrace u\in X~\left|~\lim\limits_{t\to0^+}\frac{S_t u-u}{t}\text{ existiert}\right.\right\rbrace
 	\end{align*}
 	Der Operator $A$ ist linear und eindeutig.
@@ -216,7 +216,7 @@ Sei $(D,d)$ ein metrischer Raum.
 	\end{align*}
 	Dann ist für alle $\lambda\in\R\mit\lambda>\omega$ der Operator $\lambda-A$ invertierbar und 
 	\begin{align*}
-		(\lambda-a)^{-1}f=\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t f\d t\qquad\forall f\in X
+		(\lambda-A)^{-1}f=\int\limits_0^\infty\exp(-\lambda\cdot t)\cdot S_t f\d t\qquad\forall f\in X
 	\end{align*}
 	Es gilt:
 	\begin{align*}
@@ -400,12 +400,17 @@ Mit diesem Theorem (+ obiger Bemerkung) sind alle Erzeuger von linearen Halbgrup
 \begin{theorem}[Exponentialformel]\label{theoremExponentialformel}\enter
 	Sei $A$ $m$-akkretiv vom Typ $\omega\in\R$ auf einem Banachraum $X$. 
 	Dann gilt
-	\begin{align*}
-		S_t u_0=\limn\left(I+\frac{t}{n}\cdot A\right)^{-n}u_0\qquad\forall u_0\in D:=\overline{\dom(A)},\forall t\in\R_+
-	\end{align*}
+	\begin{align}\label{eqExpFormel}\tag{Exp}
+		S_t u_0
+		=\limn\left(I+\frac{t}{n}\cdot A\right)^{-n}u_0
+		=\limn\left(J_{\frac{t}{n}}^A\right)^n u_0			
+		\qquad\forall u_0\in D:=\overline{\dom(A)},\forall t\in\R_+
+	\end{align}
 	wobei $S$ die von $A$ "erzeugte" Halbgruppe ist (wie oben) und
 	\begin{align*}
-		\big(I+h\cdot A\big)^{-n}=\left((I+h\cdot A)^{-1}\right)^n=J_h^n
+		\big(I+h\cdot A\big)^{-n}
+		=\left((I+h\cdot A)^{-1}\right)^n	
+		=J_h^n
 	\end{align*}
 \end{theorem}
 

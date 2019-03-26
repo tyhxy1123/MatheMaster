@@ -4,9 +4,9 @@
 
 Mögliche Fragen:
 - Was ist akkretiever Operator?
-- Wieso erzeugt der Halbgruppe?
-- Wie kann man die approsimieren? (Euler / Yoshida)
-- Invarianz konvexer Mengen (kurze Beweis)
-- Exponentialform für Halbgruppen
+- Wieso erzeugt der eine Halbgruppe? (Lumer-Philips)
+- Wie kann man die approximieren? (impliziter Euler / Yoshida)
+- Invarianz konvexer Mengen (kurzer Beweis)
+- Exponentialformel für Halbgruppen
 - Charakterisierung der Resolvente als Minimalstelle
-- evtl. Beispiel des p-Lapplaceoperators
+- evtl. Beispiel des p-Laplaceoperators
