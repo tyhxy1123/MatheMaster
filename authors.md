@@ -12,9 +12,9 @@ Der jeweilige Hauptverantwortliche für das Skript steht ganz links.
 | SCPROG | Willi	|
 | MMAM (Lineare Modelle)  | Willi	|
 | MMAM (Spieltheorie) | Robert |
-| KONGEO  | Lukas Z.              			|
+| KONGEO  | Lukas Z., Philipp              			|
 | DISMAT | Lukas Z.         			|
-| ALGTOP  | Lukas Z.	|
+| ALGTOP  | Lukas Z., Philipp	|
 | Kategorientheorie    | Lukas Z., Willi		|
 | SCCOMP | Henrik, Robert     |
 | PDENMW | Henrik     |
