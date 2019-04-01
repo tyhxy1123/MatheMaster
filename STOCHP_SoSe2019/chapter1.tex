@@ -1,0 +1,144 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Grundlegende Begriffe}
+\section{Bezeichnungen}
+
+%TODO Liste wird am 02.04.19 ausgeteilt. Dann füge ich das hier ein.
+
+\section{Historische Bemerkungen}
+
+Zeitliche Einordnungen: Anfang des 20. Jahrhunderts\\
+Physik, Technik, Finanzwelt, Wetter, $\ldots$\\
+Untersuchung von Vorgängen, die mit der Zeit ablaufen und bei deinen der Zufall eine Rolle abspielt.
+Die Wahrscheinlichkeitstheorie besaß damals keine allgemeinen Verfahren für die Untersuchung von solchen Erscheinungen.
+
+\begin{beisp}\
+	\begin{itemize}
+		\item Zwei Gase / Flüssigkeiten werden in Berührung gebracht; die Moleküle der einen Flüssigkeit dringen in die andere ein: \define{Diffusion}\\
+		\betone{Fragen:}
+		\begin{itemize}
+			\item Nach welchen Gesetzen geht der Diffusionsvorgang vor sich?
+			\item Wie schnell?
+			\item Wann stellt sich ein Gleichgewicht ein (d.h. wann haben sich die Flüssigkeiten / Gase vollständig vermischt)?
+		\end{itemize}
+		\item radioaktiver Zerfall: instabile Atomkerne senden Strahlung aus und ändern ihren Zustand; der Zeitpunkt ist zufällig
+		\item Brownsche Bewegung: Moleküle stoßen zufällig gegen viele Atome. 
+		Dies nutze man dann als Beweis für Richtigkeit des Atom-Teilchenmodells.
+		\item Anzahl der Anrufe, die in einer Telefonzentrale während eines bestimmten Zeitintervalls erfolgen $\leadsto$ \undefine{Poisson-Prozess}
+		\item Rauschen bei elektrischen Signalen
+		\item $\ldots$
+	\end{itemize}
+\end{beisp}
+
+%TODO Angezeigter Name als Argument übergeben
+\begin{beisp}[Herleitung der \define{Fokker-Planck-Diffusionsgleichung} der Diffusionstheorie (Anfang des 20. Jhd.)]\enter
+	Ein Teilchen erleidet zu dem Zeitpunkten $n\cdot\tau$, $n\in\set{1,2,\ldots}$ unabhängige zufällige Zusammenstöße, 
+	die jedes Mal eine Verschiebung um $h\in\R$ nach rechts mit Wahrscheinlichkeit $p:=:p(\tau)$ (Wahrscheinlichkeit hängt von Feinheit $\tau$ ab), 
+	oder nach links mit Wahrscheinlichkeit $q:=1-p$ verursachen.
+	
+	\begin{notation}
+		\begin{align*}
+			f(x,t):=:f(x,n\cdot\tau)
+		\end{align*}
+		sei die Wahrscheinlichkeit, dass das Teilchen nach $n$ Stößen, ausgehend von $x=0$ zur Zeit $t=0$, im Punkt $x\in h\mal N\subseteq\R$ auftritt.
+	\end{notation}
+	Offenbar gilt
+	\begin{align*}
+		f(x,t)=f(k\mal h,n\mal\tau)=0
+	\end{align*}
+	im Spezialfall, dass  $n$ gerade und $k$ ungerade oder $n$ ungerade und $k$ gerade.
+	Sei nun $m\in\N$ die Anzahl der Schritte nach rechts.
+	Dann ist
+	\begin{align*}
+		m-(n-m)=\frac{x}{h}=k
+	\end{align*}
+	und 
+	\begin{align*}
+		f(x,t)=
+		\begin{pmatrix}
+			n\\
+			m
+		\end{pmatrix}
+		\mal p^m\mal p^{n-m}
+		=n\mal\tau
+	\end{align*}
+	\betone{Kurze Rechnung zur Herleitung der Differentialgleichung:}\\
+	$f$ erfüllt die \undefine{Differenzengleichung}
+	\begin{align}\label{eq:BeispEinfuehrung1}\tag{1}
+		f(x,t+\tau)=p\mal f(x-h,t)+q\mal f(x+h,t)
+	\end{align}	 
+	mit Anfangsbedingungen
+	\begin{align*}
+		f(0,0)=1,\qquad
+		f(x,0)=0,\qquad
+		y\neq0.
+	\end{align*}
+	Die nachzurechnen ist \Aufgabe{1.2 / Teil 1}.\\
+	Wir bilden den Grenzwert $h,\tau\longrightarrow 0$.
+	Aus physikalischen Überlegungen folgt, dass dabei $h,\tau$ und $p$ (geht gegen $\frac{1}{2}$) gewisse Bedingungen erfüllen müssen:
+	\begin{align}\label{eq:BeispEinfuehrung2}\tag{2}
+		\frac{h^2}{\tau}\longrightarrow 2\mal D,\qquad
+		\frac{p-q}{h}\longrightarrow\frac{c}{D}
+	\end{align}
+	wobei $x=n\mal h$, $t=n\mal\tau$; $c$ und $D$ sind Konstanten:
+	\begin{itemize}
+		\item $c$ ist die Strömungsgeschwindigkeit
+		\item $D$ ist der Diffusionskoeffizient
+	\end{itemize}
+	Wir ziehen von beiden Seiten von \eqref{eq:BeispEinfuehrung1} den Term $f(x,t)$ ab:
+	\begin{align}
+			f(x,t+\tau)-f(x,t)\nonumber
+			&=p\mal f(x-h,t)+q\mal f(x+h,t)-f(x,t)\mal\underbrace{p-q}_{=1}\\
+			&=p\mal\klammern[\big]{f(x-h,t)-f(x,t)}\label{eq:BeispEinfuehrung3}\tag{3}
+			+q\mal\klammern[\big]{f(x+h,t)-f(x,t)}
+	\end{align}
+	Sei $f$ einmal nach $t$ und zweimal nach $x$ differenzierbar.
+	\begin{align*}
+		f(x,t+\tau)-f(x,t)
+		&=\tau\mal\frac{\partial f(x,t)}{\partial t}+o(\tau)\\
+		f(x,t-\tau)-f(x,t)
+		&=-h\mal\frac{\partial f(x,t)}{\partial x}
+		+\frac{1}{2}\mal h^2\mal\frac{\partial^2 f(x,t)}{\partial x^2}+o(h^2)\\
+		f(x+h,t)-f(t,x)
+		&=h\mal\frac{\partial f(x,t)}{\partial x}+\frac{1}{2}\mal h^2\mal\frac{\partial^2 f(x,t)}{\partial x^2}+o(h^2)
+	\end{align*}
+	Die Gleichungen entsteht durch Taylorentwicklung (bis zum ersten bzw. bis zum zweiten Term).
+	Wir setzen dies in \eqref{eq:BeispEinfuehrung3} ein und verwenden dabei \eqref{eq:BeispEinfuehrung2}:
+	\begin{align*}
+		\frac{\partial f(x,t)}{\partial t}
+		=-2\mal c\mal\frac{\partial f(x,t)}{\partial x}+D\mal\frac{\partial^2 f(x,t)}{\partial x^2}
+	\end{align*}
+	Dies ist die \define{Fokker-Planck-Differentialgleichung}.
+	Diesen Schritt nachzurechnen ist \Aufgabe{1.2 / Teil 2}.
+\end{beisp}
+
+Anfang der 30er Jahre (20. Jhd.) wurden die 
+Grundsteine der allgemeinen Theorie von stochastischen Prozessen gelegt:
+\begin{itemize}
+	\item A.N. Kolmogorov: \undefine{Prozesse ohne Nachwirkung} / \undefine{Markovsche Prozesse}
+	\item A.J. Khinchin: stationäre Prozesse 
+\end{itemize}
+
+\begin{beisp}[Poisson-Prozess]\enter
+	Der \undefine{Poisson-Prozess} wurde vorher schon von Physikern wie Einstein und Smoluchowski im Zusammenhang mit der Brownschen Bewegung untersucht.\\
+	In zufälligen Zeitpunkten tritt ein gewisses Ereignis $A$ ein.\\
+	$X(t)$ sei die Anzahl des Eintretens von $A$ im Intervall $(0,t)\subseteq\R$.
+	Setze weiterhin
+	\begin{align*}
+		P_k(t):=\P\big(X(t)=k\big),\qquad\forall k\in\N_{\geq0}
+	\end{align*}
+	\betone{Voraussetzungen an die Folge $(P_k)_{k\in\N_0}$:}
+	\begin{enumerate}
+		\item $(P_k)_{k\in\N_0}$ sei \define{stationär}, d.h. für das $k$-fache Auftreten im Intervall $(T,T+t)$ hängt $P_k(t)$ nicht von $T$ ab.
+		\item $(P_k)_{k\in\N_0}$ sei \define{ohne Nachwirkung (Markoveigenschaft)}, d.h. die obige Wahrscheinlichkeit $P_k(t)$ ist unabhängig, wie viele Male und wann $A$ \betone{vorher} eintrat
+		\item $(P_k)_{k\in\N_0}$ sei \define{ordinär}, d.h. %TODO folgt
+	\end{enumerate}
+	 
+\end{beisp}
+
+
+
+
