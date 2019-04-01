@@ -40,6 +40,7 @@
 \DeclareMathOperator{\Cauchy}{Cauchy}  % Cauchyverteilung
 
 % Wichtige Operatoren (alphabetisch)
+\newcommand{\AND}{\wedge}                % logisches Und
 \DeclareMathOperator*{\argmax}{arg\,max} % argmax
 \DeclareMathOperator*{\argmin}{arg\,min} % argmin
 \newcommand{\bigcupdot}{
@@ -54,8 +55,8 @@
 \DeclareMathOperator{\diag}{diag}        % Diagonalmatrix
 \DeclareMathOperator{\diam}{diam}        % Diameter, Durchmesser einer Menge
 \let\divison\div                         % save it before overwriting:
-	\DeclareMathOperator{\BigDiv}{div}      % Divergenz
-	\renewcommand{\div}{\BigDiv}            % Divergenz
+	\DeclareMathOperator{\BigDiv}{div}   % Divergenz
+	\renewcommand{\div}{\BigDiv}         % Divergenz
 \DeclareMathOperator{\dom}{dom}          % Domain, Definitionsbereich
 \DeclareMathOperator*{\esssup}{ess\,sup} % essenzielles Supremum
 \DeclareMathOperator{\grad}{grad}        % Gradient, alternativ zu \nabla
@@ -68,6 +69,7 @@
 \newcommand{\laplace}{\triangle}         % Laplace Operator
 \newcommand{\limn}{\lim\limits_{n\to\infty}} % Standard-Limes
 \DeclareMathOperator{\meas}{meas}        % Das Maß einer Menge, meist Lebesguemaß gemeint
+\newcommand{\OR}{\vee}                   % logisches Oder
 \newcommand{\properideal}{
 	\mathrel{\ooalign{$\lneqq$\cr\raise.51ex\hbox{$\lhd$}\cr}}
 }                                        % echtes Ideal
@@ -105,6 +107,7 @@
 \xDeclarePairedDelimiter{\norm}{\Vert}{\Vert}
 \xDeclarePairedDelimiter{\abs}{\vert}{\vert}
 \xDeclarePairedDelimiterBin{\scaProd}{\langle}{\rangle}
+\xDeclarePairedDelimiter{\klammern}{(}{)}
 
 \NewDocumentCommand\normiii{som}{
 	\IfNoValueTF{#2} %falls optionales Argument leer (d.h. kein "\Big")
