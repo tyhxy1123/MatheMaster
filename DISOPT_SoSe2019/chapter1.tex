@@ -32,11 +32,23 @@ ganzzahlige Lineare Programme:
 			\item ($D$) hat eine Lösung $y^*$ 
 			\item mk
 		\end{enumerate} 
-		
-		%TODO hier fehlt ganz viel hab ich in vim irgendwie gelöscht
+	\item KKT-Bedingungen für LPs
+		\begin{itemize}
+			\item $x^*$ löst $(P)$ 
+			\item $y^*$ löst $(D)$ 
+			\item $(x^*,y^*)$ lösen das KKT-System 
+				\begin{align*}
+					Ax^* &= b , \ x^* \geq 0 \quad \text{(primale Zulässigkeit)}\\
+					A^{T} y^* &\leq c\quad \text{(duale Zulässigkeit)}\\
+					\forall i = 1,\dots , n: x_{i}&= 0 \text{ oder } \left(A^{T}y^*  \right)_{i} = c_{i} \text{ (Komplementaritätsbedingungen)}
+				\end{align*} 
+				\begin{equation*}
+					b^{T}\underbrace{y^* = (\underbrace{x^*}_{\geq 0})^{T}}_{\text{primal Zul.}} \underbrace{\underbrace{A^{T} y^*}_{\leq c }}_{\text{dual Z.}} \stackrel{\text{Kompbed.}}= \left(x^*\right)^{T} c
+				\end{equation*} 
+		\end{itemize} 
 		
 	\item Ecken und Lösungen\\
-		$ \hat{x}$ Ecke von $P \iff$  $ \hat{x}$ kann nicht als echte konvexkombination von Punkten aus $P$ geschrieben werden
+		$ \hat{x}$ Ecke von $P \iff$  $ \hat{x}$ kann nicht als echte Konvexkombination von Punkten aus $P$ geschrieben werden
 		$\iff$ Sei 
 		\begin{equation*}
 			I = \{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 \} = \supp(\hat{x})
@@ -48,11 +60,9 @@ ganzzahlige Lineare Programme:
 		\underline{Annahme:} $A \in \R^{m \times n }$ hat \underline{vollen Zeilenrang} m. \\
 		Sei $\hat{x}$ eine Ecke von $P$ und $I = \{i | \hat{x}_{i}>0\}$ \\
 		$\implies$ rang($A_{\cdot,I}   )= |I| \leq m$ \\
-		%what ist das in der folgenden Zeile
 		$\implies$ Es gibt $B \subset \{1,\dots,n\}$ mit $I \subset B, |B| = m $ und $A_{B}= A_{\cdot,B}$ ist regulär
 	\item Basen\\
-		% wie macht man einen Backslash??
-		Sei $B \subset \{1,\dots,n\}$ mit $|B|=m$ und $N = \{1,\dots,n\}\ B$\\
+		Sei $B \subset \{1,\dots,n\}$ mit $|B|=m$ und $N = \{1,\dots,n\}\textbackslash B$\\
 		$\to B$ heißt \underline{Basis}, falls $A_{B}$ regulär\\
 		$\to$ $B$ heißt \underline{primal zulässige Basis}, falls
 		\begin{equation*}
@@ -60,8 +70,9 @@ ganzzahlige Lineare Programme:
 		\end{equation*} $\implies$ Mit $x_{N} = 0$ ist $(x_{B},x_{N})$ zulässig für $(P)$ und eine Ecke von $P$ \\
 		$\to$ B heißt \underline{dual zulässige Basis}, falls 
 		\begin{equation*}
-			A_{N}^TA_{B}^{-T}c_{b} \leq c_{N}
-		\end{equation*} % something to add here
+			A_{N}^TA_{B}^{-T}c_{b} \leq c_{N} \implies y \text{ ist zulässig für }(D)
+		\end{equation*} 
+		$\implies$ $\left(x_{B},x_{N} \right)$ mit $x_{B} = A^{-1}_{B},\ x_{N}= 0$ heißt \underline{Basislösung}. Ist $x_{B} > 0 $ so heißt die Basislösung \underline{nichtdegeneriert}.
 \end{itemize} 
 
 \subsection{Wiederholung Simplex-Verfahren}
@@ -79,8 +90,8 @@ Für alle $x \in P$ gilt:
 $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfachen
 \begin{align*}
 	c^Tx&= c_{B}^Tx_{B} + c_{N}^Tx_{N} = c_{B}^T \underbrace{A_{B}^{-1}b}_{= \hat{x}_{B}} - c_{B}^TA_{B}^{-1}A_{N}x_{N} + c_{N}^Tx_{N}\\
-	&= ...... % add later
-\end{align*}  %TODO
+		&= c^{T}_{B} \hat{x}_{B} +( \underbrace{ c_{N} - A_{N}^{T} \underbrace{A_{B}^{-T}c_{B}}_{=y} }_{=: z_{N}, \text{ reduzierte Kosten}} )^{T} x_{N} 
+\end{align*} 
 
 \begin{itemize}
 	\item gilt $z_{N} \geq 0$: $\hat{x}$ löst LP ( mit dualer Variable y)
