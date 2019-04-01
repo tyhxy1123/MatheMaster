@@ -12,6 +12,8 @@ Bei Fragen während der Vorlesungs- und Prüfungsphase:
 
 Email: schwartz@gsc.tu-darmstadt.de
 
+Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten bleiben.
+
 \chapter{Einführung}
 
 \section{Beispiele}%
@@ -57,72 +59,98 @@ Email: schwartz@gsc.tu-darmstadt.de
 			\]
 			Die sogenannte Auszahlungsmatrix sieht dann folgendermaßen aus:
 			\begin{center}
-				\begin{tabular}{c|c|c|c}
-					&Schere &Stein & Papier \\ \hline
-					Schere & 0, 0 & -1, +1 & +1, -1 \\ \hline
-					Stein & +1, -1 & 0, 0 & -1, +1 \\ \hline
-					Papier & -1, +1 & +1, -1 & 0, 0
+				\begin{tabular}{cc|c|c|c|}
+					\\ \cline{3-5}
+					&&\multicolumn{3}{c|}{{\color{red} Spieler 1}} \\ \cline{3-5}
+					&&Schere &Stein & Papier \\ \hline
+					\multicolumn{1}{ |c }{\multirow{3}{*}{\color{blue} Spieler 2}}&
+					\multicolumn{1}{ |c| }{Schere} & \color{blue}0\color{black},\color{red} 0 & \color{blue}-1\color{black},\color{red} +1 & \color{blue}+1\color{black},\color{red} -1 \\ \cline{2-5}
+					\multicolumn{1}{ |c }{}&
+					\multicolumn{1}{ |c| }{Stein} & \color{blue}+1\color{black},\color{red} -1 & \color{blue}0\color{black},\color{red} 0 & \color{blue}-1\color{black},\color{red} +1 \\ \cline{2-5}
+					\multicolumn{1}{ |c }{}&
+					\multicolumn{1}{ |c|}{Papier} & \color{blue}-1\color{black},\color{red} +1 & \color{blue}+1\color{black},\color{red} -1 & \color{blue}0\color{black},\color{red} 0  \\ \hline
 				\end{tabular}
 			\end{center}
-			% Spieler 1 oben drüber, Spieler zwei links daneben, TODO Farben 1:blau 2:rot linke zahl ist 1
 	\end{itemize}
 \end{beispiel}
 
 \begin{beispiel}
-	Gefangenendilemma:
+	(Gefangenendilemma):
 
 	Angebot des Staatsanwalts:
 	\begin{itemize}
 		\item Verdächtiger gesteht, aber Partner schweigt:
+
 			Geständiger muss als Kranzeuge 1 Jahr ins Gefängnis
+
 			Schweigender Partner muss 10 Jahre ins Gefängnis
-		\item Wenn beide gestehen: Beide müssen für 5 Jahre ins Gefängnis
-		\item Wenn keiner gesteht: Beide müssen wegen anderer Vergehen für 2 Jahre ins Gefängnis
+		\item Wenn beide gestehen:
+			
+			Beide müssen für 5 Jahre ins Gefängnis
+		\item Wenn keiner gesteht:
+			
+			Beide müssen wegen anderer Vergehen für 2 Jahre ins Gefängnis
 	\end{itemize}
-	$\implies$
+	\[
+	\implies
+	\] 
 	\begin{itemize}
 		\item Spieler : $i=1, 2$
 		\item Strategiemengen : $X_1 = X_2 = \{\text{schweigen, gestehen}\}$
 	\end{itemize}
-	\begin{tabular}{c|c|c}
-		&schweigen&gestehen \\ \hline
-		schweigen & 2, 2& 10, 1 \\ \hline
-		gestehen & 1, 10& 5, 5
-		%TODO gleiches mit Spielern wie oben
-	\end{tabular}
+	\begin{center}
+		\begin{tabular}{cc|c|c|}
+			\\ \cline{3-4}
+			&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
+			&&schweigen &gestehen \\ \hline
+			\multicolumn{1}{ |c }{\multirow{2}{*}{\color{blue} Spieler 2}}&
+			\multicolumn{1}{ |c| }{schweigen} & \color{blue}2\color{black},\color{red} 2 & \color{blue}10\color{black},\color{red} 1 \\ \cline{2-4}
+			\multicolumn{1}{ |c }{}&
+			\multicolumn{1}{ |c| }{gestehen} & \color{blue}1\color{black},\color{red} 10 & \color{blue}5\color{black},\color{red} 5 \\ \hline
+		\end{tabular}
+	\end{center}
 \end{beispiel}
 
 \begin{beispiel}
-	Koordinationsspiel, Kampf der Geschlechter
+	(Koordinationsspiel, Kampf der Geschlechter)
 	\begin{itemize}
 		\item 2 Spieler : $i = 1, 2$
 		\item Strategiemengen : $X_1 = X_2 = \{\text{A, B}\}$
-			hierbei sind $A$ und $B$ z.B. die von den jeweiligen Spielern bevorzugten Aktivitäten (in die Oper gehen vs. zum Fußballspiel gehen)
-		\item Auszahlungsmatrix :
-			\begin{tabular}{c|c|c}
-				&A&B \\ \hline
-				A& 2, 1& 0, 0 \\ \hline
-				B& 0, 0& 1, 2 
-			\end{tabular}
+			hierbei sind $A$ und $B$ z.B. die von den jeweiligen Spielern bevorzugten Aktivitäten (z.B. $A$ = in die Oper gehen vs. $B$ = zum Fußballspiel gehen)
+		\item Auszahlungsmatrix:
+			\begin{center}
+				\begin{tabular}{c|c|c|}
+					\cline{2-3}
+					&A&B \\ \hline
+					\multicolumn{1}{|c|}{A}& 2, 1& 0, 0 \\ \hline
+					\multicolumn{1}{|c|}{B}& 0, 0& 1, 2 \\ \hline
+				\end{tabular}
+			\end{center}
+
 			Auszahlungen werden hier im Gegensatz zu Normalfall maximiert!
 	\end{itemize}
 \end{beispiel}
 
 \begin{beispiel}
-	Cournat-Oligopol
-	Firmen $F_i, \quad i=1,\ldots,N$ stellen das gleiche Gut her. Die Produktion von $x_i$ Einheiten kostet $c_i(x_i)$. Der Preis fällt mit dem Gesamtangebot, d.h. $p(\sum_{i=1}^{N} x_i$.
+	(Cournot-Oligopol)
+
+	Firmen $F_i, \quad i=1,\ldots,N$ stellen das gleiche
+	Gut her. Die Produktion von $x_i$ Einheiten kostet
+	$c_i(x_i)$. Der Preis fällt mit dem Gesamtangebot, d.h.
+	$p(\sum_{i=1}^{N} x_i)$.
 	Das Problem der Firma ist, den Gewinn zu maximieren:
 	\[
-		\max_{x_i} p(\sum_{j=1}^N x_j)x_i - c_i(x_i) \qquad \mit x_i \geq 0 \text{(+ weitere Restriktionen)}
+		\max_{x_i} p(\sum_{j=1}^N x_j)\cdot x_i - c_i(x_i) \qquad \mit x_i \geq 0 \quad\text{(+ weitere Restriktionen)}
 	.\] 
 \end{beispiel}
 
 \section{Klassifikation von Spielen}%
 \label{sec:Klassifikation von Spielen}
 
-Eigenschaften der Auszahlungsfunktion:
+Wir werden nun Spiele nach unterschiedlichen Kriterien charakterisieren und einige Definitionen einführen.
 
-\begin{definition}
+\begin{definition} (Charakterisierung nach Auszahlungsfunktion)
+
 	Ein Spiel $\Gamma=\{X_i, f_i\}_{i=1}^N$ heißt
 	\begin{itemize}
 		\item \underline{Nullsummenspiel}, wenn gilt
@@ -137,8 +165,8 @@ Eigenschaften der Auszahlungsfunktion:
 	\end{itemize}
 \end{definition}
 
-Größe der Strategiemengen
-\begin{definition}
+\begin{definition} (Charakterisierung nach Größe der Strategiemengen) 
+
 	Ein Spiel $\Gamma=\{X_i, f_i\}_{i=1}^N$ heißt
 	\begin{itemize}
 		\item \underline{endlich}, wenn alle Strategiemengen $X_i$ nur endlich viele Elemente haben.
@@ -147,8 +175,7 @@ Größe der Strategiemengen
 	\end{itemize}
 \end{definition}
 
-Anzahl der Spieler
-\begin{definition} Arten von Spielen
+\begin{definition} (Charakterisierung nach Anzahl der Spieler)
 	\begin{itemize}
 		\item Ein endliches 2-Personen-Spiel heißt \underline{Bi-Matrixspiel} 
 		\item Ein endliches 2-Personen-Nullsummenspiel heißt \underline{Matrixspiel} 
@@ -156,30 +183,23 @@ Anzahl der Spieler
 \end{definition}
 
 \begin{beispiel}
-	Endliches 2-Personen-Spiel
-	\[
+	(Endliches 2-Personen-Spiel)
 	\begin{align*}
-		X_1 = \{a_1, a_2, \ldots, a_m\} \text{ durchnummerieren } &\rightarrow \quad $X=\{1,\ldots,m\}$ \\
-		X_2 = \{b_1, b_2, \ldots, b_n\} \text{ durchnummerieren } &\rightarrow \quad $X=\{1,\ldots,n\}$ 
+		X_1 = \{a_1, a_2, \ldots, a_m\} \text{ durchnummerieren } \rightarrow \quad X=\{1,\ldots,m\} \\
+		X_2 = \{b_1, b_2, \ldots, b_n\} \text{ durchnummerieren } \rightarrow \quad X=\{1,\ldots,n\} 
 	\end{align*}
-.\]
 Auszahlungsmatrizen für Spieler 1 und 2: \[A, B \in R^{m \times n} \mit a_{ij} = f_1(a_i, b_j), \quad b_{ij} = f_2(a_i, b_j)
 .\]
 
-Bei einem Nullsummenspiel müsste gelten \[
+Damit dieses Spiel ein Nullsummenspiel ist, müsste gelten \[
 B = -A
 .\] 
 \end{beispiel}
 
-Weitere Unterscheidungsmöglichkeiten von Spielen
+Weitere zahlreiche Unterscheidungsmöglichkeiten von Spielen
 \begin{itemize}
 	\item kooperativ oder \underline{nichtkooperativ} 
 	\item \underline{einmaliges} oder wiederholbares Spiel
 	\item \underline{vollständige} versus unvollständige Information
 	\item \underline{simultane} oder sequentielle Entscheidungen
 \end{itemize}
-
-
-
-
-
