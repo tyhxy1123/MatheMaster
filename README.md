@@ -14,6 +14,7 @@ Sommersemester/*summer term* 2019:
 - STOCAL bei Prof. Schilling (deutsch)
 - STOCHP bei Prof. Sasvári (deutsch)
 - Kategorientheorie bei Prof. Pöschel (deutsch)
+- Theoretische Informatik und Logik bei Prof. Hölldobler (deutsch)
 
 Wintersemester/*winter term* 2018/2019:
 - AMGEO bei Prof. Krähmer (*English*)
