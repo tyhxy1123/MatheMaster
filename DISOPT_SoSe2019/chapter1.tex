@@ -1,0 +1,121 @@
+\section{Lineare Optimierung}
+ganzzahlige Lineare Programme:
+\begin{equation*}
+	\min_{x} c^Tx \text{ subject to } \quad Ax = b, x \geq 0, x \in \Z^n
+\end{equation*} 
+\subsection{Optimaltiätsbedingungen für kontinuierliche LPs}
+\begin{itemize}
+	\item LP in Normalform 
+		\begin{equation*}
+			\min_{x} c^Tx \text{ subject to } Ax = b, x\geq 0
+		\end{equation*} 
+	\item zulässige Menge: Polyeder
+		\begin{equation*}
+			P = \left\{ x | Ax = b ,x \geq 0 \right\}
+		\end{equation*} 
+	\item Problem konvex $\to$	lokale Minima = globale Minima	
+	\item duales Problem
+		\begin{equation}\label{D}
+			\max_{y}b^Ty \text{ subject to } A^Ty \leq c, y \in \R^n
+		\end{equation} 
+	\item schwache Dualität\\
+		$\forall x$ zulässig für $(P)$\\% todo mach das ordentlich
+		$\forall y$ zulässig für $(D)$:% todo mach das ordentlich
+		\begin{equation*}
+			c^Tx \geq b^Ty
+		\end{equation*} 
+		bei Gleichheit: $x$ löst $(P)$, $y$ löst $(D)$
+	\item Starke Dualität\\
+		Es sind äquivalent 
+		\begin{enumerate}
+			\item ($P$) hat eine Lösung $x^*$
+			\item ($D$) hat eine Lösung $y^*$ 
+			\item mk
+		\end{enumerate} 
+		% hier fehlt ganz viel hab ich in vim irgendwie gelöscht
+	\item Ecken und Lösungen\\
+		$ \hat{x}$ Ecke von $P \iff$  $ \hat{x}$ kann nicht als echte konvexkombination von Punkten aus $P$ geschrieben werden
+		$\iff$ Sei 
+		\begin{equation*}
+			I = \{i = 1 ,\dots, n | \ħat{x}_{i} \geq 0 \} = \supp(\hat{x})
+		\end{equation*} 
+		Dann gilt $\rang(A_{\cdot,I})=|I|$
+	\item Hat das LP $(P)$ eine Lösung, so gibt es auch eine Ecklösung.
+	\item Es gibt nur endlich viele Ecken
+	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvolle Reihenfolge absuchen.\\
+		\underline{Annahme:} $A \in \R^{m \times n }$ hat \underline{vollen Zeilenrang} m. \\
+		Sei $\hat{x}$ eine Ecke von $P$ und $I = \{i | \hat{x}_{i}>0\}$ \\
+	$\implies$ rang($A_{\cdot,I} $  )= |I| \leq m \\
+		%what ist das in der folgenden Zeile
+		$\implies$ Es gibt $B \subset \{1,\dots,n\}$ mit $I \subset B, |B| = m $ und $A_{B}= A_{\cdot,B}$ ist regulär
+	\item Basen\\
+		% wie macht man einen Backslash??
+		Sei $B \subset \{1,\dots,n\}$ mit $|B|=m$ und $N = \{1,\dots,n\}\ B$\\
+		$\to B$ heißt \underline{Basis}, falls $A_{B}$ regulär\\
+		$\to$ $B$ heißt \underline{primal zulässige Basis}, falls
+		\begin{equation*}
+			x_{B}=A_{B}^{-1}b \geq 0 
+		\end{equation*} $\implies$ Mit $x_{N} = 0$ ist $(x_{B},x_{N})$ zulässig für $(P)$ und eine Ecke von $P$ \\
+		$\to$ B heißt \underline{dual zulässige Basis}, falls 
+		\begin{equation*}
+			A_{N}^TA_{B}^{-T}c_{b} \leq c_{N}
+		\end{equation*} % something to add here
+\end{itemize} 
+
+\subsection{Wiederholung Simplex-Verfahren}
+Annahme: $A \in R^{m \times n}$ hat Rang $m$.\\
+Sei $B$ eine primal zulässige Basis mit Basislösung 
+\begin{align*}
+	\hat{x}_{N}&=0,\\
+	\hat{x}_{B}&= A_{B}^{-1}b
+\end{align*} 
+Für alle $x \in P$ gilt:
+\begin{align*}
+	Ax&=(A_{B},A_{N})(x_{B},x_{N})^{T}\\
+	  & A_{B}x_{B} + A_{N}x_{N}= b
+\end{align*} 
+$\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfachen
+\begin{align*}
+	c^Tx&= c_{B}^Tx_{B} + c_{N}^Tx_{N} = c_{B}^T \underbrace{A_{B}^{-1}b}_{= \hat{x}_{B}} - c_{B}^TA_{B}^{-1}A_{N}x_{N} + c_{N}^Tx_{N}\\
+	&= ...... % add later
+\end{align*} 
+
+\begin{itemize}
+	\item gilt $z_{N} \geq 0$: $\hat{x}$ löst LP ( mit dualer Variable y)
+	\item Andernfalls: Wähle $j\in \N$ mit $z_{j}<0$ \\
+		Frage: Wie groß kann $x_{j}$ gewählt werden, ohne $P$ zu verlassen?\\
+		neues $x_{N}= \gamma e_{j}$ \\
+		$\implies$ neues $x_{B} = \hat{x}_{B}-A_{B}^{-1}A_{N}\gamma e_{j}= \hat{x}_{B}-A_{B}^{-1}A_{N}\gamma A_{B}^{-1}A_{\cdot,I} \overset{!}{\geq} 0$
+		\begin{itemize}
+			\item Wähle $\gamma = \min \{ \frac{\hat{x}_{i}}{w_{i}}|w_{i} > 0 \}$
+			\item Andernfalls wähle $i \in B$ mit $\gamma = \frac{\hat{x}_{i}}{w_{i}}$
+		\end{itemize} 
+	\item neue Ecke\\
+		\begin{align*}
+			\hat{x}_{B}-\gamma_{w}&= x_{B}^+\\
+			x_{j}^+& = \gamma\\
+			x_{k}^+ &= 0 \quad \forall \text{ vorherigen } k\\
+			B^+ &= (B \ \{i\})\cup \{j\}\\
+			N^+ &= (N \ \{j\})\cup \{i\}\\
+			B& = \{1,3,5\} \\
+			B& = (3,1,5)
+		\end{align*}
+\end{itemize} 
+gesucht: primal zulässige Basis für 
+\begin{equation*}
+	\min_{x} c^Tx \text{ subject to } Ax = b , x \geq 0
+\end{equation*} 
+Simplex-Phase 1: Löse das Hilfsproblem
+\begin{align*}
+	\min_{x,s} \sum_{i=1}^{m} s_{i} \text{ subject to } (A\ I) (x , s)^T & = b ,\\
+	(x,s)& \geq 0
+\end{align*} 
+Gilt in einer Lösung ($x^0$), dass $s^* =0$, so ist das $x^*$ zulässig für $(P)$ und die Basis des Hilfsproblems \glqq ist\grqq\ eine primal zulässige Basis für $(P)$. 
+Primal zulässige Startbasis für Hilfsproblem
+\begin{equation*}
+	x = 0, s = b \geq 0, \text{ Basismatrix } I
+\end{equation*} 
+Tableau-Methode für 
+\begin{equation*}
+	\min_{x}c^Tx \text{ subject to } Ax \leq b , x \geq 0
+\end{equation*} 
