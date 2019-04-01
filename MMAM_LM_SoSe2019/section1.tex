@@ -5,7 +5,7 @@
 
 \setcounter{chapter}{1}
 \section{Einführung}
-%TODO Literaturverzeichnis
+
 Viele Gesetzmäßigkeiten aus der Erfahrungswelt sind (zumindest näherungsweise) linearer Art.
 Typischerweise gibt es aber zufällige Schwankungen bzw. Störungen.
 
@@ -18,9 +18,10 @@ Typischerweise gibt es aber zufällige Schwankungen bzw. Störungen.
 		% Fergers Gewicht war dreistellig.
 	\end{tabular}
 	
-	%TODO Plot points
 	\begin{figure}[H]
 		\begin{center}
+			\newcommand{\sizeX}{5}
+			\newcommand{\sizeY}{1}
 			\input{./tikz/beispiel1.1}
 			\caption{Plot der Körpergrößen und -gewichte}
 			\label{Abb:beispiel1.1}
@@ -100,7 +101,7 @@ eine $(n\times p)$-Matrix der Inputs, die sogenannte \define{Design-Matrix}.
 	\varepsilon\colon:(\Omega,\A)\to\big(\R^n,\B(\R^n)\big)
 \end{align*}
 ist der \define{Fehlervektor}.
-Dann gilt: %TODO fix labels
+Dann gilt:
 \begin{align}\label{eq:1.2}%\tag{1.2}
 	\eqref{eq:1.1}
 	\iff 
@@ -118,12 +119,9 @@ Beachte: \eqref{eq:1.2} heißt \define{lineares} Modell wegen seiner Linearität
 	Y_i&=\beta_1\mal x_i+\beta_2\mal\log(x_i)+\beta_3\mal\exp(x_i)+\varepsilon_i
 	\qquad\forall i\in\set{1,\ldots,n}
 \end{align*}
-ist lineares Modesll, nicht aber z.B.
+ist lineares Modell, nicht aber z.B.
 \begin{align*}
 	Y_i&=\beta_1\mal x_1+\beta_2\mal\exp(\beta_x\mal x_i)+\varepsilon_i
 	\qquad\forall i\in\set{1,\ldots,n}
 \end{align*}
 Untersuchung des LM \eqref{eq:1.2} erfordert Methoden der linearen Algebra.
-
-
-

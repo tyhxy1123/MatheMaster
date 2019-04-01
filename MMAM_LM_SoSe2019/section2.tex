@@ -7,10 +7,9 @@
 Ziel: Bereitstellung einiger Hilfsmittel aus der linearen Algebra.
 Literatur:
 \begin{enumerate}[label=(\arabic*)]
-	\item G. Fischer (1997) \emph{Lineare Algebra}
-	\item M. Koecher (1997) \emph{Lineare Al...}
+	\item G. Fischer (1997) \emph{Lineare Algebra} \cite{fischerLinAlg}
+	\item M. Koecher (1997) \emph{Lineare Algebra und analytische Geometrie} \cite{koecher2013lineare}
 \end{enumerate}
-%TODO Add Reference
 
 Im gesamten Abschnitt ist
 \begin{align*}
@@ -49,50 +48,46 @@ und zugehöriger \define{euklidische Norm}
 	\end{enumerate}
 \end{definition}
 
-%TODO Chapter-Section-Fix, ähnlich wie letztes Semester
-%TODO Nummern im ersten Abschnitt sind 1.1 bis 1.4
-
-%TODO fix counters
 \begin{satz}\label{satz2.1}\
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\begin{aligned}
 			x\perp y\implies \norm{x+y}^2=\norm{x}^2+\norm{y}^2
-		\end{aligned}$ (Pythagoras)
-		\item $U^\perp$ ist Untervektorraum (UVR / UR) von $\R^n$
-		\item Falls $U\subseteq\R^n$ UVR von $\R^n$ ist, gilt:
+		\end{aligned}$ (Pythagoras)\label{item:satz2.1(1)}
+		\item $U^\perp$ ist Untervektorraum (UVR / UR) von $\R^n$\label{item:satz2.1(2)}
+		\item Falls $U\subseteq\R^n$ UVR von $\R^n$ ist, gilt:\label{item:satz2.1(3)}
 		\begin{enumerate}[label=(\roman*)]
-			\item $\begin{aligned}
+			\item $\begin{aligned}\label{item:satz2.1(3i)}
 				U\cap U^\perp=\set{0}
 			\end{aligned}$
 			\item $\begin{aligned}
-				\big(U^\perp)^\perp=U
+				\big(U^\perp)^\perp=U\label{item:satz2.1(3ii)}
 			\end{aligned}$
 		\end{enumerate}
 	\end{enumerate}
 \end{satz}
 
-\begin{proof} %TODO Add references
-	\betone{Zeige (1):}
+\begin{proof}
+	\betone{Zeige \ref{item:satz2.1(1)}:}
 	\begin{align*}
 		\norm{x+y}^2
 		&=\scaProd{x+y}{x+y}
 		=\underbrace{\scaProd{x}{x}}_{=\norm{x}^2}+2\mal\underbrace{\scaProd{x}{y}}_{=0}+\underbrace{\scaProd{y}{y}}_{=\norm{y}^2}
 	\end{align*}
-	\betone{Zeige (2):} Seien $x,y\in U^\perp$ und seien $\alpha,\beta\in\R$
+	\betone{Zeige \ref{item:satz2.1(2)}:} Seien $x,y\in U^\perp$ und seien $\alpha,\beta\in\R$
 	\begin{align*}
 		\scaProd{\alpha\mal x+\beta\mal y}{u}
 		\overset{\Lin}&{=}
 		\alpha\mal\underbrace{\scaProd{x}{u}}_{=0}+\beta\mal\underbrace{\scaProd{y}{u}}_{=0}\qquad\forall u\in U\\
 		&\implies\alpha\mal x+\beta\mal y\in U^\perp
 	\end{align*}
-	\betone{Zeige (3)(i):}
+	\betone{Zu \ref{item:satz2.1(3)} zeige \ref{item:satz2.1(3i)}:}
 	Da $U$ und $U^\perp$ Vektorräume sind, gilt $0\in U,U^\perp$ und somit $U\cap U^\perp\supseteq\set{0}$.
 	\begin{align*}
 		x\in U\cap U^\perp\implies\scaProd{x}{x}=0
 		\implies\norm{x}=0
 		\implies x=0
 	\end{align*}
-	\betone{Zeige (3)(ii):} 
+	\betone{Zu \ref{item:satz2.1(3)} zeige \ref{item:satz2.1(3ii)}:} 
 	Zeige "$\supseteq$":
 	Sei $x\in U$ und $y\in U^\perp$. Zeige
 	\begin{align}\label{eq:ProofSatz2.1Stern}\tag{$*$}
@@ -100,9 +95,10 @@ und zugehöriger \define{euklidische Norm}
 	\end{align}
 	Da $y\in U^\perp$, gilt $\scaProd{y}{u}=0$ für alle $u\in U$, also insbesondere für $u=x\in U$.
 	Somit folgt \eqref{eq:ProofSatz2.1Stern}.\\
-	Teil "$\subseteq$" siehe Koecher, Seite 160.
+	Für Teil "$\subseteq$" siehe Koecher \cite{koecher2013lineare}, Seite 160.
 \end{proof}
 
+\throwWarning{Frage Ferger nach Doppelnummerierung!}
 
 
 
