@@ -5,33 +5,48 @@
 
 \documentclass[]{scrreprt}
 
-\input{../latex/packages}
-\input{../latex/counters}
-\input{../latex/theoremenvironments}
-\input{../latex/font}
-\input{../latex/commands}
+\newcommand{\directoryPrefix}{../latex/} 
+\input{\directoryPrefix packages}
+\input{\directoryPrefix counters}
+\input{\directoryPrefix theoremenvironments}
+\input{\directoryPrefix font}
+\input{\directoryPrefix commands}
+
+\makeindex
 \setlength{\parindent}{0px} % dieser Befehl verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
 
 \title{
 	Vorlesung\\
-	DISOPT}
+	Diskrete Optimierung
+}
 \subtitle{Sommersemester 2019}
 \author{
-	Vorlesung: \\
+	Vorlesung:  Prof. Dr. Alexandra Schwartz%\\
 	%Mitschrift: 
 }
+\date{\today}
+\publishers{\url{https://github.com/LostInDarkMath/MatheMaster}}
 
 \begin{document}
+	%\begin{hack}: fix overfull hbox warning caused by \tableofcontents when exceeding 100 pages	
+	\makeatletter
+  	\renewcommand{\@pnumwidth}{2em}
+  	%\renewcommand{\@tocrmarg}{3em} % currently unnecessary
+  	\makeatother
+  	%\end{hack}
+
 	\pagenumbering{gobble}	% disable pagenumbering
 	\maketitle
 	\doclicenseThis
 	\tableofcontents % Inhaltsverzeichnis
 	\pagenumbering{arabic}	% enable pagenumbering
 	
-	\newpage
-	
+	\newpage	
+		
 	\input{chapter0}
 	\input{chapter1}
+	
+	\appendix
 	
 	\listoffigures 
 	%\listoftables

@@ -1,17 +1,21 @@
-Email: schwartz@gsc.tu-darmstadt.de\\
-Übung: Martinovic\\
-Unterlagen: www.github.com/alexandrabschwartz/DiskreteOptimierung2019
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+Email: \url{schwartz@gsc.tu-darmstadt.de}\\
+Übung: M.sc. Martinovic\\
+Unterlagen: \url{www.github.com/alexandrabschwartz/DiskreteOptimierung2019}
 
 \section{Einführung}
 \subsection{Beispiele}
-\begin{beispiel}
-	(Rucksackproblem)\\
-	Objekte & $j=1,\dots,m$ mit Gewicht $w_{j}>0$ und Wert $c_{j}>0$\\
+\begin{beispiel}[Rucksackproblem]\enter
+	Objekte $j=1,\dots,m$ mit Gewicht $w_{j}>0$ und Wert $c_{j}>0$\\
 	maximales tragbares Gewicht $w_{\max}$\\
-	Ziel: maximiere den Wert der ausgewählten Gegenstände \\
+	Ziel: maximiere den Wert der ausgewählten Gegenstände
 \end{beispiel} 
 
-\underline{allgemeines Optimierungsproblem}:\\
+\underline{allgemeines Optimierungsproblem}:
 \begin{equation*}
 	\min_{x} f(x) \text{ subject to } x \in X
 \end{equation*} 
@@ -37,14 +41,13 @@ Verallgemeinerung:
 	\item allgemeines Rucksackproblem mit $x\in D\subset \R^m$ z.B. $D=\{0,1\}^m, D=\N^m , D = \R_{+}^m$
 \end{itemize} 
 
-\begin{beispiel}
-	(Facility Location Problem)\\
+\begin{beispiel}[Facility Location Problem]\enter
 	Menge von Kunden $K_{1},\dots,k_{m}$\\
-	%wtf ging hier ab?
+	%TODO wtf ging hier ab?
 	Menge von möglichen Standorten $S_{1},\dots, S_{n}$ für mögliche neue Lager\\
 	einmalge Baukosten $c_{j}$ für Standort $S_{j}$\\
-	Lieferkosten $d_{ij}$ von Standort $S_{j}$ zu kunde $k_{i}$\\
-	Frage: An welchen Standorten $S_{j}$ sollen Lager gebaut werden und welche kunden $k_{i}$ sollen von welchem Standort $S_{j}$ beliefert werden?\\
+	Lieferkosten $d_{ij}$ von Standort $S_{j}$ zu Kunde $k_{i}$\\
+	Frage: An welchen Standorten $S_{j}$ sollen Lager gebaut werden und welche Kunden $k_{i}$ sollen von welchem Standort $S_{j}$ beliefert werden?\\
 	Variablen:
 	\begin{align*}
 		x_{ij}&\in \{0,1\} \\
@@ -59,7 +62,7 @@ Verallgemeinerung:
 	\end{equation*} 
 	zulässige Menge:	
 	\begin{align*}
-		&\sum_{j=1}^{n} x_{ij} =1 \quad \forall i=1,\dots, m\quad \text{ kunde k erhält gesamte Bestellung}\\
+		&\sum_{j=1}^{n} x_{ij} =1 \quad \forall i=1,\dots, m\quad \text{ Kunde k erhält gesamte Bestellung}\\
 		&\left(\sum_{j=1}^{n} x_{ij} \leq c_{j} \quad \forall i=1,\dots, m \quad \text{Lagerkapazität}\right)\\
 		&X_{ij} \leq b_{i}y_{j} \quad \forall i,j \text{ nur gebaute Lager $S_{j}$ verwenden}
 	\end{align*} 
@@ -68,8 +71,7 @@ Verallgemeinerung:
 
 \end{beispiel}
 
-\begin{beispiel}
-(Travelling Salesperson Problem,TSP)\\
+\begin{beispiel}[Travelling Salesperson Problem, TSP]\enter
 	Städte $S_{1},\dots, S_{n}$\\
 	gesucht: Rundreise, die alle Städte genau einmal besucht\\
 	mögliche Streckenabschnitte:
@@ -90,12 +92,11 @@ Verallgemeinerung:
 	Subtouren ausschließen:
 	% wie war der befehl für untereinander in Sum?
 	\begin{align*}
-		\sum_{i\in Um j \not\in U (i,j) in E} x_{ij} \geq 1 \quad \forall U \subset \{1,\dots,n\} \text{ mit }2\leq |U|\leq n-2
+		\sum_{i\in Um j \not\in U (i,j) \in E} x_{ij} \geq 1 \quad \forall U \subset \{1,\dots,n\} \text{ mit }2\leq |U|\leq n-2
 	\end{align*} 
 \end{beispiel} 
 
-\begin{beispiel}
-	(lineares Zuordnungsproblem)\\
+\begin{beispiel}[lineares Zuordnungsproblem]\enter
 	Tutor-innen $T_{1},\dots,T_{n}$ \\
 	Übungsgruppen $G_{1},\dots, G_{n}$ \\
 	kompetenzen $c_{ij}$ von Tutor $T_{i}$ für Gruppe $j$\\
@@ -112,8 +113,7 @@ Verallgemeinerung:
 	\end{align*} 
 \end{beispiel} 
 
-\begin{beispiel}	
-	(quadratisches Zuordnungsproblem)\\
+\begin{beispiel}[quadratisches Zuordnungsproblem]\enter
 	Beamte $B_{1},\dots,B_{n}$ mit \\
 	Gesprächshäufigkeiten $c_{ij}$ zwischen $B_{i},B_{j}$ \\
 	Büroräume $R_{1}, \dots, R_{n}$ mit \\
@@ -121,7 +121,7 @@ Verallgemeinerung:
 	Ziel: Raumzuteilung, die die Gesamtwegstrecke minimiert\\
 	Variable:
 	\begin{equation*}
-		x_{ik} \in \{0,1\} \forall i,=1,\dots,n
+		x_{ik} \in \{0,1\}\qquad \forall i,=1,\dots,n
 	\end{equation*} 
 	mit $x_{ik}$ genau dann, wenn $B_{i}$ Raum $R_{k}$ bekommt\\
 	Restriktionen: 
@@ -145,7 +145,7 @@ Verallgemeinerung:
 		\end{equation*} 
 		mit Variable $x \in \R^n$,\\
 		Zielfunktion $f:\R^n \to \R$,\\
-		zulässige Menge $X \subset \R^n (X = R^n$ unrestringierte Optimierung)
+		zulässige Menge $X \subset \R^n (X = \R^n$ unrestringierte Optimierung)
 	\item globales Minimum: 
 		\begin{equation*}
 			x^* \in X \mit f(x^*)\leq f(x)\quad \forall x \in X

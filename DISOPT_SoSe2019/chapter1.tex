@@ -32,12 +32,14 @@ ganzzahlige Lineare Programme:
 			\item ($D$) hat eine Lösung $y^*$ 
 			\item mk
 		\end{enumerate} 
-		% hier fehlt ganz viel hab ich in vim irgendwie gelöscht
+		
+		%TODO hier fehlt ganz viel hab ich in vim irgendwie gelöscht
+		
 	\item Ecken und Lösungen\\
 		$ \hat{x}$ Ecke von $P \iff$  $ \hat{x}$ kann nicht als echte konvexkombination von Punkten aus $P$ geschrieben werden
 		$\iff$ Sei 
 		\begin{equation*}
-			I = \{i = 1 ,\dots, n | \ħat{x}_{i} \geq 0 \} = \supp(\hat{x})
+			I = \{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 \} = \supp(\hat{x})
 		\end{equation*} 
 		Dann gilt $\rang(A_{\cdot,I})=|I|$
 	\item Hat das LP $(P)$ eine Lösung, so gibt es auch eine Ecklösung.
@@ -45,7 +47,7 @@ ganzzahlige Lineare Programme:
 	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvolle Reihenfolge absuchen.\\
 		\underline{Annahme:} $A \in \R^{m \times n }$ hat \underline{vollen Zeilenrang} m. \\
 		Sei $\hat{x}$ eine Ecke von $P$ und $I = \{i | \hat{x}_{i}>0\}$ \\
-	$\implies$ rang($A_{\cdot,I} $  )= |I| \leq m \\
+		$\implies$ rang($A_{\cdot,I}   )= |I| \leq m$ \\
 		%what ist das in der folgenden Zeile
 		$\implies$ Es gibt $B \subset \{1,\dots,n\}$ mit $I \subset B, |B| = m $ und $A_{B}= A_{\cdot,B}$ ist regulär
 	\item Basen\\
@@ -78,7 +80,7 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 \begin{align*}
 	c^Tx&= c_{B}^Tx_{B} + c_{N}^Tx_{N} = c_{B}^T \underbrace{A_{B}^{-1}b}_{= \hat{x}_{B}} - c_{B}^TA_{B}^{-1}A_{N}x_{N} + c_{N}^Tx_{N}\\
 	&= ...... % add later
-\end{align*} 
+\end{align*}  %TODO
 
 \begin{itemize}
 	\item gilt $z_{N} \geq 0$: $\hat{x}$ löst LP ( mit dualer Variable y)
@@ -90,7 +92,7 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 			\item Wähle $\gamma = \min \{ \frac{\hat{x}_{i}}{w_{i}}|w_{i} > 0 \}$
 			\item Andernfalls wähle $i \in B$ mit $\gamma = \frac{\hat{x}_{i}}{w_{i}}$
 		\end{itemize} 
-	\item neue Ecke\\
+	\item neue Ecke
 		\begin{align*}
 			\hat{x}_{B}-\gamma_{w}&= x_{B}^+\\
 			x_{j}^+& = \gamma\\
