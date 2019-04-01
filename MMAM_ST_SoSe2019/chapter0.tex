@@ -4,6 +4,182 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Chapter}
-\section{Section}
+
+\section*{Organisatorisches}%
+\label{sec:Organisatorisches}
+
+Bei Fragen während der Vorlesungs- und Prüfungsphase:
+
+Email: schwartz@gsc.tu-darmstadt.de
+
+\chapter{Einführung}
+
+\section{Beispiele}%
+\label{sec:Beispiele}
+
+\begin{definition}
+	Ein \underline{strategisches Spiel in Normalform} besteht aus 
+	\begin{itemize}
+		\item eine Menge von \underline{Spielern}  $i=1,\ldots, N$
+		\item zulässige \underline{Strategiemengen} $X_i, \quad i=1,\ldots, N$
+		\item \underline{Auszahlungsfunktionen}  $f_i : \underbrace{X_1 \times \ldots \times X_N}_{:=X} \to \R$
+	\end{itemize}
+	\underline{Problem} von Spieler i:
+	\begin{itemize}
+		\item $\min_{x_i} f_i(x_1, \ldots, x_i, \ldots, x_N)$ mit $x_i \in X_i$
+	\end{itemize}
+\end{definition}
+
+\begin{beispiel}
+	(Schere, Stein, Papier)
+	\begin{itemize}
+		\item zwei Spieler : $i=1,2$
+		\item Strategiemengen : $X_1 = X_2 = \left\{\text{Schere, Stein, Papier}\right\}$
+		\item Auszahlungsfunktion : (Wer verliert, zahlt 1€ an den Gegner)
+
+			Auszahlung für Spieler 1:
+			\[
+				f_1(x_1,x_2) = \begin{cases}
+					\hfil -1 &\quad x_1 = \text{Schere}, x_2 =\text{Stein} \\
+					\hfil +1 &\quad x_1 = \text{Schere}, x_2 = \text{Papier} \\
+					\hfil 0 &\quad x_1 = \text{Schere}, x_2 = \text{Schere} \\
+					\hfil \vdots &\quad \hfil \vdots
+				\end{cases}
+			\] 
+			Auszahlung für Spieler 2:
+			\[
+				f_2(x_1,x_2) = \begin{cases}
+					\hfil +1 &\quad x_1 = \text{Schere}, x_2 =\text{Stein} \\
+					\hfil -1 &\quad x_1 = \text{Schere}, x_2 = \text{Papier} \\
+					\hfil 0 &\quad x_1 = \text{Schere}, x_2 = \text{Schere} \\
+					\hfil \vdots &\quad \hfil \vdots
+				\end{cases}
+			\]
+			Die sogenannte Auszahlungsmatrix sieht dann folgendermaßen aus:
+			\begin{center}
+				\begin{tabular}{c|c|c|c}
+					&Schere &Stein & Papier \\ \hline
+					Schere & 0, 0 & -1, +1 & +1, -1 \\ \hline
+					Stein & +1, -1 & 0, 0 & -1, +1 \\ \hline
+					Papier & -1, +1 & +1, -1 & 0, 0
+				\end{tabular}
+			\end{center}
+			% Spieler 1 oben drüber, Spieler zwei links daneben, TODO Farben 1:blau 2:rot linke zahl ist 1
+	\end{itemize}
+\end{beispiel}
+
+\begin{beispiel}
+	Gefangenendilemma:
+
+	Angebot des Staatsanwalts:
+	\begin{itemize}
+		\item Verdächtiger gesteht, aber Partner schweigt:
+			Geständiger muss als Kranzeuge 1 Jahr ins Gefängnis
+			Schweigender Partner muss 10 Jahre ins Gefängnis
+		\item Wenn beide gestehen: Beide müssen für 5 Jahre ins Gefängnis
+		\item Wenn keiner gesteht: Beide müssen wegen anderer Vergehen für 2 Jahre ins Gefängnis
+	\end{itemize}
+	$\implies$
+	\begin{itemize}
+		\item Spieler : $i=1, 2$
+		\item Strategiemengen : $X_1 = X_2 = \{\text{schweigen, gestehen}\}$
+	\end{itemize}
+	\begin{tabular}{c|c|c}
+		&schweigen&gestehen \\ \hline
+		schweigen & 2, 2& 10, 1 \\ \hline
+		gestehen & 1, 10& 5, 5
+		%TODO gleiches mit Spielern wie oben
+	\end{tabular}
+\end{beispiel}
+
+\begin{beispiel}
+	Koordinationsspiel, Kampf der Geschlechter
+	\begin{itemize}
+		\item 2 Spieler : $i = 1, 2$
+		\item Strategiemengen : $X_1 = X_2 = \{\text{A, B}\}$
+			hierbei sind $A$ und $B$ z.B. die von den jeweiligen Spielern bevorzugten Aktivitäten (in die Oper gehen vs. zum Fußballspiel gehen)
+		\item Auszahlungsmatrix :
+			\begin{tabular}{c|c|c}
+				&A&B \\ \hline
+				A& 2, 1& 0, 0 \\ \hline
+				B& 0, 0& 1, 2 
+			\end{tabular}
+			Auszahlungen werden hier im Gegensatz zu Normalfall maximiert!
+	\end{itemize}
+\end{beispiel}
+
+\begin{beispiel}
+	Cournat-Oligopol
+	Firmen $F_i, \quad i=1,\ldots,N$ stellen das gleiche Gut her. Die Produktion von $x_i$ Einheiten kostet $c_i(x_i)$. Der Preis fällt mit dem Gesamtangebot, d.h. $p(\sum_{i=1}^{N} x_i$.
+	Das Problem der Firma ist, den Gewinn zu maximieren:
+	\[
+		\max_{x_i} p(\sum_{j=1}^N x_j)x_i - c_i(x_i) \qquad \mit x_i \geq 0 \text{(+ weitere Restriktionen)}
+	.\] 
+\end{beispiel}
+
+\section{Klassifikation von Spielen}%
+\label{sec:Klassifikation von Spielen}
+
+Eigenschaften der Auszahlungsfunktion:
+
+\begin{definition}
+	Ein Spiel $\Gamma=\{X_i, f_i\}_{i=1}^N$ heißt
+	\begin{itemize}
+		\item \underline{Nullsummenspiel}, wenn gilt
+			\[
+				\sum_{i=1}^N f_i(x_1, \ldots, x_N)=0 \qquad \forall (x_1, \ldots, x_N) \in X
+			.\] 
+		\item \underline{Konstansummenspiel}, wenn gilt
+			\[
+				\sum_{i=1}^N f_i(x_1, \ldots, x_N)=c \qquad \forall (x_1, \ldots, x_N) \in X
+			.\] 
+		\item \underline{Nichtnullsummenspiel}, wenn es kein Konstantsummenspiel ist.
+	\end{itemize}
+\end{definition}
+
+Größe der Strategiemengen
+\begin{definition}
+	Ein Spiel $\Gamma=\{X_i, f_i\}_{i=1}^N$ heißt
+	\begin{itemize}
+		\item \underline{endlich}, wenn alle Strategiemengen $X_i$ nur endlich viele Elemente haben.
+		\item \underline{abzählbar}, wenn alle Strategiemengen $X_i$ abzählbar viele Elemente haben
+		\item \underline{überabzählbar} oder \underline{kontinuierlich}, in allen andern Fällen
+	\end{itemize}
+\end{definition}
+
+Anzahl der Spieler
+\begin{definition} Arten von Spielen
+	\begin{itemize}
+		\item Ein endliches 2-Personen-Spiel heißt \underline{Bi-Matrixspiel} 
+		\item Ein endliches 2-Personen-Nullsummenspiel heißt \underline{Matrixspiel} 
+	\end{itemize}
+\end{definition}
+
+\begin{beispiel}
+	Endliches 2-Personen-Spiel
+	\[
+	\begin{align*}
+		X_1 = \{a_1, a_2, \ldots, a_m\} \text{ durchnummerieren } &\rightarrow \quad $X=\{1,\ldots,m\}$ \\
+		X_2 = \{b_1, b_2, \ldots, b_n\} \text{ durchnummerieren } &\rightarrow \quad $X=\{1,\ldots,n\}$ 
+	\end{align*}
+.\]
+Auszahlungsmatrizen für Spieler 1 und 2: \[A, B \in R^{m \times n} \mit a_{ij} = f_1(a_i, b_j), \quad b_{ij} = f_2(a_i, b_j)
+.\]
+
+Bei einem Nullsummenspiel müsste gelten \[
+B = -A
+.\] 
+\end{beispiel}
+
+Weitere Unterscheidungsmöglichkeiten von Spielen
+\begin{itemize}
+	\item kooperativ oder \underline{nichtkooperativ} 
+	\item \underline{einmaliges} oder wiederholbares Spiel
+	\item \underline{vollständige} versus unvollständige Information
+	\item \underline{simultane} oder sequentielle Entscheidungen
+\end{itemize}
+
+
+
+
 
