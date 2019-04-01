@@ -1,17 +1,32 @@
 # MatheMaster (Work in Progress) [![Build Status](https://travis-ci.com/LostInDarkMath/MatheMaster.svg?branch=master)](https://travis-ci.com/LostInDarkMath/MatheMaster)
 
+Sommersemester/*summer term* 2019:
+- ALGTOP bei Prof. Thom (deutsch)
+- DISMAT bei Dr. Cubides (*English*)
+- DISOPT bei Dr. Schwartz (deutsch)
+- KONGEO bei Prof. Krähmer (deutsch)
+- MMAM (Lineare Modelle) bei Prof. Ferger (deutsch)
+- MMAM (Spieltheorie) bei Prof. Schwartz (deutsch)
+- NLANA bei Prof. Schuricht (deutsch)
+- PDENMW bei Prof. Sander (deutsch)
+- SCCOMP bei Prof. Voigt & Dr.  Salvalaglio (deutsch)
+- SCPROG bei Prof. Walter (deutsch)
+- STOCAL bei Prof. Schilling (deutsch)
+- STOCHP bei Prof. Sasvári (deutsch)
+- Kategorientheorie bei Prof. Pöschel (deutsch)
+
 Wintersemester/*winter term* 2018/2019:
-- MFANA bei Prof. Chill (deutsch)
-- PDENM bei Prof. Matthies (deutsch)
-- ORDSTR bei Prof. Schmidt (deutsch)
-- WTHM bei Prof. Keller-Ressel (deutsch)
-- MSTAT bei Prof. Ferger (deutsch)
-- PDEANA bei Prof. Hornung (deutsch)
 - AMGEO bei Prof. Krähmer (*English*)
 - ANGA bei Prof. Fehm (deutsch)
 - FEM bei Prof. Voigt (*English*)
-
 - Formale Systeme bei Prof. Hölldobler (deutsch)
+- MFANA bei Prof. Chill (deutsch)
+- MSTAT bei Prof. Ferger (deutsch)
+- ORDSTR bei Prof. Schmidt (deutsch)
+- PDEANA bei Prof. Hornung (deutsch)
+- PDENM bei Prof. Matthies (deutsch)
+- WTHM bei Prof. Keller-Ressel (deutsch)
+
 
 Dieses Repository ist für die Mitschriften ausgewählter Module des Masterstudiengangs Mathematik an der TU Dresden gedacht.
 Die PDF-Versionen der Skripte werden immer am Ende der Woche aktualisiert und können [hier](https://github.com/LostInDarkMath/MatheMaster/releases/latest) heruntergeladen werden.
