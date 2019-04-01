@@ -28,7 +28,7 @@ Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten
 	\end{itemize}
 	\underline{Problem} von Spieler i:
 	\begin{itemize}
-		\item $\min_{x_i} f_i(x_1, \ldots, x_i, \ldots, x_N)$ mit $x_i \in X_i$
+		\item $\min\limits_{x_i} f_i(x_1, \ldots, x_i, \ldots, x_N)$ mit $x_i \in X_i$
 	\end{itemize}
 \end{definition}
 
@@ -57,7 +57,6 @@ Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten
 					\hfil \vdots &\quad \hfil \vdots
 				\end{cases}
 			\]
-			Die sogenannte Auszahlungsmatrix sieht dann folgendermaßen aus:
 			\begin{center}
 				\begin{tabular}{cc|c|c|c|}
 					\\ \cline{3-5}
@@ -81,7 +80,7 @@ Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten
 	\begin{itemize}
 		\item Verdächtiger gesteht, aber Partner schweigt:
 
-			Geständiger muss als Kranzeuge 1 Jahr ins Gefängnis
+			Geständiger muss nur 1 Jahr ins Gefängnis
 
 			Schweigender Partner muss 10 Jahre ins Gefängnis
 		\item Wenn beide gestehen:
@@ -116,18 +115,20 @@ Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten
 	\begin{itemize}
 		\item 2 Spieler : $i = 1, 2$
 		\item Strategiemengen : $X_1 = X_2 = \{\text{A, B}\}$
-			hierbei sind $A$ und $B$ z.B. die von den jeweiligen Spielern bevorzugten Aktivitäten (z.B. $A$ = in die Oper gehen vs. $B$ = zum Fußballspiel gehen)
-		\item Auszahlungsmatrix:
+			hierbei sind $A$ und $B$ z.B. die von den jeweiligen Spielern bevorzugten Aktivitäten (explizites Beispiel: $A$ = in die Oper gehen vs. $B$ = zum Fußballspiel gehen)
 			\begin{center}
-				\begin{tabular}{c|c|c|}
-					\cline{2-3}
-					&A&B \\ \hline
-					\multicolumn{1}{|c|}{A}& 2, 1& 0, 0 \\ \hline
-					\multicolumn{1}{|c|}{B}& 0, 0& 1, 2 \\ \hline
+				\begin{tabular}{cc|c|c|}
+					\\ \cline{3-4}
+					&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
+					&&A &B \\ \hline
+					\multicolumn{1}{ |c }{\multirow{2}{*}{\color{blue} Spieler 2}}&
+					\multicolumn{1}{ |c| }{A} & \color{blue}2\color{black},\color{red} 1 & \color{blue}0\color{black},\color{red} 0 \\ \cline{2-4}
+					\multicolumn{1}{ |c }{}&
+					\multicolumn{1}{ |c| }{B} & \color{blue}0\color{black},\color{red} 0 & \color{blue}1\color{black},\color{red} 2 \\ \hline
 				\end{tabular}
 			\end{center}
 
-			Auszahlungen werden hier im Gegensatz zu Normalfall maximiert!
+			Auszahlungen werden in diesem Beispiel im Gegensatz zum Normalfall maximiert!
 	\end{itemize}
 \end{beispiel}
 
@@ -140,7 +141,7 @@ Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten
 	$p(\sum_{i=1}^{N} x_i)$.
 	Das Problem der Firma ist, den Gewinn zu maximieren:
 	\[
-		\max_{x_i} p(\sum_{j=1}^N x_j)\cdot x_i - c_i(x_i) \qquad \mit x_i \geq 0 \quad\text{(+ weitere Restriktionen)}
+		\max\limits_{x_i} p(\sum_{j=1}^N x_j)\cdot x_i - c_i(x_i) \qquad \mit x_i \geq 0 \quad\text{(+ weitere Restriktionen)}
 	.\] 
 \end{beispiel}
 
