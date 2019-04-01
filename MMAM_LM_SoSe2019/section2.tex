@@ -1,0 +1,109 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\setcounter{chapter}{1}
+\section{Elemente der Linearen Algebra}
+Ziel: Bereitstellung einiger Hilfsmittel aus der linearen Algebra.
+Literatur:
+\begin{enumerate}[label=(\arabic*)]
+	\item G. Fischer (1997) \emph{Lineare Algebra}
+	\item M. Koecher (1997) \emph{Lineare Al...}
+\end{enumerate}
+%TODO Add Reference
+
+Im gesamten Abschnitt ist
+\begin{align*}
+	\R^n:=\set{\begin{pmatrix}
+		x_1\\
+		\vdots\\
+		x_n
+	\end{pmatrix}
+	:x_i\in\R\quad\forall 1\leq i\leq n}\qquad\forall n\in\N
+\end{align*}
+der gewöhnliche \define{euklidische Raum} versehen mit dem kanonischen Skalarprodukt
+\begin{align*}
+	\scaProd{x}{y}:=\sum\limits_{i=1}^n x_i\mal y_i\qquad\forall x,y\in\R^n
+\end{align*}
+und zugehöriger \define{euklidische Norm}
+\begin{align*}
+	\norm{x}:=\sqrt{\scaProd{x}{x}}
+	=\sqrt{\sum\limits_{i=1}^n x_i^2}
+	\qquad\forall x\in\R
+\end{align*}
+
+\begin{definition}\label{def2.1}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $x,y\in\R^n$ heißen \define{orthogonal}, in Zeichen
+		\begin{align*}
+			x\perp y:\iff\scaProd{x}{y}=0
+		\end{align*}
+		\item Sei $U\subseteq\R^n$ und $x\in\R^n$. Dann setze
+		\begin{align*}
+			x\perp U:\iff\forall u\in U: x\perp u
+		\end{align*}
+		\item Das \define{orthogonale Komplement} von $U\subseteq\R^n$ ist
+		\begin{align*}
+			U^\perp:=\set{x\in\R^n:x\perp U}
+		\end{align*}
+	\end{enumerate}
+\end{definition}
+
+%TODO Chapter-Section-Fix, ähnlich wie letztes Semester
+%TODO Nummern im ersten Abschnitt sind 1.1 bis 1.4
+
+%TODO fix counters
+\begin{satz}\label{satz2.1}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			x\perp y\implies \norm{x+y}^2=\norm{x}^2+\norm{y}^2
+		\end{aligned}$ (Pythagoras)
+		\item $U^\perp$ ist Untervektorraum (UVR / UR) von $\R^n$
+		\item Falls $U\subseteq\R^n$ UVR von $\R^n$ ist, gilt:
+		\begin{enumerate}[label=(\roman*)]
+			\item $\begin{aligned}
+				U\cap U^\perp=\set{0}
+			\end{aligned}$
+			\item $\begin{aligned}
+				\big(U^\perp)^\perp=U
+			\end{aligned}$
+		\end{enumerate}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof} %TODO Add references
+	\betone{Zeige (1):}
+	\begin{align*}
+		\norm{x+y}^2
+		&=\scaProd{x+y}{x+y}
+		=\underbrace{\scaProd{x}{x}}_{=\norm{x}^2}+2\mal\underbrace{\scaProd{x}{y}}_{=0}+\underbrace{\scaProd{y}{y}}_{=\norm{y}^2}
+	\end{align*}
+	\betone{Zeige (2):} Seien $x,y\in U^\perp$ und seien $\alpha,\beta\in\R$
+	\begin{align*}
+		\scaProd{\alpha\mal x+\beta\mal y}{u}
+		\overset{\Lin}&{=}
+		\alpha\mal\underbrace{\scaProd{x}{u}}_{=0}+\beta\mal\underbrace{\scaProd{y}{u}}_{=0}\qquad\forall u\in U\\
+		&\implies\alpha\mal x+\beta\mal y\in U^\perp
+	\end{align*}
+	\betone{Zeige (3)(i):}
+	Da $U$ und $U^\perp$ Vektorräume sind, gilt $0\in U,U^\perp$ und somit $U\cap U^\perp\supseteq\set{0}$.
+	\begin{align*}
+		x\in U\cap U^\perp\implies\scaProd{x}{x}=0
+		\implies\norm{x}=0
+		\implies x=0
+	\end{align*}
+	\betone{Zeige (3)(ii):} 
+	Zeige "$\supseteq$":
+	Sei $x\in U$ und $y\in U^\perp$. Zeige
+	\begin{align}\label{eq:ProofSatz2.1Stern}\tag{$*$}
+		\scaProd{x}{y}=0
+	\end{align}
+	Da $y\in U^\perp$, gilt $\scaProd{y}{u}=0$ für alle $u\in U$, also insbesondere für $u=x\in U$.
+	Somit folgt \eqref{eq:ProofSatz2.1Stern}.\\
+	Teil "$\subseteq$" siehe Koecher, Seite 160.
+\end{proof}
+
+
+
+

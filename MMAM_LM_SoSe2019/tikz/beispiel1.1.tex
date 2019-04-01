@@ -1,0 +1,37 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\begin{tikzpicture}[x=5mm,y=1mm]
+	\draw[thin,->] (168,50) -- (193,50) node[right] {$x$};
+	\draw[thin,->] (168,50) -- (168,100) node[above] {$y$};
+
+	\foreach \x [count=\xi starting from 170] in {5,10,15,20}{
+    	%\draw (\x,2pt) -- (\x,-2pt);
+    %\draw (2pt,\x) -- (-2pt,\x);
+    %\ifodd\xi
+    %    \node[anchor=north] at (\x,0) {$\x$};
+    %    \node[anchor=east] at (0,\x) {$\x$};
+    %\fi
+	}
+	
+	\foreach \x [count=\xi starting from 50] in {10,20,30,40,50}{
+    %	\draw (2pt,\x) -- (-2pt,\x);
+    %\ifodd\xi
+    %    \node[anchor=north] at (\x,0) {$\x$};
+    %    \node[anchor=east] at (0,\x) {$\x$};
+    %\fi
+	}
+
+	\foreach \Point in {(172,56), (174,59), (180,65), (182,76), (186,80), (188,85), (190, 93), (181,73)}
+	{
+   		\node at \Point {\textbullet};
+	}
+
+
+	% to ensure that the points are being properly centered:
+	%\draw [dotted, gray] (-4,-6) grid (5,5);
+	%\node [red] at (3,2.5) {\textbullet};
+	%\node [blue] at (3,-2.5) {$\circ$};
+\end{tikzpicture}
