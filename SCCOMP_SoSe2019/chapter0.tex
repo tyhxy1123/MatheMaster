@@ -4,6 +4,112 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Chapter}
-\section{Section}
+\chapter{Large Sparse Linear Systems}
+\section{Modelproblems and discretization}%
+\label{sec:Modelproblems and discretization}
+
+
+\begin{equation}\label{eq_1}
+	\frac{\partial^2 u}{\partial x_1^2} + \frac{\partial^2 u}{\partial x_2^2} =: \laplace u = f(x) 
+\end{equation}
+with $\Omega \subspace \R^2$ bounded, open domain and 
+$ x =
+\begin{pmatrix}
+x_1 \\
+x_2
+\end{pmatrix}
+\in \Omega
+$
+HIER SKIZZE + n outer normal on $\partial \Omega$
+with boundary conditions
+\[
+\alpha u + \beta \frac{\partial u}{\partial n} = g \qquad \text{ on } \partial \Omega
+.\] 
+
+If \begin{itemize}
+	\item $ \beta = 0$, we get a Dirichlet problem.
+	\item $ \alpha \neq 0$, we get a Neumann problem.
+	\item $\alpha = 0 \text{ and } \beta = 1$, we have
+		\begin{enumerate}
+			\item Since $u = \text{const}$ solves \href{eq_1}{} % TODO FIX THIS
+				for $f=0 \text{ and } g = 0$, the solution to \href{eq_1}{} is unique up to a constant
+			\item Integrating \href{eq_1}{} over $\Omega$ and Green's formula yield
+				\[
+				- \int_{\partial\Omega} \frac{\partial u}{\partial n} = - \int_{\Omega} \laplace u = \int_{\Omega} f
+				.\] 
+				This means, we get a compatibility condition
+				\[
+				\int_{\partial \Omega} g + \int_{\Omega}f = 0
+				.\] 
+		\end{enumerate}
+\end{itemize} 
+
+Another variant of \href{eq_1}{} is
+\[
+	Lu := \nabla(A\nabla u)
+.\] 
+where A is a positive definite matrix.
+
+\begin{equation}
+	\label{eq_2}
+LU = f \qquad \in \Omega \text{ + boundary condition}
+\end{equation}
+
+\section{Discretization with finite differences}%
+\label{sec:Discretization with finite differences}
+
+The basic idea is
+
+%TODO Hier kommt noch etwas Inhalt für den ich nicht schnell genug war.
+
+
+\begin{itemize}
+	\item \underline{(1D-case):} 
+		%Das fehlt auch alles
+	\item \underline{(2D \& 3D cases):} 
+		The laplacian is the sum of all second derivatives
+		\[
+			\laplace = \partial x_1^2 + \partial x_2^2 (+\partial x_3^2)
+		.\] 
+		With (possibly) different step width $h$ in each coordinate direction we get
+		\begin{align*}
+			\laplace u(x) &= \frac{u(x_1 + h_1, x_2) - 2u(x_1, x_2) + u(x_1 -h_1, x_2)}{h_1^2}
+						  &+ \frac{u(x_1, x_2 + h_2) - 2u(x_1, x_2) + u(x_1, x_2 -h_2)}{h_2^2}
+		\end{align*}
+		but for $h_1 = h_2 = h$ we get
+		\[
+			\laplace u(x) \approx \frac{1}{h^2}\left[u(x_1+ h, x_2) + u(x_1-h, x_2) + u(x_1, x_2 -h) + u(x_1, x_2 -h) -4u(x_1, x_2)\right]
+		.\] 
+		Denoting the forward/backward difference formulas
+		% TODO stimmt das letzt Wort?
+		in the direction i by $\delta_{i}^{+}$ and $\delta_{i}^{-}$ we can write
+		\[
+			\laplace u(x) \approx \sum_{i=1}^{2}{\delta_{i}^{+}\delta_{i}^{-}u(x)}=:\laplace_{h}^{(5)}u(x)
+		.\] 
+		The formula can be sketched as a stencil, the so called " 5-point stencil "
+		% TODO hier Skizze
+		where the values in the nodes correspond to the coefficients in the formula.
+		Other possible stencils are:
+		\begin{itemize}
+			\item 5-point-stencil, $2^{\text{nd}}$ order accurate
+				%TODO Skizze
+			\item 9-point-stencil,  $2^{\text{nd}}$ order accurate and even $6^{\text{th}}$ order accurate for harmonic funtions
+				%TODO Skizze
+		\end{itemize}
+\end{itemize}
+
+\section{Finite difference on a grid}%
+\label{sec:Finite difference on a grid}
+Let $\Omega =(0, X_{E}) \times (0,Y_{E})$ and subdivide each interval into $N_{x}+1 / N_{y} + 1$ subintervals.
+
+%Skizze grid here und irgendein umgekehrtes cases environment Ding
+Each node (vertex) in this grid is assigned an index tuple
+\[
+	(x,y) = (ih_{x}, jh_{y}) = (i,j)
+.\] 
+for $i \in$
+
+
+
+
 
