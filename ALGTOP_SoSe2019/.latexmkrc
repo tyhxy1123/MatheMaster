@@ -1,3 +1,3 @@
 $pdf_mode = 1;
-@default_files = ('MSTAT.tex');
+@default_files = ('ALGTOP.tex');
 $out_dir = 'out';
