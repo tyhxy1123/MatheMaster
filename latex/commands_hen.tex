@@ -1,0 +1,34 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% Environments
+\newenvironment{proof_}{\begin{proof}[Proof]}{\end{proof}}
+\renewenvironment{rcases}
+{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
+
+%% adopted environments to english
+\newtheorem{thrm}{Theorem}[section]
+\newtheorem{lemma_}[thrm]{Lemma}
+\newtheorem{korollar_}[thrm]{Corollary}
+\newtheorem{proposition_}[thrm]{Proposition}
+\newtheorem{example}[thrm]{Example}
+\newtheorem{definition_}[thrm]{Definition}
+\newtheorem{remark}[thrm]{Remark}
+
+\newtheorem*{reminder}{Reminder.}
+\newtheorem*{comment_}{Comment.}
+
+% commands
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\bigo{\mathcal{O}}
+\newcommand{\T}{\mathcal{T}}				 % Triangulierung
+\newcommand*\ton{\text{ on }} 
+\newcommand*\tin{\text{ in }}
+\newcommand*\tol{\text{tol}}    
+
+\newcommand*\laplace{\Delta}    
+\newcommand*\eps{\varepsilon}    
+

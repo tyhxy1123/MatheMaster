@@ -1,9 +1,79 @@
-% !TEX root = NLANA.tex
+% !TEX root = PDENMW.tex
 % This work is licensed under the Creative Commons
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Chapter}
-\section{Section}
+\chapter{Adaptive Finite Elements}
+\section{Model Problem}
+Let $\Omega\subset\R^d$ be a \textit{domain}, i.e. a bounded and open subset of $\R^d$. Our goal is to find a function $u\colon\Omega\to\R$ such that 
+\begin{align*}
+    -\laplace u & = f,\,\text{ in } \Omega, \\
+    u & =u_0,\,\text{ on } \partial\Omega,
+\end{align*}
+where $\laplace$ is the \emph{Laplace operator}, $f$ and $u_0$ are given functions.
+\section{Weak Formulation}
+\begin{definition}
+The \emph{Sobolev space} $W^{k,p}(\Omega)$ is the set of all $p$-integrable functions $v\colon\Omega\to\R$ with $k$ weak derivatives that are $p$-integrable. 
+\begin{equation*}
+    |v|_{W^{k,p}}:=\int\limits_\Omega|\nabla^kv|^p<\infty.
+\end{equation*}
+In particular, we write $W^{k,2}=:H^k$.
+\end{definition}
+Sobolev functions do not have point values. Nevertheless, the trace of $H^1$-functions on $\partial\Omega$ is well-defined due to the trace theorem. The image of the trace operator is denoted by $H^{\frac{1}{2}}(\partial\Omega)$. Let $\omega\in H^{\frac{1}{2}}(\partial\Omega)$. Define $H_\omega^1(\Omega)=\{ v\in H^1\colon v|_{\partial\Omega}=\omega\}$. Let $w\in H_0^1(\Omega)$ be a \textit{test function}. In order to obtain the \textit{weak formulation}, we multiply the partial differential equation in strong form with $w$ and integrate over $\Omega$ : 
+\begin{equation*}
+    -\laplace u=f\, \xrightarrowfix{\text{multiply}}-\laplace uw=fw\,\xrightarrowfix{\text{integrate}}\int\limits_\Omega-\laplace uw\,dx=\int\limits_\Omega fw\,dx.
+\end{equation*}
+Integration by parts: 
+\begin{equation*}
+    \int\limits_\Omega\nabla u\nabla w\,dx-\underbrace{\int\limits_{\partial\Omega}\partial_{n}uw \diff s}_{=0}=\int\limits_\Omega fw\diff x.
+\end{equation*}
+To go more abstract, we introduce the \textit{bilinear form} 
+\begin{equation*}
+    a(v,w):=\int\limits_\Omega\nabla v\nabla w\diff x,
+\end{equation*}
+and the \textit{linear form}
+\begin{equation*}
+    l(w):=\int\limits_\Omega fw\diff x.
+\end{equation*}
+Find $u\in H_{u_0}^1$ such that $a(u,w)=l(w)$ for all $w\in H_0^1$.
+\section{Finite Elements}
+Idea: approximate $H^1$ with a certain finite-dimensional subspace.
+\begin{definition}
+	A \textit{grid} is a finite-dimensional collection of closed simplices $\T=\{ T_1,\ldots, T_m\}$ such that $\bar{\Omega}=\bigcup_{i=1}^mT_i$ and for all $i,j$ either $T_i\cap T_j=\emptyset$ or $T_i\cap T_j$ is a common face. A grid with these properties is said to be \textit{conforming}.
+\end{definition}
+Finite elements are spaces of piecewise polynomial functions with respect to a grid. Most important: \textit{Lagrange spaces}: 
+\begin{equation*}
+	V_h^p:=\left\{ v_h\in C(\Omega)\mid\forall T\in\T\colon v_h|_T\text{ is polynomial of order}\leq p\right\}.
+\end{equation*}
+Note: $V_h^p\subset H^1$. Discrete problem/FE problem: find $u_h\in V_h^p\cap H^1_{u_0}$ such that 
+\begin{equation*}
+	\forall w_h\in V_h^p\cap H_0^1=\{ v_h\in V_h^p\mid v_h|_{\partial\Omega}=0\}\colon a(u_h,w_h)=l(w_h)
+\end{equation*}
+Our next aim are some statements about the existence and uniqueness of solutions.
+Existence and uniqueness of solutions.
+\section{Discretization Error}
+We like to measure the error we commit with the discretization, i.e. estimate $\| u-u_h\|$. There are several possible norms we could employ. For example $\|\cdot\|_\infty$, $\|\cdot\|_{H^1}$ or $\|\cdot\|_{L^2}$. Either choice we make, the outcome as well as the proofs will be different. A relatively easy result is the following.
+\begin{theorem}
+There exists a constant $c$ such that $\| u-u_h\|_{H^1}\leq ch^p| u|_{H^{p+1}}$. $c$ depends on $\Omega$ and the grid.
+\end{theorem}
+Question: How big is $| u|_{H^{p+1}}$? Does $| u|_{H^{p+1}}$ exist? In other words: is $u\in H^{p+1}$? To find an answer to these questions is not easy and opens a whole new branch in mathematical analysis, called \textit{regularity theory}. A partial answer can be found in Braess %\cite{Braess07}.
+\begin{theorem}%[Braess 2.7.2]
+Let $f,u_0$ be sufficiently smooth. If $\Omega$ is convex, then $u\in H^2$. If $\Omega$ has a $C^2$ boundary, then $u\in H^s$ for $s\geq 2$.
+\end{theorem}
+\begin{example}
+	
+What can go wrong? 
+\begin{equation*}
+	\Omega=\{(x,y)\in\R^2\colon x^2+y^2<1,\,x<0\lor y>0\}.
+\end{equation*} 
+Boundary value problem:
+\begin{align*}
+	-\laplace u&=0\\
+	u(r,\varphi)&=\sin(2/3\varphi) \forall 0\leq\varphi\leq3/2\pi \\
+	u=0 \text{ elsewhere on } \partial\Omega.
+\end{align*}
+What does the solution looks like? Identify $\R^2$ with $\C$. The function $w(z)=z^{2/3}$ is holomorphic on $\Omega$. Cauchy-Riemann equations $\operatorname{Im}w(z)$ is harmonic and takes correct values on $\partial\Omega$. Therefore it is a solution to the BVP. Derivative: $w^\prime(z)=2/3z^{-1/3}$ tends to $\infty$ as $z\to 0$. Therefore the solution has a singularity at $0$ and $u\notin H^2$.
+\end{example}
+\input{tikz/chapter0/example_problem}
 
