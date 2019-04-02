@@ -4,7 +4,6 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-
 \section*{Organisatorisches}%
 \label{sec:Organisatorisches}
 
@@ -204,3 +203,261 @@ Weitere zahlreiche Unterscheidungsmöglichkeiten von Spielen
 	\item \underline{vollständige} versus unvollständige Information
 	\item \underline{simultane} oder sequentielle Entscheidungen
 \end{itemize}
+
+Um in den folgenden Kapiteln die Notation zu vereinfachen, treffen wir die folgenden Konventionen:
+
+\begin{itemize}
+	\item Vektor aller Strategien : $x = (x_1^{T},x_2^{T}, \ldots, x_{N}^{T})^{T}$
+	\item Blickwinkel von Spieler i :
+		\begin{itemize}
+			\item eigene Strategie : $x_{i}$
+			\item gegnerische Strategien $x_{-i} = (x_1, \ldots, x_{i-1}, x_{i+1}, \ldots, x_{N})$
+
+		\end{itemize}
+		Damit gilt $x = (x_{i}, x_{-i})$
+	\item Vektor : $(x_1, \ldots, x_{i-1}, x_{i}^{*}, x_{i+1}, \ldots, x_{N}) = (x_{i}^{*}, x_{-i})$
+\end{itemize}
+
+\begin{definition}
+	Betrachte ein Spiel $\Gamma=\{X_{i}, f_{i}\}_{i=1}^{N}$.
+	Dann heißt eine Strategiekombination $x^{*} = (x_1^{*}, \ldots, x_{N}^{*})$ ein \underline{Nash-Gleichgewicht} von $\Gamma$, wenn gilt:
+	\begin{enumerate}
+		\item $x_{i}^{*} \in X_{i} \quad \forall i=1, \ldots, N$
+		\item $f_{i}(x_{i}^{*}, x_{-i}^{*}) \leq f_{i}(x_{i}, x_{-i}^{*}) \quad \forall x_{i} \in X_{i} \forall i=1, \ldots, N$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Betrachte ein Spiel $\Gamma=\{X_{i}, f_{i}\}_{i=1}^{N}$.
+	Für ein gegebenes $x_{-i} \in X_{-i} := X_1 \times \ldots \times X_{i-1} \times X_{i+1} \times \ldots \times X_{N}$ ist die \underline{Beste Antwort} von Spieler $i$ definiert als
+	\[
+		S_{i}(x_{-i}) = \argmin\limits_{x_{i}}\{f_{i}(x_{i}, x_{-i}) | x_{i} \in X_{i}\}
+	.\] 
+	Die Abbildung $S: X \rightrightarrows X$ mit 
+	\[
+		S(x) = S_1(x_{-1}) \times \ldots \times S_{N}(x_{-N})	
+	.\] 
+	heißt \underline{Beste-Antwort-Funktion} des Spiels.
+\end{definition}
+
+\begin{satz}
+	$x^{*}$ ist ein Nash-Gleichgewicht des Spiels $\Gamma=\{X_{i}, f_{i}\}_{i=1}^{N}$ genau dann, wenn gilt
+	\[
+		x^{*} \in S(x^{*})
+	.\] 
+\end{satz}
+
+Als nächstes Betrachten wir noch einmal unsere drei Beispiele und untersuchen sie auf Nash-Gleichgewichte:
+
+\begin{figure}[ht!]
+\centering
+\begin{subfigure}[b]{\textwidth}
+\begin{center}
+	\begin{tabular}{cc|c|c|c|}
+		\\ \cline{3-5}
+		&&\multicolumn{3}{c|}{{\color{red} Spieler 1}} \\ \cline{3-5}
+		&&Schere &Stein & Papier \\ \hline
+		\multicolumn{1}{ |c }{\multirow{3}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c| }{Schere} & 0, 0 & -1, \cunderline{red}{+1} & \cunderline{blue}{+1}, -1 \\ \cline{2-5}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c| }{Stein} & \cunderline{blue}{+1}, -1 & 0, 0 & -1, \cunderline{red}{+1} \\ \cline{2-5}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c|}{Papier} & -1, \cunderline{red}{+1} & \cunderline{blue}{+1}, -1 & 0, 0  \\ \hline
+	\end{tabular}
+\caption{Hat keine Nash-Gleichgewichte}
+\label{fig:Bsp1NashGG}
+\end{center}
+\end{subfigure}
+
+\begin{subfigure}[b]{\textwidth}
+\begin{center}
+	\begin{tabular}{cc|c|c|}
+		\\ \cline{3-4}
+		&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
+		&&schweigen &gestehen \\ \hline
+		\multicolumn{1}{ |c }{\multirow{2}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c| }{schweigen} & 2, 2 & 10, \cunderline{red}{1} \\ \cline{2-4}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c| }{gestehen} & \cunderline{blue}{1}, 10 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {\cunderline{blue}{5}, \cunderline{red}{5}}; \\ \hline
+	\end{tabular}
+\caption{Hat ein Nash-Gleichgewicht}
+\label{fig:Bsp2NashGG}
+\end{center}
+\end{subfigure}
+
+\begin{subfigure}[b]{\textwidth}
+\begin{center}
+	\begin{tabular}{cc|c|c|}
+		\\ \cline{3-4}
+		&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
+		&&A &B \\ \hline
+		\multicolumn{1}{ |c }{\multirow{2}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c| }{A} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {\cunderline{blue}{2}, \cunderline{red}{1}}; & 0, 0 \\ \cline{2-4}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c| }{B} & 0, 0 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {\cunderline{blue}{1}, \cunderline{red}{2}}; \\ \hline
+	\end{tabular}
+\caption{Hat mehrere Nash-Gleichgewichte}
+\label{fig:Bsp3NashGG}
+\end{center}
+\end{subfigure}
+\end{figure}
+
+Beachte hier wieder, dass in den Fällen $(a)$ und $(c)$ die
+Lösung ein Maximum sein soll und in $(b)$ ein Minimum sein
+soll.
+
+\begin{beispiel}(Cournot-Oligopol)
+
+Problem von Spieler 1 : $\max\limits_{x_1} p(x_1 + x_2) \cdot x_1 - c_1(x_1) \qquad \mit x_1 \geq 0$ 
+
+Problem von Spieler 2 : $\max\limits_{x_2} p(x_1 + x_2) \cdot x_2 - c_2(x_2) \qquad \mit x_2 \geq 0$ 
+
+Annahmen:
+\begin{align*}
+	c_{i}(x_{i}) &= c_{i} \cdot x_{i}&  &\mit c_{i} > 0 \quad \forall i=1,2 \\
+	p(x_1 + x_2) &= \begin{cases}
+		p-(x_1 + x_2) &\qquad \text{ für } x_1 +x_2 \leq p \\
+		0 &\qquad \text{ für } x_1 + x_2 > p
+	\end{cases}& &\mit p > 0 
+\end{align*}
+
+Damit können wir die Auszahlungsfunktion von Spieler 1
+aufschreiben
+\begin{align*}
+	f_1(x_1, x_2) &= (p-x_1 -x_2) x_1 - c_1x_1 \\
+				  &= -x_1^2 + (p-x_2-c_1)x_1 \\
+\end{align*}
+und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Maximum dieser Funktion finden
+\begin{align*}
+	&\nabla x_1f_1(x_1,x_2) = -2x_1 +(p-c_1-x_2) \stackeq{!} 0 \\
+	\implies &x_1 = \frac{p-c_1-x_2}{2} \\
+	\implies &S_1(x_2) = \begin{cases}
+		\frac{p-c_1-x_2}{2} &\text{ falls } x_2 \leq p-c_1 \\
+		0 &\text{ sonst}
+	\end{cases}
+\end{align*}
+
+\begin{figure}[ht!]
+\begin{center}
+	\includegraphics[scale=0.6]{pics/0.png}
+\end{center}
+\caption{Auszahlungsfunktionen aus dem Problem von Cournot-Oligopol}
+\label{fig:CournotOligopolBsp_1}
+\end{figure}
+
+\begin{figure}[ht!]
+\begin{center}
+	\includegraphics[scale=0.6]{pics/1.png}
+\end{center}
+\caption{Finden des Nash-Gleichgewichtes im Problem von Cournot-Oligopol}
+\label{fig:CournotOligopolBsp_2}
+\end{figure}
+\end{beispiel}
+
+\begin{satz}
+	Betrachte zwei Spiele $\Gamma=\{X_{i}, f_{i}\}_{i=1}^{N}$ und $\tilde{\Gamma} = \{X_{i}, \tilde{f_{i}}\}$. Wenn gilt 
+	\[
+		\tilde{f_{i}}(x_{i},x_{-i}) = c_{i}f_{i}(x_{i}, x_{-i}) + r_{i}(x_{-i}) \qquad \mit c_{i} > 0
+	.\] 
+	für alle Spieler $i=1, \ldots, N$, so sind die Spiele \underline{strategisch equivalent}, d.h. besitzen die gleichen Nash-Gleichgewichte.
+\end{satz}
+
+\begin{satz}
+	Jedes Konstantsummenspiel ist strategisch equivalent zu einem Nullsummenspiel.
+\end{satz}
+
+\begin{definition}
+	Betrachte ein Spiel $\Gamma = \{X_{i}, f_{i}\}_{i=1}^{N}$.
+	\begin{enumerate}[label=\alph{enumi})]
+		\item Eine Strategie $x_{i}^{*}$ \underline{dominiert} $\tilde{x}_{i}$ strikt, wenn gilt
+			\[
+				f_{i}(x_{i}^{*}, x_{-i}) < f_{i}(\tilde{x}_{i}, x_{-i}) \qquad \forall x_{-i} \in X_{-i}
+			.\] 
+		\item Eine Strategie $x_{i}^{*}$ \underline{dominiert} $\tilde{x}_{i}$ schwach, wenn gilt
+			\[
+				f_{i}(x_{i}^{*}, x_{-i}) \leq f_{i}(\tilde{x}_{i}, x_{-i}) \qquad \forall x_{-i} \in X_{-i}
+			.\] 
+		\item $x_{i}^{*}$ ist \underline{strikt (schwach) dominant}, wenn sie alle anderen Strategien $\tilde{x}_{i} \in X_{i} \setminus \{x_{i}^{*}\}$ strikt (schwach) dominiert.
+		\item Ein Vektor $x^{*} \in X$ heißt \underline{Gleichgewicht in strikt (schwach) dominanten Strategien}, wenn $x_{i}^{*}$ strikt (schwach) dominant ist für alle Spieler $i=1, \ldots, N$ 
+	\end{enumerate}
+	%TODO eventuell auch hier am Beispiel vorführen. Sry future rob :S
+\end{definition}
+
+\begin{satz}
+	Jedes Gleichgewicht in strikt (schwach) dominanten Strategien ist ein Nash-Gleichgewicht.
+\end{satz}
+
+\begin{proof}
+	Sei $x^{*} \in X$ ein Gleichgewicht in schwach dominanten Strategien, d.h. es gilt:
+	\begin{align*}
+		&f_{i}(x_{i}^{*}, x_{-i}) \leq f_{i}(x_{i}, x_{-i})& &\forall x_{-i} \in X_{-i} \forall x_{i} \in X_{i} \\
+		\implies &f_{i}(x_{i}^{*}, x_{-i}^{*}) \leq f_{i}(x_{i}, x_{-i}^{*})& &\forall x_{i} \in X_{i}
+	\end{align*}
+	$\implies$ $x^{*}$ ist ein Nash-Gleichgewicht.
+\end{proof}
+
+\begin{beispiel}(Elimination dominanter Strategien)
+
+	\begin{center}
+		\begin{tabular}{c|c c c}
+			& $b_1$ & $b_2$ & $b_3$ \\ \hline
+			$a_1$ & 0, 1 & 1, 0 & 1, 1 \\
+			$a_2$ & 1, 0 & 0, 1 & 1, 2
+		\end{tabular}
+	\end{center}
+	hierbei ergibt das wählen der Strategie $b_3$ für Spieler 1 immer die maximale Auszahlung und ist deshalb dominant. Außerdem haben wir auch schnell die Nash-Gleichgewichte gefunden.
+	\begin{center}
+		\begin{tabular}{c|c c c}
+			& $b_1$ & $b_2$ & $b_3$ \\ \hline
+			$a_1$ & 0, 1 & 1, 0 & 1, 1 \\
+			$a_2$ & 1, 0 & 0, 1 & 1, 2
+		\end{tabular}
+	\end{center}
+	Nun ist diese Strategie nur noch schwach dominant.
+	Das nun noch verbliebene Nash-Gleichgewichte ist eins von zwei verbliebenen Nash-Gleichgewichten.
+	%TODO Elimination noch besser darstellen.
+\end{beispiel}
+
+\section{Mehrzieloptimierung}%
+\label{sec:Mehrzieloptimierung}
+
+$f \colon \R^{n} \rightarrow \R^{m}, X \subseteq \R^{n}$
+
+Löse
+\[
+	"\min\limits_{x}" f(x) \qquad \mit x \in X
+.\] 
+
+\begin{definition}
+	Ein Vektor $x^{*} \in X$ heißt \underline{Paretro-Gleichgewicht}, wenn es \underline{keinen} Vektor $\tilde{x} \in X$ mit
+	\begin{align*}
+	\forall i=1, \ldots, m \\
+	f_{i}(\tilde{x}) \leq f_{i}(x^{*})
+	\end{align*}
+	,wobei $"<"$ für mindestens ein $ i \in \{1, \ldots, m\}$.
+	Diese Definition kann auch auf Spiele $\Gamma = \{X_{i},f_{i}\}_{i=1}^{N}$ angewandt werden mit 
+	\[
+	X=X_1 \times \ldots \times X_{N} \text{ und }f(x) = \begin{pmatrix}
+		f_1(x) \\
+		\vdots \\
+		f_{N}(x)
+	\end{pmatrix}
+	.\]
+\end{definition}
+
+\begin{satz}
+	Sei $\Gamma = \{X_{i}, f_{i}\}_{i=1}^{N}$ ein
+	Nullsummenspiel.  Dann ist jedes $x \in X$ ein
+	Paretro-Gleichgewicht.
+\end{satz}
+
+\begin{proof}
+	Angenommen $\tilde{x} \in X$ ist kein Paretro-Gleichgewicht.
+	\[
+		\implies \exists x^{*} \in X \mit f_{i}(x^{*}) \leq f_{i}(\tilde{x}) \qquad \forall i=1, \ldots, N
+	.\] und $"<"$ für mindestens ein $i$
+	\[
+		\implies \sum_{i=1}^{N}{f_{i}(x^{*})} < \sum_{i=1}^{N}{f_{i}(\tilde{x})}
+		% TODO widerspruchszeichen
+	.\] 
+\end{proof}
