@@ -36,7 +36,7 @@ Das Einbinden von Grafiken sollte stets die folgende Form haben:
 	\begin{center}
 		\includegraphics[width=0.75\textwidth]{./pics/grafik1.png}
 		\caption{Bildunterschrift}
-		\label{AbbTitel}
+		\label{Abb:Titel}
 	\end{center}
 \end{figure}
 ```
@@ -44,9 +44,9 @@ Analog für Tikz:
 ```
 \begin{figure}[H] % oder ht!
 	\begin{center}
-		\input{./tikz/tikz.png}
+		\input{./tikz/tikz}
 		\caption{Bildunterschrift}
-		\label{AbbTitel}
+		\label{Abb:Titel}
 	\end{center}
 \end{figure}
 ```
