@@ -1,0 +1,113 @@
+% !TEX root = KAT.tex
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Kategorien: Definition und Beispiele}
+\section{Zur Motivation}
+Abstraktion in der Mathematik\nl
+\begin{tabular}{c||c|c|c|c|c} %TODO make tabular pretty
+	\makecell{konkrete\\ Objekte}
+	&\makecell{Alle Teilmengen\\einer Menge $X$\\($\Potenzmenge{X}$ Potenzmenge)}
+	&\makecell{Alle Unterobjekte\\eines math. Objektes ($\Sub X$)}
+	&\makecell{Alle Automorphismen (Symmetrien)\\eines math. "Objektes" $X$\\($\Aut X$)}
+	&\makecell{Alle Homomorphismen zwischen math. Objekten einer Familie $\X$}\\
+	\hline\hline
+	\makecell{konkrete\\ math. Struktur}
+	&\makecell{Rechnen mit Teilmengen\\$\cap,\cup,\overline{\cdot},\emptyset,X$}
+	&\makecell{Teilmengenbeziehung\\ "$\subseteq$"}
+	&\makecell{Komposition von\\Permutationen %TODO tikz-Bilder bauen nicht
+	%\begin{tikzcd}
+	%	X \arrow[r, "f"] \arrow[rr, "fg"', bend right] & X \arrow[r, "g"] & X
+	%\end{tikzcd}
+	}
+	&\makecell{ %TODO tikz Bilder bauen nicht
+	%\begin{tikzcd}
+	%	A \arrow[r, "f"] \arrow[d, "fg"'] & B \arrow[d, "gh"] \arrow[ld] \\
+	%	C \arrow[r, "h"]                  & D                           
+	%\end{tikzcd}
+	\\ Komposition von Homomorphismen}\\
+	\hline
+	\makecell{Eigenschaften}
+	&\makecell{Axiome für\\Mengenoperationen\\(z.B. $\cap$ asso., kommu.}
+	&\makecell{reflexiv\\, transitiv,\\ antisymmetrisch}
+	&\makecell{\ul{Asso.:} $(fg)h=f(gh)$\\\ul{Inv.:} $f^{-1}f=\id_X=ff^{-1}$\\\ul{Neu.:} $f\mal\id_X=f=\id_X f$}
+	&\makecell{\ul{Ass.:} $(fg)h=f(gh)$\\\ul{Neu.:} $f\mal\id_B=\id_A\mal f=f$}\\
+	\hline
+	\makecell{abstrakte algebr.\\Strukturen}
+	&\makecell{Boolesche Algebra\\$\langle B,\wedge,\vee,\overline{\cdot},0,1\rangle$}
+	&\makecell{geordnete Menge\\$\langle P,\leq\rangle$}
+	&\makecell{Gruppe\\$\langle G,\cdot,^{-1},e\rangle$}
+	&\makecell{Kategorie\\(siehe 1.2)}\\ %TODO add reference
+	\makecell{Rechtfertigung\\(Korrektheit,\\Soundness)}
+	&\makecell{Jede Potenzmengenalgebra\\ist Boolsche Algebra.}
+	&\makecell{$\langle\Sub X,\subseteq\rangle$ ist\\geordnete Menge}
+	&\makecell{$\Aut(X)$ ist Gruppe}
+	&\makecell{siehe 1.3}\\ %TODO add reference
+	\hline
+	\makecell{Darstellungssatz\\Vollständigkeit\\Completeness}
+	&\makecell{Jede Boolsche\\ Algebra ist Unteralgebra\\einer Potenzmengenalgebra\\$\langle\Potenzmenge{X},\cap,\cup,\ldots\rangle$}
+	&\makecell{ja}
+	&\makecell{Satz von Cayley}
+	&\makecell{siehe 3.6}\\ %TODO add reference
+\end{tabular}\\
+
+Ergänzungen zu obiger Tabelle:
+\begin{itemize}
+	\item Satz von Cayley: Jede Gruppe ist isomorph zu Permutationsgruppe
+\end{itemize}
+
+\section{Definition}
+\begin{definition}
+	Eine \define{Kategorie} $\Cat$ ist gegeben durch:\index{Kategorie}
+	\begin{itemize}
+		\item eine Klasse (vgl. 0.3 %TODO add reference
+		) $\Ob(\Cat)$\\
+		Die Elemente von $\Ob(\Cat)$ heißen \define{Objekte}.\index{Objekte}
+		\item Für jedes Paar $(A,B)$ von Objekten $A,B\in\Ob(\C)$ gibt es eine Menge(!) $\Cat(A,B)$\\
+		Die Elemente von $\Cat(A,B)$ heißen \define{Morphismen / Pfeile.} \index{Morphismus}\index{Pfeil|see{Morphismus}}
+		Diese Mengen sind paarweise disjunkt, d.h.
+		\begin{align*}
+			\Cat(A,B)\cap\Cat(C,D)\neq\emptyset
+			\implies A=C\AND B=D
+		\end{align*}
+	\end{itemize}
+\end{definition}
+
+\begin{notation}
+	Schreibe $A\overset{a}{\longrightarrow}B$ oder $a\colon A\to B$ für $a\in\Cat(A,B)$.
+\end{notation}
+
+\begin{lemma}
+	Für jedes Tripel $(A,B,C)$ von Objekten $A,B,C\in\Ob(\Cat)$ gibt es eine Abbildung, 
+	\begin{align*}\index{Komposition}
+		\mu_{A,B,C}^\Cat\colon\Cat(A,B)\times\Cat(B,C)\to\Cat(A,C)
+	\end{align*}
+	die sogenannte \define{Komposition} der Morphismen $a\in\Cat(A,B)$, $b\in\Cat(B,C)$ und wird mit $a;b$ oder $ab$ bezeichnet.
+	Andere Bezeichnungen: $b\circ a$ oder $ba$.
+	$$
+	\begin{tikzcd}
+                                   & B \arrow[rd, "b"] &   \\
+A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
+	\end{tikzcd}
+	$$
+\end{lemma}
+
+\begin{lemma}
+	Für jedes Objekt $A\in\Ob(\Cat)$ gibt es einen Morphismus $1_A\in\Cat(A,A)$, genannt \define{identischer Morphismus}, falls:\index{identischer Morphismus}
+	Schreibweise:
+	$$ A\overset{1_A}{\longrightarrow}A$$
+	%TODO Add tikz
+	\begin{enumerate}
+		\item[(ASS)] Die Morphismenkomposition ist assoziativ, d.h.
+		\begin{align*}
+			\forall a\in\Cat(A,B),\forall b\in\Cat(B,C),\forall c\in\Cat(C,D):(ab)c=a(bc)
+		\end{align*}		 
+		\item[(NEU)] Die identischen Morphismen sind neutrale Elemente bzgl. Komposition, d.h. 
+		\begin{align*}
+			\forall a\in\Cat(A,B):1_A a=a=a 1_B
+		\end{align*}
+		%TODO add tikz
+	\end{enumerate}
+\end{lemma}

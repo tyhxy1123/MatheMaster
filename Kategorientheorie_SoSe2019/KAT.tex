@@ -17,8 +17,8 @@
 \input{\directoryPrefix theoremenvironments}
 \input{\directoryPrefix font}
 \input{\directoryPrefix commands}
-%\input{\directoryPrefix commands_Willi}
-%\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
+\input{\directoryPrefix commands_Willi}
+\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
 
 \makeindex % erstellt Stichwortverzeichnis
 \setlength{\parindent}{0px} % verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
@@ -32,7 +32,7 @@
 \subtitle{Sommersemester 2019}
 \author{
 	Vorlesung:  Prof. Dr. Reinhard Pöschel\\
-	Mitschrift: Lukas Zenner \& Willi Sontopski
+	Mitschrift: Pascal Lehmann \& Willi Sontopski
 }
 \date{\today}
 \publishers{\url{https://github.com/LostInDarkMath/MatheMaster}}
@@ -50,14 +50,16 @@
   	
 	\pagenumbering{gobble}	% disable pagenumbering
 	\maketitle
-	%\epigraph{Hier steht eine Lebensweisheit.}{\textit{Der Admin}}
+	\epigraph{... es wird schon gutgehen...}{\textit{Prof. Pöschel zur Mengenlehre}}
 	%\newpage
 	\doclicenseThis
 	\tableofcontents
 	\pagenumbering{arabic}	% enable pagenumbering
 	
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
+	\setcounter{chapter}{-1}
 	\input{chapter0}
+	\input{chapter1}
 	
 	\appendix
 	%\input{anhang}
