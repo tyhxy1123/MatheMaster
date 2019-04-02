@@ -29,6 +29,7 @@ Typischerweise gibt es aber zufällige Schwankungen bzw. Störungen.
 	\end{figure}
 
 	Die \define{Punktwolke (scatter plot)} weist auf eine \betone{lineare} Beziehung hin:
+	\index{Punktwolke}\index{scatter plot|see{Punktwolke}}
 	\begin{align*}
 		Y=a+b\mal x+\varepsilon,
 	\end{align*}
@@ -55,7 +56,9 @@ Allgemein lässt sich das Ergebnis $Y$ eines Zufallsexperimentes (ZE) häufig in
 \begin{align*}
 	Y&=\beta_1\mal x_1+\ldots+\beta_p\mal x_p+\varepsilon
 \end{align*}
-darstellen, wobei die $\beta_i$ gewisse (unbekannte) Konstanten sind, die $x_i$ gewisse (bekannte) \define{Einflussgrößen (inputs / Dosen / designs)} und $\varepsilon$ ein stochastischer Fehler (zentriert).
+darstellen, wobei die $\beta_i$ gewisse (unbekannte) Konstanten sind, die $x_i$ gewisse (bekannte) \define{Einflussgrößen (inputs / Dosen / designs)}
+\index{Einflussgrößen}\index{inputs|see{Einflussgrößen}}\index{designs|see{Einflussgrößen}}
+und $\varepsilon$ ein stochastischer Fehler (zentriert).
 Bei $n$-maliger Durchführung (Wiederholung) des ZE erhält man:
 \begin{align}\label{eq:1.1}
 	Y_i=\beta_1\mal x_{i,1}+\ldots+\beta_p\mal x_{i,p}+\varepsilon_i,\qquad\forall i\in\set{1,\ldots,n}
@@ -71,12 +74,15 @@ Setze
 	\end{pmatrix}
 \end{align*}
 $Y$ heißt \define{Beobachtungsvektor / Datenvektor / response}.
+\index{Beobachtungsvektor}\index{Datenvektor|see{Beobachtungsvektor}}
+\index{response|see{Beobachtungsvektor}}
 Formal ist
 \begin{align*}
 	Y\colon(\Omega,\A,\P)\to\big(\R^n,\B(\R^n)\big)
 \end{align*}
 messbar.
 Der sogenannte \define{Parametervektor} ist
+\index{Parametervektor}
 \begin{align*}
 	\beta:=\begin{pmatrix}
 		\beta_1\\
@@ -92,6 +98,7 @@ Außerdem ist
 	\end{subarray}}
 \end{align*}
 eine $(n\times p)$-Matrix der Inputs, die sogenannte \define{Design-Matrix}.
+\index{Design-Matrix}
 \begin{align*}
 	\varepsilon:=\begin{pmatrix}
 		\varepsilon_1\\
@@ -101,6 +108,7 @@ eine $(n\times p)$-Matrix der Inputs, die sogenannte \define{Design-Matrix}.
 	\varepsilon\colon:(\Omega,\A)\to\big(\R^n,\B(\R^n)\big)
 \end{align*}
 ist der \define{Fehlervektor}.
+\index{Fehlervektor}
 Dann gilt:
 \begin{align}\label{eq:1.2}%\tag{1.2}
 	\eqref{eq:1.1}
@@ -108,6 +116,7 @@ Dann gilt:
 	Y=X\mal\beta+\varepsilon
 \end{align}
 Die ist die Grundgleichung des \define{linearen Modells (LM)}.
+\index{lineares Modell}
 Zwei Grundannahmen:
 \begin{align}\label{eq:1.3}
 	\E[\varepsilon_i]&=0\qquad\forall i\in\set{1,\ldots,n}\\
