@@ -44,7 +44,7 @@ Analog für Tikz:
 ```
 \begin{figure}[H] % oder ht!
 	\begin{center}
-		\input{./tikz/tikz.png}
+		\input{./tikz/tikz}
 		\caption{Bildunterschrift}
 		\label{Abb:Titel}
 	\end{center}
