@@ -1,0 +1,136 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\setcounter{chapter}{1}
+\section{Einführung}
+
+Viele Gesetzmäßigkeiten aus der Erfahrungswelt sind (zumindest näherungsweise) linearer Art.
+Typischerweise gibt es aber zufällige Schwankungen bzw. Störungen.
+
+\begin{beispiel}\label{beispiel:1.1}
+	Körpergröße (cm) und -gewicht (kg) von Männern\\
+	\begin{tabular}{c|cccccccc}
+		Größe $x$ & 172 & 174 & 180 & 182 & 186 & 188 & 190 & 181\\ 
+		\hline
+		Gewicht $Y$ & 56 & 59 & 65 & 76 & 80 & 85 & 93 & 73
+		% Fergers Gewicht war dreistellig.
+	\end{tabular}
+	
+	\begin{figure}[H]
+		\begin{center}
+			\newcommand{\sizeX}{5}
+			\newcommand{\sizeY}{1}
+			\input{./tikz/beispiel1.1}
+			\caption{Plot der Körpergrößen und -gewichte}
+			\label{Abb:beispiel1.1}
+		\end{center}
+	\end{figure}
+
+	Die \define{Punktwolke (scatter plot)} weist auf eine \betone{lineare} Beziehung hin:
+	\index{Punktwolke}\index{scatter plot|see{Punktwolke}}
+	\begin{align*}
+		Y=a+b\mal x+\varepsilon,
+	\end{align*}
+	wobei $\varepsilon$ eine zufällige Schwankung und $a,b$ \betone{unbekannte Parameter} des Modells.
+\end{beispiel}
+
+\begin{beispiel}(Ohmsches Gesetz)\label{beispiel:1.2}\enter
+	$U$ ist Spannung, $I$ ist Stromstärke, $\rho$ ist unbekannter Widerstand
+	\begin{align*}
+		U=\rho\mal I+\varepsilon
+	\end{align*}
+\end{beispiel}
+
+\begin{beispiel}\label{beispiel:1.3}
+	Die Anhaltestrecke $Y$ eines Autos lässt sich zerlegen in die während der Reaktionszeit zurückgelegte Strecke (Reaktionsweg) und ein Bremsweg.
+	Aus physikalischen Gesetzen erwarten wir Proportionalität zur Reaktionsweg und Geschwindigkeit $x$ sowie zwischen Bremsweg und dem \betone{Quadrat} von $x$:
+	\begin{align*}
+		Y&=a\mal x+b\mal x^2+\varepsilon
+	\end{align*}
+	Beachte: Keine Linearität in $x$, wohl aber in $(a,b)$!
+\end{beispiel}
+
+Allgemein lässt sich das Ergebnis $Y$ eines Zufallsexperimentes (ZE) häufig in der Form
+\begin{align*}
+	Y&=\beta_1\mal x_1+\ldots+\beta_p\mal x_p+\varepsilon
+\end{align*}
+darstellen, wobei die $\beta_i$ gewisse (unbekannte) Konstanten sind, die $x_i$ gewisse (bekannte) \define{Einflussgrößen (inputs / Dosen / designs)}
+\index{Einflussgrößen}\index{inputs|see{Einflussgrößen}}\index{designs|see{Einflussgrößen}}
+und $\varepsilon$ ein stochastischer Fehler (zentriert).
+Bei $n$-maliger Durchführung (Wiederholung) des ZE erhält man:
+\begin{align}\label{eq:1.1}
+	Y_i=\beta_1\mal x_{i,1}+\ldots+\beta_p\mal x_{i,p}+\varepsilon_i,\qquad\forall i\in\set{1,\ldots,n}
+\end{align}
+mit $\E[\varepsilon_i]=0$.
+Setze
+\begin{align*}
+	Y:=
+	\begin{pmatrix}
+		Y_1\\
+		\vdots\\
+		Y_n
+	\end{pmatrix}
+\end{align*}
+$Y$ heißt \define{Beobachtungsvektor / Datenvektor / response}.
+\index{Beobachtungsvektor}\index{Datenvektor|see{Beobachtungsvektor}}
+\index{response|see{Beobachtungsvektor}}
+Formal ist
+\begin{align*}
+	Y\colon(\Omega,\A,\P)\to\big(\R^n,\B(\R^n)\big)
+\end{align*}
+messbar.
+Der sogenannte \define{Parametervektor} ist
+\index{Parametervektor}
+\begin{align*}
+	\beta:=\begin{pmatrix}
+		\beta_1\\
+		\vdots\\
+		\beta_p
+	\end{pmatrix}
+\end{align*}
+Außerdem ist
+\begin{align*}
+	X:=\big(x_{i,j}\big)_{\begin{subarray}{c}
+		1\leq i\leq n\\
+		1\leq j\leq p
+	\end{subarray}}
+\end{align*}
+eine $(n\times p)$-Matrix der Inputs, die sogenannte \define{Design-Matrix}.
+\index{Design-Matrix}
+\begin{align*}
+	\varepsilon:=\begin{pmatrix}
+		\varepsilon_1\\
+		\vdots\\
+		\varepsilon_n
+	\end{pmatrix},\qquad
+	\varepsilon\colon:(\Omega,\A)\to\big(\R^n,\B(\R^n)\big)
+\end{align*}
+ist der \define{Fehlervektor}.
+\index{Fehlervektor}
+Dann gilt:
+\begin{align}\label{eq:1.2}%\tag{1.2}
+	\eqref{eq:1.1}
+	\iff 
+	Y=X\mal\beta+\varepsilon
+\end{align}
+Die ist die Grundgleichung des \define{linearen Modells (LM)}.
+\index{lineares Modell}
+Zwei Grundannahmen:
+\begin{align}\label{eq:1.3}
+	\E[\varepsilon_i]&=0\qquad\forall i\in\set{1,\ldots,n}\\
+	n&\geq p\qquad\text{(Mindestens so viele Daten wie Modellparameter)}
+	\label{eq:1.4}
+\end{align}
+Beachte: \eqref{eq:1.2} heißt \define{lineares} Modell wegen seiner Linearität in $\beta$, z.B. 
+\begin{align*}
+	Y_i&=\beta_1\mal x_i+\beta_2\mal\log(x_i)+\beta_3\mal\exp(x_i)+\varepsilon_i
+	\qquad\forall i\in\set{1,\ldots,n}
+\end{align*}
+ist lineares Modell, nicht aber z.B.
+\begin{align*}
+	Y_i&=\beta_1\mal x_1+\beta_2\mal\exp(\beta_x\mal x_i)+\varepsilon_i
+	\qquad\forall i\in\set{1,\ldots,n}
+\end{align*}
+Untersuchung des LM \eqref{eq:1.2} erfordert Methoden der linearen Algebra.
