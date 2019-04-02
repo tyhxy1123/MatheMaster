@@ -6,20 +6,76 @@
 \chapter{Grundlegende Begriffe}
 \section{Bezeichnungen}
 
-\begin{align*}
-	&\N &=&&&\set{1,2,3,\ldots}\\
-	&\N_0&=&&&\set{0,1,2,\ldots}\\
-	&\Z&=&&&\set{0,\pm 1,\pm2,\ldots}\\
-	&\Q &&&&\text{rationale Zahlen}\\
-	&\R &&&&\text{reelle Zahlen}\\
-	&\C &&&&\text{komplexe Zahlen}\\
-	&x_+ &=&&&\max\set{x,0},\quad x\in\R\\
-	&\indi_A &&&&\text{Indikatorfunktion einer Menge }A\\
-	&\delta_x&&&&\text{Einpunkt- oder Dirac-Maß, das in $x$ konzentriert ist}\\
-	&\delta_{x,y}&&&&\text{die Kroneker'sche Deltafuntktion}\\
-	&\tilde{f}(x)&=&&&\overline{f(-x)}\\
-	&\E[X]&&&&\text{Erwartungswert der Zufallsgröße/des Zufallsvektors }X
-\end{align*}
+\begin{notationnr}[Grundlegende Bezeichnungen]
+	\begin{align*}
+		&\N &=&&&\set{1,2,3,\ldots}\\
+		&\N_0&=&&&\set{0,1,2,\ldots}\\
+		&\Z&=&&&\set{0,\pm 1,\pm2,\ldots}\\
+		&\Q &&&&\text{rationale Zahlen}\\
+		&\R &&&&\text{reelle Zahlen}\\
+		&\C &&&&\text{komplexe Zahlen}\\
+		&x_+ &=&&&\max\set{x,0},\quad x\in\R\\
+		&\indi_A &&&&\text{Indikatorfunktion einer Menge }A\\
+		&\delta_x&&&&\text{Einpunkt- oder Dirac-Maß, das in $x$ konzentriert ist}\\
+		&\delta_{x,y}&&&&\text{die Kroneker'sche Deltafuntktion}\\
+		&\tilde{f}(x)&=&&&\overline{f(-x)}\\
+		&\E[X]&&&&\text{Erwartungswert der Zufallsgröße/des Zufallsvektors }X\\
+		&\L_p(\R^d)&&&&\text{Menge der komplex-wertigen Lebesguemessbaren Funktionen $f$ auf $\R^d$,}\\
+		&&&&&\text{für die $|f|^p$ Lebesgue-integrierbar ist}\\
+		&\L_p(\Z^d)&&&&\text{Menge der komplex-wertigen Funktionen $f$ auf $\Z^d$}\\
+		&&&&&\text{für die $|f|^p$ Lebesgue-integrierbar sind}\\
+		&\norm{\cdot}_p&&&&\L_p\text{-Norm}\\
+		&L_p(\R^d)&&&&L_p\text{-Raum bezüglich des Lebesgue-Maßes auf $\R^d$}\\
+		&L_p(\Z^d)&&&&L_p\text{-Raum bezüglich des Zählmaßes auf $\Z^d$} 
+	\end{align*}
+	$L_p^r$ und $\L_p^r$ bezeichnen Räume, die von reellwertigen Funktionen erzeugt werden.
+\end{notationnr}
+
+\begin{notationnr}[Mehrdimensionale Bezeichnungen]\enter
+	Ist $x\in\R^d$ ($C^d,~\N_0^d$, usw.) so bezeichnet $x_i$ $(1\leq i\leq d)$ die $i$-te Koordinate von $x$ und wir schreiben $x$ als $x=(x_1,\ldots,x_d)$.
+	In Ausdrücken wo Matrix-Operationen vorkommen, z.B. $A\mal x$ wobei $A$ eine Matrix ist, betrachten wir $x$ als einen Spalten-Vektor.
+	Das Nullelement von $\R^d$ wird auch mit 0 bezeichnet.
+	Sei $x\in\R^d$ oder $\C^d$ und $\alpha\in\N_0^d$.
+	Dann schreiben wir:
+	\begin{align*}
+		x^\alpha&=x_1^{\alpha_1}\mal x_2^{\alpha_2}\mal\ldots\mal x_d^{\alpha_d}=\prod\limits_{i=1}^d x_i^{\alpha_i}\\
+		\norm{x}&=\sqrt{\abs{x_1}^2+\ldots+\abs{x_d}^2}=\sqrt{\sum\limits_{i=1}^d\abs{x_i}^2}\\
+		\abs{\alpha}&=\alpha_1+\ldots+\alpha_d=\sum\limits_{i=1}^d\alpha_i\\
+		\alpha!&=\alpha_1!\mal\ldots\mal\alpha_d!=\prod\limits_{i=1}^d\alpha_i!\\
+		\begin{pmatrix}
+			\alpha\\
+			\beta
+		\end{pmatrix}&=\frac{\alpha!}{(\alpha-\beta)!\mal\beta!}=
+		\begin{pmatrix}
+			\alpha_1\\
+			\beta_1
+		\end{pmatrix}\mal\ldots\mal
+		\begin{pmatrix}
+			\alpha_d\\
+			\beta_d
+		\end{pmatrix}&\forall& \beta\leq\alpha\\
+		D^\alpha&=\frac{\partial^{|\alpha|}}{\partial x_1^{\alpha_1}\cdots\partial x_d^{\alpha_d}}\\
+		\abs{k}&=\abs{k_1}+\ldots+\abs{k_d}=\sum\limits_{i=1}^d\abs{k_1}&\forall& k\in\Z^d
+	\end{align*}
+\end{notationnr}
+
+\begin{bemerkung}\
+	\begin{itemize}
+		\item Wenn $\alpha=(0,\ldots,0)$ dann $x^\alpha:=1$.
+		\item Es gilt
+		\begin{align*}
+			D^\alpha D^\beta g=D^{\alpha+\beta} g
+		\end{align*}				
+		wobei $g$ eine beliebige reell- oder komplex-wertige Funktion auf $\R^d$ ist, für die die partiellen Ableitungen $D^{\alpha+\beta}g$ existieren.
+		\item $D^\alpha g:= g$ wenn $\alpha=(0,\ldots,0)$.
+		\item Sei $\beta=(\beta_1,\ldots,\beta_d)$ ein anderes $d$-Tupel von nichtnegativen ganzen Zahlen.
+		Wir schreiben
+		\begin{align*}
+			\beta\leq\alpha:\iff\beta_j\leq\alpha_j\qquad\forall j\in\set{1,\ldots,d}
+		\end{align*}
+		\item Mit $\d x$, $\d\lambda(x)$ oder $\d\lambda_d(x)$ bezeichnen wir Integration bezüglich des Lebesgue'schen Maßes $\lambda=\lambda_d$ auf $\R^d$, und $(x,y):=\scaProd{x}{y}$ ist das Skalarprodukt von $x,y\in\R^d$ oder $\C^d$.
+	\end{itemize}
+\end{bemerkung}
 
 \section{Historische Bemerkungen}
 \begin{itemize}
