@@ -20,6 +20,7 @@
 \newcommand{\falls}{\text{falls }}      % sprachliches falls für Fallunterscheidungen
 \newcommand{\sonst}{\text{sonst }}      % sprachliches sonst für Fallunterscheidungen
 \newcommand{\und}{\text{ und }}         % sprachliches und für align-Umgebungen
+\newcommand{\oder}{\text{ oder }}       % sprachliches oder für align-Umgebungen
 \newcommand{\Def}{\text{Def}}           % Voraussetzung, z.B. $\overset{\Def}{=}$
 \newcommand{\Vor}{\text{Vor}}           % Voraussetzung, z.B. $\overset{\Vor}{=}$
 
@@ -108,6 +109,10 @@
 \xDeclarePairedDelimiter{\norm}{\Vert}{\Vert}
 \xDeclarePairedDelimiter{\abs}{\vert}{\vert}
 \xDeclarePairedDelimiterBin{\scaProd}{\langle}{\rangle}
+\xDeclarePairedDelimiterBin{\intervall}{[}{]}
+\xDeclarePairedDelimiterBin{\intervallHO}{[}{)}
+\xDeclarePairedDelimiterBin{\intervallOH}{(}{]}
+\xDeclarePairedDelimiterBin{\intervallO}{(}{)}
 \xDeclarePairedDelimiter{\klammern}{(}{)}
 
 \NewDocumentCommand\normiii{som}{

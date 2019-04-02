@@ -7,6 +7,18 @@
 \section{Bezeichnungen}
 
 %TODO Liste wird am 02.04.19 ausgeteilt. Dann füge ich das hier ein.
+\begin{align*}
+	&\N &=&&&\set{1,2,3,\ldots}\\
+	&\N_0&=&&&\set{0,1,2,\ldots}\\
+	&\Z&=&&&\set{0,\pm 1,\pm2,\ldots}\\
+	&\Q &&&&\text{rationale Zahlen}\\
+	&\R &&&&\text{reelle Zahlen}\\
+	&\C &&&&\text{komplexe Zahlen}\\
+	&x_+ &=&&&\max\set{x,0},\quad x\in\R\\
+	&\indi_A &&&&\text{Indikatorfunktion einer Menge }A\\
+	&\delta_x&&&&\text{Einpunkt- oder Dirac-Maß, das in $x$ konzentriert ist}\\
+	&\delta_{x,y}&&&&
+\end{align*}
 
 \section{Historische Bemerkungen}
 \begin{itemize}
@@ -136,11 +148,156 @@ Grundsteine der allgemeinen Theorie von stochastischen Prozessen gelegt:
 	\betone{Voraussetzungen an die Folge $(P_k)_{k\in\N_0}$:}
 	\begin{enumerate}
 		\item $(P_k)_{k\in\N_0}$ sei \define{stationär}, d.h. für das $k$-fache Auftreten im Intervall $(T,T+t)$ hängt $P_k(t)$ nicht von $T$ ab.
+		\index{stationär}
 		\item $(P_k)_{k\in\N_0}$ sei \define{ohne Nachwirkung (Markoveigenschaft)}, d.h. die obige Wahrscheinlichkeit $P_k(t)$ ist unabhängig, wie viele Male und wann $A$ \betone{vorher} eintrat
-		\item $(P_k)_{k\in\N_0}$ sei \define{ordinär}, d.h. %TODO folgt
+		\index{ohne Nachwirkung}
+		\item $(P_k)_{k\in\N_0}$ sei \define{ordinär}, d.h. das mehrfache Auftreten von $A$ in einem sehr kleinen Intervall $\Delta t$ kann praktisch nicht vorkommen.\\
+		\index{ordinär}
+		Genauer:
+		Die Wahrscheinlichkeit dafür ist $o(\Delta t)$.
 	\end{enumerate}
-	 
+	 Aus diesen Annahmen folgt (ohne Beweis):
+	 \begin{align*}
+	 	P_k(t)&=\frac{(\lambda\mal t)^k}{k!}\mal\exp(-\lambda\mal t)
+	 \end{align*}
+	 (Poisson-Verteilung) mit einer Konstanten $\lambda>0$, die sogenannte \define{Intensität} des Prozesses.\nl
+	 \betone{Beispiele für $A$:}
+	 \begin{itemize}
+	 	\item Auftreten eines kosmischen Teilchens auf eine  bestimmte Fläche
+	 	\item Zerfall eines Atoms eines radioaktiven Stoffes
+	 	(falls nicht zu groß oder zu klein)
+	 \end{itemize}
 \end{beisp}
+
+Bis jetzt war $t$ in den Beispielen die Zeit, sie kann aber z.B. auch eine Ortsangabe sein.
+Beispiel: Geostatistik - Modellierung von Gesteinsschichten
+
+\section{Stochastische Prozesse}
+In diesem Abschnitt seien:
+\begin{itemize}
+	\item $T\neq\emptyset$: beliebige Menge, die \define{Parametermenge}
+	\item $(\Omega,\A,\P)$: Wahrscheinlichkeitsraum
+	\item $(S,\B)$: Messraum ($S$ ist beliebige Menge und $\B$ eine $\sigma$-Algebra auf $S$)
+\end{itemize}
+
+\begin{definition}\label{def1.3.1}
+	Ein \define{stochastischer Prozess (SP) / Zufallsfeld}
+	\index{Zufallsfeld}
+	\index{stochastischer Prozess|see{Zufallsfeld}}
+	$Z$ auf $T$ mit \define{Grundraum}\index{Grundraum}
+	$(\Omega,\A,\P)$ ist eine Abbildung, die jedem Element $t\in T$ eine $S$-wertige Zufallsvariable zuordnet.
+	\begin{align*}
+		Z\colon T\to(\Omega\to S),\qquad t\mapsto(\omega\mapsto X(\omega)
+	\end{align*}
+\end{definition}
+
+\begin{bemerkungnr}\label{bemerkung1.3.2}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Anstelle von $Z(t)$ auch $Z_t$ geschrieben.
+		Die Schreibweise $Z(t)(\omega)$, $\omega\in\Omega$ wäre umständlich; man schreibt
+		\begin{align*}
+			Z_t(\omega):=Z(t,\omega):=Z(t)(\omega)\qquad\forall \omega\in\Omega,\forall t\in T
+		\end{align*}
+		Das Feld $Z$ wird auch mit  %TODO add Erklärung
+		\begin{align*}
+			\set{Z(t)}\qquad\oder\qquad\set{Z_t}_{t\in T}\qquad\oder\qquad\set{Z_t:t\in T}
+		\end{align*}
+		bezeichnet.
+		\item Ist $S$ ein metrischer Raum oder topologischer Raum, z.B. eine Teilmenge von $\R^d$ oder $\C^d$, so nehmen wir für $\B$ die \define{Borel-$\sigma$-Algebra}, d.h. die kleinste $\sigma$-Algebra, die alle offenen Mengen enthält.
+		\index{Borel-$\sigma$-Algebra}
+		\item Sind die Zufallsgrößen reell- oder komplexwertig, so heißt $Z$ ein \define{reelles} bzw. \define{komplexes Zufallsfeld}.
+		\item Falls $T\in\set[\big]{\R,[0,\infty),[0,1]}$, dann heißt $Z$ \define{zeitstetiger Prozess}. \index{zeitsteiger Prozess}
+		\item Falls $T\in\set[\big]{\N,\N_0,\Z}$, dann heißt $Z$ \define{zeitdiskreter Prozess / Zeitreihe}. \index{zeitdiskreter Prozess}\index{Zeitreihe|see{zeitdiskreter Prozess}}
+		\item Die Funktionen
+		\begin{align*}
+			T\to S,\qquad		
+			t\mapsto Z(t,\omega)
+		\end{align*}
+		heißt \define{Trajektorie / Realisierung / Pfad} für jedes feste $\omega\in\Omega$.
+		\index{Trajektorie}\index{Realisierung|see{Trajektorie}}\index{Pfad|see{Trajektorie}}\index{Pfadraum}\\
+		Der \define{Pfadraum} ist die Gesamtheit aller Pfade.\\
+		Man kann das Feld $Z$ auch als eine Abbildung auffassen, die jedem $\omega\in\Omega$ eine $S$-wertige Funktion auf $T$ zuordnet, nämlich
+		die Realisierung
+		\begin{align*}
+			Z(\cdot,\omega)\colon T\to S,\qquad t\mapsto Z(t,\omega)\qquad\forall \omega\in\Omega
+		\end{align*}
+		Eine weitere Sichtweise ist, das Feld als eine Abbildung
+		\begin{align*}
+			Z:T\times\Omega\to S,\qquad (t,\omega)\mapsto Z(t,\omega)
+		\end{align*}
+		zu betrachten, die für jedes feste $t\in T$ messbar bezüglich $(\A,\B)$ ist.
+		\item Sei $(\Omega,\A_0,\P_0)$ die \define{Vervollständigung} des Grundraumes, d.h.: \index{Vervollständigung}\\
+		$\A_0$ ist die $\sigma$-Algebra, aller Mengen der Form
+		\begin{align*}
+			A_0&=(A\cup N)\setminus M
+		\end{align*}
+		wobei $A\in\A$ und $M,N\subseteq\Omega$ Teilmengen von $\P$-Nullmengen sind; %TODO Formaler machen
+		\begin{align*}
+			\P_0(A_0):=\P(A)\qquad\forall A_0\in\A_0.
+		\end{align*}
+		Die Erweiterung hat die günstige Eigenschaft, dass beliebige Teilmengen von Nullmengen Ereignisse sind.
+		Wegen $\A\subseteq\A_0$ können wir ein Feld mit Grundraum $(\Omega,\A,\P)$ auch als Feld mit Grundraum $(\Omega,\A_0,\P_0)$ betrachten.
+		Da $\P_0|_\A=\P$ bleiben die Verteilungen der Zufallsvariablen $Z_t$ unverändert
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{beisp}
+	Der Wahrscheinlichkeitsraum $(\Omega,\A,\P)$ mit
+	\begin{align*}
+		\Omega&=[0,1]\\
+		\A&=\set{\emptyset,\Omega,\intervall{0}{\frac{1}{2}},\intervallOH{\frac{1}{2}}{1}}\\
+		\P\klammern{\intervall{0}{\frac{1}{2}}}&=0,1\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=0,9.
+	\end{align*}		
+	ist \betone{nicht} vollständig. Zeige dies!
+	 Dann ist
+	 \begin{align*}
+	 	\A_0=?\qquad\P_0=?
+	 \end{align*}
+	 \betone{oder}:
+	 \begin{align*}
+	 	\P\klammern{\intervall{0}{\frac{1}{2}}}&=0\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=1
+	 \end{align*}
+	  Dann ist
+	 \begin{align*}
+	 	\A_0=?\qquad\P_0=?
+	 \end{align*}
+	 Beide Fälle zu vervollständigen ist \Aufgabe{1.3.2.7)}.
+	 Zeige zusätzlich, dass das allgemeine $\A_0$ eine $\sigma$-Algebra ist und $\P_0$ ist wohldefiniert (unabhängig von Darstellung) und ein Wahrscheinlichkeitsmaß.
+\end{beisp}
+
+\begin{beispiel}\label{beisp1.3.3}\
+	\begin{enumerate}[label=(\alph*)]
+		\item Sind $X_j,j\in\N_0$ beliebige Zufallsgrößen, so sind 
+		\begin{align*}
+			\set{X_j:j\in\N_0}
+			\qquad\und\qquad
+			S_n:=\sum\limits_{j=0}^n X_j\qquad\forall n\in\N_0
+		\end{align*}
+		Zeitreihen ($T=\N_0$ und $S=\R$).
+		\item Seien $a$ und $\varphi$ zwei Zufallsgrößen und $u\in\R$.
+		Dann ist \index{harmonische Schwingung}
+		\begin{align*}
+			X_t:=a\mal\cos(u\mal t+\varphi)\qquad\forall t\in\R
+		\end{align*}
+		ein stochastischer Prozess auf $\R$, eine sogenannte \define{harmonische Schwingung} mit zufälligen Parametern
+		\begin{itemize}
+			\item $a$: \define{Amplitude}
+			\item $\varphi$: \define{Phase}
+		\end{itemize}
+		und \define{Frequenz} $u$ gegeben.
+		(Für festes $t\in T$ ist$X_t$ eine Zufallsgröße, da $\cos$ stetig und damit messbar als Kombination messbarer Abbildungen.)\\
+		Viele Prozesse in Anwendungen lassen sich als Summe von solchen harmonischen Schwingungen modellieren / annähern.
+		\begin{align*}
+			X_t(\omega)=\sum\limits_{j=1}^n a_j(\omega)\mal\cos\big(u_j\mal t+\varphi_j(\omega)\big)\qquad\forall t\in\R
+		\end{align*}
+		Die Menge $\set{u_1,\ldots,u_n}$ der Frequenzen heißt das \define{Spektrum} von $X$. \index{Spektrum}\\
+		Wichtige Aufgabe in Anwendungen ist die Bestimmung des Spektrums mit Hilfe von endlich vielen Beobachtungen 
+		\begin{align*}
+			X_{t_1}(\omega),\ldots,X_{t_m}(\omega)
+		\end{align*}
+		z.B. die Anzahl der Sonnenflecke.
+	\end{enumerate}
+\end{beispiel}
 
 
 
