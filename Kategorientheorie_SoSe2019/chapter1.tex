@@ -11,7 +11,7 @@ Abstraktion in der Mathematik
 \setlength{\voffset}{+45mm}
 \pagestyle{empty} % disable pagenumbering
 \begin{landscape}
-\begin{tabular}{c||c|c|c|c} %TODO make tabular pretty
+\begin{tabular}{c||c|c|c|c}
 	\makecell{konkrete\\ Objekte}
 	&\makecell{Alle Teilmengen\\einer Menge $X$\\($\Potenzmenge{X}$ Potenzmenge)}
 	&\makecell{Alle Unterobjekte\\eines math. Objektes ($\Sub X$)}
@@ -21,21 +21,21 @@ Abstraktion in der Mathematik
 	\makecell{konkrete\\ math. Struktur}
 	&\makecell{Rechnen mit Teilmengen\\$\cap,\cup,\overline{\cdot},\emptyset,X$}
 	&\makecell{Teilmengenbeziehung\\ "$\subseteq$"}
-	&\makecell{Komposition von\\Permutationen %TODO tikz-Bilder bauen nicht
-	%\begin{tikzcd}
-	%	X \arrow[r, "f"] \arrow[rr, "fg"', bend right] & X \arrow[r, "g"] & X
-	%\end{tikzcd}
+	&\makecell{Komposition von\\Permutationen\\
+	\begin{tikzcd}[ampersand replacement=\&]
+		X \arrow{r}{f} \arrow[bend right]{rr}{fg} \& X \arrow{r}{g} \& X
+  	\end{tikzcd}
 	}
-	&\makecell{ %TODO tikz Bilder bauen nicht
-	%\begin{tikzcd}
-	%	A \arrow[r, "f"] \arrow[d, "fg"'] & B \arrow[d, "gh"] \arrow[ld] \\
-	%	C \arrow[r, "h"]                  & D                           
-	%\end{tikzcd}
-	\\ Komposition von\\ Homomorphismen}\\
+	&\makecell{Komposition von\\ Homomorphismen\\
+	\begin{tikzcd}[ampersand replacement=\&]      
+		A \arrow{r}{f} \arrow{d}{fg} \& B \arrow{d}{gh} \arrow{ld}{g} \\
+		C \arrow{r}{h}                  \& D                         
+	\end{tikzcd}
+	}\\
 	\hline
 	\makecell{Eigenschaften}
 	&\makecell{Axiome für\\Mengenoperationen\\(z.B. $\cap$ asso., kommu.}
-	&\makecell{reflexiv\\, transitiv,\\ antisymmetrisch}
+	&\makecell{reflexiv,\\transitiv,\\ antisymmetrisch}
 	&\makecell{\ul{Asso.:} $(fg)h=f(gh)$\\\ul{Inv.:} $f^{-1}f=\id_X=ff^{-1}$\\\ul{Neu.:} $f\mal\id_X=f=\id_X f$}
 	&\makecell{\ul{Ass.:} $(fg)h=f(gh)$\\\ul{Neu.:} $f\mal\id_B=\id_A\mal f=f$}\\
 	\hline
@@ -43,18 +43,19 @@ Abstraktion in der Mathematik
 	&\makecell{Boolesche Algebra\\$\langle B,\wedge,\vee,\overline{\cdot},0,1\rangle$}
 	&\makecell{geordnete Menge\\$\langle P,\leq\rangle$}
 	&\makecell{Gruppe\\$\langle G,\cdot,^{-1},e\rangle$}
-	&\makecell{Kategorie\\(siehe 1.2)}\\ %TODO add reference
+	&\makecell{Kategorie\\(siehe \ref{section:1.2})}\\
+	\hline
 	\makecell{Rechtfertigung\\(Korrektheit,\\Soundness)}
 	&\makecell{Jede Potenzmengenalgebra\\ist Boolsche Algebra.}
 	&\makecell{$\langle\Sub X,\subseteq\rangle$ ist\\geordnete Menge}
 	&\makecell{$\Aut(X)$ ist Gruppe}
-	&\makecell{siehe 1.3}\\ %TODO add reference
+	&\makecell{siehe \ref{section:1.3}}\\
 	\hline
 	\makecell{Darstellungssatz\\Vollständigkeit\\Completeness}
 	&\makecell{Jede Boolsche\\ Algebra ist Unteralgebra\\einer Potenzmengenalgebra\\$\langle\Potenzmenge{X},\cap,\cup,\ldots\rangle$}
 	&\makecell{ja}
 	&\makecell{Satz von Cayley}
-	&\makecell{siehe 3.6}\\ %TODO add reference
+	&\makecell{siehe 3.6}\\ %TODO \ref{section:3.6}
 \end{tabular}\\
 
 Ergänzungen zu obiger Tabelle:
@@ -66,11 +67,11 @@ Ergänzungen zu obiger Tabelle:
 \clearpage
 \setlength{\voffset}{0mm}
 
-\section{Definition}
+\section{Definition}\label{section:1.2}
 \begin{definition}
 	Eine \define{Kategorie} $\Cat$ ist gegeben durch:\index{Kategorie}
 	\begin{itemize}
-		\item eine Klasse (vgl. 0.3 %TODO add reference
+		\item eine Klasse (vgl. \ref{section:0.3}
 		) $\Ob(\Cat)$\\
 		Die Elemente von $\Ob(\Cat)$ heißen \define{Objekte}.\index{Objekte}
 		\item Für jedes Paar $(A,B)$ von Objekten $A,B\in\Ob(\C)$ gibt es eine Menge(!) $\Cat(A,B)$\\
@@ -103,11 +104,8 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 \end{lemma}
 
 \begin{lemma}
-	Für jedes Objekt $A\in\Ob(\Cat)$ gibt es einen Morphismus $1_A\in\Cat(A,A)$, genannt \define{identischer Morphismus}, falls:\index{identischer Morphismus}
-	Schreibweise:
-	$$ A\overset{1_A}{\longrightarrow}A$$
-	%TODO Add tikz
-	\begin{enumerate}
+	Für jedes Objekt $A\in\Ob(\Cat)$ gibt es einen Morphismus $1_A\in\Cat(A,A)$, genannt \define{identischer Morphismus}, falls die folgenden Axiome erfüllt sind:
+	\begin{enumerate}\index{identischer Morphismus}
 		\item[(ASS)] Die Morphismenkomposition ist assoziativ, d.h.
 		\begin{align*}
 			\forall a\in\Cat(A,B),\forall b\in\Cat(B,C),\forall c\in\Cat(C,D):(ab)c=a(bc)
@@ -116,6 +114,23 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 		\begin{align*}
 			\forall a\in\Cat(A,B):1_A a=a=a 1_B
 		\end{align*}
-		%TODO add tikz
 	\end{enumerate}
+	
+		Schreibweise:
+	$$ A\overset{1_A}{\longrightarrow}A\qquad
+		 \begin{tikzcd}[cells={nodes={}}]
+        \arrow[loop left, distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]{}{1_A} \arrow{r} \bullet 
+        & \bullet%\arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{\mathrm{id}_{B\times C}} 
+    \end{tikzcd}\qquad
+     \begin{tikzcd}[cells={nodes={}}]
+        %\arrow[loop left, distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]{}{1_A}  
+        \arrow{r}\bullet 
+        & \bullet\arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{1_B} 
+    \end{tikzcd}	
+	$$
 \end{lemma}
+
+\section{ToDo}\label{section:1.3}
+
+
+
