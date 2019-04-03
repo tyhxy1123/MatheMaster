@@ -61,9 +61,8 @@
 	\setkomafont{section}{\large}
 }
 
-\newcommand{\TemplateDozentSagtNein}[2]{
-	% Argument 1: Name des Dozenten, inklusive Titel, z.B. Prof. Dr. Max Mustermann
-	% Argument 2: Name der Vorlesung
+\newcommand{\TemplateDozentSagtNein}[1]{
+	% Argument 1: Name der Vorlesung
 	
 	\begin{center}
 		\color{red}
@@ -71,12 +70,12 @@
 	\end{center}
 
 	{\Large 
-	#1 hat der Veröffentlichung unserer Mitschrift der Vorlesung
-	\textbf{#2} nicht zugestimmt.
-	Wir können dir die Mitschrift allerdings per E-Mail zukommen lassen.
+	Die Mitschrift zur Vorlesung 
+	\textbf{#1} ist nicht öffentlich verfügbar.
+	Wir können dir diese jedoch per E-Mail zukommen lassen.
 	Schreibe uns dafür einfach eine kurze Mail:
 	\begin{center}
-		\url{willi.sontopski@mailbox.tu-dresden.de}	
+		\email{willi.sontopski@mailbox.tu-dresden.de}
 	\end{center}
 	}
 }
