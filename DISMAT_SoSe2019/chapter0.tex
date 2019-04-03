@@ -3,63 +3,134 @@
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
-
 \chapter{Set Theory}
+\section{Well-founded Orders}
+
 \begin{definition}
-    If $A,B$ are sets.\\
+    If 
+    \begin{itemize}
+        \item $X$ is a set
+        \item $(X, < \subseteq X \times X)$ a binary relation
+        \item $<$ is irreflexive: there is no $x \in X$, st. $x < x$
+        \item $<$ is transitive: for all $x,y,z \in X$
+        $$ x < y \text{ and } y < z \implies x < z.$$
+    \end{itemize}
+    Then we call $(X, <)$ a \define{strict partial order}.
+\end{definition}
+
+\begin{definition}
+    If 
+    \begin{itemize}
+        \item $X$ is a set
+        \item $Y \subseteq X$
+        \item $y \in Y$.
+    \end{itemize}
     Then 
     \begin{itemize}
-        \item $A$ and $B$ are called \define{equinumerous} $:\iff$ there is a bijection $f:A \to B$.
-        \item $A$ is \define{subnumerous then $B$} $:\iff$ there is an injection $g:A \to B$.
+        \item $y$ is a \define{smallest element} if $y \leq y'$ for every $y' \in Y$.
+        \item $y$ is a \define{minimal element} if $y' < y$ for no $y' \in Y$.
+        \item we define \define{biggest element} and \define{maximal element} in a similar way.
     \end{itemize}
 \end{definition}
 
-\begin{notation}
-    If $A,B$ are equinumerous, we write $A \simeq B$.\\
-    If $A$ is subnumerous then $B$, we write $A \preceq B$.
-\end{notation}
+\begin{definition}
+    If 
+    \begin{itemize}
+        \item $(X, <)$ is a strict partial order on $X$
+        \item every subset $Y \subseteq X$ contains a minimal element.
+    \end{itemize}
+    Then we call $(X, <)$ \define{well-founded}. If furthermore $<$ is total we say $(X , <)$ is a \define{well-order}.
+\end{definition}
 
 \begin{remark}
-    $\simeq$ is a equivalence relation.
+    If $(X, <)$ is a strict partial order on $X$.
+    Then 
+    \begin{enumerate}[label=(\roman*)]
+        \item $(X, <)$ is well-founded $\iff$ there is no decreasing chain in sequence in $X$
+        \item $(X, <)$ is a well-order $\iff$ every non-empty subset of $X$ contains a smallest element.
+    \end{enumerate}
 \end{remark}
 
-\begin{definition}
-    If $A$ is a set.\\
-    Then $A$ is \define{countable} $:\iff$ $A \preceq \N$.
-\end{definition}
+\begin{example}
+    \begin{itemize}
+        \item the usual order $<$ on $\N$ is a well-order
+        \item the usual order $<$ on $\Z$ is a well-order
+        \item the usual order $<$ on $\set{q \in \Q \mid q \geq 0}$ is not a well-order
+    \end{itemize}
+\end{example}
 
-\begin{theorem}[Cantor]
-    If $A$ is a set.\\
-    Then $A \prec \mathcal{P}(A)$ ($A \preceq \mathcal{P}(A)$ but not $A \simeq \mathcal{P}(A)$).
-\end{theorem}
-\begin{proof}
-    Let $f: A \to \mathcal{P}(A)$ be a function. Consider the set
-    $$ B = \set{x \in A \mid \notin f(x)} \subseteq A.$$
-    If $f$ is surjective, there is $x \in A$ s.t. $f(x) = B$.
-    Then 
-    $$ x \in f(x) = B \iff x \notin f(x), $$
-    since this is a contradiction, no map $f$ is surjective. In particular $A \not \simeq \mathcal{P}(A)$.
-    On the other hand
-    $$\begin{cases}
-        f: A \to \mathcal{P}(A)\\
-        a \mapsto \set{a}
-    \end{cases} \text{ is injective so } A \preceq \mathcal{P}(A).$$
-\end{proof}
+\section{Ordinal Numbers}
 
 \begin{definition}
-    If $\lambda$ is an ordinal.\\
-    Then $\lambda$ is called a \define{cardinal} $:\iff$ $\lambda$ is not equinumerous to a smaller ordinal.
-\end{definition}
-
-\begin{theorem}[Cantor-Bernstein]
     If
     \begin{itemize}
-        \item $X,Y$ are sets
-        \item $X \preceq Y$
-        \item $Y \preceq X$.
+        \item $X$ is a set
+        \item for all $x \in X$
+        $$ y \in x \implies y \in X \text{ (or equivalently $x \in X \implies x \subseteq X$)}.$$
+    \end{itemize}     
+    Then $X$ is called \define{transitive}.
+\end{definition}
+
+\begin{definition}
+    If
+    \begin{itemize}
+        \item $(X , \in)$ is a well-order
+        \item $X$ is transitive.
     \end{itemize}
-    Then $X \simeq Y$.
-\end{theorem}
+    Then we call $X$ an \define{ordinal}.
+\end{definition}
+
+\begin{proposition}\label{prop:1}
+    If $\alpha, \beta$ are ordinals.\\
+    Then 
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\emptyset$ is an ordinal
+        \item if $\alpha \ne \emptyset$, then $\emptyset \in \alpha$
+        \item $\alpha \notin \alpha$
+        \item if $x \in \alpha$, then $x = \set{y \in \alpha \mid y \in x}$
+        \item if $x \in \alpha$, then $x$ is an ordinal
+        \item $\beta \subseteq \alpha$ $\iff$ $\beta \in \alpha$ or $\beta = \alpha$
+        \item $s(\alpha) := \alpha \cup \set{\alpha}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \emph{(1):} clear\\
+    \emph{(2):} $\alpha \ne \emptyset \implies \alpha$ has a minimal element $x \in \alpha$.
+    If $x = \emptyset$, then there is nothing to show. Suppose $x \ne \emptyset$, but then there is $y \in x$, whence
+    $ y\in \alpha$, which contradicts the minimality of $x$.\\
+    \emph{(3):} clear, since $\in$ is a strict order.\\
+    \emph{(4):} this is a direct consequence of the transitivity of $\alpha$.\\
+    \emph{(5):}
+    \begin{itemize}[label=-]
+        \item transitivity\\
+        Let $z \in x$ and $y \in z$. Since $x \in \alpha$ and $z \in x$ $\implies z \in \alpha$ $\implies y \in \alpha$.\\
+        As $\in$ is total on $\alpha$, it is
+        $$ y \in x \text{ or } x \in y \text{ or } x=y. $$
+        So if $x \in y \in z \in x$, we get $ x \in x$ which cannot be. The case of $x = y$ is similar. Hence we get $y \in x$.
+
+        \item $\in$ is a well-order on $x$.
+        $\in$ restricted to $x$ defines a total order, because $x \subseteq \alpha$. Let $y \subseteq x$, then $y \subseteq \alpha$.
+        Hence $y$ has a minimal element.
+    \end{itemize}
+    \emph{(6):} One direction is a direct consequence of the transitivity of $\alpha$. So, suppose $\beta \subsetneq \alpha$. 
+    Then $\alpha - \beta \ne \emptyset$, hence there is $x \in \alpha - \beta$ minimal.\\
+    \emph{Claim.} $x = \beta$.
+    \emph{$\subseteq$:} $y \in x \implies y \in \alpha \text{ and } y \notin \beta$ this contradicts to $x$ is minimal.\\
+    \emph{$\supseteq$:} Suppose $y \in \beta - x$, since $\beta \subseteq \alpha, y \in \alpha$. Since $\in$ is total
+    $$ \underbrace{y \in x}_{\text{impossible by assumption}} \text{ or } \underbrace{x \in y}_{\text{contradicts to $y \in \beta$ hence $x \in \beta$}} \text{ or } \underbrace{x = y}_{\text{contradiction, since $y \in \beta$, but $x \notin \beta$}}.$$
+    \emph{(7):} 
+    \begin{itemize}[label=-]
+        \item $s(\alpha)$ is transitive.
+        \begin{align*}
+            x \in s(\alpha) & \iff x \in \alpha \cup \set{\alpha}\\
+                & \iff x \in \alpha \text{ or } x = \alpha\\
+                & \implies x \subseteq \alpha \text{ or } x = \alpha\\
+                & \implies x \subseteq \alpha \subseteq s(\alpha)
+        \end{align*}
+        \item $\in$ is a well-order on $s(\alpha)$\\
+        Clear.
+    \end{itemize}
+\end{proof}
 
 \begin{notation}
     By induction on $n \in \N$, we define an ordinal $\underline{n}$:
@@ -72,20 +143,64 @@
 
 \begin{remark}
     $$\underline{0} < \underline{1} < \ldots < \underline{n}.$$
-    We let 
-    $$ \omega := \bigcup_{n \in \N}\underline{n} \text{ (which is an ordinal)}.$$
     Usually we will identify $n$ and $\underline{n}$.
 \end{remark}
+
+\begin{definition}
+    $$ \omega := \bigcup_{n \in \N}\underline{n} \text{ (which is an ordinal)}.$$
+\end{definition}
 
 \begin{definition}
     If $\alpha$ is an ordinal.\\
     Then 
     \begin{itemize}
-        \item $\alpha$ is called a \define{successor} $:\iff$ there is some ordinal $\beta$, s.t. $\alpha = s(\beta)$.
+        \item $\alpha$ is called a \define{successor} $:\iff$ there is some ordinal $\beta$, st. $\alpha = s(\beta)$.
         \item $\alpha$ is called a \define{limit ordinal} $:\iff$ $\alpha \ne \emptyset$ and $\alpha$ is not a successor.
         \item $\alpha$ is called \define{finite} $:\iff$ $\alpha$ is not a limit ordinal and none of its elements is a limit ordinal.
     \end{itemize}
 \end{definition}
+
+\begin{proposition}
+    If $X \ne \emptyset$ is a set of ordinals.\\
+    Then 
+    \begin{enumerate}[label=(\alph*)]
+        \item $\bigcap_{\alpha \in X} \alpha$ is an ordinal;
+        \item $\bigcap_{\alpha \in X} \alpha$ is the smallest element of $X$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof} \emph{(a):}
+    \begin{itemize}[label=-]
+        \item $\bigcap_{\alpha \in X} \alpha$ is transitive (exercise)
+        \item $\bigcap_{\alpha \in X} \alpha$ is well-ordered
+         \begin{itemize}[label=-]
+             \item total order: $\bigcap_{\alpha \in X} \alpha \subseteq \alpha$
+             \item well-founded: similar.
+         \end{itemize}
+    \end{itemize}
+    \emph{(b):} Contra positive. Suppose 
+    $$ \beta = \bigcap_{\alpha \in X} \alpha \notin X. $$
+    Since $\beta \subseteq \alpha$ for all $\alpha \in X$, by \cref{prop:1}.(5) and $\beta \ne \alpha$, $\beta \in \alpha$ for all $\alpha \in X$.
+\end{proof}
+
+\begin{theorem}
+    If $\alpha, \beta$ ordinals.\\
+    Then exactly one of the following holds
+    $$\alpha \in \beta \text{ or } \beta \in \alpha \text{ or } \alpha = \beta.$$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        & X = \set{\alpha, \beta} \text{ is a set of ordinals}\\
+        \implies & \alpha \cap \beta \text{ is an ordinal and } \alpha \cap \beta \subseteq \alpha, \beta\\
+        \implies & \alpha = \alpha \cap \beta \text{ or } \beta = \alpha \cap \beta\\
+        \implies & \alpha \subseteq \beta \text{ or } \beta \subseteq \alpha\\
+        \implies & \alpha \in \beta \text{ or } \alpha = \beta \text{ or } \beta \in \alpha
+    \end{align*}
+\end{proof}
+
+\begin{notation}
+    $\alpha < \beta$ means $\alpha \in \beta$.\\
+    $\alpha \leq \beta$ means $\alpha \subseteq \beta$.
+\end{notation}
 
 \begin{exercise}
     If $\alpha$ is an ordinal.\\
@@ -124,7 +239,7 @@
 
 \begin{exercise}
     $\lambda$ is a limit ordinal $\iff$ there is a set of ordinals $A$, 
-    s.t. for each $\alpha \in A$ there is a $\beta \in A$, s.t. $\alpha < \beta$ and 
+    st. for each $\alpha \in A$ there is a $\beta \in A$, st. $\alpha < \beta$ and 
     $$ \lambda = \bigcup_{\alpha \in A} \alpha.$$
 \end{exercise}
 
@@ -155,63 +270,16 @@
     Then $X$ is isomorphic (as a partial order) to an ordinal. Furthermore the ordinal and the isomorphism is unique.
 \end{theorem}
 
-\begin{recall}
-    The axiom of choice:\\
-    If 
-    \begin{itemize}
-        \item $I$ is a set
-        \item $(X_i)_{i\in I}$ is a family of sets
-        \item for all $i \in I$ $X_i \ne \emptyset$.
-    \end{itemize}
-    Then the axiom of choice states, that
-    $$ \prod_{i \in I} X_i \ne \emptyset.$$
-\end{recall}
-
-\begin{recall}
-    The Zorn's lemma:\\
-    If 
-    \begin{itemize}
-        \item $X$ is a set
-        \item $\leq$ is a partial order on $X$
-        \item $X \ne \emptyset$
-        \item every chain $Y \subseteq X$ has an upper bound.
-    \end{itemize}
-    Then Zorn's lemma states, that $X$ has a maximal element.
-\end{recall}
-
-\begin{recall}
-    Zermelo's theorem: Every set can be well-ordered.\\
-    Theorem: Axiom of choice $\iff$ Zorn's lemma $\iff$ Zermelo's theorem.
-\end{recall}
-
-\begin{proposition}
-    If $X$ is a set.\\
-    Then $X$ is equinumerous to a unique cardinal.
-\end{proposition}
-\begin{proof}
-    By Zermelo's theorem, there is a well-order $\prec$ on $X$. By \labelcref{thm:1}, $(X, \prec)$ is order-isomorphic to $(\alpha, \in)$
-    where $\alpha$ is an ordinal. In particular, $X \simeq \alpha$.\\
-    Consider the set $$ Y = \set{\beta \in s(\alpha) \mid \beta \simeq \alpha}.$$
-    So $Y \ne \emptyset$, since $\alpha \in Y$. Since $s(\alpha)$ is an ordinal, let $\lambda$ be the minimal element of $Y$.\\
-    \emph{Claim.} $\lambda$ is an ordinal.
-
-    Suppose not. Hence there is $\gamma < \lambda$, s.t. $\gamma \simeq \lambda$. 
-    But $\lambda \simeq \alpha$, so $\gamma \simeq \alpha$, which contradicts to the minimality of $\lambda$.\\
-    For uniqueness, if $X \simeq \kappa$ for $\kappa$ a cardinal, then $\lambda \simeq \kappa$, which implies $\lambda = \kappa$ by definition of cardinal.
-\end{proof}
-
 \begin{theorem}[Transfinite induction]
     If
     \begin{itemize}
-        \item $P$ is a property of cardinals
-        \item $\emptyset$ satisfies $P$.
-    \end{itemize}
-    Then 
-    \begin{enumerate}[label=\arabic*)]
+        \item $P$ is a property of ordinals
+        \item $\emptyset$ satisfies $P$
         \item if $\alpha$ satisfies $P$, then $s(\alpha)$ also satisfies $P$
         \item if $\alpha$ is a limit ordinal and for all $\beta < \alpha$, $\beta$ satisfies $P$, then
         $\alpha$ satisfies $P$.
-    \end{enumerate}
+    \end{itemize}
+    Then all ordinals satisfy $P$.
 \end{theorem}
 
 \begin{definition}
@@ -223,8 +291,113 @@
             \item $\alpha + \emptyset : = \alpha$
             \item Assuming $\alpha + \beta$ has been defined
             $$\alpha + s(\beta) := s(\alpha + \beta)$$
-            \item If $\beta$ is a limit ordinal, and $\alpha + \beta$ has been defined for all $\gamma < \beta$
+            \item If $\beta$ is a limit ordinal, and $\alpha + \gamma$ has been defined for all $\gamma < \beta$
             $$ \alpha + \beta := \bigcup_{\gamma < \beta} \alpha + \gamma. $$
         \end{itemize}
     \end{enumerate}
 \end{definition}
+
+\section{Axiom of Choice}
+\begin{recall}[Axiom of Choice]
+    If 
+    \begin{itemize}
+        \item $I$ is a set
+        \item $(X_i)_{i\in I}$ is a family of sets
+        \item for all $i \in I$ $X_i \ne \emptyset$.
+    \end{itemize}
+    Then the axiom of choice states, that
+    $$ \prod_{i \in I} X_i \ne \emptyset.$$
+\end{recall}
+
+\begin{recall}[Zorn's Lemma]
+    If 
+    \begin{itemize}
+        \item $X$ is a set
+        \item $\leq$ is a partial order on $X$
+        \item $X \ne \emptyset$
+        \item every chain $Y \subseteq X$ has an upper bound.
+    \end{itemize}
+    Then Zorn's lemma states, that $X$ has a maximal element.
+\end{recall}
+
+\begin{recall}[Zermelo's Theorem]
+    Every set can be well-ordered.
+\end{recall}
+
+\begin{recall}
+    Axiom of choice $\iff$ Zorn's lemma $\iff$ Zermelo's theorem.
+\end{recall}
+
+\section{Cardinal numbers}
+
+\begin{definition}
+    If $A,B$ are sets.\\
+    Then 
+    \begin{itemize}
+        \item $A$ and $B$ are called \define{equinumerous} $:\iff$ there is a bijection $f:A \to B$.
+        \item $A$ is \define{subnumerous then $B$} $:\iff$ there is an injection $g:A \to B$.
+    \end{itemize}
+\end{definition}
+
+\begin{notation}
+    If $A,B$ are equinumerous, we write $A \simeq B$.\\
+    If $A$ is subnumerous then $B$, we write $A \preceq B$.
+\end{notation}
+
+\begin{remark}
+    $\simeq$ is a equivalence relation.
+\end{remark}
+
+\begin{definition}
+    If $A$ is a set.\\
+    Then $A$ is \define{countable} $:\iff$ $A \preceq \N$.
+\end{definition}
+
+\begin{theorem}[Cantor]
+    If $A$ is a set.\\
+    Then $A \prec \mathcal{P}(A)$ ($A \preceq \mathcal{P}(A)$ but not $A \simeq \mathcal{P}(A)$).
+\end{theorem}
+\begin{proof}
+    Let $f: A \to \mathcal{P}(A)$ be a function. Consider the set
+    $$ B = \set{x \in A \mid \notin f(x)} \subseteq A.$$
+    If $f$ is surjective, there is $x \in A$ st. $f(x) = B$.
+    Then 
+    $$ x \in f(x) = B \iff x \notin f(x), $$
+    since this is a contradiction, no map $f$ is surjective. In particular $A \not \simeq \mathcal{P}(A)$.
+    On the other hand
+    $$\begin{cases}
+        f: A \to \mathcal{P}(A)\\
+        a \mapsto \set{a}
+    \end{cases} \text{ is injective so } A \preceq \mathcal{P}(A).$$
+\end{proof}
+
+\begin{definition}
+    If $\lambda$ is an ordinal.\\
+    Then $\lambda$ is called a \define{cardinal} $:\iff$ $\lambda$ is not equinumerous to a smaller ordinal.
+\end{definition}
+
+\begin{theorem}[Cantor-Schröder-Bernstein]
+    If
+    \begin{itemize}
+        \item $X,Y$ are sets
+        \item $X \preceq Y$
+        \item $Y \preceq X$.
+    \end{itemize}
+    Then $X \simeq Y$.
+\end{theorem}
+
+\begin{proposition}
+    If $X$ is a set.\\
+    Then $X$ is equinumerous to a unique cardinal, denoted by $\abs{X}$.
+\end{proposition}
+\begin{proof}
+    By Zermelo's theorem, there is a well-order $\prec$ on $X$. By \labelcref{thm:1}, $(X, \prec)$ is order-isomorphic to $(\alpha, \in)$
+    where $\alpha$ is an ordinal. In particular, $X \simeq \alpha$.\\
+    Consider the set $$ Y = \set{\beta \in s(\alpha) \mid \beta \simeq \alpha}.$$
+    So $Y \ne \emptyset$, since $\alpha \in Y$. Since $s(\alpha)$ is an ordinal, let $\lambda$ be the minimal element of $Y$.\\
+    \emph{Claim.} $\lambda$ is an ordinal.
+
+    Suppose not. Hence there is $\gamma < \lambda$, st. $\gamma \simeq \lambda$. 
+    But $\lambda \simeq \alpha$, so $\gamma \simeq \alpha$, which contradicts to the minimality of $\lambda$.\\
+    For uniqueness, if $X \simeq \kappa$ for $\kappa$ a cardinal, then $\lambda \simeq \kappa$, which implies $\lambda = \kappa$ by definition of cardinal.
+\end{proof}
