@@ -1,0 +1,40 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% 2d triangle
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h/3,2*\h/3) $);
+	\coordinate (M) at ($ (A) + (\h/2,0) $);
+
+
+	\draw (A) -- (B) -- (C) --cycle;
+	\draw[red!50] (M) -- (C);
+	\filldraw (M) circle (1pt);
+		 
+		  
+	% first 3d triangle
+	\coordinate (A1) at (\xone,\yone -\h);
+	\coordinate (B1) at ($ (A1) + (\h,0) $);
+	\coordinate (C1) at ($ (A1) + (\h/3,2*\h/3) $);
+	\coordinate (D1) at ($ (A1) + (\h,1.5*\h/3) $);
+	\coordinate (M1) at ($ (A1) + (\h/2,0) $);
+
+		
+	\filldraw[red!30] (M1) --(D1) -- (C1) -- cycle;
+	\draw (A1) -- (B1) -- (C1) --cycle;
+	\draw (B1) -- (C1) -- (D1) --cycle;
+	\draw[dotted] (A1) -- (D1);
+	\filldraw (M1) circle (1pt);
+	
+	
+	\end{tikzpicture}
+	
+	\caption{bisection refinement in 2D/3D}
+	\label{ch_m_bisection_refine}
+	
+\end{figure}

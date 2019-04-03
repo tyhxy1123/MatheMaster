@@ -13,12 +13,14 @@ possible modifications:
 \end{itemize} 
 There are various ideas to split elements, but most of theory exists for bisection refinement.
 \section{Bisection refinement}
-%TODO add pictures here
+\input{tikz/chapter1/bisection_refine.tex}
 
 There are two challenges:
 \begin{itemize}
 	\item grid conformity
+	\input{tikz/chapter1/hanging_nodes.tex}
 	\item elements must remain \glqq well shaped\grqq 
+	\input{tikz/chapter1/shape_regularity.tex}
 \end{itemize} 
 In particular: the constant $c$ in 
 \begin{equation*}
@@ -70,7 +72,7 @@ Aim: refinement strategies, that keep $\delta_{T}$ bounded.
 				T_{1} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}  & T_{2} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}
 			\end{align*}
 			independent of $t$
-			%TODO add picture	
+			\input{tikz/chapter1/example_numbering_alg.tex}
 		\item $d= 3$: \quad $T = \left\{ z_{0},z_{1},z_{2},z_{3} \right\}_{t}$
 			\begin{align*}
 				t&=0: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{1} & T_{2}&= \left\{ z_{3},\overline{z}, z_{2},z_{1} \right\}_{1}\\

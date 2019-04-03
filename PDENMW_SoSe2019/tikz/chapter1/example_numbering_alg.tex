@@ -1,0 +1,35 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% 2d triangle
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h/3,2*\h/3) $);
+	\coordinate (M) at ($ (A) + (\h/2,0) $);
+
+
+	\filldraw[red!30] (A) -- (M) -- (C) --cycle;
+	\filldraw[blue!30] (B) -- (M) -- (C) --cycle;
+	\draw (A) -- (B) -- (C) --cycle;
+	\filldraw (M) circle (1pt);
+	
+	\node at (A) [below] {2};
+	\node at (B) [below] {0};
+	\node at (C) [above] {1};
+
+	\node[red!40] at (A) [left] {0};
+	\node at (B) [right] {0};
+	\node[red!30] at (C) [above left] {2};
+	\node[blue!30] at (C) [above right] {2};
+	\node[red!30] at (M) [below left] {1};
+	\node[blue!30] at (M) [below right] {1};
+	\end{tikzpicture}
+	
+	\caption{2D example for the numbering rule}
+	\label{ch_1_example_numbering_alg}
+	
+\end{figure}
