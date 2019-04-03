@@ -1,6 +1,7 @@
 # MatheMaster (Work in Progress) [![Build Status](https://travis-ci.com/LostInDarkMath/MatheMaster.svg?branch=master)](https://travis-ci.com/LostInDarkMath/MatheMaster)
 
 Sommersemester/*summer term* 2019:
+- ALLALG bei Prof. Schmidt (deutsch)
 - ALGTOP bei Prof. Thom (deutsch)
 - DISMAT bei Dr. Cubides (*English*)
 - DISOPT bei Dr. Schwartz (deutsch)

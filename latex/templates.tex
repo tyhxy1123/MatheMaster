@@ -60,3 +60,27 @@
 	\setitemize{leftmargin=*} % itemize-Umbegungen werden nicht eingerückt
 	\setkomafont{section}{\large}
 }
+
+\newcommand{\TemplateDozentSagtNein}[2]{
+	% Argument 1: Name des Dozenten, inklusive Titel, z.B. Prof. Dr. Max Mustermann
+	% Argument 2: Name der Vorlesung
+	
+	\begin{center}
+		\color{red}
+		%{\Huge \textbf{ERROR 404}}\nl
+		{\Huge $\mathscr{ERROR}$ 404}\nl
+	\end{center}
+
+	{\Large 
+	%Du hast jetzt vielleicht eine Mitschrift der Vorlesung
+	%\textbf{#2} bei #1 erwartet.
+	%Wir müssen dich leider enttäuschen: 
+	#1 hat uns nicht erlaubt, unsere Mitschriften der Vorlesung
+	\textbf{#2} hier zu veröffentlichen.
+	Doch keine Sorge:
+	Schreibe uns einfach eine kurze Mail und ich schicke dir schnellstmöglich die aktuelle Version.
+	\begin{center}
+		\url{willi.sontopski@mailbox.tu-dresden.de}	
+	\end{center}
+	}
+}
