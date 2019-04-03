@@ -17,9 +17,42 @@
 \newcounter{theo}[section]\setcounter{theo}{0}
 \renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
 
-\newenvironment{theorem}[2][]{
+\newenvironment{theo}[2][]{
+	% code for counter
 	\refstepcounter{theo}
 
-\begin{mdframed}[]\relax}{
-\end{mdframed}}
+	% box design code
+	\ifstrempty{#1}
+	% if no title
+	{
+		\mdfsetup{
+			frametitle={
+				\tikz[baseline=(current bonding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=blue!10]
+				{\strut Theorem~\thetheo};
+			}
+		}
+	}
+	{
+		\mdfsetup{
+			frametitle={
+				\tikz[baseline=(current bonding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=blue!10]
+				{\strut Theorem~\thetheo:~#1};
+			}
+		}
+	}
+	\mdfsetup{
+		innertopmargin=10pt,
+		linecolor=blue!20,
+		linewidth=2pt,
+		topline=true,
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+	}
+
+
+	% code for environment name
+	\begin{mdframed}[]\relax}{
+	\end{mdframed}
+}
 
