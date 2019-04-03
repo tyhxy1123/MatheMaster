@@ -11,7 +11,7 @@
 \input{\directoryPrefix font}
 \input{\directoryPrefix commands}
 \input{\directoryPrefix commands_Willi}
-%\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
+\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
 
 \makeindex % erstellt Stichwortverzeichnis
 \setlength{\parindent}{0px} % verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
@@ -50,7 +50,10 @@
 	\pagenumbering{arabic}	% enable pagenumbering
 	
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
-	\input{chapter0}
+	\input{chapter1}
+	%\input{chapter2}
+	%\input{chapter3}
+	%\input{chapter4}
 	
 	\appendix
 	%\input{anhang}
@@ -61,6 +64,6 @@
 	\printindex % erstellt Stichwortverzeichnis, muss mit "MakeIndex" gebaut werden!
 	%\listoffigures 
 	%\listoftables
-	%\nocite{*} % erstellt Literaturverzeichnis selbst wenn nie auf die entsprechende Literatur im Dokument verwiesen wird
-	%\bibliography{literatur}
+	\nocite{*} % erstellt Literaturverzeichnis selbst wenn nie auf die entsprechende Literatur im Dokument verwiesen wird
+	\bibliography{literatur}
 \end{document}

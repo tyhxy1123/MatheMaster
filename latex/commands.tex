@@ -20,6 +20,7 @@
 \newcommand{\falls}{\text{falls }}       % sprachliches falls für Fallunterscheidungen
 \newcommand{\sonst}{\text{sonst }}       % sprachliches sonst für Fallunterscheidungen
 \newcommand{\und}{\text{ und }}          % sprachliches und für align-Umgebungen
+\newcommand{\oder}{\text{ oder }}        % sprachliches oder für align-Umgebungen
 \newcommand{\Def}{\text{Def}}            % Definition, z.B. $\overset{\Def}{=}$
 \newcommand{\Vor}{\text{Vor}}            % Voraussetzung, z.B. $\overset{\Vor}{=}$
 \newcommand{\Lin}{\text{Lin}}            % Nutze Linearität, z.B. $\overset{\Lin}{=}$
@@ -69,7 +70,7 @@
 \DeclareMathOperator{\inner}{int}        % Das innere einer Menge
 \newcommand{\laplace}{\triangle}         % Laplace Operator
 \newcommand{\limn}{\lim\limits_{n\to\infty}} % Standard-Limes
-\newcommand{\mal}{\cdot}
+\newcommand{\mal}{\cdot}                 % hier kann man \cdot ein- und ausschalten
 \DeclareMathOperator{\meas}{meas}        % Das Maß einer Menge, meist Lebesguemaß gemeint
 \newcommand{\OR}{\vee}                   % logisches Oder
 \newcommand{\properideal}{
@@ -109,6 +110,10 @@
 \xDeclarePairedDelimiter{\norm}{\Vert}{\Vert}
 \xDeclarePairedDelimiter{\abs}{\vert}{\vert}
 \xDeclarePairedDelimiterBin{\scaProd}{\langle}{\rangle}
+\xDeclarePairedDelimiterBin{\intervall}{[}{]}
+\xDeclarePairedDelimiterBin{\intervallHO}{[}{)}
+\xDeclarePairedDelimiterBin{\intervallOH}{(}{]}
+\xDeclarePairedDelimiterBin{\intervallO}{(}{)}
 \xDeclarePairedDelimiter{\klammern}{(}{)}
 
 \NewDocumentCommand\normiii{som}{
