@@ -11,7 +11,7 @@
 \input{\directoryPrefix font}
 \input{\directoryPrefix commands}
 \input{\directoryPrefix commands_Willi}
-%\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
+\input{local_commands}
 
 \makeindex % erstellt Stichwortverzeichnis
 \setlength{\parindent}{0px} % verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
@@ -50,7 +50,10 @@
 	\pagenumbering{arabic}	% enable pagenumbering
 	
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
-	\input{chapter0}
+	\setcounter{chapter}{-1}
+	\input{chapter0}	
+	\input{chapter1}
+	%\input{chapter2}	
 	
 	\appendix
 	%\input{anhang}

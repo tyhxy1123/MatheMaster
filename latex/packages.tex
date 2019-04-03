@@ -17,8 +17,6 @@
 \usepackage{bbm}                         % sorgt für Symbol für Indikatorfunktion
 % cleverref siehe ganz unten
 \usepackage{color}                       % bringt Farbe ins Spiel
-\usepackage{csquotes}                    % Man kann normale Anführungsstriche "..." im Textmodus nutzen
-	\MakeOuterQuote{"}
 \usepackage[
 	type={CC},
 	modifier={by-nc-sa},
@@ -36,6 +34,8 @@
 \usepackage{makecell}                    % für Zellen mit Zeilenumbrüchen in Zellen
 \usepackage{makeidx}                     % erstellt Index / Stichwortverzeichnis
 \usepackage{mathrsfs}                    % für fancy \mathscr-Symbole
+
+\usepackage{minted}                      % für schönes Einbinden von Quellcode
 \usepackage{mleftright}                  % für \DeclarePairedDelimiter
 \usepackage{pdflscape}                   % damit kann man einzelne Seiten ins Querformat drehen
 \usepackage{pgfplots}                    % damit kann man Funktionen plotten
@@ -59,6 +59,8 @@
 \usepackage{xr}                          % man Referenzen aus anderen teX-files importieren und darauf verlinken
 
 % Ich habe gelesen, dass man folgendes Package zuletzt einbinden soll:
+\usepackage{csquotes}                    % Man kann normale Anführungsstriche "..." im Textmodus nutzen
+	\MakeOuterQuote{"}
 \usepackage[english, ngerman, capitalise]{cleveref} % bessere Verweise
 
 
