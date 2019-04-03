@@ -1,0 +1,82 @@
+% !TEX root = PDENMW.tex
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Geometry of the bisection method}
+In the previous example the function $u$ was known. Thus the grid can be constructed specifically for $u$. For finite element problems the function $u $ is not known! There you use an initial grid and modify it repeatedly.\\
+possible modifications:
+\begin{itemize}
+	\item moving vertices (r-refinement)
+	\item split elements (h-refinement)
+\end{itemize} 
+There are various ideas to split elements, but most of theory exists for bisection refinement.
+\section{Bisection refinement}
+%TODO add pictures here
+
+There are two challenges:
+\begin{itemize}
+	\item grid conformity
+	\item elements must remain \glqq well shaped\grqq 
+\end{itemize} 
+In particular: the constant $c$ in 
+\begin{equation*}
+	\|u - u_{N}\|_{H^{1}} \leq c\ h\ |u|_{H^{2}}
+\end{equation*} 
+depends on 
+\begin{equation*}
+	\delta = \max \delta_{T} 
+\end{equation*} 
+with
+\begin{equation*}
+	\delta_{T}= \frac{\text{radius of circum-circle of }T}{\text{radius of incircle of }T}.
+\end{equation*} 
+$\delta_{T}$ is called \glqq shape coefficient\grqq\ or \glqq aspect ratio\grqq.\\
+\par 
+Aim: refinement strategies, that keep $\delta_{T}$ bounded.
+
+\section{Partition of a single simplex}
+\begin{definition}
+	We describe a simplex $T$ as a ordered set of its vertices and a type $t\in \N$.
+	\begin{equation*}
+		T = \left\{z_{0}, \dots , z_{d}\right\}_{t}, \qquad t\in \left\{ 0,\dots ,d-1 \right\}
+		
+	\end{equation*}
+	The refinement rule is solely based on this information.
+	\begin{enumerate}[label = \arabic*)]
+		\item The refinement edge is $\overline{z_{0}z_{d}}$.
+		\item The new midpoint $\bar{z}= \frac{\overline{z_{0}z_{d}}}{2}$ becomes a new index.
+		\item connect $\bar{z}$ to all vertices of $T$ except $z_{0},z_{d}$ \\
+			$\implies$ two new simplices $T_{1},T_{2}$ with common face 
+			 \begin{equation*}
+				S = \left\{\overline{z},z_{1},\dots ,z_{d-1} \right\}
+			\end{equation*}
+		\item vertex oredring and type for the children $T_{1},T_{2}$:
+			\begin{align*}
+				T_{1}&= \left\{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}} \right\}_{(t+1)\mod d}\\
+				T_{2}&= \left\{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}} \right\}_{(t+1)\mod d}\\
+			\end{align*}
+		$\rightarrow, \leftarrow$ means increasing or decreasing order.	\\
+		$\underbrace{\left\{z_{d},\dots ,z_{0}\right\} }_{\rightarrow} =\emptyset$		
+	\end{enumerate}
+\end{definition}
+\begin{example}
+	%TODO formatieren, sodass der neue Anstrich vorne beginnt
+	\begin{itemize}
+		\item $d=2$:\\
+			\begin{align*}
+				T &= \left\{ z_{0},z_{1},z_{2} \right\}_{0} & \overline{z}&= \frac{1}{2}\left(z_{0} + z_{2} \right)\\
+				T_{1} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}  & T_{2} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}
+			\end{align*}
+			independent of $t$
+			%TODO add picture	
+		\item $d= 3$: \quad $T = \left\{ z_{0},z_{1},z_{2},z_{3} \right\}_{t}$
+			\begin{align*}
+				t&=0: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{1} & T_{2}&= \left\{ z_{3},\overline{z}, z_{2},z_{1} \right\}_{1}\\
+				t&=1: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{2} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{2}\\
+				t&=2: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{0} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{0}
+			\end{align*}
+	\end{itemize}
+\end{example}
+If you renumber the vertices of $T$ the shape of $T$ does not get modified, but the shapes of the children get modified. You can get up to $\frac{1}{2}\left(d+1 \right)!$ different shapes for the children.

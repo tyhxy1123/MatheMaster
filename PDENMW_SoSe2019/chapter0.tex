@@ -70,10 +70,67 @@ What can go wrong?
 Boundary value problem:
 \begin{align*}
 	-\laplace u&=0\\
-	u(r,\varphi)&=\sin(2/3\varphi) \forall 0\leq\varphi\leq3/2\pi \\
-	u=0 \text{ elsewhere on } \partial\Omega.
+	u(r,\varphi)&=\sin(2/3\varphi)\quad \forall 0\leq\varphi\leq3/2\pi \\
+	u&=0 \text{ elsewhere on } \partial\Omega.
 \end{align*}
 What does the solution looks like? Identify $\R^2$ with $\C$. The function $w(z)=z^{2/3}$ is holomorphic on $\Omega$. Cauchy-Riemann equations $\operatorname{Im}w(z)$ is harmonic and takes correct values on $\partial\Omega$. Therefore it is a solution to the BVP. Derivative: $w^\prime(z)=2/3z^{-1/3}$ tends to $\infty$ as $z\to 0$. Therefore the solution has a singularity at $0$ and $u\notin H^2$.
 \end{example}
 \input{tikz/chapter0/example_problem}
-
+Condition for error estimates are not satisfied. You can see in experiments: the error decreases by $h^{\frac{1}{2}}$. \\
+Is it possible to obtain the optimal order $\bigo(h)$ for $u \not \in H^2$ ?\\
+\underline{Idea} problem specific grids:
+\begin{itemize}
+	\item use many small elements in areas where something \glqq happens\grqq, elsewhere use few big elemets
+\end{itemize} 
+This looks promising and we show with an easy example, that it could work properly.
+\begin{example}
+	Let $u: [0,1] \to \R $ be continuous. How well can we approximate $u$ by piecewise constant functions $u_{N}$?
+	\begin{enumerate}[label = \Roman*)]
+		\item Uniform grid:
+			\begin{itemize}
+				\item $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ with uniform steplenght $h$
+				\item Let $u \in W^{1,\infty}$ i.e. $\text{ess}\sup_{[0,1]} | u^\prime|< \infty$ 
+				\item Define the approximating functions $u_{N}=u(x_{n-1})$ for all $x_{n-1}\leq x \leq x_{n}$ 
+				\item pointwise error
+					\begin{align*}
+						|u(x) - u_{N}(x) | &= | u(x) - u(x_{n-1})|\\
+										   &= \left| \int\limits_{x_{n-1}}^{x} u^\prime(t) \diff t \right|\\
+										   &= h\cdot \text{ess}\sup_{[x_{n-1},x_{n}]}|u^\prime | \\
+										   &= h\ \|u^\prime\|_{L^\infty(x_{n-1},x_{n})}
+					\end{align*} 
+					\begin{equation*}
+						\implies\|u -u_{N}\|_{L^\infty} \leq h \ \|u^\prime\|_{L^\infty(0,1)}= h \ |u|_{W^{1,\infty}(0,1)}
+				\end{equation*} 
+			\end{itemize} 
+			What happens if $u \not \in W^{1,\infty}$?\\
+			The gridlenght $h$ is not defined for nonuniform grids. Instead use:
+			\begin{equation*}
+				\|u-u_{N}\|_{L^{\infty}(0,1)}  \leq \frac{1}{N} \|u^\prime\|_{L^\infty(0,1)}
+			\end{equation*} 
+			with $N := \frac{1}{h}$ the number of degrees of freedom. Furthermore is $N$ a measure for computational effort!
+		\item Nonuniform grids:\\
+			Let $u \not \in W^{1,1}(0,1)$ and $|u|_{W^{1,1}}>0$
+			\begin{itemize}
+				\item Define 
+					\begin{equation*}
+						\phi(x) := \int_{0}^x |u^\prime | \diff t.
+					\end{equation*} 
+					$\phi$ is monotonically increasing, $\phi(0)=0,\phi(1)=|u|_{W^{1,1}} > 0$.
+				\item Define a grid $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ such that 
+					\begin{equation*}
+						\phi(x_{n}) - \phi(x_{n-1}) = \frac{1}{N} |u^\prime|_{L^1(0,1)}= \frac{1}{N} |u|_{W^{1,1}}
+					\end{equation*} 
+				\item For every $x \in [x_{n-}x_{n})$ holds:
+					\begin{align*}
+						|u(x)-u_{N}(x)|&= |u(x)-u(x_{n-1})|\\
+									   &= \left| \int_{x_{n-1}}^{x} u^\prime(t) \diff t\ \right|\\
+									   &\leq \int_{x_{n-1}}^{x} |u^\prime(t)| \diff t\\\
+									   &= \phi(x_{n}) - \phi(x_{n-1}) \\
+									   &= \frac{1}{N} \|u^\prime\|_{L^{1}(0,1)}						   
+					\end{align*} 
+					\begin{equation*}
+						\implies \|u - u_{N}\|_{L^{\infty}(0,1)} \leq \frac{1}{N} \|u^\prime\|_{L^{1}(0,1)}
+					\end{equation*} 
+			\end{itemize} 
+	\end{enumerate} 
+\end{example} 
