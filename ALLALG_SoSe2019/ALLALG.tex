@@ -3,36 +3,29 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Dies ist nur eine Vorlage und soll die künstlerische Freiheit des Autors einer Mitschrift in keiner Weise schmälern.
-% Der Inhalt dieser Vorlage soll eher Möglichkeiten anbieten und bewährte Lösungswege aufzeigen.
-% Wichtige Dinge sind aktuell enthalten, optionale Dinge sind auskommentiert.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \documentclass[]{scrreprt}
 
 \newcommand{\directoryPrefix}{../latex/} 
 \input{\directoryPrefix packages}
-%\input{\directoryPrefix counters} % section counter benutzt römische Zahlen
 \input{\directoryPrefix theoremenvironments}
 \input{\directoryPrefix font}
 \input{\directoryPrefix commands}
-%\input{\directoryPrefix commands_Willi}
-%\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
+\input{\directoryPrefix commands_Willi}
+\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
 
 \makeindex % erstellt Stichwortverzeichnis
 \setlength{\parindent}{0px} % verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
-%\renewcommand{\thesection}{\arabic{section}} % nützlich, falls es keine Chapter, sondern nur sections gibt.
+\renewcommand{\thesection}{\arabic{section}} % nützlich, falls es keine Chapter, sondern nur sections gibt.
 
 \title{
 	Vorlesung\\
-	Stochastic Calculus
+	Allgemeine Algebra und algebraische Modellierung\\
 }
 %\subject{Thema}
 \subtitle{Sommersemester 2019}
 \author{
-	Vorlesung:  Prof. Dr. Rene Schilling \\
-	Mitschrift: Robert Walter
+	Vorlesung:  Prof. Dr. Stefan Schmidt\\
+	Mitschrift: Willi Sontopski
 }
 \date{\today}
 \publishers{\url{https://github.com/LostInDarkMath/MatheMaster}}
@@ -53,13 +46,11 @@
 	%\epigraph{Hier steht eine Lebensweisheit.}{\textit{Der Admin}}
 	%\newpage
 	\doclicenseThis
-	%\tableofcontents
+	\tableofcontents
 	\pagenumbering{arabic}	% enable pagenumbering
 	
-	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
-	\newpage
-	\input{\directoryPrefix templates}
-	\TemplateDozentSagtNein{Prof. Dr. Rene Schilling}{Stochastic Calculus}
+	\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
+	\input{section1}
 	
 	\appendix
 	%\input{anhang}
@@ -68,8 +59,8 @@
 	%\input{chapter_loesungen} % Falls es Übungsaufgaben gibt, sollte man diese miteinbinden
 
 	\printindex % erstellt Stichwortverzeichnis, muss mit "MakeIndex" gebaut werden!
-	%\listoffigures 
+	\listoffigures 
 	%\listoftables
-	%\nocite{*} % erstellt Literaturverzeichnis selbst wenn nie auf die entsprechende Literatur im Dokument verwiesen wird
-	%\bibliography{literatur}
+	\nocite{*} % erstellt Literaturverzeichnis selbst wenn nie auf die entsprechende Literatur im Dokument verwiesen wird
+	\bibliography{literatur}
 \end{document}
