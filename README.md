@@ -7,11 +7,11 @@ Sommersemester/*summer term* 2019:
 - KONGEO bei Prof. Krähmer (deutsch)
 - MMAM (Lineare Modelle) bei Prof. Ferger (deutsch)
 - MMAM (Spieltheorie) bei Prof. Schwartz (deutsch)
-- NLANA bei Prof. Schuricht (deutsch)
+- NLANA bei Prof. Schuricht (deutsch) *[*_via Email_*]*
 - PDENMW bei Prof. Sander (deutsch)
 - SCCOMP bei Prof. Voigt & Dr.  Salvalaglio (deutsch)
 - SCPROG bei Prof. Walter (deutsch)
-- STOCAL bei Prof. Schilling (deutsch)
+- STOCAL bei Prof. Schilling (*English*) *[*_via Email_*]*
 - STOCHP bei Prof. Sasvári (deutsch)
 - Kategorientheorie bei Prof. Pöschel (deutsch)
 - Theoretische Informatik und Logik bei Prof. Hölldobler (deutsch)
@@ -31,6 +31,8 @@ Wintersemester/*winter term* 2018/2019:
 
 Dieses Repository ist für die Mitschriften ausgewählter Module des Masterstudiengangs Mathematik an der TU Dresden gedacht.
 Die PDF-Versionen der Skripte werden immer am Ende der Woche aktualisiert und können [hier](https://github.com/LostInDarkMath/MatheMaster/releases/latest) heruntergeladen werden.
+Skripte, die nicht öffentlich in diesem Repository erhältlich sind, kann man auf Anfrage per Email zugeschickt bekommen.
+Entsprechende Skripte sind in der Liste oben gekennzeichnet.
 
 
 
@@ -40,6 +42,8 @@ Du willst uns unterstützen und mitmachen? Kein Problem! Je mehr desto besser :)
 
 This repository contains lecture notes for selected courses of the mathematics masters programme at TU Dresden.
 At the end of each week PDF files for all notes will be released [here](https://github.com/LostInDarkMath/MatheMaster/releases/latest).
+Lecture notes which aren't publicly available in the repository can be requested via Email.
+
 
 
 Feel free to join us if you want to take part in the project! :)
