@@ -380,7 +380,6 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 		\item $x_{i}^{*}$ ist \underline{strikt (schwach) dominant}, wenn sie alle anderen Strategien $\tilde{x}_{i} \in X_{i} \setminus \{x_{i}^{*}\}$ strikt (schwach) dominiert.
 		\item Ein Vektor $x^{*} \in X$ heißt \underline{Gleichgewicht in strikt (schwach) dominanten Strategien}, wenn $x_{i}^{*}$ strikt (schwach) dominant ist für alle Spieler $i=1, \ldots, N$ 
 	\end{enumerate}
-	%TODO eventuell auch hier am Beispiel vorführen. Sry future rob :S
 \end{definition}
 
 \begin{satz}
@@ -391,9 +390,9 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 	Sei $x^{*} \in X$ ein Gleichgewicht in schwach dominanten Strategien, d.h. es gilt:
 	\begin{align*}
 		&f_{i}(x_{i}^{*}, x_{-i}) \leq f_{i}(x_{i}, x_{-i})& &\forall x_{-i} \in X_{-i} \forall x_{i} \in X_{i} \\
-		\implies &f_{i}(x_{i}^{*}, x_{-i}^{*}) \leq f_{i}(x_{i}, x_{-i}^{*})& &\forall x_{i} \in X_{i}
+		\implies &f_{i}(x_{i}^{*}, x_{-i}^{*}) \leq f_{i}(x_{i}, x_{-i}^{*})& &\forall x_{i} \in X_{i} \\
+		\implies &x^{*} \text{ist ein Nash-Gleichgewicht.}
 	\end{align*}
-	$\implies$ $x^{*}$ ist ein Nash-Gleichgewicht.
 \end{proof}
 
 \begin{beispiel}(Elimination dominanter Strategien)
@@ -401,8 +400,8 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 	\begin{center}
 		\begin{tabular}{c|c c c}
 			& $b_1$ & $b_2$ & $b_3$ \\ \hline
-			$a_1$ & 0, 1 & 1, 0 & 1, 1 \\
-			$a_2$ & 1, 0 & 0, 1 & 1, 2
+			$a_1$ & 0, 1 & 1, 0 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 1}; \\
+			$a_2$ & 1, 0 & 0, 1 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 2};
 		\end{tabular}
 	\end{center}
 	hierbei ergibt das wählen der Strategie $b_3$ für Spieler 1 immer die maximale Auszahlung und ist deshalb dominant. Außerdem haben wir auch schnell die Nash-Gleichgewichte gefunden.
@@ -410,7 +409,7 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 		\begin{tabular}{c|c c c}
 			& $b_1$ & $b_2$ & $b_3$ \\ \hline
 			$a_1$ & 0, 1 & 1, 0 & 1, 1 \\
-			$a_2$ & 1, 0 & 0, 1 & 1, 2
+			$a_2$ & 1, 0 & 0, 1 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 2};
 		\end{tabular}
 	\end{center}
 	Nun ist diese Strategie nur noch schwach dominant.
@@ -421,9 +420,7 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 \section{Mehrzieloptimierung}%
 \label{sec:Mehrzieloptimierung}
 
-$f \colon \R^{n} \rightarrow \R^{m}, X \subseteq \R^{n}$
-
-Löse
+Sei $f \colon \R^{n} \rightarrow \R^{m}$, eine Funktion und $X \subseteq \R^{n}$. Dann ist die Problemstellung der Mehrzieloptimierung
 \[
 	"\min\limits_{x}" f(x) \qquad \mit x \in X
 .\] 
@@ -431,8 +428,8 @@ Löse
 \begin{definition}
 	Ein Vektor $x^{*} \in X$ heißt \underline{Paretro-Gleichgewicht}, wenn es \underline{keinen} Vektor $\tilde{x} \in X$ mit
 	\begin{align*}
+	f_{i}(\tilde{x}) \leq f_{i}(x^{*}) \qquad
 	\forall i=1, \ldots, m \\
-	f_{i}(\tilde{x}) \leq f_{i}(x^{*})
 	\end{align*}
 	,wobei $"<"$ für mindestens ein $ i \in \{1, \ldots, m\}$.
 	Diese Definition kann auch auf Spiele $\Gamma = \{X_{i},f_{i}\}_{i=1}^{N}$ angewandt werden mit 
@@ -454,10 +451,9 @@ Löse
 \begin{proof}
 	Angenommen $\tilde{x} \in X$ ist kein Paretro-Gleichgewicht.
 	\[
-		\implies \exists x^{*} \in X \mit f_{i}(x^{*}) \leq f_{i}(\tilde{x}) \qquad \forall i=1, \ldots, N
-	.\] und $"<"$ für mindestens ein $i$
+		\implies \exists x^{*} \in X \mit f_{i}(\tilde{x}) \geq f_{i}(x^{*}) \qquad \forall i=1, \ldots, N
+	.\] und die Gleichung gilt mit $">"$ für mindestens ein $i$
 	\[
-		\implies \sum_{i=1}^{N}{f_{i}(x^{*})} < \sum_{i=1}^{N}{f_{i}(\tilde{x})}
-		% TODO widerspruchszeichen
-	.\] 
+		\implies \sum_{i=1}^{N}{f_{i}(\tilde{x})} > \sum_{i=1}^{N}{f_{i}(x^{*})} \qquad \lightning
+	\] 
 \end{proof}
