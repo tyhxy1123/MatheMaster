@@ -275,7 +275,7 @@ Als nächstes Betrachten wir noch einmal unsere drei Beispiele und untersuchen s
 		\\ \cline{3-4}
 		&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
 		&&schweigen &gestehen \\ \hline
-		\multicolumn{1}{ |c }{\multirow{2}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c }{\multirow{2.75}{*}{\color{blue} Spieler 2}}&
 		\multicolumn{1}{ |c| }{schweigen} & 2, 2 & 10, \cunderline{red}{1} \\ \cline{2-4}
 		\multicolumn{1}{ |c }{}&
 		\multicolumn{1}{ |c| }{gestehen} & \cunderline{blue}{1}, 10 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {\cunderline{blue}{5}, \cunderline{red}{5}}; \\ \hline
@@ -291,7 +291,7 @@ Als nächstes Betrachten wir noch einmal unsere drei Beispiele und untersuchen s
 		\\ \cline{3-4}
 		&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
 		&&A &B \\ \hline
-		\multicolumn{1}{ |c }{\multirow{2}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c }{\multirow{2.75}{*}{\color{blue} Spieler 2}}&
 		\multicolumn{1}{ |c| }{A} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {\cunderline{blue}{2}, \cunderline{red}{1}}; & 0, 0 \\ \cline{2-4}
 		\multicolumn{1}{ |c }{}&
 		\multicolumn{1}{ |c| }{B} & 0, 0 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {\cunderline{blue}{1}, \cunderline{red}{2}}; \\ \hline
@@ -441,6 +441,59 @@ Sei $f \colon \R^{n} \rightarrow \R^{m}$, eine Funktion und $X \subseteq \R^{n}$
 	\end{pmatrix}
 	.\]
 \end{definition}
+
+\begin{figure}[ht!]
+\centering
+\begin{subfigure}[b]{\textwidth}
+\begin{center}
+	\begin{tabular}{cc|c|c|c|}
+		\\ \cline{3-5}
+		&&\multicolumn{3}{c|}{{\color{red} Spieler 1}} \\ \cline{3-5}
+		&&Schere &Stein & Papier \\ \hline
+		\multicolumn{1}{ |c }{\multirow{4.5}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c| }{Schere} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {0, 0}; & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {-1, +1}; & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {+1, -1}; \\ \cline{2-5}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c| }{Stein} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {+1, -1}; & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {0, 0}; & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {-1, +1}; \\ \cline{2-5}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c|}{Papier} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {-1, +1}; & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {+1, -1}; & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {0, 0}; \\ \hline
+	\end{tabular}
+\caption{Paretro-Gleichgewichte in Schere-Stein-Papier}
+\label{fig:Bsp1NashGG}
+\end{center}
+\end{subfigure}
+
+\begin{subfigure}[b]{\textwidth}
+\begin{center}
+	\begin{tabular}{cc|c|c|}
+		\\ \cline{3-4}
+		&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
+		&&schweigen &gestehen \\ \hline
+		\multicolumn{1}{ |c }{\multirow{2.75}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c| }{schweigen} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {2, 2}; & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {10, 1}; \\ \cline{2-4}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c| }{gestehen} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 10}; & 5, 5 \\ \hline
+	\end{tabular}
+\caption{Paretro-Gleichgewichte im Gefangenendilemma}
+\label{fig:Bsp2NashGG}
+\end{center}
+\end{subfigure}
+
+\begin{subfigure}[b]{\textwidth}
+\begin{center}
+	\begin{tabular}{cc|c|c|}
+		\\ \cline{3-4}
+		&&\multicolumn{2}{c|}{{\color{red} Spieler 1}} \\ \cline{3-4}
+		&&A &B \\ \hline
+		\multicolumn{1}{ |c }{\multirow{2.75}{*}{\color{blue} Spieler 2}}&
+		\multicolumn{1}{ |c| }{A} & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {2, 1}; & 0, 0 \\ \cline{2-4}
+		\multicolumn{1}{ |c }{}&
+		\multicolumn{1}{ |c| }{B} & 0, 0 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 2}; \\ \hline
+	\end{tabular}
+\caption{Paretro-Gleichgewichte im Kampf der Geschlechter}
+\label{fig:Bsp3NashGG}
+\end{center}
+\end{subfigure}
+\end{figure}
 
 \begin{satz}
 	Sei $\Gamma = \{X_{i}, f_{i}\}_{i=1}^{N}$ ein
