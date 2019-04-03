@@ -16,22 +16,23 @@ X \arrow[ru, "f"] \arrow[rr, "fg"] &                   & Z
 $$
 
 \section{Mathematische Vorüberlegungen}
+Folgende Grundlagen sollten bekannt sein:
 Kenntnis der Mengensprache
 \begin{align*}
-	a\in B,\qquad f\colon A\to B\\
-	\cap,\cup,A\setminus B\\
-	A\times B=\set[\big]{(a,b)\mid a\in A,b\in B}
+	&a\in B,\qquad f\colon A\to B\\
+	&\cap,\cup,A\setminus B\\
+	&A\times B=\set[\big]{(a,b)\mid a\in A,b\in B}
 \end{align*}
 Eine (binäre) Relation ist $\rho\subseteq A\times B$.
 Man sollte außerdem kennen:
 \begin{itemize}
 	\item Äquivalenzrelation (reflexiv, transitiv, symmetrisch)
-	\item Ordnungsrelation %TODO
+	\item Ordnungsrelation (reflexiv, transitiv, antisymmetrisch)
 	\item einige algebraische Strukturen
 \end{itemize}
 
 \section{Probleme mit der Mengenlehre}
-Naiver (unreflektierter) Umgang mit Mengen führt zu Widersprüchen (Antinomie Paradoxon), z.B.
+Naiver (unreflektierter) Umgang mit Mengen führt zu Widersprüchen (Antinomie Paradoxon), z.B.:
 \begin{align*}
 	M:=\set[\big]{X\mid X\text{ Menge und }X\not\in X}
 \end{align*}
@@ -39,7 +40,7 @@ ist die Menge aller Mengen, die sich selbst nicht als Element enthalten.\\
 Gilt $M\in M$?
 Nein, denn für $X=M$ folgte $M\not\in M$.\\
 Gilt $M\not\in M$? Nein, da dann $M$ ein solches $X\in M$ wäre, d.h. $M\in M$.
-Widerspruch.\\
+Widerspruch.\nl
 Ein möglicher Ausweg ist: alles heißt \define{Klasse}, aber Unterteilung in
 \begin{itemize}
 	\item \define{Mengen} ("kleine Mengen"): diese dürfen Elemente von anderen Klassen sein
@@ -93,7 +94,7 @@ Anderer Ausweg: \undefine{Universa}
 	\end{align*}
 \end{definition}
 
-Für diese Vorlesung: Wir stellen uns auf den naiven Standpunkt
+In dieser Vorlesung machen wir uns allerdings keine weiteren tiefen Gedanken über Mengentheorie und deren Probleme.
+Stattdessen stellen wir uns auf den naiven Standpunkt
 "es wird schon gutgehen".
-
 
