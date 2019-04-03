@@ -33,6 +33,7 @@
 			}
 		}
 	}
+	% if title
 	{
 		\mdfsetup{
 			frametitle={
@@ -42,6 +43,7 @@
 			}
 		}
 	}
+	% defaults
 	\mdfsetup{
 		innertopmargin=10pt,
 		linecolor=blue!20,
@@ -50,9 +52,8 @@
 		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 	}
 
-
 	% code for environment name
-	\begin{mdframed}[]\relax}{
-	\end{mdframed}
+	\begin{mdframed}[]\relax\label{#2}}
+	{\end{mdframed}
 }
 
