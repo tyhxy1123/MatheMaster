@@ -70,7 +70,7 @@ The basic idea is:
 			u'(x) \approx \frac{u(x+h)-u(x)}{h} = \delta^{+}u(x) \qquad \text{forward difference}
 		.\] 
 		For functions $u \in C^{4}$ in a neighbourhood of $x$, we get by Taylor's formula:
-		\begin{equation} \label{eq:eq_3} \tag{\ast}
+		\begin{equation} \label{eq:eq_3} \tag{$\ast$}
 			u(x+h) = u(x) + h u'(x) + \frac{h^{2}}{2} u''(x) + \frac{h^{3}}{6}u'''(x) + \frac{h^{4}}{24}u''''(\xi_{+})	
 		\end{equation}
 		for some $\xi_{+} \in (x, x+h)$. Rearranging of the equation gives
@@ -78,7 +78,7 @@ The basic idea is:
 			u'(x) = \frac{u(x+h)-u(x)}{h}-\frac{h}{2}u''(x) + \O(h^{2})
 		.\] 
 		Now we plug this in in \href{eq:eq_4}{($\ast$)} and replace $h$ by $-h$ to get
-		\begin{equation} \label{eq:eq_4} \tag{\ast \ast}
+		\begin{equation} \label{eq:eq_4} \tag{$\ast \ast$}
 			u(x-h) = u(x) - hu'(x) + \frac{h^{2}}{2}u''(x)- \frac{h^{3}}{6} u'''(x) + \frac{h^{4}}{24}u''''(\xi _{-})
 		\end{equation}
 		For some appropriate $\xi _{-} \in (x-h, x)$.
@@ -150,7 +150,7 @@ Let $\Omega =(0, X_{E}) \times (0,Y_{E})$ and subdivide each interval into $N_{x
 h_{x} = \frac{x_{E}}{N_{x}+1}, \quad h_{y}= \frac{y_{E}}{N_{y}+1}
 .\] 
 
-\input{tikz/chapter0/fd_on_grid.tex}
+%\input{tikz/chapter0/fd_on_grid.tex}
 Each node (vertex) in this grid is assigned an index tuple
 \[
 	(x,y) = (ih_{x}, jh_{y}) \stackeq{\wedge} (i,j)
