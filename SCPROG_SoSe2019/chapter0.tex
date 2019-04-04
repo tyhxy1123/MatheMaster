@@ -6,22 +6,28 @@
 
 \chapter{Einführung}
 Alle Vorlesungsmaterialien findest du hier:\\
-\url{https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/20069122089}
+\link{https://bildungsportal.sachsen.de/opal/auth/RepositoryEntry/20069122089}\nl
+\textbf{Hinweis:} Da viele Vorlesungsmaterialen online stehen werde ich diese hier nicht nocheinmal einpflegen.
+Diese Mitschrift bildet eher eine Ergänzung zu den online liegenden Dateien.
 
 \begin{itemize}
 	\item Dateiname sollte immer dem Klassennamen entsprechen, z.B. \code{MyClass.java}
 	\item Kompilieren: \code{javac MyClass.java}\\
 	Der Compiler erzeugt dann die \define{Bytecode}-Datei \code{MyClass.class}
-	\item Die Bytecode-Dateien kann man dann in der \undefine{Java virtual machine (JVM)} ausführen via \code{java MyClass} (Dateiendung nicht notwendig)
+	\item Die Bytecode-Dateien kann man dann in der \undefine{Java virtual machine (JVM)} ausführen via \code{java MyClass} (Dateiendung weglassen (!))
 	\item Man kann nur class-Dateien ausführen, die die \code{main}-Hauptroutine enthalten.
 	Diese Routine ist der Einstiegspunkt des Programms.
-	\item Mit \code{arg[0]},...,\code{arg[42]} kann man auf die Kommandozeilenargumente zugreifen.
+	\item Mit \code{arg[0]},$\ldots$,\code{arg[42]} kann man auf die Kommandozeilenargumente zugreifen.
 	\item Einzeilige Kommentare: \code{// comment}. Mehrzeilige Kommentare: \code{/*$\ldots$*/}
 	\item String-Konkatenation mit \code{+}
 	\item Java ist Case-sensitiv.
 	\item Alle Klassen erben von \code{Object}. 
 	Es gibt eine Vererbungshierarchie.
 	\item \define{Singleton class}: Man kann maximal eine Instanz erzeugen.
+	\item Java hat keine expliziten \undefine{Destruktoren}, sondern einen \undefine{Garbage Collector}.
+	\item In Java gibt es keine Pointer.
+	\item Nützliche Tools (z.B. \code{IOTools.java}):
+	\link{https://grundkurs-java.de/}
 \end{itemize}
 
 %\inputminted{java}{code/MyFirstDate.java}
