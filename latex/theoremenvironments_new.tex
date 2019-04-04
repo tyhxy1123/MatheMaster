@@ -1,0 +1,59 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% THEOREM-ENVIRONMENTS
+
+% Quelle für die Gestaltung der folgenden environments ist:
+%
+% https://texblog.org/2015/09/30/fancy-boxes-for-theorem-lemma-and-proof-with-mdframed/
+%
+
+% importing the package
+\usepackage[framemethod=TikZ]{mdframed}
+
+% setting counters
+\newcounter{theocount}[section]\setcounter{theocount}{0}
+\renewcommand{\thetheo}{\arabic{section}.\arabic{theocount}}
+
+\newenvironment{theo}[2][]{
+	% code for counter
+	\refstepcounter{theocount}
+
+	% box design code
+	\ifstrempty{#1}
+	% if no title
+	{
+		\mdfsetup{
+			frametitle={
+				\tikz[baseline=(current bonding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=blue!10]
+				{\strut Theorem~\thetheo};
+			}
+		}
+	}
+	% if title
+	{
+		\mdfsetup{
+			frametitle={
+				\tikz[baseline=(current bonding box.east),outer sep=0pt]
+				\node[anchor=east,rectangle,fill=blue!10]
+				{\strut Theorem~\thetheo:~#1};
+			}
+		}
+	}
+	% defaults
+	\mdfsetup{
+		innertopmargin=10pt,
+		linecolor=blue!20,
+		linewidth=2pt,
+		topline=true,
+		frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+	}
+
+	% code for environment name
+	\begin{mdframed}[]\relax\label{#2}}
+	{\end{mdframed}
+}
+
