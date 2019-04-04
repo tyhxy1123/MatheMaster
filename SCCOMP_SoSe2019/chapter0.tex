@@ -12,7 +12,7 @@
 \begin{equation}\label{eq:eq_1}
 	\frac{\partial^2 u}{\partial x_1^2} + \frac{\partial^2 u}{\partial x_2^2} =: \laplace u = f(x) 
 \end{equation}
-with $\Omega \subspace \R^2$ bounded, open domain and 
+with $\Omega \subset \R^2$ bounded, open domain and 
 $ x =
 \begin{pmatrix}
 x_1 \\
@@ -31,9 +31,9 @@ If \begin{itemize}
 	\item $ \alpha \neq 0$, we get a Neumann problem.
 	\item $\alpha = 0 \text{ and } \beta = 1$, we have
 		\begin{enumerate}
-			\item Since $u = \text{const}$ solves \href{eq_1}{} % TODO FIX THIS
-				for $f=0 \text{ and } g = 0$, the solution to \href{eq_1}{} is unique up to a constant
-			\item Integrating \href{eq_1}{} over $\Omega$ and Green's formula yield
+			\item Since $u = \text{const}$ solves \href{eq:eq_1}{(1)} % TODO FIX THIS
+				for $f=0 \text{ and } g = 0$, the solution to \href{eq:eq_1}{(1)} is unique up to a constant
+			\item Integrating \href{eq:eq_1}{(1)} over $\Omega$ and Green's formula yield
 				\[
 				- \int_{\partial\Omega} \frac{\partial u}{\partial n} = - \int_{\Omega} \laplace u = \int_{\Omega} f
 				.\] 
@@ -44,7 +44,7 @@ If \begin{itemize}
 		\end{enumerate}
 \end{itemize} 
 
-Another variant of \href{eq_1}{} is
+Another variant of \href{eq:eq_1}{(1)} is
 \[
 	Lu := \nabla(A\nabla u)
 .\] 
