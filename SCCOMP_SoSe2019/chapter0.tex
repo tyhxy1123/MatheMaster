@@ -19,7 +19,7 @@ x_1 \\
 x_2
 \end{pmatrix}
 \in \Omega$
-\input{tikz/chapter0/example_omega.tex}
+%\input{tikz/chapter0/example_omega.tex}
 n outer normal on $\partial \Omega$
 with boundary conditions
 \[
@@ -246,23 +246,24 @@ i \in  \{0, N_{x}+1\} \quad\text{ or }\quad j \in  \{0,N_{y}+1\}
 And so $u_{i,j} = g_{i,j}$ for $(i,j)$ a boundary node.
 
 The boundary condition can be realized by eliminating rows/columns in the matrix, i.e. let $r=l(i,j)$ a boundary index
+
 \begin{align*}
 	f &\leftarrow f-A_{\ast,r}\cdot g_{i,j} \\
 	A_{r,\ast} &\leftarrow \delta_{r,s} \\
 	A_{*,r} &\leftarrow \delta_{r,s} \\
 	f_{r} &\leftarrow g_{i,j}
 \end{align*}
+
 \[
 A\cdot \underline{u} = \underline{f}  
 .\] 
 
 \[
 A = \begin{pmatrix}
-	X& &X &0&X& &X \\
-	 &X&  &\VDOTS& &X& \\
-	X& &X &0&X& &X
-\end{pmatrix}
-
+	X& &X&0&X& &X \\
+	 &X& &\vdots& &X&  \\
+	X& &X&0&X& &X
+	\end{pmatrix}
 .\] 
 
 \section{Structure of the matrix}%
@@ -300,7 +301,6 @@ A = \begin{pmatrix}
 				B^{T} & D_{b}
 			\end{bmatrix}
 			\quad \text{with}\quad D_{\frac{r}{b}}=-\frac{1}{h^{2}}I_{\frac{r}{b}}
-		
 		.\] 
 		B contains the values from the computing of the nodes
 \end{enumerate}
