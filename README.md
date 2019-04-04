@@ -9,7 +9,7 @@ Sommersemester/*summer term* 2019:
 - MMAM (Lineare Modelle) bei Prof. Ferger (deutsch)
 - MMAM (Spieltheorie) bei Prof. Schwartz (deutsch)
 - NLANA bei Prof. Schuricht (deutsch)
-- PDENMW bei Prof. Sander (deutsch)
+- PDENMW bei Prof. Sander (*English*)
 - SCCOMP bei Prof. Voigt & Dr.  Salvalaglio (deutsch)
 - SCPROG bei Prof. Walter (deutsch)
 - STOCAL bei Prof. Schilling (deutsch)
