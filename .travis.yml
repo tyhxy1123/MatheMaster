@@ -45,8 +45,8 @@ deploy:
   - ./bin/STOCHP.pdf
   name: >-
       Mitschriften zum Ende der
-      $(python3 -c 'from datetime import date as d; import math; print(math.ceil((d.today() - d(2018, 10, 7)).days / 7))').
-      Woche des WS 2018
+      $(python3 -c 'from datetime import date as d; import math; print(math.ceil((d.today() - d(2019, 4, 1)).days / 7))').
+      Woche des WS 2019
   skip_cleanup: true
   on:
     tags: true
