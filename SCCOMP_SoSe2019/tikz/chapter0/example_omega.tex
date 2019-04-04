@@ -1,0 +1,26 @@
+\begin{figure}[H]
+	\center
+\begin{tikzpicture}[scale=3]
+		
+		\def \xone{0};
+		\def \yone{0};		
+		% draw coordinate system
+		\coordinate (A) at (\xone,\yone);
+		
+		\draw[\to] (A) -- ++(0,1);
+		\draw[\to] (A) -- ++(1,0);
+		\draw (A) ++(0.9,0.5) -- ++(0.5,0);
+		% dont know the size of the following circle
+		% furthermore is a circle easier to draw than another object
+        \draw (A) ++(0.5,0.5) circle (0.4cm);
+        
+        
+        \fill[black,font=\footnotesize] (A)  ++(1,0) node[under] {$x_{1}$}
+										(A)  ++(0,1) node[left] {$x_{2}$}
+										(A)  ++(1.4,0.5) node[lower] {$n$};
+                                        
+\end{tikzpicture}
+
+\caption{example $\Omega$,  $n$   outer normal on $\partial \Omega$}
+\label{first picture}
+\end{figure}

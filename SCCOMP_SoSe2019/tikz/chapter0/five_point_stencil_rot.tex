@@ -1,0 +1,29 @@
+\tikzset
+{
+	treenode/.style = {circle, draw=black!60, fill=white!40, very thick, minimum size=6mm}
+}
+
+\begin{figure}[H]
+	\center
+
+	\begin{tikzpicture}%[level/.style={sibling distance = 2cm/#1, level distance = 3cm}]
+	
+	\def \xone{0};
+	\def \yone{0};
+	
+	\draw (root) ++ (-1,-1) -- ++(2,2);
+	\draw (root) ++ (1,-1) -- ++(-2,2);
+
+	% draw nodes
+	\coordinate (root) at (\xone ,\yone);
+	\node [treenode] at (root) {-4};
+	\node [treenode] at (root) ++ (-1,-1) {1};
+	\node [treenode] at (root) ++ (-1,1) {1};
+	\node [treenode] at (root) ++ (1,1) {1};
+	\node [treenode] at (root) ++ (1,-1) {1};
+			
+	\end{tikzpicture}
+\caption{rotated 5-point stencil (second order accurate)}
+\label{five_point_rot}
+	
+\end{figure}
