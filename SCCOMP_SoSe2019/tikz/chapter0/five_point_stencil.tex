@@ -11,11 +11,11 @@
 	\def \xone{0};
 	\def \yone{0};
 	
+	\coordinate (root) at (\xone ,\yone);
 	\draw (root) ++ (-1,0) -- ++(2,0);
 	\draw (root) ++ (0,-1) -- ++(0,2);
 
 	%draw nodes
-	\coordinate (root) at (\xone ,\yone);
 	\node [treenode] at (root) {-4};
 	\node [treenode] at (root) ++ (-1,0) {1};
 	\node [treenode] at (root) ++ (1,0) {1};
