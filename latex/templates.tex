@@ -60,3 +60,22 @@
 	\setitemize{leftmargin=*} % itemize-Umbegungen werden nicht eingerückt
 	\setkomafont{section}{\large}
 }
+
+\newcommand{\TemplateDozentSagtNein}[1]{
+	% Argument 1: Name der Vorlesung
+	
+	\begin{center}
+		\color{red}
+		{\Huge \textbf{ERROR 404}}\nl
+	\end{center}
+
+	{\Large 
+	Die Mitschrift zur Vorlesung 
+	\textbf{#1} ist nicht öffentlich verfügbar.
+	Wir können dir diese jedoch per E-Mail zukommen lassen.
+	Schreibe uns dafür einfach eine kurze Mail:
+	\begin{center}
+		\email{willi.sontopski@mailbox.tu-dresden.de}
+	\end{center}
+	}
+}

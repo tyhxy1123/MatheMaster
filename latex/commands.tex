@@ -45,6 +45,7 @@
 \newcommand{\AND}{\wedge}                % logisches Und
 \DeclareMathOperator*{\argmax}{arg\,max} % argmax
 \DeclareMathOperator*{\argmin}{arg\,min} % argmin
+\DeclareMathOperator{\Aut}{Aut}          % Automorphismen
 \newcommand{\bigcupdot}{
 	\mathop{\vphantom{\bigcup}\mathpalette\setbigcupdot\cdot}\displaylimits
 }                                        % Disjunkte Vereinigung
@@ -142,3 +143,6 @@
 
 % Warnings and errors
 \newcommand{\throwWarning}[1]{\PackageWarning{42}{#1}} % Erzeugt LaTeX-Warnung mit Message = #1 
+
+%Special
+\newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}} % Hyperlink für E-Mails
