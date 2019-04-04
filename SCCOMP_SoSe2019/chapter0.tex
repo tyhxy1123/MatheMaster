@@ -28,7 +28,7 @@ with boundary conditions
 
 If \begin{itemize}
 	\item $ \beta = 0$, we get a Dirichlet problem.
-	\item $ \alpha \neq 0$, we get a Neumann problem.
+	\item $ \alpha = 0$, we get a Neumann problem.
 	\item $\alpha = 0 \text{ and } \beta = 1$, we have
 		\begin{enumerate}
 			\item Since $u = \text{const}$ solves \href{eq:eq_1}{(1)} % TODO FIX THIS
@@ -67,13 +67,13 @@ The basic idea is:
 \begin{itemize}
 	\item \underline{(1D-case):} 
 		\[
-			u'(x) \approx \frac{u(x+h)-u(x)}{h} = \delta^{+}u(x) \qquad \text{forward difference}
+			u'(x) \approx \frac{u(x+h)-u(x)}{h} = \delta^{+}u(x) \qquad \text{(forward difference)}
 		.\] 
 		For functions $u \in C^{4}$ in a neighbourhood of $x$, we get by Taylor's formula:
 		\begin{equation} \label{eq:eq_3} \tag{$\ast$}
 			u(x+h) = u(x) + h u'(x) + \frac{h^{2}}{2} u''(x) + \frac{h^{3}}{6}u'''(x) + \frac{h^{4}}{24}u''''(\xi_{+})	
 		\end{equation}
-		for some $\xi_{+} \in (x, x+h)$. Rearranging of the equation gives
+		for some $\xi_{+} \in (x, x+h)$. Rearranging the equation gives
 		\[
 			u'(x) = \frac{u(x+h)-u(x)}{h}-\frac{h}{2}u''(x) + \O(h^{2})
 		.\] 
@@ -91,16 +91,16 @@ The basic idea is:
 		
 		Let
 		\[
-			u'(x) \approx \frac{u(x)-u(x-h)}{h} = \delta^{-}u(x) \qquad \text{backward difference}
+			u'(x) \approx \frac{u(x)-u(x-h)}{h} = \delta^{-}u(x) \qquad \text{(backward difference)}
 		.\] Then $u''(x) \approx \delta^{-}\delta^{+}u(x)$.
 
 		For the elliptic operator $L:=\partial_{x} \Big(a(x)\partial_{x}\Big)$ we get a second order accurate formula by evaluating $a(x)$ inside the intervals $(x-h, x)$ and $(x, x+h)$
 		\begin{align*}
 			\partial_{x}(a(x) \partial_{x}u) &=
 			\delta^{+}\Big(a(x- \frac{h}{2}) \delta^{-} u\Big) + \O(h^{2}) \\
-											 &\approx \frac{a(x+\frac{h}{2})\Big(u(x+h)-u(x))-a(x-\frac{h}{2})(u(x)-u(x-h)\Big)}{h^{2}}
+											 &\approx \frac{a(x+\frac{h}{2})\Big(u(x+h)-u(x)\Big)-a(x-\frac{h}{2})\Big(u(x)-u(x-h)\Big)}{h^{2}}
 		\end{align*}
-		with $a(x \pm \frac{h}{2})$ wither evaluated directly or by the average
+		with $a(x \pm \frac{h}{2})$ either evaluated directly or by the average
 		\[
 			a(x \pm \frac{h}{2}) \approx \frac{1}{2}\Big(a(x \pm h) - a(x)\Big)
 		.\] 
@@ -112,7 +112,7 @@ The basic idea is:
 		.\] 
 		With (possibly) different step width $h$ in each coordinate direction we get
 		\begin{align*}
-			\laplace u(x) &= \frac{u(x_1 + h_1, x_2) - 2u(x_1, x_2) + u(x_1 -h_1, x_2)}{h_1^2}\\
+			\laplace u(x) &\approx \frac{u(x_1 + h_1, x_2) - 2u(x_1, x_2) + u(x_1 -h_1, x_2)}{h_1^2}\\
 						  &+ \frac{u(x_1, x_2 + h_2) - 2u(x_1, x_2) + u(x_1, x_2 -h_2)}{h_2^2}
 		\end{align*}
 		but for $h_1 = h_2 = h$ we get
@@ -131,7 +131,7 @@ The basic idea is:
 		\begin{itemize}
 			\item rotated 5-point-stencil, $2^{\text{nd}}$ order accurate
 				\input{tikz/chapter0/five_point_stencil_rot.tex}
-			\item 9-point-stencil,  $2^{\text{nd}}$ order accurate and even $6^{\text{th}}$ order accurate for harmonic funtions
+			\item 9-point-stencil,  $2^{\text{nd}}$ order accurate and even $6^{\text{th}}$ order accurate for harmonic functions
 				\input{tikz/chapter0/nine_point_stencil.tex}
 		\end{itemize}
 \end{itemize}
@@ -163,7 +163,7 @@ We denote the value at the node $(i,j)$ by
 .\] 
 This results in the discrete Laplace operator $(h=h_{x}=h_{y})$
 \[
-	\laplace_{h}^{(5)}u_{i,j}=\frac{1}{2}(u_{i+1,j}+u_{i-1,j} +u_{i,j+1} - 4u_{i,j})
+	\laplace_{h}^{(5)}u_{i,j}=\frac{1}{2}(u_{i+1,j}+u_{i-1,j} +u_{i,j+1}+ u_{i,j-1} - 4u_{i,j})
 .\]
 
 \section{Node ordering}%
@@ -200,7 +200,7 @@ Examples:
 
 		% TODO Plot 3
 		
-		This ordering scheme utilizes the fact, that data which is "located near in memory respectively" can be accessed much quicker and fastens the operations used on the matrices.
+		This ordering scheme utilizes the fact, that data which is "located in a neighbourhood in memory respectively" can be accessed much quicker and thus fastens the operations used on the matrices.
 
 	\item Wave front orderings (diagonal ordering)
 
@@ -243,7 +243,7 @@ A node is boundary node if
 i \in  \{0, N_{x}+1\} \quad\text{ or }\quad j \in  \{0,N_{y}+1\}
 .\] 
 
-And so $u_{i,j} = g_{i,j}$ for $(i,j)$ a boundary node.
+And so $u_{i,j} = g_{i,j}$ if $(i,j)$ is a boundary node.
 
 The boundary condition can be realized by eliminating rows/columns in the matrix, i.e. let $r=l(i,j)$ a boundary index
 
@@ -257,14 +257,14 @@ The boundary condition can be realized by eliminating rows/columns in the matrix
 \[
 A\cdot \underline{u} = \underline{f}  
 .\] 
-
-\[
-A = \begin{pmatrix}
-	X& &X&0&X& &X \\
-	 &X& &\vdots& &X&  \\
-	X& &X&0&X& &X
-	\end{pmatrix}
-.\] 
+%TODO die Matrix sah anders aus.
+%\[
+%A = \begin{pmatrix}
+%	X& &X&0&X& &X \\
+%	 &X& &\vdots& &X&  \\
+%	X& &X&0&X& &X
+%	\end{pmatrix}
+%.\] 
 
 \section{Structure of the matrix}%
 \label{sec:Structure of the matrix}
@@ -300,9 +300,9 @@ A = \begin{pmatrix}
 				D_{r} & B \\
 				B^{T} & D_{b}
 			\end{bmatrix}
-			\quad \text{with}\quad D_{\frac{r}{b}}=-\frac{1}{h^{2}}I_{\frac{r}{b}}
+			\quad \text{with}\quad D_{r/b}=-\frac{1}{h^{2}}I_{r/b}
 		.\] 
-		B contains the values from the computing of the nodes
+		B contains the values from the coupling of the nodes
 \end{enumerate}
 
 Variation of the PDE:
@@ -326,7 +326,7 @@ The corresponding FD discretization reads:
 
 \begin{definition}
 \label{thm:typeOfMatrices}
-	A matrix $A \in  \R^{n \times m}$ is called
+	A matrix $A \in  \R^{n \times n}$ is called
 	\begin{itemize}
 		\item \underline{Z-matrix}, if $a_{ij}\leq 0\quad \forall i\neq j$
 		\item \underline{symmetric positive definite}, if $A=A^{T}$ and $A>0$, i.e. $u^{T}Au>0\quad\forall u \in \R^{n} \setminus 0$
