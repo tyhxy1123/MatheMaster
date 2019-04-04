@@ -1,29 +1,30 @@
-\tikzset
-{
-	treenode/.style = {circle, draw=black!60, fill=white!40, very thick, minimum size=6mm}
-}
-
 \begin{figure}[H]
 	\center
 
-	\begin{tikzpicture}%[level/.style={sibling distance = 2cm/#1, level distance = 3cm}]
-	
+	\begin{tikzpicture}
+
 	\def \xone{0};
 	\def \yone{0};
-	
-	\draw (root) ++ (-1,-1) -- ++(2,2);
-	\draw (root) ++ (1,-1) -- ++(-2,2);
+	\def \h{1.2}	
 
-	% draw nodes
-	\coordinate (root) at (\xone ,\yone);
-	\node [treenode] at (root) {-4};
-	\node [treenode] at (root) ++ (-1,-1) {1};
-	\node [treenode] at (root) ++ (-1,1) {1};
-	\node [treenode] at (root) ++ (1,1) {1};
-	\node [treenode] at (root) ++ (1,-1) {1};
-			
+	\coordinate (M) at (\xone ,\yone);
+	\coordinate (LU) at (\xone-\h ,\yone-\h);
+	\coordinate (RU) at (\xone+\h ,\yone-\h);
+	\coordinate (LO) at (\xone-\h ,\yone+\h);
+	\coordinate (RO) at (\xone+\h ,\yone+\h);
+	\draw (LU) -- (RO);
+	\draw (RU) -- (LO);
+
+	%draw nodes
+	\node[circle,draw=black!60, fill=white!40] at (M) {-4};
+	\node[circle,draw=black!60, fill=white!40] at (LO) {1};
+	\node[circle,draw=black!60, fill=white!40] at (RO) {1};
+	\node[circle,draw=black!60, fill=white!40] at (LU) {1};
+	\node[circle,draw=black!60, fill=white!40] at (RU) {1};
+
+		
 	\end{tikzpicture}
-\caption{rotated 5-point stencil (second order accurate)}
+\caption{rotated 5-point stencil}
 \label{five_point_rot}
 	
 \end{figure}

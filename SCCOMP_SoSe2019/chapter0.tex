@@ -19,7 +19,7 @@ x_1 \\
 x_2
 \end{pmatrix}
 \in \Omega$
-%\input{tikz/chapter0/example_omega.tex}
+\input{tikz/chapter0/example_omega.tex}
 n outer normal on $\partial \Omega$
 with boundary conditions
 \[
@@ -125,14 +125,14 @@ The basic idea is:
 			\laplace u(x) \approx \sum_{i=1}^{2}{\delta_{i}^{+}\delta_{i}^{-}u(x)}=:\laplace_{h}^{(5)}u(x)
 		.\] 
 		The formula can be sketched as a stencil, the so called " 5-point stencil "
-		%\input{tikz/chapter0/five_point_stencil.tex}
+		\input{tikz/chapter0/five_point_stencil.tex}
 		where the values in the nodes correspond to the coefficients in the formula.
 		Other possible stencils are:
 		\begin{itemize}
-			\item 5-point-stencil, $2^{\text{nd}}$ order accurate
-				%\input{tikz/chapter0/five_point_stencil_rot.tex}
+			\item rotated 5-point-stencil, $2^{\text{nd}}$ order accurate
+				\input{tikz/chapter0/five_point_stencil_rot.tex}
 			\item 9-point-stencil,  $2^{\text{nd}}$ order accurate and even $6^{\text{th}}$ order accurate for harmonic funtions
-				%\input{tikz/chapter0/nine_point_stencil.tex}
+				\input{tikz/chapter0/nine_point_stencil.tex}
 		\end{itemize}
 \end{itemize}
 
@@ -150,7 +150,7 @@ Let $\Omega =(0, X_{E}) \times (0,Y_{E})$ and subdivide each interval into $N_{x
 h_{x} = \frac{x_{E}}{N_{x}+1}, \quad h_{y}= \frac{y_{E}}{N_{y}+1}
 .\] 
 
-%\input{tikz/chapter0/fd_on_grid.tex}
+\input{tikz/chapter0/fd_on_grid.tex}
 Each node (vertex) in this grid is assigned an index tuple
 \[
 	(x,y) = (ih_{x}, jh_{y}) \stackeq{\wedge} (i,j)

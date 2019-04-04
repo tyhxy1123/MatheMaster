@@ -1,7 +1,7 @@
-\tikzset
-{
-	treenode/.style = {circle, draw=black!60, fill=white!40, very thick, minimum size=6mm}
-}
+%\tikzset
+%{
+%	treenode/.style = {circle, draw=black!60, fill=white!40, very thick, minimum size=6mm}
+%}
 
 \begin{figure}[H]
 	\center
@@ -10,17 +10,22 @@
 	
 	\def \xone{0};
 	\def \yone{0};
-	
-	\coordinate (root) at (\xone ,\yone);
-	\draw (root) ++ (-1,0) -- ++(2,0);
-	\draw (root) ++ (0,-1) -- ++(0,2);
+	\def \h{1.5}	
+
+	\coordinate (M) at (\xone ,\yone);
+	\coordinate (L) at (\xone-\h ,\yone);
+	\coordinate (R) at (\xone+\h ,\yone);
+	\coordinate (O) at (\xone ,\yone+\h);
+	\coordinate (U) at (\xone ,\yone-\h);
+	\draw (L) -- (R);
+	\draw (U) -- (O);
 
 	%draw nodes
-	\node [treenode] at (root) {-4};
-	\node [treenode] at (root) ++ (-1,0) {1};
-	\node [treenode] at (root) ++ (1,0) {1};
-	\node [treenode] at (root) ++ (0,1) {1};
-	\node [treenode] at (root) ++ (0,-1) {1};
+	\node[circle,draw=black!60, fill=white!40] at (M) {-4};
+	\node[circle,draw=black!60, fill=white!40] at (L) {1};
+	\node[circle,draw=black!60, fill=white!40] at (R) {1};
+	\node[circle,draw=black!60, fill=white!40] at (O) {1};
+	\node[circle,draw=black!60, fill=white!40] at (U) {1};
 
 		
 	\end{tikzpicture}
