@@ -1,4 +1,4 @@
-% !TEX root = NLANA.tex
+% !TEX root = SCCOMP.tex
 % This work is licensed under the Creative Commons
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
@@ -18,9 +18,9 @@ $ x =
 x_1 \\
 x_2
 \end{pmatrix}
-\in \Omega
-$
-HIER SKIZZE + n outer normal on $\partial \Omega$
+\in \Omega$
+\input{tikz/chapter0/example_omega.tex}
+n outer normal on $\partial \Omega$
 with boundary conditions
 \[
 \alpha u + \beta \frac{\partial u}{\partial n} = g \qquad \text{ on } \partial \Omega
@@ -73,7 +73,7 @@ The basic idea is
 		.\] 
 		With (possibly) different step width $h$ in each coordinate direction we get
 		\begin{align*}
-			\laplace u(x) &= \frac{u(x_1 + h_1, x_2) - 2u(x_1, x_2) + u(x_1 -h_1, x_2)}{h_1^2}
+			\laplace u(x) &= \frac{u(x_1 + h_1, x_2) - 2u(x_1, x_2) + u(x_1 -h_1, x_2)}{h_1^2}\\
 						  &+ \frac{u(x_1, x_2 + h_2) - 2u(x_1, x_2) + u(x_1, x_2 -h_2)}{h_2^2}
 		\end{align*}
 		but for $h_1 = h_2 = h$ we get
@@ -81,28 +81,26 @@ The basic idea is
 			\laplace u(x) \approx \frac{1}{h^2}\left[u(x_1+ h, x_2) + u(x_1-h, x_2) + u(x_1, x_2 -h) + u(x_1, x_2 -h) -4u(x_1, x_2)\right]
 		.\] 
 		Denoting the forward/backward difference formulas
-		% TODO stimmt das letzt Wort?
 		in the direction i by $\delta_{i}^{+}$ and $\delta_{i}^{-}$ we can write
 		\[
 			\laplace u(x) \approx \sum_{i=1}^{2}{\delta_{i}^{+}\delta_{i}^{-}u(x)}=:\laplace_{h}^{(5)}u(x)
 		.\] 
 		The formula can be sketched as a stencil, the so called " 5-point stencil "
-		% TODO hier Skizze
+		%\input{tikz/chapter0/five_point_stencil.tex}
 		where the values in the nodes correspond to the coefficients in the formula.
 		Other possible stencils are:
 		\begin{itemize}
 			\item 5-point-stencil, $2^{\text{nd}}$ order accurate
-				%TODO Skizze
+				%\input{tikz/chapter0/five_point_stencil_rot.tex}
 			\item 9-point-stencil,  $2^{\text{nd}}$ order accurate and even $6^{\text{th}}$ order accurate for harmonic funtions
-				%TODO Skizze
+				%\input{tikz/chapter0/nine_point_stencil.tex}
 		\end{itemize}
 \end{itemize}
 
 \section{Finite difference on a grid}%
 \label{sec:Finite difference on a grid}
 Let $\Omega =(0, X_{E}) \times (0,Y_{E})$ and subdivide each interval into $N_{x}+1 / N_{y} + 1$ subintervals.
-
-%Skizze grid here und irgendein umgekehrtes cases environment Ding
+\input{tikz/chapter0/fd_on_grid.tex}
 Each node (vertex) in this grid is assigned an index tuple
 \[
 	(x,y) = (ih_{x}, jh_{y}) = (i,j)
