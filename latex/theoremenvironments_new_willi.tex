@@ -1,0 +1,89 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% THEOREM-ENVIRONMENTS
+
+% Quelle für die Gestaltung der folgenden environments ist:
+% https://texblog.org/2015/09/25/fancy-boxes-for-theorem-lemma-and-proof-with-mdframed/
+
+% importing the package
+\usepackage[framemethod=TikZ]{mdframed}
+
+% setting counters
+\newcounter{satz}[section]\setcounter{satz}{0}
+%\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+\renewcommand{\thesatz}{\arabic{chapter}.\arabic{section}.\arabic{satz}}
+
+\newcommand{\newtheoremfancy}[4]{
+	% Argument 1: name
+	% Argument 2: displayed name
+	% Argument 3: counter (yes / no)
+	% Argument 4: color
+	
+	\newenvironment{#1}[1][]{
+		% code for counter
+		\refstepcounter{satz}
+
+		% box design code
+		\ifstrempty{##1}
+		% if no title
+		{
+			\mdfsetup{
+				frametitle={
+					\tikz[baseline,outer sep=0pt]
+					\node[anchor=east,rectangle,fill=#4]
+					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thesatz}};
+				}
+			}
+		}
+		% if title
+		{
+			\mdfsetup{
+				frametitle={
+					\tikz[baseline,outer sep=0pt]
+					\node[anchor=east,rectangle,fill=#4]
+					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thesatz}:~##1};
+				}
+			}
+		}
+		% defaults
+		\mdfsetup{
+			innertopmargin=10pt,
+			linecolor=black!25,
+			linewidth=2pt,
+			topline=true,
+			frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+		}
+
+		% code for environment name
+		\begin{mdframed}[]\relax}
+		{\end{mdframed}
+	}
+}
+
+\newtheoremfancy{satz}{Satz}{section}{black!25}
+\newtheoremfancy{lemma}{Lemma}{section}{black!25}
+\newtheoremfancy{korollar}{Korollar}{section}{black!25}
+\newtheoremfancy{proposition}{Proposition}{section}{black!25}
+\newtheoremfancy{beispiel}{Beispiel}{section}{black!25}
+\newtheoremfancy{definition}{Definition}{section}{black!25}
+\newtheoremfancy{bemerkungnr}{Bemerkung}{section}{black!25}
+\newtheoremfancy{theorem}{Theorem}{section}{black!25}
+\newtheoremfancy{erinnerungnr}{Erinnerung}{section}{black!25}
+\newtheoremfancy{vermutung}{Vermutung}{section}{black!25}
+
+\newtheoremfancy{bemerkung}{Bemerkung}{}{black!25}
+\newtheoremfancy{erinnerung}{Erinnerung}{}{black!25}
+\newtheoremfancy{notation}{Notation}{}{black!25}
+\newtheoremfancy{aufgabe}{Aufgabe}{}{black!25}
+\newtheoremfancy{lösung}{Lösung}{}{black!25}
+\newtheoremfancy{beisp}{Beispiel}{}{black!25}
+\newtheoremfancy{defi}{Definition}{}{black!25}
+\newtheoremfancy{lem}{Lemma}{}{black!25}
+\newtheoremfancy{thm}{Theorem}{}{black!25}
+\newtheoremfancy{konvention}{Konvention}{}{black!25}
+
+
+
