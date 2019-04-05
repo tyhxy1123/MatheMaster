@@ -27,11 +27,11 @@ with boundary conditions
 .\] 
 
 If \begin{itemize}
-	\item $ \beta = 0$, we get a Dirichlet problem.
-	\item $ \alpha = 0$, we get a Neumann problem.
-	\item $\alpha = 0 \text{ and } \beta = 1$, we have
+	\item $ \beta = 0$ and $\alpha=0$, we get a Dirichlet problem.
+	\item  $\beta \neq 0$ and $ \alpha = 0$, we get a general Neumann problem.
+	\item $\beta = 1$ and $\alpha = 0$, we have
 		\begin{enumerate}
-			\item Since $u = \text{const}$ solves \href{eq:eq_1}{(1)} % TODO FIX THIS
+			\item Since $u = \text{const}$ solves \href{eq:eq_1}{(1)} 
 				for $f=0 \text{ and } g = 0$, the solution to \href{eq:eq_1}{(1)} is unique up to a constant
 			\item Integrating \href{eq:eq_1}{(1)} over $\Omega$ and Green's formula yield
 				\[
@@ -259,6 +259,7 @@ The boundary condition can be realized by eliminating rows/columns in the matrix
 A\cdot \underline{u} = \underline{f}  
 .\] 
 %TODO die Matrix sah anders aus.
+%re-TODO bin nur nicht fertig geworden -.-
 %\[
 %A = \begin{pmatrix}
 %	X& &X&0&X& &X \\
