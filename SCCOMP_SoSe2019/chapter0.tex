@@ -116,9 +116,10 @@ The basic idea is:
 						  &+ \frac{u(x_1, x_2 + h_2) - 2u(x_1, x_2) + u(x_1, x_2 -h_2)}{h_2^2}
 		\end{align*}
 		but for $h_1 = h_2 = h$ we get
-		\[
-			\laplace u(x) \approx \frac{1}{h^2}\left[u(x_1+ h, x_2) + u(x_1-h, x_2) + u(x_1, x_2 -h) + u(x_1, x_2 -h) -4u(x_1, x_2)\right]
-		.\] 
+		\begin{align*}
+			&\laplace u(x) \approx\\ 
+			&\frac{1}{h^2}\left[u(x_1+ h, x_2) + u(x_1-h, x_2) + u(x_1, x_2 -h) + u(x_1, x_2 -h) -4u(x_1, x_2)\right].
+		\end{align*}
 		Denoting the forward/backward difference formulas
 		in the direction i by $\delta_{i}^{+}$ and $\delta_{i}^{-}$ we can write
 		\[
