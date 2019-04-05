@@ -24,8 +24,8 @@
 	
 	\newenvironment{#1}[1][]{
 		% code for counter
-		\refstepcounter{satz}
-
+		\ifthenelse{\equal{#3}{}}{}{\refstepcounter{satz}}
+		
 		% box design code
 		\ifstrempty{##1}
 		% if no title
