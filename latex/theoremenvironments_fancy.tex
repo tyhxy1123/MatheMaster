@@ -13,8 +13,8 @@
 
 % setting counters
 \newcounter{satz}[section]\setcounter{satz}{0}
-%\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
-\renewcommand{\thesatz}{\arabic{chapter}.\arabic{section}.\arabic{satz}}
+\renewcommand{\thesatz}{\arabic{section}.\arabic{satz}}
+%\renewcommand{\thesatz}{\arabic{chapter}.\arabic{section}.\arabic{satz}} % Alternative, falls man 1.1.1 statt 1.1 nummerieren möchte
 
 \newcommand{\newtheoremfancy}[4]{
 	% Argument 1: name
@@ -64,26 +64,40 @@
 }
 
 \newtheoremfancy{satz}{Satz}{section}{black!25}
-\newtheoremfancy{lemma}{Lemma}{section}{black!25}
-\newtheoremfancy{korollar}{Korollar}{section}{black!25}
-\newtheoremfancy{proposition}{Proposition}{section}{black!25}
-\newtheoremfancy{beispiel}{Beispiel}{section}{black!25}
-\newtheoremfancy{definition}{Definition}{section}{black!25}
-\newtheoremfancy{bemerkungnr}{Bemerkung}{section}{black!25}
 \newtheoremfancy{theorem}{Theorem}{section}{black!25}
-\newtheoremfancy{erinnerungnr}{Erinnerung}{section}{black!25}
-\newtheoremfancy{vermutung}{Vermutung}{section}{black!25}
 
-\newtheoremfancy{bemerkung}{Bemerkung}{}{black!25}
-\newtheoremfancy{erinnerung}{Erinnerung}{}{black!25}
-\newtheoremfancy{notation}{Notation}{}{black!25}
-\newtheoremfancy{aufgabe}{Aufgabe}{}{black!25}
-\newtheoremfancy{lösung}{Lösung}{}{black!25}
-\newtheoremfancy{beisp}{Beispiel}{}{black!25}
-\newtheoremfancy{defi}{Definition}{}{black!25}
-\newtheoremfancy{lem}{Lemma}{}{black!25}
 \newtheoremfancy{thm}{Theorem}{}{black!25}
-\newtheoremfancy{konvention}{Konvention}{}{black!25}
 
+%%% unfancy stuff
+\newtheoremstyle{mystyle}
+  {20pt}   % ABOVESPACE \topsep is default, 20pt looks nice
+  {20pt}   % BELOWSPACE \topsep is default, 20pt looks nice
+  {\normalfont} % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {}          % HEADPUNCT (if needed)
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+	{}          % CUSTOM-HEAD-SPEC
+\theoremstyle{mystyle}
 
+% Definitionen der Satz, Lemma... - Umgebungen. Der Zähler von "satz" ist dem "section"-Zähler untergeordnet, alle weiteren Umgebungen bedienen sich des satz-Zählers.
+%\newtheorem{satzold}{Satz}[section]
+\newtheorem{lemma}[satz]{Lemma}
+\newtheorem{korollar}[satz]{Korollar}
+\newtheorem{proposition}[satz]{Proposition}
+\newtheorem{beispiel}[satz]{Beispiel}
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{bemerkungnr}[satz]{Bemerkung}
+\newtheorem{erinnerungnr}[satz]{Erinnerung}
+\newtheorem{vermutung}[satz]{Vermutung}
 
+% Bemerkungen, Erinnerungen und Notationshinweise werden ohne Numerierungen dargestellt.
+\newtheorem*{bemerkung}{Bemerkung.}
+\newtheorem*{erinnerung}{Erinnerung.}
+\newtheorem*{notation}{Notation.}
+\newtheorem*{aufgabe}{Aufgabe.}
+\newtheorem*{lösung}{Lösung.}
+\newtheorem*{beisp}{Beispiel.}
+\newtheorem*{defi}{Definition.} 
+\newtheorem*{lem}{Lemma.}       
+\newtheorem*{konvention}{Konvention.}  
