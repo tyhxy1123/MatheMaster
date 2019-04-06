@@ -1,0 +1,15 @@
+% A simple Tree
+% Author: Stefan Kottwitz
+% https://www.packtpub.com/hardware-and-creative/latex-cookbook
+
+\begin{tikzpicture}[sibling distance=10em,
+  every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=blue!20}]]
+  \node {geometrische Figuren}
+    child { node {Parallelogramm} 
+      child { node {Rechteck} 
+      	child { node {Quadrat?}}}
+      child { node {Rhombus} 
+        child { node {Quadrat?} }}};
+\end{tikzpicture}
