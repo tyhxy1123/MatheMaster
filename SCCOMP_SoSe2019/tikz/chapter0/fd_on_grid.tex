@@ -1,0 +1,28 @@
+\begin{figure}[H]
+	\center
+\begin{tikzpicture}[scale=3]
+		
+		\def \xone{0};
+		\def \yone{0};		
+		% draw coordinate system
+		\coordinate (A) at (\xone,\yone);
+		
+		\draw[->] (A) -- ++(0,1.1);
+		\draw[->] (A) -- ++(1.1,0);
+		\draw (A) ++(0.5,0) -- ++ (0,1);
+		\draw (A) ++(1,0) -- ++ (0,1) -- ++(-1,0);
+		\draw (A) ++(0,0.333) -- ++ (1,0);
+		\draw (A) ++(0,0.666) -- ++ (1,0);
+		\draw[red!60] (A) -- (A) ++ (0,0.333);
+		\draw[blue!60] (A) -- (A) ++ (0.5,0);
+
+        \fill[black,font=\footnotesize] (A)  ++(1,0) node[below] {$x_{E}$}
+										(A)  ++(0,1) node[left] {$y_{E}$}
+										(A)  ++(0.25,0) node[below] {$h_{x}$}
+										(A)  ++(0,0.1666) node[left] {$h_{y}$};
+                                        
+\end{tikzpicture}
+
+\caption{Visualization of a grid}
+\label{ch_0_example_grid}
+\end{figure}
