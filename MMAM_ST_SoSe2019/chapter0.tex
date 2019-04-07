@@ -127,8 +127,8 @@ Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten
 				\end{tabular}
 			\end{center}
 
-			Auszahlungen werden in diesem Beispiel im Gegensatz zum Normalfall maximiert!
 	\end{itemize}
+	Auszahlungen werden bei "Schere-Stein-Papier" und dem "Kampf der Geschlechter" in diesen Beispielen im Gegensatz zum Normalfall maximiert!
 \end{beispiel}
 
 \begin{beispiel}
@@ -136,7 +136,7 @@ Diese Information wird nur für die oben genannte Zeitspanne im Skript enthalten
 
 	Firmen $F_i, \quad i=1,\ldots,N$ stellen das gleiche
 	Gut her. Die Produktion von $x_i$ Einheiten kostet
-	$c_i(x_i)$. Der Preis fällt mit dem Gesamtangebot, d.h.
+	$c_i(x_i)$ für Firma $F_{i}$. Der Preis fällt mit dem Gesamtangebot, d.h.
 	$p(\sum_{i=1}^{N} x_i)$.
 	Das Problem der Firma ist, den Gewinn zu maximieren:
 	\[
@@ -157,7 +157,7 @@ Wir werden nun Spiele nach unterschiedlichen Kriterien charakterisieren und eini
 			\[
 				\sum_{i=1}^N f_i(x_1, \ldots, x_N)=0 \qquad \forall (x_1, \ldots, x_N) \in X
 			.\] 
-		\item \underline{Konstansummenspiel}, wenn gilt
+		\item \underline{Konstantsummenspiel}, wenn gilt
 			\[
 				\sum_{i=1}^N f_i(x_1, \ldots, x_N)=c \qquad \forall (x_1, \ldots, x_N) \in X
 			.\] 
@@ -329,7 +329,7 @@ aufschreiben
 \end{align*}
 und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Maximum dieser Funktion finden
 \begin{align*}
-	&\nabla x_1f_1(x_1,x_2) = -2x_1 +(p-c_1-x_2) \stackeq{!} 0 \\
+	&\nabla_{x_1} f_1(x_1,x_2) = -2x_1 +(p-c_1-x_2) \stackeq{!} 0 \\
 	\implies &x_1 = \frac{p-c_1-x_2}{2} \\
 	\implies &S_1(x_2) = \begin{cases}
 		\frac{p-c_1-x_2}{2} &\text{ falls } x_2 \leq p-c_1 \\
@@ -387,9 +387,9 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 \end{satz}
 
 \begin{proof}
-	Sei $x^{*} \in X$ ein Gleichgewicht in schwach dominanten Strategien, d.h. es gilt:
+	Sei $x^{*} \in X$ ein Gleichgewicht in schwach dominanten Strategien, d.h. es gilt für alle $i=1, \ldots, N$:
 	\begin{align*}
-		&f_{i}(x_{i}^{*}, x_{-i}) \leq f_{i}(x_{i}, x_{-i})& &\forall x_{-i} \in X_{-i} \forall x_{i} \in X_{i} \\
+		&f_{i}(x_{i}^{*}, x_{-i}) \leq f_{i}(x_{i}, x_{-i})& &\forall x_{-i} \in X_{-i}, \forall x_{i} \in X_{i} \\
 		\implies &f_{i}(x_{i}^{*}, x_{-i}^{*}) \leq f_{i}(x_{i}, x_{-i}^{*})& &\forall x_{i} \in X_{i} \\
 		\implies &x^{*} \text{ist ein Nash-Gleichgewicht.}
 	\end{align*}
@@ -440,6 +440,8 @@ Sei $f \colon \R^{n} \rightarrow \R^{m}$, eine Funktion und $X \subseteq \R^{n}$
 		f_{N}(x)
 	\end{pmatrix}
 	.\]
+
+	Man kann sie interpretieren durch: Man findet keine Strategie, die mindestens besser für einen Spieler und gleich gut für alle anderen Spieler ist, als das Paretro-Gleichgewicht.
 \end{definition}
 
 \begin{figure}[ht!]
