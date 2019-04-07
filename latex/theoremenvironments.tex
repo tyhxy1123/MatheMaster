@@ -30,6 +30,10 @@
 \newtheorem{axiom}[satz]{Axiom}
 \newtheorem{notationnr}[satz]{Notation}
 
+\newcounter{aufgabencounter}
+\renewcommand{\theaufgabencounter}{\arabic{chapter}.\arabic{section}.\arabic{aufgabencounter}} 
+\newtheorem{aufgabenr}[aufgabencounter]{Aufgabe}
+
 % Bemerkungen, Erinnerungen und Notationshinweise werden ohne Numerierungen dargestellt.
 \newtheorem*{bemerkung}{Bemerkung.}
 \newtheorem*{erinnerung}{Erinnerung.}

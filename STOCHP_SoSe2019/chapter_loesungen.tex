@@ -1,0 +1,52 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Lösungen der Übungsaufgaben}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:1.2Teil1]{Aufgabe 1 (Teil 1)}}{} und 
+	\texorpdfstring{\hyperref[aufg:1.2Teil2]{Aufgabe 1 (Teil 2)}}{}
+}\label{loes:1}
+
+%TODO
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:1.3.2.7Teil1]{Aufgabe 2 (Teil 1)}}{} und 
+	\texorpdfstring{\hyperref[aufg:1.3.2.7Teil2]{Aufgabe 2 (Teil 2)}}{}
+}\label{loes:2}
+
+Wir zeigen, dass $\A_0$ ein $\sigma$-Algebra ist.\\
+$\Omega\in\A_0$, weil $\Omega\subseteq\A$ und somit $\Omega\cup\emptyset\setminus\emptyset\in\A_0$.\nl
+Sei $A_0\in\A_0$. Wir zeigen $A_0^C\in\A_0$.
+Da $A_0\in\A_0$ existieren $A\in\A$ und $\P$-Nullmengen so, dass $A_0=(A\cup N)\setminus M\in\A_0$.
+\begin{align*}
+	A_0^C
+	&=\Omega\setminus\big((A\cup N)\setminus M\big)\\
+	&=\Omega\setminus\big((A\cup N)\cap M^C\big)\\
+	&=\Omega\cap\big((A\cup N)\cap M^C\big)\\
+	&=(A\cup N)\cap M^C\\
+	\overset{\text{DM}}&=
+	(A\cup N)^C\cup M\\
+	&=(A^C\cap N^C)\cup M\\
+	&=(A^C\cup M)\cap (N^C\cup M)\\
+	&=(A^C\cup M)\setminus(N^C\cup M)^C\\
+	&=(A^C\cup M)\setminus(N\cap M^C)\\
+	&=(\tilde{A}\cap\tilde{N})\setminus\tilde{M}\qquad\mit\tilde{A}:=A^C\in\A,~\tilde{N}:=M,~\tilde{M}:=N\cap M^C~\P\text{-Nullmengen}\\
+	&\implies A_0^C\in\A_0
+\end{align*}
+Sei $(A_{0,n})_{n\in\N}\subseteq\A_0$. %TODO
+
+
+Wir zeigen nun die Wohldefiniertheit von $\P_0$:
+%TODO
+
+
+
+
+
+
+
+
+
