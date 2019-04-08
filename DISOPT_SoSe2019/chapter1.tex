@@ -132,3 +132,122 @@ Tableau-Methode für
 \begin{equation*}
 	\min_{x}c^Tx \text{ subject to } Ax \leq b , x \geq 0
 \end{equation*} 
+\section{Duales Simplex-Verfahren}
+(primales) LP 
+\begin{equation*	}
+	\min_{x}c^{T} x \text{ subject to }Ax = b, x \geq 0 (P)
+\end{equation*	}
+duales LP 
+\begin{equation*}
+	\max_{x}b^{T} y \text{ subject to }A^{T} y \leq c, x \geq 0 (P)
+\end{equation*}
+Annahme $A \in \R^{m \times n}$ hat Rang $m$ \\
+$B$ Basis $\implies x_{B}= A^{-1}_{B}b, x_{N}=0$
+\underline{Idee:} Wende Simplex-Verfahren auf (D) an.\\
+$\to$ duale Normalform: 
+\begin{equation*}
+	\max_{y,z} b^{T} y \text{ subject to }(A^{T}  I) (y z)^{T} = c, \quad z \geq 0, \quad y \in \R^m
+\end{equation*}
+Basis von (D'):$ ( \underbrace{A^{T}}_{m} \underbrace{I}_{n}) \in R^{n \times(m +n)}$
+Basis $H \subset \left\{1,\dots ,n+m \right\}$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär 
+\begin{theorem}
+	Entweder (D') ist unzulässig oder unbeschränkt oder es gibt eine optimale Basislösung $(y^*,z^*)$ so dass die zugehörige basis von der Form ist:
+	\begin{equation*}
+		H_{\text{opt}}=\underbrace{ \left\{1,..,m \right\}}_{\text{ganzes $A$ in Basismatrix}}\cup (N+m)
+	\end{equation*}
+	mit $N \subset \left\{1,\dots ,n \right\}, |N|= n-m$ ($N$ zeigt an, welche Spalten von $I$ gebraucht werden)
+	$\implies$ Basen für (D') werden i.A. durch $N$ beschrieben, nicht durch $H$.
+\end{theorem}
+Welche Basis $H$ bzw. $N$ liefert zulässige Basislösung für (D')?
+% irgendwas kompiliert hier nicht
+%\begin{align*}
+%	\begin{pmatrix}
+%		A^{T}  & I
+%	\end{pmatrix}
+%	\begin{pmatrix}
+%	y\\z	
+%	\end{pmatrix}
+%\begin{align*}
+%	&=c, \quad z \geq 0\\
+%	&\iff A_{B}^{T} y + z_{B} \geq c_{B}, \quad z_{B} \geq 0\\
+%	&{} A_{N}^{T} y + z_{N = c_{N}, \quad z_{N} \geq 0 \\
+%	&\iff y = A_{B}^{-T}(c_{B}-z_{B})\\
+%	&{} z_{N}= c_{N} - A_{N}^{T}y = c_{N}-A_{N}^{T} A_{B}^{-T}(c_{B}-z_{B}) ,\quad z_{B}\geq 0 ,z_{N} \geq 0
+\end{align*}
+$(y,z_{B},z_{N})$ Basislösung $\to$ Nichtbasisvariablen $z_{B} =0$ \\
+$\implies$ 
+\begin{equation*}
+	y = A_{B}^{-T}c_{B}, \quad z_{N}= c_{N}- A_{N}^{T} \underbrace{A_{B}^{-T}c_{B}}_{{=y}}\geq 0  
+\end{equation*}
+\subsection{Duales Simplex-Verfahren}
+Initialisierung: Dual zulässige Basis $B$, d.h. $B \subset \left\{1,\dots ,n \right\}$ mit $|B|=m$, $A_{B}$ regulär und $z_{B}=0,y=A_{B}^{-T}c_{B}, z_{N}= c_{N}-A_{N}^{T}y \geq 0$ 
+\begin{enumerate}%[label = Schritt \arabic)]
+	\item Bestimme zugehörige komplementäre duale Variable
+		\begin{align*}
+			x_{N}&=0 \quad (\to \text{komplementär }z_{N})\\
+			x_{B}&= A_{B}^{-1} b\quad ( \to A(x_{B},x_{N})^{T} =b)
+		\end{align*}
+	\item Gilt $x_{B} \geq 0 $: \textbf{Stop}.\\
+		$(y,z_{B},z_{N}),(x_{B},x_{N})$ KKT-Punkt $\implies$ Lösung gefunden.\\
+		Andernfalls wähle $ i \in B$ mit $x_{i}<0$ ($\to z_{i}>0$ verkleinert dualen Zielfunktionswert)
+	\item Löse $A_{B}^{T} w = e_{i}$, $\alpha_{N} = -A_{N}^{T} w$ 
+	\item Schrittweitenbestimmung:\\
+		Gilt $\alpha_{N} \leq 0 $ :\textbf{stop}, (D') ist unbeschränkt ($\to$ (P) unzulässig).\\
+		Andernfalls berechne $\gamma = \min \left\{ \frac{z_{i}}{\alpha_{i}}|j \in N , \alpha_{j} >0 \right\}$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
+	\item Update:
+		\begin{align*}
+			z_{N}^+ &= z_{N} - \gamma \alpha_{N} \quad (\to z_{N} \geq 0, z_{j}^+ =0)\\
+			z_{i}^+ &= \gamma\\
+			y^+ &= y -\gamma w\\
+			N^+ &= (N \textbackslash \left\{ j \right\}) \cup \left\{ i \right\}\\
+			B^+ &= (B \textbackslash \left\{ i \right\}) \cup \left\{ j \right\}
+		\end{align*}
+\end{enumerate}
+
+\subsection{(primales) Simplex-Verfahren für LPs mit Schranken}
+Betrachte
+\begin{equation*}
+	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad l \leq x \leq u
+\end{equation*}
+mit $l \in \left(\R \cup \left\{ - \infty \right\} \right)^n,u \in \left(\R \cup \left\{ +\infty \right\} \right)^n $
+
+\underline{Ziel:} möglichst nahe an der Form 
+\begin{equation*}
+	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad x \geq 0
+\end{equation*}
+kommen.\\
+\underline{mögliche Modifikationen:}
+\begin{itemize}
+	\item Schlupfvariablen + Variablensplit $x = x^+ -x^-, x^+,x^- \geq0 $ (Nachteil: erhöht die Anzahl der Variablen und linearen Gleichungen)
+	\item Fall: $x_{i} \geq l_{i}$ mit $l_{i}\in \R$ : Substituiere $\hat{x}_{i} := x_{i}- l_{i}\geq 0$
+	\item Fall: $x_{i} \leq u_{i}$ mit $u_{i}\in \R$ : Substituiere  $\hat{x}_{i} := u_{i}- x_{i}\geq 0$
+	\item Fall: $l_{i} \leq x_{i} \leq u_{i}$ mit $l_{i},u_{i} \in \R$ : Substituiere $0 \leq \hat{x}_{i} := x_{i}- l_{i} \leq u_{i}-l_{i}$
+	\item Fall $-\infty \leq x_{-i} \leq \infty$ : Freie Variable: entweder Variablensplit $x_{i}= x_{i}^+ - x_{i}^-$ oder: $x_{i}$ als freie Variable im Simplex-Verfahren berücksichtigen( wie $y$ im dualen Simplex)
+\end{itemize}
+Angenommen, es gibt keine freien Variablen $\implies$ oBdA LP der Form 
+\begin{equation*}
+	\min_{x} c^{T} x \text{ subject to } Ax = b, \quad 0 \leq x \leq u 
+\end{equation*}
+mit $u \in [0, + \infty]^n$.\nl
+Bisher im primalen Simplex-Verfahren:\\
+Basis $B$, Basisvariablen $x_{B}= A_{B}^{-1} b \geq 0$, Nichtbasisvariablen $x_{N}=0$ \\
+\underline{Idee:} Teile die Nichtbasisvariablen in 
+\begin{align*}
+	N_{l} &= \left\{ i \in N \ | \ x_{i} = 0  \right\} \implies x_{N_{l}}=0\\
+	N_{u} &= \left\{ i \in N \ | \ x_{i} = u_{i}  \right\} \implies x_{N_{u}}=u_{N_{u}}
+\end{align*}
+Wie im Simplex-Verfahren: 
+\begin{align*}
+	A_{B}x_{B} + A_{N_{l}}x_{N_{l}} + A_{N_{u}} x_{N_{u}} = b \implies x_{B} = A_{B}^{-1} (b - A_{N_{l}} x_{N_{l}} - A_{N_{l}}x_{N_{u}})\\
+	c^{T} x = c_{B}^{T} x_{B} + c_{N_{l}}^{T} x_{N_{l}}+c_{N_{u}}^{T} x_{N_{u}} = c_{B}^{T} A_{B}^{-1} b + z_{N_{l}}^{T} x_{N_{l}} + z_{N_{u}}^{T} x_{N_{u}}
+\end{align*}
+Identifiziere $i \in N_{l}$ mit $z_{i} <0 $ oder $ i\in N_{u}$ mit $z_{i}> 0$.\\
+Bei Schrittweiten beachten: $x_{B} = \gamma w \in [0,u_{B}]$ und
+\begin{equation*}
+	x_{i}^+ = \begin{cases}
+	\case \gamma \in [0,u_{i}]\\
+	\case u_{i}-\gamma
+\end{cases} 
+\end{equation*}
+Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder umgekehrt.
+
