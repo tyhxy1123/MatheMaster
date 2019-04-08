@@ -147,7 +147,7 @@
 		f(x,0)=0\quad
 		\forall x\neq0.
 	\end{align*}
-	\begin{aufgabenr}[1.2 Teil 1, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.2Teil1}\enter
+	\begin{aufgabenr}[1.2 Teil 1, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1}\enter
 		Rechnen Sie nach, dass \eqref{eq:BeispEinfuehrung1} die Differenzengleichung mit Anfangsbedingungen erfüllt.
 	\end{aufgabenr}
 
@@ -186,7 +186,7 @@
 		=-2\mal c\mal\frac{\partial f(x,t)}{\partial x}+D\mal\frac{\partial^2 f(x,t)}{\partial x^2}
 	\end{align*}
 	Dies ist die \define{Fokker-Planck-Differentialgleichung}.
-	\begin{aufgabenr}[1.2 Teil 2, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.2Teil2}\enter
+	\begin{aufgabenr}[1.2 Teil 2, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:2}\enter
 		Leiten Sie die Differentialgleichung ausführlich her.
 	\end{aufgabenr}
 \end{beisp}
@@ -305,7 +305,7 @@ In diesem Abschnitt seien:
 	\end{enumerate}
 \end{bemerkungnr}
 
-\begin{aufgabenr}[1.3.2.7 Teil 1, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.3.2.7Teil1}\enter
+\begin{aufgabenr}[1.3.2.7 Teil 1, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:3}\enter
 	Zeigen Sie:
 	\begin{enumerate}
 		\item $\A_0$ ist eine $\sigma$-Algebra.
@@ -335,7 +335,7 @@ In diesem Abschnitt seien:
 	 	\A_0=?\qquad\P_0=?
 	 \end{align*}
 
-	\begin{aufgabenr}[1.3.2.7 Teil 2, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.3.2.7Teil2}\enter
+	\begin{aufgabenr}[1.3.2.7 Teil 2, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:4}\enter
 	 	Zeige, dass $(\Omega,\A,\P)$ nicht vollständig ist und gibt in beiden Fällen $\A_0$ und $\P_0$ an.
 	\end{aufgabenr}
 \end{beisp}
@@ -349,7 +349,8 @@ In diesem Abschnitt seien:
 			S_n:=\sum\limits_{j=0}^n X_j\qquad\forall n\in\N_0
 		\end{align*}
 		Zeitreihen ($T=\N_0$ und $S=\R$).
-		\item Seien $a$ und $\varphi$ zwei Zufallsgrößen und $u\in\R$.
+		\item Zufällige trigonometrische Polynome:\label{beisp:1.3.3(b)}\\
+		Seien $a$ und $\varphi$ zwei Zufallsgrößen und $u\in\R$.
 		Dann ist \index{harmonische Schwingung}
 		\begin{align*}
 			X_t:=a\mal\cos(u\mal t+\varphi)\qquad\forall t\in\R
@@ -371,13 +372,163 @@ In diesem Abschnitt seien:
 			X_{t_1}(\omega),\ldots,X_{t_m}(\omega)
 		\end{align*}
 		z.B. die Anzahl der Sonnenflecke.\\
-		Oft ist es vorteilhaft komplexwertige Schwingungen zu betrachten:
-		\begin{align}\label{eq:beispiel1.3.3HarmonischeSchwingungKomplex}
+		Oft ist es vorteilhaft \betone{komplexwertige} Schwingungen zu betrachten:
+		\begin{align*}%\label{eq:beispiel1.3.3HarmonischeSchwingungKomplex}
 			Z_t:=\sum\limits_{j=1}^n c_j\mal\exp(\ii\mal u_j\mal t)\qquad\forall t\in\R
-		\end{align}
+		\end{align*}
+		Hierbei sind $c_j=c_j(\omega)$ ($(j\in\set{1,\ldots,n}$) komplexe Zufallsgrößen.
+		Schreiben wir $c_j$ in der Form
+		\begin{align*}
+			c_j&=\abs{c_j}\mal\exp(\ii\mal\varphi_j),
+		\end{align*}
+		wobei $\abs{c_j}$ und $\varphi_j$ eine reelle Zufallsgrößen sind, so gilt:
+		\begin{align*}
+			\Re(Z_t)&=\sum\limits_{j=1}^n\abs{c_j}\mal\cos\big(u_j\mal t+\varphi_j\big)\\
+			\Im(Z_t)&=\sum\limits_{j=1}^n\abs{c_j}\mal\sin\big(u_j\mal t+\varphi_j\big)
+		\end{align*}
+		Die komplexen Amplituden $c_j$ bestimmen also die Amplituden und Phasen von Real- und Imaginärteil des Prozesses.
+		\item Polynome mit zufälligen Koeffizienten:\label{beisp:1.3.3(c)}
+		\begin{align*}
+			X_t&=a_0+a_1\mal t+\ldots+a_n\mal t^n=\sum\limits_{i=0}^n a_i\mal t^i
+			\qquad\forall t\in\R
+		\end{align*}
+		wobei die $a_j$ reell- oder komplexwertige Zufallsgrößen sind ($j\in\set{1,\ldots,n}$).
+		Die Trajektorien sind Polynome höchstens $n$-ten Grades.
+		\item Einschaltvorgang zum zufälligen Zeitpunkt:\label{beisp:1.3.3(d)}\\
+		Sei $\tau$ eine nichtnegative Zufallsgröße und 
+		\begin{align*}
+			X_t(\omega):=\indi_{\intervallHO[\big]{\tau(\omega)}{\infty}}(t)\qquad\forall t\in\intervallHO{0}{\infty},\forall\omega\in\Omega
+		\end{align*}
+		\begin{aufgabe}[nicht-vorrechenbar]\enter
+			Zeigen Sie, dass $X_t$ eine Zufallsgröße ist und bestimmen Sie ihre Verteilung!
+			Wie sehen die Trajektorien aus?
+		\end{aufgabe}
+		\begin{lösung}
+			$X_t\colon\Omega\to\set{0,1}$ ist messbar $\forall t\in[0,\infty)$, denn:
+			\begin{align*}
+				X_t(\omega)&=\left\lbrace\begin{array}{cl}
+					1, &\falls \omega\in\set{\tau\leq t}\\
+					0, &\falls \omega\in\set{\tau>t}
+				\end{array}\right.
+			\end{align*}
+			$X_t$ ist die Indikatorfunktion des Ereignisses $[\tau\leq t]$.
+			Somit ist $X_t$ $(\A,\B)$-messbar.
+			Also ist $X_t$ ein stochastischer Prozess, dessen Pfade einfache Sprungfunktionen sind.\\
+			Wir bestimmen nun die Verteilung $\mu_t$ von $X_t$:\\
+			$\mu_T$ ist ein Wahrscheinlichkeitsmaß mit
+			\begin{align*}
+				\mu_t\klammern[\big]{\set{0}}=p\qquad
+				\mu_t\klammern[\big]{\set{1}}=1-p\qquad
+				p:=\P[\tau>t]
+			\end{align*}
+		\end{lösung}
 	\end{enumerate}
 \end{beispiel}
 
+\begin{aufgabenr}[1.3.4, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:5}
+	Wenn wir beim Beispiel \ref{beisp1.3.3}\ref{beisp:1.3.3(c)} eine Trajektorie an $n+1$ verschiedene Stellen kennen, dann kennen wir sie überall.
+	Wie ist es bei \ref{beisp1.3.3}\ref{beisp:1.3.3(d)} und \ref{beisp1.3.3}\ref{beisp:1.3.3(b)}?
+\end{aufgabenr}
+
+\setcounter{satz}{4} %das erfordert seine Nummerierung.
+
+\begin{definition}\label{def:1.3.5}
+	Sei $Z$ ein Zufallsfeld auf $T$ und $t_1,\ldots,t_n\in T$.
+	Dann ist $\big(Z_{t_1},\ldots,Z_{t_n}\big)$ ein Zufallsvektor mit Werten im Produkt-Messraum $\big(S^n,\B^n\big)$ und besitzt folglich eine Verteilung.
+	Verteilungen dieser Form heißen \define{endlich dimensionale Verteilungen} von $Z$. \index{endlichdimensionale Verteilung}\index{Gauß'sches Zufallsfeld}\\
+	Ist $Z$ reell oder komplex und sind alle endlich dimensionalen Gauß'sch, so nennt man auch $Z$ \define{Gauß'sch}.
+\end{definition}
+
+\subsection*{Wiederholung: Charakteristische Funktionen}
+\begin{defi}
+	Sei $X$ $d$-dimensionaler Zufallsvektor, $\mu$ die Verteilung von $X$.
+	Die \define{charakteristische Funktion} von $X$ ist\index{charakteristische Funktion}
+	\begin{align*}
+		f_X(t)&:=\E\Big[\exp\big(\ii\mal\scaProd{t}{X}\big)\Big]
+		=\int\limits_{\R^d}\exp\big(\ii\mal\scaProd{t}{X}\big)\qquad\forall t\in\R^d
+	\end{align*}
+\end{defi}
+
+\begin{lem}[Eigenschaften der charakteristischen Funktion]\
+	\begin{enumerate}
+		\item $f(0)=1$
+		\item $\begin{aligned}
+			\abs[\big]{f(t)}\leq1
+		\end{aligned}$
+		\item $\begin{aligned}
+			f(-t)=\overline{f(t)}
+		\end{aligned}$
+		\item $f$ ist gleichmäßig stetig auf $\R^d$
+		\item $\begin{aligned}
+			f_{X+Y}=f_X\mal f_Y,
+		\end{aligned}$ falls $X,Y$ unabhängig sind
+		\item $\mu$ ist symmetrisch bezüglich des Nullpunktes $\iff f$ ist reellwertig $\iff f(t)=\int\limits_{\R^d}\cos\big(\scaProd{t}{x})\ds\mu(x)$
+	\end{enumerate}
+\end{lem}
+
+\subsection*{Wiederholdung: Gauß-Verteilung}
+\begin{defi}
+	Die \define{Standard-Gauß-Dichte} ist \index{Standard-Gauß-Dichte}
+	\begin{align*}
+		\varphi(x)=\frac{1}{(2\mal\pi)^{\frac{d}{2}}}\mal\exp\klammern{-\frac{1}{2}\mal\scaProd{x}{x}}\qquad\forall x\in\R^d
+	\end{align*}
+\end{defi}
+
+\begin{lem}
+	Die zugehörige charakteristische Funktion ist
+	\begin{align*}
+		f_{\text{Gauß}}(t)=\exp\klammern{-\frac{1}{2}\mal\scaProd{t}{t}}\qquad\forall t\in\R^d
+	\end{align*}
+\end{lem}
+
+\begin{defi}
+	Ein $d$-dimensionaler Zufallsvektor $Y$ heißt \define{Gauß'sch} oder auch \define{normalverteilt}, wenn ihre charakteristische Funktion $f$ die Form
+	\index{Gauß'scher Zufallsvektor}\index{Normalverteilung}
+	\begin{align*}
+		f(t)=\exp\klammern{\ii\mal\scaProd{m}{t}-\frac{1}{2}\mal\scaProd{C\mal t}{t}}\qquad\forall t\in\R^d
+	\end{align*}
+	hat, wobei $m\in\R^d$ und $C\in\C^{d\times d}$ positiv semidefinit.\\
+	Schreibweise: $Y\sim\Nor(m,C)$ Es gilt:
+	\begin{align*}
+		\E[Y]=m,\qquad C=\Cov(Y)
+	\end{align*}
+	Ein $d$-dimensionaler komplex-wertiger Zufallsvektor $Y\colon\Omega\to\C^d$ heißt \define{Gauß'sch}, wenn der Zufallsvektor
+	\begin{align*}
+		\Big(\Re(Y_1),\Im(Y_1),\ldots,\Re(Y_n),\Im(Y_n)\Big)\in\R^{2\mal d}
+	\end{align*}
+	Gauß'sch ist.
+\end{defi}
+
+% Ende Wiederholung
+
+\begin{bemerkung}
+	Betrachtet man $Z$ über der Vervollständigung des Grundraums, so bleiben die endlich-dimensionalen Verteilungen unverändert.
+\end{bemerkung}
+
+\begin{beisp}
+	Sei $(X_n)_{n\in\N}$ eine Folge von unabhängigen, normalverteilten Zufallsgrößen.
+	Dann ist der Prozess $\set{X_n}_{n\in\N}$ eine Gauß'sche Zeitreihe.
+	($(X_1,\ldots,X_n)$ ist Gauß'scher Zufallsvektor, was man z.B. über charakteristische Funktionen beweisen kann.)
+\end{beisp}
+
+\begin{satz}[Existenz-Satz von Kolmogorov]\label{satz:1.3.6ExistenzsatzVonKolmo}\enter
+	Sei $T\neq\emptyset$ eine beliebige Menge und $d\in\N$.
+	Für jede endliche Menge $\set{t_1,\ldots,t_k}\subseteq T$ sei $\mu_{t_1,\ldots,t_k}$ ein Wahrscheinlichkeitsmaß auf $(\R^d)^k$.
+	Nehmen wir an, dass diese Maße folgende, sogenannte \define{Konsistenzbedingungen} erfüllen:
+	\index{Konsistenzbedingungen}
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede Permutation $\pi$ von $\set{1,\ldots,k}$ und alle Borelmengen $B_1,\ldots,B_k\subseteq\R^d$ gilt
+		\begin{align*}
+			\mu_{t_1,\ldots,t_k}\Big(B_1\times\ldots\times B_k\Big)
+			=\mu_{t_{\pi(1)},\ldots,t_{\pi(k)}}\Big(B_{\pi(1)}\times\ldots\times B_{\pi(k)}\Big)
+		\end{align*}
+		\item Für alle $n\in\N$ und alle Borelmengen $B_1,\ldots,B_k\subseteq\R^d$ gilt
+		\begin{align*}
+			\mu_{t_1,\ldots,t_k}\Big(B_1\times\ldots\times B_k\Big)
+			=...
+		\end{align*}
+	\end{enumerate}		
+\end{satz}
 
 
 
