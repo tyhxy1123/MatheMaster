@@ -52,7 +52,7 @@ Aim: refinement strategies, that keep $\delta_{T}$ bounded.
 			 \begin{equation*}
 				S = \left\{\overline{z},z_{1},\dots ,z_{d-1} \right\}
 			\end{equation*}
-		\item vertex oredring and type for the children $T_{1},T_{2}$:
+		\item vertex ordering and type for the children $T_{1},T_{2}$:
 			\begin{align*}
 				T_{1}&= \left\{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}} \right\}_{(t+1)\mod d}\\
 				T_{2}&= \left\{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}} \right\}_{(t+1)\mod d}\\
@@ -78,4 +78,98 @@ Aim: refinement strategies, that keep $\delta_{T}$ bounded.
 			\end{align*}
 	\end{itemize}
 \end{example}
-If you renumber the vertices of $T$ the shape of $T$ does not get modified, but the shapes of the children get modified. You can get up to $\frac{1}{2}\left(d+1 \right)!$ different shapes for the children.
+If you renumber the vertices of $T$ the shape of $T$ does not get modified, but the shapes of the children get modified. You can get up to $\frac{1}{2}\left(d+1 \right)!$ different shapes for the children.\\
+Repeated refinement leads to an infinite binary tree $\mathbb{F}(T_{0})$.
+\begin{definition}
+	The \textit{generation} $g(T)$ of $T \in \mathbb{F}(T_{0})$ is its number of ancestors.
+\end{definition}
+\underline{Question:} Is the set of shape coefficients bounded?\nl
+Let us first look at a particularly regular case:
+\begin{definition}\
+	\begin{enumerate}[label = \Roman*)]
+		\item The Kuhn simplex has the corners
+			\begin{align*}
+				k_{0}&=0 \in \R^d\\
+				k_{1}&=e_{1}, k_{2}=e_{2}\\
+				k_{i}&= \sum_{j=1}^{i} e_{j}
+			\end{align*}
+			%TODO insert missing picture
+		\item Let $\pi$ be a permutation of $\left\{1,\dots ,d \right\}$. The Kuhn-simplex $T_{\pi}$ has vertices 
+			\begin{align*}
+				k_{0}&=0 \\
+				k_{i}&= \sum_{j=1}^{d} e_{\pi(j)}
+			\end{align*}		
+	\end{enumerate}
+\end{definition}
+\begin{theorem}\
+	\begin{itemize}
+		\item The $2^g$ descendants in the $g$-th generation of a Kuhn-simplex are all pairwise congruent.
+		\item There are only $d$ different simplex shapes in the entire infinite tree $\mathb{F}$ 
+		\item All descendants of generation $d$ are similar to $T_{\pi}$ with scaling $\frac{1}{2}$ 
+			%TODO insert picture
+	\end{itemize}
+\end{theorem}
+\begin{proof_}
+	(proof sketch)\\
+	We show: all descendants in the $g$-th generation of a Kuhn-simplex of type $0$ ($0 \leq g < d$) are congruent to 
+	\begin{equation*}
+		T_{g}= \left\{0, \frac{k_{d-g+1}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g} \right\}_{g}
+	\end{equation*}
+	\underline{Induction over $g$}:
+	\begin{align*}
+		g=0&: & T_{0}= \left\{0,k_{1},\dots ,k_{d} \right\}_{0} \text{is the Kuhn simplex}\\
+		g\mapsto g+1&: &\text{bisect } T_{g}\quad ( \text{bisection edge } \overline{0k_{d-g}})\\
+		 && C_{0}= \left\{ 0, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} \right\}_{g+1}= T_{g+1}\\
+		 && C_{1}= \left\{ k_{d-g}, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{d-g-1},\dots ,k_{1} \right\}_{g+1}= T_{g+1}
+	\end{align*}
+	Construct a series of reflection that maps $C_{1}$ onto $T_{g}$ :
+	\begin{enumerate}
+		\item Reflect at the plane perpendicular to $k_{d-g}$ in the point $\frac{k_{d-g}}{2}$ 
+			\begin{itemize}
+				\item $k_{d-g} \mapsto 0$ 
+				\item $k_{l} \mapsto k_{d-g}-k_{l}$ ($l < d-g$)
+				\item $k_{l} \mapsto k_{l}$ ($l \geq d-g$)
+			\end{itemize}
+		\item Swap $e_{1}\leftrightarrow e_{d-g-1}$, $e_{2} \leftrightarrow_{d-g-2},\dots $
+			\begin{itemize}
+				\item $0 \mapsto 0$ 
+				\item $k_{d-g}-k_{l} \mapsto k_{d-g-l}$ $(l< d-g)$ 
+				\item $\frac{k_{l}}{2}\mapsto \frac{k_{l}}{2}$ $(l \geq d-g)$
+			\end{itemize}
+	\end{enumerate}
+	Result:
+	\begin{equation*}
+		C'_{1}= \left\{ 0, \frac{k_{d-g}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} \right\}_{g+1} = T_{g+1}
+	\end{equation*}
+	$C_{0}$ and $C_{1}$ are congruent.
+	\begin{equation*}
+		T_{d}= \left\{ 0, \frac{k_{1}}{2},\dots ,\frac{k_{d}}{2} \right\}_{0} \quad \implies \texŧ{ scaled khun simplex}
+	\end{equation*}
+\end{proof_}
+\begin{theorem}
+	Let $T$ be an arbitrary $d$-simplex. Then there is a construct $C(T_{0})$ such that
+	\begin{equation*}
+		\delta_{T} \leq C(T_{0})
+	\end{equation*}
+	for all $T \in \mathbb{F}(T_{0})$.
+\end{theorem}
+\begin{proof_}\
+	\begin{itemize}
+		\item Let $T_{0}$ be of type 0.
+		\item Let $\hat{T}_{0}$ be the Kuhn simplex of type 0.
+		\item There is an affine map $F$ with $F(\hat{T}_{0})=T_{0}$ \\
+			$\implies$ For each $T \in \mathbb{F}(T_{0})$ there is a unique $\hat{T} \in \mathbb{F}(\hat{T}_{0})$ such that
+			\begin{equation*}
+				T = F(\hat{T})
+			\end{equation*}
+			% insert missing pictures here
+	\end{itemizei}
+	This does not mean that the recurrent refinement will produce no more than $d$ similarity classes, but the total number remains finite.
+	 \begin{equation*}
+		 \implies \delta_{T} \text{ remains bounded}
+	\end{equation*}
+	If $T_{0}$ has type $>0$ : Refine until reaching descendants of type $0$.
+\end{proof_}
+
+
+
