@@ -41,27 +41,32 @@ Es gibt zwei Wege, Wissen zu erlangen:
 	\item \define{Bottom Up:} induktive Methode
 \end{enumerate}
 
-\subsection{Mengenbasierte Modellierung}
-Mengenbasierte Modellierung ist $J=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. Interpretiere:
-\begin{itemize}
-	\item $P$ ist Menge von Punkten / Points
-	\item $B$ ist Menge von Blöcken / Blocks
-	\item $I$ Inzidenzrelation (z.B. Lines)
-\end{itemize}
-Für $(p,b)\in I$ schreiben wir auch $pIb$ (incidence) und sagen:
-"Der Punkt $p$ inzidiert mit dem Block $b$ in $J$."\\
-Für $p\in P$ sei
-\begin{align*}
-	I:=\set{b\in B\mid pIb}
-\end{align*}
-d.h. die Menge aller mit dem Punkt $p$ inzidierenden Blöcke.\\
-Analog sei für $b\in B$ stets
-\begin{align*}
-	Ib:=\set{p\in P\mid pIb}
-\end{align*}
-die Menge aller mit dem Block $b$ inzidierenden Punkte.
+Technisches Makro sind symbolische Abkürzungen, z.B. "$\R$".
+Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
 
-\subsection{Strukturelle Modellierung}
+\subsection{Mengenbasierte Modellierung / strukturelle Modellierung}
+\begin{definition}
+	Eine \define{Inzidenzstruktur} ist ein Tripel $J=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
+	Interpretation:
+	\begin{itemize}
+		\item $P$ ist Menge von Punkten / Points
+		\item $B$ ist Menge von Blöcken / Blocks
+		\item $I$ Inzidenzrelation (z.B. Lines)
+	\end{itemize}
+	Für $(p,b)\in I$ schreiben wir auch $pIb$ (incidence) und sagen:\\
+	"Der Punkt $p$ inzidiert mit dem Block $b$ in $J$."\\
+	Für $p\in P$ sei
+	\begin{align*}
+		pI:=\set{b\in B\mid pIb}
+	\end{align*}
+	d.h. die Menge aller mit dem Punkt $p$ inzidierenden Blöcke.\\
+	Analog sei für $b\in B$ stets
+	\begin{align*}
+		Ib:=\set{p\in P\mid pIb}
+	\end{align*}
+	die Menge aller mit dem Block $b$ inzidierenden Punkte.
+\end{definition}
+
 Strukturelle Modellierung ist eine mengenbasierte Modellierung.
 Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 
@@ -73,7 +78,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{itemize}
 \end{beispiel}
 
-\begin{satz}[Prinzip der doppelten Abzählung]\enter
+\begin{satz}[Prinzip des doppelten Abzählens]\enter
 	Ist $J=(P,B,I)$ endliche Inzidenzstruktur (d.h. $P$ und $B$ endlich), so gilt
 	\begin{align*}
 		\sum\limits_{p\in P}\# pI=\#I=\sum\limits_{b\in B}\# Ib
@@ -82,14 +87,14 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{satz}
 
 \begin{definition}
-	$y$ heißt \define{taktische Konfiguration}
+	$y$ heißt \define{taktische Konfiguration} der Inzidenzstruktur $J=(P,B,I)$
 	\begin{align*}
 		:\iff\exists r_y,k_y\in\N:\forall p\in P,\forall b\in B:\# pI=r_y\und\#Ib=k_y
 	\end{align*}
 \end{definition}
 
 \begin{lemma}
-	Sei $y$ taktische Konfiguration. Dann gilt:
+	Sei $y$ taktische Konfiguration von $J=(P,B,I)$. Dann gilt:
 	\begin{align*}
 		v_y\mal r_y=b_y\mal k_y
 		\qquad\mit\qquad
@@ -107,11 +112,13 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 
 \begin{definition}
 	$\big(v_y,r_y;b_y,k_y)$ ist das \define{Parametertupel} von $y$.
-	\index{Parametertupel}
+	\index{Parametertupel}.
+	Das dazu \define{duale Parametertupel} ist $\big(b_y,k_y;v_y,r_y\big)$.
 \end{definition}
 
 \begin{beispiel}
-	Unsere Würfelinzidenzstruktur ist taktische Konfiguration mit Parametertupel Ikosaeder (20-Flächner).
+	Für unsere Würfelinzidenzstruktur ist das Parametertupel:\\
+	(Anzahl der Punkte, Anzahl der Geraden pro Punkt, Anzahl der Geraden, Anzahl der Punkte pro Gerade).
 	\begin{enumerate}
 		\item Tetraeder (dual Tetraeder): $(4,3;4,3)$ 
 		\item Hexader (dual: Oktaeder): $(8,3;6,4)$
@@ -120,11 +127,21 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{enumerate}
 \end{beispiel}
 
-\begin{beispiel}[Veblen-Young-Configuration]\enter
-	%TODO ad tikz
-	$(6,2;4,3)$
-
-	%TODO duales
+\begin{beispiel}[Veblen-Young-Configuration]
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\input{./tikz/VeblenYoung}
+			\caption{Veblen-Young-Konfiguration: $(6,2;4,3)$}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+	\end{figure}
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\input{./tikz/VeblenYoungDual}
+			\caption{duela Veblen-Young-Konfiguration: $(4,3;6,2)$}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+	\end{figure}	
 \end{beispiel}
 
 \begin{beispiel}
@@ -186,9 +203,6 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{align*}
 	dh. $(i,j,n)=(1,2,4)$.
 \end{beispiel}
-
-Technisches Makro sind symbolische Abkürzungen, z.B. "$\R$".
-Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
 
 
 
