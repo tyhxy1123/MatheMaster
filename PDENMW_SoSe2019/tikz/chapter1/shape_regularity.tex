@@ -1,0 +1,41 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{2};
+
+	% 2d triangle
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h,\h) $);
+	\coordinate (M) at ($ (A) + (\h,\h/2) $);
+
+	\coordinate (M11) at ($ (A) + (\h,3*\h/4) $);
+	\coordinate (M12) at ($ (A) + (\h,\h/4) $);
+
+	\coordinate (M21) at ($ (A) + (\h,\h/8) $);
+	\coordinate (M22) at ($ (A) + (\h,3*\h/8) $);
+	\coordinate (M23) at ($ (A) + (\h,5*\h/8) $);
+	\coordinate (M24) at ($ (A) + (\h,7*\h/8) $);
+
+
+	\draw (A) -- (B) -- (C) --cycle;
+	\draw (A) -- (M);
+
+	\draw (A) -- (M11);
+	\draw (A) -- (M12);
+
+	\draw (A) -- (M21);
+	\draw (A) -- (M22);
+	\draw (A) -- (M23);
+	\draw (A) -- (M24);
+
+	
+
+	\end{tikzpicture}
+	
+	\caption{$\delta$ can get very small}
+	\label{ch_1_shape_shape_regularity}
+	
+\end{figure}

@@ -1,0 +1,383 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Grundlegende Begriffe}
+\section{Bezeichnungen}
+
+\begin{notationnr}[Grundlegende Bezeichnungen]
+	\begin{align*}
+		&\N &=&&&\set{1,2,3,\ldots}\\
+		&\N_0&=&&&\set{0,1,2,\ldots}\\
+		&\Z&=&&&\set{0,\pm 1,\pm2,\ldots}\\
+		&\Q &&&&\text{rationale Zahlen}\\
+		&\R &&&&\text{reelle Zahlen}\\
+		&\C &&&&\text{komplexe Zahlen}\\
+		&x_+ &=&&&\max\set{x,0},\quad x\in\R\\
+		&\indi_A &&&&\text{Indikatorfunktion einer Menge }A\\
+		&\delta_x&&&&\text{Einpunkt- oder Dirac-Maß, das in $x$ konzentriert ist}\\
+		&\delta_{x,y}&&&&\text{die Kroneker'sche Deltafuntktion}\\
+		&\tilde{f}(x)&=&&&\overline{f(-x)}\\
+		&\E[X]&&&&\text{Erwartungswert der Zufallsgröße/des Zufallsvektors }X\\
+		&\L_p(\R^d)&&&&\text{Menge der komplex-wertigen Lebesguemessbaren Funktionen $f$ auf $\R^d$,}\\
+		&&&&&\text{für die $|f|^p$ Lebesgue-integrierbar ist}\\
+		&\L_p(\Z^d)&&&&\text{Menge der komplex-wertigen Funktionen $f$ auf $\Z^d$}\\
+		&&&&&\text{für die $|f|^p$ Lebesgue-integrierbar sind}\\
+		&\norm{\cdot}_p&&&&\L_p\text{-Norm}\\
+		&L_p(\R^d)&&&&L_p\text{-Raum bezüglich des Lebesgue-Maßes auf $\R^d$}\\
+		&L_p(\Z^d)&&&&L_p\text{-Raum bezüglich des Zählmaßes auf $\Z^d$} 
+	\end{align*}
+	$L_p^r$ und $\L_p^r$ bezeichnen Räume, die von reellwertigen Funktionen erzeugt werden.
+\end{notationnr}
+
+\begin{notationnr}[Mehrdimensionale Bezeichnungen]\enter
+	Ist $x\in\R^d$ ($C^d,~\N_0^d$, usw.) so bezeichnet $x_i$ $(1\leq i\leq d)$ die $i$-te Koordinate von $x$ und wir schreiben $x$ als $x=(x_1,\ldots,x_d)$.
+	In Ausdrücken wo Matrix-Operationen vorkommen, z.B. $A\mal x$ wobei $A$ eine Matrix ist, betrachten wir $x$ als einen Spalten-Vektor.
+	Das Nullelement von $\R^d$ wird auch mit 0 bezeichnet.
+	Sei $x\in\R^d$ oder $\C^d$ und $\alpha\in\N_0^d$.
+	Dann schreiben wir:
+	\begin{align*}
+		x^\alpha&=x_1^{\alpha_1}\mal x_2^{\alpha_2}\mal\ldots\mal x_d^{\alpha_d}=\prod\limits_{i=1}^d x_i^{\alpha_i}\\
+		\norm{x}&=\sqrt{\abs{x_1}^2+\ldots+\abs{x_d}^2}=\sqrt{\sum\limits_{i=1}^d\abs{x_i}^2}\\
+		\abs{\alpha}&=\alpha_1+\ldots+\alpha_d=\sum\limits_{i=1}^d\alpha_i\\
+		\alpha!&=\alpha_1!\mal\ldots\mal\alpha_d!=\prod\limits_{i=1}^d\alpha_i!\\
+		\begin{pmatrix}
+			\alpha\\
+			\beta
+		\end{pmatrix}&=\frac{\alpha!}{(\alpha-\beta)!\mal\beta!}=
+		\begin{pmatrix}
+			\alpha_1\\
+			\beta_1
+		\end{pmatrix}\mal\ldots\mal
+		\begin{pmatrix}
+			\alpha_d\\
+			\beta_d
+		\end{pmatrix}&\forall& \beta\leq\alpha\\
+		D^\alpha&=\frac{\partial^{|\alpha|}}{\partial x_1^{\alpha_1}\cdots\partial x_d^{\alpha_d}}\\
+		\abs{k}&=\abs{k_1}+\ldots+\abs{k_d}=\sum\limits_{i=1}^d\abs{k_1}&\forall& k\in\Z^d
+	\end{align*}
+\end{notationnr}
+
+\begin{bemerkung}\
+	\begin{itemize}
+		\item Wenn $\alpha=(0,\ldots,0)$ dann $x^\alpha:=1$.
+		\item Es gilt
+		\begin{align*}
+			D^\alpha D^\beta g=D^{\alpha+\beta} g
+		\end{align*}				
+		wobei $g$ eine beliebige reell- oder komplex-wertige Funktion auf $\R^d$ ist, für die die partiellen Ableitungen $D^{\alpha+\beta}g$ existieren.
+		\item $D^\alpha g:= g$ wenn $\alpha=(0,\ldots,0)$.
+		\item Sei $\beta=(\beta_1,\ldots,\beta_d)$ ein anderes $d$-Tupel von nichtnegativen ganzen Zahlen.
+		Wir schreiben
+		\begin{align*}
+			\beta\leq\alpha:\iff\beta_j\leq\alpha_j\qquad\forall j\in\set{1,\ldots,d}
+		\end{align*}
+		\item Mit $\d x$, $\d\lambda(x)$ oder $\d\lambda_d(x)$ bezeichnen wir Integration bezüglich des Lebesgue'schen Maßes $\lambda=\lambda_d$ auf $\R^d$, und $(x,y):=\scaProd{x}{y}$ ist das Skalarprodukt von $x,y\in\R^d$ oder $\C^d$.
+	\end{itemize}
+\end{bemerkung}
+
+\section{Historische Bemerkungen}
+\begin{itemize}
+	\item Zeitliche Einordnungen: Anfang des 20. Jahrhunderts
+	\item Anwendungen in Physik, Technik, Finanzwelt, Wetter, $\ldots$
+	\item Untersuchung von Vorgängen, die mit der Zeit ablaufen und bei deinen der Zufall eine Rolle abspielt.
+	\item Die Wahrscheinlichkeitstheorie besaß damals keine allgemeinen Verfahren für die Untersuchung von solchen Erscheinungen.
+	\item Notwendigkeit eine allgemeine Theorie der zufällige Prozesse auszuarbeiten.
+\end{itemize}
+
+\begin{beisp}\
+	\begin{itemize}
+		\item Zwei Gase / Flüssigkeiten werden in Berührung gebracht; die Moleküle der einen Flüssigkeit dringen in die andere ein: \define{Diffusion}\\
+		\betone{Fragen:}
+		\begin{itemize}
+			\item Nach welchen Gesetzen geht der Diffusionsvorgang vor sich?
+			\item Wie schnell?
+			\item Wann stellt sich ein Gleichgewicht ein (d.h. wann haben sich die Flüssigkeiten / Gase vollständig vermischt)?
+		\end{itemize}
+		\item radioaktiver Zerfall: instabile Atomkerne senden Strahlung aus und ändern ihren Zustand; der Zeitpunkt ist zufällig
+		\item Brownsche Bewegung: Moleküle stoßen zufällig gegen viele Atome. 
+		Dies nutze man dann als Beweis für Richtigkeit des Atom-Teilchenmodells.
+		\item Anzahl der Anrufe, die in einer Telefonzentrale während eines bestimmten Zeitintervalls erfolgen $\leadsto$ \undefine{Poisson-Prozess}
+		\item Rauschen bei elektrischen Signalen
+		\item $\ldots$
+	\end{itemize}
+\end{beisp}
+
+\begin{beisp}[Herleitung der \define{Fokker-Planck-Diffusionsgleichung} der Diffusionstheorie (Anfang des 20. Jhd.)]\enter
+	\index{Fokker-Planck-Diffusionsgleichung}
+	Ein Teilchen erleidet zu dem Zeitpunkten $n\cdot\tau$, $n\in\set{1,2,\ldots}$ unabhängige zufällige Zusammenstöße, 
+	die jedes Mal eine Verschiebung um $h\in\R$ nach rechts mit Wahrscheinlichkeit $p:=:p(\tau)$ (Wahrscheinlichkeit hängt von Feinheit $\tau$ ab), 
+	oder nach links mit Wahrscheinlichkeit $q:=1-p$ verursachen.
+	
+	\begin{notation}
+		\begin{align*}
+			f(x,t):=:f(x,n\cdot\tau)
+		\end{align*}
+		sei die Wahrscheinlichkeit, dass das Teilchen nach $n$ Stößen, ausgehend von $x=0$ zur Zeit $t=0$, im Punkt $x\in\R$ auftritt.
+	\end{notation}
+	Diskretisierung: Offenbar gilt
+	\begin{align*}
+		f(x,t)=f(k\mal h,n\mal\tau)=0
+	\end{align*}
+	im Spezialfall, dass  $n$ gerade und $k$ ungerade oder $n$ ungerade und $k$ gerade.
+	Sei nun $m\in\N$ die Anzahl der Schritte nach rechts.
+	Dann ist
+	\begin{align*}
+		m-(n-m)=\frac{x}{h}=k
+	\end{align*}
+	und 
+	\begin{align*}
+		f(k\mal h,n\mal\tau)=
+		\begin{pmatrix}
+			n\\
+			m
+		\end{pmatrix}
+		\mal p^m\mal p^{n-m}
+		=n\mal\tau
+	\end{align*}
+	\betone{Kurze Rechnung zur Herleitung der Differentialgleichung:}\\
+	$f$ erfüllt die Differenzengleichung
+	\begin{align}\label{eq:BeispEinfuehrung1}\tag{1}
+		f(x,t+\tau)=p\mal f(x-h,t)+q\mal f(x+h,t)
+	\end{align}	 
+	mit Anfangsbedingungen
+	\begin{align*}
+		f(0,0)=1,\qquad
+		f(x,0)=0\quad
+		\forall x\neq0.
+	\end{align*}
+	\begin{aufgabenr}[1.2 Teil 1, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.2Teil1}\enter
+		Rechnen Sie nach, dass \eqref{eq:BeispEinfuehrung1} die Differenzengleichung mit Anfangsbedingungen erfüllt.
+	\end{aufgabenr}
+
+	Wir bilden den Grenzwert $h,\tau\longrightarrow 0$.
+	Aus physikalischen Überlegungen folgt, dass dabei $h,\tau$ und $p$ (geht gegen $\frac{1}{2}$) gewisse Bedingungen erfüllen müssen:
+	\begin{align}\label{eq:BeispEinfuehrung2}\tag{2}
+		\frac{h^2}{\tau}\longrightarrow 2\mal D,\qquad
+		\frac{p-q}{h}\longrightarrow\frac{c}{D}
+	\end{align}
+	wobei $x=n\mal h$, $t=n\mal\tau$; $c$ und $D$ sind Konstanten:
+	\begin{itemize}
+		\item $c$ ist die Strömungsgeschwindigkeit
+		\item $D$ ist der Diffusionskoeffizient
+	\end{itemize}
+	Wir ziehen von beiden Seiten von \eqref{eq:BeispEinfuehrung1} den Term $f(x,t)$ ab:
+	\begin{align}
+			f(x,t+\tau)-f(x,t)\nonumber
+			&=p\mal f(x-h,t)+q\mal f(x+h,t)-f(x,t)\mal\underbrace{p-q}_{=1}\\
+			&=p\mal\klammern[\big]{f(x-h,t)-f(x,t)}\label{eq:BeispEinfuehrung3}\tag{3}
+			+q\mal\klammern[\big]{f(x+h,t)-f(x,t)}
+	\end{align}
+	Sei $f$ einmal nach $t$ und zweimal nach $x$ differenzierbar.
+	\begin{align*}
+		f(x,t+\tau)-f(x,t)
+		&=\tau\mal\frac{\partial f(x,t)}{\partial t}+o(\tau)\\
+		f(x-h,t)-f(x,t)
+		&=-h\mal\frac{\partial f(x,t)}{\partial x}
+		+\frac{1}{2}\mal h^2\mal\frac{\partial^2 f(x,t)}{\partial x^2}+o(h^2)\\
+		f(x+h,t)-f(t,x)
+		&=h\mal\frac{\partial f(x,t)}{\partial x}+\frac{1}{2}\mal h^2\mal\frac{\partial^2 f(x,t)}{\partial x^2}+o(h^2)
+	\end{align*}
+	Die Gleichungen entsteht durch Taylorentwicklung (bis zum ersten bzw. bis zum zweiten Term).
+	Wir setzen dies in \eqref{eq:BeispEinfuehrung3} ein und verwenden dabei \eqref{eq:BeispEinfuehrung2}:
+	\begin{align*}
+		\frac{\partial f(x,t)}{\partial t}
+		=-2\mal c\mal\frac{\partial f(x,t)}{\partial x}+D\mal\frac{\partial^2 f(x,t)}{\partial x^2}
+	\end{align*}
+	Dies ist die \define{Fokker-Planck-Differentialgleichung}.
+	\begin{aufgabenr}[1.2 Teil 2, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.2Teil2}\enter
+		Leiten Sie die Differentialgleichung ausführlich her.
+	\end{aufgabenr}
+\end{beisp}
+
+Anfang der 30er Jahre (20. Jhd.) wurden die 
+Grundsteine der allgemeinen Theorie von stochastischen Prozessen gelegt:
+\begin{itemize}
+	\item A.N. Kolmogorov: \undefine{Prozesse ohne Nachwirkung} / \undefine{Markovsche Prozesse}
+	\item A.J. Khinchin: stationäre Prozesse 
+\end{itemize}
+
+\begin{beisp}[Poisson-Prozess]\enter
+	\index{Poisson-Prozess}
+	Der \undefine{Poisson-Prozess} wurde vorher schon von Physikern wie Einstein und Smoluchowski im Zusammenhang mit der Brownschen Bewegung untersucht.\\
+	In zufälligen Zeitpunkten tritt ein gewisses Ereignis $A$ ein.\\
+	$X(t)$ sei die Anzahl des Eintretens von $A$ im Zeitintervall $(0,t)\subseteq\R$.
+	Setze weiterhin
+	\begin{align*}
+		P_k(t):=\P\big[X(t)=k\big],\qquad\forall k\in\N_{\geq0}
+	\end{align*}
+	\betone{Voraussetzungen an die Folge $(P_k)_{k\in\N_0}$:}
+	\begin{enumerate}
+		\item $(P_k)_{k\in\N_0}$ sei \define{stationär}, d.h. für das $k$-fache Auftreten im Intervall $(T,T+t)$ hängt die Wahrscheinlichkeit $P_k(t)$ nicht von $T$ ab.
+		\index{stationär}
+		\item $(P_k)_{k\in\N_0}$ sei \define{ohne Nachwirkung (Markoveigenschaft)}, d.h. die obige Wahrscheinlichkeit $P_k(t)$ ist unabhängig davon, wie viele Male und wann $A$ \betone{vorher} eintrat
+		\index{ohne Nachwirkung}
+		\item $(P_k)_{k\in\N_0}$ sei \define{ordinär}, d.h. das mehrfache Auftreten von $A$ in einem sehr kleinen Intervall $\Delta t$ kann praktisch nicht vorkommen.\\
+		\index{ordinär}
+		Genauer:
+		Die Wahrscheinlichkeit dafür ist $o(\Delta t)$.
+	\end{enumerate}
+	 Aus diesen Annahmen folgt (ohne Beweis):
+	 \begin{align*}
+	 	P_k(t)&=\frac{(\lambda\mal t)^k}{k!}\mal\exp(-\lambda\mal t)
+	 \end{align*}
+	 (Poisson-Verteilung) mit einer Konstanten $\lambda>0$, die sogenannte \define{Intensität} des Prozesses.\nl
+	 \betone{Beispiele für $A$:}
+	 \begin{itemize}
+	 	\item Auftreten eines kosmischen Teilchens auf eine  bestimmte Fläche
+	 	\item Zerfall eines Atoms eines radioaktiven Stoffes
+	 	(falls nicht zu groß oder zu klein)
+	 \end{itemize}
+\end{beisp}
+
+Bis jetzt war $t$ in den Beispielen die Zeit, sie kann aber z.B. auch eine Ortsangabe sein.
+Beispiel: Geostatistik (Modellierung von Gesteinsschichten)
+
+\section{Stochastische Prozesse}
+In diesem Abschnitt seien:
+\begin{itemize}
+	\item $T\neq\emptyset$: beliebige Menge, die \define{Parametermenge}
+	\item $(\Omega,\A,\P)$: Wahrscheinlichkeitsraum
+	\item $(S,\B)$: Messraum ($S$ ist beliebige Menge und $\B$ eine $\sigma$-Algebra auf $S$)
+\end{itemize}
+
+\begin{definition}\label{def1.3.1}
+	Ein \define{stochastischer Prozess (SP) / Zufallsfeld}
+	\index{Zufallsfeld}
+	\index{stochastischer Prozess|see{Zufallsfeld}}
+	$Z$ auf $T$ mit \define{Grundraum}\index{Grundraum}
+	$(\Omega,\A,\P)$ ist eine Abbildung, die jedem Element $t\in T$ eine $S$-wertige Zufallsvariable zuordnet.
+	\begin{align*}
+		Z\colon T\to(\Omega\to S),\qquad t\mapsto\big(\omega\mapsto X(\omega)\big)
+	\end{align*}
+\end{definition}
+
+\begin{bemerkungnr}\label{bemerkung1.3.2}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Anstelle von $Z(t)$ wird auch $Z_t$ geschrieben.
+		Die Schreibweise $Z(t)(\omega)$, $\omega\in\Omega$ wäre umständlich; man schreibt
+		\begin{align*}
+			Z_t(\omega):=Z(t,\omega):=Z(t)(\omega)\qquad\forall \omega\in\Omega,\forall t\in T
+		\end{align*}
+		Das Feld $Z$ wird auch mit 
+		\begin{align*}
+			\set{Z(t)}\qquad\oder\qquad\set{Z_t}_{t\in T}\qquad\oder\qquad\set{Z_t:t\in T}
+		\end{align*}
+		bezeichnet.
+		\item Ist $S$ ein metrischer Raum oder topologischer Raum, z.B. eine Teilmenge von $\R^d$ oder $\C^d$, so nehmen wir für $\B$ die \define{Borel-$\sigma$-Algebra}, d.h. die kleinste $\sigma$-Algebra, die alle offenen Mengen enthält.
+		\index{Borel-$\sigma$-Algebra}
+		\item Sind die Zufallsgrößen reell- oder komplexwertig, so heißt $Z$ ein \define{reelles} bzw. \define{komplexes Zufallsfeld}.
+		\item Falls $T\in\set[\big]{\R,[0,\infty),[0,1]}$, dann heißt $Z$ \define{zeitstetiger Prozess}. \index{zeitsteiger Prozess}
+		\item Falls $T\in\set[\big]{\N,\N_0,\Z}$, dann heißt $Z$ \define{zeitdiskreter Prozess / Zeitreihe}. \index{zeitdiskreter Prozess}\index{Zeitreihe|see{zeitdiskreter Prozess}}
+		\item Die Funktionen
+		\begin{align*}
+			T\to S,\qquad		
+			t\mapsto Z(t,\omega)
+		\end{align*}
+		heißt \define{Trajektorie / Realisierung / Pfad} für jedes feste $\omega\in\Omega$.
+		\index{Trajektorie}\index{Realisierung|see{Trajektorie}}\index{Pfad|see{Trajektorie}}\index{Pfadraum}\\
+		Der \define{Pfadraum} ist die Gesamtheit aller Pfade.\\
+		Man kann das Feld $Z$ auch als eine Abbildung auffassen, die jedem $\omega\in\Omega$ eine $S$-wertige Funktion auf $T$ zuordnet, nämlich
+		die Realisierung
+		\begin{align*}
+			Z(\cdot,\omega)\colon T\to S,\qquad t\mapsto Z(t,\omega)\qquad\forall \omega\in\Omega
+		\end{align*}
+		Eine weitere Sichtweise ist, das Feld als eine Abbildung
+		\begin{align*}
+			Z:T\times\Omega\to S,\qquad (t,\omega)\mapsto Z(t,\omega)
+		\end{align*}
+		zu betrachten, die für jedes feste $t\in T$ messbar bezüglich $(\A,\B)$ ist.\index{vollständiger Maßraum}
+		\item Ein Maßraum $(\Omega,\A,\P)$ heißt \define{vollständig}, falls $\A$ jede $\P$-Nullmenge enthält.
+		Dies können wir o.B.d.A. annehmen, denn:\\
+		Sei $(\Omega,\A_0,\P_0)$ die \define{Vervollständigung} des Grundraumes, d.h.: \index{Vervollständigung}\\
+		$\A_0$ ist die $\sigma$-Algebra, aller Mengen der Form
+		\begin{align*}
+			A_0&=(A\cup N)\setminus M
+		\end{align*}
+		wobei $A\in\A$ und $M,N\subseteq\Omega$ Teilmengen von $\P$-Nullmengen sind;
+		\begin{align*}
+			\P_0(A_0):=\P(A)\qquad\forall A_0\in\A_0.
+		\end{align*}
+		Die Erweiterung hat die günstige Eigenschaft, dass beliebige Teilmengen von Nullmengen Ereignisse sind.
+		Wegen $\A\subseteq\A_0$ können wir ein Feld mit Grundraum $(\Omega,\A,\P)$ auch als Feld mit Grundraum $(\Omega,\A_0,\P_0)$ betrachten.
+		Da $\P_0|_\A=\P$ bleiben die Verteilungen der Zufallsvariablen $Z_t$ unverändert.
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{aufgabenr}[1.3.2.7 Teil 1, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.3.2.7Teil1}\enter
+	Zeigen Sie:
+	\begin{enumerate}
+		\item $\A_0$ ist eine $\sigma$-Algebra.
+		\item $\P_0$ ist wohldefiniert (also unabhängig von der Darstellung).
+		\item $\P_0$ ist ein Wahrscheinlichkeitsmaß.
+	\end{enumerate}
+\end{aufgabenr}
+
+\begin{beisp}
+	Der Wahrscheinlichkeitsraum $(\Omega,\A,\P)$ mit
+	\begin{align*}
+		\Omega&=[0,1]\\
+		\A&=\set{\emptyset,\Omega,\intervall{0}{\frac{1}{2}},\intervallOH{\frac{1}{2}}{1}}\\
+		\P\klammern{\intervall{0}{\frac{1}{2}}}&=0,1\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=0,9.
+	\end{align*}		
+	ist \betone{nicht} vollständig.
+	 Dann ist
+	 \begin{align*}
+	 	\A_0=?\qquad\P_0=?
+	 \end{align*}
+	 \betone{oder}:
+	 \begin{align*}
+	 	\P\klammern{\intervall{0}{\frac{1}{2}}}&=0\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=1
+	 \end{align*}
+	  Dann ist
+	 \begin{align*}
+	 	\A_0=?\qquad\P_0=?
+	 \end{align*}
+
+	\begin{aufgabenr}[1.3.2.7 Teil 2, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.3.2.7Teil2}\enter
+	 	Zeige, dass $(\Omega,\A,\P)$ nicht vollständig ist und gibt in beiden Fällen $\A_0$ und $\P_0$ an.
+	\end{aufgabenr}
+\end{beisp}
+
+\begin{beispiel}\label{beisp1.3.3}\
+	\begin{enumerate}[label=(\alph*)]
+		\item Sind $X_j,j\in\N_0$ beliebige Zufallsgrößen, so sind 
+		\begin{align*}
+			\set{X_j:j\in\N_0}
+			\qquad\und\qquad
+			S_n:=\sum\limits_{j=0}^n X_j\qquad\forall n\in\N_0
+		\end{align*}
+		Zeitreihen ($T=\N_0$ und $S=\R$).
+		\item Seien $a$ und $\varphi$ zwei Zufallsgrößen und $u\in\R$.
+		Dann ist \index{harmonische Schwingung}
+		\begin{align*}
+			X_t:=a\mal\cos(u\mal t+\varphi)\qquad\forall t\in\R
+		\end{align*}
+		ein stochastischer Prozess auf $\R$, eine sogenannte \define{harmonische Schwingung} mit zufälligen Parametern
+		\begin{itemize}
+			\item $a$: \define{Amplitude}
+			\item $\varphi$: \define{Phase}
+		\end{itemize}
+		und \define{Frequenz} $u$ gegeben.
+		(Für festes $t\in T$ ist $X_t$ eine Zufallsgröße, da $\cos$ stetig und damit messbar als Kombination messbarer Abbildungen.)\\
+		Viele Prozesse in Anwendungen lassen sich als Summe von solchen harmonischen Schwingungen modellieren / annähern.
+		\begin{align*}
+			X_t(\omega)=\sum\limits_{j=1}^n a_j(\omega)\mal\cos\big(u_j\mal t+\varphi_j(\omega)\big)\qquad\forall t\in\R,\forall\omega\in\Omega
+		\end{align*}
+		Die Menge $\set{u_1,\ldots,u_n}$ der Frequenzen heißt das \define{Spektrum} von $X$. \index{Spektrum}\\
+		Wichtige Aufgabe in Anwendungen ist die Bestimmung des Spektrums mit Hilfe von endlich vielen Beobachtungen 
+		\begin{align*}
+			X_{t_1}(\omega),\ldots,X_{t_m}(\omega)
+		\end{align*}
+		z.B. die Anzahl der Sonnenflecke.\\
+		Oft ist es vorteilhaft komplexwertige Schwingungen zu betrachten:
+		\begin{align}\label{eq:beispiel1.3.3HarmonischeSchwingungKomplex}
+			Z_t:=\sum\limits_{j=1}^n c_j\mal\exp(\ii\mal u_j\mal t)\qquad\forall t\in\R
+		\end{align}
+	\end{enumerate}
+\end{beispiel}
+
+
+
+

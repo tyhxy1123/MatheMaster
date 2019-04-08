@@ -1,9 +1,100 @@
-% !TEX root = NLANA.tex
+% !TEX root = KAT.tex
 % This work is licensed under the Creative Commons
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Chapter}
-\section{Section}
+\chapter{Vorbemerkungen}
+\section{Was ist Kategorientheorie?}
+Was ist Kategorientheorie?\nl
+Historisch:
+1945 Eilenberg / McLane: Erstmaliges Auftauchen des Begriffs
+$$\begin{tikzcd}
+                                   & Y \arrow[rd, "g"] &   \\
+X \arrow[ru, "f"] \arrow[rr, "fg"] &                   & Z
+			\end{tikzcd}
+$$
+
+\section{Mathematische Vorüberlegungen}
+Folgende Grundlagen sollten bekannt sein:
+Kenntnis der Mengensprache
+\begin{align*}
+	&a\in B,\qquad f\colon A\to B\\
+	&\cap,\cup,A\setminus B\\
+	&A\times B=\set[\big]{(a,b)\mid a\in A,b\in B}
+\end{align*}
+Eine (binäre) Relation ist $\rho\subseteq A\times B$.
+Man sollte außerdem kennen:
+\begin{itemize}
+	\item Äquivalenzrelation (reflexiv, transitiv, symmetrisch)
+	\item Ordnungsrelation (reflexiv, transitiv, antisymmetrisch)
+	\item einige algebraische Strukturen
+\end{itemize}
+
+\section{Probleme mit der Mengenlehre}\label{section:0.3}
+Naiver (unreflektierter) Umgang mit Mengen führt zu Widersprüchen (Antinomie, Paradoxon), z.B.:
+\begin{align*}
+	M:=\set[\big]{X\mid X\text{ Menge und }X\not\in X}
+\end{align*}
+ist die Menge aller Mengen, die sich selbst nicht als Element enthalten.\\
+Gilt $M\in M$?
+Nein, denn für $X=M$ folgte $M\not\in M$.\\
+Gilt $M\not\in M$? Nein, da dann $M$ ein solches $X\in M$ wäre, d.h. $M\in M$.
+Widerspruch.\nl
+Ein möglicher Ausweg ist: alles heißt \define{Klasse}, aber Unterteilung in
+\begin{itemize}
+	\item \define{Mengen} ("kleine Mengen"): diese dürfen Elemente von anderen Klassen sein
+	\item \define{(echte) Klasse} ("große Klasse"): dürfen nicht Elemente einer Klasse sein
+\end{itemize}
+
+\begin{definition} %nonumber
+	$X$ heißt \define{Menge}\index{Menge}\index{Klasse}
+	\begin{align*}
+		:\iff\exists\text{ Klasse }Y:X\in Y
+	\end{align*}
+\end{definition}
+
+Dies wurde axiomatisiert in der Zermelo-Fraenkel-Mengenlehre.\nl
+Anderer Ausweg: \undefine{Universa}
+\begin{definition}
+	Ein \define{Universum} ist eine Menge $U$ mit folgenden Eigenschaften:\index{Universum}
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			X\in Y\in U\implies X\in U
+		\end{aligned}$
+		\item $\begin{aligned}
+			X,Y\in U\implies\set{X,Y}\in U
+		\end{aligned}$
+		\item $\begin{aligned}
+			X,Y\in U\implies X\times Y\in U
+		\end{aligned}$
+		\item $\begin{aligned}
+			X\in U\implies\Potenzmenge{X}\in U
+		\end{aligned}$
+		\item $\begin{aligned}
+			X\in U\implies \bigcup X\in U\qquad\mit \bigcup X:=\bigcup\limits_{A\in X}A
+		\end{aligned}$
+		\item $\begin{aligned}
+			\omega\in U
+		\end{aligned}$ mit $\omega:=\N_0$
+		\item $\begin{aligned}
+			X\in U,~f\colon X\to U\text{ Funktion}\implies\rg(f):=\set[\big]{f(x)\mid x\in X}\in U
+		\end{aligned}$
+	\end{enumerate}
+\end{definition}
+
+\begin{axiom}
+	Jede Menge ist in einem Universum enthalten (als Element).
+\end{axiom}
+
+\begin{definition}
+	\begin{align*}\index{kleine Menge}\index{große Menge}
+		A\text{ ist }\define{kleine Menge} &:\iff A\in U\\
+		A\text{ ist }\define{große Menge} &:\iff A\not\in U\\
+	\end{align*}
+\end{definition}
+
+In dieser Vorlesung machen wir uns allerdings keine weiteren tiefen Gedanken über Mengentheorie und deren Probleme.
+Stattdessen stellen wir uns auf den naiven Standpunkt
+"es wird schon gutgehen".
 

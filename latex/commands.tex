@@ -16,33 +16,36 @@
 \renewcommand{\O}{\mathcal{O}}           % Landau-O
 
 % Schlüsselwörter
-\renewcommand{\mit}{\text{ mit }}       % sprachliches mit für align-Umgebungen
-\newcommand{\falls}{\text{falls }}      % sprachliches falls für Fallunterscheidungen
-\newcommand{\sonst}{\text{sonst }}      % sprachliches sonst für Fallunterscheidungen
-\newcommand{\und}{\text{ und }}         % sprachliches und für align-Umgebungen
-\newcommand{\Def}{\text{Def}}           % Voraussetzung, z.B. $\overset{\Def}{=}$
-\newcommand{\Vor}{\text{Vor}}           % Voraussetzung, z.B. $\overset{\Vor}{=}$
+\renewcommand{\mit}{\text{ mit }}        % sprachliches mit für align-Umgebungen
+\newcommand{\falls}{\text{falls }}       % sprachliches falls für Fallunterscheidungen
+\newcommand{\sonst}{\text{sonst }}       % sprachliches sonst für Fallunterscheidungen
+\newcommand{\und}{\text{ und }}          % sprachliches und für align-Umgebungen
+\newcommand{\oder}{\text{ oder }}        % sprachliches oder für align-Umgebungen
+\newcommand{\Def}{\text{Def}}            % Definition, z.B. $\overset{\Def}{=}$
+\newcommand{\Vor}{\text{Vor}}            % Voraussetzung, z.B. $\overset{\Vor}{=}$
+\newcommand{\Lin}{\text{Lin}}            % Nutze Linearität, z.B. $\overset{\Lin}{=}$
 
 % Commands für Stochastik / Statistik
-\newcommand{\A}{\mathcal{A}}           % Sigma-Algebra
-\renewcommand{\P}{\mathbb{P}}          % Wahrscheinlichkeitsmaß
-\newcommand{\E}{\mathbb{E}}            % Erwartungswert
-\newcommand{\B}{\mathcal{B}}           % Borel-Sigma-Algebra
-\newcommand{\Var}{\mathbb{V}\text{ar}} % Varianz
-\newcommand{\Cov}{\mathbb{C}\text{ov}} % Kovarianz
-\newcommand{\indi}{\mathbbm{1}}        % Indikatorfunktion
+\newcommand{\A}{\mathcal{A}}             % Sigma-Algebra
+\renewcommand{\P}{\mathbb{P}}            % Wahrscheinlichkeitsmaß
+\newcommand{\E}{\mathbb{E}}              % Erwartungswert
+\newcommand{\B}{\mathcal{B}}             % Borel-Sigma-Algebra
+\newcommand{\Var}{\mathbb{V}\text{ar}}   % Varianz
+\newcommand{\Cov}{\mathbb{C}\text{ov}}   % Kovarianz
+\newcommand{\indi}{\mathbbm{1}}          % Indikatorfunktion
 
 % Verteilungen
-\DeclareMathOperator{\Bin}{Bin}        % Binomialverteilung
-\newcommand{\Nor}{\mathcal{N}}         % Normalverteilung
-\DeclareMathOperator{\Poi}{Poi}        % Poissonverteilung
-\DeclareMathOperator{\Exp}{Exp}        % Exponentialverteilung
-\DeclareMathOperator{\Cauchy}{Cauchy}  % Cauchyverteilung
+\DeclareMathOperator{\Bin}{Bin}          % Binomialverteilung
+\newcommand{\Nor}{\mathcal{N}}           % Normalverteilung
+\DeclareMathOperator{\Poi}{Poi}          % Poissonverteilung
+\DeclareMathOperator{\Exp}{Exp}          % Exponentialverteilung
+\DeclareMathOperator{\Cauchy}{Cauchy}    % Cauchyverteilung
 
 % Wichtige Operatoren (alphabetisch)
 \newcommand{\AND}{\wedge}                % logisches Und
 \DeclareMathOperator*{\argmax}{arg\,max} % argmax
 \DeclareMathOperator*{\argmin}{arg\,min} % argmin
+\DeclareMathOperator{\Aut}{Aut}          % Automorphismen
 \newcommand{\bigcupdot}{
 	\mathop{\vphantom{\bigcup}\mathpalette\setbigcupdot\cdot}\displaylimits
 }                                        % Disjunkte Vereinigung
@@ -68,6 +71,7 @@
 \DeclareMathOperator{\inner}{int}        % Das innere einer Menge
 \newcommand{\laplace}{\triangle}         % Laplace Operator
 \newcommand{\limn}{\lim\limits_{n\to\infty}} % Standard-Limes
+\newcommand{\mal}{\cdot}                 % hier kann man \cdot ein- und ausschalten
 \DeclareMathOperator{\meas}{meas}        % Das Maß einer Menge, meist Lebesguemaß gemeint
 \newcommand{\OR}{\vee}                   % logisches Oder
 \newcommand{\properideal}{
@@ -75,6 +79,7 @@
 }                                        % echtes Ideal
 \newcommand{\rand}{\partial}             % Rand einer Menge
 \newcommand{\Potenzmenge}[1]{\mathfrak{P}\left(#1\right)} % Potenzmenge
+\DeclareMathOperator{\rang}{rang}        % Rang einer Matrix
 \DeclareMathOperator{\rg}{rg}            % Bild einer Funktion, Rang einer Matrix
 \DeclareMathOperator{\SO}{SO}            % Orthogonale Gruppe
 \DeclareMathOperator{\Span}{span}        % Span / Lineare Hülle
@@ -107,6 +112,10 @@
 \xDeclarePairedDelimiter{\norm}{\Vert}{\Vert}
 \xDeclarePairedDelimiter{\abs}{\vert}{\vert}
 \xDeclarePairedDelimiterBin{\scaProd}{\langle}{\rangle}
+\xDeclarePairedDelimiterBin{\intervall}{[}{]}
+\xDeclarePairedDelimiterBin{\intervallHO}{[}{)}
+\xDeclarePairedDelimiterBin{\intervallOH}{(}{]}
+\xDeclarePairedDelimiterBin{\intervallO}{(}{)}
 \xDeclarePairedDelimiter{\klammern}{(}{)}
 
 \NewDocumentCommand\normiii{som}{
@@ -135,3 +144,7 @@
 
 % Warnings and errors
 \newcommand{\throwWarning}[1]{\PackageWarning{42}{#1}} % Erzeugt LaTeX-Warnung mit Message = #1 
+
+%Links
+\newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}} % Hyperlink für E-Mails
+\newcommand{\link}[1]{\texttt{\href{#1}{#1}}}          % Hyperlink ins WWW

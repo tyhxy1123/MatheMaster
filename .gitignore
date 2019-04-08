@@ -17,6 +17,8 @@
 *.synctex(busy)
 *.fdb_latexmk
 **/*.pdf
+# explicitly ignore output directories
+out/
 
 *.7z
 *.dmg
@@ -27,3 +29,4 @@
 *.tar
 *.zip
 tags
+*.brf

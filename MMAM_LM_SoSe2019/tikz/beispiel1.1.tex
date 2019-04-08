@@ -1,0 +1,24 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\begin{tikzpicture}[x=\sizeX mm,y=\sizeY mm]
+	\draw[thin,->] (168,50) -- (193,50) node[right] {$x$};
+	\draw[thin,->] (168,50) -- (168,100) node[above] {$Y$};
+
+	\foreach \x [count=\xi starting from 170] in {170, 175,180,185,190}{
+    	\draw (\x,50*\sizeY mm+2pt) -- (\x,50*\sizeY mm-2pt);
+      	\node[anchor=north] at (\x,50*\sizeY mm-2pt) {$\x$};
+	}
+	
+	\foreach \x [count=\xi starting from 50] in {50,60,70,80,90}{
+    	\draw ((168*\sizeX mm-2pt,\x) -- (168*\sizeX mm+2pt,\x);
+        \node[anchor=east] at (168*\sizeX mm-2pt,\x) {$\x$};
+	}
+
+	\foreach \Point in {(172,56), (174,59), (180,65), (182,76), (186,80), (188,85), (190, 93), (181,73)}
+	{
+   		\node at \Point {\textbullet};
+	}
+\end{tikzpicture}

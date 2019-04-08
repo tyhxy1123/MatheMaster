@@ -1,0 +1,18 @@
+Vorlesung stochastische Prozesse
+- ist 3+1 Vorlesung, Übungen in die Vorlesungen integriert
+- Prüfung: mündliche Prüfung, 20 Minuten
+- Prüfungsstoff: Definitionen, Sätze (mit Namen!) mit Beweisskizzen; Aufgaben aus den Übungen (auch hier reicht Lösungsskizze)
+	- der letzte Teil entfällt, wenn man 2 oder mehr Übungsaufgaben vorgerechnet hat
+
+Inhalt der Vorlesung
+Kapitel 1: Grundlegende Begriffe
+Kapitel 2: Allgemeine Eigenschaften wie:
+	- Separabilität
+	- Messbarkeit
+	- stetige Modifikation
+Kapitel 3: Felder 2. Ordnung
+	- Wiener Prozess
+	- Poisson Prozess
+	- Geburts- und Todesprozesse
+Kapitel 4: Stochastische Integration
+	- Ito-Integral

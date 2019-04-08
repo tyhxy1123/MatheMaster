@@ -1,3 +1,3 @@
 $pdf_mode = 1;
 @default_files = ('FORM.tex');
-$out_dir = '../../bin';
+$out_dir = 'out';

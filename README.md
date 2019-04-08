@@ -1,6 +1,7 @@
 # MatheMaster (Work in Progress) [![Build Status](https://travis-ci.com/LostInDarkMath/MatheMaster.svg?branch=master)](https://travis-ci.com/LostInDarkMath/MatheMaster)
 
 Sommersemester/*summer term* 2019:
+- ALLALG bei Prof. Schmidt (deutsch)
 - ALGTOP bei Prof. Thom (deutsch)
 - DISMAT bei Dr. Cubides (*English*)
 - DISOPT bei Dr. Schwartz (deutsch)
@@ -8,7 +9,7 @@ Sommersemester/*summer term* 2019:
 - MMAM (Lineare Modelle) bei Prof. Ferger (deutsch)
 - MMAM (Spieltheorie) bei Prof. Schwartz (deutsch)
 - NLANA bei Prof. Schuricht (deutsch) *[*_via Email_*]*
-- PDENMW bei Prof. Sander (deutsch)
+- PDENMW bei Prof. Sander  (*English*)
 - SCCOMP bei Prof. Voigt & Dr.  Salvalaglio (deutsch)
 - SCPROG bei Prof. Walter (deutsch)
 - STOCAL bei Prof. Schilling (*English*) *[*_via Email_*]*
@@ -21,7 +22,8 @@ Wintersemester/*winter term* 2018/2019:
 - ANGA bei Prof. Fehm (deutsch)
 - FEM bei Prof. Voigt (*English*)
 - Formale Systeme bei Prof. Hölldobler (deutsch)
-- MFANA bei Prof. Chill (deutsch) - MSTAT bei Prof. Ferger (deutsch)
+- MFANA bei Prof. Chill (deutsch) 
+- MSTAT bei Prof. Ferger (deutsch)
 - ORDSTR bei Prof. Schmidt (deutsch)
 - PDEANA bei Prof. Hornung (deutsch)
 - PDENM bei Prof. Matthies (deutsch)

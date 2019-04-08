@@ -1,0 +1,43 @@
+\begin{figure}[H]
+	\center
+
+	\begin{tikzpicture}
+	
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{1.5}	
+
+	\coordinate (M) at (\xone ,\yone);
+	\coordinate (L) at (\xone-\h ,\yone);
+	\coordinate (R) at (\xone+\h ,\yone);
+	\coordinate (O) at (\xone ,\yone+\h);
+	\coordinate (LU) at (\xone-\h ,\yone-\h);
+	\coordinate (RU) at (\xone+\h ,\yone-\h);
+	\coordinate (LO) at (\xone-\h ,\yone+\h);
+	\coordinate (RO) at (\xone+\h ,\yone+\h);
+	\coordinate (U) at (\xone ,\yone-\h);
+
+	\draw (L) -- (R);
+	\draw (U) -- (O);
+	\draw (LU) -- (RO);
+	\draw (RU) -- (LO);
+
+	%draw nodes
+	\node[circle,draw=black!60, fill=white!40] at (M) {-20};
+	\node[circle,draw=black!60, fill=white!40] at (L) {4};
+	\node[circle,draw=black!60, fill=white!40] at (R) {4};
+	\node[circle,draw=black!60, fill=white!40] at (O) {4};
+	\node[circle,draw=black!60, fill=white!40] at (U) {4};
+
+	%draw diagonal nodes
+	\node[circle,draw=black!60, fill=white!40] at (LO) {1};
+	\node[circle,draw=black!60, fill=white!40] at (RO) {1};
+	\node[circle,draw=black!60, fill=white!40] at (LU) {1};
+	\node[circle,draw=black!60, fill=white!40] at (RU) {1};
+
+	
+	\end{tikzpicture}
+	\caption{9-point stencil}
+\label{nine_point}
+	
+\end{figure}
