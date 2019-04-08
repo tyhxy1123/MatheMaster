@@ -41,6 +41,169 @@ Es gibt zwei Wege, Wissen zu erlangen:
 	\item \define{Bottom Up:} induktive Methode
 \end{enumerate}
 
+Technisches Makro sind symbolische Abkürzungen, z.B. "$\R$".
+Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
+
+\subsection{Mengenbasierte Modellierung / strukturelle Modellierung}
+\begin{definition}
+	Eine \define{Inzidenzstruktur} ist ein Tripel $J=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
+	Interpretation:
+	\begin{itemize}
+		\item $P$ ist Menge von Punkten / Points
+		\item $B$ ist Menge von Blöcken / Blocks
+		\item $I$ Inzidenzrelation (z.B. Lines)
+	\end{itemize}
+	Für $(p,b)\in I$ schreiben wir auch $pIb$ (incidence) und sagen:\\
+	"Der Punkt $p$ inzidiert mit dem Block $b$ in $J$."\\
+	Für $p\in P$ sei
+	\begin{align*}
+		pI:=\set{b\in B\mid pIb}
+	\end{align*}
+	d.h. die Menge aller mit dem Punkt $p$ inzidierenden Blöcke.\\
+	Analog sei für $b\in B$ stets
+	\begin{align*}
+		Ib:=\set{p\in P\mid pIb}
+	\end{align*}
+	die Menge aller mit dem Block $b$ inzidierenden Punkte.
+\end{definition}
+
+Strukturelle Modellierung ist eine mengenbasierte Modellierung.
+Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
+
+\begin{beispiel}\
+	\begin{itemize}
+		\item $P:=$ Eckenmenge eines Würfels
+		\item $B:=$ Flächenmenge des Würfels
+		\item Inzidenz: Punkt ist Eckpunkt von Würfelfläche
+	\end{itemize}
+\end{beispiel}
+
+\begin{satz}[Prinzip des doppelten Abzählens]\enter
+	Ist $J=(P,B,I)$ endliche Inzidenzstruktur (d.h. $P$ und $B$ endlich), so gilt
+	\begin{align*}
+		\sum\limits_{p\in P}\# pI=\#I=\sum\limits_{b\in B}\# Ib
+	\end{align*}
+	Hierbei ist $\#M$ die Anzahl der Elemente von $M$.
+\end{satz}
+
+\begin{definition}
+	$y$ heißt \define{taktische Konfiguration} der Inzidenzstruktur $J=(P,B,I)$
+	\begin{align*}
+		:\iff\exists r_y,k_y\in\N:\forall p\in P,\forall b\in B:\# pI=r_y\und\#Ib=k_y
+	\end{align*}
+\end{definition}
+
+\begin{lemma}
+	Sei $y$ taktische Konfiguration von $J=(P,B,I)$. Dann gilt:
+	\begin{align*}
+		v_y\mal r_y=b_y\mal k_y
+		\qquad\mit\qquad
+		v_y:=\# P\und b_y:=\#B
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Doppelte Abzählung: 
+	\begin{align*}
+		v_y\mal r_y=\sum\limits_{p\in P}\underbrace{\# pI}_{=r_y}=\sum\limits_{b\in B}\underbrace{\#Ib}_{=k_y}=b_y\mal r_y
+	\end{align*}
+\end{proof}
+
+
+\begin{definition}
+	$\big(v_y,r_y;b_y,k_y)$ ist das \define{Parametertupel} von $y$.
+	\index{Parametertupel}.
+	Das dazu \define{duale Parametertupel} ist $\big(b_y,k_y;v_y,r_y\big)$.
+\end{definition}
+
+\begin{beispiel}
+	Für unsere Würfelinzidenzstruktur ist das Parametertupel:\\
+	(Anzahl der Punkte, Anzahl der Geraden pro Punkt, Anzahl der Geraden, Anzahl der Punkte pro Gerade).
+	\begin{enumerate}
+		\item Tetraeder (dual Tetraeder): $(4,3;4,3)$ 
+		\item Hexader (dual: Oktaeder): $(8,3;6,4)$
+		\item Dodekaeder (dual: Ikosaeder): $(20,3;12,5)$
+		\item Dreieck: $(3,2;3,2)$ ist auch selbstdual: Dreieck $\leftrightarrow$ Dreiseit
+	\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}[Veblen-Young-Configuration]
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\input{./tikz/VeblenYoung}
+			\caption{Veblen-Young-Konfiguration: $(6,2;4,3)$}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+	\end{figure}
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\input{./tikz/VeblenYoungDual}
+			\caption{duela Veblen-Young-Konfiguration: $(4,3;6,2)$}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+	\end{figure}	
+\end{beispiel}
+
+\begin{beispiel}
+	Berühmte taktische Konfiguation ist $(10,3;10,3)$.\\
+	Sei $[n]:=\set{1,\ldots,n}$ für $n\in\N$ und $\ul{n}:=\set{0,\ldots,n-1}$.
+	Sei $\begin{pmatrix}
+		M\\k
+	\end{pmatrix}:=\set{X\subseteq M\mid\#X=k}$ für $M$ Menge.
+	Dann gilt $\#\begin{pmatrix}
+		M\\k
+	\end{pmatrix}=\begin{pmatrix}
+		\#M\\k
+	\end{pmatrix}$.
+	Seien $i,j,n\in\N$ mit $i\leq j\leq n$.
+	Setze
+	\begin{align*}
+		J^n_{(i,j)}&:=\klammern{\begin{pmatrix}
+			[n]\\i
+		\end{pmatrix},\begin{pmatrix}
+			[n]\\ j
+		\end{pmatrix},I^n_{(i,j)}}\qquad\mit\\
+		I^n_{(i,j)}&:=\set{(p,b)\in\begin{pmatrix}
+			[n]\\ i
+		\end{pmatrix}\times\begin{pmatrix}
+			[n]\\j
+		\end{pmatrix}\mid p\subseteq b}
+	\end{align*}
+	Dann ist $J^n_{(i,j)}$ taktische Konfiguration mit dem Parametertupel
+	\begin{align*}
+		\klammern{
+		\begin{pmatrix}
+			n\\i
+		\end{pmatrix},
+		\begin{pmatrix}
+			n-i\\j-i
+		\end{pmatrix},
+		\begin{pmatrix}
+			n\\j
+		\end{pmatrix},
+		\begin{pmatrix}
+			j\\i
+		\end{pmatrix}
+		}
+	\end{align*}
+	Wann ist dies gleich $(10,3;10,3)$?
+	Oder gleich $(4,3;6,2)$? Antwort:
+	\begin{align*}
+		(4,3;6,2)=\klammern{\begin{pmatrix}
+			4\\1
+		\end{pmatrix},\begin{pmatrix}
+			4-1\\2-1
+		\end{pmatrix},
+		\begin{pmatrix}
+			4\\2
+		\end{pmatrix},
+		\begin{pmatrix}
+			2\\1
+		\end{pmatrix}}
+	\end{align*}
+	dh. $(i,j,n)=(1,2,4)$.
+\end{beispiel}
+
 
 
 
