@@ -1,4 +1,4 @@
-% !TEX root = DISM.tex
+% !TEX root = DISMAT.tex
 % This work is licensed under the Creative Commons
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
@@ -243,11 +243,12 @@
     $$ \lambda = \bigcup_{\alpha \in A} \alpha.$$
 \end{exercise}
 
-\begin{lemma}
+\newpage
+\begin{lemma}\label{lemma:1}
     If 
     \begin{itemize}
         \item $\alpha, \beta$ are ordinals
-        \item $f: \alpha \to \beta$ is an strictly increasing map ($x<y \implies f(x) < f(y)$).
+        \item $f: \alpha \to \beta$ is a strictly increasing map ($x<y \implies f(x) < f(y)$).
     \end{itemize}
     Then for all $\gamma \in \alpha$
     $$ \gamma \leq f(\gamma).$$
@@ -283,19 +284,57 @@
 \end{theorem}
 
 \begin{definition}
-    If $\alpha, \beta$ are ordinals.
-    Then 
-    \begin{enumerate}[label=\arabic*)]
-        \item $\alpha + \beta$ is defined by transfinite induction on $\beta$
-        \begin{itemize}
-            \item $\alpha + \emptyset : = \alpha$
-            \item Assuming $\alpha + \beta$ has been defined
-            $$\alpha + s(\beta) := s(\alpha + \beta)$$
-            \item If $\beta$ is a limit ordinal, and $\alpha + \gamma$ has been defined for all $\gamma < \beta$
-            $$ \alpha + \beta := \bigcup_{\gamma < \beta} \alpha + \gamma. $$
-        \end{itemize}
-    \end{enumerate}
+    If $\alpha, \beta$ are ordinals.\\
+    Then $\alpha + \beta$ is defined by transfinite induction on $\beta$
+    \begin{itemize}[label=-]
+        \item $\alpha + \emptyset : = \alpha$
+        \item Assuming $\alpha + \beta$ has been defined
+        $$\alpha + s(\beta) := s(\alpha + \beta)$$
+        \item If $\beta$ is a limit ordinal, and $\alpha + \gamma$ has been defined for all $\gamma < \beta$
+        $$ \alpha + \beta := \bigcup_{\gamma < \beta} \alpha + \gamma. $$
+    \end{itemize}
 \end{definition}
+
+\begin{notation}
+    From now on we denote $s(\alpha)$ by $\alpha + 1$.
+\end{notation}
+
+\begin{example}
+    If $\alpha$ is an ordinal.\\
+    Then $$ 0 + \alpha = \alpha + 0. $$
+\end{example}
+\begin{proof}
+    We use transfinite induction on $\alpha$.\\
+    \emph{If $\alpha = 0$.} Then $0 + 0 = 0 + 0$.\\
+    \emph{Suppose the statement hold for all $\beta < \alpha$.} Suppose $\alpha = \beta + 1$. Then
+    $$ 0 + \alpha = 0 + (\beta + 1) = 0 + s(\beta) = s(0 + \beta) = s(\beta) = \alpha = \alpha + 0.$$
+    Suppose now $\alpha = \bigcup_{\beta < \alpha} \beta$. Then
+    $$ 0 + \alpha = \bigcup_{\beta < \alpha} 0 + \beta = \bigcup_{\beta < \alpha} \beta = \alpha = \alpha + 0. $$
+\end{proof}
+
+\begin{definition}
+    If $\alpha$ is an ordinal.
+    Then we define
+    \begin{itemize}
+        \item $\alpha^0 := 1$
+        \item $\alpha^{\beta + 1} := \alpha^\beta \cdot \alpha$
+        \item for $\beta = \bigcup_{\gamma < \beta} \gamma$ a limit ordinal,
+        $$ \alpha^\beta := \begin{cases}
+            0, & \alpha = 0\\
+            \bigcup_{\gamma < \beta} \alpha^\gamma,& \alpha > 0.
+        \end{cases}$$
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    We have 
+    \begin{align*}
+        &0,1,2,\ldots,\omega,\omega+1,\omega+2,\ldots,\omega+\omega= \omega\cdot 2, \\
+        &\omega 2 + 1, \ldots \omega 3, \ldots \omega n, \ldots, \omega \cdot \omega= \omega^2,\\
+        &\omega^2 + 1, \ldots, \omega^2 + \omega, \ldots, \omega^3, \ldots, \omega^\omega, \ldots
+    \end{align*}
+    $$ \omega^{\omega^{\omega^\omega}}$$
+\end{remark}
 
 \section{Axiom of Choice}
 \begin{recall}[Axiom of Choice]
@@ -376,7 +415,7 @@
     Then $\lambda$ is called a \define{cardinal} $:\iff$ $\lambda$ is not equinumerous to a smaller ordinal.
 \end{definition}
 
-\begin{theorem}[Cantor-Schröder-Bernstein]
+\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantorbernstein}
     If
     \begin{itemize}
         \item $X,Y$ are sets
@@ -400,4 +439,174 @@
     Suppose not. Hence there is $\gamma < \lambda$, st. $\gamma \simeq \lambda$. 
     But $\lambda \simeq \alpha$, so $\gamma \simeq \alpha$, which contradicts to the minimality of $\lambda$.\\
     For uniqueness, if $X \simeq \kappa$ for $\kappa$ a cardinal, then $\lambda \simeq \kappa$, which implies $\lambda = \kappa$ by definition of cardinal.
+\end{proof}
+
+\begin{proposition}
+    If \begin{itemize}
+        \item $X, Y$ are sets
+        \item $X \ne \emptyset$.
+    \end{itemize}
+    Then the following are equivalent
+    \begin{enumerate}[label=(\arabic*)]
+        \item $|X| \leq |Y|$
+        \item there is an injective map $f: X \to Y$
+        \item there is a surjective map $f: Y \to X$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \emph{($(1) \implies (2)$)} 
+    
+    $X \simeq |X| \leq |Y| \simeq Y$ by composition, there is an injection $f: X \to Y$.\\
+    \emph{($(2) \implies (3)$)}
+
+    Let $x_0 \in X$. Define $g: Y \to X$ by 
+    $$ g(y) := \begin{cases}
+        f^{-1}(y), & y \in f(X)\\
+        x_0, & y \notin f(X).
+    \end{cases}$$
+    This is a surjection as $f$ is a function.\\
+    \emph{($(3) \implies (1)$)}
+
+    $$g: Y \to X, X \simeq |X| = \lambda, Y \simeq |Y| = \kappa$$
+    it suffices to show there is an injection $f: \lambda \to \kappa$. 
+    Let $h: \kappa \to \lambda$, 
+    $$ \begin{tikzcd}
+        \kappa \simeq y \arrow[r]{g} \arrow[r, bend left]{h} & X \simeq \lambda
+    \end{tikzcd}$$
+    For $\alpha < \kappa$, we define 
+    $$ f(\alpha) := \min \set{\beta \in \lambda \mid h(\beta) = \alpha}. $$
+    The function is well-defined, since $h$ is surjective.
+    To show that $f$ is injective, $\alpha < \alpha' < \kappa$, $f(\alpha) = f(\alpha')$
+    $$ \alpha' = h(f(\alpha')) = h(f(\alpha)) = \alpha,$$
+    a contradiction.
+\end{proof}
+
+\begin{exercise}
+    The class of ordinals is well-ordered by $\in$.
+\end{exercise}
+
+\begin{proposition}
+    \begin{itemize}
+        \item Every $\alpha y \omega$ is a cardinal.
+        \item The ordinal $\omega$ is a cardinal.
+        \item If $\alpha \geq \omega$, then $\alpha + 1$ is not a cardinal.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}
+    If $X$ is a set.\\
+    Then $X$ is called \define{finite}, if $\abs{X} < \omega$ (and otherwise \define{infinite}).\\
+    It is called \define{countable}, if $\abs{X} \leq \omega$ (and otherwise \define{uncountable}).
+\end{definition}
+
+
+\begin{proposition}
+    If $X$ is a set of cardinals.\\
+    Then $\bigcup_{\kappa \in X} \kappa$ is a cardinal.
+\end{proposition}
+\begin{proof}
+    We already know $\bigcup_{\kappa \in X} \kappa$ is an ordinal.
+    Let $\alpha < \bigcup_{\kappa \in X} \kappa$. By definition, there is $\kappa \in X$, st.
+    $ \alpha \in \kappa$, then $\abs{\alpha} < \kappa$ because $\kappa$ is a cardinal.
+    Then since $\kappa \subseteq \bigcup_{\kappa \in X} \kappa$,
+    $$ \abs{\alpha} < \kappa \leq \abs{\bigcup_{\kappa \in X} \kappa},$$
+    which shows it is a cardinal.
+\end{proof}
+
+\begin{definition}
+    If 
+    \begin{itemize}
+        \item $\kappa$ is a cardinal
+        \item $\kappa^+$ is the smallest cardinal strictly bigger than $\kappa$.
+    \end{itemize}
+    Then we call $\kappa^+$ the \define{successor cardinal of $\kappa$}.\\
+    Note that by Cantor's theorem, $\kappa^+$ exists since $\kappa < \abs{\mathcal{P}(\kappa)}$.
+\end{definition}
+
+\begin{definition}
+    If $\alpha$ is an ordinal.\\
+    Then we define
+    \begin{itemize}
+        \item $\aleph_0:= \omega$
+        \item $\aleph_{\alpha + 1} := \aleph_{\alpha}^+$
+        \item if $\alpha$ is a limit ordinal
+        $$ \aleph_\alpha := \bigcup_{\beta < \alpha} \aleph_\beta.$$
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    If $\kappa$ is an infinite cardinal. \\
+    Then there is an ordinal $\alpha$, st. $\kappa = \aleph_\alpha$.\\
+    Moreover $\alpha< \beta$ implies $\aleph_\alpha < \aleph_\beta$.
+\end{proposition}
+\begin{proof}
+    Let us first prove the "moreover" part by induction on $\beta$.
+
+    For $\beta=0$, there is nothing to show. Suppose the statement holds for all $\gamma < \beta$.
+    \begin{itemize}[label=-]
+        \item Suppose $\beta = \gamma + 1$ and $\alpha < \beta$.\\
+        Hence $\alpha \leq \gamma$, and by induction
+        $$ \aleph_\alpha \leq \aleph_\gamma < \aleph_\gamma^+ = \aleph_{\gamma + 1} = \aleph_\beta.$$
+
+        \item Suppose $\beta = \bigcup_{\gamma < \beta}$ and $\alpha < \beta$.\\
+        Since $\beta$ is limit, $\alpha + 1 < \beta$. So $\alpha < \alpha + 1 < \beta$ and by induction
+        $$ \aleph_\alpha < \aleph_{\alpha + 1} \subseteq \bigcup_{\gamma < \beta} \aleph_\gamma = \aleph_\beta. $$
+        which shows the statement holds for all $\beta$.
+    \end{itemize} 
+
+    The previous show that the function
+    $$ f: \kappa + 1 \to \aleph_{\kappa+1}, \beta \mapsto \aleph_\beta$$
+    is strictly increasing. By \cref{lemma:1} we know for all $\beta \in \kappa + 1$, $\beta \leq f(\beta)$.
+    In particular, since $\kappa \in \kappa + 1$,
+    $$ \kappa \leq f(\kappa) = \aleph_\kappa.$$
+    Let $\alpha$ be the minimal ordinal, st. 
+    $$\kappa < \aleph_\alpha. $$
+    Suppose $\alpha$ is a limit, then
+    $$ \kappa < \bigcup_{\beta < \alpha} \aleph_\beta \implies \kappa < \aleph_\beta\text{, for $\beta < \alpha$,}$$
+    which contradicts the minimality of $\alpha$, since $\aleph_0 \leq \kappa < \aleph_\alpha$, then $\alpha = \beta + 1$
+    for some $\beta$. The minimality of $\alpha$ implies
+    $$ \aleph_\beta \leq \kappa < \aleph_{\beta + 1} = \aleph_\beta^+ = \aleph_\alpha.$$
+    Hence $\kappa = \aleph_\beta$.
+\end{proof}
+
+\begin{definition}
+    If $\kappa$ and $\lambda$ are cardinals.\\
+    Then \begin{itemize}
+        \item $\kappa + \lambda := \abs{\kappa \sqcup \lambda}$
+        \item $\kappa \lambda := \abs{\kappa \times \lambda}$
+        \item $\kappa^\lambda := \abs{\set{f: \kappa \to \lambda}}$.
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    For finite cardinals, the previous operations agree with the usual operations on the natural numbers.
+\end{remark}
+
+\begin{proposition}
+    
+\end{proposition}
+
+\begin{theorem}[Hessenberg]
+    If $\kappa$ is an infinite cardinal.\\
+    Then $\kappa\kappa = \kappa$.
+\end{theorem}
+\begin{proof}
+    By induction on $\alpha$ we show $\aleph_\alpha \aleph_\alpha = \aleph_\alpha$.
+
+    For $\alpha =0, \aleph_0 \aleph_0 = \abs{\aleph_0 \times \aleph_0} = \aleph_0$. Suppose the statement holds for all $\beta < \alpha$.
+    We endow $\aleph_\alpha \times \aleph_\alpha$ with an order $<_p$ defined as follows
+    $$ (\beta, \gamma) <_p (\beta', \gamma') \iff \begin{cases}
+        \max \set{\beta, \gamma} < \max \set{\beta', \gamma'}& \text{or}\\
+        \max \set{\beta, \gamma} = \max \set{\beta', \gamma'} \text{ and } \beta < \beta' & \text{or}\\
+        \max \set{\beta, \gamma} = \max \set{\beta', \gamma'} \text{ and } \beta = \beta' \text{ and } \gamma < \gamma'
+    \end{cases}$$
+    \emph{(exercise)} $<_p$ is a well-order on $\aleph_\alpha \times \aleph_\alpha$. Hence there is $\varepsilon$ an ordinal
+    and an order isomorphism $f: \varepsilon \to \aleph_\alpha \times \aleph_\alpha$. If $\varepsilon \leq \aleph_\alpha$ this
+    already implies the result (it shows $\abs{\aleph_\alpha \times \aleph_\alpha} \leq \aleph_\alpha$). Indeed this shows 
+    $\aleph_\alpha \aleph_\alpha \leq \aleph_\alpha$, and we trivialy have $\aleph_\alpha \leq \aleph_\alpha \aleph_\alpha$, some
+    $\aleph_\alpha \aleph_\alpha = \aleph_\alpha$.
+    So suppose $\aleph_\alpha \in \varepsilon$. Let $(\beta, \gamma) \in \aleph_\alpha \times \aleph_\alpha$ be st. 
+    $f(\aleph_\alpha) = (\beta, \gamma)$. Let $\delta = \max \set{\beta, \gamma} + 1$. Since no infinite cardinal is a successor
+    ordinal, $\delta < \aleph_\alpha$. So $ f|_{\aleph_\alpha} : \aleph_\alpha \to (\delta \times \delta)$, hence
+    $$ \aleph_\alpha \leq \abs{\delta \times \delta} = \abs{\delta} < \aleph_\alpha$$ a contradiction. 
 \end{proof}
