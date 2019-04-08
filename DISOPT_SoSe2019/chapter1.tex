@@ -160,19 +160,18 @@ Basis $H \subset \left\{1,\dots ,n+m \right\}$ mit $|H|=n$ und $D_{\cdot,H}\in \
 \end{theorem}
 Welche Basis $H$ bzw. $N$ liefert zulässige Basislösung für (D')?
 % irgendwas kompiliert hier nicht
-%\begin{align*}
-%	\begin{pmatrix}
-%		A^{T}  & I
-%	\end{pmatrix}
-%	\begin{pmatrix}
-%	y\\z	
-%	\end{pmatrix}
-%\begin{align*}
-%	&=c, \quad z \geq 0\\
-%	&\iff A_{B}^{T} y + z_{B} \geq c_{B}, \quad z_{B} \geq 0\\
-%	&{} A_{N}^{T} y + z_{N = c_{N}, \quad z_{N} \geq 0 \\
-%	&\iff y = A_{B}^{-T}(c_{B}-z_{B})\\
-%	&{} z_{N}= c_{N} - A_{N}^{T}y = c_{N}-A_{N}^{T} A_{B}^{-T}(c_{B}-z_{B}) ,\quad z_{B}\geq 0 ,z_{N} \geq 0
+\begin{align*}
+	\begin{pmatrix}
+		A^{T}  & I
+	\end{pmatrix}
+	\begin{pmatrix}
+	y\\z	
+	\end{pmatrix}
+	&=c, \quad z \geq 0\\
+	&{}\iff A_{B}^{T} y + z_{B} \geq c_{B}, \quad z_{B} \geq 0\\
+	&{}\hspace{1.1cm} A_{N}^{T} y + z_{N} = c_{N}, \quad z_{N} \geq 0 \\
+	&{}\iff y = A_{B}^{-T}(c_{B}-z_{B})\\
+	&{}\hspace{1.1cm} z_{N}= c_{N} - A_{N}^{T}y = c_{N}-A_{N}^{T} A_{B}^{-T}(c_{B}-z_{B}) ,\quad z_{B}\geq 0 ,z_{N} \geq 0
 \end{align*}
 $(y,z_{B},z_{N})$ Basislösung $\to$ Nichtbasisvariablen $z_{B} =0$ \\
 $\implies$ 
@@ -199,8 +198,8 @@ Initialisierung: Dual zulässige Basis $B$, d.h. $B \subset \left\{1,\dots ,n \r
 			z_{N}^+ &= z_{N} - \gamma \alpha_{N} \quad (\to z_{N} \geq 0, z_{j}^+ =0)\\
 			z_{i}^+ &= \gamma\\
 			y^+ &= y -\gamma w\\
-			N^+ &= (N \textbackslash \left\{ j \right\}) \cup \left\{ i \right\}\\
-			B^+ &= (B \textbackslash \left\{ i \right\}) \cup \left\{ j \right\}
+			N^+ &= (N \backslash \left\{ j \right\}) \cup \left\{ i \right\}\\
+			B^+ &= (B \backslash \left\{ i \right\}) \cup \left\{ j \right\}
 		\end{align*}
 \end{enumerate}
 
@@ -245,8 +244,8 @@ Identifiziere $i \in N_{l}$ mit $z_{i} <0 $ oder $ i\in N_{u}$ mit $z_{i}> 0$.\\
 Bei Schrittweiten beachten: $x_{B} = \gamma w \in [0,u_{B}]$ und
 \begin{equation*}
 	x_{i}^+ = \begin{cases}
-	\case \gamma \in [0,u_{i}]\\
-	\case u_{i}-\gamma
+	 \gamma \in [0,u_{i}]\\
+	 u_{i}-\gamma
 \end{cases} 
 \end{equation*}
 Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder umgekehrt.
