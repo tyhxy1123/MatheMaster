@@ -350,7 +350,7 @@ Let $A$ be a (sparse) matrix. The graph $G_{A}=(V,E)$ with $E \subset V \times V
 \end{definition}
 
 \begin{definition}
-\label{thm:}
+\label{thm:irreducible}
 A matrix $A$ is called \underline{irreducible} if for $G_{A}=(V,E)$:
 \[
 	\forall i,j \in V ~:~ \exists \text{ sequence of edges } (e_0, e_1, \ldots , e_{n}) \subset E
@@ -362,8 +362,124 @@ such that
 
 (All vertices are connected by a sequence of edges)
 \[
-	\mathcal{R}:= \{A \in  \R^{n \times  n} | A \text{ is irreducible}\}
+	\mathcal{IR}:= \{A \in  \R^{n \times  n} | A \text{ is irreducible}\}
 .\] 
-
-%TODO besseres symbol für |R
 \end{definition}
+
+\begin{definition}
+\label{thm:WDDmatrices}
+\begin{align*}
+	WDD:= &\left\{ A \in \R^{n \times n}, \abs{a_{j,j}}  \geq \sum_{i\neq j}^{}{\abs{a_{i,j}} } \quad \forall j \right\}  \\
+		 = &\left\{ A \in R^{n \times }, \abs{a_{i,i}} \geq \sum_{i\neq j}^{}{\abs{a_{i,j}} } \quad \forall i \right\} 
+\end{align*}
+are the weakly diagonal dominant matrices.
+\[
+DD:= \left\{ A \in WDD, \exists j : ">" \right\} 
+\] 
+are diagonal dominant matrices.
+\[
+SDD := \left\{ A \in WDD, \forall j : ">" \right\} 
+\] 
+are the strictly diagonal dominant matrices.
+\[
+IDD := \left\{ A \in DD, A \text{ is irreducible} \right\} 
+\] 
+are the irreducible diagonal dominant matrices.
+\end{definition}
+
+\begin{theorem}(Gershgorin)
+\label{thm:gershgorin}
+Any eigenvalue $\lambda \in \sigma (A)$ is located in one of the closed discs in the complex plane centered at $a_{i,i}$ and having the radius
+\[
+	\rho_{i} = \sum_{\substack{j=0 \\ j \neq i}}^{n}{\abs{a_{i,j}} }
+.\] 
+In other words : 
+\[
+	\forall \lambda \in \sigma (A) \exists i \text{ such that } \abs{\lambda - a_{i,i}}  \leq \sum_{\substack{j=0 \\ j \neq i}}^{n}{\abs{a_{i,j}} }
+.\] 
+\end{theorem}
+
+\begin{proof}
+\label{thm:gershgorinproof}
+	Let $x$ be an eigenvector associated to eigenvalue $\lambda$ and let $m$ be the index of the component with largest modulus in $x$.
+
+	Scale $x$, s.t.
+	\[
+	\abs{x_{m}}  = 1 \text{ and } \abs{x_{i}} \leq 1 \quad \forall i \neq m
+	.\] 
+	Since $x$ is an eigenvector to $A$, we have
+	\[
+		(\lambda - a_{n,m}) x_{m} = - \sum_{\substack{j=1 \\ j \neq m}}^{n}{\abs{a_{m,j}} x_{j}}
+	.\] 
+	Taking the absolute value of this, we get
+	\[
+		\abs{\lambda - a_{m,m}}  \leq \sum_{j\neq m}^{}{\abs{a_{m,j}} \abs{x_{j}} } \leq \sum_{j\neq m}^{}{\abs{a_{m,j}} } = \rho_{m}
+	.\] 
+\end{proof}
+
+\begin{theorem}
+\label{thm:gershgorinboundary}
+	Let $A$ be irreducible and assume that an eigenvalue $\lambda$ lies on the boundary of the union of all Gershgorin discs. Then $\lambda$ lies on the boundary of all Gershgorin discs.
+\end{theorem}
+
+\begin{proof}
+\label{thm:gershgorinboundaryproof}
+	Iterate proof of \href{thm:gershgorinproof}{the last proof} along the connecting edges of any pairs of nodes. Do this for all pairs and you get the result.
+
+	For more details, read the proof in some book.
+	%TODO vlt Verweis hinzufügen.
+\end{proof}
+
+\begin{korollar}
+\label{thm:gershgorinboundarycorollary1}
+	If $A$ is strictly diagonal dominant or $A$ is irreducible diagonal dominant, then $A$ is non-singular.
+\end{korollar}
+
+\begin{proof}
+\label{thm:gershgorinboundarycorollary1proof}
+	\begin{enumerate}[label=\alph{enumi})]
+		\item Assume $A \in SDD$.
+
+			Then the Gershgorin discs exclude the origin. This means $\lambda =0$ cannot be an eigenvalue of $A$.
+
+		\item Assume $A \in IDD$.
+
+			Then if it is singular, the zero eigenvalue lies on the boundary of the union of the Gershgorin discs. Together with \href{thm:gershgorinboundary}{Theorem 2} this implies that the eigenvalue should be located on the boundary of all discs.
+			\[
+				\implies \abs{a_{j,j}} = \sum_{i \neq j}^{}{\abs{a_{i,j}} } \qquad \forall j=0, \ldots , n
+			.\] 
+			$\lightning$, since $A$ is diagonal dominant.
+	\end{enumerate}
+\end{proof}
+
+\begin{korollar}
+\label{thm:gershgorinboundarycorollary2}
+	Let $A \in R^{n \times  n}$. If 
+	\[
+		A \in WDD \text{ and } A = A^{T} \text{ and } \text{diag}(A) \geq 0
+	,\] 
+	then $A$ is pos. semidefinit. 
+\end{korollar}
+
+\begin{proof}
+\label{thm:gershgorinboundarycorollary2proof}
+\begin{align*}
+& A \text{ symmetric} \\
+	\implies & \text{ eigenvalues are real} \\
+	\overset{(\ast)}{\implies} & \forall \lambda  \in \sigma (A) : \lambda  \geq 0
+\end{align*}
+[with $(\ast) = \text{diag(A)} \geq 0 + A \in WDD + $ \href{thm:gershgorin}{Theorem 1}] 
+\end{proof}
+
+\begin{summary}
+\label{thm:summarymatrices}
+$A = \laplacelace_{h}^{(5)}$ is 
+\begin{itemize}
+	\item symmetric $A = A^{T}$
+	\item $A \in WDD$
+	\item For Dirichlet boundary conditions we even have $A \in DD$
+	\item $A$ is irreducible
+	\item $\text{diag}(A) \geq 0$
+	\item $\implies A$ is positive definit and $A$ is $M_0$-matrix and thus $M$-matrix.
+\end{itemize}
+\end{summary}
