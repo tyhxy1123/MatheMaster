@@ -1,5 +1,25 @@
 # MatheMaster (Work in Progress) [![Build Status](https://travis-ci.com/LostInDarkMath/MatheMaster.svg?branch=master)](https://travis-ci.com/LostInDarkMath/MatheMaster)
 
+Dieses Repository enthält die Mitschriften ausgewählter Module des
+Masterstudiengangs Mathematik an der TU Dresden.
+Die PDF-Versionen der Skripte werden regelmäßig (i. d. R. zum Ende jeder Woche)
+aktualisiert und können
+[hier](https://github.com/LostInDarkMath/MatheMaster/releases/latest)
+heruntergeladen werden.
+
+Du willst uns unterstützen und mitmachen? Kein Problem! Je mehr desto besser :)
+
+---
+
+This repository contains lecture notes for selected courses of the mathematics
+masters programme at TU Dresden.
+Compiled PDF files for all notes will be released weekly and can be found
+[here](https://github.com/LostInDarkMath/MatheMaster/releases/latest).
+
+Feel free to join us if you want to take part in the project! :)
+
+## Aktuelle Skripte / Current Lecture Notes
+
 Sommersemester/*summer term* 2019:
 - ALLALG bei Prof. Schmidt (deutsch)
 - ALGTOP bei Prof. Thom (deutsch)
@@ -17,6 +37,8 @@ Sommersemester/*summer term* 2019:
 - Kategorientheorie bei Prof. Pöschel (deutsch)
 - Theoretische Informatik und Logik bei Prof. Hölldobler (deutsch)
 
+## Skripte verganger Semester / Past Term's Notes
+
 Wintersemester/*winter term* 2018/2019:
 - AMGEO bei Prof. Krähmer (*English*)
 - ANGA bei Prof. Fehm (deutsch)
@@ -30,25 +52,17 @@ Wintersemester/*winter term* 2018/2019:
 - WTHM bei Prof. Keller-Ressel (deutsch)
 
 
-Dieses Repository ist für die Mitschriften ausgewählter Module des Masterstudiengangs Mathematik an der TU Dresden gedacht.
-Die PDF-Versionen der Skripte werden immer am Ende der Woche aktualisiert und können [hier](https://github.com/LostInDarkMath/MatheMaster/releases/latest) heruntergeladen werden.
+Die `.tex`-Quellen vergangener Semester sind unter [archive/](/archive/) archiviert.
 
 
-
-Du willst uns unterstützen und mitmachen? Kein Problem! Je mehr desto besser :)
-
----
-
-This repository contains lecture notes for selected courses of the mathematics masters programme at TU Dresden.
-At the end of each week PDF files for all notes will be released [here](https://github.com/LostInDarkMath/MatheMaster/releases/latest).
+*The source code for lecture notes of past semesters is located under
+[archive/](/archive/).*
 
 
-Feel free to join us if you want to take part in the project! :)
+## Kontakt / Contact
 
----
+[willi.sontopski@mailbox.tu-dresden.de](mailto:willi.sontopski@mailbox.tu-dresden.de)
 
-Kontakt/*contact*: willi.sontopski@mailbox.tu-dresden.de
- 
 # License
 
 ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
