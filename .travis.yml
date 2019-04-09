@@ -6,21 +6,21 @@ services:   docker
 tex-config:
 - tex-scheme=full
 - push-type=none
-- "build-pattern=\
-  ALGTOP/ALGTOP.tex,\
-  ALLALG/ALLAG.tex,\
-  DISMAT/DISMAT.tex,\
-  DISOPT/DISOPT.tex,\
-  Katetegorientheorie/KAT.tex,\
-  KONGEO/KONGEO.tex,\
-  MMAM/MMAM.tex,\
-  NLANA/NLANA.tex,\
-  PDENMW/PDENMW.tex,\
-  SCCOMP/SCCOMP.tex,\
-  SCPROG/SCPROG.tex,\
-  STOCAL/STOCAL.tex,\
-  STOCHP/STOCHP.tex\
-  "
+- >-
+    build-pattern=
+    ALGTOP/ALGTOP.tex,
+    ALLALG/ALLAG.tex,
+    DISMAT/DISMAT.tex,
+    DISOPT/DISOPT.tex,
+    Katetegorientheorie/KAT.tex,
+    KONGEO/KONGEO.tex,
+    MMAM/MMAM.tex,
+    NLANA/NLANA.tex,
+    PDENMW/PDENMW.tex,
+    SCCOMP/SCCOMP.tex,
+    SCPROG/SCPROG.tex,
+    STOCAL/STOCAL.tex,
+    STOCHP/STOCHP.tex
 - latexmk-flags=-halt-on-error
 # Check at https://www.ctan.org/pkg/package-name in which TeX Live package a LaTeX package is contained.
 
