@@ -434,10 +434,19 @@ In diesem Abschnitt seien:
 
 \begin{definition}\label{def:1.3.5}
 	Sei $Z$ ein Zufallsfeld auf $T$ und $t_1,\ldots,t_n\in T$.
-	Dann ist $\big(Z_{t_1},\ldots,Z_{t_n}\big)$ ein Zufallsvektor mit Werten im Produkt-Messraum $\big(S^n,\B^n\big)$ und besitzt folglich eine Verteilung.
+	Dann ist $\big(Z_{t_1},\ldots,Z_{t_n}\big)$ ein Zufallsvektor mit Werten im Produkt-Messraum $\big(S^n,\B^n\big)$ und besitzt folglich eine Verteilung $\mu_{t_1,\ldots,t_n}$.
 	Verteilungen dieser Form heißen \define{endlich dimensionale Verteilungen} von $Z$. \index{endlichdimensionale Verteilung}\index{Gauß'sches Zufallsfeld}\\
 	Ist $Z$ reell oder komplex und sind alle endlich dimensionalen Gauß'sch, so nennt man auch $Z$ \define{Gauß'sch}.
 \end{definition}
+
+\begin{bemerkung}
+	Es gilt
+	\begin{align*}
+		\mu_{t_1,\ldots,t_n}\big(B_1\times\ldots\times B_n\big)
+		\overset{\Def}{=}
+		\P\Big(X_{t_1}\in B_1,\ldots,X_{t_n}\in B_n\Big)\qquad\forall B_1,\ldots,B_n\in\B
+	\end{align*}
+\end{bemerkung}
 
 \subsection*{Wiederholung: Charakteristische Funktionen}
 \begin{defi}
@@ -466,7 +475,7 @@ In diesem Abschnitt seien:
 	\end{enumerate}
 \end{lem}
 
-\subsection*{Wiederholdung: Gauß-Verteilung}
+\subsection*{Wiederholung: Gauß-Verteilung}
 \begin{defi}
 	Die \define{Standard-Gauß-Dichte} ist \index{Standard-Gauß-Dichte}
 	\begin{align*}
@@ -525,10 +534,158 @@ In diesem Abschnitt seien:
 		\item Für alle $n\in\N$ und alle Borelmengen $B_1,\ldots,B_k\subseteq\R^d$ gilt
 		\begin{align*}
 			\mu_{t_1,\ldots,t_k}\Big(B_1\times\ldots\times B_k\Big)
-			=...
+			=\mu_{t_1,\ldots,t_k,t_{k+1},\ldots,t_{k+n}}\Big(B_1\times\ldots\times	 B_k\times\underbrace{\R^d\times\ldots\times\R^d}_{n\text{-mal}}\Big)
 		\end{align*}
 	\end{enumerate}		
+	Dann existiert ein Wahrscheinlichkeitsraum $(\Omega,\A,\P)$ und $d$-dimensionale Zufallsvektoren $X_t$ auf $\Omega$ für $t\in T$ so, dass
+	$\mu_{t_1,\ldots,t_k}$ die Verteilung des Zufallsvektors $\big(X_{t_1},\ldots,X_{t_k}\big)$ ist für alle $\set{t_1,\ldots,t_k}\subseteq T$.
 \end{satz}
 
+\begin{proof}
+	Siehe z.B. Wengenroth \cite{wengenroth2008wahrscheinlichkeitstheorie}  \emph{Wahrscheinlichkeitstheorie}, Satz 7.3 oder 
+	Gihmann \& Skorohod \cite{gikhman1977introduction}: \emph{Introduction to Theory of Stochastic Processes}, Abschnitt 3.2. 
+\end{proof}
 
+Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich dimensionalen Verteilungen ein Prozess, die diese endlich dimensionalen Verteilungen besitzt.
 
+\begin{folgerung}\label{folgerung1.3.7}
+	Für eine beliebige Familie $\set{\mu_\alpha}_{\alpha\in A}$ von $d$-dimensionalen Verteilungen existiert eine Familie $\set{X_\alpha}_{\alpha\in A}$ von \betone{unabhängigen} $d$-dimensionalen Zufallsvektoren so, dass $\mu_\alpha$ die Verteilung von $X_\alpha$ ist $(\alpha\in A)$.
+\end{folgerung}
+
+%\begin{proof}
+	%Setze
+	%\begin{align*}
+		%\mu_{t_1,\ldots,t_k}:=\bigotimes\limits_{j=1}^k \mu_{t_j}
+	%\end{align*}
+	%und wende Satz \ref{satz:1.3.6ExistenzsatzVonKolmo} an.
+%\end{proof}
+
+\begin{bemerkung}
+	Folgerung \ref{folgerung1.3.7} ist wichtig, denn es fangen viele Sätze z.B. so an:\\
+	"Sei $(X_n)_{n\in\N}$ eine Folge von unabhängigen, $\Nor(0,1)$ verteilten Zufallsgrößen."\\
+	Doch woher weiß man, dass eine solche Folge existiert?\nl
+	Sei $\mu$ das Wahrscheinlichkeitsmaß auf $\R$, welches zu $\Nor(0,1)$ gehört.
+	Man gebe eine Zufallsgröße $X$ an mit $\mu$ als Verteilung.
+	Lösung:
+	\begin{align*}
+		(\Omega,\A,\P)=\big(\R,\B(\R),\mu\big)\qquad
+		X(\omega):=\omega
+		\qquad\forall\omega\in\R
+	\end{align*}
+	denn die Verteilung von $X$ ist $\mu$ bedeutet:
+	\begin{align*}
+		\mu(B)&=\P[X\in B]\qquad\forall B\in\B(\R)\\
+		\implies\mu(B)\overset{!}&{=}\mu(X\in B)
+	\end{align*}
+	Nun wollen wir zwei unabhängige $\Nor(0,1)$-verteilte Zufallsgrößen $X_1,X_2$ auf dem selben Wahrscheinlichkeitsraum $(\Omega,\A,\P)$ konstruieren.
+	Lösung:
+	\begin{align*}
+		(\Omega,\A,\P)&=\big(\R^2,\B(\R^2),\mu\otimes\mu)\\
+		X_1(x,y)&:=x
+		\qquad\forall (x,y)\in\R^2=\Omega\\
+		X_2(x,y)&:=y
+		\qquad\forall (x,y)\in\R^2=\Omega\\
+	\end{align*}
+	Dann ist $\mu$ die Verteilung von $X_1$ und $X_2$ und $\mu\times\mu$ die gemeinsame Verteilung:
+	\begin{align*}
+		\big(X_1(x,y),X_2(x,y)\big)=(x,y)
+	\end{align*}
+	Der Schritt von zwei zu endlich vielen ist nun nicht mehr schwer.
+	Seien $\mu_1,\ldots,\mu_n$ Wahrscheindlichkeitsmaße auf $\R$.
+	Setze
+	\begin{align*}
+		(\Omega,\A,\P)&:=\big(\R^n,\B(\R^n),\mu_1\times\ldots\times\mu_n\big)\\
+		X_j(x_1,\ldots,x_n)&:=x_j\qquad\forall (x_1,\ldots,x_n)\in\R^n=\Omega
+	\end{align*}
+	Die $X_j$ sind dann Zufallsgrößen mit Verteilung $\mu_j$, welche auch unabhängig sind, weil ihre gemeinsame Verteilung das Produktmaß ist.\nl
+	Dies wäre der Beweis von Folgerung \ref{folgerung1.3.7} für endliche Familien.
+\end{bemerkung}
+
+\begin{aufgabenr}[1.3.8, \texorpdfstring{\hyperref[loes:6]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:6}
+	Sei $\mu_{t_1,\ldots,t_k}$ wie in Satz \ref{satz:1.3.6ExistenzsatzVonKolmo} und bezeichne $f_{t_1,\ldots,t_k}$ die zugehörigen charakteristischen Funktionen.
+	Dann sind die Konsistenzbedingungen äquivalent zu:\\
+	%\begin{enumerate}[label=(\roman*)]
+		%\item 
+		Für alle Permutationen $\pi$ von $\set{1,\ldots,k}$ und alle $x_1,\ldots,x_k\in\R^d$ gilt:
+		\begin{align*}
+			f_{t_1,\ldots,t_k}(x_1,\ldots,x_k)&=f_{t_{\pi(1)},\ldots,t_{\pi(k)}}\big(x_{\pi(1)},\ldots,x_{\pi(k)}\big)\\
+			f_{t_1,\ldots,t_k}(x_1,\ldots,x_k)
+			&=f_{t_1,\ldots,t_k,t_{k+1},\ldots,t_{k+n}}\big(x_1,\ldots,x_k,\underbrace{0,\ldots,0}_{n\text{-mal}}\big)
+		\end{align*}
+	%\end{enumerate}	 
+\end{aufgabenr}
+
+\begin{aufgabenr}[1.3.9, \texorpdfstring{\hyperref[loes:7]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:7}
+	Seien $X$ und $Y$ Prozesse auf $T_X$ bzw. $T_Y$, die Grundräume können unterschiedlich sein.\\
+	Dann existieren unabhängige Prozesse (d.h. $\tilde{X}_t$ und $\tilde{Y}_s$ sind unabhängig $\forall t,s$) $\tilde{X}$ und $\tilde{Y}$ auf $T_X$ bzw. $T_Y$ mit demselben Grundraum so, dass $\tilde{X}$ und $\tilde{Y}$ dieselben endlich-dimensionalen Verteilungen wie $X$ bzw. $Y$ besitzen.\\
+	Hinweis: \ref{satz:1.3.6ExistenzsatzVonKolmo}
+\end{aufgabenr}
+
+\setcounter{satz}{9} %leider notwendig
+
+\begin{definition}
+	Sei $X$ ein Prozess auf einem Intervall $T\subseteq\R$ oder $T\subseteq\Z$ mit Werten in $\R^d$ oder $\C^d$.
+	Man sagt, $X$ besitzt \define{unabhängige Zuwächse}, falls die Zufallsvariablen 
+	\index{unabhängige Zuwächse}
+	\begin{align*}
+		X_{t_0},X_{t_1}-X_{t_0},\ldots,X_{t_n}-X_{t_{n-1}}	
+	\end{align*}
+	für beliebiges $n\in\N$ und $t_j\in T$ mit $t_0<t_1<\ldots<t_n$ unabhängig sind.
+\end{definition}
+
+\begin{beisp}
+	\begin{enumerate}
+		\item Sei $T=\N$ und $X_n=Y_1+\ldots+Y_n$, wobei die $Y_i$'s unabhängig sind.
+	Dann hat der Prozess $\set{X_n}_{n\in\N}$ unabhängige Zuwächse.
+		\item Brownsche Bewegung
+	\end{enumerate}
+\end{beisp}
+
+\begin{definition}
+	Ein \define{komplexes Zufallsfeld zweiter Ordnung} auf $T$ ist eine Abbildung
+	\index{Zufallsfeld zweiter Ordnung}
+	\begin{align*}
+		Z\colon T\to \L_2(\Omega,\A,\P).
+	\end{align*}
+	Die Zufallsgrößen $Z_t$ haben also eine endliche Varianz.\\
+	Wird $\L_2$ durch $\L_2^r$ (reell) ersetzt, so heißt $Z$ ein \define{reelles Zufallsfeld zweiter Ordnung}.\\
+	Die Funktion \index{Korrelationsfunktion}
+	\begin{align*}
+		C\colon T\times T\to\C,\qquad
+		C(x,y):=\E\big[Z(x)\mal\overline{Z(y)}\big]
+	\end{align*}
+	heißt \define{Korrelationsfunktion} von $Z$.\\
+	Die \define{Kovarianzfunktion} von $Z$ ist
+	\begin{align*}
+		\sigma\colon T\times T\to\C,\qquad
+		\sigma(x,y):=\E\Big[\big(Z(x)-M(x)\big)\mal\big(\overline{Z(y)-M(y)}\big)\Big]\\
+	\end{align*}
+	wobei \index{Mittelwert eines Zufallsfeldes}
+	\begin{align*}
+		M(x):=\E\big[Z(x)\big]
+	\end{align*}
+	der \define{Mittelwert} des Feldes ist.
+\end{definition}
+
+\begin{lem}
+	Es gilt
+	\begin{align*}
+		\sigma(x,y)=C(x,y)-M(x)\mal\overline{M(y)}
+	\end{align*}
+	und
+	\begin{align*}
+		M\equiv 0\implies \sigma\equiv C.
+	\end{align*}
+\end{lem}
+
+\begin{beisp}
+	Sei $X\in\L_2(\Omega,\A,\P)$ und $f\colon T\to\C$ beliebig.
+	Dann ist
+	\begin{align*}
+		Z(t):=f(t)\mal X\qquad\forall t\in T
+	\end{align*}
+	ein Feld zweiter Ordnung mit Korrelationsfunktion
+	\begin{align*}
+		C(x,y)=f(x)\mal\overline{f(y)}\mal\E\big[|X|^2\big] \qquad\forall x,y\in T.
+	\end{align*}
+\end{beisp}
