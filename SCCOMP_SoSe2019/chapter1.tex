@@ -71,7 +71,7 @@ Denote by $\Omega_{h}$ the mesh of grid points of width $h$, i.e.
 \] 
 and by $\Omega_{H}$ the mesh of grid points with width $H$. Assume here $H=2h$.
 %TODO plot grid mit H und h
-
+\input{tikz/chapter1/grid_h_H.tex}
 Given a discrete solution $u^{h}$ at $\Omega_{h}$, how to transfer the values to a coarser/finer mesh?
 
 Answer: Use Interpolation!
@@ -87,13 +87,14 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 		\begin{enumerate}[label=\underline{\arabic{enumi}D}]
 			\item The simplest operator is defined by polynomial (linear) interpolation
 		%TODO plot 1D interpolation Linie.
-		\begin{figure}[ht!]
-			\begin{center}
-				\includegraphics[width=0.5\textwidth]{pics/}
-			\end{center}
-			\caption{1D}
-			\label{fig:prolongation1}
-		\end{figure}
+		\input{tikz/chapter1/grid_stencil_1D.tex}
+		%\begin{figure}[ht!]
+		%	\begin{center}
+				%\includegraphics[width=0.5\textwidth]{pics/}
+		%	\end{center}
+		%	\caption{1D}
+		%	\label{fig:prolongation1}
+		%\end{figure}
 		\begin{align*}
 			u_{2j}^{h} &= u_{j}^{H} \qquad\qquad\qquad \text{ for } j=0, \ldots, \frac{N+1}{2} \\
 			u_{2j+1}^{h} &= \frac{1}{2}(u_{j}^{H}+u_{j+1}^{H})
@@ -143,6 +144,7 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 			\end{matrix}
 			\right[
 		.\] 
+		\input{tikz/chapter1/grid_stencil_2D.tex}
 		Note: if you interpret the 1D stencil as a row vector $p^{T}$, the 2D stencil is just the outer product 
 		\[
 		p\cdot p^{T}

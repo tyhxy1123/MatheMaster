@@ -416,7 +416,7 @@ In other words :
 		\abs{\lambda - a_{m,m}}  \leq \sum_{j\neq m}^{}{\abs{a_{m,j}} \abs{x_{j}} } \leq \sum_{j\neq m}^{}{\abs{a_{m,j}} } = \rho_{m}
 	.\] 
 \end{proof}
-
+\input{tikz/chapter0/gershgorin_disks.tex}
 \begin{theorem}
 \label{thm:gershgorinboundary}
 	Let $A$ be irreducible and assume that an eigenvalue $\lambda$ lies on the boundary of the union of all Gershgorin discs. Then $\lambda$ lies on the boundary of all Gershgorin discs.
@@ -471,9 +471,9 @@ In other words :
 [with $(\ast) = \text{diag(A)} \geq 0 + A \in WDD + $ \href{thm:gershgorin}{Theorem 1}] 
 \end{proof}
 
-\begin{summary}
+%\begin{summary}
 \label{thm:summarymatrices}
-$A = \laplacelace_{h}^{(5)}$ is 
+$A = \laplace_{h}^{(5)}$ is 
 \begin{itemize}
 	\item symmetric $A = A^{T}$
 	\item $A \in WDD$
@@ -482,4 +482,4 @@ $A = \laplacelace_{h}^{(5)}$ is
 	\item $\text{diag}(A) \geq 0$
 	\item $\implies A$ is positive definit and $A$ is $M_0$-matrix and thus $M$-matrix.
 \end{itemize}
-\end{summary}
+%\end{summary}
