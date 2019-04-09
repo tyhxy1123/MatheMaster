@@ -573,16 +573,17 @@ Hierbei ist $\Hom(\R^n,\R^m)$ der Vektorraum aller linearen Abbildungen von $\R^
 
 \begin{erinnerung}\
 	\begin{enumerate}
-		\item $A=\big(a_1,\ldots,a_n\big)\in M(n\times n)$ heißt \define{orthonormal}
+		\item $A=\big(a_1,\ldots,a_n\big)\in M(n\times n)$ heißt \define{orthonormal / orthogonal}
 		\begin{align*}
-			:\iff\forall i,j\in\set{1,\ldots,n}:\scaProd{a_i}{a_j}=\delta_{i,j}
+			:&\iff\forall i,j\in\set{1,\ldots,n}:\scaProd{a_i}{a_j}=\delta_{i,j}\\
+			&\iff A^T=A^{-1}
 		\end{align*}
 		\item Sei $A\in M(n\times n)$. 
-		Dann heißt $\lambda\in\C$ \define{Eigenwert} von $A$ \index{Eigenwert}\index{Eigenvektor}
+		Dann heißt $\lambda\in\C$ \define{Eigenwert (EW)} von $A$ \index{Eigenwert}\index{Eigenvektor}
 		\begin{align*}
 			:\iff\exists x\in\R^n\setminus\set{0}:A\mal x=\lambda\mal x
 		\end{align*}		 
-		In diesem Fall heißt $x$ der zum Eigenwert $\lambda$ gehörende \define{Eigenvektor} von $A$.
+		In diesem Fall heißt $x$ der zum Eigenwert $\lambda$ gehörende \define{Eigenvektor (EV)} von $A$.
 	\end{enumerate}
 \end{erinnerung}
 
@@ -597,7 +598,7 @@ Hierbei ist $\Hom(\R^n,\R^m)$ der Vektorraum aller linearen Abbildungen von $\R^
 			0 & 0 & \lambda_n
 		\end{pmatrix}=:D=:\Diag\big(\lambda_1,\ldots,\lambda_n\big)
 	\end{align*}
-	Dabei ist $\lambda_i\in\R$ Eigenwert (EW) von $A$ zum Eigenvert $v_i$ ($i\in\set{1,\ldots,n}$).
+	Dabei ist $\lambda_i\in\R$ Eigenwert (EW) von $A$ zum Eigenwert $v_i$ ($i\in\set{1,\ldots,n}$).
 \end{satz}
 
 \begin{proof}
@@ -690,3 +691,251 @@ Hierbei ist $\Hom(\R^n,\R^m)$ der Vektorraum aller linearen Abbildungen von $\R^
 	\end{align*}
 \end{proof}
 
+\begin{satz}\label{satz:2.18}
+	Seien $U_1,U_2\subseteq\R^n$ Untervektorräume des $\R^n$.
+	Dann gilt
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\big(U_1+U_2\big)^\perp=U_1^\perp\cap U_2^\perp
+			\label{item:satz2.18(1)}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\big(U_1\cap U_2\big)^\perp=U_1^\perp+ U_2^\perp
+			\label{item:satz2.18(2)}
+		\end{aligned}$
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\betone{Zu \ref{item:satz2.18(1)} zeige "$\subseteq$":}
+	\begin{align*}
+		U_1+U_2\overset{0\in U_1\cap U_2}{\supseteq} U_i\qquad\forall i\in\set{1,2}\\
+		\implies \big(U_1+U_2\big)^\perp\subseteq U_i^\perp
+		\implies\big(U_1+U_2)^\perp\subseteq U_1^\perp\cap U_2^\perp
+	\end{align*}
+	\betone{Zu \ref{item:satz2.18(1)} zeige "$\supseteq$":}\\
+	Sei $x\in U_1^\perp\cap U_2^\perp$.
+	Sei $y\in U_1+U_2$.	
+	Dann gilt:
+	\begin{align*}
+		\exists u_1\in U_1,u_2\in U_2: y=u_1+u_2\\
+		\implies\scaProd{x}{y}\overset{\Lin}{=}\underbrace{\scaProd{x}{u_1}}_{
+			\overset{x\in U_1^\perp}{=}0		
+		}+\underbrace{\scaProd{x}{u_2}}_{
+			\overset{x\in U_2^\perp}{=}0
+		}
+		\implies x\perp U_1+U_2
+		\implies x\in\big(U_1+U_2\big)^\perp
+	\end{align*}
+	\betone{Zeige \ref{item:satz2.18(2)}:}\\
+	Wende \ref{item:satz2.18(1)} auf $U_1^\perp$ und $U_2^\perp$ an:
+		\begin{align*}
+		\big(U_1\cap U_2\big)^\perp
+		\overset{\ref{satz2.1}}&{=}
+		\Big(\big(U_1^\perp\big)^\perp\cap\big(U_2^\perp\big)^\perp\Big)^\perp
+		\overset{\ref{item:satz2.18(1)}}{=}
+		\Big(\big(U_1^\perp+U_2^\perp\big)^\perp\Big)^\perp
+		\overset{\ref{satz2.1}}{=}
+		U_1^\perp+U_2^\perp
+	\end{align*}		
+\end{proof}
+
+\begin{satz}\label{satz2.19}
+	Sei $A\in M(m\times n)$, $U\subseteq\R^n$ Untervektorraum von $\R^n$.
+	Dann gilt:
+	\begin{align*}
+		\big(\Kern(A)\cap U\big)^\perp
+		=\Bild\big(P_U A'\big)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige "$\subseteq$":}
+	\begin{align*}
+		\big(\Kern(A)\cap U\big)^\perp
+		\overset{\ref{satz:2.18}\ref{item:satz2.18(2)}}&{=}
+		\big(\Kern(A)^\perp+U^\perp\big)\cap U
+		\overset{\ref{satz2.17}}{=}
+		\big(\Bild(A')+U^\perp\big)\cap U
+	\end{align*}
+	Sei nun $x\in\big(\Bild(A')+U^\perp\big)\cap U$.
+	Dann: $\exists y\in\R^m,\exists v\in U^\perp$ mit
+	\begin{align}\label{eq:Proof2.19Stern}\tag{$*$}
+		x=A'\mal y+v
+		\overset{\ref{satz2.5}}{=}
+		A'\mal y+P_{U^\perp} v
+		\overset{\ref{satz2.9}}{=}
+		A'\mal y+\big(I_n-P_U\big)\mal v\\ \nonumber
+		\implies x
+		\overset{\ref{satz2.5},x\in U}{=}
+		P_U x
+		\overset{\eqref{eq:Proof2.19Stern}}{=}
+		P_U A'\mal y+\underbrace{P_U\big(I_n-P_u\big)}_{=P_U-P_U^2\overset{\ref{satz2.7}}{=}0}\mal v
+		=\big(P_U A'\big)\mal y\in\Bild\big(P_U A'\big)
+	\end{align}		
+	
+	\betone{Zeige "$\supseteq$":}\\
+	Sei $x\in\Bild\big(P_U A'\big)$.
+	Dann gilt
+	\begin{align*}
+		x=P_U A'\mal y\qquad\exists y\in\R^m
+	\end{align*}
+	und somit $x\in U$.
+	Ferner sei $z\in\Kern(A)\cap U$. Folglich:
+	\begin{align*}
+		\scaProd{x}{z}=x'\mal z
+		=y'\mal(A')'\mal P_U' z
+		\overset{\ref{satz2.8}}{=}
+		y'\mal A\mal P_U z
+		\overset{z\in U,\ref{satz2.5}}{=}
+		y'\mal (A\mal z)
+		\overset{z\in\Kern(A)}{=}
+		y'\mal 0
+		=0
+	\end{align*}
+	Also ist $\scaProd{x}{z}=0$ für alle $z\in\Kern(A)\cap U$.
+	Somit ist $x\in\big(\Kern(A)\cap U\big)^\perp$.
+\end{proof}
+
+\begin{satz}\label{satz2.20}
+	Seien $U_1\subseteq U_2\subseteq\R^n$ Untervektorräume.
+	Dann gilt:
+	\begin{align*}
+		P_{U_1}\mal P_{U_2}=P_{U_2}\mal P_{U_1}=P_{U_1}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		P_{U_2}\underbrace{\big(P_{U_1} x\big)}_{\in U_1\subseteq U_2}
+		\overset{P_{U_1}x\in U_2,\ref{satz2.5}}{=}
+		P_{U_1}x\qquad\forall x\in\R^n
+	\end{align*}
+	Ferner sei $x\in\R^n$. 
+	Dann ist $x=u_1+v_1=u_2+v_2$ mit $u_i\in U_i$ und $v_i\in U_i^\perp$, $i\in\set{1,2}$.
+	Sowie
+	\begin{align}\label{eq:Proof2.20Stern}\tag{$*$}
+		U_2^\perp\subseteq U_1^\perp
+	\end{align}		
+	Damit:
+	\begin{align*}
+		P_{U_1}P_{U_2}(x)
+		&=P_{U_1}\big(P_{U_2}(x)\big)\\
+		&=P_{U_1}(u_2)\\
+		\overset{\ref{satz2.9}}&{=}
+		\big(\id-P_{U_1^\perp}\big)(u_2)\\
+		&=u_2-P_{U_1^\perp}(\underbrace{u_2}_{=x-v_2})\\
+		\overset{\Lin}&{=}
+		u_2-P_{U_1^\perp}(x)+\underbrace{P_{U_1^\perp}(\underbrace{v_2}_{
+			\overset{\eqref{eq:Proof2.20Stern}}{=}u_1^\perp		
+		})}_{=v_2}\\
+		&=x-P_{U_1^\perp}(x)\\
+		&=\big(\id-P_{U_1^\perp}\big)(x)\\
+		\overset{\ref{satz2.9}}&{=}
+		P_{U_1}(x)\\
+		\implies P_{U_1}P_{U_2}=P_{U_1}
+	\end{align*}
+\end{proof}
+
+\begin{satz}\label{satz2.21}
+	Sei $U_1\subseteq U_2\subseteq\R^n$ Untervektorräume.
+	Dann gilt:
+	\begin{align*}
+		P_{U_2}=P_{U_1}+P_{U_1^\perp\cap U_2}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Sei zunächst $x\in U_2$.
+	Es gilt wegen Satz \ref{satz2.3}:
+	\begin{align*}
+		x=u+v\qquad\exists u\in U_1,v\in U_1^\perp
+	\end{align*}
+	Insbesondere:
+	\begin{align*}
+		u=P_{U_1}(x),\qquad v=P_{U_1^\perp}(x)
+	\end{align*}
+	Da $x\in U_2$ und $u\in U_2$ (wegen $U_1\subseteq U_2$) folgt $v=x-u\in U_2$.
+	Also $v\in U_1^\perp\cap U_2$. Es folgt:
+	\begin{align*}
+		v\overset{\ref{satz2.5}}{=}
+		P_{U_1^\perp\cap U_2}(v)
+		=P_{U_1^\perp\cap U_2}\big(P_{U_1^\perp}(x)\big)
+		\overset{\ref{satz2.20}}{=}
+		P_{U_1^\perp\cap U_2}(x)
+	\end{align*}
+	Somit:
+	\begin{align}\label{eq:Proof2.21Stern}\tag{$*$}
+		P_{U_2}(x)
+		\overset{x\in U_2,\ref{satz2.5}}{=}
+		x
+		=u+v
+		=P_{U_1}(x)+P_{U_1^\perp\cap U_2}(x)
+		\qquad\forall x\in U_2
+	\end{align}
+	Sei jetzt $x\in\R^n$ beliebig.
+	Dann folgt:
+	\begin{align*}
+		P_{U_2}(x)
+		\overset{\ref{satz2.7}}{=}
+		P_{U_2}\big(\underbrace{P_{U_2}(x)}_{\in U_2}\big)
+		\overset{\eqref{eq:Proof2.21Stern}}{=}
+		P_{U_1}\big(P_{U_2}(x)\big)+P_{U_1^\perp\cap U_2}\big(P_{U_2}(x)\big)
+		\overset{\ref{satz2.20}}{=}
+		P_{U_1}(x)+P_{U_1^\perp\cap U_2}(x)
+	\end{align*}
+\end{proof}
+
+Der folgende Satz hilft uns, die Existenz des Schätzers sicherzustellen und gibt uns eine Möglichkeit, diesen auszurechnen.
+
+\begin{notation}
+	\begin{align*}
+		\argmin\limits_{y\in\R^p} f(y):=\set{z\in\R^p:f(z)\leq f(y)~\forall y\in\R^p}
+	\end{align*}
+\end{notation}
+
+\begin{satz}\label{2.22}
+	Sei $A\in M(n\times p)$ mit $n\geq p$ und $x\in\R^n$ fest.
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item Die Minimalstelle \label{item:satz2.22(a)}
+		\begin{align*}
+			y_0\in\argmin\limits_{y\in\R^p}\norm{x-A\mal y}
+			=\argmin\limits\set[\big]{\norm{x-A\mal y}:y\in\R^p}
+		\end{align*}
+		existiert und erfüllt die \define{Normalgleichung} \index{Normalgleichung}
+		\begin{align*}
+			A'\mal A\mal y_0=A'\mal x.
+		\end{align*}
+		Umgekehrt ist jede Lösung der Normalgleichung eine Minimalstelle
+		\begin{align*}
+			\argmin\limits_{y\in\R^p}\norm{y-A\mal x}.
+		\end{align*}
+		Ferner gilt:
+		\begin{align*}
+			A\mal y_0=P_{\Bild(A)}(x)
+		\end{align*}
+		\item Falls $\Rg(A)=p$ (also Vollrang), so gilt \label{item:satz2.22(b)}
+		\begin{align*}
+			y_0=\big(A'\mal A\big)^{-1}\mal A'\mal x
+			\qquad\und\qquad
+			P_{\Bild(A)}=A\mal\big(A'\mal A\big)^{-1}\mal A'
+		\end{align*}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige \ref{item:satz2.22(a)}:}
+	
+	\betone{Zeige \ref{item:satz2.22(b)}:}\\
+	Folgt aus \ref{item:satz2.22(a)} mit Satz \ref{satz:2.13}.
+\end{proof}
+
+% Vorgriff:
+
+\begin{definition}
+	Der \define{Minimum-Quadrat-Schätzer} ist
+	\begin{align*}
+		\hat{\beta}\in\argmin\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p}
+	\end{align*}
+\end{definition}
