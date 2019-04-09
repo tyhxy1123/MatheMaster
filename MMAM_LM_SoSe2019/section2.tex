@@ -382,7 +382,7 @@ Hierbei ist $\Hom(\R^n,\R^m)$ der Vektorraum aller linearen Abbildungen von $\R^
 	$u_0\in U$ heißt \define{Bestapproximation von $x$ in $U$}
 	\index{Bestapproximation}
 	\begin{align*}
-		\norm{x-u_0}\leq\norm{x-u}\qquad\forall u\in U
+		:\iff\norm{x-u_0}\leq\norm{x-u}\qquad\forall u\in U
 	\end{align*}
 	Also:
 	\begin{align*}
@@ -415,17 +415,527 @@ Hierbei ist $\Hom(\R^n,\R^m)$ der Vektorraum aller linearen Abbildungen von $\R^
 	Sei $u\in U$ beliebig.
 	Dann folgt aus der Definition der Projektion:
 	\begin{align*}
-		x=P_U(x)+v\qquad\exists v\in U^\perp\\
-		\implies\norm{x-u}^2=\norm[\Big]{\big(\underbrace{P_U(x)-u}_{\in U}\big) +v}^2
+		x&=P_U(x)+v\qquad\exists v\in U^\perp\\
+		\implies\norm{x-u}^2&=\norm[\Big]{\big(\underbrace{P_U(x)-u}_{\in U}\big) +v}^2
 		\overset{\ref{satz2.1}\ref{item:satz2.1(1)}}{=}
 		\underbrace{\norm{P_U(x)-u}^2}_{\geq0}+\norm{v}^2
 		\geq\norm{v}^2=\norm{x-P_U(x)}^2
 	\end{align*}
 	Und Gleichheit gilt genau dann, wenn $u=P_U(x)$.\nl
 	\betone{Zeige \ref{item:satz2.10(2)}:}
-	%TODO
+	\begin{align*}
+		x&=P_U(x)+P_{U^\perp}(x)\\
+		&\implies x-P_U(x)=P_{U^\perp}(x)\\
+		&\implies x-P_U(x)\in U^\perp
+	\end{align*}
 	\betone{Zeige \ref{item:satz2.10(3)}:}
+	\begin{align*}
+		x-u\in U^\perp
+		\implies x=\underbrace{u}_{\in U}+\underbrace{(x-u)}_{\in U^\perp}
+		\implies u=P_U(x)
+	\end{align*}
 \end{proof}
 
+\begin{satz}\label{satz:2.11}
+	Sei
+	\begin{align*}
+		A=\big(a_1,\ldots,a_n\big)=\begin{pmatrix}
+			b_1'\\
+			\vdots\\
+			b_m'
+		\end{pmatrix}\in M(m\times n)
+	\end{align*}
+	d.h. $a_i\in\R^m$ ist $i$-te Spalte von $A$ bzw. $b_i\in\R^n$ und $b_i'=i$-te Zeile von $A$.
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item $\begin{aligned}
+			 \dim\Big(\spann\big(a_1,\ldots,a_n\big)\Big)
+			 =\dim\Big(\spann\big(b_1,\ldots,b_m\big)\Big) 
+			 \label{item:satz2.11(a)}
+		\end{aligned}$\\
+		Der gemeinsame Wert $\Rg(A)$ heißt \define{Rang} von $A$.
+		\index{Rang}  
+		\item $\begin{aligned}
+			 \Rg(A)=\Rg(A')=
+			 \label{item:satz2.11(b)}
+		\end{aligned}$ maximale Anzahl linear unabhängiger Zeilen / Spalten von $A$
+		\item $\begin{aligned}
+			\Rg(A)\leq\min\set{m,n}
+			\label{item:satz2.11(c)}
+		\end{aligned}$
+		\item $\begin{aligned}
+			B\in M(n\times p)\implies\left\lbrace
+			\begin{array}{l}
+				\Rg(A\mal B)\leq\min\set{\Rg(A),\Rg(B)}\\
+				\Rg(A\mal B)\geq\Rg(A)+\Rg(B)-n
+			\end{array}\right.
+			\label{item:satz2.11(d)}
+		\end{aligned}$
+		\item Seien $S\in M(m\times m),~T\in M(n\times n)$ invertierbar.
+		Dann gilt: \label{item:satz2.11(e)}
+		\begin{align*}
+			\rg(S\mal A\mal T)=\Rg(A)
+		\end{align*}
+	\end{enumerate}
+\end{satz}
 
+\begin{proof}
+	Siehe Koecher \cite{koecher2013lineare}, Seite 57 ff.
+\end{proof}
 
+\begin{satz}[Dimensionsformel]\label{satz:2.12Dimensionsformel}\enter
+	Sei $A\in M(m\times n)$. Setze
+	\index{Bild einer Matrix}\index{Kern einer Matrix}\index{Dimensionsformel}
+	\begin{align*}
+		\Kern(A):=\set{x\in\R^n:A\mal x=0}\qquad
+		\Bild(A):=\set{A\mal x:x\in\R^n}
+	\end{align*}
+	Dann gilt:
+	\begin{align*}
+		\dim\big(\Kern(A)\big)+\dim\big(\Bild(A)\big)=n
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Siehe Koecher \cite{koecher2013lineare}, Seite 39 ff.
+\end{proof}
+
+\begin{satz}\label{satz:2.13}
+	Sei $A\in M(m\times n)$ mit $m\geq n$.
+	Dann gilt: \index{Vollrang}
+	\begin{align*}
+		A'\mal A\text{ invertierbar}\iff\Rg(A)=n\iff: A\text{ hat \define{Vollrang}}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige "$\Longrightarrow$":}
+	\begin{align*}
+		n&=\Rg(I_n)
+		=\Rg\klammern{A'\mal A\mal(A'\mal A)^{-1}}
+		\overset{\text{\ref{satz:2.11}\ref{item:satz2.11(e)}}}{=}
+		\rg(A'\mal A)
+		\overset{\text{\ref{satz:2.11}\ref{item:satz2.11(d)}+\ref{satz:2.11}\ref{item:satz2.11(b)}}}{\leq}
+		\Rg(A)
+		\leq n
+	\end{align*}
+	\betone{Zeige "$\Longleftarrow$":} Es gilt:
+	\begin{align*}
+		\Bild(A)=\spann\big(a_1,\ldots,a_n\big)
+	\end{align*}
+	wobei $a_i:=A\mal e_i$ die $i$-te Spalte von $A$ ist, denn:
+	\begin{align}
+		A\mal x \nonumber
+		&=A\klammern{\sum\limits_{i=1}^n x_i\mal e_i}
+		=\sum\limits_{i=1}^n x_i\mal A\mal e_i
+		=\sum\limits_{i=1}^n x_i\mal A_i
+		\qquad\forall x=\big(x_1,\ldots,x_n\big)'\in\R^n\\
+		\overset{\ref{satz:2.12Dimensionsformel}}&{\implies}\nonumber
+		\dim\big(\Kern(A)\big)=0\\
+		&\implies \Kern(A)=\set{0}\label{eq:ProofSatz2.13Stern}\tag{$*$}\\
+		&\implies\Kern(A'\mal A)=\set{0}, \label{eq:ProofSatz2.13SternStern}\tag{$**$}
+	\end{align}
+	denn:
+	\begin{align*}
+		A'\mal A=0
+		&\implies (x'\mal A')\mal A\mal x=(A\mal x)'\mal A\mal x=\norm{A\mal x}^2
+		\implies\norm{A\mal x}=0\\
+		&\implies A\mal x=0\implies x\in\Kern(A)
+		\overset{\eqref{eq:ProofSatz2.13Stern}}{\implies}x=0
+	\end{align*}
+	Aus \eqref{eq:ProofSatz2.13SternStern} folgt, dass $A'\mal A$ injektiv ist.
+	Gemäß Satz \ref{satz:2.12Dimensionsformel} ist $A'\mal A$ auch surjektiv, also insgesamt bijektiv.
+	Also ist $A'\mal A$ invertierbar.
+\end{proof}
+
+\begin{satz}\label{satz2.14}
+	Sei $A\in M(m\times n),~B\in M(n\times m)$.
+	Dann gilt: \index{Spur einer Matrix}
+	\begin{align*}
+		\Spur(A\mal B)=\Spur(B\mal A)
+		\qquad\mit\qquad
+		\Spur(A):=\sum\limits_{i=1}^n a_{i,i}
+	\end{align*}
+	(Die Spur einer Matrix ist die Summe der Diagonalelemente.)
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		\Spur(A\mal B)
+		\overset{\Def}&{=}
+		\sum\limits_{i=1}^m(A\mal B)_{i,i}\\
+		&=\sum\limits_{i=1}^m\klammern{\sum\limits_{j=1}^n(A)_{i,j}\mal(B)_{j,i}}\\
+		&=\sum\limits_{j=1}^n\sum\limits_{i=1}^m (B)_{j,i}\mal(A)_{i,j}\\
+		&=\sum\limits_{j=1}^n(B\mal A)_{j,j}\\
+		&=\Spur(B\mal A)
+	\end{align*}
+\end{proof}
+
+\begin{erinnerung}\
+	\begin{enumerate}
+		\item $A=\big(a_1,\ldots,a_n\big)\in M(n\times n)$ heißt \define{orthonormal / orthogonal}
+		\begin{align*}
+			:&\iff\forall i,j\in\set{1,\ldots,n}:\scaProd{a_i}{a_j}=\delta_{i,j}\\
+			&\iff A^T=A^{-1}
+		\end{align*}
+		\item Sei $A\in M(n\times n)$. 
+		Dann heißt $\lambda\in\C$ \define{Eigenwert (EW)} von $A$ \index{Eigenwert}\index{Eigenvektor}
+		\begin{align*}
+			:\iff\exists x\in\R^n\setminus\set{0}:A\mal x=\lambda\mal x
+		\end{align*}		 
+		In diesem Fall heißt $x$ der zum Eigenwert $\lambda$ gehörende \define{Eigenvektor (EV)} von $A$.
+	\end{enumerate}
+\end{erinnerung}
+
+\begin{satz}\label{satz:2.15}
+	Sei $A\in M(n\times n)$ symmetrisch.
+	Dann existiert eine orthogonale / orthonormale Matrix
+	$B=\big(v_1,\ldots,v_n\big)$ bestehend aus Eigenvektoren (EV) von $A$ mit
+	\begin{align*}
+		B'\mal A\mal B=\begin{pmatrix}
+			\lambda_1 & 0 & 0\\
+			0 & \ddots & 0\\
+			0 & 0 & \lambda_n
+		\end{pmatrix}=:D=:\Diag\big(\lambda_1,\ldots,\lambda_n\big)
+	\end{align*}
+	Dabei ist $\lambda_i\in\R$ Eigenwert (EW) von $A$ zum Eigenwert $v_i$ ($i\in\set{1,\ldots,n}$).
+\end{satz}
+
+\begin{proof}
+	\betone{Teil 1:} Siehe Koecher \cite{koecher2013lineare} Seite 194.\nl
+	\betone{Teil 2:} Zunächst gilt $B'\mal B=I_n$, denn
+	\begin{align*}
+		\scaProd{v_i}{v_j}=v_i'\mal v_j=\delta_{i,j}=\left\lbrace\begin{array}{cl}
+			0,&\falls i\neq j\\
+			1,&\falls i=j
+		\end{array}\right.
+	\end{align*}
+	Also ist $B'$ Linksinverses von $B$ und damit auch Rechtsinverses.
+	\begin{align*}
+		A\mal v_i
+		&=B\mal D\mal\underbrace{B'\mal v_i}_{=e_i}
+		=B\mal D\mal e_i
+		=B\mal\lambda_i\lambda e_i
+		=\lambda_i\mal B\mal e_i
+		=\lambda_i\lambda\mal v_i
+	\end{align*}
+	Dass die Eigenwerte hierbei reellwertig sind, folgt aus der Symmetrie.
+\end{proof}
+
+\begin{satz}\label{satz:2.16}
+	Sei $A$ symmetrisch und \define{idempotent}, d.h. $A^2=A$.
+	Dann gilt: \index{idempotente Matrix}
+	\begin{align*}
+		\Rg(A)=\Spur(A)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Für $\lambda_1,\ldots,\lambda_d$ in Satz \ref{satz:2.15} gilt o.B.d.A. (sonst $v_i$'s vertauschen) $\lambda_1\geq\lambda_2\geq\ldots\geq\lambda_n$.\\
+	Sei $x$ Eigenvektor von $A$ zum Eigenwert $\lambda$.
+	Dann gilt:
+	\begin{align*}
+		\lambda\mal x=A\mal x=A(A\mal x)=A\mal\lambda\mal x=\lambda\mal A\mal x=\lambda^2\mal	x\\
+		\overset{x\neq0}{\implies}
+		\lambda=\lambda^2\in\R\implies \lambda\in\set{0,1}
+	\end{align*}
+	Gemäß Satz \ref{satz:2.15} existiert eine orthogonale Matrix $B$ derart, dass
+	\begin{align}\label{eq:ProofSatz2.16Star}\tag{$*$}
+		B'\mal A\mal B&=\begin{pmatrix}
+			1 & 0 &\hdots & \hdots & \hdots & 0\\
+			0 & \ddots & \ddots & \ddots & \ddots & \vdots\\
+			\vdots & \ddots & 1 & \ddots & \ddots & \vdots\\
+			\vdots & \ddots & \ddots & 0 & \ddots & \vdots\\
+			\vdots & \ddots & \ddots & \ddots &  \ddots & \vdots\\
+			0 & \hdots & \hdots & \hdots & \hdots & 0
+		\end{pmatrix}=:D\\ \nonumber
+		\implies\Rg(A)
+		\overset{\text{\ref{satz:2.11}\ref{item:satz2.11(e)}}}&{=}
+		\rg(B'\mal A\mal B)\\ \nonumber
+		\overset{\eqref{eq:ProofSatz2.16Star}}&{=}
+		\Rg(D)\\\nonumber
+		\overset{\text{\ref{satz:2.11}\ref{item:satz2.11(a)}}}&{=}
+		\Spur(D)\\\nonumber
+		\overset{\eqref{eq:ProofSatz2.16Star}}&{=}
+		\Spur\big(B'\mal(A\mal B)\big)\\\nonumber
+		\overset{\ref{satz2.14}}&{=}
+		\Spur\big(A\mal\underbrace{(B\mal B')}_{=I_n}\big)\\\nonumber
+		&=\Spur(A)
+	\end{align}
+\end{proof}
+
+\begin{satz}\label{satz2.17}
+	Sei $A\in M(m\times n)$. Dann gilt:
+	\begin{align*}
+		\Kern(A)&=\big(\Bild(A')\big)^\perp\\
+		\overset{\text{\ref{satz2.1}\ref{item:satz2.1(3)}\ref{item:satz2.1(3ii)}}}{\iff}
+		\Kern(A)^\perp&=\Bild(A')
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Sei $x\in\Kern(A)$.
+	\begin{align*}
+		&x\in\Kern(A)\\
+		&\iff A\mal x=0\\
+		&\iff\scaProd{b_i}{x}=0 &&\forall i\in\set{1,\ldots,n}\text{wobei $b_i':=i$-te Zeile von $A$}\\
+		&\iff\scaProd{y}{x}=0 &&\forall y\in\spann\big(b_1,\ldots,b_m\big)\\
+		&\iff x\perp\spann\big(b_1,\ldots,b_m\big)
+		\overset{\text{vgl.\ref{satz:2.13}}}{=}		
+		\Bild(A)\\
+		&\iff x\in\Bild(A')^\perp
+	\end{align*}
+	denn:
+	\begin{align*}
+		\scaProd{\sum\limits_{i=1}^m \alpha_i\mal b_i}{x}=\sum\limits_{i=1}^m\underbrace{\scaProd{b_i}{x}}_{=0~\forall i}=0
+	\end{align*}
+\end{proof}
+
+\begin{satz}\label{satz:2.18}
+	Seien $U_1,U_2\subseteq\R^n$ Untervektorräume des $\R^n$.
+	Dann gilt
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\big(U_1+U_2\big)^\perp=U_1^\perp\cap U_2^\perp
+			\label{item:satz2.18(1)}
+		\end{aligned}$
+		\item $\begin{aligned}
+			\big(U_1\cap U_2\big)^\perp=U_1^\perp+ U_2^\perp
+			\label{item:satz2.18(2)}
+		\end{aligned}$
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\betone{Zu \ref{item:satz2.18(1)} zeige "$\subseteq$":}
+	\begin{align*}
+		U_1+U_2\overset{0\in U_1\cap U_2}{\supseteq} U_i\qquad\forall i\in\set{1,2}\\
+		\implies \big(U_1+U_2\big)^\perp\subseteq U_i^\perp
+		\implies\big(U_1+U_2)^\perp\subseteq U_1^\perp\cap U_2^\perp
+	\end{align*}
+	\betone{Zu \ref{item:satz2.18(1)} zeige "$\supseteq$":}\\
+	Sei $x\in U_1^\perp\cap U_2^\perp$.
+	Sei $y\in U_1+U_2$.	
+	Dann gilt:
+	\begin{align*}
+		\exists u_1\in U_1,u_2\in U_2: y=u_1+u_2\\
+		\implies\scaProd{x}{y}\overset{\Lin}{=}\underbrace{\scaProd{x}{u_1}}_{
+			\overset{x\in U_1^\perp}{=}0		
+		}+\underbrace{\scaProd{x}{u_2}}_{
+			\overset{x\in U_2^\perp}{=}0
+		}
+		\implies x\perp U_1+U_2
+		\implies x\in\big(U_1+U_2\big)^\perp
+	\end{align*}
+	\betone{Zeige \ref{item:satz2.18(2)}:}\\
+	Wende \ref{item:satz2.18(1)} auf $U_1^\perp$ und $U_2^\perp$ an:
+		\begin{align*}
+		\big(U_1\cap U_2\big)^\perp
+		\overset{\ref{satz2.1}}&{=}
+		\Big(\big(U_1^\perp\big)^\perp\cap\big(U_2^\perp\big)^\perp\Big)^\perp
+		\overset{\ref{item:satz2.18(1)}}{=}
+		\Big(\big(U_1^\perp+U_2^\perp\big)^\perp\Big)^\perp
+		\overset{\ref{satz2.1}}{=}
+		U_1^\perp+U_2^\perp
+	\end{align*}		
+\end{proof}
+
+\begin{satz}\label{satz2.19}
+	Sei $A\in M(m\times n)$, $U\subseteq\R^n$ Untervektorraum von $\R^n$.
+	Dann gilt:
+	\begin{align*}
+		\big(\Kern(A)\cap U\big)^\perp
+		=\Bild\big(P_U A'\big)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige "$\subseteq$":}
+	\begin{align*}
+		\big(\Kern(A)\cap U\big)^\perp
+		\overset{\ref{satz:2.18}\ref{item:satz2.18(2)}}&{=}
+		\big(\Kern(A)^\perp+U^\perp\big)\cap U
+		\overset{\ref{satz2.17}}{=}
+		\big(\Bild(A')+U^\perp\big)\cap U
+	\end{align*}
+	Sei nun $x\in\big(\Bild(A')+U^\perp\big)\cap U$.
+	Dann: $\exists y\in\R^m,\exists v\in U^\perp$ mit
+	\begin{align}\label{eq:Proof2.19Stern}\tag{$*$}
+		x=A'\mal y+v
+		\overset{\ref{satz2.5}}{=}
+		A'\mal y+P_{U^\perp} v
+		\overset{\ref{satz2.9}}{=}
+		A'\mal y+\big(I_n-P_U\big)\mal v\\ \nonumber
+		\implies x
+		\overset{\ref{satz2.5},x\in U}{=}
+		P_U x
+		\overset{\eqref{eq:Proof2.19Stern}}{=}
+		P_U A'\mal y+\underbrace{P_U\big(I_n-P_u\big)}_{=P_U-P_U^2\overset{\ref{satz2.7}}{=}0}\mal v
+		=\big(P_U A'\big)\mal y\in\Bild\big(P_U A'\big)
+	\end{align}		
+	
+	\betone{Zeige "$\supseteq$":}\\
+	Sei $x\in\Bild\big(P_U A'\big)$.
+	Dann gilt
+	\begin{align*}
+		x=P_U A'\mal y\qquad\exists y\in\R^m
+	\end{align*}
+	und somit $x\in U$.
+	Ferner sei $z\in\Kern(A)\cap U$. Folglich:
+	\begin{align*}
+		\scaProd{x}{z}=x'\mal z
+		=y'\mal(A')'\mal P_U' z
+		\overset{\ref{satz2.8}}{=}
+		y'\mal A\mal P_U z
+		\overset{z\in U,\ref{satz2.5}}{=}
+		y'\mal (A\mal z)
+		\overset{z\in\Kern(A)}{=}
+		y'\mal 0
+		=0
+	\end{align*}
+	Also ist $\scaProd{x}{z}=0$ für alle $z\in\Kern(A)\cap U$.
+	Somit ist $x\in\big(\Kern(A)\cap U\big)^\perp$.
+\end{proof}
+
+\begin{satz}\label{satz2.20}
+	Seien $U_1\subseteq U_2\subseteq\R^n$ Untervektorräume.
+	Dann gilt:
+	\begin{align*}
+		P_{U_1}\mal P_{U_2}=P_{U_2}\mal P_{U_1}=P_{U_1}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		P_{U_2}\underbrace{\big(P_{U_1} x\big)}_{\in U_1\subseteq U_2}
+		\overset{P_{U_1}x\in U_2,\ref{satz2.5}}{=}
+		P_{U_1}x\qquad\forall x\in\R^n
+	\end{align*}
+	Ferner sei $x\in\R^n$. 
+	Dann ist $x=u_1+v_1=u_2+v_2$ mit $u_i\in U_i$ und $v_i\in U_i^\perp$, $i\in\set{1,2}$.
+	Sowie
+	\begin{align}\label{eq:Proof2.20Stern}\tag{$*$}
+		U_2^\perp\subseteq U_1^\perp
+	\end{align}		
+	Damit:
+	\begin{align*}
+		P_{U_1}P_{U_2}(x)
+		&=P_{U_1}\big(P_{U_2}(x)\big)\\
+		&=P_{U_1}(u_2)\\
+		\overset{\ref{satz2.9}}&{=}
+		\big(\id-P_{U_1^\perp}\big)(u_2)\\
+		&=u_2-P_{U_1^\perp}(\underbrace{u_2}_{=x-v_2})\\
+		\overset{\Lin}&{=}
+		u_2-P_{U_1^\perp}(x)+\underbrace{P_{U_1^\perp}(\underbrace{v_2}_{
+			\overset{\eqref{eq:Proof2.20Stern}}{=}u_1^\perp		
+		})}_{=v_2}\\
+		&=x-P_{U_1^\perp}(x)\\
+		&=\big(\id-P_{U_1^\perp}\big)(x)\\
+		\overset{\ref{satz2.9}}&{=}
+		P_{U_1}(x)\\
+		\implies P_{U_1}P_{U_2}=P_{U_1}
+	\end{align*}
+\end{proof}
+
+\begin{satz}\label{satz2.21}
+	Sei $U_1\subseteq U_2\subseteq\R^n$ Untervektorräume.
+	Dann gilt:
+	\begin{align*}
+		P_{U_2}=P_{U_1}+P_{U_1^\perp\cap U_2}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Sei zunächst $x\in U_2$.
+	Es gilt wegen Satz \ref{satz2.3}:
+	\begin{align*}
+		x=u+v\qquad\exists u\in U_1,v\in U_1^\perp
+	\end{align*}
+	Insbesondere:
+	\begin{align*}
+		u=P_{U_1}(x),\qquad v=P_{U_1^\perp}(x)
+	\end{align*}
+	Da $x\in U_2$ und $u\in U_2$ (wegen $U_1\subseteq U_2$) folgt $v=x-u\in U_2$.
+	Also $v\in U_1^\perp\cap U_2$. Es folgt:
+	\begin{align*}
+		v\overset{\ref{satz2.5}}{=}
+		P_{U_1^\perp\cap U_2}(v)
+		=P_{U_1^\perp\cap U_2}\big(P_{U_1^\perp}(x)\big)
+		\overset{\ref{satz2.20}}{=}
+		P_{U_1^\perp\cap U_2}(x)
+	\end{align*}
+	Somit:
+	\begin{align}\label{eq:Proof2.21Stern}\tag{$*$}
+		P_{U_2}(x)
+		\overset{x\in U_2,\ref{satz2.5}}{=}
+		x
+		=u+v
+		=P_{U_1}(x)+P_{U_1^\perp\cap U_2}(x)
+		\qquad\forall x\in U_2
+	\end{align}
+	Sei jetzt $x\in\R^n$ beliebig.
+	Dann folgt:
+	\begin{align*}
+		P_{U_2}(x)
+		\overset{\ref{satz2.7}}{=}
+		P_{U_2}\big(\underbrace{P_{U_2}(x)}_{\in U_2}\big)
+		\overset{\eqref{eq:Proof2.21Stern}}{=}
+		P_{U_1}\big(P_{U_2}(x)\big)+P_{U_1^\perp\cap U_2}\big(P_{U_2}(x)\big)
+		\overset{\ref{satz2.20}}{=}
+		P_{U_1}(x)+P_{U_1^\perp\cap U_2}(x)
+	\end{align*}
+\end{proof}
+
+Der folgende Satz hilft uns, die Existenz des Schätzers sicherzustellen und gibt uns eine Möglichkeit, diesen auszurechnen.
+
+\begin{notation}
+	\begin{align*}
+		\argmin\limits_{y\in\R^p} f(y):=\set{z\in\R^p:f(z)\leq f(y)~\forall y\in\R^p}
+	\end{align*}
+\end{notation}
+
+\begin{satz}\label{2.22}
+	Sei $A\in M(n\times p)$ mit $n\geq p$ und $x\in\R^n$ fest.
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item Die Minimalstelle \label{item:satz2.22(a)}
+		\begin{align*}
+			y_0\in\argmin\limits_{y\in\R^p}\norm{x-A\mal y}
+			=\argmin\limits\set[\big]{\norm{x-A\mal y}:y\in\R^p}
+		\end{align*}
+		existiert und erfüllt die \define{Normalgleichung} \index{Normalgleichung}
+		\begin{align*}
+			A'\mal A\mal y_0=A'\mal x.
+		\end{align*}
+		Umgekehrt ist jede Lösung der Normalgleichung eine Minimalstelle
+		\begin{align*}
+			\argmin\limits_{y\in\R^p}\norm{y-A\mal x}.
+		\end{align*}
+		Ferner gilt:
+		\begin{align*}
+			A\mal y_0=P_{\Bild(A)}(x)
+		\end{align*}
+		\item Falls $\Rg(A)=p$ (also Vollrang), so gilt \label{item:satz2.22(b)}
+		\begin{align*}
+			y_0=\big(A'\mal A\big)^{-1}\mal A'\mal x
+			\qquad\und\qquad
+			P_{\Bild(A)}=A\mal\big(A'\mal A\big)^{-1}\mal A'
+		\end{align*}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige \ref{item:satz2.22(a)}:}
+	
+	\betone{Zeige \ref{item:satz2.22(b)}:}\\
+	Folgt aus \ref{item:satz2.22(a)} mit Satz \ref{satz:2.13}.
+\end{proof}
+
+% Vorgriff:
+
+\begin{definition}
+	Der \define{Minimum-Quadrat-Schätzer} ist
+	\begin{align*}
+		\hat{\beta}\in\argmin\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p}
+	\end{align*}
+\end{definition}
