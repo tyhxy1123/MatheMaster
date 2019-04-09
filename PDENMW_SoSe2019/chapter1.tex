@@ -93,7 +93,7 @@ Let us first look at a particularly regular case:
 				k_{1}&=e_{1}, k_{2}=e_{2}\\
 				k_{i}&= \sum_{j=1}^{i} e_{j}
 			\end{align*}
-			%TODO insert missing picture
+			\input{tikz/chapter1/kuhn_simplex.tex}
 		\item Let $\pi$ be a permutation of $\left\{1,\dots ,d \right\}$. The Kuhn-simplex $T_{\pi}$ has vertices 
 			\begin{align*}
 				k_{0}&=0 \\
@@ -106,7 +106,7 @@ Let us first look at a particularly regular case:
 		\item The $2^g$ descendants in the $g$-th generation of a Kuhn-simplex are all pairwise congruent.
 		\item There are only $d$ different simplex shapes in the entire infinite tree $\mathbb{F}(T_{\pi})$ 
 		\item All descendants of generation $d$ are similar to $T_{\pi}$ with scaling $\frac{1}{2}$ 
-			%TODO insert picture
+			\input{tikz/chapter1/kuhn_generation_scaling.tex}
 	\end{itemize}
 \end{theorem}
 \begin{proof_}
@@ -162,7 +162,8 @@ Let us first look at a particularly regular case:
 			\begin{equation*}
 				T = F(\hat{T})
 			\end{equation*}
-			% insert missing pictures here
+			%TODO ask if the refinement is correct, because of the step from d to b and c
+			\input{tikz/chapter1/type_refinement.tex}
 	\end{itemize}
 	This does not mean that the recurrent refinement will produce no more than $d$ similarity classes, but the total number remains finite.
 	 \begin{equation*}
