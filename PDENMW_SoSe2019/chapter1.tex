@@ -5,8 +5,9 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \chapter{Geometry of the bisection method}
-In the previous example the function $u$ was known. Thus the grid can be constructed specifically for $u$. For finite element problems the function $u $ is not known! There you use an initial grid and modify it repeatedly.\\
-possible modifications:
+In the previous example the function $u$ was known. Thus the grid can be constructed specifically for $u$. For finite element problems the function $u $ is not known! There you use an initial grid and modify it repeatedly.
+
+Possible modifications include
 \begin{itemize}
 	\item moving vertices (r-refinement)
 	\item split elements (h-refinement)
@@ -14,7 +15,6 @@ possible modifications:
 There are various ideas to split elements, but most of theory exists for bisection refinement.
 \section{Bisection refinement}
 \input{tikz/chapter1/bisection_refine.tex}
-
 There are two challenges:
 \begin{itemize}
 	\item grid conformity
@@ -24,11 +24,11 @@ There are two challenges:
 \end{itemize} 
 In particular: the constant $c$ in 
 \begin{equation*}
-	\|u - u_{N}\|_{H^{1}} \leq c\ h\ |u|_{H^{2}}
+  \norm{u - u_{N}}_{H^{1}} \leq c\ h\ \halfnorm{u}_{H^{2}}
 \end{equation*} 
 depends on 
 \begin{equation*}
-	\delta = \max \delta_{T} 
+	\delta = \max \delta_{T}
 \end{equation*} 
 with
 \begin{equation*}
