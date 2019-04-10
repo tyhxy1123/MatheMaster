@@ -167,6 +167,7 @@ This results in the discrete Laplace operator $(h=h_{x}=h_{y})$
 	\laplace_{h}^{(5)}u_{i,j}=\frac{1}{2}(u_{i+1,j}+u_{i-1,j} +u_{i,j+1}+ u_{i,j-1} - 4u_{i,j})
 .\]
 
+\newpage
 \section{Node ordering}%
 \label{sec:Node ordering}
 To form a linear system, the nodes $(i,j)$ have to be numbered consecutively, i.e. we have to use a map
@@ -184,7 +185,14 @@ Examples:
 			l(i,j) = i \cdot (N_{y} + 2) + j
 		.\] 
 
-		% TODO Plot 1
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/lexi-ordering.tex}
+			\end{center}
+			\caption{Lexicographical ordering}
+			\label{fig:lexiorder}
+		\end{figure}
+		
 	\item Red-Black ordering (checkerboard ordering)
 
 		\begin{enumerate}[label=\arabic{enumii})]
@@ -192,20 +200,40 @@ Examples:
 			\item number each node lexicographically
 		\end{enumerate}
 
-		% TODO Plot 2 
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/red-black-ordering.tex}
+			\end{center}
+			\caption{Red-Black ordering}
+			\label{fig:redblackorder}
+		\end{figure}
 
 		Question 1: How many colors do you need in 3D?
 
 		Question 2: Does an analytic expression for $l(i,j)$ exist?
+		\newpage
 	\item Cache-aware ordering (Cluster nodes into connected groups)
 
-		% TODO Plot 3
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/cache-ordering.tex}
+			\end{center}
+			\caption{Cache-aware ordering, enumeration along the arrow lines}
+			\label{fig:cacheorder}
+		\end{figure}
 		
 		This ordering scheme utilizes the fact, that data which is "located in a neighbourhood in memory respectively" can be accessed much quicker and thus fastens the operations used on the matrices.
 
 	\item Wave front orderings (diagonal ordering)
 
-		% TODO Plot 4
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/wave-ordering.tex}
+			\end{center}
+			\caption{Wave front ordering, enumeration along the arrow lines}
+			\label{fig:waveorder}
+		\end{figure}
+		
 \end{enumerate}
 
 \section{Assembling}%
