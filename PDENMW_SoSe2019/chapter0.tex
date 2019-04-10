@@ -9,16 +9,17 @@
 Let $\Omega\subset\R^d$ be a \textit{domain}, i.e. a bounded and open subset of $\R^d$. Our goal is to find a function $u\colon\Omega\to\R$ such that 
 \begin{align*}
     -\laplace u & = f,\,\text{ in } \Omega, \\
-    u & =u_0,\,\text{ on } \partial\Omega,
+    u & =u_0,\,\text{ on } \rand\Omega,
 \end{align*}
 where $\laplace$ is the \textit{Laplace operator}, $f$ and $u_0$ are given functions.
 \section{Weak Formulation}
 \begin{definition}
 The \textit{Sobolev space} $W^{k,p}(\Omega)$ is the set of all $p$-integrable functions $v\colon\Omega\to\R$ with $k$ weak derivatives that are $p$-integrable. 
-\begin{equation*}
-    |v|_{W^{k,p}}:=\int\limits_\Omega|\nabla^kv|^p<\infty.
-\end{equation*}
-In particular, we write $W^{k,2}=:H^k$.
+\begin{align*}
+  \halfnorm{v}_{W^{k,p}} &\coloneqq \int\limits_\Omega|\nabla^kv|^p<\infty\,\text{is a half-norm} \\
+  \norm{v}_{W^{k,p}} &\coloneqq \sum_{j=0}^k \int\limits_\Omega \abs*{\nabla^j}^p < \infty\, \text{is the norm}
+\end{align*}
+In particular, we write $W^{k,2}\eqqcolon H^k$. The $H^k$ spaces are Hilbert spaces.
 \end{definition}
 Sobolev functions do not have point values. Nevertheless, the trace of $H^1$-functions on $\partial\Omega$ is well-defined due to the trace theorem. The image of the trace operator is denoted by $H^{\frac{1}{2}}(\partial\Omega)$. Let $\omega\in H^{\frac{1}{2}}(\partial\Omega)$. Define $H_\omega^1(\Omega)=\{ v\in H^1\colon v|_{\partial\Omega}=\omega\}$. Let $w\in H_0^1(\Omega)$ be a \textit{test function}. In order to obtain the \textit{weak formulation}, we multiply the partial differential equation in strong form with $w$ and integrate over $\Omega$ : 
 \begin{equation*}
