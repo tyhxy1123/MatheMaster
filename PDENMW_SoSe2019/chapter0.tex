@@ -114,11 +114,11 @@ This looks promising and we show with an easy example, that it could work proper
 			What happens if $u \not \in W^{1,\infty}$?\\
 			The gridlength $h$ is not defined for nonuniform grids. Instead use:
 			\begin{equation*}
-				\|u-u_{N}\|_{L^{\infty}(0,1)}  \leq \frac{1}{N} \|u^\prime\|_{L^\infty(0,1)}
+        \norm{u-u_{N}}_{L^{\infty}(0,1)}  \leq \frac{1}{N} \norm{u^\prime}_{L^\infty(0,1)}
 			\end{equation*}
-			with $N := \frac{1}{h}$ the number of degrees of freedom. Furthermore is $N$ a measure for computational effort!
-		\item Nonuniform grids:\\
-			Let $u \not \in W^{1,1}(0,1)$ and $|u|_{W^{1,1}}>0$
+			with $N \coloneqq \frac{1}{h}$ being the number of degrees of freedom. Furthermore is $N$ a measure for computational effort!
+		\item Nonuniform grids:
+      Let $u \in W^{1,1}(0,1)$ and $\halfnorm{u}_{W^{1,1}}>0$
 			\begin{itemize}
 				\item Define
 					\begin{equation*}
