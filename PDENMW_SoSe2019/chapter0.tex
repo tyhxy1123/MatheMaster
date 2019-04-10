@@ -6,7 +6,7 @@
 
 \chapter{Adaptive Finite Elements}
 \section{Model Problem}
-Let $\Omega\subset\R^d$ be a \textit{domain}, i.e. a bounded and open subset of $\R^d$. Our goal is to find a function $u\colon\Omega\to\R$ such that 
+Let $\Omega\subset\R^d$ be a \textit{domain}, i.e. a bounded and open subset of $\R^d$. Our goal is to find a function $u\colon\Omega\to\R$ such that
 \begin{align*}
     -\laplace u & = f,\,\text{ in } \Omega, \\
     u & =u_0,\,\text{ on } \rand\Omega,
@@ -14,7 +14,7 @@ Let $\Omega\subset\R^d$ be a \textit{domain}, i.e. a bounded and open subset of 
 where $\laplace$ is the \textit{Laplace operator}, $f$ and $u_0$ are given functions.
 \section{Weak Formulation}
 \begin{definition}
-The \textit{Sobolev space} $W^{k,p}(\Omega)$ is the set of all $p$-integrable functions $v\colon\Omega\to\R$ with $k$ weak derivatives that are $p$-integrable. 
+The \textit{Sobolev space} $W^{k,p}(\Omega)$ is the set of all $p$-integrable functions $v\colon\Omega\to\R$ with $k$ weak derivatives that are $p$-integrable.
 \begin{align*}
   \halfnorm{v}_{W^{k,p}} &\coloneqq \int\limits_\Omega|\nabla^kv|^p<\infty\,\text{is a half-norm} \\
   \norm{v}_{W^{k,p}} &\coloneqq \sum_{j=0}^k \int\limits_\Omega \abs*{\nabla^j}^p < \infty\, \text{is the norm}
@@ -25,11 +25,11 @@ Sobolev functions do not have point values. Nevertheless, the trace of $H^1$-fun
 \begin{equation*}
     -\laplace u=f\, \xrightarrowfix{\text{multiply}}-\laplace uw=fw\,\xrightarrowfix{\text{integrate}}\int\limits_\Omega-\laplace uw\,dx=\int\limits_\Omega fw\,dx.
 \end{equation*}
-Integration by parts: 
+Integration by parts:
 \begin{equation*}
     \int\limits_\Omega\nabla u\nabla w\,dx-\underbrace{\int\limits_{\partial\Omega}\partial_{n}uw \diff s}_{=0}=\int\limits_\Omega fw\diff x.
 \end{equation*}
-To go more abstract, we introduce the \textit{bilinear form} 
+To go more abstract, we introduce the \textit{bilinear form}
 \begin{equation*}
     a(v,w):=\int\limits_\Omega\nabla v\nabla w\diff x,
 \end{equation*}
@@ -63,8 +63,7 @@ Question: How big is $| u|_{H^{p+1}}$? Does $| u|_{H^{p+1}}$ exist? In other wor
 Let $f,u_0$ be sufficiently smooth. If $\Omega$ is convex, then $u\in H^2$. If $\Omega$ has a $C^2$ boundary, then $u\in H^s$ for $s\geq 2$.
 \end{theorem}
 \begin{example}
-	
-What can go wrong? 
+What can go wrong?
 \begin{equation*}
 	\Omega=\{(x,y)\in\R^2\colon x^2+y^2<1,\,x<0\lor y>0\}.
 \end{equation*} 
@@ -82,7 +81,7 @@ Is it possible to obtain the optimal order $\bigo(h)$ for $u \not \in H^2$ ?\\
 \underline{Idea} problem specific grids:
 \begin{itemize}
 	\item use many small elements in areas where something \glqq happens\grqq, elsewhere use few big elemets
-\end{itemize} 
+\end{itemize}
 This looks promising and we show with an easy example, that it could work properly.
 \begin{example}
 	Let $u: [0,1] \to \R $ be continuous. How well can we approximate $u$ by piecewise constant functions $u_{N}$?
@@ -90,48 +89,48 @@ This looks promising and we show with an easy example, that it could work proper
 		\item Uniform grid:
 			\begin{itemize}
 				\item $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ with uniform steplenght $h$
-				\item Let $u \in W^{1,\infty}$ i.e. $\text{ess}\sup_{[0,1]} | u^\prime|< \infty$ 
-				\item Define the approximating functions $u_{N}=u(x_{n-1})$ for all $x_{n-1}\leq x \leq x_{n}$ 
+				\item Let $u \in W^{1,\infty}$ i.e. $\text{ess}\sup_{[0,1]} | u^\prime|< \infty$
+				\item Define the approximating functions $u_{N}=u(x_{n-1})$ for all $x_{n-1}\leq x \leq x_{n}$
 				\item pointwise error
 					\begin{align*}
 						|u(x) - u_{N}(x) | &= | u(x) - u(x_{n-1})|\\
 										   &= \left| \int\limits_{x_{n-1}}^{x} u^\prime(t) \diff t \right|\\
 										   &= h\cdot \text{ess}\sup_{[x_{n-1},x_{n}]}|u^\prime | \\
 										   &= h\ \|u^\prime\|_{L^\infty(x_{n-1},x_{n})}
-					\end{align*} 
+					\end{align*}
 					\begin{equation*}
 						\implies\|u -u_{N}\|_{L^\infty} \leq h \ \|u^\prime\|_{L^\infty(0,1)}= h \ |u|_{W^{1,\infty}(0,1)}
-				\end{equation*} 
-			\end{itemize} 
+				\end{equation*}
+			\end{itemize}
 			What happens if $u \not \in W^{1,\infty}$?\\
 			The gridlenght $h$ is not defined for nonuniform grids. Instead use:
 			\begin{equation*}
 				\|u-u_{N}\|_{L^{\infty}(0,1)}  \leq \frac{1}{N} \|u^\prime\|_{L^\infty(0,1)}
-			\end{equation*} 
+			\end{equation*}
 			with $N := \frac{1}{h}$ the number of degrees of freedom. Furthermore is $N$ a measure for computational effort!
 		\item Nonuniform grids:\\
 			Let $u \not \in W^{1,1}(0,1)$ and $|u|_{W^{1,1}}>0$
 			\begin{itemize}
-				\item Define 
+				\item Define
 					\begin{equation*}
 						\phi(x) := \int_{0}^x |u^\prime | \diff t.
-					\end{equation*} 
+					\end{equation*}
 					$\phi$ is monotonically increasing, $\phi(0)=0,\phi(1)=|u|_{W^{1,1}} > 0$.
-				\item Define a grid $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ such that 
+				\item Define a grid $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ such that
 					\begin{equation*}
 						\phi(x_{n}) - \phi(x_{n-1}) = \frac{1}{N} |u^\prime|_{L^1(0,1)}= \frac{1}{N} |u|_{W^{1,1}}
-					\end{equation*} 
+					\end{equation*}
 				\item For every $x \in [x_{n-}x_{n})$ holds:
 					\begin{align*}
 						|u(x)-u_{N}(x)|&= |u(x)-u(x_{n-1})|\\
 									   &= \left| \int_{x_{n-1}}^{x} u^\prime(t) \diff t\ \right|\\
 									   &\leq \int_{x_{n-1}}^{x} |u^\prime(t)| \diff t\\\
 									   &= \phi(x_{n}) - \phi(x_{n-1}) \\
-									   &= \frac{1}{N} \|u^\prime\|_{L^{1}(0,1)}						   
-					\end{align*} 
+									   &= \frac{1}{N} \|u^\prime\|_{L^{1}(0,1)}						  
+					\end{align*}
 					\begin{equation*}
 						\implies \|u - u_{N}\|_{L^{\infty}(0,1)} \leq \frac{1}{N} \|u^\prime\|_{L^{1}(0,1)}
-					\end{equation*} 
-			\end{itemize} 
-	\end{enumerate} 
-\end{example} 
+					\end{equation*}
+			\end{itemize}
+	\end{enumerate}
+\end{example}
