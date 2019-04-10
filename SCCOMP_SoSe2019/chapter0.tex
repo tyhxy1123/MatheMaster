@@ -286,15 +286,27 @@ The boundary condition can be realized by eliminating rows/columns in the matrix
 \[
 A\cdot \underline{u} = \underline{f}  
 .\] 
-%TODO die Matrix sah anders aus.
-%re-TODO bin nur nicht fertig geworden -.-
-%\[
-%A = \begin{pmatrix}
-%	X& &X&0&X& &X \\
-%	 &X& &\vdots& &X&  \\
-%	X& &X&0&X& &X
-%	\end{pmatrix}
-%.\] 
+\[
+A = \begin{pmatrix}
+	X & 
+	\begin{matrix}
+		0 \\
+		\vdots
+	\end{matrix} & X \\
+	\begin{matrix}
+		0 & \cdots 
+	\end{matrix} & 0 &
+	\begin{matrix}
+		 \cdots & 0
+	\end{matrix}\\
+	X & \begin{matrix}
+	\vdots \\
+	0
+	\end{matrix}
+	  & X
+	
+	\end{pmatrix}
+.\] 
 
 \section{Structure of the matrix}%
 \label{sec:Structure of the matrix}
@@ -453,9 +465,6 @@ In other words :
 \begin{proof}
 \label{thm:gershgorinboundaryproof}
 	Iterate proof of \href{thm:gershgorinproof}{the last proof} along the connecting edges of any pairs of nodes. Do this for all pairs and you get the result.
-
-	For more details, read the proof in some book.
-	%TODO vlt Verweis hinzufügen.
 \end{proof}
 
 \begin{korollar}
