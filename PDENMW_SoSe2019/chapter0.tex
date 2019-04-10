@@ -45,7 +45,7 @@ Idea: approximate $H^1$ with certain finite-dimensional subspaces.
 \end{definition}
 Finite elements are spaces of piecewise polynomial functions with respect to a grid. Most important are the \textit{Lagrange spaces}:
 \begin{equation*}
-	V_h^p:=\left\{ v_h\in C(\Omega)\mid\forall T\in\T\colon v_h|_T\text{ is polynomial of order}\leq p\right\}.
+  V_h^p \coloneqq \set {v_h\in C(\Omega)\mid\forall\, T\in\T\colon v_h|_T\text{ is polynomial of order}\leq p}.
 \end{equation*}
 Note: $V_h^p\subset H^1$. Discrete problem/FE problem: find $u_h\in V_h^p\cap H^1_{u_0}$ such that 
 \begin{equation*}
