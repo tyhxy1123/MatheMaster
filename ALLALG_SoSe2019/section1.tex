@@ -46,7 +46,7 @@ Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
 
 \subsection{Mengenbasierte Modellierung / strukturelle Modellierung}
 \begin{definition}
-	Eine \define{Inzidenzstruktur} ist ein Tripel $J=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
+	Eine \define{Inzidenzstruktur} ist ein Tripel $\Inz=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
 	Interpretation:
 	\begin{itemize}
 		\item $P$ ist Menge von Punkten / Points
@@ -54,7 +54,7 @@ Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
 		\item $I$ Inzidenzrelation (z.B. Lines)
 	\end{itemize}
 	Für $(p,b)\in I$ schreiben wir auch $pIb$ (incidence) und sagen:\\
-	"Der Punkt $p$ inzidiert mit dem Block $b$ in $J$."\\
+	"Der Punkt $p$ inzidiert mit dem Block $b$ in $\Inz$."\\
 	Für $p\in P$ sei
 	\begin{align*}
 		pI:=\set{b\in B\mid pIb}
@@ -79,7 +79,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{beispiel}
 
 \begin{satz}[Prinzip des doppelten Abzählens]\enter
-	Ist $J=(P,B,I)$ endliche Inzidenzstruktur (d.h. $P$ und $B$ endlich), so gilt
+	Ist $\Inz=(P,B,I)$ endliche Inzidenzstruktur (d.h. $P$ und $B$ endlich), so gilt
 	\begin{align*}
 		\sum\limits_{p\in P}\# pI=\#I=\sum\limits_{b\in B}\# Ib
 	\end{align*}
@@ -87,33 +87,33 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{satz}
 
 \begin{definition}
-	$y$ heißt \define{taktische Konfiguration} der Inzidenzstruktur $J=(P,B,I)$
+	$\Inz=(P,B,I)$ heißt \define{taktische Konfiguration} 
 	\begin{align*}
-		:\iff\exists r_y,k_y\in\N:\forall p\in P,\forall b\in B:\# pI=r_y\und\#Ib=k_y
+		:\iff\exists r_\Inz,k_\Inz\in\N:\forall p\in P,\forall b\in B:\# pI=r_\Inz\und\#Ib=k_\Inz
 	\end{align*}
 \end{definition}
 
 \begin{lemma}
 	Sei $y$ taktische Konfiguration von $J=(P,B,I)$. Dann gilt:
 	\begin{align*}
-		v_y\mal r_y=b_y\mal k_y
+		v_\Inz\mal r_\Inz=b_\Inz\mal k_\Inz
 		\qquad\mit\qquad
-		v_y:=\# P\und b_y:=\#B
+		v_\Inz:=\# P\und b_\Inz:=\#B
 	\end{align*}
 \end{lemma}
 
 \begin{proof}
 	Doppelte Abzählung: 
 	\begin{align*}
-		v_y\mal r_y=\sum\limits_{p\in P}\underbrace{\# pI}_{=r_y}=\sum\limits_{b\in B}\underbrace{\#Ib}_{=k_y}=b_y\mal r_y
+		v_\Inz\mal r_\Inz=\sum\limits_{p\in P}\underbrace{\# pI}_{=r_\Inz}=\sum\limits_{b\in B}\underbrace{\#Ib}_{=k_\Inz}=b_\Inz\mal r_\Inz
 	\end{align*}
 \end{proof}
 
 
 \begin{definition}
-	$\big(v_y,r_y;b_y,k_y)$ ist das \define{Parametertupel} von $y$.
-	\index{Parametertupel}.
-	Das dazu \define{duale Parametertupel} ist $\big(b_y,k_y;v_y,r_y\big)$.
+	$\big(v_\Inz,r_\Inz;b_\Inz,k_\Inz)$ ist das \define{Parametertupel} von $\Inz$.
+	\index{Parametertupel}\\
+	Das dazu \define{duale Parametertupel} ist $\big(b_\Inz,k_\Inz;v_\Inz,r_\Inz\big)$.
 \end{definition}
 
 \begin{beispiel}
@@ -127,7 +127,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{enumerate}
 \end{beispiel}
 
-\begin{beispiel}[Veblen-Young-Configuration]
+\begin{beispiel}[Veblen-Young-Configuration]\
 	\begin{figure}[H] % oder ht!
 		\begin{center}
 			\input{./tikz/VeblenYoung}
@@ -204,7 +204,187 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	dh. $(i,j,n)=(1,2,4)$.
 \end{beispiel}
 
+\begin{definition}
+	Die \define{duale Inzidenzstruktur} einer Inzidenzstruktur $\Inz=(P,B,I)$ ist
+	\begin{align*}
+		\Inz^{\op}:=\big(B,P,I^\op\big)
+		\qquad\mit\qquad
+		I^\op:=\set{(b,p)\in B\times P\mid p I b}
+	\end{align*}
+\end{definition}
 
+\begin{beispiel}
+	\begin{align*}
+		\Big(\Inz_{(i,j)}^n\Big)^\op=(B,P,R^\op)
+		\qquad\mit\qquad
+		R^\op:=\set{(b,p)\in\begin{pmatrix}
+			[n]\\
+			j
+		\end{pmatrix}\times
+		\begin{pmatrix}
+			[n]\\
+			i
+		\end{pmatrix}:p\subseteq b}
+	\end{align*}
+\end{beispiel}
 
+\begin{definition}
+	Seien $\Inz=(P,B,I)$ und $\Inz'=(P',B',I')$ Inzidenzstrukturen.
+	Dann heißt ein Abbildungspaar $(\varphi,\psi)$ bestehend aus Abbildungen $\varphi\colon P\to P'$ und $\psi\colon B\to B'$ ein \define{Morphismus} von $\Inz$ nach $\Inz'$
+	\index{Morphismus}\index{Isomorphismus}
+	\begin{align*}
+		\defiff\forall p\in P,\forall b\in B:pIb\implies\varphi(p)I'\psi(b)
+	\end{align*}
 
+	Ein Abbildungspaar $(\varphi,\psi)$ bestehend aus Bijektionen $\varphi\colon P\to P'$ und $\psi\colon B\to B'$ heißt \define{Isomorphismus (Iso)} von $\Inz$ nach $\Inz'$1
+	\begin{align*}
+		\defiff\forall p\in P,\forall b\in B:pIb\iff\varphi(p)I'\psi(b)
+\end{align*}		
+	
+	Wir sagen, $\Inz$ ist \define{isomorph} zu $\Inz'$, i.Z. $\Inz\simeq\Inz'$, falls es einen Isomorphismus von $\Inz$ nach $\Inz'$ gibt.
+\end{definition}
+
+\begin{lemma}\
+	\begin{enumerate}
+		\item Ist $(\varphi,\psi)$ ein Isomorphismus von $\Inz$ nach $\Inz'$, so ist auch $\big(\varphi^{-1},\psi^{-1}\big)$ ein Isomorphismus von $\Inz'$ nach $\Inz$.\label{item:lemma1.13_1}
+		\item Ist $(\varphi,\psi)$ Morphismus von $\Inz$ nach $\Inz'$, so ist $(\psi,\varphi)$ Morphismus von $\Inz^\op$ nach $(\Inz')^\op$.\label{item:lemma1.13_2}
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\betone{Zeige \ref{item:lemma1.13_1}:}\\
+	Seien $p'\in P'$ und $b'\in B'$ mit $p'I'b'$.
+	Zu zeigen ist
+	\begin{align*}
+		\varphi^{-1}(b')=\psi^{-1}(b')
+	\end{align*}
+	Wegen $p'I'b'$ gilt für $p:=\varphi^{-1}(p')$ und $b:=\psi^{-1}(b')$ stets $\varphi(p)=p'$ und $sp(b)=b'$, also $\varphi(p)I'\psi(b)$.
+	Also gilt auch $pIb$ d.h. $\varphi^{-1}(p)I\psi^{-1}(b)$.\nl
+	\betone{Zeige \ref{item:lemma1.13_1}:} Total klar.
+\end{proof}
+
+\begin{satz}
+	Seien $i,j,n\in\N$ mit $i\leq j\leq n$.
+	Dann gilt
+	\begin{align*}
+		\Big(\Inz_{(i,j)}^n\Big)^\op\simeq\Inz_{(n-j,n-i)}^n
+	\end{align*}
+	vermöge $(\varphi,\psi)$ mit
+	\begin{align*}
+		\varphi\colon		
+		\underbrace{
+		\begin{pmatrix}
+			[n]\\
+			j
+		\end{pmatrix}}_{
+		\text{Punktmenge von }\big(\Inz_{(i,j)}^n\big)^\op
+		}&\to\underbrace{\begin{pmatrix}
+			[n]\\
+			n-j
+		\end{pmatrix}}_{
+		\text{Punktmenge von }\Inz_{(n-j,n-i)}^n
+		}
+		&&
+		b\mapsto[n]-b\\
+	\psi\colon\underbrace{\begin{pmatrix}
+			[n]\\
+			i
+		\end{pmatrix}}_{
+		\text{Blockmenge von }\big(\Inz_{(i,j)}^n\big)^\op
+		}&\to\underbrace{\begin{pmatrix}
+			[n]\\
+			n-i
+		\end{pmatrix}}_{
+		\text{Blockmenge von }\Inz_{(n-j,n-i)}^n
+		}
+		&&
+		p\mapsto[n]-p
+	\end{align*}
+	Also sind die Parametertupel von $\Big(\Inz_{(i,j)}^n\Big)^\op$ gegeben durch
+	\begin{align*}
+		\klammern{
+		\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix},
+		\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix};
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix},
+		\begin{pmatrix}
+			j\\ 
+			i
+		\end{pmatrix}}
+	\end{align*}
+	und von $\Inz_{(n-j,n-i)}^n$ gegeben durch
+	\begin{align*}
+		\klammern{
+		\begin{pmatrix}
+			n\\
+			n-j
+		\end{pmatrix},
+		\begin{pmatrix}
+			n-(n-j)\\
+			(n-i)-(n-j)
+		\end{pmatrix},
+		\begin{pmatrix}
+			n\\
+			n-i
+		\end{pmatrix},
+		\begin{pmatrix}
+			n-i\\
+			n-j
+		\end{pmatrix}}
+	\end{align*}
+	gleich.
+\end{satz}
+
+\begin{definition}
+	Eine Inzidenzstruktur $\Inz$ heißt \define{selbstdual}\index{selbstdual}
+	\begin{align*}
+		\defiff\Inz\simeq\Inz^\op
+	\end{align*}
+\end{definition}
+
+Wann ist $\Inz_{(i,j)}^n$ selbstdual?
+
+\begin{lemma}
+	Für $0<i\leq j\leq n$ gilt:
+	\begin{align*}
+		\Inz_{(i,j)}^n\simeq\Inz_{(i',j')}^{n'}\iff
+		(i,j,n)=(i',j',n')
+	\end{align*}
+\end{lemma}
+
+\begin{satz}
+	\begin{align*}
+		\Inz_{(i,j)}^n\text{ selbstdual}
+		&\iff \Inz_{(i,j)}^n\simeq\Big(\Inz_{(i,j)}^n\Big)^\op\simeq \Inz_{(n-j,n-i)}^n\\
+		&\iff i=n-j\und j=n-i\\
+		&\iff i+j=n
+	\end{align*}
+\end{satz}
+
+\begin{beispiel}
+	Für welches Tripel $(i,j,n)$ hat die Inzidenzstruktur $\Inz_{(i,j)}^n$ das Parametertupel $(10,3;10,3)$?\\
+	Antwort: für $(i,j,n)=(2,3,5)$.
+	Geometrische Realisierung von $\Inz_{(2,3)}^5$:
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\input{./tikz/desargues}
+			\caption{Desargues Konfiguration}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+	\end{figure}
+	\begin{itemize}
+		\item Die beiden roten Dreiecke sind zentral perspektiv bzgl. des Zentrums $z$.
+		\item Die drei roten Punkte liegen auf der Geradeen $a$.
+		\item Satz: Sind zwei Dreiecke sind zentral perpspektiv, so sind sie auch axial perspektiv und umegekehrt.
+		\item Zeige $\Inz_{(2,3)}^5\simeq$ Desargue Konfiguration
+	\end{itemize}
+\end{beispiel}
 
