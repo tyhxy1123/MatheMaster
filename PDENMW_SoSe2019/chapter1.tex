@@ -38,43 +38,50 @@ $\delta_{T}$ is called \enquote{shape coefficient} or \enquote{aspect ratio}.
 
 Aim: refinement strategies, that keep $\delta_{T}$ bounded.
 \section{Partition of a single simplex}
+From the 70s there are many papers considering different strategies to keep $\delta_T$ bounded. They are tough reading. For example
+\begin{description}
+  \item[Longest edge bisection] This works well in 2D, but not in higher dimensions.
+  \item[Oldest edge bisection]
+  \item[Geometry independent idea] See the following:
+\end{description}
 \begin{definition}
 	We describe a simplex $T$ as a ordered set of its vertices and a type $t\in \N$.
 	\begin{equation*}
-		T = \left\{z_{0}, \dots , z_{d}\right\}_{t}, \qquad t\in \left\{ 0,\dots ,d-1 \right\}
+    T = \set{z_{0}, \dots , z_{d}}_{t}, \qquad t\in \set{0,\dots ,d-1}
 	\end{equation*}
 	The refinement rule is solely based on this information.
 	\begin{enumerate}[label = \arabic*)]
 		\item The refinement edge is $\overline{z_{0}z_{d}}$.
-		\item The new midpoint $\bar{z}= \frac{\overline{z_{0}z_{d}}}{2}$ becomes a new index.
+		\item The new midpoint $\bar{z}= \frac{z_{0} + z_{d}}{2}$ becomes a new index.
 		\item connect $\bar{z}$ to all vertices of $T$ except $z_{0},z_{d}$ \\
-			$\implies$ two new simplices $T_{1},T_{2}$ with common face
+			$\implies$ two new simplices $T_{1},T_{2}$ are created with common face
 			 \begin{equation*}
-				S = \left\{\overline{z},z_{1},\dots ,z_{d-1} \right\}
-			\end{equation*}
-		\item vertex ordering and type for the children $T_{1},T_{2}$:
+         S = \set{\overline{z},z_{1},\dots ,z_{d-1} }
+     \end{equation*}
+		\item vertex ordering and type for the children $T_{1},T_{2}$ are defined as:
 			\begin{align*}
-				T_{1}&= \left\{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}} \right\}_{(t+1)\mod d}\\
-				T_{2}&= \left\{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}} \right\}_{(t+1)\mod d}\\
+        T_{1}&= \set*{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}}}_{(t+1)\mod d}\\
+				T_{2}&= \set*{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}}}_{(t+1)\mod d}\\
 			\end{align*}
-		$\rightarrow, \leftarrow$ means increasing or decreasing order.	\\
-		$\underbrace{\left\{z_{d},\dots ,z_{0}\right\} }_{\rightarrow} =\emptyset$		
+		$\rightarrow$ means increasing, $\leftarrow$ means decreasing order.
+
+    Note that $\set*{\underbrace{z_{d},\dots ,z_{0}}_{\rightarrow}} \coloneqq \emptyset$
 	\end{enumerate}
 \end{definition}
 \begin{example}\
 	\begin{itemize}
 		\item $d=2$:
 			\begin{align*}
-				T &= \left\{ z_{0},z_{1},z_{2} \right\}_{0} & \overline{z}&= \frac{1}{2}\left(z_{0} + z_{2} \right)\\
-				T_{1} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}  & T_{2} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}
+      T &= \set{z_{0},z_{1},z_{2}}_{0} & \overline{z}&= \frac{1}{2}\left(z_{0} + z_{2} \right)\\
+      T_{1} &= \set{ z_{0},\overline{z},z_{1}}_{1}  & T_{2} &= \set{z_{0},\overline{z},z_{1}}_{1}
 			\end{align*}
-			independent of $t$
+			$T_1$ and $T_2$ are independent of $t$!
 			\input{tikz/chapter1/example_numbering_alg.tex}
-		\item $d= 3$: \quad $T = \left\{ z_{0},z_{1},z_{2},z_{3} \right\}_{t}$
-			\begin{align*}
-				t&=0: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{1} & T_{2}&= \left\{ z_{3},\overline{z}, z_{2},z_{1} \right\}_{1}\\
-				t&=1: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{2} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{2}\\
-				t&=2: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{0} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{0}
+		\item $d= 3$: \quad $T = \set{ z_{0},z_{1},z_{2},z_{3} }_{t}$
+      \begin{align*}
+        t&=0: & T_{1}&= \set{ z_{0},\overline{z}, z_{1},z_{2}}_{1} & T_{2}&= \set{z_{3},\overline{z}, z_{2},z_{1}}_{1}\\
+        t&=1: & T_{1}&= \set{z_{0},\overline{z}, z_{1},z_{2}}_{2} & T_{2}&= \set{z_{3},\overline{z}, z_{1},z_{2} }_{2}\\
+        t&=2: & T_{1}&= \set{ z_{0},\overline{z}, z_{1},z_{2} }_{0} & T_{2}&= \set{ z_{3},\overline{z}, z_{1},z_{2} }_{0}
 			\end{align*}
 	\end{itemize}
 \end{example}
