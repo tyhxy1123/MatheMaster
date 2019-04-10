@@ -211,7 +211,6 @@ Examples:
 		Question 1: How many colors do you need in 3D?
 
 		Question 2: Does an analytic expression for $l(i,j)$ exist?
-		\newpage
 	\item Cache-aware ordering (Cluster nodes into connected groups)
 
 		\begin{figure}[ht!]
@@ -295,7 +294,7 @@ A = \begin{pmatrix}
 	\end{matrix} & X \\
 	\begin{matrix}
 		0 & \cdots 
-	\end{matrix} & 0 &
+	\end{matrix} & 1 &
 	\begin{matrix}
 		 \cdots & 0
 	\end{matrix}\\
@@ -592,7 +591,7 @@ Denote by $\Omega_{h}$ the mesh of grid points of width $h$, i.e.
 \] 
 and by $\Omega_{H}$ the mesh of grid points with width $H$. Assume here $H=2h$.
 
-\input{tikz/chapter1/grid_h_H.tex}
+\input{tikz/chapter0/grid_h_H.tex}
 
 Given a discrete solution $u^{h}$ at $\Omega_{h}$, how to transfer the values to a coarser/finer mesh?
 
@@ -609,7 +608,7 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 		\begin{enumerate}[label=\underline{\arabic{enumi}D}]
 			\item The simplest operator is defined by polynomial (linear) interpolation
 		%TODO plot 1D interpolation Linie.
-		\input{tikz/chapter1/grid_stencil_1D.tex}
+		\input{tikz/chapter0/grid_stencil_1D.tex}
 		%\begin{figure}[ht!]
 		%	\begin{center}
 				%\includegraphics[width=0.5\textwidth]{pics/}
@@ -666,7 +665,7 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 			\end{matrix}
 			\right[
 		.\] 
-		\input{tikz/chapter1/grid_stencil_2D.tex}
+		\input{tikz/chapter0/grid_stencil_2D.tex}
 		Note: if you interpret the 1D stencil as a row vector $p^{T}$, the 2D stencil is just the outer product 
 		\[
 		p\cdot p^{T}
