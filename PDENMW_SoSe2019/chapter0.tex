@@ -47,7 +47,9 @@ Finite elements are spaces of piecewise polynomial functions with respect to a g
 \begin{equation*}
   V_h^p \coloneqq \set {v_h\in C(\Omega)\mid\forall\, T\in\T\colon v_h|_T\text{ is polynomial of order}\leq p}.
 \end{equation*}
-Note: $V_h^p\subset H^1$. Discrete problem/FE problem: find $u_h\in V_h^p\cap H^1_{u_0}$ such that 
+Note that $V_h^p\subset H^1$.
+
+Then the discrete problem/FE problem is: find $u_h\in V_h^p\cap H^1_{u_0}$ such that
 \begin{equation*}
 	\forall w_h\in V_h^p\cap H_0^1=\{ v_h\in V_h^p\mid v_h|_{\partial\Omega}=0\}\colon a(u_h,w_h)=l(w_h)
 \end{equation*}
