@@ -5,11 +5,11 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \chapter{Geometry of the bisection method}
-In the previous example the function $u$ was known. Thus the grid can be constructed specifically for $u$. For finite element problems the function $u $ is not known! There you use an initial grid and modify it repeatedly.
+In the previous example the function $u$ was known. Thus the grid can be constructed specifically for $u$. For finite element problems the function $u $ is not known! There you use an initial grid and modify it repeatedly based on error estimations.
 
 Possible modifications include
 \begin{itemize}
-	\item moving vertices (r-refinement)
+  \item moving vertices (r-refinement) (We do not do this here.)
 	\item split elements (h-refinement)
 \end{itemize}
 There are various ideas to split elements, but most of theory exists for bisection refinement.
