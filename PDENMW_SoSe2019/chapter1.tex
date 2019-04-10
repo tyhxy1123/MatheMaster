@@ -101,7 +101,7 @@ Let us first look at a particularly regular case:
 				k_{i}&= \sum_{j=1}^{i} e_{j}
 			\end{align*}
 			\input{tikz/chapter1/kuhn_simplex.tex}
-		\item Let $\pi$ be a permutation of $\left\{1,\dots ,d \right\}$. The Kuhn-simplex $T_{\pi}$ has vertices
+		\item Let $\pi$ be a permutation of $\set{1,\dots ,d \right}$. The Kuhn-simplex $T_{\pi}$ has vertices
 			\begin{align*}
 				k_{0}&=0 \\
 				k_{i}&= \sum_{j=1}^{d} e_{\pi(j)}
@@ -121,14 +121,14 @@ Let us first look at a particularly regular case:
 	% (proof sketch)\\
 	We show: all descendants in the $g$-th generation of a Kuhn-simplex of type $0$ ($0 \leq g < d$) are congruent to
 	\begin{equation*}
-		T_{g}= \left\{0, \frac{k_{d-g+1}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g} \right\}_{g}
+    T_{g}= \set{0, \frac{k_{d-g+1}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g} }_{g}
 	\end{equation*}
 	\underline{Induction over $g$}:
 	\begin{align*}
-		g=0&: & T_{0}= \left\{0,k_{1},\dots ,k_{d} \right\}_{0} \text{is the Kuhn simplex}\\
+		g=0&: & T_{0}= \set{0,k_{1},\dots ,k_{d} }_{0} \text{is the Kuhn simplex}\\
 		g\mapsto g+1&: &\text{bisect } T_{g}\quad ( \text{bisection edge } \overline{0k_{d-g}})\\
-		 && C_{0}= \left\{ 0, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} \right\}_{g+1}= T_{g+1}\\
-		 && C_{1}= \left\{ k_{d-g}, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{d-g-1},\dots ,k_{1} \right\}_{g+1}= T_{g+1}
+		 && C_{0}= \set{ 0, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1}}_{g+1}= T_{g+1}\\
+     && C_{1}= \set{ k_{d-g}, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{d-g-1},\dots ,k_{1} }_{g+1} % not obviously equal to T_{g+1}
 	\end{align*}
 	Construct a series of reflection that maps $C_{1}$ onto $T_{g}$ :
 	\begin{enumerate}
@@ -147,11 +147,11 @@ Let us first look at a particularly regular case:
 	\end{enumerate}
 	Result:
 	\begin{equation*}
-		C'_{1}= \left\{ 0, \frac{k_{d-g}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} \right\}_{g+1} = T_{g+1}
+		C'_{1}= \set{ 0, \frac{k_{d-g}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} }_{g+1} = T_{g+1}
 	\end{equation*}
 	$C_{0}$ and $C_{1}$ are congruent.
 	\begin{equation*}
-		T_{d}= \left\{ 0, \frac{k_{1}}{2},\dots ,\frac{k_{d}}{2} \right\}_{0} \quad \implies \text{ scaled Khun simplex}
+		T_{d}= \set{ 0, \frac{k_{1}}{2},\dots ,\frac{k_{d}}{2} }_{0} \quad \implies \text{ scaled Khun simplex} \qedhere
 	\end{equation*}
 \end{proof_}
 \begin{theorem}
