@@ -95,7 +95,7 @@ This looks promising and we show with an easy example, that it could work proper
 \begin{example}
 	Let $u\colon [0,1] \to \R$ be continuous. How well can we approximate $u$ by piecewise constant functions $u_{N}$?
 	\begin{enumerate}[label = \Roman*)]
-		\item Uniform grid:
+    \item Uniform grid: \label{ex:uniformgrid}
 			\begin{itemize}
 				\item $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ with uniform steplength $h$.
         \item Let $u \in W^{1,\infty}$ i.\,e.\ $\operatorname*{ess~sup}_{[0,1]} | u^\prime|< \infty$
@@ -117,7 +117,7 @@ This looks promising and we show with an easy example, that it could work proper
         \norm{u-u_{N}}_{L^{\infty}(0,1)}  \leq \frac{1}{N} \norm{u^\prime}_{L^\infty(0,1)}
 			\end{equation*}
 			with $N \coloneqq \frac{1}{h}$ being the number of degrees of freedom. Furthermore is $N$ a measure for computational effort!
-		\item Nonuniform grids:
+    \item Nonuniform grids: \label{ex:adaptivegrid}
       Let $u \in W^{1,1}(0,1)$ and $\halfnorm{u}_{W^{1,1}}>0$
 			\begin{itemize}
 				\item Define
@@ -141,5 +141,8 @@ This looks promising and we show with an easy example, that it could work proper
             \implies \norm{u - u_{N}}_{L^{\infty}(0,1)} \leq \frac{1}{N} \norm*{u^\prime}_{L^{1}(0,1)}
 					\end{equation*}
 			\end{itemize}
+      Note that at \ref{ex:uniformgrid} the error estimate depends for every element on $u$ on this element, whereas at \ref{ex:adaptivegrid} the error is the same for every element. That means that the error is distributed evenly on all elements.
+
+      That is the central idea of non-uniform grids!
 	\end{enumerate}
 \end{example}
