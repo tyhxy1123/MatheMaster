@@ -197,6 +197,7 @@
     \end{align*}
 \end{proof}
 
+\newpage
 \begin{notation}
     $\alpha < \beta$ means $\alpha \in \beta$.\\
     $\alpha \leq \beta$ means $\alpha \subseteq \beta$.
@@ -313,7 +314,7 @@
 \end{proof}
 
 \begin{definition}
-    If $\alpha$ is an ordinal.
+    If $\alpha$ is an ordinal.\\
     Then we define
     \begin{itemize}
         \item $\alpha^0 := 1$
@@ -467,11 +468,11 @@
     This is a surjection as $f$ is a function.\\
     \emph{($(3) \implies (1)$)}
 
-    $$g: Y \to X, X \simeq |X| = \lambda, Y \simeq |Y| = \kappa$$
+    $$g: Y \twoheadrightarrow X, X \simeq |X| = \lambda, Y \simeq |Y| = \kappa$$
     it suffices to show there is an injection $f: \lambda \to \kappa$. 
     Let $h: \kappa \to \lambda$, 
     $$ \begin{tikzcd}
-        \kappa \simeq y \arrow[r]{g} \arrow[r, bend left]{h} & X \simeq \lambda
+        \kappa \arrow[rrrrr, bend right, "h"] & \simeq & Y \arrow[r, "g"] & X &\simeq& \lambda
     \end{tikzcd}$$
     For $\alpha < \kappa$, we define 
     $$ f(\alpha) := \min \set{\beta \in \lambda \mid h(\beta) = \alpha}. $$
@@ -487,7 +488,7 @@
 
 \begin{proposition}
     \begin{itemize}
-        \item Every $\alpha y \omega$ is a cardinal.
+        \item Every $\alpha < \omega$ is a cardinal.
         \item The ordinal $\omega$ is a cardinal.
         \item If $\alpha \geq \omega$, then $\alpha + 1$ is not a cardinal.
     \end{itemize}
@@ -569,6 +570,7 @@
     Hence $\kappa = \aleph_\beta$.
 \end{proof}
 
+\newpage
 \begin{definition}
     If $\kappa$ and $\lambda$ are cardinals.\\
     Then \begin{itemize}
@@ -583,10 +585,17 @@
 \end{remark}
 
 \begin{proposition}
-    
+    If $\kappa, \lambda$ and $\mu$ are cardinals, st. $\kappa \leq \lambda$.\\
+    Then 
+    \begin{enumerate}
+        \item $\kappa + \mu \leq \lambda + \mu$
+        \item $\kappa \mu \leq \lambda \mu$
+        \item $\kappa^\mu \leq \lambda^\mu$
+        \item $\mu^\kappa \leq \mu^\lambda$
+    \end{enumerate}
 \end{proposition}
 
-\begin{theorem}[Hessenberg]
+\begin{theorem}[Hessenberg]\label{thm:hessenberg}
     If $\kappa$ is an infinite cardinal.\\
     Then $\kappa\kappa = \kappa$.
 \end{theorem}
@@ -610,3 +619,84 @@
     ordinal, $\delta < \aleph_\alpha$. So $ f|_{\aleph_\alpha} : \aleph_\alpha \to (\delta \times \delta)$, hence
     $$ \aleph_\alpha \leq \abs{\delta \times \delta} = \abs{\delta} < \aleph_\alpha$$ a contradiction. 
 \end{proof}
+
+\begin{corollary}
+    \begin{enumerate}[label=\arabic*)]
+        \item If $X,Y$ are non-empty sets at least one of them infinite.\\
+        Then $\abs{x \cup Y} = \abs{X \times Y} = \max \set{\abs{X}, \abs{Y}}$.
+
+        \item If $\kappa, \lambda$ are cardinals and $\kappa \geq \aleph_0, \lambda > 0$.\\
+        Then $\kappa + \lambda = \kappa\lambda = \max \set{\kappa, \lambda}$.
+
+        \item If $I$ is a non-empty set, $(X_i)_{i \in I}$ a family of sets and $\kappa$ a cardinal st.
+        $$ \abs{X_i} \leq \kappa \text{ for all } i \in I.$$
+        Then $$ \abs{\bigcup_{i \in I} X_i} \leq \max \set{\abs{I}, \kappa}.$$
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    \emph{1):} Let $\kappa = \max \set{\abs{X}, \abs{Y}}$. Then
+    $$ \kappa \leq \abs{X \cup Y} \leq \abs{X \sqcup Y} = \abs{X} + \abs{Y} \leq \kappa + \kappa = 2 \kappa \leq \kappa \cdot \kappa \underbrace{=}_{\cref{thm:hessenberg}} \kappa.$$
+    also $\kappa \leq \abs{X \times Y} = \abs{X} \times \abs{Y} \leq \kappa \cdot \kappa = \kappa$.\\
+    \emph{2):} A particular case of 1).\\
+    \emph{3):} $$ \abs{\bigcup_{i \in I} X_i} \leq \abs{\bigsqcup_{i \in I} X_i} \underbrace{\leq}_{\text{because} \abs{X_i} \leq \kappa}
+    \abs{\bigsqcup_{i \in I} \kappa} = \abs{I \times \kappa} = \abs{I} \cdot \kappa \underbrace{=}_{\text{by 1)}} \max \set{\abs{I}, \kappa}.$$
+\end{proof}
+
+\begin{theorem}
+    If $(A, <)$ is well-ordered.\\
+    Then it is order-isomorphic to an ordinal. In addition, the order and the isomorphism are unique.
+\end{theorem}
+\begin{proof}
+    \emph{(Uniqueness)}
+
+    Suppose there are order-isomorphisms
+    $$\begin{tikzcd}[sep=huge]
+        A \arrow[r, "f"] \arrow[dr, "g"] & \alpha \arrow[d, "h"]\\
+        & \beta
+    \end{tikzcd},\qquad h = g \circ f^{-1}.$$
+    $h$ is an order-isomorphism. By a previous lemma, $h$ has to be the identify, hence $\alpha=\beta$ and $f=g$.\\
+    \emph{(Existence)}
+
+    For each $x \in A$, we define
+    $$ A_{<x} := \set{y \in A \mid y < x} \text{ and } A_{\leq x} := \set{y \in A \mid y \leq x} = A_{<x} \cup \set{x}.$$
+    Note, that $A_{\leq x}$ is well-ordered by $<$. 
+    Consider
+    $$ B := \set{x \in A \mid \text{there is } f_x: A_{\leq x} \to \alpha_x, \text{ with $f_x$ an order-isomorphism, $\alpha_x$ an ordinal.}}$$
+    By uniqueness, if $x \in B$ both $f_x, \alpha_x$ are unique.\\
+    \emph{Claim.} $A=B$.
+
+    \emph{Proof of claim.} Suppose not. Then $A \setminus B$ is non-empty. Let $x \in A \setminus B$ be the $<$-minimal element.
+    For all $y < x$, there is $f_y: A_{\leq y} \to \alpha_y$. Theses maps are compatible, namely, if $y < y' < x$
+    $$ \begin{tikzcd}[sep=huge]
+        A_{\leq y'} \arrow[r, "f_{y'}"] \arrow[d, hookrightarrow] & \alpha_{y'} \arrow[d, hookrightarrow]\\
+        A_{\leq y} \arrow[r, "f_{y}"] & \alpha_y
+    \end{tikzcd}, \qquad f_{y'}|_{A_{\leq y}} = f_y. $$
+    $f_{y'}|_{A_{\leq y}}:A_{\leq y} \to \beta $ is an order-isomorphism, hence by uniqueness $\alpha_y = \beta$ and the diagram above.
+    Let $\alpha:= \bigcup_{y < x} \alpha_y$ and $g: A_{< x} \to \alpha, y \mapsto f_y(y)$. It is easy to see that $g$ is an order-isomorphism.
+    Now extend $g$ to a map $g^*: A_{\leq x} \to \alpha + 1$
+    $$ g^*(y) = \begin{cases}
+        g(y), & \text{if } y \in A_{< x}\\
+        \alpha, & \text{if } y=x
+    \end{cases}$$
+    which is an order-isomorphism. This contradicts that $x \notin B$. So $A=B$, this proves the claim.
+
+    To conclude let $\lambda = \bigcup_{x \in A} \alpha_x$ (by claim). Let 
+    $$ h: \begin{cases}
+        A \to \alpha\\
+        x \mapsto f_x(x).
+    \end{cases}$$
+    as before, $h$ is the desired order-isomorphism.
+\end{proof}
+
+\begin{remark}
+    By Cantor's theorem: for every non-empty cardinal $\kappa$
+    $$ \kappa < 2^\kappa \simeq \abs{\mathcal{P}(\kappa)}.$$
+    In particular
+    $$ \N \simeq \aleph_0 < 2^{\aleph_0} \simeq \R.$$
+    \emph{Question:} Which ordinal $\alpha$ satisfies
+    $$ \aleph_\alpha = 2^{\aleph_0}?$$
+    This question cannot be settled in the axiomatic system ZFC.\\
+    \emph{Continuum Hypothesis.} $\aleph_1 = 2^{\aleph_0}$.\\
+    \emph{Generalized Continuum Hypothesis.} $\aleph_{\alpha + 1} = 2^{\aleph_\alpha} \text{ for all ordinals } \alpha$.\\
+    "ZF + GCH" implies "C".
+\end{remark}

@@ -11,13 +11,14 @@
 
 \documentclass[]{scrreprt}
 
-\newcommand{\directoryPrefix}{./} 
-\input{\directoryPrefix packages}
+\newcommand{\localDirectory}{./}
+\newcommand{\globalDirectory}{../latex/}
+\input{\globalDirectory packages}
 \setlist{nosep}
 %\input{\directoryPrefix counters} % section counter benutzt römische Zahlen
-\input{\directoryPrefix theoremenvironments}
-\input{\directoryPrefix font}
-\input{\directoryPrefix commands}
+\input{\localDirectory theoremenvironments}
+\input{\globalDirectory font}
+\input{\globalDirectory commands}
 %\input{\directoryPrefix commands_Willi}
 %\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
 
