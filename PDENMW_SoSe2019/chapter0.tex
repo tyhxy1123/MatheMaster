@@ -97,22 +97,22 @@ This looks promising and we show with an easy example, that it could work proper
 	\begin{enumerate}[label = \Roman*)]
 		\item Uniform grid:
 			\begin{itemize}
-				\item $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ with uniform steplenght $h$
-				\item Let $u \in W^{1,\infty}$ i.e. $\text{ess}\sup_{[0,1]} | u^\prime|< \infty$
+				\item $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ with uniform steplength $h$.
+        \item Let $u \in W^{1,\infty}$ i.\,e.\ $\operatorname*{ess~sup}_{[0,1]} | u^\prime|< \infty$
 				\item Define the approximating functions $u_{N}=u(x_{n-1})$ for all $x_{n-1}\leq x \leq x_{n}$
-				\item pointwise error
+				\item Consider the pointwise error
 					\begin{align*}
-						|u(x) - u_{N}(x) | &= | u(x) - u(x_{n-1})|\\
-										   &= \left| \int\limits_{x_{n-1}}^{x} u^\prime(t) \diff t \right|\\
-										   &= h\cdot \text{ess}\sup_{[x_{n-1},x_{n}]}|u^\prime | \\
-										   &= h\ \|u^\prime\|_{L^\infty(x_{n-1},x_{n})}
+            \abs{u(x) - u_{N}(x)} &= \abs{u(x) - u(x_{n-1})}\\
+                                  &= \abs{\int\limits_{x_{n-1}}^{x} u^\prime(t) \diff t}\\
+                                  &= h\cdot \operatorname*{ess~sup}_{[x_{n-1},x_{n}]}\abs{u^\prime} \\
+                                  &= h\ \norm{u^\prime}_{L^\infty(x_{n-1},x_{n})}
 					\end{align*}
 					\begin{equation*}
-						\implies\|u -u_{N}\|_{L^\infty} \leq h \ \|u^\prime\|_{L^\infty(0,1)}= h \ |u|_{W^{1,\infty}(0,1)}
+            \implies \norm{u -u_{N}}_{L^\infty(0,1)} \leq h \ \norm{u^\prime}_{L^\infty(0,1)}= h \ \halfnorm{u}_{W^{1,\infty}(0,1)}
 				\end{equation*}
 			\end{itemize}
 			What happens if $u \not \in W^{1,\infty}$?\\
-			The gridlenght $h$ is not defined for nonuniform grids. Instead use:
+			The gridlength $h$ is not defined for nonuniform grids. Instead use:
 			\begin{equation*}
 				\|u-u_{N}\|_{L^{\infty}(0,1)}  \leq \frac{1}{N} \|u^\prime\|_{L^\infty(0,1)}
 			\end{equation*}
