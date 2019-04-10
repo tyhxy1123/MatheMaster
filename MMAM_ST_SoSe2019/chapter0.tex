@@ -1,7 +1,7 @@
 % !TEX root = MMAM_ST.tex
 % This work is licensed under the Creative Commons
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
-% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% of this license, visit http://creativecommons.org/licenses/by-nc-SA/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \section*{Organisatorisches}%
@@ -383,7 +383,8 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 \end{definition}
 
 \begin{satz}
-	Jedes Gleichgewicht in strikt (schwach) dominanten Strategien ist ein Nash-Gleichgewicht.
+	Jedes Gleichgewicht in strikt (schwach) dominanten
+	Strategien ist ein Nash-Gleich-gewicht.
 \end{satz}
 
 \begin{proof}
@@ -397,24 +398,34 @@ und über den klassischen Ansatz der Analysis (Betrachten der Ableitung) das Max
 
 \begin{beispiel}(Elimination dominanter Strategien)
 
+Wir betrachten hier der Einfachheit halber wieder ein Maximierungsproblem.
 	\begin{center}
 		\begin{tabular}{c|c c c}
 			& $b_1$ & $b_2$ & $b_3$ \\ \hline
 			$a_1$ & 0, 1 & 1, 0 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 1}; \\
 			$a_2$ & 1, 0 & 0, 1 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 2};
 		\end{tabular}
-	\end{center}
-	hierbei ergibt das wählen der Strategie $b_3$ für Spieler 1 immer die maximale Auszahlung und ist deshalb dominant. Außerdem haben wir auch schnell die Nash-Gleichgewichte gefunden.
-	\begin{center}
-		\begin{tabular}{c|c c c}
-			& $b_1$ & $b_2$ & $b_3$ \\ \hline
-			$a_1$ & 0, 1 & 1, 0 & 1, 1 \\
-			$a_2$ & 1, 0 & 0, 1 & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 2};
+		$\underset{\substack{\\\text{Erste Elimination}}}{\Longrightarrow}$
+		\begin{tabular}{c|c}
+			& $b_3$ \\ \hline
+			$a_1$ & 1, 1 \\
+			$a_2$ & 1, 2
 		\end{tabular}
 	\end{center}
-	Nun ist diese Strategie nur noch schwach dominant.
-	Das nun noch verbliebene Nash-Gleichgewichte ist eins von zwei verbliebenen Nash-Gleichgewichten.
-	%TODO Elimination noch besser darstellen.
+	Strategie $b_{3}$ dominiert sowohl $b_1$ (schwach) als auch $b_2$. Das heißt, das Wählen der Strategie $b_3$ ergibt für Spieler 1 immer die maximale Auszahlung. Da Spieler 1 die anderen Strategien nie wählen wird (wenn er auszahlungsorientiert handelt), können wir $b_1$ und $b_2$ aus der Tabelle entfernen.
+	\begin{center}
+		\begin{tabular}{c|c}
+			& $b_3$ \\ \hline
+			$a_1$ & 1, 1\\
+			$a_2$ & \tikz [anchor=base, baseline] \node[ellipse,draw,color=black,text=black] {1, 2};
+		\end{tabular}
+		$\underset{\substack{\\\text{Zweite Elimination}}}{\Longrightarrow}$
+		\begin{tabular}{c|c}
+			 & $b_3$ \\ \hline
+			$a_2$ & 1, 2
+		\end{tabular}
+	\end{center}
+	Nun ergibt sich jedoch wieder eine Situation, in der eine Strategie dominant ist. Dieses Mal wird Spieler 2 immer $a_2$ wählen. Auch hier können wir noch einmal eine Elimination durchführen. Das nun noch verbliebene Nash-Gleichgewicht ist eins der zwei Nash-Gleichgewichte.
 \end{beispiel}
 
 \section{Mehrzieloptimierung}%
