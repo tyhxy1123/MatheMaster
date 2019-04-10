@@ -84,7 +84,8 @@ What does the solution looks like? We identify $\R^2$ with $\C$. The function $w
 The derivative: $w^\prime(z)=\frac23z^{-1/3}$ tends to $\infty$ as $z\to 0$. Therefore the solution has a singularity at $0$ and $u\notin H^2$ as will be shown in the exercise 3 on Sheet 1.
 \end{example}
 \input{tikz/chapter0/example_problem}
-Conditions for error estimates are not satisfied. You can see in experiments: the error decreases by $h^{\frac{1}{2}}$. \\
+Conditions for error estimates are not satisfied. You can see in experiments: the error decreases with $\norm{u - u_h}_{H^1} \leq c h^{\frac{1}{2}}\norm{u}_{H^2}$.
+
 Is it possible to obtain the optimal order $\bigo(h)$ for $u \not \in H^2$ ?\\
 \underline{Idea} problem specific grids:
 \begin{itemize}
