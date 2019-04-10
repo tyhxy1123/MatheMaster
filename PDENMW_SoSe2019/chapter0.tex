@@ -129,16 +129,16 @@ This looks promising and we show with an easy example, that it could work proper
 					\begin{equation*}
             \phi(x_{n}) - \phi(x_{n-1}) = \frac{1}{N} \norm{u^\prime}_{L^1(0,1)}= \frac{1}{N} \halfnorm{u}_{W^{1,1}}
 					\end{equation*}
-				\item For every $x \in [x_{n-}x_{n})$ holds:
+				\item For every $x \in [x_{n-}x_{n})$ it holds, that
 					\begin{align*}
-						|u(x)-u_{N}(x)|&= |u(x)-u(x_{n-1})|\\
-									   &= \left| \int_{x_{n-1}}^{x} u^\prime(t) \diff t\ \right|\\
-									   &\leq \int_{x_{n-1}}^{x} |u^\prime(t)| \diff t\\\
+            \abs*{u(x)-u_{N}(x)}&= \abs{u(x)-u(x_{n-1})}\\
+                                &= \abs{\int_{x_{n-1}}^{x} u^\prime(t) \diff t\ }\\
+                                &\leq \int_{x_{n-1}}^{x} \abs{u^\prime(t)} \diff t\\\
 									   &= \phi(x_{n}) - \phi(x_{n-1}) \\
-									   &= \frac{1}{N} \|u^\prime\|_{L^{1}(0,1)}						  
+                     &= \frac{1}{N} \norm{u^\prime}_{L^{1}(0,1)}
 					\end{align*}
 					\begin{equation*}
-						\implies \|u - u_{N}\|_{L^{\infty}(0,1)} \leq \frac{1}{N} \|u^\prime\|_{L^{1}(0,1)}
+            \implies \norm{u - u_{N}}_{L^{\infty}(0,1)} \leq \frac{1}{N} \norm*{u^\prime}_{L^{1}(0,1)}
 					\end{equation*}
 			\end{itemize}
 	\end{enumerate}
