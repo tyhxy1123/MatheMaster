@@ -122,12 +122,12 @@ This looks promising and we show with an easy example, that it could work proper
 			\begin{itemize}
 				\item Define
 					\begin{equation*}
-						\phi(x) := \int_{0}^x |u^\prime | \diff t.
+            \phi(x) \coloneqq \int_{0}^x \abs*{u^\prime} \diff t.
 					\end{equation*}
-					$\phi$ is monotonically increasing, $\phi(0)=0,\phi(1)=|u|_{W^{1,1}} > 0$.
+          $\phi$ is monotonically increasing, $\phi(0)=0,\phi(1)=\halfnorm{u}_{W^{1,1}} > 0$.
 				\item Define a grid $0 = x_{0} < x_{1}< \dots < x_{N} = 1$ such that
 					\begin{equation*}
-						\phi(x_{n}) - \phi(x_{n-1}) = \frac{1}{N} |u^\prime|_{L^1(0,1)}= \frac{1}{N} |u|_{W^{1,1}}
+            \phi(x_{n}) - \phi(x_{n-1}) = \frac{1}{N} \norm{u^\prime}_{L^1(0,1)}= \frac{1}{N} \halfnorm{u}_{W^{1,1}}
 					\end{equation*}
 				\item For every $x \in [x_{n-}x_{n})$ holds:
 					\begin{align*}
