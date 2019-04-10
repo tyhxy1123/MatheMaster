@@ -4,7 +4,7 @@ Sommersemester/*summer term* 2019:
 - ALLALG bei Prof. Schmidt (deutsch)
 - ALGTOP bei Prof. Thom (deutsch)
 - DISMAT bei Dr. Cubides (*English*)
-- DISOPT bei Dr. Schwartz (deutsch)
+- DISOPT bei Prof. Schwartz (deutsch)
 - KONGEO bei Prof. Krähmer (deutsch)
 - MMAM (Lineare Modelle) bei Prof. Ferger (deutsch)
 - MMAM (Spieltheorie) bei Prof. Schwartz (deutsch)
