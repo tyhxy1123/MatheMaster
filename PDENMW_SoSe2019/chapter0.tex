@@ -55,9 +55,9 @@ Then the discrete problem/FE problem is: find $u_h\in V_h^p\cap H^1_{u_0}$ such 
 \end{equation*}
 The standard statements about the existence and uniqueness of solutions can be found in analysis or standard finite element classes.
 \section{Discretization Error}
-We like to measure the error we commit with the discretization, i.e. estimate $\| u-u_h\|$. There are several possible norms we could employ. For example $\|\cdot\|_\infty$, $\|\cdot\|_{H^1}$ or $\|\cdot\|_{L^2}$. Either choice we make, the outcome as well as the proofs will be different. A relatively easy result is the following.
+We like to measure the error we commit with the discretization, i.\,e.\ estimate $\norm{u-u_h}$. There are several possible norms we could employ. For example $\norm{\cdot}_\infty$, $\norm{\cdot}_{H^1}$ or $\norm{\cdot}_{L^2}$. Either choice we make, the outcome as well as the proofs will be different. A relatively easy result is the following.
 \begin{theorem}
-There exists a constant $c$ such that $\| u-u_h\|_{H^1}\leq ch^p| u|_{H^{p+1}}$. $c$ depends on $\Omega$ and the grid.
+  There exists a constant $c$ such that $\norm{u-u_h}_{H^1}\leq ch^p\halfnorm{u}_{H^{p+1}}$. $c$ depends on $\Omega$ and the grid. $h$ describes the size of the simplices in the grid.
 \end{theorem}
 Question: How big is $| u|_{H^{p+1}}$? Does $| u|_{H^{p+1}}$ exist? In other words: is $u\in H^{p+1}$? To find an answer to these questions is not easy and opens a whole new branch in mathematical analysis, called \textit{regularity theory}. A partial answer can be found in Braess %\cite{Braess07}.
 \begin{theorem}%[Braess 2.7.2]
