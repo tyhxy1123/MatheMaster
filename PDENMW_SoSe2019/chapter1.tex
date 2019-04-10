@@ -11,7 +11,7 @@ Possible modifications include
 \begin{itemize}
 	\item moving vertices (r-refinement)
 	\item split elements (h-refinement)
-\end{itemize} 
+\end{itemize}
 There are various ideas to split elements, but most of theory exists for bisection refinement.
 \section{Bisection refinement}
 \input{tikz/chapter1/bisection_refine.tex}
@@ -19,21 +19,21 @@ There are two challenges:
 \begin{itemize}
 	\item grid conformity
 	\input{tikz/chapter1/hanging_nodes.tex}
-	\item elements must remain \glqq well shaped\grqq 
+	\item elements must remain \glqq well shaped\grqq
 	\input{tikz/chapter1/shape_regularity.tex}
-\end{itemize} 
-In particular: the constant $c$ in 
+\end{itemize}
+In particular: the constant $c$ in
 \begin{equation*}
   \norm{u - u_{N}}_{H^{1}} \leq c\ h\ \halfnorm{u}_{H^{2}}
-\end{equation*} 
-depends on 
+\end{equation*}
+depends on
 \begin{equation*}
 	\delta = \max \delta_{T}
-\end{equation*} 
+\end{equation*}
 with
 \begin{equation*}
 	\delta_{T}= \frac{\text{radius of circum-circle of }T}{\text{radius of incircle of }T}.
-\end{equation*} 
+\end{equation*}
 $\delta_{T}$ is called \glqq shape coefficient\grqq\ or \glqq aspect ratio\grqq.\nl
 Aim: refinement strategies, that keep $\delta_{T}$ bounded.
 
@@ -48,7 +48,7 @@ Aim: refinement strategies, that keep $\delta_{T}$ bounded.
 		\item The refinement edge is $\overline{z_{0}z_{d}}$.
 		\item The new midpoint $\bar{z}= \frac{\overline{z_{0}z_{d}}}{2}$ becomes a new index.
 		\item connect $\bar{z}$ to all vertices of $T$ except $z_{0},z_{d}$ \\
-			$\implies$ two new simplices $T_{1},T_{2}$ with common face 
+			$\implies$ two new simplices $T_{1},T_{2}$ with common face
 			 \begin{equation*}
 				S = \left\{\overline{z},z_{1},\dots ,z_{d-1} \right\}
 			\end{equation*}
@@ -94,7 +94,7 @@ Let us first look at a particularly regular case:
 				k_{i}&= \sum_{j=1}^{i} e_{j}
 			\end{align*}
 			\input{tikz/chapter1/kuhn_simplex.tex}
-		\item Let $\pi$ be a permutation of $\left\{1,\dots ,d \right\}$. The Kuhn-simplex $T_{\pi}$ has vertices 
+		\item Let $\pi$ be a permutation of $\left\{1,\dots ,d \right\}$. The Kuhn-simplex $T_{\pi}$ has vertices
 			\begin{align*}
 				k_{0}&=0 \\
 				k_{i}&= \sum_{j=1}^{d} e_{\pi(j)}
@@ -104,14 +104,14 @@ Let us first look at a particularly regular case:
 \begin{theorem}\
 	\begin{itemize}
 		\item The $2^g$ descendants in the $g$-th generation of a Kuhn-simplex are all pairwise congruent.
-		\item There are only $d$ different simplex shapes in the entire infinite tree $\mathbb{F}(T_{\pi})$ 
-		\item All descendants of generation $d$ are similar to $T_{\pi}$ with scaling $\frac{1}{2}$ 
+		\item There are only $d$ different simplex shapes in the entire infinite tree $\mathbb{F}(T_{\pi})$
+		\item All descendants of generation $d$ are similar to $T_{\pi}$ with scaling $\frac{1}{2}$
 			\input{tikz/chapter1/kuhn_generation_scaling.tex}
 	\end{itemize}
 \end{theorem}
 \begin{proof_}
 	(proof sketch)\\
-	We show: all descendants in the $g$-th generation of a Kuhn-simplex of type $0$ ($0 \leq g < d$) are congruent to 
+	We show: all descendants in the $g$-th generation of a Kuhn-simplex of type $0$ ($0 \leq g < d$) are congruent to
 	\begin{equation*}
 		T_{g}= \left\{0, \frac{k_{d-g+1}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g} \right\}_{g}
 	\end{equation*}
@@ -124,16 +124,16 @@ Let us first look at a particularly regular case:
 	\end{align*}
 	Construct a series of reflection that maps $C_{1}$ onto $T_{g}$ :
 	\begin{enumerate}
-		\item Reflect at the plane perpendicular to $k_{d-g}$ in the point $\frac{k_{d-g}}{2}$ 
+		\item Reflect at the plane perpendicular to $k_{d-g}$ in the point $\frac{k_{d-g}}{2}$
 			\begin{itemize}
-				\item $k_{d-g} \mapsto 0$ 
+				\item $k_{d-g} \mapsto 0$
 				\item $k_{l} \mapsto k_{d-g}-k_{l}$ ($l < d-g$)
 				\item $k_{l} \mapsto k_{l}$ ($l \geq d-g$)
 			\end{itemize}
 		\item Swap $e_{1}\leftrightarrow e_{d-g-1}$, $e_{2} \leftrightarrow_{d-g-2},\dots $
 			\begin{itemize}
-				\item $0 \mapsto 0$ 
-				\item $k_{d-g}-k_{l} \mapsto k_{d-g-l}$ $(l< d-g)$ 
+				\item $0 \mapsto 0$
+				\item $k_{d-g}-k_{l} \mapsto k_{d-g-l}$ $(l< d-g)$
 				\item $\frac{k_{l}}{2}\mapsto \frac{k_{l}}{2}$ $(l \geq d-g)$
 			\end{itemize}
 	\end{enumerate}
