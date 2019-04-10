@@ -11,7 +11,7 @@
 \input{\directoryPrefix font}
 \input{\directoryPrefix commands}
 \input{\directoryPrefix commands_Willi}
-\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
+%\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
 
 \makeindex % erstellt Stichwortverzeichnis
 \setlength{\parindent}{0px} % verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
@@ -46,12 +46,19 @@
 	\maketitle
 	%\epigraph{Hier steht eine Lebensweisheit.}{\textit{Der Admin}}
 	%\newpage
-	\doclicenseThis
-	\tableofcontents
+	%\doclicenseThis
+	%\tableofcontents
 	\pagenumbering{arabic}	% enable pagenumbering
 	
+	\input{\directoryPrefix templates}
+	\TemplateDozentSagtNein{Theoretische Informatik und Logik}
+	
+	\vspace{5cm}
+Die Folien von Prof. Hölldobler (passwortgeschützt) findest du hier:
+\url{https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik(SS2019)}
+	
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
-	\input{chapter0}
+	%\input{chapter0}
 	%\input{chapter1}
 	%\input{chapter2}
 	
@@ -59,7 +66,7 @@
 	%\input{anhang}
 	
 	\newcommand{\pathPrefix}{Loesungen/}
-	\input{chapter_loesungen} % Falls es Übungsaufgaben gibt, sollte man diese miteinbinden
+	%\input{chapter_loesungen} % Falls es Übungsaufgaben gibt, sollte man diese miteinbinden
 
 	\printindex % erstellt Stichwortverzeichnis, muss mit "MakeIndex" gebaut werden!
 	%\listoffigures 

@@ -63,9 +63,6 @@ Für $L_2$ betrachte den NEA: $\A_2=(Q=\lbrace q_0,q_1,q_2\rbrace,\Sigma=\lbrace
 
 
 \subsection{Aufgabe 1}
-\begin{align*}
-	V_0:=\lbrace v_0\rbrace,\qquad V_{i+1}:=V_i\cup\big\lbrace v\in V\mid\exists v'\in V_i:(v',v)\in E\big\rbrace
-\end{align*}
 
 \begin{proof}
 	Teil 1 Ist trivial nach Konstruktion (ansonsten kann man das leicht induktiv zeigen)\nl
@@ -303,12 +300,9 @@ Wir erhalten die Lösung mithilfe der Potenzmengenkonstruktion:
 \end{tikzpicture}
 
 \subsection{Aufgabe 4}
-Sei $\A=(Q,\Sigma,I,\delta,F)$ ein DEA.
 
 \subsubsection{Aufgabe 4 a)}
-\begin{align*}
-	\forall\lbrace u,v\rbrace\subseteq\Sigma^\ast,\forall q\in Q:\delta(q,uv)=\delta\big(\delta(q,u),v\big)
-\end{align*}
+
 
 \begin{proof}
 	Beweis durch Induktion über die Länge von $v$ beliebigem $u\in\Sigma^\ast$.\\
@@ -343,9 +337,7 @@ Sei $\A=(Q,\Sigma,I,\delta,F)$ ein DEA.
 \end{proof}
 
 \subsubsection{Aufgabe 4 b)}
-\begin{align*}
-	\sim_k=\sim_{k+1}\implies\sim_k=\sim_\A
-\end{align*}
+
 
 \begin{proof}
 	Angenommen es gilt $\sim_k=\sim_{k+1}$ für ein festes $k\in\N$. 
