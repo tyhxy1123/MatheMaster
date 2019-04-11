@@ -137,7 +137,7 @@ The basic idea is:
 		\end{itemize}
 \end{itemize}
 
-\section{Finite difference on a grid}%
+\subsection{Finite difference on a grid}%
 \label{sec:Finite difference on a grid}
 Let $\Omega =(0, X_{E}) \times (0,Y_{E})$ and subdivide each interval into $N_{x}+1 / N_{y} + 1$ subintervals.
 
@@ -168,7 +168,7 @@ This results in the discrete Laplace operator $(h=h_{x}=h_{y})$
 .\]
 
 \newpage
-\section{Node ordering}%
+\subsection{Node ordering}%
 \label{sec:Node ordering}
 To form a linear system, the nodes $(i,j)$ have to be numbered consecutively, i.e. we have to use a map
 \[
@@ -235,7 +235,7 @@ Examples:
 		
 \end{enumerate}
 
-\section{Assembling}%
+\subsection{Assembling}%
 \label{sec:Assembling}
 
 For the Poisson equation
@@ -262,7 +262,7 @@ we can assemble a linear system $Au=f$ by applying the discrete operator $\lapla
 	 A \stackeq{\wedge} -\laplace_{h}^{(5)}
 .\] 
 
-\section{Boundary conditions}%
+\subsection{Boundary conditions}%
 \label{sec:Boundary condition}
 For Dirichlet boundary condition the value $u$ at boundary nodes is fixed.
 
@@ -307,7 +307,7 @@ A = \begin{pmatrix}
 	\end{pmatrix}
 .\] 
 
-\section{Structure of the matrix}%
+\subsection{Structure of the matrix}%
 \label{sec:Structure of the matrix}
 (before eliminating the boundary conditions)
 \begin{enumerate}[label=\alph{enumi})]
@@ -352,17 +352,17 @@ Variation of the PDE:
 .\] 
 Simple backward Euler scheme for $\partial_{t}$
 \[
-\frac{1}{\tau}u^{m+1}- \laplace u^{m+1} = f -\frac{1}{\tau}u^{m}
+\frac{1}{\mathcal{T}}u^{m+1}- \laplace u^{m+1} = f -\frac{1}{\mathcal{T}}u^{m}
 .\] 
-with $u^{m} \equiv u(t^{m})$ with $0=t^{0}<t^{1}< \ldots  < t^{md}$ and $\tau:=t^{m+1}-t^{m}$.
+with $u^{m} \equiv u(t^{m})$ with $0=t^{0}<t^{1}< \ldots  < t^{md}$ and $\mathcal{T}:=t^{m+1}-t^{m}$.
 
 The corresponding FD discretization reads:
 
 \[
-	\left(\frac{1}{\tau}I + A\right) u^{m+1} = f + \frac{1}{\tau}u^{m}
+	\left(\frac{1}{\mathcal{T}}I + A\right) u^{m+1} = f + \frac{1}{\mathcal{T}}u^{m}
 .\] 
 
-\section{Properties of the linear system}%
+\subsection{Properties of the linear system}%
 \label{sec:Properties of the linear system}
 
 \begin{definition}
@@ -520,7 +520,7 @@ The matrix $A = \laplace_{h}^{(5)}$ is
 	$\implies A$ is positive definite and $A$ is $M_0$-matrix and thus $M$-matrix.
 \end{summary}
 
-\section{The non-zero structure of the matrix}%
+\subsection{The non-zero structure of the matrix}%
 \label{sec non-zero structure of the matrix}
 
 A matrix $A \in \R^{n \times n}$ is called \underline{sparse matrix}, if the number of non-zero entries $(a_{i,j}\neq 0)$ is $\ll n^2$. Otherwise it is called a \underline{full matrix}. 
@@ -582,7 +582,7 @@ What is the number of non-zeros in $\laplace_{h}^{(5)} $?
 	nnz(A) \approx 5 \cdot n = 5(N_{x} +2)(N_{y} +2)
 .\] 
 
-\section{Finite Difference Refinement}%
+\subsection{Finite Difference Refinement}%
 \label{sec:Finite Difference Refinement}
 
 Denote by $\Omega_{h}$ the mesh of grid points of width $h$, i.e. 
@@ -674,7 +674,7 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 		\end{enumerate}
 \end{enumerate}
 
-\section{Restriction}%
+\subsection{Restriction}%
 \label{sec:Restriction}
 
 \begin{itemize}
@@ -698,8 +698,9 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 		Use all neighbouring five grid values around a coarse grid node.
 
 		Ansatz:
+
+		\underline{1D}:
 		\[
-			\underline{\text{1D}} \qquad\qquad
 			\underbrace{\int_{\Omega_{x}}w^{h}}_{\substack{\text{use
 			piecewise }\\\text{trapezoidal rule}}}
 			\stackeq{!}
@@ -749,7 +750,7 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 		.\] 
 \end{itemize}
 
-\section{Relation between fine/coarse matrix $A^{h} / A^{H}$}%
+\subsection{Relation between fine/coarse matrix $A^{h} / A^{H}$}%
 \label{sec:Relation between fine/coarse matrix $A^{h} / A^{H}$}
 
 \begin{itemize}
@@ -796,23 +797,21 @@ or
 
 \underline{FEM} :
 
-Replace $V=H_{(0)}^{1}$ by finite dimensional subspace $V_{h}$ consisting (low-degree) polynomials
-
+Replace $V=H_{(0)}^{1}$ by finite dimensional subspace $V_{h}$ consisting (low-degree) polynomials.
 Let $\Omega $ be approximated/subdivided by $\Omega _{h}$ the union of $m$ geometric elements, e.g. triangles, hexagons,tetrahedrons, cubes, pyramids, $\ldots $
 \[
-\Omega \approx \Omega _{h} = \bigcup_{i=1}^{m}T_{i} \qquad \tau_{h} := \left\{ T_{i} \right\} 
+\Omega \approx \Omega _{h} = \bigcup_{i=1}^{m}T_{i} \qquad \mathcal{T}_{h} := \left\{ T_{i} \right\} 
 .\] 
-Here $\tau_{h}$ is called conforming, if facets of a element $T_{i}$ are also facets of other elements $T_{j}$.
-
+Here $\mathcal{T}_{h}$ is called conforming, if facets of a element $T_{i}$ are also facets of other elements $T_{j}$.
 The mesh size $h$ is defined by
 \[
-h = \max\limits_{T \in\tau_{h}} \text{diam } T
+h = \max\limits_{T \in\mathcal{T}_{h}} \text{diam } T
 .\] 
 (Where diam is the length of the longest edge of an element $T_{i}$.)
 
 An example of a finite-dimensional subspace is
 \[
-	V_{h}^{(0)} = \left\{ \phi \in C(\Omega _{h}) | \phi|_{T} \in \P_{p} \text{ for } T \in \tau_{h} \right\} \qquad (+ \text{ BC }, \phi|_{\partial \Omega _{h}}=0)
+	V_{h}^{(0)} = \left\{ \phi \in C(\Omega _{h}) | \phi|_{T} \in \P_{p} \text{ for } T \in \mathcal{T}_{h} \right\} \qquad (+ \text{ BC }, \phi|_{\partial \Omega _{h}}=0)
 ,\] 
 where for $p=1$ we get linear Lagrange elements.
 There are nodes $x_{j}$ in the triangulation (vertices, nodes on edges, $\ldots $) and a family
@@ -860,7 +859,7 @@ A \cdot u = f
 
 Assemble A by local element contributions:
 \[
-	a_{h}(\phi _{i}, \phi _{j}) = \sum_{T \in \tau_{h}}^{}{a_{T}(\phi _{i}, \phi _{j})}
+	a_{h}(\phi _{i}, \phi _{j}) = \sum_{T \in \mathcal{T}_{h}}^{}{a_{T}(\phi _{i}, \phi _{j})}
 ,\] 
 with
 \[
@@ -868,7 +867,7 @@ with
 .\]
 The local element matrix $A_{T}$ consisting of contributions from $\phi _{i}$ local to $T$.
 \[
-	A = \sum_{T \in \tau_{h}}^{}{A^{(T)}}= \sum_{T \in \tau_{h}}^{}{P\cdot A_{T} \cdot R}
+	A = \sum_{T \in \mathcal{T}_{h}}^{}{A^{(T)}}= \sum_{T \in \mathcal{T}_{h}}^{}{P\cdot A_{T} \cdot R}
 ,\] 
 with boolean matrices $P, R = P^{T}$.
 
@@ -905,7 +904,7 @@ with boolean matrices $P, R = P^{T}$.
 		
 		For linear Lagrange we have the following
 		\[
-		a_{i,j}\neq 0 \qquad \text{if } \exists T \in \tau_{h}\colon x_{i}\in T \text{ and } x_{j} \in T
+		a_{i,j}\neq 0 \qquad \text{if } \exists T \in \mathcal{T}_{h}\colon x_{i}\in T \text{ and } x_{j} \in T
 		.\] 
 
 		For linear Lagrange in simplex triangulation, the grid corresponds to the adjacency graph.
