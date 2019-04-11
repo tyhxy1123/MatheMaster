@@ -75,5 +75,89 @@ Außerdem gehört noch zu OOP: dynamische Speicherverwaltung, Referenzvariablen,
 	\end{center}
 \end{figure}
 
+\define{Eine Klasse:}\index{Klasse}
+\begin{itemize}
+	\item definiert einen abstrakten Datentyp (ADT)
+	\item definiert ein Layout von Objekten / Instanzen dieses Typs (Instanzvariablen)
+	\item definiert Datenfelder (Attribute) und Methoden (Funktionen)
+	\item enthält Klassenvariablen (statische Variablen)
+	\item enthält Konstruktoren (Default-Konstruktor ist immer da, hat 0 Parameter)
+	\item enthält eventuell eine \code{main}-Methode
+	\item kann nur aktiviert (aufgerufen) werden durch die JVM, falls die Klasse die \code{main}-Methode hat
+\end{itemize}
+
+\define{Ein Objekt / eine Instanz:}\index{Objekt}\index{Instanz}
+\begin{itemize}
+	\item repräsentiert eine Klasse / ist assoziiert zu einer Klasse
+	\item muss erstellt werden durch einen Konstruktor
+	\item enthält alle Instanzvariablen (entsprechend dem Layout der "Komponenten", die in der Klasse spezifiziert wurden)
+	\item wird im dynamischen Speicher (heap) erstellt:
+	Blockgröße wird bestimmt durch die Platzanforderungen von der Menge der Instanzvariablen
+\end{itemize}
+
+\subsection{Variablen und Typen}
+
+\define{Typen:} verschiedene Kategorien:\index{Typen}
+\begin{itemize}
+	\item primitive (Daten-)Typen z.B. \code{boolean, int, long, double, ...}
+	\item Referenztypen:
+	\begin{itemize}
+		\item Klassentypen z.B. \code{Boolean, Integer, Long, Double, ...}
+		\item Interface-Typen
+		\item Arraytypen
+		\item Der \code{null}-Typ
+	\end{itemize}
+\end{itemize}
+
+\define{Variablen:}\index{Variablen}
+\begin{itemize}
+	\item können jeden Typ haben (außer \code{null})
+	\item Variablen von primitive Typen enthalten nur einen Wert von diesen primitiven Typ
+	\item Referenzvariablen (Variablen von einem Referenztyp) enthalten eine Referenz\\ (Speicheradresse, Pointer) auf ein Objekt (eine Instanz) von einem kompatiblen Datentyp (welcher ein Subtyp der Variable sein muss) oder \code{null}
+	\item sind entweder Datenfelder in einer Klasse, welche entweder 
+	\begin{enumerate}[label=(\alph*)]
+		\item \define{statische} Variablen (Klassenvariablen) einer Klasse
+		\item \define{Instanzvariablen} (in jedem Objekt enthalten)
+	\end{enumerate}
+	oder \define{lokale} Variablen in Methoden (Stack-Variablen)
+	\item \define{konstante} Variablen / \define{Konstanten} sind deklariert als \code{static final}
+\end{itemize}
+
+Speicherbereiche im Arbeitsspeicher:
+\begin{itemize}
+	\item statischer Speicher (Methodenaufruf-Speicher)
+	\item dynamischer Speicher (Heap)
+	\item Stapelspeicher (Runtime Stack)
+\end{itemize}
+
+\define{Methoden:}\index{Methoden}
+\begin{itemize}
+	\item sind entweder \define{Klassenmethoden} (\code{static}, sind wie klassische Funktionen) oder \define{Instanzmethoden} (werden auf der entsprechenden Instanz aufgerufen via einer Referenz zu dem Objekt)
+	\item Methodenaufruf einer Klassenmethoden:\\ \code{Klasse.klassenmethode(param1,param2,...)}
+	\item Methodenaufruf einer Instanzmethode: siehe Abbildung \ref{Abb:thisObj}\\ \code{referenzVariable.instanzmethode(param1,param2,...)}
+	\item \define{Signatur:} Methodenname plus Liste der Parametertypen
+	(Der Rückgabetyp (Return) ist auch wichtig, kann aber  in der Signaturdefinition weggelassen werden)
+	\item \define{Overloading / Überladen:} 
+	%\begin{itemize}
+		%\item 
+		es gibt mehrere Methoden mit demselben Methodennamen, aber unterschiedlichen Parameter-Typ-Listen (unterschiedliche Signatur)
+	%\end{itemize}
+	\item \define{Parameterübergabe}: immer "by value";
+	bei Referenztypen wird die Referenz selbst übergeben
+	\item \define{Overriding / Überschreiben:}
+	erlaubt das Nutzen derselben Signatur in einer Unterklasse
+	$\leadsto$ dynamisches / spätes Binden
+\end{itemize}
+
+\begin{figure}[H] % oder ht!
+	\begin{center}
+		\input{./tikz/thisObj}
+		\caption{this Object: \code{this.instanzmethode(...)}}
+		\label{Abb:thisObj}
+	\end{center}
+\end{figure}
+
 \section{Anwendungsgebiete, Einschränkungen, Vor- und Nachteile}
+
+
 
