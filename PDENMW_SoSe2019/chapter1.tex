@@ -154,6 +154,7 @@ Let us first look at a particularly regular case:
 		T_{d}= \set{ 0, \frac{k_{1}}{2},\dots ,\frac{k_{d}}{2} }_{0} \quad \implies \text{ scaled Khun simplex} \qedhere
 	\end{equation*}
 \end{proof}
+Now we consider any simplex by deforming the Kuhn simplex and taking care of the shape coefficients.
 \begin{theorem}
 	Let $T$ be an arbitrary $d$-simplex. Then there is a constant $C(T_{0})$ such that
 	\begin{equation*}
@@ -163,8 +164,8 @@ Let us first look at a particularly regular case:
 \end{theorem}
 \begin{proof_}\
 	\begin{itemize}
-		\item Let $T_{0}$ be of type 0.
-		\item Let $\hat{T}_{0}$ be the Kuhn simplex of type 0.
+		\item Let $T_{0}$ be of type $0$.
+		\item Let $\hat{T}_{0}$ be the Kuhn simplex of type $0$.
 		\item There is an affine map $F$ with $F(\hat{T}_{0})=T_{0}$ \\
 			$\implies$ For each $T \in \mathbb{F}(T_{0})$ there is a unique $\hat{T} \in \mathbb{F}(\hat{T}_{0})$ such that
 			\begin{equation*}
@@ -177,7 +178,8 @@ Let us first look at a particularly regular case:
 	 \begin{equation*}
 		 \implies \delta_{T} \text{ remains bounded}
 	\end{equation*}
-	If $T_{0}$ has type $>0$ : Refine until reaching descendants of type $0$.
+	If $T_{0}$ has type $>0$: Refine until reaching descendants of type $0$.
+  Until then we only got a finite number of simplices.
 \end{proof_}
 
 

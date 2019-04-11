@@ -60,10 +60,14 @@
 	\coordinate (M3) at ($ (A) + (\h/4,0) $);
 	\coordinate (M4) at ($ (A) + (5*\h/12,\h/6) $);
 	\coordinate (M5) at ($ (A) + (3*\h/4,0) $);
-	%\coordinate (S21) at ($ (A) + (\h/5,\h/12) $);
-	%\coordinate (S22) at ($ (A) + (3*\h/10,\h/6) $);
-	%\coordinate (S23) at ($ (A) + (5*\h/10,\h/6) $);
-	%\coordinate (S24) at ($ (A) + (7*\h/10,\h/12) $);
+  \coordinate (S111) at ($ (A) + (5*\h/33,\h/17) $);
+	\coordinate (S112) at ($ (A) + (13*\h/48,\h/15) $);
+	\coordinate (S121) at ($ (A) + (9*\h/24,\h/9) $);
+	\coordinate (S122) at ($ (A) + (5*\h/16,7*\h/30) $);
+	\coordinate (S211) at ($ (A) + (9*\h/20,7*\h/30) $);
+  \coordinate (S212) at ($ (A) + (16*\h/30,\h/9) $);
+  \coordinate (S221) at ($ (A) + (13*\h/20,\h/13) $);
+  \coordinate (S222) at ($ (A) + (16*\h/20,\h/15) $);
 
 	% draw lines 
 	\draw (A) -- (B) -- (C) --cycle;
@@ -75,10 +79,14 @@
 	\draw (M2) -- (M4);
 	\draw (M2) -- (M5);
 
-	%\node at (S21) {$a$};	
-	%\node at (S22) {$d$};	
-	%\node at (S23) {$d$};	
-	%\node at (S24) {$a$};	
+	\node at (S111) {$b$};
+	\node at (S112) {$c$};
+	\node at (S121) {$c$};
+	\node at (S122) {$b$};
+  \node at (S211) {$c$};
+  \node at (S212) {$b$};
+  \node at (S221) {$b$};
+  \node at (S222) {$c$};
 
 \end{tikzpicture}
 	
