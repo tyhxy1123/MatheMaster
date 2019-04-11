@@ -614,7 +614,7 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 				%\includegraphics[width=0.5\textwidth]{pics/}
 		%	\end{center}
 		%	\caption{1D}
-		%	\label{fig:prolongation1}
+		%	\label{fig:prolongation}
 		%\end{figure}
 		\begin{align*}
 			u_{2j}^{h} &= u_{j}^{H}  &\text{ for } j=0, \ldots, \frac{N+1}{2} \\
@@ -656,7 +656,7 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 		\end{align*}
 		In stencil form we get
 		\[
-			P_{H}^{h} \overset{wedge}{=} \frac{1}{4}
+			P_{H}^{h} \overset{\wedge}{=} \frac{1}{4}
 			\left]
 			\begin{matrix}
 				1 & 2 & 1 \\
@@ -672,7 +672,243 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 		.\] 
 		Note: higher order interpolation rules are possibly by incorporating more coarse grid rules.
 		\end{enumerate}
-		
+\end{enumerate}
 
+\section{Restriction}%
+\label{sec:Restriction}
+
+\begin{itemize}
+	\item Simplest idea:
+
+		"inject" the value on the fine grid node that correspond to a coarse grid node with an identity. In coefficient notation that is:
+		\begin{align*}
+			&\underline{\text{1D}}:& u_{i}^{H} &= u_{2i}^{h} \\
+			&\underline{\text{2D}}:& u_{i,j}^{H} &= u_{2i, 2j}^{h}
+		\end{align*}
+		In stencil notation, that corresponds to
+		\[
+			R_{h}^{H} \stackeq{\wedge} \begin{bmatrix}
+				1
+			\end{bmatrix}
+		.\] 
+		This is called \underline{injection operator}. 
+
+	\item Other idea: \underline{Full-weighting operator} 
+
+		Use all neighbouring five grid values around a coarse grid node.
+
+		Ansatz:
+		\[
+			\underline{\text{1D}} \qquad\qquad
+			\underbrace{\int_{\Omega_{x}}w^{h}}_{\substack{\text{use
+			piecewise }\\\text{trapezoidal rule}}}
+			\stackeq{!}
+			\underbrace{\int_{\Omega_{x}}w^{H}}_{\substack{\text{use
+			midpoint}\\\text{rule}}} \qquad \text{with }
+			\Omega_{x} = [x-h, x+h]  
+		.\] 
+		From this, we get
+		\begin{align*}
+			&\frac{h}{2}(w^{h}(x-h) + w^{h}(x)) + \frac{h}{2}(w^{h}(x) + w^{h}(x+h)) \stackeq{!} 2hw^{H}(x) \\
+			\implies&w^{H}(x) = \frac{1}{4}(w^{h}(x-h)+2w^{h}(x) + w^{h}(x+h))
+		\end{align*}
+		%TODO Skizze linker & rechter Nachbar von Punkt
+		\begin{align*}
+			u_{j}^{H}= \frac{1}{4}(u_{2j-1}^{h}+2u_{2j}^{h}+ u_{2j+1}^{h})
+		\end{align*}
+		\[
+			R_{h}^{H}\stackeq{\wedge}\frac{1}{4}\begin{bmatrix}
+				1 & 2 & 1
+			\end{bmatrix}
+		.\] 
+		\[
+			R_{h}^{H}= \frac{1}{4}\begin{bmatrix}
+				1 & 2 & 1 \\
+				  &   & 1 & 2 & 1 \\
+				  &   &   &   & 1 & 2 & 1 \\
+				  &   &   &   &   &   &   & \ddots \\
+			\end{bmatrix}
+		.\] 
+		% TODO hier etwas aufräumen und mit text füllen
+
+		\underline{2D}:
+
+		by tensor product
+		\[
+			R_{h}^{H}\stackeq{\wedge}=\frac{1}{16}\begin{bmatrix}
+				1 & 2 & 1 \\
+				2 & 4 & 2 \\
+				1 & 2 & 1
+			\end{bmatrix}
+		.\] 
+		\underline{Note}:
+
+		The restriction operator using full-weighting is essentially the transpose of the linear prolongation operator with prefactor depending on the dimension d:
+		\[
+			P_{H}^{h} = 2^{d}R_{h}^{H}
+		.\] 
+\end{itemize}
+
+\section{Relation between fine/coarse matrix $A^{h} / A^{H}$}%
+\label{sec:Relation between fine/coarse matrix $A^{h} / A^{H}$}
+
+\begin{itemize}
+	\item The matrices can be assembled directly on the grid, i.e.
+		\[
+			A^{h} \stackeq{\wedge} \frac{1}{h^{2}}\begin{bmatrix}
+			& -1 & \\
+				-1 & 4 & -1 \\
+				   & -1 & 
+			\end{bmatrix}_{h},
+			\qquad\qquad
+			A^{H} \stackeq{\wedge} \frac{1}{H^{2}}\begin{bmatrix}
+			& -1 & \\
+				-1 & 4 & -1 \\
+				& -1 & 
+			\end{bmatrix}_{H}
+		.\] 
+
+	\item Another approach is the "Galerkin" relation:
+		\[
+		\tilde{A}^{H}:=R_{h}^{H}A^{h}P_{H}^{h}
+		.\] 
+\end{itemize}
+
+\section{Finite-Element Discretization}%
+\label{sec:Finite-Element Discretization}
+
+% TODO Nummerierung mit subsubsection nutzen, um etwas mehr zwischen der Wichtigkeit unterschiedlicher Themenbereiche unterscheiden zu können.
+
+For a Poisson equation
+\[
+- \laplace u = f \qquad \text{in }\Omega + \text{ BC }
+\] 
+go over to the weak formulation of the problem:
+
+Find $u \in H_{(0)}^{1}(\Omega)$ such that
+\[
+	\int_{\Omega} \nabla u \cdot \nabla v \d x = \int_{\Omega} fv \d x \qquad \forall v \in H_{(0)}^{1}(\Omega )
+\] 
+or
+\[
+	\underbrace{ \int_{\Omega }\nabla u \cdot \nabla v \d x - \int_{\partial \Omega }gv \d s}_{a(u,v)} = \underbrace{ \int_{\Omega }fv \d x}_{F(v)} \qquad \forall v \in H^{1}(\Omega )
+.\] 
+
+\underline{FEM} :
+
+Replace $V=H_{(0)}^{1}$ by finite dimensional subspace $V_{h}$ consisting (low-degree) polynomials
+
+Let $\Omega $ be approximated/subdivided by $\Omega _{h}$ the union of $m$ geometric elements, e.g. triangles, hexagons,tetrahedrons, cubes, pyramids, $\ldots $
+\[
+\Omega \approx \Omega _{h} = \bigcup_{i=1}^{m}T_{i} \qquad \tau_{h} := \left\{ T_{i} \right\} 
+.\] 
+Here $\tau_{h}$ is called conforming, if facets of a element $T_{i}$ are also facets of other elements $T_{j}$.
+
+The mesh size $h$ is defined by
+\[
+h = \max\limits_{T \in\tau_{h}} \text{diam } T
+.\] 
+(Where diam is the length of the longest edge of an element $T_{i}$.)
+
+An example of a finite-dimensional subspace is
+\[
+	V_{h}^{(0)} = \left\{ \phi \in C(\Omega _{h}) | \phi|_{T} \in \P_{p} \text{ for } T \in \tau_{h} \right\} \qquad (+ \text{ BC }, \phi|_{\partial \Omega _{h}}=0)
+,\] 
+where for $p=1$ we get linear Lagrange elements.
+There are nodes $x_{j}$ in the triangulation (vertices, nodes on edges, $\ldots $) and a family
+\[
+	\left\{ \phi_{j} \right\} \subset V_{h} \qquad \text{with} \phi_{j}(x_{i}) = \delta_{i,j}
+,\] 
+which is uniquely defined by this relation.
+So $\phi_{j}$ forms a basis of $V_{h}$.
+Each function of $V_{h}$ can be expressed as
+\[
+	\phi(x) = \sum_{i=1}^{n}{\xi _{i}\phi_{i}(x)}
+.\] 
+As the result of this we get the approximation problem:
+
+Find $u_{h} \in V_{h}^{(0)}$ such that
+
+\begin{equation}\label{eq:discreteproblem}\tag{\ast}
+	\underbrace{\int_{\Omega _{h}}\nabla u_{h}\cdot \nabla v_{h} \d x}_{a_{h}(u_{h},v_{h})} 
+	=
+	\underbrace{\int_{\Omega _{h}}f v_{h} \d x}_{F_{h}(v_{h})}  \qquad \forall v_{h} \in V_{h}^{(0)}
+\end{equation}
+
+Since $V_{h}$ is a linear space, testing with all the basis functions $\phi _{i}$ ends up in $n$ equations.
+
+Let $u_{h}(x) = \sum_{i=1}^{n}{u_{i}\phi _{i}(x)}$.
+
+Substitute into \href{eq:discreteproblem}{($\ast$)} gives a linear system:
+
+\[
+\sum_{j=1}^{n}{a_{i,j}u_{j}=f_{i}}
+,\] 
+where
+\begin{align*}
+	a_{i,j}&= \int_{\Omega _{h}}\nabla \phi _{i}\nabla \phi _{j} \d x \\
+f_{i}&=\int_{\Omega _{h}}f \phi _{i} \d x
+\end{align*}
+Using
+\[
+	A = (a_{i,j})_{i,j}, \qquad u=(u_{i})_{i}, \qquad f=(f_{i})_{i}
+,\] 
+we can denote the system by matrix notation as:
+\[
+A \cdot u = f
+.\] 
+
+Assemble A by local element contributions:
+\[
+	a_{h}(\phi _{i}, \phi _{j}) = \sum_{T \in \tau_{h}}^{}{a_{T}(\phi _{i}, \phi _{j})}
+,\] 
+with
+\[
+	a_{T}(\phi _{i}, \phi _{j}) = \int_{T}\nabla \phi _{i}\cdot \nabla \phi _{j} \d x
+.\]
+The local element matrix $A_{T}$ consisting of contributions from $\phi _{i}$ local to $T$.
+\[
+	A = \sum_{T \in \tau_{h}}^{}{A^{(T)}}= \sum_{T \in \tau_{h}}^{}{P\cdot A_{T} \cdot R}
+,\] 
+with boolean matrices $P, R = P^{T}$.
+
+% TODO komische Matrizen. Nutze hier einfach mathcha.io!!!
+
+\begin{enumerate}[label=\alph{enumi})]
+	\item A is symmetric because $ \underbrace{a_{h}(\phi
+		_{i}, \phi _{j})}_{a_{i,j}} =
+		\underbrace{a_{h}(\phi _{j}, \phi _{i})}_{a_{j,i}}
+		$
+	\item A is positive definite
+		\begin{proof}
+		\label{thm:Aispositivedefinite}
+			\[
+					\underbrace{a_{h}(u,u)}_{u^{T}Au} &= \int_{\Omega_{h} }\abs{\nabla u} ^2 \d x \geq 0 \qquad \froall u \in V_{h}
+			.\] 
+			If  $a(u,u)=0$ for a function $u$ in $V_{h}$, then $\nabla u=0$ almost everywhere in $\Omega _{h}$.
+
+			Therefore $u$ is constant in every element $T$.
+
+			Since $u \in C(\Omega _{h})$ and $u|_{\partial \Omega _{h}}=0$, $u \equiv 0$ has to hold in $\Omega _{h}$.
+			\[
+			\implies A \succ 0
+			.\] 
+		\end{proof}
+
+	\item A is sparse
+		\[
+		\text{non-zeros per row } = \#\left\{ \text{functions with support in elements that share the Lagrange node} \right\} 
+		.\] 
+	\item Adjacency graph of $A$
+
+		%TODO Bild Grid mit rotiertem Quadrat innen und Sternchen
+		
+		For linear Lagrange we have the following
+		\[
+		a_{i,j}\neq 0 \qquad \text{if } \exists T \in \tau_{h}\colon x_{i}\in T \text{ and } x_{j} \in T
+		.\] 
+
+		For linear Lagrange in simplex triangulation, the grid corresponds to the adjacency graph.
+		% TODO noch ein Bild, grid mit X im mittleren Feld
 \end{enumerate}
 
