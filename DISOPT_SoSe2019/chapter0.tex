@@ -57,10 +57,10 @@ Verallgemeinerung:
 	%TODO wtf ging hier ab?
 	Die Variablen sind:
 	\begin{align*}
-		x_{ij}&\in \set*{0,1} \\
-		\left[0,b_{j} \right]& \text{ wieviel wird von $S_{j}$ an $k_{i}$ geliefert}\\
+    x_{ij}&\in \set*{0,1} \text{ ob von $S_j$ an $k_j$ geliefert wird}\\
+    \text{\emph{oder} } x_{ij} & \in [0,b_j] \text{ wieviel wird von $S_{j}$ an $k_{i}$ geliefert}\\
 		y_{j} &\in \set*{0,1}\text{ mit }  \\
-		y_{j}& = 1 \iff \text{ Lager am Standort $ S_{j}$ wird gebaut}
+		y_{j}& = 1 \iff \text{ Lager am Standort $S_{j}$ wird gebaut}
 	\end{align*}
 
 	Zielfunktion:
@@ -71,11 +71,9 @@ Verallgemeinerung:
 	\begin{align*}
 		&\sum_{j=1}^{n} x_{ij} =1 \quad \forall i=1,\dots, m\quad \text{ Kunde k erhält gesamte Bestellung}\\
 		&\left(\sum_{j=1}^{n} x_{ij} \leq c_{j} \quad \forall i=1,\dots, m \quad \text{Lagerkapazität}\right)\\
-		&X_{ij} \leq b_{i}y_{j} \quad \forall i,j \text{ nur gebaute Lager $S_{j}$ verwenden}
+		&x_{ij} \leq b_{i}y_{j} \quad \forall i,j \text{ nur gebaute Lager $S_{j}$ verwenden}
 	\end{align*}
-
-	im Fall $x_{ij} \in [0,b_{i}]$ gemischt ganzzahliges Problem
-
+	Im Fall $x_{ij} \in [0,b_{i}]$ sprechen wir von einem gemischt ganzzahligen Problem.
 \end{beispiel}
 
 \begin{beispiel}[Travelling Salesperson Problem, TSP]\enter
