@@ -11,7 +11,7 @@ ganzzahlige Lineare Programme:
 		\end{equation*}
 	\item zulässige Menge: Polyeder
 		\begin{equation*}
-			P = \left\{ x | Ax = b ,x \geq 0 \right\}
+			P = \set{ x | Ax = b ,x \geq 0 }
 		\end{equation*}
 	\item Problem konvex $\to$	lokale Minima = globale Minima	
 	\item duales Problem
@@ -173,13 +173,13 @@ Basis von (D'):$
 	\underbrace{A^{T}}_{m} \underbrace{I}_{n}
 \end{pmatrix}
 \in R^{n \times(m +n)}$
-Basis $H \subset \left\{1,\dots ,n+m \right\}$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär
+Basis $H \subset \set{1,\dots ,n+m }$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär
 \begin{theorem}
 	Entweder (D') ist unzulässig oder unbeschränkt oder es gibt eine optimale Basislösung $(y^*,z^*)$ so dass die zugehörige basis von der Form ist:
 	\begin{equation*}
-		H_{\text{opt}}=\underbrace{ \left\{1,..,m \right\}}_{\text{ganzes $A$ in Basismatrix}}\cup (N+m)
+		H_{\text{opt}}=\underbrace{ \set{1,..,m }}_{\text{ganzes $A$ in Basismatrix}}\cup (N+m)
 	\end{equation*}
-	mit $N \subset \left\{1,\dots ,n \right\}, |N|= n-m$ ($N$ zeigt an, welche Spalten von $I$ gebraucht werden)
+	mit $N \subset \set{1,\dots ,n }, |N|= n-m$ ($N$ zeigt an, welche Spalten von $I$ gebraucht werden)
 	$\implies$ Basen für (D') werden i.A. durch $N$ beschrieben, nicht durch $H$.
 \end{theorem}
 Welche Basis $H$ bzw. $N$ liefert zulässige Basislösung für (D')?
@@ -203,7 +203,7 @@ $\implies$
 	y = A_{B}^{-T}c_{B}, \quad z_{N}= c_{N}- A_{N}^{T} \underbrace{A_{B}^{-T}c_{B}}_{{=y}}\geq 0
 \end{equation*}
 \subsection{Duales Simplex-Verfahren}
-Initialisierung: Dual zulässige Basis $B$, d.h. $B \subset \left\{1,\dots ,n \right\}$ mit $|B|=m$, $A_{B}$ regulär und $z_{B}=0,y=A_{B}^{-T}c_{B}, z_{N}= c_{N}-A_{N}^{T}y \geq 0$
+Initialisierung: Dual zulässige Basis $B$, d.h. $B \subset \set{1,\dots ,n }$ mit $|B|=m$, $A_{B}$ regulär und $z_{B}=0,y=A_{B}^{-T}c_{B}, z_{N}= c_{N}-A_{N}^{T}y \geq 0$
 \begin{enumerate}%[label = Schritt \arabic)]
 	\item Bestimme zugehörige komplementäre duale Variable
 		\begin{align*}
@@ -216,14 +216,14 @@ Initialisierung: Dual zulässige Basis $B$, d.h. $B \subset \left\{1,\dots ,n \r
 	\item Löse $A_{B}^{T} w = e_{i}$, $\alpha_{N} = -A_{N}^{T} w$
 	\item Schrittweitenbestimmung:\\
 		Gilt $\alpha_{N} \leq 0 $ :\textbf{Stop}, (D') ist unbeschränkt ($\to$ (P) unzulässig).\\
-		Andernfalls berechne $\gamma = \min \left\{ \frac{z_{i}}{\alpha_{i}}|j \in N , \alpha_{j} >0 \right\}$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
+		Andernfalls berechne $\gamma = \min \set{ \frac{z_{i}}{\alpha_{i}}|j \in N , \alpha_{j} >0 }$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
 	\item Update:
 		\begin{align*}
 			z_{N}^+ &= z_{N} - \gamma \alpha_{N} \quad (\to z_{N} \geq 0, z_{j}^+ =0)\\
 			z_{i}^+ &= \gamma\\
 			y^+ &= y -\gamma w\\
-			N^+ &= (N \backslash \left\{ j \right\}) \cup \left\{ i \right\}\\
-			B^+ &= (B \backslash \left\{ i \right\}) \cup \left\{ j \right\}
+			N^+ &= (N \backslash \set{ j }) \cup \left\{ i \right\}\\
+			B^+ &= (B \backslash \set{ i }) \cup \left\{ j \right\}
 		\end{align*}
 \end{enumerate}
 
@@ -232,7 +232,7 @@ Betrachte
 \begin{equation*}
 	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad l \leq x \leq u
 \end{equation*}
-mit $l \in \left(\R \cup \left\{ - \infty \right\} \right)^n,u \in \left(\R \cup \left\{ +\infty \right\} \right)^n $
+mit $l \in \left(\R \cup \set{ - \infty } \right)^n,u \in \left(\R \cup \left\{ +\infty \right\} \right)^n $
 
 \underline{Ziel:} möglichst nahe an der Form
 \begin{equation*}
@@ -256,8 +256,8 @@ Bisher im primalen Simplex-Verfahren:\\
 Basis $B$, Basisvariablen $x_{B}= A_{B}^{-1} b \geq 0$, Nichtbasisvariablen $x_{N}=0$ \\
 \underline{Idee:} Teile die Nichtbasisvariablen in
 \begin{align*}
-	N_{l} &= \left\{ i \in N \ | \ x_{i} = 0  \right\} \implies x_{N_{l}}=0\\
-	N_{u} &= \left\{ i \in N \ | \ x_{i} = u_{i}  \right\} \implies x_{N_{u}}=u_{N_{u}}
+	N_{l} &= \set{ i \in N \ | \ x_{i} = 0  } \implies x_{N_{l}}=0\\
+	N_{u} &= \set{ i \in N \ | \ x_{i} = u_{i}  } \implies x_{N_{u}}=u_{N_{u}}
 \end{align*}
 Wie im Simplex-Verfahren:
 \begin{align*}
