@@ -51,18 +51,18 @@ ganzzahlige Lineare Programme:
 		$ \hat{x}$ Ecke von $P \iff$  $ \hat{x}$ kann nicht als echte Konvexkombination von Punkten aus $P$ geschrieben werden
 		$\iff$ Sei
 		\begin{equation*}
-			I = \{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 \} = \supp(\hat{x})
+			I = \set*{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 } = \supp(\hat{x})
 		\end{equation*}
 		Dann gilt $\rang(A_{\cdot,I})=|I|$
 	\item Hat das LP \eqref{nf} eine Lösung, so gibt es auch eine Ecklösung.
 	\item Es gibt nur endlich viele Ecken
 	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvolle Reihenfolge absuchen.\\
 		\underline{Annahme:} $A \in \R^{m \times n }$ hat \underline{vollen Zeilenrang} m. \\
-		Sei $\hat{x}$ eine Ecke von $P$ und $I = \{i | \hat{x}_{i}>0\}$ \\
+		Sei $\hat{x}$ eine Ecke von $P$ und $I = \set*{i | \hat{x}_{i}>0}$ \\
 		$\implies$ rang($A_{\cdot,I}   )= |I| \leq m$ \\
-		$\implies$ Es gibt $B \subset \{1,\dots,n\}$ mit $I \subset B, |B| = m $ und $A_{B}= A_{\cdot,B}$ ist regulär
+		$\implies$ Es gibt $B \subset \set*{1,\dots,n}$ mit $I \subset B, |B| = m $ und $A_{B}= A_{\cdot,B}$ ist regulär
 	\item Basen\\
-		Sei $B \subset \{1,\dots,n\}$ mit $|B|=m$ und $N = \{1,\dots,n\}\setminus B$\\
+		Sei $B \subset \set*{1,\dots,n}$ mit $|B|=m$ und $N = \{1,\dots,n\}\setminus B$\\
 		$\to B$ heißt \underline{Basis}, falls $A_{B}$ regulär\\
 		$\to$ $B$ heißt \underline{primal zulässige Basis}, falls
 		\begin{equation*}
@@ -107,7 +107,7 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 		neues $x_{N}= \gamma e_{j}$ \\
 		$\implies$ neues $x_{B} = \hat{x}_{B}-A_{B}^{-1}A_{N}\gamma e_{j}= \hat{x}_{B}-A_{B}^{-1}A_{N}\gamma A_{B}^{-1}A_{\cdot,I} \overset{!}{\geq} 0$
 		\begin{itemize}
-			\item Wähle $\gamma = \min \{ \frac{\hat{x}_{i}}{w_{i}}|w_{i} > 0 \}$
+			\item Wähle $\gamma = \min \set*{ \frac{\hat{x}_{i}}{w_{i}}|w_{i} > 0 }$
 			\item Andernfalls wähle $i \in B$ mit $\gamma = \frac{\hat{x}_{i}}{w_{i}}$
 		\end{itemize}
 	\item neue Ecke
@@ -115,9 +115,9 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 			\hat{x}_{B}-\gamma_{w}&= x_{B}^+\\
 			x_{j}^+& = \gamma\\
 			x_{k}^+ &= 0 \quad \forall \text{ vorherigen } k\\
-			B^+ &= (B \ \{i\})\cup \{j\}\\
-			N^+ &= (N \ \{j\})\cup \{i\}\\
-			B& = \{1,3,5\} \\
+			B^+ &= (B \ \set*{i})\cup \{j\}\\
+			N^+ &= (N \ \set*{j})\cup \{i\}\\
+			B& = \set*{1,3,5} \\
 			B& = (3,1,5)
 		\end{align*}
 \end{itemize}
@@ -222,8 +222,8 @@ Initialisierung: Dual zulässige Basis $B$, d.h. $B \subset \set{1,\dots ,n }$ m
 			z_{N}^+ &= z_{N} - \gamma \alpha_{N} \quad (\to z_{N} \geq 0, z_{j}^+ =0)\\
 			z_{i}^+ &= \gamma\\
 			y^+ &= y -\gamma w\\
-			N^+ &= (N \backslash \set{ j }) \cup \left\{ i \right\}\\
-			B^+ &= (B \backslash \set{ i }) \cup \left\{ j \right\}
+			N^+ &= (N \backslash \set{ j }) \cup \set{ i }\\
+			B^+ &= (B \backslash \set{ i }) \cup \set{ j }
 		\end{align*}
 \end{enumerate}
 
@@ -232,7 +232,7 @@ Betrachte
 \begin{equation*}
 	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad l \leq x \leq u
 \end{equation*}
-mit $l \in \left(\R \cup \set{ - \infty } \right)^n,u \in \left(\R \cup \left\{ +\infty \right\} \right)^n $
+mit $l \in \left(\R \cup \set{ - \infty } \right)^n,u \in \left(\R \cup \set{ +\infty } \right)^n $
 
 \underline{Ziel:} möglichst nahe an der Form
 \begin{equation*}
