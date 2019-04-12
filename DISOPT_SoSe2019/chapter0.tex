@@ -77,14 +77,17 @@ Verallgemeinerung:
 \end{beispiel}
 
 \begin{beispiel}[Travelling Salesperson Problem, TSP]\enter
-	Städte $S_{1},\dots, S_{n}$\\
-	gesucht: Rundreise, die alle Städte genau einmal besucht\\
-	mögliche Streckenabschnitte:
+	Es sind Städte $S_{1},\dots, S_{n}$ bekannt.
+
+	Gesucht: Rundreise, die alle Städte genau einmal besucht.
+	
+  Die möglichen Streckenabschnitte sind gegeben durch
 	\begin{equation*}
-		E = \set{  (i,j) | \text{ es gibt einen direkten Weg von $S_{i}$ nach $S_{j}$} }
+		E = \set{ (i,j) \mid \text{es gibt einen direkten Weg von $S_{i}$ nach $S_{j}$} }
 	\end{equation*}
-	kosten / Fahrzeiten: $c_{ij} \forall (i,j) \in E$\\
-	Variablen: $x_{ij} \in \set*{0,1}$ mit $x_{ij}=1$, wenn $S_{i}$ nach $S_j$ gefahren wird\\
+	Die Kosten/ Fahrzeiten sind gegeben durch $c_{ij}$ für alle $(i,j) \in E$.
+
+	Die Variablen: $x_{ij} \in \set*{0,1}$ mit $x_{ij}=1$, wenn $S_{i}$ nach $S_j$ gefahren wird\\
 	Zielfunktion:
 	\begin{equation*}
 		\sum_{(i,j)\in E}  c_{ij}x_{ij} \rightarrow \min
