@@ -10,8 +10,8 @@ Unterlagen: \url{www.github.com/alexandrabschwartz/DiskreteOptimierung2019}
 \section{Einführung}
 \subsection{Beispiele}
 \begin{beispiel}[Rucksackproblem]\enter
-	Objekte $j=1,\dots,m$ mit Gewicht $w_{j}>0$ und Wert $c_{j}>0$\\
-	maximales tragbares Gewicht $w_{\max}$\\
+	Gegeben seien $m$ Objekte $j=1,\dots,m$, jeweils mit Gewicht $w_{j}>0$ und Wert $c_{j}>0$. Das maximale tragbare Gewicht sei $w_{\max}$.
+
 	Ziel: maximiere den Wert der ausgewählten Gegenstände
 \end{beispiel}
 
@@ -26,19 +26,19 @@ zulässige Menge $X$
 
 Rucksackproblem:
 \begin{align*}
-\text{Variablen}:\quad & x_{j} \in \{0,1\} \forall j =1, \dots, m\\
+\text{Variablen}:\quad & x_{j} \in \{0,1\}\, \forall j =1, \dots, m\\
 				 & x_{j}=1 \iff \text{Objekt $j$ wird ausgewählt}\\
 \text{Zielfunktion}:\quad& f(x)= \sum_{j=1}^{m} c_j x_{j}\rightarrow \max\\
 \text{zulässige Menge}:\quad & \sum_{rj}^{m} w_j x_j \leq w_{\max}\quad \text{maximal zulässiges Gewicht}
 \end{align*}
-$\implies$
+% $\implies$
 \begin{equation*}
-	\max_{x}c^Tx \text{ subject to } w^Tx \leq w_{\max},\ x \in \{0,1\}^m, x \text{ binär}
+	\implies \quad \max_{x}c^Tx \text{ subject to } w^Tx \leq w_{\max},\ x \in \{0,1\}^m, x \text{ binär}
 \end{equation*}
 Verallgemeinerung:
 \begin{itemize}
-	\item mehrdimensionales Rucksackproblem mit zusätzlichen (linearen) Restriktionen, z.b. Volumen
-	\item allgemeines Rucksackproblem mit $x\in D\subset \R^m$ z.B. $D=\{0,1\}^m, D=\N^m , D = \R_{+}^m$
+	\item mehrdimensionales Rucksackproblem mit zusätzlichen (linearen) Restriktionen, z.B.\ Volumen
+  \item allgemeines Rucksackproblem mit $x\in D\subset \R^m$ z.B. $D=\{0,1\}^m$, $D=\N^m$, $D = \R_{+}^m$
 \end{itemize}
 
 \begin{beispiel}[Facility Location Problem]\enter
