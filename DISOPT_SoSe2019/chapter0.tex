@@ -15,16 +15,19 @@ Unterlagen: \url{www.github.com/alexandrabschwartz/DiskreteOptimierung2019}
 	Ziel: maximiere den Wert der ausgewählten Gegenstände
 \end{beispiel}
 
-\underline{allgemeines Optimierungsproblem}:
-\begin{equation*}
-	\min_{x} f(x) \text{ subject to } x \in X
-\end{equation*}
+\begin{definition}[allgemeines Optimierungsproblem] \label{def:allgemeines_optimierungsproblem}
+  \begin{equation*}
+    \min_{x} f(x) \text{ subject to (s.t.) } x \in X
+  \end{equation*}
+  Dabei ist
+  \begin{itemize}
+    \item $x$ die Variable $x$,
+    \item $f$ die Zielfunktion und
+    \item $X$ die zulässige Menge
+  \end{itemize}
+\end{definition}
 %s.t. = subject to\\
-Variable $x$,\\
-Zielfunktion $f$, \\
-zulässige Menge $X$
-
-Rucksackproblem:
+Das Rucksackproblem modellieren wir so:
 \begin{align*}
 \text{Variablen}:\quad & x_{j} \in \{0,1\}\, \forall j =1, \dots, m\\
 				 & x_{j}=1 \iff \text{Objekt $j$ wird ausgewählt}\\
