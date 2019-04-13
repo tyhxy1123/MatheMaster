@@ -828,7 +828,7 @@ As the result of this we get the approximation problem:
 
 Find $u_{h} \in V_{h}^{(0)}$ such that
 
-\begin{equation}\label{eq:discreteproblem}\tag{\ast}
+\begin{equation}\label{eq:discreteproblem}\tag{$\ast$}
 	\underbrace{\int_{\Omega _{h}}\nabla u_{h}\cdot \nabla v_{h} \d x}_{a_{h}(u_{h},v_{h})} 
 	=
 	\underbrace{\int_{\Omega _{h}}f v_{h} \d x}_{F_{h}(v_{h})}  \qquad \forall v_{h} \in V_{h}^{(0)}
@@ -882,7 +882,7 @@ with boolean matrices $P, R = P^{T}$.
 		\begin{proof}
 		\label{thm:Aispositivedefinite}
 			\[
-					\underbrace{a_{h}(u,u)}_{u^{T}Au} &= \int_{\Omega_{h} }\abs{\nabla u} ^2 \d x \geq 0 \qquad \froall u \in V_{h}
+					\underbrace{a_{h}(u,u)}_{u^{T}Au} = \int_{\Omega_{h} }\abs{\nabla u} ^2 \d x \geq 0 \qquad \forall u \in V_{h}
 			.\] 
 			If  $a(u,u)=0$ for a function $u$ in $V_{h}$, then $\nabla u=0$ almost everywhere in $\Omega _{h}$.
 
