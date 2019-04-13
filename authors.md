@@ -7,19 +7,20 @@ Der jeweilige Hauptverantwortliche für das Skript steht ganz links.
 
 | Modul  | Autoren              			|
 | ------ | ------               			|
-| STOCHP | Willi, Henrik   |
-| NLANA  | Willi, Henrik, Robert, Pascal L.   |
-| SCPROG | Willi	|
+| STOCHP | Willi, Henrik, Marvin   |
+| NLANA  | Pascal L., Robert   |
+| SCPROG | Willi, Marvin	|
 | MMAM (Lineare Modelle)  | Willi	|
 | MMAM (Spieltheorie) | Robert |
 | KONGEO  | Lukas Z., Philipp              			|
-| DISMAT | Lukas Z.         			|
+| DISMAT | Lukas Z., Philipp         			|
 | ALGTOP  | Lukas Z., Philipp	|
-| Kategorientheorie    | Pascal L., Willi		|
+| Kategorientheorie    | Pascal L.		|
 | SCCOMP | Henrik, Robert     |
-| PDENMW | Henrik     |
-| DISOPT | Henrik     |
+| PDENMW | Henrik, Marvin     |
+| DISOPT | Henrik, Marvin     |
 | STOCAL | Robert |
+| ALLALG | Willi
 
 
 ## Wintersemester 2018/2019
