@@ -203,17 +203,28 @@ Die Dualität sagt uns, dass die Indices der Nullvariablen in \eqref{nf} gerade 
 Welche Basis $H$ bzw. $N$ liefert eine zulässige Basislösung für \eqref{dualLP}?
 % irgendwas kompiliert hier nicht
 \begin{align*}
-	\begin{pmatrix}
-		A^{T}  & I
-	\end{pmatrix}
-	\begin{pmatrix}
-	y\\z
-	\end{pmatrix}
-	&=c, \quad z \geq 0\\
-	&{}\iff A_{B}^{T} y + z_{B} \geq c_{B}, \quad z_{B} \geq 0\\
-	&{}\hspace{1.1cm} A_{N}^{T} y + z_{N} = c_{N}, \quad z_{N} \geq 0 \\
-	&{}\iff y = A_{B}^{-T}(c_{B}-z_{B})\\
-	&{}\hspace{1.1cm} z_{N}= c_{N} - A_{N}^{T}y = c_{N}-A_{N}^{T} A_{B}^{-T}(c_{B}-z_{B}) ,\quad z_{B}\geq 0 ,z_{N} \geq 0
+  \begin{pmatrix}
+    A^{T}  & I
+  \end{pmatrix}
+  \begin{pmatrix}
+    y\\z
+  \end{pmatrix}
+  &=c, \quad z \geq 0\\
+  \iff \begin{pmatrix}
+      A_N^T & I_N & 0 \\
+      A_B^T & 0 & I \\
+    \end{pmatrix}
+    \begin{pmatrix}
+      y \\ z_N \\ z_B
+    \end{pmatrix}
+    &= \begin{pmatrix}
+    c_N \\ c_B
+  \end{pmatrix}
+  , \quad z \geq 0 \quad (\text{nach Zeilenumsortierung})\\
+  \iff A_{B}^{T} y + z_{B} &= c_{B}, \quad z_{B} \geq 0\\
+    A_{N}^{T} y + z_{N} &= c_{N}, \quad z_{N} \geq 0 \\
+    \iff y &= A_{B}^{-T}(c_{B}-z_{B})\\
+      z_{N}&= c_{N} - A_{N}^{T}y = c_{N}-A_{N}^{T} A_{B}^{-T}(c_{B}-z_{B}) ,\quad z_{B}\geq 0, z_{N} \geq 0
 \end{align*}
 $(y,z_{B},z_{N})$ Basislösung $\to$ Nichtbasisvariablen $z_{B} =0$ \\
 $\implies$
