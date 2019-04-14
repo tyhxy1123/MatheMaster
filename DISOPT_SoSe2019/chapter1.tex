@@ -60,10 +60,10 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
 		\end{equation*}
 		Dann gilt $\rang(A_{\cdot,I})=|I|$.
 	\item Hat das LP \eqref{nf} eine Lösung, so gibt es auch eine Ecklösung.
-	\item Es gibt nur endlich viele Ecken
-	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvolle Reihenfolge absuchen.\\
-		\underline{Annahme:} $A \in \R^{m \times n }$ hat \underline{vollen Zeilenrang} m. \\
-		Sei $\hat{x}$ eine Ecke von $P$ und $I = \set*{i | \hat{x}_{i}>0}$ \\
+	\item Es gibt nur endlich viele Ecken.
+	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvoller Reihenfolge absuchen.\\
+		\underline{Annahme:} $A \in \R^{m \times n }$ hat \betone{vollen Zeilenrang} $m$. \\
+		Sei $\hat{x}$ eine Ecke von $P$ und $I = \set*{i \mid \hat{x}_{i}>0}$ \\
 		$\implies$ rang($A_{\cdot,I}   )= |I| \leq m$ \\
 		$\implies$ Es gibt $B \subset \set*{1,\dots,n}$ mit $I \subset B, |B| = m $ und $A_{B}= A_{\cdot,B}$ ist regulär
 	\item Basen\\
