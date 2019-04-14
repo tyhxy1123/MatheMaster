@@ -236,8 +236,8 @@ Initialisierung: Dual zulässige Basis $B$, d.\,h.\ $B \subset \set{1,\dots ,n }
 \begin{enumerate}%[label = Schritt \arabic)]
 	\item Bestimme zugehörige komplementäre duale Variable
 		\begin{align*}
-			x_{N}&=0 \quad (\to \text{komplementär }z_{N})\\
-			x_{B}&= A_{B}^{-1} b\quad ( \to A(x_{B},x_{N})^{T} =b)
+			x_{N}&=0 \quad (\to \text{komplementär zu }z_{N})\\
+      x_{B}&= A_{B}^{-1} b\quad \left( \implies A \begin{pmatrix}x_{B} \\ x_{N}\end{pmatrix} =b\right)
 		\end{align*}
 	\item Gilt $x_{B} \geq 0 $: \textbf{Stop}.\\
 		$(y,z_{B},z_{N}),(x_{B},x_{N})$ KKT-Punkt $\implies$ Lösung gefunden.\\
