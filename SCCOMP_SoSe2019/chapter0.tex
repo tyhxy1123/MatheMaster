@@ -529,9 +529,9 @@ A matrix $A \in \R^{n \times n}$ is called \underline{sparse matrix}, if the num
 \label{thm:sparsetypes}
 A (sparse) matrix is called a \underline{banded matrix}  with bandwidth $M$ if
 \[
-a_{i,j}\neq 0 \text{ only if } i-m_{l} \leq j \leq i + m_{n}
+a_{i,j}\neq 0 \text{ only if } i-m_{l} \leq j \leq i + m_{u}
 .\] 
-with $m_{l},m_{n} \in \N_{>0}$ the lower and upper bandwidth and $M:=m_{l} + m_{n} + 1$.
+with $m_{l},m_{u} \in \N_{>0}$ the lower and upper bandwidth and $M:=m_{l} + m_{u} + 1$.
 \end{definition}
 
 What is the bandwidth of $\laplace_{h}^{(5)}$? (using lexicographical ordering)
@@ -572,7 +572,7 @@ What is the bandwidth of $\laplace_{h}^{(5)}$? (using lexicographical ordering)
 The bandwidth of $A_0$ is 3.
 We can deduce the other constants with this information:
 \begin{itemize}
-	\item $m_{l}=m_{n}=N_{x}+2 (\text{ or } N_{y}+2)$
+	\item $m_{l}=m_{u}=N_{x}+2 (\text{ or } N_{y}+2)$
 	\item the boundary width of $A$ is $\O(n^{\frac{1}{2}})$ in 2D.
 \end{itemize}
 
@@ -786,9 +786,9 @@ For a Poisson equation
 \] 
 go over to the weak formulation of the problem:
 
-Find $u \in H_{(0)}^{1}(\Omega)$ such that
+Find $u \in H_{0}^{1}(\Omega)$ such that
 \[
-	\int_{\Omega} \nabla u \cdot \nabla v \d x = \int_{\Omega} fv \d x \qquad \forall v \in H_{(0)}^{1}(\Omega )
+	\int_{\Omega} \nabla u \cdot \nabla v \d x = \int_{\Omega} fv \d x \qquad \forall v \in H_{0}^{1}(\Omega )
 \] 
 or
 \[
@@ -797,8 +797,8 @@ or
 
 \underline{FEM} :
 
-Replace $V=H_{(0)}^{1}$ by finite dimensional subspace $V_{h}$ consisting (low-degree) polynomials.
-Let $\Omega $ be approximated/subdivided by $\Omega _{h}$ the union of $m$ geometric elements, e.g. triangles, hexagons,tetrahedrons, cubes, pyramids, $\ldots $
+Replace $V=H_{0}^{1}$ by finite dimensional subspace $V_{h}$ consisting (low-degree) polynomials.
+Let $\Omega $ be approximated/subdivided by $\Omega _{h}$ the union of $m$ geometric elements, e.g. triangles, hexagons, tetrahedrons, cubes, pyramids, $\ldots $
 \[
 \Omega \approx \Omega _{h} = \bigcup_{i=1}^{m}T_{i} \qquad \mathcal{T}_{h} := \left\{ T_{i} \right\} 
 .\] 
@@ -807,16 +807,16 @@ The mesh size $h$ is defined by
 \[
 h = \max\limits_{T \in\mathcal{T}_{h}} \text{diam } T
 .\] 
-(Where diam is the length of the longest edge of an element $T_{i}$.)
+Where diam$(T):=\underset{x,y \in T }{\sup} |x-y|$.
 
 An example of a finite-dimensional subspace is
 \[
-	V_{h}^{(0)} = \left\{ \phi \in C(\Omega _{h}) | \phi|_{T} \in \P_{p} \text{ for } T \in \mathcal{T}_{h} \right\} \qquad (+ \text{ BC }, \phi|_{\partial \Omega _{h}}=0)
+	V_{h}^{(0)} = \left\{ \phi \in C(\Omega _{h})\ |\ \phi|_{T} \in \P_{p} \text{ for } T \in \mathcal{T}_{h} \right\} \qquad (+ \text{ BC }, \phi|_{\partial \Omega _{h}}=0)
 ,\] 
 where for $p=1$ we get linear Lagrange elements.
 There are nodes $x_{j}$ in the triangulation (vertices, nodes on edges, $\ldots $) and a family
 \[
-	\left\{ \phi_{j} \right\} \subset V_{h} \qquad \text{with} \phi_{j}(x_{i}) = \delta_{i,j}
+	\left\{ \phi_{j} \right\} \subset V_{h} \qquad \text{with}\qquad \phi_{j}(x_{i}) = \delta_{i,j}
 ,\] 
 which is uniquely defined by this relation.
 So $\phi_{j}$ forms a basis of $V_{h}$.
@@ -838,7 +838,7 @@ Since $V_{h}$ is a linear space, testing with all the basis functions $\phi _{i}
 
 Let $u_{h}(x) = \sum_{i=1}^{n}{u_{i}\phi _{i}(x)}$.
 
-Substitute into \href{eq:discreteproblem}{($\ast$)} gives a linear system:
+Substitute into \href{eq:discreteproblem}{($\ast$)} and we obtain a linear system:
 
 \[
 \sum_{j=1}^{n}{a_{i,j}u_{j}=f_{i}}
