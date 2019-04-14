@@ -193,7 +193,7 @@ sei $H \subset \set{1,\dots ,n+m }$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times
 \begin{theorem}
 	Entweder \eqref{dualLP} ist unzulässig oder unbeschränkt oder es gibt eine optimale Basislösung $(y^*,z^*)$ so dass die zugehörige basis von der Form ist:
 	\begin{equation*}
-		H_{\text{opt}}=\underbrace{ \set{1,..,m }}_{\text{ganzes $A$ in Basismatrix}}\cup (N+m)
+    H_{\text{opt}}=\underbrace{ \set{1,..,m }}_{\text{ganzes $A$ in Basismatrix}}\cup \, (N+\underbrace{m}_{\text{offset}})
 	\end{equation*}
 	mit $N \subset \set{1,\dots ,n }, |N|= n-m$ ($N$ zeigt an, welche Spalten von $I$ gebraucht werden)
 	$\implies$ Basen für \eqref{dualLP} werden i.A. durch $N$ beschrieben, nicht durch $H$.
