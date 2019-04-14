@@ -261,9 +261,11 @@ Betrachte
 \begin{equation*}
 	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad l \leq x \leq u
 \end{equation*}
-mit $l \in \left(\R \cup \set{ - \infty } \right)^n,u \in \left(\R \cup \set{ +\infty } \right)^n $
+mit $l \in \left(\R \cup \set{ - \infty } \right)^n$, $u \in \left(\R \cup \set{ +\infty } \right)^n $.
 
-\underline{Ziel:} möglichst nahe an der Form
+% Mit bis zu $4n$ Schlupfvariablen kann das System auf Normalform gebracht werden. Allerdings bedeutet das ein Vielfaches an Rechenaufwand. Daher suchen wir andere Wege.
+%
+\underline{Ziel:} möglichst nahe an die Form
 \begin{equation*}
 	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad x \geq 0
 \end{equation*}
@@ -274,7 +276,7 @@ kommen.\\
 	\item Fall: $x_{i} \geq l_{i}$ mit $l_{i}\in \R$ : Substituiere $\hat{x}_{i} := x_{i}- l_{i}\geq 0$
 	\item Fall: $x_{i} \leq u_{i}$ mit $u_{i}\in \R$ : Substituiere  $\hat{x}_{i} := u_{i}- x_{i}\geq 0$
 	\item Fall: $l_{i} \leq x_{i} \leq u_{i}$ mit $l_{i},u_{i} \in \R$ : Substituiere $0 \leq \hat{x}_{i} := x_{i}- l_{i} \leq u_{i}-l_{i}$
-	\item Fall $-\infty \leq x_{i} \leq \infty$ : Freie Variable: entweder Variablensplit $x_{i}= x_{i}^+ - x_{i}^-$ oder: $x_{i}$ als freie Variable im Simplex-Verfahren berücksichtigen( wie $y$ im dualen Simplex)
+	\item Fall $-\infty \leq x_{i} \leq \infty$ : Freie Variable: entweder Variablensplit $x_{i}= x_{i}^+ - x_{i}^-$ oder $x_{i}$ als freie Variable im Simplex-Verfahren berücksichtigen (wie $y$ im dualen Simplex)
 \end{itemize}
 Angenommen, es gibt keine freien Variablen $\implies$ oBdA LP der Form
 \begin{equation*}
@@ -301,5 +303,5 @@ Bei Schrittweiten beachten: $x_{B} = \gamma w \in [0,u_{B}]$ und
 	 u_{i}-\gamma
 \end{cases}
 \end{equation*}
-Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder umgekehrt.
+Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder umgekehrt.
 
