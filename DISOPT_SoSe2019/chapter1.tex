@@ -117,18 +117,23 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 
 		Wir wählen das neue $x_{N}$ als $\gamma e_{j}$ mit zu bestimmenden $\gamma$.
 		\begin{itemize}
-			\item Wähle $\gamma = \min \set*{ \frac{\hat{x}_{i}}{w_{i}}|w_{i} > 0 }$
+      \item[$\implies$] neues $x_{B}
+        = \hat{x}_{B} - A_{B}^{-1}A_{N}\gamma e_{j}
+        = \hat{x}_{B} - \gamma \underbrace{A_{B}^{-1}A_{\cdot,j}}_{\eqqcolon w}
+        \overset{!}{\geq} 0$
+			\item Wähle $\gamma = \min \set{ \frac{\hat{x}_{i}}{w_{i}} \mid w_{i} > 0 }$.
+      \item Wenn $\gamma = + \infty$, so ist \eqref{nf} unbeschränkt.
 			\item Andernfalls wähle $i \in B$ mit $\gamma = \frac{\hat{x}_{i}}{w_{i}}$
 		\end{itemize}
-	\item neue Ecke
+  \item Dann ist die neue Ecke $x_B^+$
 		\begin{align*}
 			\hat{x}_{B}-\gamma_{w}&= x_{B}^+\\
 			x_{j}^+& = \gamma\\
-			x_{k}^+ &= 0 \quad \forall \text{ vorherigen } k\\
-			B^+ &= (B \ \set*{i})\cup \{j\}\\
-			N^+ &= (N \ \set*{j})\cup \{i\}\\
-			B& = \set*{1,3,5} \\
-			B& = (3,1,5)
+			x_{k}^+ &= 0 \quad \text{ für alle anderen } k\\
+			B^+ &= (B \setminus \set*{i})\cup \set*{j}\\
+			N^+ &= (N \setminus \set*{j})\cup \set*{i}
+			% B& = \set*{1,3,5} \\
+			% B& = (3,1,5)
 		\end{align*}
 \end{itemize}
 gesucht: primal zulässige Basis für
