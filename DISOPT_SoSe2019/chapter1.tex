@@ -67,21 +67,24 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
 		$\implies$ rang($A_{\cdot,I}   )= |I| \leq m$ \\
 		$\implies$ Es gibt $B \subseteq \set*{1,\dots,n}$ mit $I \subseteq B, |B| = m $ und $A_{B}\coloneqq A_{\cdot,B}$ ist regulär.
 	\item Basen\\
-		Sei $B \subset \set*{1,\dots,n}$ mit $|B|=m$ und $N = \{1,\dots,n\}\setminus B$\\
-		$\to B$ heißt \underline{Basis}, falls $A_{B}$ regulär\\
-		$\to$ $B$ heißt \underline{primal zulässige Basis}, falls
-		\begin{equation*}
-			x_{B}=A_{B}^{-1}b \geq 0
-		\end{equation*} $\implies$ Mit $x_{N} = 0$ ist $(x_{B},x_{N})$ zulässig für \eqref{nf} und eine Ecke von $P$ \\
-		$\to$ B heißt \underline{dual zulässige Basis}, falls
-		\begin{equation*}
-			A_{N}^TA_{B}^{-T}c_{b} \leq c_{N} \implies y \text{ ist zulässig für \eqref{dual_cont}}
-		\end{equation*}
-		$\implies$ $\left(x_{B},x_{N} \right)$ mit $x_{B} = A^{-1}_{B},\ x_{N}= 0$ heißt \underline{Basislösung}. Ist $x_{B} > 0 $ so heißt die Basislösung \underline{nichtdegeneriert}.
+		Sei $B \subset \set*{1,\dots,n}$ mit $|B|=m$ und $N = \{1,\dots,n\}\setminus B$
+    \begin{itemize}[label=$\to$] % warum eigentlich ein Pfeil?
+      \item $B$ heißt \define{Basis}, falls $A_{B}$ regulär.
+      \item $B$ heißt \define{primal zulässige Basis}, falls
+        \begin{equation*}
+          x_{B}=A_{B}^{-1}b \geq 0
+        \end{equation*} $\implies$ Mit $x_{N} = 0$ ist $(x_{B},x_{N})$ zulässig für \eqref{nf} und eine Ecke von $P$.
+      \item $B$ heißt \define{dual zulässige Basis}, falls
+        \begin{equation*}
+          A_{N}^TA_{B}^{-T}c_{b} \leq c_{N} \implies y \text{ ist zulässig für \eqref{dual_cont}}
+        \end{equation*}
+      \item $\left(x_{B},x_{N} \right)$ mit $x_{B} = A^{-1}_{B},\ x_{N}= 0$ heißt \define{Basislösung}. Ist $x_{B} > 0 $ so heißt die Basislösung \define{nichtdegeneriert}.
+    \end{itemize}
 \end{itemize}
-
+%
 \subsection{Wiederholung Simplex-Verfahren}
-Annahme: $A \in R^{m \times n}$ hat Rang $m$.\\
+Annahme: $A \in R^{m \times n}$ hat Rang $m$. (Ansonsten können so lange linear von den anderen Zeilen abhängige Zeilen gelöscht werden, bis $A$ vollen Zeilenrang $m$ hat.)
+
 Sei $B$ eine primal zulässige Basis mit Basislösung
 \begin{align*}
 	\hat{x}_{N}&=0,\\
