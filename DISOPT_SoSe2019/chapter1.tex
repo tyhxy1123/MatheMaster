@@ -26,31 +26,34 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
 		\begin{equation*}
 			c^Tx \geq b^Ty
 		\end{equation*}
-		bei Gleichheit: $x$ löst \eqref{nf}, $y$ löst \eqref{dual_cont}
-	\item Starke Dualität\\
-		Es sind äquivalent
-		\begin{enumerate}
-			\item \eqref{nf} hat eine Lösung $x^*$
-			\item \eqref{dual_cont} hat eine Lösung $y^*$
-			\item mk
-		\end{enumerate}
-	\item KKT-Bedingungen für LPs
-		\begin{itemize}
-			\item $x^*$ löst \eqref{primal_cont}
-			\item $y^*$ löst \eqref{dual_cont}
-			\item $(x^*,y^*)$ lösen das KKT-System
-				\begin{align*}
-					Ax^* &= b , \ x^* \geq 0 \quad \text{(primale Zulässigkeit)}\\
-					A^{T} y^* &\leq c\quad \text{(duale Zulässigkeit)}\\
-					\forall i = 1,\dots , n: x_{i}&= 0 \text{ oder } \left(A^{T}y^*  \right)_{i} = c_{i} \text{ (Komplementaritätsbedingungen)}
-				\end{align*}
-				\begin{equation*}
-					b^{T}\underbrace{y^* = (\underbrace{x^*}_{\geq 0})^{T}}_{\text{primal Zul.}} \underbrace{\underbrace{A^{T} y^*}_{\leq c }}_{\text{dual Z.}} \stackrel{\text{Kompbed.}}= \left(x^*\right)^{T} c
-				\end{equation*}
-		\end{itemize}
-
-	\item Ecken und Lösungen\\
-		$ \hat{x}$ Ecke von $P \iff$  $ \hat{x}$ kann nicht als echte Konvexkombination von Punkten aus $P$ geschrieben werden
+		Bei Gleichheit gilt außerdem: $x$ löst \eqref{nf}, $y$ löst \eqref{dual_cont}.
+\end{lemma} % end lemma Schwache Dualität
+\begin{lemma}[Starke Dualität] \label{thm:starke_dualitat}
+  Es sind äquivalent
+  \begin{enumerate}
+    \item \eqref{nf} hat eine Lösung $x^*$.
+    \item \eqref{dual_cont} hat eine Lösung $y^*$.
+    \item $(x^*,y^*)$ lösen das \define{KKT-System}
+      \begin{align*}
+        Ax^* &= b , \ x^* \geq 0 & \text{(primale Zulässigkeit)}\\
+        A^{T} y^* &\leq c & \text{(duale Zulässigkeit)}\\
+        \forall i = 1,\dots , n: x_{i}&= 0 \text{ oder } \left(A^{T}y^*  \right)_{i} = c_{i} & \text{ (Komplementaritätsbedingungen)}
+      \end{align*}
+      Dann gilt auch, dass die \define{Dualitätslücke} gleich $0$ ist:
+      \begin{equation*}
+        b^{T}\underbrace{y^* = (\underbrace{x^*}_{\geq 0})^{T}}_{\text{primal Zul.}} \underbrace{\underbrace{A^{T} y^*}_{\leq c }}_{\text{dual Z.}} \stackrel{\text{Kompbed.}}= \left(x^*\right)^{T} c
+      \end{equation*}
+    \end{enumerate}
+\end{lemma} % end lemma Starke Dualität
+\paragraph{Lösungsansätze für lineare Programme}
+\begin{itemize}
+  \item Innere-Punkte-Verfahren. (polynomielle Laufzeit)
+  \item Ellipsoid-Verfahren. (polynomielle Laufzeit)
+  \item Symplex-Verfahren (theoretisch exponentielle Laufzeit, aber in der Praxis gut)
+\end{itemize}
+\paragraph{Ecken und Lösungen}
+\begin{itemize}
+  \item $\hat{x}$ ist Ecke von $P$ $\iff$ $ \hat{x}$ kann nicht als echte Konvexkombination von Punkten aus $P$ geschrieben werden
 		$\iff$ Sei
 		\begin{equation*}
 			I = \set*{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 } = \supp(\hat{x})
