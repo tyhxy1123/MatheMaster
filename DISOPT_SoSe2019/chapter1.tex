@@ -137,11 +137,12 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 		\end{align*}
     Pro Iteration müssen zwei Gleichungssysteme gelöst werden. Das ist sehr teuer. Da sich immer nur $1$ Spalte ändert, kann dies allerdings stark vereinfacht werden durch ein Update der LR-Zerlegung. Das geht, indem in der Implementierung die Elemente von $B$, $B^+$ eine Reihenfolge haben und man ersetzt immer $i$ an seiner Stelle durch $j$.
 \end{itemize}
-gesucht: primal zulässige Basis für
+\paragraph{Startbasis}
+Gesucht als Startbasis ist eine primal zulässige Basis für
 \begin{equation*}
 	\min_{x} c^Tx \text{ subject to } Ax = b , x \geq 0
 \end{equation*}
-Simplex-Phase 1: Löse das Hilfsproblem
+Dafür gibt es die Simplex-Phase 1: Löse das Hilfsproblem
 \begin{align*}
 	\min_{x,s} \sum_{i=1}^{m} s_{i} \text{ subject to }
 	\begin{pmatrix}
@@ -150,14 +151,15 @@ Simplex-Phase 1: Löse das Hilfsproblem
 	\begin{pmatrix}
 		x \\ s
 	\end{pmatrix}
-	\quad,(x,s)& \geq 0
+	, (x,s)& \geq 0
 \end{align*}
-Gilt in einer Lösung ($x^0$), dass $s^* =0$, so ist das $x^*$ zulässig für \eqref{nf} und die Basis des Hilfsproblems \glqq ist\grqq\ eine primal zulässige Basis für \eqref{primal_cont}.
-Primal zulässige Startbasis für Hilfsproblem
+Gilt in einer Lösung ($x^0$), dass $s^* =0$, so ist das $x^*$ zulässig für \eqref{nf} und die Basis des Hilfsproblems \enquote{ist} eine primal zulässige Basis für \eqref{nf}.
+
+Eine primal zulässige Startbasis für das Hilfsproblem ist (trivialerweise) gegeben durch
 \begin{equation*}
 	x = 0, s = b \geq 0, \text{ Basismatrix } I
 \end{equation*}
-Tableau-Methode für
+Tableau-Methode für %TODO: was sollen uns diese Zeilen sagen?
 \begin{equation*}
 	\min_{x}c^Tx \text{ subject to } Ax \leq b , x \geq 0
 \end{equation*}
