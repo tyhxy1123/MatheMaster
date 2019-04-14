@@ -240,12 +240,12 @@ Initialisierung: Dual zulässige Basis $B$, d.\,h.\ $B \subset \set{1,\dots ,n }
       x_{B}&= A_{B}^{-1} b\quad \left( \implies A \begin{pmatrix}x_{B} \\ x_{N}\end{pmatrix} =b\right)
 		\end{align*}
 	\item Gilt $x_{B} \geq 0 $: \textbf{Stop}.\\
-		$(y,z_{B},z_{N}),(x_{B},x_{N})$ KKT-Punkt $\implies$ Lösung gefunden.\\
+    $(y,z_{B},z_{N}),(x_{B},x_{N})$ KKT-Punkt $\implies$ Lösung gefunden.\\
 		Andernfalls wähle $ i \in B$ mit $x_{i}<0$ ($\to z_{i}>0$ verkleinert dualen Zielfunktionswert)
 	\item Löse $A_{B}^{T} w = e_{i}$, $\alpha_{N} = -A_{N}^{T} w$
 	\item Schrittweitenbestimmung:\\
-    Gilt $\alpha_{N} \leq 0 $ :\textbf{Stop}, \eqref{dualLP} ist unbeschränkt ($\to$ \eqref{nf} unzulässig).\\
-		Andernfalls berechne $\gamma = \min \set{ \frac{z_{i}}{\alpha_{i}}|j \in N , \alpha_{j} >0 }$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
+    Gilt $\alpha_{N} \leq 0 $: \textbf{Stop}, \eqref{dualLP} ist unbeschränkt ($\to$ \eqref{nf} unzulässig).\\
+		Andernfalls berechne $\gamma = \min \set{ \frac{z_{i}}{\alpha_{i}} \mid j \in N , \alpha_{j} >0 }$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
 	\item Update:
 		\begin{align*}
 			z_{N}^+ &= z_{N} - \gamma \alpha_{N} \quad (\to z_{N} \geq 0, z_{j}^+ =0)\\
