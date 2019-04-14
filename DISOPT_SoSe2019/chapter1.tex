@@ -110,11 +110,12 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 \end{align*}
 
 \begin{itemize}
-	\item gilt $z_{N} \geq 0$: $\hat{x}$ löst LP ( mit dualer Variable y)
-	\item Andernfalls: Wähle $j\in \N$ mit $z_{j}<0$ \\
-		Frage: Wie groß kann $x_{j}$ gewählt werden, ohne $P$ zu verlassen?\\
-		neues $x_{N}= \gamma e_{j}$ \\
-		$\implies$ neues $x_{B} = \hat{x}_{B}-A_{B}^{-1}A_{N}\gamma e_{j}= \hat{x}_{B}-A_{B}^{-1}A_{N}\gamma A_{B}^{-1}A_{\cdot,I} \overset{!}{\geq} 0$
+	\item Gilt $z_{N} \geq 0$: $\hat{x}$ löst LP (mit dualer Variable $y$)
+	\item Andernfalls: Wähle $j\in \N$ mit $z_{j}<0$.
+
+		Frage: Wie groß kann $x_{j}$ gewählt werden, ohne $P$ zu verlassen?
+
+		Wir wählen das neue $x_{N}$ als $\gamma e_{j}$ mit zu bestimmenden $\gamma$.
 		\begin{itemize}
 			\item Wähle $\gamma = \min \set*{ \frac{\hat{x}_{i}}{w_{i}}|w_{i} > 0 }$
 			\item Andernfalls wähle $i \in B$ mit $\gamma = \frac{\hat{x}_{i}}{w_{i}}$
