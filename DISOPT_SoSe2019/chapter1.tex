@@ -164,19 +164,17 @@ Tableau-Methode für %TODO: was sollen uns diese Zeilen sagen?
 	\min_{x}c^Tx \text{ subject to } Ax \leq b , x \geq 0
 \end{equation*}
 \section{Duales Simplex-Verfahren}
-primales LP
-\begin{equation*}\label{primalLP}
-	\min_{x}c^{T} x \text{ subject to }Ax = b, x \geq 0 \tag{P}
-\end{equation*}
-duales LP
-\begin{equation*}\label{dualLP}
-	\max_{y}b^{T} y \text{ subject to }A^{T} y \leq c, y \geq 0 \tag{D}
-\end{equation*}
-Annahme $A \in \R^{m \times n}$ hat Rang $m$ \\
-$B$ Basis $\implies x_{B}= A^{-1}_{B}b, x_{N}=0$\nl
-\underline{Idee:} Wende Simplex-Verfahren auf (D) an.\\
-$\to$ duale Normalform:
-\begin{equation*}\label{dualnf}
+\begin{align}
+  \text{primales LP} && \min_{x}c^{T} x \text{ subject to }Ax = b, x \geq 0 \tag{P} \label{primalLP} \\
+  \text{duales LP} && \max_{y}b^{T} y \text{ subject to }A^{T} y \leq c, y \geq 0 \tag{D}\label{dualLP}
+\end{align}
+Wir nehmen wieder an, dass $A \in \R^{m \times n}$ Rang $m$ hat.
+
+Für eine Basis $B$ ist wie bisher $x_{B}= A^{-1}_{B}b, x_{N}=0$.
+
+\underline{Idee:} Wende Simplex-Verfahren auf \eqref{dualLP} an.
+Dafür führe \eqref{dualLP} in die duale Normalform:
+\begin{equation}\label{dualnf}
 	\max_{y} b^{T} y \text{ subject to }
 	\begin{pmatrix}
 		A^{T} & I
@@ -185,13 +183,13 @@ $\to$ duale Normalform:
 	y\\z
 	\end{pmatrix}
 	= c, \quad z \geq 0, \quad y \in \R^m \tag{D'}
-\end{equation*}
-Basis von (D'):$
+\end{equation}
+Basis von \eqref{dualnf}: $
 \begin{pmatrix}
 	\underbrace{A^{T}}_{m} \underbrace{I}_{n}
 \end{pmatrix}
 \in R^{n \times(m +n)}$
-Basis $H \subset \set{1,\dots ,n+m }$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär
+Basis $H \subset \set{1,\dots ,n+m }$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär.
 \begin{theorem}
 	Entweder (D') ist unzulässig oder unbeschränkt oder es gibt eine optimale Basislösung $(y^*,z^*)$ so dass die zugehörige basis von der Form ist:
 	\begin{equation*}
