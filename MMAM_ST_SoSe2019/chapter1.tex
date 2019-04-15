@@ -51,6 +51,8 @@ Einige Beispiele
 			\caption{links: konvexe Funktion, rechts: glm. konvexe Funktion}
 			\label{fig:glmkonvexefunktion}
 			\end{figure}
+
+			Man kann Konvexität in einfachen Fällen auch erkennen, dass gilt: "Jede Verbindungslinie zwischen zwei beliebigen Funktionswerten befindet sich überhalb des Graphen"
 			
 	\end{enumerate}
 	Es gilt außerdem
@@ -120,7 +122,8 @@ Seien $x,y \in X$ und $c \in [0,1]$ und $z = cx +(1-c)y$
 \begin{align*}
 	\implies & f(x) \geq f(z) + \nabla f(z)^{T}(x-z) + \mu \norm{x-z} ^2 \\
 			 &f(y) \geq f(z) + \nabla f(z)^{T}(y-z) + \mu \norm{y-z} ^2 \\
-	\overset{\text{Add.}}{\implies} &cf(x) + (1-c)f(y) \geq f(z) + \nabla f(z)^{T}[c(x-z) + (1-c)(y-z)] +  \underbrace{\mu c \norm{x-z} ^2 + \mu(1-c) \norm{y-z} ^2}_{2\mu c(1-c) \norm{x-y} ^2}  \\
+	\overset{\text{Add.}}{\implies} &cf(x) + (1-c)f(y) \geq f(z) + \nabla f(z)^{T}[c(x-z) + (1-c)(y-z)] \\
+									&\qquad\qquad\qquad\qquad\qquad+\underbrace{\mu c \norm{x-z} ^2 + \mu(1-c) \norm{y-z} ^2}_{2\mu c(1-c) \norm{x-y} ^2}  \\
 	\implies &f \text{ glm. konvex.}
 \end{align*}
 
@@ -166,7 +169,7 @@ Und damit folgt
 
 \end{proof}
 
-\section{Verallgemeinerungen von Konvexität}%
+\section*{Verallgemeinerungen von Konvexität}%
 \label{sec:Verallgemeinerungen von Konvexität}
 
 \begin{definition}
@@ -281,3 +284,221 @@ f \text{ konvex } \implies f \text{ quasikonvex }
 	\label{fig:übersichtkonvex}
 \end{figure}
 
+\section{Monotone Funktionen}%
+\label{sec:Monotone Funktionen}
+
+\begin{definition}
+\label{thm:monotonefunktionen}
+	Sei $X \in \R^{n}$ und $F \colon X \rightarrow \R^{n}$. Dann heißt $F$
+	\begin{itemize}
+		\item \underline{monoton}, wenn gilt: $\forall x,y \in X$
+			\[
+				\left( F(x) - F(y) \right)^{T}(x-y) \geq 0	
+			.\] 
+		\item \underline{strikt monoton}, wenn gilt: $\forall x,y \in X$ mit $x \neq y$
+			\[
+				( F(x) - F(y) )^{T}(x-y) > 0	
+			.\] 
+		\item \underline{gleichmäßig monoton}, wenn gilt: $\exists \mu > 0, \forall x, y \in X$
+			\[
+				( F(x) - F(y) )^{T}(x-y) \geq \mu \norm{x-y} _{2}^{2}
+			.\] 
+	\end{itemize}
+\end{definition}
+
+\begin{beispiel}
+\label{thm:beispielmonotonefunktionen1}
+	Sei $f \colon \R \rightarrow \R $ monoton, d.h. $\forall x,y \in \R $
+	\[
+		(f(x)-f(y))^{T}(x-y) \geq 0
+	.\]
+	\begin{center}
+			Fall 1: $x > y \implies f(x) \geq f(y)$
+
+			Fall 2: $x < y \implies f(x) \leq f(y)$
+	\end{center}
+
+	Im Fall $n=1$ entspricht $F$ monoton der Eigenschaft, dass $F$ monoton \underline{wächst}.
+\end{beispiel}
+
+Es gilt
+\[
+F \text{ glm. mon. } \implies F \text{ strikt mon. } \implies F \text{ monoton}
+.\] 
+
+\begin{beispiel}
+\label{thm:beispielmonotonefunktionen2}
+	\begin{itemize}
+		\item $f(x) \equiv c$ is monoton, aber nicht strikt monoton
+		\item $f(x) = e^{x}$ is strikt monoton, aber nicht gleichmäßig monoton
+		\item Sei $f(x) = Ax + b$ mit $ A \in \R^{n \times n}$. Dann gilt
+			\begin{align*}
+				f \text{ monoton } &\iff A \text{ positiv semidefinit} \\
+				f \text{ strikt monoton } &\iff A \text{ positiv definit } \iff f \text{ glm. monoton}
+			\end{align*}
+			
+	\end{itemize}
+\end{beispiel}
+
+\begin{satz}
+\label{thm:monotonefunktionenäquivalenzen}
+	Sei $X \subseteq \R^{n}$ nichtleer, konvex, affin und $f \colon X \rightarrow \R $ stetig diffbar. Dann gilt
+	\begin{enumerate}[label=(\alph{enumi})]
+		\item $f$ ist konvex $\iff$ $F(x):= \nabla f(x)$ monoton
+		\item $f$ ist strikt konvex $\iff$ $\nabla f$ strikt monoton
+		\item $f$ ist gleichmäßig konvex $\iff$ $\nabla f$ glm. monoton
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+\label{thm:monotonefunktionenäquivalenzenbeweis}
+\begin{itemize}
+	\item (c)
+		\begin{itemize}
+			\item "$\implies$": Sei $f$ gleichmäßig konvex. Dann gilt für alle $x,y \in X$ und $\mu>0$ fest:
+		\begin{align*}
+			f(x) - f(y) &\geq \nabla f(y)^{T}(x-y) + \mu \norm{x-y} _{2}^2 \\
+			f(y) - f(x) &\geq \nabla f(x)^{T}(y-x) + \mu \norm{y-x} _{2}^2
+		\end{align*}
+		Addieren der Ungleichung ergibt
+		\[
+			0 \geq (\nabla f(y) - \nabla f(x))^{T}(x-y) + 2 \mu \norm{x-y} _{2}^2
+		.\] 
+		Also ist $\nabla f$ gleichmäßig monoton
+
+			\item "$\Longleftarrow$": Sei $\nabla f$ glm. monoton, d.h. es gibt $\mu>0$ mit 
+				\[
+					\forall x,y \in X : (\nabla f(x) - \nabla f(y))^{T}(x-y) \geq \mu \norm{x-y} _{2}^2
+				.\] 
+				Seien $x,y \in X$ beliebig. Dann gibt es nach dem Mittelwertsatz ein $c \in(0,1)$ mit
+				\[
+					\label{eq:mon1}\tag{$\ast$}
+					f(x) -f(y) = \nabla f(y + c(x-y))^{T}(x-y)
+				.\] 
+				Wegen der glm. Monotonie gilt
+				\[
+					\label{eq:mon2}\tag{$\ast\ast$}
+					c(\nabla f(y+c(x-y))-\nabla f(y))^{T}(x-y) \geq c^2 \norm{x-y} _{2}^2
+				.\] 
+				Also folgt:
+				\begin{align*}
+					f(x)-f(y) \overset{\href{eq:mon1}{(\ast)}}&{=} \nabla  f(y+ c(x-y))^{T}(x-y) \\
+															  & \geq \nabla  f(y)^{T}(x-y) + \underbrace{\mu c}_{=:\tilde{\mu}(c)} \norm{ x-y } _{2}^2 
+				\end{align*}
+
+				Problem : $c \in (0,1)$ kann beliebig klein werden:
+
+				\underline{Lösungsansatz:} 
+				% TODO : Bild 1 einfügen
+
+				Wähle $ m \in \N$ beliebig, definiere
+				\begin{align*}
+					t_{k}&:= \frac{k}{m+1} \text{ für } k=0, \ldots, m+1 \\
+					x_{k}&:= y + t_{k}(x-y)
+				\end{align*}
+				Der Mittelwertsatz impliziert $\forall k=0, \ldots, m ~\exists c_{k} \in(t_{k}, t_{k+1})$:
+				\[
+					f(x_{k+1}) -f(x_{k}) = \nabla  f(y + c_{k}(x-y))^{T}\underbrace{x_{k+1}- x_{k}}_{= (t_{k+1}- t_{k})(x-y)} 
+				.\] 
+				Damit folgt:
+				\begin{align*}
+					f(x)-f(y) &= f(x_{m+1}) - f(x_{0}) \\
+							  &= \sum_{k=0}^{m}{f(x_{k+1}) - f(x_{k})} \\
+							  &= \sum_{k=0}^{m}{(t_{k+1}-t_{k})\nabla f(y+c_{k}(x-y))^{T}(x-y)} \\
+							  &+ \sum_{k=0}^{m}{(\nabla f(y) - \nabla f(x))^{T}\underbrace{t_{k+1}-t_{k})(x-y)}_{= x_{k+1}-x_{k}}} \\
+							  &= \nabla f(y)^{T}(x-y) \\
+							  &+ \sum_{k=0}^{m}{(t_{k+1}-t_{k})\left[ \nabla f(y+c_{k}(x-y)) - \nabla f(y) \right] ^{T} \underbrace{(x-y)}_{=\frac{1}{c_{k}}\left[ y + c_{k}(x-y) - y \right] } } \\
+							  &\geq \nabla f(y)^{T}(x-y) \\
+							  &+ \sum_{k=0}^{m}{\frac{t_{k+1}- t_{k}}{c_{k}} \mu c_{k}^2 \norm{x-y} _{2}^2} \\
+							  &= \nabla f(y)^{T}(x-y) + \frac{\mu \norm{x-y} _{2}}{m+1} \underbrace{\sum_{k=0}^{m}{\underbrace{c_{k}}_{\geq t_{k}= \frac{k}{m+1}} }}_{\geq \frac{m}{2}}   \\
+							  &\geq \nabla f(y)^{T}(x-y) + \mu  \norm{x-y} ^2 \cdot \underbrace{\frac{m}{2(m+1)}}_{\rightarrow \frac{1}{2} \text{ für } m \rightarrow \infty} 
+				\end{align*}
+		\end{itemize}
+
+\item (a): funktioniert wie (c) mit $\mu =0$ und ohne Intervallaufteilung. 
+\item (b): funktioniert wie (c) mit $\mu =0$ mit strikten Ungleichungen und ohne Intervallaufteilung.
+\end{itemize}
+\end{proof}
+
+\begin{satz}
+\label{thm:monotonefunktionenunddefinitheit}
+	Sei $X \subseteq \R^{n}$ nichtleer, affin, konvex und $F \colon X \rightarrow \R^{n} $ stetig diffbar. Dann gilt:
+	\begin{enumerate}[label=(\alph{enumi})]
+		\item $F$ monoton $\iff$ $\forall x \in X$ : $F(x)$ positiv semidefinit, d.h.
+			\[
+				d^{T}F'(x)d \geq 0 \quad \forall d \in \R^{n}
+			.\] 
+		\item $F$ strikt monoton $\Longleftarrow$ $\forall x \in X$ : $F'(x)$ ist positiv definit, d.h.
+			\[
+				d^{T}F'(x)d >  \quad \forall d \in \R^{n}\setminus \left\{ 0 \right\} 
+			.\] 
+		\item $F$ glm. monoton $\iff$ $\exists \mu > 0 ~ \forall x \in X$ : $F'$ glm. positiv definit
+			\[
+				d^{T} F'(x) d \geq \mu \norm{d} ^2 \quad \forall d \in \R^{n}
+			.\]
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+\label{thm:monotonefunktionenunddefinitheitbeweis}
+\begin{itemize}
+	\item (c)
+		\begin{itemize}
+			\item "$\implies$" : Sei $F$ glm. monoton, d.h. $\exists \mu > 0 ~ \forall x,y \in X$ : 
+				\[
+				(F(x)-F(y))^{T}(x-y) \geq \mu \norm{x-y} _{2}^2
+				.\] 
+				Sei $x \in X, d \in \R^{n}$ beliebig. Dann gilt
+				\begin{align*}
+					d^{T} \underbrace{F'(x)d}_{=F'(x;d)} &= \lim_{t \downarrow 0}  \frac{td^{T}(F(x+td) - F(x))}{t^2} \\
+														 &\geq \lim_{t \downarrow 0}  \frac{\mu  t^2 \norm{d} ^2}{t^2} = \mu  \norm{d} ^2
+				\end{align*}
+				Das bedeutet $F'$ ist glm. positiv definit.
+
+			\item "$\Longleftarrow$" : Sei $F'$ glm. positiv definit, d.h. $\exists \mu >0 ~ \forall x \in X ~ \forall d \in \R^{n}$ : 
+				\[
+					d^{T}F'(x)d \geq \mu \norm{d} _{2}^2
+				.\] 
+				Seien $x,y \in X$ beliebig. Dann gilt
+				\begin{align*}
+					(F(x)-F(y))^{T}(x-y) &= \int_{0}^{1} \underbrace{(x-y)^{T}F'(y+ \tau (x-y))(x-y)}_{\geq \mu \norm{x-y} _{2}^2} \d \tau \\
+										 &\geq \mu  \norm{x-y} _{2}^2
+				\end{align*}
+		\end{itemize}
+	\item (a) funktioniert wie (c) mit $\mu =0$
+	\item (c) "$\Longleftarrow$" wie (c) mit $\mu =0$ und $F'$ positiv definit
+
+		["$\implies$" geht kaputt wegen $\lim\limits_{t \downarrow 0}$ ]
+\end{itemize}
+\end{proof}
+
+\begin{folgerung}
+\label{thm:monotonefunktionenkonvexefunktionenfolgerung}
+% TODO : Flussdiagramm
+\end{folgerung}
+
+\begin{definition}
+\label{thm:pseudoquasimonoton}
+	Sei $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n} $
+	\begin{enumerate}[label=(\alph{enumi})]
+		\item  $F$ heißt \underline{pseudomonoton} $\iff$ $\forall x,y \in X$ : 
+			\[
+				F(y)^{T}(x-y) \geq 0 \implies F(x)^{T}(x-y) \geq 0
+			.\] 
+		\item $F$ heißt \underline{quasimonoton} $\iff$ $\forall x,y \in X$ :
+			\[
+				\min \left\{ F(x)^{T}(x-y), F(y)^{T}(y-x) \right\} \leq 0
+			.\] 
+	\end{enumerate}
+
+	Man kann zeigen:
+	\begin{itemize}
+		\item $f$ pseudokonvex $\iff$ $\nabla f$ pseudomonoton
+		\item Ist $F$ pseudomonoton, so gilt $\forall x,y \in X$ :
+			\[
+				F(y)^{T} (x-y) > 0 \implies F(x)^{T} (x-y) > 0
+			.\] 
+		\item Ist $F$ quasimonoton und diffbar, so ist $\nabla F$ quasimonoton
+	\end{itemize}
+	
+\end{definition}
