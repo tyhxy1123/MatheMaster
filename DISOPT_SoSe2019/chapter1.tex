@@ -278,48 +278,58 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
   	\underline{Problemstellung} Eine vorgegebene Anzahl von Objekten soll möglichst materialsparend aus einem Grundstoff zugeschnitten werden.\\
   	\underline{konkretes Beispiel}: Eine Firma produziert Metallstangen mit Länge $100$cm. Werden kürzere Stangen bestellt muss die Firma $100$cm lange Stangen zerschneiden. Ziel der Firma ist es, die Bestellungen zu erfüllen und dafür möglichst wenige Stangen zerschneiden zu müssen.\\
   	Bestellung:
-  	\begin{tabular}{c|c}
-		Länge in cm & Anzahl bestellt}\\
-      	\hline
-      	$25$ & $80$ \\
-      	$30$ & $75$ \\
-      	$35$ & $105$ \\
-	\end{tabular}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|c}
+			Länge in cm & Anzahl bestellt}\\
+      		\hline
+      		$25$ & $80$ \\
+      		$30$ & $75$ \\
+      		$35$ & $105$ \\
+  		\end{tabular}
+	\end{table}
 	\underline{Modellierung} 
 	\begin{enumerate}
 		\item Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$. Wieviele Stäbe der Länge $25,30,35$ cm daraus geschnitten werden sollen.
 			\begin{align*}\label{model_cutting_1}
 				\implies \forall i & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100\\
-								   & \sum_{i}^{} x_{i1} \geq 80\\
-								   & \sum_{i}^{} x_{i2} \geq 75\\
-								   & \sum_{i}^{} x_{i3} \geq 105\\
+								   &
+								   \begin{rcases}
+								   		 \sum\limits_{i}^{} x_{i1} \geq 80\\
+								   		 \sum\limits_{i}^{} x_{i2} \geq 75\\
+								   		 \sum\limits_{i}^{} x_{i3} \geq 105 
+									 \end{rcases} \tag{$\Delta$}
 			\end{align*}
-			% TODO rcases für die obigen 3 bedingungen und tag mit \Delta und füge das in der folgenden align umgebung ein
 			Zielfunktion: minimiere $k_{i}=$ Anzahl der Stäbe $i = 1,\dots ,k$\\
 			Idee: Für jeden Stab $i$ führe eine Variable $y_{i} \i \left\{0,1 \right\}$ ein, die entscheidet, ob der Stab verwendet wird oder nicht.\\
 			maximale Anzahl benötigte Stäbe $\leq 80 + 75 +1005 = 260$ 
+			% use label instead of referencing it directly
 			\begin{align*}
-				\implies \min_{x,y}\sum_{i=1}^{260} y_{i} \text{ subject to } x_{i1},x_{i2},x_{i3} \in \N_{0}, y_{i}\in \left\{0,1 \right\} , \eqref{model_cutting_1},\\
+				\implies \min_{x,y}\sum_{i=1}^{260} y_{i} &\text{ subject to } x_{i1},x_{i2},x_{i3} \in \N_{0}, y_{i}\in \left\{0,1 \right\} , (\Delta),\\
 				& \forall i = 1,\dots ,260 : 25x_{i1} + 30x_{i2} + 35x_{i3} \leq 100y_{i}
 			\end{align*}
 			
  		\item Schnittmuster\\
      	Führe eine Variable $x_{i} \in \N_{0}$ ein für jedes Schnittmuster $i$, nach dem eine Stange zerschnitten werden kann: 
-     	\begin{tabular}{c|c|c|c}
-      	Schnittmuster & # $25$ cm Stäbe & # $30$ cm Stäbe & # $35$ cm Stäbe\\
-      	\hline
-      	1 & 4 & 0 & 0\\
-          & 3 & 0 & 0\\
-      	2 & 2 & 1 & 0\\
-      	3 & 2 & 0 & 1\\
-      	4 & 1 & 2 & 0\\
-      	5 & 1 & 1 & 1\\
-      	6 & 1 & 0 & 2\\
-      	7 & 0 & 3 & 0\\
-      	8 & 0 & 2 & 1\\
-      	9 & 0 & 1 & 2\\
-    	\end{tabular}{c|c|c|c}
-    	Optimierungsproblem:
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{c|c|c|c}
+      		Schnittmuster & # $25$ cm Stäbe & # $30$ cm Stäbe & # $35$ cm Stäbe\\
+      		\hline
+      		1 & 4 & 0 & 0\\
+        	  & 3 & 0 & 0\\
+      		2 & 2 & 1 & 0\\
+      		3 & 2 & 0 & 1\\
+      		4 & 1 & 2 & 0\\
+      		5 & 1 & 1 & 1\\
+      		6 & 1 & 0 & 2\\
+      		7 & 0 & 3 & 0\\
+      		8 & 0 & 2 & 1\\
+      		9 & 0 & 1 & 2\\
+    		\end{tabular}
+		\end{table}
+		
+         	Optimierungsproblem:
     	\begin{align*}
 			\min_{x} \sum_{i=1}^{9} x_{i}& \text{ subject to } x \in \Z_{0}, x\geq 0         \\
 										 & \text{mindestens } 80 \text{Stäbe mit }25\text{cm} 4x_{1} + 2x_{2} + 2x_{3} + x_{4} + x_{5} + x_{6} \geq 80\\
@@ -382,8 +392,8 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 		\item Sei $x_{\alpha} \in \R^n$ eine Lösung des relaxierten Problems.
 			\begin{enumerate}[label = \arabic*. Fall:]
 				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP
-				\item $x^* \not \in \Z^n
-				\begin{itemize}
+				\item $x^* \not \in \Z^n$
+					\begin{itemize}
 					\item Branch & Bound Verfahren \\
 					$\implies$ zwei neue Lps
 					\begin{align*}
@@ -402,8 +412,118 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 					%TODO get the numbering right nested itemize environments are weird			
 		\end{itemize}
 \end{enumerate}
- 
-  
 \end{beispiel}
+\subsection{Polyeder}
+\begin{definition}
+	\begin{itemize}
+		\item Eine Menge $P\subset \R^n$ heißt Polyeder, wenn man sie durch endlich viele lineare Ungleichung beschreiben kann.
+		\item \underline{natürliche Form} eines Polyeders
+			\begin{align*}
+				P(A,b) &= \left\{ x \in \R^n\ | \ a^{T}_{i} x \leq b_{i} \ \forall i =1,\dots ,n \right\}\\
+					   & \left\{ x \in \R^n \ | \ Ax \leq b \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
+			\end{align*}
+		\item \underline{Normalform} eines Polyeders	
+			\begin{equation*}
+				P(A,b) = \left\{ x \in \R^n \ | \ Ax = b, x\geq 0 \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
+			\end{equation*}
+		\item \underline{Polytop}:= beschränktes Polyeder ( $\iff P$ ist konvexe Hülle von endlich vielen Punkten)	
+		\item \underline{polyhedrischer kegel}:= Polyeder und Kegel ( $\iff P = \left\{x \ | \ Ax \leq 0 \right\}$)
+		\item P heißt \underline{rationales Polyeder}$\iff$ Es gibt $A\in\Q^{m \times n}, b \in \Q^m$ mit 
+			\begin{equation*}
+				P = P(A,b) = \left\{ x \in \R^n\ | \ Ax \leq b \right\}
+			\end{equation*}
+			Achtung 
+			\begin{align*}
+				P &= P(A,b) = \left\{ x \in \R\ | \ \sqrt{2}x \leq 0 \right\} \text{ ist ein rationales Polyeder}\\
+				  &= \left\{x \in \R \ | \ x \leq 0  \right\}
+			\end{align*}
+	\end{itemize}
+\end{definition}
+\underline{Annahme:} Wir betrachten (meistens) nur rationale Polyeder und gehen davon aus, dass die gegebene Darstellung $A,b$ rational ist.\\
+\underline{Notation:}
+\begin{align*}
+	B_{r}(x^*) &= \left\{ x \in \R^n \ | \ \|x - x^*\|<r \right\}\\
+	\overline{B_{r}(x^*)} &= \left\{ x \in \R^n \ | \ \|x - x^*\|\leq r \right\}
+\end{align*}
+\begin{align*}
+	x,y \in \R^n, \alpha \in \R: \alpha X &= \left\{ \alpha \cdot x \ |\ x \in X \right\}\\
+										  X + Y &=\left\{ x + y  \ |\ x \in X, y \in Y \right\}\\
+										  X - Y &= X + (-Y)
+\end{align*}
+Dimension von Polyedern?
+\begin{itemize}
+	\item Ist $U \subset  \R^n$ ein Unterraum, so ist $\dim(U)=$maximale Anzahl linear unabhängiger Vektoren
+	\item Ist $X \subset \R^n$, so ist die \underline{lineare Hülle} lin$(X)$ von $X$ der kleinste (bezüglich Inklusion) Unterraum $U$ von $\R^n$ mit $X \leq U$.
+	\item Eine Menge $A \subset  \R^n$ heißt \underline{affiner Unterraum}, wenn gilt $U:=A-a^*$ (mit $a^* \in A$ beliebig) ist ein Unterraum.
+		Wir definieren $\dim(A) := \dim(U)$ 
+	\item Konvention $\dim\emptyset=-1$ 
+	\item Ist $X\subset \R^n$, so ist die \underline{affine Hülle} $\aff(X)$ von $X$ ist der kleinste (bzgl. Inklusion) affine Unterraum $A$ mit $X\subset A$.
+		Wir definieren $\dim(X):=\dim(A)$ (funktioniert gut für konvexe Mengen)\\
+		Seien $x_{1},\dots ,x_{m}\in\R^n$:
+	\item \underline{lineare Hülle}: $\lin(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\in \R \right\}$
+	\item \underline{affine Hülle}: $\aff(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\in \R, \sum_{i=1}^{m} c_{i}= 1 \right\}$
+	\item \underline{konvexe Hülle}: $\conv(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0, \sum_{i=1}^{m} c_{i}= 1 \right\}$
+	\item (konvexe) \underline{konische Hülle}: $\cone(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0 \right\}$
+	\item Sei $X \subset \R^n$ nichtleer. Dann ist das \underline{relative Innere} von $X$ definiert als 
+		\begin{equation*}
+			\rint(X):= \left\{ x^* \in X \ |\ \exists r >0 \text{ mit } B_{r}(x^*)\cap\aff(X) \subset X \right\}
+		\end{equation*}
+		der \underline{relative Rand} von $X$ ist definiert als 
+		\begin{equation*}
+			\rbd(X) := \overline{X}\backslash \rint(X)
+		\end{equation*}
+	\begin{bemerkung}
+		\begin{itemize}
+			\item Es gilt immer $\int(X)\subset \rint(X) \subset X \subset \overline{X}$
+			\item Ist $X$ \underline{konvex}, so ist $\rint(X)\noteq \emptyset$ und $\dim X= \dim(\rint(X))$
+			\item Ist  $P = P(A,b) \subset \R^n$ ein Polyeder, so gilt $\dim P=n \iff \int P \noteq \emptyset \iff \exists x^* \in \R^n: Ax^*<b$
+		\end{itemize}
+	\end{bemerkung}
+\end{itemize}
+\subsection{Rand von Polyedern}
+\begin{definition}
+	Sei $P \subset \R^n$ ein Polyeder
+	\begin{itemize}
+		\item Dann heißt $a^{T} x \leq \beta$ mit $a \in \R^n, \beta \in \R$ heißt eine \underline{gültige Ungleichung} für $P$, wenn gilt
+			 \begin{equation*}
+				\forall x \in P: a^{T} x \leq \beta
+			\end{equation*}
+	\end{itemize}
+\end{definition}
+\begin{beispiel}
+	$a^{T} x \leq 0$ ist eine gültige Ungleichung für jedes Polyeder $P$.
+	 \begin{itemize}
+		\item Ist $a^{T} x \leq \beta$ eine gültige Ungleichung für $P$, so heißt 
+			\begin{equation*}
+				F = P \cap \left\{ x \in \R^n\ |\ a^{T} x = \beta \right\}
+			\end{equation*}
+			eine \underline{Seitenfläche} (Face) von $P$ 
+		\item Eine Seitenfläche $F$ heißt \underline{echt} (proper), wenn gilt $\emptyset \noteq F \noteq P$
+	\end{itemize}
+\end{beispiel}
+\begin{beispiel}
+	$o^{T} x \leq 0 \implies F = P, o^{T} x \leq 1 \implies F = \emptyset$ 
+	\begin{itemize}
+		\item Eine echte Seitenfläche $F$ von $P$ heißt \underline{Facette}, wenn sie in keiner anderen \underline{echten} Seitenfläche von  $P$ enthalten ist.
+	\end{itemize}
+\end{beispiel}
+\begin{definition}
+	Sei $P = P(A,b) \subset \R^n$ ein Polyeder
+	\begin{itemize}
+		\item Sei $F$ eine Seitenfläche von $P$. Dann heißt 
+			\begin{equation*}
+				\eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i} \forall x \in F \right\}
+			\end{equation*}
+			die \underline{Menge der aktiven/bindenden Restriktionen} von $F$.
+		\item Die Menge $\eq(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forallx \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
+		\item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt $\fa(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
+			$\fa(I)$ ist eine Seitenfläche mit der gültigen Ungleichung 
+			\begin{equation*}
+				a^{T} x \leq \beta
+			\end{equation*}
+			mit $a^{T} = \sum_{i \in I}^{} A_{i,\cdot}, \beta = \sum_{i \in I}^{} b_{i}$. Zu zeigen $F = fa(eq(F))$
+	\end{itemize}
+	
+\end{definition}
 
 
