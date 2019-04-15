@@ -34,7 +34,7 @@ ganzzahlige Lineare Programme:
 		\end{enumerate} 
 	\item KKT-Bedingungen für LPs
 		\begin{itemize}
-			\item $x^*$ löst \eqref{primal_cont} 
+			\item $x^*$ löst \eqref{nf} 
 			\item $y^*$ löst \eqref{dual_cont}
 			\item $(x^*,y^*)$ lösen das KKT-System 
 				\begin{align*}
@@ -136,7 +136,7 @@ Simplex-Phase 1: Löse das Hilfsproblem
 	\end{pmatrix}
 	\quad,(x,s)& \geq 0
 \end{align*} 
-Gilt in einer Lösung ($x^0$), dass $s^* =0$, so ist das $x^*$ zulässig für \eqref{nf} und die Basis des Hilfsproblems \glqq ist\grqq\ eine primal zulässige Basis für \eqref{primal_cont}. 
+Gilt in einer Lösung ($x^0$), dass $s^* =0$, so ist das $x^*$ zulässig für \eqref{nf} und die Basis des Hilfsproblems \glqq ist\grqq\ eine primal zulässige Basis für \eqref{nf}. 
 Primal zulässige Startbasis für Hilfsproblem
 \begin{equation*}
 	x = 0, s = b \geq 0, \text{ Basismatrix } I
@@ -281,7 +281,7 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{c|c}
-			Länge in cm & Anzahl bestellt}\\
+			Länge in cm & Anzahl bestellt\\
       		\hline
       		$25$ & $80$ \\
       		$30$ & $75$ \\
@@ -294,11 +294,11 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 			\begin{align*}\label{model_cutting_1}
 				\implies \forall i & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100\\
 								   &
-								   \begin{rcases}
+								  	\begin{rcases}
 								   		 \sum\limits_{i}^{} x_{i1} \geq 80\\
 								   		 \sum\limits_{i}^{} x_{i2} \geq 75\\
 								   		 \sum\limits_{i}^{} x_{i3} \geq 105 
-									 \end{rcases} \tag{$\Delta$}
+									\end{rcases} \tag{$\Delta$}
 			\end{align*}
 			Zielfunktion: minimiere $k_{i}=$ Anzahl der Stäbe $i = 1,\dots ,k$\\
 			Idee: Für jeden Stab $i$ führe eine Variable $y_{i} \i \left\{0,1 \right\}$ ein, die entscheidet, ob der Stab verwendet wird oder nicht.\\
@@ -314,7 +314,7 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 		\begin{table}[H]
 			\centering
 			\begin{tabular}{c|c|c|c}
-      		Schnittmuster & # $25$ cm Stäbe & # $30$ cm Stäbe & # $35$ cm Stäbe\\
+      		Schnittmuster & \# $25$ cm Stäbe & \# $30$ cm Stäbe & \# $35$ cm Stäbe\\
       		\hline
       		1 & 4 & 0 & 0\\
         	  & 3 & 0 & 0\\
@@ -329,14 +329,16 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
     		\end{tabular}
 		\end{table}
 		
-         	Optimierungsproblem:
+         Optimierungsproblem:
     	\begin{align*}
-			\min_{x} \sum_{i=1}^{9} x_{i}& \text{ subject to } x \in \Z_{0}, x\geq 0         \\
-										 & \text{mindestens } 80 \text{Stäbe mit }25\text{cm} 4x_{1} + 2x_{2} + 2x_{3} + x_{4} + x_{5} + x_{6} \geq 80\\
-										 & 75\text{mit } 30 \text{cm} x_{2} + 2x_{4} + x_{5} + 3x_{7} + 2x_{8} + x_{9} \geq 75\\
-										 & 105\text{mit } 35 \text{cm} x_{3} + x_{5} + 2x_{6} + x_{8} + 2x_{9} \geq 105\\
+			\min_{x} \sum_{i=1}^{9} x_{i}& \text{ subject to } x \in \Z_{0}, x\geq 0
+		\end{align*}
+		\begin{align*}
+			\text{mindestens } &80 \text{ Stäbe mit }25\text{cm}& 4x_{1} + 2x_{2} + 2x_{3} + x_{4} + x_{5} + x_{6} &\geq 80\\
+							   &75\text{ Stäbe mit } 30 \text{cm}& x_{2} + 2x_{4} + x_{5} + 3x_{7} + 2x_{8} + x_{9} &\geq 75\\
+							   &105\text{ Stäbe mit } 35 \text{cm}& x_{3} + x_{5} + 2x_{6} + x_{8} + 2x_{9} &\geq 105
     	\end{align*}
-		% die rest riktionen als Hx defnieren und 80,75,105 als b
+		In Matrixform $Hx \leq b$.\nl
 		Vorteil: 
 		\begin{itemize}
 			\item Anzahl Restriktionen $=$ Anzahl verschiedener Stablängen
@@ -346,21 +348,23 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
  \end{enumerate}
 \underline{Lösung von Variante 2}
 \begin{enumerate}
-	\item Statt des ganzzahligen LPs $\min_{x} c^{T} x \text{ subject to } Mx \geq b, x \geq 0 , x \in \Z^{n}$. Löse das \underline{relaxierte LP} 
+	\item Statt des ganzzahligen LPs
+		\begin{equation*}
+			\min_{x} c^{T} x \text{ subject to } Mx \geq b, x \geq 0 , x \in \Z^{n}.
+		\end{equation*}
+		Löse das \underline{relaxierte LP} 
 	\begin{equation*}
 		\min_{x} c^{T} x \text{ subject to } Hx \geq b, x \geq 0 
 	\end{equation*}
 	\item Simplex-Verfahren für das relaxierte Problem:
 		\begin{itemize}
 			\item primal zulässige Startbasis?\\
-			$\to$ Für jede Stablänge $l = 25,30,35$ verwende das \glqq Einheitsschnittmuster\grqq\ bei dem die maximal mögliche Anzahl $\floor{\frac{100}{l}}$ von Stäben der Länge $l$ und keine anderen Stablängen geschnitten werden. \\
+			$\to$ Für jede Stablänge $l = 25,30,35$ verwende das \glqq Einheitsschnittmuster\grqq\ bei dem die maximal mögliche Anzahl $\lfloor\frac{100}{l}\rfloor$ von Stäben der Länge $l$ und keine anderen Stablängen geschnitten werden. \\
 			$\implies$ zugehörige Spalten in Basismatrix sind linear unabhängige Vielfache ovn Einheitsvektoren.\\
 		zugehörige Basisvariablen:
 		\begin{equation*}
-			x_{l} = \frac{b_{l}}{\floor{\frac{100}{l}}}
+			x_{l} = \frac{b_{l}}{\lfloor\frac{100}{l}\rfloor}
 		\end{equation*}
-		%TODO get floor command right or atleast use the proper brackets
-
 
 		\item $H$ kann sehr viele Spalten haben\\
 			\underline{Idee:} Immer nur die Spalten von $H$ bestimmen, die man aktuell braucht.\\
@@ -372,7 +376,7 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 			\begin{equation*}
 				y = A_{B}^{-T}c_{B}
 			\end{equation*}
-			$\to $ reduzierte kosten 
+			$\to $ reduzierte Kosten 
 			\begin{equation*}
 				z_{N} = c_{N} - A_{N}^{T} y
 			\end{equation*}
@@ -394,11 +398,11 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP
 				\item $x^* \not \in \Z^n$
 					\begin{itemize}
-					\item Branch & Bound Verfahren \\
+					\item Branch $\&$ Bound Verfahren \\
 					$\implies$ zwei neue Lps
 					\begin{align*}
-						\min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\leq \floor{x_{i}^*}\\
-						\min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\geq \ceiling{x_{i}^*}
+						\min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\leq \lfloor x_{i}^*\rfloor\\
+						\max_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\geq \lceil x_{i}^*\rceil
 					\end{align*}
 					\item Schnittebenen-Verfahren\\
 					Füge neue Ungleichung 
@@ -409,20 +413,19 @@ Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder um
 					\item (Runden)
 				\end{itemize}
 			\end{enumerate}
-					%TODO get the numbering right nested itemize environments are weird			
 		\end{itemize}
 \end{enumerate}
 \end{beispiel}
 \subsection{Polyeder}
 \begin{definition}
-	\begin{itemize}
+	\begin{itemize}\
 		\item Eine Menge $P\subset \R^n$ heißt Polyeder, wenn man sie durch endlich viele lineare Ungleichung beschreiben kann.
-		\item \underline{natürliche Form} eines Polyeders
+		\item \underline{natürliche Form} eines Polyeders:
 			\begin{align*}
 				P(A,b) &= \left\{ x \in \R^n\ | \ a^{T}_{i} x \leq b_{i} \ \forall i =1,\dots ,n \right\}\\
-					   & \left\{ x \in \R^n \ | \ Ax \leq b \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
+					   &= \left\{ x \in \R^n \ | \ Ax \leq b \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
 			\end{align*}
-		\item \underline{Normalform} eines Polyeders	
+		\item \underline{Normalform} eines Polyeders:
 			\begin{equation*}
 				P(A,b) = \left\{ x \in \R^n \ | \ Ax = b, x\geq 0 \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
 			\end{equation*}
@@ -473,10 +476,10 @@ Dimension von Polyedern?
 			\rbd(X) := \overline{X}\backslash \rint(X)
 		\end{equation*}
 	\begin{bemerkung}
-		\begin{itemize}
-			\item Es gilt immer $\int(X)\subset \rint(X) \subset X \subset \overline{X}$
-			\item Ist $X$ \underline{konvex}, so ist $\rint(X)\noteq \emptyset$ und $\dim X= \dim(\rint(X))$
-			\item Ist  $P = P(A,b) \subset \R^n$ ein Polyeder, so gilt $\dim P=n \iff \int P \noteq \emptyset \iff \exists x^* \in \R^n: Ax^*<b$
+		\begin{itemize}\
+			\item Es gilt immer $\interior(X)\subset \rint(X) \subset X \subset \overline{X}$
+			\item Ist $X$ \underline{konvex}, so ist $\rint(X)\neq \emptyset$ und $\dim X= \dim(\rint(X))$
+			\item Ist  $P = P(A,b) \subset \R^n$ ein Polyeder, so gilt $\dim P=n \iff \int P \neq \emptyset \iff \exists x^* \in \R^n: Ax^*<b$
 		\end{itemize}
 	\end{bemerkung}
 \end{itemize}
@@ -498,7 +501,7 @@ Dimension von Polyedern?
 				F = P \cap \left\{ x \in \R^n\ |\ a^{T} x = \beta \right\}
 			\end{equation*}
 			eine \underline{Seitenfläche} (Face) von $P$ 
-		\item Eine Seitenfläche $F$ heißt \underline{echt} (proper), wenn gilt $\emptyset \noteq F \noteq P$
+		\item Eine Seitenfläche $F$ heißt \underline{echt} (proper), wenn gilt $\emptyset \neq F \neq P$
 	\end{itemize}
 \end{beispiel}
 \begin{beispiel}
@@ -515,13 +518,14 @@ Dimension von Polyedern?
 				\eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i} \forall x \in F \right\}
 			\end{equation*}
 			die \underline{Menge der aktiven/bindenden Restriktionen} von $F$.
-		\item Die Menge $\eq(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forallx \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
-		\item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt $\fa(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
-			$\fa(I)$ ist eine Seitenfläche mit der gültigen Ungleichung 
+		\item Die Menge eq$(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forall x \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
+		\item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt fa$(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
+			fa$(I)$ ist eine Seitenfläche mit der gültigen Ungleichung 
 			\begin{equation*}
 				a^{T} x \leq \beta
 			\end{equation*}
-			mit $a^{T} = \sum_{i \in I}^{} A_{i,\cdot}, \beta = \sum_{i \in I}^{} b_{i}$. Zu zeigen $F = fa(eq(F))$
+			mit $a^{T} = \sum\limits_{i \in I}^{} A_{i,\cdot}, \beta = \sum\limits_{i \in I}^{} b_{i}$.\\
+			Zu zeigen $F = \text{fa(eq}(F))$
 	\end{itemize}
 	
 \end{definition}
