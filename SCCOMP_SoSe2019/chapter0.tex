@@ -137,7 +137,7 @@ The basic idea is:
 		\end{itemize}
 \end{itemize}
 
-\section{Finite difference on a grid}%
+\subsection{Finite difference on a grid}%
 \label{sec:Finite difference on a grid}
 Let $\Omega =(0, X_{E}) \times (0,Y_{E})$ and subdivide each interval into $N_{x}+1 / N_{y} + 1$ subintervals.
 
@@ -167,7 +167,8 @@ This results in the discrete Laplace operator $(h=h_{x}=h_{y})$
 	\laplace_{h}^{(5)}u_{i,j}=\frac{1}{2}(u_{i+1,j}+u_{i-1,j} +u_{i,j+1}+ u_{i,j-1} - 4u_{i,j})
 .\]
 
-\section{Node ordering}%
+\newpage
+\subsection{Node ordering}%
 \label{sec:Node ordering}
 To form a linear system, the nodes $(i,j)$ have to be numbered consecutively, i.e. we have to use a map
 \[
@@ -184,7 +185,14 @@ Examples:
 			l(i,j) = i \cdot (N_{y} + 2) + j
 		.\] 
 
-		% TODO Plot 1
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/lexi-ordering.tex}
+			\end{center}
+			\caption{Lexicographical ordering}
+			\label{fig:lexiorder}
+		\end{figure}
+		
 	\item Red-Black ordering (checkerboard ordering)
 
 		\begin{enumerate}[label=\arabic{enumii})]
@@ -192,23 +200,42 @@ Examples:
 			\item number each node lexicographically
 		\end{enumerate}
 
-		% TODO Plot 2 
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/red-black-ordering.tex}
+			\end{center}
+			\caption{Red-Black ordering}
+			\label{fig:redblackorder}
+		\end{figure}
 
 		Question 1: How many colors do you need in 3D?
 
 		Question 2: Does an analytic expression for $l(i,j)$ exist?
 	\item Cache-aware ordering (Cluster nodes into connected groups)
 
-		% TODO Plot 3
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/cache-ordering.tex}
+			\end{center}
+			\caption{Cache-aware ordering, enumeration along the arrow lines}
+			\label{fig:cacheorder}
+		\end{figure}
 		
 		This ordering scheme utilizes the fact, that data which is "located in a neighbourhood in memory respectively" can be accessed much quicker and thus fastens the operations used on the matrices.
 
 	\item Wave front orderings (diagonal ordering)
 
-		% TODO Plot 4
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/wave-ordering.tex}
+			\end{center}
+			\caption{Wave front ordering, enumeration along the arrow lines}
+			\label{fig:waveorder}
+		\end{figure}
+		
 \end{enumerate}
 
-\section{Assembling}%
+\subsection{Assembling}%
 \label{sec:Assembling}
 
 For the Poisson equation
@@ -235,7 +262,7 @@ we can assemble a linear system $Au=f$ by applying the discrete operator $\lapla
 	 A \stackeq{\wedge} -\laplace_{h}^{(5)}
 .\] 
 
-\section{Boundary conditions}%
+\subsection{Boundary conditions}%
 \label{sec:Boundary condition}
 For Dirichlet boundary condition the value $u$ at boundary nodes is fixed.
 
@@ -258,17 +285,29 @@ The boundary condition can be realized by eliminating rows/columns in the matrix
 \[
 A\cdot \underline{u} = \underline{f}  
 .\] 
-%TODO die Matrix sah anders aus.
-%re-TODO bin nur nicht fertig geworden -.-
-%\[
-%A = \begin{pmatrix}
-%	X& &X&0&X& &X \\
-%	 &X& &\vdots& &X&  \\
-%	X& &X&0&X& &X
-%	\end{pmatrix}
-%.\] 
+\[
+A = \begin{pmatrix}
+	X & 
+	\begin{matrix}
+		0 \\
+		\vdots
+	\end{matrix} & X \\
+	\begin{matrix}
+		0 & \cdots 
+	\end{matrix} & 1 &
+	\begin{matrix}
+		 \cdots & 0
+	\end{matrix}\\
+	X & \begin{matrix}
+	\vdots \\
+	0
+	\end{matrix}
+	  & X
+	
+	\end{pmatrix}
+.\] 
 
-\section{Structure of the matrix}%
+\subsection{Structure of the matrix}%
 \label{sec:Structure of the matrix}
 (before eliminating the boundary conditions)
 \begin{enumerate}[label=\alph{enumi})]
@@ -313,17 +352,17 @@ Variation of the PDE:
 .\] 
 Simple backward Euler scheme for $\partial_{t}$
 \[
-\frac{1}{\tau}u^{m+1}- \laplace u^{m+1} = f -\frac{1}{\tau}u^{m}
+\frac{1}{\mathcal{T}}u^{m+1}- \laplace u^{m+1} = f -\frac{1}{\mathcal{T}}u^{m}
 .\] 
-with $u^{m} \equiv u(t^{m})$ with $0=t^{0}<t^{1}< \ldots  < t^{md}$ and $\tau:=t^{m+1}-t^{m}$.
+with $u^{m} \equiv u(t^{m})$ with $0=t^{0}<t^{1}< \ldots  < t^{md}$ and $\mathcal{T}:=t^{m+1}-t^{m}$.
 
 The corresponding FD discretization reads:
 
 \[
-	\left(\frac{1}{\tau}I + A\right) u^{m+1} = f + \frac{1}{\tau}u^{m}
+	\left(\frac{1}{\mathcal{T}}I + A\right) u^{m+1} = f + \frac{1}{\mathcal{T}}u^{m}
 .\] 
 
-\section{Properties of the linear system}%
+\subsection{Properties of the linear system}%
 \label{sec:Properties of the linear system}
 
 \begin{definition}
@@ -350,7 +389,7 @@ Let $A$ be a (sparse) matrix. The graph $G_{A}=(V,E)$ with $E \subset V \times V
 \end{definition}
 
 \begin{definition}
-\label{thm:}
+\label{thm:irreducible}
 A matrix $A$ is called \underline{irreducible} if for $G_{A}=(V,E)$:
 \[
 	\forall i,j \in V ~:~ \exists \text{ sequence of edges } (e_0, e_1, \ldots , e_{n}) \subset E
@@ -362,8 +401,513 @@ such that
 
 (All vertices are connected by a sequence of edges)
 \[
-	\mathcal{R}:= \{A \in  \R^{n \times  n} | A \text{ is irreducible}\}
+	\mathcal{IR}:= \{A \in  \R^{n \times  n} | A \text{ is irreducible}\}
+.\] 
+\end{definition}
+
+\begin{definition}
+\label{thm:WDDmatrices}
+\begin{align*}
+	WDD:= &\left\{ A \in \R^{n \times n}, \abs{a_{j,j}}  \geq \sum_{i\neq j}^{}{\abs{a_{i,j}} } \quad \forall j \right\}  \\
+		 = &\left\{ A \in R^{n \times }, \abs{a_{i,i}} \geq \sum_{i\neq j}^{}{\abs{a_{i,j}} } \quad \forall i \right\} 
+\end{align*}
+are the weakly diagonal dominant matrices.
+\[
+DD:= \left\{ A \in WDD, \exists j : ">" \right\} 
+\] 
+are diagonal dominant matrices.
+\[
+SDD := \left\{ A \in WDD, \forall j : ">" \right\} 
+\] 
+are the strictly diagonal dominant matrices.
+\[
+IDD := \left\{ A \in DD, A \text{ is irreducible} \right\} 
+\] 
+are the irreducible diagonal dominant matrices.
+\end{definition}
+
+\begin{theorem}(Gershgorin)
+\label{thm:gershgorin}
+Any eigenvalue $\lambda \in \sigma (A)$ is located in one of the closed discs in the complex plane centered at $a_{i,i}$ and having the radius
+\[
+	\rho_{i} = \sum_{\substack{j=0 \\ j \neq i}}^{n}{\abs{a_{i,j}} }
+.\] 
+In other words : 
+\[
+	\forall \lambda \in \sigma (A) \exists i \text{ such that } \abs{\lambda - a_{i,i}}  \leq \sum_{\substack{j=0 \\ j \neq i}}^{n}{\abs{a_{i,j}} }
+.\] 
+\end{theorem}
+
+\begin{proof}
+\label{thm:gershgorinproof}
+	Let $x$ be an eigenvector associated to eigenvalue $\lambda$ and let $m$ be the index of the component with largest modulus in $x$.
+
+	Scale $x$, s.t.
+	\[
+	\abs{x_{m}}  = 1 \text{ and } \abs{x_{i}} \leq 1 \quad \forall i \neq m
+	.\] 
+	Since $x$ is an eigenvector to $A$, we have
+	\[
+		(\lambda - a_{n,m}) x_{m} = - \sum_{\substack{j=1 \\ j \neq m}}^{n}{\abs{a_{m,j}} x_{j}}
+	.\] 
+	Taking the absolute value of this, we get
+	\[
+		\abs{\lambda - a_{m,m}}  \leq \sum_{j\neq m}^{}{\abs{a_{m,j}} \abs{x_{j}} } \leq \sum_{j\neq m}^{}{\abs{a_{m,j}} } = \rho_{m}
+	.\] 
+\end{proof}
+\input{tikz/chapter0/gershgorin_disks.tex}
+\begin{theorem}
+\label{thm:gershgorinboundary}
+	Let $A$ be irreducible and assume that an eigenvalue $\lambda$ lies on the boundary of the union of all Gershgorin discs. Then $\lambda$ lies on the boundary of all Gershgorin discs.
+\end{theorem}
+
+\begin{proof}
+\label{thm:gershgorinboundaryproof}
+	Iterate proof of \href{thm:gershgorinproof}{the last proof} along the connecting edges of any pairs of nodes. Do this for all pairs and you get the result.
+\end{proof}
+
+\begin{corollary}
+\label{thm:gershgorinboundarycorollary1}
+	If $A$ is strictly diagonal dominant or $A$ is irreducible diagonal dominant, then $A$ is non-singular.
+\end{corollary}
+
+\begin{proof}
+\label{thm:gershgorinboundarycorollary1proof}
+	\begin{enumerate}[label=\alph{enumi})]
+		\item Assume $A \in SDD$.
+
+			Then the Gershgorin discs exclude the origin. This means $\lambda =0$ cannot be an eigenvalue of $A$.
+
+		\item Assume $A \in IDD$.
+
+			Then if it is singular, the zero eigenvalue lies on the boundary of the union of the Gershgorin discs. Together with \href{thm:gershgorinboundary}{Theorem 2} this implies that the eigenvalue should be located on the boundary of all discs.
+			\[
+				\implies \abs{a_{j,j}} = \sum_{i \neq j}^{}{\abs{a_{i,j}} } \qquad \forall j=0, \ldots , n
+			.\] 
+			$\lightning$, since $A$ is diagonal dominant.
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+\label{thm:gershgorinboundarycorollary2}
+	Let $A \in R^{n \times  n}$. If 
+	\[
+		A \in WDD \text{ and } A = A^{T} \text{ and } \text{diag}(A) \geq 0
+	,\] 
+	then $A$ is pos. semidefinite. 
+\end{corollary}
+
+\begin{proof}
+\label{thm:gershgorinboundarycorollary2proof}
+\begin{align*}
+& A \text{ symmetric} \\
+	\implies & \text{ eigenvalues are real} \\
+	\overset{(\ast)}{\implies} & \forall \lambda  \in \sigma (A) : \lambda  \geq 0
+\end{align*}
+[with $(\ast) = \text{diag(A)} \geq 0 + A \in WDD + $ \href{thm:gershgorin}{Theorem 1}] 
+\end{proof}
+
+\begin{summary}
+\label{thm:summarymatrices}
+The matrix $A = \laplace_{h}^{(5)}$ is 
+\begin{itemize}
+	\item symmetric $A = A^{T}$
+	\item $A \in WDD$
+	\item For Dirichlet boundary conditions we even have $A \in DD$
+	\item irreducible
+	\item $\text{diag}(A) \geq 0$
+\end{itemize}
+	$\implies A$ is positive definite and $A$ is $M_0$-matrix and thus $M$-matrix.
+\end{summary}
+
+\subsection{The non-zero structure of the matrix}%
+\label{sec non-zero structure of the matrix}
+
+A matrix $A \in \R^{n \times n}$ is called \underline{sparse matrix}, if the number of non-zero entries $(a_{i,j}\neq 0)$ is $\ll n^2$. Otherwise it is called a \underline{full matrix}. 
+
+\begin{definition}
+\label{thm:sparsetypes}
+A (sparse) matrix is called a \underline{banded matrix}  with bandwidth $M$ if
+\[
+a_{i,j}\neq 0 \text{ only if } i-m_{l} \leq j \leq i + m_{u}
+.\] 
+with $m_{l},m_{u} \in \N_{>0}$ the lower and upper bandwidth and $M:=m_{l} + m_{u} + 1$.
+\end{definition}
+
+What is the bandwidth of $\laplace_{h}^{(5)}$? (using lexicographical ordering)
+
+\begin{align*}
+\begin{bmatrix}
+	x & x &   &   & \\
+	x & x & x &   & \\
+	  & x & x & x & \\
+	  &   & x & x & \\
+	  &   &   &   & \ddots
+\end{bmatrix}
+\begin{bmatrix}
+	x &   &   &   & \\
+	  & \ddots &   &   & \\
+	  &   & \ddots &   & \\
+	  &   &   & \ddots & \\
+	  &   &   &   & x
+\end{bmatrix} \\
+\underbrace{ 
+\begin{bmatrix}
+	x &   &   &   & \\
+	  & \ddots &   &   & \\
+	  &   & \ddots &   & \\
+	  &   &   & \ddots & \\
+	  &   &   &   & x
+\end{bmatrix}}_{N_{x}+2}
+\underbrace{ 
+\begin{bmatrix}
+	x & x &   &   & \\
+	x & x & x &   & \\
+	  & x & x & x & \\
+	  &   & x & x & \\
+	  &   &   &   & \ddots
+\end{bmatrix}}_{A_0}
+\end{align*}
+
+The bandwidth of $A_0$ is 3.
+We can deduce the other constants with this information:
+\begin{itemize}
+	\item $m_{l}=m_{u}=N_{x}+2 (\text{ or } N_{y}+2)$
+	\item the boundary width of $A$ is $\O(n^{\frac{1}{2}})$ in 2D.
+\end{itemize}
+
+What is the number of non-zeros in $\laplace_{h}^{(5)} $?
+
+\[
+	nnz(A) \approx 5 \cdot n = 5(N_{x} +2)(N_{y} +2)
 .\] 
 
-%TODO besseres symbol für |R
-\end{definition}
+\subsection{Finite Difference Refinement}%
+\label{sec:Finite Difference Refinement}
+
+Denote by $\Omega_{h}$ the mesh of grid points of width $h$, i.e. 
+\[
+	(x_{i}, y_{j}) = (ih, jh)
+\] 
+and by $\Omega_{H}$ the mesh of grid points with width $H$. Assume here $H=2h$.
+
+\input{tikz/chapter0/grid_h_H.tex}
+
+Given a discrete solution $u^{h}$ at $\Omega_{h}$, how to transfer the values to a coarser/finer mesh?
+
+Answer: Use Interpolation!
+
+The transfer from fine mesh $\Omega_{h}$ to coarse mesh $\Omega_{H}$ is called "\underline{Restriction}", denoted by $R_{h}^{H}$ and the transfer from coarse to fine mesh is called "Prolongation" denoted by $P_{H}^{h}$.
+\[
+R_{h}^{H}: \Omega_{h} \rightarrow \Omega_{H}, \quad
+P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
+.\] 
+
+\begin{enumerate}[label=\Alph{enumi})]
+	\item Prolongation:
+		\begin{enumerate}[label=\underline{\arabic{enumi}D}]
+			\item The simplest operator is defined by polynomial (linear) interpolation
+		%TODO plot 1D interpolation Linie.
+		\input{tikz/chapter0/grid_stencil_1D.tex}
+		%\begin{figure}[ht!]
+		%	\begin{center}
+				%\includegraphics[width=0.5\textwidth]{pics/}
+		%	\end{center}
+		%	\caption{1D}
+		%	\label{fig:prolongation}
+		%\end{figure}
+		\begin{align*}
+			u_{2j}^{h} &= u_{j}^{H}  &\text{ for } j=0, \ldots, \frac{N+1}{2} \\
+			u_{2j+1}^{h} &= \frac{1}{2}(u_{j}^{H}+u_{j+1}^{H})
+		\end{align*}
+		In matrix form, we obtain
+		\[
+		u^{h}= \frac{1}{2}\begin{bmatrix}
+			1& & & & \\
+			2& & & & \\
+			1&1& & & \\
+			 &2& & & \\
+			 &1&1& & \\
+			 & &2& & \\
+			 & &1& & \\
+			 & & &\ddots& \\
+			 & & & &1 \\
+			 & & & &2 \\
+			 & & & &1
+		\end{bmatrix}u^{H}
+		.\] 
+		Because of the specific coefficients, the interpolation is denoted in a stencil form by
+		\[
+			P_{H}^{h} \overset{\wedge}{=} \frac{1}{2}
+			\left]
+			\begin{matrix}
+				1 & 2 & 1	
+			\end{matrix}
+			\right[
+		.\] 
+
+	\item The interpolation can be done in each coordinate direction.
+		We get a tensor-product of the two 1D rules
+		\begin{align*}
+			u_{2i, 2j}^{h} &= u_{i,j}^{H} &i=0, \ldots, \frac{N_{x}+1}{2} \\
+			u_{2i+1, 2j}^{h} &= \frac{1}{2}(u_{i,j}^{H}+u_{i+1,j}^{H}) &j=0, \ldots, \frac{N_{y}+1}{2} \\
+			u_{2i,2j+1}^{h} &= \frac{1}{2}(u_{i,j}^{H}+u_{i,j+1}^{H}) \\
+			u_{2i+1, 2j+1}^{h} &= \frac{1}{4}(u_{i,j}^{H}+ u_{i+1,j}^{H}+ u_{i,j+1}^{H}+ u_{i+1,j+1}^{H})
+		\end{align*}
+		In stencil form we get
+		\[
+			P_{H}^{h} \overset{\wedge}{=} \frac{1}{4}
+			\left]
+			\begin{matrix}
+				1 & 2 & 1 \\
+				2 & 4 & 2 \\
+				1 & 2 & 1 
+			\end{matrix}
+			\right[
+		.\] 
+		\input{tikz/chapter0/grid_stencil_2D.tex}
+		Note: if you interpret the 1D stencil as a row vector $p^{T}$, the 2D stencil is just the outer product 
+		\[
+		p\cdot p^{T}
+		.\] 
+		Note: higher order interpolation rules are possibly by incorporating more coarse grid rules.
+		\end{enumerate}
+\end{enumerate}
+
+\subsection{Restriction}%
+\label{sec:Restriction}
+
+\begin{itemize}
+	\item Simplest idea:
+
+		"inject" the value on the fine grid node that correspond to a coarse grid node with an identity. In coefficient notation that is:
+		\begin{align*}
+			&\underline{\text{1D}}:& u_{i}^{H} &= u_{2i}^{h} \\
+			&\underline{\text{2D}}:& u_{i,j}^{H} &= u_{2i, 2j}^{h}
+		\end{align*}
+		In stencil notation, that corresponds to
+		\[
+			R_{h}^{H} \stackeq{\wedge} \begin{bmatrix}
+				1
+			\end{bmatrix}
+		.\] 
+		This is called \underline{injection operator}. 
+
+	\item Other idea: \underline{Full-weighting operator} 
+
+		Use all neighbouring five grid values around a coarse grid node.
+
+		Ansatz:
+
+		\underline{1D}:
+		\[
+			\underbrace{\int_{\Omega_{x}}w^{h}}_{\substack{\text{use
+			piecewise }\\\text{trapezoidal rule}}}
+			\stackeq{!}
+			\underbrace{\int_{\Omega_{x}}w^{H}}_{\substack{\text{use
+			midpoint}\\\text{rule}}} \qquad \text{with }
+			\Omega_{x} = [x-h, x+h]  
+		.\] 
+		From this, we get
+		\begin{align*}
+			&\frac{h}{2}(w^{h}(x-h) + w^{h}(x)) + \frac{h}{2}(w^{h}(x) + w^{h}(x+h)) \stackeq{!} 2hw^{H}(x) \\
+			\implies&w^{H}(x) = \frac{1}{4}(w^{h}(x-h)+2w^{h}(x) + w^{h}(x+h))
+		\end{align*}
+		%TODO Skizze linker & rechter Nachbar von Punkt
+		\begin{align*}
+			u_{j}^{H}= \frac{1}{4}(u_{2j-1}^{h}+2u_{2j}^{h}+ u_{2j+1}^{h})
+		\end{align*}
+		\[
+			R_{h}^{H}\stackeq{\wedge}\frac{1}{4}\begin{bmatrix}
+				1 & 2 & 1
+			\end{bmatrix}
+		.\] 
+		\[
+			R_{h}^{H}= \frac{1}{4}\begin{bmatrix}
+				1 & 2 & 1 \\
+				  &   & 1 & 2 & 1 \\
+				  &   &   &   & 1 & 2 & 1 \\
+				  &   &   &   &   &   &   & \ddots \\
+			\end{bmatrix}
+		.\] 
+		% TODO hier etwas aufräumen und mit text füllen
+
+		\underline{2D}:
+
+		by tensor product
+		\[
+			R_{h}^{H}\stackeq{\wedge}=\frac{1}{16}\begin{bmatrix}
+				1 & 2 & 1 \\
+				2 & 4 & 2 \\
+				1 & 2 & 1
+			\end{bmatrix}
+		.\] 
+		\underline{Note}:
+
+		The restriction operator using full-weighting is essentially the transpose of the linear prolongation operator with prefactor depending on the dimension d:
+		\[
+			P_{H}^{h} = 2^{d}R_{h}^{H}
+		.\] 
+\end{itemize}
+
+\subsection{Relation between fine/coarse matrix $A^{h} / A^{H}$}%
+\label{sec:Relation between fine/coarse matrix $A^{h} / A^{H}$}
+
+\begin{itemize}
+	\item The matrices can be assembled directly on the grid, i.e.
+		\[
+			A^{h} \stackeq{\wedge} \frac{1}{h^{2}}\begin{bmatrix}
+			& -1 & \\
+				-1 & 4 & -1 \\
+				   & -1 & 
+			\end{bmatrix}_{h},
+			\qquad\qquad
+			A^{H} \stackeq{\wedge} \frac{1}{H^{2}}\begin{bmatrix}
+			& -1 & \\
+				-1 & 4 & -1 \\
+				& -1 & 
+			\end{bmatrix}_{H}
+		.\] 
+
+	\item Another approach is the "Galerkin" relation:
+		\[
+		\tilde{A}^{H}:=R_{h}^{H}A^{h}P_{H}^{h}
+		.\] 
+\end{itemize}
+
+\section{Finite-Element Discretization}%
+\label{sec:Finite-Element Discretization}
+
+% TODO Nummerierung mit subsubsection nutzen, um etwas mehr zwischen der Wichtigkeit unterschiedlicher Themenbereiche unterscheiden zu können.
+
+For a Poisson equation
+\[
+- \laplace u = f \qquad \text{in }\Omega + \text{ BC }
+\] 
+go over to the weak formulation of the problem:
+
+Find $u \in H_{0}^{1}(\Omega)$ such that
+\[
+	\int_{\Omega} \nabla u \cdot \nabla v \d x = \int_{\Omega} fv \d x \qquad \forall v \in H_{0}^{1}(\Omega )
+\] 
+or
+\[
+	\underbrace{ \int_{\Omega }\nabla u \cdot \nabla v \d x - \int_{\partial \Omega }gv \d s}_{a(u,v)} = \underbrace{ \int_{\Omega }fv \d x}_{F(v)} \qquad \forall v \in H^{1}(\Omega )
+.\] 
+
+\underline{FEM} :
+
+Replace $V=H_{0}^{1}$ by finite dimensional subspace $V_{h}$ consisting (low-degree) polynomials.
+Let $\Omega $ be approximated/subdivided by $\Omega _{h}$ the union of $m$ geometric elements, e.g. triangles, hexagons, tetrahedrons, cubes, pyramids, $\ldots $
+\[
+\Omega \approx \Omega _{h} = \bigcup_{i=1}^{m}T_{i} \qquad \mathcal{T}_{h} := \left\{ T_{i} \right\} 
+.\] 
+Here $\mathcal{T}_{h}$ is called conforming, if facets of a element $T_{i}$ are also facets of other elements $T_{j}$.
+The mesh size $h$ is defined by
+\[
+h = \max\limits_{T \in\mathcal{T}_{h}} \text{diam } T
+.\] 
+Where diam$(T):=\underset{x,y \in T }{\sup} |x-y|$.
+
+An example of a finite-dimensional subspace is
+\[
+	V_{h}^{(0)} = \left\{ \phi \in C(\Omega _{h})\ |\ \phi|_{T} \in \P_{p} \text{ for } T \in \mathcal{T}_{h} \right\} \qquad (+ \text{ BC }, \phi|_{\partial \Omega _{h}}=0)
+,\] 
+where for $p=1$ we get linear Lagrange elements.
+There are nodes $x_{j}$ in the triangulation (vertices, nodes on edges, $\ldots $) and a family
+\[
+	\left\{ \phi_{j} \right\} \subset V_{h} \qquad \text{with}\qquad \phi_{j}(x_{i}) = \delta_{i,j}
+,\] 
+which is uniquely defined by this relation.
+So $\phi_{j}$ forms a basis of $V_{h}$.
+Each function of $V_{h}$ can be expressed as
+\[
+	\phi(x) = \sum_{i=1}^{n}{\xi _{i}\phi_{i}(x)}
+.\] 
+As the result of this we get the approximation problem:
+
+Find $u_{h} \in V_{h}^{(0)}$ such that
+
+\begin{equation}\label{eq:discreteproblem}\tag{$\ast$}
+	\underbrace{\int_{\Omega _{h}}\nabla u_{h}\cdot \nabla v_{h} \d x}_{a_{h}(u_{h},v_{h})} 
+	=
+	\underbrace{\int_{\Omega _{h}}f v_{h} \d x}_{F_{h}(v_{h})}  \qquad \forall v_{h} \in V_{h}^{(0)}
+\end{equation}
+
+Since $V_{h}$ is a linear space, testing with all the basis functions $\phi _{i}$ ends up in $n$ equations.
+
+Let $u_{h}(x) = \sum_{i=1}^{n}{u_{i}\phi _{i}(x)}$.
+
+Substitute into \href{eq:discreteproblem}{($\ast$)} and we obtain a linear system:
+
+\[
+\sum_{j=1}^{n}{a_{i,j}u_{j}=f_{i}}
+,\] 
+where
+\begin{align*}
+	a_{i,j}&= \int_{\Omega _{h}}\nabla \phi _{i}\nabla \phi _{j} \d x \\
+f_{i}&=\int_{\Omega _{h}}f \phi _{i} \d x
+\end{align*}
+Using
+\[
+	A = (a_{i,j})_{i,j}, \qquad u=(u_{i})_{i}, \qquad f=(f_{i})_{i}
+,\] 
+we can denote the system by matrix notation as:
+\[
+A \cdot u = f
+.\] 
+
+Assemble A by local element contributions:
+\[
+	a_{h}(\phi _{i}, \phi _{j}) = \sum_{T \in \mathcal{T}_{h}}^{}{a_{T}(\phi _{i}, \phi _{j})}
+,\] 
+with
+\[
+	a_{T}(\phi _{i}, \phi _{j}) = \int_{T}\nabla \phi _{i}\cdot \nabla \phi _{j} \d x
+.\]
+The local element matrix $A_{T}$ consisting of contributions from $\phi _{i}$ local to $T$.
+\[
+	A = \sum_{T \in \mathcal{T}_{h}}^{}{A^{(T)}}= \sum_{T \in \mathcal{T}_{h}}^{}{P\cdot A_{T} \cdot R}
+,\] 
+with boolean matrices $P, R = P^{T}$.
+
+% TODO komische Matrizen. Nutze hier einfach mathcha.io!!!
+
+\begin{enumerate}[label=\alph{enumi})]
+	\item A is symmetric because $ \underbrace{a_{h}(\phi
+		_{i}, \phi _{j})}_{a_{i,j}} =
+		\underbrace{a_{h}(\phi _{j}, \phi _{i})}_{a_{j,i}}
+		$
+	\item A is positive definite
+		\begin{proof}
+		\label{thm:Aispositivedefinite}
+			\[
+					\underbrace{a_{h}(u,u)}_{u^{T}Au} = \int_{\Omega_{h} }\abs{\nabla u} ^2 \d x \geq 0 \qquad \forall u \in V_{h}
+			.\] 
+			If  $a(u,u)=0$ for a function $u$ in $V_{h}$, then $\nabla u=0$ almost everywhere in $\Omega _{h}$.
+
+			Therefore $u$ is constant in every element $T$.
+
+			Since $u \in C(\Omega _{h})$ and $u|_{\partial \Omega _{h}}=0$, $u \equiv 0$ has to hold in $\Omega _{h}$.
+			\[
+			\implies A \succ 0
+			.\] 
+		\end{proof}
+
+	\item A is sparse
+		\[
+		\text{non-zeros per row } = \#\left\{ \text{functions with support in elements that share the Lagrange node} \right\} 
+		.\] 
+	\item Adjacency graph of $A$
+
+		%TODO Bild Grid mit rotiertem Quadrat innen und Sternchen
+		
+		For linear Lagrange we have the following
+		\[
+		a_{i,j}\neq 0 \qquad \text{if } \exists T \in \mathcal{T}_{h}\colon x_{i}\in T \text{ and } x_{j} \in T
+		.\] 
+
+		For linear Lagrange in simplex triangulation, the grid corresponds to the adjacency graph.
+		% TODO noch ein Bild, grid mit X im mittleren Feld
+\end{enumerate}
+

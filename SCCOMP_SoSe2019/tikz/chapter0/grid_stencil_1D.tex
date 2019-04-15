@@ -1,0 +1,38 @@
+\begin{figure}[H]
+	\center
+\begin{tikzpicture}[scale=1.5]
+		
+		\def \xone{0};
+		\def \yone{0};		
+		\def \h{4};		
+		
+		%define lines Ax means first line
+		\coordinate (A) at (\xone,\yone);
+		\coordinate (B) at ($(A) + (1*\h/3,0)$);
+		\coordinate (C) at ($(A) + (2*\h/3,0)$);
+		\coordinate (D) at ($(A) + (\h,0)$);
+
+		\draw  (A) -- ++(\h,0);
+		\draw  (B) -- ++(0,\h/5);
+		\draw  (D) -- ++(0,\h/2);
+		\draw[dotted]  ( $(B) +(0,\h/5)$) -- ( $(D) +(0,\h/2)$);
+
+		\filldraw (A) circle (1pt);
+		\filldraw (C) circle (1pt);
+		\filldraw (B) circle (2pt);
+		\filldraw (D) circle (2pt);
+
+		%indize coarse mesh
+		\node at (B) [below] {$i$};
+		\node at (D) [below] {$i+1$};
+
+		% indizes fine mesh
+		\node at ( $(B) + (0, -0.5) $) [below] {$2i$};
+		\node at ( $(C) + (0, -0.5) $) [below] {$2i+1$};
+		\node at ( $(D) + (0, -0.5) $) [below] {$2(i+1)$};
+                                        
+\end{tikzpicture}
+
+\caption{picture of the stencil in a 2D grid}
+\label{ch_1_grid_stencil_2D}
+\end{figure}
