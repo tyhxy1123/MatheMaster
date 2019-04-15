@@ -382,9 +382,61 @@ Wann ist $\Inz_{(i,j)}^n$ selbstdual?
 	\end{figure}
 	\begin{itemize}
 		\item Die beiden roten Dreiecke sind zentral perspektiv bzgl. des Zentrums $z$.
-		\item Die drei roten Punkte liegen auf der Geradeen $a$.
-		\item Satz: Sind zwei Dreiecke sind zentral perpspektiv, so sind sie auch axial perspektiv und umegekehrt.
+		\item Die drei roten Punkte liegen auf der Geraden $a$.
+		\item Satz: Sind zwei Dreiecke sind zentral perpspektiv, so sind sie auch axial perspektiv und umgekehrt.
 		\item Zeige $\Inz_{(2,3)}^5\simeq$ Desargue Konfiguration
 	\end{itemize}
 \end{beispiel}
+
+% hier könnte was fehlen (15.04.19)
+
+\begin{theorem}[Desargues Theorem]\enter
+	Im \undefine{projektiven Raum} (bzw. in der desargueschen projektiven Ebene) gilt:
+	\begin{enumerate}
+		\item Sind zwei Dreiecke zentral perspektiv, so sind sie auch axial perspektiv.
+		\item Sind zwei Dreiecke axial perspektiv, so sind sie auch zentral perspektiv.
+	\end{enumerate}
+\end{theorem}
+
+\begin{beispiel}[Pappos-Konfiguration]\enter
+	Die \define{Pappos-Konfiguration} ist eine $(9,3;9,3)$-Konfiguration.
+\end{beispiel}
+
+\begin{definition}
+	Ein Isomorphismus einer Inzidenzstruktur $\Inz$ auf sich heißt auch \define{Automorphismus} von $\Inz$.
+	Bezeichne $\Aut(\Inz)$ die Menge der Automorphismen von $\Inz$ und
+	\begin{align*}
+		\Aut(\Inz):=\big(\Aut(\Inz),\circ,\id_\Inz,^{-1}\big)
+	\end{align*}
+	Seien Morphismen
+	\begin{align*}
+		\Inz\overset{(\varphi,\psi)}{\longrightarrow}\Inz'\overset{(\varphi',\psi')}{\longrightarrow}\Inz''
+	\end{align*}		
+	gegeben. Dann ist
+	\begin{align*}
+		(\varphi',\psi')\circ(\varphi,\psi):=\big(\varphi'\circ\varphi,\psi'\circ\psi\big)
+	\end{align*}
+	ein Morphismus von $\Inz$ nach $\Inz''$, die sogenannte  \define{kontravariante Verkettung} von $(\varphi,\psi)$ mit $(\varphi',\psi')$.
+	\index{kontravariante Verkettung}\nl
+	Ist $\Inz=(P,B,I)$, so bezeichne $\id_\Inz:=\big(\id_P,\id_B\big)$ den \define{identischen Morphismus} von $\Inz$.
+	\index{identischer Morphismus}
+\end{definition}
+
+\begin{lemma}
+	ist $(\varphi,\psi)$ ein Isomorphismus, so ist auch 
+	\begin{align*}
+		(\varphi,\psi)^{-1}:=\klammern{\varphi^{-1},\psi^{-1}}
+	\end{align*}
+	ein Isomorphismus.
+	Dieser heißt \define{der zu $(\varphi,\psi)$ inverse Morphismus}.
+	\index{inverser Morphismus}
+\end{lemma}
+
+
+
+
+
+
+
+
 
