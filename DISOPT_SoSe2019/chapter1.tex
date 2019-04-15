@@ -273,4 +273,137 @@ Bei Schrittweiten beachten: $x_{B} = \gamma w \in [0,u_{B}]$ und
 \end{cases} 
 \end{equation*}
 Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder umgekehrt.
+\begin{beispiel}
+	Zuschnittsoptimierung\\
+  	\underline{Problemstellung} Eine vorgegebene Anzahl von Objekten soll möglichst materialsparend aus einem Grundstoff zugeschnitten werden.\\
+  	\underline{konkretes Beispiel}: Eine Firma produziert Metallstangen mit Länge $100$cm. Werden kürzere Stangen bestellt muss die Firma $100$cm lange Stangen zerschneiden. Ziel der Firma ist es, die Bestellungen zu erfüllen und dafür möglichst wenige Stangen zerschneiden zu müssen.\\
+  	Bestellung:
+  	\begin{tabular}{c|c}
+		Länge in cm & Anzahl bestellt}\\
+      	\hline
+      	$25$ & $80$ \\
+      	$30$ & $75$ \\
+      	$35$ & $105$ \\
+	\end{tabular}
+	\underline{Modellierung} 
+	\begin{enumerate}
+		\item Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$. Wieviele Stäbe der Länge $25,30,35$ cm daraus geschnitten werden sollen.
+			\begin{align*}\label{model_cutting_1}
+				\implies \forall i & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100\\
+								   & \sum_{i}^{} x_{i1} \geq 80\\
+								   & \sum_{i}^{} x_{i2} \geq 75\\
+								   & \sum_{i}^{} x_{i3} \geq 105\\
+			\end{align*}
+			% TODO rcases für die obigen 3 bedingungen und tag mit \Delta und füge das in der folgenden align umgebung ein
+			Zielfunktion: minimiere $k_{i}=$ Anzahl der Stäbe $i = 1,\dots ,k$\\
+			Idee: Für jeden Stab $i$ führe eine Variable $y_{i} \i \left\{0,1 \right\}$ ein, die entscheidet, ob der Stab verwendet wird oder nicht.\\
+			maximale Anzahl benötigte Stäbe $\leq 80 + 75 +1005 = 260$ 
+			\begin{align*}
+				\implies \min_{x,y}\sum_{i=1}^{260} y_{i} \text{ subject to } x_{i1},x_{i2},x_{i3} \in \N_{0}, y_{i}\in \left\{0,1 \right\} , \eqref{model_cutting_1},\\
+				& \forall i = 1,\dots ,260 : 25x_{i1} + 30x_{i2} + 35x_{i3} \leq 100y_{i}
+			\end{align*}
+			
+ 		\item Schnittmuster\\
+     	Führe eine Variable $x_{i} \in \N_{0}$ ein für jedes Schnittmuster $i$, nach dem eine Stange zerschnitten werden kann: 
+     	\begin{tabular}{c|c|c|c}
+      	Schnittmuster & # $25$ cm Stäbe & # $30$ cm Stäbe & # $35$ cm Stäbe\\
+      	\hline
+      	1 & 4 & 0 & 0\\
+          & 3 & 0 & 0\\
+      	2 & 2 & 1 & 0\\
+      	3 & 2 & 0 & 1\\
+      	4 & 1 & 2 & 0\\
+      	5 & 1 & 1 & 1\\
+      	6 & 1 & 0 & 2\\
+      	7 & 0 & 3 & 0\\
+      	8 & 0 & 2 & 1\\
+      	9 & 0 & 1 & 2\\
+    	\end{tabular}{c|c|c|c}
+    	Optimierungsproblem:
+    	\begin{align*}
+			\min_{x} \sum_{i=1}^{9} x_{i}& \text{ subject to } x \in \Z_{0}, x\geq 0         \\
+										 & \text{mindestens } 80 \text{Stäbe mit }25\text{cm} 4x_{1} + 2x_{2} + 2x_{3} + x_{4} + x_{5} + x_{6} \geq 80\\
+										 & 75\text{mit } 30 \text{cm} x_{2} + 2x_{4} + x_{5} + 3x_{7} + 2x_{8} + x_{9} \geq 75\\
+										 & 105\text{mit } 35 \text{cm} x_{3} + x_{5} + 2x_{6} + x_{8} + 2x_{9} \geq 105\\
+    	\end{align*}
+		% die rest riktionen als Hx defnieren und 80,75,105 als b
+		Vorteil: 
+		\begin{itemize}
+			\item Anzahl Restriktionen $=$ Anzahl verschiedener Stablängen
+			\item Anzahl Variablen $=$ Anzahl (sinnvoller) Schnittmuster ( wächst schnell, aber langsamer als Variante 1)
+		\end{itemize}
+	 
+ \end{enumerate}
+\underline{Lösung von Variante 2}
+\begin{enumerate}
+	\item Statt des ganzzahligen LPs $\min_{x} c^{T} x \text{ subject to } Mx \geq b, x \geq 0 , x \in \Z^{n}$. Löse das \underline{relaxierte LP} 
+	\begin{equation*}
+		\min_{x} c^{T} x \text{ subject to } Hx \geq b, x \geq 0 
+	\end{equation*}
+	\item Simplex-Verfahren für das relaxierte Problem:
+		\begin{itemize}
+			\item primal zulässige Startbasis?\\
+			$\to$ Für jede Stablänge $l = 25,30,35$ verwende das \glqq Einheitsschnittmuster\grqq\ bei dem die maximal mögliche Anzahl $\floor{\frac{100}{l}}$ von Stäben der Länge $l$ und keine anderen Stablängen geschnitten werden. \\
+			$\implies$ zugehörige Spalten in Basismatrix sind linear unabhängige Vielfache ovn Einheitsvektoren.\\
+		zugehörige Basisvariablen:
+		\begin{equation*}
+			x_{l} = \frac{b_{l}}{\floor{\frac{100}{l}}}
+		\end{equation*}
+		%TODO get floor command right or atleast use the proper brackets
+
+
+		\item $H$ kann sehr viele Spalten haben\\
+			\underline{Idee:} Immer nur die Spalten von $H$ bestimmen, die man aktuell braucht.\\
+			$\to$ Startbasis und zugehörige Basismatrix $A_{B} := \begin{pmatrix}
+				H,&-I
+			\end{pmatrix}_{B}
+			$ wie oben bestimmen\\
+			$\to$ zugehörige duale Variable: 
+			\begin{equation*}
+				y = A_{B}^{-T}c_{B}
+			\end{equation*}
+			$\to $ reduzierte kosten 
+			\begin{equation*}
+				z_{N} = c_{N} - A_{N}^{T} y
+			\end{equation*}
+			Für $j \in N$, die zu den Schlupfvariablen $s$ gehören
+			\begin{equation*}
+				z_{j} = c_{j} - A_{\cdot j}^{T} y = 0 + e_{j}^{T} y = y_{j}
+			\end{equation*}
+			($y_{j}$ ist bekannt). Für $j \in N$, die zu den Variablen $x$ gehören 
+			\begin{equation*}\label{dantzigRegel}
+				e_{j} = c_{j} - A_{\cdot j}^{T} y = 1 - \underbrace{H_{\cdot j}^{T}}_{\text{unbekannt}} y \to \min \tag{Dantzig Regel} 
+			\end{equation*}
+			$\implies$ bestimme die \glqq beste \grqq\ Spalte $H_{\cdot j}$ als Lösung von 
+			\begin{equation*}
+				\max_{h} y^{T} h \text{ subject to } 25h_{1} + 30 h_{2} + 35h_{3} \leq 100, h\geq 0 , h \in \Z^3
+			\end{equation*}
+			$\implies$ Rucksackproblem mit Gewichten $=$ Stablängen, Werte $=$ duale Variable $y$
+		\item Sei $x_{\alpha} \in \R^n$ eine Lösung des relaxierten Problems.
+			\begin{enumerate}[label = \arabic*. Fall:]
+				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP
+				\item $x^* \not \in \Z^n
+				\begin{itemize}
+					\item Branch & Bound Verfahren \\
+					$\implies$ zwei neue Lps
+					\begin{align*}
+						\min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\leq \floor{x_{i}^*}\\
+						\min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\geq \ceiling{x_{i}^*}
+					\end{align*}
+					\item Schnittebenen-Verfahren\\
+					Füge neue Ungleichung 
+					\begin{equation*}
+						a^{T} x \leq \beta
+					\end{equation*}
+					mit $a^{T} x \leq \beta$ für alle zulässigen Punkte $x \in \Z^n$ und $a^{T} x^* > \beta $ zu den Restriktionen		
+					\item (Runden)
+				\end{itemize}
+			\end{enumerate}
+					%TODO get the numbering right nested itemize environments are weird			
+		\end{itemize}
+\end{enumerate}
+ 
+  
+\end{beispiel}
+
 
