@@ -1,0 +1,114 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Parameterschätzung in linearen Modellen}
+
+\begin{definition}\label{def3.1}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Sei $Z:=\big(Z_{i,j}\big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}\in M(m\times n)$
+		mit integrierbaren Komponenten $Z_{i,j}$, welche reelle Zufallsvariablen sind.
+		Dann: \label{item:def3.1(1)}
+		\begin{align*}
+			\E[Z]:=\Big(\E\big[Z_{i,j}\big]\Big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}
+		\end{align*}
+		Speziell für 
+		\begin{align*}
+			Z=\big(Z_1,\ldots,Z_m\big)'
+		\end{align*}
+		ist 
+		\begin{align*}
+			\E[Z]=\begin{pmatrix}
+				\E\big[Z_1\big]\\
+				\vdots\\
+				\E\big[Z_n\big]
+			\end{pmatrix}=\Big(\E\big[Z_1\big],\ldots,\E\big[Z_n\big]\Big)'
+		\end{align*}
+		\item Seien
+		\begin{align*}
+			Z=\big(Z_1,\ldots,Z_m\big)',\qquad
+			Y=\big(Y_1,\ldots,Y_n\big)'.
+		\end{align*}		 
+		Dann, falls existent
+		\begin{align*}
+			\Cov(Y,Z)&:=\E\Big(\big(Y-\E[Y]\big)\mal\big(Z-\E[Z]\big)'\Big)\\
+			\overset{\ref{item:def3.1(1)}}&{~=}
+			\klammern[\bigg]{\E\Big[\big(Y_i-\E[Y_i]\big)\mal\big(Z_j-\E[Z_j]\big)\Big]}_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}\\
+		&~=\Big(\Cov(Y_i,Z_j)\Big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}
+		\end{align*}
+		Speziell ist\index{Kovarianzmatrix}
+		\begin{align*}
+			\Var(Y):=\Cov(Y,Y)=\Big(\Cov(Y_i,Y_j)\Big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}\in M(n\times n)
+		\end{align*}
+		die \define{Kovarianzmatrix} von $Y$.
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{satz3.2}
+	Seien $Y$ und $Z$ Zufallsvektoren in $\R^n$ bzw. $\R^m$, $A\in M(m\times n)$, $b\in\R^m$ beide deterministisch.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\E\big[A\mal Y+Z\big]=A\mal\E[Y]+\E[Z]
+		\end{aligned}\qquad$ ($\E$ ist linear)
+		\label{item:satz3.2(1)}
+		\item $\begin{aligned}
+			\Var\big(A\mal Y+b\big)=A\mal\Var(Y)\mal A'
+		\end{aligned}$
+		\label{item:satz3.2(2)}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Nachrechnen! (Zur Übung, folgt aus Matrixmultiplikation + den Eigenschaften im reellen Fall)
+	%\betone{Zeige \ref{item:satz3.2(1)}:}\\
+	
+	%\betone{Zeige \ref{item:satz3.2(2)}:}\\
+\end{proof}
+
+Wir betrachten jetzt das lineare Modell (vergleiche \eqref{eq:1.2}) mit 
+\begin{align}\label{eq:3.1}\tag{3.1}
+	Y&=X\mal\beta+\varepsilon\\
+	\E[\varepsilon]&=0\label{eq:3.2}\tag{3.2}\\
+	\Var(\varepsilon)&=\sigma^2\mal I_n\mit\sigma^2>0\label{eq:3.3}\tag{3.3}\\
+	n&\geq p\label{eq:3.4}\tag{3.4}
+\end{align}
+Beachte ($\varepsilon=\big(\varepsilon_1,\ldots,\varepsilon_n\big)'$):
+\begin{align*}
+	\eqref{eq:3.3}&\iff\Cov(\varepsilon_i,\varepsilon_j)=\sigma^2\mal\delta_{i,j}
+	&&\forall i,j\\
+	&\iff\Cov\big(\varepsilon_i,\varepsilon_j\big)=0
+	&&\forall i\neq j\und\Var(\varepsilon_i)=\sigma^2
+\end{align*}
+Also gilt: $\varepsilon_1,\ldots,\varepsilon_n$ iid $\implies\eqref{eq:3.3}$
+
+
+
+
+
+% Vorgriff:
+
+
+
+\begin{definition}
+	Der \define{Minimum-Quadrat-Schätzer} ist
+	\begin{align*}
+		\hat{\beta}\in\argmin\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p}
+	\end{align*}
+\end{definition}

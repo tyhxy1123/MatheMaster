@@ -925,17 +925,158 @@ Der folgende Satz hilft uns, die Existenz des Schätzers sicherzustellen und gib
 \end{satz}
 
 \begin{proof}
-	\betone{Zeige \ref{item:satz2.22(a)}:}
+	\betone{Zeige \ref{item:satz2.22(a)}:}\\
+	$U:=\Bild(A)$ ist Untervektorraum des $\R^n$.
+	Nach Satz \ref{satz2.10}\ref{item:satz2.10(1)} ist $u_0:=P_U(x)$ eine eindeutige Minimalstelle von
+	\begin{align*}
+		\set[\big]{\norm{x-u}:u\in U}=\set[\big]{\norm{x-A\mal y}:y \in\R^p}
+	\end{align*}
+	Da $u_0\in\Bild(A)$, ist
+	\begin{align*}
+		M:=A^{-1}\big(\set*{u_0}\big)=\set{y\in\R^p:A\mal y=u_0}
+		\neq\emptyset
+	\end{align*}
+	und für alle $y_0\in M$ gilt:
+	\begin{align*}
+		\norm{x-A\mal y_0}=\norm{x-u_0}
+		\leq\norm{x-A\mal y}\qquad\forall y\in\R^p
+	\end{align*}
+	d.h. $y_0$ ist Minimalstelle und wegen $y_0\in M$ gilt:
+	\begin{align}\label{eq:Proof2.22Stern}\tag{$*$}
+		A\mal y_0&=u_0=P_{\Bild(A)}(x)
+	\end{align}
+	Mit Satz \ref{satz2.10}\ref{item:satz2.10(2)} folgt:
+	\begin{align*}
+		&\hspace{10mm}x-A\mal y_0\perp A\mal y\qquad\forall y\in\R^p\\
+		&\iff &0&=\scaProd{x-A\mal y_0}{A\mal y}\\
+		&&\overset{\text{Sym}}&{=}
+		\scaProd{A\mal y}{x-A\mal y_0}\\
+		&&&=(A\mal y)'\mal(x-A\mal y_0)\\
+		&&&=y'\mal A'\mal(x-A\mal y_0)\\
+		&&&=y'\mal(A'\mal x-A'\mal A\mal y_0)\\
+		&&&=\scaProd{y}{A'\mal x-A'\mal A\mal y_0}\qquad\forall y\in\R^p\\
+		&\iff A'\mal x-A'\mal A\mal y_0\perp\R^d\\
+		&\iff A'\mal x-A'\mal A\mal y_0=0\\
+		&\iff A'\mal A\mal y_0=A'\mal x
+	\end{align*}
+	Hierbei geht ein:
+	\begin{align*}
+		z\perp\R^p\iff\scaProd{z}{y}=0~\forall y\in\R^p\\
+		\overset{y=z}{\implies}\scaProd{z}{z}=0
+		\implies z=0\\
+		z=0\implies\scaProd{z}{y}=0~\forall y\in\R^p
+	\end{align*}
+	Umgekehrt ist jede Lösung $y_0$ Der Normalgleichung Minimalstellen von 
+	\begin{align*}
+		y\mapsto\norm{x-A\mal y},
+	\end{align*}
+	denn:
+	\begin{align*}
+		A'\mal A\mal y_0=A'\mal x
+		\overset{\text{s.o.}}&{\iff}
+		x-\underbrace{A\mal y_0}_{\in\Bild(A)}\perp\Bild(A)\\
+		\overset{\ref{satz2.10}\ref{item:satz2.10(3)}}&{\implies}
+		A\mal y_0=P_{\Bild(A)}(x)=u_0\\
+		&\implies y_0\text{ ist Minimalstelle}
+	\end{align*}
 	
 	\betone{Zeige \ref{item:satz2.22(b)}:}\\
-	Folgt aus \ref{item:satz2.22(a)} mit Satz \ref{satz:2.13}.
+	Gelte also $\Rg(A)=p$.
+	Dann folgt aus Satz \ref{satz:2.13}, dass $A'\mal A$ invertierbar ist.
+	Aus \ref{item:satz2.22(a)} folgt dann
+	\begin{align*}
+		y_0&=\big(A'\mal A\big)^{-1}\mal A'\mal x\\
+		\overset{\eqref{eq:Proof2.22Stern}}{\implies}
+		P_{\Bild(A)}(x)=A\mal(A'\mal A)^{-1}\mal A'\mal x\qquad\forall x\in\R^n
+	\end{align*}
 \end{proof}
 
-% Vorgriff:
-
-\begin{definition}
-	Der \define{Minimum-Quadrat-Schätzer} ist
-	\begin{align*}
-		\hat{\beta}\in\argmin\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p}
-	\end{align*}
+\begin{definition}\label{def2.23}
+	$A\in M(n\times n)$ symmerisch heißt
+	\begin{enumerate}
+		\item \define{positiv definit}
+		\index{positiv definit}
+		\begin{align*}
+			\defiff\forall x\in\R^n\setminus\set{0}:x'\mal A\mal x>0
+		\end{align*}
+		\item \define{nichtnegativ definit}
+		\index{nichtnegativ definit}
+		\begin{align*}
+			\defiff\forall x\in\R^n\setminus\set{0}:x'\mal A\mal x\geq0
+		\end{align*}
+	\end{enumerate}			
 \end{definition}
+
+\begin{satz}\label{satz2.24}
+	Sei $A\in M(n\times n)$ positiv definit.
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item Alle Eigenwerte von $A$ sind positiv.
+		\label{item:satz2.24(a)}
+		\item Es existiert $R\in M(n\times n)$ positiv definit mit $A=R^2$.
+		Bezeichnung: $A^{\frac{1}{2}}:=R$
+		\label{item:satz2.24(b)}
+		\item $A$ ist invertierbar und $A^{-1}$ ist positiv definit.
+		\label{item:satz2.24(c)}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige \ref{item:satz2.24(a)}:}\\
+	Sei $\lambda$ Eigenwert zum Eigenvektor $x\neq0$.
+	Dann gilt $A\mal x=\lambda\mal x$ nach Definition des Eigenwertes.
+	\begin{align*}
+		0
+		\overset{A\text{ p.d.}}&{<}
+		x'\mal A\mal x
+		=x'\mal\lambda\mal x
+		=\lambda\mal\norm{x}^2
+		\overset{\norm{x}>0}{\implies}
+		\lambda>0
+	\end{align*}
+	
+	\betone{Zeige \ref{item:satz2.24(b)}:}\\
+	Gemäß Satz \ref{satz:2.15} existiert eine orthogonale Matrix $B\in M(n\times n)$ mit
+	\begin{align*}
+		A=B\mal D\mal B',\qquad D:=\diag\big(\lambda_1,\ldots,\lambda_n\big)
+	\end{align*}
+	wobei $\lambda_1,\ldots,\lambda_n$ Eigenwerte von $A$ sind, die wegen \ref{item:satz2.24(a)} alle positiv sind.
+	Setze
+	\begin{align*}
+		R:=B\mal\sqrt{D}\mal B',\qquad\sqrt{D}:=\diag\klammern{\sqrt{\lambda_1},\ldots,\sqrt{\lambda_n}}\\
+		\implies
+		R^2=B\mal \sqrt{D}\mal\underbrace{B'\mal B}_{=I_n}\mal \sqrt{D}\mal B'
+		=B\mal\sqrt{D}\mal\sqrt{D}\mal B'
+		=B\mal D\mal B'
+		=A
+	\end{align*}
+	Ferner ist $R$ symmetrisch, denn 
+	\begin{align*}
+		R'\overset{\Def}{=}\big(B\mal\sqrt{D}\mal B'\big)'=B''\mal\sqrt{D}'\mal B'
+		\overset{D~\diag}{=}B\mal\sqrt{D}\mal B'
+	\end{align*}
+	Weiterhin gilt für alle $x\neq0$:
+	\begin{align*}
+		x'\mal R\mal x
+		\overset{\Def}&{=}
+		x'\mal B\mal\sqrt{D}\mal\underbrace{B'\mal x}_{=:y}
+		=y'\mal\sqrt{D}\mal y=\sum\limits_{i=1}^n\underbrace{\sqrt{\lambda_i}}_{>0}\mal y_i^2
+		>0
+	\end{align*}
+	und $y\neq 0$, da $x\neq0$ und $\Kern(B')=\set{0}$ (weil $B'$ invertierbar).\nl
+	\betone{Zeige \ref{item:satz2.24(c)}:}\\
+	$A=R\mal R$ und $\R$ ist invertierbar, da $B$, $\sqrt{D}$ und $B'$ invertierbar sind.
+	Somit ist auch $A$ invertierbar.
+	\begin{align*}
+		A^{-1}=R^{-1}\mal R^{-1}=S\mal S
+		\qquad\mit\qquad S:=R^{-1}\text{ invertierbar und symmetrisch}\\
+		\implies x'\mal A^{-1}\mal x=x'\mal S'\mal S\mal x=\scaProd{S\mal x}{S\mal x}=\norm{S\mal x}^2>0,
+	\end{align*}
+	da $x\neq0$ und $\Kern(S)=\set{0}$.\\
+	($S$ ist symmetrisch wegen $S'=(R^{-1})'=(R')^{-1}=R^{-1}=S$.)
+\end{proof}
+
+\begin{bemerkung} %ohne Nummer
+	Falls $A$ in Satz \ref{satz2.24} nichtnegativ definit ist (statt positiv definit), so gelten \ref{item:satz2.24(a)} und \ref{item:satz2.24(b)} analog mit "nichtnegativ" anstelle von "positiv".
+	Dies zeigt der Beweis von \ref{item:satz2.24(a)} und \ref{item:satz2.24(b)}.
+\end{bemerkung}
