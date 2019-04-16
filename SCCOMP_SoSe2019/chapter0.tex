@@ -709,10 +709,13 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 			\Omega_{x} = [x-h, x+h]  
 		.\] 
 		From this, we get
-		\begin{align*}
-			&\frac{h}{2}(w^{h}(x-h) + w^{h}(x)) + \frac{h}{2}(w^{h}(x) + w^{h}(x+h)) \stackeq{!} 2hw^{H}(x) \\
-			\implies&w^{H}(x) = \frac{1}{4}(w^{h}(x-h)+2w^{h}(x) + w^{h}(x+h))
-		\end{align*}
+		\[
+			\frac{h}{2}(w^{h}(x-h) + w^{h}(x)) + \frac{h}{2}(w^{h}(x) + w^{h}(x+h)) \stackeq{!} 2hw^{H}(x) \\
+		.\] 
+		This implies
+		\[
+			w^{H}(x) = \frac{1}{4}(w^{h}(x-h)+2w^{h}(x) + w^{h}(x+h))
+		.\] 
 		%TODO Skizze linker & rechter Nachbar von Punkt
 		\begin{align*}
 			u_{j}^{H}= \frac{1}{4}(u_{2j-1}^{h}+2u_{2j}^{h}+ u_{2j+1}^{h})
@@ -777,8 +780,6 @@ P_{H}^{h}: \Omega_{H} \rightarrow \Omega_{h}
 
 \section{Finite-Element Discretization}%
 \label{sec:Finite-Element Discretization}
-
-% TODO Nummerierung mit subsubsection nutzen, um etwas mehr zwischen der Wichtigkeit unterschiedlicher Themenbereiche unterscheiden zu können.
 
 For a Poisson equation
 \[
@@ -871,8 +872,6 @@ The local element matrix $A_{T}$ consisting of contributions from $\phi _{i}$ lo
 ,\] 
 with boolean matrices $P, R = P^{T}$.
 
-% TODO komische Matrizen. Nutze hier einfach mathcha.io!!!
-
 \begin{enumerate}[label=\alph{enumi})]
 	\item A is symmetric because $ \underbrace{a_{h}(\phi
 		_{i}, \phi _{j})}_{a_{i,j}} =
@@ -900,7 +899,14 @@ with boolean matrices $P, R = P^{T}$.
 		.\] 
 	\item Adjacency graph of $A$
 
-		%TODO Bild Grid mit rotiertem Quadrat innen und Sternchen
+		\begin{figure}[H]
+			\begin{center}
+				\input{tikz/chapter0/square_with_inner_square.tex}
+			\end{center}
+			\caption{Example for the adjacency graph}
+			\label{fig:adjacenygraph1}
+		\end{figure}
+		
 		
 		For linear Lagrange we have the following
 		\[
@@ -908,7 +914,14 @@ with boolean matrices $P, R = P^{T}$.
 		.\] 
 
 		For linear Lagrange in simplex triangulation, the grid corresponds to the adjacency graph.
-		% TODO noch ein Bild, grid mit X im mittleren Feld
+		\begin{figure}[H]
+			\begin{center}
+				\input{tikz/chapter0/square_with_cross.tex}
+			\end{center}
+			\caption{Another example for the adjacency graph}
+			\label{fig:adjacenygraph2}
+		\end{figure}
+		
 \end{enumerate}
 
 \subsection{A better definition of Finite-Element-spaces}
@@ -922,8 +935,7 @@ Let
 		  &= \left\{  \phi \in V | \phi |_{T} \in \P_{T} \forall T \in \mathcal{T}_{h} \right\}  
 \end{align*}
 
-,where $T$ is the space element in $\mathcal{T}_{h}$, $\overline{T}$ is the reference element (barycentric %TODO ?
-	element) and with $\overline{\phi } \in \overline{\P}$, where $\overline{\phi }(\lambda ) = \overline{\phi }(\lambda (x)) =: \phi (x), \phi  \in \P_{T} x \in T$
+,where $T$ is the space element in $\mathcal{T}_{h}$, $\overline{T}$ is the reference element (barycentric element) and with $\overline{\phi } \in \overline{\P}$, where $\overline{\phi }(\lambda ) = \overline{\phi }(\lambda (x)) =: \phi (x), \phi  \in \P_{T} x \in T$
 
 Let $\left\{ \overline{\phi}_{1}, \ldots, \overline{\phi }_{m} \right\} $ be a basis of $\overline{\P}$ and let $\left\{ \phi _{1}, \ldots , \phi _{m} \right\}$ be a basis of $V_{h}$ such that $\forall T \in \mathcal{T}_{h}$ and all $\phi _{j}$ that do not vanish on $T$:
 \[
@@ -983,8 +995,6 @@ Thus the global matrix $A=(a_{i,j})$ is given by
 
 \begin{example}
 \label{thm:examplefiniteelemtents}
-	% TODO : plot mit Zahlenstrahl
-% TODO : Matrizen
 \[
 P_{T_{1}}= \begin{bmatrix}
 	1& & \\
@@ -1021,7 +1031,13 @@ P_{T_{2}}= \begin{bmatrix}
 	 0 &0 &0 &&&1 & 0 &  & 0
 \end{bmatrix}
 \end{align*}
-% TODO : Komische Matrix
+\begin{figure}[ht!]
+	\begin{center}
+		\includegraphics[width=\textwidth]{pics/chapter0/weird_matrix_equation.png}
+	\end{center}
+	\caption{Example of the global matrix}
+	\label{fig:globalmatrixequation}
+\end{figure}
 \end{example}
 
 In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \overline{\P}_{1}$ and $T \in\mathcal{T}_{h}$ is a triangle in 2D:
@@ -1034,7 +1050,14 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 	.\] 
 	with $N(x_{i})=\left\{ x_{j} \in \Omega _{h} : \left[ x_{i},x_{j} \text{ is an edge in the grid } \right]  \right\} $ and $\alpha_{i,j}$, $\beta_{i,j}$ denote angles opposite to the edge $e=[x_{i}, x_{j}]$ in the triangles adjacent to $e$
 
-% TODO : plot Fünfeck
+	\begin{figure}[ht!]
+		\begin{center}
+			\input{tikz/chapter0/pentagon.tex}
+		\end{center}
+		\caption{Sketch of the involved part of the grid}
+		\label{fig:pentagonrelations}
+	\end{figure}
+	
 
 	\begin{itemize}[label=\underline{Note}: ]
 	\item 
@@ -1055,6 +1078,14 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 		\frac{W}{h} = \cot \alpha + \cot \beta
 		.\] 
 		% TODO : plot Dreieck mit relationen
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/triangle_explained.tex}
+			\end{center}
+			\caption{Sketch of the used properties}
+			\label{fig:triangleexplained}
+		\end{figure}
+		
 		since
 		\[
 			\cot \alpha = \frac{W_{1}}{h},\quad \cot \beta = \frac{W_2}{h}
@@ -1076,7 +1107,14 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 		\int_{T}\nabla  \phi _{i} \nabla \phi _{j} \d x = - \frac{1}{2}\cot \theta
 		,\] 
 		with $\theta$ opposite to edge $[x_{i}, x_{j}]$
-		% TODO : Noch ein triangle plot :o
+		\begin{figure}[ht!]
+			\begin{center}
+				\input{tikz/chapter0/small_triangle_explained.tex}
+			\end{center}
+			\caption{Sketch of the location of $\theta$}
+			\label{fig:thetasketch}
+		\end{figure}
+		
 \end{enumerate}
 \end{proof}
 
