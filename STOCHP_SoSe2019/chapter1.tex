@@ -288,7 +288,7 @@ In diesem Abschnitt seien:
 			Z:T\times\Omega\to S,\qquad (t,\omega)\mapsto Z(t,\omega)
 		\end{align*}
 		zu betrachten, die für jedes feste $t\in T$ messbar bezüglich $(\A,\B)$ ist.\index{vollständiger Maßraum}
-		\item Ein Maßraum $(\Omega,\A,\P)$ heißt \define{vollständig}, falls $\A$ jede $\P$-Nullmenge enthält.
+		\item Ein Maßraum $(\Omega,\A,\P)$ heißt \define{vollständig}, falls $\A$ jede $\P$-Nullmenge enthält.\label{item:bemerkung1.3.2(7)}
 		Dies können wir o.B.d.A. annehmen, denn:\\
 		Sei $(\Omega,\A_0,\P_0)$ die \define{Vervollständigung} des Grundraumes, d.h.: \index{Vervollständigung}\\
 		$\A_0$ ist die $\sigma$-Algebra, aller Mengen der Form
@@ -829,6 +829,8 @@ Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich
 
 \setcounter{satz}{17}
 
+%TODO compare with Dr. Kühn
+
 \begin{definition}\label{def1.3.18}
 	Sei $T\subseteq\R$ oder $T\subseteq\Z$ ein Intervall.
 	Ein reellwertiger Prozess $X$ auf $T$ heißt \define{Markovscher Prozess} $\defiff$
@@ -836,18 +838,71 @@ Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich
 	\begin{align*}
 		%\P\Big(X_{t_n}<a_n~\Big|~\forall j\in\set{1,\ldots,n-1}:X_{t_j}=a_j\Big)
 		%&=\P\Big(X_{t_n}=a_n~\Big|~X_{t_{n-1}}=a_{n-1}\Big)
-		\P\Big(X_{t_n}in A~\Big|~X_{t_1},\ldots,X_{t_n}\Big)
+		\P\Big(X_{t_n}\in A~\Big|~X_{t_1},\ldots,X_{t_n}\Big)
 		&=\P\Big(X_{t_n}\in A~\Big|~X_{t_{n}}\Big)
 	\end{align*}
 	für beliebige $n\in\N$, $A\in\B(\R)$ und alle $t_j\in T$ mit $t_1<\ldots<t_{n+1}$.
 	"Zukunft hängt nur von der Gegenwart ab, nicht von der Vergangenheit"
 \end{definition}
 
+\begin{bemerkung}\
+	\begin{enumerate}
+		\item %TODO
+	\end{enumerate}
+\end{bemerkung}
+
 \begin{beisp}\
 	\begin{itemize}
-		\item Das zufällige Wandern eines Teilchens auf $Z$, wobei das Teilchen bei jedem Schritt mit der Wahrscheinlichkeit $p$ um 1 nach rechts und mit Wahrscheinlichkeit $1-p$ nach links verschoben wird.
+		\item Das zufällige Wandern eines Teilchens auf $\Z$, wobei das Teilchen bei jedem Schritt mit der Wahrscheinlichkeit $p$ um 1 nach rechts und mit Wahrscheinlichkeit $1-p$ nach links verschoben wird.
 		$Z(n)$ sei die Position nach dem $n$-ten Schritt.
 		Dann ist $Z$ ein Markovscher Prozess.
-		\item 
+		\item Physikalische Prozesse:
+		\begin{itemize}
+			\item Beim radioaktiven Zerfall die Anzahl der zur Zeit $t$ noch vorhandenen radioaktiven Atome.
+			\item Bei der Brownschen Bewegung die Position des Partikels.
+		\end{itemize}
 	\end{itemize}
 \end{beisp}
+
+\begin{aufgabenr}[1.3.19, \texorpdfstring{\hyperref[loes:11]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:11}\enter
+	Wir betrachten den Wahrscheinlichkeitsraum
+	\begin{align*}
+		(\Omega,\A,\P)=\Big([0,1],\B\big([0,1]\big),\lambda|_{[0,1]}\Big)
+	\end{align*}
+	und definieren den Prozess $X$ durch
+	\begin{align*}
+		X_t(\omega)&:=t\mal\omega\qquad\forall t\in(0,\infty)=:T,\forall \omega\in\Omega
+	\end{align*}
+	Bestimmen Sie die endlich-dimensionale Verteilung des Prozesses $X$ und die Kovarianzfunktion. (Die Pfade sind Geraden $\leadsto$ stetig)
+\end{aufgabenr}
+
+\begin{aufgabenr}[1.3.20 ($*$), \texorpdfstring{\hyperref[loes:12]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:12}\
+	Seien $Z$ und $\Theta$ unabhängige Zufallsgrößen so, dass die $Z$ die Dichte
+	\begin{align*}
+		p(z)=\indi_{[0,\infty)}(z)\mal z\mal\exp\klammern{-\frac{z^2}{2}}\qquad\forall z\in\R
+	\end{align*}
+	besitzt und $ \Theta$ in $[0,2\mal\pi)$ gleichmäßig verteilt ist.
+	Dann ist
+	\begin{enumerate}[label=(\alph*)]
+		\item der Zufallsvektor
+		\begin{align*}
+			\big(Z\mal\cos(\Theta),Z\mal\sin(\Theta)\big)
+		\end{align*}
+		Gauß-verteilt und
+		\item $\begin{aligned}
+			X_t:=Z\mal\cos\big(2\mal\pi+\Theta\big)~(\forall t\in\R)
+		\end{aligned}$
+		ist ein Gauß-Prozess (mit Werten in $\R$).
+	\end{enumerate}
+\end{aufgabenr}
+
+
+
+
+
+
+
+
+
+
+
