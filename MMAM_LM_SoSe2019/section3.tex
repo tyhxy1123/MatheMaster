@@ -96,19 +96,258 @@ Beachte ($\varepsilon=\big(\varepsilon_1,\ldots,\varepsilon_n\big)'$):
 	&\iff\Cov\big(\varepsilon_i,\varepsilon_j\big)=0
 	&&\forall i\neq j\und\Var(\varepsilon_i)=\sigma^2
 \end{align*}
-Also gilt: $\varepsilon_1,\ldots,\varepsilon_n$ iid $\implies\eqref{eq:3.3}$
+Also gilt: $\varepsilon_1,\ldots,\varepsilon_n$ iid $\implies\eqref{eq:3.3}$\\
+($p$ ist die Anzahl der Modellparameter)
+\begin{align*}
+	\eqref{eq:3.1}\iff Y_i=\sum\limits_{j=1}^p x_{i,j}\mal\beta_j+\varepsilon_i\quad\forall i
+\end{align*}
 
+\subsection{Minimum-Quadrat-Schätzer}
 
+Ziel: Schätzung von $\beta$.
+Idee nach Gauß und Legendre: 
+\define{Methode der kleinsten Quadrate}, nämlich:
+Minimierung der \define{Fehlerquadratsumme}
+\index{Fehlerqudratsumme}\index{Methode der kleinsten Quadrate}
+\begin{align*}
+	\sum\limits_{i=1}^n\varepsilon_i^2
+	&=\norm{\varepsilon}^2
+	=\norm{Y-X\mal\beta}^2,
+\end{align*}
+d.h. finde $\beta$ mit
+\begin{align*}
+	&\hspace{12mm}\norm{Y-X\mal\hat{\beta}}^2\leq\norm{Y-X\mal\beta}^2\qquad\forall\beta\in\R^p\\
+	&\iff
+	\norm{Y-X\mal\hat{\beta}}\leq\norm{Y-X\mal\beta}\qquad\forall\beta\in\R^p\\
+	&\iff\hat{\beta}(\omega)\in\argmin\limits_{\beta\in\R^p}\norm{Y(\omega)-X\mal\beta}
+\end{align*}
+Die Lösung ist bekannt.
+Es gilt
 
+\begin{satz}\label{satz3.3}
+	Es gelten \eqref{eq:3.1} und \eqref{eq:3.4}.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Die Minimalstelle $\hat{\beta}$ existiert und erfüllt die \define{Normalgleichung} \label{item:satz3.3(1)}
+		\begin{align}\label{eq:satz3.3Stern}\tag{$*$}
+			X'\mal x\mal\hat{\beta}=X'\mal Y
+		\end{align}
+		und umgekehrt ist jede Lösung von \eqref{eq:satz3.3Stern} eine Minimalstelle.\\
+		Bezeichnet $L:=\Bild(X)$, so gilt:
+		\begin{align*}
+			P_L(Y)=X\mal\hat{\beta}
+		\end{align*}
+		\item Falls $\Rg(X)=p$ (also Vollrang), so gilt:\label{item:satz3.3(2)}
+		\begin{align*}
+			\hat{\beta}&=\big(X'\mal X)^{-1}\mal X'\mal Y
+			\qquad\und\qquad
+			P_L=X\mal\big(X'\mal X\big)^{-1}\mal X'
+		\end{align*}
+		Der Schätzer $\hat{\beta}$ heißt \define{Minimum-Quadrat-Schätzer (MQS) /\\ Kleinst-Quadrate-Schätzer (KQS) / least squares estimator (lse)}.
+		\index{Minimum-Qudrat-Schätzer}
+		\index{Kleinst-Quadrate-Schätzer}
+		\index{least squares estimator|see{Minimum-Quadrat-Schätzer}}
+	\end{enumerate}
+\end{satz}
 
+\begin{proof}
+	Nutze Satz \ref{satz2.22} mit $A\leftrightarrow X$, $x\leftrightarrow Y(\omega)$ und $y\leftrightarrow\beta$.
+\end{proof}
 
-% Vorgriff:
+\begin{figure}[H]
+	\begin{center}
+		\input{./tikz/orthoProjektionSec3}
+		\caption{Minimum-Quadrat-Schätzer}
+		\label{Abb:MinQuaSchätzer}
+	\end{center}
+\end{figure}
 
+\begin{satz}\label{satz3.4}
+	Angenommen es gelten \eqref{eq:3.1}, \eqref{eq:3.2}, \eqref{eq:3.3} und \eqref{eq:3.4}.
+	Falls $\Rg(X)=p$, so
+	\begin{align}\label{eq:3.5}\tag{3.5}
+		\E\big[\hat{\beta}\big]&=\beta\qquad\forall\beta\in\R^p\\
+		\Var\big(\hat{\beta}\big)&=\sigma^2\mal\big(X'\mal X\big)^{-1}\label{eq:3.6}\tag{3.6}
+	\end{align}
+\end{satz}
 
-
-\begin{definition}
-	Der \define{Minimum-Quadrat-Schätzer} ist
+\begin{proof}
 	\begin{align*}
-		\hat{\beta}\in\argmin\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p}
+		\E\big[\hat{\beta}\big]
+		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
+		\E\Big[\underbrace{\big((X'\mal X)^{-1}\mal X'\big)}_{=:A}\mal Y\Big]\\
+		\overset{\Lin}&{=}
+		\big(X'\mal X\big)^{-1}\mal X'\mal\E[Y]\\
+		\overset{\eqref{eq:3.1}}&{=}
+		\big(X'\mal X\big)^{-1}\mal X'\mal\underbrace{\E[X\mal\beta+\varepsilon]}_{
+			=\underbrace{\E[X\mal\beta]}_{
+				=X\mal\beta
+			}+\underbrace{\E[\varepsilon]}_{
+				\overset{\eqref{eq:3.2}}{=}0		
+			}=X\mal\beta
+		}\\
+		&=\big(X'\mal X\big)^{-1}\mal\big(X'\mal X\big)\mal\beta\\
+		&=I_p\beta\\
+		&=\beta
 	\end{align*}
-\end{definition}
+	Andererseits gilt:
+	\begin{align*}
+		\Var\big(\hat{\beta}\big)
+		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
+		\Var(A\mal Y)\\
+		\overset{\ref{satz3.3}\ref{item:satz3.2(2)}}&{=}
+		A\mal\Var(Y)\mal\A'\\
+		&=\big(X'\mal X\big)^{-1}\mal X'\mal\underbrace{\Var(Y)}_{
+			\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}{=}
+			\Var(\varepsilon)
+			\overset{\eqref{eq:3.3}}{=}
+			\sigma^2\mal I_n
+		}\mal X\mal\big(X'\mal X\big)^{-1}\\
+		&=\sigma^2\mal\big(X'\mal X\big)^{-1}\mal\underbrace{\big(X'\mal X\big)\mal\big(X'\mal X\big)^{-1}}_{=I_p}\\
+		&=\sigma^2\mal\big(X'\mal X\big)^{-1}
+	\end{align*}
+\end{proof}
+
+Beachte, der Designmatrix $X$ kommt durch die \define{Varianzformel} \eqref{eq:3.6} eine statistische Bedeutung zu ($\leadsto$ design of experiments).
+\index{Varianzformel}
+
+\begin{beispiel}[Einfache lineare Regression]
+\label{beisp3.5einfacheLineareRegression}
+	\begin{align*}
+		Y_i&=a+b\mal x_i+\varepsilon_i,\qquad\forall i\in\set{1,\ldots,n}
+	\end{align*}
+
+	\begin{figure}[H]
+		\begin{center}
+			\input{./tikz/beispiel3.5}
+			\caption{Einfache lineare Regression}
+			%\label{Abb:MinQuaSchätzer}
+		\end{center}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\begin{center}
+			\input{./tikz/beispiel3.5_2}
+			\caption{Einfache lineare Regression}
+			%\label{Abb:MinQuaSchätzer}
+		\end{center}
+	\end{figure}
+
+	\begin{align*}
+		\underbrace{\begin{pmatrix}
+			Y_1\\
+			\vdots\\
+			\vdots\\
+			Y_n
+		\end{pmatrix}}_{=Y}
+		&=\underbrace{\begin{pmatrix}
+			1 & x_1\\
+			\vdots & x_2\\
+			\vdots & \vdots\\
+			1 & x_n
+		\end{pmatrix}}_{=X}\mal\underbrace{\begin{pmatrix}
+			a\\
+			b
+		\end{pmatrix}}_{=\beta}+\underbrace{\begin{pmatrix}
+			\varepsilon_1\\
+			\vdots\\
+			\vdots\\
+			\varepsilon_n
+		\end{pmatrix}}_{=\varepsilon}
+	\end{align*}
+	Angenommen, $\Rg(X)=2$ ($\overset{!}{\iff}\exists i\neq j:x_i\neq x_j$)
+	\begin{align*}
+		X'\mal X
+		&=\begin{pmatrix}
+			1 & \hdots & 1\\
+			x_1 & \hdots & x_n
+		\end{pmatrix}\mal\begin{pmatrix}
+			1 & x_1\\
+			\vdots &  \vdots\\
+			1 & x_n
+		\end{pmatrix}
+		=\begin{pmatrix}
+			n & \sum\limits_{i=1}^n x_i\\
+			\sum\limits_{i=1}^n x_i & \sum\limits_{i=1}^n x_i^2
+		\end{pmatrix}
+		=\begin{pmatrix}
+			n & n\mal\overline{x_n}\\
+			n\mal\overline{x_n} & \sum\limits_{i=1}^n x_i^2
+		\end{pmatrix}\\
+		X'\mal Y
+		&=\begin{pmatrix}
+			1 & \hdots & 1\\
+			x_1 & \hdots & x_n
+		\end{pmatrix}\mal\begin{pmatrix}
+			Y_1\\
+			\vdots\\
+			Y_n
+		\end{pmatrix}
+		=\begin{pmatrix}
+			\sum\limits_{i=1}^n Y_i\\
+			\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{pmatrix}
+		=\begin{pmatrix}
+			n\mal\overline{Y}\\
+			\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{pmatrix}\\
+		\mit\qquad \overline{x_n}&:=\frac{1}{n}\mal\sum\limits_{i=1}^n x_i
+		\qquad\und\qquad
+		\overline{Y_n}:=\frac{1}{n}\mal\sum\limits_{i=1}^n Y_i
+	\end{align*}
+	Normalgleichung:
+	\begin{align*}
+		\begin{pmatrix}
+			n & n\mal\overline{x_n}\\
+			n\mal\overline{x_n} & \sum\limits_{i=1}^n x_i^2
+		\end{pmatrix}\mal\begin{pmatrix}
+			\alpha\\
+			\beta
+		\end{pmatrix}=\begin{pmatrix}
+			n\mal\overline{Y_n}\\
+			\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{pmatrix}\\
+		\iff
+		\left\lbrace\begin{array}{l}
+			(1)~~
+			n\mal\alpha+n\mal\overline{x_n}\mal\beta=n\mal\overline{Y_n}
+			\iff\alpha=\overline{Y_n}-\overline{x_n}\mal\beta\\
+			(2)~~n\mal\overline{x_n}\mal\alpha+\sum\limits_{i=1}^n x_i^2\mal\beta=\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{array}\right.
+	\end{align*}
+	Teilen durch $n$ in (2) und einsetzen in (2) liefert:
+	\begin{align*}
+		\overline{x_n}\mal \overline{Y_n}\underbrace{-\overline{x_n}^2\mal\beta+\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2\mal\beta}_{=\beta\mal\klammern{\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2-\overline{x_n}^2}}
+		=\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i\\
+		\implies
+		\beta=\frac{\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i-\overline{x_n}\mal\overline{Y_n}}{\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2-\overline{x_n}^2}
+		=\frac{
+			\frac{1}{n-1}\mal\klammern{\sum\limits_{i=1}^n x_i\mal Y_i-n\mal\overline{x_n}\mal\overline{Y_n}}		
+		}{
+			\frac{1}{n-1}\mal\klammern{\sum\limits_{i=1}^n x_i^2-n\mal \overline{x_n^2}}
+		}
+		\overset{!}{=}
+		\frac{
+			\frac{1}{n-1}\mal\sum\limits_{i=1}^n\big(x_i-\overline{x_n}\big)\mal\big(Y_i-\overline{Y_n}\big)
+		}{
+			\frac{1}{n-1}\mal \sum\limits_{i=1}^n\big(x_i-\overline{x_n}\big)^2
+		}
+		=:\frac{s_{x,y}}{s_x^2}
+	\end{align*}
+	empirische Varianz $s_{x,y}$ und empirische Kovarianz $s_x^2$
+	\begin{align*}
+		\hat{\beta}=\begin{pmatrix}
+			\hat{a}\\
+			\hat{b}
+		\end{pmatrix}\qquad\mit\qquad
+		\hat{a}:=\overline{Y_n}-\overline{x_n}\mal\hat{b},\qquad
+		\hat{b}:=\frac{s_{x,y}}{s_x^2}
+	\end{align*}
+\end{beispiel}
+
+
+
+
+
+
+
