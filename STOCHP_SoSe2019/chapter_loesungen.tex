@@ -70,9 +70,96 @@ Wir zeigen nun die Wohldefiniertheit von $\P_0$:
 	\texorpdfstring{\hyperref[aufg:9]{Aufgabe 9}}{}
 }\label{loes:9}
 
+\betone{Zeige \ref{item:aufg9(1)}:}\\
+Um Stationärität (im weiteren Sinne) zu prüfen, prüfen wir zuerst, dass $\E[Z(t)]$ nicht von $t$ abhängt:
+\begin{align}\label{eq:loes9}
+	\E\big[Z(t)\big]
+	\overset{\Def}&{=}
+	\E\left[\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal X_j\right]
+	\overset{\Lin}{=}
+	\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal\underbrace{\E[X_j]}_{
+		\overset{\Vor}{=}0
+	}
+	=0=:M\quad\forall t\in\R^d
+\end{align}
+
+Nun müssen wir noch prüfen, dass die Korrelationsfunktion genau von $t_1-t_2$ ($t_1,t_2\in T$) abhängt:
+\begin{align*}
+	\E\big[Z(t_1)\mal\overline{Z(t_2)}\big]
+	\overset{\Def}&{=}
+	\E\left[\klammern{\sum\limits_{j=1}^n\Big(\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal X_j}\mal\overline{\klammern{\sum\limits_{k=1}^n\exp\big(\ii\mal\scaProd{a_k}{t_2}\big)\mal X_k}}\right]\\
+	&=
+	\E\left[\klammern{\sum\limits_{j=1}^n\Big(\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal X_j}\mal\klammern{\sum\limits_{k=1}^n\exp\big(-\ii\mal\scaProd{a_k}{t_2}\big)\mal \overline{X_k}}\right]\\
+	&=\E\left[\sum\limits_{j=1}^n\sum\limits_{k=1}^n\exp\Big(\ii\mal\big(\scaProd{a_j}{t_1}-\scaProd{a_k}{t_2}\big)\Big)\mal X_j\mal \overline{X_k}\right]\\
+	\overset{\Lin}&{=}
+	\sum\limits_{j=1}^n\sum\limits_{k=1}^n\exp\Big(\ii\mal\big(\scaProd{a_j}{t_1}-\scaProd{a_k}{t_2}\big)\Big)\mal\underbrace{\E\big[ X_j\mal \overline{X_k}\big]}_{=0,~\falls j\neq k}\\
+	&=\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t_1-t_2}\big)\mal\E\big[X_j\mal \overline{X_j}\big]\\
+\end{align*}
+Somit haben wir die Korrelationsfunktion direkt berechnet:
+\begin{align*}
+	C\big(t_1,t_2\big)=C\big(t_1-t_2\big)
+	&=\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t_1-t_2}\big)\mal\E\big[X_j\mal \overline{X_j}\big]
+\end{align*}
+Nun berechnen wir noch die Kovarianzfunktion:
+\begin{align*}
+	\sigma\big(t_1,t_2\big)
+	\overset{\Def}&{=}
+	\E\Big[\big(Z(t_1)-\underbrace{M(t_1)}_{
+		\overset{\eqref{eq:loes9}}{=}0
+	}\big)\mal\overline{\big(Z(t_2)-\underbrace{M(t_2)}_{
+		\overset{\eqref{eq:loes9}}{=}0
+	}}\big)\Big]
+	=C\big(t_1,t_2\big)
+	=C\big(t_1-t_2\big)
+\end{align*}
+
+\betone{Zeige \ref{item:aufg9(2)}:}\\
+Wir prüfen wieder, wann $\E[Z(t)]$ nicht von $t$ abhängt:
+\begin{align*}
+	\E\big[Z(t)\big]
+	\overset{\Def}&{=}
+	\E\big[g(t)\mal X\big]
+	\overset{\Lin}{=}
+	g(t)\mal\underbrace{\E[X]}_{
+		\overset{\Vor}{<}\infty,\text{ konstant}
+	}
+\end{align*}
+Also ist $\E[Z(t)]$ genau dann unabhängig von $t$, wenn $g\colon\R^d\to\C$ eine konstante Funktion ist.\\
+In diesem Fall ist auch die zweite Eigenschaft von Stationärität (im weiteren Sinne) erfüllt:
+\begin{align*}
+	\E\Big[Z(t_1)\mal\overline{T(t_2)}\Big]
+	\overset{\Def}&{=}
+	\E\Big[g(t_1)\mal X\mal\overline{g(t_2)}\mal \overline{X}\Big]
+	\overset{g\equiv\text{konst}}{=}
+	\abs{g}^2\mal\E\big[X\mal\overline{X}\big]
+\end{align*}
+Die Korrelationsfunktion ist also auch konstant.
+
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:10]{Aufgabe 10}}{}
 }\label{loes:10}
+
+%TODO bisher nur rüberkopiert
+
+\begin{align*}
+\E[X(t)]
+=\E[A\cdot\cos(\theta\cdot t)+B\cdot\sin(\theta\cdot t)]
+=\E[A]\cdot\cos(\theta\cdot t)+\E[B]\cdot\sin(\theta\cdot t)
+=0+0=0
+\end{align*}
+
+\begin{align*}
+C(h) &=
+\E[X(t+h)\cdot X(t)] \\
+&=\E\left[(A\cos(\theta t)+B\sin(\theta t))\cdot(A\cos(\theta t+\theta h)+B\sin(\theta t+\theta h))\right]\\
+&=\underbrace{\E[A^2]}_{=1}\cos^2(\theta t)\cos(\theta h)
+-\underbrace{\E[A^2]}_{=1}\cos(\theta t)\sin(\theta t)\sin(\theta h)+\underbrace{\E[A\cdot B]}_{=0}\cdot...\\
+&~~~+\underbrace{\E[B^2]}_{=1}\sin^2(\theta t)\cos(\theta h)+\underbrace{\E[B^2]}_{=1}\sin(\theta t)\cos(\theta t)\sin(\theta h)\\
+&=\cos^2(\theta t)\cos(\theta h)+\sin^2(\theta t)\cos(\theta h)+0\\
+&=\cos(\theta h)\cdot 1
+\end{align*}
+
+Zur (b):
 
 Nein, ist nicht stationär im engeren Sinne. Gegenbeispiel:
 
