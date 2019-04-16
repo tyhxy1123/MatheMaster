@@ -509,7 +509,6 @@ F \text{ glm. monoton } \implies F \text{ strikt monoton } \implies F \text{ mon
 			\[
 				\min \left\{ F(x)^{T}(x-y), F(y)^{T}(y-x) \right\} \leq 0
 			.\] 
-			% TODO : nochmal überprüfen, sieht komisch aus
 	\end{enumerate}
 
 	Man kann zeigen:
@@ -536,10 +535,12 @@ mit
 \begin{itemize}
 	\item Variablen $x \in \R^{n}$
 	\item Zielfunktion $f \colon X \rightarrow \R $ (gegebenenfalls auf offener Obermenge von $X$ definiert)
-	\item zulässige Menge $X \subseteq \R^{n}$ (oft: $X = \left\{ x \in \R^{n} | g(x) \leq 0, h(x) = 0 \right\} $ mit $g \colon \R^{n} \rightarrow \R^{m}, h \colon \R^{n} \rightarrow \R^{p}$
+	\item zulässige Menge $X \subseteq \R^{n}$ 
+
+		(oft: $X = \left\{ x \in \R^{n} | g(x) \leq 0, h(x) = 0 \right\} $ mit $g \colon \R^{n} \rightarrow \R^{m}, h \colon \R^{n} \rightarrow \R^{p}$)
 \end{itemize}
 
-Bei uns meistens
+In dieser Vorlesung gilt meistens
 \begin{itemize}
 	\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex
 	\item $f$ konvex und stetig diffbar
@@ -577,12 +578,12 @@ Bei uns meistens
 \end{proof}
 
 \begin{itemize}
-	\item Fall $X$ konvex: $x^{*}$ lokales Minimum $\implies$ $f'(x^{*};d)\geq 0$ für alle zulässigen Richtungen $d=x-x^{*}$ mit $x \in X$
-	\item Fall $X$ beliebig: $x^{*}$ lokales Minimum $\implies$ $f'(x^{*};d)\geq 0$ für alle "zulässigen" Richtungen $d$
+	\item Fall $X$ konvex: $x^{*}$ lokales Minimum $\implies$ $f'(x^{*};d)\geq 0$ für alle zulässigen Richtungen $d=x-x^{*}$ mit $x \in X$.
+	\item Fall $X$ beliebig: $x^{*}$ lokales Minimum $\implies$ $f'(x^{*};d)\geq 0$ für alle "zulässigen" Richtungen $d$. Was bedeutet "zulässig" in diesem Fall?
 
 		$\implies$ Bouligand-Tangentialkegel:
 		\[
-			T_{X}(x^{*}):= \left\{ d \in \R^{n} | \exists (x^{k})_{k} \subseteq X, (t_{k})_{k}\geq 0 \colon x^{k} \rightarrow x^{*}, t_{k}(x^{k}-x^{*}) \rightarrow d \right\} 
+			T_{X}(x^{*}):= \left\{ d \in \R^{n} ~|~ \exists (x^{k})_{k} \subseteq X \text{ und } (t_{k})_{k}\geq 0 ~\colon x^{k} \rightarrow x^{*} \text{ und } t_{k}(x^{k}-x^{*}) \rightarrow d \right\} 
 		.\] ($t_{k}$ ist hierbei oft definiert durch $t_{k}=\frac{1}{\norm{x^{k}- x^{*}} }$)
 \end{itemize}
 
@@ -592,39 +593,62 @@ Bei uns meistens
 	\[
 		\implies \nabla f(x^{*})^{T}d \geq 0 \quad \forall d \in T_{X}(x^{*})
 	.\] 
+	(ohne Beweis)
 \end{satz}
 
-\underline{Problem}: $T_{X}(x^{*})$ is im Allgemeinen schwer zu berechnen. Deshalb verwende den \underline{Linearisierungskegel} an $X=\left\{ x | g(x) \leq 0, h(x) = 0 \right\}$ in $x^{*}$:
-\[
-	L_{X}(x^{*}) = \left\{ d \in \R^{n} | \nabla g_{i}(x^{*})^{T}d \leq 0 \forall i \in Ig(x^{*})= \left\{ i | g(x^{*}) = 0\right\}, \nabla h_{i}(x^{*})^{T}d = 0 \forall i=1, \ldots, p \right\} = T_{X_{\text{lin}}}(x^{*})
-.\] 
-$x^{*} \in X$, definiere
-\[
-	X_{\text{lin}}=\left\{ x \in \R^{n} | g(x^{*}) + \nabla  g(x^{*})^{T}(x-x^{*}) \leq 0, h(x^{*}) + \nabla h(x^{*})^{T}(x-x^{*}) = 0 \right\} 
-.\] 
+\underline{Problem}:
+
+$T_{X}(x^{*})$ ist im Allgemeinen schwer zu berechnen. Deshalb verwende den \underline{Linearisierungskegel} an $X=\left\{ x ~|~ g(x) \leq 0, h(x) = 0 \right\}$ in $x^{*}$:
+\begin{align*}
+	L_{X}(x^{*}) &= \left\{ d \in \R^{n} ~|~ \nabla g_{i}(x^{*})^{T}d \leq 0 \quad \forall i \in Ig(x^{*})= \left\{ i ~|~ g_{i}(x^{*}) = 0\right\}\right\}\\
+				 &\qquad\cap \left\{ d \in \R^{n} ~|~ \nabla h_{i}(x^{*})^{T}d = 0 \quad \forall i=1, \ldots, p \right\} \\
+				 &= T_{X_{\text{lin}}}(x^{*})
+\end{align*}
+Sei $x^{*} \in X$, definiere
+\begin{align*}
+	X_{\text{lin}}=&\left\{ x \in \R^{n} ~|~ g(x^{*}) + \nabla  g(x^{*})^{T}(x-x^{*}) \leq 0\right\} \\
+	&\qquad\cap \left\{ x \in \R^{n} ~|~ h(x^{*}) + \nabla h(x^{*})^{T}(x-x^{*}) = 0 \right\} 
+\end{align*}
 
 \begin{itemize}
 	\item Es gilt immer $T_{X}(x^{*}) \subseteq L_{X}(x^{*})$
-	\item Es gilt $\nabla f(x^{*})d \geq 0 \froall d \in L_{X}(x^{*})$, genau dann, wenn es Multiplikatoren $Z \in \R^{m}$ und $\mu \in \R^{p}$ gibt mit
-		\begin{align*}
-			\nabla f(x^{*}) + \sum_{i=1}^{m}{Z_{i}\nabla g_{i}(x^{*})} + \sum_{i=1}^{p}{\mu _{i}\nabla h_{i}(x^{*})&=0} \\
-			h(x^{*}) &= 0 \\
-			\forall i=1, \ldots, m : g_{i}(x^{*})\leq 0, Z_{i}\geq 0, g_{i}(x^{*}) Z_{i} &= 0
-		\end{align*}
-		% TODO : das in array umwandeln links eckige klammer mit KKT Bedingungen mittig
+	\item Es gilt 
+		\[
+		\nabla f(x^{*})d \geq 0 \quad \forall d \in L_{X}(x^{*})
+		,\] genau dann, wenn es Multiplikatoren $Z \in \R^{m}$ und $\mu \in \R^{p}$ gibt mit
+		\[
+		\left.
+		\begin{array}{r}
+			\nabla f(x^{*}) + \sum_{i=1}^{m}Z_{i}\nabla g_{i}(x^{*}) + \sum_{i=1}^{p}\mu _{i}\nabla h_{i}(x^{*})=0 \\
+			h(x^{*}) = 0 \\
+			\forall i=1, \ldots, m \colon g_{i}(x^{*})\leq 0 \leq Z_{i} \text{ mit } Z_{i}\cdot g_{i}(x^{*}) = 0
+		\end{array}
+		\right] \text{ KKT-Bedingungen }
+		.\] 
+		Es gilt folgende nützlich Implikation
 		\begin{align*}
 			x^{*} \text{ lokales Minimum } &\implies \nabla f(x^{*})^{T}d \geq 0 \forall d \in T_{X}(x^{*}) \subseteq L_{X}(x^{*}) \\
-										   &\iff \nabla f(x^{*})^{T}d \geq 0 \forall d \in L_{X}(x^{*}) \\
+			\overset{(\ast)}&{\iff}  \nabla f(x^{*})^{T}d \geq 0 \forall d \in L_{X}(x^{*}) \\
 										   &\iff x^{*} \text{ ist ein KKT-Punkt }
 		\end{align*}
-		Die erste Äquivalenz gilt hierbei nur unter der sogenannten "constraint qualification (CQ)", die garantiert, dass $T_{X}(x^{*}) = L_{X}(x^{*})$ gilt.
+		Die Äquivalenz $(\ast)$ gilt hierbei nur unter der sogenannten "constraint qualification" (CQ), die garantiert, dass $T_{X}(x^{*}) = L_{X}(x^{*})$ gilt.
 \end{itemize}
 
 Beispiele für Constraint Qualifications:
 \begin{itemize}
-	\item Abadie-CQ : $T_{X}(x^{*})=L_{X}({x}^{*})$
-	\item Linear Independence CQ (LICQ): $ \nabla g_{i}({x}^{*})\quad (i \in Ig({x}^{*}) )$, $\nabla h_{i}({x}^{*}) \quad (i=1, \ldots, p)$ sind linear unabhängig.
-	\item Mangasarian-Fromowitz-CQ (MFCQ): Es gilt
+	\item Abadie-CQ :
+		\[
+		T_{X}(x^{*})=L_{X}({x}^{*})
+		.\] 
+	\item Linear Independence CQ (LICQ): 
+		\begin{align*}
+			&\nabla h_{i}({x}^{*}) \quad (i=1, \ldots, p) \\ 
+			&\nabla g_{i}({x}^{*})\quad (i \in Ig({x}^{*}) )
+		\end{align*}
+		  sind linear unabhängig.
+	\item Mangasarian-Fromowitz-CQ (MFCQ):
+
+		Es gilt
 		\begin{itemize}
 			\item $\nabla h_{i}({x}^{*})$ $(i=1, \ldots, p)$ sind linear unabhängig
 			\item $\exists d \in \R^{n}$:
@@ -633,17 +657,23 @@ Beispiele für Constraint Qualifications:
 				&\nabla h_{i}({x}^{*})=0\quad \forall i=1, \ldots, p
 				\end{align*}
 		\end{itemize}
-	\item Linearitäts-CQ: $g(x)$ und $h(x)$ sind lineare Funktionen
-	\item Slater-CQ für konvexe Mengen $X$, d.h. $g_{i}$ konvex $\forall i=1, \ldots, m$, $h$ affin linear:
+	\item Linearitäts-CQ:
 
-		Es gibt ein $\hat{x} \in X$ mit $g(\hat{x})<0$
+		Die Funktionen $g(x)$ und $h(x)$ sind linear.
+	\item Slater-CQ:
+
+		Für konvexe Mengen $X$, d.h. $g_{i}$ konvex $\forall i=1, \ldots, m$, $h$ affin linear:
+
+		\[
+			\text{ Es gibt ein } \hat{x} \in X \text{ mit } g(\hat{x}) < 0
+		.\] 
 \end{itemize}
 
 \begin{satz}
 \label{thm:optinumsatzletzter}
 \begin{enumerate}[label=(\alph{enumi})]
 	\item ${x}^{*}$ lokales Minimum + CQ in ${x}^{*}$ $\implies$ ${x}^{*}$ ist ein KKT-Punkt
-	\item ${x}^{*}$ KKT-Punkt + $f$, $g_{i}$ konvex, $h$affin linear $\implies$ ${x}^{*}$ ist ein globales Minimum
+	\item ${x}^{*}$ KKT-Punkt + $f$, $g_{i}$ konvex, $h$ affin linear $\implies$ ${x}^{*}$ ist ein globales Minimum
 \end{enumerate}
 \end{satz}
 
@@ -652,12 +682,12 @@ Problemklassen und mögliche Lösungsalgorithmen
 \begin{itemize}
 	\item lineare Probleme:
 		\[
-		\min\limits_{x}c^{T}x \text{ udN } Ax=b, x \geq 0
+		\min\limits_{x}c^{T}x \qquad\text{ udN } Ax=b, x \geq 0
 		.\] 
 		Löse zum Beispiel mit Simplex-Verfahren oder Innere-Punkte-Verfahren.
 	\item quadratische Probleme:
 		\[
-			\min\limits_{x}\frac{1}{2}x^{T}Qx + q^{T}x ü \gamma \text{ udN } Ax=b, x\geq 0
+			\min\limits_{x}\frac{1}{2}x^{T}Qx + q^{T}x + \gamma \qquad\text{ udN } Ax=b, x\geq 0
 		.\] 
 		Löse zum Beispiel mit der Strategie der aktiven Menge.
 	\item unrestringierte Probleme:
@@ -667,12 +697,12 @@ Problemklassen und mögliche Lösungsalgorithmen
 		Löse zum Beispiel mit Gradientenverfahren, Newton-Verfahren oder Trust-Region-Verfahren.
 	\item restringierte Probleme:
 		\[
-			\min\limits_{x} f(x) \text{ udN } g(x) \leq 0 , h(x) = 0
+			\min\limits_{x} f(x) \qquad\text{ udN } g(x) \leq 0 \text{ und } h(x) = 0
 		.\] 
 		Löse zum Beispiel mit Penalty-Verfahren, Barriere-Verfahren oder SQP-Verfahren.
 	\item lineare Komplementaritätsprobleme:
 		\[
-			\text{ Find }x \in \R^{n} \text{ mit } x \geq 0, Mx+q \geq 0, x^{T}(Mx+q) = 0
+			\text{ Finde }x \in \R^{n} \text{ mit } x \geq 0, Mx+q \geq 0 \text{ und }x^{T}(Mx+q) = 0
 		.\] 
 		Löse zum Beispiel mit Lemke-Verfahren
 \end{itemize}
@@ -695,7 +725,7 @@ Fragestellung: gegeben $X \subseteq \R^{n}$, $y \not \in X$, finde "beste Approx
 	(Mit $G \in \R^{n \times n}$ symmetrisch positiv definit)
 \end{definition}
 
-\begin{satz}
+\begin{satz}[Projektionen]
 \label{thm:projektionssatz}
 	\begin{enumerate}[label=(\alph{enumi})]
 		\item Sei $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex, $y \not \in X$, $G \in \R^{n \times n}$ s.p.d. Dann hat das Problem 
@@ -707,7 +737,14 @@ Fragestellung: gegeben $X \subseteq \R^{n}$, $y \not \in X$, finde "beste Approx
 			\[
 				\forall x \in X: \quad (y-{x}^{*})^{T}G(x-{x}^{*}) \leq 0
 			.\] 
-			% TODO : Bild Kreis und so
+			\begin{figure}[H]
+				\begin{center}
+					\input{tikz/tikz4.tex}
+				\end{center}
+				\caption{Veranschaulichung von (b)}
+				\label{fig:projektionssatzbild}
+			\end{figure}
+			
 		\item Die Abbildung $y \mapsto P_{X,G}(y)$ ist Lipschitz-stetig mit $L = 1$, insbesondere stetig.
 	\end{enumerate}
 \end{satz}
@@ -715,7 +752,7 @@ Fragestellung: gegeben $X \subseteq \R^{n}$, $y \not \in X$, finde "beste Approx
 \begin{proof}
 \label{thm:projektionssatzbeweis}
 \begin{itemize}
-	\item (a) sollte man kennen, ist ein Standardbeweis
+	\item (a) sollte man kennen, ist ein Standardbeweis, siehe Funktionalanalysis "Projektionssatz"
 	\item (b) 
 		\begin{align*}
 			{x}^{*}=P_{X,G}(y) &\iff {x}^{*} \text{ löst } \min\limits_{x}\underbrace{\norm{y-x} _{G}^2}_{=(y-x)^{T}G(y-x)=:f(x)}  \text{ udN } x \in X \\
