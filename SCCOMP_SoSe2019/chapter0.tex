@@ -932,16 +932,25 @@ $V_{h} \subset V$ finite-dimensional subspace / Finite-Element-space.
 Let 
 \begin{align*}
 	V_{h} &= V_{h}(\mathcal{T}_{h}, \overline{\P}, V) \\
-		  &= \left\{  \phi \in V | \phi |_{T} \in \P_{T} \forall T \in \mathcal{T}_{h} \right\}  
+		  &= \Big\{  \phi \in V ~|~\phi |_{T} \in \P_{T}\quad\forall T \in \mathcal{T}_{h} \Big\}  
 \end{align*}
 
-,where $T$ is the space element in $\mathcal{T}_{h}$, $\overline{T}$ is the reference element (barycentric element) and with $\overline{\phi } \in \overline{\P}$, where $\overline{\phi }(\lambda ) = \overline{\phi }(\lambda (x)) =: \phi (x), \phi  \in \P_{T} x \in T$
+,with
+\begin{itemize}
+	\item $T$ is the space element in $\mathcal{T}_{h}$
+	\item $\overline{T}$ is the reference element (barycentric element)
+	\item $\overline{\phi }$ is a function in $\overline{\P}$, with $\overline{\phi }(\lambda ) = \overline{\phi }(\lambda (x)) =: \phi (x),\quad \phi  \in \P_{T},\quad (x \in T)$
+\end{itemize}
 
-Let $\left\{ \overline{\phi}_{1}, \ldots, \overline{\phi }_{m} \right\} $ be a basis of $\overline{\P}$ and let $\left\{ \phi _{1}, \ldots , \phi _{m} \right\}$ be a basis of $V_{h}$ such that $\forall T \in \mathcal{T}_{h}$ and all $\phi _{j}$ that do not vanish on $T$:
+Let $\left\{ \overline{\phi}_{1}, \ldots, \overline{\phi }_{m} \right\} $ be a basis of $\overline{\P}$ and let $\left\{ \phi _{1}, \ldots , \phi _{m} \right\}$ be a basis of $V_{h}$ such that for all $T \in \mathcal{T}_{h}$ and all $\phi _{j}$ that do not vanish on $T$, the following holds:
 \[
 	\phi _{j}|_{T}(x(\lambda )) = \overline{\phi }^{i}(\lambda ) \qquad \forall \lambda  \in \overline{T}
 ,\] 
-with some $i \in \left\{ 1, \ldots, m \right\} $, $ i= i_{T}(j)$ (global-to-local index mapping) and with inverse index mapping $j=j_{T}(i)$ (local-to-global index mapping)
+with 
+\begin{itemize}
+	\item index mapping $ i= i_{T}(j)$, such that $i \in \left\{ 1, \ldots, m \right\} $ (global-to-local index mapping)
+	\item inverse index mapping $j=j_{T}(i)$ (local-to-global index mapping)
+\end{itemize}
 
 \begin{align*}
 	\phi _{j}|_{T}(x(\lambda )) &= \overline{\phi }^{i_{T}(j)}(\lambda ) \\
@@ -1003,8 +1012,8 @@ P_{T_{1}}= \begin{bmatrix}
 	0&0&0\\
 	 &\vdots& \\
 	0&0&0
-\end{bmatrix}
-\quad
+\end{bmatrix},
+\qquad
 P_{T_{2}}= \begin{bmatrix}
 	0&0&0\\
 	0&0&0\\
@@ -1048,7 +1057,7 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 	\[
 		a_{i,j} = -\frac{1}{2}(\text{cot}(\alpha_{i,j}) + \text{cot}(\beta_{i,j})) \text{ and } a_{i,i} = -\sum_{x_{j}\in N(x_{i})}^{}{a_{j,i}}
 	.\] 
-	with $N(x_{i})=\left\{ x_{j} \in \Omega _{h} : \left[ x_{i},x_{j} \text{ is an edge in the grid } \right]  \right\} $ and $\alpha_{i,j}$, $\beta_{i,j}$ denote angles opposite to the edge $e=[x_{i}, x_{j}]$ in the triangles adjacent to $e$
+	with $N(x_{i})=\left\{ x_{j} \in \Omega _{h} : \left[ x_{i},x_{j} \text{ is an edge in the grid} \right]  \right\} $ and $\alpha_{i,j}$, $\beta_{i,j}$ denote angles opposite to the edge $e=[x_{i}, x_{j}]$ in the triangles adjacent to $e$
 
 	\begin{figure}[ht!]
 		\begin{center}
@@ -1059,13 +1068,10 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 	\end{figure}
 	
 
-	\begin{itemize}[label=\underline{Note}: ]
-	\item 
-	on boundary edges one side of the edge contributes to $a_{i,j}$
-
-	\item This form of stiffness matrix (Laplacian) is called \underline{Cotan-Laplacian} and can be derived by purely geometric arguments
-
-	\item The formula holds also for surface grids with $\text{dim}(\Omega _{h}) \neq \text{dim}(X)$
+	\begin{itemize}
+	\item Note: on boundary edges one side of the edge contributes to $a_{i,j}$
+	\item Note: This form of stiffness matrix (Laplacian) is called \underline{Cotan-Laplacian} and can be derived by purely geometric arguments
+	\item Note: The formula holds also for surface grids with $\text{dim}(\Omega _{h}) \neq \text{dim}(X)$
 \end{itemize}
 
 \end{lemma}
@@ -1073,19 +1079,10 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 \begin{proof}
 \label{thm:stiffnessmatrixlemmaproof}
 \begin{enumerate}[label=\arabic{enumi})]
-	\item The aspect ratio of a triangle can be expressed as the sum of cotan s of the interior angles at its base.
+	\item The aspect ratio of a triangle can be expressed as the sum of $\cot$-s of the interior angles at its base.
 		\[
 		\frac{W}{h} = \cot \alpha + \cot \beta
 		.\] 
-		% TODO : plot Dreieck mit relationen
-		\begin{figure}[ht!]
-			\begin{center}
-				\input{tikz/chapter0/triangle_explained.tex}
-			\end{center}
-			\caption{Sketch of the used properties}
-			\label{fig:triangleexplained}
-		\end{figure}
-		
 		since
 		\[
 			\cot \alpha = \frac{W_{1}}{h},\quad \cot \beta = \frac{W_2}{h}
@@ -1093,12 +1090,19 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 		\[
 		\implies \frac{W_1}{h} + \frac{W_2}{h} = \frac{W}{h}
 		.\] 
+		\begin{figure}[H]
+			\begin{center}
+				\input{tikz/chapter0/triangle_explained.tex}
+			\end{center}
+			\caption{Sketch of the used properties}
+			\label{fig:triangleexplained}
+		\end{figure}
 	\item Let $\vec{e}$ be the edge vector along the base of the triangle $T$. The gradient of the hat-function $\overline{\phi }$ associated with the opposite vertex $v$ is given by
 		\[
 		\nabla \overline{\phi } = \frac{1}{2\abs{T} }\vec{e}^{\bot}
 		,\] 
 		where $\vec{e}^{\bot}$ is the vector $\vec{e}$ rotated by a quarter turn in counter-clockwise direction and $\abs{T} $ is the area of $T$.
-	\item 
+	\item Using everything we get 
 		\[
 			\int_{T}\nabla \phi \nabla \phi \d x = \frac{1}{2}(\cot \alpha + \cot \beta)
 		.\] 
