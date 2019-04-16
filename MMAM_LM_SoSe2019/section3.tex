@@ -99,7 +99,7 @@ Beachte ($\varepsilon=\big(\varepsilon_1,\ldots,\varepsilon_n\big)'$):
 Also gilt: $\varepsilon_1,\ldots,\varepsilon_n$ iid $\implies\eqref{eq:3.3}$\\
 ($p$ ist die Anzahl der Modellparameter)
 \begin{align*}
-	\eqref{eq:3.1}\iff Y_i=\sum\limits_{j=1}^p x_{i,j}\mal\beta_j+\varepsilon_i\quad\forall i
+	\eqref{eq:3.1}\iff Y_i=\sum\limits_{j=1}^p X_{i,j}\mal\beta_j+\varepsilon_i\quad\forall i
 \end{align*}
 
 \subsection{Minimum-Quadrat-Schätzer}
@@ -108,17 +108,19 @@ Ziel: Schätzung von $\beta$.
 Idee nach Gauß und Legendre: 
 \define{Methode der kleinsten Quadrate}, nämlich:
 Minimierung der \define{Fehlerquadratsumme}
-\index{Fehlerqudratsumme}\index{Methode der kleinsten Quadrate}
+\index{Fehlerquadratsumme}\index{Methode der kleinsten Quadrate}
 \begin{align*}
 	\sum\limits_{i=1}^n\varepsilon_i^2
-	&=\norm{\varepsilon}^2
-	=\norm{Y-X\mal\beta}^2,
+	\overset{\Def}&{=}
+	\norm{\varepsilon}^2
+	\overset{\eqref{eq:3.1}}{=}
+	\norm{Y-X\mal\beta}^2,
 \end{align*}
-d.h. finde $\beta$ mit
+d.h. finde $\hat{\beta}$ mit
 \begin{align*}
-	&\hspace{12mm}\norm{Y-X\mal\hat{\beta}}^2\leq\norm{Y-X\mal\beta}^2\qquad\forall\beta\in\R^p\\
+	&\hspace{11.5mm}\norm{Y-X\mal\hat{\beta}}^2\leq\norm{Y-X\mal\beta}^2&&\forall\beta\in\R^p\\
 	&\iff
-	\norm{Y-X\mal\hat{\beta}}\leq\norm{Y-X\mal\beta}\qquad\forall\beta\in\R^p\\
+	\norm{Y-X\mal\hat{\beta}}\leq\norm{Y-X\mal\beta}&&\forall\beta\in\R^p\\
 	&\iff\hat{\beta}(\omega)\in\argmin\limits_{\beta\in\R^p}\norm{Y(\omega)-X\mal\beta}
 \end{align*}
 Die Lösung ist bekannt.
@@ -129,8 +131,9 @@ Es gilt
 	Dann gilt:
 	\begin{enumerate}[label=(\arabic*)]
 		\item Die Minimalstelle $\hat{\beta}$ existiert und erfüllt die \define{Normalgleichung} \label{item:satz3.3(1)}
+		\index{Normalgleichung}
 		\begin{align}\label{eq:satz3.3Stern}\tag{$*$}
-			X'\mal x\mal\hat{\beta}=X'\mal Y
+			X'\mal X\mal\hat{\beta}=X'\mal Y
 		\end{align}
 		und umgekehrt ist jede Lösung von \eqref{eq:satz3.3Stern} eine Minimalstelle.\\
 		Bezeichnet $L:=\Bild(X)$, so gilt:
@@ -164,7 +167,7 @@ Es gilt
 
 \begin{satz}\label{satz3.4}
 	Angenommen es gelten \eqref{eq:3.1}, \eqref{eq:3.2}, \eqref{eq:3.3} und \eqref{eq:3.4}.
-	Falls $\Rg(X)=p$, so
+	Falls $\Rg(X)=p$, so gilt:
 	\begin{align}\label{eq:3.5}\tag{3.5}
 		\E\big[\hat{\beta}\big]&=\beta\qquad\forall\beta\in\R^p\\
 		\Var\big(\hat{\beta}\big)&=\sigma^2\mal\big(X'\mal X\big)^{-1}\label{eq:3.6}\tag{3.6}
@@ -176,7 +179,7 @@ Es gilt
 		\E\big[\hat{\beta}\big]
 		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
 		\E\Big[\underbrace{\big((X'\mal X)^{-1}\mal X'\big)}_{=:A}\mal Y\Big]\\
-		\overset{\Lin}&{=}
+		\overset{\ref{satz3.2}\ref{item:satz3.2(1)}}&{=}
 		\big(X'\mal X\big)^{-1}\mal X'\mal\E[Y]\\
 		\overset{\eqref{eq:3.1}}&{=}
 		\big(X'\mal X\big)^{-1}\mal X'\mal\underbrace{\E[X\mal\beta+\varepsilon]}_{
@@ -190,15 +193,16 @@ Es gilt
 		&=I_p\beta\\
 		&=\beta
 	\end{align*}
-	Andererseits gilt:
+	Zur Varianz:
 	\begin{align*}
 		\Var\big(\hat{\beta}\big)
 		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
-		\Var(A\mal Y)\\
-		\overset{\ref{satz3.3}\ref{item:satz3.2(2)}}&{=}
-		A\mal\Var(Y)\mal\A'\\
+		\Var\Big(\big(X'\mal X\big)^{-1}\mal X'\mal Y)\\
+		\overset{\ref{satz3.2}\ref{item:satz3.2(2)}}&{=}
+		\big(X'\mal X\big)^{-1}\mal X'\mal\Var(Y)\mal\Big(\big(X'\mal X\big)^{-1}\mal X'\Big)'\\
 		&=\big(X'\mal X\big)^{-1}\mal X'\mal\underbrace{\Var(Y)}_{
-			\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}{=}
+			\overset{\eqref{eq:3.1}}{=}\Var(X\mal\beta+\varepsilon)
+			\overset{\ref{satz3.2}\ref{item:satz3.2(2)}}{=}
 			\Var(\varepsilon)
 			\overset{\eqref{eq:3.3}}{=}
 			\sigma^2\mal I_n
@@ -228,7 +232,7 @@ Beachte, der Designmatrix $X$ kommt durch die \define{Varianzformel} \eqref{eq:3
 	\begin{figure}[H]
 		\begin{center}
 			\input{./tikz/beispiel3.5_2}
-			\caption{Einfache lineare Regression}
+			\caption{Einfache lineare Regression - Methode der kleinsten Fehlerquadrate}
 			%\label{Abb:MinQuaSchätzer}
 		\end{center}
 	\end{figure}
@@ -288,14 +292,14 @@ Beachte, der Designmatrix $X$ kommt durch die \define{Varianzformel} \eqref{eq:3
 			\sum\limits_{i=1}^n x_i\mal Y_i
 		\end{pmatrix}
 		=\begin{pmatrix}
-			n\mal\overline{Y}\\
+			n\mal\overline{Y_n}\\
 			\sum\limits_{i=1}^n x_i\mal Y_i
 		\end{pmatrix}\\
 		\mit\qquad \overline{x_n}&:=\frac{1}{n}\mal\sum\limits_{i=1}^n x_i
 		\qquad\und\qquad
 		\overline{Y_n}:=\frac{1}{n}\mal\sum\limits_{i=1}^n Y_i
 	\end{align*}
-	Normalgleichung:
+	Normalgleichung \eqref{eq:satz3.3Stern}:
 	\begin{align*}
 		\begin{pmatrix}
 			n & n\mal\overline{x_n}\\
@@ -315,33 +319,48 @@ Beachte, der Designmatrix $X$ kommt durch die \define{Varianzformel} \eqref{eq:3
 			(2)~~n\mal\overline{x_n}\mal\alpha+\sum\limits_{i=1}^n x_i^2\mal\beta=\sum\limits_{i=1}^n x_i\mal Y_i
 		\end{array}\right.
 	\end{align*}
-	Teilen durch $n$ in (2) und einsetzen in (2) liefert:
+	Teilen durch $n$ in (2) und einsetzen von (1) in (2) liefert:
 	\begin{align*}
-		\overline{x_n}\mal \overline{Y_n}\underbrace{-\overline{x_n}^2\mal\beta+\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2\mal\beta}_{=\beta\mal\klammern{\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2-\overline{x_n}^2}}
-		=\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i\\
+		\overline{x_n}\mal \overline{Y_n}\underbrace{-\overline{x_n}^2\mal\beta+\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2\mal\beta}_{
+			=\beta\mal\klammern{\frac{1}{n}\mal\sum\limits_{i=1}^n \big(x_i^2-\overline{x_n}^2\big)}
+		}
+		&=\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i\\
 		\implies
-		\beta=\frac{\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i-\overline{x_n}\mal\overline{Y_n}}{\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2-\overline{x_n}^2}
-		=\frac{
+		\beta
+		&=\frac{
+			\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i-\overline{x_n}\mal\overline{Y_n}
+		}{
+			\frac{1}{n}\mal\sum\limits_{i=1}^n \big(x_i^2-\overline{x_n}^2\big)
+		}\\
+		&=
+		\frac{
+			\frac{1}{n}\mal\klammern{\sum\limits_{i=1}^n x_i\mal Y_i-n\mal\overline{x_n}\mal\overline{Y_n}}
+		}{
+			\frac{1}{n}\mal\sum\limits_{i=1}^n \big(x_i^2-\overline{x_n}^2\big)
+		}\\
+		\overset{\mal\frac{n}{n-1}}&{=}
+		\frac{
 			\frac{1}{n-1}\mal\klammern{\sum\limits_{i=1}^n x_i\mal Y_i-n\mal\overline{x_n}\mal\overline{Y_n}}		
 		}{
-			\frac{1}{n-1}\mal\klammern{\sum\limits_{i=1}^n x_i^2-n\mal \overline{x_n^2}}
-		}
-		\overset{!}{=}
+			\frac{1}{n-1}\mal\klammern{\sum\limits_{i=1}^n x_i^2-n\mal \overline{x_n}^2}
+		}\\
+		\overset{!}&{=}
 		\frac{
 			\frac{1}{n-1}\mal\sum\limits_{i=1}^n\big(x_i-\overline{x_n}\big)\mal\big(Y_i-\overline{Y_n}\big)
 		}{
 			\frac{1}{n-1}\mal \sum\limits_{i=1}^n\big(x_i-\overline{x_n}\big)^2
-		}
-		=:\frac{s_{x,y}}{s_x^2}
+		}\\
+		&=:\frac{s_{x,Y}}{s_x^2}
 	\end{align*}
-	empirische Varianz $s_{x,y}$ und empirische Kovarianz $s_x^2$
+	Hierbei heißen $s_{x,Y}$ \define{empirische Kovarianz} und $s_x^2$ \define{empirische Varianz}.
+	\index{empirische Varianz}\index{empirische Kovarianz}
 	\begin{align*}
 		\hat{\beta}=\begin{pmatrix}
 			\hat{a}\\
 			\hat{b}
 		\end{pmatrix}\qquad\mit\qquad
 		\hat{a}:=\overline{Y_n}-\overline{x_n}\mal\hat{b},\qquad
-		\hat{b}:=\frac{s_{x,y}}{s_x^2}
+		\hat{b}:=\frac{s_{x,Y}}{s_x^2}
 	\end{align*}
 \end{beispiel}
 
