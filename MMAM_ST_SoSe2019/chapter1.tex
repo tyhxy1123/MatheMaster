@@ -521,5 +521,217 @@ F \text{ glm. monoton } \implies F \text{ strikt monoton } \implies F \text{ mon
 			.\] 
 		\item Ist $F$ quasimonoton und diffbar, so ist $\nabla F$ quasimonoton
 	\end{itemize}
-	
 \end{definition}
+
+\section{Grundlagen aus der nichtlinearen Optimierung}%
+\label{sec:Grundlagen aus der nichtlinearen Optimierung}
+
+Optimierungsproblem: 
+\[
+ \min\limits_{x} f(x) \text{ udN } x \in X
+.\]
+("udN" $\stackeq{\wedge}$ unter der Nebenbedingung)
+
+mit
+\begin{itemize}
+	\item Variablen $x \in \R^{n}$
+	\item Zielfunktion $f \colon X \rightarrow \R $ (gegebenenfalls auf offener Obermenge von $X$ definiert)
+	\item zulässige Menge $X \subseteq \R^{n}$ (oft: $X = \left\{ x \in \R^{n} | g(x) \leq 0, h(x) = 0 \right\} $ mit $g \colon \R^{n} \rightarrow \R^{m}, h \colon \R^{n} \rightarrow \R^{p}$
+\end{itemize}
+
+Bei uns meistens
+\begin{itemize}
+	\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex
+	\item $f$ konvex und stetig diffbar
+\end{itemize}
+
+\begin{satz}[Minimierungsprinzip]
+\label{thm:minimierungsprinzip}
+	Sei $X \subseteq \R^{n}$ nichtleer, konvex und $f \colon X \rightarrow \R $ stetig diffbar. Dann gelten
+	\begin{enumerate}[label=(\alph{enumi})]
+		\item Ist $x^{*}\in X$ ein lokales Minimum von $f$ auf $X$, so gilt
+			\[
+				\nabla f(x^{*})^{T}(x-x^{*}) \geq 0 \quad \forall x \in X
+			.\] 
+		\item Ist $f$ pseudokonvex und gilt $\nabla f(x^{*})^{T}(x-x^{*})\geq 0$ für alle $x \in X$, so ist $x^{*}$ ein \underline{globales} Minimum von $f$ auf $X$
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+\label{thm:minimierungsprinzipbeweis}
+\begin{itemize}
+	\item (b) Aus der Definition von Pseudokonvexität folgt $f(x) \geq f(x^{*})\quad \forall x \in X$.
+	\item (a) Sei $x^{*}$ ein lokales Minimum von $f$ auf $X$. Angenommen, es gibt $x \in X$ mit
+		\[
+			f'(x^{*}; x- x^{*}) = \nabla f(x^{*})^{T}(x-x^{*}) < 0
+		.\] 
+		Dann ist $x-x^{*}$ eine Abstiegsrichtung, denn es gilt
+		\[
+			0 > f'(x^{*};x-x^{*}) = \lim_{t \downarrow 0} \frac{f(x^{*} + t(x-x^{*}))-f(x^{*})}{t}
+		.\] 
+		\[
+			\implies \forall t > 0 \text{ (klein) }: f(\underbrace{x^{*}+t(x-x^{*})}_{\substack{\in X, \text{ da $X$ konvex }\\ \rightarrow x^{*} \text{ für } t \downarrow 0}} ) < f(x^{*})
+		.\] 
+		$\lightning$ $x^{*}$ lokales Minimum.
+\end{itemize}
+\end{proof}
+
+\begin{itemize}
+	\item Fall $X$ konvex: $x^{*}$ lokales Minimum $\implies$ $f'(x^{*};d)\geq 0$ für alle zulässigen Richtungen $d=x-x^{*}$ mit $x \in X$
+	\item Fall $X$ beliebig: $x^{*}$ lokales Minimum $\implies$ $f'(x^{*};d)\geq 0$ für alle "zulässigen" Richtungen $d$
+
+		$\implies$ Bouligand-Tangentialkegel:
+		\[
+			T_{X}(x^{*}):= \left\{ d \in \R^{n} | \exists (x^{k})_{k} \subseteq X, (t_{k})_{k}\geq 0 \colon x^{k} \rightarrow x^{*}, t_{k}(x^{k}-x^{*}) \rightarrow d \right\} 
+		.\] ($t_{k}$ ist hierbei oft definiert durch $t_{k}=\frac{1}{\norm{x^{k}- x^{*}} }$)
+\end{itemize}
+
+\begin{satz}
+\label{thm:lokalesminimumsatz}
+	Sei $x^{*}$ lokales Minimum von $f$ auf $X$
+	\[
+		\implies \nabla f(x^{*})^{T}d \geq 0 \quad \forall d \in T_{X}(x^{*})
+	.\] 
+\end{satz}
+
+\underline{Problem}: $T_{X}(x^{*})$ is im Allgemeinen schwer zu berechnen. Deshalb verwende den \underline{Linearisierungskegel} an $X=\left\{ x | g(x) \leq 0, h(x) = 0 \right\}$ in $x^{*}$:
+\[
+	L_{X}(x^{*}) = \left\{ d \in \R^{n} | \nabla g_{i}(x^{*})^{T}d \leq 0 \forall i \in Ig(x^{*})= \left\{ i | g(x^{*}) = 0\right\}, \nabla h_{i}(x^{*})^{T}d = 0 \forall i=1, \ldots, p \right\} = T_{X_{\text{lin}}}(x^{*})
+.\] 
+$x^{*} \in X$, definiere
+\[
+	X_{\text{lin}}=\left\{ x \in \R^{n} | g(x^{*}) + \nabla  g(x^{*})^{T}(x-x^{*}) \leq 0, h(x^{*}) + \nabla h(x^{*})^{T}(x-x^{*}) = 0 \right\} 
+.\] 
+
+\begin{itemize}
+	\item Es gilt immer $T_{X}(x^{*}) \subseteq L_{X}(x^{*})$
+	\item Es gilt $\nabla f(x^{*})d \geq 0 \froall d \in L_{X}(x^{*})$, genau dann, wenn es Multiplikatoren $Z \in \R^{m}$ und $\mu \in \R^{p}$ gibt mit
+		\begin{align*}
+			\nabla f(x^{*}) + \sum_{i=1}^{m}{Z_{i}\nabla g_{i}(x^{*})} + \sum_{i=1}^{p}{\mu _{i}\nabla h_{i}(x^{*})&=0} \\
+			h(x^{*}) &= 0 \\
+			\forall i=1, \ldots, m : g_{i}(x^{*})\leq 0, Z_{i}\geq 0, g_{i}(x^{*}) Z_{i} &= 0
+		\end{align*}
+		% TODO : das in array umwandeln links eckige klammer mit KKT Bedingungen mittig
+		\begin{align*}
+			x^{*} \text{ lokales Minimum } &\implies \nabla f(x^{*})^{T}d \geq 0 \forall d \in T_{X}(x^{*}) \subseteq L_{X}(x^{*}) \\
+										   &\iff \nabla f(x^{*})^{T}d \geq 0 \forall d \in L_{X}(x^{*}) \\
+										   &\iff x^{*} \text{ ist ein KKT-Punkt }
+		\end{align*}
+		Die erste Äquivalenz gilt hierbei nur unter der sogenannten "constraint qualification (CQ)", die garantiert, dass $T_{X}(x^{*}) = L_{X}(x^{*})$ gilt.
+\end{itemize}
+
+Beispiele für Constraint Qualifications:
+\begin{itemize}
+	\item Abadie-CQ : $T_{X}(x^{*})=L_{X}({x}^{*})$
+	\item Linear Independence CQ (LICQ): $ \nabla g_{i}({x}^{*})\quad (i \in Ig({x}^{*}) )$, $\nabla h_{i}({x}^{*}) \quad (i=1, \ldots, p)$ sind linear unabhängig.
+	\item Mangasarian-Fromowitz-CQ (MFCQ): Es gilt
+		\begin{itemize}
+			\item $\nabla h_{i}({x}^{*})$ $(i=1, \ldots, p)$ sind linear unabhängig
+			\item $\exists d \in \R^{n}$:
+				\begin{align*}
+				&\nabla g_{i}({x}^{*})^{T}d < 0 \quad \forall i \in Ig({x}^{*}) \\
+				&\nabla h_{i}({x}^{*})=0\quad \forall i=1, \ldots, p
+				\end{align*}
+		\end{itemize}
+	\item Linearitäts-CQ: $g(x)$ und $h(x)$ sind lineare Funktionen
+	\item Slater-CQ für konvexe Mengen $X$, d.h. $g_{i}$ konvex $\forall i=1, \ldots, m$, $h$ affin linear:
+
+		Es gibt ein $\hat{x} \in X$ mit $g(\hat{x})<0$
+\end{itemize}
+
+\begin{satz}
+\label{thm:optinumsatzletzter}
+\begin{enumerate}[label=(\alph{enumi})]
+	\item ${x}^{*}$ lokales Minimum + CQ in ${x}^{*}$ $\implies$ ${x}^{*}$ ist ein KKT-Punkt
+	\item ${x}^{*}$ KKT-Punkt + $f$, $g_{i}$ konvex, $h$affin linear $\implies$ ${x}^{*}$ ist ein globales Minimum
+\end{enumerate}
+\end{satz}
+
+Problemklassen und mögliche Lösungsalgorithmen
+
+\begin{itemize}
+	\item lineare Probleme:
+		\[
+		\min\limits_{x}c^{T}x \text{ udN } Ax=b, x \geq 0
+		.\] 
+		Löse zum Beispiel mit Simplex-Verfahren oder Innere-Punkte-Verfahren.
+	\item quadratische Probleme:
+		\[
+			\min\limits_{x}\frac{1}{2}x^{T}Qx + q^{T}x ü \gamma \text{ udN } Ax=b, x\geq 0
+		.\] 
+		Löse zum Beispiel mit der Strategie der aktiven Menge.
+	\item unrestringierte Probleme:
+		\[
+			\min\limits_{\lambda \in \R^{n}}f(x)
+		.\] 
+		Löse zum Beispiel mit Gradientenverfahren, Newton-Verfahren oder Trust-Region-Verfahren.
+	\item restringierte Probleme:
+		\[
+			\min\limits_{x} f(x) \text{ udN } g(x) \leq 0 , h(x) = 0
+		.\] 
+		Löse zum Beispiel mit Penalty-Verfahren, Barriere-Verfahren oder SQP-Verfahren.
+	\item lineare Komplementaritätsprobleme:
+		\[
+			\text{ Find }x \in \R^{n} \text{ mit } x \geq 0, Mx+q \geq 0, x^{T}(Mx+q) = 0
+		.\] 
+		Löse zum Beispiel mit Lemke-Verfahren
+\end{itemize}
+
+\section{Projektionen}%
+\label{sec:Projektionen}
+
+Fragestellung: gegeben $X \subseteq \R^{n}$, $y \not \in X$, finde "beste Approximation" von $y$ in $X$.
+
+\begin{definition}
+\label{thm:euklidischenorm}
+	Die \underline{euklidische Norm} ist definiert durch
+	\[
+	\norm{x} _{2}:= \sqrt{x^{T}x}  
+	.\] 
+	Die \underline{gewichtete euklidische Norm} ist definiert durch
+	\[
+	\norm{x} _{G}:= \sqrt{x^{T}Gx} 
+	.\] 
+	(Mit $G \in \R^{n \times n}$ symmetrisch positiv definit)
+\end{definition}
+
+\begin{satz}
+\label{thm:projektionssatz}
+	\begin{enumerate}[label=(\alph{enumi})]
+		\item Sei $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex, $y \not \in X$, $G \in \R^{n \times n}$ s.p.d. Dann hat das Problem 
+		\[
+		\min\limits_{x}\norm{y-x} _{G} \text{ udN } x \in X
+		\] 
+		genau eine Lösung ${x}^{*}$. Man sagt ${x}^{*}=P_{X,G}(y)$ ist die \underline{Projektion} von $y$ auf $X$ (bezüglich der Norm $\norm{\cdot} _{G}$).
+		\item Es gilt: ${x}^{*} \in X$ ist die Projektion von $y$ auf $X$ genau dann, wenn
+			\[
+				\forall x \in X: \quad (y-{x}^{*})^{T}G(x-{x}^{*}) \leq 0
+			.\] 
+			% TODO : Bild Kreis und so
+		\item Die Abbildung $y \mapsto P_{X,G}(y)$ ist Lipschitz-stetig mit $L = 1$, insbesondere stetig.
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+\label{thm:projektionssatzbeweis}
+\begin{itemize}
+	\item (a) sollte man kennen, ist ein Standardbeweis
+	\item (b) 
+		\begin{align*}
+			{x}^{*}=P_{X,G}(y) &\iff {x}^{*} \text{ löst } \min\limits_{x}\underbrace{\norm{y-x} _{G}^2}_{=(y-x)^{T}G(y-x)=:f(x)}  \text{ udN } x \in X \\
+			\overset{(\ast)}&{\iff}  \nabla f({x}^{*})^{T}(x-{x}^{*}) \geq 0 \quad \forall x \in X \\
+							   &\iff -2 \left[ G(y-{x}^{*}) \right] ^{T} (x-{x}^{*}) \geq 0 \quad \forall x \in  X \\
+							   &\iff (y-{x}^{*})^{T}G(x-{x}^{*}) \leq 0 \quad \forall x \in X
+		\end{align*}
+		$(\ast)$ Beachte hier, dass $X$ und $f$ konvex sind.
+	\item (c) Seien $y,z \in \R^{n}$.
+		\begin{align*}
+			\implies y-z &= P_{X,G}(y) - P_{X,G}(z) + \underbrace{(y-P_{X,G}(y)) + (P_{X,G}(z) - z)}_{=:u}  \\
+			\implies \norm{y-z} _{G}^2 &= \norm{P_{X,G}(y) -P_{X,G}(z)} _{G}^2 + \underbrace{\norm{u} _{G}^{2}}_{\geq 0}  + 2 (P_{X,G}(y) - P_{X,G}(z))^{T}Gu \\
+									   & \geq  \norm{P_{X,G}(y) -P_{X,G}(z)} _{G}^2 + \underbrace{2 (P_{X,G}(y)-P_{X,G}(z))^{T}(y-P_{X,G}(y))}_{\geq 0}  \\
+									   & \qquad \qquad \qquad \qquad \qquad \quad + \underbrace{2 (P_{X,G}(y)-P_{X,G}(z))^{T}(P_{X,G}(z)-z)}_{\geq 0}  \\
+									   &\geq\norm{P_{X,G}(y) -P_{X,G}(z)} _{G}^2
+		\end{align*}
+		
+\end{itemize}
+\end{proof}
