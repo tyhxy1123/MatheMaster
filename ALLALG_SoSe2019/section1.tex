@@ -48,6 +48,7 @@ Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
 \begin{definition}
 	Eine \define{Inzidenzstruktur} ist ein Tripel $\Inz=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
 	Interpretation:
+	\index{Inzidenzstruktur}
 	\begin{itemize}
 		\item $P$ ist Menge von Punkten / Points
 		\item $B$ ist Menge von Blöcken / Blocks
@@ -87,7 +88,8 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{satz}
 
 \begin{definition}
-	$\Inz=(P,B,I)$ heißt \define{taktische Konfiguration} 
+	$\Inz=(P,B,I)$ heißt \define{taktische Konfiguration}
+	\index{taktische Konfiguration} 
 	\begin{align*}
 		:\iff\exists r_\Inz,k_\Inz\in\N:\forall p\in P,\forall b\in B:\# pI=r_\Inz\und\#Ib=k_\Inz
 	\end{align*}
@@ -112,7 +114,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 
 \begin{definition}
 	$\big(v_\Inz,r_\Inz;b_\Inz,k_\Inz)$ ist das \define{Parametertupel} von $\Inz$.
-	\index{Parametertupel}\\
+	\index{Parametertupel}\index{duales Parametertupel}\\
 	Das dazu \define{duale Parametertupel} ist $\big(b_\Inz,k_\Inz;v_\Inz,r_\Inz\big)$.
 \end{definition}
 
@@ -138,7 +140,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\begin{figure}[H] % oder ht!
 		\begin{center}
 			\input{./tikz/VeblenYoungDual}
-			\caption{duela Veblen-Young-Konfiguration: $(4,3;6,2)$}
+			\caption{duale Veblen-Young-Konfiguration: $(4,3;6,2)$}
 			%\label{Abb:natSpracheModellierung}
 		\end{center}
 	\end{figure}	
@@ -206,6 +208,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 
 \begin{definition}
 	Die \define{duale Inzidenzstruktur} einer Inzidenzstruktur $\Inz=(P,B,I)$ ist
+	\index{duale Inzidenzstruktur}
 	\begin{align*}
 		\Inz^{\op}:=\big(B,P,I^\op\big)
 		\qquad\mit\qquad
@@ -432,10 +435,302 @@ Wann ist $\Inz_{(i,j)}^n$ selbstdual?
 	\index{inverser Morphismus}
 \end{lemma}
 
+\subsection{Taktische Konfoguration via Unterverband eines endlichdimensionalen Vektorraumes}
 
+Sei $V$ $n$-dimensionaler Vektorraum über  $\F_g$ ($q$ Primzahlpotenz, $n\in\N$).
+Für $i,j\in\N$ mit $0\leq i\leq j\leq $n sei dann
+\index{Unterraumverband}
+\begin{align*}
+	\Inz^n_{(i,j)}&:=\klammern{\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix},\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix},
+	I^\L_{(i,j)}
+	}\mit\\
+	\L&:=L(V):=\big(L(V),\leq\big)\und\\
+	L(V)&:=\set{U\mid U\leq V}~\text{\define{Unterraumverband} von $V$ und}\\
+	\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix}
+	&:=\set{p\in L(V)\mid\dim(p)=i}
+	\und\\
+	\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix}
+	&:=\set{b\in L(V)\mid\dim(b)=j}
+	\text{ sowie }\\
+	I^\L_{(i,j)}&:=\set{(p,b)\in\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix}\times\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix}:p\leq b}
+\end{align*}
 
+\begin{proposition}
+	Dann ist $\Inz^\L_{(i,j)}$ taktische Konfiguration mit Parametertupel
+	\begin{align*}
+		\klammern{
+			\begin{pmatrix}
+				n\\
+				i
+			\end{pmatrix}_p,\begin{pmatrix}
+				n-i\\
+				j-i
+			\end{pmatrix}_p;
+			\begin{pmatrix}
+				n\\
+				j
+			\end{pmatrix}_q,\begin{pmatrix}
+				j\\
+				i
+			\end{pmatrix}_q
+		}
+	\end{align*}
+	wobei $\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_q$ den Gaußschen Binomialkoeffizient von $n$ über $i$ bezeichnet.
+\end{proposition}
 
+\begin{notation}
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q
+		:=\#\begin{pmatrix}
+			\L\\
+			i
+		\end{pmatrix}
+	\end{align*}
+	Für $u,w\in L(V)$ mit $u\leq w$ sei
+	\begin{align*}
+		\L(w):=\set{t\in L(V)\mit t\leq w}
+	\end{align*}
+	und
+	\begin{align*}
+		\L/_u:=\set{t\in L(V)\mid u\leq t}
+		\qquad\und\qquad
+		[u,w]_\L:=\set{t\in L(V)\mid u\leq t\leq w}
+	\end{align*}
+	Hierbei heißt $[u,w]_\L$ \define{Intervall in $\L=\L(V)$}.
+	\index{Intervall}
+	\begin{align*}
+		\L(u)=\big(\L(u),\leq\big)
+	\end{align*}
+	ist Menge der Unterräume, die in $w$ enthalten sind bzw. der Unterraumverband von $U$.
+\end{notation}
 
+%\begin{beispiel}
+	Setze $0_\L:=\set{\vec{0}}$ und $1_\L:=V$.
+	Dann ist
+	\begin{align*}
+		L(u)=\big[0_\L,u\big]_\L
+	\end{align*}
+	Sei $\L|T:=\big(T,\leq\cap T\times T)$ die Einschränkung von $\L$ auf $T$ für $T\subseteq L$.
+	Dann gilt:
+	\begin{align*}
+		\L(w)&=\L|\big[0_\L,w\big]_\L\\
+		\L/u&:=\L|\big[u,1_\L\big]_\L\cong\L(V/u)
+	\end{align*}
+	Achtung: $L/u$ klappt nicht sauber!\\
+	$\leadsto$ "abuse of notation": $L/_u:=[u,1_\L]$.\\
+	Aber $\L(w)$ ist gleichzeitig der Unterraumverband von $w$ (als $\F_q$-Vektorraum).
+%\end{beispiel}
+Genauer:
+\begin{align*}
+	\big(\L(V)\big)(w)=\L(w)
+\end{align*}
+
+Probleme treten oft bei Paradigmenwechsel auf.
+
+\begin{erinnerung}
+	\begin{align*}
+		V/u=w/u=\set{x+u\mid x\in V}\text{ als Vektorraum}
+	\end{align*}
+\end{erinnerung}
+
+\begin{satz}
+	\begin{align*}
+		\L(V)/u\cong\L(U/v)
+		\qquad\text{mittels}\qquad
+		w\mapsto w/u\\
+		\und\qquad
+		\dim(V(u)=\dim(V)-\dim(U)
+	\end{align*}
+	Für $u\leq_\L w$ sei 
+	\begin{align*}
+		\Delta(u,w):=-\dim(u)+\dim(w)=\dim(w/u)
+	\end{align*}
+\end{satz}
+
+\begin{align*}
+	\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_q\overset{\dim(V)=n}{=}
+	\begin{pmatrix}
+		\dim(V)\\
+		i
+	\end{pmatrix}:=
+	\#\begin{pmatrix}
+		\L(V)\\
+		i
+	\end{pmatrix}
+\end{align*}
+falls $V$ $n$-dimensionaler Vektorraum über $\F_q$.
+
+\begin{figure}[H]
+	\begin{center}
+			\input{./tikz/1704}
+			%\caption{Desargues Konfiguration}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+\end{figure}
+
+Seien $p\in\begin{pmatrix}
+	\L\\
+	i
+\end{pmatrix}$ und $b\in\begin{pmatrix}
+	\L\\
+	j
+\end{pmatrix}$.
+Dann ist
+\begin{align*}
+	p I_{(i,j)}^\L&=\set{b\in'\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix}:p\leq_\L b'}\\
+	I_{(i,j)}^\L b&=\set{p'\in\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix}:p'\leq_\L b}\\
+	I_{(i,j)}^\L b&=\begin{pmatrix}
+		\L(b)\\
+		i
+	\end{pmatrix}\mapsto
+	\begin{pmatrix}
+		\dim(b)\\
+		i
+	\end{pmatrix}_q=\begin{pmatrix}
+		j\\
+		i
+	\end{pmatrix}_q
+\end{align*}
+
+\begin{satz}
+	Es gilt weiter
+	\begin{align*}
+		pI^\L_{(i,j)}&=\set{b'\in\begin{pmatrix}
+			\L\\
+			j
+		\end{pmatrix}:p\leq_\L b'}
+		\overset{1-1}{\leftrightarrow}
+		\set{b'/p\mid b'\in\begin{pmatrix}
+			\L\\
+			j
+		\end{pmatrix}:p\leq_\L b}
+		=\begin{pmatrix}
+			\L(V/p)\\
+			j-i
+		\end{pmatrix}
+		\mapsto\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}\\
+		&\dim(b'/p)=\dim(b')-\dim(p)=j-i
+	\end{align*}
+	Ergebnis:
+	\begin{align*}
+		\Inz^\L_{(i,j)}
+		=\klammern{
+			\begin{pmatrix}
+				\L\\
+				i
+			\end{pmatrix},
+			\begin{pmatrix}
+				\L\\
+				j
+			\end{pmatrix},
+			I_{(i,j)}^\L
+		}
+	\end{align*}
+	hat Parametertupel
+	\begin{align*}
+		\klammern{
+			\begin{pmatrix}
+				n\\
+				i
+			\end{pmatrix}_q,\begin{pmatrix}
+				n-i\\
+				j-i
+			\end{pmatrix}_q,\begin{pmatrix}
+				n\\
+				j
+			\end{pmatrix}_q,\begin{pmatrix}
+				j\\
+				i
+			\end{pmatrix}_q
+		}
+	\end{align*}
+\end{satz}
+
+\begin{definition}
+	Ist $f\colon\N\to\N_+$ eine Abbildung, so sei 
+	\begin{align*}
+		f!\colon\N\to\N_+,\qquad n\mapsto f(1)\mal f(2)\mal\ldots\mal f(n)
+	\end{align*}
+	Setze dann
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		:=\frac{(f!)(n)}{(f!)(i)\mal(f!)(n-i)}
+	\end{align*}
+	Sonderfall: $(f!)(1)=f(1)$ und $(f!)(0)=1$
+\end{definition}
+
+\begin{satz}
+	Dann gilt
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		\mal\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}_f
+		=\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix}_f\mal\begin{pmatrix}
+			j\\
+			i
+		\end{pmatrix}_f
+	\end{align*}
+	für beliebige $i,j\in\N$ mit $i\leq j\leq n$.
+\end{satz}
+
+\begin{beispiel}
+	\begin{align*}
+		f(n)&:=\#\set{t\in\L\big(\F^n_q\big)\mid\dim(t)1}\\
+		f(1)&:=1\\
+		\begin{pmatrix}
+			n\\
+			1
+		\end{pmatrix}_f
+		&=f(n)=\frac{q^n-1}{q-1}
+	\end{align*}
+\end{beispiel}
 
 
 
