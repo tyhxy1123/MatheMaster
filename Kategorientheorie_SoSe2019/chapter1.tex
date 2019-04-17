@@ -266,13 +266,15 @@ b \arrow[ru, no head] \arrow[rd, no head] &                       & c \\
 	$$
 	gehört 
 	$$
-\begin{tikzcd}
-                                                                    & b \arrow[rd, "{(b,d)}"] &   \\
-a \arrow[rr, "{(a,d)}"] \arrow[ru, "{(a,b)}"] \arrow[rd, "{(a,c)}"] &                         & d \\
-                                                                    & c \arrow[ru, "{(c,d)}"] &  
+\begin{tikzcd} %TODO format code xD
+	& \arrow[out=90,in=50,loop, distance=3em, "1_b"] b  \arrow[rd, "{(b,d)}"] &   \\
+	a \arrow[out=200,in=160, distance=3em, "1_a"] \arrow[rr, "{(a,d)}"] \arrow[ru, "{(a,b)}"] \arrow[rd, "{(a,c)}"] &                         & d \arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{1_d}\\
+	& c \arrow[out=300,in=260,loop, distance=3em, "1_c"] \arrow[ru, "{(c,d)}"] & 
+%                                                                    & b \arrow[rd, "{(b,d)}"] &   \\
+%a \arrow[rr, "{(a,d)}"] \arrow[ru, "{(a,b)}"] \arrow[rd, "{(a,c)}"] &                         & d \\
+%                                                                    & c \arrow[ru, "{(c,d)}"] &  
 \end{tikzcd}
 	$$
-	%TODO Add Schlaufen
 \end{beisp}
 
 \section{1.9 Diagrammschemata und Diagramme}
