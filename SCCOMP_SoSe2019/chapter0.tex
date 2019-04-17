@@ -798,7 +798,7 @@ or
 
 \underline{FEM} :
 
-Replace $V=H_{0}^{1}$ by finite dimensional subspace $V_{h}$ consisting (low-degree) polynomials.
+Replace $V=H_{0}^{1}$ by finite dimensional subspace $V_{h}$ consisting of (low-degree) polynomials.
 Let $\Omega $ be approximated/subdivided by $\Omega _{h}$ the union of $m$ geometric elements, e.g. triangles, hexagons, tetrahedrons, cubes, pyramids, $\ldots $
 \[
 \Omega \approx \Omega _{h} = \bigcup_{i=1}^{m}T_{i} \qquad \mathcal{T}_{h} := \left\{ T_{i} \right\} 
@@ -897,7 +897,6 @@ with boolean matrices $P, R = P^{T}$.
 		\[
 		\text{non-zeros per row } = \#\left\{ \text{functions with support in elements that share the Lagrange node} \right\} 
 		.\] 
-	\item Adjacency graph of $A$
 
 		\begin{figure}[H]
 			\begin{center}
@@ -932,10 +931,10 @@ $V_{h} \subset V$ finite-dimensional subspace / Finite-Element-space.
 Let 
 \begin{align*}
 	V_{h} &= V_{h}(\mathcal{T}_{h}, \overline{\P}, V) \\
-		  &= \Big\{  \phi \in V ~|~\phi |_{T} \in \P_{T}\quad\forall T \in \mathcal{T}_{h} \Big\}  
+		  &= \Big\{  \phi \in V ~|~\phi |_{T} \in \P_{T}\quad\forall T \in \mathcal{T}_{h} \Big\}  ,
 \end{align*}
 
-,with
+with
 \begin{itemize}
 	\item $T$ is the space element in $\mathcal{T}_{h}$
 	\item $\overline{T}$ is the reference element (barycentric element)
@@ -979,7 +978,7 @@ Denote by $\Lambda(x)$ the jacobian
 .\] 
 so that $\nabla \phi (x) = \Lambda^{T}(x)\nabla _{\lambda }\overline{\phi }(\lambda (x))$. We can express the bilinearform $a(\phi _{i}, \phi _{j})$ as 
 \[
-	a_{i,j} = a(\phi _{i}, \phi _{j}) = \sum_{T \in \mathcal{T}_{h}}^{}{a_{T}(\phi _{i}, \phi _{j}} = \sum_{T \in \mathcal{T}}^{}{\int_{T}\nabla \phi _{i} \nabla \phi _{j} \d x}
+  a_{i,j} = a(\phi _{i}, \phi _{j}) = \sum_{T \in \mathcal{T}_{h}}^{}{a_{T}(\phi _{i}, \phi _{j}}) = \sum_{T \in \mathcal{T}}^{}{\int_{T}\nabla \phi _{i} \nabla \phi _{j} \d x}
 .\] 
 with
 \[
@@ -1057,9 +1056,9 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 	\[
 		a_{i,j} = -\frac{1}{2}(\text{cot}(\alpha_{i,j}) + \text{cot}(\beta_{i,j})) \text{ and } a_{i,i} = -\sum_{x_{j}\in N(x_{i})}^{}{a_{j,i}}
 	.\] 
-	with $N(x_{i})=\left\{ x_{j} \in \Omega _{h} : \left[ x_{i},x_{j} \text{ is an edge in the grid} \right]  \right\} $ and $\alpha_{i,j}$, $\beta_{i,j}$ denote angles opposite to the edge $e=[x_{i}, x_{j}]$ in the triangles adjacent to $e$
+	with $N(x_{i})=\left\{ x_{j} \in \Omega _{h} : \left[ x_{i},x_{j} \text{ is an edge in the grid}   \right\} $ and $\alpha_{i,j}$, $\beta_{i,j}$ denote angles opposite to the edge $e=[x_{i}, x_{j}]$ in the triangles adjacent to $e$
 
-	\begin{figure}[ht!]
+	\begin{figure}[H]
 		\begin{center}
 			\input{tikz/chapter0/pentagon.tex}
 		\end{center}
@@ -1097,9 +1096,9 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 			\caption{Sketch of the used properties}
 			\label{fig:triangleexplained}
 		\end{figure}
-	\item Let $\vec{e}$ be the edge vector along the base of the triangle $T$. The gradient of the hat-function $\overline{\phi }$ associated with the opposite vertex $v$ is given by
+	\item Let $\vec{e}$ be the edge vector along the base of the triangle $T$. The gradient of the hat-function $\phi$ associated with the opposite vertex $v$ is given by
 		\[
-		\nabla \overline{\phi } = \frac{1}{2\abs{T} }\vec{e}^{\bot}
+		\nabla \phi = \frac{1}{2\abs{T} }\vec{e}^{\bot}
 		,\] 
 		where $\vec{e}^{\bot}$ is the vector $\vec{e}$ rotated by a quarter turn in counter-clockwise direction and $\abs{T} $ is the area of $T$.
 	\item Using everything we get 
@@ -1127,7 +1126,7 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 	We get the matrix vector product $A\cdot u = y$
 	\begin{align*}
 		y_{i} &= \sum_{j=1}^{n}{a_{i,j}u_{j}}\\
-			  &= \underbrace{\sum_{x_{j}\in N(x_{i}}^{}{\frac{1}{2}(\cot \alpha_{i,j}+ \cot \beta_{i,j})}}_{w_{i,j}}(u_{j}-u_{i}) \\
+              &= \sum_{x_{j}\in N(x_{i})}^{}\underbrace{{\frac{1}{2}(\cot \alpha_{i,j}+ \cot \beta_{i,j})}}_{w_{i,j}}(u_{j}-u_{i}) \\
 			  &= \sum_{x_{j}\in N(x_{i})}^{}{w_{i,j}(u_{j}- u_{i})}
 	\end{align*}
 \end{remark}
@@ -1136,7 +1135,7 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 \label{thm:locallydelaunay}
 	An edge $e$ of a triangulation $\mathcal{T}_{h}$ of $\Omega _{h}$ is \underline{locally Delaunay} if the sum of the angles opposite to $e$ in the adjacent triangles do not exceed $\pi $, i.e.
 	\[
-		e = [x_{i}, x_{j}] \qquad \alpha_{i,j} + \beta_{i,j} \leq \pi 
+      e = [x_{i}, x_{j}] \qquad \alpha_{i,j} + \beta_{i,j}\overset{!}{\leq} \pi 
 	.\] 
 \end{definition}
 
