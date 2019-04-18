@@ -1,0 +1,42 @@
+% !TEX root = KAT.tex
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{2. Kostruktionen mit Kategorien}
+
+\begin{definition}[duale Kategorie]
+	Sei $\Cat$ beliebige Kategorie.
+	Die \define{duale Kategorie} $\Cat^{\op}$ entsteht aus $\Cat$ durch "Umdrehen der Pfeile".
+	\begin{itemize}
+		\item \ul{Objekte:}
+			\begin{align*}
+				\Ob(\Cat^{\op})&:=\Ob(\Cat)\qquad\begin{matrix}
+						A\in\Ob(\Cat)\\
+						A^\partial\in\Ob(\Cat^\op)
+						\end{matrix}
+			\end{align*}
+		\item \ul{Morphismen:}
+			\begin{align*}
+				\Cat^\op(A,B)&:=\Cat(A,B)\qquad
+						A^\partial\overset{f^\partial}{\longrightarrow}B^\partial\text{ für }B\overset{f}{\longrightarrow}A
+			\end{align*}
+		\item \ul{Komposition:}
+			\begin{align*}
+				\mu_{A,B,C}^{\Cat^\op}(f,g)&:=\mu_{CBA}^\Cat(g,f)\qquad\\
+				1_{A^\partial}^{\Cat^\op}&:=1_A^\Cat\\
+				\mu_{A,B,C}^{\Cat^{\op}}(f,g) &:= \mu_{C,A,A}(g,f)\\
+			\end{align*}
+		\begin{align*}
+				\begin{tikzcd}[ampersand replacement=\&]
+					A \& B \arrow[l, "f"'] \& C \arrow[l, "g"'] \arrow[l] \arrow[l] \arrow[ll, "gf"', bend right]\\
+					A^{\partial} \& B^{\partial} \arrow[l, "f^{\partial}"'] \& C^{\partial} \arrow[l, "g^{\partial}"'] \arrow[ll, "fg", bend left]
+				\end{tikzcd}
+			\end{align*}
+		\item \ul{Identität:}
+			\begin{align*}
+				1_{A^{\op}}^{\op} = 1_A
+			\end{align*}
+	\end{itemize}
+\end{definition}
