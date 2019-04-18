@@ -260,7 +260,7 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 
 \begin{beisp}
 	$\langle P,\leq\rangle$
-	Zum dem Hassediagramm
+	Zu dem Hassediagramm
 	$$
 	\begin{tikzcd}
                                           & d \arrow[rd, no head] &   \\
@@ -278,8 +278,8 @@ b \arrow[ru, no head] \arrow[rd, no head] &                       & c \\
 	$$
 \end{beisp}
 
-\section{}
-\begin{definition}[1.9 Diagrammschemata und Diagramme]
+\section{Diagrammschemata}
+\begin{definition}[1.9 Diagrammschemata und Diagramme]\enter
 	Ein \define{Diagrammschema} ist ein gerichteter Graph $\Sigma=(V,E,\alpha,\beta)$ wobei 
 	\index{Diagrammschema}
 	\begin{itemize}
@@ -305,8 +305,8 @@ A \arrow[r, "f", bend left] \& B
 \end{matrix}
 \end{align*}
 
-\begin{beisp}
-	\begin{tikzcd}$ %TODO should be a bullet with an identity arrow.
+\begin{beisp} %TODO should be a bullet with an identity arrow.
+	$$\begin{tikzcd} 
 	\arrow[loop left, distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]{}{1_A} \bullet 
 	\end{tikzcd},
 	\begin{tikzcd}
@@ -314,7 +314,7 @@ A \arrow[r, "f", bend left] \& B
 	\end{tikzcd},
 	\begin{tikzcd}
 	\bullet \arrow[r] & \bullet \arrow[r, bend left] & \bullet \arrow[l] \arrow[l, bend left]
-	\end{tikzcd}$
+	\end{tikzcd}$$
 \end{beisp}
 
 Umgekehrt: Zu jedem Graph $\Sigma$ gibt es eine "kleinste" Kategorie (freie Kategorie von $\Sigma$ erzeugt, die $V$ als Objekte hat (evtl. kommen noch Pfeile dazu)
