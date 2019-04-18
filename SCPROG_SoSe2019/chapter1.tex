@@ -157,6 +157,59 @@ Speicherbereiche im Arbeitsspeicher:
 	\end{center}
 \end{figure}
 
+\subsection{Literale (Konstanten von primitiven Datentypen)}
+\begin{itemize}
+	\item \code{int}: 32 Bit=4 Byte in Zweierkomplementdarstellung; Zahlenbereich:\\
+	$-2^{31}=-2.147.483.648$ = \code{Integer.MAX\_VALUE} bis\\ $+2^{31}-1=2.147.483.647$ = \code{Integer.MIN\_VALUE}\\
+	hexadezimale Repräsentation: \code{$\emptyset$x7fffd}\\
+	oktale Repräsentation: \code{$\emptyset$77$_{8}$=63$_{10}$}\\
+	Unicode (16 Bit Zeichen): \code{$\setminus$u$\emptyset\emptyset$3f$_{16}$=63$_{10}$}
+	\item \code{long:} 64 Bit = 8 Byte in Zweierkomplementdarstellung;
+	Darstellung ähnlich wie \code{int}, mit einen postfix L:
+	\code{longvar = 2147500000L;}
+	(vergisst man hier das "L", so wird es nicht als long erkannt)
+	Wertebereich: $\set{-2^{63},\ldots,+2^{63}-1}$ mit\\
+	\code{Long.MAX\_VALUE, Long.MIN\_VALUE}
+	Beispiel:
+	\code{$\emptyset$x01fffaL}
+	\item \code{byte} 8 Bit; \code{(byte) $\emptyset$x7e}
+	\item \code{short} 16 Bit; \code{(short) 32767}\\
+	Für \code{byte} und \code{short} gibt es \betone{keine} explizite Konstantennotation! (deshalb der Typecast)
+	\item \code{float}: 32 Bit IEEE754 single precision floating-point\\
+	\code{123.456F=0.123456e+3f=123456E-3F}\\
+	Man kann die Null vor dem Komma weglassen und \code{.25} schreiben. 
+	(Ob großes oder kleines \code{e} / \code{f} spielt keine Rolle)
+	\item \code{double}: 64 Bit double precision;
+	ähnlich wie \code{float} \betone{ohne} nachgestelltes (postfixed) Zeichen.
+	Optional kann man das Zeichen "D" / "d" nachstellen.
+	\code{Double.NaN}
+	\item \code{char}: 16 Bit Unicodezeichen (ohne Vorzeichen!), z.B.\\ \code{'a','A',',','3',':', 'u$\setminus\emptyset\emptyset$47'}\\
+	Escape-Sequenzen:
+	\begin{itemize}
+		\item \code{'$\setminus$n'} erzeugt Zeilenumbruch 
+		\item \code{'$\setminus\setminus'$} erzeugt $\setminus$ (Backslash)
+		\item \code{'$\setminus$''} erzeugt ' (single quote)
+		\item \code{'$\setminus$\grqq{}'} erzeugt \grqq{} (double quote)
+	\end{itemize}
+	\item \code{boolean:} kann nur \code{true} oder \code{false}, \betone{keine} Typkonversion
+\end{itemize}
+
+\subsection{Typkonversionen (Casts / Casting)}
+Implizite Typkonversionen:
+\code{byte $\to$ short $\to$ int $\to$ long} und \code{char $\to$ long}
+sowie \code{float $\to$ double}\\
+Für die anderen Umwandlungen ist ein \betone{expliziter} Typecast notwendig.
+
+\subsection{Binäre arithmetische Operationen}
+Es gibt vier Hierarchie-Regeln:
+\begin{enumerate}[label=(\arabic*)]
+	\item Wenn mindestens ein Operand vom Typ \code{double} ist, dann ist das Ergebnis auch vom Type \code{double}.
+	\item Wenn mindestens ein Operand vom Typ \code{float} ist, dann ist das Ergebnis auch vom Type \code{float}.
+	\item Wenn mindestens ein Operand vom Typ \code{long} ist, dann ist das Ergebnis auch vom Type \code{long}.
+	\item Alles andere liefert ein Ergebnis vom Typ \code{int}.
+\end{enumerate}
+
+
 \section{Anwendungsgebiete, Einschränkungen, Vor- und Nachteile}
 
 
