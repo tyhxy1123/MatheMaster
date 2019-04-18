@@ -49,7 +49,7 @@ Abstraktion in der Mathematik
 	&\makecell{Jede Potenzmengenalgebra\\ist Boolsche Algebra.}
 	&\makecell{$\langle\Sub X,\subseteq\rangle$ ist\\geordnete Menge}
 	&\makecell{$\Aut(X)$ ist Gruppe}
-	&\makecell{siehe \ref{section:1.3}}\\
+	&\makecell{siehe \ref{def:set}}\\
 	\hline
 	\makecell{Darstellungssatz\\Vollständigkeit\\Completeness}
 	&\makecell{Jede Boolsche\\ Algebra ist Unteralgebra\\einer Potenzmengenalgebra\\$\langle\Potenzmenge{X},\cap,\cup,\ldots\rangle$}
@@ -88,7 +88,7 @@ Ergänzungen zu obiger Tabelle:
 	Schreibe $A\overset{a}{\longrightarrow}B$ oder $a\colon A\to B$ für $a\in\Cat(A,B)$.
 \end{notation}
 
-\begin{lemma}
+\begin{lem}
 	Für jedes Tripel $(A,B,C)$ von Objekten $A,B,C\in\Ob(\Cat)$ gibt es eine Abbildung, 
 	\begin{align*}\index{Komposition}
 		\mu_{A,B,C}^\Cat\colon\Cat(A,B)\times\Cat(B,C)\to\Cat(A,C)
@@ -101,9 +101,9 @@ Ergänzungen zu obiger Tabelle:
 A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 	\end{tikzcd}
 	$$
-\end{lemma}
+\end{lem}
 
-\begin{lemma}
+\begin{lem}
 	Für jedes Objekt $A\in\Ob(\Cat)$ gibt es einen Morphismus $1_A\in\Cat(A,A)$, genannt \define{identischer Morphismus}, falls die folgenden Axiome erfüllt sind:
 	\begin{enumerate}\index{identischer Morphismus}
 		\item[(ASS)] Die Morphismenkomposition ist assoziativ, d.h.
@@ -128,7 +128,7 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
         & \bullet\arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{1_B} 
     \end{tikzcd}	
 	$$
-\end{lemma}
+\end{lem}
 
 \begin{definition}
 	Eine Kategorie $\Cat$ heißt \define{kleine Kategorie}\index{kleine Kategorie}\index{große Kategorie}
@@ -147,37 +147,41 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 	\end{itemize}
 \end{definition}
 
-\section{Beispiel: Die Kategorie \texorpdfstring{\ul{Set}}{Set}}\label{section:1.3}
-Objekte: $\Ob(\Set)$ alle Mengen\\
-Morphismen: $\Set(A,B):=$ Menge aller Abbildungen $f\colon A\to B$\\
-Komposition (Hintereinanderausführung):
-$$
-	\mu_{A,B,C}^{\Set}(f,g):=f;g\\
-	\begin{tikzcd}[ampersand replacement=\&]
-		A \arrow{r}{f} \arrow[bend right]{rr}{fg} \& B \arrow{r}{g} \& C
-  	\end{tikzcd}
-$$
-identischer Morphismus: ist identische Abbildung
-\begin{align*}
-	1_A:=\id_A\colon A\to A,\qquad x\mapsto x
-\end{align*}
-(Ass), (Neu) sind erfüllt.
+\begin{beispiel}[Die Kategorie \texorpdfstring{\ul{Set}}{Set}]%TODO itemize
+	\label{def:set}
+	Objekte: $\Ob(\Set)$ alle Mengen\\
+	Morphismen: $\Set(A,B):=$ Menge aller Abbildungen $f\colon A\to B$\\
+	Komposition (Hintereinanderausführung):
+	$$
+		\mu_{A,B,C}^{\Set}(f,g):=f;g\\
+		\begin{tikzcd}[ampersand replacement=\&]
+			A \arrow{r}{f} \arrow[bend right]{rr}{fg} \& B \arrow{r}{g} \& C
+	  	\end{tikzcd}
+	$$
+	identischer Morphismus: ist identische Abbildung
+	\begin{align*}
+		1_A:=\id_A\colon A\to A,\qquad x\mapsto x
+	\end{align*}
+	(Ass), (Neu) sind erfüllt.
+\end{beispiel}
 
-\section{Beispiel: Die Kategorie \texorpdfstring{\ul{Group}}{Group}}
-$\Ob(\Group):=$ alle Gruppen $\langle G,\cdot,^{-1},e\rangle$\\
-$\Group(A,B):=$ Menge aller Homomorphismen der Gruppe $A$ in die Gruppe $B$
-\begin{align*}
-	\mu_{A,B,C}^{\Group}(f,g):=f;g\qquad 1_A:=\id_A
-\end{align*}
-(Ass), (Neu) erfüllt.\nl
-Analog für andere algebraische Strukturen (Morphismen sind Homomorphismen)
-\begin{itemize}
-	\item \ul{Ab}: Kategorie der abelschen Gruppen
-	\item \ul{Ring}: Kategorie der Ringe
-	\item \ul{Ring$^1$}: Kategorie der Ringe mit Einselement
-	\item \ul{Monoid}: Kategorie der Monoide
-	\item \ul{Alg$(\Omega)$}: Kategorie der Algebren der Signatur $\Omega$
-\end{itemize}
+
+\begin{beispiel}[Die Kategorie \texorpdfstring{\ul{Group}}{Group}]
+	$\Ob(\Group):=$ alle Gruppen $\langle G,\cdot,^{-1},e\rangle$\\
+	$\Group(A,B):=$ Menge aller Homomorphismen der Gruppe $A$ in die Gruppe $B$
+	\begin{align*}
+		\mu_{A,B,C}^{\Group}(f,g):=f;g\qquad 1_A:=\id_A
+	\end{align*}
+	(Ass), (Neu) erfüllt.\nl
+	Analog für andere algebraische Strukturen (Morphismen sind Homomorphismen)
+	\begin{itemize}
+		\item \ul{Ab}: Kategorie der abelschen Gruppen
+		\item \ul{Ring}: Kategorie der Ringe
+		\item \ul{Ring$^1$}: Kategorie der Ringe mit Einselement
+		\item \ul{Monoid}: Kategorie der Monoide
+		\item \ul{Alg$(\Omega)$}: Kategorie der Algebren der Signatur $\Omega$
+	\end{itemize}
+\end{beispiel}
 
 \setcounter{satz}{4}
 
@@ -270,15 +274,12 @@ b \arrow[ru, no head] \arrow[rd, no head] &                       & c \\
 	& \arrow[out=90,in=50,loop, distance=3em, "1_b"] b  \arrow[rd, "{(b,d)}"] &   \\
 	a \arrow[out=200,in=160, distance=3em, "1_a"] \arrow[rr, "{(a,d)}"] \arrow[ru, "{(a,b)}"] \arrow[rd, "{(a,c)}"] &                         & d \arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{1_d}\\
 	& c \arrow[out=300,in=260,loop, distance=3em, "1_c"] \arrow[ru, "{(c,d)}"] & 
-%                                                                    & b \arrow[rd, "{(b,d)}"] &   \\
-%a \arrow[rr, "{(a,d)}"] \arrow[ru, "{(a,b)}"] \arrow[rd, "{(a,c)}"] &                         & d \\
-%                                                                    & c \arrow[ru, "{(c,d)}"] &  
 \end{tikzcd}
 	$$
 \end{beisp}
 
-\section{1.9 Diagrammschemata und Diagramme}
-\begin{definition}
+\section{}
+\begin{definition}[1.9 Diagrammschemata und Diagramme]
 	Ein \define{Diagrammschema} ist ein gerichteter Graph $\Sigma=(V,E,\alpha,\beta)$ wobei 
 	\index{Diagrammschema}
 	\begin{itemize}
@@ -293,7 +294,6 @@ b \arrow[ru, no head] \arrow[rd, no head] &                       & c \\
 \end{tikzcd}
 $$
 \end{definition}
-
 Ist $\Cat$ eine kleine Kategorie, so lässt sich $\Cat$ auch als Diagrammschema auffassen:
 \begin{align*}
 	\Sigma_\Cat:=\big(\Ob(\Cat),\Mor(\Cat),\alpha,\beta\big)\\
@@ -304,6 +304,18 @@ A \arrow[r, "f", bend left] \& B
 	\beta(f)&:=B~(=\codom(f))
 \end{matrix}
 \end{align*}
+
+\begin{beisp}
+	\begin{tikzcd}$ %TODO should be a bullet with an identity arrow.
+	\arrow[loop left, distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]{}{1_A} \bullet 
+	\end{tikzcd},
+	\begin{tikzcd}
+	\bullet \arrow[out=100, in=0, loop, distance=3em, "b_1"] \arrow[out=300, in=260, loop, distance=3em, "b_2"]
+	\end{tikzcd},
+	\begin{tikzcd}
+	\bullet \arrow[r] & \bullet \arrow[r, bend left] & \bullet \arrow[l] \arrow[l, bend left]
+	\end{tikzcd}$
+\end{beisp}
 
 Umgekehrt: Zu jedem Graph $\Sigma$ gibt es eine "kleinste" Kategorie (freie Kategorie von $\Sigma$ erzeugt, die $V$ als Objekte hat (evtl. kommen noch Pfeile dazu)
 \begin{definition}
@@ -359,23 +371,23 @@ v_1 \arrow[r, "p", bend left] \& v_2
 	fgh=d
 \end{matrix}
 	\end{align*}
-	Schreibweise: %TODO 
+	Schreibweise:$
+	\begin{tikzcd} %TODO add loop in the center! align hier?
+		\bullet \arrow[dd] \arrow[rr] &         & \bullet \arrow[dd] \\
+		& \text{Loop} &                    \\
+		\bullet \arrow[rr]            &         & \bullet           
+	\end{tikzcd},
+	\begin{tikzcd}
+		\bullet \arrow[dd] \arrow[rr] &         & \bullet \arrow[dd] \\
+		& = &                    \\
+		\bullet \arrow[rr]            &         & \bullet           
+	\end{tikzcd},
+	\begin{tikzcd}
+		\bullet \arrow[dd] \arrow[rr] &         & \bullet \arrow[dd] \\
+		& \text{!} &                    \\
+		\bullet \arrow[rr]            &         & \bullet           
+	\end{tikzcd}$
 \end{beispiel}
-
-\chapter{2. Kostruktionen mit Kategorien}
-\section{2.1 Die duale Kategorie}
-Sei $\Cat$ beliebige Kategorie.
-Die \define{duale Kategorie} $\Cat^{\op}$ entsteht aus $\Cat$ durch "Umdrehen der Pfeile".
-\begin{align*}
-	\Ob(\Cat^{\op})&:=\Ob(\Cat)\qquad\begin{matrix}
-		A\in\Ob(\Cat)\\
-		A^\partial\in\Ob(\Cat^\op)
-	\end{matrix}\\
-	\Cat^\op(A,B)&:=\Cat(A,B)\qquad
-	A^\partial\overset{f^\partial}{\longrightarrow}B^\partial\text{ für }B\overset{f}{\longrightarrow}A\\
-	\mu_{A,B,C}^{\Cat^\op}(f,g)&:=\mu_{CBA}^\Cat(g,f)\qquad\\
-	1_{A^\partial}^{\Cat^\op}&:=1_A^\Cat
-\end{align*} %TODO Add tikzcd. Gut zum Üben @Pascal
 
 
 
