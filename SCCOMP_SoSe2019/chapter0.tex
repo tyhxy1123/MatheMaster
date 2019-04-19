@@ -1054,7 +1054,7 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 \label{thm:stiffnessmatrixlemma}
 	The non-zero entries of the stiffness matrix $A$, $a_{i,j}$, on a triangular grid are given by
 	\[
-		a_{i,j} = -\frac{1}{2}(\text{cot}(\alpha_{i,j}) + \text{cot}(\beta_{i,j})) \text{ and } a_{i,i} = -\sum_{x_{j}\in N(x_{i})}^{}{a_{j,i}}
+		a_{i,j} = -\frac{1}{2}(\text{cot}(\alpha_{i,j}) + \text{cot}(\beta_{i,j})) \quad\text{ and }\quad a_{i,i} = -\sum_{x_{j}\in N(x_{i})}^{}{a_{j,i}}
 	.\] 
 	with $N(x_{i})=\left\{ x_{j} \in \Omega _{h} : \left[ x_{i},x_{j}\right] \text{ is an edge in the grid}   \right\} $ and $\alpha_{i,j}$, $\beta_{i,j}$ denote angles opposite to the edge $e=[x_{i}, x_{j}]$ in the triangles adjacent to $e$
 
@@ -1157,3 +1157,91 @@ In the following $V_{h}$ space of linear finite elements, i.e. $\overline{\P}= \
 	if $\alpha + \beta \leq \pi $ and $\alpha,\beta \geq 0 $
 \end{proof}
 
+\underline{Summary}:
+$A=(a(\phi _{i}, \phi _{j}))_{i,j}$ is (in a linear Lagrange triangulation setting)
+\begin{itemize}
+	\item symmetric
+	\item sparse
+	\item pos. definite
+	\item Z-matrix if Delaunay
+	\item $\abs{a_{i,i}} \geq \sum_{j}^{}{\abs{a_{i,j}} }$ + Delaunay for inner nodes
+	\item irreducible
+	\item $\text{diag}(A) \geq 0$
+	\item number of non-zeros per row i : $\# \left\{ \text{ edges incident to node i } \right\} + 1$
+\end{itemize}
+
+\subsection{Finite-Element Refinement}
+\label{sec:Finite-Element Refinement}
+
+Consider two nested finite-element spaces.
+\[
+V_{H} \subset V_{h} \text{ on triangulations } \mathcal{T}_{H} \text{ and } \mathcal{T}_{h}
+.\] 
+respectively with 
+\[
+T = \bigcup_{j=1}^{m}t_{j} \text{ for all  } T \in \mathcal{T}_{H} \text{ with some } t_{j} \in \mathcal{T}_{h}
+
+.\] 
+
+\begin{exam}
+\label{thm:refinementexamples}
+
+\begin{itemize}
+	\item bisection refinement
+		% TODO : Bild 1
+	\item red refinement
+		% TODO : Bild 2
+\end{itemize}
+\end{exam}
+We want to define a interpolation (prolongation) operator for the basis functions $\left\{ \phi _{i}^{H} \right\}_{i=1}^{K}$ of $V_{H}$ and $\left\{ \phi _{j}^{h} \right\} _{j=1}^{k}$ of $V_{h}$
+\[
+P_{H}^{h} \colon V_{H} \rightarrow V_{h}
+.\] 
+Since $V_{H} \subset V_{h}$ nested, the interpolation can be written as 
+\[
+P_{H}^{h}\phi _{j}^{H} = \sum_{i=1}^{k}{P_{i,j}\phi _{i}^{h}}
+\] 
+with $P = (P_{i,j})_{\substack{i=1, \ldots, k \\ j=1, \ldots, K}}$
+
+Let $u^{H}=(u_{1}^{H}, \ldots , u_{K}^{H})$ and $u^{h}=(u_{1}^{h}, \ldots , u_{k}^{h})$ be the coefficient vectors of $u_{H} \in V_{H}$ and $u_{h} \in V_{h}$ respectively with respect to their basis $\left\{ \phi _{j}^{H} \right\} $ and $\left\{ \phi _{i}^{h} \right\} $.
+
+Using the matrix $P$ from above, we conclude
+\begin{align*}
+	P_{H}^{h}u_{H} &= \sum_{j=1}^{K}{u_{i}^{H}P_{H}^{h}\phi _{i}^{H}} \\
+				   &=\sum_{j=1}^{K}{u_{i}^{H}\sum_{i=1}^{k}{P_{i,j}\phi _{i}^{h}}} \\
+				   &= \sum_{i=1}^{k}{(Pu^{H})_{i}\phi _{i}^{h}}
+\end{align*}
+and thus $u^{h} = Pu^{H}$ (where $u^{h}$ represents the coefficients on $\mathcal{T}_{h}$ respectively the coarse grid function $u_{H}$)
+
+For model Lagrange FE, with Lagrange nodes $\left\{ x_{i} \right\} $, we have the relation
+\[
+	\phi _{i}(x_{j}) = \delta_{ij} \qquad \forall \phi _{i} \text{ in basis of } V_{h}
+.\] 
+Let $\left\{ x_{i}^{H} \right\} $ be the Lagrange nodes on $\mathcal{T}_{H}$ and $\left\{ x_{i}^{h} \right\} $ be the Lagrange nodes on $\mathcal{T}_{h}$.
+
+The matrix $P$ is given by
+\[
+	P_{i,j} = \phi _{j}^{H}(x_{i}^{h}) \qquad 
+	\begin{array}{l}
+	i=1, \ldots, k \\
+	j=1, \ldots, K
+	\end{array}
+.\] 
+Galerkin relation between stiffness matrix $A_{h}$ and $A_{H}$.
+\begin{align*}
+	A_{H} &= (a_{H}(\phi _{r}^{H}, \phi _{s}^{H}))_{r,s}\\
+	A_{h} &= (a_{h}(\phi _{r}^{h}, \phi _{s}^{h}))_{r,s}\\
+\end{align*}
+\begin{align*}
+	a_{H}(\phi _{r}^{H}, \phi _{s}^{H}) &= a_{h}(P_{H}^{h}\phi _{r}^{H}, P_{H}^{h}\phi _{s}^{H}) \\
+										&= a_{h}(\sum_{i=1}^{k}{P_{i,r}\phi _{i}^{h}}, \sum_{j=1}^{k}{P_{j,s}\phi _{j}^{h}}) \\
+										&= \sum_{i,j=1}^{k}{P_{i,r}a_{h}(a_{i}^{h}, a_{j}^{h}) P_{j,s}}
+\end{align*}
+So
+\[
+	A_{H} = (P_{H}^{h})^{T}A_{h}P_{H}^{h}
+\]
+and thus we define the restriction operator as
+\[
+	R_{h}^{H} = (P_{H}^{h})^{T}
+.\] 
