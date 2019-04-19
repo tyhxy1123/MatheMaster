@@ -22,17 +22,20 @@ def findNextAnyBracket(text, brackets, pos):
     """Find next occurence of any bracket in brackets after pos.
 
     Return its position and itself.
-    None if not found.
+    -1, None if not found.
     """
     bracketposs = []
     for bracket in brackets:
         newbracket = (bracket, findNextBracket(text, bracket, pos))
         if newbracket[1] is not None:
             bracketposs.append((bracket, findNextBracket(text, bracket, pos)))
-    if len(bracketposs) = []:
-        return None
+    if len(bracketposs) == 0:
+        return -1, None
     else:
-        return heapq.nlargest(1, bracketposs, key=lambda pair: pair[1])
+        print("debug findNextAnyBracket list:", bracketposs)
+        returnvalue = heapq.nsmallest(1, bracketposs, key=lambda pair: pair[1])[0]
+        print("debug returnvalue", returnvalue)
+        return heapq.nsmallest(1, bracketposs, key=lambda pair: pair[1])[0]
 
 
 def findNextCommand(text, command, pos):
@@ -70,18 +73,79 @@ def findBeginEnd(text, command, pos):
     Later possible: takes several arguments.
 
     Returns:
-        - position of end (= argument pos)
-        - length of opening
+        - position of start (= argument pos)
+        - length of start
         - position of end
         - length of end
 
     Except:
         if text does not have command at pos, throw IllegalArgumentError
     """
-    if text[pos: pos+len(command)] != command:
-        throw IllegalArgumentError("command " + command +
-                                   " does not start at position " + pos)
+    try:
+        print(command + " should be " + text[pos: pos+len(command)])
+        if text[pos: pos+len(command)] != command:
+            raise IndexError()
+    except IndexError:
+            raise ValueError("command " + str(command)
+                             + " does not start at position " + str(pos))
+    openingPos, opening = findFirstNonWhitespace(text, pos + len(command))
+    if openingPos == -1:
+        raise ValueError("no argument found for command " + command
+                         + " starting at position " + pos)
+    print("debug openingPos=", openingPos, "opening=", opening)
+    if opening == "{":
+        bracketLevel = 1
+        bracketPos = openingPos
+        while bracketLevel > 0:
+            print("debug bracketLevel=", bracketLevel, "bracketPos=",
+                  bracketPos)
+            bracket, bracketPos = findNextAnyBracket(
+                text, "{" + "}", bracketPos + 1)
+            if bracket is None:
+                raise ValueError("no suitable bracket found"
+                                 + " for command " + str(command)
+                                 + " at position " + str(position)
+                                 + " with last bracketlevel "
+                                 + str(bracketLevel) + ".")
+            elif bracket == "{":
+                bracketLevel = bracketLevel + 1
+            elif bracket == "}":
+                bracketLevel = bracketLevel - 1
+            else:
+                raise ValueError(
+                    "output of findNextAnyBracket is invalid")
+        return pos, openingPos - pos + 1, bracketPos, 1
+    else:
+        return pos, openingPos - 1, openingPos + 1, 0
 
-with open(sys.argv[1]) as textfile:
-    textext = textfile.read()
-    print(textext)
+
+def replaceCommand(text, openingPos, openingLength, closingPos,
+                   closingLength, newOpening, newClosing):
+    """Replace command with the symbols.
+
+    Returs:
+        altered text
+    """
+    if openingPos == -1 or closingPos == -1:
+        print("Warning")
+        print("-------")
+        print("the following replacement is invalid:")
+        print("openingPos=", openingPos, "openingLength=", openingLength,
+              "closingPos=", closingPos, "closingLenght=", closingLenght,
+              "newOpening=", newOpening, "newClosing=", newClosing)
+        print("-----------")
+    else:
+        return (text[:openingPos] + newOpening
+                + text[openingPos + openingLength:closingPos] # argument
+                + newClosing
+                + text[closingPos + closingLength:])
+
+if __name__ == "__main__":
+    with open(sys.argv[1]) as textfile:
+        textext = textfile.read()
+        mycommand = r"\comm"
+        position = findNextCommand(textext, mycommand, 1)
+        openingPos, openingLength, closingPos, closingLength = (
+                findBeginEnd(textext, mycommand, position))
+        print(replaceCommand(textext, openingPos, openingLength,
+                             closingPos, closingLength, r"\|", r"\|"))
