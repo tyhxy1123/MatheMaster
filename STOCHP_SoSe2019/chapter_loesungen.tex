@@ -139,29 +139,69 @@ Die Korrelationsfunktion ist also auch konstant.
 	\texorpdfstring{\hyperref[aufg:10]{Aufgabe 10}}{}
 }\label{loes:10}
 
-%TODO bisher nur rüberkopiert
+\betone{Zeige \ref{item:Aufg:10(1)}:}\\
+Um Stationärität (im weiteren Sinne) zu prüfen, prüfen wir zuerst, dass $\E[X(t)]$ nicht von $t$ abhängt:
 
 \begin{align*}
-\E[X(t)]
-=\E[A\cdot\cos(\theta\cdot t)+B\cdot\sin(\theta\cdot t)]
-=\E[A]\cdot\cos(\theta\cdot t)+\E[B]\cdot\sin(\theta\cdot t)
-=0+0=0
+	\E[X(t)]
+	\overset{\Def}&{=}
+	\E\big[A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\big]
+	\overset{\Lin}{=}
+	\underbrace{\E[A]}_{
+		\overset{\Vor}{=}0
+	}\mal\cos(\alpha\mal t)+\underbrace{\E[B]}_{
+		\overset{\Vor}{=}0
+	}\mal\sin(\alpha\mal t)
+	%=0+0
+	=0
 \end{align*}
+
+Nun müssen wir noch prüfen, dass die Korrelationsfunktion genau von $t_1-t_2$ ($t_1,t_2\in T$) abhängt:
+Seien also $t_1,t_2\in T=\R$ beliebig. 
 
 \begin{align*}
-C(h) &=
-\E[X(t+h)\cdot X(t)] \\
-&=\E\left[(A\cos(\theta t)+B\sin(\theta t))\cdot(A\cos(\theta t+\theta h)+B\sin(\theta t+\theta h))\right]\\
-&=\underbrace{\E[A^2]}_{=1}\cos^2(\theta t)\cos(\theta h)
--\underbrace{\E[A^2]}_{=1}\cos(\theta t)\sin(\theta t)\sin(\theta h)+\underbrace{\E[A\cdot B]}_{=0}\cdot...\\
-&~~~+\underbrace{\E[B^2]}_{=1}\sin^2(\theta t)\cos(\theta h)+\underbrace{\E[B^2]}_{=1}\sin(\theta t)\cos(\theta t)\sin(\theta h)\\
-&=\cos^2(\theta t)\cos(\theta h)+\sin^2(\theta t)\cos(\theta h)+0\\
-&=\cos(\theta h)\cdot 1
+	&\E\big[X(t_1)\mal X(t_2)\big]\\
+	\overset{\Def}&{=}
+	\E\Big[\big(A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\big)\mal
+	\big(A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\big)\Big]\\
+	&=\E\Big[\underbrace{A^2}_{
+		\overset{\Vor}{=}1
+	}\mal\cos(\alpha\mal t_1)\mal\cos(\alpha\mal t_2)+\underbrace{A\mal B}_{
+		\overset{\Vor}{=}0
+	}\mal\ldots+\underbrace{B\mal A}_{
+		\overset{\Vor}{=}0
+	}\mal\ldots+\underbrace{B^2}_{
+		\overset{\Vor}{=}1
+	}\mal\sin(\alpha\mal t_1)\mal\sin(\alpha\mal t_2)\Big]\\
+	&=\cos(\alpha\mal t_1)\mal\cos(\alpha\mal t_2)+\sin(\alpha\mal t_1)\mal\sin(t\mal t_2)\\
+	\overset{\eqref{eq:Aufg10Additionstheorem}}&{=}
+	\cos(\alpha\mal t_1-\alpha\mal t_2)\\
+	&=\cos\big(\alpha\mal(t_1-t_2)\big)
 \end{align*}
 
-Zur (b):
-
-Nein, ist nicht stationär im engeren Sinne. Gegenbeispiel:
+Hierbei wird das Additionstheorem
+\begin{align}\label{eq:Aufg10Additionstheorem}
+	\cos(x-y)=\cos(x)\mal\cos(y)+\sin(x)\mal\sin(y)\qquad\forall x,y\in\R
+\end{align}
+verwendet.
+Damit ist $X$ stationär (im weiteren Sinne).\nl
+\betone{Zeige \ref{item:Aufg:10(2)}:}\\
+Nein, $X$ ist nicht stationär im engeren Sinne. 
+Zumindest nicht für alle $\alpha\in\R$.
+Für $\alpha=0$ ist 
+\begin{align*}
+	X(t)=A\mal\cos(0\mal t)+B\mal\sin(0\mal t)=A\qquad\forall t\in T
+\end{align*}
+natürlich stationär im engeren Sinne, da $X$ \betone{nicht} von $t$ abhängt.
+%Sei nun also o.B.d.A. $\alpha\neq0$.
+Wir zeigen, dass $X$ für $\alpha\neq0$ \betone{nicht} stationär ist:
+Setze $t_1:=0$ und $t_2:=\frac{\pi}{2\mal\alpha}$.
+Dann besitzen die Zufallsgrößen (= einelementige Zufallsvektoren)
+\begin{align*}
+	X(t_1)=A\qquad\und\qquad X(t_2)=B
+\end{align*}
+\betone{nicht} notwendigerweise dieselbe Verteilung, denn es sind keine Voraussetzungen an die Verteilung der Zufallsgrößen $A$ und $B$ gestellt.
+So ist z.B. $A\sim\Nor(0,1)$ und $B\sim\Exp(0,1)$ möglich.
 
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:11]{Aufgabe 11}}{}
