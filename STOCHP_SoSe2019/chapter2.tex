@@ -148,10 +148,51 @@ Diese Schwierigkeiten motivierten die Einführung der Begriffe \undefine{Separab
 \end{proof}
 
 \begin{definition}\label{def2.1.8}
-	Sei $X$ ein $S$-wertiger Prozess auf $T$, wobei $(S,d)$ ein metrischer Raum und $T$ ein topologischer Raum sind.
+	Sei $X$ ein $S$-wertiger Prozess auf $T$, wobei $(S,d)$ ein metrischer Raum und $T$ ein topologischer Raum ist.
 	$X$ heißt \define{stetig in Wahrscheinlichkeit / stochastisch stetig} in $t_0\in T$
-	\index{stetig in Wahrscheinlichkeit} %TODO
+	\index{stetig in Wahrscheinlichkeit}\index{stochastisch stetig|see{stetig in Wahrscheinlichkeit}}
 	\begin{align*}
-		\defiff\forall\varepsilon>0:\lim\limits_{t\to t_0}
+		\defiff\forall\varepsilon>0:\lim\limits_{t\to t_0}\P\Big[d\big(X_t,X_{t_0}\big)>\varepsilon\Big]=0
 	\end{align*}
+	Hierbei ist die Menge 
+	$\set{\omega\in\Omega:d\big(X_t(\omega),X_{t_0}(\omega)\big)>\varepsilon}$ 
+	ein Ereignis, denn $(X_t,X_{t_0})$ ist eine $S\times S$-wertige Zufallsvariable, $d\colon S\times S\to\R$ ist stetig, daher folgt Messbarkeit der Komposition.
 \end{definition}
+
+\begin{satz}\label{satz2.1.9}
+	Sei $X$ ein reell- oder komplexwertiger, in Wahrscheinlichkeit stetiger Prozess auf einem endlichen Intervall $T\subseteq\R$.
+	Dann besitzt $X$ eine separable Modifikation mit den folgenden Eigenschaften:
+	\begin{enumerate}[label=(\roman*)]
+		\item Jede abzählbare, dichte Teilmenge $T_0\subseteq T$ ist eine Separabilitätsmenge für $Y$. %abzählbar + dicht =: total
+		\item Der Prozess $Y$ ist \define{messbar}, d.h. die Abbildung
+		\begin{align*}
+			(t,\omega)\mapsto Y(t,\omega)=Y_t(\omega)
+		\end{align*}
+		ist $\big(\L(T)\times\A,\B(T)\big)$-messbar, wobei $\L(T)$ die $\sigma$-Algebra der Lebesgue-messbaren Teilmengen von $\R$ bezeichnet.
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Ohne Beweis. Zu technisch und kostet zu viel Zeit.
+	%wird später nicht verwendet
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung2.1.10}
+	Sei $X$ ein reellwertiger, messbarer Prozess auf $\R$ und $A\subseteq\R$ eine Lebesgue-messbare Menge.
+	Aus der Maßtheorie bekannt:
+	$t\mapsto X(t,\omega)$ ist für alle $\omega\in\Omega$ Lebesgue-messbar.
+	Gilt Integrierbarkeit bzgl. beider Variablen, d.h.
+	\begin{align*}
+		\int\limits_A\E\big[\abs{X_t}\big]\ds t
+		=\int\limits_A\int\limits_\Omega\abs[\big]{X(t,\omega)}\ds\omega\ds t<\infty,
+	\end{align*}
+	so ist nach dem Satz von Fubini die Abbildung
+	\begin{align*}
+		\omega\mapsto\int\limits_A X(t,\omega)\ds t
+	\end{align*}
+	eine Zufallsgröße.
+\end{bemerkungnr}
+
+
+
+

@@ -21,8 +21,8 @@
 	\texorpdfstring{\hyperref[aufg:3]{Aufgabe 3}}{}
 }\label{loes:3}
 
-Wir zeigen, dass $\A_0$ ein $\sigma$-Algebra ist.\\
-$\Omega\in\A_0$, weil $\Omega\subseteq\A$ und somit $\Omega\cup\emptyset\setminus\emptyset\in\A_0$.\nl
+\betone{Zeige \ref{item:aufg3_1}., also, dass $A_0$ eine $\sigma$-Algebra ist:}\\
+$\Omega\in\A_0$, weil $\Omega\in\A$ und somit $\Omega\cup\emptyset\setminus\emptyset\in\A_0$.\nl
 Sei $A_0\in\A_0$. Wir zeigen $A_0^C\in\A_0$.
 Da $A_0\in\A_0$ existieren $A\in\A$ und $\P$-Nullmengen so, dass $A_0=(A\cup N)\setminus M\in\A_0$.
 \begin{align*}
@@ -40,11 +40,55 @@ Da $A_0\in\A_0$ existieren $A\in\A$ und $\P$-Nullmengen so, dass $A_0=(A\cup N)\
 	&=(\tilde{A}\cap\tilde{N})\setminus\tilde{M}\qquad\mit\tilde{A}:=A^C\in\A,~\tilde{N}:=M,~\tilde{M}:=N\cap M^C~\P\text{-Nullmengen}\\
 	&\implies A_0^C\in\A_0
 \end{align*}
-Sei $(A_{0,n})_{n\in\N}\subseteq\A_0$. %TODO
+Zur Vereinigungsstabilität:\\
+Sei $(A_{0,n})_{n\in\N}\subseteq\A_0$. 
+O.B.d.A. ist 
+\begin{align*}
+	(A_{0,n})_{n\in\N}=\Big((A_1\cup N_1)\setminus M_1, A_2\cup N_1)\setminus M_1,\ldots\Big)
+\end{align*}
+Dann gilt
+\begin{align*}
+	\bigcup\limits_{i\in\N} A_{0,i}
+	&=\bigcup\limits_{i\in\N}\big(A_i\cup N_i\big)\setminus M_i\\
+	&=\klammern{\bigcup\limits_{i\in\N}\big(A_i\cup N_i\big)}\setminus\klammern{\bigcup\limits_{i\in\N} M_i}\\
+	&=\klammern[\bigg]{\underbrace{\bigcup\limits_{i\in\N} A_i}_{
+		 \in\A
+	}\cup\underbrace{\bigcup\limits_{i\in\N} N_i}_{
+		\cup\text{ v. Nullmengen ist Nullmenge}
+	}}\setminus\klammern{\bigcup\limits_{i\in\N} M_i}\\
+\end{align*}
 
+\betone{Zeige \ref{item:aufg3_3}., also, dass $P_0$ ein Wahrscheinlichkeitsmaß ist:}
+\begin{align*}
+	\P_0(\Omega)=\P(\Omega)=1
+\end{align*}
+und 
+\begin{align*}
+	\P_0\big(A_0^C\big)
+	=\P\big(A^C\big)
+	=1-\P(A)=1-\P_0(A_0)
+	\qquad\mit A_0=(A\cup N)\setminus M,A\in\A
+\end{align*}
+und zuletzt noch
+\begin{align*}
+	\P_0\klammern{\bigcup\limits_{i=1}^\infty A_{0,i}}
+	=\P\klammern{\bigcup\limits_{i=1}^\infty A_i}
+	=\sum\limits_{i=1}^\infty\P(A_i)
+	=\sum\limits_{i=1}^\infty\P_0(A_{0,i})
+\end{align*}
 
-Wir zeigen nun die Wohldefiniertheit von $\P_0$:
-%TODO
+\betone{Zeige \ref{item:aufg3_2}., also, dass $P_0$ wohldefiniert ist:}\\
+Sei $A_{0,1}=(A_1\cup N_1)\setminus M_1$ und $A_{0,2}=(A_2\cup N_2)\setminus M_2$.
+Sei $A_{0,1}=A_{0,2}$.
+Dann gilt:
+\begin{align*}
+	\P_0(A_{0,1})
+	&=\P_0\Big(\big(A_1\cup N_1\big)\Big)-\P_0(M_1)\\
+	&=\P\big(A_1\cup N_1\big)-\P(M_1)\\
+	&=\P(A_1)+\underbrace{\P(N_1)}_{=0}-\underbrace{\P(A_1\cap N_1}_{=0}-\underbrace{\P(M-1)}_{=0}=\P(A_1)
+\end{align*}
+Da $A_{0,1}=A_{0,2}$ folgt $\P(A_1)=\P(A_2)$ und $\P_0(A_{0,2})=\P(A_2)$.
+%TODO dies ist noch nicht ganz korrekt.
 
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:4]{Aufgabe 4}}{}
