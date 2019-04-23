@@ -143,8 +143,8 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 		Taking the norm on both sides results in
 		\[
 			\norm{e^{k+1}}  \leq \normiii{(I-P^{-1}A)^{k+1}} \cdot \norm{e^{0}} 
-		.\] 
-		with vector norm $\norm{\cdot} $ and induced matrix norm $\normiii{\cdot}$
+		\] 
+		with vector norm $\norm{\cdot}$ and induced matrix norm $\normiii{\cdot}$.
 		\begin{lemma}
 		\label{thm:richardconvergencelemma}
 		The error norm $\norm{e^{k}} \rightarrow 0$ ( for $k \rightarrow \infty$) and $x^{k} \rightarrow A^{-1}b$ for all initial errors $e^{0}$ $\iff$
@@ -163,12 +163,13 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 			.\] 
 			(with $\rho(\cdot)$ the spectral radius of the matrix)
 		\end{theorem}
-		\begin{proof}
+		\begin{proof}\
 		\label{thm:richardconvergencetheoremproof}
 		\begin{itemize}
 			\item "$\Longrightarrow$" 
 
-				Assume that $x^{k}\rightarrow A^{-1}b$converges. Let $\lambda $ be the eigenvalue of $G$ with  $\abs{\lambda }  = \rho(G)$ and $x$ be the associated eigenvector.
+				Assume that $x^{k}\rightarrow A^{-1}b$ converges. 
+				Let $\lambda $ be the eigenvalue of $G$ with $\abs{\lambda} = \rho(G)$ and $x$ be the associated eigenvector.
 				
 				Choose $b=0$ and $x^{0}=cx$ for any $c \in \R \setminus \left\{ 0 \right\} $. We get
 				\[
@@ -219,7 +220,7 @@ Let $M,N$ be a regular splitting of $A$. Then $\rho(\underbrace{M^{-1}N}_{G} ) <
 A is non-singular and $A^{-1}$ is non-negative.
 \end{theorem}
 
-\begin{proof}
+\begin{proof}\
 \label{thm:regularsplittingtheoremproof}
 \begin{itemize}
 	\item "$\Longrightarrow$"
