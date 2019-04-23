@@ -364,8 +364,298 @@ Beachte, der Designmatrix $X$ kommt durch die \define{Varianzformel} \eqref{eq:3
 	\end{align*}
 \end{beispiel}
 
+\subsection{Optimalität des MQS} %3.2
 
+Betrachten im linearen Modell $Y=X\mal\beta+\varepsilon$ \define{lineare} Funktionen $\Psi$ von $\beta$, d.h.
+\begin{align*}
+	\Psi\colon\R^p\to\R,\qquad\Psi(\beta)=c'\mal\beta\qquad\forall \beta	\in\R^p,
+\end{align*}
+wobei $c\in\R^p$ fest vorgegeben (bekannt).
 
+\begin{beisp}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			c=e_j\implies\Psi(\beta)=e_j'\mal\beta=\beta_j
+		\end{aligned}$
+		\item $\begin{aligned}
+			c=e_i-e_j\implies\Psi(\beta)=\beta_i-\beta_j
+		\end{aligned}$
+	\end{enumerate}
+\end{beisp}
+
+\begin{definition}\label{def3.6}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\Psi(\beta)=c'\mal\beta$ heißt \define{schätzbar} $\defiff\exists a\in\R^n$ so, dass
+		\index{schätzbar}
+		\begin{align*}
+			\hat{\Psi}:=a'\mal Y=\sum\limits_{i=1}^n a_i\mal Y_i
+		\end{align*}
+		ein \define{erwartungstreuer Schätzer} für $\Psi$ ist, d.h.
+		\index{erwartungstreuer Schätzer}
+		\begin{align*}
+			\E_\beta\big[\hat{\Psi}\big]=\Psi(\beta)\qquad\forall \beta\in\R^p
+		\end{align*}
+		\item Schätzer der Form $a'\mal Y$ heißen \define{lineare Schätzer}.
+		\index{lineare Schätzer}
+	\end{enumerate}
+	Kurz: $c'\mal\beta$ ist schätzbar $\iff\exists$ linearer und erwartungstreuer Schätzer für $c'\mal\beta$.
+\end{definition}
+
+\begin{lemma}\label{lemma3.7}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\Psi(\beta)=c'\mal\beta
+		\end{aligned}$ schätzbar $\iff\exists a\in\R^n$ mit
+		\label{item:lemma3.7(1)}
+		\begin{align}\label{eq:3.7}\tag{3.7}
+			c'=a'\mal X\qquad\Big(\iff c=X'\mal a\Big)
+		\end{align}
+		d.h.
+		\begin{align*}
+			c\in\Bild(X')=\set{X'\mal y:y\in\R^n}
+		\end{align*}
+		\item Falls $\Rg(X)=p$ (also Vollrang), so ist $c'\mal\beta$ für alle $c\in\R^p$ schätzbar.
+		\label{item:lemma3.7(2)}
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\betone{Zu \ref{item:lemma3.7(1)} zeige "$\Longrightarrow$":}\\
+	Es existiert $a\in\R^n$ so, dass:
+	\begin{align*}
+		c'\mal\beta
+		&=\E[a'\mal Y]
+		\overset{\Lin}{=}
+		a'\mal\E[Y]
+		=a'\mal X\mal\beta &&\forall\beta\in\R^p\\
+		\overset{\beta:=e_j}{\iff}
+		c'&=a'\mal X
+	\end{align*}		
+	
+	\betone{Zu \ref{item:lemma3.7(1)} zeige "$\Longleftarrow$":}\\
+	Es ist $\hat{\Psi}:=a'\mal Y$ ein linearer Schätzer und es gilt:
+	\begin{align*}
+		\E\big[\hat{\Psi}\big]
+		&=a'\mal\E[Y]
+		=\underbrace{a'\mal X}_{
+			\overset{\eqref{eq:3.7}}{=}c'		
+		}\mal\beta
+		=c'\mal\beta
+		=\Psi(\beta)
+		\qquad\forall \beta\in\R^p
+	\end{align*}
+	Also ist $c'\mal\beta$ schätzbar.\nl
+	\betone{Zeige \ref{item:lemma3.7(2)}:}\\
+	Setze
+	\begin{align*}
+		a':=c'\mal\big(X'\mal X\big)^{-1}\mal X'.
+	\end{align*}
+	Die Inverse hier existiert wegen Satz \ref{satz:2.13}.
+	Dann gilt:
+	\begin{align*}
+		a'\mal X
+		&=c'
+		\overset{\ref{item:lemma3.7(1)}}{\implies}\text{ Behauptung}
+	\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma3.8}
+	Sei $\Psi(\beta)=c'\mal\beta$ schätzbar.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Es existiert ein $b\in\R^n$ mit
+		\begin{align}\label{eq:lemma3.8Stern}\tag{$*$}
+			b'\mal Y\text{ ist erwartungstreu für }\Psi
+		\end{align}
+		\label{item:lemma3.8(1)}
+		\item Es existiert genau ein $a\in L:=\Bild(X)\subseteq\R^n$ derart, dass
+		\label{item:lemma3.8(2)}
+		\begin{align*}
+			\hat{\Psi}:=a'\mal Y
+		\end{align*}
+		erwartungstreu für $\Psi$ ist, nämlich
+		\begin{align*}
+			a=P_L(b)
+		\end{align*}
+		für jedes $b$ mit \eqref{eq:lemma3.8Stern}.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\betone{Zeige \ref{item:lemma3.8(1)}:}\\
+	Gilt gemäß Definition \ref{def3.6}.\nl
+	\betone{Zeige \ref{item:lemma3.8(2)}:}
+	\begin{align*}
+		b&=a+\tilde{a},\qquad a=P_L(b)\in L,~\tilde{a}\in L^\perp
+	\end{align*}
+	Es gilt für alle $\beta\in\R^p$:
+	\begin{align*}
+		\Psi(\beta)
+		\overset{\ref{item:lemma3.8(1)}}&{=}
+		\E[b'\mal Y]\\
+		&=b'\mal X\mal\beta\\
+		&=\big(a'+\tilde{a}'\big)\mal X\mal\beta\\
+		&=a'\mal X\mal\beta+\underbrace{\tilde{a}'\mal X\mal\beta}_{
+			=\scaProd[\big]{\tilde{a}}{\underbrace{X\mal\beta}_{\in L}}
+			\overset{\tilde{a}\in L^\perp}{=}0
+		}\\
+		&=a'\mal\underbrace{X\mal\beta}_{
+			=\E[Y]
+		}\\
+		\overset{\Lin}&{=}
+		\E[a'\mal Y]
+	\end{align*}
+	Somit folgt
+	\begin{align}\label{eq:ProofLemma3.8Plus}\tag{+}
+		\hat{\Psi}:=a'\mal Y\text{ ist erwartungatreu für $\Psi$ mit }a=P_L(b)\in L
+	\end{align}
+	Bleibt Eindeutigkeit zu zeigen:
+	Sei $\overline{a}\in L$ mit $\overline{a}'\mal Y$ ist erwartungstreu für $\Psi$.
+	Dann folgt:
+	\begin{align*}
+		&a'\mal X\mal\beta
+		\overset{\Lin}{=}
+		\E[a'\mal Y]
+		\overset{\eqref{eq:ProofLemma3.8Plus}}{=}
+		c'\mal\beta
+		=\E[\overline{a}'\mal Y]
+		\overset{\Lin}{=}
+		\overline{a}'\mal X\mal\beta
+		&&\forall \beta\in\R^p\\
+		&\implies
+		0=\big(a'-\overline{a}'\big)\mal X\mal\beta
+		=\big(a-\overline{a}\big)'\mal X\mal\beta&&\forall\beta\in\R^p\\
+		&\implies a-\overline{a}\in L^\perp
+	\end{align*}
+	Aber $a-\overline{a}\in L$, da $L$ Untervektorraum.
+	Somit ist 
+	\begin{align*}
+		a-\overline{a}\in L^\perp\cap L\overset{\ref{satz2.1}\ref{item:satz2.1(3)}\ref{item:satz2.1(3i)}}{=}
+	\set{0}
+	\implies \overline{a}=a
+	\end{align*}		
+\end{proof}
+
+\begin{satz}[Gauß-Markov-Theorem]\label{satz3.9GaussMarkovTheorem}\enter
+	Sei $\Psi(\beta)=c'\mal\beta$ schätzbar und $\hat{\Psi}:=c'\mal\beta$, $\hat{\beta}=$ MQS für $\beta$.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\hat{\Psi}$ ist linearer und erwarungstreuer Schätzer für $\Psi$ und der einzige unter allen linearen erwarungstreuen Schätzern für $\psi$ mit \betone{minimaler Varianz}.
+		\label{item:satz3.9(1)}
+		\item $\hat{\Psi}=a'\mal Y$ für ein eindeutig bestimmtes $a\in L$ und 
+		\label{item:satz3.9(2)}
+		\begin{align*}
+			\Var\big(\hat{\Psi}\big)=\sigma^2\mal\norm{a}^2
+		\end{align*}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Gemäß Lemma \ref{lemma3.8} existiert genau ein $a\in L$ mit
+	%\begin{enumerate}[label=(\roman*)]
+	\begin{align}\label{eq:ProofSatz3.9(i)}\tag{i}
+		a'\mal Y\text{ erwartungstreu für }\Psi
+	\end{align}
+		%\item $a'\mal Y$ erwartungstreu für $\Psi$
+	%\end{enumerate}
+	Es gilt
+	\begin{align}\label{eq:ProofSatz3.9RoterStern}\tag{$*$}
+		a'\mal Y
+		\overset{a\in L,\ref{satz2.5}\ref{item:satz2.5(2)}}&{=}
+		\big(P_L a\big)'\mal Y
+		=a'\mal P_L' Y
+		\overset{\ref{satz2.8}\ref{item:satz2.8(2)}}{=}
+		a'\mal\underbrace{P_L Y}_{
+			=X\mal\hat{\beta}
+		}
+		\overset{\ref{satz3.3}\ref{item:satz3.3(1)}}{=}
+		a'\mal X\mal\hat{\beta}
+	\end{align}
+	Ferner gilt:
+	\begin{align*}
+		a'\mal X\mal\beta
+		&=a'\mal\E[Y]
+		\overset{\Lin}{=}
+		\E[a'\mal Y]
+		\overset{\eqref{eq:ProofSatz3.9(i)}}{=}
+		c'\mal\beta
+		\qquad\forall\beta\in\R^p
+	\end{align*}
+	Wende nun \eqref{eq:ProofSatz3.9RoterStern} mit $\beta:=\hat{\beta}$ an:
+	\begin{align}\label{eq:ProofSatz3.9(ii)}\tag{ii}
+		a'\mal Y=c'\mal\beta=\hat{\Psi}
+	\end{align}
+	Also ist $\hat{\Psi}$ linearer erwartungstreuer Schätzer für $\Psi$.
+	Ferner:
+	\begin{align}\label{eq:ProofSatz3.9(iii)}\tag{iii}
+		\Var(\hat{\Psi})
+		&=\Var(a'\mal Y)
+		\overset{\ref{satz3.2}\ref{item:satz3.2(2)}}{=}
+		a'\mal\underbrace{\Var(Y)}_{
+			\overset{\ref{satz3.2}}{=}
+			\Var(\varepsilon)
+			\overset{\eqref{eq:3.2}}{=}
+			\sigma^2\mal I_n
+		}\mal a
+		=\sigma^2\mal\norm{a}^2
+	\end{align}
+
+	Sei $\tilde{\Psi}=b'\mal Y$ ein beliebiger linearer, erwartungstreuer Schätzer für $\Psi$.
+	Dann folgt (vergleiche \eqref{eq:ProofSatz3.9(iii)}):
+	\begin{align}\label{eq:ProofSatz3.9(iii)Strich}\tag{iii'}
+		\Var(\tilde{\Psi})=\sigma^2\mal\norm{b}^2
+	\end{align}
+	Es gilt:
+	\begin{align}\label{eq:ProofSatz3.9SternStern}\tag{$**$}
+		b&=P_L(b)+v
+		\overset{\ref{lemma3.8}\ref{item:lemma3.8(2)}}{=}
+		a+v\qquad v\in L^\perp
+	\end{align}
+	Dann folgt aus Pythagoras:
+	\begin{align}\label{eq:ProofSatz3.9(iv)}\tag{iv}
+		\norm{b}^2
+		\overset{\text{Pythago}}&{=}
+		\norm{a}^2+\norm{v}^2
+		\geq\norm{a}^2
+		\overset{\eqref{eq:ProofSatz3.9(iii)},\eqref{eq:ProofSatz3.9(iii)Strich}}{\implies}
+		\Var(\tilde{\Psi})=\Var(\hat{\Psi})
+	\end{align}
+	 \betone{Eindeutigkeit:}\\
+	 Angenommen $\tilde{\Psi}=b'\mal Y$ hat Minimalvarianz.
+	 Dann gilt:
+	 \begin{align*}
+	 	\norm{a}^2=\norm{b}^2
+	 	\implies\norm{v}^2=0
+	 	\implies v=0
+	 	\overset{\eqref{eq:ProofSatz3.9SternStern}}{\implies}
+	 	b=a
+	 	\overset{\eqref{eq:ProofSatz3.9(i)}}{=} %könnte auch (ii) sein
+		\tilde{\Psi}=\hat{\Psi}
+	 \end{align*}
+	Gemeinsam mit \eqref{eq:ProofSatz3.9(i)}, \eqref{eq:ProofSatz3.9(ii)}, \eqref{eq:ProofSatz3.9(iii)} und \eqref{eq:ProofSatz3.9(iv)} folgen die Behauptungen.
+
+	%\betone{Zeige \ref{item:satz3.9(1)}:}\\
+	
+	%\betone{Zeige \ref{item:satz3.9(2)}:}\\
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung3.10}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item In Satz \ref{satz3.9GaussMarkovTheorem} wird \betone{nicht} $\Rg(X)=p$ (also Vollrang) gefordert.
+		\item Sprechweise im Englischen: $c'\mal\hat{\beta}$ is \define{BLUE}
+		 (:= best linear unbiased estimator)\\
+		 "unbiased" wird mit "unverzerrt" übersetzt, was einfach erwartungstreu bedeutet.
+		 \item Falls $\Rg(X)=p$ (also Vollrang), dann gilt:
+		 \begin{align*}
+		 	\Var(\hat{\Psi})=\Var\big(c'\mal\hat{\beta}\big)
+		 	\overset{\ref{satz3.2}}{=}
+		 	c'\mal\underbrace{\Var(\hat{\beta}}_{
+		 		\overset{\ref{def3.6}}{=}\sigma^2\mal\big(X'\mal X\big)^{-1}
+		 	}=\sigma^2\mal c'\mal(X'\mal X)^{-1}\mal c
+		 \end{align*}
+		 \item Speziell für $c=e_j$ liefert $\hat{\beta}_j=j$-te Komponente von $\hat{\beta}$ ist der BLUE für $\beta_j$
+	\end{enumerate}
+\end{bemerkungnr}
 
 
 
