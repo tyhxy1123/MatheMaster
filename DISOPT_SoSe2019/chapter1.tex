@@ -6,8 +6,8 @@ ganzzahlige Lineare Programme:
 \subsection{Optimaltiätsbedingungen für kontinuierliche LPs}
 \begin{itemize}
 	\item LP in Normalform 
-		\begin{equation*}
-			\min_{x} c^Tx \text{ subject to } Ax = b, x\geq 0
+		\begin{equation*}\label{nf}
+			\min_{x} c^Tx \text{ subject to } Ax = b, x\geq 0\tag{P}
 		\end{equation*} 
 	\item zulässige Menge: Polyeder
 		\begin{equation*}
@@ -15,27 +15,27 @@ ganzzahlige Lineare Programme:
 		\end{equation*} 
 	\item Problem konvex $\to$	lokale Minima = globale Minima	
 	\item duales Problem
-		\begin{equation}\label{D}
-			\max_{y}b^Ty \text{ subject to } A^Ty \leq c, y \in \R^n
-		\end{equation} 
+		\begin{equation*}\label{dual_cont}
+			\max_{y}b^Ty \text{ subject to } A^Ty \leq c, y \in \R^n \tag{D}
+		\end{equation*} 
 	\item schwache Dualität\\
-		$\forall x$ zulässig für $(P)$\\% todo mach das ordentlich
-		$\forall y$ zulässig für $(D)$:% todo mach das ordentlich
+		$\forall x$ zulässig für \eqref{nf}\\% todo mach das ordentlich
+		$\forall y$ zulässig für \eqref{dual_cont}:% todo mach das ordentlich
 		\begin{equation*}
 			c^Tx \geq b^Ty
 		\end{equation*} 
-		bei Gleichheit: $x$ löst $(P)$, $y$ löst $(D)$
+		bei Gleichheit: $x$ löst \eqref{nf}, $y$ löst \eqref{dual_cont}
 	\item Starke Dualität\\
 		Es sind äquivalent 
 		\begin{enumerate}
-			\item ($P$) hat eine Lösung $x^*$
-			\item ($D$) hat eine Lösung $y^*$ 
+			\item \eqref{nf} hat eine Lösung $x^*$
+			\item \eqref{dual_cont} hat eine Lösung $y^*$ 
 			\item mk
 		\end{enumerate} 
 	\item KKT-Bedingungen für LPs
 		\begin{itemize}
-			\item $x^*$ löst $(P)$ 
-			\item $y^*$ löst $(D)$ 
+			\item $x^*$ löst \eqref{nf} 
+			\item $y^*$ löst \eqref{dual_cont}
 			\item $(x^*,y^*)$ lösen das KKT-System 
 				\begin{align*}
 					Ax^* &= b , \ x^* \geq 0 \quad \text{(primale Zulässigkeit)}\\
@@ -54,7 +54,7 @@ ganzzahlige Lineare Programme:
 			I = \{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 \} = \supp(\hat{x})
 		\end{equation*} 
 		Dann gilt $\rang(A_{\cdot,I})=|I|$
-	\item Hat das LP $(P)$ eine Lösung, so gibt es auch eine Ecklösung.
+	\item Hat das LP \eqref{nf} eine Lösung, so gibt es auch eine Ecklösung.
 	\item Es gibt nur endlich viele Ecken
 	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvolle Reihenfolge absuchen.\\
 		\underline{Annahme:} $A \in \R^{m \times n }$ hat \underline{vollen Zeilenrang} m. \\
@@ -67,10 +67,10 @@ ganzzahlige Lineare Programme:
 		$\to$ $B$ heißt \underline{primal zulässige Basis}, falls
 		\begin{equation*}
 			x_{B}=A_{B}^{-1}b \geq 0 
-		\end{equation*} $\implies$ Mit $x_{N} = 0$ ist $(x_{B},x_{N})$ zulässig für $(P)$ und eine Ecke von $P$ \\
+		\end{equation*} $\implies$ Mit $x_{N} = 0$ ist $(x_{B},x_{N})$ zulässig für \eqref{nf} und eine Ecke von $P$ \\
 		$\to$ B heißt \underline{dual zulässige Basis}, falls 
 		\begin{equation*}
-			A_{N}^TA_{B}^{-T}c_{b} \leq c_{N} \implies y \text{ ist zulässig für }(D)
+			A_{N}^TA_{B}^{-T}c_{b} \leq c_{N} \implies y \text{ ist zulässig für \eqref{dual_cont}}
 		\end{equation*} 
 		$\implies$ $\left(x_{B},x_{N} \right)$ mit $x_{B} = A^{-1}_{B},\ x_{N}= 0$ heißt \underline{Basislösung}. Ist $x_{B} > 0 $ so heißt die Basislösung \underline{nichtdegeneriert}.
 \end{itemize} 
@@ -84,7 +84,14 @@ Sei $B$ eine primal zulässige Basis mit Basislösung
 \end{align*} 
 Für alle $x \in P$ gilt:
 \begin{align*}
-	Ax&=(A_{B},A_{N})(x_{B},x_{N})^{T}\\
+	Ax&=
+	\begin{pmatrix}
+		A_{B} & A_{N}
+	\end{pmatrix}
+	\begin{pmatrix}
+		x_{B} \\ x_{N}
+	\end{pmatrix}
+	\\
 	  & A_{B}x_{B} + A_{N}x_{N}= b
 \end{align*} 
 $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfachen
@@ -120,10 +127,16 @@ gesucht: primal zulässige Basis für
 \end{equation*} 
 Simplex-Phase 1: Löse das Hilfsproblem
 \begin{align*}
-	\min_{x,s} \sum_{i=1}^{m} s_{i} \text{ subject to } (A\ I) (x , s)^T & = b ,\\
-	(x,s)& \geq 0
+	\min_{x,s} \sum_{i=1}^{m} s_{i} \text{ subject to }
+	\begin{pmatrix}
+		A& I
+	\end{pmatrix}
+	\begin{pmatrix}
+		x \\ s
+	\end{pmatrix}
+	\quad,(x,s)& \geq 0
 \end{align*} 
-Gilt in einer Lösung ($x^0$), dass $s^* =0$, so ist das $x^*$ zulässig für $(P)$ und die Basis des Hilfsproblems \glqq ist\grqq\ eine primal zulässige Basis für $(P)$. 
+Gilt in einer Lösung ($x^0$), dass $s^* =0$, so ist das $x^*$ zulässig für \eqref{nf} und die Basis des Hilfsproblems \glqq ist\grqq\ eine primal zulässige Basis für \eqref{nf}. 
 Primal zulässige Startbasis für Hilfsproblem
 \begin{equation*}
 	x = 0, s = b \geq 0, \text{ Basismatrix } I
@@ -132,3 +145,389 @@ Tableau-Methode für
 \begin{equation*}
 	\min_{x}c^Tx \text{ subject to } Ax \leq b , x \geq 0
 \end{equation*} 
+\section{Duales Simplex-Verfahren}
+primales LP 
+\begin{equation*}\label{primalLP}
+	\min_{x}c^{T} x \text{ subject to }Ax = b, x \geq 0 \tag{P} 
+\end{equation*}
+duales LP 
+\begin{equation*}\label{dualLP}
+	\max_{y}b^{T} y \text{ subject to }A^{T} y \leq c, y \geq 0 \tag{D} 
+\end{equation*}
+Annahme $A \in \R^{m \times n}$ hat Rang $m$ \\
+$B$ Basis $\implies x_{B}= A^{-1}_{B}b, x_{N}=0$\nl
+\underline{Idee:} Wende Simplex-Verfahren auf (D) an.\\
+$\to$ duale Normalform: 
+\begin{equation*}\label{dualnf}
+	\max_{y} b^{T} y \text{ subject to }
+	\begin{pmatrix}
+		A^{T} & I
+	\end{pmatrix}
+	\begin{pmatrix}
+	y\\z	
+	\end{pmatrix}
+	= c, \quad z \geq 0, \quad y \in \R^m \tag{D'}
+\end{equation*}
+Basis von (D'):$  
+\begin{pmatrix}
+	\underbrace{A^{T}}_{m} \underbrace{I}_{n}
+\end{pmatrix}
+\in R^{n \times(m +n)}$
+Basis $H \subset \left\{1,\dots ,n+m \right\}$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär 
+\begin{theorem}
+	Entweder (D') ist unzulässig oder unbeschränkt oder es gibt eine optimale Basislösung $(y^*,z^*)$ so dass die zugehörige basis von der Form ist:
+	\begin{equation*}
+		H_{\text{opt}}=\underbrace{ \left\{1,..,m \right\}}_{\text{ganzes $A$ in Basismatrix}}\cup (N+m)
+	\end{equation*}
+	mit $N \subset \left\{1,\dots ,n \right\}, |N|= n-m$ ($N$ zeigt an, welche Spalten von $I$ gebraucht werden)
+	$\implies$ Basen für (D') werden i.A. durch $N$ beschrieben, nicht durch $H$.
+\end{theorem}
+Welche Basis $H$ bzw. $N$ liefert zulässige Basislösung für (D')?
+% irgendwas kompiliert hier nicht
+\begin{align*}
+	\begin{pmatrix}
+		A^{T}  & I
+	\end{pmatrix}
+	\begin{pmatrix}
+	y\\z	
+	\end{pmatrix}
+	&=c, \quad z \geq 0\\
+	&{}\iff A_{B}^{T} y + z_{B} \geq c_{B}, \quad z_{B} \geq 0\\
+	&{}\hspace{1.1cm} A_{N}^{T} y + z_{N} = c_{N}, \quad z_{N} \geq 0 \\
+	&{}\iff y = A_{B}^{-T}(c_{B}-z_{B})\\
+	&{}\hspace{1.1cm} z_{N}= c_{N} - A_{N}^{T}y = c_{N}-A_{N}^{T} A_{B}^{-T}(c_{B}-z_{B}) ,\quad z_{B}\geq 0 ,z_{N} \geq 0
+\end{align*}
+$(y,z_{B},z_{N})$ Basislösung $\to$ Nichtbasisvariablen $z_{B} =0$ \\
+$\implies$ 
+\begin{equation*}
+	y = A_{B}^{-T}c_{B}, \quad z_{N}= c_{N}- A_{N}^{T} \underbrace{A_{B}^{-T}c_{B}}_{{=y}}\geq 0  
+\end{equation*}
+\subsection{Duales Simplex-Verfahren}
+Initialisierung: Dual zulässige Basis $B$, d.h. $B \subset \left\{1,\dots ,n \right\}$ mit $|B|=m$, $A_{B}$ regulär und $z_{B}=0,y=A_{B}^{-T}c_{B}, z_{N}= c_{N}-A_{N}^{T}y \geq 0$ 
+\begin{enumerate}%[label = Schritt \arabic)]
+	\item Bestimme zugehörige komplementäre duale Variable
+		\begin{align*}
+			x_{N}&=0 \quad (\to \text{komplementär }z_{N})\\
+			x_{B}&= A_{B}^{-1} b\quad ( \to A(x_{B},x_{N})^{T} =b)
+		\end{align*}
+	\item Gilt $x_{B} \geq 0 $: \textbf{Stop}.\\
+		$(y,z_{B},z_{N}),(x_{B},x_{N})$ KKT-Punkt $\implies$ Lösung gefunden.\\
+		Andernfalls wähle $ i \in B$ mit $x_{i}<0$ ($\to z_{i}>0$ verkleinert dualen Zielfunktionswert)
+	\item Löse $A_{B}^{T} w = e_{i}$, $\alpha_{N} = -A_{N}^{T} w$ 
+	\item Schrittweitenbestimmung:\\
+		Gilt $\alpha_{N} \leq 0 $ :\textbf{Stop}, (D') ist unbeschränkt ($\to$ (P) unzulässig).\\
+		Andernfalls berechne $\gamma = \min \left\{ \frac{z_{i}}{\alpha_{i}}|j \in N , \alpha_{j} >0 \right\}$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
+	\item Update:
+		\begin{align*}
+			z_{N}^+ &= z_{N} - \gamma \alpha_{N} \quad (\to z_{N} \geq 0, z_{j}^+ =0)\\
+			z_{i}^+ &= \gamma\\
+			y^+ &= y -\gamma w\\
+			N^+ &= (N \backslash \left\{ j \right\}) \cup \left\{ i \right\}\\
+			B^+ &= (B \backslash \left\{ i \right\}) \cup \left\{ j \right\}
+		\end{align*}
+\end{enumerate}
+
+\subsection{(primales) Simplex-Verfahren für LPs mit Schranken}
+Betrachte
+\begin{equation*}
+	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad l \leq x \leq u
+\end{equation*}
+mit $l \in \left(\R \cup \left\{ - \infty \right\} \right)^n,u \in \left(\R \cup \left\{ +\infty \right\} \right)^n $
+
+\underline{Ziel:} möglichst nahe an der Form 
+\begin{equation*}
+	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad x \geq 0
+\end{equation*}
+kommen.\\
+\underline{mögliche Modifikationen:}
+\begin{itemize}
+	\item Schlupfvariablen + Variablensplit $x = x^+ -x^-, x^+,x^- \geq0 $ (Nachteil: erhöht die Anzahl der Variablen und linearen Gleichungen)
+	\item Fall: $x_{i} \geq l_{i}$ mit $l_{i}\in \R$ : Substituiere $\hat{x}_{i} := x_{i}- l_{i}\geq 0$
+	\item Fall: $x_{i} \leq u_{i}$ mit $u_{i}\in \R$ : Substituiere  $\hat{x}_{i} := u_{i}- x_{i}\geq 0$
+	\item Fall: $l_{i} \leq x_{i} \leq u_{i}$ mit $l_{i},u_{i} \in \R$ : Substituiere $0 \leq \hat{x}_{i} := x_{i}- l_{i} \leq u_{i}-l_{i}$
+	\item Fall $-\infty \leq x_{i} \leq \infty$ : Freie Variable: entweder Variablensplit $x_{i}= x_{i}^+ - x_{i}^-$ oder: $x_{i}$ als freie Variable im Simplex-Verfahren berücksichtigen( wie $y$ im dualen Simplex)
+\end{itemize}
+Angenommen, es gibt keine freien Variablen $\implies$ oBdA LP der Form 
+\begin{equation*}
+	\min_{x} c^{T} x \text{ subject to } Ax = b, \quad 0 \leq x \leq u 
+\end{equation*}
+mit $u \in [0, + \infty]^n$.\nl
+Bisher im primalen Simplex-Verfahren:\\
+Basis $B$, Basisvariablen $x_{B}= A_{B}^{-1} b \geq 0$, Nichtbasisvariablen $x_{N}=0$ \\
+\underline{Idee:} Teile die Nichtbasisvariablen in 
+\begin{align*}
+	N_{l} &= \left\{ i \in N \ | \ x_{i} = 0  \right\} \implies x_{N_{l}}=0\\
+	N_{u} &= \left\{ i \in N \ | \ x_{i} = u_{i}  \right\} \implies x_{N_{u}}=u_{N_{u}}
+\end{align*}
+Wie im Simplex-Verfahren: 
+\begin{align*}
+	A_{B}x_{B} + A_{N_{l}}x_{N_{l}} + A_{N_{u}} x_{N_{u}} = b \implies x_{B} = A_{B}^{-1} (b - A_{N_{l}} x_{N_{l}} - A_{N_{l}}x_{N_{l}})\\
+	c^{T} x = c_{B}^{T} x_{B} + c_{N_{l}}^{T} x_{N_{l}}+c_{N_{u}}^{T} x_{N_{u}} = c_{B}^{T} A_{B}^{-1} b + z_{N_{l}}^{T} x_{N_{l}} + z_{N_{u}}^{T} x_{N_{u}}
+\end{align*}
+Identifiziere $i \in N_{l}$ mit $z_{i} <0 $ oder $ i\in N_{u}$ mit $z_{i}> 0$.\\
+Bei Schrittweiten beachten: $x_{B} = \gamma w \in [0,u_{B}]$ und
+\begin{equation*}
+	x_{i}^+ = \begin{cases}
+	 \gamma \in [0,u_{i}]\\
+	 u_{i}-\gamma
+\end{cases} 
+\end{equation*}
+Basisupdate: neuer Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder umgekehrt.
+\begin{beispiel}
+	Zuschnittsoptimierung\\
+  	\underline{Problemstellung} Eine vorgegebene Anzahl von Objekten soll möglichst materialsparend aus einem Grundstoff zugeschnitten werden.\\
+  	\underline{konkretes Beispiel}: Eine Firma produziert Metallstangen mit Länge $100$cm. Werden kürzere Stangen bestellt muss die Firma $100$cm lange Stangen zerschneiden. Ziel der Firma ist es, die Bestellungen zu erfüllen und dafür möglichst wenige Stangen zerschneiden zu müssen.\\
+  	Bestellung:
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|c}
+			Länge in cm & Anzahl bestellt\\
+      		\hline
+      		$25$ & $80$ \\
+      		$30$ & $75$ \\
+      		$35$ & $105$ \\
+  		\end{tabular}
+	\end{table}
+	\underline{Modellierung} 
+	\begin{enumerate}
+		\item Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$. Wieviele Stäbe der Länge $25,30,35$ cm daraus geschnitten werden sollen.
+			\begin{align*}\label{model_cutting_1}
+				\implies \forall i & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100\\
+								   &
+								  	\begin{rcases}
+								   		 \sum\limits_{i}^{} x_{i1} \geq 80\\
+								   		 \sum\limits_{i}^{} x_{i2} \geq 75\\
+								   		 \sum\limits_{i}^{} x_{i3} \geq 105 
+									\end{rcases} \tag{$\Delta$}
+			\end{align*}
+			Zielfunktion: minimiere $k_{i}=$ Anzahl der Stäbe $i = 1,\dots ,k$\\
+			Idee: Für jeden Stab $i$ führe eine Variable $y_{i} \i \left\{0,1 \right\}$ ein, die entscheidet, ob der Stab verwendet wird oder nicht.\\
+			maximale Anzahl benötigte Stäbe $\leq 80 + 75 +1005 = 260$ 
+			% use label instead of referencing it directly
+			\begin{align*}
+				\implies \min_{x,y}\sum_{i=1}^{260} y_{i} &\text{ subject to } x_{i1},x_{i2},x_{i3} \in \N_{0}, y_{i}\in \left\{0,1 \right\} , (\Delta),\\
+				& \forall i = 1,\dots ,260 : 25x_{i1} + 30x_{i2} + 35x_{i3} \leq 100y_{i}
+			\end{align*}
+			
+ 		\item Schnittmuster\\
+     	Führe eine Variable $x_{i} \in \N_{0}$ ein für jedes Schnittmuster $i$, nach dem eine Stange zerschnitten werden kann: 
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{c|c|c|c}
+      		Schnittmuster & \# $25$ cm Stäbe & \# $30$ cm Stäbe & \# $35$ cm Stäbe\\
+      		\hline
+      		1 & 4 & 0 & 0\\
+        	  & 3 & 0 & 0\\
+      		2 & 2 & 1 & 0\\
+      		3 & 2 & 0 & 1\\
+      		4 & 1 & 2 & 0\\
+      		5 & 1 & 1 & 1\\
+      		6 & 1 & 0 & 2\\
+      		7 & 0 & 3 & 0\\
+      		8 & 0 & 2 & 1\\
+      		9 & 0 & 1 & 2\\
+    		\end{tabular}
+		\end{table}
+		
+         Optimierungsproblem:
+    	\begin{align*}
+			\min_{x} \sum_{i=1}^{9} x_{i}& \text{ subject to } x \in \Z_{0}, x\geq 0
+		\end{align*}
+		\begin{align*}
+			\text{mindestens } &80 \text{ Stäbe mit }25\text{cm}& 4x_{1} + 2x_{2} + 2x_{3} + x_{4} + x_{5} + x_{6} &\geq 80\\
+							   &75\text{ Stäbe mit } 30 \text{cm}& x_{2} + 2x_{4} + x_{5} + 3x_{7} + 2x_{8} + x_{9} &\geq 75\\
+							   &105\text{ Stäbe mit } 35 \text{cm}& x_{3} + x_{5} + 2x_{6} + x_{8} + 2x_{9} &\geq 105
+    	\end{align*}
+		In Matrixform $Hx \leq b$.\nl
+		Vorteil: 
+		\begin{itemize}
+			\item Anzahl Restriktionen $=$ Anzahl verschiedener Stablängen
+			\item Anzahl Variablen $=$ Anzahl (sinnvoller) Schnittmuster ( wächst schnell, aber langsamer als Variante 1)
+		\end{itemize}
+	 
+ \end{enumerate}
+\underline{Lösung von Variante 2}
+\begin{enumerate}
+	\item Statt des ganzzahligen LPs
+		\begin{equation*}
+			\min_{x} c^{T} x \text{ subject to } Mx \geq b, x \geq 0 , x \in \Z^{n}.
+		\end{equation*}
+		Löse das \underline{relaxierte LP} 
+	\begin{equation*}
+		\min_{x} c^{T} x \text{ subject to } Hx \geq b, x \geq 0 
+	\end{equation*}
+	\item Simplex-Verfahren für das relaxierte Problem:
+		\begin{itemize}
+			\item primal zulässige Startbasis?\\
+			$\to$ Für jede Stablänge $l = 25,30,35$ verwende das \glqq Einheitsschnittmuster\grqq\ bei dem die maximal mögliche Anzahl $\lfloor\frac{100}{l}\rfloor$ von Stäben der Länge $l$ und keine anderen Stablängen geschnitten werden. \\
+			$\implies$ zugehörige Spalten in Basismatrix sind linear unabhängige Vielfache ovn Einheitsvektoren.\\
+		zugehörige Basisvariablen:
+		\begin{equation*}
+			x_{l} = \frac{b_{l}}{\lfloor\frac{100}{l}\rfloor}
+		\end{equation*}
+
+		\item $H$ kann sehr viele Spalten haben\\
+			\underline{Idee:} Immer nur die Spalten von $H$ bestimmen, die man aktuell braucht.\\
+			$\to$ Startbasis und zugehörige Basismatrix $A_{B} := \begin{pmatrix}
+				H,&-I
+			\end{pmatrix}_{B}
+			$ wie oben bestimmen\\
+			$\to$ zugehörige duale Variable: 
+			\begin{equation*}
+				y = A_{B}^{-T}c_{B}
+			\end{equation*}
+			$\to $ reduzierte Kosten 
+			\begin{equation*}
+				z_{N} = c_{N} - A_{N}^{T} y
+			\end{equation*}
+			Für $j \in N$, die zu den Schlupfvariablen $s$ gehören
+			\begin{equation*}
+				z_{j} = c_{j} - A_{\cdot j}^{T} y = 0 + e_{j}^{T} y = y_{j}
+			\end{equation*}
+			($y_{j}$ ist bekannt). Für $j \in N$, die zu den Variablen $x$ gehören 
+			\begin{equation*}\label{dantzigRegel}
+				e_{j} = c_{j} - A_{\cdot j}^{T} y = 1 - \underbrace{H_{\cdot j}^{T}}_{\text{unbekannt}} y \to \min \tag{Dantzig Regel} 
+			\end{equation*}
+			$\implies$ bestimme die \glqq beste \grqq\ Spalte $H_{\cdot j}$ als Lösung von 
+			\begin{equation*}
+				\max_{h} y^{T} h \text{ subject to } 25h_{1} + 30 h_{2} + 35h_{3} \leq 100, h\geq 0 , h \in \Z^3
+			\end{equation*}
+			$\implies$ Rucksackproblem mit Gewichten $=$ Stablängen, Werte $=$ duale Variable $y$
+		\item Sei $x_{\alpha} \in \R^n$ eine Lösung des relaxierten Problems.
+			\begin{enumerate}[label = \arabic*. Fall:]
+				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP
+				\item $x^* \not \in \Z^n$
+					\begin{itemize}
+					\item Branch $\&$ Bound Verfahren \\
+					$\implies$ zwei neue Lps
+					\begin{align*}
+						\min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\leq \lfloor x_{i}^*\rfloor\\
+						\max_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\geq \lceil x_{i}^*\rceil
+					\end{align*}
+					\item Schnittebenen-Verfahren\\
+					Füge neue Ungleichung 
+					\begin{equation*}
+						a^{T} x \leq \beta
+					\end{equation*}
+					mit $a^{T} x \leq \beta$ für alle zulässigen Punkte $x \in \Z^n$ und $a^{T} x^* > \beta $ zu den Restriktionen		
+					\item (Runden)
+				\end{itemize}
+			\end{enumerate}
+		\end{itemize}
+\end{enumerate}
+\end{beispiel}
+\subsection{Polyeder}
+\begin{definition}
+	\begin{itemize}\
+		\item Eine Menge $P\subset \R^n$ heißt Polyeder, wenn man sie durch endlich viele lineare Ungleichung beschreiben kann.
+		\item \underline{natürliche Form} eines Polyeders:
+			\begin{align*}
+				P(A,b) &= \left\{ x \in \R^n\ | \ a^{T}_{i} x \leq b_{i} \ \forall i =1,\dots ,n \right\}\\
+					   &= \left\{ x \in \R^n \ | \ Ax \leq b \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
+			\end{align*}
+		\item \underline{Normalform} eines Polyeders:
+			\begin{equation*}
+				P(A,b) = \left\{ x \in \R^n \ | \ Ax = b, x\geq 0 \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
+			\end{equation*}
+		\item \underline{Polytop}:= beschränktes Polyeder ( $\iff P$ ist konvexe Hülle von endlich vielen Punkten)	
+		\item \underline{polyhedrischer kegel}:= Polyeder und Kegel ( $\iff P = \left\{x \ | \ Ax \leq 0 \right\}$)
+		\item P heißt \underline{rationales Polyeder}$\iff$ Es gibt $A\in\Q^{m \times n}, b \in \Q^m$ mit 
+			\begin{equation*}
+				P = P(A,b) = \left\{ x \in \R^n\ | \ Ax \leq b \right\}
+			\end{equation*}
+			Achtung 
+			\begin{align*}
+				P &= P(A,b) = \left\{ x \in \R\ | \ \sqrt{2}x \leq 0 \right\} \text{ ist ein rationales Polyeder}\\
+				  &= \left\{x \in \R \ | \ x \leq 0  \right\}
+			\end{align*}
+	\end{itemize}
+\end{definition}
+\underline{Annahme:} Wir betrachten (meistens) nur rationale Polyeder und gehen davon aus, dass die gegebene Darstellung $A,b$ rational ist.\\
+\underline{Notation:}
+\begin{align*}
+	B_{r}(x^*) &= \left\{ x \in \R^n \ | \ \|x - x^*\|<r \right\}\\
+	\overline{B_{r}(x^*)} &= \left\{ x \in \R^n \ | \ \|x - x^*\|\leq r \right\}
+\end{align*}
+\begin{align*}
+	x,y \in \R^n, \alpha \in \R: \alpha X &= \left\{ \alpha \cdot x \ |\ x \in X \right\}\\
+										  X + Y &=\left\{ x + y  \ |\ x \in X, y \in Y \right\}\\
+										  X - Y &= X + (-Y)
+\end{align*}
+Dimension von Polyedern?
+\begin{itemize}
+	\item Ist $U \subset  \R^n$ ein Unterraum, so ist $\dim(U)=$maximale Anzahl linear unabhängiger Vektoren
+	\item Ist $X \subset \R^n$, so ist die \underline{lineare Hülle} lin$(X)$ von $X$ der kleinste (bezüglich Inklusion) Unterraum $U$ von $\R^n$ mit $X \leq U$.
+	\item Eine Menge $A \subset  \R^n$ heißt \underline{affiner Unterraum}, wenn gilt $U:=A-a^*$ (mit $a^* \in A$ beliebig) ist ein Unterraum.
+		Wir definieren $\dim(A) := \dim(U)$ 
+	\item Konvention $\dim\emptyset=-1$ 
+	\item Ist $X\subset \R^n$, so ist die \underline{affine Hülle} $\aff(X)$ von $X$ ist der kleinste (bzgl. Inklusion) affine Unterraum $A$ mit $X\subset A$.
+		Wir definieren $\dim(X):=\dim(A)$ (funktioniert gut für konvexe Mengen)\\
+		Seien $x_{1},\dots ,x_{m}\in\R^n$:
+	\item \underline{lineare Hülle}: $\lin(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\in \R \right\}$
+	\item \underline{affine Hülle}: $\aff(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\in \R, \sum_{i=1}^{m} c_{i}= 1 \right\}$
+	\item \underline{konvexe Hülle}: $\conv(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0, \sum_{i=1}^{m} c_{i}= 1 \right\}$
+	\item (konvexe) \underline{konische Hülle}: $\cone(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0 \right\}$
+	\item Sei $X \subset \R^n$ nichtleer. Dann ist das \underline{relative Innere} von $X$ definiert als 
+		\begin{equation*}
+			\rint(X):= \left\{ x^* \in X \ |\ \exists r >0 \text{ mit } B_{r}(x^*)\cap\aff(X) \subset X \right\}
+		\end{equation*}
+		der \underline{relative Rand} von $X$ ist definiert als 
+		\begin{equation*}
+			\rbd(X) := \overline{X}\backslash \rint(X)
+		\end{equation*}
+	\begin{bemerkung}
+		\begin{itemize}\
+			\item Es gilt immer $\interior(X)\subset \rint(X) \subset X \subset \overline{X}$
+			\item Ist $X$ \underline{konvex}, so ist $\rint(X)\neq \emptyset$ und $\dim X= \dim(\rint(X))$
+			\item Ist  $P = P(A,b) \subset \R^n$ ein Polyeder, so gilt $\dim P=n \iff \int P \neq \emptyset \iff \exists x^* \in \R^n: Ax^*<b$
+		\end{itemize}
+	\end{bemerkung}
+\end{itemize}
+\subsection{Rand von Polyedern}
+\begin{definition}
+	Sei $P \subset \R^n$ ein Polyeder
+	\begin{itemize}
+		\item Dann heißt $a^{T} x \leq \beta$ mit $a \in \R^n, \beta \in \R$ heißt eine \underline{gültige Ungleichung} für $P$, wenn gilt
+			 \begin{equation*}
+				\forall x \in P: a^{T} x \leq \beta
+			\end{equation*}
+	\end{itemize}
+\end{definition}
+\begin{beispiel}
+	$a^{T} x \leq 0$ ist eine gültige Ungleichung für jedes Polyeder $P$.
+	 \begin{itemize}
+		\item Ist $a^{T} x \leq \beta$ eine gültige Ungleichung für $P$, so heißt 
+			\begin{equation*}
+				F = P \cap \left\{ x \in \R^n\ |\ a^{T} x = \beta \right\}
+			\end{equation*}
+			eine \underline{Seitenfläche} (Face) von $P$ 
+		\item Eine Seitenfläche $F$ heißt \underline{echt} (proper), wenn gilt $\emptyset \neq F \neq P$
+	\end{itemize}
+\end{beispiel}
+\begin{beispiel}
+	$o^{T} x \leq 0 \implies F = P, o^{T} x \leq 1 \implies F = \emptyset$ 
+	\begin{itemize}
+		\item Eine echte Seitenfläche $F$ von $P$ heißt \underline{Facette}, wenn sie in keiner anderen \underline{echten} Seitenfläche von  $P$ enthalten ist.
+	\end{itemize}
+\end{beispiel}
+\begin{definition}
+	Sei $P = P(A,b) \subset \R^n$ ein Polyeder
+	\begin{itemize}
+		\item Sei $F$ eine Seitenfläche von $P$. Dann heißt 
+			\begin{equation*}
+				\eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i} \forall x \in F \right\}
+			\end{equation*}
+			die \underline{Menge der aktiven/bindenden Restriktionen} von $F$.
+		\item Die Menge eq$(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forall x \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
+		\item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt fa$(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
+			fa$(I)$ ist eine Seitenfläche mit der gültigen Ungleichung 
+			\begin{equation*}
+				a^{T} x \leq \beta
+			\end{equation*}
+			mit $a^{T} = \sum\limits_{i \in I}^{} A_{i,\cdot}, \beta = \sum\limits_{i \in I}^{} b_{i}$.\\
+			Zu zeigen $F = \text{fa(eq}(F))$
+	\end{itemize}
+	
+\end{definition}
+
+
