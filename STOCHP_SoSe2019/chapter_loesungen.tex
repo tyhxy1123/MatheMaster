@@ -158,6 +158,7 @@ Nun berechnen wir noch die Kovarianzfunktion:
 \end{align*}
 
 \betone{Zeige \ref{item:aufg9(2)}:}\\
+\betone{Fall 1: $\E[X]\neq0$:}\\
 Wir prüfen wieder, wann $\E[Z(t)]$ nicht von $t$ abhängt:
 \begin{align*}
 	\E\big[Z(t)\big]
@@ -165,7 +166,7 @@ Wir prüfen wieder, wann $\E[Z(t)]$ nicht von $t$ abhängt:
 	\E\big[g(t)\mal X\big]
 	\overset{\Lin}{=}
 	g(t)\mal\underbrace{\E[X]}_{
-		\overset{\Vor}{<}\infty,\text{ konstant}
+		\overset{\Vor}{<}\infty,\text{ konstant},\neq0
 	}
 \end{align*}
 Also ist $\E[Z(t)]$ genau dann unabhängig von $t$, wenn $g\colon\R^d\to\C$ eine konstante Funktion ist.\\
@@ -177,7 +178,34 @@ In diesem Fall ist auch die zweite Eigenschaft von Stationärität (im weiteren 
 	\overset{g\equiv\text{konst}}{=}
 	\abs{g}^2\mal\E\big[X\mal\overline{X}\big]
 \end{align*}
-Die Korrelationsfunktion ist also auch konstant.
+Die Korrelationsfunktion ist also auch konstant.\nl
+\betone{Fall 2: $\E[X]=0$}\\
+Die erste Eigenschaft der Stationarität ist trivialerweise erfüllt:
+\begin{align*}
+	\E\big[Z(t)\big]
+	\overset{\Def}&{=}
+	\E\big[g(t)\mal X\big]
+	\overset{\Lin}{=}
+	g(t)\mal\underbrace{\E[X]}_{
+		\overset{\Vor}{=}0
+	}
+	=0\qquad\forall t\in\R=:T
+\end{align*}
+
+Die zweite Eigenschaft ist schon schwieriger:
+\begin{align*}
+	\E\Big[Z(t_1)\mal\overline{T(t_2)}\Big]
+	\overset{\Def}&{=}
+	\E\Big[g(t_1)\mal X\mal\overline{g(t_2)}\mal \overline{X}\Big]
+	\overset{\Lin}{=}
+	g(t_1)\mal\overline{g(t_2)}\mal\E\big[|X^2|\big]
+\end{align*}
+Somit ist $Z$ genau dann stationär (im weiteren Sinne), wenn 
+\begin{align*}
+	g(t_1)\mal\overline{g(t_2)}=C(t_1-t_2)
+\end{align*}
+für eine Funktion $C\colon\R\to\C$.
+Dies führt auf die \undefine{Cauchy'sche Funktionalgleichung.}
 
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:10]{Aufgabe 10}}{}
@@ -251,6 +279,44 @@ So ist z.B. $A\sim\Nor(0,1)$ und $B\sim\Exp(0,1)$ möglich.
 	\texorpdfstring{\hyperref[aufg:11]{Aufgabe 11}}{}
 }\label{loes:11}
 
+Berechnen der Kovarianzfunktion:
+\begin{align*}
+	M(t)
+	\overset{\Def}{=}	
+	\E\big[X_t\big]
+	\overset{\Def}{=}
+	\int\limits_\Omega X_t(\omega)\ds\P(\omega)
+	\overset{\Def}{=}
+	\int\limits_\Omega t\mal\omega\ds\P(\omega)
+	=t\mal\int\limits_0^1\omega \ds\lambda(\omega)
+	=t\mal\left[\frac{\omega^2}{2}\right]_{\omega=0}^1
+	=\frac{t}{2}
+\end{align*}
+
+Damit können wir jetzt die Kovarianzfunktion ausrechnen:
+
+\begin{align*}
+	\sigma(t_1,t_2)
+	\overset{\Def}&{=}
+	\E\Big[\big(X_{t_1}-M(t_1)\big)\mal\overline{\big(X_{t_2}-M(t_2)\big)}\Big]\\
+	&=\int\limits_\Omega\klammern{t_1\mal\omega-\frac{t_1}{2}}\mal\klammern{t_2\mal\omega-\frac{t_2}{2}}\ds\P(\omega)\\
+	&=\int\limits_0^1 t_1\mal\klammern{\omega-\frac{1}{2}}\mal t_2\mal\klammern{\omega-\frac{1}{2}}\ds\lambda(\omega)\\
+	&=t_1\mal t_2\mal \int\limits_0^1 \klammern{\omega-\frac{1}{2}}^2\ds \lambda\\
+	\overset{\text{Subst}}&=
+	t_1\mal t_2\mal\int\limits_{-\frac{1}{2}}^{\frac{1}{2}} \omega^2\ds\lambda(\omega)\\
+	&=t_1\mal t_2\mal\left[\frac{\omega^3}{3}\right]_{\omega=-\frac{1}{2}}^{\frac{1}{2}}\\
+	&=t_1\mal t_2\mal \klammern{\frac{1}{8\mal 3}--\frac{1}{8\mal 3}}\\
+	&=\frac{t_1\mal t_2}{12}
+\end{align*}
+
+Nun bestimmen wir noch die endlich-dimensionale Verteilung des Prozesses $X$:\\
+Seien $n\in\N$ und $t_1,\ldots,t_n\in T$ beliebig.
+Dann ist die endlich dimensionale (Rand)-verteilung
+\begin{align*}
+	\mu_{t_1,\ldots,t_n}(B_1\times\ldots\times B_n)
+	=\lambda\klammern[\Big]{\set[\big]{\omega\in[0,1]:t_1\mal\omega,\ldots,t_n\mal\omega\in B}}
+	\qquad\forall B\in\B([0,1])
+\end{align*}
 
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:12]{Aufgabe 12}}{}
