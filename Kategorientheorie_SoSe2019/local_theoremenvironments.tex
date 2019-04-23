@@ -1,0 +1,49 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% THEOREM-ENVIRONMENTS
+
+\newtheoremstyle{mystyle}
+  {20pt}   % ABOVESPACE \topsep is default, 20pt looks nice
+  {20pt}   % BELOWSPACE \topsep is default, 20pt looks nice
+  {\normalfont} % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {}          % HEADPUNCT (if needed)
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+	{}          % CUSTOM-HEAD-SPEC
+\theoremstyle{mystyle}
+
+% Definitionen der Satz, Lemma... - Umgebungen. Der Zähler von "definition" ist dem "chapter"-Zähler untergeordnet, alle weiteren Umgebungen bedienen sich des definition-Zählers.
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{korollar}[definition]{Korollar}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{beispiel}[definition]{Beispiel}
+\newtheorem{bemerkungnr}[definition]{Bemerkung}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{erinnerungnr}[definition]{Erinnerung}
+\newtheorem{vermutung}[definition]{Vermutung}
+\newtheorem{axiom}[definition]{Axiom}
+\newtheorem{notationnr}[definition]{Notation}
+
+\newcounter{aufgabencounter}
+\renewcommand{\theaufgabencounter}{\arabic{chapter}.\arabic{section}.\arabic{aufgabencounter}} 
+\newtheorem{aufgabenr}[aufgabencounter]{Aufgabe}
+
+% Bemerkungen, Erinnerungen und Notationshinweise werden ohne Numerierungen dargestellt.
+\newtheorem*{bemerkung}{Bemerkung.}
+\newtheorem*{erinnerung}{Erinnerung.}
+\newtheorem*{notation}{Notation.}
+\newtheorem*{aufgabe}{Aufgabe.}
+\newtheorem*{lösung}{Lösung.}
+\newtheorem*{bsp}{Beispiel.}  %Beispiel ohne Nummerierung
+\newtheorem*{defi}{Definition.} %Definition ohne Nummerierung
+\newtheorem*{lem}{Lemma.}       %Lemma ohne Nummerierung
+\newtheorem*{thm}{Theorem.}     %Theorem ohne Nummerierung
+\newtheorem*{konvention}{Konvention.}
+\newtheorem*{folg}{Folgerung.} 
+

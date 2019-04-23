@@ -67,8 +67,9 @@ Ergänzungen zu obiger Tabelle:
 \clearpage
 \setlength{\voffset}{0mm}
 
-\section{Definition}\label{section:1.2}
-\begin{definition}
+\section*{Definition Kategorie}\label{section:1.2}
+\setcounter{definition}{1}
+\begin{definition} %TODO set counter definition +1?
 	Eine \define{Kategorie} $\Cat$ ist gegeben durch:\index{Kategorie}
 	\begin{itemize}
 		\item eine Klasse (vgl. \ref{section:0.3}
@@ -130,7 +131,7 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 	$$
 \end{lem}
 
-\begin{definition}
+\begin{defi}
 	Eine Kategorie $\Cat$ heißt \define{kleine Kategorie}\index{kleine Kategorie}\index{große Kategorie}
 	\begin{align*}
 		:\iff Ob(\Cat)\und\Mor(\Cat):=\bigcup\limits_{A,B\in\Ob(\Cat)}\Cat(A,B)
@@ -145,8 +146,8 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 		\index{Quelle}\index{Domain}
 		\item $\cod(a):=B$ \define{Ziel} oder \define{Codomain} von $a$
 	\end{itemize}
-\end{definition}
-
+\end{defi}
+\section*{Beipiele}
 \begin{beispiel}[Die Kategorie \texorpdfstring{\ul{Set}}{Set}]%TODO itemize
 	\label{def:set}
 	Objekte: $\Ob(\Set)$ alle Mengen\\
@@ -167,6 +168,7 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 
 
 \begin{beispiel}[Die Kategorie \texorpdfstring{\ul{Group}}{Group}]
+	\label{def:group}
 	$\Ob(\Group):=$ alle Gruppen $\langle G,\cdot,^{-1},e\rangle$\\
 	$\Group(A,B):=$ Menge aller Homomorphismen der Gruppe $A$ in die Gruppe $B$
 	\begin{align*}
@@ -183,8 +185,6 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 	\end{itemize}
 \end{beispiel}
 
-\setcounter{satz}{4}
-
 \begin{beispiel}[\ul{Top}]\label{beisp1.5Top}\enter
 	$\Ob(\Top):=$ topologische Räume\\
 	$\Top(X,Y):=$ Menge der stetigen Abbildungen von $X$ in $X$
@@ -196,7 +196,7 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 \end{beispiel}
 
 
-\begin{beispiel}[\ul{RelSet}]\label{beisp1.6RelSet}\enter
+\begin{beispiel}[$\RelSet$]\label{beisp1.6RelSet}\enter
 	$\Ob(\RelSet):=\Ob(\Set)$ alle Mengen\\
 	$\RelSet(A,B):=\set{\rho\mid\rho\subseteq A\times B}$ alle binären Relationen zwischen $A$ und $B$\\
 	Genauer: $\RelSet(A,B):=\set{A}\times\Potenzmenge{A\times B}\times\set{B}$\\
@@ -222,7 +222,7 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 	Sei $R$ ein Ring (z.B. reelle Zahlen)\\
 	$\Ob(\Mat_R):=\N_+$\\
 	Morphismen:
-	$\Mat_R(m,n):=$ menge aller $(m\times n)$-Matrizen über $R$
+	$\Mat_R(m,n):=$ Menge aller $(m\times n)$-Matrizen über $R$
 	$$
 	\begin{tikzcd}[ampersand replacement=\&]
 		m \arrow{r}{A} \& n \arrow{r}{B} \& p
@@ -258,7 +258,7 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
   	Auch hier sind (Ass),(Neu) erfüllt.
 \end{beispiel}
 
-\begin{beisp}
+\begin{bsp}
 	$\langle P,\leq\rangle$
 	Zu dem Hassediagramm
 	$$
@@ -276,9 +276,8 @@ b \arrow[ru, no head] \arrow[rd, no head] &                       & c \\
 	& c \arrow[out=300,in=260,loop, distance=3em, "1_c"] \arrow[ru, "{(c,d)}"] & 
 \end{tikzcd}
 	$$
-\end{beisp}
+\end{bsp}
 
-\section{Diagrammschemata}
 \begin{definition}[1.9 Diagrammschemata und Diagramme]\enter
 	Ein \define{Diagrammschema} ist ein gerichteter Graph $\Sigma=(V,E,\alpha,\beta)$ wobei 
 	\index{Diagrammschema}
@@ -293,7 +292,7 @@ b \arrow[ru, no head] \arrow[rd, no head] &                       & c \\
 \alpha(p) \arrow[r, "p", bend left] & \beta(p)
 \end{tikzcd}
 $$
-\end{definition}
+\end{definition}\enter
 Ist $\Cat$ eine kleine Kategorie, so lässt sich $\Cat$ auch als Diagrammschema auffassen:
 \begin{align*}
 	\Sigma_\Cat:=\big(\Ob(\Cat),\Mor(\Cat),\alpha,\beta\big)\\
@@ -305,7 +304,7 @@ A \arrow[r, "f", bend left] \& B
 \end{matrix}
 \end{align*}
 
-\begin{beisp} %TODO should be a bullet with an identity arrow.
+\begin{bsp} %TODO should be a bullet with an identity arrow.
 	$$\begin{tikzcd} 
 	\arrow[loop left, distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]{}{1_A} \bullet 
 	\end{tikzcd},
@@ -315,11 +314,11 @@ A \arrow[r, "f", bend left] \& B
 	\begin{tikzcd}
 	\bullet \arrow[r] & \bullet \arrow[r, bend left] & \bullet \arrow[l] \arrow[l, bend left]
 	\end{tikzcd}$$
-\end{beisp}
+\end{bsp}
 
 Umgekehrt: Zu jedem Graph $\Sigma$ gibt es eine "kleinste" Kategorie (freie Kategorie von $\Sigma$ erzeugt, die $V$ als Objekte hat (evtl. kommen noch Pfeile dazu)
-\begin{definition}
-	Sei $\Cat$ beliebige Kategorie und $\Sigma=(V,E,\alpha,\beta)$ Diagrammschema.
+\begin{definition}[Diagrammschema und Diagramme]\enter
+	Sei $\Cat$ beliebige Kategorie und $\Sigma=(V,E,\alpha,\beta)$ \define{Diagrammschema}.
 	Ein \define{Diagramm} (in $\Cat$) vom Typ $\Sigma$ ist "verträgliche Belegung von $V$ und $E$ mit Elemente aus $\Cat$", genauer:
 	Diagramm ist Abbildungspaar
 	\begin{align*}
@@ -353,7 +352,7 @@ v_1 \arrow[r, "p", bend left] \& v_2
 	Ein Diagramm $\varphi\colon\Sigma\to\Cat$ (meist ohne Schlingen und ohne Zyklen) heißt \define{kommutativ}, wenn es jede (!) Kommutativitätsbedingung des Diagrammschemas $\Sigma$ erfüllt.
 \end{definition}
 
-\begin{beispiel}
+\begin{bsp}\enter
 	\begin{align*}
 		\begin{tikzcd}[ampersand replacement=\&]
 \bullet \arrow[r, "f"] \arrow[d, "f'"'] \& \bullet \arrow[d, "g"] \\
@@ -387,7 +386,4 @@ v_1 \arrow[r, "p", bend left] \& v_2
 		& \text{!} &                    \\
 		\bullet \arrow[rr]            &         & \bullet           
 	\end{tikzcd}$
-\end{beispiel}
-
-
-
+\end{bsp}
