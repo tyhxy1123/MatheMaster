@@ -4,18 +4,32 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \DeclareMathOperator{\Sub}{Sub}
-\newcommand{\X}{\mathcal{X}}          % Familie
+\newcommand{\X}{\mathfrak{X}}         % Familie
 \newcommand{\Cat}{\mathscr C }        % Kategorie
 \newcommand{\CatA}{\mathscr A}        % Kategorie A
 \newcommand{\CatB}{\mathscr B }       % Kategorie B
+\newcommand{\op}{\text{op}} 		  % dual category
+\newcommand{\dual}{\partial}		  % make elements dual in a category
+\newcommand{\aussage}{\mathfrak{A}}   % fraktur Aussage
+
 \DeclareMathOperator{\Ob}{Ob}         % Objekte
-\DeclareMathOperator{\Set}{\ul{Set}}  % Kategorie der Mengen
 \DeclareMathOperator{\Mor}{Mor}       % Morphismen
 \DeclareMathOperator{\cod}{cod}       % Codomain
 \DeclareMathOperator{\codom}{codom}
-\DeclareMathOperator{\Group}{\ul{Group}}  % Kategorie der Gruppen
-\DeclareMathOperator{\Top}{\ul{Top}}
-\DeclareMathOperator{\RelSet}{\ul{RelSet}}
-\DeclareMathOperator{\Mat}{\ul{Mat}}
-\newcommand{\op}{\text{op}} %duale Kategorie
-\newcommand{\aussage}{\mathfrak{A}} % fraktur Aussage
+% Cats
+\DeclareMathOperator{\Group}{\mathbf{Group}}  % Kategorie der Gruppen
+\DeclareMathOperator{\Top}{\mathbf{Top}}	  % Kategorie der topol. Räume  
+\DeclareMathOperator{\Topp}{\Top_{\ast}}		% Kategorie der Punkt fixierten topol. Räume  
+\DeclareMathOperator{\RelSet}{\mathbf{RelSet}} 
+\DeclareMathOperator{\Mat}{\mathbf Mat}   % Kategorie der Matrizen
+\DeclareMathOperator{\Ab}{\mathbf{Ab}}	  % Kategorie der abelschen Gruppen
+\DeclareMathOperator{\Set}{\mathbf{Set}}  % Kategorie der Mengen
+\DeclareMathOperator{\El}{El}			  % elements of set
+
+% better emptyset symbol
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+% left and right ``cosets''
+\newcommand*{\lnkset}[2]{#1 \slash #2}
+\newcommand*{\rnkset}[2]{#1 \backslash #2}

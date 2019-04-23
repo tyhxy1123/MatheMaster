@@ -40,3 +40,243 @@
 			\end{align*}
 	\end{itemize}
 \end{definition}
+
+\begin{beispiel}
+	\begin{align*}
+	\Cat: 
+	\begin{tikzcd}[ampersand replacement=\&]
+	\bullet \arrow[out=200,in=160, distance=3em] \arrow[rr, bend left] \arrow[rdd] \&         \& \bullet \arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{}\arrow[ll, bend left] \arrow[ldd] \\
+	                                          \&         \&                                           \\
+	                                          \& \bullet \arrow[out=300,in=260,loop, distance=3em] \&                                          
+	\end{tikzcd}
+	\Cat^{\op}:
+	\begin{tikzcd}[ampersand replacement=\&] %TODO fix the orientation of the one identity arrow!
+	\bullet \arrow[out=160,in=200, distance=3em] \arrow[rr, bend right] \&                                 \& \bullet \arrow[loop left, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{} \arrow[ll, bend right] \\
+	                               \&                                 \&                                \\
+	                               \& \bullet \arrow[out=260,in=300,loop, distance=3em] \arrow[luu] \arrow[ruu] \&                               
+	\end{tikzcd}
+	\end{align*}
+\end{beispiel}
+Ist $\aussage$ eine Aussage über Objekte und Morphismen in einer Kategorie $\Cat$, so erhält man die \betone{duale Aussage} $\aussage^{\op}$, wenn man Quelle und Ziel der Morphismen vertauscht und für jede in $\aussage$ vorkommende Morphismenkomposition $fg$ die Komposition $gf$ schreibt (d.h. man formuliert $\aussage$ in der dualen Kategorie $\Cat^{\op}$ und ersetzt diese Aussage als Aussage in $\Cat$.)\\
+z.B.:
+\begin{align*}
+	\aussage:
+	\begin{tikzcd}[ampersand replacement=\&]
+		A \arrow[r, "f"] \& B
+	\end{tikzcd}
+	\aussage^{\op}:
+	\begin{tikzcd}[ampersand replacement=\&]
+		 A^{\partial} \arrow[r, "f^{\partial}"] \& B^{\partial}
+	\end{tikzcd}
+	\aussage^{\op}:
+	\begin{tikzcd}[ampersand replacement=\&]
+		A \& B \arrow[l, "f"']
+	\end{tikzcd}
+\end{align*}
+
+\begin{folg}\enter
+	Zu jedem Begriff gibt es einen dualen Begriff und das nennt man \betone{Dualitätsprinzip:}
+	\begin{align*}
+		\Cat \Vdash \aussage \Longrightarrow \Cat^{\op} \Vdash \aussage^{\op}\\
+		\intertext{Ausserdem gilt:}
+		(\aussage^{\op})^{\op} = \aussage \und (\Cat^{op})^{\op} = \Cat
+	\end{align*}
+	Insbesondere folgt daraus:\\
+	Gilt eine Aussage in allen Kategorien (bzw. folgt aus gewissen gegebenen Aussagen) gilt auch die duale Aussage in allen Kategorien (bzw folgt aus den dualen gegebenen Aussagen)
+\end{folg}
+
+\begin{bemerkung}
+	Die Kategorienaxiome sind selbstdual!
+\end{bemerkung}
+
+\begin{definition}[Produktkategorie]\enter
+	Seien $\CatA, \CatB$ Kategorien, dann definiere die Produktkategorie durch $\CatA \times \CatB$.
+\end{definition}
+Nun müssen die Kategorieaxiome überprüft werden.
+	\begin{itemize}
+		\item \ul{Objekte:}
+		\begin{align*}
+			\Ob(\CatA \times \CatB) &:= \Ob(\CatA) \times \Ob(\CatB)\\
+			&= \set{(A,B) \mid A \in \Ob(\CatA), B \in \Ob(\CatB)}
+		\end{align*}
+		\item \ul{Morphismen:}
+		\begin{align*}
+			&(\CatA \times \CatB)(A_1 , B_1(A_2 , B_2)\\
+			&:= \CatA(A_1 , A_2) \times \CatB(B_1 , B_2)\\
+			&= \set{(f,g) \mid 
+			\begin{tikzcd}[ampersand replacement=\&]
+			A_1 \arrow[r, "f"] \& A_2
+			\end{tikzcd},
+			\begin{tikzcd}[ampersand replacement=\&]
+			B_1 \arrow[r, "g"] \& B_2
+			\end{tikzcd}
+			}
+		\end{align*}
+		\item \ul{Identität:} 
+		\begin{align*}
+			1_{(A,B)} := (1_A , 1_B)
+		\end{align*}
+		\item \ul{Morphismenkomposition:} erfolgt komponentenweise,
+			\begin{align*}
+				(f_1 ,g_1)(f_2 , g_2) := (f_1 f_2 , g_1 g_2)
+			\end{align*}
+	\end{itemize}
+\begin{definition}[Unterkategorie]\enter
+	Eine Kategorie $\CatB$ heißt Unterkategorie von $\CatA$, wenn für alle $A,B \in \Ob(\CatB) \und f \in \CatB(A,B), g\in \CatB(B,C)$ gilt:
+	\begin{enumerate}
+	\item $\Ob(\CatB) \subseteq \Ob(\CatA)$ \label{def:Unterkat1} \tag{Objektuntermenge}
+	\item $\CatB(A,B) \subseteq \CatA(A,B)$ \label{def:Unterkat2} \tag{Morphismusuntermenge}
+	\item $\mu_{A,B,C}^{\CatB}(f,g) = \mu_{A,B,C}^{\CatA}(f,g)$ \label{def:Unterkat3} \tag{Komposition}
+	\item $1_A^{\CatB} = 1_A^{\CatB}$ \label{def:Unterkat4} \tag{Identität}
+	\end{enumerate}
+\end{definition}
+\begin{bemerkung}
+	\ref{def:Unterkat4} folgt nicht aus \ref{def:Unterkat1} und \ref{def:Unterkat3}!
+\end{bemerkung}
+\begin{notation}
+	$\CatB \leqq \CatA$
+\end{notation}
+\begin{bsp}
+	$\Ab \leqq \Group$ (vgl. \ref{def:group}) ist eine volle Unterkategorie.
+\end{bsp}
+$\CatB$ heißt \define{volle Unterkategorie} von $\CatA$, falls gilt \\
+2' Es gilt $\CatB(A,B) = \CatA(A,B) \quad \forall A,B \in \Ob(\CatB)$.
+\begin{definition}[Summe von Kategorien]\enter
+	Seien $\CatA, \CatB, \Ob(\CatA) \cap \Ob(\CatB) = \emptyset$. Die \define{Summe von Kategorien} $\CatA + \CatB$ ist gegeben durch:
+	\begin{itemize}
+		\item \ul{Objekte:} $\Ob(\CatA + \CatB) = \Ob(\CatA) \bigcupdot \Ob(\CatB)$
+		\item \ul{Morphismen:} $(\CatA + \CatB)(A,B) := 
+		\begin{cases}
+			\CatA(A,B) \quad &\text{ falls } A,B \in \Ob(\CatA)\\
+			\CatB(A,B) \quad &\text{ falls } A,B \in \Ob(\CatB)\\
+			\emptyset \quad  &\sonst 
+		\end{cases}$ 
+		\item \ul{Komposition:} $f,g \in \Mor(\CatA)$
+		\begin{align*}
+			\mu_{A,B,C}^{\CatA + \CatB} (f,g) = 
+			\begin{cases}
+				\mu_{A,B,C}^{\CatA} \quad &\text{ falls } A,B,C \in \Ob{\CatA}\\
+				\mu_{A,B,C}^{\CatB} \quad &\text{ falls } A,B,C \in \Ob{\CatA}\\
+				\emptyset \quad & \sonst
+			\end{cases}
+		\end{align*}
+		\item \ul{Identität:}
+		\begin{align*}
+		1_{A,}^{\CatA + \CatB} = 
+		\begin{cases}
+		1_{A}^{\CatA} \quad &\text{ falls } A \in \Ob{\CatA}\\
+		1_{B}^{\CatB} \quad &\text{ falls } B \in \Ob{\CatB}
+		\end{cases}
+		\end{align*}
+	\end{itemize}
+\end{definition}
+\begin{definition}[Quotienten- oder Faktorkategorie]\enter
+	Sei $\Cat$ Kategorie. Für jedes Paar von Objekten $(A,B)$ sei Äquivalenzrelation
+	\begin{align*}
+		\rho_{A,B} \subseteq \Cat(A,B) \times \Cat(A,B)
+	\end{align*}
+	auf der Menge der Morphismen $\Cat(A,B)$ gegeben. Es gelte \define{Kompatibilitätsbedingung}:
+	\begin{align*}
+		(f,f') \in \rho_{A,B} \und (g,g') \in \rho_{B,C}\\
+		\implies (fg,f' g') \in \rho_{A,C},
+	\end{align*}
+	dann ist die \define{Faktorkategorie} definiert als
+	\begin{align*}
+		\lnkset{\Cat}{\rho} \quad (\Cat\text{ nach } \rho)\\
+		(\rho:= (\rho_{A,B})_{A,B \in \Ob(\Cat)})
+	\end{align*}
+	\begin{itemize}
+		\item \ul{Objekte:} $\Ob(\lnkset{\Cat}{\rho}) := \Ob(\Cat)$\\
+		$\klammern{\lnkset{\Cat}{\rho}}(A,B) := \klammern{\lnkset{\Cat(A,B)}{\rho_{A,B}}}\quad$ Äquivalenzrelation
+		\item \ul{Komposition:} $[f]_{\rho_{A,B}} := [fg]_{\rho_{A,C}}$ (Wohldefiniert?)
+		\item \ul{Identität:} $1_{A}^{\lnkset{\Cat}{\rho}} = [1_A^{\Cat}]_{\rho_{A,A}}$
+	\end{itemize}
+\end{definition}
+\begin{definition}[Komma-Kategorie]\enter
+	Sei $\Cat, K \in \Ob(\Cat)$ Objekt fixiert. Die \define{Komma-Kategorie} oder auch ``Objekt unter $K$'' (notiert mit $(K \downarrow \Cat)$) ist gegeben durch 
+	\begin{itemize}
+		\item \ul{Objekte:}
+		\begin{align*}
+			(K \downarrow \Cat)&:= \bigcup_{A \in \Ob(\Cat)}\Cat(K,A)\\
+			&= \set{(f,A)\mid f: K \to A \in \Cat}\\
+			\begin{tikzcd}
+				K \arrow[d, "f"'] \\ A 
+			\end{tikzcd} 
+			\text{ ``Pfeile von $K$ in $\Cat$ hinein''.}
+		\end{align*}
+		(Die Bezeichnung $(f,A)$ heißt auch \betone{$K$-wertiger Punkt} von $A$.)
+		\item \ul{Morphismen:}
+		\begin{align*}
+			(K \downarrow \Cat)((f,A),(g,B)) := \set{K \in \Cat(A,B) \mit fK = g}
+		\end{align*}
+		\item \ul{Komposition:}
+		\begin{align*}
+			\mu_{(f,A),(g,B),(h,C)}(k,k'):= Kh' \in \Cat = \mu_{A,B,C}^{\Cat}(k,k')\\
+			\begin{tikzcd}[ampersand replacement=\&]
+				\& K \arrow[dl, "f"'] \arrow[d, "g"] \arrow[dr, "h"] \\
+				A \arrow[r, "k"'] \& B \arrow[r, "k'"'] \& C
+			\end{tikzcd}
+		\end{align*}
+		\item \ul{Identität:}
+		\begin{align*}
+			1_{(f,A)}^{(K\downarrow \Cat)} := 1_{A}^{\Cat} \qquad
+			\begin{tikzcd}[ampersand replacement=\&]
+				K \arrow[d, "f"'] \arrow[dr, "f"] \\
+				A \arrow[r, "1_A"'] \& A
+			\end{tikzcd}
+		\end{align*}
+	\end{itemize}
+	Die Kategorie Axiome sind erfüllt!
+\end{definition}
+\begin{bsp}
+	Sei K: 1-elementige Menge $\set{\ast}$ in $\Set$
+	\begin{align*}
+		(\set{\ast} \downarrow \Set) := \text{ Kategorie der Mengen mit ``ausgezeichneten Punkt''}\\
+		(f: \set{\ast} \to A \text{ durch Konstante } f(\ast) \in A \text{ gegeben})
+	\end{align*}
+\end{bsp}
+\begin{folg}
+	Der duale Begriff von $(K \downarrow \Cat)$, der Komma-Kategorie ist $(\Cat \downarrow K)$ (Objekte über $K$): 
+	\begin{align*}
+		\Cat \downarrow K := (K^{\dual} \downarrow \Cat^{\dual}
+	\end{align*}
+	\begin{itemize}
+		\item \ul{Objekte:}
+		\begin{align*}
+			\begin{tikzcd}
+				A \arrow[d, "f"'] \\ K,
+			\end{tikzcd} 
+		\end{align*}
+		wird auch mit $(A,f)$ ``$= (f^{\dual}, A^{\dual})$'' bezeichnet und wird $A$-wertige Punkte von $K$ genannt. Das heißt
+		\begin{align*}
+			\Ob(\Cat \downarrow K) &= \bigcup_{A \in \Ob(\Cat)}(A,K) =: \El(K)\\
+			&=: \text{ \betone{Klasse} der verallgemeinerten \betone{Elemente} von } K 
+		\end{align*}
+		\item \ul{Morphismen:} $K \in (\Cat \downarrow K)((B,g),(A,f)$ (d.h. $K \in \Cat(B,A)$)
+		\begin{align*}
+			\begin{tikzcd}[ampersand replacement=\&]
+				A \arrow[r, "k"] \& B\\
+				K \arrow[u, "f"'] \arrow[ur, "g"'] 
+			\end{tikzcd} \qquad \mit gK = f
+		\end{align*}
+		\item \ul{Identität:}
+		\begin{align*}
+			\begin{tikzcd}[ampersand replacement=\&]
+				A \arrow[d, "f"'] \arrow[r, "1_A"'] \& A \arrow[dl, "f"] \\
+				K 
+			\end{tikzcd}
+			\qquad \mit 1_{A,f} = 1_A
+		\end{align*}
+	\end{itemize}
+\end{folg}
+\begin{bemerkung}[zum Begriff verallgemeinerter Elemente]\enter
+	\begin{enumerate}[label=] %TODO Write better german here!
+		\item Frage:  Was ist in $\Set$ eine $A$-wertige ($=$ 1-wertige) Punkte von Menge $K$, wenn $A = \set{1}$ ist?
+		\item Antwort: $\Cat(A,K), f: \set{1} \to A=$ Elemente von $K$ und $\Cat(A,K) = $ Menge $K$ %TODO vverfiy this! not sure about it.
+		\item Sei nun $A = \set{1,\dots, n}$ $n$-wertige Punkte von $K$, was an an $n$-Tupel erinnert, da
+		\begin{align*}
+			\Cat(A,K) \cong K^n \mit f: \set{1, \dots, n} \to K
+		\end{align*}
+		gilt.
+	\end{enumerate}
+\end{bemerkung}
