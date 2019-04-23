@@ -12,9 +12,9 @@
 \usepackage[framemethod=TikZ]{mdframed}
 
 % setting counters
-\newcounter{satz}[section]\setcounter{satz}{0}
-\renewcommand{\thesatz}{\arabic{section}.\arabic{satz}}
-%\renewcommand{\thesatz}{\arabic{chapter}.\arabic{section}.\arabic{satz}} % Alternative, falls man 1.1.1 statt 1.1 nummerieren möchte
+\newcounter{theorem}[section]\setcounter{theorem}{0}
+\renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
+%\renewcommand{\thetheorem}{\arabic{chapter}.\arabic{section}.\arabic{theorem}} % Alternative, falls man 1.1.1 statt 1.1 nummerieren möchte
 
 \newcommand{\newtheoremfancy}[4]{
 	% Argument 1: name
@@ -24,7 +24,7 @@
 	
 	\newenvironment{#1}[1][]{
 		% code for counter
-		\ifthenelse{\equal{#3}{}}{}{\refstepcounter{satz}}
+		\ifthenelse{\equal{#3}{}}{}{\refstepcounter{theorem}}
 		
 		% box design code
 		\ifstrempty{##1}
@@ -34,7 +34,7 @@
 				frametitle={
 					\tikz[baseline,outer sep=0pt]
 					\node[anchor=east,rectangle,fill=#4]
-					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thesatz}};
+					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thetheorem}};
 				}
 			}
 		}
@@ -44,7 +44,7 @@
 				frametitle={
 					\tikz[baseline,outer sep=0pt]
 					\node[anchor=east,rectangle,fill=#4]
-					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thesatz}:~##1};
+					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thetheorem}:~##1};
 				}
 			}
 		}
@@ -63,7 +63,7 @@
 	}
 }
 
-\newtheoremfancy{theorem}{Theorem}{section}{black!25}
+\newtheoremfancy{theorem}{Theorem}{chapter}{black!25}
 
 \newtheoremfancy{thm}{Theorem}{}{black!25}
 
@@ -79,7 +79,7 @@
 	{}          % CUSTOM-HEAD-SPEC
 \theoremstyle{mystyle}
 
-% Definitionen der Satz, Lemma... - Umgebungen. Der Zähler von "satz" ist dem "section"-Zähler untergeordnet, alle weiteren Umgebungen bedienen sich des satz-Zählers.
+% Definitionen der Satz, Lemma... - Umgebungen. Der Zähler von "theorem" ist dem "section"-Zähler untergeordnet, alle weiteren Umgebungen bedienen sich des theorem-Zählers.
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}

@@ -75,21 +75,21 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 		.\] 
 		For the 5-point stencil $\laplace_{h}^{(5)}$ we have 
 		\[
-			D = \diag(\frac{4}{h^{2}}) \qquad \text{ and } \qquad L+U = \begin{pmatrix}
-				0 & 1 &  & 1 & & \\
-				1 & \ddots & \ddots & 0 & \ddots &  \\
-				  & \ddots & \ddots & \ddots & & 1 \\
-				1 & 0 & \ddots & \ddots & \ddots & \\
-				  &\ddots & & \ddots & \ddots & 1 \\
-				  && 1 && 1 & 0
-			\end{pmatrix}
-		.\] 
-			% TODO : Die Matrix nochmal in hübsch machen
+			D = \diag(\frac{4}{h^{2}}) 		
+		\] 
+		and the matrix $L+U$ looking as follows
+		\begin{figure}[H]
+			\begin{center}
+				\includegraphics[width=0.5\textwidth]{pics/chapter1/huebschematrix.png}
+			\end{center}
+			\caption{$L+U$}
+			\label{fig:huebschematrix}
+		\end{figure}
+		
 		So written directly in terms of the grid vector $u_{i,j}$ we get the Jacobi scheme for inner nodes
 		\[
 			u_{i,j}^{k+1} = \frac{1}{4}(u_{i,j-1}^{k}+ u_{i-1,j}^{k} + u_{i,j+1}^{k} + u_{i+1,j}^{k} + h^{2}f_{i,j})
 		.\] 
-		% TODO : Bilder?
 		\underline{Note}: Instead of $P=D$ one could implement a \underline{damped Jacobi scheme} with
 		\[
 			P_{J}(\omega )=\omega \cdot D \qquad \text{ with } 0 < \omega \leq 1
@@ -100,7 +100,14 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 		\[
 			\underset{\text{ (forward) }}{P_{GS} = D-L} \quad\text{ or }\quad \underset{\text{ (backward) }}{P_{GS'}=D-U}
 		.\] 
-		% TODO : Bilder forward/backward triangles
+		\begin{figure}[H]
+			\begin{center}
+				\input{tikz/chapter1/forward_backward_iteration.tex}
+			\end{center}
+			\caption{forward and backward iteration matrix form}
+			\label{fig:forwardbackward}
+		\end{figure}
+		
 		We get the component-wise scheme
 		\[
 			\xi _{i}^{(k+1)}=\frac{1}{a_{ii}} \Big( -\sum_{j=1}^{i-1}{a_{ij}} \xi _{j}^{(k+1)}-\sum_{j=i+1}^{n}{a_{ij}\xi _{j}^{k}} + \beta _{i} \Big) \qquad i=1, \ldots, n
@@ -122,6 +129,7 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 			P_{R}(\omega ) :&= \frac{1}{\omega } I \\
 			\xi _{i}^{(k+1)} &= \xi _{i}^{(k)} + \omega \Big( -\sum_{j=1}^{n}{a_{ij}\xi _{j}^{(k)}} + \beta _{i} \Big) 
 		\end{align*}
+\end{enumerate}
 		Questions:
 		\begin{itemize}
 			\item How to characterize convergence?
@@ -144,8 +152,7 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 			\lim_{k \to \infty} \normiii{(I-P^{-1}A)^{k}} = 0
 		.\] 
 		The proof is omitted here and can be read in 
-		% TODO : richtig?
-		[Greenhan 97. Lemma 2.11].
+		[Greenham 97. Lemma 2.11].
 		\end{lemma}
 
 		\begin{theorem}
@@ -158,9 +165,10 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 		\end{theorem}
 		\begin{proof}
 		\label{thm:richardconvergencetheoremproof}
-		% TODO : wahrscheinlich wäre hier hin/rückrichtung besser als enumerate
-		\begin{enumerate}[label=\arabic{enumii})]
-			\item Assume that $x^{k}\rightarrow A^{-1}b$converges. Let $\lambda $ be the eigenvalue of $G$ with  $\abs{\lambda }  = \rho(G)$ and $x$ be the associated eigenvector.
+		\begin{itemize}
+			\item "$\Longrightarrow$" 
+
+				Assume that $x^{k}\rightarrow A^{-1}b$converges. Let $\lambda $ be the eigenvalue of $G$ with  $\abs{\lambda }  = \rho(G)$ and $x$ be the associated eigenvector.
 				
 				Choose $b=0$ and $x^{0}=cx$ for any $c \in \R \setminus \left\{ 0 \right\} $. We get
 				\[
@@ -173,17 +181,18 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 				\end{array}
 				\lightning
 				.\] 
-			\item Assume $\rho(G)<1$.
+			\item "$\Longleftarrow$"
+
+				Assume $\rho(G)<1$.
 
 				There exists an $\epsilon >0$ and norm in $\R^{n \times n}$ such that.
 				\[
 					\normiii{G} \leq \rho(G) + \epsilon  < 1
 				\] 
 				with the previous lemma we get convergence.
-		\end{enumerate}
+		\end{itemize}
 		[also see Y. Saad 03. Corollary 4.2]
 		\end{proof}
-\end{enumerate}
 
 \begin{definition}
 \label{thm:additivesplitting}
@@ -212,8 +221,10 @@ A is non-singular and $A^{-1}$ is non-negative.
 
 \begin{proof}
 \label{thm:regularsplittingtheoremproof}
-\begin{enumerate}[label=\arabic{enumi})]
-	\item Assume $\rho(G) < 1$. 
+\begin{itemize}
+	\item "$\Longrightarrow$"
+
+		Assume $\rho(G) < 1$. 
 		\[
 			A = \underbrace{M}_{\text{ non-sing. }}\cdot \underbrace{(I-G)}_{\text{ non-sing. }} = M -MG = M-N
 		.\] 
@@ -225,7 +236,9 @@ A is non-singular and $A^{-1}$ is non-negative.
 		\[
 		\implies A^{-1} \text{ is non-negative. }
 		.\] 
-	\item Assume $A$ is non-singular and $A^{-1}$ is non-negative.
+	\item "$\Longleftarrow$"
+
+		Assume $A$ is non-singular and $A^{-1}$ is non-negative.
 
 		Since $A$ and $M$ are non-singular, the matrix $(I-G)$ is non-singular.
 		\begin{align*}
@@ -254,7 +267,7 @@ A is non-singular and $A^{-1}$ is non-negative.
 		Since $(I-G)$ is non-singular, $\rho(G) \neq 1$.
 
 		[also see Y.Saad 03 Th.4.4]
-\end{enumerate}
+\end{itemize}
 \end{proof}
 
 \begin{lemma}
@@ -305,7 +318,15 @@ and
 Proof can be found in [A. Meister Numerik linearer Gleichungssysteme]
 \end{theorem}
 
-% TODO : Bild Eigenwerte
+\begin{figure}[H]
+	\begin{center}
+		\input{tikz/chapter1/eigenwerte.tex}
+	\end{center}
+	\caption{Eigenwerte liegen genau gegenüber voneinander}
+	\label{fig:eigenwerte}
+\end{figure}
+
+
 \underline{Note}: So in case of symmetric eigenvalue around the origin we get $\omega _{\text{opt}}=1$
 
 \begin{theorem}
@@ -328,4 +349,3 @@ Let $\lambda _{1}, \ldots , \lambda _{n}$ be eigenvectors of $G_{GS}(\omega )$.
 \end{align*}
 
 \end{proof}
-% TODO : Fix counter
