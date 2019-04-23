@@ -1,0 +1,94 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+% THEOREM-ENVIRONMENTS
+
+% Quelle für die Gestaltung der folgenden environments ist:
+% https://texblog.org/2015/09/25/fancy-boxes-for-theorem-lemma-and-proof-with-mdframed/
+
+% importing the package
+\usepackage[framemethod=TikZ]{mdframed}
+
+% setting counters
+\newcounter{satz}[section]\setcounter{satz}{0}
+\renewcommand{\thesatz}{\arabic{section}.\arabic{satz}}
+%\renewcommand{\thesatz}{\arabic{chapter}.\arabic{section}.\arabic{satz}} % Alternative, falls man 1.1.1 statt 1.1 nummerieren möchte
+
+\newcommand{\newtheoremfancy}[4]{
+	% Argument 1: name
+	% Argument 2: displayed name
+	% Argument 3: counter (yes / no)
+	% Argument 4: color
+	
+	\newenvironment{#1}[1][]{
+		% code for counter
+		\ifthenelse{\equal{#3}{}}{}{\refstepcounter{satz}}
+		
+		% box design code
+		\ifstrempty{##1}
+		% if no title
+		{
+			\mdfsetup{
+				frametitle={
+					\tikz[baseline,outer sep=0pt]
+					\node[anchor=east,rectangle,fill=#4]
+					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thesatz}};
+				}
+			}
+		}
+		% if title
+		{
+			\mdfsetup{
+				frametitle={
+					\tikz[baseline,outer sep=0pt]
+					\node[anchor=east,rectangle,fill=#4]
+					{\strut #2~\ifthenelse{\equal{#3}{}}{}{\thesatz}:~##1};
+				}
+			}
+		}
+		% defaults
+		\mdfsetup{
+			innertopmargin=10pt,
+			linecolor=black!25,
+			linewidth=2pt,
+			topline=true,
+			frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+		}
+
+		% code for environment name
+		\begin{mdframed}[]\relax}
+		{\end{mdframed}
+	}
+}
+
+\newtheoremfancy{theorem}{Theorem}{section}{black!25}
+
+\newtheoremfancy{thm}{Theorem}{}{black!25}
+
+%%% unfancy stuff
+\newtheoremstyle{mystyle}
+  {20pt}   % ABOVESPACE \topsep is default, 20pt looks nice
+  {20pt}   % BELOWSPACE \topsep is default, 20pt looks nice
+  {\normalfont} % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {}          % HEADPUNCT (if needed)
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+	{}          % CUSTOM-HEAD-SPEC
+\theoremstyle{mystyle}
+
+% Definitionen der Satz, Lemma... - Umgebungen. Der Zähler von "satz" ist dem "section"-Zähler untergeordnet, alle weiteren Umgebungen bedienen sich des satz-Zählers.
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{summary}[theorem]{Summary}
+
+% Bemerkungen, Erinnerungen und Notationshinweise werden ohne Numerierungen dargestellt.
+\newtheorem*{remark}{Remark.}
+\newtheorem*{reminder}{Reminder.}
+\newtheorem*{notation}{Notation.}
+\newtheorem*{exam}{Example.} %Beispiel ohne Nummerierung
