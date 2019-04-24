@@ -936,15 +936,26 @@ Folglich ist $f(1)=1$.
 		a\mal(b+c)=(a\mal b)+(a\mal c)=:a\mal b+a\mal c\qquad\forall a,b,c\in S
 	\end{align*}
 	gilt.
-	Sind $\S=\big(S,+,\mal,0,1\big)$ und $\S'=\big(S',+',\mal',0',1'\big)$ Semiringe, so heiße eine Abbildung $\varphi\colon S\to S'$ \define{Morphismus}, falls $\varphi$ Morphismus von $\S_{\add}$ nach $\S'_{\add}$ und $\varphi$ Morphismus von $\S_{\mult}$ nach $\S_{\mult}'$ bildet, d.h.
+	Sind $\S=\big(S,+,\mal,0,1\big)$ und $\S'=\big(S',+',\mal',0',1'\big)$ Semiringe, so heiße eine Abbildung $\varphi\colon S\to S'$ \define{Morphismus}, falls $\varphi$ Morphismus von $\S_{\add}$ nach $\S'_{\add}$ und $\varphi$ Morphismus von $\S_{\mult}$ nach $\S_{\mult}'$ bildet, d.h. es gilt für alle $a,b\in S$:
 	\index{Morphismis}
-	\begin{align*}
-		\varphi(a+b)&=\varphi(a)+'\varphi(b)\qquad
-		\varphi(a\mal b)=\varphi(a)\mal'\varphi(b)\qquad
-		a\mal 0=0=0\mal a\qquad
-		1\neq 0\qquad
-		\varphi(1)=1'\qquad\forall a,b\in S
-	\end{align*}
+	\begin{enumerate}
+		\item $\begin{aligned}
+			\varphi(a+b)&=\varphi(a)+'\varphi(b)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\varphi(a\mal b)=\varphi(a)\mal'\varphi(b)
+		\end{aligned}$
+		\item $\begin{aligned}
+			a\mal 0=0=0\mal a
+		\end{aligned}$
+		\item $\begin{aligned}
+			1\neq 0
+		\end{aligned}$
+		\item $\begin{aligned}
+			\varphi(1)=1'
+		\end{aligned}$
+	\end{enumerate}
+	
 	Ist $\M=(M,+\vec{0)})$ kommutativer Monoid und $\S=(S,+,\mal,0,1)$ Semiring (SR), so heiße 
 	\index{Sclaling}
 	\begin{align*}
