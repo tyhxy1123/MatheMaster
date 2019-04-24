@@ -24,7 +24,7 @@ There are two challenges:
 \end{itemize}
 In particular: the constant $c$ in
 \begin{equation*}
-  \norm{u - u_{N}}_{H^{1}} \leq c\ h\ \halfnorm{u}_{H^{2}}
+  \left\|u - u_{N}\right\|_{H^{1}} \leq c\ h\ |u|_{H^{2}}
 \end{equation*}
 depends on
 \begin{equation*}
@@ -47,7 +47,7 @@ From the 70s there are many papers considering different strategies to keep $\de
 \begin{definition}
 	We describe a simplex $T$ as a ordered set of its vertices and a type $t\in \N$.
 	\begin{equation*}
-    T = \set{z_{0}, \dots , z_{d}}_{t}, \qquad t\in \set{0,\dots ,d-1}
+    T = \{z_{0}, \dots , z_{d}\}_{t}, \qquad t\in \{0,\dots ,d-1\}
 	\end{equation*}
 	The refinement rule is solely based on this information.
 	\begin{enumerate}[label = \arabic*)]
@@ -56,32 +56,32 @@ From the 70s there are many papers considering different strategies to keep $\de
 		\item connect $\bar{z}$ to all vertices of $T$ except $z_{0},z_{d}$ \\
 			$\implies$ two new simplices $T_{1},T_{2}$ are created with common face
 			 \begin{equation*}
-         S = \set{\overline{z},z_{1},\dots ,z_{d-1} }
+         S = \left\{\overline{z},z_{1},\dots ,z_{d-1} \right\}
      \end{equation*}
 		\item vertex ordering and type for the children $T_{1},T_{2}$ are defined as:
 			\begin{align*}
-        T_{1}&= \set*{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}}}_{(t+1)\mod d}\\
-				T_{2}&= \set*{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}}}_{(t+1)\mod d}\\
+        T_{1}&= \{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}}\}_{(t+1)\mod d}\\
+				T_{2}&= \{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}}\}_{(t+1)\mod d}\\
 			\end{align*}
 		$\rightarrow$ means increasing, $\leftarrow$ means decreasing order.
 
-    Note that $\set*{\underbrace{z_{d},\dots ,z_{0}}_{\rightarrow}} \coloneqq \emptyset$
+    Note that $\{\underbrace{z_{d},\dots ,z_{0}}_{\rightarrow}\} := \emptyset$
 	\end{enumerate}
 \end{definition}
 \begin{example}\
 	\begin{itemize}
 		\item $d=2$:
 			\begin{align*}
-      T &= \set{z_{0},z_{1},z_{2}}_{0} & \overline{z}&= \frac{1}{2}\left(z_{0} + z_{2} \right)\\
-      T_{1} &= \set{ z_{0},\overline{z},z_{1}}_{1}  & T_{2} &= \set{z_{0},\overline{z},z_{1}}_{1}
+      T &= \{z_{0},z_{1},z_{2}\}_{0} & \overline{z}&= \frac{1}{2}\left(z_{0} + z_{2} \right)\\
+      T_{1} &= \left\{ z_{0},\overline{z},z_{1}\right\}_{1}  & T_{2} &= \left\{z_{0},\overline{z},z_{1}\right\}_{1}
 			\end{align*}
 			$T_1$ and $T_2$ are independent of $t$!
 			\input{tikz/chapter1/example_numbering_alg.tex}
-		\item $d= 3$: \quad $T = \set{ z_{0},z_{1},z_{2},z_{3} }_{t}$
+		\item $d= 3$: \quad $T = \{ z_{0},z_{1},z_{2},z_{3} \}_{t}$
       \begin{align*}
-        t&=0: & T_{1}&= \set{ z_{0},\overline{z}, z_{1},z_{2}}_{1} & T_{2}&= \set{z_{3},\overline{z}, z_{2},z_{1}}_{1}\\
-        t&=1: & T_{1}&= \set{z_{0},\overline{z}, z_{1},z_{2}}_{2} & T_{2}&= \set{z_{3},\overline{z}, z_{1},z_{2} }_{2}\\
-        t&=2: & T_{1}&= \set{ z_{0},\overline{z}, z_{1},z_{2} }_{0} & T_{2}&= \set{ z_{3},\overline{z}, z_{1},z_{2} }_{0}
+        t&=0: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2}\right\}_{1} & T_{2}&= \left\{z_{3},\overline{z}, z_{2},z_{1}\right\}_{1}\\
+        t&=1: & T_{1}&= \left\{z_{0},\overline{z}, z_{1},z_{2}\right\}_{2} & T_{2}&= \left\{z_{3},\overline{z}, z_{1},z_{2} \right\}_{2}\\
+        t&=2: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{0} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{0}
 			\end{align*}
 	\end{itemize}
 \end{example}
@@ -101,7 +101,7 @@ Let us first look at a particularly regular case:
 				k_{i}&= \sum_{j=1}^{i} e_{j}
 			\end{align*}
 			\input{tikz/chapter1/kuhn_simplex.tex}
-		\item Let $\pi$ be a permutation of $\set{1,\dots ,d }$. The Kuhn-simplex $T_{\pi}$ has vertices
+		\item Let $\pi$ be a permutation of $\{1,\dots ,d \}$. The Kuhn-simplex $T_{\pi}$ has vertices
 			\begin{align*}
 				k_{0}&=0 \\
 				k_{i}&= \sum_{j=1}^{d} e_{\pi(j)}
@@ -121,14 +121,14 @@ Let us first look at a particularly regular case:
 	% (proof sketch)\\
 	We show: all descendants in the $g$-th generation of a Kuhn-simplex of type $0$ ($0 \leq g < d$) are congruent to
 	\begin{equation*}
-    T_{g}= \set{0, \frac{k_{d-g+1}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g} }_{g}
+    T_{g}= \left\{0, \frac{k_{d-g+1}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g} \right\}_{g}
 	\end{equation*}
 	\underline{Induction over $g$}:
 	\begin{align*}
-		g=0&: & T_{0}= \set{0,k_{1},\dots ,k_{d} }_{0} \text{is the Kuhn simplex}\\
+		g=0&: & T_{0}= \{0,k_{1},\dots ,k_{d} \}_{0} \text{is the Kuhn simplex}\\
 		g\mapsto g+1&: &\text{bisect } T_{g}\quad ( \text{bisection edge } \overline{0k_{d-g}})\\
-		 && C_{0}= \set{ 0, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1}}_{g+1}= T_{g+1}\\
-     && C_{1}= \set{ k_{d-g}, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{d-g-1},\dots ,k_{1} }_{g+1} % not obviously equal to T_{g+1}
+		 && C_{0}= \left\{ 0, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1}\right\}_{g+1}= T_{g+1}\\
+     && C_{1}= \left\{ k_{d-g}, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{d-g-1},\dots ,k_{1} \right\}_{g+1} % not obviously equal to T_{g+1}
 	\end{align*}
 	Construct a series of reflection that maps $C_{1}$ onto $T_{g}$ :
 	\begin{enumerate}
@@ -147,11 +147,11 @@ Let us first look at a particularly regular case:
 	\end{enumerate}
 	Result:
 	\begin{equation*}
-		C'_{1}= \set{ 0, \frac{k_{d-g}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} }_{g+1} = T_{g+1}
+		C'_{1}= \left\{ 0, \frac{k_{d-g}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} \right\}_{g+1} = T_{g+1}
 	\end{equation*}
 	$C_{0}$ and $C_{1}$ are congruent.
 	\begin{equation*}
-		T_{d}= \set{ 0, \frac{k_{1}}{2},\dots ,\frac{k_{d}}{2} }_{0} \quad \implies \text{ scaled Khun simplex} \qedhere
+		T_{d}= \left\{ 0, \frac{k_{1}}{2},\dots ,\frac{k_{d}}{2} \right\}_{0} \quad \implies \text{ scaled Khun simplex} \qedhere
 	\end{equation*}
 \end{proof}
 Now we consider any simplex by deforming the Kuhn simplex and taking care of the shape coefficients.
