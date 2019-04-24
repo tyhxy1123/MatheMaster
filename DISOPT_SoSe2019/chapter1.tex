@@ -13,7 +13,7 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
 		\end{equation}
 	\item Die zulässige Menge ist ein Polyeder:
 		\begin{equation*}
-			P = \set{ x | Ax = b ,x \geq 0 }
+			P = \{ x | Ax = b ,x \geq 0 \}
 		\end{equation*}
   \item Problem konvex (d.\,h\ Zielfunktion und zulässige Menge sind konvex) $\to$	lokale Minima = globale Minima
   \item Das dazu \define{duale Problem} ist gegeben durch
@@ -56,18 +56,18 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
   \item $\hat{x}$ ist Ecke von $P$ $\iff$ $ \hat{x}$ kann nicht als echte Konvexkombination von Punkten aus $P$ geschrieben werden
 		$\iff$ Sei
 		\begin{equation*}
-			I = \set*{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 } = \supp(\hat{x})
+			I = \{i = 1 ,\dots, n | \hat{x}_{i} \geq 0 \} = \supp(\hat{x})
 		\end{equation*}
 		Dann gilt $\rang(A_{\cdot,I})=|I|$.
 	\item Hat das LP \eqref{nf} eine Lösung, so gibt es auch eine Ecklösung.
 	\item Es gibt nur endlich viele Ecken.
 	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvoller Reihenfolge absuchen.\\
 		\underline{Annahme:} $A \in \R^{m \times n }$ hat \betone{vollen Zeilenrang} $m$. \\
-		Sei $\hat{x}$ eine Ecke von $P$ und $I = \set*{i \mid \hat{x}_{i}>0}$ \\
+		Sei $\hat{x}$ eine Ecke von $P$ und $I = \{i \mid \hat{x}_{i}>0\}$ \\
 		$\implies$ rang($A_{\cdot,I}   )= |I| \leq m$ \\
-    $\implies$ Es gibt $B \subseteq \set*{1,\dots,n}$ mit $I \subseteq B, |B| = m $ und $A_{B}\coloneqq A_{\cdot,B}$ ist regulär. (Finde $B$ durch Basisergänzung, da $A$ $m$ linear unabhängige Spalten hat.)
+    $\implies$ Es gibt $B \subseteq \{1,\dots,n\}$ mit $I \subseteq B, |B| = m $ und $A_{B}:= A_{\cdot,B}$ ist regulär. (Finde $B$ durch Basisergänzung, da $A$ $m$ linear unabhängige Spalten hat.)
 	\item Basen\\
-		Sei $B \subset \set*{1,\dots,n}$ mit $|B|=m$ und $N = \{1,\dots,n\}\setminus B$
+		Sei $B \subset \{1,\dots,n\}$ mit $|B|=m$ und $N = \{1,\dots,n\}\setminus B$
     \begin{itemize}[label=$\to$] % warum eigentlich ein Pfeil?
       \item $B$ heißt \define{Basis}, falls $A_{B}$ regulär.
       \item $B$ heißt \define{primal zulässige Basis}, falls
@@ -119,9 +119,9 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 		\begin{itemize}
       \item[$\implies$] neues $x_{B}
         = \hat{x}_{B} - A_{B}^{-1}A_{N}\gamma e_{j}
-        = \hat{x}_{B} - \gamma \underbrace{A_{B}^{-1}A_{\cdot,j}}_{\eqqcolon w}
+        = \hat{x}_{B} - \gamma \underbrace{A_{B}^{-1}A_{\cdot,j}}_{=: w}
         \overset{!}{\geq} 0$
-			\item Wähle $\gamma = \min \set{ \frac{\hat{x}_{i}}{w_{i}} \mid w_{i} > 0 }$.
+			\item Wähle $\gamma = \min \left\{ \frac{\hat{x}_{i}}{w_{i}} \mid w_{i} > 0 \right\}$.
       \item Wenn $\gamma = + \infty$, so ist \eqref{nf} unbeschränkt.
 			\item Andernfalls wähle $i \in B$ mit $\gamma = \frac{\hat{x}_{i}}{w_{i}}$
 		\end{itemize}
@@ -130,9 +130,9 @@ $\implies x_{B} = A_{B}^{-1}b - A_{B}^{-1}A_{N}x_{N} \to$ Zielfunktion vereinfac
 			\hat{x}_{B}-\gamma_{w}&= x_{B}^+\\
 			x_{j}^+& = \gamma\\
 			x_{k}^+ &= 0 \quad \text{ für alle anderen } k\\
-			B^+ &= (B \setminus \set*{i})\cup \set*{j}\\
-			N^+ &= (N \setminus \set*{j})\cup \set*{i}
-			% B& = \set*{1,3,5} \\
+			B^+ &= (B \setminus \{i\})\cup \{j\}\\
+			N^+ &= (N \setminus \{j\})\cup \{i\}
+			% B& = \{1,3,5\} \\
 			% B& = (3,1,5)
 		\end{align*}
     Pro Iteration müssen zwei Gleichungssysteme gelöst werden. Das ist sehr teuer. Da sich immer nur $1$ Spalte ändert, kann dies allerdings stark vereinfacht werden durch ein Update der LR-Zerlegung. Das geht, indem in der Implementierung die Elemente von $B$, $B^+$ eine Reihenfolge haben und man ersetzt immer $i$ an seiner Stelle durch $j$.
@@ -184,18 +184,18 @@ Dafür führe \eqref{dualLP} in die duale Normalform:
 	\end{pmatrix}
 	= c, \quad z \geq 0, \quad y \in \R^m \tag{D'}
 \end{equation}
-Eine Basis von \eqref{dualnf}: $n \{ \klammern[\Big]{ \underbrace{A^T}_m \underbrace I_n} \eqqcolon D
+Eine Basis von \eqref{dualnf}: $n \{ \klammern[\Big]{ \underbrace{A^T}_m \underbrace I_n} =: D
 % \begin{pmatrix}
 % 	\underbrace{A^{T}}_{m} \underbrace{I}_{n}
 % \end{pmatrix}
 \in R^{n \times(m +n)}$
-sei $H \subset \set{1,\dots ,n+m }$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär.
+sei $H \subset \{1,\dots ,n+m \}$ mit $|H|=n$ und $D_{\cdot,H}\in \R^{n \times n}$ regulär.
 \begin{theorem}
 	Entweder \eqref{dualLP} ist unzulässig oder unbeschränkt oder es gibt eine optimale Basislösung $(y^*,z^*)$ so dass die zugehörige basis von der Form ist:
 	\begin{equation*}
-    H_{\text{opt}}=\underbrace{ \set{1,..,m }}_{\text{ganzes $A$ in Basismatrix}}\cup \, (N+\underbrace{m}_{\text{offset}})
+    H_{\text{opt}}=\underbrace{ \{1,..,m \}}_{\text{ganzes $A$ in Basismatrix}}\cup \, (N+\underbrace{m}_{\text{offset}})
 	\end{equation*}
-	mit $N \subset \set{1,\dots ,n }, |N|= n-m$ ($N$ zeigt an, welche Spalten von $I$ gebraucht werden)
+	mit $N \subset \{1,\dots ,n \}, |N|= n-m$ ($N$ zeigt an, welche Spalten von $I$ gebraucht werden)
 	$\implies$ Basen für \eqref{dualLP} werden i.A. durch $N$ beschrieben, nicht durch $H$.
 \end{theorem}
 Die Dualität sagt uns, dass die Indices der Nullvariablen in \eqref{nf} gerade die Elemente von $N$ sind, nämlich die Nicht-Null-Schlupfvariablen.
@@ -232,7 +232,7 @@ Also
 	y = A_{B}^{-T}c_{B}, \quad z_{N}= c_{N}- A_{N}^{T} \underbrace{A_{B}^{-T}c_{B}}_{{=y}}\geq 0
 \end{equation*}
 \subsection{Duales Simplex-Verfahren}
-Initialisierung: Dual zulässige Basis $B$, d.\,h.\ $B \subset \set{1,\dots ,n }$ mit $|B|=m$, $A_{B}$ regulär und $z_{B}=0$, $y=A_{B}^{-T}c_{B}$, $z_{N}= c_{N}-A_{N}^{T}y \geq 0$
+Initialisierung: Dual zulässige Basis $B$, d.\,h.\ $B \subset \{1,\dots ,n \}$ mit $|B|=m$, $A_{B}$ regulär und $z_{B}=0$, $y=A_{B}^{-T}c_{B}$, $z_{N}= c_{N}-A_{N}^{T}y \geq 0$
 \begin{enumerate}%[label = Schritt \arabic)]
 	\item Bestimme zugehörige komplementäre duale Variable
 		\begin{align*}
@@ -245,14 +245,14 @@ Initialisierung: Dual zulässige Basis $B$, d.\,h.\ $B \subset \set{1,\dots ,n }
 	\item Löse $A_{B}^{T} w = e_{i}$, $\alpha_{N} = -A_{N}^{T} w$
 	\item Schrittweitenbestimmung:\\
     Gilt $\alpha_{N} \leq 0 $: \textbf{Stop}, \eqref{dualLP} ist unbeschränkt ($\to$ \eqref{nf} unzulässig).\\
-		Andernfalls berechne $\gamma = \min \set{ \frac{z_{i}}{\alpha_{i}} \mid j \in N , \alpha_{j} >0 }$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
+		Andernfalls berechne $\gamma = \min \left\{ \frac{z_{i}}{\alpha_{i}} \mid j \in N , \alpha_{j} >0 \right\}$ und wähle $j \in N$ mit $\gamma = \frac{z_{j}}{\alpha_{j}}$
 	\item Update:
 		\begin{align*}
 			z_{N}^+ &= z_{N} - \gamma \alpha_{N} \quad (\to z_{N} \geq 0, z_{j}^+ =0)\\
 			z_{i}^+ &= \gamma\\
 			y^+ &= y -\gamma w\\
-			N^+ &= (N \backslash \set{ j }) \cup \set{ i }\\
-			B^+ &= (B \backslash \set{ i }) \cup \set{ j }
+			N^+ &= (N \backslash \{ j \}) \cup \{ i \}\\
+			B^+ &= (B \backslash \{ i \}) \cup \{ j \}
 		\end{align*}
 \end{enumerate}
 
@@ -261,7 +261,7 @@ Betrachte
 \begin{equation*}
 	\min_{x} c^{T} x \text{ subject to } Ax = b ,\quad l \leq x \leq u
 \end{equation*}
-mit $l \in \left(\R \cup \set{ - \infty } \right)^n$, $u \in \left(\R \cup \set{ +\infty } \right)^n $.
+mit $l \in \left(\R \cup \{ - \infty \} \right)^n$, $u \in \left(\R \cup \{ +\infty \} \right)^n $.
 
 % Mit bis zu $4n$ Schlupfvariablen kann das System auf Normalform gebracht werden. Allerdings bedeutet das ein Vielfaches an Rechenaufwand. Daher suchen wir andere Wege.
 %
@@ -287,8 +287,8 @@ Bisher im primalen Simplex-Verfahren:\\
 Basis $B$, Basisvariablen $x_{B}= A_{B}^{-1} b \geq 0$, Nichtbasisvariablen $x_{N}=0$ \\
 \underline{Idee:} Teile die Nichtbasisvariablen in
 \begin{align*}
-	N_{l} &= \set{ i \in N \ | \ x_{i} = 0  } \implies x_{N_{l}}=0\\
-	N_{u} &= \set{ i \in N \ | \ x_{i} = u_{i}  } \implies x_{N_{u}}=u_{N_{u}}
+	N_{l} &= \left\{ i \in N \ | \ x_{i} = 0  \right\} \implies x_{N_{l}}=0\\
+	N_{u} &= \left\{ i \in N \ | \ x_{i} = u_{i}  \right\} \implies x_{N_{u}}=u_{N_{u}}
 \end{align*}
 Wie im Simplex-Verfahren:
 \begin{align*}
