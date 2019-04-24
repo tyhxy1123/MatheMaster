@@ -131,11 +131,13 @@ def findBeginEnd(text, command, pos):
         print("unsupported optional argument")
         print("command:", command, "openingPos:", openingPos)
         raise ValueError("unsupported optional argument")
-    elif opening == r"\":
+    elif opening == "\\":
         # argument is something like \Omega or \norm a
+        # ask user how much is still argument
         newlineBefore = text.rfind("\n", 0, openingPos)
         newlineAfter = text.find("\n", openingPos)
-        print("How long is the argument of", command, "?")
+        print("How long is the argument of", command, "starting with",
+              text[openingPos:openingPos + 5], "?")
         print("Line:", text[newlineBefore + 1: newlineAfter])
         arglength = int(input("Length"))
         return pos, openingPos - pos, openingPos + arglength, 0
