@@ -16,7 +16,7 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
 			P = \{ x | Ax = b ,x \geq 0 \}
 		\end{equation*}
   \item Problem konvex (d.\,h\ Zielfunktion und zulässige Menge sind konvex) $\to$	lokale Minima = globale Minima
-  \item Das dazu \define{duale Problem} ist gegeben durch
+  \item Das dazu \underline{duale Problem} ist gegeben durch
 		\begin{equation*}\label{dual_cont}
 			\max_{y}b^Ty \text{ subject to } A^Ty \leq c, y \in \R^n \tag{D}
 		\end{equation*}
@@ -33,13 +33,13 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
   \begin{enumerate}
     \item \eqref{nf} hat eine Lösung $x^*$.
     \item \eqref{dual_cont} hat eine Lösung $y^*$.
-    \item $(x^*,y^*)$ lösen das \define{KKT-System}
+    \item $(x^*,y^*)$ lösen das \underline{KKT-System}
       \begin{align*}
         Ax^* &= b , \ x^* \geq 0 & \text{(primale Zulässigkeit)}\\
         A^{T} y^* &\leq c & \text{(duale Zulässigkeit)}\\
         \forall i = 1,\dots , n: x_{i}&= 0 \text{ oder } \left(A^{T}y^*  \right)_{i} = c_{i} & \text{ (Komplementaritätsbedingungen)}
       \end{align*}
-      Dann gilt auch, dass die \define{Dualitätslücke} gleich $0$ ist:
+      Dann gilt auch, dass die \underline{Dualitätslücke} gleich $0$ ist:
       \begin{equation*}
         b^{T}\underbrace{y^* = (\underbrace{x^*}_{\geq 0})^{T}}_{\text{primal Zul.}} \underbrace{\underbrace{A^{T} y^*}_{\leq c }}_{\text{dual Z.}} \stackrel{\text{Kompbed.}}= \left(x^*\right)^{T} c
       \end{equation*}
@@ -62,23 +62,23 @@ Beispielsweise wäre durch $0 \leq x \leq 1$, $x \in \Z^n$ ein binäres Problem 
 	\item Hat das LP \eqref{nf} eine Lösung, so gibt es auch eine Ecklösung.
 	\item Es gibt nur endlich viele Ecken.
 	\item Idee des Simplex-Verfahrens: Ecken von $P$ in sinnvoller Reihenfolge absuchen.\\
-		\underline{Annahme:} $A \in \R^{m \times n }$ hat \betone{vollen Zeilenrang} $m$. \\
+		\underline{Annahme:} $A \in \R^{m \times n }$ hat \underline{vollen Zeilenrang} $m$. \\
 		Sei $\hat{x}$ eine Ecke von $P$ und $I = \{i \mid \hat{x}_{i}>0\}$ \\
 		$\implies$ rang($A_{\cdot,I}   )= |I| \leq m$ \\
     $\implies$ Es gibt $B \subseteq \{1,\dots,n\}$ mit $I \subseteq B, |B| = m $ und $A_{B}:= A_{\cdot,B}$ ist regulär. (Finde $B$ durch Basisergänzung, da $A$ $m$ linear unabhängige Spalten hat.)
 	\item Basen\\
 		Sei $B \subset \{1,\dots,n\}$ mit $|B|=m$ und $N = \{1,\dots,n\}\setminus B$
     \begin{itemize}[label=$\to$] % warum eigentlich ein Pfeil?
-      \item $B$ heißt \define{Basis}, falls $A_{B}$ regulär.
-      \item $B$ heißt \define{primal zulässige Basis}, falls
+      \item $B$ heißt \underline{Basis}, falls $A_{B}$ regulär.
+      \item $B$ heißt \underline{primal zulässige Basis}, falls
         \begin{equation*}
           x_{B}=A_{B}^{-1}b \geq 0
         \end{equation*} $\implies$ Mit $x_{N} = 0$ ist $(x_{B},x_{N})$ zulässig für \eqref{nf} und eine Ecke von $P$.
-      \item $B$ heißt \define{dual zulässige Basis}, falls
+      \item $B$ heißt \underline{dual zulässige Basis}, falls
         \begin{equation*}
           A_{N}^TA_{B}^{-T}c_{b} \leq c_{N} \implies y \text{ ist zulässig für \eqref{dual_cont}}
         \end{equation*}
-      \item $\left(x_{B},x_{N} \right)$ mit $x_{B} = A^{-1}_{B},\ x_{N}= 0$ heißt \define{Basislösung}. Ist $x_{B} > 0 $ so heißt die Basislösung \define{nichtdegeneriert}.
+      \item $\left(x_{B},x_{N} \right)$ mit $x_{B} = A^{-1}_{B},\ x_{N}= 0$ heißt \underline{Basislösung}. Ist $x_{B} > 0 $ so heißt die Basislösung \underline{nichtdegeneriert}.
         (Im degenerierten Fall kann $B$ unterbestimmt sein, man bleibt u.\,U.\ in der gleichen Ecke.)
     \end{itemize}
 \end{itemize}
