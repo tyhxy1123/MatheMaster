@@ -16,16 +16,16 @@
   	These triangulations are not necessarily conforming! 
 \end{definition}
 \begin{example}
-	\underline{2D: easy!} 
+	\underline{2D: easy!} \\
 	two steps of uniform refinement lead to a conforming grid
 	\input{tikz/chapter2/uniform_refinement_conforming_grid_2D.tex}
-	\underline{3D:}\\
+	\underline{3D:}
 	\begin{itemize}
-	\input{tikz/chapter2/uniform_refinement_conforming_grid_3D.tex}
 		\item Let $T_{1},T_{2}$ be neighboring tetrahedra with common side $S$ 
 		\item Let $E_{1},E_{2}$ be the refinement edges of $T_{1}$ and $T_{2}$ respectively
 		\item If $E_{1}$ and $E_{2}$ are on $S$ but $E_{1}\neq E_{2}$ $\to$ big trouble, nonconformity, that cannot be healed
 	\end{itemize}
+	\input{tikz/chapter2/uniform_refinement_conforming_grid_3D.tex}
 \end{example}
 From now on:\\
 \underline{Condition:} If the two refinement edges of two neighboring simplices are on the common face, then they must be equal. This condition is necessary!\nl
