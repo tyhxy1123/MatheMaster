@@ -1,0 +1,219 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+% vim: set noexpandtab:
+
+\section*{Zweites Aufgabenblatt}
+\subsection*{Aufgabe 1}
+\label{sec:Aufgabe 1}
+
+\begin{enumerate}[label=(\alph{enumi})]
+	\item $f_{1}$ ist wieder konvex. Addiere einfach beide Seiten der Ungleichung aus der Definition.
+	\item $f_2$ ist nicht konvex. Betrachtet das Gegenbeispiel:
+		\[
+			f(x) = g(x) \cdot h(x) \quad \text{ mit } \quad 
+			\left\{
+			\begin{array}{rl}
+			g(x) &= -1 \\
+			h(x) &= x^2
+			\end{array}
+			\right.
+		.\] 
+
+		Falls \begin{itemize}
+			\item $g$ und $h$ ausschließlich nichtnegative Werte annehmen
+			\item $g$ und $h$ dieselben Monotonieintervalle besitzen
+		\end{itemize}
+		dann ist $f$ mit Sicherheit konvex.
+	\item $f_3$ is nicht konvex. Betrachte das Gegenbeispiel:
+		\[
+			f(x) = g(h(x)) \quad \text{ mit } \quad 
+			\left\{
+			\begin{array}{rl}
+				g(x) &= -x \\
+				h(x) &= x^2
+			\end{array}
+			\right.
+		.\] 
+	\item $f_4$ ist konvex. Nachrechnen:
+		\begin{align*}
+			f(cx + (1-c)y) &= \max\limits_{}\left\{ g(cx + (1-c)y), h(cx + (1-c)y) \right\}  \\
+						   &\leq \left\{
+						   \begin{array}{rl}
+							   cg(x) + (1-c)g(y) &,\text{ wenn } g(cx+(1-c)y) \geq h(cx + (1-c)y) \\
+							   ch(x) + (1-c)h(y) &,\text{ wenn } h(cx+(1-c)y) \geq g(cx + (1-c)y)
+						   \end{array} \right. \\
+						   &\leq c \max\limits_{} \left\{ g(x), h(x) \right\} + (1-c) \max\limits_{} \left\{  g(y), h(y)\right\} 
+		\end{align*}
+\end{enumerate}
+
+\subsection*{Aufgabe 2}
+\label{sec:Aufgabe 2}
+\begin{enumerate}[label=(\alph{enumi})]
+	\item $f \colon \R \rightarrow \R $ konvex. Zu zeigen: für alle $x,y \in \R$ und $c \in \R \setminus [0,1]$
+		\[
+			f(cx + (1-c)y) \geq cf(x) + (1-c)f(y)
+		.\] 
+		\begin{figure}[H]
+			\begin{center}
+				\input{tikz1.tex}
+			\end{center}
+			\caption{Hilfsskizze}
+			\label{fig:Skizze1}
+		\end{figure}
+		
+		\begin{itemize}
+			\item \underline{Fall 1:} $c>1$, $z:=cx + (1-c)y$
+
+				Dann liegt $x$ zwischen $y$ und $z$, genauer:
+				\[
+				x=\frac{1}{c}z + \frac{c-1}{c}y
+				.\] 
+				Wegen $c>1$ is $\frac{1}{c} \in (0,1)$ und somit
+				\begin{align*}
+					f(x) &\leq \frac{1}{c} \cdot f(z) + \frac{c-1}{c}f(y) \\
+					\implies c f(x) &\leq f(z) + (c-1) f(y) \\
+					\implies f(z) &\geq cf(x) + (1-c) f(y)
+				\end{align*}
+			\item \underline{Fall 2:} $c<0$, $y=\frac{1}{1-c}z + (1-\frac{1}{1-c})x$
+
+				Rest analog.
+		\end{itemize}
+
+	\item Angenommen $f$ is nicht konstant. Dann existieren $x,y \in \R$ mit $f(y) > f(x)$. Dann folgt mit Aufgabenteil (a), dass für alle $c<0$ gilt
+		\begin{align*}
+			f(cx + (1-c) y) &\geq cf(x) + (1-c) f(y) \\
+							&= \underbrace{-c}_{\overset{c \rightarrow - \infty}{\longrightarrow} + \infty} \underbrace{\Big( f(y) -f(x) \Big)}_{>0}  + f(x)
+		\end{align*}
+		\[
+			\implies \lim_{c \rightarrow \infty} f(xc + (1-c)y) = +\infty
+		.\] 
+		Also ist $f$ unbeschränkt nach oben.
+\end{enumerate}
+
+\subsection*{Aufgabe 3}
+\label{sec:Aufgabe 3}
+
+\begin{enumerate}[label=\arabic{enumi}):]
+	\item Funktion 1 ist nicht einmal quasikonvex, denn z.B.
+		\[
+			\max\limits_{}\left\{ f(-1,1), f(1,-1) \right\}  = -1
+		,\] 
+		aber
+		\[
+			f(0,0) = f(\frac{1}{2}(1,-1) + \frac{1}{2}(-1,1)) = 0 > -1
+		.\] 
+	 $f_1(x_1,\cdot)$ ist aber konvex (also auch quasikonvex) für jedes $x_1 \in \R$ (,denn $f_1(x_1, \cdot)$ ist linear). Analog $f_1(\cdot,x_2)$
+
+	 \item Funktion 2 ist nicht quasikonvex für $x_2<0$ und damit ist auch die gesamte Funktion nicht quasikonvex.
+		 $f_{2}(x_1, \cdot)$ ist linear, also auch konvex.
+	\item Funktion 3 nicht quasikonvex, z.B.
+		\[
+			\max\limits_{}\left\{ f_3(1,0), f_3(0,1) \right\} = 0
+		,\] 
+		aber $f_3(\frac{1}{2},\frac{1}{2})=\frac{1}{16}> 0$
+
+		Für festes $x_1$ oder $x_2$ ist $f_3(x_1,x_2)$ aber konvex.
+	\item Funktion 4 Analog zu letzter Funktion.
+	\item Funktion 5 ist insgesamt konvex, Nachweis z.B. mit Hesse-Matrix
+		\[
+			\nabla ^2f_5(x_1,x_2) = \begin{pmatrix}
+				2 & 2 \\ 2 & 2
+			\end{pmatrix}
+		\] 
+		denn diese ist positiv semidefinit.
+	\item Funktion 6 Die Funktion $f_6(x_1, \cdot)$ ist nicht quasikonvex und damit auch insgesamt nicht konvex.
+
+		Jedoch ist die Funktion $f_6(\cdot, x_2)$ ist konvex, erst recht also quasikonvex für jedes $x_2 \in \R$
+\end{enumerate}
+
+
+
+\subsection*{Aufgabe 4}
+\label{sec:Aufgabe 4}
+
+\begin{enumerate}[label=(\alph{enumi})]
+	\item Betrachte $f(x) = x^{2} - 2^{x}$
+		\begin{itemize}
+			\item $f_{1}(x):=x^2$ sogar glm. konvex
+			\item $f_2(x):=-2^{x}$ monoton und damit quasikonvex
+		\end{itemize}
+		Die Funktion $f(x)$ hingegen ist nicht quasikonvex, denn z.B. gilt
+		\[
+			f(\frac{1}{2}2 + \frac{1}{2}4) = f(3) = 1 > \max\limits_{} \left\{ f(2), f(4) \right\} = 0
+		.\] 
+	\item Rechne einfach nach
+		\begin{align*}
+			\Big( F(x) - F(y) \Big) ^{T} (x-y) &= \Big( F_1(x) + F_2(x) - F_1(y) - F_2(y) \Big) ^{T} (x-y) \\
+											   &= \Big( F_1(x) - F_1(y) \Big) ^{T}(x-y) + \Big( F_2(x) - F_2(y) \Big) ^{T}(x-y) \\
+											   &\geq 0
+		\end{align*}
+	\item Im Allgemeinen ist die Verkettung nicht wieder monoton. Betrachte dazu die lineare Funktionen. Die Matrizen in den Abbildungen dieser Funktionen müssen positiv semidefinit sein, damit die Funktion auch monoton ist. Die Verkettung zweier positiv semidefiniter Matrizen ist aber nicht zwangsläufig wieder positiv semidefinit. Beispiel:
+		\[
+			F_1(x) = \underbrace{\begin{pmatrix}
+				2 & 0 \\ 0 & 1
+			\end{pmatrix}}_{\text{ pos. semidefinit }} 
+			\begin{pmatrix}
+			x_1 \\ x_2
+			\end{pmatrix}
+			, \quad
+			F_2(x) = \underbrace{\begin{pmatrix}
+				1 & 1 \\ 1 & 1
+			\end{pmatrix}}_{\text{ pos. semidefinit }} 
+			\begin{pmatrix}
+			x_1 \\ x_2
+			\end{pmatrix}
+		.\] 
+		In diesem Beispiel sind $F_1$ und $F_{2}$ monoton, aber
+		\[
+			F(x) = F_1(F_2(x)) = \begin{pmatrix}
+				2 & 0 \\ 0 & 1
+			\end{pmatrix}
+			\begin{pmatrix}
+				1 & 1 \\ 1 & 1
+			\end{pmatrix}
+			\begin{pmatrix}
+			x_1 \\ x_2
+			\end{pmatrix}
+			= \underbrace{ 
+			\begin{pmatrix}
+				2 & 2 \\ 1 & 1
+			\end{pmatrix}
+			}_{\text{ nicht pos. semidef. }}
+			\begin{pmatrix}
+			x_1 \\ x_2
+			\end{pmatrix}
+		.\] 
+		Daher ist $F$ nicht monoton.
+	\item Es gelte für alle $x,y \in X$ mit $x \neq y$
+		\[
+			\Big( F(x) - F(y) \Big) ^{T}(x-y) > 0 
+		.\] 
+		$F$ ist injektiv. (denn unterschiedliche Argumente führen nach Annahme zu unterschiedlichen Funktionswerten)
+
+		Damit ist $F$ auch umkehrbar (als Funktion $F \colon X \rightarrow \text{Bild}(F) $)
+\end{enumerate}
+
+\subsection*{Aufgabe 5}
+\label{sec:Aufgabe 5}
+\begin{align*}
+	F \text{ ist quasimonoton } &\iff \min\limits_{} \left\{ (y-x)^{T}F(x), (x-y)^{T}F(y) \right\} < 0& &\forall x,y \in X \\
+								&\iff F(x)^{T}(x-y) \geq 0 \text{ oder } F(y)^{T}(x-y) \leq 0& &\forall x,y \in X
+\end{align*}
+\begin{enumerate}[label=(\alph{enumi})]
+	\item Sie $F$ pseudomonoton.
+
+		Seien $x,y \in X$ beliebig aber fest.
+		
+		Falls $F(y)^{T}(x-y) \leq 0$, dann auch 
+		\[
+			\min\limits_{}\left\{ (y-x)^{T}F(x), (x-y)^{T}F(y) \right\} \leq 0
+		.\] 
+		Falls $F(y)^{T}(x-y) \geq 0$, dann wegen Pseudomonotonie $F(x)^{T}(y-x) \leq 0$
+		\[
+			\min\limits_{}\left\{ (y-x)^{T}F(x), (x-y)^{T}F(y) \right\} \leq 0
+		.\] 
+\end{enumerate}
+
+

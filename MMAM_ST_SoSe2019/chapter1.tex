@@ -174,7 +174,7 @@ Und damit folgt
 
 \begin{definition}
 \label{thm:pseudokonvexität}
-	Sei $X \subseteq \R^{n}$ off und $f \colon X \rightarrow \R $ differenzierbar. Dann heißt $f$ \underline{pseudokonvex} auf $X$ genau dann, wenn gilt 
+	Sei $X \subseteq \R^{n}$ offen und $f \colon X \rightarrow \R $ differenzierbar. Dann heißt $f$\\ \underline{pseudokonvex} auf $X$ genau dann, wenn gilt 
 	\[
 		\forall x,y \in X \colon \underbrace{\nabla f(x)^{T}(y-x)}_{=f'(x; y-x)} \geq 0 \implies f(y) \geq f(x)
 	.\] 
@@ -413,7 +413,8 @@ F \text{ glm. monoton } \implies F \text{ strikt monoton } \implies F \text{ mon
 				.\] 
 				Damit folgt:
 				\begin{align*}
-					f(x)-f(y) &= f(x_{m+1}) - f(x_{0}) \\
+					&f(x)-f(y)\\
+							  &= f(x_{m+1}) - f(x_{0}) \\
 							  &= \sum_{k=0}^{m}{f(x_{k+1}) - f(x_{k})} \\
 							  &= \sum_{k=0}^{m}{(t_{k+1}-t_{k})\nabla f(y+c_{k}(x-y))^{T}(x-y)} \\
 							  & \quad + \sum_{k=0}^{m}{(\nabla f(y) - \nabla f(x))^{T}\underbrace{t_{k+1}-t_{k})(x-y)}_{= x_{k+1}-x_{k}}} \\
@@ -598,7 +599,8 @@ In dieser Vorlesung gilt meistens
 
 \underline{Problem}:
 
-$T_{X}(x^{*})$ ist im Allgemeinen schwer zu berechnen. Deshalb verwende den \underline{Linearisierungskegel} an $X=\left\{ x ~|~ g(x) \leq 0, h(x) = 0 \right\}$ in $x^{*}$:
+$T_{X}(x^{*})$ ist im Allgemeinen schwer zu berechnen. 
+Deshalb verwende den\\ \underline{Linearisierungskegel} an $X=\left\{ x ~|~ g(x) \leq 0, h(x) = 0 \right\}$ in $x^{*}$:
 \begin{align*}
 	L_{X}(x^{*}) &= \left\{ d \in \R^{n} ~|~ \nabla g_{i}(x^{*})^{T}d \leq 0 \quad \forall i \in Ig(x^{*})= \left\{ i ~|~ g_{i}(x^{*}) = 0\right\}\right\}\\
 				 &\qquad\cap \left\{ d \in \R^{n} ~|~ \nabla h_{i}(x^{*})^{T}d = 0 \quad \forall i=1, \ldots, p \right\} \\
