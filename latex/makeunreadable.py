@@ -13,10 +13,13 @@ def findNextBracket(text, bracket, pos):
     Return its position in text.
     None if not found.
     """
-    while pos > -1:  # -1 = not found
+    while True:  # -1 = not found
         pos = text.find(bracket, pos)
+        if pos == -1:
+            return None
         if pos == 0 or text[pos - 1] != "\\":
             return pos
+        pos = pos + 1  # not good, go to next possible position
 
 
 def findNextAnyBracket(text, brackets, pos):
@@ -28,6 +31,7 @@ def findNextAnyBracket(text, brackets, pos):
     bracketposs = []
     for bracket in brackets:
         newbracket = (bracket, findNextBracket(text, bracket, pos))
+        print("debug: tmp newbracket:", newbracket)
         if newbracket[1] is not None:
             bracketposs.append((bracket, findNextBracket(text, bracket, pos)))
     if len(bracketposs) == 0:
@@ -107,6 +111,7 @@ def findBeginEnd(text, command, pos):
                   bracketPos)
             bracket, bracketPos = findNextAnyBracket(
                 text, "{" + "}", bracketPos + 1)
+            print("debug bracket=", bracket, "bracketPos=", bracketPos)
             if bracket is None:
                 raise ValueError("no suitable bracket found"
                                  + " for command " + str(command)
@@ -121,11 +126,19 @@ def findBeginEnd(text, command, pos):
                 raise ValueError(
                     "output of findNextAnyBracket is invalid")
         return pos, openingPos - pos + 1, bracketPos, 1
-    elif opening = "[":
+    elif opening == "[":
         print("Warning!!")
         print("unsupported optional argument")
         print("command:", command, "openingPos:", openingPos)
         raise ValueError("unsupported optional argument")
+    elif opening == r"\":
+        # argument is something like \Omega or \norm a
+        newlineBefore = text.rfind("\n", 0, openingPos)
+        newlineAfter = text.find("\n", openingPos)
+        print("How long is the argument of", command, "?")
+        print("Line:", text[newlineBefore + 1: newlineAfter])
+        arglength = int(input("Length"))
+        return pos, openingPos - pos, openingPos + arglength, 0
     else:
         return pos, openingPos - pos, openingPos + 1, 0
 
@@ -136,10 +149,13 @@ def isArgumentBig(arg):
     Return if arg probably needs big left and right delimiters.
     """
     if r"\frac" in arg:
+        print(arg, "is big because of \\frac")
         return True
     if all([a in ALPHABET or a == " " for a in arg]):
+        print(arg, "is small bc only alphabet")
         return False
     if "{" not in arg:
+        print(arg, "is small bc there is no {")
         return False
     return True
 
@@ -165,7 +181,7 @@ def replaceCommand(text, openingPos, openingLength, closingPos,
         print("-----------")
     else:
         argument = text[openingPos + openingLength:closingPos]
-        if isArgumentBig(argument):
+        if addLeftRight and isArgumentBig(argument):
             newOpening = r"\left" + newOpening
             newClosing = r"\right" + newClosing
         return (text[:openingPos] + newOpening
@@ -174,7 +190,8 @@ def replaceCommand(text, openingPos, openingLength, closingPos,
                 + text[closingPos + closingLength:])
 
 
-def replaceAllOfOneCommand(text, command, newOpening, newClosing):
+def replaceAllOfOneCommand(text, command, newOpening, newClosing,
+                           addLeftRight):
     """Clean text of command.
 
     Replace all occurances of the commmand command with
@@ -190,7 +207,8 @@ def replaceAllOfOneCommand(text, command, newOpening, newClosing):
         pos, openingLength, closingPos, closingLength = findBeginEnd(
             text, command, pos)
         text = replaceCommand(text, pos, openingLength, closingPos,
-                              closingLength, newOpening, newClosing)
+                              closingLength, newOpening, newClosing,
+                              addLeftRight)
 
 
 def replaceArgumentLessCommand(text, command, replacement):
@@ -235,6 +253,6 @@ if __name__ == "__main__":
              ifdelims) in toBeReplacedWithArgument:
             textext = replaceAllOfOneCommand(textext, myCommand, myOpening,
                                              myClosing, ifdelims)
-            print("newtext after replacing ", myCommand, "\n", textext)
+            print("new text after replacing ", myCommand, "\n", textext)
     with open(textfilename, mode="w") as textfile:
         textfile.write(textext)
