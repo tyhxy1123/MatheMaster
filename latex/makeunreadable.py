@@ -230,9 +230,9 @@ def replaceArgumentLessCommand(text, command, replacement):
     pos = 0
     while True:
         pos = findNextCommand(text, command, pos)
-        text = text[:pos] + replacement + text[pos + len(command):]
         if pos == -1:
             return text
+        text = text[:pos] + replacement + text[pos + len(command):]
 
 
 if __name__ == "__main__":
