@@ -150,7 +150,8 @@ def isArgumentBig(arg):
 
     Return if arg probably needs big left and right delimiters.
     """
-    if r"\frac" in arg:
+    if (r"\frac" in arg or r"\int" in arg or r"\limits" in arg
+        or "\sum" in arg):
         print(arg, "is big because of \\frac")
         return True
     if len(arg) > 10:
