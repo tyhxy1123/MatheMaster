@@ -29,19 +29,19 @@ Unterlagen: \url{www.github.com/alexandrabschwartz/DiskreteOptimierung2019}
 %s.t. = subject to\\
 Das Rucksackproblem modellieren wir so:
 \begin{align*}
-\text{Variablen}:\quad & x_{j} \in \set*{0,1}\, \forall j =1, \dots, m\\
+\text{Variablen}:\quad & x_{j} \in \{0,1\}\, \forall j =1, \dots, m\\
 				 & x_{j}=1 \iff \text{Objekt $j$ wird ausgewählt}\\
 \text{Zielfunktion}:\quad& f(x)= \sum_{j=1}^{m} c_j x_{j}\rightarrow \max\\
 \text{zulässige Menge}:\quad & \sum_{rj}^{m} w_j x_j \leq w_{\max}\quad \text{maximal zulässiges Gewicht}
 \end{align*}
 % $\implies$
 \begin{equation*}
-	\implies \quad \max_{x}c^Tx \text{ subject to } w^Tx \leq w_{\max},\ x \in \set*{0,1}^m, x \text{ binär}
+	\implies \quad \max_{x}c^Tx \text{ subject to } w^Tx \leq w_{\max},\ x \in \{0,1\}^m, x \text{ binär}
 \end{equation*}
 Verallgemeinerung:
 \begin{itemize}
 	\item mehrdimensionales Rucksackproblem mit zusätzlichen (linearen) Restriktionen, z.B.\ Volumen
-  \item allgemeines Rucksackproblem mit $x\in D\subset \R^m$ z.B. $D=\set*{0,1}^m$, $D=\N^m$, $D = \R_{+}^m$
+  \item allgemeines Rucksackproblem mit $x\in D\subset \R^m$ z.B. $D=\{0,1\}^m$, $D=\N^m$, $D = \R_{+}^m$
 \end{itemize}
 
 \begin{beispiel}[Facility Location Problem]\enter
@@ -57,9 +57,9 @@ Verallgemeinerung:
 	%TODO wtf ging hier ab?
 	Die Variablen sind:
 	\begin{align*}
-    x_{ij}&\in \set*{0,1} \text{ ob von $S_j$ an $k_j$ geliefert wird}\\
+    x_{ij}&\in \{0,1\} \text{ ob von $S_j$ an $k_j$ geliefert wird}\\
     \text{\emph{oder} } x_{ij} & \in [0,b_j] \text{ wieviel wird von $S_{j}$ an $k_{i}$ geliefert}\\
-		y_{j} &\in \set*{0,1}\text{ mit }  \\
+		y_{j} &\in \{0,1\}\text{ mit }  \\
 		y_{j}& = 1 \iff \text{ Lager am Standort $S_{j}$ wird gebaut}
 	\end{align*}
 
@@ -83,11 +83,11 @@ Verallgemeinerung:
 
   Die möglichen Streckenabschnitte sind gegeben durch
 	\begin{equation*}
-		E = \set{ (i,j) \mid \text{es gibt einen direkten Weg von $S_{i}$ nach $S_{j}$} }
+		E = \left\{ (i,j) \mid \text{es gibt einen direkten Weg von $S_{i}$ nach $S_{j}$} \right\}
 	\end{equation*}
 	Die Kosten/ Fahrzeiten sind gegeben durch $c_{ij}$ für alle $(i,j) \in E$.
 
-	Die Variablen: $x_{ij} \in \set*{0,1}$ mit $x_{ij}=1$, wenn $S_{i}$ nach $S_j$ gefahren wird\\
+	Die Variablen: $x_{ij} \in \{0,1\}$ mit $x_{ij}=1$, wenn $S_{i}$ nach $S_j$ gefahren wird\\
 	Zielfunktion:
 	\begin{equation*}
 		\sum_{(i,j)\in E}  c_{ij}x_{ij} \rightarrow \min
@@ -100,7 +100,7 @@ Verallgemeinerung:
 	Subtouren ausschließen:
 	% wie war der befehl für untereinander in Sum?
 	\begin{align*}
-		\sum_{i\in Um j \not\in U (i,j) \in E} x_{ij} \geq 1 \quad \forall U \subset \set*{1,\dots,n} \text{ mit }2\leq |U|\leq n-2
+		\sum_{i\in Um j \not\in U (i,j) \in E} x_{ij} \geq 1 \quad \forall U \subset \{1,\dots,n\} \text{ mit }2\leq |U|\leq n-2
 	\end{align*}
 \end{beispiel}
 
@@ -109,7 +109,7 @@ Verallgemeinerung:
 	Übungsgruppen $G_{1},\dots, G_{n}$ \\
 	kompetenzen $c_{ij}$ von Tutor $T_{i}$ für Gruppe $j$\\
 	Ziel: Zuordnung von Tutor-innen zu Übungsgruppen mit hoher Gesamtkompetenz\\
-	Variablen: $x_{ij}\in \set*{0,1}$ mit $x_{ij}=1 \iff$ Tutor-innen $T_{i}$ betreut Gruppe $G_{i}$ \\
+	Variablen: $x_{ij}\in \{0,1\}$ mit $x_{ij}=1 \iff$ Tutor-innen $T_{i}$ betreut Gruppe $G_{i}$ \\
 	Zielfunktion:
 	\begin{equation*}
 		\sum_{i,j=1}^{n}  c_{ij}x_{ij} \rightarrow \max
@@ -129,7 +129,7 @@ Verallgemeinerung:
 	Ziel: Raumzuteilung, die die Gesamtwegstrecke minimiert\\
 	Variable:
 	\begin{equation*}
-		x_{ik} \in \set*{0,1}\qquad \forall i,=1,\dots,n
+		x_{ik} \in \{0,1\}\qquad \forall i,=1,\dots,n
 	\end{equation*}
 	mit $x_{ik}$ genau dann, wenn $B_{i}$ Raum $R_{k}$ bekommt\\
 	Restriktionen:
