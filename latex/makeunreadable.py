@@ -228,7 +228,6 @@ def replaceArgumentLessCommand(text, command, replacement):
         altered text
     """
     pos = 0
-    print("old text:\n", text)
     while True:
         pos = findNextCommand(text, command, pos)
         text = text[:pos] + replacement + text[pos + len(command):]
@@ -261,5 +260,8 @@ if __name__ == "__main__":
             textext = replaceAllOfOneCommand(textext, myCommand, myOpening,
                                              myClosing, ifdelims)
             # print("new text after replacing ", myCommand, "\n", textext)
+        for (myCommand, myReplacement) in toBeReplacedWithoutArgument:
+            textext = replaceArgumentLessCommand(textext, myCommand,
+                                                 myReplacement)
     with open(textfilename, mode="w") as textfile:
         textfile.write(textext)
