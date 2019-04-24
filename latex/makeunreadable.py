@@ -153,12 +153,16 @@ def isArgumentBig(arg):
     if r"\frac" in arg:
         print(arg, "is big because of \\frac")
         return True
+    if len(arg) > 10:
+        print(arg, "is big because it is long")
+        return True
     if all([a in ALPHABET or a == " " for a in arg]):
         print(arg, "is small bc only alphabet")
         return False
     if "{" not in arg:
         print(arg, "is small bc there is no {")
         return False
+    print(arg, "is big because I found no reason why it should be small")
     return True
 
 
@@ -255,6 +259,6 @@ if __name__ == "__main__":
              ifdelims) in toBeReplacedWithArgument:
             textext = replaceAllOfOneCommand(textext, myCommand, myOpening,
                                              myClosing, ifdelims)
-            print("new text after replacing ", myCommand, "\n", textext)
+            # print("new text after replacing ", myCommand, "\n", textext)
     with open(textfilename, mode="w") as textfile:
         textfile.write(textext)
