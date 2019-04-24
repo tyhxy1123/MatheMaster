@@ -42,10 +42,14 @@ def findNextAnyBracket(text, brackets, pos):
 def findNextCommand(text, command, pos):
     """Find next occurence of the command command after pos in text.
 
-    command must include the \\
-    Return the starting index of the command."""
-    while pos > -1:
+    command must include the backslash
+    Return the starting index of the command.
+    Return -1 if not found.
+    """
+    while True:
         pos = text.find(command, pos)
+        if pos == -1:
+            return -1
         if text[pos + len(command)] not in ALPHABET:
             return pos
         else:
@@ -152,7 +156,6 @@ def replaceAllOfOneCommand(text, command, newOpening, newClosing):
     Returns altered text.
     """
     pos = 0
-    print("old text:\n", text)
     while True:
         pos = findNextCommand(text, command, pos)
         if pos == -1:
@@ -161,7 +164,6 @@ def replaceAllOfOneCommand(text, command, newOpening, newClosing):
             text, command, pos)
         text = replaceCommand(text, pos, openingLength, closingPos,
                               closingLength, newOpening, newClosing)
-        print("new text:\n", text)
 
 
 def replaceArgumentLessCommand(text, command, replacement):
@@ -177,22 +179,19 @@ def replaceArgumentLessCommand(text, command, replacement):
     print("old text:\n", text)
     while True:
         pos = findNextCommand(text, command, pos)
-        text =  (text[:pos] + replacement
-                 + text[pos + len(command):]
+        text = text[:pos] + replacement + text[pos + len(command):]
+        if pos == -1:
+            return text
 
 
 if __name__ == "__main__":
     with open(sys.argv[1]) as textfile:
         textext = textfile.read()
-        mycommand = r"\comm"
-        myOpening = r"\|"
-        myClosing = r"\}"
-        print(replaceAllOfOneCommand(textext, mycommand, myOpening, myClosing))
         toBeReplacedWithArgument = [
             (r"\norm*", r"\|", r"\|"),
             (r"\abs*", r"|", r"|"),
             (r"\halfnorm*", r"|", r"|"),
-            (r"\set*", r"\{", r"\}")
+            (r"\set*", r"\{", r"\}"),
             (r"\norm", r"\left\|", r"\right\|"),
             (r"\abs", r"\left|", r"\right|"),
             (r"\halfnorm", r"\left|", r"\right|"),
@@ -202,6 +201,9 @@ if __name__ == "__main__":
             (r"\coloneqq", ":="),
             (r"\eqqcolon", "=:"),
             (r"\abschluss", r"\bar"),
-            (r"\Rand", r"\boundary")
+            (r"\rand", r"\boundary")
         ]
-        ]
+        for myCommand, myOpening, myClosing in toBeReplacedWithArgument:
+            textext = replaceAllOfOneCommand(textext, myCommand, myOpening,
+                                             myClosing)
+            print("newtext after replacing ", myCommand, "\n", textext)
