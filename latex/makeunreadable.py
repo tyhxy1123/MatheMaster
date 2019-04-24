@@ -154,8 +154,8 @@ def isArgumentBig(arg):
         print(arg, "is big because of \\frac")
         return True
     if len(arg) > 10:
-        print(arg, "is big because it is long")
-        return True
+        print("'" + arg + "'", "is long. Is it big? Enter = small, else: big")
+        return len(input()) > 0
     if all([a in ALPHABET or a == " " for a in arg]):
         print(arg, "is small bc only alphabet")
         return False
