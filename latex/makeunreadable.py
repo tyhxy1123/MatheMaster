@@ -3,7 +3,8 @@
 import sys
 import heapq
 
-ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ*"
+# * is part of commands
 
 def findNextBracket(text, bracket, pos):
     """Find first occurence of bracket after pos that is not preceded
@@ -67,6 +68,7 @@ def findFirstNonWhitespace(text, pos):
     else:
         return pos, text[pos]
 
+
 def findBeginEnd(text, command, pos):
     """Find beginning and end of command and its argument.
 
@@ -116,7 +118,7 @@ def findBeginEnd(text, command, pos):
                     "output of findNextAnyBracket is invalid")
         return pos, openingPos - pos + 1, bracketPos, 1
     else:
-        return pos, openingPos - 1, openingPos + 1, 0
+        return pos, openingPos - pos, openingPos + 1, 0
 
 
 def replaceCommand(text, openingPos, openingLength, closingPos,
@@ -140,12 +142,66 @@ def replaceCommand(text, openingPos, openingLength, closingPos,
                 + newClosing
                 + text[closingPos + closingLength:])
 
+
+def replaceAllOfOneCommand(text, command, newOpening, newClosing):
+    """Clean text of command.
+
+    Replace all occurances of the commmand command with
+    the newOpening and newClosing.
+
+    Returns altered text.
+    """
+    pos = 0
+    print("old text:\n", text)
+    while True:
+        pos = findNextCommand(text, command, pos)
+        if pos == -1:
+            return text
+        pos, openingLength, closingPos, closingLength = findBeginEnd(
+            text, command, pos)
+        text = replaceCommand(text, pos, openingLength, closingPos,
+                              closingLength, newOpening, newClosing)
+        print("new text:\n", text)
+
+
+def replaceArgumentLessCommand(text, command, replacement):
+    """Clean text of commmand.
+
+    Command cannot have arguments.
+    Replace with replacement.
+
+    Returns:
+        altered text
+    """
+    pos = 0
+    print("old text:\n", text)
+    while True:
+        pos = findNextCommand(text, command, pos)
+        text =  (text[:pos] + replacement
+                 + text[pos + len(command):]
+
+
 if __name__ == "__main__":
     with open(sys.argv[1]) as textfile:
         textext = textfile.read()
         mycommand = r"\comm"
-        position = findNextCommand(textext, mycommand, 1)
-        openingPos, openingLength, closingPos, closingLength = (
-                findBeginEnd(textext, mycommand, position))
-        print(replaceCommand(textext, openingPos, openingLength,
-                             closingPos, closingLength, r"\|", r"\|"))
+        myOpening = r"\|"
+        myClosing = r"\}"
+        print(replaceAllOfOneCommand(textext, mycommand, myOpening, myClosing))
+        toBeReplacedWithArgument = [
+            (r"\norm*", r"\|", r"\|"),
+            (r"\abs*", r"|", r"|"),
+            (r"\halfnorm*", r"|", r"|"),
+            (r"\set*", r"\{", r"\}")
+            (r"\norm", r"\left\|", r"\right\|"),
+            (r"\abs", r"\left|", r"\right|"),
+            (r"\halfnorm", r"\left|", r"\right|"),
+            (r"\set", r"\left\{", r"\right\}")
+        ]
+        toBeReplacedWithoutArgument = [
+            (r"\coloneqq", ":="),
+            (r"\eqqcolon", "=:"),
+            (r"\abschluss", r"\bar"),
+            (r"\Rand", r"\boundary")
+        ]
+        ]
