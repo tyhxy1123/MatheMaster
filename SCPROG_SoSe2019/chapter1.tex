@@ -161,7 +161,7 @@ Speicherbereiche im Arbeitsspeicher:
 \begin{itemize}
 	\item \code{int}: 32 Bit=4 Byte in Zweierkomplementdarstellung; Zahlenbereich:\\
 	$-2^{31}=-2.147.483.648$ = \code{Integer.MAX\_VALUE} bis\\ $+2^{31}-1=2.147.483.647$ = \code{Integer.MIN\_VALUE}\\
-	hexadezimale Repräsentation: \code{$\emptyset$x7fffd}\\
+	hexadezimale Repräsentation: \code{$\emptyset$x7ffffd}\\
 	oktale Repräsentation: \code{$\emptyset$77$_{8}$=63$_{10}$}\\
 	Unicode (16 Bit Zeichen): \code{$\setminus$u$\emptyset\emptyset$3f$_{16}$=63$_{10}$}
 	\item \code{long:} 64 Bit = 8 Byte in Zweierkomplementdarstellung;
@@ -196,7 +196,7 @@ Speicherbereiche im Arbeitsspeicher:
 
 \subsection{Typkonversionen (Casts / Casting)}
 Implizite Typkonversionen:
-\code{byte $\to$ short $\to$ int $\to$ long} und \code{char $\to$ long}
+\code{byte $\to$ short $\to$ int $\to$ long} und \code{char $\to$ int}
 sowie \code{float $\to$ double}\\
 Für die anderen Umwandlungen ist ein \betone{expliziter} Typecast notwendig.
 
