@@ -557,19 +557,28 @@ Dimension von Polyedern?
   \begin{itemize}
     \item Sei $F$ eine Seitenfläche von $P$. Dann heißt
       \begin{equation*}
-        \eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i} \forall x \in F \right\}
+        \eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i}\, \forall x \in F \right\}
       \end{equation*}
       die \underline{Menge der aktiven/bindenden Restriktionen} von $F$.
-    \item Die Menge eq$(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forall x \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
-    \item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt fa$(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
-      fa$(I)$ ist eine Seitenfläche mit der gültigen Ungleichung
+    \item Die Menge
+      \begin{equation*}
+        \eq(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forall x \in P \right\}
+      \end{equation*}
+      heißt die \underline{Menge aller impliziten Gleichungen}.
+    \item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt
+      \begin{equation*}
+        \fa(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}
+      \end{equation*}
+      die \underline{von $I$ induzierten Seitenfläche}.
+      $\fa(I)$ ist eine Seitenfläche mit den gültigen Ungleichungen
       \begin{equation*}
         a^{T} x \leq \beta
       \end{equation*}
-      mit $a^{T} = \sum\limits_{i \in I}^{} A_{i,\cdot}, \beta = \sum\limits_{i \in I}^{} b_{i}$.\\
-      Zu zeigen $F = \text{fa(eq}(F))$
+      mit $a^{T} = \sum\limits_{i \in I}^{} A_{i,\cdot}$, $\beta = \sum\limits_{i \in I}^{} b_{i}$.
+
+      Zu zeigen $F = \fa(\eq(F))$
   \end{itemize}
-	
+
 \end{definition}
 
 
