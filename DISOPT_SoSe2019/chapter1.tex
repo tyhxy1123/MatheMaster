@@ -319,8 +319,8 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
   		\end{tabular}
 	\end{table}
 	\underline{Modellierung} 
-	\begin{enumerate}
-		\item Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wieviele Stäbe der Länge $25,30,35\,$cm daraus geschnitten werden sollen.
+  \begin{enumerate}[label={Variante \arabic*.}]
+    \item \label{item:Zuschnittsillymodel} Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wieviele Stäbe der Länge $25,30,35\,$cm daraus geschnitten werden sollen.
 			\begin{align}
 				\implies \forall i~ & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100 \notag\\
 								   &
@@ -339,7 +339,7 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 				& \forall i = 1,\dots ,260 : 25x_{i1} + 30x_{i2} + 35x_{i3} \leq 100y_{i}
 			\end{align*}
 			
- 		\item Schnittmuster\\
+    \item \label{item:Zuschnittbettermodel} Schnittmuster\\
      	Führe eine Variable $x_{i} \in \N_{0}$ ein für jedes Schnittmuster $i$, nach dem eine Stange zerschnitten werden kann: 
       \begin{table}[H]
         \centering
@@ -373,11 +373,11 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 		Vorteil: 
 		\begin{itemize}
 			\item Anzahl Restriktionen $=$ Anzahl verschiedener Stablängen
-			\item Anzahl Variablen $=$ Anzahl (sinnvoller) Schnittmuster (wächst schnell, aber langsamer als Variante 1)
+      \item Anzahl Variablen $=$ Anzahl (sinnvoller) Schnittmuster (wächst schnell, aber langsamer als \ref{item:Zuschnittsillymodel})
 		\end{itemize}
 	 
  \end{enumerate}
-\underline{Lösung von Variante 2}
+ \underline{Lösung für \ref{item:Zuschnittbettermodel}}
 \begin{enumerate}
 	\item Statt des ganzzahligen LPs
 		\begin{equation*}
