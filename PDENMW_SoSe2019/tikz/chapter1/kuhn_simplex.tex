@@ -1,0 +1,40 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% 2D triangle
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h,\h) $);
+
+	\draw (A) -- (B) -- (C) --cycle;
+	
+	\node at (A) [below] {$(0,0)$};
+	\node at (B) [below] {$(1,0)$};
+	\node at (C) [above] {$(1,1)$};
+
+	% 3D triangle
+	\coordinate (A) at (\xone + 1.8*\h ,\yone - 0.4*\h);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (1.7*\h ,0.7*\h) $);
+	\coordinate (D) at ($ (A) + (1.7*\h ,1.7*\h) $);
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (B) -- (D);
+	\draw[dotted] (A) -- (C);
+	
+	\node at (A) [below] {$(0,0,0)$};
+	\node at (B) [below] {$(1,0,0)$};
+	\node at (C) [right] {$(1,1,0)$};
+	\node at (D) [above] {$(1,1,1)$};
+
+
+	\end{tikzpicture}
+	
+	\caption{2D/3D Kuhn-simplex}
+	\label{ch_1_kuhn_simplex}
+	
+\end{figure}
