@@ -547,28 +547,28 @@ Dimension von Polyedern?
   \item Eine Seitenfläche $F$ heißt \underline{echt} (proper), wenn gilt $\emptyset \neq F \neq P$
 \end{itemize}
 \begin{beispiel}
-  $o^{T} x \leq 0 \implies F = P, o^{T} x \leq 1 \implies F = \emptyset$
+  $0^{T} x \leq 0 \implies F = P, 0^{T} x \leq 1 \implies F = \emptyset$
 \end{beispiel}
 \begin{itemize}
   \item Eine echte Seitenfläche $F$ von $P$ heißt \underline{Facette}, wenn sie in keiner anderen \underline{echten} Seitenfläche von  $P$ enthalten ist.
-\end{itemize}
+\end{itemize} % TODO: schöne Bilder
 \begin{definition}
-	Sei $P = P(A,b) \subset \R^n$ ein Polyeder
-	\begin{itemize}
-		\item Sei $F$ eine Seitenfläche von $P$. Dann heißt
-			\begin{equation*}
-				\eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i} \forall x \in F \right\}
-			\end{equation*}
-			die \underline{Menge der aktiven/bindenden Restriktionen} von $F$.
-		\item Die Menge eq$(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forall x \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
-		\item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt fa$(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
-			fa$(I)$ ist eine Seitenfläche mit der gültigen Ungleichung
-			\begin{equation*}
-				a^{T} x \leq \beta
-			\end{equation*}
-			mit $a^{T} = \sum\limits_{i \in I}^{} A_{i,\cdot}, \beta = \sum\limits_{i \in I}^{} b_{i}$.\\
-			Zu zeigen $F = \text{fa(eq}(F))$
-	\end{itemize}
+  Sei $P = P(A,b) \subset \R^n$ ein Polyeder
+  \begin{itemize}
+    \item Sei $F$ eine Seitenfläche von $P$. Dann heißt
+      \begin{equation*}
+        \eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i} \forall x \in F \right\}
+      \end{equation*}
+      die \underline{Menge der aktiven/bindenden Restriktionen} von $F$.
+    \item Die Menge eq$(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forall x \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
+    \item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt fa$(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
+      fa$(I)$ ist eine Seitenfläche mit der gültigen Ungleichung
+      \begin{equation*}
+        a^{T} x \leq \beta
+      \end{equation*}
+      mit $a^{T} = \sum\limits_{i \in I}^{} A_{i,\cdot}, \beta = \sum\limits_{i \in I}^{} b_{i}$.\\
+      Zu zeigen $F = \text{fa(eq}(F))$
+  \end{itemize}
 	
 \end{definition}
 
