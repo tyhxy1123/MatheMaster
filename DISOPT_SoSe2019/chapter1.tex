@@ -435,20 +435,20 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 			\begin{enumerate}[label = \arabic*. Fall:]
 				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP.
 				\item $x^* \not \in \Z^n$
-					\begin{itemize}
-					\item Branch $\&$ Bound Verfahren \\
-					$\implies$ zwei neue Lps
-					\begin{align*}
-						\min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\leq \lfloor x_{i}^*\rfloor\\
-						\max_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\geq \lceil x_{i}^*\rceil
-					\end{align*}
-					\item Schnittebenen-Verfahren\\
-					Füge neue Ungleichung
-					\begin{equation*}
-						a^{T} x \leq \beta
-					\end{equation*}
-					mit $a^{T} x \leq \beta$ für alle zulässigen Punkte $x \in \Z^n$ und $a^{T} x^* > \beta $ zu den Restriktionen		
-					\item (Runden)
+          \begin{itemize}
+            \item Branch $\&$ Bound Verfahren \\
+              $\implies$ zwei neue Lps
+              \begin{align*}
+                \min_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\leq \lfloor x_{i}^*\rfloor\\
+                \max_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\geq \lceil x_{i}^*\rceil
+              \end{align*}
+            \item Schnittebenen-Verfahren\\
+              Füge neue Ungleichung
+              \begin{equation*}
+                a^{T} x \leq \beta
+              \end{equation*}
+              mit $a^{T} x \leq \beta$ für alle zulässigen Punkte $x \in \Z^n$ und $a^{T} x^* > \beta $ zu den Restriktionen		
+            \item (Runden)
 				\end{itemize}
 			\end{enumerate}
 		\end{itemize}
