@@ -389,20 +389,25 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 	\end{equation*}
 	\item Simplex-Verfahren für das relaxierte Problem:
 		\begin{itemize}
-			\item primal zulässige Startbasis?\\
-			$\to$ Für jede Stablänge $l = 25,30,35$ verwende das \glqq Einheitsschnittmuster\grqq\ bei dem die maximal mögliche Anzahl $\lfloor\frac{100}{l}\rfloor$ von Stäben der Länge $l$ und keine anderen Stablängen geschnitten werden. \\
-			$\implies$ zugehörige Spalten in Basismatrix sind linear unabhängige Vielfache ovn Einheitsvektoren.\\
-		zugehörige Basisvariablen:
+			\item Wir brauhchen eine primal zulässige Startbasis:\\
+			$\to$ Für jede Stablänge $l = 25,30,35$ verwende das \glqq Einheitsschnittmuster\grqq\ bei dem die maximal mögliche Anzahl $\lfloor\frac{100}{l}\rfloor$ von Stäben der Länge $l$ und keine anderen Stablängen geschnitten werden.
+
+
+			Dann sind die zugehörigen Spalten in der Basismatrix linear unabhängige Vielfache von Einheitsvektoren.
+
+		Die zugehörigen Basisvariablen sind:
 		\begin{equation*}
 			x_{l} = \frac{b_{l}}{\lfloor\frac{100}{l}\rfloor}
 		\end{equation*}
 
-		\item $H$ kann sehr viele Spalten haben\\
+		\item $H$ kann sehr viele Spalten haben.
+
 			\underline{Idee:} Immer nur die Spalten von $H$ bestimmen, die man aktuell braucht.\\
 			$\to$ Startbasis und zugehörige Basismatrix $A_{B} := \begin{pmatrix}
 				H,&-I
 			\end{pmatrix}_{B}
-			$ wie oben bestimmen\\
+      $ wie oben bestimmen ($-I$ kommt von den Schlupfvariablen, die man braucht um aus $\geq$ ein $=$ zu machen).
+
 			$\to$ zugehörige duale Variable:
 			\begin{equation*}
 				y = A_{B}^{-T}c_{B}
@@ -411,22 +416,24 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 			\begin{equation*}
 				z_{N} = c_{N} - A_{N}^{T} y
 			\end{equation*}
-			Für $j \in N$, die zu den Schlupfvariablen $s$ gehören
+      Hierbei ist $c$ von der Form $c = (\underbrace{1 \, \ldots \, 1}_{x-\text{Teil}} \, \underbrace{0 \, \ldots \, 0}_{s- \text{Teil}})^T$.
+
+      Für $j \in N$, die zu den Schlupfvariablen $s$ gehören, gilt
 			\begin{equation*}
 				z_{j} = c_{j} - A_{\cdot j}^{T} y = 0 + e_{j}^{T} y = y_{j}
 			\end{equation*}
-			($y_{j}$ ist bekannt). Für $j \in N$, die zu den Variablen $x$ gehören
+			($y_{j}$ ist bekannt). Für $j \in N$, die zu den Variablen $x$ gehören, gilt
 			\begin{equation*}\label{dantzigRegel}
 				e_{j} = c_{j} - A_{\cdot j}^{T} y = 1 - \underbrace{H_{\cdot j}^{T}}_{\text{unbekannt}} y \to \min \tag{Dantzig Regel}
 			\end{equation*}
-			$\implies$ bestimme die \glqq beste \grqq\ Spalte $H_{\cdot j}$ als Lösung von
+      Wir müssen also die \glqq beste\grqq{} Spalte $H_{\cdot j}$ als Lösung von
 			\begin{equation*}
 				\max_{h} y^{T} h \text{ subject to } 25h_{1} + 30 h_{2} + 35h_{3} \leq 100, h\geq 0 , h \in \Z^3
 			\end{equation*}
-			$\implies$ Rucksackproblem mit Gewichten $=$ Stablängen, Werte $=$ duale Variable $y$
+      bestimmen. Damit erhalten wir ein Rucksackproblem mit Gewichten $=$ Stablängen und Werte $=$ duale Variable $y$. Dieses Rucksackproblem ist ganzzahlig, aber recht klein.
 		\item Sei $x_{\alpha} \in \R^n$ eine Lösung des relaxierten Problems.
 			\begin{enumerate}[label = \arabic*. Fall:]
-				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP
+				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP.
 				\item $x^* \not \in \Z^n$
 					\begin{itemize}
 					\item Branch $\&$ Bound Verfahren \\
