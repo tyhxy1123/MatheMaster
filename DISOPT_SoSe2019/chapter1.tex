@@ -458,68 +458,70 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 \end{beispiel}
 \subsection{Polyeder}
 \begin{definition}
-	\begin{itemize}\
-		\item Eine Menge $P\subset \R^n$ heißt Polyeder, wenn man sie durch endlich viele lineare Ungleichung beschreiben kann.
+	\begin{itemize}
+    \item Eine Menge $P\subset \R^n$ heißt Polyeder, wenn man sie durch endlich viele lineare Ungleichung beschreiben kann.
+      (Die Endlichkeitseinschränkung ist wichtig um Polyeder von beliebigen konvexen Mengen zu unterscheiden, denn jede konvexe Menge lässt sich durch (unendlich) viele lineare Ungleichungen beschreiben.)
 		\item \underline{natürliche Form} eines Polyeders:
 			\begin{align*}
-				P(A,b) &= \left\{ x \in \R^n\ | \ a^{T}_{i} x \leq b_{i} \ \forall i =1,\dots ,n \right\}\\
-					   &= \left\{ x \in \R^n \ | \ Ax \leq b \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
+				P(A,b) &= \left\{ x \in \R^n \ \middle| \ a^{T}_{i} x \leq b_{i} \ \forall i =1,\dots ,n \right\}\\
+					   &= \left\{ x \in \R^n \ |\ Ax \leq b \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
 			\end{align*}
 		\item \underline{Normalform} eines Polyeders:
 			\begin{equation*}
 				P(A,b) = \left\{ x \in \R^n \ | \ Ax = b, x\geq 0 \right\} \text{ mit } A \in\R^{m\times n}, b\in \R^m
 			\end{equation*}
-		\item \underline{Polytop}:= beschränktes Polyeder ( $\iff P$ ist konvexe Hülle von endlich vielen Punkten)	
-		\item \underline{polyhedrischer kegel}:= Polyeder und Kegel ( $\iff P = \left\{x \ | \ Ax \leq 0 \right\}$)
+    \item \underline{Polytop} $:=$ beschränktes Polyeder ($\iff P$ ist konvexe Hülle von endlich vielen Punkten) (diese Äquivalenz ist ein nicht-triviales Resultat!)
+		\item \underline{polyhedrischer kegel} $:=$ Polyeder und Kegel ($\iff P = \left\{x \ \middle| \ Ax \leq 0 \right\}$)
 		\item P heißt \underline{rationales Polyeder}$\iff$ Es gibt $A\in\Q^{m \times n}, b \in \Q^m$ mit
 			\begin{equation*}
 				P = P(A,b) = \left\{ x \in \R^n\ | \ Ax \leq b \right\}
 			\end{equation*}
-			Achtung
+			Achtung! Nicht alle Darstellungen rationaler Polyeder sind rational:
 			\begin{align*}
 				P &= P(A,b) = \left\{ x \in \R\ | \ \sqrt{2}x \leq 0 \right\} \text{ ist ein rationales Polyeder}\\
 				  &= \left\{x \in \R \ | \ x \leq 0  \right\}
 			\end{align*}
 	\end{itemize}
 \end{definition}
-\underline{Annahme:} Wir betrachten (meistens) nur rationale Polyeder und gehen davon aus, dass die gegebene Darstellung $A,b$ rational ist.\\
+\underline{Annahme:} Wir betrachten (meistens) nur rationale Polyeder und gehen davon aus, dass die gegebene Darstellung $A,b$ rational ist. (Andere könnten wir nicht im Computer darstellen.)
+
 \underline{Notation:}
 \begin{align*}
-	B_{r}(x^*) &= \left\{ x \in \R^n \ | \ \|x - x^*\|<r \right\}\\
-	\overline{B_{r}(x^*)} &= \left\{ x \in \R^n \ | \ \|x - x^*\|\leq r \right\}
-\end{align*}
-\begin{align*}
-	x,y \in \R^n, \alpha \in \R: \alpha X &= \left\{ \alpha \cdot x \ |\ x \in X \right\}\\
-										  X + Y &=\left\{ x + y  \ |\ x \in X, y \in Y \right\}\\
-										  X - Y &= X + (-Y)
+  && B_{r}(x^*) &:= \left\{ x \in \R^n \ | \ \|x - x^*\|<r \right\}\\
+  && \overline{B_{r}(x^*)} &:= \left\{ x \in \R^n \ | \ \|x - x^*\|\leq r \right\} \\
+  % \end{align*}
+  % \begin{align*}
+  x,y \in \R^n, \alpha \in \R:&& \alpha X &:= \left\{ \alpha \cdot x \ |\ x \in X \right\}\\
+                              && X + Y &:=\left\{ x + y  \ |\ x \in X, y \in Y \right\}\\
+                              && X - Y &:= X + (-Y)
 \end{align*}
 Dimension von Polyedern?
 \begin{itemize}
-	\item Ist $U \subset  \R^n$ ein Unterraum, so ist $\dim(U)=$maximale Anzahl linear unabhängiger Vektoren
+	\item Ist $U \subset  \R^n$ ein Unterraum, so ist $\dim(U)=$ maximale Anzahl linear unabhängiger Vektoren in $U$.
 	\item Ist $X \subset \R^n$, so ist die \underline{lineare Hülle} lin$(X)$ von $X$ der kleinste (bezüglich Inklusion) Unterraum $U$ von $\R^n$ mit $X \leq U$.
 	\item Eine Menge $A \subset  \R^n$ heißt \underline{affiner Unterraum}, wenn gilt $U:=A-a^*$ (mit $a^* \in A$ beliebig) ist ein Unterraum.
-		Wir definieren $\dim(A) := \dim(U)$
-	\item Konvention $\dim\emptyset=-1$
-	\item Ist $X\subset \R^n$, so ist die \underline{affine Hülle} $\aff(X)$ von $X$ ist der kleinste (bzgl. Inklusion) affine Unterraum $A$ mit $X\subset A$.
-		Wir definieren $\dim(X):=\dim(A)$ (funktioniert gut für konvexe Mengen)\\
-		Seien $x_{1},\dots ,x_{m}\in\R^n$:
-	\item \underline{lineare Hülle}: $\lin(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\in \R \right\}$
-	\item \underline{affine Hülle}: $\aff(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\in \R, \sum_{i=1}^{m} c_{i}= 1 \right\}$
-	\item \underline{konvexe Hülle}: $\conv(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0, \sum_{i=1}^{m} c_{i}= 1 \right\}$
-	\item (konvexe) \underline{konische Hülle}: $\cone(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0 \right\}$
+		Wir definieren $\dim(A) := \dim(U)$.
+  \item Konvention $\dim(\emptyset)=-1$
+  \item Ist $X\subset \R^n$, so ist die \underline{affine Hülle} $\aff(X)$ von $X$ ist der kleinste (bzgl. Inklusion) affine Unterraum $A$ mit $X\subset A$.
+    Wir definieren $\dim(X):=\dim(A)$ (funktioniert gut für konvexe Mengen)\\
+    Seien $x_{1},\dots ,x_{m}\in\R^n$:
+	\item \underline{lineare Hülle}: $\lin(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ \middle| \ c_{i}\in \R \right\}$
+	\item \underline{affine Hülle}: $\aff(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ \middle| \ c_{i}\in \R, \sum_{i=1}^{m} c_{i}= 1 \right\}$
+	\item \underline{konvexe Hülle}: $\conv(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ \middle| \ c_{i}\geq 0, \sum_{i=1}^{m} c_{i}= 1 \right\}$
+	\item (konvexe) \underline{konische Hülle}: $\cone(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ \middle| \ c_{i}\geq 0 \right\}$
 	\item Sei $X \subset \R^n$ nichtleer. Dann ist das \underline{relative Innere} von $X$ definiert als
 		\begin{equation*}
 			\rint(X):= \left\{ x^* \in X \ |\ \exists r >0 \text{ mit } B_{r}(x^*)\cap\aff(X) \subset X \right\}
 		\end{equation*}
 		der \underline{relative Rand} von $X$ ist definiert als
 		\begin{equation*}
-			\rbd(X) := \overline{X}\backslash \rint(X)
+			\rbd(X) := \overline{X}\setminus \rint(X)
 		\end{equation*}
 	\begin{bemerkung}
 		\begin{itemize}\
 			\item Es gilt immer $\interior(X)\subset \rint(X) \subset X \subset \overline{X}$
 			\item Ist $X$ \underline{konvex}, so ist $\rint(X)\neq \emptyset$ und $\dim X= \dim(\rint(X))$
-			\item Ist  $P = P(A,b) \subset \R^n$ ein Polyeder, so gilt $\dim P=n \iff \int P \neq \emptyset \iff \exists x^* \in \R^n: Ax^*<b$
+			\item Ist  $P = P(A,b) \subset \R^n$ ein Polyeder, so gilt $\dim P=n \iff \int P \neq \emptyset \iff \exists x^* \in \R^n: Ax^*\lneq b$
 		\end{itemize}
 	\end{bemerkung}
 \end{itemize}
