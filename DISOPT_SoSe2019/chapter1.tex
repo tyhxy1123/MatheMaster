@@ -304,10 +304,9 @@ Bei Schrittweiten beachten: $x_{B} = \gamma w \in [0,u_{B}]$ und
 \end{cases}
 \end{equation*}
 Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach $N_{u}$ oder umgekehrt.
-\begin{beispiel}
-	Zuschnittsoptimierung\\
+\begin{beispiel}[Zuschnittsoptimierung]~\nl
   	\underline{Problemstellung} Eine vorgegebene Anzahl von Objekten soll möglichst materialsparend aus einem Grundstoff zugeschnitten werden.\\
-  	\underline{konkretes Beispiel}: Eine Firma produziert Metallstangen mit Länge $100$cm. Werden kürzere Stangen bestellt muss die Firma $100$cm lange Stangen zerschneiden. Ziel der Firma ist es, die Bestellungen zu erfüllen und dafür möglichst wenige Stangen zerschneiden zu müssen.\\
+  	\underline{konkretes Beispiel}: Eine Firma produziert Metallstangen mit Länge $100\,$cm. Werden kürzere Stangen bestellt muss die Firma $100\,$cm lange Stangen zerschneiden. Ziel der Firma ist es, die Bestellungen zu erfüllen und dafür möglichst wenige Stangen zerschneiden zu müssen.\\
   	Bestellung:
 	\begin{table}[H]
 		\centering
@@ -321,59 +320,60 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 	\end{table}
 	\underline{Modellierung} 
 	\begin{enumerate}
-		\item Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$. Wieviele Stäbe der Länge $25,30,35$ cm daraus geschnitten werden sollen.
-			\begin{align*}\label{model_cutting_1}
-				\implies \forall i & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100\\
+		\item Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wieviele Stäbe der Länge $25,30,35\,$cm daraus geschnitten werden sollen.
+			\begin{align}
+				\implies \forall i~ & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100 \notag\\
 								   &
 								  	\begin{rcases}
 								   		 \sum\limits_{i}^{} x_{i1} \geq 80\\
 								   		 \sum\limits_{i}^{} x_{i2} \geq 75\\
 								   		 \sum\limits_{i}^{} x_{i3} \geq 105 
-									\end{rcases} \tag{$\Delta$}
-			\end{align*}
-			Zielfunktion: minimiere $k_{i}=$ Anzahl der Stäbe $i = 1,\dots ,k$\\
-			Idee: Für jeden Stab $i$ führe eine Variable $y_{i} \i \left\{0,1 \right\}$ ein, die entscheidet, ob der Stab verwendet wird oder nicht.\\
-			maximale Anzahl benötigte Stäbe $\leq 80 + 75 +1005 = 260$ 
-			% use label instead of referencing it directly
+                   \end{rcases} \tag{$\Delta$}\label{model_cutting_1}
+			\end{align}
+      Zielfunktion: minimiere $K = \text{ Anzahl der Stäbe}$, wobei $i = 1,\dots ,K$.
+      Um $K$ zu berechnen, nutze folgende Idee: Für jeden Stab $i$ führe eine Variable $y_{i} \in \left\{0,1 \right\}$ ein, die entscheidet, ob der Stab verwendet wird oder nicht.
+
+			Die maximale Anzahl benötigter Stäbe ist $\leq 80 + 75 +105 = 260$.
 			\begin{align*}
-				\implies \min_{x,y}\sum_{i=1}^{260} y_{i} &\text{ subject to } x_{i1},x_{i2},x_{i3} \in \N_{0}, y_{i}\in \left\{0,1 \right\} , (\Delta),\\
+        \implies \min_{x,y}\sum_{i=1}^{260} y_{i} &\text{ subject to } x_{i1},x_{i2},x_{i3} \in \N_{0}, y_{i}\in \left\{0,1 \right\} , \eqref{model_cutting_1},\\
 				& \forall i = 1,\dots ,260 : 25x_{i1} + 30x_{i2} + 35x_{i3} \leq 100y_{i}
 			\end{align*}
 			
  		\item Schnittmuster\\
      	Führe eine Variable $x_{i} \in \N_{0}$ ein für jedes Schnittmuster $i$, nach dem eine Stange zerschnitten werden kann: 
-		\begin{table}[H]
-			\centering
-			\begin{tabular}{c|c|c|c}
-      		Schnittmuster & \# $25$ cm Stäbe & \# $30$ cm Stäbe & \# $35$ cm Stäbe\\
-      		\hline
-      		1 & 4 & 0 & 0\\
-        	  & 3 & 0 & 0\\
-      		2 & 2 & 1 & 0\\
-      		3 & 2 & 0 & 1\\
-      		4 & 1 & 2 & 0\\
-      		5 & 1 & 1 & 1\\
-      		6 & 1 & 0 & 2\\
-      		7 & 0 & 3 & 0\\
-      		8 & 0 & 2 & 1\\
-      		9 & 0 & 1 & 2\\
-    		\end{tabular}
+      \begin{table}[H]
+        \centering
+        \begin{tabular}{c|c|c|c}
+          Schnittmuster & \# $25\,$cm Stäbe & \# $30\,$cm Stäbe & \# $35\,$cm Stäbe\\
+          \hline
+          1 & 4 & 0 & 0\\
+            & 3 & 0 & 0\\
+          2 & 2 & 1 & 0\\
+          3 & 2 & 0 & 1\\
+          4 & 1 & 2 & 0\\
+          5 & 1 & 1 & 1\\
+          6 & 1 & 0 & 2\\
+          7 & 0 & 3 & 0\\
+          8 & 0 & 2 & 1\\
+          9 & 0 & 1 & 2\\
+        \end{tabular}
 		\end{table}
-		
-         Optimierungsproblem:
-    	\begin{align*}
-			\min_{x} \sum_{i=1}^{9} x_{i}& \text{ subject to } x \in \Z_{0}, x\geq 0
-		\end{align*}
-		\begin{align*}
-			\text{mindestens } &80 \text{ Stäbe mit }25\text{cm}& 4x_{1} + 2x_{2} + 2x_{3} + x_{4} + x_{5} + x_{6} &\geq 80\\
-							   &75\text{ Stäbe mit } 30 \text{cm}& x_{2} + 2x_{4} + x_{5} + 3x_{7} + 2x_{8} + x_{9} &\geq 75\\
-							   &105\text{ Stäbe mit } 35 \text{cm}& x_{3} + x_{5} + 2x_{6} + x_{8} + 2x_{9} &\geq 105
+
+    Optimierungsproblem:
+    \begin{align*}
+      \min_{x} \sum_{i=1}^{9} x_{i}& \text{ subject to } x \in \Z_{0}, x\geq 0
+    \end{align*}
+    \begin{align*}
+      \text{mindestens } &80 \text{ Stäbe mit $25$\,cm}& 4x_{1} + 2x_{2} + 2x_{3} + x_{4} + x_{5} + x_{6} &\geq 80\\
+                         &75\text{ Stäbe mit $30$\,cm}& x_{2} + 2x_{4} + x_{5} + 3x_{7} + 2x_{8} + x_{9} &\geq 75\\
+                         &105\text{ Stäbe mit $35$\,cm}& x_{3} + x_{5} + 2x_{6} + x_{8} + 2x_{9} &\geq 105
     	\end{align*}
-		In Matrixform $Hx \leq b$.\nl
+		In Matrixform $Hx \leq b$.
+
 		Vorteil: 
 		\begin{itemize}
 			\item Anzahl Restriktionen $=$ Anzahl verschiedener Stablängen
-			\item Anzahl Variablen $=$ Anzahl (sinnvoller) Schnittmuster ( wächst schnell, aber langsamer als Variante 1)
+			\item Anzahl Variablen $=$ Anzahl (sinnvoller) Schnittmuster (wächst schnell, aber langsamer als Variante 1)
 		\end{itemize}
 	 
  \end{enumerate}
