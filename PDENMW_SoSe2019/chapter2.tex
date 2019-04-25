@@ -5,47 +5,49 @@
 	\begin{equation*}
 		\mathbb{F} = \mathbb{F}[\T_{0}]:= \bigcup_{T_{0} \in \T_{0}} \mathbb{F}(T_{0})
 	\end{equation*}
-	is called \underline{masterforest} of $\T_{0}$.\nl
+	is called \underline{masterforest} of $\T_{0}$.
+
 	A subset $\mathcal{F} \subset \mathbb{F}$ is called \underline{forest}
   	\begin{enumerate}[label= \arabic*)]
     	\item $\T_{0} \subset \mathcal{F}$ 
-    	\item All nodes $\mathcal{F} \backslash \T_{0}$ have a father
-    	\item All nodes have two children or no children at all
+    	\item All nodes $\mathcal{F} \setminus \T_{0}$ have a father.
+    	\item All nodes have two children or no children at all.
   	\end{enumerate}
-	Every finite forest $\mathbb{F}(\T_{0})$ correspondes to a triangulation of $\Omega$.\\
+	Every finite forest $\mathbb{F}(\T_{0})$ corresponds to a triangulation of $\Omega$.\\
   	These triangulations are not necessarily conforming! 
 \end{definition}
 \begin{example}
 	\underline{2D: easy!} \\
-	two steps of uniform refinement lead to a conforming grid
+	Two steps of uniform refinement lead to a conforming grid
 	\input{tikz/chapter2/uniform_refinement_conforming_grid_2D.tex}
 	\underline{3D:}
 	\begin{itemize}
-		\item Let $T_{1},T_{2}$ be neighboring tetrahedra with common side $S$ 
-		\item Let $E_{1},E_{2}$ be the refinement edges of $T_{1}$ and $T_{2}$ respectively
-		\item If $E_{1}$ and $E_{2}$ are on $S$ but $E_{1}\neq E_{2}$ $\to$ big trouble, nonconformity, that cannot be healed
+		\item Let $T_{1},T_{2}$ be neighboring tetrahedra with common side $S$. 
+		\item Let $E_{1},E_{2}$ be the refinement edges of $T_{1}$ and $T_{2}$ respectively.
+    \item If $E_{1}$ and $E_{2}$ are on $S$ but $E_{1}\neq E_{2}$ $\to$ big trouble, nonconformity, that cannot be healed: the new edges intersect each other at a ratio of $\frac{1}{3}$ to $\frac{2}{3}$!
 	\end{itemize}
 	\input{tikz/chapter2/uniform_refinement_conforming_grid_3D.tex}
 \end{example}
-From now on:\\
+So from now on we assume:\\
 \underline{Condition:} If the two refinement edges of two neighboring simplices are on the common face, then they must be equal. This condition is necessary!\nl
-For $d=3$ the condition is sufficient.\\
-For $d>3$ not known\\
-Alternative condition( implying that every uniform refinement is conforming)
+For $d=3$ the condition is sufficient. (A proven, but not trivial result.)\\
+For $d>3$ it is not known if the condition is sufficient.
+
+So we look for an alternative condition that implies that every uniform refinement is conforming.
 \begin{definition}
-	The reflected element to $T= \left\{ z_{0},\dots ,z_{d} \right\}_{t}$
+	The reflected element to $T= \left\{ z_{0},\dots ,z_{d} \right\}_{t}$ is
 	\begin{equation*}
 		T_{R}= \left\{ z_{d}, z_{1},\dots ,z_{t},z_{d-1},\dots ,z_{t+1},z_{0} \right\}_{t}
 	\end{equation*}
 	$T \mapsto T_{R}$ is the unique permutation of the vertices that does not change the children.
 \end{definition}
 \begin{definition}
-	Two neighboring elements $T$ and $T'$ are called \underline{reflected neighbors} iff the ordered vertices of $T$ or $T_{R}$ match those of $T'$ at all but one places.
+	Two neighboring elements $T$ and $T'$ are called \underline{reflected neighbors} if and only if the ordered vertices of $T$ or $T_{R}$ match those of $T'$ at all but one places.
 \end{definition}
-\underline{Condition:}(alternative)\\
+\underline{Condition:} (alternative)\\
 A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 \begin{enumerate}[label = \arabic*)]
-	\item all elements have the same type
+	\item all elements have the same type,
 	\item for all neighboring elements 
 		\begin{equation*}
 			T = \left\{ z_{0},\dots ,z_{d} \right\} \text{ and } T' = \left\{ z_{0}',\dots ,z_{d}' \right\}
@@ -60,16 +62,15 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 \begin{theorem}
 	Under this condition all uniform refinements are conforming.
 \end{theorem}
-\begin{proof_}
-	(small part)\\
+\begin{proof}[Small part of proof]
 	First part:
 	\begin{lemma}
-		Let $T = \left\{ z_{0},\dots ,z_{d} \right\}_{0}$ a simplex. All uniform refinements of $T$ are conforming.
+		Let $T = \left\{ z_{0},\dots ,z_{d} \right\}_{0}$ be a simplex. All uniform refinements of $T$ are conforming.
 	\end{lemma}
-		sketch of the proof:\\
-		consider the $g$-th uniform refinement $g < d$ 
+  \begin{proof}[Proof sketch]
+    Consider the $g$-th uniform refinement (with $g < d$).
 		\begin{enumerate}
-			\item One has to show: every descendent $T'$ of $T$ with gen$(T')=g$ has the structure
+			\item One has to show: every descendent $T'$ of $T$ with $\gen(T')=g$ has the structure
 				\begin{equation*}
 					T' = \left\{ z_{k_{0}},y_{g},y_{g-1},\dots ,y_{1},\underbrace{z_{k_{1}},\dots, z_{k_{d-g}} }_{\text{from original simplex}} \right\}_{g}
 				\end{equation*}
@@ -77,7 +78,7 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 					\item $z_{k_{0}}, \dots ,z_{k_{d-g}}$ are vertices of $T$. The indices $k_{0},\dots k_{d-g}$ are consecutive (ascending or descending)
 					\item $y_{1},\dots ,y_{g}$ are vertices introduced as edge midpoints
 				\end{itemize}
-			\item Define non-standard distance on the vertices of $T$:
+			\item Define a non-standard distance on the vertices of $T$:
 				\begin{equation*}
 					d(z_{i},z_{j}) = |i-j|
 				\end{equation*}
@@ -85,22 +86,23 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 			\item The \glqq longest\grqq\ edge in $T'$ is $\overline{z_{k_{0}}z_{k_{d-g}}}$ because the indices are consecutive.
 				Furthermore $\overline{z_{k_{0}}z_{k_{d-g}}}$ is the refinement edge!
 		\end{enumerate}
-		$\implies$ the refinement edge of any $T'$ is always the \glqq longest \grqq\ edge!
+    $\implies$ the refinement edge of any $T'$ is always the \glqq longest\grqq{} edge!
 		\begin{itemize}
-			\item Let $U,V$ be descendents of $T$ with gen$(U)=$gen$(V)< d$ with common facet 
+			\item Let $U,V$ be descendents of $T$ with $\gen(U)=\gen(V)< d$ with common facet 
 				\begin{equation*}
 					H = \left\{ h_{1},\dots ,h_{d} \right\}	
 				\end{equation*}
 				 \input{tikz/chapter2/common_facet.tex}
-			\item Both $U$ and $V$ get bisected along their longest edge
+			\item Both $U$ and $V$ get bisected along their longest edge.
 				\begin{enumerate}[label = Case \arabic*]
-					\item both longest edges are not in $H$ $\to$ no problem
-					\item one longest edge is in $H$, the other is not\\
-						this cannot happen, because the longest edges are unique and have the same lenght $|d- \text{gen}(U)|=|d-\text{gen}(V)|$
-					\item both edges are in $H$ $\implies$ they must be the same
+					\item both longest edges are not in $H$ $\to$ no problem.
+					\item one longest edge is in $H$, the other is not:
+						This cannot happen, because the longest edges are unique and have the same length $|d- \gen(U)|=|d-\gen(V)|$.
+					\item both edges are in $H$ $\implies$ they must be the same. \qedhere
 				\end{enumerate}
-		\end{itemize}
-\end{proof_}
+		\end{itemize} 
+  \end{proof}
+\end{proof}
 
 \section{Refinement-Algorithm}
 \underline{Goal:} Algorithm that construct a (small) conforming refinement of a given triangulation $\T$ in which all elements of a subset $\mathcal{M} \subset \T$ is refined.
