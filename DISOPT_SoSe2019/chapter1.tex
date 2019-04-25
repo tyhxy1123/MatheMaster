@@ -318,29 +318,29 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
       		$35$ & $105$ \\
   		\end{tabular}
 	\end{table}
-	\underline{Modellierung} 
+	\underline{Modellierung}
   \begin{enumerate}[label={Variante \arabic*.}]
     \item \label{item:Zuschnittsillymodel} Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wieviele Stäbe der Länge $25,30,35\,$cm daraus geschnitten werden sollen.
-			\begin{align}
-				\implies \forall i~ & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100 \notag\\
-								   &
-								  	\begin{rcases}
-								   		 \sum\limits_{i}^{} x_{i1} \geq 80\\
-								   		 \sum\limits_{i}^{} x_{i2} \geq 75\\
-								   		 \sum\limits_{i}^{} x_{i3} \geq 105 
-                   \end{rcases} \tag{$\Delta$}\label{model_cutting_1}
-			\end{align}
+      \begin{align}
+        \implies \forall i~ & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100 \notag\\
+                            &
+        \begin{rcases}
+          \sum\limits_{i}^{} x_{i1} \geq 80\\
+          \sum\limits_{i}^{} x_{i2} \geq 75\\
+          \sum\limits_{i}^{} x_{i3} \geq 105
+        \end{rcases} \tag{$\Delta$}\label{model_cutting_1}
+      \end{align}
       Zielfunktion: minimiere $K = \text{ Anzahl der Stäbe}$, wobei $i = 1,\dots ,K$.
       Um $K$ zu berechnen, nutze folgende Idee: Für jeden Stab $i$ führe eine Variable $y_{i} \in \left\{0,1 \right\}$ ein, die entscheidet, ob der Stab verwendet wird oder nicht.
 
-			Die maximale Anzahl benötigter Stäbe ist $\leq 80 + 75 +105 = 260$.
-			\begin{align*}
+      Die maximale Anzahl benötigter Stäbe ist $\leq 80 + 75 +105 = 260$.
+      \begin{align*}
         \implies \min_{x,y}\sum_{i=1}^{260} y_{i} &\text{ subject to } x_{i1},x_{i2},x_{i3} \in \N_{0}, y_{i}\in \left\{0,1 \right\} , \eqref{model_cutting_1},\\
-				& \forall i = 1,\dots ,260 : 25x_{i1} + 30x_{i2} + 35x_{i3} \leq 100y_{i}
-			\end{align*}
-			
+                                                  & \forall i = 1,\dots ,260 : 25x_{i1} + 30x_{i2} + 35x_{i3} \leq 100y_{i}
+      \end{align*}
+      \underline{Problem:} gigantisch viele Variablen und Restriktionen und Redundanz in der Darstellung. Das ist ein schlechtes Zeichen für das Modell, aber kein prinzipielles Problem für das Symplex-Verfahren. (Redundanz bedeutet in diesem Fall u.\,a., dass es sehr viele äquivalente Situationen gibt.)
     \item \label{item:Zuschnittbettermodel} Schnittmuster\\
-     	Führe eine Variable $x_{i} \in \N_{0}$ ein für jedes Schnittmuster $i$, nach dem eine Stange zerschnitten werden kann: 
+     	Führe eine Variable $x_{i} \in \N_{0}$ ein für jedes Schnittmuster $i$, nach dem eine Stange zerschnitten werden kann:
       \begin{table}[H]
         \centering
         \begin{tabular}{c|c|c|c}
@@ -370,12 +370,12 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
     	\end{align*}
 		In Matrixform $Hx \leq b$.
 
-		Vorteil: 
+		Vorteil:
 		\begin{itemize}
 			\item Anzahl Restriktionen $=$ Anzahl verschiedener Stablängen
       \item Anzahl Variablen $=$ Anzahl (sinnvoller) Schnittmuster (wächst schnell, aber langsamer als \ref{item:Zuschnittsillymodel})
 		\end{itemize}
-	 
+
  \end{enumerate}
  \underline{Lösung für \ref{item:Zuschnittbettermodel}}
 \begin{enumerate}
@@ -383,9 +383,9 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 		\begin{equation*}
 			\min_{x} c^{T} x \text{ subject to } Mx \geq b, x \geq 0 , x \in \Z^{n}.
 		\end{equation*}
-		Löse das \underline{relaxierte LP} 
+		Löse das \underline{relaxierte LP}
 	\begin{equation*}
-		\min_{x} c^{T} x \text{ subject to } Hx \geq b, x \geq 0 
+		\min_{x} c^{T} x \text{ subject to } Hx \geq b, x \geq 0
 	\end{equation*}
 	\item Simplex-Verfahren für das relaxierte Problem:
 		\begin{itemize}
@@ -403,11 +403,11 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 				H,&-I
 			\end{pmatrix}_{B}
 			$ wie oben bestimmen\\
-			$\to$ zugehörige duale Variable: 
+			$\to$ zugehörige duale Variable:
 			\begin{equation*}
 				y = A_{B}^{-T}c_{B}
 			\end{equation*}
-			$\to $ reduzierte Kosten 
+			$\to $ reduzierte Kosten
 			\begin{equation*}
 				z_{N} = c_{N} - A_{N}^{T} y
 			\end{equation*}
@@ -415,11 +415,11 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 			\begin{equation*}
 				z_{j} = c_{j} - A_{\cdot j}^{T} y = 0 + e_{j}^{T} y = y_{j}
 			\end{equation*}
-			($y_{j}$ ist bekannt). Für $j \in N$, die zu den Variablen $x$ gehören 
+			($y_{j}$ ist bekannt). Für $j \in N$, die zu den Variablen $x$ gehören
 			\begin{equation*}\label{dantzigRegel}
-				e_{j} = c_{j} - A_{\cdot j}^{T} y = 1 - \underbrace{H_{\cdot j}^{T}}_{\text{unbekannt}} y \to \min \tag{Dantzig Regel} 
+				e_{j} = c_{j} - A_{\cdot j}^{T} y = 1 - \underbrace{H_{\cdot j}^{T}}_{\text{unbekannt}} y \to \min \tag{Dantzig Regel}
 			\end{equation*}
-			$\implies$ bestimme die \glqq beste \grqq\ Spalte $H_{\cdot j}$ als Lösung von 
+			$\implies$ bestimme die \glqq beste \grqq\ Spalte $H_{\cdot j}$ als Lösung von
 			\begin{equation*}
 				\max_{h} y^{T} h \text{ subject to } 25h_{1} + 30 h_{2} + 35h_{3} \leq 100, h\geq 0 , h \in \Z^3
 			\end{equation*}
@@ -436,7 +436,7 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 						\max_{x} c^{T} &x \text{ subject to } Ax = b , x\geq 0 , x\geq \lceil x_{i}^*\rceil
 					\end{align*}
 					\item Schnittebenen-Verfahren\\
-					Füge neue Ungleichung 
+					Füge neue Ungleichung
 					\begin{equation*}
 						a^{T} x \leq \beta
 					\end{equation*}
@@ -462,11 +462,11 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 			\end{equation*}
 		\item \underline{Polytop}:= beschränktes Polyeder ( $\iff P$ ist konvexe Hülle von endlich vielen Punkten)	
 		\item \underline{polyhedrischer kegel}:= Polyeder und Kegel ( $\iff P = \left\{x \ | \ Ax \leq 0 \right\}$)
-		\item P heißt \underline{rationales Polyeder}$\iff$ Es gibt $A\in\Q^{m \times n}, b \in \Q^m$ mit 
+		\item P heißt \underline{rationales Polyeder}$\iff$ Es gibt $A\in\Q^{m \times n}, b \in \Q^m$ mit
 			\begin{equation*}
 				P = P(A,b) = \left\{ x \in \R^n\ | \ Ax \leq b \right\}
 			\end{equation*}
-			Achtung 
+			Achtung
 			\begin{align*}
 				P &= P(A,b) = \left\{ x \in \R\ | \ \sqrt{2}x \leq 0 \right\} \text{ ist ein rationales Polyeder}\\
 				  &= \left\{x \in \R \ | \ x \leq 0  \right\}
@@ -489,8 +489,8 @@ Dimension von Polyedern?
 	\item Ist $U \subset  \R^n$ ein Unterraum, so ist $\dim(U)=$maximale Anzahl linear unabhängiger Vektoren
 	\item Ist $X \subset \R^n$, so ist die \underline{lineare Hülle} lin$(X)$ von $X$ der kleinste (bezüglich Inklusion) Unterraum $U$ von $\R^n$ mit $X \leq U$.
 	\item Eine Menge $A \subset  \R^n$ heißt \underline{affiner Unterraum}, wenn gilt $U:=A-a^*$ (mit $a^* \in A$ beliebig) ist ein Unterraum.
-		Wir definieren $\dim(A) := \dim(U)$ 
-	\item Konvention $\dim\emptyset=-1$ 
+		Wir definieren $\dim(A) := \dim(U)$
+	\item Konvention $\dim\emptyset=-1$
 	\item Ist $X\subset \R^n$, so ist die \underline{affine Hülle} $\aff(X)$ von $X$ ist der kleinste (bzgl. Inklusion) affine Unterraum $A$ mit $X\subset A$.
 		Wir definieren $\dim(X):=\dim(A)$ (funktioniert gut für konvexe Mengen)\\
 		Seien $x_{1},\dots ,x_{m}\in\R^n$:
@@ -498,11 +498,11 @@ Dimension von Polyedern?
 	\item \underline{affine Hülle}: $\aff(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\in \R, \sum_{i=1}^{m} c_{i}= 1 \right\}$
 	\item \underline{konvexe Hülle}: $\conv(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0, \sum_{i=1}^{m} c_{i}= 1 \right\}$
 	\item (konvexe) \underline{konische Hülle}: $\cone(x_{1},\dots ,x_{m})= \left\{ \sum\limits_{i=1}^{m} c_{i}x_{i}\ | \ c_{i}\geq 0 \right\}$
-	\item Sei $X \subset \R^n$ nichtleer. Dann ist das \underline{relative Innere} von $X$ definiert als 
+	\item Sei $X \subset \R^n$ nichtleer. Dann ist das \underline{relative Innere} von $X$ definiert als
 		\begin{equation*}
 			\rint(X):= \left\{ x^* \in X \ |\ \exists r >0 \text{ mit } B_{r}(x^*)\cap\aff(X) \subset X \right\}
 		\end{equation*}
-		der \underline{relative Rand} von $X$ ist definiert als 
+		der \underline{relative Rand} von $X$ ist definiert als
 		\begin{equation*}
 			\rbd(X) := \overline{X}\backslash \rint(X)
 		\end{equation*}
@@ -527,16 +527,16 @@ Dimension von Polyedern?
 \begin{beispiel}
 	$a^{T} x \leq 0$ ist eine gültige Ungleichung für jedes Polyeder $P$.
 	 \begin{itemize}
-		\item Ist $a^{T} x \leq \beta$ eine gültige Ungleichung für $P$, so heißt 
+		\item Ist $a^{T} x \leq \beta$ eine gültige Ungleichung für $P$, so heißt
 			\begin{equation*}
 				F = P \cap \left\{ x \in \R^n\ |\ a^{T} x = \beta \right\}
 			\end{equation*}
-			eine \underline{Seitenfläche} (Face) von $P$ 
+			eine \underline{Seitenfläche} (Face) von $P$
 		\item Eine Seitenfläche $F$ heißt \underline{echt} (proper), wenn gilt $\emptyset \neq F \neq P$
 	\end{itemize}
 \end{beispiel}
 \begin{beispiel}
-	$o^{T} x \leq 0 \implies F = P, o^{T} x \leq 1 \implies F = \emptyset$ 
+	$o^{T} x \leq 0 \implies F = P, o^{T} x \leq 1 \implies F = \emptyset$
 	\begin{itemize}
 		\item Eine echte Seitenfläche $F$ von $P$ heißt \underline{Facette}, wenn sie in keiner anderen \underline{echten} Seitenfläche von  $P$ enthalten ist.
 	\end{itemize}
@@ -544,14 +544,14 @@ Dimension von Polyedern?
 \begin{definition}
 	Sei $P = P(A,b) \subset \R^n$ ein Polyeder
 	\begin{itemize}
-		\item Sei $F$ eine Seitenfläche von $P$. Dann heißt 
+		\item Sei $F$ eine Seitenfläche von $P$. Dann heißt
 			\begin{equation*}
 				\eq(F):=\left\{ i = 1,\dots ,m\ |\ A_{i,\cdot}x = b_{i} \forall x \in F \right\}
 			\end{equation*}
 			die \underline{Menge der aktiven/bindenden Restriktionen} von $F$.
 		\item Die Menge eq$(P) = \left\{ i =1,\dots ,m \ |\ A_{i,\cdot}x =b_{i} \ \forall x \in P \right\}$ heißt die \underline{Menge aller impliziten Gleichungen}
 		\item Für $I \subset  \left\{ 1,\dots ,m \right\}$ heißt fa$(I):=\left\{x \in P \ |\ A_{i,\cdot}x = b_{i} \ \forall i \in I \right\}$ die \underline{von $I$ induzierten Seitenfläche}\\
-			fa$(I)$ ist eine Seitenfläche mit der gültigen Ungleichung 
+			fa$(I)$ ist eine Seitenfläche mit der gültigen Ungleichung
 			\begin{equation*}
 				a^{T} x \leq \beta
 			\end{equation*}
