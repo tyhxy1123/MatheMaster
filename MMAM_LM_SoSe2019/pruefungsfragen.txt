@@ -1,1 +1,2 @@
 - Was ist die Grundgleihung des Linearen Modells? Was ist Y? Was ist Epsilon?
+- Satz 3.9 (1) ist total wichtig (Gauﬂ-Markov-Theorem)

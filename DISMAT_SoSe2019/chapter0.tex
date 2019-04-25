@@ -1,9 +1,702 @@
-% !TEX root = NLANA.tex
+% !TEX root = DISMAT.tex
 % This work is licensed under the Creative Commons
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+\chapter{Set Theory}
+\section{Well-founded Orders}
 
-\chapter{Chapter}
-\section{Section}
+\begin{definition}
+    If 
+    \begin{itemize}
+        \item $X$ is a set
+        \item $(X, < \subseteq X \times X)$ a binary relation
+        \item $<$ is irreflexive: there is no $x \in X$, st. $x < x$
+        \item $<$ is transitive: for all $x,y,z \in X$
+        $$ x < y \text{ and } y < z \implies x < z.$$
+    \end{itemize}
+    Then we call $(X, <)$ a \define{strict partial order}.
+\end{definition}
 
+\begin{definition}
+    If 
+    \begin{itemize}
+        \item $X$ is a set
+        \item $Y \subseteq X$
+        \item $y \in Y$.
+    \end{itemize}
+    Then 
+    \begin{itemize}
+        \item $y$ is a \define{smallest element} if $y \leq y'$ for every $y' \in Y$.
+        \item $y$ is a \define{minimal element} if $y' < y$ for no $y' \in Y$.
+        \item we define \define{biggest element} and \define{maximal element} in a similar way.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    If 
+    \begin{itemize}
+        \item $(X, <)$ is a strict partial order on $X$
+        \item every subset $Y \subseteq X$ contains a minimal element.
+    \end{itemize}
+    Then we call $(X, <)$ \define{well-founded}. If furthermore $<$ is total we say $(X , <)$ is a \define{well-order}.
+\end{definition}
+
+\begin{remark}
+    If $(X, <)$ is a strict partial order on $X$.
+    Then 
+    \begin{enumerate}[label=(\roman*)]
+        \item $(X, <)$ is well-founded $\iff$ there is no decreasing chain in sequence in $X$
+        \item $(X, <)$ is a well-order $\iff$ every non-empty subset of $X$ contains a smallest element.
+    \end{enumerate}
+\end{remark}
+
+\begin{example}
+    \begin{itemize}
+        \item the usual order $<$ on $\N$ is a well-order
+        \item the usual order $<$ on $\Z$ is a well-order
+        \item the usual order $<$ on $\set{q \in \Q \mid q \geq 0}$ is not a well-order
+    \end{itemize}
+\end{example}
+
+\section{Ordinal Numbers}
+
+\begin{definition}
+    If
+    \begin{itemize}
+        \item $X$ is a set
+        \item for all $x \in X$
+        $$ y \in x \implies y \in X \text{ (or equivalently $x \in X \implies x \subseteq X$)}.$$
+    \end{itemize}     
+    Then $X$ is called \define{transitive}.
+\end{definition}
+
+\begin{definition}
+    If
+    \begin{itemize}
+        \item $(X , \in)$ is a well-order
+        \item $X$ is transitive.
+    \end{itemize}
+    Then we call $X$ an \define{ordinal}.
+\end{definition}
+
+\begin{proposition}\label{prop:1}
+    If $\alpha, \beta$ are ordinals.\\
+    Then 
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\emptyset$ is an ordinal
+        \item if $\alpha \ne \emptyset$, then $\emptyset \in \alpha$
+        \item $\alpha \notin \alpha$
+        \item if $x \in \alpha$, then $x = \set{y \in \alpha \mid y \in x}$
+        \item if $x \in \alpha$, then $x$ is an ordinal
+        \item $\beta \subseteq \alpha$ $\iff$ $\beta \in \alpha$ or $\beta = \alpha$
+        \item $s(\alpha) := \alpha \cup \set{\alpha}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \emph{(1):} clear\\
+    \emph{(2):} $\alpha \ne \emptyset \implies \alpha$ has a minimal element $x \in \alpha$.
+    If $x = \emptyset$, then there is nothing to show. Suppose $x \ne \emptyset$, but then there is $y \in x$, whence
+    $ y\in \alpha$, which contradicts the minimality of $x$.\\
+    \emph{(3):} clear, since $\in$ is a strict order.\\
+    \emph{(4):} this is a direct consequence of the transitivity of $\alpha$.\\
+    \emph{(5):}
+    \begin{itemize}[label=-]
+        \item transitivity\\
+        Let $z \in x$ and $y \in z$. Since $x \in \alpha$ and $z \in x$ $\implies z \in \alpha$ $\implies y \in \alpha$.\\
+        As $\in$ is total on $\alpha$, it is
+        $$ y \in x \text{ or } x \in y \text{ or } x=y. $$
+        So if $x \in y \in z \in x$, we get $ x \in x$ which cannot be. The case of $x = y$ is similar. Hence we get $y \in x$.
+
+        \item $\in$ is a well-order on $x$.
+        $\in$ restricted to $x$ defines a total order, because $x \subseteq \alpha$. Let $y \subseteq x$, then $y \subseteq \alpha$.
+        Hence $y$ has a minimal element.
+    \end{itemize}
+    \emph{(6):} One direction is a direct consequence of the transitivity of $\alpha$. So, suppose $\beta \subsetneq \alpha$. 
+    Then $\alpha - \beta \ne \emptyset$, hence there is $x \in \alpha - \beta$ minimal.\\
+    \emph{Claim.} $x = \beta$.
+    \emph{$\subseteq$:} $y \in x \implies y \in \alpha \text{ and } y \notin \beta$ this contradicts to $x$ is minimal.\\
+    \emph{$\supseteq$:} Suppose $y \in \beta - x$, since $\beta \subseteq \alpha, y \in \alpha$. Since $\in$ is total
+    $$ \underbrace{y \in x}_{\text{impossible by assumption}} \text{ or } \underbrace{x \in y}_{\text{contradicts to $y \in \beta$ hence $x \in \beta$}} \text{ or } \underbrace{x = y}_{\text{contradiction, since $y \in \beta$, but $x \notin \beta$}}.$$
+    \emph{(7):} 
+    \begin{itemize}[label=-]
+        \item $s(\alpha)$ is transitive.
+        \begin{align*}
+            x \in s(\alpha) & \iff x \in \alpha \cup \set{\alpha}\\
+                & \iff x \in \alpha \text{ or } x = \alpha\\
+                & \implies x \subseteq \alpha \text{ or } x = \alpha\\
+                & \implies x \subseteq \alpha \subseteq s(\alpha)
+        \end{align*}
+        \item $\in$ is a well-order on $s(\alpha)$\\
+        Clear.
+    \end{itemize}
+\end{proof}
+
+\begin{notation}
+    By induction on $n \in \N$, we define an ordinal $\underline{n}$:
+    \begin{itemize}
+        \item $\underline{0} := \emptyset$
+        \item if $\underline{n}$ has been defined
+        $$ \underline{n+1} := s(\underline{n}) = \underline{n} \cup \set{\underline{n}}.$$
+    \end{itemize}
+\end{notation}
+
+\begin{remark}
+    $$\underline{0} < \underline{1} < \ldots < \underline{n}.$$
+    Usually we will identify $n$ and $\underline{n}$.
+\end{remark}
+
+\begin{definition}
+    $$ \omega := \bigcup_{n \in \N}\underline{n} \text{ (which is an ordinal)}.$$
+\end{definition}
+
+\begin{definition}
+    If $\alpha$ is an ordinal.\\
+    Then 
+    \begin{itemize}
+        \item $\alpha$ is called a \define{successor} $:\iff$ there is some ordinal $\beta$, st. $\alpha = s(\beta)$.
+        \item $\alpha$ is called a \define{limit ordinal} $:\iff$ $\alpha \ne \emptyset$ and $\alpha$ is not a successor.
+        \item $\alpha$ is called \define{finite} $:\iff$ $\alpha$ is not a limit ordinal and none of its elements is a limit ordinal.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    If $X \ne \emptyset$ is a set of ordinals.\\
+    Then 
+    \begin{enumerate}[label=(\alph*)]
+        \item $\bigcap_{\alpha \in X} \alpha$ is an ordinal;
+        \item $\bigcap_{\alpha \in X} \alpha$ is the smallest element of $X$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof} \emph{(a):}
+    \begin{itemize}[label=-]
+        \item $\bigcap_{\alpha \in X} \alpha$ is transitive (exercise)
+        \item $\bigcap_{\alpha \in X} \alpha$ is well-ordered
+         \begin{itemize}[label=-]
+             \item total order: $\bigcap_{\alpha \in X} \alpha \subseteq \alpha$
+             \item well-founded: similar.
+         \end{itemize}
+    \end{itemize}
+    \emph{(b):} Contra positive. Suppose 
+    $$ \beta = \bigcap_{\alpha \in X} \alpha \notin X. $$
+    Since $\beta \subseteq \alpha$ for all $\alpha \in X$, by \cref{prop:1}.(5) and $\beta \ne \alpha$, $\beta \in \alpha$ for all $\alpha \in X$.
+\end{proof}
+
+\begin{theorem}
+    If $\alpha, \beta$ ordinals.\\
+    Then exactly one of the following holds
+    $$\alpha \in \beta \text{ or } \beta \in \alpha \text{ or } \alpha = \beta.$$
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        & X = \set{\alpha, \beta} \text{ is a set of ordinals}\\
+        \implies & \alpha \cap \beta \text{ is an ordinal and } \alpha \cap \beta \subseteq \alpha, \beta\\
+        \implies & \alpha = \alpha \cap \beta \text{ or } \beta = \alpha \cap \beta\\
+        \implies & \alpha \subseteq \beta \text{ or } \beta \subseteq \alpha\\
+        \implies & \alpha \in \beta \text{ or } \alpha = \beta \text{ or } \beta \in \alpha
+    \end{align*}
+\end{proof}
+
+\newpage
+\begin{notation}
+    $\alpha < \beta$ means $\alpha \in \beta$.\\
+    $\alpha \leq \beta$ means $\alpha \subseteq \beta$.
+\end{notation}
+
+\begin{exercise}
+    If $\alpha$ is an ordinal.\\
+    Then 
+    \begin{enumerate}[label=(\roman*)]
+        \item $\alpha$ is finite $\iff$ $\alpha < \omega$
+        \item $\omega$ is the smallest limit ordinal.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proposition}
+    If 
+    \begin{itemize}
+        \item $\lambda$ is an ordinal
+        \item $\lambda$ is non-empty.
+    \end{itemize}
+    Then the following are equivalent:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\lambda$ is a limit ordinal
+        \item $\lambda = \bigcup\limits_{\alpha < \lambda} \alpha$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \emph{$(i) \implies (ii)$.} Let $\beta = \bigcup\limits_{\alpha < \lambda} \alpha$, which is an ordinal.\\
+    To show: $\beta = \lambda.$\\
+    ($\subseteq$) $\gamma \in \beta$, so there is $\alpha < \lambda$ such that $\gamma \in \alpha$. 
+    By transitivity of $\lambda$, $\gamma \in \alpha \in \lambda \implies \gamma \in \lambda$.\\
+    ($\supseteq$) From above, $\beta \subseteq \lambda$. Suppose for a contradiction $\beta \in \lambda$.
+    Then $s(\beta) = \beta \cup \set{\beta} \subseteq \lambda$. Since $\lambda$ is limit $\lambda \ne s(\beta)$, 
+    this implies $s(\beta) \in \lambda (s(\beta) < \lambda)$ is a contradiction, since 
+    $$ \beta \in s(\beta) \subseteq \bigcup_{\alpha < \lambda} \alpha = \beta \implies \beta \in \beta. $$
+    \emph{$(i) \implies (i)$.} Contra position. Suppose $\lambda = s(\gamma)$ for some ordinal $\gamma$.
+    $$ \bigcup_{\alpha < \lambda} \alpha = \bigcup_{\alpha < s(\gamma)} \alpha = \bigcup_{\alpha \leq \gamma} \alpha
+        = \bigcup_{\alpha \subseteq \gamma} \alpha = \gamma < s(\gamma) = \lambda.$$
+\end{proof}
+
+\begin{exercise}
+    $\lambda$ is a limit ordinal $\iff$ there is a set of ordinals $A$, 
+    st. for each $\alpha \in A$ there is a $\beta \in A$, st. $\alpha < \beta$ and 
+    $$ \lambda = \bigcup_{\alpha \in A} \alpha.$$
+\end{exercise}
+
+\newpage
+\begin{lemma}\label{lemma:1}
+    If 
+    \begin{itemize}
+        \item $\alpha, \beta$ are ordinals
+        \item $f: \alpha \to \beta$ is a strictly increasing map ($x<y \implies f(x) < f(y)$).
+    \end{itemize}
+    Then for all $\gamma \in \alpha$
+    $$ \gamma \leq f(\gamma).$$
+    In particular 
+    \begin{itemize}
+        \item $\alpha \leq \beta$
+        \item $f$ is an isomorphism $ \implies \alpha = \beta$ and $f$ is the identify.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    Consider the set
+    $$ X = \set{\gamma \in \alpha \mid f(\gamma) < \gamma} \subseteq \gamma.$$
+    If $X = \emptyset$ we are done. Let's suppose $X \ne \emptyset$ and let $\gamma \in X$ be minimal.
+    Then $f(\gamma) < \gamma$, so since $\alpha$ is transitive, $f(\alpha) \in \alpha$.
+    Then $f(f(\gamma)) < f(\gamma)$, this contradicts the minimality of $\gamma$, since $f(\gamma) \in X$ and $f(\gamma) < \gamma$.    
+\end{proof}
+
+\begin{theorem}\label{thm:1}
+    If $X$ is well-ordered.\\
+    Then $X$ is isomorphic (as a partial order) to an ordinal. Furthermore the ordinal and the isomorphism is unique.
+\end{theorem}
+
+\begin{theorem}[Transfinite induction]
+    If
+    \begin{itemize}
+        \item $P$ is a property of ordinals
+        \item $\emptyset$ satisfies $P$
+        \item if $\alpha$ satisfies $P$, then $s(\alpha)$ also satisfies $P$
+        \item if $\alpha$ is a limit ordinal and for all $\beta < \alpha$, $\beta$ satisfies $P$, then
+        $\alpha$ satisfies $P$.
+    \end{itemize}
+    Then all ordinals satisfy $P$.
+\end{theorem}
+
+\begin{definition}
+    If $\alpha, \beta$ are ordinals.\\
+    Then $\alpha + \beta$ is defined by transfinite induction on $\beta$
+    \begin{itemize}[label=-]
+        \item $\alpha + \emptyset : = \alpha$
+        \item Assuming $\alpha + \beta$ has been defined
+        $$\alpha + s(\beta) := s(\alpha + \beta)$$
+        \item If $\beta$ is a limit ordinal, and $\alpha + \gamma$ has been defined for all $\gamma < \beta$
+        $$ \alpha + \beta := \bigcup_{\gamma < \beta} \alpha + \gamma. $$
+    \end{itemize}
+\end{definition}
+
+\begin{notation}
+    From now on we denote $s(\alpha)$ by $\alpha + 1$.
+\end{notation}
+
+\begin{example}
+    If $\alpha$ is an ordinal.\\
+    Then $$ 0 + \alpha = \alpha + 0. $$
+\end{example}
+\begin{proof}
+    We use transfinite induction on $\alpha$.\\
+    \emph{If $\alpha = 0$.} Then $0 + 0 = 0 + 0$.\\
+    \emph{Suppose the statement hold for all $\beta < \alpha$.} Suppose $\alpha = \beta + 1$. Then
+    $$ 0 + \alpha = 0 + (\beta + 1) = 0 + s(\beta) = s(0 + \beta) = s(\beta) = \alpha = \alpha + 0.$$
+    Suppose now $\alpha = \bigcup_{\beta < \alpha} \beta$. Then
+    $$ 0 + \alpha = \bigcup_{\beta < \alpha} 0 + \beta = \bigcup_{\beta < \alpha} \beta = \alpha = \alpha + 0. $$
+\end{proof}
+
+\begin{definition}
+    If $\alpha$ is an ordinal.\\
+    Then we define
+    \begin{itemize}
+        \item $\alpha^0 := 1$
+        \item $\alpha^{\beta + 1} := \alpha^\beta \cdot \alpha$
+        \item for $\beta = \bigcup_{\gamma < \beta} \gamma$ a limit ordinal,
+        $$ \alpha^\beta := \begin{cases}
+            0, & \alpha = 0\\
+            \bigcup_{\gamma < \beta} \alpha^\gamma,& \alpha > 0.
+        \end{cases}$$
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    We have 
+    \begin{align*}
+        &0,1,2,\ldots,\omega,\omega+1,\omega+2,\ldots,\omega+\omega= \omega\cdot 2, \\
+        &\omega 2 + 1, \ldots \omega 3, \ldots \omega n, \ldots, \omega \cdot \omega= \omega^2,\\
+        &\omega^2 + 1, \ldots, \omega^2 + \omega, \ldots, \omega^3, \ldots, \omega^\omega, \ldots
+    \end{align*}
+    $$ \omega^{\omega^{\omega^\omega}}$$
+\end{remark}
+
+\section{Axiom of Choice}
+\begin{recall}[Axiom of Choice]
+    If 
+    \begin{itemize}
+        \item $I$ is a set
+        \item $(X_i)_{i\in I}$ is a family of sets
+        \item for all $i \in I$ $X_i \ne \emptyset$.
+    \end{itemize}
+    Then the axiom of choice states, that
+    $$ \prod_{i \in I} X_i \ne \emptyset.$$
+\end{recall}
+
+\begin{recall}[Zorn's Lemma]
+    If 
+    \begin{itemize}
+        \item $X$ is a set
+        \item $\leq$ is a partial order on $X$
+        \item $X \ne \emptyset$
+        \item every chain $Y \subseteq X$ has an upper bound.
+    \end{itemize}
+    Then Zorn's lemma states, that $X$ has a maximal element.
+\end{recall}
+
+\begin{recall}[Zermelo's Theorem]
+    Every set can be well-ordered.
+\end{recall}
+
+\begin{recall}
+    Axiom of choice $\iff$ Zorn's lemma $\iff$ Zermelo's theorem.
+\end{recall}
+
+\section{Cardinal numbers}
+
+\begin{definition}
+    If $A,B$ are sets.\\
+    Then 
+    \begin{itemize}
+        \item $A$ and $B$ are called \define{equinumerous} $:\iff$ there is a bijection $f:A \to B$.
+        \item $A$ is \define{subnumerous then $B$} $:\iff$ there is an injection $g:A \to B$.
+    \end{itemize}
+\end{definition}
+
+\begin{notation}
+    If $A,B$ are equinumerous, we write $A \simeq B$.\\
+    If $A$ is subnumerous then $B$, we write $A \preceq B$.
+\end{notation}
+
+\begin{remark}
+    $\simeq$ is a equivalence relation.
+\end{remark}
+
+\begin{definition}
+    If $A$ is a set.\\
+    Then $A$ is \define{countable} $:\iff$ $A \preceq \N$.
+\end{definition}
+
+\begin{theorem}[Cantor]
+    If $A$ is a set.\\
+    Then $A \prec \mathcal{P}(A)$ ($A \preceq \mathcal{P}(A)$ but not $A \simeq \mathcal{P}(A)$).
+\end{theorem}
+\begin{proof}
+    Let $f: A \to \mathcal{P}(A)$ be a function. Consider the set
+    $$ B = \set{x \in A \mid \notin f(x)} \subseteq A.$$
+    If $f$ is surjective, there is $x \in A$ st. $f(x) = B$.
+    Then 
+    $$ x \in f(x) = B \iff x \notin f(x), $$
+    since this is a contradiction, no map $f$ is surjective. In particular $A \not \simeq \mathcal{P}(A)$.
+    On the other hand
+    $$\begin{cases}
+        f: A \to \mathcal{P}(A)\\
+        a \mapsto \set{a}
+    \end{cases} \text{ is injective so } A \preceq \mathcal{P}(A).$$
+\end{proof}
+
+\begin{definition}
+    If $\lambda$ is an ordinal.\\
+    Then $\lambda$ is called a \define{cardinal} $:\iff$ $\lambda$ is not equinumerous to a smaller ordinal.
+\end{definition}
+
+\begin{theorem}[Cantor-Schröder-Bernstein]\label{thm:cantorbernstein}
+    If
+    \begin{itemize}
+        \item $X,Y$ are sets
+        \item $X \preceq Y$
+        \item $Y \preceq X$.
+    \end{itemize}
+    Then $X \simeq Y$.
+\end{theorem}
+
+\begin{proposition}
+    If $X$ is a set.\\
+    Then $X$ is equinumerous to a unique cardinal, denoted by $\abs{X}$.
+\end{proposition}
+\begin{proof}
+    By Zermelo's theorem, there is a well-order $\prec$ on $X$. By \labelcref{thm:1}, $(X, \prec)$ is order-isomorphic to $(\alpha, \in)$
+    where $\alpha$ is an ordinal. In particular, $X \simeq \alpha$.\\
+    Consider the set $$ Y = \set{\beta \in s(\alpha) \mid \beta \simeq \alpha}.$$
+    So $Y \ne \emptyset$, since $\alpha \in Y$. Since $s(\alpha)$ is an ordinal, let $\lambda$ be the minimal element of $Y$.\\
+    \emph{Claim.} $\lambda$ is an ordinal.
+
+    Suppose not. Hence there is $\gamma < \lambda$, st. $\gamma \simeq \lambda$. 
+    But $\lambda \simeq \alpha$, so $\gamma \simeq \alpha$, which contradicts to the minimality of $\lambda$.\\
+    For uniqueness, if $X \simeq \kappa$ for $\kappa$ a cardinal, then $\lambda \simeq \kappa$, which implies $\lambda = \kappa$ by definition of cardinal.
+\end{proof}
+
+\begin{proposition}
+    If \begin{itemize}
+        \item $X, Y$ are sets
+        \item $X \ne \emptyset$.
+    \end{itemize}
+    Then the following are equivalent
+    \begin{enumerate}[label=(\arabic*)]
+        \item $|X| \leq |Y|$
+        \item there is an injective map $f: X \to Y$
+        \item there is a surjective map $f: Y \to X$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \emph{($(1) \implies (2)$)} 
+    
+    $X \simeq |X| \leq |Y| \simeq Y$ by composition, there is an injection $f: X \to Y$.\\
+    \emph{($(2) \implies (3)$)}
+
+    Let $x_0 \in X$. Define $g: Y \to X$ by 
+    $$ g(y) := \begin{cases}
+        f^{-1}(y), & y \in f(X)\\
+        x_0, & y \notin f(X).
+    \end{cases}$$
+    This is a surjection as $f$ is a function.\\
+    \emph{($(3) \implies (1)$)}
+
+    $$g: Y \twoheadrightarrow X, X \simeq |X| = \lambda, Y \simeq |Y| = \kappa$$
+    it suffices to show there is an injection $f: \lambda \to \kappa$. 
+    Let $h: \kappa \to \lambda$, 
+    $$ \begin{tikzcd}
+        \kappa \arrow[rrrrr, bend right, "h"] & \simeq & Y \arrow[r, "g"] & X &\simeq& \lambda
+    \end{tikzcd}$$
+    For $\alpha < \kappa$, we define 
+    $$ f(\alpha) := \min \set{\beta \in \lambda \mid h(\beta) = \alpha}. $$
+    The function is well-defined, since $h$ is surjective.
+    To show that $f$ is injective, $\alpha < \alpha' < \kappa$, $f(\alpha) = f(\alpha')$
+    $$ \alpha' = h(f(\alpha')) = h(f(\alpha)) = \alpha,$$
+    a contradiction.
+\end{proof}
+
+\begin{exercise}
+    The class of ordinals is well-ordered by $\in$.
+\end{exercise}
+
+\begin{proposition}
+    \begin{itemize}
+        \item Every $\alpha < \omega$ is a cardinal.
+        \item The ordinal $\omega$ is a cardinal.
+        \item If $\alpha \geq \omega$, then $\alpha + 1$ is not a cardinal.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}
+    If $X$ is a set.\\
+    Then $X$ is called \define{finite}, if $\abs{X} < \omega$ (and otherwise \define{infinite}).\\
+    It is called \define{countable}, if $\abs{X} \leq \omega$ (and otherwise \define{uncountable}).
+\end{definition}
+
+
+\begin{proposition}
+    If $X$ is a set of cardinals.\\
+    Then $\bigcup_{\kappa \in X} \kappa$ is a cardinal.
+\end{proposition}
+\begin{proof}
+    We already know $\bigcup_{\kappa \in X} \kappa$ is an ordinal.
+    Let $\alpha < \bigcup_{\kappa \in X} \kappa$. By definition, there is $\kappa \in X$, st.
+    $ \alpha \in \kappa$, then $\abs{\alpha} < \kappa$ because $\kappa$ is a cardinal.
+    Then since $\kappa \subseteq \bigcup_{\kappa \in X} \kappa$,
+    $$ \abs{\alpha} < \kappa \leq \abs{\bigcup_{\kappa \in X} \kappa},$$
+    which shows it is a cardinal.
+\end{proof}
+
+\begin{definition}
+    If 
+    \begin{itemize}
+        \item $\kappa$ is a cardinal
+        \item $\kappa^+$ is the smallest cardinal strictly bigger than $\kappa$.
+    \end{itemize}
+    Then we call $\kappa^+$ the \define{successor cardinal of $\kappa$}.\\
+    Note that by Cantor's theorem, $\kappa^+$ exists since $\kappa < \abs{\mathcal{P}(\kappa)}$.
+\end{definition}
+
+\begin{definition}
+    If $\alpha$ is an ordinal.\\
+    Then we define
+    \begin{itemize}
+        \item $\aleph_0:= \omega$
+        \item $\aleph_{\alpha + 1} := \aleph_{\alpha}^+$
+        \item if $\alpha$ is a limit ordinal
+        $$ \aleph_\alpha := \bigcup_{\beta < \alpha} \aleph_\beta.$$
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    If $\kappa$ is an infinite cardinal. \\
+    Then there is an ordinal $\alpha$, st. $\kappa = \aleph_\alpha$.\\
+    Moreover $\alpha< \beta$ implies $\aleph_\alpha < \aleph_\beta$.
+\end{proposition}
+\begin{proof}
+    Let us first prove the "moreover" part by induction on $\beta$.
+
+    For $\beta=0$, there is nothing to show. Suppose the statement holds for all $\gamma < \beta$.
+    \begin{itemize}[label=-]
+        \item Suppose $\beta = \gamma + 1$ and $\alpha < \beta$.\\
+        Hence $\alpha \leq \gamma$, and by induction
+        $$ \aleph_\alpha \leq \aleph_\gamma < \aleph_\gamma^+ = \aleph_{\gamma + 1} = \aleph_\beta.$$
+
+        \item Suppose $\beta = \bigcup_{\gamma < \beta}$ and $\alpha < \beta$.\\
+        Since $\beta$ is limit, $\alpha + 1 < \beta$. So $\alpha < \alpha + 1 < \beta$ and by induction
+        $$ \aleph_\alpha < \aleph_{\alpha + 1} \subseteq \bigcup_{\gamma < \beta} \aleph_\gamma = \aleph_\beta. $$
+        which shows the statement holds for all $\beta$.
+    \end{itemize} 
+
+    The previous show that the function
+    $$ f: \kappa + 1 \to \aleph_{\kappa+1}, \beta \mapsto \aleph_\beta$$
+    is strictly increasing. By \cref{lemma:1} we know for all $\beta \in \kappa + 1$, $\beta \leq f(\beta)$.
+    In particular, since $\kappa \in \kappa + 1$,
+    $$ \kappa \leq f(\kappa) = \aleph_\kappa.$$
+    Let $\alpha$ be the minimal ordinal, st. 
+    $$\kappa < \aleph_\alpha. $$
+    Suppose $\alpha$ is a limit, then
+    $$ \kappa < \bigcup_{\beta < \alpha} \aleph_\beta \implies \kappa < \aleph_\beta\text{, for $\beta < \alpha$,}$$
+    which contradicts the minimality of $\alpha$, since $\aleph_0 \leq \kappa < \aleph_\alpha$, then $\alpha = \beta + 1$
+    for some $\beta$. The minimality of $\alpha$ implies
+    $$ \aleph_\beta \leq \kappa < \aleph_{\beta + 1} = \aleph_\beta^+ = \aleph_\alpha.$$
+    Hence $\kappa = \aleph_\beta$.
+\end{proof}
+
+\newpage
+\begin{definition}
+    If $\kappa$ and $\lambda$ are cardinals.\\
+    Then \begin{itemize}
+        \item $\kappa + \lambda := \abs{\kappa \sqcup \lambda}$
+        \item $\kappa \lambda := \abs{\kappa \times \lambda}$
+        \item $\kappa^\lambda := \abs{\set{f: \kappa \to \lambda}}$.
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    For finite cardinals, the previous operations agree with the usual operations on the natural numbers.
+\end{remark}
+
+\begin{proposition}
+    If $\kappa, \lambda$ and $\mu$ are cardinals, st. $\kappa \leq \lambda$.\\
+    Then 
+    \begin{enumerate}
+        \item $\kappa + \mu \leq \lambda + \mu$
+        \item $\kappa \mu \leq \lambda \mu$
+        \item $\kappa^\mu \leq \lambda^\mu$
+        \item $\mu^\kappa \leq \mu^\lambda$
+    \end{enumerate}
+\end{proposition}
+
+\begin{theorem}[Hessenberg]\label{thm:hessenberg}
+    If $\kappa$ is an infinite cardinal.\\
+    Then $\kappa\kappa = \kappa$.
+\end{theorem}
+\begin{proof}
+    By induction on $\alpha$ we show $\aleph_\alpha \aleph_\alpha = \aleph_\alpha$.
+
+    For $\alpha =0, \aleph_0 \aleph_0 = \abs{\aleph_0 \times \aleph_0} = \aleph_0$. Suppose the statement holds for all $\beta < \alpha$.
+    We endow $\aleph_\alpha \times \aleph_\alpha$ with an order $<_p$ defined as follows
+    $$ (\beta, \gamma) <_p (\beta', \gamma') \iff \begin{cases}
+        \max \set{\beta, \gamma} < \max \set{\beta', \gamma'}& \text{or}\\
+        \max \set{\beta, \gamma} = \max \set{\beta', \gamma'} \text{ and } \beta < \beta' & \text{or}\\
+        \max \set{\beta, \gamma} = \max \set{\beta', \gamma'} \text{ and } \beta = \beta' \text{ and } \gamma < \gamma'
+    \end{cases}$$
+    \emph{(exercise)} $<_p$ is a well-order on $\aleph_\alpha \times \aleph_\alpha$. Hence there is $\varepsilon$ an ordinal
+    and an order isomorphism $f: \varepsilon \to \aleph_\alpha \times \aleph_\alpha$. If $\varepsilon \leq \aleph_\alpha$ this
+    already implies the result (it shows $\abs{\aleph_\alpha \times \aleph_\alpha} \leq \aleph_\alpha$). Indeed this shows 
+    $\aleph_\alpha \aleph_\alpha \leq \aleph_\alpha$, and we trivialy have $\aleph_\alpha \leq \aleph_\alpha \aleph_\alpha$, some
+    $\aleph_\alpha \aleph_\alpha = \aleph_\alpha$.
+    So suppose $\aleph_\alpha \in \varepsilon$. Let $(\beta, \gamma) \in \aleph_\alpha \times \aleph_\alpha$ be st. 
+    $f(\aleph_\alpha) = (\beta, \gamma)$. Let $\delta = \max \set{\beta, \gamma} + 1$. Since no infinite cardinal is a successor
+    ordinal, $\delta < \aleph_\alpha$. So $ f|_{\aleph_\alpha} : \aleph_\alpha \to (\delta \times \delta)$, hence
+    $$ \aleph_\alpha \leq \abs{\delta \times \delta} = \abs{\delta} < \aleph_\alpha$$ a contradiction. 
+\end{proof}
+
+\begin{corollary}
+    \begin{enumerate}[label=\arabic*)]
+        \item If $X,Y$ are non-empty sets at least one of them infinite.\\
+        Then $\abs{x \cup Y} = \abs{X \times Y} = \max \set{\abs{X}, \abs{Y}}$.
+
+        \item If $\kappa, \lambda$ are cardinals and $\kappa \geq \aleph_0, \lambda > 0$.\\
+        Then $\kappa + \lambda = \kappa\lambda = \max \set{\kappa, \lambda}$.
+
+        \item If $I$ is a non-empty set, $(X_i)_{i \in I}$ a family of sets and $\kappa$ a cardinal st.
+        $$ \abs{X_i} \leq \kappa \text{ for all } i \in I.$$
+        Then $$ \abs{\bigcup_{i \in I} X_i} \leq \max \set{\abs{I}, \kappa}.$$
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    \emph{1):} Let $\kappa = \max \set{\abs{X}, \abs{Y}}$. Then
+    $$ \kappa \leq \abs{X \cup Y} \leq \abs{X \sqcup Y} = \abs{X} + \abs{Y} \leq \kappa + \kappa = 2 \kappa \leq \kappa \cdot \kappa \underbrace{=}_{\cref{thm:hessenberg}} \kappa.$$
+    also $\kappa \leq \abs{X \times Y} = \abs{X} \times \abs{Y} \leq \kappa \cdot \kappa = \kappa$.\\
+    \emph{2):} A particular case of 1).\\
+    \emph{3):} $$ \abs{\bigcup_{i \in I} X_i} \leq \abs{\bigsqcup_{i \in I} X_i} \underbrace{\leq}_{\text{because} \abs{X_i} \leq \kappa}
+    \abs{\bigsqcup_{i \in I} \kappa} = \abs{I \times \kappa} = \abs{I} \cdot \kappa \underbrace{=}_{\text{by 1)}} \max \set{\abs{I}, \kappa}.$$
+\end{proof}
+
+\begin{theorem}
+    If $(A, <)$ is well-ordered.\\
+    Then it is order-isomorphic to an ordinal. In addition, the order and the isomorphism are unique.
+\end{theorem}
+\begin{proof}
+    \emph{(Uniqueness)}
+
+    Suppose there are order-isomorphisms
+    $$\begin{tikzcd}[sep=huge]
+        A \arrow[r, "f"] \arrow[dr, "g"] & \alpha \arrow[d, "h"]\\
+        & \beta
+    \end{tikzcd},\qquad h = g \circ f^{-1}.$$
+    $h$ is an order-isomorphism. By a previous lemma, $h$ has to be the identify, hence $\alpha=\beta$ and $f=g$.\\
+    \emph{(Existence)}
+
+    For each $x \in A$, we define
+    $$ A_{<x} := \set{y \in A \mid y < x} \text{ and } A_{\leq x} := \set{y \in A \mid y \leq x} = A_{<x} \cup \set{x}.$$
+    Note, that $A_{\leq x}$ is well-ordered by $<$. 
+    Consider
+    $$ B := \set{x \in A \mid \text{there is } f_x: A_{\leq x} \to \alpha_x, \text{ with $f_x$ an order-isomorphism, $\alpha_x$ an ordinal.}}$$
+    By uniqueness, if $x \in B$ both $f_x, \alpha_x$ are unique.\\
+    \emph{Claim.} $A=B$.
+
+    \emph{Proof of claim.} Suppose not. Then $A \setminus B$ is non-empty. Let $x \in A \setminus B$ be the $<$-minimal element.
+    For all $y < x$, there is $f_y: A_{\leq y} \to \alpha_y$. Theses maps are compatible, namely, if $y < y' < x$
+    $$ \begin{tikzcd}[sep=huge]
+        A_{\leq y'} \arrow[r, "f_{y'}"] \arrow[d, hookrightarrow] & \alpha_{y'} \arrow[d, hookrightarrow]\\
+        A_{\leq y} \arrow[r, "f_{y}"] & \alpha_y
+    \end{tikzcd}, \qquad f_{y'}|_{A_{\leq y}} = f_y. $$
+    $f_{y'}|_{A_{\leq y}}:A_{\leq y} \to \beta $ is an order-isomorphism, hence by uniqueness $\alpha_y = \beta$ and the diagram above.
+    Let $\alpha:= \bigcup_{y < x} \alpha_y$ and $g: A_{< x} \to \alpha, y \mapsto f_y(y)$. It is easy to see that $g$ is an order-isomorphism.
+    Now extend $g$ to a map $g^*: A_{\leq x} \to \alpha + 1$
+    $$ g^*(y) = \begin{cases}
+        g(y), & \text{if } y \in A_{< x}\\
+        \alpha, & \text{if } y=x
+    \end{cases}$$
+    which is an order-isomorphism. This contradicts that $x \notin B$. So $A=B$, this proves the claim.
+
+    To conclude let $\lambda = \bigcup_{x \in A} \alpha_x$ (by claim). Let 
+    $$ h: \begin{cases}
+        A \to \alpha\\
+        x \mapsto f_x(x).
+    \end{cases}$$
+    as before, $h$ is the desired order-isomorphism.
+\end{proof}
+
+\begin{remark}
+    By Cantor's theorem: for every non-empty cardinal $\kappa$
+    $$ \kappa < 2^\kappa \simeq \abs{\mathcal{P}(\kappa)}.$$
+    In particular
+    $$ \N \simeq \aleph_0 < 2^{\aleph_0} \simeq \R.$$
+    \emph{Question:} Which ordinal $\alpha$ satisfies
+    $$ \aleph_\alpha = 2^{\aleph_0}?$$
+    This question cannot be settled in the axiomatic system ZFC.\\
+    \emph{Continuum Hypothesis.} $\aleph_1 = 2^{\aleph_0}$.\\
+    \emph{Generalized Continuum Hypothesis.} $\aleph_{\alpha + 1} = 2^{\aleph_\alpha} \text{ for all ordinals } \alpha$.\\
+    "ZF + GCH" implies "C".
+\end{remark}

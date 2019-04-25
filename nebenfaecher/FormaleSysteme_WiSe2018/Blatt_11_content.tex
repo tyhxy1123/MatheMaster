@@ -5,7 +5,6 @@
 
 \section{Aufgabenblatt 11}
 \subsection*{Aufgabe $\ast$)}
-Wir zeigen mit Hilfe des Pumpinglemmas, dass die Sprache $L:=\big\lbrace a^i ba^ib\mid i\in\N\big\rbrace$ nicht erkennbar ist.
 
 \begin{proof}
 	Widerspruchsbeweis: Angenommen $L$ ist erkennbar. Dann gilt nach Pumping\-lemma:
@@ -31,17 +30,6 @@ Konstruktionen der NEAs (in Worten):
 \end{itemize}
 
 \subsection{Aufgabe 1}
-Seien $r,s$ reguläre Ausdrücke, Beachte $r=s:\Longleftrightarrow L(r)=L(s)$ (eigentlich $r\equiv s$). Dann gilt:
-\begin{enumerate}[label=\alph*)]
-	\item $r+s=s+r$
-	\item $(r+s)+t=r+(s+t)$
-	\item $(rs)t=r(st)$
-	\item $r(s+t)=rs+rt$
-	\item $\emptyset^\ast=\varepsilon$
-	\item $(r^\ast)^\ast=r^\ast$
-	\item $r^\ast=rr^\ast+\varepsilon$
-	\item $(\varepsilon+r)^\ast=r^\ast$
-\end{enumerate}
 
 \begin{proof}
 	\underline{Zeige a):}
@@ -189,12 +177,7 @@ Seien $r,s$ reguläre Ausdrücke, Beachte $r=s:\Longleftrightarrow L(r)=L(s)$ (e
 \end{proof}
 
 \subsection{Aufgabe 2}
-Verwenden Sie die Konstruktion aus dem Beweis von Satz von Kleene (Satz 5.4) und das
-Lemma von Arden (Lemma 5.6), um einen regulären Ausdruck $r$ anzugeben, der die von dem
-folgenden Automaten $\A$ akzeptierte Sprache repräsentiert (das heißt, es soll $L(r) = L(\A)$ gelten).
 
-\includegraphics[width=0.7\textwidth]{pics/Blatt11_2.png}
- 
 \begin{lösung}
 	\textbf{Lemma von Arden:}
 	Seien $A,B\subseteq\Sigma^\ast$ und $\varepsilon\not\in A$.
@@ -229,14 +212,6 @@ folgenden Automaten $\A$ akzeptierte Sprache repräsentiert (das heißt, es soll
 \end{lösung} 
 
 \subsection{Aufgabe 3}
-Sei $\Sigma=\lbrace a,b,c\rbrace$.
- Geben Sie für jede der folgenden Sprachen $L_i$ einen regulären Ausdruck $r_i$ mit $L_i=L(r)$ an.
-Erklären Sie die Wahl Ihrer regulären Ausdrücke $r_i$.
-
-\begin{enumerate}[label=\alph*)]
-	\item $L_1=\big\lbrace w\in\Sigma^\ast:w\text{ beginnt mit $a$ mit $|w|_b$ ist gerade}\big\rbrace$
-	\item $L_2=\big\lbrace w\in\Sigma^\ast:\nexists u,v\in\Sigma^\ast:w=uaav\big\rbrace$
-\end{enumerate}
 
 \begin{lösung}
 	Idee: 

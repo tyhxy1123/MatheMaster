@@ -1,0 +1,216 @@
+% !TEX root = SCPROG.tex
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\chapter{Die Java-Welt}
+\section{Was ist Java? Java-Komponenten und -Tools}
+
+Java besteht aus dem \define{Java Runtime Environment (JRE)} und dem \define{Java Development Kit (JDK)}.
+Das JRE braucht man, um Java (bzw. den erzeugten Bytecode) auszuführen.
+das JRE besteht wiederum aus aus der \define{Java Virtual Machine (JVM)} und der \define{Java Class Library (JCL)}.
+Das JDK benötigt man um Java-Programme zu kompilieren.
+Es besteht aus:
+\index{Java Development Kit}\index{JDK|see{Java Development Kit}}
+\index{Java Runtime Environment}\index{JRE|see{Java Runtime Environment}}\index{Java Virtual Machine}\index{JVM|see{Java Virtual Machine}}
+\index{Java Class Library}\index{JCL|see{Java Class Library}}
+\begin{itemize}
+	\item javac (Java Compiler)
+	\item javadoc (Java Documentation); Javadoc-Kommentar: \code{/**$\ldots$*/}
+	\item loader
+	\item applet viewer
+	\item jdb (Java Debugger)
+	\item jar (Java Archive)
+\end{itemize}
+
+Früher hat man \define{graphical user interface (GUI)} mit dem \define{Abstract Windowing Toolkit (AWT)} in Java erstellt.
+Es wurde von \define{Swing} abgelöst.
+Eine Neuentwicklung auf diesem Gebiet ist \define{JavaFX}, allerdings hat Oracle die Entwicklung von JavaFX schon wieder eingestellt.
+
+\section{Historisches, Java-Versionen}
+
+\begin{itemize}
+	\item 1991: Java hieß noch \define{oak}: James Gosling ist der "Vater von Java" (Sun Microsystems)
+	\item 1995: Oak wurde Java umbenannt; Java war im ersten Browser (\undefine{Netscape}) eingebettet
+	\item 1996: JDK 1.0: erster just-in-time (JIT) compiler
+	\item 1999: Java 2 Platform = Java 1.2
+	\item 2002: J2SE = Java 1.4 (SE = Standard Edition)
+	\item 2004/05: J2SE 5[.0]  = Java 5: generics, enums, varargs, automatic boxing/unboxing (primitive type $\leftrightarrow$ wrapper type)
+	\item 2006/07: Java SE 6 = Java 6
+	\item 2007: große Teile des Java Systems wurden übergeben an \undefine{OpenJDK} (open source)
+	\item 27.01.2010: Orcale übernimmt Sun Microsystems: Java, MySQL, XML, JRuby, Solaris, OpenOffice wurde Teil von LibreOffice
+	\item 2011: Java 7
+	\item 2014: Java 8: $\lambda$-expressions (=: closures) $\leadsto$ funktionale Programmierung; JavaFX wurde eingeführt und sollte Swing ersetzen
+	\item Sep. 2017: Java 9: ahead-of-time compilation
+	\item Ma. 2018: Java 10: neuer JIT compiler, neuer Garbage Colletor (GC)
+	\item Sep. 2018: Java 11: entfernt wurden: JavaFX, Jave EE (Enterprise Edition), Corba
+	\item Mar. 2019: Java 12
+\end{itemize}
+
+\section{Prinzipien des objektorientierten Programmierens (OOPs)}
+\begin{enumerate}[label=(\arabic*)]\index{Modularisierung}\index{Vererbung}\index{Polymorphie}\index{dynamisches Binden}\index{spätes Binden}
+	\item \ul{Modularisierung (Module / Klassen)} $\leftrightsquigarrow$ abstrakte Datentypen (ADT)\\
+	Datenkapselung: Objekte haben Daten und Methoden
+	\item \ul{Vererbung:} Beziehung / Hierarchie zwischen Klassen\\
+	in Java: nur Einfachvererbung (d.h. jede Klasse hat genau eine Superklasse / Mutterklasse, außer \code{object})\\
+	$\implies$ Klassenhierarchie ist ein Baum
+	\item \ul{Polymorphie:}
+	\begin{itemize}
+		\item \ul{von Variablen:} eine Variable vom Type $T$ kann ein Objekt von jeden (direkten oder indirekten) Subtyp von $X$ enthalten / referenzieren.\\
+		Schreibe $S\subseteq T$ oder $S\subset T$ für Subtypen
+		\item \ul{von Methoden:} führt zu \ref{item:OOP(4)}
+	\end{itemize}
+	\item \ul{Dynamisches / spätes Binden:}\label{item:OOP(4)}
+	Es wird zur Laufzeit entschieden, welche Methode aufgerufen wird.
+\end{enumerate}
+
+Außerdem gehört noch zu OOP: dynamische Speicherverwaltung, Referenzvariablen, Überladung / Überschreibung von Methoden, Exception Handling, generische Datentyen, $\ldots$
+
+\begin{figure}[H] % oder ht!
+	\begin{center}
+		\input{./tikz/vererbung}
+		\caption{Einfachvererbung: Ist ein Quadrat ein Rechteck oder ein Rhomus?}
+		\label{Abb:einfachvererbung}
+	\end{center}
+\end{figure}
+
+\define{Eine Klasse:}\index{Klasse}
+\begin{itemize}
+	\item definiert einen abstrakten Datentyp (ADT)
+	\item definiert ein Layout von Objekten / Instanzen dieses Typs (Instanzvariablen)
+	\item definiert Datenfelder (Attribute) und Methoden (Funktionen)
+	\item enthält Klassenvariablen (statische Variablen)
+	\item enthält Konstruktoren (Default-Konstruktor ist immer da, hat 0 Parameter)
+	\item enthält eventuell eine \code{main}-Methode
+	\item kann nur aktiviert (aufgerufen) werden durch die JVM, falls die Klasse die \code{main}-Methode hat
+\end{itemize}
+
+\define{Ein Objekt / eine Instanz:}\index{Objekt}\index{Instanz}
+\begin{itemize}
+	\item repräsentiert eine Klasse / ist assoziiert zu einer Klasse
+	\item muss erstellt werden durch einen Konstruktor
+	\item enthält alle Instanzvariablen (entsprechend dem Layout der "Komponenten", die in der Klasse spezifiziert wurden)
+	\item wird im dynamischen Speicher (heap) erstellt:
+	Blockgröße wird bestimmt durch die Platzanforderungen von der Menge der Instanzvariablen
+\end{itemize}
+
+\subsection{Variablen und Typen}
+
+\define{Typen:} verschiedene Kategorien:\index{Typen}
+\begin{itemize}
+	\item primitive (Daten-)Typen z.B. \code{boolean, int, long, double, ...}
+	\item Referenztypen:
+	\begin{itemize}
+		\item Klassentypen z.B. \code{Boolean, Integer, Long, Double, ...}
+		\item Interface-Typen
+		\item Arraytypen
+		\item Der \code{null}-Typ
+	\end{itemize}
+\end{itemize}
+
+\define{Variablen:}\index{Variablen}
+\begin{itemize}
+	\item können jeden Typ haben (außer \code{null})
+	\item Variablen von primitive Typen enthalten nur einen Wert von diesen primitiven Typ
+	\item Referenzvariablen (Variablen von einem Referenztyp) enthalten eine Referenz\\ (Speicheradresse, Pointer) auf ein Objekt (eine Instanz) von einem kompatiblen Datentyp (welcher ein Subtyp der Variable sein muss) oder \code{null}
+	\item sind entweder Datenfelder in einer Klasse, welche entweder 
+	\begin{enumerate}[label=(\alph*)]
+		\item \define{statische} Variablen (Klassenvariablen) einer Klasse
+		\item \define{Instanzvariablen} (in jedem Objekt enthalten)
+	\end{enumerate}
+	oder \define{lokale} Variablen in Methoden (Stack-Variablen)
+	\item \define{konstante} Variablen / \define{Konstanten} sind deklariert als \code{static final}
+\end{itemize}
+
+Speicherbereiche im Arbeitsspeicher:
+\begin{itemize}
+	\item statischer Speicher (Methodenaufruf-Speicher)
+	\item dynamischer Speicher (Heap)
+	\item Stapelspeicher (Runtime Stack)
+\end{itemize}
+
+\define{Methoden:}\index{Methoden}
+\begin{itemize}
+	\item sind entweder \define{Klassenmethoden} (\code{static}, sind wie klassische Funktionen) oder \define{Instanzmethoden} (werden auf der entsprechenden Instanz aufgerufen via einer Referenz zu dem Objekt)
+	\item Methodenaufruf einer Klassenmethoden:\\ \code{Klasse.klassenmethode(param1,param2,...)}
+	\item Methodenaufruf einer Instanzmethode: siehe Abbildung \ref{Abb:thisObj}\\ \code{referenzVariable.instanzmethode(param1,param2,...)}
+	\item \define{Signatur:} Methodenname plus Liste der Parametertypen
+	(Der Rückgabetyp (Return) ist auch wichtig, kann aber  in der Signaturdefinition weggelassen werden)
+	\item \define{Overloading / Überladen:} 
+	%\begin{itemize}
+		%\item 
+		es gibt mehrere Methoden mit demselben Methodennamen, aber unterschiedlichen Parameter-Typ-Listen (unterschiedliche Signatur)
+	%\end{itemize}
+	\item \define{Parameterübergabe}: immer "by value";
+	bei Referenztypen wird die Referenz selbst übergeben
+	\item \define{Overriding / Überschreiben:}
+	erlaubt das Nutzen derselben Signatur in einer Unterklasse
+	$\leadsto$ dynamisches / spätes Binden
+\end{itemize}
+
+\begin{figure}[H] % oder ht!
+	\begin{center}
+		\input{./tikz/thisObj}
+		\caption{this Object: \code{this.instanzmethode(...)}}
+		\label{Abb:thisObj}
+	\end{center}
+\end{figure}
+
+\subsection{Literale (Konstanten von primitiven Datentypen)}
+\begin{itemize}
+	\item \code{int}: 32 Bit=4 Byte in Zweierkomplementdarstellung; Zahlenbereich:\\
+	$-2^{31}=-2.147.483.648$ = \code{Integer.MAX\_VALUE} bis\\ $+2^{31}-1=2.147.483.647$ = \code{Integer.MIN\_VALUE}\\
+	hexadezimale Repräsentation: \code{$\emptyset$x7ffffd}\\
+	oktale Repräsentation: \code{$\emptyset$77$_{8}$=63$_{10}$}\\
+	Unicode (16 Bit Zeichen): \code{$\setminus$u$\emptyset\emptyset$3f$_{16}$=63$_{10}$}
+	\item \code{long:} 64 Bit = 8 Byte in Zweierkomplementdarstellung;
+	Darstellung ähnlich wie \code{int}, mit einen postfix L:
+	\code{longvar = 2147500000L;}
+	(vergisst man hier das "L", so wird es nicht als long erkannt)
+	Wertebereich: $\set{-2^{63},\ldots,+2^{63}-1}$ mit\\
+	\code{Long.MAX\_VALUE, Long.MIN\_VALUE}
+	Beispiel:
+	\code{$\emptyset$x01fffaL}
+	\item \code{byte} 8 Bit; \code{(byte) $\emptyset$x7e}
+	\item \code{short} 16 Bit; \code{(short) 32767}\\
+	Für \code{byte} und \code{short} gibt es \betone{keine} explizite Konstantennotation! (deshalb der Typecast)
+	\item \code{float}: 32 Bit IEEE754 single precision floating-point\\
+	\code{123.456F=0.123456e+3f=123456E-3F}\\
+	Man kann die Null vor dem Komma weglassen und \code{.25} schreiben. 
+	(Ob großes oder kleines \code{e} / \code{f} spielt keine Rolle)
+	\item \code{double}: 64 Bit double precision;
+	ähnlich wie \code{float} \betone{ohne} nachgestelltes (postfixed) Zeichen.
+	Optional kann man das Zeichen "D" / "d" nachstellen.
+	\code{Double.NaN}
+	\item \code{char}: 16 Bit Unicodezeichen (ohne Vorzeichen!), z.B.\\ \code{'a','A',',','3',':', 'u$\setminus\emptyset\emptyset$47'}\\
+	Escape-Sequenzen:
+	\begin{itemize}
+		\item \code{'$\setminus$n'} erzeugt Zeilenumbruch 
+		\item \code{'$\setminus\setminus'$} erzeugt $\setminus$ (Backslash)
+		\item \code{'$\setminus$''} erzeugt ' (single quote)
+		\item \code{'$\setminus$\grqq{}'} erzeugt \grqq{} (double quote)
+	\end{itemize}
+	\item \code{boolean:} kann nur \code{true} oder \code{false}, \betone{keine} Typkonversion
+\end{itemize}
+
+\subsection{Typkonversionen (Casts / Casting)}
+Implizite Typkonversionen:
+\code{byte $\to$ short $\to$ int $\to$ long} und \code{char $\to$ int}
+sowie \code{float $\to$ double}\\
+Für die anderen Umwandlungen ist ein \betone{expliziter} Typecast notwendig.
+
+\subsection{Binäre arithmetische Operationen}
+Es gibt vier Hierarchie-Regeln:
+\begin{enumerate}[label=(\arabic*)]
+	\item Wenn mindestens ein Operand vom Typ \code{double} ist, dann ist das Ergebnis auch vom Type \code{double}.
+	\item Wenn mindestens ein Operand vom Typ \code{float} ist, dann ist das Ergebnis auch vom Type \code{float}.
+	\item Wenn mindestens ein Operand vom Typ \code{long} ist, dann ist das Ergebnis auch vom Type \code{long}.
+	\item Alles andere liefert ein Ergebnis vom Typ \code{int}.
+\end{enumerate}
+
+
+\section{Anwendungsgebiete, Einschränkungen, Vor- und Nachteile}
+
+
+

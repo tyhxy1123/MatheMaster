@@ -12,7 +12,6 @@ Grammatik für arithmetische Ausdrücke in BNF:
 \end{align*}
 
 \subsubsection{Aufgabe 1.1 (a)}
-Sind die folgenden Zeichenreihen arithmetische Ausdrücke?
 \begin{enumerate}[label=(\arabic*)]
 	\item Nein, da, Klammern fehlen. Richtig wäre: $(((3-2)+(1-(3\times 4)))$ oder $(((3-2)+1)-(3\times 4))$.
 	\item Nein, da rationale Zahlen nicht geklammert werden dürfen. Und ein unäres Minus ist auch nicht definiert. 
@@ -27,7 +26,7 @@ Grammatik für aussagenlogische Formeln in BNF:
 \begin{align*}
 	\varphi::=p|\neg \varphi_1|(\varphi_1\wedge\varphi_2)|(\varphi_1\vee\varphi_2)|(\varphi_1\to\varphi_2)|(\varphi_1\leftrightarrow\varphi_2)\mit p\in\mathcal{R}
 \end{align*}
-Sind folgende Zeichenreihen aussagenlogische Formeln lauf Definition \ref{def3.5Formel}?
+Sind folgende Zeichenreihen aussagenlogische Formeln lauf Definition?
 \begin{enumerate}[label=(\arabic*)]
 	\item Nein, da die Zeichen ``1'' und ``2'' auftauchen.
 	\item Nein, da die Zeichen ``2'' und ``3'' auftauchen.
@@ -38,8 +37,7 @@ Sind folgende Zeichenreihen aussagenlogische Formeln lauf Definition \ref{def3.5
 \end{enumerate}
 
 \subsection{Aufgabe 1.2 (Induktionsbeweis \texorpdfstring{$n\leq n^2$}{n<=n²})}
-Zeigen Sie mittels vollständiger Induktion, dass jede natürliche Zahl kleiner oder gleich
-ihrem Quadrat ist.
+
 \begin{proof}
 	Induktionsanfang: $n=0:~0\leq0=0^2$\\
 	Induktionsvoraussetzung: Gelte $n\leq n^2$ für beliebiges aber festes $n\in\N$.\\
@@ -52,11 +50,8 @@ ihrem Quadrat ist.
 \end{proof}
 
 \subsection{Aufgabe 1.3 (Unendliche Formeln?)}
-Beweisen Sie folgende Aussagen.
-Wir bezeichnen mit $|F|$ die Länge der Formel $F\in\L(\RR)$.
 
 \subsubsection{Aufgabe 1.3 (a)}
-Für jede natürliche Zahl $n > 0$ gibt es eine aussagenlogische Formel, die aus $n$ Zeichen des Alphabets der Aussagenlogik besteht.\nl
 \betone{Idee:} Für alle $n\in\N$ ist $\underbrace{\neg\ldots\neg}_{(n-1)\text{-mal}}p$ eine Aussagenlogische der Formel der Länge $n$ falls $p\in\RR$.
 
 \begin{proof}
@@ -74,9 +69,6 @@ Für jede natürliche Zahl $n > 0$ gibt es eine aussagenlogische Formel, die aus
 \end{proof}
 
 \subsubsection{Aufgabe 1.3 (b)}
-Jede aussagenlogische Formel ist eine endliche Zeichenreihe,
-d.h. es gibt also keine unendlich langen aussagenlogischen Formeln.
-
 \begin{proof}
 	Beweis durch strukturelle Induktion über $\varphi\in\mathcal{L}(\mathcal{R})$ (Menge der aussagenlogischen Formeln).\\
 	Induktionsanfang: Sei $\varphi=p$ für ein $p\in\mathcal{R}$. Dann $|\varphi|=|p|=1\in\N$\\
@@ -89,13 +81,8 @@ d.h. es gibt also keine unendlich langen aussagenlogischen Formeln.
 \end{proof}
 
 \subsection{Aufgabe 1.4 (Induktion: Klammer, Variablen und Junktoren)}
-Gelten die folgenden Aussagen? Beweisen Sie Ihre Antworten. 
-Verwenden Sie dazu, falls
-möglich, das Prinzip der strukturellen Induktion.
 
 \subsubsection{Aufgabe 1.4 (a)}
-In jeder aussagenlogischen Formel ist die Anzahl der öffnenden Klammern gleich
-die Anzahl der schließenden Klammern.
 
 \begin{proof}
 	Die Aussage stimmt, ja.\\
@@ -129,8 +116,6 @@ die Anzahl der schließenden Klammern.
 \end{proof}
 
 \subsubsection{Aufgabe 1.4 (b)}
-In jeder aussagenlogischen Formel sind doppelt so viele Klammern enthalten wie
-binäre Junktoren.
 
 \begin{proof}
 	Ja, diese Aussagen gilt.\\
@@ -171,9 +156,6 @@ binäre Junktoren.
 \end{proof}
 
 \subsubsection{Aufgabe 1.4 (c)}
-In jeder aussagenlogischen Formel ist die Anzahl der aussagenlogischen Variablen
-gr¨oßer oder gleich der Anzahl der einstelligen Junktoren. (Mehrfach vorkommende
-Variablen oder Junktoren sollen hierbei mehrfach gez¨ahlt werden.)
 
 \begin{lösung}
 	Nein, Gegenbeispiel: $\neg\neg\neg p\in\mathcal{L}(\mathcal{R})$ wobei $p\in\mathcal{R}$ aussagenlogische Variable ist und $\neg$ unärer Junktor.
@@ -181,8 +163,7 @@ Variablen oder Junktoren sollen hierbei mehrfach gez¨ahlt werden.)
 
 \subsection{Aufgabe 1.5 (Funktionen über Formelmengen)}
 \subsubsection{Aufgabe 1.5 (a)}
-Definieren Sie für eine gegebene aussagenlogische Variable $A$ durch strukturelle Rekursion eine einstellige Funktion $h$ über der Menge der aussagenlogischen Formeln,
-die berechnet, wie oft $A$ in einer Formel $F$ vorkommt.
+
 
 \begin{lösung}
 	Sei $A\in\mathcal{R}$ aussagenlogische Variable. Setze
@@ -213,8 +194,6 @@ die berechnet, wie oft $A$ in einer Formel $F$ vorkommt.
 \end{lösung}
 
 \subsubsection{Aufgabe 1.5 (b)}
-Definieren Sie durch strukturelle Rekursion eine Funktion \texttt{laenge}, welche die Anzahl der Zeichen bestimmt, aus denen eine Formel besteht (Leerzeichen nicht mitgezählt). 
-Bestimmten Sie sodann \texttt{laenge}$((p \vee (q \wedge \neg p)))$.
 
 \begin{lösung}
 	\begin{align*}
@@ -235,17 +214,6 @@ Bestimmten Sie sodann \texttt{laenge}$((p \vee (q \wedge \neg p)))$.
 \end{lösung}
 
 \subsubsection{Aufgabe 1.5 (c)}
-Definieren Sie mit struktureller Rekursion eine Funktion du, die angewandt auf
-eine aussagenlogische Formel $F$, folgendes leistet:
-\begin{enumerate}[label=(\roman*)]
-	\item  Alle aussagenlogischen Variablen $A$ in $F$ werden durch $\neg A$ ersetzt.
-	\item Alle $\wedge$ in $F$ werden durch $\vee$ ersetzt.
-	\item Alle $\vee$ in $F$ werden durch $\wedge$ ersetzt.
-	\item Strukturen der Form $(H \to G)$ in $F$ werden durch $(H \wedge\neg G)$ ersetzt.
-	\item Strukturen der Form $(H \leftrightarrow G)$ in $F$ werden durch $((H \wedge\neg G)\vee (G\wedge\neg H))$ ersetzt.
-\end{enumerate}
-
-Wenden Sie sodann die Funktion du auf die Formel $(p\to (p\wedge\neg q))$ an.
 
 \begin{lösung}
 	\begin{align*}

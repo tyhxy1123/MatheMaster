@@ -172,11 +172,9 @@ Wieder von Beginn an negieren, da wir Unerfüllbarkeit zeigen wollen.
 \end{align*}
 
 \subsection{Aufgabe 6.3 (Positive/negative Klauseln und Erfüllbarkeit)}
-Eine Klausel heißt \textbf{positiv} gdw. sie nur positive Literale (= aussagenlogische Variable) enthält, und eine Klausel heißt \textbf{negativ} gdw. sie nur negative Literale (= negierte aussagenlogische Variable) enthält.\nl
-Eine Klauselmenge (= Menge von Klauseln) heißt \textbf{erfüllbar} gdw. es eine Interpretation $I$ gibt, die jede Klausel aus der Klauselmenge erfüllt.
 
 \subsubsection{Aufgabe 6.3 (a)}
-Eine Klauselmenge ist erfüllbar, wenn sie keine positive Klausel enthält.
+
 
 \begin{proof}
 	Sei $I_a$ die Interpretation, die alle Variablen $p\in R$ auf $\bot$ abbildet, d.h. $p^{I_a}=\bot$. Dann erfüllt $I_a$ alle Klauseln, die nicht positiv sind, d.h. alle Klauseln, die mindestens in negatives Literal enthalten. 
@@ -184,7 +182,6 @@ Eine Klauselmenge ist erfüllbar, wenn sie keine positive Klausel enthält.
 \end{proof}
 
 \subsubsection{Aufgabe 6.3 (b)}
-Eine Klauselmenge ist erfüllbar, wenn sie keine negative Klausel enthält.
 
 \begin{proof}
 	Analog zu (a) mit $I_b$, wobei $p^{I_0}=\top$ für alle $p\in R$.
@@ -194,12 +191,6 @@ Eine Klauselmenge ist erfüllbar, wenn sie keine negative Klausel enthält.
 Die Aussage ist falsch, denn die leere Klausel $[~]$ ist sowohl positive Klausel als auch negative Klausel.
 
 \subsection{Aufgabe 6.4 (Tautologieelimination)}
-Sei $\langle D_1,\ldots,D_n\rangle$ eine verallgemeinerte Konjunktion mit verallgemeinerten Disjunktionen $D_1,\ldots,D_n$. 
-Dann gilt:\\
-Wenn in einer verallgemeinerten Disjunktion $D_j~(j\in\lbrace1,\ldots,n\rbrace)$ sowohl $F$ als auch $\neg F$ vorkommt (wobei $F$ beliebige aussagenlogische Formel ist), dann gilt:
-\begin{align*}
-	\big\langle D_1,\ldots,D_{j-1},D_j,D_{j+1},\ldots, D_n\big\rangle\equiv\big\langle D_1,\ldots,D_{j-1},D_{j+1},\ldots,D_n\big\rangle
-\end{align*}
 
 \begin{proof}
 	Sei $I$ beliebige Interpretation und $j\in\lbrace1,\ldots,n\rbrace$ so, dass $F,\neg F\in D_j$. 		
@@ -223,21 +214,14 @@ Wenn in einer verallgemeinerten Disjunktion $D_j~(j\in\lbrace1,\ldots,n\rbrace)$
 \end{proof}
 
 \subsection{Aufgabe 6.5 (Subsumtion)}
-Eine Klausel $C$ \textbf{subsumiert} eine Klausel $C'$,i.Z. $C\subseteq C'$ gdw. jedes Literal aus $C$ auch in $C'$ vorkommt.\nl
-Sei $F=\langle C_1,\ldots,C_n\rangle$ eine Formel in Klauselform und seien $C_i$ und  $C_j$ Klauseln aus $F$ mit $i\neq j,i,j\in\lbrace1,\ldots,n\rbrace$.\\
-Wenn die Klausel $C_i$ die Klausel $C_j$ subsumiert, dann gilt:
-\begin{align*}
-	\big\langle C_1,\ldots,C_n\big\rangle\text{ ist erfüllbar gdw. }\big\langle C_1,\ldots C_{j-1},C_{j+1},\ldots,C_n\big\rangle\text{ ist erfüllbar.}
-\end{align*}
+
 
 \begin{proof}
 	%TODO
 \end{proof}
 
 \subsection{Aufgabe 6.6 (Folgerungen und endlich viele Prämisse)}
-\begin{align*}
-	\F\models G\Longleftrightarrow \exists\F'\subseteq\F\text{ endlich }:\F'\models G
-\end{align*}
+
 
 \begin{proof}
 	Bekannt:
@@ -262,8 +246,6 @@ Hingegen ist $\models$ die logische Konsequenzrelation (Semantik, d.h. wir betra
 Zum Beispiel ist das Resolutionsverfahren korrekt und vollständig.
 
 \subsubsection{Aufgabe 6.7 (a)}
-Geben Sie ein Verfahren zur Ermittlung der aussagenlogischen Allgemeingültigkeit
-an, das korrekt aber nicht vollständig ist.
 
 \begin{lösung}
 	Korrektheit verlangt, dass alle vom Verfahren als ``allgemeingültig'' klassifizierten Formeln auch semantisch allgemeingültig (echt allgemeingültig) sind.\nl
@@ -272,8 +254,6 @@ an, das korrekt aber nicht vollständig ist.
 \end{lösung}
 
 \subsubsection{Aufgabe 6.7 (b)}
-Geben Sie ein Verfahren zur Ermittlung der aussagenlogischen Allgemeingültigkeit
-an, das vollständig aber nicht korrekt ist.
 
 \begin{lösung}
 	Analog zu (a):\\

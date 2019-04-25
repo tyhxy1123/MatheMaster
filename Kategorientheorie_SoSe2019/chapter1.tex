@@ -49,7 +49,7 @@ Abstraktion in der Mathematik
 	&\makecell{Jede Potenzmengenalgebra\\ist Boolsche Algebra.}
 	&\makecell{$\langle\Sub X,\subseteq\rangle$ ist\\geordnete Menge}
 	&\makecell{$\Aut(X)$ ist Gruppe}
-	&\makecell{siehe \ref{section:1.3}}\\
+	&\makecell{siehe \ref{def:set}}\\
 	\hline
 	\makecell{Darstellungssatz\\Vollständigkeit\\Completeness}
 	&\makecell{Jede Boolsche\\ Algebra ist Unteralgebra\\einer Potenzmengenalgebra\\$\langle\Potenzmenge{X},\cap,\cup,\ldots\rangle$}
@@ -67,8 +67,9 @@ Ergänzungen zu obiger Tabelle:
 \clearpage
 \setlength{\voffset}{0mm}
 
-\section{Definition}\label{section:1.2}
-\begin{definition}
+\section*{Definition Kategorie}\label{section:1.2}
+\setcounter{definition}{1}
+\begin{definition} %TODO set counter definition +1?
 	Eine \define{Kategorie} $\Cat$ ist gegeben durch:\index{Kategorie}
 	\begin{itemize}
 		\item eine Klasse (vgl. \ref{section:0.3}
@@ -88,7 +89,7 @@ Ergänzungen zu obiger Tabelle:
 	Schreibe $A\overset{a}{\longrightarrow}B$ oder $a\colon A\to B$ für $a\in\Cat(A,B)$.
 \end{notation}
 
-\begin{lemma}
+\begin{lem}
 	Für jedes Tripel $(A,B,C)$ von Objekten $A,B,C\in\Ob(\Cat)$ gibt es eine Abbildung, 
 	\begin{align*}\index{Komposition}
 		\mu_{A,B,C}^\Cat\colon\Cat(A,B)\times\Cat(B,C)\to\Cat(A,C)
@@ -101,9 +102,9 @@ Ergänzungen zu obiger Tabelle:
 A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
 	\end{tikzcd}
 	$$
-\end{lemma}
+\end{lem}
 
-\begin{lemma}
+\begin{lem}
 	Für jedes Objekt $A\in\Ob(\Cat)$ gibt es einen Morphismus $1_A\in\Cat(A,A)$, genannt \define{identischer Morphismus}, falls die folgenden Axiome erfüllt sind:
 	\begin{enumerate}\index{identischer Morphismus}
 		\item[(ASS)] Die Morphismenkomposition ist assoziativ, d.h.
@@ -128,9 +129,261 @@ A \arrow[ru, "a"] \arrow[rr, "ab"] &                   & C
         & \bullet\arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{1_B} 
     \end{tikzcd}	
 	$$
-\end{lemma}
+\end{lem}
 
-\section{ToDo}\label{section:1.3}
+\begin{defi}
+	Eine Kategorie $\Cat$ heißt \define{kleine Kategorie}\index{kleine Kategorie}\index{große Kategorie}
+	\begin{align*}
+		:\iff Ob(\Cat)\und\Mor(\Cat):=\bigcup\limits_{A,B\in\Ob(\Cat)}\Cat(A,B)
+		\text{ Mengen sind}
+	\end{align*}
+	Ansonsten heißt $\Cat$ \define{große Kategorie}.
+	Weitere Bezeichnungen:
+	$$a\in\Cat(A,B)\qquad\text{d.h.}\qquad A\overset{a}{\longrightarrow}B$$
+	
+	\begin{itemize}
+		\item $\dom(a):=A$ \define{Quelle} oder \define{Domain} von $a$
+		\index{Quelle}\index{Domain}
+		\item $\cod(a):=B$ \define{Ziel} oder \define{Codomain} von $a$
+	\end{itemize}
+\end{defi}
+\section*{Beipiele}
+\begin{beispiel}[Die Kategorie \texorpdfstring{\ul{Set}}{Set}]%TODO itemize
+	\label{def:set}
+	Objekte: $\Ob(\Set)$ alle Mengen\\
+	Morphismen: $\Set(A,B):=$ Menge aller Abbildungen $f\colon A\to B$\\
+	Komposition (Hintereinanderausführung):
+	$$
+		\mu_{A,B,C}^{\Set}(f,g):=f;g\\
+		\begin{tikzcd}[ampersand replacement=\&]
+			A \arrow{r}{f} \arrow[bend right]{rr}{fg} \& B \arrow{r}{g} \& C
+	  	\end{tikzcd}
+	$$
+	identischer Morphismus: ist identische Abbildung
+	\begin{align*}
+		1_A:=\id_A\colon A\to A,\qquad x\mapsto x
+	\end{align*}
+	(Ass), (Neu) sind erfüllt.
+\end{beispiel}
 
 
+\begin{beispiel}[Die Kategorie \texorpdfstring{\ul{Group}}{Group}]
+	\label{def:group}
+	$\Ob(\Group):=$ alle Gruppen $\langle G,\cdot,^{-1},e\rangle$\\
+	$\Group(A,B):=$ Menge aller Homomorphismen der Gruppe $A$ in die Gruppe $B$
+	\begin{align*}
+		\mu_{A,B,C}^{\Group}(f,g):=f;g\qquad 1_A:=\id_A
+	\end{align*}
+	(Ass), (Neu) erfüllt.\nl
+	Analog für andere algebraische Strukturen (Morphismen sind Homomorphismen)
+	\begin{itemize}
+		\item \ul{Ab}: Kategorie der abelschen Gruppen
+		\item \ul{Ring}: Kategorie der Ringe
+		\item \ul{Ring$^1$}: Kategorie der Ringe mit Einselement
+		\item \ul{Monoid}: Kategorie der Monoide
+		\item \ul{Alg$(\Omega)$}: Kategorie der Algebren der Signatur $\Omega$
+	\end{itemize}
+\end{beispiel}
 
+\begin{beispiel}[\ul{Top}]\label{beisp1.5Top}\enter
+	$\Ob(\Top):=$ topologische Räume\\
+	$\Top(X,Y):=$ Menge der stetigen Abbildungen von $X$ in $X$
+	\begin{align*}
+		\mu_{X,Y,Z}^{\Top}(f,g):=f;g\qquad
+		1_X:=\id_X
+	\end{align*}
+	Wieder sind die Bedingungen (Ass),(Neu) erfüllt.
+\end{beispiel}
+
+
+\begin{beispiel}[$\RelSet$]\label{beisp1.6RelSet}\enter
+	$\Ob(\RelSet):=\Ob(\Set)$ alle Mengen\\
+	$\RelSet(A,B):=\set{\rho\mid\rho\subseteq A\times B}$ alle binären Relationen zwischen $A$ und $B$\\
+	Genauer: $\RelSet(A,B):=\set{A}\times\Potenzmenge{A\times B}\times\set{B}$\\
+	Komposition: für $\rho\subseteq A\times B$, $\sigma\subseteq B\times C$
+
+	$$
+	\begin{tikzcd}[ampersand replacement=\&]
+		A \arrow{r}{\rho} \& B \arrow{r}{\sigma} \& C
+  	\end{tikzcd}
+	$$
+	\begin{align*}
+		\mu_{A,B,C}^{\RelSet}(\rho,\sigma):=\rho;\sigma
+		:=\set{(a,c)\in A\times C\mid\exists b\in B:(a,b)\in\rho,(b,c)\in\sigma}
+	\end{align*}
+	heißt \define{Relationsprodukt}.
+	\begin{align*}
+		1_A:=\Delta_A:=\set{(a,a)\mid a\in A}
+	\end{align*}
+	(Ass),(Neu) erfüllt
+\end{beispiel}
+
+\begin{beispiel}[Die Kategorie \ul{Mat}$_R$]\label{beisp1.7Mat}\enter
+	Sei $R$ ein Ring (z.B. reelle Zahlen)\\
+	$\Ob(\Mat_R):=\N_+$\\
+	Morphismen:
+	$\Mat_R(m,n):=$ Menge aller $(m\times n)$-Matrizen über $R$
+	$$
+	\begin{tikzcd}[ampersand replacement=\&]
+		m \arrow{r}{A} \& n \arrow{r}{B} \& p
+  	\end{tikzcd}
+	$$
+	\begin{align*}
+		\mu_{m,n,p}(A,B):=A\mal B\qquad 1_n:=E_n\text{ Einheitsmatrix}
+	\end{align*}
+\end{beispiel}
+
+\begin{beispiel}[Geordnete Mengen als Kategorie]\label{beispiel1.8}
+	$\ul{P}=\langle P,\leq\rangle$ sei geordnete Menge ($\leq$ reflexiv, antisymmetrisch, transitiv)\\
+	$\ul{P}_{\text{cat}}$ ("Graph von $\leq$ als Kategorie")\\
+	Objekte: $\Ob(\ul{P}_{\text{cat}}):=P$\\
+	Morphismen:
+	\begin{tikzcd}[ampersand replacement=\&]
+		A \arrow{r}{f} \& B
+  	\end{tikzcd}
+  	\begin{align*}
+  		\ul{P}_{\text{cat}}(a,b):=\left\lbrace\begin{array}{cl}
+  			\set{(a,b)},&\falls a\leq b\\
+  			\emptyset, &\sonst
+  		\end{array}\right.
+  	\end{align*}
+  	Komposition:
+  	\begin{align*}
+  		\mu_{a,b,c}\big((a,b),(b,c)\big):=(a,c)
+  	\end{align*}
+  	Dies existiert, weil $\leq$ transitiv ist.
+  	\begin{align*}
+  		1_a:=(a,a)\text{ (existiert, weil $\leq$ reflexiv)}
+  	\end{align*}
+  	Auch hier sind (Ass),(Neu) erfüllt.
+\end{beispiel}
+
+\begin{bsp}
+	$\langle P,\leq\rangle$
+	Zu dem Hassediagramm
+	$$
+	\begin{tikzcd}
+                                          & d \arrow[rd, no head] &   \\
+b \arrow[ru, no head] \arrow[rd, no head] &                       & c \\
+                                          & a \arrow[ru, no head] &  
+\end{tikzcd}
+	$$
+	gehört 
+	$$
+\begin{tikzcd} %TODO format code xD
+	& \arrow[out=90,in=50,loop, distance=3em, "1_b"] b  \arrow[rd, "{(b,d)}"] &   \\
+	a \arrow[out=200,in=160, distance=3em, "1_a"] \arrow[rr, "{(a,d)}"] \arrow[ru, "{(a,b)}"] \arrow[rd, "{(a,c)}"] &                         & d \arrow[loop right, distance=3em, start anchor={[yshift=1ex]east}, end anchor={[yshift=-1ex]east}]{}{1_d}\\
+	& c \arrow[out=300,in=260,loop, distance=3em, "1_c"] \arrow[ru, "{(c,d)}"] & 
+\end{tikzcd}
+	$$
+\end{bsp}
+
+\begin{definition}[1.9 Diagrammschemata und Diagramme]\enter
+	Ein \define{Diagrammschema} ist ein gerichteter Graph $\Sigma=(V,E,\alpha,\beta)$ wobei 
+	\index{Diagrammschema}
+	\begin{itemize}
+		\item $V$ die Menge der Punkte,
+		\item $E$ Menge der Pfeile
+		\item $\alpha:E\to V,~p\mapsto\alpha(p)$ \define{Anfangspunkt} von Pfeil $p$
+		\item $\beta:E\to V,~p\mapsto\beta(p)$ \define{Endpunkt} von Pfeil $p$
+	\end{itemize}
+	$$
+	\begin{tikzcd}
+\alpha(p) \arrow[r, "p", bend left] & \beta(p)
+\end{tikzcd}
+$$
+\end{definition}\enter
+Ist $\Cat$ eine kleine Kategorie, so lässt sich $\Cat$ auch als Diagrammschema auffassen:
+\begin{align*}
+	\Sigma_\Cat:=\big(\Ob(\Cat),\Mor(\Cat),\alpha,\beta\big)\\
+		\begin{tikzcd}[ampersand replacement=\&]
+A \arrow[r, "f", bend left] \& B
+\end{tikzcd}\qquad\begin{matrix}
+	\alpha(f)& :=A~(=\dom(f))\\
+	\beta(f)&:=B~(=\codom(f))
+\end{matrix}
+\end{align*}
+
+\begin{bsp} %TODO should be a bullet with an identity arrow.
+	$$\begin{tikzcd} 
+	\arrow[loop left, distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]{}{1_A} \bullet 
+	\end{tikzcd},
+	\begin{tikzcd}
+	\bullet \arrow[out=100, in=0, loop, distance=3em, "b_1"] \arrow[out=300, in=260, loop, distance=3em, "b_2"]
+	\end{tikzcd},
+	\begin{tikzcd}
+	\bullet \arrow[r] & \bullet \arrow[r, bend left] & \bullet \arrow[l] \arrow[l, bend left]
+	\end{tikzcd}$$
+\end{bsp}
+
+Umgekehrt: Zu jedem Graph $\Sigma$ gibt es eine "kleinste" Kategorie (freie Kategorie von $\Sigma$ erzeugt, die $V$ als Objekte hat (evtl. kommen noch Pfeile dazu)
+\begin{definition}[Diagrammschema und Diagramme]\enter
+	Sei $\Cat$ beliebige Kategorie und $\Sigma=(V,E,\alpha,\beta)$ \define{Diagrammschema}.
+	Ein \define{Diagramm} (in $\Cat$) vom Typ $\Sigma$ ist "verträgliche Belegung von $V$ und $E$ mit Elemente aus $\Cat$", genauer:
+	Diagramm ist Abbildungspaar
+	\begin{align*}
+	\left.\begin{matrix}
+		\varphi_0&\colon V\to\Ob(\Cat)\\
+		\varphi_1&\colon E\to\Mor(\Cat)
+	\end{matrix}\right\rbrace~\varphi\colon\Sigma\to\varphi
+	\end{align*}
+	mit der Verträglichkeitsbedingung, d.h.
+	\begin{align*}
+		\begin{tikzcd}[ampersand replacement=\&]
+v_1 \arrow[r, "p", bend left] \& v_2
+\end{tikzcd}\implies
+	\begin{tikzcd}[ampersand replacement=\&]
+\varphi_0(v_1) \arrow[r, "\varphi_1(p)", bend left] \& \varphi_0(v_2)
+\end{tikzcd}
+	\end{align*}
+	(Pfeil in $\Sigma\leadsto$ Morphismus in $\Cat$)
+	Formal:
+	\begin{align*}
+		\forall p\in E:\varphi_1(p)\in\Cat\Big(\varphi_0\big(\alpha(p)\big),\varphi_0\big(\beta(p)\big)\Big)
+\end{align*}		
+	
+	Ein Paar $(w_1,w_2)$ von gerichteten Wegen im Diagrammschema $\Sigma=(V,E,\alpha,\beta)$ heißt \define{Kommutativitätsbedingung}, falls $w_1$ und $w_2$ gleichen Anfangs- und gleichem Endpunkt haben und nur diese beide Punkte gemeinsam haben.\index{Kommutativitätsbedingung}\nl
+	%TODO add picture
+	Ein Diagramm $\varphi:\Sigma\to\Cat$ \define{erfüllt} Kommutativitätsbedingung $(w_1,w_2)$
+	\begin{align*}
+		:\iff\varphi_1(p_1)\mal\varphi_1(p_2)\mal\ldots\mal\varphi_1(p_n)
+		=\varphi_1(P_1')\mal\varphi_1(p_2')\mal\ldots\mal\varphi_1(p_m')
+	\end{align*}
+	Ein Diagramm $\varphi\colon\Sigma\to\Cat$ (meist ohne Schlingen und ohne Zyklen) heißt \define{kommutativ}, wenn es jede (!) Kommutativitätsbedingung des Diagrammschemas $\Sigma$ erfüllt.
+\end{definition}
+
+\begin{bsp}
+	\begin{align*}
+		\begin{tikzcd}[ampersand replacement=\&]
+\bullet \arrow[r, "f"] \arrow[d, "f'"'] \& \bullet \arrow[d, "g"] \\
+\bullet \arrow[r, "g'"']                \& \bullet               
+\end{tikzcd}
+\text{ kommutativ}\iff fg=f'g'\\
+	\begin{tikzcd}[ampersand replacement=\&]
+\bullet \arrow[r, "g"] \arrow[rd, "e"] \& \bullet \arrow[d, "h"] \\
+\bullet \arrow[r, "d"'] \arrow[u, "f"] \& \bullet               
+\end{tikzcd}
+\text{ kommutativ}\iff \begin{matrix}
+	fe=fgh\\
+	gh=e\\
+	fe=d\\
+	fgh=d
+\end{matrix}
+	\end{align*}
+	Schreibweise:$
+	\begin{tikzcd} %TODO add loop in the center! align hier?
+		\bullet \arrow[dd] \arrow[rr] &         & \bullet \arrow[dd] \\
+		& \text{Loop} &                    \\
+		\bullet \arrow[rr]            &         & \bullet           
+	\end{tikzcd},
+	\begin{tikzcd}
+		\bullet \arrow[dd] \arrow[rr] &         & \bullet \arrow[dd] \\
+		& = &                    \\
+		\bullet \arrow[rr]            &         & \bullet           
+	\end{tikzcd},
+	\begin{tikzcd}
+		\bullet \arrow[dd] \arrow[rr] &         & \bullet \arrow[dd] \\
+		& \text{!} &                    \\
+		\bullet \arrow[rr]            &         & \bullet           
+	\end{tikzcd}$
+\end{bsp}

@@ -3,6 +3,196 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Allgemeine Eigenschaften von stochastischen Prozessen}
-\section{Section}
+\chapter{Allgemeine Eigenschaften}
+\section{Separabilität und Messbarkeit}
+
+Die Definition eines Prozesses $X$ \ref{def1.3.1} verlangt Messbarkeit von
+\begin{align*}
+	\omega\mapsto X(t,\omega)
+\end{align*}
+für jedes $t\in T$, es wird jedoch keine Bedingung an die Abbildung
+\begin{align*}
+	t\mapsto X(t,\omega)
+\end{align*}
+für festes $\omega\in\Omega$ gestellt.\nl
+Ist zum Beispiel $T:=(a,b)\subseteq\R$ ein Intervall, also \betone{nicht abzählbar}, so hat man gelegentlich auch mit überabzählbar vielen Ereignissen zu tun, was zu Schwierigkeiten führen kann.
+Beispiele:
+\begin{enumerate}
+	\item Die Menge
+	\begin{align*}
+		\set{\omega\in\Omega:X_t(\omega)\geq0~\forall t\in T}
+		=\bigcap\limits_{t\in T}\set{\omega\in\Omega:X_t(\omega)\geq0}
+	\end{align*}
+	ist im Allgemeinen \betone{kein} Ereignis
+	(alle $\omega\in\Omega$ mit nichtnegativer Trajektorie).
+	\item $Y=\sup\limits_{t\in T}X_t$ braucht keine Zufallsvariable zu sein, da die Mengen
+	\begin{align*}
+		[Y\leq y]:=\set{\omega\in\Omega:Y(\omega)\leq y}=\bigcap\limits_{t\in T}\set{\omega\in\Omega:X_t(\omega)\leq y}
+	\end{align*}
+	\betone{nicht} immer Ereignisse sind.
+	\item Man muss auch vorsichtig sein mit Ausdrücken wie
+	\begin{align*}
+		\lim\limits_{s\to t} X_s(\omega)
+		\qquad\oder\qquad
+		\int\limits_c^d X_t(\omega)\ds t,
+	\end{align*}		
+	die zwar für jedes $\omega\in\Omega$ existieren können, aber möglicherweise \betone{keine Zufallsgrößen} sind.
+\end{enumerate}
+
+Diese Schwierigkeiten motivierten die Einführung der Begriffe \undefine{Separabilität} und \undefine{Messbarkeit}.
+
+\begin{definition}\label{def2.1.1}
+	Sei $X$ ein $S$-wertiger Prozess auf $T$, wobei $S$ und $T$ topologische Räume sind.\\
+	$X$ heißt \define{separabel} $\defiff$ eine abzählbare Teilmenge $T_0\subseteq T$ und ein $\P$-Nullereignis $A\in\A$ (d.h. $\P(A)=0$) mit der folgenden Eigenschaft existieren:\index{separabler Prozess}\\
+	Für eine beliebige abgeschossene Menge $F\subseteq S$ und für eine beliebige offene Menge $O\subseteq T$ unterscheiden sich die Mengen
+	\begin{align*}
+		\set[\big]{\omega\in\Omega:X_t\in F~\forall t\in O}
+	\end{align*}
+	und 
+	\begin{align*}
+		\set[\big]{\omega\in\Omega:X_t(\omega)\in F~\forall t\in O\cap T_0}\in\A
+	\end{align*}
+	nur in einer Teilmenge von $A$ (d.h. ihre symmetrische Differenz ist eine Teilmenge von $A$).
+	$T_0$ heißt eine \define{separierende Menge / Separabilitätsmenge} für $X$.
+	\index{separierende Menge}\index{Separabilitätsmenge|see{separierende Menge}}
+\end{definition}
+
+\begin{bemerkungnr}\label{bemerkung2.1.2}
+	Ein kleines Problem bleibt noch:
+	Teilmengen von Nullereignissen sind im Allgemeinen keine Ereignisse.
+	Dieses Problem lässt sich beheben, indem man den Grundraum vervollständigt (Bemerkung \ref{bemerkung1.3.2}\ref{item:bemerkung1.3.2(7)}).
+\end{bemerkungnr}
+
+\begin{aufgabenr}[2.1.3, \texorpdfstring{\hyperref[loes:13]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:13}\enter
+	Der Grundraum $(\Omega,\A,\P)$ sei vollständig, $(X_t)_{t\in T}$ reellwertiger und separabler Prozess, $T\subseteq\R$ ein Intervall und $O\subseteq\R$ eine offene Menge.
+	Zeigen Sie, dass die folgenden Ausdrücke Zufallsgrößen sind $(s,t\in T)$:
+	\begin{enumerate}
+		\item $\begin{aligned}
+			\sup\limits_{t\in T\cap O} X_t(\omega)
+		\end{aligned}$ \label{item:aufg13_1}
+		\item $\begin{aligned}
+			\inf\limits_{t\in T\cap O} X_t(\omega)
+		\end{aligned}$ \label{item:aufg13_2}
+		\item $\begin{aligned}
+			\limsup\limits_{s\to t} X_s(\omega)
+		\end{aligned}$ \label{item:aufg13_3}
+		\item $\begin{aligned}
+			\liminf\limits_{s\to t} X_s(\omega)
+		\end{aligned}$ \label{item:aufg13_4}
+		\item $\begin{aligned}
+			\lim\limits_{s\to t} X_s(\omega)
+		\end{aligned}$ (falls existent) \label{item:aufg13_5}
+	\end{enumerate}
+\end{aufgabenr}
+
+\begin{aufgabenr}[2.1.4, \texorpdfstring{\hyperref[loes:14]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:14}\enter
+	Besitzt $X$ stetige Pfade und ist $T$ separabel (d.h. $T$ enthält abzählbare dichte Teilmenge), so ist auch $X$ separabel.
+	In diesem Fall ist eine beliebige abzählbare dichte Teilmenge $T_0\subseteq T$ eine Separabilitätsmenge für $X$.
+\end{aufgabenr}
+
+
+\begin{aufgabenr}[2.1.5, \texorpdfstring{\hyperref[loes:15]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:15}\enter
+	Wir betrachten den Wahrscheinlichkeitsraum
+	\begin{align*}
+		(\Omega,\A,\P)=\Big([0,1],\B\big([0,1]\big),\lambda|_{[0,1]}\Big)
+	\end{align*}
+	und den definierten Prozess $X$ durch
+	\begin{align*}
+		X_t(\omega):=\delta_t(\omega):=\left\lbrace\begin{array}{cl}
+			1, &\falls t=\omega\\
+			0, &\sonst
+		\end{array}\right.
+		\qquad\forall t,\omega\in T=\Omega=[0,1]
+	\end{align*}
+	Dann ist $X$ \betone{nicht} separabel.\\
+	Der Prozess $Y$ mit
+	\begin{align*}
+		Y_t(\omega):=0\qquad\forall t,\omega\in T=\Omega=[0,1]
+	\end{align*}
+	hingegen ist separabel und es gilt
+	\begin{align*}
+		\P\big[X_t=Y_t\big]=1\qquad\forall t\in T=[0,1].
+	\end{align*}
+\end{aufgabenr}
+
+\setcounter{satz}{5}
+
+\begin{definition}\label{def2.1.6}
+	Wir nennen zwei $S$-wertige Prozesse $X$ und $Y$ auf $T$ (auf denselben Wahrscheinlichkeitsraum) \define{Modifikationen voneinander}
+	\index{Modifikationen}
+	\begin{align*}
+		\defiff \P\big[X_t=Y_t\big]=1\qquad\forall t\in T
+	\end{align*}
+\end{definition}
+
+\begin{bemerkung} %No number
+	Falls $X$ und $Y$ Modifikationen voneinander sind, gilt
+	\begin{align*}
+		\Big(X_{t_1},\ldots,X_{t_n}\Big)=\Big(Y_{t_1},\ldots,Y_{t_n}\Big)\text{ f.s.} \qquad\forall t_1,\ldots,t_n\in T\\
+	\end{align*}
+	und damit besitzen $X$ und $Y$ dieselben endlich-dimensionalen Verteilungen.
+\end{bemerkung}
+
+\begin{satz}\label{satz2.1.7}
+	Seien $S$ und $T$ metrische Räume, wobei $T$ separabel und $S$ kompakt ist.
+	Für jeden $S$-wertigen Prozess $X$ auf $T$ existiert ein \betone{separabler} $S$-wertiger Prozess $Y$ auf $T$ so, dass 
+	\begin{align*}
+		\P\big[X_t=Y_t\big]=1\qquad\forall t\in T
+	\end{align*}
+	Also besitzt $X_t$ dann eine separable Modifikation.
+\end{satz}
+
+\begin{proof}
+	Ziemlich aufwendig, daher ohne Beweis.\\
+	Später betrachten wir oft Prozesse mit stetigen Pfaden, bei denen die Separabilität gegeben ist.
+\end{proof}
+
+\begin{definition}\label{def2.1.8}
+	Sei $X$ ein $S$-wertiger Prozess auf $T$, wobei $(S,d)$ ein metrischer Raum und $T$ ein topologischer Raum ist.
+	$X$ heißt \define{stetig in Wahrscheinlichkeit / stochastisch stetig} in $t_0\in T$
+	\index{stetig in Wahrscheinlichkeit}\index{stochastisch stetig|see{stetig in Wahrscheinlichkeit}}
+	\begin{align*}
+		\defiff\forall\varepsilon>0:\lim\limits_{t\to t_0}\P\Big[d\big(X_t,X_{t_0}\big)>\varepsilon\Big]=0
+	\end{align*}
+	Hierbei ist die Menge 
+	$\set{\omega\in\Omega:d\big(X_t(\omega),X_{t_0}(\omega)\big)>\varepsilon}$ 
+	ein Ereignis, denn $(X_t,X_{t_0})$ ist eine $S\times S$-wertige Zufallsvariable, $d\colon S\times S\to\R$ ist stetig, daher folgt Messbarkeit der Komposition.
+\end{definition}
+
+\begin{satz}\label{satz2.1.9}
+	Sei $X$ ein reell- oder komplexwertiger, in Wahrscheinlichkeit stetiger Prozess auf einem endlichen Intervall $T\subseteq\R$.
+	Dann besitzt $X$ eine separable Modifikation mit den folgenden Eigenschaften:
+	\begin{enumerate}[label=(\roman*)]
+		\item Jede abzählbare, dichte Teilmenge $T_0\subseteq T$ ist eine Separabilitätsmenge für $Y$. %abzählbar + dicht =: total
+		\item Der Prozess $Y$ ist \define{messbar}, d.h. die Abbildung
+		\begin{align*}
+			(t,\omega)\mapsto Y(t,\omega)=Y_t(\omega)
+		\end{align*}
+		ist $\big(\L(T)\times\A,\B(T)\big)$-messbar, wobei $\L(T)$ die $\sigma$-Algebra der Lebesgue-messbaren Teilmengen von $\R$ bezeichnet.
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Ohne Beweis. Zu technisch und kostet zu viel Zeit.
+	%wird später nicht verwendet
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung2.1.10}
+	Sei $X$ ein reellwertiger, messbarer Prozess auf $\R$ und $A\subseteq\R$ eine Lebesgue-messbare Menge.
+	Aus der Maßtheorie bekannt:
+	$t\mapsto X(t,\omega)$ ist für alle $\omega\in\Omega$ Lebesgue-messbar.
+	Gilt Integrierbarkeit bzgl. beider Variablen, d.h.
+	\begin{align*}
+		\int\limits_A\E\big[\abs{X_t}\big]\ds t
+		=\int\limits_A\int\limits_\Omega\abs[\big]{X(t,\omega)}\ds\omega\ds t<\infty,
+	\end{align*}
+	so ist nach dem Satz von Fubini die Abbildung
+	\begin{align*}
+		\omega\mapsto\int\limits_A X(t,\omega)\ds t
+	\end{align*}
+	eine Zufallsgröße.
+\end{bemerkungnr}
+
+
+
 

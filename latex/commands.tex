@@ -53,9 +53,12 @@
 \newcommand*{\bigtimes}{
 	\mathop{\raisebox{-.5ex}{\hbox{\huge{$\times$}}}}
 }                                        % Kartesisches Produkt / Kreuzprodukt 
+\DeclareMathOperator{\Bild}{Bild}        % Bild einer Matrix / Funktion
 \renewcommand{\d}{\mathrm{d}}            % Differential d ohne Space
+\newcommand{\defiff}{\vcentcolon\Longleftrightarrow} % per Definition genau dann, wenn
 \newcommand{\ds}{~\mathrm{d}}            % Differential d mit Space für Integrale
 \DeclareMathOperator{\diag}{diag}        % Diagonalmatrix
+\DeclareMathOperator{\Diag}{Diag}        % Diagonalmatrix
 \DeclareMathOperator{\diam}{diam}        % Diameter, Durchmesser einer Menge
 \let\divison\div                         % save it before overwriting:
 	\DeclareMathOperator{\BigDiv}{div}   % Divergenz
@@ -69,6 +72,7 @@
 \newcommand{\ideal}{\trianglelefteq}     % Ideal
 \DeclareMathOperator{\im}{im}            % Bild
 \DeclareMathOperator{\inner}{int}        % Das innere einer Menge
+\DeclareMathOperator{\Kern}{Kern}        % Kern einer Matrix / Funktion
 \newcommand{\laplace}{\triangle}         % Laplace Operator
 \newcommand{\limn}{\lim\limits_{n\to\infty}} % Standard-Limes
 \newcommand{\mal}{\cdot}                 % hier kann man \cdot ein- und ausschalten
@@ -81,9 +85,11 @@
 \newcommand{\Potenzmenge}[1]{\mathfrak{P}\left(#1\right)} % Potenzmenge
 \DeclareMathOperator{\rang}{rang}        % Rang einer Matrix
 \DeclareMathOperator{\rg}{rg}            % Bild einer Funktion, Rang einer Matrix
+\DeclareMathOperator{\Rg}{Rg}            % Rang
 \DeclareMathOperator{\SO}{SO}            % Orthogonale Gruppe
 \DeclareMathOperator{\Span}{span}        % Span / Lineare Hülle
 	\newcommand{\spann}{\Span}           % Span / Lineare Hülle
+\DeclareMathOperator{\Spur}{Spur}        % Spur einer Matrix
 \DeclareMathOperator{\supp}{supp}        % Träger
 \DeclareMathOperator{\tr}{tr}            % Spur
 
@@ -117,6 +123,8 @@
 \xDeclarePairedDelimiterBin{\intervallOH}{(}{]}
 \xDeclarePairedDelimiterBin{\intervallO}{(}{)}
 \xDeclarePairedDelimiter{\klammern}{(}{)}
+\xDeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\xDeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
 \NewDocumentCommand\normiii{som}{
 	\IfNoValueTF{#2} %falls optionales Argument leer (d.h. kein "\Big")
@@ -145,5 +153,6 @@
 % Warnings and errors
 \newcommand{\throwWarning}[1]{\PackageWarning{42}{#1}} % Erzeugt LaTeX-Warnung mit Message = #1 
 
-%Special
+%Links
 \newcommand{\email}[1]{\texttt{\href{mailto:#1}{#1}}} % Hyperlink für E-Mails
+\newcommand{\link}[1]{\texttt{\href{#1}{#1}}}          % Hyperlink ins WWW

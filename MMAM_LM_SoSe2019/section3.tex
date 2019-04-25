@@ -1,0 +1,662 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Parameterschätzung in linearen Modellen}
+
+\begin{definition}\label{def3.1}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Sei $Z:=\big(Z_{i,j}\big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}\in M(m\times n)$
+		mit integrierbaren Komponenten $Z_{i,j}$, welche reelle Zufallsvariablen sind.
+		Dann: \label{item:def3.1(1)}
+		\begin{align*}
+			\E[Z]:=\Big(\E\big[Z_{i,j}\big]\Big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}
+		\end{align*}
+		Speziell für 
+		\begin{align*}
+			Z=\big(Z_1,\ldots,Z_m\big)'
+		\end{align*}
+		ist 
+		\begin{align*}
+			\E[Z]=\begin{pmatrix}
+				\E\big[Z_1\big]\\
+				\vdots\\
+				\E\big[Z_n\big]
+			\end{pmatrix}=\Big(\E\big[Z_1\big],\ldots,\E\big[Z_n\big]\Big)'
+		\end{align*}
+		\item Seien
+		\begin{align*}
+			Z=\big(Z_1,\ldots,Z_m\big)',\qquad
+			Y=\big(Y_1,\ldots,Y_n\big)'.
+		\end{align*}		 
+		Dann, falls existent
+		\begin{align*}
+			\Cov(Y,Z)&:=\E\Big(\big(Y-\E[Y]\big)\mal\big(Z-\E[Z]\big)'\Big)\\
+			\overset{\ref{item:def3.1(1)}}&{~=}
+			\klammern[\bigg]{\E\Big[\big(Y_i-\E[Y_i]\big)\mal\big(Z_j-\E[Z_j]\big)\Big]}_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}\\
+		&~=\Big(\Cov(Y_i,Z_j)\Big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}
+		\end{align*}
+		Speziell ist\index{Kovarianzmatrix}
+		\begin{align*}
+			\Var(Y):=\Cov(Y,Y)=\Big(\Cov(Y_i,Y_j)\Big)_{\begin{subarray}{c}
+			1\leq i\leq m\\
+			1\leq j\leq n
+		\end{subarray}}\in M(n\times n)
+		\end{align*}
+		die \define{Kovarianzmatrix} von $Y$.
+	\end{enumerate}
+\end{definition}
+
+\begin{satz}\label{satz3.2}
+	Seien $Y$ und $Z$ Zufallsvektoren in $\R^n$ bzw. $\R^m$, $A\in M(m\times n)$, $b\in\R^m$ beide deterministisch.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\E\big[A\mal Y+Z\big]=A\mal\E[Y]+\E[Z]
+		\end{aligned}\qquad$ ($\E$ ist linear)
+		\label{item:satz3.2(1)}
+		\item $\begin{aligned}
+			\Var\big(A\mal Y+b\big)=A\mal\Var(Y)\mal A'
+		\end{aligned}$
+		\label{item:satz3.2(2)}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Nachrechnen! (Zur Übung, folgt aus Matrixmultiplikation + den Eigenschaften im reellen Fall)
+	%\betone{Zeige \ref{item:satz3.2(1)}:}\\
+	
+	%\betone{Zeige \ref{item:satz3.2(2)}:}\\
+\end{proof}
+
+Wir betrachten jetzt das lineare Modell (vergleiche \eqref{eq:1.2}) mit 
+\begin{align}\label{eq:3.1}\tag{3.1}
+	Y&=X\mal\beta+\varepsilon\\
+	\E[\varepsilon]&=0\label{eq:3.2}\tag{3.2}\\
+	\Var(\varepsilon)&=\sigma^2\mal I_n\mit\sigma^2>0\label{eq:3.3}\tag{3.3}\\
+	n&\geq p\label{eq:3.4}\tag{3.4}
+\end{align}
+Beachte ($\varepsilon=\big(\varepsilon_1,\ldots,\varepsilon_n\big)'$):
+\begin{align*}
+	\eqref{eq:3.3}&\iff\Cov(\varepsilon_i,\varepsilon_j)=\sigma^2\mal\delta_{i,j}
+	&&\forall i,j\\
+	&\iff\Cov\big(\varepsilon_i,\varepsilon_j\big)=0
+	&&\forall i\neq j\und\Var(\varepsilon_i)=\sigma^2
+\end{align*}
+Also gilt: $\varepsilon_1,\ldots,\varepsilon_n$ iid $\implies\eqref{eq:3.3}$\\
+($p$ ist die Anzahl der Modellparameter)
+\begin{align*}
+	\eqref{eq:3.1}\iff Y_i=\sum\limits_{j=1}^p X_{i,j}\mal\beta_j+\varepsilon_i\quad\forall i
+\end{align*}
+
+\subsection{Minimum-Quadrat-Schätzer}
+
+Ziel: Schätzung von $\beta$.
+Idee nach Gauß und Legendre: 
+\define{Methode der kleinsten Quadrate}, nämlich:
+Minimierung der \define{Fehlerquadratsumme}
+\index{Fehlerquadratsumme}\index{Methode der kleinsten Quadrate}
+\begin{align*}
+	\sum\limits_{i=1}^n\varepsilon_i^2
+	\overset{\Def}&{=}
+	\norm{\varepsilon}^2
+	\overset{\eqref{eq:3.1}}{=}
+	\norm{Y-X\mal\beta}^2,
+\end{align*}
+d.h. finde $\hat{\beta}$ mit
+\begin{align*}
+	&\hspace{11.5mm}\norm{Y-X\mal\hat{\beta}}^2\leq\norm{Y-X\mal\beta}^2&&\forall\beta\in\R^p\\
+	&\iff
+	\norm{Y-X\mal\hat{\beta}}\leq\norm{Y-X\mal\beta}&&\forall\beta\in\R^p\\
+	&\iff\hat{\beta}(\omega)\in\argmin\limits_{\beta\in\R^p}\norm{Y(\omega)-X\mal\beta}
+\end{align*}
+Die Lösung ist bekannt.
+Es gilt
+
+\begin{satz}\label{satz3.3}
+	Es gelten \eqref{eq:3.1} und \eqref{eq:3.4}.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Die Minimalstelle $\hat{\beta}$ existiert und erfüllt die \define{Normalgleichung} \label{item:satz3.3(1)}
+		\index{Normalgleichung}
+		\begin{align}\label{eq:satz3.3Stern}\tag{$*$}
+			X'\mal X\mal\hat{\beta}=X'\mal Y
+		\end{align}
+		und umgekehrt ist jede Lösung von \eqref{eq:satz3.3Stern} eine Minimalstelle.\\
+		Bezeichnet $L:=\Bild(X)$, so gilt:
+		\begin{align*}
+			P_L(Y)=X\mal\hat{\beta}
+		\end{align*}
+		\item Falls $\Rg(X)=p$ (also Vollrang), so gilt:\label{item:satz3.3(2)}
+		\begin{align*}
+			\hat{\beta}&=\big(X'\mal X)^{-1}\mal X'\mal Y
+			\qquad\und\qquad
+			P_L=X\mal\big(X'\mal X\big)^{-1}\mal X'
+		\end{align*}
+		Der Schätzer $\hat{\beta}$ heißt \define{Minimum-Quadrat-Schätzer (MQS) /\\ Kleinst-Quadrate-Schätzer (KQS) / least squares estimator (lse)}.
+		\index{Minimum-Qudrat-Schätzer}
+		\index{Kleinst-Quadrate-Schätzer}
+		\index{least squares estimator|see{Minimum-Quadrat-Schätzer}}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Nutze Satz \ref{satz2.22} mit $A\leftrightarrow X$, $x\leftrightarrow Y(\omega)$ und $y\leftrightarrow\beta$.
+\end{proof}
+
+\begin{figure}[H]
+	\begin{center}
+		\input{./tikz/orthoProjektionSec3}
+		\caption{Minimum-Quadrat-Schätzer}
+		\label{Abb:MinQuaSchätzer}
+	\end{center}
+\end{figure}
+
+\begin{satz}\label{satz3.4}
+	Angenommen es gelten \eqref{eq:3.1}, \eqref{eq:3.2}, \eqref{eq:3.3} und \eqref{eq:3.4}.
+	Falls $\Rg(X)=p$, so gilt:
+	\begin{align}\label{eq:3.5}\tag{3.5}
+		\E\big[\hat{\beta}\big]&=\beta\qquad\forall\beta\in\R^p\\
+		\Var\big(\hat{\beta}\big)&=\sigma^2\mal\big(X'\mal X\big)^{-1}\label{eq:3.6}\tag{3.6}
+	\end{align}
+\end{satz}
+
+\begin{proof}
+	\begin{align*}
+		\E\big[\hat{\beta}\big]
+		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
+		\E\Big[\underbrace{\big((X'\mal X)^{-1}\mal X'\big)}_{=:A}\mal Y\Big]\\
+		\overset{\ref{satz3.2}\ref{item:satz3.2(1)}}&{=}
+		\big(X'\mal X\big)^{-1}\mal X'\mal\E[Y]\\
+		\overset{\eqref{eq:3.1}}&{=}
+		\big(X'\mal X\big)^{-1}\mal X'\mal\underbrace{\E[X\mal\beta+\varepsilon]}_{
+			=\underbrace{\E[X\mal\beta]}_{
+				=X\mal\beta
+			}+\underbrace{\E[\varepsilon]}_{
+				\overset{\eqref{eq:3.2}}{=}0		
+			}=X\mal\beta
+		}\\
+		&=\big(X'\mal X\big)^{-1}\mal\big(X'\mal X\big)\mal\beta\\
+		&=I_p\beta\\
+		&=\beta
+	\end{align*}
+	Zur Varianz:
+	\begin{align*}
+		\Var\big(\hat{\beta}\big)
+		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
+		\Var\Big(\big(X'\mal X\big)^{-1}\mal X'\mal Y)\\
+		\overset{\ref{satz3.2}\ref{item:satz3.2(2)}}&{=}
+		\big(X'\mal X\big)^{-1}\mal X'\mal\Var(Y)\mal\Big(\big(X'\mal X\big)^{-1}\mal X'\Big)'\\
+		&=\big(X'\mal X\big)^{-1}\mal X'\mal\underbrace{\Var(Y)}_{
+			\overset{\eqref{eq:3.1}}{=}\Var(X\mal\beta+\varepsilon)
+			\overset{\ref{satz3.2}\ref{item:satz3.2(2)}}{=}
+			\Var(\varepsilon)
+			\overset{\eqref{eq:3.3}}{=}
+			\sigma^2\mal I_n
+		}\mal X\mal\big(X'\mal X\big)^{-1}\\
+		&=\sigma^2\mal\big(X'\mal X\big)^{-1}\mal\underbrace{\big(X'\mal X\big)\mal\big(X'\mal X\big)^{-1}}_{=I_p}\\
+		&=\sigma^2\mal\big(X'\mal X\big)^{-1}
+	\end{align*}
+\end{proof}
+
+Beachte, der Designmatrix $X$ kommt durch die \define{Varianzformel} \eqref{eq:3.6} eine statistische Bedeutung zu ($\leadsto$ design of experiments).
+\index{Varianzformel}
+
+\begin{beispiel}[Einfache lineare Regression]
+\label{beisp3.5einfacheLineareRegression}
+	\begin{align*}
+		Y_i&=a+b\mal x_i+\varepsilon_i,\qquad\forall i\in\set{1,\ldots,n}
+	\end{align*}
+
+	\begin{figure}[H]
+		\begin{center}
+			\input{./tikz/beispiel3.5}
+			\caption{Einfache lineare Regression}
+			%\label{Abb:MinQuaSchätzer}
+		\end{center}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\begin{center}
+			\input{./tikz/beispiel3.5_2}
+			\caption{Einfache lineare Regression - Methode der kleinsten Fehlerquadrate}
+			%\label{Abb:MinQuaSchätzer}
+		\end{center}
+	\end{figure}
+
+	\begin{align*}
+		\underbrace{\begin{pmatrix}
+			Y_1\\
+			\vdots\\
+			\vdots\\
+			Y_n
+		\end{pmatrix}}_{=Y}
+		&=\underbrace{\begin{pmatrix}
+			1 & x_1\\
+			\vdots & x_2\\
+			\vdots & \vdots\\
+			1 & x_n
+		\end{pmatrix}}_{=X}\mal\underbrace{\begin{pmatrix}
+			a\\
+			b
+		\end{pmatrix}}_{=\beta}+\underbrace{\begin{pmatrix}
+			\varepsilon_1\\
+			\vdots\\
+			\vdots\\
+			\varepsilon_n
+		\end{pmatrix}}_{=\varepsilon}
+	\end{align*}
+	Angenommen, $\Rg(X)=2$ ($\overset{!}{\iff}\exists i\neq j:x_i\neq x_j$)
+	\begin{align*}
+		X'\mal X
+		&=\begin{pmatrix}
+			1 & \hdots & 1\\
+			x_1 & \hdots & x_n
+		\end{pmatrix}\mal\begin{pmatrix}
+			1 & x_1\\
+			\vdots &  \vdots\\
+			1 & x_n
+		\end{pmatrix}
+		=\begin{pmatrix}
+			n & \sum\limits_{i=1}^n x_i\\
+			\sum\limits_{i=1}^n x_i & \sum\limits_{i=1}^n x_i^2
+		\end{pmatrix}
+		=\begin{pmatrix}
+			n & n\mal\overline{x_n}\\
+			n\mal\overline{x_n} & \sum\limits_{i=1}^n x_i^2
+		\end{pmatrix}\\
+		X'\mal Y
+		&=\begin{pmatrix}
+			1 & \hdots & 1\\
+			x_1 & \hdots & x_n
+		\end{pmatrix}\mal\begin{pmatrix}
+			Y_1\\
+			\vdots\\
+			Y_n
+		\end{pmatrix}
+		=\begin{pmatrix}
+			\sum\limits_{i=1}^n Y_i\\
+			\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{pmatrix}
+		=\begin{pmatrix}
+			n\mal\overline{Y_n}\\
+			\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{pmatrix}\\
+		\mit\qquad \overline{x_n}&:=\frac{1}{n}\mal\sum\limits_{i=1}^n x_i
+		\qquad\und\qquad
+		\overline{Y_n}:=\frac{1}{n}\mal\sum\limits_{i=1}^n Y_i
+	\end{align*}
+	Normalgleichung \eqref{eq:satz3.3Stern}:
+	\begin{align*}
+		\begin{pmatrix}
+			n & n\mal\overline{x_n}\\
+			n\mal\overline{x_n} & \sum\limits_{i=1}^n x_i^2
+		\end{pmatrix}\mal\begin{pmatrix}
+			\alpha\\
+			\beta
+		\end{pmatrix}=\begin{pmatrix}
+			n\mal\overline{Y_n}\\
+			\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{pmatrix}\\
+		\iff
+		\left\lbrace\begin{array}{l}
+			(1)~~
+			n\mal\alpha+n\mal\overline{x_n}\mal\beta=n\mal\overline{Y_n}
+			\iff\alpha=\overline{Y_n}-\overline{x_n}\mal\beta\\
+			(2)~~n\mal\overline{x_n}\mal\alpha+\sum\limits_{i=1}^n x_i^2\mal\beta=\sum\limits_{i=1}^n x_i\mal Y_i
+		\end{array}\right.
+	\end{align*}
+	Teilen durch $n$ in (2) und einsetzen von (1) in (2) liefert:
+	\begin{align*}
+		\overline{x_n}\mal \overline{Y_n}\underbrace{-\overline{x_n}^2\mal\beta+\frac{1}{n}\mal\sum\limits_{i=1}^n x_i^2\mal\beta}_{
+			=\beta\mal\klammern{\frac{1}{n}\mal\sum\limits_{i=1}^n \big(x_i^2-\overline{x_n}^2\big)}
+		}
+		&=\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i\\
+		\implies
+		\beta
+		&=\frac{
+			\frac{1}{n}\mal\sum\limits_{i=1}^n x_i\mal Y_i-\overline{x_n}\mal\overline{Y_n}
+		}{
+			\frac{1}{n}\mal\sum\limits_{i=1}^n \big(x_i^2-\overline{x_n}^2\big)
+		}\\
+		&=
+		\frac{
+			\frac{1}{n}\mal\klammern{\sum\limits_{i=1}^n x_i\mal Y_i-n\mal\overline{x_n}\mal\overline{Y_n}}
+		}{
+			\frac{1}{n}\mal\sum\limits_{i=1}^n \big(x_i^2-\overline{x_n}^2\big)
+		}\\
+		\overset{\mal\frac{n}{n-1}}&{=}
+		\frac{
+			\frac{1}{n-1}\mal\klammern{\sum\limits_{i=1}^n x_i\mal Y_i-n\mal\overline{x_n}\mal\overline{Y_n}}		
+		}{
+			\frac{1}{n-1}\mal\klammern{\sum\limits_{i=1}^n x_i^2-n\mal \overline{x_n}^2}
+		}\\
+		\overset{!}&{=}
+		\frac{
+			\frac{1}{n-1}\mal\sum\limits_{i=1}^n\big(x_i-\overline{x_n}\big)\mal\big(Y_i-\overline{Y_n}\big)
+		}{
+			\frac{1}{n-1}\mal \sum\limits_{i=1}^n\big(x_i-\overline{x_n}\big)^2
+		}\\
+		&=:\frac{s_{x,Y}}{s_x^2}
+	\end{align*}
+	Hierbei heißen $s_{x,Y}$ \define{empirische Kovarianz} und $s_x^2$ \define{empirische Varianz}.
+	\index{empirische Varianz}\index{empirische Kovarianz}
+	\begin{align*}
+		\hat{\beta}=\begin{pmatrix}
+			\hat{a}\\
+			\hat{b}
+		\end{pmatrix}\qquad\mit\qquad
+		\hat{a}:=\overline{Y_n}-\overline{x_n}\mal\hat{b},\qquad
+		\hat{b}:=\frac{s_{x,Y}}{s_x^2}
+	\end{align*}
+\end{beispiel}
+
+\subsection{Optimalität des MQS} %3.2
+
+Betrachten im linearen Modell $Y=X\mal\beta+\varepsilon$ \define{lineare} Funktionen $\Psi$ von $\beta$, d.h.
+\begin{align*}
+	\Psi\colon\R^p\to\R,\qquad\Psi(\beta)=c'\mal\beta\qquad\forall \beta	\in\R^p,
+\end{align*}
+wobei $c\in\R^p$ fest vorgegeben (bekannt).
+
+\begin{beisp}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			c=e_j\implies\Psi(\beta)=e_j'\mal\beta=\beta_j
+		\end{aligned}$
+		\item $\begin{aligned}
+			c=e_i-e_j\implies\Psi(\beta)=\beta_i-\beta_j
+		\end{aligned}$
+	\end{enumerate}
+\end{beisp}
+
+\begin{definition}\label{def3.6}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\Psi(\beta)=c'\mal\beta$ heißt \define{schätzbar} $\defiff\exists a\in\R^n$ so, dass
+		\index{schätzbar}
+		\begin{align*}
+			\hat{\Psi}:=a'\mal Y=\sum\limits_{i=1}^n a_i\mal Y_i
+		\end{align*}
+		ein \define{erwartungstreuer Schätzer} für $\Psi$ ist, d.h.
+		\index{erwartungstreuer Schätzer}
+		\begin{align*}
+			\E_\beta\big[\hat{\Psi}\big]=\Psi(\beta)\qquad\forall \beta\in\R^p
+		\end{align*}
+		\item Schätzer der Form $a'\mal Y$ heißen \define{lineare Schätzer}.
+		\index{lineare Schätzer}
+	\end{enumerate}
+	Kurz: $c'\mal\beta$ ist schätzbar $\iff\exists$ linearer und erwartungstreuer Schätzer für $c'\mal\beta$.
+\end{definition}
+
+\begin{lemma}\label{lemma3.7}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\Psi(\beta)=c'\mal\beta
+		\end{aligned}$ schätzbar $\iff\exists a\in\R^n$ mit
+		\label{item:lemma3.7(1)}
+		\begin{align}\label{eq:3.7}\tag{3.7}
+			c'=a'\mal X\qquad\Big(\iff c=X'\mal a\Big)
+		\end{align}
+		d.h.
+		\begin{align*}
+			c\in\Bild(X')=\set{X'\mal y:y\in\R^n}
+		\end{align*}
+		\item Falls $\Rg(X)=p$ (also Vollrang), so ist $c'\mal\beta$ für alle $c\in\R^p$ schätzbar.
+		\label{item:lemma3.7(2)}
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\betone{Zu \ref{item:lemma3.7(1)} zeige "$\Longrightarrow$":}\\
+	Es existiert $a\in\R^n$ so, dass:
+	\begin{align*}
+		c'\mal\beta
+		&=\E[a'\mal Y]
+		\overset{\Lin}{=}
+		a'\mal\E[Y]
+		=a'\mal X\mal\beta &&\forall\beta\in\R^p\\
+		\overset{\beta:=e_j}{\iff}
+		c'&=a'\mal X
+	\end{align*}		
+	
+	\betone{Zu \ref{item:lemma3.7(1)} zeige "$\Longleftarrow$":}\\
+	Es ist $\hat{\Psi}:=a'\mal Y$ ein linearer Schätzer und es gilt:
+	\begin{align*}
+		\E\big[\hat{\Psi}\big]
+		&=a'\mal\E[Y]
+		=\underbrace{a'\mal X}_{
+			\overset{\eqref{eq:3.7}}{=}c'		
+		}\mal\beta
+		=c'\mal\beta
+		=\Psi(\beta)
+		\qquad\forall \beta\in\R^p
+	\end{align*}
+	Also ist $c'\mal\beta$ schätzbar.\nl
+	\betone{Zeige \ref{item:lemma3.7(2)}:}\\
+	Setze
+	\begin{align*}
+		a':=c'\mal\big(X'\mal X\big)^{-1}\mal X'.
+	\end{align*}
+	Die Inverse hier existiert wegen Satz \ref{satz:2.13}.
+	Dann gilt:
+	\begin{align*}
+		a'\mal X
+		&=c'
+		\overset{\ref{item:lemma3.7(1)}}{\implies}\text{ Behauptung}
+	\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma3.8}
+	Sei $\Psi(\beta)=c'\mal\beta$ schätzbar.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Es existiert ein $b\in\R^n$ mit
+		\begin{align}\label{eq:lemma3.8Stern}\tag{$*$}
+			b'\mal Y\text{ ist erwartungstreu für }\Psi
+		\end{align}
+		\label{item:lemma3.8(1)}
+		\item Es existiert genau ein $a\in L:=\Bild(X)\subseteq\R^n$ derart, dass
+		\label{item:lemma3.8(2)}
+		\begin{align*}
+			\hat{\Psi}:=a'\mal Y
+		\end{align*}
+		erwartungstreu für $\Psi$ ist, nämlich
+		\begin{align*}
+			a=P_L(b)
+		\end{align*}
+		für jedes $b$ mit \eqref{eq:lemma3.8Stern}.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\betone{Zeige \ref{item:lemma3.8(1)}:}\\
+	Gilt gemäß Definition \ref{def3.6}.\nl
+	\betone{Zeige \ref{item:lemma3.8(2)}:}
+	\begin{align*}
+		b&=a+\tilde{a},\qquad a=P_L(b)\in L,~\tilde{a}\in L^\perp
+	\end{align*}
+	Es gilt für alle $\beta\in\R^p$:
+	\begin{align*}
+		\Psi(\beta)
+		\overset{\ref{item:lemma3.8(1)}}&{=}
+		\E[b'\mal Y]\\
+		&=b'\mal X\mal\beta\\
+		&=\big(a'+\tilde{a}'\big)\mal X\mal\beta\\
+		&=a'\mal X\mal\beta+\underbrace{\tilde{a}'\mal X\mal\beta}_{
+			=\scaProd[\big]{\tilde{a}}{\underbrace{X\mal\beta}_{\in L}}
+			\overset{\tilde{a}\in L^\perp}{=}0
+		}\\
+		&=a'\mal\underbrace{X\mal\beta}_{
+			=\E[Y]
+		}\\
+		\overset{\Lin}&{=}
+		\E[a'\mal Y]
+	\end{align*}
+	Somit folgt
+	\begin{align}\label{eq:ProofLemma3.8Plus}\tag{+}
+		\hat{\Psi}:=a'\mal Y\text{ ist erwartungatreu für $\Psi$ mit }a=P_L(b)\in L
+	\end{align}
+	Bleibt Eindeutigkeit zu zeigen:
+	Sei $\overline{a}\in L$ mit $\overline{a}'\mal Y$ ist erwartungstreu für $\Psi$.
+	Dann folgt:
+	\begin{align*}
+		&a'\mal X\mal\beta
+		\overset{\Lin}{=}
+		\E[a'\mal Y]
+		\overset{\eqref{eq:ProofLemma3.8Plus}}{=}
+		c'\mal\beta
+		=\E[\overline{a}'\mal Y]
+		\overset{\Lin}{=}
+		\overline{a}'\mal X\mal\beta
+		&&\forall \beta\in\R^p\\
+		&\implies
+		0=\big(a'-\overline{a}'\big)\mal X\mal\beta
+		=\big(a-\overline{a}\big)'\mal X\mal\beta&&\forall\beta\in\R^p\\
+		&\implies a-\overline{a}\in L^\perp
+	\end{align*}
+	Aber $a-\overline{a}\in L$, da $L$ Untervektorraum.
+	Somit ist 
+	\begin{align*}
+		a-\overline{a}\in L^\perp\cap L\overset{\ref{satz2.1}\ref{item:satz2.1(3)}\ref{item:satz2.1(3i)}}{=}
+	\set{0}
+	\implies \overline{a}=a
+	\end{align*}		
+\end{proof}
+
+\begin{satz}[Gauß-Markov-Theorem]\label{satz3.9GaussMarkovTheorem}\enter
+	Sei $\Psi(\beta)=c'\mal\beta$ schätzbar und $\hat{\Psi}:=c'\mal\beta$, $\hat{\beta}=$ MQS für $\beta$.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\hat{\Psi}$ ist linearer und erwarungstreuer Schätzer für $\Psi$ und der einzige unter allen linearen erwarungstreuen Schätzern für $\psi$ mit \betone{minimaler Varianz}.
+		\label{item:satz3.9(1)}
+		\item $\hat{\Psi}=a'\mal Y$ für ein eindeutig bestimmtes $a\in L$ und 
+		\label{item:satz3.9(2)}
+		\begin{align*}
+			\Var\big(\hat{\Psi}\big)=\sigma^2\mal\norm{a}^2
+		\end{align*}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Gemäß Lemma \ref{lemma3.8} existiert genau ein $a\in L$ mit
+	%\begin{enumerate}[label=(\roman*)]
+	\begin{align}\label{eq:ProofSatz3.9(i)}\tag{i}
+		a'\mal Y\text{ erwartungstreu für }\Psi
+	\end{align}
+		%\item $a'\mal Y$ erwartungstreu für $\Psi$
+	%\end{enumerate}
+	Es gilt
+	\begin{align}\label{eq:ProofSatz3.9RoterStern}\tag{$*$}
+		a'\mal Y
+		\overset{a\in L,\ref{satz2.5}\ref{item:satz2.5(2)}}&{=}
+		\big(P_L a\big)'\mal Y
+		=a'\mal P_L' Y
+		\overset{\ref{satz2.8}\ref{item:satz2.8(2)}}{=}
+		a'\mal\underbrace{P_L Y}_{
+			=X\mal\hat{\beta}
+		}
+		\overset{\ref{satz3.3}\ref{item:satz3.3(1)}}{=}
+		a'\mal X\mal\hat{\beta}
+	\end{align}
+	Ferner gilt:
+	\begin{align*}
+		a'\mal X\mal\beta
+		&=a'\mal\E[Y]
+		\overset{\Lin}{=}
+		\E[a'\mal Y]
+		\overset{\eqref{eq:ProofSatz3.9(i)}}{=}
+		c'\mal\beta
+		\qquad\forall\beta\in\R^p
+	\end{align*}
+	Wende nun \eqref{eq:ProofSatz3.9RoterStern} mit $\beta:=\hat{\beta}$ an:
+	\begin{align}\label{eq:ProofSatz3.9(ii)}\tag{ii}
+		a'\mal Y=c'\mal\beta=\hat{\Psi}
+	\end{align}
+	Also ist $\hat{\Psi}$ linearer erwartungstreuer Schätzer für $\Psi$.
+	Ferner:
+	\begin{align}\label{eq:ProofSatz3.9(iii)}\tag{iii}
+		\Var(\hat{\Psi})
+		&=\Var(a'\mal Y)
+		\overset{\ref{satz3.2}\ref{item:satz3.2(2)}}{=}
+		a'\mal\underbrace{\Var(Y)}_{
+			\overset{\ref{satz3.2}}{=}
+			\Var(\varepsilon)
+			\overset{\eqref{eq:3.2}}{=}
+			\sigma^2\mal I_n
+		}\mal a
+		=\sigma^2\mal\norm{a}^2
+	\end{align}
+
+	Sei $\tilde{\Psi}=b'\mal Y$ ein beliebiger linearer, erwartungstreuer Schätzer für $\Psi$.
+	Dann folgt (vergleiche \eqref{eq:ProofSatz3.9(iii)}):
+	\begin{align}\label{eq:ProofSatz3.9(iii)Strich}\tag{iii'}
+		\Var(\tilde{\Psi})=\sigma^2\mal\norm{b}^2
+	\end{align}
+	Es gilt:
+	\begin{align}\label{eq:ProofSatz3.9SternStern}\tag{$**$}
+		b&=P_L(b)+v
+		\overset{\ref{lemma3.8}\ref{item:lemma3.8(2)}}{=}
+		a+v\qquad v\in L^\perp
+	\end{align}
+	Dann folgt aus Pythagoras:
+	\begin{align}\label{eq:ProofSatz3.9(iv)}\tag{iv}
+		\norm{b}^2
+		\overset{\text{Pythago}}&{=}
+		\norm{a}^2+\norm{v}^2
+		\geq\norm{a}^2
+		\overset{\eqref{eq:ProofSatz3.9(iii)},\eqref{eq:ProofSatz3.9(iii)Strich}}{\implies}
+		\Var(\tilde{\Psi})=\Var(\hat{\Psi})
+	\end{align}
+	 \betone{Eindeutigkeit:}\\
+	 Angenommen $\tilde{\Psi}=b'\mal Y$ hat Minimalvarianz.
+	 Dann gilt:
+	 \begin{align*}
+	 	\norm{a}^2=\norm{b}^2
+	 	\implies\norm{v}^2=0
+	 	\implies v=0
+	 	\overset{\eqref{eq:ProofSatz3.9SternStern}}{\implies}
+	 	b=a
+	 	\overset{\eqref{eq:ProofSatz3.9(i)}}{=} %könnte auch (ii) sein
+		\tilde{\Psi}=\hat{\Psi}
+	 \end{align*}
+	Gemeinsam mit \eqref{eq:ProofSatz3.9(i)}, \eqref{eq:ProofSatz3.9(ii)}, \eqref{eq:ProofSatz3.9(iii)} und \eqref{eq:ProofSatz3.9(iv)} folgen die Behauptungen.
+
+	%\betone{Zeige \ref{item:satz3.9(1)}:}\\
+	
+	%\betone{Zeige \ref{item:satz3.9(2)}:}\\
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung3.10}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item In Satz \ref{satz3.9GaussMarkovTheorem} wird \betone{nicht} $\Rg(X)=p$ (also Vollrang) gefordert.
+		\item Sprechweise im Englischen: $c'\mal\hat{\beta}$ is \define{BLUE}
+		 (:= best linear unbiased estimator)\\
+		 "unbiased" wird mit "unverzerrt" übersetzt, was einfach erwartungstreu bedeutet.
+		 \item Falls $\Rg(X)=p$ (also Vollrang), dann gilt:
+		 \begin{align*}
+		 	\Var(\hat{\Psi})=\Var\big(c'\mal\hat{\beta}\big)
+		 	\overset{\ref{satz3.2}}{=}
+		 	c'\mal\underbrace{\Var(\hat{\beta}}_{
+		 		\overset{\ref{def3.6}}{=}\sigma^2\mal\big(X'\mal X\big)^{-1}
+		 	}=\sigma^2\mal c'\mal(X'\mal X)^{-1}\mal c
+		 \end{align*}
+		 \item Speziell für $c=e_j$ liefert $\hat{\beta}_j=j$-te Komponente von $\hat{\beta}$ ist der BLUE für $\beta_j$
+	\end{enumerate}
+\end{bemerkungnr}
+
+
+
+
