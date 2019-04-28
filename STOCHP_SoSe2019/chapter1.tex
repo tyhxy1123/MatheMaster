@@ -148,7 +148,7 @@
 		\forall x\neq0.
 	\end{align*}
 	\begin{aufgabenr}[1.2 Teil 1, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1}\enter
-		Rechnen Sie nach, dass \eqref{eq:BeispEinfuehrung1} die Differenzengleichung mit Anfangsbedingungen erfüllt.
+		Rechnen Sie nach, dass $f$ die Differenzengleichung \eqref{eq:BeispEinfuehrung1} mit Anfangsbedingungen erfüllt.
 	\end{aufgabenr}
 
 	Wir bilden den Grenzwert $h,\tau\longrightarrow 0$.
@@ -288,7 +288,7 @@ In diesem Abschnitt seien:
 			Z:T\times\Omega\to S,\qquad (t,\omega)\mapsto Z(t,\omega)
 		\end{align*}
 		zu betrachten, die für jedes feste $t\in T$ messbar bezüglich $(\A,\B)$ ist.\index{vollständiger Maßraum}
-		\item Ein Maßraum $(\Omega,\A,\P)$ heißt \define{vollständig}, falls $\A$ jede $\P$-Nullmenge enthält.
+		\item Ein Maßraum $(\Omega,\A,\P)$ heißt \define{vollständig}, falls $\A$ jede $\P$-Nullmenge enthält.\label{item:bemerkung1.3.2(7)}
 		Dies können wir o.B.d.A. annehmen, denn:\\
 		Sei $(\Omega,\A_0,\P_0)$ die \define{Vervollständigung} des Grundraumes, d.h.: \index{Vervollständigung}\\
 		$\A_0$ ist die $\sigma$-Algebra, aller Mengen der Form
@@ -305,12 +305,15 @@ In diesem Abschnitt seien:
 	\end{enumerate}
 \end{bemerkungnr}
 
-\begin{aufgabenr}[1.3.2.7 Teil 1, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:3}\enter
+\begin{aufgabenr}[1.3.2.7 Teil 1, \texorpdfstring{\hyperref[loes:3]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:3}\enter
 	Zeigen Sie:
 	\begin{enumerate}
 		\item $\A_0$ ist eine $\sigma$-Algebra.
+		\label{item:aufg3_1}
 		\item $\P_0$ ist wohldefiniert (also unabhängig von der Darstellung).
+		\label{item:aufg3_2}
 		\item $\P_0$ ist ein Wahrscheinlichkeitsmaß.
+		\label{item:aufg3_3}
 	\end{enumerate}
 \end{aufgabenr}
 
@@ -319,7 +322,7 @@ In diesem Abschnitt seien:
 	\begin{align*}
 		\Omega&=[0,1]\\
 		\A&=\set{\emptyset,\Omega,\intervall{0}{\frac{1}{2}},\intervallOH{\frac{1}{2}}{1}}\\
-		\P\klammern{\intervall{0}{\frac{1}{2}}}&=0,1\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=0,9.
+		\P\klammern{\intervall{0}{\frac{1}{2}}}&=0,1\qquad\P\klammern{\intervallOH{\frac{1}{2}}{1}}=0,9.
 	\end{align*}		
 	ist \betone{nicht} vollständig.
 	 Dann ist
@@ -328,7 +331,7 @@ In diesem Abschnitt seien:
 	 \end{align*}
 	 \betone{oder}:
 	 \begin{align*}
-	 	\P\klammern{\intervall{0}{\frac{1}{2}}}&=0\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=1
+	 	\P\klammern{\intervall{0}{\frac{1}{2}}}&=0\qquad\P\klammern{\intervallOH{\frac{1}{2}}{1}}=1
 	 \end{align*}
 	  Dann ist
 	 \begin{align*}
@@ -425,7 +428,7 @@ In diesem Abschnitt seien:
 	\end{enumerate}
 \end{beispiel}
 
-\begin{aufgabenr}[1.3.4, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:5}
+\begin{aufgabenr}[1.3.4, \texorpdfstring{\hyperref[loes:5]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:5}\enter
 	Wenn wir beim Beispiel \ref{beisp1.3.3}\ref{beisp:1.3.3(c)} eine Trajektorie an $n+1$ verschiedene Stellen kennen, dann kennen wir sie überall.
 	Wie ist es bei \ref{beisp1.3.3}\ref{beisp:1.3.3(d)} und \ref{beisp1.3.3}\ref{beisp:1.3.3(b)}?
 \end{aufgabenr}
@@ -601,7 +604,7 @@ Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich
 	Dies wäre der Beweis von Folgerung \ref{folgerung1.3.7} für endliche Familien.
 \end{bemerkung}
 
-\begin{aufgabenr}[1.3.8, \texorpdfstring{\hyperref[loes:6]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:6}
+\begin{aufgabenr}[1.3.8, \texorpdfstring{\hyperref[loes:6]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:6}\enter
 	Sei $\mu_{t_1,\ldots,t_k}$ wie in Satz \ref{satz:1.3.6ExistenzsatzVonKolmo} und bezeichne $f_{t_1,\ldots,t_k}$ die zugehörigen charakteristischen Funktionen.
 	Dann sind die Konsistenzbedingungen äquivalent zu:\\
 	%\begin{enumerate}[label=(\roman*)]
@@ -641,7 +644,7 @@ Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich
 	\end{enumerate}
 \end{beisp}
 
-\begin{definition}
+\begin{definition}\label{def1.3.11}
 	Ein \define{komplexes Zufallsfeld zweiter Ordnung} auf $T$ ist eine Abbildung
 	\index{Zufallsfeld zweiter Ordnung}
 	\begin{align*}
@@ -652,13 +655,13 @@ Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich
 	Die Funktion \index{Korrelationsfunktion}
 	\begin{align*}
 		C\colon T\times T\to\C,\qquad
-		C(x,y):=\E\big[Z(x)\mal\overline{Z(y)}\big]
+		C(x,y):=\E\big[Z(x)\mal\overline{Z(y)}\big]\qquad\forall x,y\in T
 	\end{align*}
 	heißt \define{Korrelationsfunktion} von $Z$.\\
 	Die \define{Kovarianzfunktion} von $Z$ ist
 	\begin{align*}
 		\sigma\colon T\times T\to\C,\qquad
-		\sigma(x,y):=\E\Big[\big(Z(x)-M(x)\big)\mal\big(\overline{Z(y)-M(y)}\big)\Big]\\
+		\sigma(x,y):=\E\Big[\big(Z(x)-M(x)\big)\mal\big(\overline{Z(y)-M(y)}\big)\Big]\qquad\forall x,y\in T
 	\end{align*}
 	wobei \index{Mittelwert eines Zufallsfeldes}
 	\begin{align*}
@@ -689,3 +692,227 @@ Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich
 		C(x,y)=f(x)\mal\overline{f(y)}\mal\E\big[|X|^2\big] \qquad\forall x,y\in T.
 	\end{align*}
 \end{beisp}
+
+\begin{aufgabenr}[1.3.12, \texorpdfstring{\hyperref[loes:8]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:8}\enter
+	Zeigen Sie, dass die Korrelationsfunktion und die Kovarianzfunktion \define{positiv semidefinit} sind, d.h.\index{positiv semidefinit}
+	\begin{align*}
+		\forall n\in\N:\forall x_1,\ldots,x_n\in T,\forall c_1,\ldots,c_n\in\C:\sum\limits_{i=1}^n\sum\limits_{i=1}^n C(x_i,x_j)\mal c_i\mal\overline{c_j}\geq0
+	\end{align*}
+	Äquivalent: Die Matrizen
+	\begin{align*}
+		\Big( C(x_i,x_j)\Big)_{i,j=1}^n\qquad\forall n\in\N,\forall x_1,\ldots,x_n\in T
+	\end{align*}
+	sind positiv semidefinit sind.
+\end{aufgabenr}
+
+\setcounter{satz}{12}
+\begin{definition}\label{def1.3.13}
+	Ein Feld $Z$ zweiter Ordnung (reell oder komplex) auf $T\subseteq\R^d$ heißt \define{stationär (im weiteren Sinne)} $\defiff$ \index{stationär im weiteren Sinne}\index{stationär}
+	\begin{enumerate}
+		\item $\begin{aligned}
+			M:=\E\big[Z(x)\big]
+		\end{aligned}$ hängt \betone{nicht} von $x$ ab und
+		\item $\begin{aligned}
+			\E\big[Z(x)\mal\overline{Z(y)}\big]
+		\end{aligned}$ ist eine Funktion von $x-y$, d.h. es gibt eine Funktion $C\colon T-T\to\C$ so, dass
+		\index{Korrelationsfunktion}
+		\begin{align}\label{eq:def1.3.13_1}\tag{1}
+			C(x-y)=\E\big[Z(x)\mal\overline{Z(y)}\big]\qquad\forall x,y\in T
+		\end{align}
+		Man nennt auch diese Funktion $C$, wie in Definition \ref{def1.3.11}, \define{Korrelationsfunktion}.
+		Der Funktion $C$ ist auf der Menge 
+		\begin{align*}
+			T-T:=\set{x-y:x,y\in T}
+		\end{align*}
+		definiert.
+		\begin{beisp}
+			Es gilt
+			\begin{align*}
+				[0,1]-[0,1]&=[-1,1]\qquad\oder\\
+				T-T&=\set{x\in\R^2:\norm{x}\leq 2}
+				\mit T:=\set{x\in\R^2:\norm{x}\leq 1}
+			\end{align*}
+		\end{beisp}
+	\end{enumerate}
+	Leicht zu sehen: Auch die Varianz
+	\begin{align*}
+		\E\Big[\big(Z(x)-M\big)\mal\overline{\big(Z(y)-M\big)}\Big]
+	\end{align*}
+	eine Funktion von $x-y$, falls Korrelationsfunktion eine Funktion von $x-y$ ist.
+	Wir bezeichnen diese Funktion mit $\sigma$ und nennen sie \define{Kovarianzfunktion}.
+	Es gilt: \index{Kovarianzfunktion}
+	\begin{align*}
+		\sigma(h)=C(h)-\abs{M}^2\qquad\forall h\in T-T
+	\end{align*}
+	Ein beliebiges (d.h. nicht unbedingt zweiter Ordnung) Feld heißt \define{stationär im engeren Sinne} $\defiff$ die Zufallsvektoren
+	\index{stationär im engeren Sinn}
+	\begin{align*}
+		\Big(Z_{t_1},\ldots,T_{t_k}\Big)
+		\qquad\und\qquad
+		\Big(Z_{t_1+h},\ldots,T_{t_k+h}\Big)
+	\end{align*}
+	für beliebige $t_1,\ldots,t_k\in T$ und $h\in\R^d$ mit $t_1+h,\ldots,t_k+h\in T$ dieselbe Verteilungen besitzen.
+\end{definition}
+
+\begin{bemerkungnr}\label{bemerkung1.3.14}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Ist $Z$ im engeren Sinne stationär und von zweiter Ordnung, so ist $Z$ auch stationär im weiteren Sinne.
+		Das folgt daraus, dass $Z_t$ und $Z_{t+h}$ für beliebiges $h$ dieselbe gemeinsame Verteilung und damit dieselbe Kovarianz haben.
+		Allgemein gilt für reellwertige Zufallsgrößen $X,Y$:
+		\begin{align*}
+			E[X\mal Y]&=\int\limits_{\R^2} x\mal y\ds\mu_{(X,Y)}(x,y)
+		\end{align*}
+		Man braucht also nur die Fälle $k=1$ und $k=2$ aus der Definition \ref{def1.3.13}.
+		\item Sind die Zufallsgrößen $Z(x)$ unabhängig und identisch verteilt, so ist $Z$ stationär im engeren Sinne.
+		Im weiteren Sinne jedoch nur, wenn $Z$ von zweiter Ordnung ist.
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{definition}\label{def1.3.15}
+	Ein Feld $Z$ zweiter Ordnung auf $T$ heißt \define{weißes Rauschen} mit Erwartungswert $\mu$ und Varianz $\sigma^2\geq0\defiff$
+	\index{weißes Rauschen}
+	\begin{enumerate}
+		\item die Zufallsgrößen $Z(x),x\in T$, unkorreliert sind,
+		\item $\begin{aligned}
+			\E\big[Z(x)\big]=\mu
+		\end{aligned}$
+		\item $\begin{aligned}
+			D Z(x)=\sigma
+		\end{aligned}$, d.h. $\Var\big(Z(x)\big)=\sigma^2$
+	\end{enumerate}		
+	Notation: $Z\sim\WN\big(\mu,\sigma^2\big)$ "white noise"
+\end{definition}
+
+\begin{lem}
+	Weißes Rauschen ist stationär (im weiteren Sinne) mit Korrelationsfunktion
+	\begin{align*}
+		C(h)\overset{\Def}&{=}
+		\E\Big[Z_{t}\mal Z_{t+h}\Big]
+		=\E\big[Z_t\big]\mal\E\big[Z_{t+h}\big]
+		=\left\lbrace\begin{array}{cl}
+			\mu^2,&\falls h\neq0\\
+			\sigma^2,&\falls h=0
+		\end{array}\right.
+	\end{align*}
+	Sind die Zufallsgrößen $Z(x)$ \betone{nicht} identisch verteilt, dann ist $Z$  \betone{nicht} stationär im engeren Sinne (betrachte dazu den Fall $k=1$).\nl
+	Spezialfall vom weißen Rauschen:
+	Sind die Zufallsgrößen $Z(x)$ unabhängig und identisch verteilt, so schreiben wir $Z\sim\IID\big(\mu,\sigma^2\big)$.
+	Solche Felder sind stationär im engeren Sinne.\nl
+	Bei einem weißen Rausch ist die Korrelationsfunktion stetig, außer im Nullpunkt (dort springt sie).
+\end{lem}
+
+\begin{aufgabenr}[1.3.16, \texorpdfstring{\hyperref[loes:9]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:9}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Seien $X_1,\ldots,X_n$ ein orthogonales System (d.h. Skalarprodukt $\scaProd{X}{Y}=\E[X\mal\overline{Y}]=0$ für $X\neq Y$) in $\L_2(\Omega,\A,\P)$ mit $\E[X_j]=0$ und $a_1,\ldots,a_n\in\R^d$.
+		Zeigen Sie, dass\label{item:aufg9(1)}
+		\begin{align*}
+			Z(t)&:=\exp\big(\ii\mal\scaProd{a_1}{t}\big)\mal X_1+\ldots+
+			\exp\big(\ii\mal\scaProd{a_n}{t}\big)\mal X_n\qquad\forall t\in\R^d=:T
+		\end{align*}
+		stationär ist und bestimmen Sie die Kovarianz- und Korrelationsfunktion.
+		\item Welche Eigenschaft muss die Funktion $g\colon \R^d\to\C$ haben, damit \label{item:aufg9(2)}
+		\begin{align*}
+			Z(t)&:=g(t)\mal X\qquad\forall t\in \R^d=:T
+		\end{align*}
+		stationär ist, wobei $X\neq0$ eine Zufallsgröße mit endlicher Varianz ist, also $X\in\L^2(\Omega,\A,\P)$.
+	\end{enumerate}
+\end{aufgabenr}
+
+\begin{aufgabenr}[1.3.17, \texorpdfstring{\hyperref[loes:10]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:10}\enter
+	Sei $\alpha\in\R$ und 
+	\begin{align*}
+		X(t)&:=A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\qquad\forall t\in\R=:T
+	\end{align*}
+	wobei $A$ und $B$ unkorrelierte Zufallsgrößen mit $\E[A]=\E[B]=0$ und $\Var(A)=\Var(B)=1$ seien.
+	\begin{enumerate}[label=(\arabic*)]
+		\item Zeigen Sie, dass $X$ stationär ist und berechnen Sie Korrelationsfunktion.
+		\label{item:Aufg:10(1)}
+		\item Ist $X$ stationär im engeren Sinne?
+		\label{item:Aufg:10(2)}
+	\end{enumerate}
+\end{aufgabenr}
+
+\setcounter{satz}{17}
+
+\begin{definition}\label{def1.3.18}
+	Sei $T\subseteq\R$ oder $T\subseteq\Z$ ein Intervall.
+	Ein reellwertiger Prozess $X$ auf $T$ heißt \define{Markovscher Prozess} $\defiff$
+	\index{Markovscher Prozess}
+	\begin{align*}
+		\P\Big(X_{t_n}\in A~\Big|~X_{t_1},\ldots,X_{t_n}\Big)
+		&=\P\Big(X_{t_n}\in A~\Big|~X_{t_{n}}\Big)
+	\end{align*}
+	für beliebige $n\in\N$, $A\in\B(\R)$ und alle $t_j\in T$ mit $t_1<\ldots<t_{n+1}$.
+\end{definition}
+
+\begin{bemerkung}\
+	\begin{enumerate}
+		\item "Zukunft hängt nur von der Gegenwart ab, nicht von der Vergangenheit"
+		\item $X$ ist Markovscher Prozess auf $T$
+		\begin{align*}
+			\gdw\P\Big(X_{t_n}\leq a_n~\Big|~\forall j\in\set{1,\ldots,n-1}:X_{t_j}=a_j\Big)
+			&=\P\Big(X_{t_n}=a_n~\Big|~X_{t_{n-1}}=a_{n-1}\Big)
+		\end{align*}
+		für alle $n\in\N$, für $\mu_{(X_1,\ldots,X_n)}$-fast alle $(a_1,\ldots,a_n)\in\R^n$, $t_j\in T$ mit $t_1<\ldots<t_n$.\\
+		Mit anderen Worten:
+		Wenn die Vergangenheit $X_{t_1},\ldots,X_{t_{n-2}}$ und die Gegenwart $X_{t_{n-1}}$ gegeben sind, dann hängt die Zukunft $X_{t_n}$ nur von der Gegenwart ab.
+		%Später werden wir eine allgemeinere Definition geben.
+		\item Die Bedingungen können Nullereignisse sein. %Dr. Kühn
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beisp}\
+	\begin{itemize}
+		\item Das zufällige Wandern eines Teilchens auf $\Z$, wobei das Teilchen bei jedem Schritt mit der Wahrscheinlichkeit $p$ um 1 nach rechts und mit Wahrscheinlichkeit $1-p$ nach links verschoben wird.
+		$Z(n)$ sei die Position nach dem $n$-ten Schritt.
+		Dann ist $Z$ ein Markovscher Prozess.
+		\item Physikalische Prozesse:
+		\begin{itemize}
+			\item Beim radioaktiven Zerfall die Anzahl der zur Zeit $t$ noch vorhandenen radioaktiven Atome.
+			\item Bei der Brownschen Bewegung die Position des Partikels.
+		\end{itemize}
+	\end{itemize}
+\end{beisp}
+
+\begin{aufgabenr}[1.3.19, \texorpdfstring{\hyperref[loes:11]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:11}\enter
+	Wir betrachten den Wahrscheinlichkeitsraum
+	\begin{align*}
+		(\Omega,\A,\P)=\Big([0,1],\B\big([0,1]\big),\lambda|_{[0,1]}\Big)
+	\end{align*}
+	und definieren den Prozess $X$ durch
+	\begin{align*}
+		X_t(\omega)&:=t\mal\omega\qquad\forall t\in(0,\infty)=:T,\forall \omega\in\Omega
+	\end{align*}
+	Bestimmen Sie die endlich-dimensionale Verteilung des Prozesses $X$ und die Kovarianzfunktion. (Die Pfade sind Geraden $\leadsto$ stetig)
+\end{aufgabenr}
+
+\begin{aufgabenr}[1.3.20 ($*$), \texorpdfstring{\hyperref[loes:12]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:12}\enter
+	Seien $Z$ und $\Theta$ unabhängige Zufallsgrößen so, dass $Z$ die Dichte
+	\begin{align*}
+		p(z)=\indi_{[0,\infty)}(z)\mal z\mal\exp\klammern{-\frac{z^2}{2}}\qquad\forall z\in\R
+	\end{align*}
+	besitzt und $ \Theta$ in $[0,2\mal\pi)$ gleichmäßig verteilt ist.
+	Dann ist
+	\begin{enumerate}[label=(\alph*)]
+		\item der Zufallsvektor
+		\begin{align*}
+			\big(Z\mal\cos(\Theta),Z\mal\sin(\Theta)\big)
+		\end{align*}
+		Gauß-verteilt und
+		\item $\begin{aligned}
+			X_t:=Z\mal\cos\big(2\mal\pi+\Theta\big)~(\forall t\in\R)
+		\end{aligned}$
+		ist ein Gauß-Prozess (mit Werten in $\R$).
+	\end{enumerate}
+\end{aufgabenr}
+
+
+
+
+
+
+
+
+
+
+

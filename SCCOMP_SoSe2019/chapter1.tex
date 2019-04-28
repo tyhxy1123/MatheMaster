@@ -1,0 +1,99 @@
+\chapter{Basic iterative methods}%
+\label{cha:Basic iterative methods}
+
+We want to solve the linear system
+\[
+	Au = f \qquad (Ax = h)
+.\] 
+\begin{itemize}
+	\item traditional directl methodes (Gauss elemination) are insufficient:
+		\begin{itemize}
+			\item $\O(n^{4})$ steps
+			\item $\O(n^{3})$ storage units
+		\end{itemize}
+
+	\item Iterative methods try to improve an implicit guess until some tolerance criterion is reached
+		\begin{itemize}
+			\item $\O(n^{2})$ storage units
+		\end{itemize}
+\end{itemize}
+
+\section{Relaxation methods}%
+\label{sec:Relaxation methods}
+
+Basic relaxation methods are based on a coordinate-wise relaxation/reduction of an initial residuum
+\[
+\gamma = b- Ax
+.\] 
+In each relaxation step there methodes try to annihilate a component of the residual.
+
+The general idea is to transform the linear system into a fixed point problem
+\[
+	x = x + P^{-1}(b-Ax)
+,\] 
+where $P$ is called a proconditioner (matrix) and should be easy to invert in the sense the $Pe=r$ can be solved easily and $P$ should be an approximation of matrix $A$.
+
+Basic idea to solve a fixed-point problem is a fixed-point iteration
+\[
+	x^{k+1} = x^{k} + P^{-1}(b-Ax^{k})
+.\] 
+Rewriting this to make it a bit prettier results in
+\[
+	x^{k+1} = Gx^{k} + g =:T(x^{k})
+.\] 
+where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
+
+\subsection{Some examples of relaxation schemes}
+\label{sec:Some examples of relaxation schemes}
+
+\begin{enumerate}[label=\Alph{enumi})]
+	\item Jacobi method 
+
+		Let $P_{J} = \diag(A)$, then obviously
+		\[
+			x^{k+1} = x^{k} + \diag(A)^{-1}(b-Ax^{k})
+		.\] 
+		written in terms of the components
+		\[
+			x^{k}= (\xi _{i}^{k})_{i}, \quad b=(\beta_{i})_{i}
+		\] 
+		gives
+		\[
+			a_{ii}\xi _{i}^{(k+1)} = -\sum_{\substack{j=1 \\ j \neq i}}^{n}{a_{ij}\xi _{j}^{(k)}+ \beta_{i}}
+		.\] 
+		Let $A=D-L-U$ be a splitting of the matrix $A$ into diagonal $D$, lower triangular part $L$ and upper triangular part $U$
+		\[
+		A = \begin{pmatrix}
+			\diagdown & & -U \\
+			  &D&    \\
+			-L & & \diagdown
+		\end{pmatrix}
+		.\] 
+		Then $P_{J} = D$
+		\[
+			Dx^{k+1} = (L+U)x^{k} + b
+		.\] 
+		For the 5-point stencil $\laplace_{h}^{(5)}$ we have 
+		\[
+			D = \diag(\frac{4}{h^{2}}) \qquad \text{ and } \qquad L+U = \begin{pmatrix}
+				0 & 1 &  & 1 & & \\
+				1 & \ddots & \ddots & 0 & \ddots &  \\
+				  & \ddots & \ddots & \ddots & & 1 \\
+				1 & 0 & \ddots & \ddots & \ddots & \\
+				  &\ddots & & \ddots & \ddots & 1 \\
+				  && 1 && 1 & 0
+			\end{pmatrix}
+		.\] 
+			% TODO : Die Matrix nochmal in hübsch machen
+		So written directly in terms of the grid vector $u_{i,j}$ we get the Jacobi scheme for inner nodes
+		\[
+			u_{i,j}^{k+1} = \frac{1}{4}(u_{i,j-1}^{k}+ u_{i-1,j}^{k} + u_{i,j+1}^{k} + u_{i+1,j}^{k} + h^{2}f_{i,j})
+		.\] 
+		% TODO : Bilder?
+
+		\underline{Note}: Instead of $P=D$ one could implement a \underline{damped Jacobi scheme} with
+		\[
+		P_{wJ}=w\cdot D \qquad \text{ with } 0 < w \leq 1
+		.\] 
+\end{enumerate}
+

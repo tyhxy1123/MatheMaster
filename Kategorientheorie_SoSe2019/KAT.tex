@@ -14,7 +14,8 @@
 \newcommand{\directoryPrefix}{../latex/} 
 \input{\directoryPrefix packages}
 %\input{\directoryPrefix counters} % section counter benutzt römische Zahlen
-\input{\directoryPrefix theoremenvironments}
+%\input{\directoryPrefix theoremenvironments}
+\input{local_theoremenvironments}
 \input{\directoryPrefix font}
 \input{\directoryPrefix commands}
 \input{\directoryPrefix commands_Willi}
@@ -58,8 +59,11 @@
 	
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
 	\setcounter{chapter}{-1}
-	\input{chapter0}
-	\input{chapter1}
+	\input{chapter0} % Intro
+	\input{chapter1} % Category, examples
+	\input{chapter2} % Construction with categories
+	\input{chapter3} % Functors and natural transformations
+	\input{chapter4} % 
 	
 	\appendix
 	%\input{anhang}

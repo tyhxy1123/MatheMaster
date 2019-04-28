@@ -157,6 +157,117 @@ Speicherbereiche im Arbeitsspeicher:
 	\end{center}
 \end{figure}
 
+\subsection{Literale (Konstanten von primitiven Datentypen)}
+\begin{itemize}
+	\item \code{int}: 32 Bit=4 Byte in Zweierkomplementdarstellung; Zahlenbereich:\\
+	$-2^{31}=-2.147.483.648$ = \code{Integer.MAX\_VALUE} bis\\ $+2^{31}-1=2.147.483.647$ = \code{Integer.MIN\_VALUE}\\
+	hexadezimale Repräsentation: \code{$\emptyset$x7ffffd}\\
+	oktale Repräsentation: \code{$\emptyset$77$_{8}$=63$_{10}$}\\
+	Unicode (16 Bit Zeichen): \code{$\setminus$u$\emptyset\emptyset$3f$_{16}$=63$_{10}$}
+	\item \code{long:} 64 Bit = 8 Byte in Zweierkomplementdarstellung;
+	Darstellung ähnlich wie \code{int}, mit einen postfix L:
+	\code{longvar = 2147500000L;}
+	(vergisst man hier das "L", so wird es nicht als long erkannt)
+	Wertebereich: $\set{-2^{63},\ldots,+2^{63}-1}$ mit\\
+	\code{Long.MAX\_VALUE, Long.MIN\_VALUE}
+	Beispiel:
+	\code{$\emptyset$x01fffaL}
+	\item \code{byte} 8 Bit; \code{(byte) $\emptyset$x7e}
+	\item \code{short} 16 Bit; \code{(short) 32767}\\
+	Für \code{byte} und \code{short} gibt es \betone{keine} explizite Konstantennotation! (deshalb der Typecast)
+	\item \code{float}: 32 Bit IEEE754 single precision floating-point\\
+	\code{123.456F=0.123456e+3f=123456E-3F}\\
+	Man kann die Null vor dem Komma weglassen und \code{.25} schreiben. 
+	(Ob großes oder kleines \code{e} / \code{f} spielt keine Rolle)
+	\item \code{double}: 64 Bit double precision;
+	ähnlich wie \code{float} \betone{ohne} nachgestelltes (postfixed) Zeichen.
+	Optional kann man das Zeichen "D" / "d" nachstellen.
+	\code{Double.NaN}
+	\item \code{char}: 16 Bit Unicodezeichen (ohne Vorzeichen!), z.B.\\ \code{'a','A',',','3',':', 'u$\setminus\emptyset\emptyset$47'}\\
+	Escape-Sequenzen:
+	\begin{itemize}
+		\item \code{'$\setminus$n'} erzeugt Zeilenumbruch 
+		\item \code{'$\setminus\setminus'$} erzeugt $\setminus$ (Backslash)
+		\item \code{'$\setminus$''} erzeugt ' (single quote)
+		\item \code{'$\setminus$\grqq{}'} erzeugt \grqq{} (double quote)
+	\end{itemize}
+	\item \code{boolean:} kann nur \code{true} oder \code{false}, \betone{keine} Typkonversion
+\end{itemize}
+
+\subsection{Typkonversionen (Casts / Casting)}
+Implizite Typkonversionen:
+\code{byte $\to$ short $\to$ int $\to$ long} und \code{char $\to$ int}
+sowie \code{float $\to$ double}\\
+Für die anderen Umwandlungen ist ein \betone{expliziter} Typecast notwendig.
+
+\subsection{Binäre arithmetische Operationen}
+Es gibt vier Hierarchie-Regeln:
+\begin{enumerate}[label=(\arabic*)]
+	\item Wenn mindestens ein Operand vom Typ \code{double} ist, dann ist das Ergebnis auch vom Type \code{double}.
+	\item Wenn mindestens ein Operand vom Typ \code{float} ist, dann ist das Ergebnis auch vom Type \code{float}.
+	\item Wenn mindestens ein Operand vom Typ \code{long} ist, dann ist das Ergebnis auch vom Type \code{long}.
+	\item Alles andere liefert ein Ergebnis vom Typ \code{int}.
+\end{enumerate}
+
+\code{String}: automatische Umwandlung in \code{String}:\\
+\code{str + primitive\_type\_value} bzw.  \code{primitive\_type\_value + str} \\
+\code{str + reference\_type\_object} bzw. \code{reference\_type\_object + str}\\
+Dies ruft automatisch die \code{toString()}-Methode auf dem Objekt auf.\\
+Standardmäßig bekommt die hexadezimale Speicheradresse des Objektes, falls keine \code{toString()}-Methode deklariert ist.\\
+Man sollte in jeder instanziierbaren Klasse eine \code{toString()}-Methode anlegen (\undefine{Overriding}).\nl
+Der \define{instanceof-Operator} liefert \code{true} für alle Supertypen und den eigentlichen Typen.\\
+\code{RefVar instanceof ClassName}, 
+\code{x instanceof Object} ist immer \code{true}
+
+\subsection{Vererbung (Inheritance)}
+\code{[public] class MyClass \fbox{extends} Superclass \fbox{implements} IF1,IF2$\{\ldots\}$}
+
+\subsection{Type-Konversion / Type Casting}
+\begin{itemize}
+	\item Implizite Type Casts sind für (viele) primitive Typen bereits vorhanden.
+	\item Für \code{boolean} gibt es keine Typkonversion.
+	\item \define{Upcasts} (Objekt als Objekt der Superklasse auffassen: Subtyp $\to$ Supertyp) funktioniert immer implizit.
+	\begin{enumerate}[label=(\arabic*)]
+		\item in Zuweisungen: \code{superVar = subExpr}.\\
+		Der Cast \code{superVar = (SuperClass) subExpr} ist \betone{nicht} notwendig / optional.
+		\item in Parameter-/Argument-Assoziationen: 
+		Aufrufer übergibt (Referenz auf) ein Objekt des Subtypes (Subklasse) an einen formalen Parameter des Supertypes (Superklasse)
+	\end{enumerate}
+	\item \define{Downcast}: muss \betone{explizit} gemacht werden und beinhaltet einen (Compiler-\\generierten) Laufzeittest:\\
+	\code{(TargetType) <Expression> // führt ggf. zu einer TypeCastException}
+\end{itemize}
+
+\subsection{\code{this} und \code{super}}
+\begin{enumerate}[label=(\roman*)]
+	\item In einer Instanzmethode (IM) oder einem Konstruktor\\
+	\code{super} oder \code{this} referenzieren beide das sogenannte \define{this-Objekt}, auf welchem die Instanzmethode aufgerufen wurde (oder welches gerade "konstruiert" wird)\\
+	\code{super.im(...)}
+	\code{super.iv}
+	\code{this.im(...)}
+	\code{this.iv}
+
+\begin{figure}[H] % oder ht!
+	\begin{center}
+		\input{./tikz/thissuper}
+		%\caption{Bildunterschrift}
+		%\label{Abb:Titel}
+	\end{center}
+\end{figure}
+
+Normalerweise ist \code{this.iv} semantisch äquivalent zu \code{iv} und \code{this.im(...)} semantisch äquivalent zu \code{im(...)}.
+\newpage %TODO
+\code{MyClass(int x)\{\\\tab this.x = x; // Die Ausnahme der Regel\\\}}\\
+Andere Verwendung:\\
+\code{ref = this;\\
+return this; // \betone{nicht} in Konstruktoren!\\
+methode(this);}
+	\item In einem Konstruktor:\\
+	\code{this(...); // ruft anderen Konstruktor in derselben Klasse auf\\
+	super(...); // ruft anderen Konstruktor in der Mutterklasse auf}\\
+	\href{https://stackoverflow.com/questions/586363/why-is-super-super-method-not-allowed-in-java}{Niemals \code{super.super(...)} schreiben!}
+\end{enumerate}
+
+
 \section{Anwendungsgebiete, Einschränkungen, Vor- und Nachteile}
 
 
