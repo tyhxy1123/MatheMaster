@@ -112,7 +112,7 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
     \begin{algorithmic}[0]
       \Function{REFINE\_MARKED}{$\mathcal{T}$, $M$}
         \For{all $T \in M$}
-        \State ${T_0, T_1} = \text{BISECT} (T)$
+        \State $\{T_0, T_1\} = \text{BISECT} (T)$
           \State $\mathcal{T} := (\mathcal{T} \setminus \{T\}) \cup \{T_0, T_1\}$
         \EndFor
         \State return $T$
