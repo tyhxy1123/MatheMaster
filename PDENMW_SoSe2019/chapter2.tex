@@ -107,27 +107,40 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 \section{Refinement-Algorithm}
 \underline{Goal:} Algorithm that construct a (small) conforming refinement of a given triangulation $\T$ in which all elements of a subset $\mathcal{M} \subset \T$ is refined.
 \begin{enumerate}[label = \alph*)]
-	\item Iterative Refinement
-		%TODO insert pseudocode here
+	\item Iterative Refinement\nl
+        \code{
+        REFINE\_MARKED$(\T,\mathcal{M})$\\
+        for all $T \in \mathcal{M}$ do\\
+        \tab $\left\{ T_{0},T_{1} \right\}=$BISECT\\
+        \tab $\T= \left( \T \backslash \left\{T \right\} \right) \cup \left\{ T_{0},T_{1} \right\}$\\
+        endfor\\
+        return $\T$
+        }\nl
 		This may lead to a nonconforming grids\\
-		Remedy: Refine elements with hanging nodes
-		%TODO insert pseudocode here
-		%TODO chenag comments to Pseudocodes
+		Remedy: Refine elements with hanging nodes\nl
+        \code{
+          REFINE($\T,\mathcal{M}$)\\
+          while $\mathcal{M} \neq \emptyset $ do\\
+          \tab $\T :=$ REFINE\_MARKED($\T,\mathcal{M}$)\\
+          \tab $\mathcal{M}:=\left\{ T \in \T: T \text{ has a hanging node} \right\}$ \\
+          endwhile\\
+          return $\T$
+        }\nl
 		\begin{lemma}
 			The algorithm terminates.
 			\begin{itemize}
-				\item Let $\T_{*}$ be the triangulation after the first call to %REFINE_MARKED
+              \item Let $\T_{*}$ be the triangulation after the first call to \code{REFINE\_MARKED}
 				\item Let $g$ be the highest generation of an element in $\T_{*}$ 
 				\item The uniform refinement $\T_{g}$ is conforming
 				\item $\T_{*}\leq \T_{g}$ (i.e. $\T_{g}$ is a refinement of $T_{*}$)
-				\item %REFINE
+                \item \code{REFINE}
 					bisects elements with hanging nodes $\implies \T \leq \T_{g}$ for all $\T$ produced by the \glqq while \grqq\ loop
 				\item Either the loop terminates or $\T$ is bigger than its predecessor
 				\item $T_{g}$ is a upper bound $\to$ the algorithm terminates
 			\end{itemize}
 		\end{lemma}
 		\begin{lemma}
-			The grid produced by %REFINE
+			The grid produced by \code{REFINE}
 			is the \underline{smallest} conforming refinement of $\T_{*}$
 		\end{lemma}
 		\subsection{Complexity of bisection refinement}
@@ -135,12 +148,12 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 		\begin{equation*}
 			\T_{0} \leq \T_{1} \leq \dots \leq \T_{n} \leq \dots 
 		\end{equation*}
-		produced by the following algorithm.
-		%PSEUDOCODE
-		%for k \geq 0 do 
-		%	select a subset \mathcal{M}_{k} \subset \T_{k}
-		%	\T_{k+1} := REFINE( \T_{k},\mathcal{M}_{k})
-		%end
+		produced by the following algorithm.\nl
+        \code{
+        for $k \geq 0$ do \\
+		\tab select a subset $\mathcal{M}_{k} \subset \T_{k}$\\
+		\tab $\T_{k+1} :=$ REFINE$( \T_{k},\mathcal{M}_{k})$\\
+		end}\nl
 		Hope: There is a constant $\Lambda = \Lambda(\T_{0})$ such that 
 		\begin{equation*}
 			\#\T_{k+1} - \#\T_{k} \leq \Lambda \# \mathcal{M}_{k}
