@@ -115,7 +115,7 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
         \State $\{T_0, T_1\} = \text{BISECT} (T)$
           \State $\mathcal{T} := (\mathcal{T} \setminus \{T\}) \cup \{T_0, T_1\}$
         \EndFor
-        \State return $T$
+        \State \Return $T$
       \EndFunction
     \end{algorithmic}
     This (usually) leads to a nonconforming grid.
@@ -127,7 +127,7 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
           \State $\mathcal{T} := \text{REFINE\_MARKED}(\mathcal{T}, M)$
           \State $M := \{T \in \mathcal{T} \ |\ T \text{ has a hanging node}\}$
         \EndWhile
-        \State return $\mathcal{T}$
+        \State \Return $\mathcal{T}$
       \EndFunction
     \end{algorithmic}
     This seemingly simple algorithm is supposedly difficult to implement.
