@@ -70,7 +70,7 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
   \begin{proof}[Proof sketch]
     Consider the $g$-th uniform refinement (with $g < d$).
 		\begin{enumerate}
-			\item One has to show: every descendent $T'$ of $T$ with $\gen(T')=g$ has the structure
+      \item One has to show (but we do not show it here): every descendent $T'$ of $T$ with $\gen(T')=g$ has the structure
 				\begin{equation*}
 					T' = \left\{ z_{k_{0}},y_{g},y_{g-1},\dots ,y_{1},\underbrace{z_{k_{1}},\dots, z_{k_{d-g}} }_{\text{from original simplex}} \right\}_{g}
 				\end{equation*}
@@ -102,79 +102,89 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 				\end{enumerate}
 		\end{itemize} 
   \end{proof}
+  The second part of considering a forest is omitted.
 \end{proof}
 
 \section{Refinement-Algorithm}
-\underline{Goal:} Algorithm that construct a (small) conforming refinement of a given triangulation $\T$ in which all elements of a subset $\mathcal{M} \subset \T$ is refined.
+\underline{Goal:} Algorithm that construct a (small) conforming refinement of a given triangulation $\T$ in which all elements of a subset $\mathcal{M} \subset \T$ are refined.
 \begin{enumerate}[label = \alph*)]
-	\item Iterative Refinement\nl
-        \code{
-        REFINE\_MARKED$(\T,\mathcal{M})$\\
-        for all $T \in \mathcal{M}$ do\\
-        \tab $\left\{ T_{0},T_{1} \right\}=$BISECT\\
-        \tab $\T= \left( \T \backslash \left\{T \right\} \right) \cup \left\{ T_{0},T_{1} \right\}$\\
-        endfor\\
-        return $\T$
-        }\nl
-		This may lead to a nonconforming grids\\
-		Remedy: Refine elements with hanging nodes\nl
-        \code{
-          REFINE($\T,\mathcal{M}$)\\
-          while $\mathcal{M} \neq \emptyset $ do\\
-          \tab $\T :=$ REFINE\_MARKED($\T,\mathcal{M}$)\\
-          \tab $\mathcal{M}:=\left\{ T \in \T: T \text{ has a hanging node} \right\}$ \\
-          endwhile\\
-          return $\T$
-        }\nl
+	\item Iterative Refinement
+    \begin{algorithmic}[0]
+      \Function{REFINE\_MARKED}{$\mathcal{T}$, $M$}
+        \For{all $T \in M$}
+        \State $\{T_0, T_1\} = \text{BISECT} (T)$
+          \State $\mathcal{T} := (\mathcal{T} \setminus \{T\}) \cup \{T_0, T_1\}$
+        \EndFor
+        \State \Return $T$
+      \EndFunction
+    \end{algorithmic}
+    This (usually) leads to a nonconforming grid.
+
+		Remedy: Refine elements with hanging nodes.
+    \begin{algorithmic}[0]
+      \Function{REFINE}{$\mathcal{T}$, $M$}
+        \While{$M \neq \emptyset$}
+          \State $\mathcal{T} := \text{REFINE\_MARKED}(\mathcal{T}, M)$
+          \State $M := \{T \in \mathcal{T} \ |\ T \text{ has a hanging node}\}$
+        \EndWhile
+        \State \Return $\mathcal{T}$
+      \EndFunction
+    \end{algorithmic}
+    This seemingly simple algorithm is supposedly difficult to implement.
+		%TODO chenag comments to Pseudocodes
 		\begin{lemma}
 			The algorithm terminates.
+    \end{lemma}
+    \begin{proof}\
 			\begin{itemize}
-              \item Let $\T_{*}$ be the triangulation after the first call to \code{REFINE\_MARKED}
-				\item Let $g$ be the highest generation of an element in $\T_{*}$ 
-				\item The uniform refinement $\T_{g}$ is conforming
-				\item $\T_{*}\leq \T_{g}$ (i.e. $\T_{g}$ is a refinement of $T_{*}$)
-                \item \code{REFINE}
-					bisects elements with hanging nodes $\implies \T \leq \T_{g}$ for all $\T$ produced by the \glqq while \grqq\ loop
-				\item Either the loop terminates or $\T$ is bigger than its predecessor
-				\item $T_{g}$ is a upper bound $\to$ the algorithm terminates
+				\item Let $\T_{*}$ be the triangulation after the first call to REFINE\_MARKED.
+				\item Let $g$ be the highest generation of an element in $\T_{*}$. 
+				\item The uniform refinement $\T_{g}$ is conforming.
+				\item $\T_{*}\leq \T_{g}$ (i.\,e.\ $\T_{g}$ is a refinement of $T_{*}$).
+        \item REFINE bisects elements with hanging nodes $\implies \T \leq \T_{g}$ for all $\T$ produced by the \glqq while\grqq{} loop. (Somehow here the condition for admissible grids comes in.)
+				\item Either the loop terminates or $\T$ is bigger than its predecessor.
+				\item $T_{g}$ is a upper bound $\to$ the algorithm terminates.
 			\end{itemize}
-		\end{lemma}
+		\end{proof}
 		\begin{lemma}
-			The grid produced by \code{REFINE}
-			is the \underline{smallest} conforming refinement of $\T_{*}$
+			The grid produced by REFINE
+			is the \underline{smallest} conforming refinement of $\T_{*}$.
 		\end{lemma}
 		\subsection{Complexity of bisection refinement}
 		Consider the sequence of conforming triangulations 
 		\begin{equation*}
 			\T_{0} \leq \T_{1} \leq \dots \leq \T_{n} \leq \dots 
 		\end{equation*}
-		produced by the following algorithm.\nl
-        \code{
-        for $k \geq 0$ do \\
-		\tab select a subset $\mathcal{M}_{k} \subset \T_{k}$\\
-		\tab $\T_{k+1} :=$ REFINE$( \T_{k},\mathcal{M}_{k})$\\
-		end}\nl
+		produced by the following algorithm.
+    \begin{algorithmic}
+      \For{$k \geq 0$}
+    \State select a subset $\mathcal{M}_k \subseteq \mathcal{T}_k$
+        \State $\mathcal{T}_{k + 1} := \text{REFINE}(\mathcal{T}_k, M_k)$
+      \EndFor
+    \end{algorithmic}
 		Hope: There is a constant $\Lambda = \Lambda(\T_{0})$ such that 
 		\begin{equation*}
-			\#\T_{k+1} - \#\T_{k} \leq \Lambda \# \mathcal{M}_{k}
+      \#\T_{k+1} - \#\T_{k} \leq \Lambda \# \mathcal{M}_{k} \quad \text{for all } k \geq 0
 		\end{equation*}
-		\underline{Doesn't hold!}\\
-		Counterexample:\\
-		The refinement edge is always the edge on the boundary $\implies$ grid is admissible
-		\input{tikz/chapter2/counterexample_0.tex}
-		\begin{itemize}
-			\item Pick an even number $K \in \N$ 
-			\item Set $\mathcal{M}_{k} := \left\{ T \in \T_{k}: 0 \in T \right\} $ for all $k=0,1,\dots ,K-1$ 
-			\input{tikz/chapter2/counterexample_1-4.tex}
-			\item Set $\mathcal{M}_{K} := \left\{ T \in \T_{K}: \text{gen}(T)=K \text{ and } 0 \not\in T \right\}$ 
-			\input{tikz/chapter2/counterexample_M_K.tex}
-		\end{itemize}
-		For $k < K$ only the marked elements are refined $\implies$ $\#\T_{k+1} - \#\T_{k} = \mathcal{M}_{k} = 2$	
-		\input{tikz/chapter2/counterexample_k=K_1.tex}
-		\input{tikz/chapter2/counterexample_k=K_2.tex}
-		For $k=K$ $\implies$ $\#\T_{k+1} - \#\T_{k} = 4K +2$\\
-		But $K$ can be any large even number $\implies$ Number $4K +2$ cannot be bounded by $\#\mathcal{M}=2$.\nl
+		\underline{This does not hold!}\\
+    \begin{example}[Counterexample] \label{ex:counterexampleRefinementBoundary}
+      The refinement edge is always the edge on the boundary $\implies$ grid is admissible.
+      \input{tikz/chapter2/counterexample_0.tex}
+      \begin{itemize}
+        \item Pick an even number $K \in \N$ 
+        \item Set $\mathcal{M}_{k} := \left\{ T \in \T_{k}: 0 \in T \right\} $ for all $k=0,1,\dots ,K-1$ 
+          \input{tikz/chapter2/counterexample_1-4.tex}
+        \item Set $\mathcal{M}_{K} := \left\{ T \in \T_{K}: \text{gen}(T)=K \text{ and } 0 \not\in T \right\}$ 
+          \input{tikz/chapter2/counterexample_M_K.tex}
+      \end{itemize}
+      For $k < K$ only the marked elements are refined $\implies$ $\#\T_{k+1} - \#\T_{k} = \mathcal{M}_{k} = 2$	
+      \input{tikz/chapter2/counterexample_k=K_1.tex}
+      \input{tikz/chapter2/counterexample_k=K_2.tex}
+      For $k=K$ $\implies$ $\#\T_{k+1} - \#\T_{k} = 4K +2$\\
+      But $K$ can be any large even number $\implies$ Number $4K +2$ cannot be bounded by $\#\mathcal{M}=2$.
+    \end{example} % end example CounterexampleRefinementBoundary:
 		You can bound the average of new elements created by refinements.
+    In our example this is:
 		\begin{align*}
 			\# \T_{K+1} - \# \T_{0} &= \sum\limits_{k=0}^{K} \# \T_{k+1} - \# \T_{k}\\
 									&= 4K + 2 + 2K\\
@@ -182,18 +192,17 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 									&= 3 \sum\limits_{k=0}^{K} \#\mathcal{M}_{K} 
 		\end{align*}
 		\begin{theorem}
-			Let $\T_{0}$ be a conforming triangulation, admissible. Then there is a constant $\Lambda = \Lambda(\T_{0})$ such that 
+			Let $\T_{0}$ be a conforming, admissible triangulation. Then there is a constant $\Lambda = \Lambda(\T_{0})$ such that 
 			\begin{equation*}
 				\# \T_{K} - \# \T_{0} \leq \Lambda \sum\limits_{k=0}^{K} \#\mathcal{M}_{k}
 			\end{equation*}
 		\end{theorem}
-		\begin{proof_}
-			(Idea of the proof)\\
-			Let $\mathcal{M} = \bigcup_{k=0} \mathcal{M}_{k}$ be the set of all elements marked with constructing the sequence
+    \begin{proof}[Idea of the proof]
+			Let $\mathcal{M} = \bigcup_{k=0} \mathcal{M}_{k}$ be the set of all elements marked by constructing the sequence
 			 \begin{equation*}
 				\T_{0} \leq \T_{1} \leq \T_{2}\leq \dots .
 			\end{equation*}
-			Costfunction
+			Define a cost function
 			\begin{equation*}
 				\lambda: \T \times \mathcal{M} \mapsto \R
 			\end{equation*}
@@ -201,19 +210,21 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
 			\begin{enumerate}[label = \alph*)]
 				\item 
 					\begin{equation*}
-						\sum\limits_{T \in \T\backslash \T_{0}}^{} \lambda(T,T_{*}) \leq 1 \quad \forall T_{*} \subset \mathcal{M}
+						\sum\limits_{T \in \T\setminus \T_{0}}^{} \lambda(T,T_{*}) \leq 1 \quad \forall \, T_{*} \subset \mathcal{M}
 					\end{equation*}
 				\item 
 					\begin{equation*}
-						\sum\limits_{T_{*}\in \mathcal{M}}^{} \lambda(T,T_{*}) \geq C_{2} \quad \forall T \in \T \backslash \T_{0}
+						\sum\limits_{T_{*}\in \mathcal{M}}^{} \lambda(T,T_{*}) \geq C_{2} \quad \forall \, T \in \T \setminus \T_{0}
 					\end{equation*}
 			\end{enumerate}
-			with that:
+      Finding such a cost function is highly non-trivial. (Done in Chapter 4.5.) % TODO: good reference
+      But as soon as we have it:
 			\begin{align*}
-				C_{2} \left( \# \T_{K} - \# \T_{0} \right) &= C_{2}\# (\T\backslash \T_{0}) \\
-														   &= \sum\limits_{T \in \T \backslash \T_{0} }^{} \sum\limits_{T_{*} \in \mathcal{M}}^{} \lambda(T,T_{*})\\
+				C_{2} \left( \# \T_{K} - \# \T_{0} \right) &= C_{2}\# (\T\setminus \T_{0}) \\
+														   &= \sum\limits_{T \in \T \setminus \T_{0} }^{} \sum\limits_{T_{*} \in \mathcal{M}}^{} \lambda(T,T_{*})\\
+														   &= \sum\limits_{T_{*} \in \mathcal{M}}^{} \sum\limits_{T \in \T \setminus \T_{0} }^{} \lambda(T,T_{*})\\
 														   &\overset{(a)}{\leq} C_{1} \# \mathcal{M}
 			\end{align*}
-		\end{proof_}
+		\end{proof}
 \end{enumerate}
 
