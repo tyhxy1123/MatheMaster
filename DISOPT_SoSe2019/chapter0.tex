@@ -10,91 +10,99 @@ Unterlagen: \url{www.github.com/alexandrabschwartz/DiskreteOptimierung2019}
 \section{Einführung}
 \subsection{Beispiele}
 \begin{beispiel}[Rucksackproblem]\enter
-	Objekte $j=1,\dots,m$ mit Gewicht $w_{j}>0$ und Wert $c_{j}>0$\\
-	maximales tragbares Gewicht $w_{\max}$\\
+	Gegeben seien $m$ Objekte $j=1,\dots,m$, jeweils mit Gewicht $w_{j}>0$ und Wert $c_{j}>0$. Das maximale tragbare Gewicht sei $w_{\max}$.
+
 	Ziel: maximiere den Wert der ausgewählten Gegenstände
-\end{beispiel} 
+\end{beispiel}
 
-\underline{allgemeines Optimierungsproblem}:
-\begin{equation*}
-	\min_{x} f(x) \text{ subject to } x \in X
-\end{equation*} 
+\begin{definition}[allgemeines Optimierungsproblem] \label{def:allgemeines_optimierungsproblem}
+  \begin{equation*}
+    \min_{x} f(x) \text{ subject to (s.t.) } x \in X
+  \end{equation*}
+  Dabei ist
+  \begin{itemize}
+    \item $x$ die Variable $x$,
+    \item $f$ die Zielfunktion und
+    \item $X$ die zulässige Menge
+  \end{itemize}
+\end{definition}
 %s.t. = subject to\\
-Variable $x$,\\ 
-Zielfunktion $f$, \\
-zulässige Menge $X$
-
-Rucksackproblem: 
+Das Rucksackproblem modellieren wir so:
 \begin{align*}
-\text{Variablen}:\quad & x_{j} \in \{0,1\} \forall j =1, \dots, m\\
+\text{Variablen}:\quad & x_{j} \in \{0,1\}\, \forall j =1, \dots, m\\
 				 & x_{j}=1 \iff \text{Objekt $j$ wird ausgewählt}\\
 \text{Zielfunktion}:\quad& f(x)= \sum_{j=1}^{m} c_j x_{j}\rightarrow \max\\
 \text{zulässige Menge}:\quad & \sum_{rj}^{m} w_j x_j \leq w_{\max}\quad \text{maximal zulässiges Gewicht}
-\end{align*} 
-$\implies$ 
+\end{align*}
+% $\implies$
 \begin{equation*}
-	\max_{x}c^Tx \text{ subject to } w^Tx \leq w_{\max},\ x \in \{0,1\}^m, x \text{ binär}
+	\implies \quad \max_{x}c^Tx \text{ subject to } w^Tx \leq w_{\max},\ x \in \{0,1\}^m, x \text{ binär}
 \end{equation*}
 Verallgemeinerung:
 \begin{itemize}
-	\item mehrdimensionales Rucksackproblem mit zusätzlichen (linearen) Restriktionen, z.b. Volumen
-	\item allgemeines Rucksackproblem mit $x\in D\subset \R^m$ z.B. $D=\{0,1\}^m, D=\N^m , D = \R_{+}^m$
-\end{itemize} 
+	\item mehrdimensionales Rucksackproblem mit zusätzlichen (linearen) Restriktionen, z.B.\ Volumen
+  \item allgemeines Rucksackproblem mit $x\in D\subset \R^m$ z.B. $D=\{0,1\}^m$, $D=\N^m$, $D = \R_{+}^m$
+\end{itemize}
 
 \begin{beispiel}[Facility Location Problem]\enter
-	Menge von Kunden $K_{1},\dots,k_{m}$\\
+  \begin{itemize}[nosep]
+    \item Eine Versandfirma hat eine Menge von Kunden $k_{1},\dots,k_{m}$.
+	  \item Es gibt eine Menge von möglichen Standorten $S_{1},\dots, S_{n}$ für mögliche neue Lager.
+    \item Jeder Standort $S_j$ hat einmalige Baukosten $c_{j}$ für ein neues Lager.
+    \item Die Lieferkosten betragen $d_{ij}$ von Standort $S_{j}$ zu Kunde $k_{i}$.
+    \item An dieser Stelle wollen wir die Kapazitätsgrenzen von Lagern (noch) ignorieren.
+	  \item Frage: An welchen Standorten $S_{j}$ sollen Lager gebaut werden und welche Kunden $k_{i}$ sollen von welchem Standort $S_{j}$ beliefert werden?
+  \end{itemize}
+  % TODO: Karte mit Kunden und Lagerstandorten zeichnen
 	%TODO wtf ging hier ab?
-	Menge von möglichen Standorten $S_{1},\dots, S_{n}$ für mögliche neue Lager\\
-	einmalge Baukosten $c_{j}$ für Standort $S_{j}$\\
-	Lieferkosten $d_{ij}$ von Standort $S_{j}$ zu Kunde $k_{i}$\\
-	Frage: An welchen Standorten $S_{j}$ sollen Lager gebaut werden und welche Kunden $k_{i}$ sollen von welchem Standort $S_{j}$ beliefert werden?\\
-	Variablen:
+	Die Variablen sind:
 	\begin{align*}
-		x_{ij}&\in \{0,1\} \\
-		\left[0,b_{j} \right]& \text{ wieviel wird von $S_{j}$ an $k_{i}$ geliefert}\\
+    x_{ij}&\in \{0,1\} \text{ ob von $S_j$ an $k_j$ geliefert wird}\\
+    \text{\emph{oder} } x_{ij} & \in [0,b_j] \text{ wieviel wird von $S_{j}$ an $k_{i}$ geliefert}\\
 		y_{j} &\in \{0,1\}\text{ mit }  \\
-		y_{j}& = 1 \iff \text{ Lager am Standort $ S_{j}$ wird gebaut}
-	\end{align*} 
+		y_{j}& = 1 \iff \text{ Lager am Standort $S_{j}$ wird gebaut}
+	\end{align*}
 
-	Zielfunktion: 
+	Zielfunktion:
 	\begin{equation*}
 		\sum_{i=1}^{m} \sum_{j=1}^{n}  d_{ij}x_{ij} + \sum_{j=1}^{n} c_{j}y_{j} \rightarrow \min
-	\end{equation*} 
-	zulässige Menge:	
+	\end{equation*}
+	zulässige Menge:
 	\begin{align*}
 		&\sum_{j=1}^{n} x_{ij} =1 \quad \forall i=1,\dots, m\quad \text{ Kunde k erhält gesamte Bestellung}\\
 		&\left(\sum_{j=1}^{n} x_{ij} \leq c_{j} \quad \forall i=1,\dots, m \quad \text{Lagerkapazität}\right)\\
-		&X_{ij} \leq b_{i}y_{j} \quad \forall i,j \text{ nur gebaute Lager $S_{j}$ verwenden}
-	\end{align*} 
-
-	im Fall $x_{ij} \in [0,b_{i}]$ gemischt ganzzahliges Problem
-
+		&x_{ij} \leq b_{i}y_{j} \quad \forall i,j \text{ nur gebaute Lager $S_{j}$ verwenden}
+	\end{align*}
+	Im Fall $x_{ij} \in [0,b_{i}]$ sprechen wir von einem gemischt ganzzahligen Problem.
 \end{beispiel}
 
 \begin{beispiel}[Travelling Salesperson Problem, TSP]\enter
-	Städte $S_{1},\dots, S_{n}$\\
-	gesucht: Rundreise, die alle Städte genau einmal besucht\\
-	mögliche Streckenabschnitte:
+	Es sind Städte $S_{1},\dots, S_{n}$ bekannt.
+
+	Gesucht: Rundreise, die alle Städte genau einmal besucht.
+
+  Die möglichen Streckenabschnitte sind gegeben durch
 	\begin{equation*}
-		E = \left \{  (i,j) | \text{ es gibt einen direkten Weg von $S_{i}$ nach $S_{j}$}  \right \}
-	\end{equation*} 
-	kosten / Fahrzeiten: $c_{ij} \forall (i,j) \in E$\\
-	Variablen: $x_{ij} \in \{0,1\}$ mit $x_{ij}=1$, wenn $S_{i}$ nach $S_j$ gefahren wird\\
-	Zielfunktion: 
+		E = \left\{ (i,j) \mid \text{es gibt einen direkten Weg von $S_{i}$ nach $S_{j}$} \right\}
+	\end{equation*}
+	Die Kosten/ Fahrzeiten sind gegeben durch $c_{ij}$ für alle $(i,j) \in E$.
+
+	Die Variablen: $x_{ij} \in \{0,1\}$ mit $x_{ij}=1$, wenn $S_{i}$ nach $S_j$ gefahren wird\\
+	Zielfunktion:
 	\begin{equation*}
 		\sum_{(i,j)\in E}  c_{ij}x_{ij} \rightarrow \min
-	\end{equation*} 
+	\end{equation*}
 	Restiktionen:
 	\begin{align*}
 		&\sum_{j:(i,j)\in E} x_{ij}=1 \quad \forall i = 1,\dots,n\quad \text{Stadt $S_{i}$ wird genau einmal verlassen}\\
 		&\sum_{i:(i,j)\in E} x_{ij}=1 \quad \forall j = 1,\dots,n \quad\text{Stadt $S_{j}$ wird genau einmal besucht}\\
-	\end{align*} 
+	\end{align*}
 	Subtouren ausschließen:
 	% wie war der befehl für untereinander in Sum?
 	\begin{align*}
 		\sum_{i\in Um j \not\in U (i,j) \in E} x_{ij} \geq 1 \quad \forall U \subset \{1,\dots,n\} \text{ mit }2\leq |U|\leq n-2
-	\end{align*} 
-\end{beispiel} 
+	\end{align*}
+\end{beispiel}
 
 \begin{beispiel}[lineares Zuordnungsproblem]\enter
 	Tutor-innen $T_{1},\dots,T_{n}$ \\
@@ -102,16 +110,16 @@ Verallgemeinerung:
 	kompetenzen $c_{ij}$ von Tutor $T_{i}$ für Gruppe $j$\\
 	Ziel: Zuordnung von Tutor-innen zu Übungsgruppen mit hoher Gesamtkompetenz\\
 	Variablen: $x_{ij}\in \{0,1\}$ mit $x_{ij}=1 \iff$ Tutor-innen $T_{i}$ betreut Gruppe $G_{i}$ \\
-	Zielfunktion: 
+	Zielfunktion:
 	\begin{equation*}
-		\sum_{i,j=1}^{n}  c_{ij}x_{ij} \rightarrow \max 
-	\end{equation*} 
-	Restiktionen: 
+		\sum_{i,j=1}^{n}  c_{ij}x_{ij} \rightarrow \max
+	\end{equation*}
+	Restiktionen:
 	\begin{align*}
 		\sum_{j=1}^{n} x_{ij} &= 1\quad \forall i\ (\text{jeder nur eine Gruppe})\\
 		\sum_{i=1}^{n} x_{ij} &= 1\quad \forall j\ (\text{jede Gruppe wird betreut})
-	\end{align*} 
-\end{beispiel} 
+	\end{align*}
+\end{beispiel}
 
 \begin{beispiel}[quadratisches Zuordnungsproblem]\enter
 	Beamte $B_{1},\dots,B_{n}$ mit \\
@@ -122,40 +130,40 @@ Verallgemeinerung:
 	Variable:
 	\begin{equation*}
 		x_{ik} \in \{0,1\}\qquad \forall i,=1,\dots,n
-	\end{equation*} 
+	\end{equation*}
 	mit $x_{ik}$ genau dann, wenn $B_{i}$ Raum $R_{k}$ bekommt\\
-	Restriktionen: 
+	Restriktionen:
 	\begin{align*}
 		\sum_{k=1}^{n} x_{ik} &=1 \ \forall i\\
 		\sum_{i=1}^{n} x_{ik} &=1 \ \forall k\\
-	\end{align*} 
-	Zielfunktion: 
+	\end{align*}
+	Zielfunktion:
 	\begin{equation*}
 		\sum_{i,j=1}^{n} c_{ij}\sum_{k,l=1}^{n} d_{kl}x_{ik}x_{jl}
-	\end{equation*} 
+	\end{equation*}
 	quadratische Zielfunktion \\
 	alternative Variante: Permutation $\pi \in S_{n}$
 \end{beispiel}
 
 \subsection{Grundbegriffe}
 \begin{itemize}
-	\item allgemeines Optimierungsproblem: 
+	\item allgemeines Optimierungsproblem:
 		\begin{equation*}
 			\min_{x} f(x) \text{ subject to } x\in X
-		\end{equation*} 
+		\end{equation*}
 		mit Variable $x \in \R^n$,\\
 		Zielfunktion $f:\R^n \to \R$,\\
 		zulässige Menge $X \subset \R^n (X = \R^n$ unrestringierte Optimierung)
-	\item globales Minimum: 
+	\item globales Minimum:
 		\begin{equation*}
 			x^* \in X \mit f(x^*)\leq f(x)\quad \forall x \in X
-		\end{equation*} 
+		\end{equation*}
 		$\to$ gut zu lösen für konvexe Probleme, sonst schwer
 	\item lokales Minimum:
 		\begin{equation*}
 			x^{'} \in X \mit f(x^{'}) \leq f(x)\quad \forall x \in X \cap B_{\varepsilon}(x^*)
-		\end{equation*} 
+		\end{equation*}
 		mit $\varepsilon > 0$\\
 		bei diskreten Problemen: zulässige Punkte liegen isoliert, sind also alles lokale Minima\\
 		$\to$  wir wollen globale Minima
-\end{itemize} 
+\end{itemize}
