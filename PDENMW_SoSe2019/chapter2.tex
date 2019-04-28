@@ -125,7 +125,7 @@ A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
       \Function{REFINE}{$\mathcal{T}$, $M$}
         \While{$M \neq \emptyset$}
           \State $\mathcal{T} := \text{REFINE\_MARKED}(\mathcal{T}, M)$
-          \State $M := \{T \in \mathcal{T} \ |\ T has a hanging node\}$
+          \State $M := \{T \in \mathcal{T} \ |\ T \text{ has a hanging node}\}$
         \EndWhile
         \State return $\mathcal{T}$
       \EndFunction
