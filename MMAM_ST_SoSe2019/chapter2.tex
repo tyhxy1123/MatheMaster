@@ -1,0 +1,290 @@
+\chapter{Existenz von Nash-Gleichgewichten}%
+\label{cha:Existenz von Nash-Gleichgewichten}
+
+Spieler $i = 1, \ldots, N$ lösen
+\[
+	\min\limits_{x^{i}} f_{i}(x^{i}, x^{-i}) \quad \text{ udN } x^{i} \in X_{i}
+.\] 
+
+Gängige Annahmen sind
+\begin{itemize}
+	\item $X \in \R^{n}$ nichtleer, konvexm abgeschlossen, gelegentlich kompakt
+	\item $f \colon \R^{n} \rightarrow \R $ stetig (differenzierbar), konvex bezüglich $x^{i}$
+\end{itemize}
+
+Fall $n=1$: Optimierungsproblem
+\[
+	\min\limits_{x}f(x) \quad \text{ udN } x \in X
+.\] 
+
+\begin{definition}
+\label{thm:variationsungleichung}
+Sei $X \subseteq \R^{n}$ nichtleer und $F \colon X \rightarrow \R^{n} $. Dann besteht das \enter
+\underline{Variationsungleichungsproblem} $\text{VIP}(X,F)$ darin, einen Punkt ${x}^{*} \in X$ zu finden sodass
+\[
+	F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X
+.\] 
+\end{definition}
+
+\begin{lemma}
+\label{thm:lemmavariation}
+Für $X=\R^{n}$ und $F \colon \R^{n} \rightarrow \R^{n} $ ist VIP($X,F$) äquivalent zur Bestimmung von Lösungen von $F(x) = 0$.
+\end{lemma}
+
+\begin{proof}
+\label{thm:lemmavariationbeweis}
+\begin{itemize}
+	\item "$\Longleftarrow$":
+
+		Gilt $F({x}^{*})=0$ und ${x}^{*} \in \R^{n} = X$, so folgt
+		\[
+			F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in \R^{n}
+		.\] 
+	\item "$\Longrightarrow$":
+
+		Sei ${x}^{*} \in \R^{n}$ nun eine Lösung von VIP($X,F$), d.h. es gelte
+		\[
+			F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in \R^{n}
+		.\] 
+		Setze nun $x = {x}^{*} - F({x}^{*})$ ein. Dann folgt
+		\begin{align*}
+			&F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \\
+			\implies
+			&F({x}^{*})^{T}({x}^{*}-F({x}^{*})-{x}^{*}) \geq  0 \\
+			\implies
+			&-\norm{F({x}^{*})} _{2}^2 \geq  0 \\
+			\implies
+			&F({x}^{*}) = 0
+		\end{align*}
+\end{itemize}
+\end{proof}
+
+\begin{definition}
+\label{thm:komplementaritätsproblem}
+Sei $F \colon \R^{n} \rightarrow \R^{n} $. Dann besteht das \underline{Komplementaritätsproblem}  NCP($F$) darin, einen Punkt ${x}^{*} \in \R^{n}$ zu finden mit $\forall i=1, \ldots, n$ gilt
+\[
+	x_{i}^{*} \geq  0,\quad F_{i}({x}^{*}) \geq 0, \qquad x_{i}^{*}F_{i}({x}^{*}) = 0
+.\] 
+Ist $F$ linear, d.h. $F(x) = Mx + q$, so spricht man von einem \underline{linearen Komplementaritätsproblem} LCP($q,M$).
+\end{definition}
+
+\begin{beisp}
+\label{thm:komplementaritätsproblembeispiel}
+	Betrachte das quadratische Problem
+	\[
+	\min\limits_{x}\frac{1}{2} x^{T} Q x + q^{T}x \quad \text{ udN } Ax \leq  b, x \geq  0
+	.\] 
+	zugehöriges KKT-System
+	\begin{align*}
+		0 &= Qx + q + A^{T} \lambda - \gamma  \\
+		Ax &\leq  b \\
+		\lambda &\geq  0 \\
+		(Ax-b)_{i}\lambda _{i} &= 0 \quad \forall i \\
+		x &\geq  0 \\
+		\gamma &\geq  0 \\
+		x_{i}\gamma_{i} &= 0 \quad \forall i
+	\end{align*}
+	\begin{align*}
+		\iff\qquad\qquad\qquad\qquad\qquad &\\
+	\begin{pmatrix}
+	x \\
+	\lambda 
+\end{pmatrix} &\geq 0 \\
+\underbrace{\begin{pmatrix}
+		Q & A^{T} \\ A & 0
+\end{pmatrix}
+}_{=:M} \begin{pmatrix}
+x \\ \lambda 
+\end{pmatrix}
++ \underbrace{\begin{pmatrix}
+q \\ b
+\end{pmatrix}
+}_{=:c} 
+&\geq 0
+	\end{align*}
+	bzw. kürzer
+	\begin{align*}
+		\iff\qquad\qquad\qquad\qquad\qquad &\\
+	\begin{pmatrix}
+	x \\
+	\lambda 
+\end{pmatrix} &\geq 0 \\
+\begin{pmatrix}
+x \\ \lambda 
+\end{pmatrix}
+_{i}\left( M \begin{pmatrix}
+x \\ \lambda 
+\end{pmatrix}
+	+ c \right) _{i} &\geq  0
+	\end{align*}
+\end{beisp}
+
+\begin{lemma}
+	%\label{thm:}
+	Für $X = \R^{n}$ und $F \colon \R^{n} \rightarrow \R^{n} $ ist VIP($X,F$) äquivalent zu NCP($F$)
+\end{lemma}
+
+\begin{proof}
+	%\label{thm:}
+	\begin{itemize}
+		\item "$\Longleftarrow$":
+
+			Sei ${x}^{*}$ eine Lösung von NCP($F$), d.h. ${x}^{*}\geq 0, F({x}^{*}) \geq  0$ und $\forall i =1, \ldots, n: \quad {x}^{*}_{i} F_{i}({x}^{*}) = 0$.
+
+			Dann gilt ${x}^{*} \in \R^{n}_{+}=X$ und für alle $x \in X$ gilt
+			\[
+				F({x}^{*})^{T}(x-{x}^{*}) = \sum_{i=1}^{n}{\underbrace{F_{i}({x}^{*})}_{\geq 0} \underbrace{x_{i}}_{\geq 0}} - \underbrace{F({x}^{*})^{T}{x}^{*}}_{=0} \geq 0
+			.\] 
+			\[
+				\implies {x}^{*} \text{ löst VIP}(X,F) 
+			.\] 
+		\item "$\Longrightarrow$":
+
+			Sei ${x}^{*}$ eine Lösung von VIP($X,F$). Dann gilt ${x}^{*} \in X$, d.h. ${x}^{*}\geq 0$.
+
+			Für alle $i$ mit ${x}^{*}_{i}=0$ gilt ${x}^{*}_{i}F_{i}({x}^{*})=0$. Sei ${x}^{*}_{i}>0$, dann gilt für $x = {x}^{*} \pm {x}^{*}_{i}e_{i}\geq 0$
+			\[
+				F({x}^{*})^{T}(x-{x}^{*}) = \pm F_{i}({x}^{*}){x}^{*}_{i}\geq 0 \implies
+				\begin{array}{r}
+					F_{i}({x}^{*})\geq 0 \\
+					F_{i}({x}^{*})\leq 0
+				\end{array}
+				\implies F_{i}({x}^{*}) = 0
+			.\] 
+			Also gilt in jedem Fall
+			\[
+				F_{i}({x}^{*})\geq  0
+			.\] 
+	\end{itemize}
+\end{proof}
+
+\begin{beisp}
+%\label{thm:}
+	\[
+		\min\limits_{x}f(x) \quad \text{ udN } g(x)\leq  0, h(x) = 0
+	.\] 
+	KKT-Bedingungen:
+	\begin{align*}
+		\nabla f({x}) + \nabla g({x}) \lambda  + \nabla h({x})\mu &= 0 \\
+		h({x}) &= 0 \\
+		g({x}) &\leq 0 \\
+		\lambda &\geq  0 \\
+		g({x})\lambda _{i} &= 0 \quad \forall i = 1, \ldots, m
+	\end{align*}
+	Definiere
+	\begin{align*}
+		z &= \begin{pmatrix}
+	x \\ \lambda \\ \mu 
+	\end{pmatrix}
+	\\
+			Z &= \R^{n} \times \R^{m}_{+} \times \R^{p}
+	\\
+			F(x, \lambda ,\mu ) &= \begin{pmatrix}
+		\nabla f(x) + \nabla g(x)\lambda  + \nabla h(x)\mu  \\
+		-g(x) \\
+		h(x)
+	\end{pmatrix}
+	\end{align*}
+	$\implies$ KKT äquivalent tu VIP($Z,F$).
+\end{beisp}
+
+Betrachte ein Optimierungsproblem
+\[
+	\min\limits_{x}f(x) \quad \text{ udN }x \in X
+\] 
+mit $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex und $f \colon X \rightarrow \R $ stetig diffbar (auf offener Obermenge von X). Dann besagt das Minimum-Prinzip:
+\begin{enumerate}[label=(\alph{enumi})]
+	\item Ist ${x}^{*}$ ein lokales Minimum von $f$ auf $X$, dann gilt 
+		\[
+			\nabla  f({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X
+		,\] 
+		d.h. ${x}^{*}$ löst VIP($X,\nabla f$).
+	\item Ist ${x}^{*}$ eine Lösung von VIP($X,\nabla f$), d.h. gilt 
+		\[
+			\nabla f({x}^{*})^{T}(x-{x}^{*}) \geq  \forall x \in X
+		\] 
+		und ist $f$ pseudokonvex, so ist ${x}^{*}$ ein globales Minimum von $f$auf $X$.
+\end{enumerate}
+
+Betrachte ein Spiel mit den Problemen
+\[
+	\min\limits_{x^{i}}f_{i}(x^{i},x^{-i}) \quad \text{ udN } x^{i} \in X_{i}
+.\] 
+
+Für eine gegebene gegnerische Strategie $x^{*,-i}$ ist die beste Antwort $x^{*,i}$ von Spieler $i$ die Lösung von \[
+	\min\limits_{x^{i}}f_{i}(x^{i},x^{*,-i}) \quad \text{ udN }x^{i} \in X_{i}
+.\]
+Sei $X_{i}\subseteq \R^{n}$ nichtleer, abgeschlossen, konvex, $X:= X_1 \times \ldots \times X_{N}$, $f \colon X \rightarrow \R $ stetig diffbar und pseudokonvex bezüglich $x^{i}$ für alle (festen) $x^{-i} \in X_{-i}$.
+
+Dann gilt $x^{*, i}$ ist die beste Antwort auf $x^{*,-i}$ genau dann, wenn $x^{*,i}$ die Variationsungleichungsproblem VIP($x_{i}, \nabla _{x_{i}}f_{i}(\cdot, x^{*,-i}))$
+\begin{satz}
+%\label{thm:}
+	Seien $X_{i} \in \R^{n}$ nichtleer, abgeschlossen, konvex, $f_{i}\colon X \rightarrow \R$ stetig diffbar und bezüglich $x^{i}$ pseudokonvex. Dann ist ${x}^{*}$ genau dann ein Nash-Gleichgewicht, wenn es VIP($X,F$) löst mit 
+	\begin{align*}
+		X=X_1 \times \ldots \times X_{N} \quad \text{ und }\quad F(x)= \begin{pmatrix}
+			\nabla _{x^{1}}f_{1}(x) \\
+			\vdots \\
+			\nabla _{x^{N}}f_{N}(x) \\
+		\end{pmatrix}
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	\begin{itemize}
+		\item "$\Longleftarrow$":
+
+			Sei ${x}^{*}$ ein Nash-Gleichgewicht. Dann gilt ${x}^{*} \in X$ und für alle Spieler $i$ ist $x^{*,i}$ eine beste Antwort auf $x^{*,-i}$, d.h. es gilt
+			\[
+				\nabla _{x^{i}}f_{i}(x^{*,i}, x^{*,-i})^{T}(x^{i}-x^{*,i})\geq 0 \quad \forall x^{i} \in X_{i}
+			.\] 
+			\[
+				\implies\forall x \in X : \quad F({x}^{*})^{T}(x-{x}^{*}) = \sum_{i=1}^{N}{\underbrace{\nabla _{x^{i}} f_{i}({x}^{*})^{T}(x^{i}- x^{*,i})}_{\geq  0} }\geq  0
+			.\] 
+			\[
+			\implies {x}^{*} \text{ löst VIP}(X,F)
+			.\] 
+		\item "$\Longrightarrow$":
+
+			Sei ${x}^{*}$ eine Lösung von VIP($X,F$). Dann gilt ${x}^{*}\in X$, d.h. $x^{*,i} \in X_{i}$ für all $i=1, \ldots, N$. Betrachte Spieler $i$ und wähle $x=(x^{i}, x^{*,-i})\in X$  mit $x^{i} \in X_{i}$ beliebig.
+			\[
+				\implies 0 \leq  F({x}^{*})^{T}(x-{x}^{*}) = \nabla _{x^{i}}f_{i}(x^{*,i}, x^{*,-i})^{T}(x^{i}- x^{*,i}) \quad \forall x^{i} \in X_{i}
+			.\] 
+			Da $f_{i}$ pseudokonvex bezüglich $x^{i}$ ist, ist $x^{*,i}$ dann eine globale Lösung von
+			\[
+				\min\limits_{x^{i}}f_{i}(x^{i}, x^{*,-i}) \quad \text{ udN } x^{i} \in X_{i}
+			.\] 
+			\[
+			\implies {x}^{*} \text{ ist ein Nash-Gleichgewicht }
+			.\] 
+	\end{itemize}
+\end{proof}
+
+(!!!) WICHTIG FÜR PRÜFUNG:
+Wir brachen für Existenz von Lösungen von VIP($X,F$):
+\begin{itemize}
+	\item $F$ monoton
+
+	 Falls $F$ diffbar, dann
+		\[
+			F \text{ monoton } \iff F' \text{ positiv definit }
+		.\] 
+
+		Bei uns:
+		\[
+			F=(\nabla _{x^{i}}f_{i}(x))_{i=1}^{N}
+		.\] 
+		\begin{align*}
+			f_{i}\text{ konvex in } x^{i} &\iff \nabla _{x^{i}}f_{i} monoton \\
+										  &\iff \nabla _{x^{i}x^{i}}^2 f_{i} \text{ positiv semidefinit }
+		\end{align*}
+		\[
+			F'(x) = \begin{pmatrix}
+			\nabla _{x^{1}x^{1}}^2 f_{1}
+			&\cdots
+			&\nabla _{x^{1}x^{N}}^2 f_{1} \\
+			\vdots& \ddots \\
+			\nabla _{x^{N}x^{1}}^2 f_{N}&& \nabla _{x^{N}x^{N}}^2 f_{N}
+			\end{pmatrix}
+		.\] 
+\end{itemize}
