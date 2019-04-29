@@ -46,15 +46,16 @@ Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
 
 \subsection{Mengenbasierte Modellierung / strukturelle Modellierung}
 \begin{definition}
-	Eine \define{Inzidenzstruktur} ist ein Tripel $J=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
+	Eine \define{Inzidenzstruktur} ist ein Tripel $\Inz=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
 	Interpretation:
+	\index{Inzidenzstruktur}
 	\begin{itemize}
 		\item $P$ ist Menge von Punkten / Points
 		\item $B$ ist Menge von Blöcken / Blocks
 		\item $I$ Inzidenzrelation (z.B. Lines)
 	\end{itemize}
 	Für $(p,b)\in I$ schreiben wir auch $pIb$ (incidence) und sagen:\\
-	"Der Punkt $p$ inzidiert mit dem Block $b$ in $J$."\\
+	"Der Punkt $p$ inzidiert mit dem Block $b$ in $\Inz$."\\
 	Für $p\in P$ sei
 	\begin{align*}
 		pI:=\set{b\in B\mid pIb}
@@ -79,7 +80,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{beispiel}
 
 \begin{satz}[Prinzip des doppelten Abzählens]\enter
-	Ist $J=(P,B,I)$ endliche Inzidenzstruktur (d.h. $P$ und $B$ endlich), so gilt
+	Ist $\Inz=(P,B,I)$ endliche Inzidenzstruktur (d.h. $P$ und $B$ endlich), so gilt
 	\begin{align*}
 		\sum\limits_{p\in P}\# pI=\#I=\sum\limits_{b\in B}\# Ib
 	\end{align*}
@@ -87,33 +88,34 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{satz}
 
 \begin{definition}
-	$y$ heißt \define{taktische Konfiguration} der Inzidenzstruktur $J=(P,B,I)$
+	$\Inz=(P,B,I)$ heißt \define{taktische Konfiguration}
+	\index{taktische Konfiguration} 
 	\begin{align*}
-		:\iff\exists r_y,k_y\in\N:\forall p\in P,\forall b\in B:\# pI=r_y\und\#Ib=k_y
+		:\iff\exists r_\Inz,k_\Inz\in\N:\forall p\in P,\forall b\in B:\# pI=r_\Inz\und\#Ib=k_\Inz
 	\end{align*}
 \end{definition}
 
 \begin{lemma}
 	Sei $y$ taktische Konfiguration von $J=(P,B,I)$. Dann gilt:
 	\begin{align*}
-		v_y\mal r_y=b_y\mal k_y
+		v_\Inz\mal r_\Inz=b_\Inz\mal k_\Inz
 		\qquad\mit\qquad
-		v_y:=\# P\und b_y:=\#B
+		v_\Inz:=\# P\und b_\Inz:=\#B
 	\end{align*}
 \end{lemma}
 
 \begin{proof}
 	Doppelte Abzählung: 
 	\begin{align*}
-		v_y\mal r_y=\sum\limits_{p\in P}\underbrace{\# pI}_{=r_y}=\sum\limits_{b\in B}\underbrace{\#Ib}_{=k_y}=b_y\mal r_y
+		v_\Inz\mal r_\Inz=\sum\limits_{p\in P}\underbrace{\# pI}_{=r_\Inz}=\sum\limits_{b\in B}\underbrace{\#Ib}_{=k_\Inz}=b_\Inz\mal r_\Inz
 	\end{align*}
 \end{proof}
 
 
 \begin{definition}
-	$\big(v_y,r_y;b_y,k_y)$ ist das \define{Parametertupel} von $y$.
-	\index{Parametertupel}.
-	Das dazu \define{duale Parametertupel} ist $\big(b_y,k_y;v_y,r_y\big)$.
+	$\big(v_\Inz,r_\Inz;b_\Inz,k_\Inz)$ ist das \define{Parametertupel} von $\Inz$.
+	\index{Parametertupel}\index{duales Parametertupel}\\
+	Das dazu \define{duale Parametertupel} ist $\big(b_\Inz,k_\Inz;v_\Inz,r_\Inz\big)$.
 \end{definition}
 
 \begin{beispiel}
@@ -127,7 +129,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{enumerate}
 \end{beispiel}
 
-\begin{beispiel}[Veblen-Young-Configuration]
+\begin{beispiel}[Veblen-Young-Configuration]\
 	\begin{figure}[H] % oder ht!
 		\begin{center}
 			\input{./tikz/VeblenYoung}
@@ -138,7 +140,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\begin{figure}[H] % oder ht!
 		\begin{center}
 			\input{./tikz/VeblenYoungDual}
-			\caption{duela Veblen-Young-Konfiguration: $(4,3;6,2)$}
+			\caption{duale Veblen-Young-Konfiguration: $(4,3;6,2)$}
 			%\label{Abb:natSpracheModellierung}
 		\end{center}
 	\end{figure}	
@@ -204,7 +206,770 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	dh. $(i,j,n)=(1,2,4)$.
 \end{beispiel}
 
+\begin{definition}
+	Die \define{duale Inzidenzstruktur} einer Inzidenzstruktur $\Inz=(P,B,I)$ ist
+	\index{duale Inzidenzstruktur}
+	\begin{align*}
+		\Inz^{\op}:=\big(B,P,I^\op\big)
+		\qquad\mit\qquad
+		I^\op:=\set{(b,p)\in B\times P\mid p I b}
+	\end{align*}
+\end{definition}
 
+\begin{beispiel}
+	\begin{align*}
+		\Big(\Inz_{(i,j)}^n\Big)^\op=(B,P,R^\op)
+		\qquad\mit\qquad
+		R^\op:=\set{(b,p)\in\begin{pmatrix}
+			[n]\\
+			j
+		\end{pmatrix}\times
+		\begin{pmatrix}
+			[n]\\
+			i
+		\end{pmatrix}:p\subseteq b}
+	\end{align*}
+\end{beispiel}
 
+\begin{definition}
+	Seien $\Inz=(P,B,I)$ und $\Inz'=(P',B',I')$ Inzidenzstrukturen.
+	Dann heißt ein Abbildungspaar $(\varphi,\psi)$ bestehend aus Abbildungen $\varphi\colon P\to P'$ und $\psi\colon B\to B'$ ein \define{Morphismus} von $\Inz$ nach $\Inz'$
+	\index{Morphismus}\index{Isomorphismus}
+	\begin{align*}
+		\defiff\forall p\in P,\forall b\in B:pIb\implies\varphi(p)I'\psi(b)
+	\end{align*}
 
+	Ein Abbildungspaar $(\varphi,\psi)$ bestehend aus Bijektionen $\varphi\colon P\to P'$ und $\psi\colon B\to B'$ heißt \define{Isomorphismus (Iso)} von $\Inz$ nach $\Inz'$1
+	\begin{align*}
+		\defiff\forall p\in P,\forall b\in B:pIb\iff\varphi(p)I'\psi(b)
+\end{align*}		
+	
+	Wir sagen, $\Inz$ ist \define{isomorph} zu $\Inz'$, i.Z. $\Inz\simeq\Inz'$, falls es einen Isomorphismus von $\Inz$ nach $\Inz'$ gibt.
+\end{definition}
 
+\begin{lemma}\
+	\begin{enumerate}
+		\item Ist $(\varphi,\psi)$ ein Isomorphismus von $\Inz$ nach $\Inz'$, so ist auch $\big(\varphi^{-1},\psi^{-1}\big)$ ein Isomorphismus von $\Inz'$ nach $\Inz$.\label{item:lemma1.13_1}
+		\item Ist $(\varphi,\psi)$ Morphismus von $\Inz$ nach $\Inz'$, so ist $(\psi,\varphi)$ Morphismus von $\Inz^\op$ nach $(\Inz')^\op$.\label{item:lemma1.13_2}
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\betone{Zeige \ref{item:lemma1.13_1}:}\\
+	Seien $p'\in P'$ und $b'\in B'$ mit $p'I'b'$.
+	Zu zeigen ist
+	\begin{align*}
+		\varphi^{-1}(b')=\psi^{-1}(b')
+	\end{align*}
+	Wegen $p'I'b'$ gilt für $p:=\varphi^{-1}(p')$ und $b:=\psi^{-1}(b')$ stets $\varphi(p)=p'$ und $sp(b)=b'$, also $\varphi(p)I'\psi(b)$.
+	Also gilt auch $pIb$ d.h. $\varphi^{-1}(p)I\psi^{-1}(b)$.\nl
+	\betone{Zeige \ref{item:lemma1.13_1}:} Total klar.
+\end{proof}
+
+\begin{satz}
+	Seien $i,j,n\in\N$ mit $i\leq j\leq n$.
+	Dann gilt
+	\begin{align*}
+		\Big(\Inz_{(i,j)}^n\Big)^\op\simeq\Inz_{(n-j,n-i)}^n
+	\end{align*}
+	vermöge $(\varphi,\psi)$ mit
+	\begin{align*}
+		\varphi\colon		
+		\underbrace{
+		\begin{pmatrix}
+			[n]\\
+			j
+		\end{pmatrix}}_{
+		\text{Punktmenge von }\big(\Inz_{(i,j)}^n\big)^\op
+		}&\to\underbrace{\begin{pmatrix}
+			[n]\\
+			n-j
+		\end{pmatrix}}_{
+		\text{Punktmenge von }\Inz_{(n-j,n-i)}^n
+		}
+		&&
+		b\mapsto[n]-b\\
+	\psi\colon\underbrace{\begin{pmatrix}
+			[n]\\
+			i
+		\end{pmatrix}}_{
+		\text{Blockmenge von }\big(\Inz_{(i,j)}^n\big)^\op
+		}&\to\underbrace{\begin{pmatrix}
+			[n]\\
+			n-i
+		\end{pmatrix}}_{
+		\text{Blockmenge von }\Inz_{(n-j,n-i)}^n
+		}
+		&&
+		p\mapsto[n]-p
+	\end{align*}
+	Also sind die Parametertupel von $\Big(\Inz_{(i,j)}^n\Big)^\op$ gegeben durch
+	\begin{align*}
+		\klammern{
+		\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix},
+		\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix};
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix},
+		\begin{pmatrix}
+			j\\ 
+			i
+		\end{pmatrix}}
+	\end{align*}
+	und von $\Inz_{(n-j,n-i)}^n$ gegeben durch
+	\begin{align*}
+		\klammern{
+		\begin{pmatrix}
+			n\\
+			n-j
+		\end{pmatrix},
+		\begin{pmatrix}
+			n-(n-j)\\
+			(n-i)-(n-j)
+		\end{pmatrix},
+		\begin{pmatrix}
+			n\\
+			n-i
+		\end{pmatrix},
+		\begin{pmatrix}
+			n-i\\
+			n-j
+		\end{pmatrix}}
+	\end{align*}
+	gleich.
+\end{satz}
+
+\begin{definition}
+	Eine Inzidenzstruktur $\Inz$ heißt \define{selbstdual}\index{selbstdual}
+	\begin{align*}
+		\defiff\Inz\simeq\Inz^\op
+	\end{align*}
+\end{definition}
+
+Wann ist $\Inz_{(i,j)}^n$ selbstdual?
+
+\begin{lemma}
+	Für $0<i\leq j\leq n$ gilt:
+	\begin{align*}
+		\Inz_{(i,j)}^n\simeq\Inz_{(i',j')}^{n'}\iff
+		(i,j,n)=(i',j',n')
+	\end{align*}
+\end{lemma}
+
+\begin{satz}
+	\begin{align*}
+		\Inz_{(i,j)}^n\text{ selbstdual}
+		&\iff \Inz_{(i,j)}^n\simeq\Big(\Inz_{(i,j)}^n\Big)^\op\simeq \Inz_{(n-j,n-i)}^n\\
+		&\iff i=n-j\und j=n-i\\
+		&\iff i+j=n
+	\end{align*}
+\end{satz}
+
+\begin{beispiel}
+	Für welches Tripel $(i,j,n)$ hat die Inzidenzstruktur $\Inz_{(i,j)}^n$ das Parametertupel $(10,3;10,3)$?\\
+	Antwort: für $(i,j,n)=(2,3,5)$.
+	Geometrische Realisierung von $\Inz_{(2,3)}^5$:
+	\begin{figure}[H] % oder ht!
+		\begin{center}
+			\input{./tikz/desargues}
+			\caption{Desargues Konfiguration}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+	\end{figure}
+	\begin{itemize}
+		\item Die beiden roten Dreiecke sind zentral perspektiv bzgl. des Zentrums $z$.
+		\item Die drei roten Punkte liegen auf der Geraden $a$.
+		\item Satz: Sind zwei Dreiecke sind zentral perpspektiv, so sind sie auch axial perspektiv und umgekehrt.
+		\item Zeige $\Inz_{(2,3)}^5\simeq$ Desargue Konfiguration
+	\end{itemize}
+\end{beispiel}
+
+% hier könnte was fehlen (15.04.19)
+
+\begin{theorem}[Desargues Theorem]\enter
+	Im \undefine{projektiven Raum} (bzw. in der desargueschen projektiven Ebene) gilt:
+	\begin{enumerate}
+		\item Sind zwei Dreiecke zentral perspektiv, so sind sie auch axial perspektiv.
+		\item Sind zwei Dreiecke axial perspektiv, so sind sie auch zentral perspektiv.
+	\end{enumerate}
+\end{theorem}
+
+\begin{beispiel}[Pappos-Konfiguration]\enter
+	Die \define{Pappos-Konfiguration} ist eine $(9,3;9,3)$-Konfiguration.
+\end{beispiel}
+
+\begin{definition}
+	Ein Isomorphismus einer Inzidenzstruktur $\Inz$ auf sich heißt auch \define{Automorphismus} von $\Inz$.
+	Bezeichne $\Aut(\Inz)$ die Menge der Automorphismen von $\Inz$ und
+	\begin{align*}
+		\Aut(\Inz):=\big(\Aut(\Inz),\circ,\id_\Inz,^{-1}\big)
+	\end{align*}
+	Seien Morphismen
+	\begin{align*}
+		\Inz\overset{(\varphi,\psi)}{\longrightarrow}\Inz'\overset{(\varphi',\psi')}{\longrightarrow}\Inz''
+	\end{align*}		
+	gegeben. Dann ist
+	\begin{align*}
+		(\varphi',\psi')\circ(\varphi,\psi):=\big(\varphi'\circ\varphi,\psi'\circ\psi\big)
+	\end{align*}
+	ein Morphismus von $\Inz$ nach $\Inz''$, die sogenannte  \define{kontravariante Verkettung} von $(\varphi,\psi)$ mit $(\varphi',\psi')$.
+	\index{kontravariante Verkettung}\nl
+	Ist $\Inz=(P,B,I)$, so bezeichne $\id_\Inz:=\big(\id_P,\id_B\big)$ den \define{identischen Morphismus} von $\Inz$.
+	\index{identischer Morphismus}
+\end{definition}
+
+\begin{lemma}
+	ist $(\varphi,\psi)$ ein Isomorphismus, so ist auch 
+	\begin{align*}
+		(\varphi,\psi)^{-1}:=\klammern{\varphi^{-1},\psi^{-1}}
+	\end{align*}
+	ein Isomorphismus.
+	Dieser heißt \define{der zu $(\varphi,\psi)$ inverse Morphismus}.
+	\index{inverser Morphismus}
+\end{lemma}
+
+\subsection{Taktische Konfoguration via Unterverband eines endlichdimensionalen Vektorraumes}
+
+Sei $V$ $n$-dimensionaler Vektorraum über  $\F_g$ ($q$ Primzahlpotenz, $n\in\N$).
+Für $i,j\in\N$ mit $0\leq i\leq j\leq $n sei dann
+\index{Unterraumverband}
+\begin{align*}
+	\Inz^n_{(i,j)}&:=\klammern{\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix},\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix},
+	I^\L_{(i,j)}
+	}\mit\\
+	\L&:=L(V):=\big(L(V),\leq\big)\und\\
+	L(V)&:=\set{U\mid U\leq V}~\text{\define{Unterraumverband} von $V$ und}\\
+	\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix}
+	&:=\set{p\in L(V)\mid\dim(p)=i}
+	\und\\
+	\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix}
+	&:=\set{b\in L(V)\mid\dim(b)=j}
+	\text{ sowie }\\
+	I^\L_{(i,j)}&:=\set{(p,b)\in\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix}\times\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix}:p\leq b}
+\end{align*}
+
+\begin{proposition}
+	Dann ist $\Inz^\L_{(i,j)}$ taktische Konfiguration mit Parametertupel
+	\begin{align*}
+		\klammern{
+			\begin{pmatrix}
+				n\\
+				i
+			\end{pmatrix}_p,\begin{pmatrix}
+				n-i\\
+				j-i
+			\end{pmatrix}_p;
+			\begin{pmatrix}
+				n\\
+				j
+			\end{pmatrix}_q,\begin{pmatrix}
+				j\\
+				i
+			\end{pmatrix}_q
+		}
+	\end{align*}
+	wobei $\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_q$ den Gaußschen Binomialkoeffizient von $n$ über $i$ bezeichnet.
+\end{proposition}
+
+\begin{notation}
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q
+		:=\#\begin{pmatrix}
+			\L\\
+			i
+		\end{pmatrix}
+	\end{align*}
+	Für $u,w\in L(V)$ mit $u\leq w$ sei
+	\begin{align*}
+		\L(w):=\set{t\in L(V)\mit t\leq w}
+	\end{align*}
+	und
+	\begin{align*}
+		\L/_u:=\set{t\in L(V)\mid u\leq t}
+		\qquad\und\qquad
+		[u,w]_\L:=\set{t\in L(V)\mid u\leq t\leq w}
+	\end{align*}
+	Hierbei heißt $[u,w]_\L$ \define{Intervall in $\L=\L(V)$}.
+	\index{Intervall}
+	\begin{align*}
+		\L(u)=\big(\L(u),\leq\big)
+	\end{align*}
+	ist Menge der Unterräume, die in $w$ enthalten sind bzw. der Unterraumverband von $U$.
+\end{notation}
+
+%\begin{beispiel}
+	Setze $0_\L:=\set{\vec{0}}$ und $1_\L:=V$.
+	Dann ist
+	\begin{align*}
+		L(u)=\big[0_\L,u\big]_\L
+	\end{align*}
+	Sei $\L|T:=\big(T,\leq\cap T\times T)$ die Einschränkung von $\L$ auf $T$ für $T\subseteq L$.
+	Dann gilt:
+	\begin{align*}
+		\L(w)&=\L|\big[0_\L,w\big]_\L\\
+		\L/u&:=\L|\big[u,1_\L\big]_\L\cong\L(V/u)
+	\end{align*}
+	Achtung: $L/u$ klappt nicht sauber!\\
+	$\leadsto$ "abuse of notation": $L/_u:=[u,1_\L]$.\\
+	Aber $\L(w)$ ist gleichzeitig der Unterraumverband von $w$ (als $\F_q$-Vektorraum).
+%\end{beispiel}
+Genauer:
+\begin{align*}
+	\big(\L(V)\big)(w)=\L(w)
+\end{align*}
+
+Probleme treten oft bei Paradigmenwechsel auf.
+
+\begin{erinnerung}
+	\begin{align*}
+		V/u=w/u=\set{x+u\mid x\in V}\text{ als Vektorraum}
+	\end{align*}
+\end{erinnerung}
+
+\begin{satz}
+	\begin{align*}
+		\L(V)/u\cong\L(U/v)
+		\qquad\text{mittels}\qquad
+		w\mapsto w/u\\
+		\und\qquad
+		\dim(V(u)=\dim(V)-\dim(U)
+	\end{align*}
+	Für $u\leq_\L w$ sei 
+	\begin{align*}
+		\Delta(u,w):=-\dim(u)+\dim(w)=\dim(w/u)
+	\end{align*}
+\end{satz}
+
+\begin{align*}
+	\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_q\overset{\dim(V)=n}{=}
+	\begin{pmatrix}
+		\dim(V)\\
+		i
+	\end{pmatrix}:=
+	\#\begin{pmatrix}
+		\L(V)\\
+		i
+	\end{pmatrix}
+\end{align*}
+falls $V$ $n$-dimensionaler Vektorraum über $\F_q$.
+
+\begin{figure}[H]
+	\begin{center}
+			\input{./tikz/1704}
+			%\caption{Desargues Konfiguration}
+			%\label{Abb:natSpracheModellierung}
+		\end{center}
+\end{figure}
+
+Seien $p\in\begin{pmatrix}
+	\L\\
+	i
+\end{pmatrix}$ und $b\in\begin{pmatrix}
+	\L\\
+	j
+\end{pmatrix}$.
+Dann ist
+\begin{align*}
+	p I_{(i,j)}^\L&=\set{b\in'\begin{pmatrix}
+		\L\\
+		j
+	\end{pmatrix}:p\leq_\L b'}\\
+	I_{(i,j)}^\L b&=\set{p'\in\begin{pmatrix}
+		\L\\
+		i
+	\end{pmatrix}:p'\leq_\L b}\\
+	I_{(i,j)}^\L b&=\begin{pmatrix}
+		\L(b)\\
+		i
+	\end{pmatrix}\mapsto
+	\begin{pmatrix}
+		\dim(b)\\
+		i
+	\end{pmatrix}_q=\begin{pmatrix}
+		j\\
+		i
+	\end{pmatrix}_q
+\end{align*}
+
+\begin{satz}
+	Es gilt weiter
+	\begin{align*}
+		pI^\L_{(i,j)}&=\set{b'\in\begin{pmatrix}
+			\L\\
+			j
+		\end{pmatrix}:p\leq_\L b'}
+		\overset{1-1}{\leftrightarrow}
+		\set{b'/p\mid b'\in\begin{pmatrix}
+			\L\\
+			j
+		\end{pmatrix}:p\leq_\L b}
+		=\begin{pmatrix}
+			\L(V/p)\\
+			j-i
+		\end{pmatrix}
+		\mapsto\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}\\
+		&\dim(b'/p)=\dim(b')-\dim(p)=j-i
+	\end{align*}
+	Ergebnis:
+	\begin{align*}
+		\Inz^\L_{(i,j)}
+		=\klammern{
+			\begin{pmatrix}
+				\L\\
+				i
+			\end{pmatrix},
+			\begin{pmatrix}
+				\L\\
+				j
+			\end{pmatrix},
+			I_{(i,j)}^\L
+		}
+	\end{align*}
+	hat Parametertupel
+	\begin{align*}
+		\klammern{
+			\begin{pmatrix}
+				n\\
+				i
+			\end{pmatrix}_q,\begin{pmatrix}
+				n-i\\
+				j-i
+			\end{pmatrix}_q,\begin{pmatrix}
+				n\\
+				j
+			\end{pmatrix}_q,\begin{pmatrix}
+				j\\
+				i
+			\end{pmatrix}_q
+		}
+	\end{align*}
+\end{satz}
+
+\begin{definition}
+	Ist $f\colon\N\to\N_+$ eine Abbildung, so sei 
+	\begin{align*}
+		f!\colon\N\to\N_+,\qquad n\mapsto f(1)\mal f(2)\mal\ldots\mal f(n)
+	\end{align*}
+	Setze dann
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		:=\frac{(f!)(n)}{(f!)(i)\mal(f!)(n-i)}
+	\end{align*}
+	Sonderfall: $(f!)(1)=f(1)$ und $(f!)(0)=1$
+\end{definition}
+
+\begin{satz}
+	Dann gilt
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		\mal\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}_f
+		=\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix}_f\mal\begin{pmatrix}
+			j\\
+			i
+		\end{pmatrix}_f
+	\end{align*}
+	für beliebige $i,j\in\N$ mit $i\leq j\leq n$.
+\end{satz}
+
+\begin{beispiel}
+	\begin{align*}
+		f(n)&:=\#\set{t\in\L\big(\F^n_q\big)\mid\dim(t)1}\\
+		f(1)&:=1\\
+		\begin{pmatrix}
+			n\\
+			1
+		\end{pmatrix}_f
+		&=f(n)=\frac{q^n-1}{q-1}
+	\end{align*}
+\end{beispiel}
+
+Wiederholung:
+$V\simeq\F_q^n$, $\L=\L(V)=(L(V),\leq)$ Unterraumverband.
+Hierbei ist "$\leq$" die Untervektorraum-Enthalten-Seins-Relation.
+\begin{align*}
+	L_i&:=\set{U\leq V\mid \dim(U)=i}
+\end{align*}
+Dann ist 
+\begin{align*}
+	\Inz_{i,j}^\L=\big(L_i,L_j,I_{i,j}\big)
+	\qquad\mit\qquad
+	I_{i,j}:=\set{(p,b)\in L_i\times L_j\mid p\leq b}
+\end{align*}
+taktische Konfiguration mit Parametertupel
+\begin{align*}
+	\klammern{
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q,\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}_q,\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix}_q,\begin{pmatrix}
+			j\\
+			i
+		\end{pmatrix}_q
+	}
+\end{align*}
+wobei
+\begin{align*}
+	\begin{pmatrix}
+		n\\
+		1
+	\end{pmatrix}_q
+	=\frac{q^n-1}{q-1}
+\end{align*}
+
+\begin{bemerkungnr}
+	$\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_q$ heißt \define{Gauß-Koeffizient}
+	\index{Gauß-Koeffizient}
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q
+		=\frac{
+			\big(q^n-1\big)\mal\ldots\mal\big(q^{n-ii+1}-1\big)
+		}{
+			(q-1)\mal\ldots\mal\big(q^i-1\big)
+		}
+	\end{align*}
+	Dies folgt aus
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q\mal\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}_q
+		=\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix}_q\mal\begin{pmatrix}
+			j\\
+			i
+		\end{pmatrix}_q
+	\end{align*}
+	und 
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			1
+		\end{pmatrix}_q=\frac{q^n-1}{q-1}
+	\end{align*}
+	
+	Es gilt irgendwie auch:
+	\begin{align*}
+		\#V&=q^n\\
+		\#\big(V\setminus\set{\vec{0}}\big)&=q^n-1\\
+		\#\F_g v&=q\qquad\forall v\in V\setminus\set{\vec{0}}\\
+		\#\big(\F_q\setminus\set{0}\big)v&=q-1\\
+		\implies (q-1)\mal\begin{pmatrix}
+			n\\
+			1
+		\end{pmatrix}_q&=q^n-1
+	\end{align*}
+\end{bemerkungnr}
+
+\begin{bemerkungnr}
+	Sei $f\colon\N\to\N_+$ Abbildung. 
+	Setze
+	\begin{align*}
+		f!\colon\N\to\N_+,\qquad n\mapsto \prod\limits_{i\in[n]} f(i)=f(1)\mal f(2)\mal\ldots\mal f(n)
+	\end{align*}
+	Beachte $\prod\limits_{i\in\emptyset} f(i)=1$.
+	Für $i,n\in\N$ sei
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		:=\left\lbrace\begin{array}{cl}
+			\frac{(f!)(n)}{(f!)(i)\mal(f!)(n-i)},&\falls i\leq n\\
+			0, &\falls i>n
+		\end{array}\right.
+	\end{align*}
+	Also ist 
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		=\frac{
+			f(n)\mal\ldots\mal f(n-i+1)
+		}{
+			f(1)\mal\ldots\mal f(i)
+		}\qquad\forall i\leq n
+	\end{align*}
+	Für eine Abbildung
+	\begin{align*}
+		[~]\colon\N\times\N\to\N,\qquad
+		(i,n)\mapsto\begin{bmatrix}
+			n\\
+			i
+		\end{bmatrix}\\
+		\mit~
+		\supp([~])
+		\overset{\Def}{=}
+		\set{(i,n)\in\N\times\N\mid i\leq n}
+		=\set{(i,n)\in\N\times\N\mid i\leq n}
+	\end{align*}
+	 Link: \url{https://de.wikipedia.org/wiki/Inzidenzalgebra}
+	 Es gilt stets:
+	 \begin{align}\label{eq:24.4Stern}\tag{$*$}
+	 	\begin{bmatrix}
+	 		n\\
+	 		i
+	 	\end{bmatrix}\mal\begin{bmatrix}
+	 		n-i\\
+	 		j-i
+	 	\end{bmatrix}
+	 	=\begin{bmatrix}
+	 		n\\
+	 		j
+	 	\end{bmatrix}\mal\begin{bmatrix}
+	 		j\\
+	 		i
+	 	\end{bmatrix}
+	 	\qquad\forall i\leq j\leq n
+	 \end{align}
+	 Das heißt
+	 \begin{align*}
+	 	\klammern{
+			\begin{bmatrix}
+				n\\
+				i
+			\end{bmatrix},
+			\begin{bmatrix}
+				n-i\\
+				j-i
+			\end{bmatrix};\begin{pmatrix}
+				n\\
+				j
+			\end{pmatrix},\begin{bmatrix}
+				j\\
+				i
+			\end{bmatrix}
+	 	}
+	 \end{align*}
+	 ist formales taktisches Konfigurationsquadrupel.
+\end{bemerkungnr}
+
+Ist umgekehrt $[~]\colon\leq_\N\to\N_+$ mit \eqref{eq:24.4Stern} gegeben, so ist $[~]=(~)_f$ für
+\begin{align*}
+	f\colon\N\to\N_+,\qquad n\mapsto\begin{bmatrix}
+		n\\
+		1
+	\end{bmatrix}
+\end{align*}
+Folglich ist $f(1)=1$.
+
+\begin{bemerkungnr}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Warnung! Gegenbeispiel:
+	$[~]\colon\leq_\N\to\N_+,~(i,n)\mapsto 2$ erfüllt \eqref{eq:24.4Stern}, aber es existiert \betone{kein} $f\colon\N\to\N_+$ mit $[~]=(~)_f$.
+		\item $[~]\colon\leq_\N\to\N_+,~(i,n)\mapsto1$ erfüllt $[~]=(~)_f$ für $f\colon\N\to\N_+,~ n\mapsto 1$.
+		\item \eqref{eq:24.4Stern} ist ein Beispiel einer Funktionalgleichung.
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{beispiel}
+	Weitere "interessanter" taktischer Konfigurationen via freier endlichen Ring Moduln.\nl
+	Sei $\S=\big(S,+,\mal,0,1\big)$ ein \define{Semiring (mit Eins)}, d.h. $\S_{\add}:=\big(S,+,\mal\big)$ ist kommutatives Monoid und $\S_{\mult}:=\big(S,\mal,1\big)$ ist Monoid derart, dass das Distributivgesetz
+	\index{Semiring}
+	\begin{align*}
+		a\mal(b+c)=(a\mal b)+(a\mal c)=:a\mal b+a\mal c\qquad\forall a,b,c\in S
+	\end{align*}
+	gilt.
+	Sind $\S=\big(S,+,\mal,0,1\big)$ und $\S'=\big(S',+',\mal',0',1'\big)$ Semiringe, so heiße eine Abbildung $\varphi\colon S\to S'$ \define{Morphismus}, falls $\varphi$ Morphismus von $\S_{\add}$ nach $\S'_{\add}$ und $\varphi$ Morphismus von $\S_{\mult}$ nach $\S_{\mult}'$ bildet, d.h. es gilt für alle $a,b\in S$:
+	\index{Morphismis}
+	\begin{enumerate}
+		\item $\begin{aligned}
+			\varphi(a+b)&=\varphi(a)+'\varphi(b)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\varphi(a\mal b)=\varphi(a)\mal'\varphi(b)
+		\end{aligned}$
+		\item $\begin{aligned}
+			a\mal 0=0=0\mal a
+		\end{aligned}$
+		\item $\begin{aligned}
+			1\neq 0
+		\end{aligned}$
+		\item $\begin{aligned}
+			\varphi(1)=1'
+		\end{aligned}$
+	\end{enumerate}
+	
+	Ist $\M=(M,+\vec{0)})$ kommutativer Monoid und $\S=(S,+,\mal,0,1)$ Semiring (SR), so heiße 
+	\index{Sclaling}
+	\begin{align*}
+		\scal\colon S\to\End(\M)
+	\end{align*}
+	ein \define{Scaling}, falls
+	\begin{align*}
+		\End(\M):=\big(\End(M),+,\mal,0,\id_M\big)
+	\end{align*}
+	Endomorphismen-Semiring von $\M$.\\
+	$\scal$ Morphismus von $\S$ nach $\End(\M)$.\nl
+	Die Abbildung $S\times M\to M,~(s,m)\mapsto sm:=\big(\scal(s)\big)m$
+	heiße das zugehörige \define{Skalarprodukt}.
+	\index{Skalarprodukt}\\
+	Wir nennen dann $(\M,\S,\scal)$ einen \define{Semiring-Modul} bzw. sagen $\M$ bildet (bzgl. $\scal$) einen Modul über $\S$.
+	\index{Semiring-Modul}
+\end{beispiel}

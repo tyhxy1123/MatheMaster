@@ -28,6 +28,13 @@ Diese Mitschrift bildet eher eine Ergänzung zu den online liegenden Dateien.
 	\item In Java gibt es keine Pointer.
 	\item Nützliche Tools (z.B. \code{IOTools.java}):
 	\link{https://grundkurs-java.de/}
+	\item Für Klassen ohne \code{main}-Methode ist es dennoch sinnvoll, eine \code{main}-Methode zu haben und da Tests auszuführen
+	\item Linksshift um $i$: \code{n<\hspace{0.1mm}<$i$} fügt $i$ Nullen rechts ein und schiebt die Bits nach links
+	\item Rechtsshift um $i$: \code{n>\hspace{0.1mm}>\hspace{0.1mm}>$i$} analog.
+	\item arithmetischer Rechtsshift um $i$: \code{n>\hspace{0.1mm}>$i$} = $\floor{\frac{n}{2}}$
+	\item Logische Operatoren werten nur notwendige Ausdrücke aus (sie entsprechen also \code{AndAlso} und \code{OrElse} in VB.NET), Beispiel:\\
+	\code{if(data!=null \&\& i>=0 \&\& i<data.length \&\& data[i]>=3)}
+	\item Sei $i=5$. Dann ist \code{++i + 3} gleich 9 aber \code{i++ +3} ist gleich 8.
 \end{itemize}
 
 %\inputminted{java}{code/MyFirstDate.java}

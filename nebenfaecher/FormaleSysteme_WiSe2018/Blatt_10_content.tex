@@ -179,12 +179,6 @@ Somit erhalten wir für $adc$ 1, für $cda$ 0, für $bcdc$ 3 und für $acdc$ 3 Z
 Beachte: falls man $0\in\N$ annimmt, entfallen noch einige Fälle oben.
 
 \subsection{Aufgabe 2}
-Die Sprache
-\begin{align*}
-	L:=\big\lbrace a^p\mid p\text{ ist Primzahl}\big\rbrace\mit\Sigma:=\lbrace a\rbrace
-\end{align*}
-ist nicht erkennbar.
-
 \begin{proof}
 	Wir führen einen Widerspruchsbeweis: Angenommen, $L$ ist erkennbar.
 	Dann folgt aus dem Pumping-Lemma (3.1): Es gibt $n_0\in\N_{\geq1}$ so, dass jedes Wort $w\in L$ mit $|w|\geq n_0$ sich zerlegen lässt in $w=xyz$ mit $y\neq\varepsilon$ und $xy^kz\in L$ für alle $k\geq0$.
@@ -230,12 +224,6 @@ ist nicht erkennbar.
 \end{proof}
 
 \subsection{Aufgabe 3}
-Die Sprache
-\begin{align*}
-	L:=\Big\lbrace w\mid w=1^k\text{ für }k\geq0\text{ oder }w=0^j1^p\text{ für }j\geq1\text{ und }p\text{ Primzahl}\Big\rbrace\\
-	\mit\Sigma=\lbrace0,1\rbrace
-\end{align*}
-ist nicht erkennbar.
 
 \begin{proof}
 	\textbf{Pumping-Lemma (verschärft, Änderungen unterstrichen)}:\\
@@ -258,7 +246,6 @@ ist nicht erkennbar.
 \end{proof}
 
 \subsection{Aufgabe 4}
-\textbf{Satz 4.1} Ist $L$ erkennbar, so ist auch $L^\ast$ erkennbar.
 
 \begin{proof}
 	%Erinnerung: Eine Sprache $L$ ist per Definition erkennbar, wenn es einen NEA $\A$ gibt, der $L$ akzeptiert, d.a. $L=L(\A)$.\nl
@@ -276,7 +263,6 @@ ist nicht erkennbar.
 	\end{align*}
 	
 	
-  \includegraphics[width=0.7\textwidth]{pics/Blatt10_4.png}
   
   Offenbar ist $\A_\varepsilon$ ein $\varepsilon$-NEA. Mit Lemma 1.12 bekommt man einen zu $\A_\varepsilon$ äquivalenten NEA, nennen wir ihn $\A_{\text{NEA}}$. Äquivalent bedeutet $L(\A_\varepsilon)=L(\A_{\text{NEA}})$.\nl
   Bleibt noch zu zeigen, dass $L(\A_\varepsilon)=L^\ast$ gilt. 

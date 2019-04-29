@@ -147,8 +147,8 @@
 		f(x,0)=0\quad
 		\forall x\neq0.
 	\end{align*}
-	\begin{aufgabenr}[1.2 Teil 1, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.2Teil1}\enter
-		Rechnen Sie nach, dass \eqref{eq:BeispEinfuehrung1} die Differenzengleichung mit Anfangsbedingungen erfüllt.
+	\begin{aufgabenr}[1.2 Teil 1, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1}\enter
+		Rechnen Sie nach, dass $f$ die Differenzengleichung \eqref{eq:BeispEinfuehrung1} mit Anfangsbedingungen erfüllt.
 	\end{aufgabenr}
 
 	Wir bilden den Grenzwert $h,\tau\longrightarrow 0$.
@@ -186,7 +186,7 @@
 		=-2\mal c\mal\frac{\partial f(x,t)}{\partial x}+D\mal\frac{\partial^2 f(x,t)}{\partial x^2}
 	\end{align*}
 	Dies ist die \define{Fokker-Planck-Differentialgleichung}.
-	\begin{aufgabenr}[1.2 Teil 2, \texorpdfstring{\hyperref[loes:1]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.2Teil2}\enter
+	\begin{aufgabenr}[1.2 Teil 2, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:2}\enter
 		Leiten Sie die Differentialgleichung ausführlich her.
 	\end{aufgabenr}
 \end{beisp}
@@ -288,7 +288,7 @@ In diesem Abschnitt seien:
 			Z:T\times\Omega\to S,\qquad (t,\omega)\mapsto Z(t,\omega)
 		\end{align*}
 		zu betrachten, die für jedes feste $t\in T$ messbar bezüglich $(\A,\B)$ ist.\index{vollständiger Maßraum}
-		\item Ein Maßraum $(\Omega,\A,\P)$ heißt \define{vollständig}, falls $\A$ jede $\P$-Nullmenge enthält.
+		\item Ein Maßraum $(\Omega,\A,\P)$ heißt \define{vollständig}, falls $\A$ jede $\P$-Nullmenge enthält.\label{item:bemerkung1.3.2(7)}
 		Dies können wir o.B.d.A. annehmen, denn:\\
 		Sei $(\Omega,\A_0,\P_0)$ die \define{Vervollständigung} des Grundraumes, d.h.: \index{Vervollständigung}\\
 		$\A_0$ ist die $\sigma$-Algebra, aller Mengen der Form
@@ -305,12 +305,15 @@ In diesem Abschnitt seien:
 	\end{enumerate}
 \end{bemerkungnr}
 
-\begin{aufgabenr}[1.3.2.7 Teil 1, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.3.2.7Teil1}\enter
+\begin{aufgabenr}[1.3.2.7 Teil 1, \texorpdfstring{\hyperref[loes:3]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:3}\enter
 	Zeigen Sie:
 	\begin{enumerate}
 		\item $\A_0$ ist eine $\sigma$-Algebra.
+		\label{item:aufg3_1}
 		\item $\P_0$ ist wohldefiniert (also unabhängig von der Darstellung).
+		\label{item:aufg3_2}
 		\item $\P_0$ ist ein Wahrscheinlichkeitsmaß.
+		\label{item:aufg3_3}
 	\end{enumerate}
 \end{aufgabenr}
 
@@ -319,7 +322,7 @@ In diesem Abschnitt seien:
 	\begin{align*}
 		\Omega&=[0,1]\\
 		\A&=\set{\emptyset,\Omega,\intervall{0}{\frac{1}{2}},\intervallOH{\frac{1}{2}}{1}}\\
-		\P\klammern{\intervall{0}{\frac{1}{2}}}&=0,1\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=0,9.
+		\P\klammern{\intervall{0}{\frac{1}{2}}}&=0,1\qquad\P\klammern{\intervallOH{\frac{1}{2}}{1}}=0,9.
 	\end{align*}		
 	ist \betone{nicht} vollständig.
 	 Dann ist
@@ -328,14 +331,14 @@ In diesem Abschnitt seien:
 	 \end{align*}
 	 \betone{oder}:
 	 \begin{align*}
-	 	\P\klammern{\intervall{0}{\frac{1}{2}}}&=0\qquad\P\klammern{\intervall{\frac{1}{2}}{1}}=1
+	 	\P\klammern{\intervall{0}{\frac{1}{2}}}&=0\qquad\P\klammern{\intervallOH{\frac{1}{2}}{1}}=1
 	 \end{align*}
 	  Dann ist
 	 \begin{align*}
 	 	\A_0=?\qquad\P_0=?
 	 \end{align*}
 
-	\begin{aufgabenr}[1.3.2.7 Teil 2, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:1.3.2.7Teil2}\enter
+	\begin{aufgabenr}[1.3.2.7 Teil 2, \texorpdfstring{\hyperref[loes:2]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:4}\enter
 	 	Zeige, dass $(\Omega,\A,\P)$ nicht vollständig ist und gibt in beiden Fällen $\A_0$ und $\P_0$ an.
 	\end{aufgabenr}
 \end{beisp}
@@ -349,7 +352,8 @@ In diesem Abschnitt seien:
 			S_n:=\sum\limits_{j=0}^n X_j\qquad\forall n\in\N_0
 		\end{align*}
 		Zeitreihen ($T=\N_0$ und $S=\R$).
-		\item Seien $a$ und $\varphi$ zwei Zufallsgrößen und $u\in\R$.
+		\item Zufällige trigonometrische Polynome:\label{beisp:1.3.3(b)}\\
+		Seien $a$ und $\varphi$ zwei Zufallsgrößen und $u\in\R$.
 		Dann ist \index{harmonische Schwingung}
 		\begin{align*}
 			X_t:=a\mal\cos(u\mal t+\varphi)\qquad\forall t\in\R
@@ -360,7 +364,7 @@ In diesem Abschnitt seien:
 			\item $\varphi$: \define{Phase}
 		\end{itemize}
 		und \define{Frequenz} $u$ gegeben.
-		(Für festes $t\in T$ ist $X_t$ eine Zufallsgröße, da $\cos$ stetig und damit messbar als Kombination messbarer Abbildungen.)\\
+		(Für festes $t\in T$ ist $X_t$ eine Zufallsgröße, da $\cos$ stetig ist und damit messbar als Kombination messbarer Abbildungen.)\\
 		Viele Prozesse in Anwendungen lassen sich als Summe von solchen harmonischen Schwingungen modellieren / annähern.
 		\begin{align*}
 			X_t(\omega)=\sum\limits_{j=1}^n a_j(\omega)\mal\cos\big(u_j\mal t+\varphi_j(\omega)\big)\qquad\forall t\in\R,\forall\omega\in\Omega
@@ -371,12 +375,543 @@ In diesem Abschnitt seien:
 			X_{t_1}(\omega),\ldots,X_{t_m}(\omega)
 		\end{align*}
 		z.B. die Anzahl der Sonnenflecke.\\
-		Oft ist es vorteilhaft komplexwertige Schwingungen zu betrachten:
-		\begin{align}\label{eq:beispiel1.3.3HarmonischeSchwingungKomplex}
+		Oft ist es vorteilhaft \betone{komplexwertige} Schwingungen zu betrachten:
+		\begin{align*}%\label{eq:beispiel1.3.3HarmonischeSchwingungKomplex}
 			Z_t:=\sum\limits_{j=1}^n c_j\mal\exp(\ii\mal u_j\mal t)\qquad\forall t\in\R
-		\end{align}
+		\end{align*}
+        Hierbei sind $c_j=c_j(\omega)$ $(j\in\set{1,\ldots,n})$ komplexe Zufallsgrößen.
+		Schreiben wir $c_j$ in der Form
+		\begin{align*}
+			c_j&=\abs{c_j}\mal\exp(\ii\mal\varphi_j),
+		\end{align*}
+		wobei $\abs{c_j}$ und $\varphi_j$ eine reelle Zufallsgrößen sind, so gilt:
+		\begin{align*}
+			\Re(Z_t)&=\sum\limits_{j=1}^n\abs{c_j}\mal\cos\big(u_j\mal t+\varphi_j\big)\\
+			\Im(Z_t)&=\sum\limits_{j=1}^n\abs{c_j}\mal\sin\big(u_j\mal t+\varphi_j\big)
+		\end{align*}
+		Die komplexen Amplituden $c_j$ bestimmen also die Amplituden und Phasen von Real- und Imaginärteil des Prozesses.
+		\item Polynome mit zufälligen Koeffizienten:\label{beisp:1.3.3(c)}
+		\begin{align*}
+			X_t&=a_0+a_1\mal t+\ldots+a_n\mal t^n=\sum\limits_{i=0}^n a_i\mal t^i
+			\qquad\forall t\in\R
+		\end{align*}
+		wobei die $a_j$ reell- oder komplexwertige Zufallsgrößen sind ($j\in\set{1,\ldots,n}$).
+		Die Trajektorien sind Polynome höchstens $n$-ten Grades.
+		\item Einschaltvorgang zum zufälligen Zeitpunkt:\label{beisp:1.3.3(d)}\\
+		Sei $\tau$ eine nichtnegative Zufallsgröße und 
+		\begin{align*}
+			X_t(\omega):=\indi_{\intervallHO[\big]{\tau(\omega)}{\infty}}(t)\qquad\forall t\in\intervallHO{0}{\infty},\forall\omega\in\Omega
+		\end{align*}
+		\begin{aufgabe}[nicht-vorrechenbar]\enter
+			Zeigen Sie, dass $X_t$ eine Zufallsgröße ist und bestimmen Sie ihre Verteilung!
+			Wie sehen die Trajektorien aus?
+		\end{aufgabe}
+		\begin{lösung}
+			$X_t\colon\Omega\to\set{0,1}$ ist messbar $\forall t\in[0,\infty)$, denn:
+			\begin{align*}
+				X_t(\omega)&=\left\lbrace\begin{array}{cl}
+					1, &\falls \omega\in\set{\tau\leq t}\\
+					0, &\falls \omega\in\set{\tau>t}
+				\end{array}\right.
+			\end{align*}
+			$X_t$ ist die Indikatorfunktion des Ereignisses $[\tau\leq t]$.
+			Somit ist $X_t$ $(\A,\B)$-messbar.
+			Also ist $X_t$ ein stochastischer Prozess, dessen Pfade einfache Sprungfunktionen sind.\\
+			Wir bestimmen nun die Verteilung $\mu_t$ von $X_t$:\\
+			$\mu_T$ ist ein Wahrscheinlichkeitsmaß mit
+			\begin{align*}
+				\mu_t\klammern[\big]{\set{0}}=p\qquad
+				\mu_t\klammern[\big]{\set{1}}=1-p\qquad
+				p:=\P[\tau>t]
+			\end{align*}
+		\end{lösung}
 	\end{enumerate}
 \end{beispiel}
+
+\begin{aufgabenr}[1.3.4, \texorpdfstring{\hyperref[loes:5]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:5}\enter
+	Wenn wir beim Beispiel \ref{beisp1.3.3}\ref{beisp:1.3.3(c)} eine Trajektorie an $n+1$ verschiedene Stellen kennen, dann kennen wir sie überall.
+	Wie ist es bei \ref{beisp1.3.3}\ref{beisp:1.3.3(d)} und \ref{beisp1.3.3}\ref{beisp:1.3.3(b)}?
+\end{aufgabenr}
+
+\setcounter{satz}{4} %das erfordert seine Nummerierung.
+
+\begin{definition}\label{def:1.3.5}
+	Sei $Z$ ein Zufallsfeld auf $T$ und $t_1,\ldots,t_n\in T$.
+	Dann ist $\big(Z_{t_1},\ldots,Z_{t_n}\big)$ ein Zufallsvektor mit Werten im Produkt-Messraum $\big(S^n,\B^n\big)$ und besitzt folglich eine Verteilung $\mu_{t_1,\ldots,t_n}$.
+	Verteilungen dieser Form heißen \define{endlich dimensionale Verteilungen} von $Z$. \index{endlichdimensionale Verteilung}\index{Gauß'sches Zufallsfeld}\\
+	Ist $Z$ reell oder komplex und sind alle endlich dimensionalen Gauß'sch, so nennt man auch $Z$ \define{Gauß'sch}.
+\end{definition}
+
+\begin{bemerkung}
+	Es gilt
+	\begin{align*}
+		\mu_{t_1,\ldots,t_n}\big(B_1\times\ldots\times B_n\big)
+		\overset{\Def}{=}
+		\P\Big(X_{t_1}\in B_1,\ldots,X_{t_n}\in B_n\Big)\qquad\forall B_1,\ldots,B_n\in\B
+	\end{align*}
+\end{bemerkung}
+
+\subsection*{Wiederholung: Charakteristische Funktionen}
+\begin{defi}
+	Sei $X$ $d$-dimensionaler Zufallsvektor, $\mu$ die Verteilung von $X$.
+	Die \define{charakteristische Funktion} von $X$ ist\index{charakteristische Funktion}
+	\begin{align*}
+		f_X(t)&:=\E\Big[\exp\big(\ii\mal\scaProd{t}{X}\big)\Big]
+		=\int\limits_{\R^d}\exp\big(\ii\mal\scaProd{t}{X}\big)\qquad\forall t\in\R^d
+	\end{align*}
+\end{defi}
+
+\begin{lem}[Eigenschaften der charakteristischen Funktion]\
+	\begin{enumerate}
+		\item $f(0)=1$
+		\item $\begin{aligned}
+			\abs[\big]{f(t)}\leq1
+		\end{aligned}$
+		\item $\begin{aligned}
+			f(-t)=\overline{f(t)}
+		\end{aligned}$
+		\item $f$ ist gleichmäßig stetig auf $\R^d$
+		\item $\begin{aligned}
+			f_{X+Y}=f_X\mal f_Y,
+		\end{aligned}$ falls $X,Y$ unabhängig sind
+		\item $\mu$ ist symmetrisch bezüglich des Nullpunktes $\iff f$ ist reellwertig $\iff f(t)=\int\limits_{\R^d}\cos\big(\scaProd{t}{x})\ds\mu(x)$
+	\end{enumerate}
+\end{lem}
+
+\subsection*{Wiederholung: Gauß-Verteilung}
+\begin{defi}
+	Die \define{Standard-Gauß-Dichte} ist \index{Standard-Gauß-Dichte}
+	\begin{align*}
+		\varphi(x)=\frac{1}{(2\mal\pi)^{\frac{d}{2}}}\mal\exp\klammern{-\frac{1}{2}\mal\scaProd{x}{x}}\qquad\forall x\in\R^d
+	\end{align*}
+\end{defi}
+
+\begin{lem}
+	Die zugehörige charakteristische Funktion ist
+	\begin{align*}
+		f_{\text{Gauß}}(t)=\exp\klammern{-\frac{1}{2}\mal\scaProd{t}{t}}\qquad\forall t\in\R^d
+	\end{align*}
+\end{lem}
+
+\begin{defi}
+	Ein $d$-dimensionaler Zufallsvektor $Y$ heißt \define{Gauß'sch} oder auch \define{normalverteilt}, wenn ihre charakteristische Funktion $f$ die Form
+	\index{Gauß'scher Zufallsvektor}\index{Normalverteilung}
+	\begin{align*}
+		f(t)=\exp\klammern{\ii\mal\scaProd{m}{t}-\frac{1}{2}\mal\scaProd{C\mal t}{t}}\qquad\forall t\in\R^d
+	\end{align*}
+	hat, wobei $m\in\R^d$ und $C\in\C^{d\times d}$ positiv semidefinit.\\
+	Schreibweise: $Y\sim\Nor(m,C)$ Es gilt:
+	\begin{align*}
+		\E[Y]=m,\qquad C=\Cov(Y)
+	\end{align*}
+	Ein $d$-dimensionaler komplex-wertiger Zufallsvektor $Y\colon\Omega\to\C^d$ heißt \define{Gauß'sch}, wenn der Zufallsvektor
+	\begin{align*}
+		\Big(\Re(Y_1),\Im(Y_1),\ldots,\Re(Y_n),\Im(Y_n)\Big)\in\R^{2\mal d}
+	\end{align*}
+	Gauß'sch ist.
+\end{defi}
+
+% Ende Wiederholung
+
+\begin{bemerkung}
+	Betrachtet man $Z$ über der Vervollständigung des Grundraums, so bleiben die endlich-dimensionalen Verteilungen unverändert.
+\end{bemerkung}
+
+\begin{beisp}
+	Sei $(X_n)_{n\in\N}$ eine Folge von unabhängigen, normalverteilten Zufallsgrößen.
+	Dann ist der Prozess $\set{X_n}_{n\in\N}$ eine Gauß'sche Zeitreihe.
+	($(X_1,\ldots,X_n)$ ist Gauß'scher Zufallsvektor, was man z.B. über charakteristische Funktionen beweisen kann.)
+\end{beisp}
+
+\begin{satz}[Existenz-Satz von Kolmogorov]\label{satz:1.3.6ExistenzsatzVonKolmo}\enter
+	Sei $T\neq\emptyset$ eine beliebige Menge und $d\in\N$.
+	Für jede endliche Menge $\set{t_1,\ldots,t_k}\subseteq T$ sei $\mu_{t_1,\ldots,t_k}$ ein Wahrscheinlichkeitsmaß auf $(\R^d)^k$.
+	Nehmen wir an, dass diese Maße folgende, sogenannte \define{Konsistenzbedingungen} erfüllen:
+	\index{Konsistenzbedingungen}
+	\begin{enumerate}[label=(\roman*)]
+		\item Für jede Permutation $\pi$ von $\set{1,\ldots,k}$ und alle Borelmengen $B_1,\ldots,B_k\subseteq\R^d$ gilt
+		\begin{align*}
+			\mu_{t_1,\ldots,t_k}\Big(B_1\times\ldots\times B_k\Big)
+			=\mu_{t_{\pi(1)},\ldots,t_{\pi(k)}}\Big(B_{\pi(1)}\times\ldots\times B_{\pi(k)}\Big)
+		\end{align*}
+		\item Für alle $n\in\N$ und alle Borelmengen $B_1,\ldots,B_k\subseteq\R^d$ gilt
+		\begin{align*}
+			\mu_{t_1,\ldots,t_k}\Big(B_1\times\ldots\times B_k\Big)
+			=\mu_{t_1,\ldots,t_k,t_{k+1},\ldots,t_{k+n}}\Big(B_1\times\ldots\times	 B_k\times\underbrace{\R^d\times\ldots\times\R^d}_{n\text{-mal}}\Big)
+		\end{align*}
+	\end{enumerate}		
+	Dann existiert ein Wahrscheinlichkeitsraum $(\Omega,\A,\P)$ und $d$-dimensionale Zufallsvektoren $X_t$ auf $\Omega$ für $t\in T$ so, dass
+	$\mu_{t_1,\ldots,t_k}$ die Verteilung des Zufallsvektors $\big(X_{t_1},\ldots,X_{t_k}\big)$ ist für alle $\set{t_1,\ldots,t_k}\subseteq T$.
+\end{satz}
+
+\begin{proof}
+	Siehe z.B. Wengenroth \cite{wengenroth2008wahrscheinlichkeitstheorie}  \emph{Wahrscheinlichkeitstheorie}, Satz 7.3 oder 
+	Gihmann \& Skorohod \cite{gikhman1977introduction}: \emph{Introduction to Theory of Stochastic Processes}, Abschnitt 3.2. 
+\end{proof}
+
+Nach diesem Satz existiert also zu jeder Folge von \betone{konsistenten} endlich dimensionalen Verteilungen ein Prozess, die diese endlich dimensionalen Verteilungen besitzt.
+
+\begin{folgerung}\label{folgerung1.3.7}
+	Für eine beliebige Familie $\set{\mu_\alpha}_{\alpha\in A}$ von $d$-dimensionalen Verteilungen existiert eine Familie $\set{X_\alpha}_{\alpha\in A}$ von \betone{unabhängigen} $d$-dimensionalen Zufallsvektoren so, dass $\mu_\alpha$ die Verteilung von $X_\alpha$ ist $(\alpha\in A)$.
+\end{folgerung}
+
+%\begin{proof}
+	%Setze
+	%\begin{align*}
+		%\mu_{t_1,\ldots,t_k}:=\bigotimes\limits_{j=1}^k \mu_{t_j}
+	%\end{align*}
+	%und wende Satz \ref{satz:1.3.6ExistenzsatzVonKolmo} an.
+%\end{proof}
+
+\begin{bemerkung}
+	Folgerung \ref{folgerung1.3.7} ist wichtig, denn es fangen viele Sätze z.B. so an:\\
+	"Sei $(X_n)_{n\in\N}$ eine Folge von unabhängigen, $\Nor(0,1)$ verteilten Zufallsgrößen."\\
+	Doch woher weiß man, dass eine solche Folge existiert?\nl
+	Sei $\mu$ das Wahrscheinlichkeitsmaß auf $\R$, welches zu $\Nor(0,1)$ gehört.
+	Man gebe eine Zufallsgröße $X$ an mit $\mu$ als Verteilung.
+	Lösung:
+	\begin{align*}
+		(\Omega,\A,\P)=\big(\R,\B(\R),\mu\big)\qquad
+		X(\omega):=\omega
+		\qquad\forall\omega\in\R
+	\end{align*}
+	denn die Verteilung von $X$ ist $\mu$ bedeutet:
+	\begin{align*}
+		\mu(B)&=\P[X\in B]\qquad\forall B\in\B(\R)\\
+		\implies\mu(B)\overset{!}&{=}\mu(X\in B)
+	\end{align*}
+	Nun wollen wir zwei unabhängige $\Nor(0,1)$-verteilte Zufallsgrößen $X_1,X_2$ auf dem selben Wahrscheinlichkeitsraum $(\Omega,\A,\P)$ konstruieren.
+	Lösung:
+	\begin{align*}
+		(\Omega,\A,\P)&=\big(\R^2,\B(\R^2),\mu\otimes\mu)\\
+		X_1(x,y)&:=x
+		\qquad\forall (x,y)\in\R^2=\Omega\\
+		X_2(x,y)&:=y
+		\qquad\forall (x,y)\in\R^2=\Omega\\
+	\end{align*}
+	Dann ist $\mu$ die Verteilung von $X_1$ und $X_2$ und $\mu\times\mu$ die gemeinsame Verteilung:
+	\begin{align*}
+		\big(X_1(x,y),X_2(x,y)\big)=(x,y)
+	\end{align*}
+	Der Schritt von zwei zu endlich vielen ist nun nicht mehr schwer.
+	Seien $\mu_1,\ldots,\mu_n$ Wahrscheindlichkeitsmaße auf $\R$.
+	Setze
+	\begin{align*}
+		(\Omega,\A,\P)&:=\big(\R^n,\B(\R^n),\mu_1\times\ldots\times\mu_n\big)\\
+		X_j(x_1,\ldots,x_n)&:=x_j\qquad\forall (x_1,\ldots,x_n)\in\R^n=\Omega
+	\end{align*}
+	Die $X_j$ sind dann Zufallsgrößen mit Verteilung $\mu_j$, welche auch unabhängig sind, weil ihre gemeinsame Verteilung das Produktmaß ist.\nl
+	Dies wäre der Beweis von Folgerung \ref{folgerung1.3.7} für endliche Familien.
+\end{bemerkung}
+
+\begin{aufgabenr}[1.3.8, \texorpdfstring{\hyperref[loes:6]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:6}\enter
+	Sei $\mu_{t_1,\ldots,t_k}$ wie in Satz \ref{satz:1.3.6ExistenzsatzVonKolmo} und bezeichne $f_{t_1,\ldots,t_k}$ die zugehörigen charakteristischen Funktionen.
+	Dann sind die Konsistenzbedingungen äquivalent zu:\\
+	%\begin{enumerate}[label=(\roman*)]
+		%\item 
+		Für alle Permutationen $\pi$ von $\set{1,\ldots,k}$ und alle $x_1,\ldots,x_k\in\R^d$ gilt:
+		\begin{align*}
+			f_{t_1,\ldots,t_k}(x_1,\ldots,x_k)&=f_{t_{\pi(1)},\ldots,t_{\pi(k)}}\big(x_{\pi(1)},\ldots,x_{\pi(k)}\big)\\
+			f_{t_1,\ldots,t_k}(x_1,\ldots,x_k)
+			&=f_{t_1,\ldots,t_k,t_{k+1},\ldots,t_{k+n}}\big(x_1,\ldots,x_k,\underbrace{0,\ldots,0}_{n\text{-mal}}\big)
+		\end{align*}
+	%\end{enumerate}	 
+\end{aufgabenr}
+
+\begin{aufgabenr}[1.3.9, \texorpdfstring{\hyperref[loes:7]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:7}
+	Seien $X$ und $Y$ Prozesse auf $T_X$ bzw. $T_Y$, die Grundräume können unterschiedlich sein.\\
+	Dann existieren unabhängige Prozesse (d.h. $\tilde{X}_t$ und $\tilde{Y}_s$ sind unabhängig $\forall t,s$) $\tilde{X}$ und $\tilde{Y}$ auf $T_X$ bzw. $T_Y$ mit demselben Grundraum so, dass $\tilde{X}$ und $\tilde{Y}$ dieselben endlich-dimensionalen Verteilungen wie $X$ bzw. $Y$ besitzen.\\
+	Hinweis: \ref{satz:1.3.6ExistenzsatzVonKolmo}
+\end{aufgabenr}
+
+\setcounter{satz}{9} %leider notwendig
+
+\begin{definition}
+	Sei $X$ ein Prozess auf einem Intervall $T\subseteq\R$ oder $T\subseteq\Z$ mit Werten in $\R^d$ oder $\C^d$.
+	Man sagt, $X$ besitzt \define{unabhängige Zuwächse}, falls die Zufallsvariablen 
+	\index{unabhängige Zuwächse}
+	\begin{align*}
+		X_{t_0},X_{t_1}-X_{t_0},\ldots,X_{t_n}-X_{t_{n-1}}	
+	\end{align*}
+	für beliebiges $n\in\N$ und $t_j\in T$ mit $t_0<t_1<\ldots<t_n$ unabhängig sind.
+\end{definition}
+
+\begin{beisp}\
+	\begin{enumerate}
+		\item Sei $T=\N$ und $X_n=Y_1+\ldots+Y_n$, wobei die $Y_i$'s unabhängig sind.
+	Dann hat der Prozess $\set{X_n}_{n\in\N}$ unabhängige Zuwächse.
+		\item Brownsche Bewegung
+	\end{enumerate}
+\end{beisp}
+
+\begin{definition}\label{def1.3.11}
+	Ein \define{komplexes Zufallsfeld zweiter Ordnung} auf $T$ ist eine Abbildung
+	\index{Zufallsfeld zweiter Ordnung}
+	\begin{align*}
+		Z\colon T\to \L_2(\Omega,\A,\P).
+	\end{align*}
+	Die Zufallsgrößen $Z_t$ haben also eine endliche Varianz.\\
+	Wird $\L_2$ durch $\L_2^r$ (reell) ersetzt, so heißt $Z$ ein \define{reelles Zufallsfeld zweiter Ordnung}.\\
+	Die Funktion \index{Korrelationsfunktion}
+	\begin{align*}
+		C\colon T\times T\to\C,\qquad
+		C(x,y):=\E\big[Z(x)\mal\overline{Z(y)}\big]\qquad\forall x,y\in T
+	\end{align*}
+	heißt \define{Korrelationsfunktion} von $Z$.\\
+	Die \define{Kovarianzfunktion} von $Z$ ist
+	\begin{align*}
+		\sigma\colon T\times T\to\C,\qquad
+		\sigma(x,y):=\E\Big[\big(Z(x)-M(x)\big)\mal\big(\overline{Z(y)-M(y)}\big)\Big]\qquad\forall x,y\in T
+	\end{align*}
+	wobei \index{Mittelwert eines Zufallsfeldes}
+	\begin{align*}
+		M(x):=\E\big[Z(x)\big]
+	\end{align*}
+	der \define{Mittelwert} des Feldes ist.
+\end{definition}
+
+\begin{lem}
+	Es gilt
+	\begin{align*}
+		\sigma(x,y)=C(x,y)-M(x)\mal\overline{M(y)}
+	\end{align*}
+	und
+	\begin{align*}
+		M\equiv 0\implies \sigma\equiv C.
+	\end{align*}
+\end{lem}
+
+\begin{beisp}
+	Sei $X\in\L_2(\Omega,\A,\P)$ und $f\colon T\to\C$ beliebig.
+	Dann ist
+	\begin{align*}
+		Z(t):=f(t)\mal X\qquad\forall t\in T
+	\end{align*}
+	ein Feld zweiter Ordnung mit Korrelationsfunktion
+	\begin{align*}
+		C(x,y)=f(x)\mal\overline{f(y)}\mal\E\big[|X|^2\big] \qquad\forall x,y\in T.
+	\end{align*}
+\end{beisp}
+
+\begin{aufgabenr}[1.3.12, \texorpdfstring{\hyperref[loes:8]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:8}\enter
+	Zeigen Sie, dass die Korrelationsfunktion und die Kovarianzfunktion \define{positiv semidefinit} sind, d.h.\index{positiv semidefinit}
+	\begin{align*}
+		\forall n\in\N:\forall x_1,\ldots,x_n\in T,\forall c_1,\ldots,c_n\in\C:\sum\limits_{i=1}^n\sum\limits_{i=1}^n C(x_i,x_j)\mal c_i\mal\overline{c_j}\geq0
+	\end{align*}
+	Äquivalent: Die Matrizen
+	\begin{align*}
+		\Big( C(x_i,x_j)\Big)_{i,j=1}^n\qquad\forall n\in\N,\forall x_1,\ldots,x_n\in T
+	\end{align*}
+	sind positiv semidefinit sind.
+\end{aufgabenr}
+
+\setcounter{satz}{12}
+\begin{definition}\label{def1.3.13}
+	Ein Feld $Z$ zweiter Ordnung (reell oder komplex) auf $T\subseteq\R^d$ heißt \define{stationär (im weiteren Sinne)} $\defiff$ \index{stationär im weiteren Sinne}\index{stationär}
+	\begin{enumerate}
+		\item $\begin{aligned}
+			M:=\E\big[Z(x)\big]
+		\end{aligned}$ hängt \betone{nicht} von $x$ ab und
+		\item $\begin{aligned}
+			\E\big[Z(x)\mal\overline{Z(y)}\big]
+		\end{aligned}$ ist eine Funktion von $x-y$, d.h. es gibt eine Funktion $C\colon T-T\to\C$ so, dass
+		\index{Korrelationsfunktion}
+		\begin{align}\label{eq:def1.3.13_1}\tag{1}
+			C(x-y)=\E\big[Z(x)\mal\overline{Z(y)}\big]\qquad\forall x,y\in T
+		\end{align}
+		Man nennt auch diese Funktion $C$, wie in Definition \ref{def1.3.11}, \define{Korrelationsfunktion}.
+		Der Funktion $C$ ist auf der Menge 
+		\begin{align*}
+			T-T:=\set{x-y:x,y\in T}
+		\end{align*}
+		definiert.
+		\begin{beisp}
+			Es gilt
+			\begin{align*}
+				[0,1]-[0,1]&=[-1,1]\qquad\oder\\
+				T-T&=\set{x\in\R^2:\norm{x}\leq 2}
+				\mit T:=\set{x\in\R^2:\norm{x}\leq 1}
+			\end{align*}
+		\end{beisp}
+	\end{enumerate}
+	Leicht zu sehen: Auch die Varianz
+	\begin{align*}
+		\E\Big[\big(Z(x)-M\big)\mal\overline{\big(Z(y)-M\big)}\Big]
+	\end{align*}
+	eine Funktion von $x-y$, falls Korrelationsfunktion eine Funktion von $x-y$ ist.
+	Wir bezeichnen diese Funktion mit $\sigma$ und nennen sie \define{Kovarianzfunktion}.
+	Es gilt: \index{Kovarianzfunktion}
+	\begin{align*}
+		\sigma(h)=C(h)-\abs{M}^2\qquad\forall h\in T-T
+	\end{align*}
+	Ein beliebiges (d.h. nicht unbedingt zweiter Ordnung) Feld heißt \define{stationär im engeren Sinne} $\defiff$ die Zufallsvektoren
+	\index{stationär im engeren Sinn}
+	\begin{align*}
+		\Big(Z_{t_1},\ldots,T_{t_k}\Big)
+		\qquad\und\qquad
+		\Big(Z_{t_1+h},\ldots,T_{t_k+h}\Big)
+	\end{align*}
+	für beliebige $t_1,\ldots,t_k\in T$ und $h\in\R^d$ mit $t_1+h,\ldots,t_k+h\in T$ dieselbe Verteilungen besitzen.
+\end{definition}
+
+\begin{bemerkungnr}\label{bemerkung1.3.14}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Ist $Z$ im engeren Sinne stationär und von zweiter Ordnung, so ist $Z$ auch stationär im weiteren Sinne.
+		Das folgt daraus, dass $Z_t$ und $Z_{t+h}$ für beliebiges $h$ dieselbe gemeinsame Verteilung und damit dieselbe Kovarianz haben.
+		Allgemein gilt für reellwertige Zufallsgrößen $X,Y$:
+		\begin{align*}
+			E[X\mal Y]&=\int\limits_{\R^2} x\mal y\ds\mu_{(X,Y)}(x,y)
+		\end{align*}
+		Man braucht also nur die Fälle $k=1$ und $k=2$ aus der Definition \ref{def1.3.13}.
+		\item Sind die Zufallsgrößen $Z(x)$ unabhängig und identisch verteilt, so ist $Z$ stationär im engeren Sinne.
+		Im weiteren Sinne jedoch nur, wenn $Z$ von zweiter Ordnung ist.
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{definition}\label{def1.3.15}
+	Ein Feld $Z$ zweiter Ordnung auf $T$ heißt \define{weißes Rauschen} mit Erwartungswert $\mu$ und Varianz $\sigma^2\geq0\defiff$
+	\index{weißes Rauschen}
+	\begin{enumerate}
+		\item die Zufallsgrößen $Z(x),x\in T$, unkorreliert sind,
+		\item $\begin{aligned}
+			\E\big[Z(x)\big]=\mu
+		\end{aligned}$
+		\item $\begin{aligned}
+			D Z(x)=\sigma
+		\end{aligned}$, d.h. $\Var\big(Z(x)\big)=\sigma^2$
+	\end{enumerate}		
+	Notation: $Z\sim\WN\big(\mu,\sigma^2\big)$ "white noise"
+\end{definition}
+
+\begin{lem}
+	Weißes Rauschen ist stationär (im weiteren Sinne) mit Korrelationsfunktion
+	\begin{align*}
+		C(h)\overset{\Def}&{=}
+		\E\Big[Z_{t}\mal Z_{t+h}\Big]
+		=\E\big[Z_t\big]\mal\E\big[Z_{t+h}\big]
+		=\left\lbrace\begin{array}{cl}
+			\mu^2,&\falls h\neq0\\
+			\sigma^2,&\falls h=0
+		\end{array}\right.
+	\end{align*}
+	Sind die Zufallsgrößen $Z(x)$ \betone{nicht} identisch verteilt, dann ist $Z$  \betone{nicht} stationär im engeren Sinne (betrachte dazu den Fall $k=1$).\nl
+	Spezialfall vom weißen Rauschen:
+	Sind die Zufallsgrößen $Z(x)$ unabhängig und identisch verteilt, so schreiben wir $Z\sim\IID\big(\mu,\sigma^2\big)$.
+	Solche Felder sind stationär im engeren Sinne.\nl
+	Bei einem weißen Rausch ist die Korrelationsfunktion stetig, außer im Nullpunkt (dort springt sie).
+\end{lem}
+
+\begin{aufgabenr}[1.3.16, \texorpdfstring{\hyperref[loes:9]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:9}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Seien $X_1,\ldots,X_n$ ein orthogonales System (d.h. Skalarprodukt $\scaProd{X}{Y}=\E[X\mal\overline{Y}]=0$ für $X\neq Y$) in $\L_2(\Omega,\A,\P)$ mit $\E[X_j]=0$ und $a_1,\ldots,a_n\in\R^d$.
+		Zeigen Sie, dass\label{item:aufg9(1)}
+		\begin{align*}
+			Z(t)&:=\exp\big(\ii\mal\scaProd{a_1}{t}\big)\mal X_1+\ldots+
+			\exp\big(\ii\mal\scaProd{a_n}{t}\big)\mal X_n\qquad\forall t\in\R^d=:T
+		\end{align*}
+		stationär ist und bestimmen Sie die Kovarianz- und Korrelationsfunktion.
+		\item Welche Eigenschaft muss die Funktion $g\colon \R^d\to\C$ haben, damit \label{item:aufg9(2)}
+		\begin{align*}
+			Z(t)&:=g(t)\mal X\qquad\forall t\in \R^d=:T
+		\end{align*}
+		stationär ist, wobei $X\neq0$ eine Zufallsgröße mit endlicher Varianz ist, also $X\in\L^2(\Omega,\A,\P)$.
+	\end{enumerate}
+\end{aufgabenr}
+
+\begin{aufgabenr}[1.3.17, \texorpdfstring{\hyperref[loes:10]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:10}\enter
+	Sei $\alpha\in\R$ und 
+	\begin{align*}
+		X(t)&:=A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\qquad\forall t\in\R=:T
+	\end{align*}
+	wobei $A$ und $B$ unkorrelierte Zufallsgrößen mit $\E[A]=\E[B]=0$ und $\Var(A)=\Var(B)=1$ seien.
+	\begin{enumerate}[label=(\arabic*)]
+		\item Zeigen Sie, dass $X$ stationär ist und berechnen Sie Korrelationsfunktion.
+		\label{item:Aufg:10(1)}
+		\item Ist $X$ stationär im engeren Sinne?
+		\label{item:Aufg:10(2)}
+	\end{enumerate}
+\end{aufgabenr}
+
+\setcounter{satz}{17}
+
+\begin{definition}\label{def1.3.18}
+	Sei $T\subseteq\R$ oder $T\subseteq\Z$ ein Intervall.
+	Ein reellwertiger Prozess $X$ auf $T$ heißt \define{Markovscher Prozess} $\defiff$
+	\index{Markovscher Prozess}
+	\begin{align*}
+		\P\Big(X_{t_n}\in A~\Big|~X_{t_1},\ldots,X_{t_n}\Big)
+		&=\P\Big(X_{t_n}\in A~\Big|~X_{t_{n}}\Big)
+	\end{align*}
+	für beliebige $n\in\N$, $A\in\B(\R)$ und alle $t_j\in T$ mit $t_1<\ldots<t_{n+1}$.
+\end{definition}
+
+\begin{bemerkung}\
+	\begin{enumerate}
+		\item "Zukunft hängt nur von der Gegenwart ab, nicht von der Vergangenheit"
+		\item $X$ ist Markovscher Prozess auf $T$
+		\begin{align*}
+			\gdw\P\Big(X_{t_n}\leq a_n~\Big|~\forall j\in\set{1,\ldots,n-1}:X_{t_j}=a_j\Big)
+			&=\P\Big(X_{t_n}=a_n~\Big|~X_{t_{n-1}}=a_{n-1}\Big)
+		\end{align*}
+		für alle $n\in\N$, für $\mu_{(X_1,\ldots,X_n)}$-fast alle $(a_1,\ldots,a_n)\in\R^n$, $t_j\in T$ mit $t_1<\ldots<t_n$.\\
+		Mit anderen Worten:
+		Wenn die Vergangenheit $X_{t_1},\ldots,X_{t_{n-2}}$ und die Gegenwart $X_{t_{n-1}}$ gegeben sind, dann hängt die Zukunft $X_{t_n}$ nur von der Gegenwart ab.
+		%Später werden wir eine allgemeinere Definition geben.
+		\item Die Bedingungen können Nullereignisse sein. %Dr. Kühn
+	\end{enumerate}
+\end{bemerkung}
+
+\begin{beisp}\
+	\begin{itemize}
+		\item Das zufällige Wandern eines Teilchens auf $\Z$, wobei das Teilchen bei jedem Schritt mit der Wahrscheinlichkeit $p$ um 1 nach rechts und mit Wahrscheinlichkeit $1-p$ nach links verschoben wird.
+		$Z(n)$ sei die Position nach dem $n$-ten Schritt.
+		Dann ist $Z$ ein Markovscher Prozess.
+		\item Physikalische Prozesse:
+		\begin{itemize}
+			\item Beim radioaktiven Zerfall die Anzahl der zur Zeit $t$ noch vorhandenen radioaktiven Atome.
+			\item Bei der Brownschen Bewegung die Position des Partikels.
+		\end{itemize}
+	\end{itemize}
+\end{beisp}
+
+\begin{aufgabenr}[1.3.19, \texorpdfstring{\hyperref[loes:11]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:11}\enter
+	Wir betrachten den Wahrscheinlichkeitsraum
+	\begin{align*}
+		(\Omega,\A,\P)=\Big([0,1],\B\big([0,1]\big),\lambda|_{[0,1]}\Big)
+	\end{align*}
+	und definieren den Prozess $X$ durch
+	\begin{align*}
+		X_t(\omega)&:=t\mal\omega\qquad\forall t\in(0,\infty)=:T,\forall \omega\in\Omega
+	\end{align*}
+	Bestimmen Sie die endlich-dimensionale Verteilung des Prozesses $X$ und die Kovarianzfunktion. (Die Pfade sind Geraden $\leadsto$ stetig)
+\end{aufgabenr}
+
+\begin{aufgabenr}[1.3.20 ($*$), \texorpdfstring{\hyperref[loes:12]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:12}\enter
+	Seien $Z$ und $\Theta$ unabhängige Zufallsgrößen so, dass $Z$ die Dichte
+	\begin{align*}
+		p(z)=\indi_{[0,\infty)}(z)\mal z\mal\exp\klammern{-\frac{z^2}{2}}\qquad\forall z\in\R
+	\end{align*}
+	besitzt und $ \Theta$ in $[0,2\mal\pi)$ gleichmäßig verteilt ist.
+	Dann ist
+	\begin{enumerate}[label=(\alph*)]
+		\item der Zufallsvektor
+		\begin{align*}
+			\big(Z\mal\cos(\Theta),Z\mal\sin(\Theta)\big)
+		\end{align*}
+		Gauß-verteilt und
+		\item $\begin{aligned}
+			X_t:=Z\mal\cos\big(2\mal\pi+\Theta\big)~(\forall t\in\R)
+		\end{aligned}$
+		ist ein Gauß-Prozess (mit Werten in $\R$).
+	\end{enumerate}
+\end{aufgabenr}
+
+
+
+
+
+
+
 
 
 

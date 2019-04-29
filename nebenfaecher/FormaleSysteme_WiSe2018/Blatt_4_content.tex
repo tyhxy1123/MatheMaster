@@ -5,16 +5,6 @@
 
 \section{Aufgabenblatt 4}
 \subsection{Aufgabe 4.1 (Monotonie der klassischen Aussagenlogik)}
-Seien $G$ aussagenlogische Formel und seien $\F$ und $\F'$
-Mengen aussagenlogischer Formeln. 
-Dann gilt:
-\begin{align*}
-	\big(\F\models G\und \F\subseteq\F'\big)\implies\F'\models\F
-\end{align*}
-Erinnerung:
-\begin{align*}
-	\F'\models G:\Longleftrightarrow\big(\forall I:I\models\F'\implies I\models G\big)
-\end{align*}
 
 \begin{proof}
 	Sei also $I$ beliebige Interpretation mit $I\models\F'$. 
@@ -50,9 +40,6 @@ Erinnerung:
 \end{align*}
 
 \subsubsection{Aufgabe 4.2 (b)}
-Wissen über Nessie ist $\F:=\lbrace F_1,\ldots, F_4\rbrace$.
-``Folgt daraus, dass Nessie ein Märchenwesen ist?'', d. h.
-Frage: Gilt $\F\models m$?
 
 \begin{lösung}
 	Man könnte an dieser Stelle \textit{Resolution} verwenden, aber es geht auch naiv. 
@@ -120,8 +107,6 @@ Analog zu (a) und (b).
 Analog zu (a) und (b).
 
 \subsection{Aufgabe 4.4 (Das vollständige Junktorensystem \texorpdfstring{$\lbrace\neg, \vee\rbrace$}{lbrace neg,vee rbrace})}
-Zeigen Sie: Es gibt zu jeder aussagenlogischen Formel (mit was auch immer für ein-und zweistelligen Junktoren aus dem Reservoir der 4 bzw. 16 möglichen Junktoren) eine
-semantisch äquivalente Formel, welche nur die Junktoren $\neg$ und $\vee$ enthält.
 
 \begin{lösung}
 	Sei $\mathcal{R}=\lbrace p_1,p_2,\ldots\rbrace$ eine Menge von aussagenlogischen Variablen, 

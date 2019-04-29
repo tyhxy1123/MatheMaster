@@ -1,0 +1,38 @@
+\begin{figure}[H]
+	\center
+\begin{tikzpicture}[scale=2]
+		
+		\def \xone{0};
+		\def \yone{0};		
+		\def \h{2};		
+		% draw coordinate system
+		
+		%define lines Ax means first line
+		\coordinate (A) at (\xone,\yone);
+
+        \foreach \i in {0,1,2,3,4}
+		{
+			\draw ( $(A) + (\i*\h/4,0) $)-- ++(0,\h);
+			\draw ( $(A) + (0,\i*\h/4) $)-- ++(\h,0);
+			\foreach \j in {0,1,2,3,4}
+			{
+				\filldraw ($(A) + (\i*\h/4,\j*\h/4)$) circle (1pt);
+			}
+		}
+        \foreach \i in {0,2,4}
+		{
+			\foreach \j in {0,2,4}
+			{
+				\filldraw ($(A) + (\i*\h/4,\j*\h/4)$) circle (2pt);
+			}
+		}
+
+        %\fill[black,font=\footnotesize] (A) ++(1,0) node[below] {$x_{1}$}
+		%								(A) ++(0,1) node[left] {$x_{2}$}
+		%								(A) ++(1.4,0.5) node[below] {$n$};
+                                        
+\end{tikzpicture}
+
+\caption{a coarse and a fine grid}
+\label{ch_1_grid_h_H}
+\end{figure}

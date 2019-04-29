@@ -159,11 +159,6 @@ Logische Konsequenzrelation: $\mathcal{G}\models F:\Longleftrightarrow\forall I:
 \end{enumerate}
 
 \subsection{Aufgabe 3.4 (Deduktionstheorem)}
-Seien $F,F_1,\ldots F_n\in\mathcal{L}(\mathcal{R}),n\in\N$ aussagenlogische Formeln. 
-Dann gilt:
-\begin{align*}
-	\lbrace F_1,\ldots, F_n\rbrace\models F\Longleftrightarrow\models(((\ldots(F_1\wedge F_2)\ldots)\wedge F_n)\to F)
-\end{align*}
 
 \begin{proof}
 	\underline{Zeige ``$\implies$'':}\\
@@ -228,9 +223,6 @@ Dann gilt:
 \end{proof}
 
 \subsection{Aufgabe 3.5 (Logische Folgerung und Unerfüllbarkeit)}
-\begin{align*}
-	F\models G\Longleftrightarrow F\cup\lbrace\neg G\rbrace\text{ unerfüllbar}
-\end{align*}
 
 \begin{proof}
 	Mit
@@ -257,12 +249,6 @@ Dann gilt:
 \end{proof}
 
 \subsection{Aufgabe 3.6 (Ex falso quodlibet seguitur)}
-\textit{``Aus Falschem folgt beliebiges.''}\nl
-Seien $F$ und $G$ aussagenlogische Formeln und sei $\F$ eine Menge aussagenlogischer Formeln. 
-Dann gilt:
-\begin{align*}
-	F,\neg F\in\F\implies\forall G\in\L(\RR): F\models G
-\end{align*}
 
 \begin{proof}
 	Da $F,\neg F\in\F$ ist $\F$ unerfüllbar. 

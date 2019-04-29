@@ -1,0 +1,147 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+% vim: set noexpandtab:
+
+\section*{Erstes Aufgabenblatt}
+\subsection*{Aufgabe 1}
+\label{sec:Aufgabe 1}
+\begin{itemize}
+	\item Wenn man das Spiel als Minimierungsproblem betrachtet, dann gelten folgende Lösungen:
+
+		\begin{enumerate}[label=\alph{enumi})]
+			\item Das einzige Nash Gleichgewicht ist $(a_2, b_1)$.
+			\item Es gibt keine Gleichgewichte in streng bzw. schwach dominanten Strategien.
+			\item Die Paretro Gleichgewichte sind $(a_2, b_1)$ und $(a_1, b_1)$.
+		\end{enumerate}
+
+	\item Betrachten wir das Spiel als Maximierungsproblem, dann erhält man folgende Lösungen:
+
+		\begin{enumerate}[label=\alph{enumi})]
+			\item Die Nash Gleichgewichte sind $(a_2, b_2)$ und $(a_3, b_1)$.
+			\item $a_3$ is eine dominante Strategie. Sie ist schwach dominant, da die Strategiekombinationen
+				$(a_2, b_2)$ und $(a_3, b_2)$ das gleiche Ergebnis für Spieler 1 erzielen.
+			\item Die Paretro Gleichgewichte sind $(a_2, b_1)$ und $(a_1, b_1)$.
+		\end{enumerate}
+\end{itemize}
+
+\subsection{Aufgabe 2}
+\label{sec:Aufgabe 2}
+
+Bei dem Problem handelt es sich um ein Maximierungsproblem.
+
+Der Gewinn für Spieler $i$ ist gegeben durch
+\[
+	G_{i}(p_1,p_2) = (p_{i} - c) \cdot d_{i}(p_1,p_2)
+.\] 
+Wir suchen nach Nash Gleichgewichten, indem wir eine Fallunterscheidung durchführen:
+\begin{enumerate}[label=Fall \arabic{enumi}:]
+	\item $p_1 > p_2 > c$ :
+		\begin{align*}
+			\implies & d_1(p_1,p_2) = 0 \\
+					 & d_2(p_1,p_2) = d(p_2) \\
+			\implies & G_1 = 0 \\
+					 & G_2 = (p_2 - c) \cdot d(p_2) > 0
+		\end{align*}
+		Dieser Fall ist nicht optimal für Firma 1. Firma 1 könnte ihren Preis auf $p_2-\epsilon $ reduzieren, um den eigenen Gewinn zu erhöhen.
+	\item $p_1 = p_2 > c$ :
+		\begin{align*}
+			\implies & d_{i}(p_1,p_2) = \frac{1}{2}d(p_{i}) \\
+			\implies & G_{i}(p_1,p_2) = (p_{i}-c) \cdot \frac{1}{2}d(p_{i})
+		\end{align*}
+		Dieser Fall ist nicht optimal für beide Firmen. Jede der beiden Firmen könnte den Preis auf $p_{i}-\epsilon $ setzen, um mehr Gewinn zu erzielen.
+
+	\item $p_1=p_2=c$ :
+		\begin{align*}
+			\implies & d_{i}(p_1,p_2) = d(c) \\
+			\implies & G_{i}(p_1,p_2) = (\underbrace{p_{i}}_{=c} -c) \cdot d(c) = 0
+		\end{align*}
+		Dieser Fall ist optimal für beide Firmen und damit ein Nash Gleichgewicht.
+		Jede der beiden Firmen kann den Preis nicht erhöhen, da sonst die Nachfrage auf Null sinkt oder den Preis senken, da sonst die Kosten die Einnahmen überschreiten.
+	\item $p_1 = p_2 < c$ :
+		\begin{align*}
+			\implies & d_{i}(p_1,p_2) = \frac{1}{2}d(p_{i}) \\
+			\implies & G_{i}(p_1,p_2) = \underbrace{(p_{i}-c)}_{<0} \cdot \frac{1}{2}d(p_{i}) < 0
+		\end{align*}
+		Dieser Fall ist nicht optimal für beide Firmen. Die Kosten überschreiten die Einnahmen. Jede der beiden Firmen könnte durch eine beliebige Preiserhöhung die Nachfrage (und damit auch den Gewinn) auf Null erhöhen und keine Verluste mehr machen.
+
+	\item $p_1 < p_2 < c$ :
+		\begin{align*}
+			\implies & d_1(p_1,p_2) = d(p_1) \\
+					 & d_2(p_1,p_2) = 0 \\
+			\implies & G_1(p_1,p_2) = (p_1-c)\cdot d(p_2) \\
+					 & G_2(p_1,p_2) = 0
+		\end{align*}
+		Dieser Fall ist für Firma 1 nicht optimal. Eine beliebige Preiserhöhung würde für weniger Verluste für Firma 1 sorgen.
+\end{enumerate}
+
+Die Fälle 1 und 5 können analog auch mit getauschten Firmen durchgeführt. Im Ergebnis ändern sich nur die Indizes entsprechend. 
+
+Damit ist unter anderem beweisen, dass die Strategie $(c, c)$ das einzige Nash Gleichgewicht des Problems ist.
+
+\subsection{Aufgabe 3}
+\label{sec:Aufgabe 3}
+
+Die Strategiemenge ist in allen Fällen immer $[0,C_{i}]$
+Die Auszahlungsfunktionen in den einzelnen Fällen sehen wie folgt aus:
+\begin{enumerate}[label=\alph{enumi})]
+	\item $f_{i}(x_{i}, x_{-i}) = \indi_{\{ x_{i} > \max_{}{(x_{-i})}\} } \cdot (w_{i} - x_{i})$
+	\item $f_{i}(x_{i}, x_{-i}) = \indi_{\{ x_{i} > \max_{}{(x_{-i})}\} } \cdot (w_{i} - \max_{}(x_{-i}))$
+	\item $f_{i}(x_{i}, x_{-i}) = \indi_{\{ x_{i} > \max_{}{(x_{-i})}\} } \cdot (w_{i} - x_{i})-\indi_{\{ x_{i} \leq \max_{}{(x_{-i})}\} }\cdot x_{i}$
+	\item $f_{i}(x_{i}, x_{-i}) = \indi_{\left\{ \frac{x_{i}}{\abs{x} } > \frac{\max{(x_{-i})}}{\abs{x} }\right\} } \cdot (w_{i} - x_{i})-\indi_{\left\{ \frac{x_{i}}{\abs{x} } \leq \frac{\max_{}{(x_{-i})}}{\abs{x} }\right\} }\cdot x_{i}$
+\end{enumerate}
+
+\subsection{Aufgabe 4}
+\label{sec:Aufgabe 4}
+Lösung sehr komplex. Auf Anfrage sind bei uns (hoffentlich noch, keine Garantie) die Lösungen zu erhalten.
+
+\subsection{Aufgabe 5}
+\label{sec:Aufgabe 5}
+ \begin{enumerate}[label=\alph{enumi})]
+ 	\item 
+		\begin{proof}
+		\label{thm:proof5a}
+		Nehme an $x^{*}$ ist kein Paretro Gleichgewicht. Dann $\exists \tilde{x}\in X$, sodass gilt
+		\[
+			f_{i}(\tilde{x}) \leq f_{i}(x^{*})
+		.\] (und mindestens für ein $i$ auch "<")
+		Damit folgt aber
+		\[
+			\sum_{i=1}^{N}{f_{i}(\tilde{x})}<\sum_{i=1}^{N}{f_{i}(x^{*})}
+		.\] 
+		Also löst $x^{*}$ das Problem nicht. $\lightning$
+		\end{proof}
+	\item Beispiel dafür, dass die Umkehrung nicht gilt
+
+			\begin{center}
+				\begin{tabular}{c|cc}
+					& $a_1$ & $a_2$ \\ \hline
+					$b_1$ & $-1,-2$ & $0,0$ \\
+					$b_2$ & $0,0$ & $-2,-3$
+				\end{tabular}
+			\end{center}
+
+		Beide Nicht-Null Einträge sind Paretro Gleichgewichte, aber nur einer von ihnen löst das Minimierungsproblem der Aufgabenstellung.
+
+	\item Der Beweis läuft ab wie in \href{thm:proof5a}{Aufgabenteil a)} 
+		\begin{proof}
+		\label{thm:proof5c}
+		Nehme an $x^{*}$ ist kein Paretro Gleichgewicht. Dann $\exists \tilde{x}\in X$, sodass gilt
+		\[
+			f_{i}(\tilde{x}) \leq f_{i}(x^{*})
+		.\] (und mindestens für ein $i$ auch "<")
+		Damit gilt insbesondere auch
+		\[
+			c_{i}f_{i}(\tilde{x}) \leq c_{i}f_{i}(x^{*})
+		.\] (und mindestens für ein $i$ auch "<")
+		und somit folgt
+		\[
+			\sum_{i=1}^{N}{c_{i}f_{i}(\tilde{x})}<\sum_{i=1}^{N}{c_{i}f_{i}(x^{*})}
+		.\] 
+		Also löst $x^{*}$ das modifizierte Problem nicht. $\lightning$
+		\end{proof}
+
+ \end{enumerate}
+ 
+

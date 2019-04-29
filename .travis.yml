@@ -6,7 +6,7 @@ services:   docker
 tex-config:
 - tex-scheme=full
 - push-type=none
-- build-pattern=AMGEO_WiSe2018/AMGEO.tex,ANGA_WiSe2018/ANGA.tex,FEM_WiSe2018/FEM.tex,MFANA_WiSe2018/MFANA.tex,MSTAT_WiSe2018/MSTAT.tex,ORDSTR_WiSe2018/ORDSTR.tex,PDEANA_WiSe2018/PDEANA.tex,PDENM_WiSe2018/PDENM.tex,WTHM_WiSe2018/WTHM.tex,nebenfaecher/FormaleSysteme_WiSe2018/FORM.tex,NLANA_SoSe2019/NLANA.tex,STOCHP_SoSe2019/STOCHP.tex,SCPROG_SoSe2019/SCPROG.tex,MMAM_LM_SoSe2019/MMAM_LM.tex,MMAM_ST_SoSe2019/MMAM_ST.tex,KONGEO_SoSe2019/KONGEO.tex,DISMAT_SoSe2019/DISMAT.tex,ALGTOP_SoSe2019/ALGTOP.tex,Kategorientheorie_SoSe2019/KAT.tex,SCCOMP_SoSe2019/SCCOMP.tex,PDENMW_SoSe2019/PDENMW.tex,DISOPT_SoSe2019/DISOPT.tex,STOCAL_SoSe2019/STOCAL.tex,nebenfaecher/TheoretischeInformatikUndLogik_SoSe2019/THEOLOG.tex,ALLALG_SoSe2019/ALLALG.tex
+- build-pattern=AMGEO_WiSe2018/AMGEO.tex,ANGA_WiSe2018/ANGA.tex,FEM_WiSe2018/FEM.tex,MFANA_WiSe2018/MFANA.tex,MSTAT_WiSe2018/MSTAT.tex,ORDSTR_WiSe2018/ORDSTR.tex,PDEANA_WiSe2018/PDEANA.tex,PDENM_WiSe2018/PDENM.tex,WTHM_WiSe2018/WTHM.tex,nebenfaecher/FormaleSysteme_WiSe2018/FORM.tex,NLANA_SoSe2019/NLANA.tex,STOCHP_SoSe2019/STOCHP.tex,SCPROG_SoSe2019/SCPROG.tex,MMAM_LM_SoSe2019/MMAM_LM.tex,MMAM_ST_SoSe2019/MMAM_ST.tex,KONGEO_SoSe2019/KONGEO.tex,DISMAT_SoSe2019/DISMAT.tex,ALGTOP_SoSe2019/ALGTOP.tex,Kategorientheorie_SoSe2019/KAT.tex,SCCOMP_SoSe2019/SCCOMP.tex,PDENMW_SoSe2019/PDENMW.tex,DISOPT_SoSe2019/DISOPT.tex,STOCAL_SoSe2019/STOCAL.tex,ALLALG_SoSe2019/ALLALG.tex
 - latexmk-flags=-halt-on-error
 # Check at https://www.ctan.org/pkg/package-name in which TeX Live package a LaTeX package is contained.
 
@@ -36,7 +36,6 @@ deploy:
   - ./bin/KONGEO.pdf
   - ./bin/MMAM_LM.pdf
   - ./bin/MMAM_ST.pdf
-  - ./bin/THEOLOG.pdf
   - ./bin/NLANA.pdf
   - ./bin/PDENMW.pdf
   - ./bin/SCCOMP.pdf

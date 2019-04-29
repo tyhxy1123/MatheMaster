@@ -4,8 +4,7 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Kostruktionen mit Kategorien}
-
+\chapter{Konstruktionen mit Kategorien}
 \begin{definition}[duale Kategorie]\enter
 	Sei $\Cat$ beliebige Kategorie.
 	Die \define{duale Kategorie} $\Cat^{\op}$ entsteht aus $\Cat$ durch "Umdrehen der Pfeile".
@@ -124,10 +123,14 @@ Nun müssen die Kategorieaxiome überprüft werden.
 \begin{definition}[Unterkategorie]\enter
 	Eine Kategorie $\CatB$ heißt Unterkategorie von $\CatA$, wenn für alle $A,B \in \Ob(\CatB) \und f \in \CatB(A,B), g\in \CatB(B,C)$ gilt:
 	\begin{enumerate}
-	\item $\Ob(\CatB) \subseteq \Ob(\CatA)$ \label{def:Unterkat1} %\tag{Objektuntermenge}
-	\item $\CatB(A,B) \subseteq \CatA(A,B)$ \label{def:Unterkat2} %\tag{Morphismusuntermenge}
-	\item $\mu_{A,B,C}^{\CatB}(f,g) = \mu_{A,B,C}^{\CatA}(f,g)$ \label{def:Unterkat3} %\tag{Komposition}
-	\item $1_A^{\CatB} = 1_A^{\CatB}$ \label{def:Unterkat4} %\tag{Identität}
+	\item $\Ob(\CatB) \subseteq \Ob(\CatA)$ \label{def:Unterkat1} 
+	\index{Objektuntermenge}
+	\item $\CatB(A,B) \subseteq \CatA(A,B)$ \label{def:Unterkat2} 
+	\index{Morphismusuntermenge}
+	\item $\mu_{A,B,C}^{\CatB}(f,g) = \mu_{A,B,C}^{\CatA}(f,g)$ \label{def:Unterkat3} 
+	\index{Komposition}
+	\item $1_A^{\CatB} = 1_A^{\CatB}$ \label{def:Unterkat4} 
+	\index{Identität}
 	\end{enumerate}
 \end{definition}
 \begin{bemerkung}
