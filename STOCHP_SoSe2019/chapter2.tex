@@ -193,6 +193,155 @@ Diese Schwierigkeiten motivierten die Einführung der Begriffe \undefine{Separab
 	eine Zufallsgröße.
 \end{bemerkungnr}
 
+\begin{aufgabenr}[2.1.11, \texorpdfstring{\hyperref[loes:16]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:16}\enter
+	Wenn die Verteilungsfunktion einer Zufallsgröße $X$ in ihren Stetigkeitspunkten nur die Werte $0$ oder $1$ annimmt, dann ist $X$ fast sicher konstant.
+\end{aufgabenr}
+
+\begin{aufgabenr}[2.1.12, \texorpdfstring{\hyperref[loes:17]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:17}\enter
+	Ist ein reellwertiger Prozess $X_t$ $(t\in\intervall{0}{1})$ stochastisch stetig und sind die Zufallsgrößen $X_t$ unabhängig, so sind sie fast sicher konstant:
+	\begin{align*}
+		X_t=f(t)\qquad\forall t\in[0,1]\text{ f.s., d.h.}\\
+		\iff \P\Big[\set[\big]{\omega\in\Omega: X_t(\omega)=f(t)}\Big]=0
+	\end{align*}
+	für einer stetigen Funktion $f\colon[0,1]\to\R$.\nl
+	\betone{Hinweis:} Berechnen Sie für jedes $a\in\R$ die Wahrscheinlichkeiten
+	\begin{align*}
+		\P\Big[ X_t>a+\varepsilon,~X_s<a-\varepsilon\Big]
+		+
+		\P\Big[ X_s>a+\varepsilon,~X_t<a-\varepsilon\Big]
+		\leq
+		\P\Big[\big| X_t-X_s\big|>\varepsilon\Big]
+	\end{align*}
+	mit Hilfe der Verteilungsfunktion $F_t$ und $F_s$.
+	Zeigen Sie, dass $F_t$ in den Stetigkeitspunkten nur die Werte $0$ oder $1$ annehmen kann.
+	Dann nutze Aufgabe 2.1.11 (Aufgabe \ref{aufg:16}).
+\end{aufgabenr}
 
 
+\begin{aufgabenr}[2.1.13, \texorpdfstring{\hyperref[loes:18]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:18}\enter
+	Sei $X\in\Nor(0,1)$ und
+	\begin{align*}
+		X_t(\omega)=X(\omega)+t\qquad\forall t\in \R:=T,\forall\omega\in\Omega
+	\end{align*}
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item Für jede abzählbare (= totale) Teilmenge $T_0=\set{t_1,t_2,\ldots}\subseteq T$ gilt
+		\begin{align*}
+			\P\Big[X_t=0\text{ für mindestens ein }t\in T_0\Big]
+			\overset{\Def}{=}
+			\P\Big[\set[\big]{\omega\in\Omega\mid\exists t\in T_0:X_t(\omega)=0}\Big]=0
+		\end{align*}
+		\item Die Menge
+		\begin{align*}
+			\set[\big]{\omega\in\Omega\mid\exists t\in T_0:X_t(\omega)=0}
+		\end{align*}
+		ist ein Ereignis mit positiver Wahrscheinlichkeit.
+	\end{enumerate}
+\end{aufgabenr}
+
+\section{Stetige Modifikationen} %2.2
+
+\begin{satz}[Kolmogorov]\label{satz2.2.1Kolmo}\enter
+	Sei $X$ ein Prozess auf $T=\R$ oder $T=[0,\infty)$ mit Werten in $\R^d$ oder $\C^d$.
+	Existieren Konstanten $a,b,c>0$ so, dass
+	\begin{align}\label{eq:satz2.1Kolmo_1}\tag{1}
+		\forall t,s\in T:\E\eckigeKlammern{\norm{X_t-X_s}^a}\leq c\mal\abs{t-s}^{1+b}
+	\end{align}
+	dann besitzt $X$ eine Modifikation mit stetigen Pfaden.
+\end{satz}
+
+\begin{proof}
+	Wir konstruieren zunächst eine stetige Modifkation auf $[0,1]$.
+	Setze
+	\begin{align*}
+		D_n:=\set[\Big]{\frac{k}{2\mal n}:k\in\set{0,\ldots,2^n}}\subseteq[0,1]\qquad\forall n\in\N
+	\end{align*}
+	Dies ist ein gleichmäßige diskrete Zerlegung von $[0,1]$.
+	Wir definieren die Prozesse durch
+	\begin{align*}
+		X_t^n:=\left\lbrace\begin{array}{cl}
+			X_t, &\falls t\in D_n\\
+			\lambda\mal X_{\frac{k}{2^n}}+(1-\lambda)\mal X_{\frac{k-1}{2^n}},&\falls\exists\lambda\in(0,1):t=\lambda\mal\frac{k}{2^n}+(1-\lambda)\mal\frac{k-1}{2^n}
+		\end{array}	\right.		
+	\end{align*}		
+	Dann sind die Pfade von $X_t^n$ stückweise linear und stetig.
+	Weiterhin gilt:
+	\begin{align}\label{eq:ProofSatz2.2.1_2}\tag{2}
+		X_0^n=X_0\qquad\und\qquad X_1^n=X_1\qquad\forall n\in\N
+	\end{align}		
+	Für $s\in D_n$ und $t\in[0,1]$ mit $\abs{t-s}\leq\frac{1}{2^n}$ gilt:
+	\begin{align}\label{eq:ProofSatz2.2.1_3}\tag{3}
+		\norm{X_t^n-X_s}\leq
+		\max\limits_{1\leq k\leq 2^n}
+		\norm{X_{\frac{k}{2^n}}-X_{\frac{k-1}{2^n}}}:=Z_n
+		\qquad\forall n\in\N
+	\end{align}
+	Sei nun $t\in[0,1]$ beliebig und $m\in\N$.
+	Für $j\leq m$ sei $s_j=s_j(t)$ das kleinste Element aus $D_j$, das $\geq t$ ist (existiert immer nach Definition von $D_j$).
+	Dann gelten
+	\begin{align*}
+		0\leq s_j-t<\frac{1}{2^j}
+		\qquad\und\qquad
+		0\leq s_j-s_{j+1}\leq\frac{1}{2^{j+1}}.
+	\end{align*}
+	Wegen \eqref{eq:ProofSatz2.2.1_3} und der Dreiecksungleichung folgt für $n<m$:
+	\begin{align*}
+		\norm{X_t^n-X_t^m}
+		\overset{\text{DU}}&{\leq}
+		\norm{X_t^n-X_{s_n}}+\sum\limits_{j=n}^{m-1}\norm{X_{s_{j+1}}-X_{s_j}}+\norm{X_{s_m}-X_t^m}\\
+		\overset{\eqref{eq:ProofSatz2.2.1_3}}&{\leq }
+		Z_n +\sum\limits_{j=n}^m Z_j\\
+		&\leq2\mal\sum\limits_{j=n}^\infty Z_j
+	\end{align*}
+	Beachte, dass hierbei die rechte Seite unabhängig von $t$ ist!\\
+	Wir zeigen, dass die rechte Seite $\sum\limits_{j=n}^\infty Z_j$ mit $n\to\infty$ fast sicher gegen 0 konvergiert.
+	Dazu genügt es zu zeigen, dass $\sum\limits_{n\in\N}Z_n$ fast sicher konvergiert.
+	Dazu brauchen wir nun die Abschätzung \eqref{eq:satz2.1Kolmo_1}.
+	Sei $\gamma\in\klammern{0,\frac{b}{a}}$ beliebig.
+	Wegen monotoner Konvergenz gilt:
+	\begin{align*}
+		\E\eckigeKlammern[\Bigg]{\sum\limits_{n=0}^\infty
+		{\underbrace{(2^{\gamma\mal n}\mal Z_n)}_{
+			\geq0
+		}}^a}
+		&=\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\E\big[Z_n^a\big]\\
+		&=\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\E\eckigeKlammern{\max\limits_{s\in D_n\setminus\set{0}}\norm{X_s-X_{s-2^{-n}}}^a}\\
+		&\leq\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\sum\limits_{s\in D_n\setminus\set{0}}\E\eckigeKlammern[\big]{\norm{X_s-X_{s-2^{-n}}}^a}\\
+		\overset{\eqref{eq:satz2.1Kolmo_1}}&{\leq }
+		\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\sum\limits_{s\in D_n\setminus\set{0}}
+		c\mal\underbrace{\abs{s-2^{-n}-s}^{1+b}}_{
+			=2^{-n\mal(1+b)}
+		}\\
+		&=c\mal \sum\limits_{n=0}^\infty 2^{n\mal(\gamma\mal a -b)}\\
+		&<\infty\text{ (nach Wahl von $\gamma$)}
+	\end{align*}
+	Damit: Die Reihe auf der linken Seite konvergiert fast sicher, insbesondere konvergiert $2^{n\mal\gamma}\mal Z_n$ fast sicher gegen 0, woraus die fast sichere Konvergenz von $\sum\limits_{n\in\N} Z_n$ folgt.\\
+	($2^{\gamma\mal n}\mal Z_n\leq 1$ für $n$ groß, $Z_n\leq\frac{1}{2^{\gamma\mal n}}$)\nl
+	Wir haben gezeigt, dass $\klammern{X^n(\cdot,\omega)}_{n\in\N}$ für fast alle $\omega\in\Omega$ eine Cauchy-Folge in\\ $C\big([0,1],\R^d\big)$ bzw. in  $C\big([0,1],\C^d\big)$ ist (Banachraum!).
+	Daher besitzt $(X^n)_{n\in\N}$ einen fast sicheren Grenzwert $Y$ mit stetigen Pfaden.\nl
+	Wir zeigen: $Y_t=X_t$ fast sicher für alle $t\in[0,1]$.
+	Für $t\in D_m$ und $n\geq m$ gilt $X_t^n=X_t$ und daher $Y_t=X_T$ fast sicher für $t\in\bigcup\limits_{m\in\N}D_m$.
+	Ist nun $t\in[0,1]$ beliebig, so gibt es $s_n\in\bigcup\limits_{m\in\N} D_m$ mit $s_n\overset{n\to\infty}{\longrightarrow}t$.
+	Daher
+	\begin{align*}
+		\P\eckigeKlammern{\norm{X_t-X_{s_n}}\geq\varepsilon}
+		\overset{\text{Markov}}&{\leq}
+		\varepsilon^{-a}\mal\E\eckigeKlammern{\norm{X_t-X_{s_n}}^a}
+		\underset{\eqref{eq:satz2.1Kolmo_1}}{\overset{n\to\infty}{\longrightarrow}}
+		0
+	\end{align*}
+	Das heißt: $Y_{s_n}=X_{s_n}\overset{}{\longrightarrow}X_t$ in Wahrscheinlichkeit.
+	
+\end{proof}
+
+\begin{definition}\label{def2.2.2}
+	Ein reellwertiges Feld $X$ auf einem topologischen Raum $T$ heißt
+	\begin{enumerate}%[label=(\alph*)]
+		\item \define{stetig in Wahrscheinlichkeit / stochastisch stetig} in $t\in T$
+		\begin{align*}
+			\defiff\forall\varepsilon>0:\lim\limits_{s\to t}\P\big[\abs{X_t-X_s}>\varepsilon\big]=0
+		\end{align*}
+		\item \define{$L^p$-stetig} in $t\in T$, wenn ...
+	\end{enumerate}
+\end{definition}
 

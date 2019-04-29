@@ -79,16 +79,29 @@ und zuletzt noch
 
 \betone{Zeige \ref{item:aufg3_2}., also, dass $P_0$ wohldefiniert ist:}\\
 Sei $A_{0,1}=(A_1\cup N_1)\setminus M_1$ und $A_{0,2}=(A_2\cup N_2)\setminus M_2$.
-Sei $A_{0,1}=A_{0,2}$.
-Dann gilt:
+Sei $A_{0,1}=A_{0,2}$.\\
+Zu zeigen: $\P(A_1)=\P(A_2)$.
+Wenn 
 \begin{align*}
-	\P_0(A_{0,1})
-	&=\P_0\Big(\big(A_1\cup N_1\big)\Big)-\P_0(M_1)\\
-	&=\P\big(A_1\cup N_1\big)-\P(M_1)\\
-	&=\P(A_1)+\underbrace{\P(N_1)}_{=0}-\underbrace{\P(A_1\cap N_1}_{=0}-\underbrace{\P(M-1)}_{=0}=\P(A_1)
+	(A_1\cup N_1)\setminus M_1
+	&=(A_2\cup N_2)\setminus M_2=:A
 \end{align*}
-Da $A_{0,1}=A_{0,2}$ folgt $\P(A_1)=\P(A_2)$ und $\P_0(A_{0,2})=\P(A_2)$.
-%TODO dies ist noch nicht ganz korrekt.
+dann gilt
+\begin{align*}
+	A_1\symDiff A&\subseteq\text{ Nullmenge}\\
+	A_2\symDiff A&\subseteq\text{ Nullmenge und}\\
+	\underbrace{A_1\symDiff A_2}_{
+		\text{messbar}\implies\text{Nullmenge}
+	} &\subseteq\big(A_1\symDiff A\big)\cup\big(A_2\symDiff A\big)\subseteq\text{ Nullmenge}\\
+	&\implies \P(A_1)=\P(A_2)
+\end{align*}
+
+Nun können wir also sinnvoll definieren:
+\begin{align*}
+	\P_0(A):=\P(A_1)
+\end{align*}
+
+
 
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:4]{Aufgabe 4}}{}
@@ -344,3 +357,15 @@ Folgt direkt aus \ref{item:aufg13_3} und \ref{item:aufg13_4}.
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:15]{Aufgabe 15}}{}
 }\label{loes:15}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:16]{Aufgabe 16}}{}
+}\label{loes:16}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:17]{Aufgabe 17}}{}
+}\label{loes:17}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:18]{Aufgabe 18}}{}
+}\label{loes:18}
