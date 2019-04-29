@@ -10,6 +10,7 @@
 	\item Ein Functor ist die strukturverträgliche Abbildung zwischen Kategorien.
 \end{enumerate}
 \begin{definition}[co-varianter Functor]
+	\label{def:func:egs}
 	Sei $\CatA, \CatB$ Kategorien. Ein \define{co-varianter Functor} von $\CatA$ in $\CatB$ (Schreibweise: $F: \CatA \to \CatB$) ist ein Paar von Abbildungen
 	\begin{align*}
 		\begin{Bmatrix} % use matrix here to make brackets big!
@@ -18,7 +19,285 @@
 		\end{Bmatrix} = F: \CatA \to \CatB
 	\end{align*}
 	mit den folgenden verträglichen Eigenschaften:
-	\begin{enumerate}
-		\item ...
+	\begin{enumerate}[start=0]
+		\item 
+		\begin{align*} %TOD find better alignment
+			f \in \CatA(A,B) &\implies& Ff \in \CatB(FA,FB)\\
+			\begin{tikzcd}[ampersand replacement=\&]
+			A \arrow[r, "f"] \& B
+			\end{tikzcd} 
+			& &
+			\begin{tikzcd}[ampersand replacement=\&]
+			FA \arrow[r, "Ff"] \& FB
+			\end{tikzcd}
+		\end{align*}
+		\item $F 1_A = 1_{FA}$
+		\item 
+		\begin{align*} %5TODO fix
+			&F(f\cdot_{\in \CatA} g) &=& (Ff) \cdot_{\in \CatB} (Fg)\\
+			&\begin{tikzcd}[ampersand replacement=\&]
+			A \arrow[r, "f", bend left] \arrow[rr, "fg"', bend right] \& B \arrow[r, "g", bend left] \& C
+			\end{tikzcd}& &
+			\begin{tikzcd}[ampersand replacement=\&]
+			FA \arrow[r, "Ff", bend left] \arrow[rr, "F(fg)"', bend right] \& FB \arrow[r, "Fg", bend left] \& FC
+			\end{tikzcd}
+		\end{align*}
 	\end{enumerate}
+\end{definition}
+\begin{bemerkung}[Komposition von Functoren]
+	Die Komposition $F;G \CatA \to \CatB$ von Functoren $F: \CatA \to \CatB$, $G: \CatB \to \Cat$ ist wieder ein Functor. Da gilt
+	\begin{align*}
+		(F;G)(A) := G(FA) \und (F;G)(f) := G(Ff)
+	\end{align*}
+\end{bemerkung}
+\begin{bemerkung}[Eigenschaften contra-viarianter Functor]
+	Der \define{contra-varianter Functor} ist gegeben durch
+	\begin{align*}
+		F: \CatA \to \CatB (:\gdw F: \CatA \to \CatB^{\op}) \text{ covarianter Functor}
+	\end{align*}
+	d.h. dann
+	\begin{enumerate}[start=0]
+		\item $f \in \CatA(A,B) \implies Ff \in \CatB(B,A)$
+		\item $F(1_A) \implies 1_{FA}$
+		\item $F(fg) \implies F(fg) = (Fg)(Ff)$
+	\end{enumerate}
+\end{bemerkung}
+\begin{beispiel}
+	\begin{enumerate}
+		\item ``\define{Vergiss-Functor} (engl. Forgetful Functor)'' (vergisst die Struktu, vgl \ref{def:1_4}, \ref{def:1_3})
+		\begin{align*}
+			U_1: \Group \to \Set \text{ U kommt von underlying set}\\
+			\begin{tikzcd}[ampersand replacement=\&]
+			\ul{G} \arrow[r, "h", "Hom"'] \& \ul{H} \arrow[r, maps to] \& G \arrow[r, "h", "Hom"'] \& H
+			\end{tikzcd}
+		\end{align*}
+		wobei $G,H$ Gruppen sind, oder auch Ringe:
+		\begin{align*} %TODO put into a matrix! 
+			\begin{tikzcd}[ampersand replacement=\&]
+			U_1: \Group \arrow[r] \& \Set U\text{ kommt von underlying set}\\
+			\Ring \arrow[r] \& \Group \text{bzw. } \Ab\\
+			\langle R, + , \cdot\rangle \arrow[r, maps to] \& \langle R, + \rangle
+			\end{tikzcd}
+%			U_1: \Group \to \Set  U\text{ kommt von underlying set}\\
+%			\begin{tikzcd}[ampersand replacement=\&]
+%			\Ring \arrow[r] \& \Group \text{bzw. } \Ab
+%			\end{tikzcd}\\
+%			\begin{tikzcd}[ampersand replacement=\&]
+%			\langle R, + , \cdot\rangle \arrow[r, maps to] \& \langle R, + \rangle
+%			\end{tikzcd}
+		\end{align*}
+		\item \define{Einbettungsfunctoren} (\define{Inklusionsfunctoren})
+		z.B.
+		\begin{itemize}
+			\item 
+			\begin{align*}
+				\begin{tikzcd}[ampersand replacement=\&]
+				\Ab \arrow[r]                                 \& \Group                     \\
+				{\langle G, \cdot \rangle} \arrow[r, maps to] \& {\langle G, \cdot \rangle}
+				\end{tikzcd}
+			\end{align*}
+			\item 
+			\begin{align*}
+				\begin{tikzcd}[ampersand replacement=\&]
+					\Set \arrow[r]                     \& \RelSet                     \\
+				\end{tikzcd}\\
+				\begin{tikzcd}[ampersand replacement=\&]
+					A \arrow[r, "f"] \& B \arrow[r, maps to] \& A \arrow[r, "f^{\bullet}"] \& B
+				\end{tikzcd}
+			\end{align*}
+			mit $f^{\bullet} = \graph(f) = \set{(a,b) \mid b = f(a)}$
+		\end{itemize}
+		Speziell: Identische Functoren
+		\begin{align*}
+			\begin{tikzcd}[ampersand replacement=\&]
+			\CatA \arrow[r] \& \CatA
+			\end{tikzcd}
+			\colon
+			\begin{tikzcd}[ampersand replacement=\&]
+			A \arrow[r, maps to] \& A
+			\end{tikzcd}
+		\end{align*}
+		\item ($\nearrow$ \define{adjungierte Functoren})
+			\begin{align*}
+				\begin{tikzcd}[ampersand replacement=\&]
+				\Set \arrow[r] \& \Monoid\\
+				A \arrow[r, "f"] \& B \arrow[r, maps to] \& A^{\ast} \arrow[r, "f^{\ast}"] \& B^{\ast}
+				\end{tikzcd}
+			\end{align*}
+			wobei $A^{\ast}:=$ von $A$ erzeugts freies Monoid (\define{Wortmonoid})\\
+			\begin{align*}
+				f^{\ast} := \underbrace{a_1 a_2 \dots a_n}_{\text{Wort } \in A^{\ast}} \longmapsto
+				\underbrace{f(a_1)f(a_2)\dots f(a_n)}_{\in B^{\ast}}
+			\end{align*}
+			ist ein Functor (SeSt!).
+			\begin{bemerkung}
+				Dieser Functor hat schöne Adjungiertheitseigenschaften!
+			\end{bemerkung}
+		\item \define{Dualitätsfunctor}:
+		\begin{align*}
+			D: \Cat \to \Cat^{\op} \mit \begin{matrix}
+			A &\mapsto A^{\dual}\\
+			f &\mapsto f^{\dual}
+			\end{matrix} \text{ ist ein contra-varianter Functor}
+		\end{align*}
+		\item $\V$ Kategorie der Vektorräume (über festen Körper $F$) mit linearen Abbildungen als Morphismen
+		\begin{enumerate}[label=]
+			\item $V \in \Ob(\V), \astar{V}$ \define{Dualraum} (=alle lineare Abbildung von $V$ in $K$)
+			\item Sei $\astar{V} = \V(V,K)$
+			\begin{align*}
+				\HFunc: \V \to \V \mit V \mapsto \astar{V}\\
+				\begin{tikzcd}[ampersand replacement=\&]
+				V \arrow[r, "f"] \& W \arrow[r, maps to] \& \astar{W} \arrow[r, "\astar{f}"] \& \astar{V}
+				\end{tikzcd}
+			\end{align*}
+			\begin{align*}
+				\begin{tikzcd}[row sep=tiny,ampersand replacement=\&]
+					W \arrow[dd, "f"']             \& V \arrow[dd, "\astar{f}(g)"] \arrow[dr, "f"] \&                  \\
+					\arrow[r,maps to, shorten=1mm] \& \                                 \& W \arrow[dl, "g"]\\
+					K                              \& K                                 \&                  \\
+				\end{tikzcd}\\
+				\astar{f}(g) = fg
+			\end{align*}
+			Dabei gilt: $\astar{f}(g) = fg$ ein contra-varianter Functor (Spezialfall des Hom-Functor) $\HFunc_{K} = \V(-,K)$ (vgl. \ref{bsp:homfunc:3.3})
+		\end{enumerate}
+	\end{enumerate}
+\end{beispiel}
+\begin{beispiel}[\define{Hom-Functor}]\
+	\label{bsp:homfunc:3.3}
+	(Die Menge $\Cat(A,B)$ aller Morphismen $f: A\to B$ wird auch als Hom-Menge bezeichnet! ($\Hom(A,B)$)).\\
+	Sei $\Cat$ Kategorie, $K \in \Ob(\Cat)$ fest gewählt. Dann ist durch
+	\begin{align*}
+		\Cat(K,-): \Cat \to \Set:
+		\begin{Bmatrix}
+			A &\mapsto \Cat(K,A)\\
+			f &\mapsto \Cat(K,f)
+		\end{Bmatrix}
+	\end{align*}
+	ein co-varianter Functor - der \define{co-variante Hom-Functor} gegeben, wobei $\Cat(A,f)$ für $\begin{tikzcd} A \arrow[r, "f"] & B \end{tikzcd}$ wie folgt definiert ist
+	\begin{align*}
+		\begin{tikzcd}[ampersand replacement=\&] %TODO , needs to be escaped in the arrow, but how?
+			\Cat(K,A) \arrow[rr, "{\Cat(K,f)}"] \&  \& \Cat(K,B)
+		\end{tikzcd}\\
+		\begin{tikzcd}[ampersand replacement=\&, row sep=tiny]
+			K \arrow[dd, "g"'] \& B \arrow[dd, "gf"] \arrow[dr, "g"] \&  \\
+			\arrow[r,maps to, shorten=1mm] 
+			\& \ \& A 
+			\arrow[dl, "f"]\\
+			A \& B \& \\
+			g \arrow[r,maps to] \& gf	
+		\end{tikzcd}
+	\end{align*}
+	Analog ist \define{contra-variante Hom-Functor} definiert durch
+	\begin{align*}\Cat(-,K):
+		\begin{tikzcd}[ampersand replacement=\&]
+		\Cat \arrow[r] \& \Set\\
+		A \arrow[r, maps to] \& \Cat(A,K)\\
+		f \arrow[r, maps to] \& \Cat(f,K)
+		\end{tikzcd}\\
+		\begin{tikzcd}[ampersand replacement=\&] %TODO , needs to be escaped in the arrow, but how?
+		\Cat(K,A) \arrow[rr, "{\Cat(K,f)}"] \&  \& \Cat(K,B)
+		\end{tikzcd}\\
+		\begin{tikzcd}[ampersand replacement=\&, row sep=tiny] %TODO swap node names and arrow names!
+			B \arrow[dd, "g"'] \& A \arrow[dd, "fg"] \arrow[dr, "f"] \&  \\
+			\arrow[r, maps to, shorten=1mm] 
+			\& \ \& B 
+			\arrow[dl, "g"]\\
+			K \& K \& \\
+			g \arrow[r,maps to] \& gf	
+		\end{tikzcd}
+	\end{align*}
+\end{beispiel}
+\begin{beispiel}[treu, voll, isomorph]\
+	Ein Functor heißt 
+	\begin{enumerate}[label=]
+		\item \define{treu} (faithful), wenn für alle Objekte $X,Y \in \Ob(\CatA)$, die Abbildung
+		\begin{align*}
+		F_{(X,Y)}: 
+		\begin{tikzcd}[ampersand replacement=\&] %TODO fix arrow lenght! and use matrix!
+		A(X,Y) \arrow[r] \& B(FX,FY)\\
+		f \arrow[r, maps to] \& Ff\\
+		\end{tikzcd}
+		\end{align*}
+		wobei die Einschränkung des Functors $F_{(X,Y)}$ auf $\Ob(X,Y)$ injektiv ist.
+		\item \define{voll} (full), wenn für alle diese Abbildungen $F_{(X,Y)}$ surjektiv ist.
+		\item Eine Unterkategorie $\CatA \leqq \CatB$ heißt \define{voll} (in $\CatB$), wenn der Inklusionsfunctor\\ $\begin{tikzcd} \CatA \arrow[r, hook] & \CatB \end{tikzcd}$ voll ist.
+		\begin{bemerkung}
+			Inklusionsfunctoren sind immer treu.
+		\end{bemerkung}
+		\item Ein Functor $Ff: \begin{tikzcd} \CatA \arrow[r]& \CatB \end{tikzcd}$ heißt \define{Isomorphismus} wenn gilt:
+		\begin{enumerate}
+			\item $F_{\Ob}: \begin{tikzcd} \Ob(\CatB) \end{tikzcd}$ ist bijektiv.
+			\item Alle $F_{X,Y}$ sind bijektiv, d.h. $F$ ist voll und treu.
+		\end{enumerate}
+		$\implies \CatA$ \define{isomorph} $\CatB$ ($\CatA \cong \CatB$) $:\Longleftrightarrow \exists$ Isomorphismus
+		\begin{bemerkung}
+			$F \mit F: \begin{tikzcd} \CatA \arrow[r]& \CatB \end{tikzcd}$ ist Isomorphismus genau dann wenn $\exists$ Functor $G: \begin{tikzcd} \CatB \arrow[r]& \CatA \end{tikzcd}$ mit $F;G = \id_{\CatA}$ und $G;F = \id_{\CatB}$
+		\end{bemerkung}
+		\begin{proof}
+			SeSt!
+		\end{proof}
+	\end{enumerate}
+\end{beispiel}
+\begin{bemerkung}
+	Unterkategorien von $\Set$ heißen \define{konkrete Kategorien}.
+\end{bemerkung}
+Allgemeiner:
+\begin{definition}[konkrete Kategorie]\
+	\label{def:konkreteKat}
+	Eine kategorie $\Cat$ heißt darstellbar als \define{konkrete Kategorie}, wenn ein treuer Functor
+	\begin{align*}
+		U: \begin{tikzcd}[ampersand replacement=\&] \Cat \arrow[r]\& \Set \end{tikzcd}
+	\end{align*}
+	existiert. (Sprechweise: $\Cat$ ist konkrete Kategorie und nennt $U$ \define{Darstellungsfunctor}.)
+\end{definition}
+\begin{satz}[''Satz von Cayley'' für kleine Kategorien]\
+	Jede kleine Kategorie ist darstellbar als konkrete Kategorie (im Sinne von Definition \ref{def:konkreteKat}).
+\end{satz}
+\begin{proof}
+	Sei $\Cat$ eine kleine Kategorie. Gesucht ist ein treuer Functor $\begin{tikzcd} \Cat \arrow[r]& \Set \end{tikzcd}$. Sei $A \in \Ob(\Cat)$
+	\begin{align*}
+		U(A)&:= \bigcup_{Y \in \Ob(\Cat)} \Cat(Y,A)
+		\intertext{
+			\begin{bemerkung}
+			 Diese Konstruktion ist zuläassig, da $\Cat$ eine kleine kategorie ist und $U(A)$ eine Menge ist!
+			\end{bemerkung}}
+		&= \Mor(\Cat \downarrow A) \quad \text{Komma-Kategorie}.
+	\end{align*}
+	Was ist $U(f)$ für ein Morphismus:
+	\begin{align*}
+		\begin{tikzcd}[ampersand replacement=\&] 
+		A \arrow[r]\& B 
+		\end{tikzcd}\\
+		U(f):
+		\begin{tikzcd}[ampersand replacement=\&] %TODO , needs to be escaped in the arrow, but how?
+		U(A) \arrow[rr, "{U(f)}"] \&  \& U(B)
+		\end{tikzcd}\\
+		\begin{tikzcd}[ampersand replacement=\&, row sep=tiny] %TODO swap node names and arrow names!
+			Y \arrow[dd, "h"'] \& A \arrow[dd, "hf"] \arrow[dr, "h"] \&  \\
+			\arrow[r, maps to, shorten=1mm] 
+			\& \ \& B 
+			\arrow[dl, "f"]\\
+			A \& K \&	
+		\end{tikzcd}
+	\end{align*}
+	Dann sind die Functoreigenschaften (vgl. \ref{def:func:egs}) erfüllt. (Beweis: SeSt!). $U$ ist treu, denn für $\begin{tikzcd} A \arrow[r, bend left, "f_1"] \arrow[r, bend right, "f_2"'] & B \end{tikzcd}$ mit $Uf_1 = Uf_2$
+	\begin{align*}
+		\begin{tikzcd}[ampersand replacement=\&] 
+			A \arrow[ddd, "1_A"'] \& A \arrow[ddd, "1_A"]\\
+			\arrow[r, maps to, "Uf_1"] \& \ \\
+			\arrow[r, maps to, "Uf_2"] \& \ \\
+			B          			 \& B
+		\end{tikzcd}
+	\end{align*}
+	und damit folgt dann $f_1 = f_2$.
+\end{proof}
+\begin{center}
+	\begin{tabular}{c||c|c}
+		\makecell{Kategorie} & \makecell{Abstraktion} & \makecell{Menge und Funktionen}\\
+		\makecell{Functor} & \makecell{Abstraktion} & \makecell{Abbildung bzw. Kategorie}\\
+		\makecell{Morphismus} & \makecell{Abstraktion} & \makecell{Morphismus für Functoren}
+	\end{tabular}
+\end{center}
+\begin{definition}[\define{natürliche Transformation}]\
+	Morphismus für Functoren wird bezeichnet mit \define{natürlicher Transformation} \ref{def:Functorkat} ...
 \end{definition}
