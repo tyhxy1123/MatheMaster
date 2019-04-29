@@ -973,3 +973,173 @@ Folglich ist $f(1)=1$.
 	Wir nennen dann $(\M,\S,\scal)$ einen \define{Semiring-Modul} bzw. sagen $\M$ bildet (bzgl. $\scal$) einen Modul über $\S$.
 	\index{Semiring-Modul}
 \end{beispiel}
+
+\begin{bemerkungnr}
+	Sei $\F_q$ endlicher Körper ($q$-elementig) und sei $V$ $n$-dimensionaler Vektorraum über $\F_q$ ($n\in\N_+$).
+	Für $i,j\in\N$ mit $i\leq j\leq n$ und $\L:=\L(V)$ Unterraumverband von $V$ ist dann
+	\begin{align*}
+		\Inz_{(i,j)}^\L&:=\big(L_i,L_j,I_{i,j}\big)\mit\\
+		L_i&:=\set{p\leq V\mid\dim(p)=i}
+		\und \\
+		L_j&:=\set{b\leq V\mid\dim(b)=j}
+		\und\\
+		I_{i,j}&:=\set{(p,b)\in L_i\times L_j\mid p\leq b}
+	\end{align*}
+	eine taktische Konfiguration mit Parametertupel
+	\begin{align*}
+		\klammern{
+			\begin{pmatrix}
+				n\\
+				i
+			\end{pmatrix}_q,
+			\begin{pmatrix}
+				n-i\\
+				j-i
+			\end{pmatrix}_q;
+			\begin{pmatrix}
+				n\\
+				j
+			\end{pmatrix}_q,
+			\begin{pmatrix}
+				j\\
+				i
+			\end{pmatrix}_q
+		}
+	\end{align*} wobei $\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_q:=\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_f$ für $f\colon\N\to\N_+,~i\mapsto q^i-1$ gerader der Gaußkoeffizient zu $n$ über $i$ bzgl. $q$ ist.
+	Gilt $0<i<j<n$, so ist
+	\begin{align*}
+		\Aut\big(\Inz_{i,j}^\L\big)\cong\PGL_n(\F_q)
+	\end{align*}
+	(ohne Beweis). Auf der linken Seite steht die projektive lineare Gruppe von $\F_q^n$.
+	\begin{align*}
+		f!\colon\N\to\N_+,\qquad n\mapsto\prod\limits_{i\in[n]} f(i)\\
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f:=\frac{(f!)(n)}{(f!)(i)\mal (f!)(n-i)}\qquad\forall 0\leq i\leq n
+	\end{align*}
+	Die Abbildung $[~]\colon\leq_\N\to\N_+$ erfüllt
+	\begin{align*}
+		\begin{bmatrix}
+			n\\
+			i
+		\end{bmatrix}\mal
+		\begin{bmatrix}
+			n-i\\
+			j-i
+		\end{bmatrix}=\begin{bmatrix}
+			n\\
+			j
+		\end{bmatrix}\mal
+		\begin{bmatrix}
+			j\\
+			i
+		\end{bmatrix}\qquad\forall i,j,n\in\mit i\leq j\leq n
+	\end{align*}
+	Und $\begin{bmatrix}
+		1\\
+		1
+	\end{bmatrix}=1$ genau dann, wenn $[~]=(~)_f$ für $f\colon\N\to\N_+,~n\mapsto\begin{bmatrix}
+		n\\
+		1
+	\end{bmatrix}$
+\end{bemerkungnr}
+
+\textbf{Frage:} Lässt sich obiges auf endliche freie Ring-Moduln ausweiten?
+
+\subsection{Ausflug: Semiring-Moduln (Semimodule)}
+Sei $\S=(S,+,\mal,0,1)$ ein Semiring ($\S_{\add}$ kommutatives Monoid und $\S_{\mult}$ Monoid)
+Es gilt also:
+\begin{enumerate}
+	\item $a\mal(b+c)=(a\mal b)+(a\mal c)=:a\mal c+b\mal c$ Distri
+	\item $(a+b)\mal c=a\mal c+b\mal c$ Distri
+	\item $0\mal a=0=a\mal 0$ Nullabsorption
+	\item $a\neq 0$ Reichhaltigkeit
+\end{enumerate}
+
+\begin{beispiel}
+	\begin{itemize}
+		\item Boolscher Semiring: $\big(\set{0,1},+,\mal,0,1\big)$ mit $1+1=1$
+		\item $\ul{\N}=\big(\N,+,\mal,0,1\big)$ ist der natürliche Semiring
+		\item $\F_2=\big(\set{0,1},+,\mal,0,1\big)$ mit $1+1=0$
+		\item Ringe, Körper $\Z,\Q,\R,\C$
+		\item \define{tropischer Semiring} $\big([0,\infty],\min,+,\infty,0\big)$
+	\end{itemize}
+\end{beispiel}
+
+\begin{definition}
+	Seien $\S=(S,+,\mal,0,1)$ und $\S'=(S',+',\mal',0',1')$ Semiringe.
+	Eine Abbildung $\varphi\colon S\to S'$ heißt \define{Morphismus} von $\S$ nach $\S'$, falls $\varphi$ Morphismus von $\S_{\add}$ nach $\S_{\add}'$ und $\varphi$ Morphismus von $\S_{\mult}$ nach $\S_{\mult}'$.\nl
+	Ein bijektiver Morphismus heißt \define{Isomorphismus}.
+	Ein Morphismus in sich heißt \define{Endomorphismus}.
+
+
+\begin{itemize}
+	\item $\S$ \define{Ring}: $\S$ Semiring und $\S_{\add}$ Gruppe
+	\item $\S$ \define{Divisionsring / Schiefkörper:} $\S$ Ring und $\S_{\mult}^\times=\big(S\setminus\set{0},\mal,1\big)$ Gruppe
+	\item $\S$ \define{Körper}: $\S$ Divisionsring und $\S_{\mult}$ kommutativ
+\end{itemize}
+
+\end{definition}
+
+Ist $\M=(M,+,\vec{0})$ kommutatives Monoid, so ist $\End(M)$ Menge der Endomorphismen von $\M$ d.h. $\varphi\colon M\to M$ Abbildung mit
+\begin{align*}
+	\varphi(x+y)=\varphi(x)+\varphi(y)\qquad\forall x,y\in M
+\end{align*}
+und $\varphi(\vec{0})=\vec{0}$.
+Dann ist 
+\begin{align*}
+	\End(\M):=\big(\End(M),+,\circ,0,\id_M\big)
+\end{align*}
+wobei $\circ$ die Abbildungsverkettung ist und
+	\begin{align*}
+		\varphi+\psi\colon:M\to M,\qquad x\mapsto \varphi(x)+\psi(x)\qquad\forall \varphi,\psi\in\End(M)\\
+		0\colon M\to M,\qquad x\mapsto\vec{0}
+	\end{align*}
+	ein Semiring, der sogenannte \define{Endomorphismen-Semiring zu $\M$}.
+	
+\begin{lemma}
+	Ist $\M$ kommutative Gruppe, so ist $\End(\M)$ ein Ring.
+\end{lemma}
+
+\subsubsection{Lineare Algebra über Semiring-Moduln}
+Sei $\S=(S,+,\mal,0,1)$ Semiring ("abstrakte Skalare", skalarer Bereich) und $\M=(M,+,\vec{0})$ kommutatives Monoid ("abstrakte Vektoren", vektorieller Bereich) und sei $\scal\colon\End(\M)$ Morphismus, genannt \define{Scaling}.
+\index{Scaling}
+Dann nennen wir $\mathcal{M}:=(\M,\S,\scal)$ auch \define{Semiring-Modul}.
+\index{Semiring-Modul}
+Es wird durch $\mathcal{M}$ ein \define{skalare Multiplikation}
+\index{skalare Multiplikation}
+\begin{align*}
+	S\times M\to M,\qquad (s,m)\mapsto s\mal m:=\big(\scal(s)\big) m
+\end{align*}
+induziert. Dies ist die \define{kontravariante Sicht}.\index{kontravariante Sicht}\\
+\define{Kovariante Sicht:}\index{kovariante Sicht}
+\begin{align*}
+	M\times S\to M,\qquad (m,s)\mapsto m\mal s:=m(s-\scal)
+\end{align*}
+wobei $s-\scal$ das zu $s\in S$ gehörige $s$-Scaling sei, d.h. $s-\scal:=\scal(s)$.\\
+Für $\mathcal{M}$ schreiben wir auch $\S^\M$ oder sagen $\M$ ist Semiring über $\S$ via $\scal$.\\
+(Kovariante bzw. Kontravariante Sicht ist nur eine Frage der Notation)
+
+\begin{beispiel}[Freie Semiring-Moduln]\enter
+	Sei $\S=(S,+,\mal,0,1)$ Semiring und sei $N$ eine Menge.
+	Dann sei
+	\begin{align*}
+		\Mod(\S,N):=\klammern{\S_{\add}^{(N)},\S,\scal}
+		\mit
+		\S_{\add}^{(N)}:=\set{u\in S^N\mid\supp(u)\text{ endlich}}
+		\mit\\
+		\supp(u):=\set{i\in N\mid u(i)\neq 0}
+		u+w\colon N\to S,\qquad i\mapsto u(i)+w(i)
+		\vec{0}\colon N\to S,\qquad i\mapsto 0
+	\end{align*}
+	$\scal\colon S\to\End\klammern{\S_{\add}^{(N)}}$ via jedes $s\in S$ erfüllt $\scal(s)\colon S^{(N)}\to S^{(N)},~u\mapsto s\mal u:=(s\mal u(i))_{i\in\N}$, d.h. $s\mal u\colon N\to S,~i\mapsto s\mal u(i)$.
+	ein Semiring-Modul, der sogenannte $N$-freie Semiring-Modul über $\S$.
+\end{beispiel}
+
