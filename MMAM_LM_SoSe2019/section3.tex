@@ -642,21 +642,268 @@ wobei $c\in\R^p$ fest vorgegeben (bekannt).
 \begin{bemerkungnr}\label{bemerkung3.10}\
 	\begin{enumerate}[label=(\arabic*)]
 		\item In Satz \ref{satz3.9GaussMarkovTheorem} wird \betone{nicht} $\Rg(X)=p$ (also Vollrang) gefordert.
+		\label{item:bem3.10_1}
 		\item Sprechweise im Englischen: $c'\mal\hat{\beta}$ is \define{BLUE}
 		 (:= best linear unbiased estimator)\\
 		 "unbiased" wird mit "unverzerrt" übersetzt, was einfach erwartungstreu bedeutet.
+		 \label{item:bem3.10_2}
 		 \item Falls $\Rg(X)=p$ (also Vollrang), dann gilt:
 		 \begin{align*}
 		 	\Var(\hat{\Psi})=\Var\big(c'\mal\hat{\beta}\big)
 		 	\overset{\ref{satz3.2}}{=}
-		 	c'\mal\underbrace{\Var(\hat{\beta}}_{
+		 	c'\mal\underbrace{\Var(\hat{\beta})}_{
 		 		\overset{\ref{def3.6}}{=}\sigma^2\mal\big(X'\mal X\big)^{-1}
 		 	}=\sigma^2\mal c'\mal(X'\mal X)^{-1}\mal c
 		 \end{align*}
+		 \label{item:bem3.10_3}
 		 \item Speziell für $c=e_j$ liefert $\hat{\beta}_j=j$-te Komponente von $\hat{\beta}$ ist der BLUE für $\beta_j$
+		 \label{item:bem3.10_4}
 	\end{enumerate}
 \end{bemerkungnr}
 
+\subsection{Schätzung von \texorpdfstring{$\sigma^2$}{Sigma Quadrat}}
+Wegen \eqref{eq:3.2} und \eqref{eq:3.3} gilt
+\begin{align*}
+	\sigma^2=\Var(\varepsilon_i)=\E[\varepsilon^2]\qquad\forall i\in\set{1,\ldots,n}
+\end{align*}
+Es folgt:
+\begin{align*}
+	\E\eckigeKlammern{\frac{1}{n}\mal\sum\limits_{i=1}^n\varepsilon_i^2}
+	\overset{\Lin}{=}\E[\varepsilon_i^2]=\sigma^2
+\end{align*}
+Aber 
+$
+	\frac{1}{n}\mal\sum\limits_{i=1}^n\varepsilon_i^2
+$
+ist \betone{kein Schätzer} für $\sigma^2$, da der Fehlervektor 
+$
+	\varepsilon=\klammern[\big]{\varepsilon_1,\ldots,\varepsilon_n}
+$\\1
+\betone{nicht beobachtbar}.
+\betone{Idee}:
+Ersetze
+$
+	\varepsilon
+	\overset{\eqref{eq:3.1}}{=}
+	Y-X\mal\beta
+$
+durch \betone{bekanntes}
+\begin{align*}
+	\hat{\varepsilon}:=Y-X\mal\hat{\beta}=Y-\hat{Y},
+\end{align*}
+wobei 
+$	
+	\hat{Y}:=X\mal\hat{\beta}
+$
+das \define{den Daten angepassten (fitted)} $Y$.
+$\hat{\varepsilon}$ heißt Vektor der \define{Residuen} (geschätzte Fehler).
+\index{Residuenvektor}\\
+Erhalte (bis auf Faktor $\frac{1}{n}$):
+\begin{align*}
+	\RSS:=\sum\limits_{i=1}^n\hat{\varepsilon}_i^2
+	=\hat{\varepsilon}'\mal\hat{\varepsilon}
+	=\norm{\hat{\varepsilon}}^2
+\end{align*}
+Das RSS steht für \define{Residual sums of squares} also \define{Residuenquadratsumme}.
+\index{Residuenquadratsumme}
 
+\begin{satz}\label{satz3.11}
+	Sei $\Rg(X)=p<n$. Dann gilt:
+	\begin{align*}
+		\S^2:=\frac{1}{n-p}\mal\RSS>0
+	\end{align*}
+	ist \betone{erwartungstreuer} Schätzer für $\sigma^2$, d.h.
+	\begin{align*}
+		\E_\beta[S^2]=\sigma^2\qquad\forall \beta\in\R^p
+	\end{align*}
+\end{satz}
 
+Zwei Hilfsmittel für den Beweis von Satz \ref{satz3.11}:
 
+\begin{lemma}\label{lemma3.12}
+	Sei $\Rg(X)=p$. 
+	Dann gilt mit $L:=\Bild(X)$:
+	\begin{align*}
+		\Rg\big(I_n-P_L\big)
+		=\Spur\big(I_n-P_L\big)
+		=n-p
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		I_n-P_L
+		\overset{\ref{satz2.9}}&{=}
+		P_{L^\perp}
+	\end{align*}
+	Also ist $I_n-P_L$ symmetrische und idempotente Matrix gemäß Satz \ref{satz2.7} und Satz \ref{satz2.8}.
+	Also ist
+	\begin{align*}
+		\Rg\big(I_n-P_L\big)
+		\overset{\ref{satz2.1}\ref{item:satz2.1(2)}}&{=}
+		\Spur\big(I_n-P_L\big)\\
+		\overset{\Spur\text{ additiv}}&{=}
+		\Spur(I_h)-\Spur(P_L)\\
+		&=n-\Spur(P_L)\\
+		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
+		n-\Spur\Big(X\mal\big(X'\mal X\big)^{-1}\mal X'\Big)\\
+		\overset{\ref{satz2.14}}&{=}
+		n-\Spur(I_p)\\
+		&=n-p
+	\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma3.13}
+	Sei $A\in M(n\times n)$ deterministisch und $Z$ ein Zufallsvektor in $\R^n$.
+	Dann gilt für den Erwartungswert der quadratischen Form:
+	\begin{align*}
+		\E\eckigeKlammern[\big]{Z'\mal A\mal Z}
+		=\Spur\klammern[\big]{A\mal\Var(Z)}+
+		\E[Z]'\mal A\mal\E[Z]
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Setze $\theta:=\E[Z]$.
+	Idee: Wir betrachten den zentrierten Vektor.
+	\begin{align}\nonumber
+		\E\eckigeKlammern[\big]{(Z-\theta)'\mal A\mal\underbrace{(Z-\theta)}_{
+			\text{zentriert}
+		}}
+		&=\E\eckigeKlammern{Z'\mal A\mal Z-\theta'\mal A\mal Z-Z'\mal A\mal\theta+\theta'\mal A\mal\theta}\\\nonumber
+		\overset{\ref{satz3.2}}&{=}
+		\E\eckigeKlammern{Z'\mal A\mal Z}-\theta'\mal A\mal\underbrace{\E[Z]}_{=\theta}-\E[Z]'\mal A\mal\theta+\theta'\mal A\mal\theta\\\nonumber
+		&=\E\eckigeKlammern{Z'\mal A\mal Z}-\theta'\mal A\mal\theta\\
+		\implies
+		\E\eckigeKlammern{Z'\mal A\mal Z}
+		&=\underbrace{\E\eckigeKlammern[\big]{(Z-\theta)'\mal A\mal(Z-\theta)}}_{=:\mu}+\theta'\mal A\mal\theta
+		\label{eqProofLemma3.13Stern}\tag{$*$}
+	\end{align}
+	Jetzt rechnen wir $\mu$ aus:
+	\begin{align*}
+		\mu&=\E\eckigeKlammern{\sum\limits_{1\leq i,j\leq n}\big(Z_i-\theta_i\big)\mal A_{i,j}\mal\big(Z_j-\theta_j\big)}\\
+		\overset{\Lin}&{=}
+		\sum\limits_{1\leq i,j\leq n}A_{i,j}\mal\E\eckigeKlammern[\Big]{\big(Z_i-\underbrace{\theta_i}_{=\E[Z_i]}\big)\mal\big(Z_j-\underbrace{\theta_j}_{=\E[Z_j]}\big)}\\
+		&=\sum\limits_{1\leq i,j\leq n}A_{i,j}\mal\Cov\big(Z_i,Z_j\big)\\
+		&=\sum\limits_{1\leq i,j\leq n}A_{i,j}\mal\big(\Var(Z)\big)_{i,j}\\
+		\overset{\text{Symm}}&{=}
+		\sum\limits_{i=1}^n\sum\limits_{j=1}^n A_{i,j}\mal\big(\Var(Z)\big)_{j,i}\\
+		&=\sum\limits_{i=1}^n\klammern{\sum\limits_{j=1}^n A_{i,j}\mal\big(\Var(Z)\big)_{j,i}}\\
+		&=\sum\limits_{i=1}^n\Big(A\mal \Var(Z)\Big)_{i,i}\\
+		&=\Spur\big(A\mal\Var(Z)\big)
+	\end{align*}
+	Aus \eqref{eqProofLemma3.13Stern} folgt die Behauptung.
+\end{proof}
+
+\begin{proof}[Beweis von Satz \ref{satz3.11}]%\enter
+	\begin{align*}
+		\hat{\varepsilon}
+		\overset{\Def}&{=}
+		Y-X\mal\hat{\beta}
+		\overset{\ref{satz3.3}}{=}
+		Y-P_L Y
+		=\big(I_n-P_L\big)Y
+		\overset{\ref{satz2.9}}{=}
+		P_{L^\perp}Y\\
+		\implies
+		(n-p)\mal S^2
+		\overset{\Def}&{=}
+		\RSS\\
+		&=\hat{\varepsilon}'\mal\hat{\varepsilon}\\
+		&=\big(P_{L^\perp} Y\big)'\mal\big(P_{L^\perp} Y\big)\\
+		&=Y'\mal P_{L^\perp}'\mal P_{L^\perp}\mal Y\\
+		\overset{\text{Symm}}&{=}
+		Y'\mal P_{L^\perp}\mal P_{L^\perp}\mal Y\\
+		\overset{\text{Idempotenz}}&{=}
+		Y'\mal P_{L^\perp}\mal Y\\
+		\implies
+		(n-p)\mal\E\big[S^2\big]
+		&=\E\eckigeKlammern{Y'\mal\big(I_n-P_L)\mal Y}\\
+		\overset{\ref{lemma3.13}}&{=}
+		\Spur\klammern[\Big]{\big(I_n-P_L\big)\mal\underbrace{\Var(Y)}_{
+			=\sigma^2\mal I_n		
+		}}+\underbrace{\E[Y]'\mal\underbrace{\big(I_h-P_L\big)}_{
+			=P_{L^\perp}
+		}\underbrace{\mal\E[Y]}_{
+			=X\mal\beta\in L
+		}}_{
+			=0
+		}\\
+		&=\sigma^2\mal\Spur(I_n-P_L)\\
+		\overset{\ref{lemma3.12}}&{=}
+		\sigma^2\mal(n-p)
+	\end{align*}
+	Division durch $(n-p)\overset{\Vor}{>}0$ liefert die Behauptung $\E[S^2]=\sigma^2$.
+\end{proof}
+
+\begin{bemerkung}
+	Es gilt
+	\begin{align*}
+		\E\eckigeKlammern{\frac{1}{n}\mal\RSS}
+		\overset{\Lin}{=}
+		\frac{1}{n}\mal\E\eckigeKlammern{\RSS}
+		\overset{\Def}{=}
+		\frac{1}{n}\mal\E\eckigeKlammern{\sigma^2\mal(n-p)}
+		\overset{\ref{satz3.11}}{=}
+		\frac{n-p}{n}\mal\sigma^2
+	\end{align*}
+	Der Schätzer $\frac{1}{n}\mal\RSS$ ist also \betone{nicht} erwartungstreu, da $\frac{n-p}{n}\neq 0$ für alle $p>0$.
+	Für große $n$ allerdings ist $\frac{n-p}{n}\approx1$.
+	Somit ist der Schätzer $\frac{1}{n}\mal\RSS$ immerhin \define{asymptotisch erwartungstreu}.
+\end{bemerkung}
+
+\begin{beispiel}[Einfache lineare Regression, vgl. Beispiel \ref{beisp3.5einfacheLineareRegression}]\label{beisp3.14einfacheLinareRegression}
+	\begin{align*}
+		Y_i&=a+b\mal x_i+\varepsilon_i &&\forall i\in\set{1,\ldots,n}\\
+		\hat{\varepsilon}_i&=Y_i-a-b\mal x_i&&\forall i\in\set{1,\ldots,n}\\
+		\beta&=\begin{pmatrix}
+			a\\
+			b
+		\end{pmatrix},\qquad \hat{\beta}=\begin{pmatrix}
+			\hat{a}\\
+			\hat{b}
+		\end{pmatrix}
+	\end{align*}
+	Dann gilt:
+	\begin{align*}
+		S^2=\frac{1}{n-2}\mal\sum\limits_{i=1}^n\klammern{Y_i-\hat{a}-\hat{b}\mal x_i}^2
+	\end{align*}
+	wobei $\hat{a},\hat{b}$ in Beispiel \ref{beisp3.5einfacheLineareRegression} berechnet wurden:
+	\begin{align*}
+		\hat{a}&=\overline{Y}-\hat{b}\mal\overline{x},\qquad
+		\hat{b}=\frac{\sum\limits_{i=1}^n\big(x_i-\overline{x}\big)\mal\big(Y_i-\overline{Y}\big)}{\sum\limits_{i=1}^n\big(x_i-\overline{x}\big)^2}
+	\end{align*}
+	
+	\begin{bemerkung}
+		Den Erwartungswert von $S^2$ zu Fuß auszurechnen, erscheint ziemlich schwierig.
+	\end{bemerkung}
+\end{beispiel}
+
+\subsection{Schätzung von \texorpdfstring{$\beta$}{Beta} unter linearen Nebenbedingungen} %3.4
+
+Sei $Y=X\mal\beta+\varepsilon$ lineares Modell (LM) mit \eqref{eq:3.2}, \eqref{eq:3.3} und \eqref{eq:3.4} und $\Rg(X)=p\overset{\eqref{eq:3.3}}{<}n$.
+Ferner sei $H\in M(q\times p)$ \betone{bekannt} mit $\Rg(H)=q\leq p$.
+Sei $c\in\R^q$ ebenfalls \betone{bekannt}.
+Der unbekannte Parameter $\beta\in\R^p$ erfülle die Gleichung
+\begin{align}\label{eq:3.8}\tag{3.8}
+	H\mal\beta=c
+\end{align}
+Gleichung \eqref{eq:3.8} ist eine lineare Nebenbedingung (NB) für $\beta$.
+Gemäß der Methode der kleinsten Quadrate finde $\hat{\beta}_H\in\R^p$ mit
+\begin{align*}
+	\norm{Y-X\mal\hat{\beta}_H}=\min\set{\norm{Y-X\mal\beta}:\beta\in\R^p\AND   H\mal\beta=c},
+\end{align*}
+d.h. 
+\begin{align*}
+	\hat{\beta}_{H,c}:=:\hat{\beta}_H\in\argmin\set{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}
+\end{align*}
+
+Zur  ...
+
+\begin{satz}\label{satz3.15}
+
+\end{satz}
+
+\begin{proof}
+	To Do
+\end{proof}
