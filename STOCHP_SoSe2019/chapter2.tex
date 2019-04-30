@@ -251,6 +251,7 @@ Diese Schwierigkeiten motivierten die Einführung der Begriffe \undefine{Separab
 \end{satz}
 
 \begin{proof}
+	\betone{Spezialfall für $[0,1]$:}\\
 	Wir konstruieren zunächst eine stetige Modifkation auf $[0,1]$.
 	Setze
 	\begin{align*}
@@ -317,31 +318,71 @@ Diese Schwierigkeiten motivierten die Einführung der Begriffe \undefine{Separab
 	\end{align*}
 	Damit: Die Reihe auf der linken Seite konvergiert fast sicher, insbesondere konvergiert $2^{n\mal\gamma}\mal Z_n$ fast sicher gegen 0, woraus die fast sichere Konvergenz von $\sum\limits_{n\in\N} Z_n$ folgt.\\
 	($2^{\gamma\mal n}\mal Z_n\leq 1$ für $n$ groß, $Z_n\leq\frac{1}{2^{\gamma\mal n}}$)\nl
-	Wir haben gezeigt, dass $\klammern{X^n(\cdot,\omega)}_{n\in\N}$ für fast alle $\omega\in\Omega$ eine Cauchy-Folge in\\ $C\big([0,1],\R^d\big)$ bzw. in  $C\big([0,1],\C^d\big)$ ist (Banachraum!).
+	Wir haben gezeigt, dass $\set{X^n(\cdot,\omega)}_{n\in\N}$ für fast alle $\omega\in\Omega$ eine Cauchy-Folge in\\ $C\big([0,1],\R^d\big)$ bzw. in  $C\big([0,1],\C^d\big)$ ist, sogar gleichmäßig (Banachraum!).
 	Daher besitzt $(X^n)_{n\in\N}$ einen fast sicheren Grenzwert $Y$ mit stetigen Pfaden.\nl
-	Wir zeigen: $Y_t=X_t$ fast sicher für alle $t\in[0,1]$.
-	Für $t\in D_m$ und $n\geq m$ gilt $X_t^n=X_t$ und daher $Y_t=X_T$ fast sicher für $t\in\bigcup\limits_{m\in\N}D_m$.
-	Ist nun $t\in[0,1]$ beliebig, so gibt es $s_n\in\bigcup\limits_{m\in\N} D_m$ mit $s_n\overset{n\to\infty}{\longrightarrow}t$.
-	Daher
+	Noch zu zeigen:
+	$Y_t=X_t$ fast sicher für alle $t\in[0,1]$.\\
+	Für $t\in D_m$ und $n\geq m$ gilt $X_t^n=X_t$ und daher $Y_t=X_t$ fast sicher für $t\in\bigcup\limits_{m\in\N}D_m$.
+	Ist nun $t\in[0,1]$ beliebig, so gibt es eine Folge $s_n\in\bigcup\limits_{m\in\N} D_m$ mit $s_n\overset{n\to\infty}{\longrightarrow}t$.\nl
+	Erinnerung: Markovsche Ungleichung:
+	\begin{align}\label{eq:Markov}\tag{Markov}
+		\E\eckigeKlammern{\abs{Z}^a}
+		&=\int\limits_\Omega\abs{Z}^a\ds\P
+		\geq\int\limits_{\abs{Z}\geq\varepsilon}\abs{Z}^a\ds\P
+		\geq\int\limits_{\abs{Z}\geq\varepsilon}\varepsilon^a\ds\P
+		=\varepsilon^a\mal\P\klammern[\big]{\abs{Z}\geq\varepsilon}
+	\end{align}
+	Daher gilt:
 	\begin{align*}
-		\P\eckigeKlammern{\norm{X_t-X_{s_n}}\geq\varepsilon}
-		\overset{\text{Markov}}&{\leq}
-		\varepsilon^{-a}\mal\E\eckigeKlammern{\norm{X_t-X_{s_n}}^a}
+		\P\eckigeKlammern[\big]{\norm{X_t-X_{s_n}}\geq\varepsilon}
+		\overset{\eqref{eq:Markov}}&{\leq}
+		\varepsilon^{-a}\mal\E\eckigeKlammern[\big]{\norm{X_t-X_{s_n}}^a}
 		\underset{\eqref{eq:satz2.1Kolmo_1}}{\overset{n\to\infty}{\longrightarrow}}
 		0
 	\end{align*}
-	Das heißt: $Y_{s_n}=X_{s_n}\overset{}{\longrightarrow}X_t$ in Wahrscheinlichkeit.
-	
+	Das heißt: $Y_{s_n}=X_{s_n}\overset{n\to\infty}{\longrightarrow}X_t$ in Wahrscheinlichkeit.
+	Wegen der Pfad-Stetigkeit von $Y$ gilt aber
+	\begin{align*}
+		Y_{s_n}(\omega)\overset{n\to\infty}{\longrightarrow}Y_t(\omega)
+		\qquad\forall\omega\in\Omega,
+	\end{align*}
+	damit auch $Y_{s_n}\overset{n\to\infty}{\longrightarrow}Y_t$ in Wahrscheinlichkeit.
+	Also ist $X_t=Y_t$ fast sicher (da Grenzwert fast sicher eindeutig).\nl
+	\betone{Allgemeiner Fall:}\\
+	Wie auf $[0,1]$ konstruieren wir Modifikation auf den Intervallen $[k,k+1]$ für $k\in\Z$ bzw. $k\in\N$ und verwenden \eqref{eq:ProofSatz2.2.1_2}.
 \end{proof}
 
+In der nächsten Definition fassen wir einige Stetigkeits-Eigenschaften zusammen.
+
 \begin{definition}\label{def2.2.2}
-	Ein reellwertiges Feld $X$ auf einem topologischen Raum $T$ heißt
-	\begin{enumerate}%[label=(\alph*)]
+	Ein reellwertiges Feld $X$ auf einem topologischen Raum $T$ heißt:
+	\begin{enumerate}[label=(\roman*)]
 		\item \define{stetig in Wahrscheinlichkeit / stochastisch stetig} in $t\in T$
+		\index{stetig in Wahrscheinlichkeit}
 		\begin{align*}
 			\defiff\forall\varepsilon>0:\lim\limits_{s\to t}\P\big[\abs{X_t-X_s}>\varepsilon\big]=0
 		\end{align*}
-		\item \define{$L^p$-stetig} in $t\in T$, wenn ...
+		\item \define{$L^p$-stetig} in $t\in T$
+		\index{$L^p$-stetig}
+		\begin{align*}
+			\defiff\forall s,t\in T:\E\eckigeKlammern{\abs{X_s}^p}<\infty
+			~\AND~
+			\lim\limits_{s\to t}\E\eckigeKlammern[\big]{\abs{X_s-X_t}^p}=0
+		\end{align*}
+		Spezialfall $p=2$: \define{stetig im quadratischen Mittel}
+		\index{stetig im quadratischen Mittel}
+		\item \define{fast sicher Pfadstetig} in $t\in T$
+		\index{fast sicher Pfadstetig}
+		\begin{align*}
+			\defiff\P\klammern{\set{\omega\in\Omega:\lim\limits_{s\to t}\abs{X_s(\omega)-X_t(\omega)}\neq0}}=0
+		\end{align*}
+		\item \define{fast sicherPfadstetig}
+		\begin{align*}
+			\defiff\bigcup\limits_{t\in T}\set{\omega\in\Omega:\lim\limits_{s\to t}\abs{X_s(\omega)-X_t(\omega)}\neq 0}\text{ ist Null-Ereignis}
+		\end{align*}
+		(Wir fordern also $A\in\A$ und $\P(A)=0$.)
+		\item \define{Pfad-stetig} $\defiff$ alle Pfade stetig sind.
+		\index{Pfad-stetig}
 	\end{enumerate}
 \end{definition}
 

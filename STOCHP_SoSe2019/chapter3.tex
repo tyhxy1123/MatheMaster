@@ -3,6 +3,142 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Felder 2. Ordnung}
-\section{Section}
+\chapter{Zufällige Felder zweiter Ordnung}
+\section{Korrelationsfunktion}
+
+\begin{erinnerungnr}\label{erinnerung3.1.1}
+	Ist $Z$ ein Feld zweiter Ordnung, so heißt
+	\begin{align*}
+		C(x,y)
+		&:=\E\eckigeKlammern{Z(x)\mal\overline{Z(y)}} \qquad\forall x,y\in T
+	\end{align*}
+	Korrelationsfunktion von $Z$. 
+	Die Kovarianzfunktion ist durch 
+	\index{Korrelationsfunktion}
+	\index{Kovarianzfunktion}
+	\begin{align*}
+		\sigma(x,y)&:=\E\eckigeKlammern{\klammern{Z(x)-M(x)}\mal\klammern{\overline{Z(y)-M(y)}}}
+		\qquad\forall x,y\in T
+	\end{align*}
+	definiert, wobei
+	$M(x):=\E\eckigeKlammern{Z(x)}$.
+\end{erinnerungnr}
+
+\begin{satz}\label{satz3.1.2}
+	Eine komplexwertige (reellwertige) Funktion $K\colon T\times T\to C(\R)$ ist genau dann Kovarianz- oder Korrelationsfunktion eines komplexen (reellen) Feldes 2. Ordnung, wenn für beliebige $x_1,\ldots,x_n$ die Matrix $\klammern[\big]{K(x_i,x_j)}_{i,j=1}^n$ positiv semidefinit (positiv definit und symmetrisch) ist.
+\end{satz}
+
+\begin{erinnerung}
+	 Eine Matrix $A=(a_{i,j})_{i,j=1}^n\in\C^{n\times n}$ heißt \define{positiv semidefinit}
+	 \index{positiv semidefinit}
+	 \begin{align*}
+	 	\defiff\forall n\in\N:\forall c_1,\ldots,c_n\in\C:\sum\limits_{i,j=1}^n a_{i,j}\mal c_i\mal\overline{c_j}\geq 0
+	 \end{align*}
+\end{erinnerung}
+
+\begin{proof}
+	\betone{Zeige "$\Longrightarrow$":}\\
+	Sei $K$ die Kovarianzfunktion eines komplexen Feldes $Z$. Dann gilt:
+	\begin{align*}
+		\sum\limits_{i,j=1}^n K(x_i,x_j)\mal a_i\mal\overline{a_j}
+		\overset{\Def}&{=}
+		\sum\limits_{i=1}^n\sum\limits_{j=1}^n\E\eckigeKlammern{\klammern{Z(x_i)-M(x_i)}\mal\klammern{\overline{Z(x_j)-M(x_j)}}}\mal a_i\mal\overline{a_j}\\
+		&=\E\eckigeKlammern{\klammern{\sum\limits_{i=1}^n a_i\mal \klammern{Z(x_i)-M(x_i)}}\mal\klammern{\overline{\sum\limits_{j=1}^n a_j\mal \klammern{Z(x_j)-M(x_j)}}}}\\
+		&=\E\eckigeKlammern{\abs{\sum\limits_{j=1}^n\klammern{Z(x_j)-M(x_j)}\mal a_j}}\geq0
+		\qquad\forall a_1,\ldots,a_n\in\C
+	\end{align*}
+	Hierbei geht $z\mal\overline{z}=\abs{z}^2~\forall z\in\C$ und
+	\begin{align*}
+		\sum\limits_{i,j} Z_i\mal\overline{Z_j}
+		=\klammern{\sum\limits_i Z_i}\mal\klammern{\overline{\sum\limits_j Z_j}}
+		=\abs{\sum\limits_j z_j}^2\qquad\forall z_j\in\C
+	\end{align*}
+	Analog für Korrelationsfunktion.
+	Symmetrie für $\R$ ist klar.\nl
+	\betone{Zeige "$\Longleftarrow$":}
+	Folgt aus Satz \ref{satz3.1.4}.
+\end{proof}
+
+\begin{lemma}\label{lemma3.1.3}
+	Sei $C=(c_{j,k})_{j,k=1}^n$ eine positiv semidefinite komplexe Matrix
+	und $A=(a_{j,k})_{j,k=1}^n:=\Re(C)\in\R^{n\times n}$, $B=(b_{j,k})_{j,k=1}^n:=Im(C)\in\R^{n\times n}$.
+	Dann sind die $(2\mal n)\times(2\mal n)$-reelle Blockmatrix
+	\begin{align*}
+		D:=\big(d_{j,k}\big)_{j,k=1}^{2\mal n}=\begin{bmatrix}
+			A & -B\\
+			B & A
+		\end{bmatrix}
+	\end{align*}
+	auch positiv semidefinit (im komplexen Sinne).
+\end{lemma}
+
+\begin{erinnerung}[Transponieren von Blockmatrizen]
+	\begin{align*}
+		\begin{bmatrix}
+			A & B\\
+			C & D
+		\end{bmatrix}^T
+		=\begin{bmatrix}
+			A^T & C^T\\
+			B^T & D^T
+		\end{bmatrix}
+	\end{align*}
+\end{erinnerung}
+
+\begin{proof}
+	Aus der positiven Semidefinitheit von $C$ folgt $c_{j,k}=\overline{c_{k,j}}$, woraus wiederum $A=A^T$ und $B^T=-B$, also insgesamt $D^T=D$ folgt (Symmetrie).
+	Für alle $r_1,\ldots,r_{2\mal n}\in\R$ gilt (weil $C$ positiv semidefinit ist):
+	\begin{align*}
+		0
+		&\leq\sum\limits_{j=1}^n\sum\limits_{k=1}^n c_{j,k}\mal\klammern{r_j-\ii\mal r_{n+j}}\mal\klammern{r_k+\ii\mal r_{n+k}}\\
+		&=\underbrace{\sum\limits_{j=1}^n\sum\limits_{k=1}^n c_{j,k}\mal\klammern{r_j\mal r_k+r_{n+j}\mal r_{n+k}}}_{
+			\in\R
+		}
+		-\ii\mal\underbrace{\sum\limits_{j=1}^n\sum\limits_{k=1}^n c_{j,k}\mal\klammern{r_{n+j}\mal r_k-r_j\mal r_{n+k}}}_{
+			\in\ii\mal\R
+		}\\
+		\overset{\ast}&{=}
+		\sum\limits_{j=1}^n \sum\limits_{k=1}^n a_{j,k}\mal\klammern{r_j\mal r_k+r_{n+j}\mal r_{m+k}}
+		+\sum\limits_{j=1}^n\sum\limits_{k=1}^n b_{j,k}\mal\klammern{r_{n+j}\mal r_k-r_j\mal r_{n+k}}\\
+		\overset{\Def~D}&{=}
+		\sum\limits_{j=1}^{2\mal n} \sum\limits_{k=1}^{2\mal n}  d_{j,k}\mal r_j\mal r_k
+	\end{align*}
+	Zu $\ast$: Die erste Summe ist reell, die zweite rein imaginär wegen $c_ {j,k}=\overline{c_{k,j}}$.\\
+	Folglich ist $D$ positiv semidefinit im reellen Sinne.
+	Da $D$ auch symmetrisch ist, ist $D$ auch positiv semidefinit im komplexen Sinne.
+\end{proof}
+
+\begin{satz}\label{satz3.1.4}
+	Sei $M\colon T\to\C$ beliebig und $K\colon T\times T\to\C$ so, dass für beliebige $x_1,\ldots,x_n\in T$ die Matrix
+	\begin{align}\label{eq:satz3.1.4_1}\tag{1}
+		\Big(K\big(x_i,x_j\big)\Big)_{i,j=1}^n
+	\end{align}
+	positive semidefinit ist.
+	Dann existiert ein Gauß-Feld auf $T$ mit
+	\begin{align}
+		\E\eckigeKlammern[\big]{Z(x)}&=M(x)
+		\label{eq:satz3.1.4_2}\tag{2}\\
+		\E\eckigeKlammern{Z(x)\mal\overline{Z(y)}}-M(x)\mal\overline{M(y)}&=K(x,y)
+		\label{eq:satz3.1.4_3}\tag{3}\\
+		\E\eckigeKlammern{Z(x)\mal Z(y)}&=M(x)\mal M(y)
+		\label{eq:satz3.1.4_4}\tag{4}
+	\end{align}
+	für alle $x,y\in T$.
+	Sind $M$ und $K$ reellwertig, so existiert ein reelles Gauß-Feld $Z$ so, dass \eqref{eq:satz3.1.4_2} und \eqref{eq:satz3.1.4_3} gelten.
+\end{satz}
+
+\begin{bemerkung}
+	Wenn ein Feld $Z$ die Gleichungen \eqref{eq:satz3.1.4_2} und \eqref{eq:satz3.1.4_4} erfüllt, dann ist
+	\begin{align*}
+		\E\eckigeKlammern{\klammern[\big]{Z(x)-M(x)}^2}=0
+	\end{align*}
+	und folglich $Z(x)=M(x)$ fast sicher, wenn $Z$ reell.
+\end{bemerkung}
+
+\begin{proof}
+	Seien $M$ und $K$ reellwertig uns seien $x_1,\ldots,x_n\in T$.
+	Nach ... existiert eine Gaußverteilung auf $\R^n$  mit Erwartungsvektor
+	$\klammern[\big]{M(x_1),\ldots,M(x_n)}$ und Kovarianzmatrix \eqref{eq:satz3.1.4_1}.
+	Diese Verteilungen erfüllen die Konsistenzbedingungen von Kolmogorov...
+\end{proof}
 
