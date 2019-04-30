@@ -1,0 +1,149 @@
+\chapter{Approximation by piecewise polynomials}
+\begin{equation*}
+	S^n(\T):= \left\{ v \in C(\Omega): v|_{T} \text{ is a polynomial of degree } \leq n \ \forall T \in \T \right\}
+\end{equation*}
+\begin{theorem}
+	% TODO maybe change I to \I or somethin
+	Let $I: C(\Omega) \to S^n(\T)$ be the Lagrange interpolation. 
+	Let $h$ be the largest element size in $\T$.
+	Then there is a constant $c$ such that
+	\begin{equation*}
+		\|D(u-I^nu)\|_{L^{2}} \leq c\; h^n\; \|D^{n+1}u\|_{L^{2}}
+	\end{equation*}
+	for all $u \in H^{n+1}(\Omega)$.
+
+	Even for  $n=1$, the theorem requires $H^2$
+\end{theorem}
+\begin{theorem}
+	(sobolev inequality)\\
+	Let $\Omega$ be a $d$-dimensional domain with a lipschitz boundary.
+	Let $k \in \N$, $p \in \R$ with $1 < p < \infty$ such that 
+	\begin{equation*}
+		k-\frac{d}{p}>0
+	\end{equation*}
+	then the equivalence class of each $u \in W^{k,p}(\Omega)$ has a continuous representative.
+\end{theorem}
+\underline{consequence}: Lagrange interpolation of $H^1$ functions is only possible in $1d$ domains.
+\begin{definition}
+	The sobolev number of $W^{k,p}(\Omega)$ is 
+	\begin{equation*}
+		\sob(W^{k,p})= k - \frac{d}{p}
+	\end{equation*}
+\end{definition}
+Why $k-\frac{d}{p}$?
+\begin{itemize}
+	\item Let $v \in W^{k,p}(\Omega)$
+	\item Let $h > 0$, introduce new variables $\hat{x}= \frac{x}{h}$ 
+	\item Transformation $\Omega \to \hat{\Omega}$, transforms $v$ to $\hat{v}$ in $\hat{\Omega}$
+\end{itemize}
+\underline{Exercise}: 
+\begin{equation*}
+	|\hat{v}|_{W^{k,p}(\Omega)} = h^{k-\frac{d}{p}} |v|_{W^{k,p}(\Omega)}
+\end{equation*}
+\begin{definition}
+	The discrete neighborhood of $T$ is
+	\begin{equation*}
+		N(T):= \left\{ T' \in \T : T'\cap T \neq \emptyset \right\}
+	\end{equation*}
+\end{definition}
+\begin{theorem}
+	(local quasi-interpolation error)\\
+	Let $s$ be a regularity index with $0 \leq s \leq n+1$.
+	Let $p$ be the integrability index ($1 \leq p \leq \infty$)
+	Then there exists an operator $I_{\T}: L^1(\Omega) \to S^n(\T)$ such that for all $T \in \T$ 
+	% TODO change \leq \approx to a proper sign
+	\begin{equation*}
+		\|D^t(v - Iv)\|_{L^{q}(T)} (\leq \approx) h_{T}^{\sob(W^{s,p})-\sob(W^{t,q})} \|D^s v\|_{L^{p}(N(T))}
+	\end{equation*}
+	where $0 \leq t \leq s, 1 \leq q\leq \infty$ and $\sob(W^{s,p}) > \sob(W^{t,q})$.
+	The constant depends on $d$ and the shape coefficients of $\T$.
+\end{theorem}
+\begin{proof}\
+	\begin{itemize}
+		\item Let $\left\{ \phi_{z} \right\}_{z \in \mathcal{L}(\T)}$ be the Lagrange basis of $S^n(\T)$. 
+			($\mathcal{L}$ is the set of all Lagrange points)
+			Exercise: There is a dual basis $\left\{ \phi^*_{z} \right\}_{z \in \mathcal{L}(\T)}$ to $\left\{ \phi_{z} \right\}$ i.e.
+			\begin{equation*}
+				\int_{\Omega} \phi_{z} \phi^*_{y} \diff x = \begin{cases}
+					1, \text{ if } y=z\\
+					0\ \text{ else}
+				\end{cases}
+			\end{equation*}
+			The $\phi_{y}^*$ are piecewise polynomials but not continuous.\\
+			$\supp \phi_{z}^* = \supp \phi_{z}$ $\forall z \in \mathcal{L}(\T)$ 
+		\item Define the quasi-interpolation operator $I$ by 
+			\begin{align*}
+				Iv &= \sum\limits_{z \in \mathcal{L}}^{} <v,\phi_{z}^*>\phi_{z}\\
+				   &= \sum\limits_{z \in \mathcal{L}}^{}\quad \int\limits_{\supp \phi_{z}^*} v\phi_{z}^* \diff x\phi_{z}
+			\end{align*}
+		\item $I$ really is a projection\\
+			Let $P= \sum\limits_{y}^{} \alpha_{y} \phi_{y} \in S^n$. Then 
+			\begin{align*}
+				Ip &= \sum\limits_{z}^{} <P,\phi_{z}^*>\phi_{z} \\
+				   &= \sum\limits_{z}^{} <\sum\limits_{y}^{} \alpha_{y} \phi_{y},\phi_{z}^*>\phi_{z}\\
+				   &= \sum\limits_{z,y}^{}\alpha_{y} <\phi_{y},\phi_{z}^*>\phi_{z}\\
+				   &= \sum\limits_{y}^{} \alpha_{y} \phi_{y}\\
+				   &= P
+			\end{align*}
+			The averaging process that determines the values of $Iv$ on a simplex $T$ uses only values of $v$ from $N(T)$.\\
+			In particular 
+			\begin{equation*}
+				I P|_{T} = P \quad P \in \P_n(N(T))
+			\end{equation*}
+			$\implies$
+			\begin{equation*}
+				v - Iv|_{T} = v-P - I(v-P)|_{T} \quad \forall T \in\T \text{ and } P \in \P_{n}
+			\end{equation*}
+			Let $\hat{T}$ be the reference simplex.\\
+			Let $F(\hat{x}):= B\hat{x} + x_{0}$ be an affine bijective map from $\hat{T}$ to $T$.
+			Then for all $v \in W^{t,q}(T)$ 
+			\begin{align*}
+				\|D^tv\|_{L^{q}(T)} &\leq \approx \|B^{-1} \|^{t} |\det B|^{-\frac{1}{q}} \|D^t \hat{v}\|_{L^{q}(\hat{T})}\\
+									&\leq \approx h^{-(t-\frac{d}{p})} \|D^t \hat{v}\|_{L^{q}(T)}
+			\end{align*}
+		\item The space $\P_{n}(\hat{T})$ is finite-dimensional $\implies$ all norms are equivalent. In particular 
+			\begin{equation*}
+				\forall Q \in \P_{n}(\hat{T}) \quad \|D^t Q\|_{L^{q}(\hat{T})} \leq \|Q\|_{W^{t,q}(\hat{T})} \leq\approx \|Q\|_{L^{q}\hat{T}}. 
+			\end{equation*}
+			We want to apply this to 
+			\begin{align*}
+				\|D^t(v-Iv)\|_{L^{q}(\hat{T})} &\leq \|D^t(v-P)\|_{L^{q}(\hat{T})} + \|D^tI(v-P)\|_{L^{q}(\hat{T})}\\
+											   &\leq\approx \|D^t(v-P)\|_{L^{q}(\hat{T})} \|I(v-P)\|_{L^{q}(\hat{T})}
+			\end{align*}
+		\begin{lemma}
+			For all $w\in L^q$ we have 
+			\begin{equation*}
+				\|Iw\|_{L^{q}(\hat{T})} \leq \approx \|w\|_{L^{q}(N(\hat{T}))}
+			\end{equation*}
+		\end{lemma}
+		\begin{proof}
+			\begin{align*}
+				\|Iw\|_{L^{q}(\hat{T})} &= \|\sum\limits_{z \in\mathcal{L}(\hat{T})}^{} <w,\hat{\phi}_{z}^*>\hat{\phi}_{z}\|_{L^{q}(\hat{T})}\\
+										&\leq \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} |<w,\hat{\phi}_{z}^*>| \underbrace{\|\hat{\phi}_{z}\|_{L^{q}(\hat{T})}}_{\text{indep. of} \T,h,w,\text{else}}\\
+										&\leq\approx \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} |<w,\hat{\phi}_{z}^*>|\\
+
+										&= \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} |\int\limits_{\hat{\Omega}}w\cdot\hat{\phi}_{z}^*\diff x |\\
+										&\leq \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \  \int\limits_{\supp(\hat{\phi}_{z}^*)} |w \cdot \hat{\phi}_{z}^*|\diff x \\
+										&\overset{\text{Hölder}}{\leq} \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \ |w|_{L^q(\supp(\hat{\phi}_{z}^*))} |\hat{\phi}_{z}^*|_{L^{q^*}(\supp(\hat{\phi}_{z}^*))}\\
+										&\leq\approx \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \ |w|_{L^q(\supp(\hat{\phi}_{z}^*))} \\
+										&\leq \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \ |w|_{L^q(N(\hat{T}))} \\
+										&\leq\approx |w|_{L^q(N(\hat{T}))} 
+			\end{align*}
+		\end{proof}
+	\end{itemize}
+	Back to the main proof:
+	\begin{align*}
+		\|D^t(v-Iv)\|_{L^{q}(\hat{T})} &\leq \|D^t(v-P)\|_{L^{q}(\hat{T})} + \|D^t(v-P)\|_{L^{q}(N(\hat{T}))}\\
+									   &\leq \|v-P\|_{W^{t,q}(N(\hat{T}))}\\
+									   &\leq\approx \|v-P\|_{W^{s,p}(N(\hat{T}))}
+	\end{align*}
+	Holds for all $P \in \P_{n}$ !( Rellich-Kondrachov theorem holds because $\sob(W^{s,p})>\sob(W^{t,q})$)\\
+	$\implies$ 
+	\begin{align*}
+		\|D^t(v-Iv)\|_{L^{q}(\hat{T})} &\leq\approx \inf_{p \in \P_{n}(N(\hat{T}))} \|v\|_{W^{s,p}} \\
+									   &\leq\approx \|v\|_{W^{t,p}(N(\hat{T}))}
+	\end{align*}
+	Transform back onto $T$.
+\end{proof}
+
+
