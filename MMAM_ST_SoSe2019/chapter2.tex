@@ -288,3 +288,270 @@ Wir brachen für Existenz von Lösungen von VIP($X,F$):
 			\end{pmatrix}
 		.\] 
 \end{itemize}
+
+\section{Existenz von Nash-Gleichgewichten via Variationsungleichungen}%
+\label{sec:Existenz von Nash-Gleichgewichten via Variationsungleichungen}
+
+Betrachte VIP($X,F$) mit $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n} $, d.h. wir suchen
+\[
+	{x}^{*} \in X \quad \text{ mit } \quad F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X
+.\] 
+
+\begin{satz}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex
+		\item $F \colon X \rightarrow \R^{n} $
+		\item $G \in \R^{n \times n}$ s.p.d.
+		\item $\gamma > 0$
+	\end{itemize}
+	Dann ist ${x}^{*}$ genau dann eine Lösung von VIP($X,F$), wenn gilt
+	\[
+		{x}^{*} = P_{X,G}\Big({x}^{*} - \gamma G^{-1}F({x}^{*})\Big)
+	,\] 
+	d.h. ${x}^{*}$ ist ein Fixpunkt von $G(x):= P_{X,G}\Big(x - \gamma  G^{-1}F(x)\Big)$.
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	In beiden Fällen gilt ${x}^{*}\in X$. Weiter gilt ${x}^{*}$ löst VIP($X,F$) genau dann, wenn
+	\begin{align*}
+		&&F({x}^{*})^{T}(x-{x}^{*}) \geq 0 \qquad \forall x \in X \\
+		&\iff &
+		(G^{-1}F({x}^{*}))^{T}G(x-{x}^{*}) \geq  0 \qquad \forall x \in X \\
+			 &\iff &
+		\left[ {x}^{*} - ({x}^{*} - \gamma  G^{-1}F({x}^{*})) \right] ^{T} G(x-{x}^{*}) \geq 0 \qquad \forall x \in X \\
+			 &\iff&
+			 \left[ ({x}^{*}-\gamma  G^{-1}F({x}^{*})) \right] ^{T} G(x-{x}^{*}) \leq  0 \qquad \forall x \in X \\
+			 &\iff&
+			 P_{X,G}\Big({x}^{*}-\gamma  G^{-1}F({x}^{*})\Big) = {x}^{*}
+	\end{align*}
+\end{proof}
+
+\begin{satz}[Fixpunktsatz von Brower]
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X\subseteq \R^{n}$ nichtleer, konvex, \underline{kompakt}
+		\item $H \colon X \rightarrow X $ stetig
+	\end{itemize}
+	Dann besitzt $H$ mindestens einen Fixpunkt, d.h. es gibt ein ${x}^{*}\in X$ mit 
+	\[
+		H({x}^{*}) = {x}^{*}
+	.\] 
+\end{satz}
+
+\begin{satz}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X \subseteq \R^{n}$ nichtleer, konvex, kompakt
+		\item $F \colon X \rightarrow \R^{n} $ stetig
+		\item $G \in \R^{n \times n}$ s.p.d.
+		\item $\gamma > 0$
+	\end{itemize}
+	Dann hat VIP($X,F$) mindestens eine Lösung.
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	Wende den Browerschen Fixpunktsatz auf die Funktion $H \colon X \rightarrow X $ mit
+	\[
+		H(x) = P_{X,G}(x-\gamma G^{-1}F(x))
+	\] 
+	an.
+\end{proof}
+
+\begin{lemma}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X \subseteq \R^{n}$ nichtleer, konvex, kompakt
+		\item $F \colon X \rightarrow \R^{n} $ pseudomonoton und stetig
+	\end{itemize}
+	Dann gilt:
+	\[
+		{x}^{*} \in X \text{ löst VIP}(X,F) \iff F(x)^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X
+	.\] 
+\end{lemma}
+
+\begin{proof}
+%\label{thm:}
+	$F$ pseudomonoton, d.h.
+	\[
+		F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \implies F(x)^{T}(x-{x}^{*}) \geq  0 \qquad \forall x, {x}^{*} \in X
+	.\] 
+	\begin{itemize}
+		\item "$\Longrightarrow$"
+	
+			Ist ${x}^{*} \in X$ eine Lösung von VIP($X,F$), so folgt sofort aus der Definition von Pseudomonotonie, dass gilt
+			\[
+				F(x)^{T}(x-{x}^{*}) \geq  0 \qquad \forall x \in X
+			.\] 
+	
+		\item "$\Longleftarrow$"
+	
+		Sei ${x}^{*} \in X$ mit
+		\[
+			F(x)^{T}(x-{x}^{*}) \geq  0 \qquad \forall x \in X
+		.\]
+		Sei $c \in (0,1)$ beliebig. Dann gilt
+		\begin{align*}
+		&&F({x}^{*} + c (x-{x}^{*}))^{T}\underbrace{({x}^{*} + c(x-{x}^{*}) - {x}^{*})}_{=c(x-{x}^{*})} \geq 0 & \\
+		&\implies&
+			F({x}^{*} + c(x-{x}^{*}))^{T}(x-{x}^{*}) \geq 0&\qquad\forall c \in (0,1)
+		\end{align*}
+		Für $c \downarrow 0$ folgt $F({x}^{*})^{T}(x-{x}^{*}) \geq  0$ für alle $x \in X$.
+	
+	\end{itemize}
+\end{proof}
+
+\begin{satz}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex
+		\item $F \colon X \rightarrow \R^{n} $ pseudomonoton und stetig
+	\end{itemize}
+	Dann ist die Lösungsmenge von VIP($X,F$) konvex (eventuell leer).
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item ${x}^{*}, \hat{x} \in X$ zwei Lösungen von VIP($X,F$)
+		\item $c \in [0,1]$
+	\end{itemize}
+	Dann gilt
+	\[
+		\left.
+		\begin{array}{r}
+		F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X \\
+		F(\hat{x})^{T}(x-\hat{x}) \geq  0 \quad \forall x \in X \\
+		\end{array}
+	\right\}
+	\implies
+	\left\{
+	\begin{array}{r}
+	F\Big(c{x}^{*}+(1-c)\hat{x}\Big)^{T}\bigg(x-\Big(c{x}^{*}+(1-c)\hat{x}\Big)\bigg) \geq  0 \\ \forall x \in X
+	\end{array}
+	\right.
+	.\] 
+	Nach dem Lemma gilt
+	\begin{align*}
+		F(x)^{T}(x-{x}^{*}) &\geq 0 \quad \forall x \in X \qquad/\cdot c \\
+		F(x)^{T}(x-\hat{x}) &\geq 0 \quad \forall x \in X \qquad/\cdot (1-c) \\
+		\implies F(x)^{T}\bigg(x-\underbrace{\Big(c{x}^{*}+(1-c)\hat{x}\Big)}_{=:\tilde{x}} \bigg) &\geq 0 \quad \forall x \in X
+	\end{align*}
+	Nach dem Lemma ist dann auch $\tilde{x}$ eine Lösung von VIP($X,F$)
+\end{proof}
+
+\begin{satz}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex
+		\item $F \colon X \rightarrow \R^{n} $ strikt monoton.
+	\end{itemize}
+	Dann hat VIP($X,F$) höchstens eine Lösung (eventuell auch keine).
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	Angenommen $\hat{x}, {x}^{*} \in X$ mit $\hat{x} \pm {x}^{*}$ sind zwei Lösungen von VIP($X,F$), d.h.
+	\begin{align*}
+		F({x}^{*})^{T}(x-{x}^{*}) &\geq 0 \quad \forall x \in X \qquad (\text{ nutze }x=\hat{x}) \\
+		F(\hat{x})^{T}(x-\hat{x}) &\geq 0 \quad \forall x \in X \qquad (\text{ nutze }x={x}^{*}) \\
+	\end{align*}
+	\begin{align*}
+		\implies \Big( F({x}^{*}) - F(\hat{x}) \Big) ^{T} (\hat{x} - {x}^{*}) &\geq  0 \\
+		\implies \Big( F({x}^{*}) - F(\hat{x}) \Big) ^{T} ({x}^{*} -\hat{x} ) &\leq  0 \quad\lightning
+	\end{align*}
+	Wegen ${x}^{*} \neq \hat{x}$ Widerspruch zur strikten Monotonie.
+\end{proof}
+
+\begin{lemma}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex
+		\item $F \colon X \rightarrow \R^{n} $ stetig
+		\item ${x}^{*} \in X$
+		\item $r > \norm{{x}^{*}} _{2}$
+	\end{itemize}
+	Dann ist ${x}^{*}$ genau dann eine Lösung von VIP($X,F$), wenn es eine Lösung von VIP($X_{r},F$) ist mit
+	\[
+	X_{r}:= \left\{ x \in X ~|~ \norm{x} _{2}\leq  r \right\} 
+	.\] 
+	% TODO : Bild
+\end{lemma}
+
+\begin{proof}
+%\label{thm:}
+	\begin{itemize}
+		\item "$\Longrightarrow$"
+	
+			Sei ${x}^{*}$ eine Lösung von VIP($X,F$). Dann gilt ${x}^{*} \in X_{r}$ und
+			\[
+				F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X \supseteq X_{r}
+			.\] 
+			$\implies {x}^{*}$ löst VIP($X,F$).
+	
+		\item "$\Longleftarrow$"
+	
+			Sei ${x}^{*} \in X_{r}$ eine Lösung von VIP($X_{r},F$). Dann gilt ${x}^{*} \in X$ und
+			\[
+				F({x}^{*})^{T}(x-{x}^{*}) \quad \forall x \in X \text{ mit } \norm{x}_{2}  \leq  r
+			.\] 
+		% TODO : Skizze	
+			Sei $x \in X \setminus  X_{r}$ beliebig. Dann gilt wegen $\norm{{x}^{*}}_{2}< r$
+			\[
+				\hat{x} = {x}^{*} + c(x-{x}^{*}) \quad \text{ für }c>0 \text{ klein } \hat{x} \in X_{r}
+			.\] 
+			Also
+			\begin{align*}
+				&\implies F({x}^{*})^{T}(\hat{x}-{x}^{*}) = F({x}^{*})^{T}({x}^{*} + c (x-{x}^{*}) - {x}^{*}) \geq  0 \\
+				&\implies F({x}^{*})^{T}(x-{x}^{*}) \geq  0
+			\end{align*}
+			
+	\end{itemize}
+	
+\end{proof}
+
+\begin{satz}
+%\label{thm:}
+	Sei
+	\begin{itemize}
+		\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex
+		\item $F \colon X \rightarrow \R^{n} $ stetig
+	\end{itemize}
+	Gibt es einen Punkt $\overline{x} \in X$ mit
+	\[
+		\lim_{\substack{\norm{x}_{2} \rightarrow \infty \\ x \in X}} \frac{(F(x) - F(\overline{x}))^{T}(x-\overline{x})}{\norm{x-\overline{x}}_{2} } = + \infty
+	\] 
+	dann hat das VIP($X,F$) mindestens eine Lösung.
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	% TODO : Skizze 
+	Wähle $r > \norm{\overline{x}}_{2} $ und $\mu > \norm{F(\overline{x})} _{2}$ mit
+	\[
+		\Big( F(x) - F(\overline{x}) \Big) ^{T}(x-\overline{x}) \geq  \mu  \norm{x -\overline{x}} _{2} \qquad \forall x \in X \text{ mit } \norm{x} _{2} \geq  r
+	.\] 
+	Daraus folgt für alle $x \in X$ mit $\norm{x} _{2}\geq r$ gilt
+	\[
+		F(x)^{T}(x-\overline{x}) \geq  \mu \norm{x-\overline{x}} - \underbrace{F(\overline{x})^{T}(x-\overline{x})}_{\leq \norm{F(\overline{x})} _{2}\norm{x-\overline{x}} _{2}} \geq \underbrace{(\mu -\norm{F(\overline{x})} _{2})}_{>0} \underbrace{\norm{x-\overline{x}} _{2}}_{>0} >0
+	.\] 
+	Daraus folgt wiederum, dass das VIP($X,F$) keine Lösung haben kann mit $\norm{{x}^{*}} _{2}\geq  r$.
+
+	Da $X_{r}$ nichtleer, konvex, kompakt und $F$ stetig ist, gibt es eine Lösung ${x}^{*}$ von VIP($X_{r},F$).
+
+	Aus $\overline{x} \in X_{r}$ folgt
+	\[
+		F({x}^{*})^{T}(\overline{x}-{x}^{*})\geq 0 \implies \norm{{x}^{*}} _{2}< r
+	.\] 
+	Mit dem Lemma folgt, dass ${x}^{*}$ eine Lösung von VIP($X,F$) ist.
+\end{proof}
