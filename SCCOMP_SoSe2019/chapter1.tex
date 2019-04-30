@@ -364,7 +364,7 @@ Let $\lambda _{1}, \ldots , \lambda _{n}$ be eigenvectors of $G_{GS}(\omega )$.
 	\end{enumerate}
 	For answers look here:
 	\begin{enumerate}[label=(\alph{enumi})]
-		\item Gauss-Seidel / SOR
+		\item Gauss-Seidel / SOR (successive overrelaxation)
 			\begin{itemize}
 				\item Y. Saad, Ch. 4.2.5, Thm. 4.1.6
 				\item A. Greenbaum, Ch. 10.11, Thm 10.1.3
@@ -378,5 +378,290 @@ Let $\lambda _{1}, \ldots , \lambda _{n}$ be eigenvectors of $G_{GS}(\omega )$.
 				\item A. Meister, Ch. 4.1.4
 			\end{itemize}
 	\end{enumerate}
-	
 \end{mdframed}
+
+\begin{mdframed}
+%\label{thm:}
+	\underline{Results for GS/SOR method}:
+
+	\begin{thm}
+	%\label{thm:}
+		Let $A = I - L - U$ with
+		\begin{equation}\label{eq:gsstar}\tag{$\ast$}
+			\forall c \in \R ~ \forall\gamma  \in \R \setminus \left\{ 0 \right\}: \qquad \det(cI-L-U) = \det(cI-\gamma L - \gamma ^{-1}U) 
+		\end{equation}
+		and $\lambda \neq 0$ is eigenvalue of $G_{GS}(\omega )$ for $\omega \in(0,2)$, then
+		\[
+		\mu  = \frac{\lambda +\omega +1}{\omega \lambda ^{\frac{1}{2}}} \text{ is eigenvalue of }G_{J}
+		.\] 
+	\end{thm}
+	\begin{thm}
+	%\label{thm:}
+		If
+		\begin{itemize}
+			\item $A$ satisfies \href{eq:gsstar}{($\ast$)} 
+			\item $G_{J}$ only real eigenvalues
+			\item $\beta = \rho (G_{J}) < 1$
+		\end{itemize}
+		Then
+		\begin{itemize}
+			\item SOR converges
+			\item \[
+					\rho (G_{GS}(\omega )) = \begin{cases}
+						\frac{1}{4} \left[ \omega \beta + \sqrt{(\omega \beta )^2 + 4(\omega +1)}  \right]^2 & \text{ for }0 < \omega \leq \omega _{opt} \\
+						\omega -1 & \text{ for } \omega _{opt} \leq  \omega < 2
+					\end{cases}
+			.\] 
+		\item $\omega _{opt} = \frac{2}{1 +\sqrt{1-\beta ^2} }$
+		\end{itemize}
+	\end{thm}
+
+	\underline{Results for Richardson method} : N/A
+\end{mdframed}
+
+\section{Symmetric splitting schemes}
+\label{sec:Symmetric splitting schemes}
+
+Let $P$
+\begin{itemize}
+	\item easy to invert
+	\item approx. $A$
+\end{itemize}
+If $P$ is symmetric and positive definite, we could rewrite our linear system as:
+\[
+	\left.
+	\begin{array}{rl}
+	\underbrace{P^{-\frac{1}{2}}A P^{-\frac{1}{2}}}_{\tilde{A}} y &= \underbrace{ P^{-\frac{1}{2}}b}_{\tilde{b}} \\
+	P^{-\frac{1}{2}}y &= x
+	\end{array}
+	\right\}
+	\tilde{A} y = \tilde{b}
+.\] 
+If A ist positive definite then $\tilde{A}$ is also positive definite. This procedure is called "(symmetric) preconditioning" of $Ax = b$.
+
+We have
+\begin{itemize}
+	\item Jacobi preconditioner $P_{J}$ is symmetric and for $\omega , d_{ii} \in \R_{>0}$ also positive definite.
+	\item Richardson preconditioner $P_{R}$ is symmetric and positive definite for $\omega \in \R_{>0}$.
+	\item Gauss-Seidel preconditioner $P_{GS}(\omega )$ is not symmetric.
+\end{itemize}
+
+\underline{How to symmetrize GS?} 
+
+We try to combine forward and backward GS
+	\begin{align*}
+		(\omega ^{-1}D-L) x^{k+\frac{1}{2}} &= b -\left( \frac{\omega -1}{\omega }D-U \right) x^{k} \\
+		(w^{-1}D-U) x^{k+1} &= b- \left( \frac{\omega -1}{\omega }D-L \right) x^{k+\frac{1}{2}} \\
+							&= b - \left( \frac{\omega -1}{\omega }D-L \right) (\omega ^{-1}D-L)^{-1}\Big(b-\left(\frac{\omega -1}{\omega }D-U\right)x^{k}\Big)
+	\end{align*}
+	It follows
+	\[
+	x^{k+1}=Gx^{k} + P^{-1}b
+	\] 
+	with
+	\begin{align*}
+		G &= (D-\omega U)^{-1} \Big( (1-\omega )D+\omega L)\Big)(D-\omega L)^{-1} \Big( (1-\omega ) D + \omega U \Big) \\
+		P^{-1}&= \omega (2-\omega )(D-\omega U)^{-1}D (D-\omega L)^{-1}
+	\end{align*}
+	\[
+\implies P \text{ symmetric positive definite }	
+	.\] 
+	\[
+		\implies \text{ scheme is called symmetric SOR \underline{(SSOR)} } (\text{ if } \omega > 1)
+	.\] 
+\end{itemize}
+
+\section{Block-relaxation methods}%
+\label{sec:Block-relaxation methods}
+
+Instead of eliminating individual components of the residual, we could work with blocks of components:
+
+Let
+\[
+A = \begin{bmatrix}
+\begin{bmatrix}
+A_{11}
+\end{bmatrix}
+&\cdots & 
+\begin{bmatrix}
+A_{1p}
+\end{bmatrix} \\
+\vdots &\ddots& \vdots\\
+\begin{bmatrix}
+A_{p1}
+\end{bmatrix}
+&\cdots & 
+\begin{bmatrix}
+A_{pp}
+\end{bmatrix}
+\end{bmatrix}
+\qquad
+x = \begin{bmatrix}
+x_1 \\ \vdots \\ x_{p}
+\end{bmatrix}
+\qquad
+b = \begin{bmatrix}
+b_1 \\ \vdots \\ b_{p}
+\end{bmatrix}
+.\] 
+One block of a matrix-vector product $Ax$:
+\[
+	(Ax)_{i} =  \sum_{j=1}^{p}{A_{ij}x_{j}}
+.\] 
+Analogously to the point-relaxation schemes, we introduce a splitting $A = D-L-U$ with
+\[
+D=
+\begin{bmatrix}
+	\begin{bmatrix}
+	A_{11}
+	\end{bmatrix}
+	\\
+	&\begin{bmatrix}
+	A_{22}
+	\end{bmatrix}
+	\\
+	&&\ddots
+	\\
+	&&&\begin{bmatrix}
+	A_{pp}
+	\end{bmatrix}
+\end{bmatrix}
+\qquad
+L = \begin{bmatrix}
+0 \\
+\begin{bmatrix}
+	A_{21}
+\end{bmatrix}
+& 0 \\
+&\begin{bmatrix}
+A_{32}
+\end{bmatrix}
+\\
+&&\ddots \\
+&&&\begin{bmatrix}
+A_{p p-1}
+\end{bmatrix}
+& 0
+\end{bmatrix}
+\] 
+and $U=D-L-A$.
+
+Thus for the Jacobi method, we get the scheme
+\[
+	A_{ii}x_{i}^{(k+1)} = b_{i}+\Big( (L+U)x^{k} \Big) _{i} = b_{i} - \sum_{j \neq i}^{}{A_{ij}x_{j}^{(k)}}
+.\] 
+Typically $A_{ii}$ are much smaller than $A$ and sometimes simple to invert.
+\begin{exam}
+%\label{thm:}
+	Finite Differences $A=\laplace_{h}^{(5)}$ with lexicographical ordering:
+	\[
+	A_{ii} = A_{0} = \frac{1}{h^2}\begin{bmatrix}
+		4 & -1 \\
+		-1 & 4 \\
+		&&\ddots \\
+		&&&4& -1\\
+		&&&-1 & 4
+	\end{bmatrix}
+	\in \R^{(N_{x}+2) \times (N_{x} +2)}
+	.\] 
+	This matrix is tridiagonal.
+	\[
+	L+U = \frac{1}{h^2}\begin{bmatrix}
+	& I \\
+	I && \ddots \\
+  	&\ddots &&I \\
+	&&I
+	\end{bmatrix}
+	.\] 
+	with $n_1 = n_2 = \ldots  N_{x} +2$ and $p=N_{y}+2$
+	\begin{itemize}
+		\item efficient Algorithm: Thomas Algorithm
+		\item all blocks are the same
+		\item factorize only once
+	\end{itemize}
+\end{exam}
+
+\subsection{General block concept}
+\label{sec:General block concept}
+
+\underline{Basic iteration}
+
+Let $S=\left\{ 1, \ldots, n \right\} $ be the overall index set. Partition $S$ into subsets $S_{i}$ ($i=1, \ldots, p$) (not necessarily disjunct) with
+\[
+S_{i}\subseteq S \qquad \bigcup_{i=1, \ldots, p}S_{i} = S
+.\] 
+If $S_{i}\cap S_{j} = \emptyset$ ($i \neq j$) we call this a \underline{non-overlapping} partitioning of $S$, otherwise a \underline{overlapping} partitioning.\enter
+
+In the following let $n_{i}= \abs{S_{i}} $ be the size of the subset $S_{i}$ and 
+\[
+S_{i}= \left\{ m_{i}(1), m_{i}(2), \ldots , m_{i}(n_{i}) \right\} 
+.\] 
+
+To restrict the rows/columns of a matrix to the subsets, we use a transformation matrix
+\[
+	V_{i}= \left[ e_{m_{i}(1)}, e_{m_{i}(2)}, \ldots , e_{m_{i}(n_{i})} \right] \in \R^{n \times n_{i}}
+.\] 
+Additionally we introduce the matrices $W_{i} \in \R^{n \times n}$ such that
+\[
+\sum_{i=1}^{p}{V_{i}W_{i}^{T}} = I \in \R^{n \times n}
+.\] 
+Therefor choose $\eta _{m_{i}(j)} \in \R$ such that
+\[
+	W_{i} = \left[ \eta _{m_{i}(1)}e_{m_{i}(1)}, \ldots , \eta _{m_{i}(n_{i})}e_{m_{i}(n_{i})} \right] 
+,\] 
+e.g.
+\[
+\eta _{i} = \frac{1}{s_{i}} \quad\text{ where }\quad s_{i} = \# \left\{  l \in \left\{ 1, \ldots, p \right\} | i \in S_{l} \right\} 
+.\] 
+Then
+\[
+	W_{i} = \diag(\eta _{m_{i}(1)}, \ldots , \eta _{m_{i}(n_{i}}) V_{i}
+.\] 
+
+\begin{exam}
+%\label{thm:}
+	Let the index set $S= \left\{ 1,2,3,4,5 \right\} $ with two subsets $S_1 = \left\{  1,2,3 \right\} $ and $S_2 = \left\{ 3,4,5 \right\} $. Then we have
+	\[
+	V_{1}= \begin{bmatrix}
+	1 \\
+	& 1 \\
+	&&1 \\
+	&&0 \\
+	&&0 
+	\end{bmatrix}
+	\quad
+	V_2 = \begin{bmatrix}
+	0 \\
+	0 \\
+	1 \\
+	& 1 \\
+	&& 1
+	\end{bmatrix}
+	\quad \text{ and } \quad
+	W_1 = \begin{bmatrix}
+	1 \\
+	& 1 \\
+	&&0.5 \\
+	&&0 \\
+	&&0
+	\end{bmatrix}
+	\quad
+	W_2 = \begin{bmatrix}
+	0 \\
+	0 \\
+	0.5 \\
+	& 1\\ 
+	&& 1
+	\end{bmatrix}
+	.\] 
+\end{exam}
+
+We introduce the $n_{i} \times s n_{j}$ block matrices $A_{ij}$ and vectors $x_{i}, b_{i}$ as 
+\[
+A_{ij} = W_{i}^{T}AV_{j}, \qquad x_{i} = W_{i}^{T}x, \qquad b_{i}= W_{i}^{T}b
+.\] 
+Thus the solution vector $x$ can be expressed as 
+\[
+x = \sum_{i=1}^{p}{V_{i}x_{i}}
+.\] 
+The matrix $V_{i}W_{i}^{T}$ is a projector from $\R^{n}$to a subspace $\Kappa_{i} \subset \R^{n}$ spanned by the columns of $V_{i}$. We call $W_{i}^{T}$ a \underline{restriction operator} and $V_{i}$ a \underline{prolongation operator}.
