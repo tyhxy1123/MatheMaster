@@ -361,6 +361,109 @@ Folgt direkt aus \ref{item:aufg13_3} und \ref{item:aufg13_4}.
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:16]{Aufgabe 16}}{}
 }\label{loes:16}
+Wenn die Verteilungsfunktion einer Zufallsgröße $X$ in ihren Stetigkeitspunkten nur die
+Werte 0 oder 1 annimmt, dann ist X fast sicher konstant.\nl
+Sei $X$ eine Zufallsgröße und $F_X$ die zugehörige Verteilungsfunktion.
+Sei 
+\begin{align*}
+	U(X):=\set{t\in\R:F_X\text{ ist stetig an der Stelle }t}\subseteq\R
+\end{align*}
+die Menge der Unstetigkeitsstellen der Verteilungsfuktion $F_X$.\nl
+\textbf{Zwischenbehauptung 1:} $S(X)$ ist höchstens abzählbar.
+\begin{proof}
+	Sei
+	\begin{align*}
+		U_n(X):=\set[\bigg]{t\in\R:\underbrace{F_X(t)-\lim\limits_{\varepsilon\downarrow0}F_X(t-\varepsilon)}_{
+			>0\text{, da $F_X$ monoton wachsend}
+		}>\frac{1}{n}}\subseteq U
+	\end{align*}
+	die Menge aller Unstetigkeitsstellen mit einer Sprunghöhe $\geq\frac{1}{n}$.
+	Wegen der Monotonie kann $U_n$ maximal $n$ Elemente beinhalten, denn $\Bild(F_X)\subseteq[0,1]$ und das Intervall $[0,1]$ kann höchstens $n$ Sprünge der minimalen Höhe $\frac{1}{n}$ enthalten.
+	Da
+	\begin{align*}
+		U(X)=\bigcup\limits_{n\in\N} U_n(X)
+	\end{align*}
+	und die $U_n(X)$ endlich $(n\in\N)$ ist $U(X)$ höchstens abzählbar.
+\end{proof}
+
+\textbf{Zwischenbehauptung 2:} $S(X):=\big(U(X)\big)^{\mathrm{C}}$ liegt dicht in $\R$.
+\begin{proof}
+	Wir verwenden den \undefine{Baireschen Kategoriensatz:}
+	
+	\begin{definition}\
+		\begin{enumerate}
+			\item $M\subseteq T$ heißt \textbf{nirgends dicht} $\defiff\text{int}(\overline{M})=\emptyset$\\
+			"der Abschluss enthält keine inneren Punkte"
+			\item $M\subseteq T$ heißt \textbf{von 1. Kategorie} $\defiff\exists$ eine Folge $(M_n)_{n\in\N}\subseteq T$ nirgends dichter Mengen so, dass $M=\bigcup\limits_{n\in\N}M_n$
+			\item $M\subseteq T$ heißt \textbf{von 2. Kategorie} $\defiff M$ ist nicht von 1. Kategorie.
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{satz}[Bairescher Kategoriensatz]\label{satzBairescherKategoriensatz}\enter
+		In einem vollständigen metrischen Raum liegt das Komplement einer Menge 1. Kategorie dicht.
+	\end{satz}
+	
+	Nun folgt die Behauptung direkt aus dem Baireschen Kategoriensatz, denn
+	\begin{align*}
+		U(X)
+		\overset{\text{abzählbar}}{=}
+		\bigcup\limits_{n\in\N}\underbrace{\set{u_n}}_{\text{nirgends dicht}}
+	\end{align*}
+	ist offenbar von 1. Kategorie und somit ist $\big(U(X)\big)^{\mathrm{C}}=S(X)$ (= Menge der Stetigkeitsstellen) dicht in $\R$.
+\end{proof}
+
+Jetzt wo wir die Dichtheit der Stetigkeitsstellen haben, können wir die eigentliche Aussage zeigen.\nl
+\betone{Fall 1: $F_X\equiv0$ oder $_X\equiv 1$}
+Dies ist nicht möglich, denn es würde eine fundamentale Eigenschaft der Verteilungsfunktion verletzen, nämlich
+\begin{align*}
+	\lim\limits_{t\downarrow -\infty}F_X(t)=0
+	\qquad\und\qquad
+	\lim\limits_{t\uparrow +\infty}F_X(t)=1.
+\end{align*}
+
+\betone{Fall 2: $F_X\not\equiv c$ für ein $c\in\R$:}
+Oben haben wir gezeigt, dass die Stetigkeitsstellen dicht in $\R$ liegen.
+Insbesondere ist also $S(X)$ nichtleer.
+Sei $x_\tau\in\R$ die eindeutige Stetigkeitsstelle, an der der Wert von $F_X$ von 0 auf 1 springt, d.h.
+\begin{align*}
+	s_\tau:=\sup\underbrace{\set{t\in S(X):F(t)=0}}_{
+		\overset{!}{\neq}\emptyset
+	}
+	\overset{\ast}{=}
+	\inf\underbrace{\set{t\in S(X):F(t)=1}}_{
+		\overset{!}{\neq}\emptyset
+	}
+\end{align*}
+Eindeutigkeit folgt aus Montonie von $F_X$.\\
+Zu $\ast$: Die Gleichheit hier folgt aus der Dichtheit von $S(X)$.
+"$\leq$" folgt aus Monotonie.
+Da $F_X$ nach Definition linksseitig stetig ist, ist $F_X(s_\tau)=1$ (im Falle der rechtsseitigen Stetigkeit wäre $F_X(s_\tau)=1$).
+Übrigens gilt i.A. $\tau\not\in S(X)$.
+Aber es gibt eine Folge in $S(X)$, die gegen $\tau$ konvergiert.
+Da $S(X)$ dicht in $\R$ und $F_T\colon\R\to[0,1]$ monoton, muss $F_X$ die Form
+\begin{align*}
+	F_X(t)=\left\lbrace\begin{array}{cl}
+		0, &\falls t\leq s_\tau\\
+		1, &\falls t> s_\tau
+	\end{array}\right.
+\end{align*}
+haben.
+Aus der Stochastik-Grundvorlesung bekannt:
+\begin{align*}
+	&\P[a\leq X\leq b]
+	\overset{\text{4. Semester}}{=}
+	F(b+0)-F(a)\qquad\forall a,b\in\R\\
+	&\implies
+	\P[s_\tau\leq X\leq s_\tau]
+	=
+	F(s_\tau+0)-F(s_\tau)
+	=\lim\limits_{\varepsilon\downarrow0} F(s_\tau+\varepsilon)-F(s_\tau)
+	=1-0=1\\
+	&\implies
+	1=\P[s_\tau\leq X\leq s-s_\tau]=\P[X=s_\tau]\\
+	&\implies
+	X\text{ ist fast sicher konstant}
+\end{align*}
 
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:17]{Aufgabe 17}}{}
