@@ -304,16 +304,29 @@ A \arrow[r, "f", bend left] \& B
 \end{matrix}
 \end{align*}
 
-\begin{bsp} %TODO should be a bullet with an identity arrow.
-	$$\begin{tikzcd} 
-	\arrow[loop left, distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]{}{1_A} \bullet 
-	\end{tikzcd},
-	\begin{tikzcd}
-	\bullet \arrow[out=100, in=0, loop, distance=3em, "b_1"] \arrow[out=300, in=260, loop, distance=3em, "b_2"]
-	\end{tikzcd},
-	\begin{tikzcd}
-	\bullet \arrow[r] & \bullet \arrow[r, bend left] & \bullet \arrow[l] \arrow[l, bend left]
-	\end{tikzcd}$$
+\begin{bsp}
+    \[
+        \begin{tikzcd}
+            \bullet
+            \arrow[loop left, "{1_A}", distance=3em, start anchor={[yshift=-1ex]west}, end anchor={[yshift=1ex]west}]
+        \end{tikzcd},\quad
+        \begin{tikzcd}
+            \bullet
+            \arrow[out=100, in=0, loop, distance=3em, "{b_1}"]
+            \arrow[out=300, in=260, loop, distance=3em, "{b_2}"]
+        \end{tikzcd},\quad
+        \begin{tikzcd}
+            \bullet
+                \arrow[r]
+            &
+            \bullet
+                \arrow[r, bend left]
+            &
+            \bullet
+                \arrow[l]
+                \arrow[l, bend left]
+        \end{tikzcd}
+    \]
 \end{bsp}
 
 Umgekehrt: Zu jedem Graph $\Sigma$ gibt es eine "kleinste" Kategorie (freie Kategorie von $\Sigma$ erzeugt, die $V$ als Objekte hat (evtl. kommen noch Pfeile dazu)
