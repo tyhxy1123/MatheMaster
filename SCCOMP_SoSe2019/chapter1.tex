@@ -469,7 +469,6 @@ We try to combine forward and backward GS
 	\[
 		\implies \text{ scheme is called symmetric SOR \underline{(SSOR)} } (\text{ if } \omega > 1)
 	.\] 
-\end{itemize}
 
 \section{Block-relaxation methods}%
 \label{sec:Block-relaxation methods}
@@ -574,6 +573,7 @@ Typically $A_{ii}$ are much smaller than $A$ and sometimes simple to invert.
 	\end{bmatrix}
 	.\] 
 	with $n_1 = n_2 = \ldots  N_{x} +2$ and $p=N_{y}+2$
+
 	\begin{itemize}
 		\item efficient Algorithm: Thomas Algorithm
 		\item all blocks are the same
@@ -656,7 +656,7 @@ Then
 	.\] 
 \end{exam}
 
-We introduce the $n_{i} \times s n_{j}$ block matrices $A_{ij}$ and vectors $x_{i}, b_{i}$ as 
+We introduce the $n_{i} \times n_{j}$ block matrices $A_{ij}$ and vectors $x_{i}, b_{i}$ as 
 \[
 A_{ij} = W_{i}^{T}AV_{j}, \qquad x_{i} = W_{i}^{T}x, \qquad b_{i}= W_{i}^{T}b
 .\] 
@@ -664,4 +664,4 @@ Thus the solution vector $x$ can be expressed as
 \[
 x = \sum_{i=1}^{p}{V_{i}x_{i}}
 .\] 
-The matrix $V_{i}W_{i}^{T}$ is a projector from $\R^{n}$to a subspace $\Kappa_{i} \subset \R^{n}$ spanned by the columns of $V_{i}$. We call $W_{i}^{T}$ a \underline{restriction operator} and $V_{i}$ a \underline{prolongation operator}.
+The matrix $V_{i}W_{i}^{T}$ is a projector from $\R^{n}$ to a subspace $\mathcal{K}_{i} \subset \R^{n}$ spanned by the columns of $V_{i}$. We call $W_{i}^{T}$ a \underline{restriction operator} and $V_{i}$ a \underline{prolongation operator}.
