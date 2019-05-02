@@ -267,6 +267,26 @@ methode(this);}
 	\href{https://stackoverflow.com/questions/586363/why-is-super-super-method-not-allowed-in-java}{Niemals \code{super.super(...)} schreiben!}
 \end{enumerate}
 
+\subsection{Overriding \& Dynamisches / Spätes Binden (während der Laufzeit)}
+\begin{enumerate}[label=(\arabic*)]
+	\item Compiler testet, ob Instanzmethodenaufruf möglich ist
+	(in der Klasse der Referenzvariable)
+	%\code{var.print()}
+	\item Da Variablen polymorph sind, können sie Objekte jeder Unterklassen referenzieren (inklusive der Klasse selbst)
+	\item \define{dynamisches / spätes Binden} beginnt also nach der korrekten Instanzmethode zu suchen, die auf dem Objekttyp / der Klasse aufgerufen werden soll.
+	\index{dynamisches Binden}
+	\index{spätes Binden|\see{dynamisches Binden}}
+\end{enumerate}
+$\implies$ Der Instanzmethodenaufruf funktioniert \betone{immer} (außer die Referenz ist \code{null})!
+
+\subsection{Statisches Binden (während der Compilezeit)}
+\index{statisches Binden}
+\begin{itemize}
+	\item alle Instanzmethoden in einer \code{final class} (verbietet Vererbung)
+	\item alle Klassenmethoden (\code{static})
+	\item alle Instanzmethoden, die mit \code{private} oder \code{final} (verbietet Overriding) deklariert wurden
+\end{itemize}
+$\implies$ Alle anderen Methoden nutzen dynamisches Binden während der Laufzeit!
 
 \section{Anwendungsgebiete, Einschränkungen, Vor- und Nachteile}
 
