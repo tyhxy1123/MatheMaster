@@ -665,3 +665,108 @@ Thus the solution vector $x$ can be expressed as
 x = \sum_{i=1}^{p}{V_{i}x_{i}}
 .\] 
 The matrix $V_{i}W_{i}^{T}$ is a projector from $\R^{n}$ to a subspace $\mathcal{K}_{i} \subset \R^{n}$ spanned by the columns of $V_{i}$. We call $W_{i}^{T}$ a \underline{restriction operator} and $V_{i}$ a \underline{prolongation operator}.
+
+\subsection*{Projection procedure}
+\begin{itemize}
+	\item extract approximate solution to $Ax=b$ in subspace of $R^{n}$
+	\item subspace $\mathcal{K}$ is called "search space" / "trial space" and $\dim \mathcal{K} = m$
+	\item $m$ constraints must be imposed to extract such an approximation, i.e.
+		\begin{itemize}
+			\item Residual $r = b -Ax$ is constrained to be orthogonal to $m$-dim subspace $\mathcal{L} \subset  \R^{n}$
+			\item $\mathcal{L}$ is called "constraints space" / test space
+			\item $\mathcal{K}$ and $\mathcal{L}$ can be the same $\rightarrow$ orthogonal method
+			\item $\mathcal{K}$ and $\mathcal{L}$ can be different $\rightarrow$ oblique method
+		\end{itemize}
+\end{itemize}
+
+\subsection*{General procedure}
+\label{sec:General procedure}
+
+Let $x_0$ be an initial guess. Find $x \in x_0 + \mathcal{K}$ such that
+\begin{equation}\label{eq:generalproceedstar}\tag{$\ast$}
+	b - Ax ~\bot~ \mathcal{L}
+\end{equation}
+So, if $x$ is written as $x=x_0 + \delta $ and $r_0 = b -Ax_0$ then \href{eq:generalproceedstar}{($\ast$)} means
+\begin{align*}
+	&b-a(x_0 + \delta ) ~\bot~\mathcal{L} \\
+	\implies &r_0 - A \delta ~\bot~ \mathcal{L}
+\end{align*}
+That is:
+\[
+	\text{ Find } x = x_0 + \delta \quad \delta  \in \mathcal{K} \quad\text{ s.t. }\quad (r_0 - A \delta  , \omega ) = 0 \quad \forall \omega  \in \mathcal{L}
+.\] 
+
+In the following, we assume that a space $\mathcal{K}_{i}$ is spanned by the columns of $V_{i}$ and $\mathcal{L}_{i}$ is spanned by the columns of $W_{i}$ respectively.
+Let
+\[
+x^{k+1} = x^{k} + \underbrace{V_{i}d_{i}}_{=\delta } 
+\] 
+and
+\[
+r^{k} = b - Ax^{k}
+\] 
+then we get for the new residual
+\begin{align*}
+	r^{k+1} &= b - Ax^{k+1} \\
+			&= b- A(x^{k} + V_{i}d_{i}) \\
+			&= r^{k} - AV_{i}d_{i}
+\end{align*}
+The orthogonality condition reads:
+\begin{align*}
+	0 = W_{i}^{T}r^{k+1} = W_{i}^{T}(r^{k}- AV_{i}d_{i}) \\
+	\implies W_{i}^{T} r^{k} = \underbrace{W_{i}^{T} A V_{i}}_{= A_{ii}} d_{i} 
+\end{align*}
+
+If $A_{ii}$ is non-singular, we get
+\[
+d_{i} = A_{ii}^{-1} W_{i}^{T} r^{k}
+\] 
+and thus
+\[
+x^{k+1} = x^{k}+ V_{i}A_{ii}^{-1}W_{i}^{T} r^{k}
+.\] 
+
+% TODO : ordentlichen Pseudocode hier
+
+\subsection*{Block-Jacobi-Iteration}
+\label{sec:Block-Jacobi-Iteration}
+"additive projection procedure"
+
+FOR $i=1, \ldots, p$
+	solve $A_{ii}d_{i} = W_{i}^{T}(b-Ax^{k})$
+END FOR
+$x^{k+1}= x^{k} + \sum_{i=1}^{p}{\color{orange}\omega _{i}\color{black}V_{i}d_{i}}$
+
+\subsection*{Block-Gaus-Seidel-Iteration}
+\label{sec:Block-Jacobi-Iteration}
+"multiplicative projection procedure"
+
+Let $x^{k+1} = x^{k}$
+FOR $i=1, \ldots, p$
+	$A_{ii}d_{i} = W_{i}^{T}(b-Ax^{k+1})$
+	$x^{k+1} = x^{k+1} +\color{orange}\omega _{i}\color{black} V_{i}d_{i}$
+END FOR
+
+\subsection*{Multi-Splitting-Parallelization}
+\label{sec:Multi-Splitting-Parallelization}
+
+\begin{defintion}
+%\label{thm:}
+	Let $A, B_{k}, C_{k}, D_{k}\in \R^{n \times n}$.
+	The matrices $B_{k}, C_{k}, D_{k}$ are called a \underline{multi-splitting} of $A$ if
+	\begin{enumerate}[label=(\arabic{enumi})]
+		\item $A = B_{k} - C_{k}$ for $i=1, \ldots, p$, where $B_{k}$ is invertible
+		\item $\sum_{k}^{}{D_{k}} = I$, where $D_{k}$ is diagonal matrix with $D_{k} \geq  0$
+	\end{enumerate}
+\end{defintion}
+
+Algorithm:
+
+Choose $x_0$ arbitrarily and $\omega $
+FOR $k=1,\ldots $
+	$\overline{x} = x_{i}$
+	FOR $i=1, \ldots, p$
+	Find $D_{k}y_{k}$ where $y_{k}$ satisfies $B_{k}y_{k} = C_{k}\overline{x}+b$
+	END FOR
+	$x_{k+1} = (1-\omega ) x_{k} + \omega \sum_{k}^{}{D_{k}y_{k}}$
+END FOR
