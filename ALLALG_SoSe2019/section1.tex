@@ -8,10 +8,10 @@
 %Vorlesung vom 02.04.2019 war scheinbar inhaltslos, deshalb lasse ich die mal
 
 Die \define{Strukturmathematik} stellt sich die Aufgabe Strukturen zu modellieren und technisch wie sprachlich zugänglich zu machen, sogenannte \define{Theoriebildung}.
-Dies ist ein evokutionärer Prozess in dem neue Begriffe entstehen und alte untergehen.
+Dies ist ein evolutionärer Prozess, in dem neue Begriffe entstehen und alte untergehen.
 
 \subsection{Warum Modellierung und Formalisierung?}
-Natürliche Sprache
+%Natürliche Sprache
 
 \begin{figure}[H] % oder ht!
 	\begin{center}
@@ -37,24 +37,35 @@ Die automatisierte Sprache ist algorithmisch reichhaltig, aber strukturell arm.
 Im Sinne der mathematischen Beschreibung / Modellierung ist ein Modell-Vergleich oft nicht möglich, wenn ich kein abstraktes Modell habe!\nl
 Es gibt zwei Wege, Wissen zu erlangen:
 \begin{enumerate}
-	\item \define{Top Down:} deduktive Methode
-	\item \define{Bottom Up:} induktive Methode
+	\item \define{Top Down:} deduktive Methode (allgemeine Aussage $\to$ Einzelfall)
+	\item \define{Bottom Up:} induktive Methode (Einzelfall $\to$ allgemeine Aussage)
 \end{enumerate}
 
-Technisches Makro sind symbolische Abkürzungen, z.B. "$\R$".
-Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
+\define{Technische Makros} sind symbolische Abkürzungen, z.B. "$\R$".
+Im Gegensatz dazu gibt es auch \define{verbale Makros}, z.B. "reelle Zahlen".
+\index{technisches Makro}
+\index{verbales Makro}
 
-\subsection{Mengenbasierte Modellierung / strukturelle Modellierung}
+\section{Mengenbasierte Modellierung / strukturelle Modellierung}
+
+Strukturelle Modellierung ist eine mengenbasierte Modellierung.
+Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
+
+\subsection{\href{https://de.wikipedia.org/wiki/Inzidenzstruktur}{Inzidenzstrukturen}}
 \begin{definition}
-	Eine \define{Inzidenzstruktur} ist ein Tripel $\Inz=(P,B,I)$ wobei $P,B,I$ Mengen sind mit $I\subseteq P\times B$. 
-	Interpretation:
+	Seien $P,B$ disjunkte Mengen und sei $I\subseteq P\times B$.
+	Dann heißt das Tripel $\Inz=(P,B,I)$ \define{Inzidenzstruktur}.
 	\index{Inzidenzstruktur}
 	\begin{itemize}
-		\item $P$ ist Menge von Punkten / Points
-		\item $B$ ist Menge von Blöcken / Blocks
-		\item $I$ Inzidenzrelation (z.B. Lines)
+		\item Elemente von $P$ heißen \define{Punkten / Points}.
+		\item Elemente von $B$ heißen \define{Blöcke / Blocks}.
+		\item $I$ heißt \define{Inzidenzrelation} und die Elemente von $I$ heißen \define{Inzidenzen / Fahnen}.
 	\end{itemize}
-	Für $(p,b)\in I$ schreiben wir auch $pIb$ (incidence) und sagen:\\
+	Wir schreiben auch
+	\begin{align*}
+		pIb\defiff (p,b)\in I
+	\end{align*}
+	und sagen dazu:
 	"Der Punkt $p$ inzidiert mit dem Block $b$ in $\Inz$."\\
 	Für $p\in P$ sei
 	\begin{align*}
@@ -68,9 +79,6 @@ Im Gegensatz dazu gibt es auch verbale Makros, z.B. "reelle Zahlen".
 	die Menge aller mit dem Block $b$ inzidierenden Punkte.
 \end{definition}
 
-Strukturelle Modellierung ist eine mengenbasierte Modellierung.
-Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
-
 \begin{beispiel}\
 	\begin{itemize}
 		\item $P:=$ Eckenmenge eines Würfels
@@ -79,19 +87,26 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{itemize}
 \end{beispiel}
 
-\begin{satz}[Prinzip des doppelten Abzählens]\enter
-	Ist $\Inz=(P,B,I)$ endliche Inzidenzstruktur (d.h. $P$ und $B$ endlich), so gilt
+\begin{definition}
+	Eine Inzidenzstruktur $\Inz=(P,B,I)$ heißt \define{endlich}
+	\begin{align*}
+		\defiff \#P,\#B<\infty
+	\end{align*}
+	Hierbei bezeichnet $\#M$ die Anzahl der Elemente der Menge $M$.
+\end{definition}
+
+\begin{satz}[Prinzip der doppelten Abzählung]\enter
+	Für jede endliche Inzidenzstrukut $\Inz=(P,B,I)$ gilt:
 	\begin{align*}
 		\sum\limits_{p\in P}\# pI=\#I=\sum\limits_{b\in B}\# Ib
 	\end{align*}
-	Hierbei ist $\#M$ die Anzahl der Elemente von $M$.
 \end{satz}
 
 \begin{definition}
-	$\Inz=(P,B,I)$ heißt \define{taktische Konfiguration}
+	$\Inz=(P,B,I)$ heißt \define{\href{https://de.wikipedia.org/wiki/Taktische_Zerlegung}{taktische Konfiguration}}
 	\index{taktische Konfiguration} 
 	\begin{align*}
-		:\iff\exists r_\Inz,k_\Inz\in\N:\forall p\in P,\forall b\in B:\# pI=r_\Inz\und\#Ib=k_\Inz
+		\defiff\exists r_\Inz,k_\Inz\in\N:\forall p\in P,\forall b\in B:\# pI=r_\Inz\und\#Ib=k_\Inz
 	\end{align*}
 \end{definition}
 
