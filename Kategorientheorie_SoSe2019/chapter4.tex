@@ -1,0 +1,44 @@
+\chapter{Spezielle Morphismen und Objekte in Kategorien}
+\begin{bemerkung}
+	Es werden bekannte Eigenschaften von bekannten mathematischen Strukturen in ``Kategoriensprache'' formuliert und sind damit auf alle Kategorieren anwendbar, (auch wo vorher nicht bekannt).
+\end{bemerkung}
+Sei $\Cat$ Kategorie.
+\begin{definition}[Isomorphismus]
+	Sei $f \in \Cat(A,B)$ $(f: \begin{tikzcd}[cramped, sep=small]
+	A \arrow[r] & B
+	\end{tikzcd})$ heißt \define{Isomorphismus} (\ul{iso}), wenn ein $f' \in \Cat(B,A)$ existiert, sodass
+	\[
+		ff' = 1_A \und f' f = 1_B.
+	\]
+\end{definition}
+\begin{bemerkung}
+	$f'$ ist dadurch eindeutig bestimmt und wird mit $\inv{f'}$ bezeichnet. ($\nearrow$ SeSt)
+\end{bemerkung}
+\begin{definition}[Monos und Epis]\
+	\begin{enumerate}[label=]
+		\item Ein $f: \begin{tikzcd}[cramped, sep=small]
+		A \arrow[r] & B
+		\end{tikzcd}$ heißt \define{Monomorphismus} (kurz mono), wenn gilt:\\
+		$\forall X \in \Ob(\Cat) \quad \forall g,g' \in \Cat(X,A)$: $gf = g'f \implies g = g'$
+		\[
+		\begin{tikzcd}
+		X \arrow[r, bend left, "g"] \arrow[r, bend right, "{g'}"'] & A \arrow[r, "f"] & B
+		\end{tikzcd}
+		\]
+		\item dualer Begriff:\\
+		Ein $f: \begin{tikzcd}[cramped, sep=small]
+		A \arrow[r] & B
+		\end{tikzcd}$ heißt \define{Epimorphismus} (epi) $\forall Y \in \Ob(\Cat)\quad \forall g,g' \in \Cat(B,Y)$ gilt
+		\[
+		fg = fg' \implies g=g'.
+		\]
+	\end{enumerate}
+\end{definition}
+\begin{bemerkung}
+	In konkreten Theorien gilt:
+	\begin{align*}
+		\text{injektiv} &\implies \text{ mono}\\
+		\text{surjektiv } &\implies \text{ epi}.
+	\end{align*}
+	($\nearrow$ Übung, Umkehrung gilt nicht immer!)
+\end{bemerkung}

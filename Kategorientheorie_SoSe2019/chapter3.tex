@@ -3,6 +3,7 @@
 % Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+%TODO replace \to with tikzcd and use [cramped, sep=small] to shrink arrow length!
 
 \chapter{Functoren und natürliche Transformationen}
 \begin{enumerate}[label=]
@@ -244,7 +245,7 @@
 Allgemeiner:
 \begin{definition}[konkrete Kategorie]\
 	\label{def:konkreteKat}
-	Eine kategorie $\Cat$ heißt darstellbar als \define{konkrete Kategorie}, wenn ein treuer Functor
+	Eine Kategorie $\Cat$ heißt darstellbar als \define{konkrete Kategorie}, wenn ein treuer Functor
 	\begin{align*}
 		U: \begin{tikzcd}[ampersand replacement=\&] \Cat \arrow[r]\& \Set \end{tikzcd}
 	\end{align*}
@@ -299,8 +300,289 @@ Allgemeiner:
 	\end{tabular}
 \end{center}
 \begin{definition}[\define{natürliche Transformation}]\
+	\label{def:natTrans:3.7}
 	Morphismus für Functoren wird bezeichnet mit \define{natürlicher Transformation} %\ref{def:Functorkat} ... %TODO comes next week! 
+	Sei $\CatA, \CatB$ Kategorien und $F: \CatA \to \CatB$, $G: \CatB \to \CatA$. Eine \define{natürliche Transformation} $\eta$ (von $F$ in $G$).\\
+	Schreibeweise:
+	\[ %TODO fix arrows going not through the RIGHTARROW!
+	\eta:
+	\begin{tikzcd}
+	& \CatA \arrow[dd, bend right=67] \arrow[dd, bend left=67] &   \\
+	F \arrow[rr, Rightarrow] &                                                      & G \\
+	& \CatB                                                    &  
+	\end{tikzcd}
+	\]
+	Ist eine Familie $(\eta_A)_{a \in \Ob(\CatA)}$ von Morphismen (jden $A \in \Ob(\CatA)$ wird ein Morphismus $\eta_A \in \Mor(\CatB)$ zugeordnet) mit folgenden Eigenschaften:
 	\begin{enumerate}
-		\item ...
+		\item $\eta_A: \begin{tikzcd}
+		FA \arrow[r] &GA
+		\end{tikzcd} \in \CatB(FA, GA)$
+		\item Für jeden Morphismus $f: \begin{tikzcd}
+			A \arrow[r] & B
+		\end{tikzcd}$ in $\CatA$ ist das folgende Diagram kommutativ (in $\CatB$):
+		\[
+		\begin{tikzcd}
+			A \arrow[d, "f"'] \\ B
+		\end{tikzcd}
+		%TODO add \CatA
+		\begin{tikzcd}
+		FA \arrow[r, "\eta_A"] \arrow[d, "Ff"] & GA \arrow[d, "Gf"] \\
+		FB \arrow[r, "\eta_B"]                 & GB                
+		\end{tikzcd}
+		%TODO add \CatB
+		\]
 	\end{enumerate}
 \end{definition}
+Eine natürliche Transformation $\eta: \begin{tikzcd}
+F \arrow[r, Rightarrow] & G
+\end{tikzcd}$ heißt \define{natürliche Transformation}, wenn
+$\eta_A: \begin{tikzcd}
+FA \arrow[r] & GA
+\end{tikzcd}$ für jedes $A \in \Ob(\CatA)$ ein Isomorphismus (vgl. \ref{def:Functorkat}) %TODO add later
+ist, d.h. wenn $\eta_A^{-1}: \begin{tikzcd}
+GA \arrow[r] & FA
+\end{tikzcd}$ existiert, sodass
+\begin{align*}
+	\eta_A \eta_A^{-1} = 1_{FA} \und \eta_A^{-1} \eta_A = A_{GA}
+\end{align*}
+Bezeichnung: 
+\[
+\begin{tikzcd}
+	F \arrow[r, Rightarrow, "\approx"] & G
+\end{tikzcd}
+\]
+Functoren und natürliche Transformationen bilden selbst eine Kategorie:
+\begin{defi}[Functorenkategorie] %TODO is it a corollary? it follows all from the definitions we had before?
+	\label{def:Functorkat}
+	Die Functorenkategorie wird notiert mit $\CatB^{\CatA}$.
+	\begin{enumerate}[label=]
+		\item \ul{Objekte:} $\Ob(\CatB^{\CatA})$ alle Functoren $F: \begin{tikzcd}
+		\CatA \arrow[r] & \CatB
+		\end{tikzcd}$
+		\item \ul{Morphismen:}
+		\[
+		\klammern{\CatB^{\CatA}} (F,G) := \set{ \text{ alle natürliche Transformationen von } F \text{ in } G}
+		\]
+		\item \ul{Kompositionen:} 
+		\[
+			\begin{tikzcd}
+				F \arrow[r, Rightarrow, "\eta"] & G \arrow[r, Rightarrow, "\tau"] & H
+			\end{tikzcd}
+		\]
+		ist natürliche Transformation
+		\[
+			\lambda: \begin{tikzcd}
+				F \arrow[r, Rightarrow] & H	
+			\end{tikzcd}
+		\]
+		definiert durch
+		\begin{align*}
+			\lambda_A := \eta_A \tau_A\\
+			\begin{tikzcd}[ampersand replacement=\&]
+				FA \arrow[r, "\eta_A"] \arrow[rr, "\lambda_A", dashed, bend right] \& GA \arrow[r, "\tau_A"] \& HA
+			\end{tikzcd}
+		\end{align*}
+		\item \ul{Identischer Morphismus:}
+		\begin{align*}
+			1_F : \begin{tikzcd}[ampersand replacement=\&]
+			F \arrow[r, Rightarrow] \& F
+			\end{tikzcd}
+		\end{align*}
+		ist definiert durch
+		\begin{align*}
+			1_F := (1_{FA})_{A \in \Ob(\CatA)}\\
+			(\begin{tikzcd}[ampersand replacement=\&]
+				FA \arrow[r, "1_{FA}"] \& FA
+			\end{tikzcd} \in \CatB(FA, FA))
+		\end{align*}
+		($\nearrow$ SeSt $\CatB^{\CatA}$ ist Kategorie)
+	\end{enumerate}
+\end{defi}
+\begin{beispiel}
+	Schauen nochmal den Hom-Functor von Beispiel \ref{bsp:homfunc:3.3} an:
+	\[
+		\HFunc_{K}: 
+		\begin{tikzcd}[ampersand replacement=\&]
+		\V \arrow[r] \&\V \\
+		V \arrow[r] \& \astar{V}
+		\end{tikzcd}
+	\]
+	contra-variante Functor, der zweimal angewendet $\HFunc_{K}\HFunc_{K} = \aastar{-} $ ein co-varianter Functor ist.\\
+	Erinnern an LAAG $V \und \aastar{V}$ (Bidualraum) sind in ``natürlicher Weise'' isomorph, da
+	\[
+	\begin{tikzcd}
+	 V \arrow[r] & \aastar{V}\\
+	 v \arrow[r, maps to] & \phi_v
+	\end{tikzcd}
+	\]
+	wobei 
+	\begin{align*} %TODO why is here an overfull box?
+		\phi_v: \begin{tikzcd}[ampersand replacement=\&]
+			\astar{V} \arrow[r] \& K\\
+			V \arrow[dd, "\phi"'] \& \\
+			\ \arrow[r, maps to] \& \phi(v)\\
+			K
+		\end{tikzcd}
+	\end{align*}
+	ist Vektorraumisomorphismus. Es gibt natürliche Transformationen $\eta: \begin{tikzcd}[cramped, sep=small]
+	\id_{\V} \arrow[r, Rightarrow] & \aastar{(-)} %TODO how to fix this as (-)**?
+	\end{tikzcd}$ definiert durch
+	\begin{align*}
+		\eta_V: \begin{tikzcd}[ampersand replacement=\&]
+			V \arrow[r] \& \aastar{V} \\
+			v \arrow[r, maps to] \& \phi_v
+		\end{tikzcd}
+	\end{align*}
+\end{beispiel}
+\begin{definition}[Kategorientheoretische Äquivalenz]
+	Ein Functor $F: \begin{tikzcd}[cramped, sep=small]
+	\CatA \arrow[r] & \CatB
+	\end{tikzcd}$ heißt \define{Äquivalenz}, wenn es einen Functor $G: \begin{tikzcd}[cramped, sep=small]
+		\CatB \arrow[r] & \CatA
+	\end{tikzcd}$ mit
+	\[
+	\begin{tikzcd}
+		F;G \arrow[r, Rightarrow, "\cong"] & \id_{\CatA}\\
+	\end{tikzcd}
+	\begin{tikzcd}
+	G;F \arrow[r, Rightarrow, "\cong"] & \id_{\CatB}\\
+	\end{tikzcd}
+	\]
+	(natürliche Äquivalenz vgl \ref{def:natTrans:3.7}). Kategorien heißen \define{äquivalent} (Schreibweise: $\CatA \equiv_{\cat} \CatB$), wenn eine Äquivalenz $F:
+	\begin{tikzcd}
+		\CatA \arrow[r] & \CatB
+	\end{tikzcd}$ existiert.
+\end{definition}
+\begin{satz}
+	Ein Functor $F: \begin{tikzcd}[cramped, sep=small]
+	 \CatA \arrow[r] &\CatB
+	\end{tikzcd}$ ist genau dann eine Äquivalenz, wenn $F$ voll und treu ist und
+	\begin{align*}
+		\text{jedes Objekt aus $\CatB$ isomorph zu einem Objekt $FX$ für $X \in \Ob(\CatA)$ ist} \label{eq:functoraquiv:3_10}\tag{$\star$}
+	\end{align*}
+	\[
+	\begin{tikzcd}
+		\CatA & \CatB \\
+		& B\\
+		X & FX \arrow[u, "f"]
+	\end{tikzcd}
+	\]
+\end{satz}
+\begin{proof}
+	\begin{itemize} %TODO fix overfull boxes :(
+		\item ``$\Rightarrow$'': Sei $F$ Äquivalenz und $\exists G: \begin{tikzcd}[cramped, sep=small]
+		\CatB \arrow[r] & \CatA
+		\end{tikzcd}$, sodass \\$\eta: \begin{tikzcd}
+		F; G \nattrans{r}{Rightarrow} & \id_{\CatA}
+		\end{tikzcd}$ und 
+		$\eta'_A : \begin{tikzcd}[cramped, sep=small]
+		G; F \nattrans{r}{Rightarrow} & \id_{\CatB}
+		\end{tikzcd}$, wobei \\$\eta_A: \begin{tikzcd}[cramped, sep=small]
+		G(FA) \arrow[r] & A
+		\end{tikzcd}$ und $\eta_B: \begin{tikzcd}[cramped, sep=small]
+			F(GB) \arrow[r] & B
+		\end{tikzcd}$ sind Isomorphismen und $\implies$ \eqref{eq:functoraquiv:3_10} erfüllt.
+		\begin{itemize}
+			\item \ul{$F$ ist treu:}
+			\[
+			\begin{tikzcd}
+			A \arrow[dd, bend right=50, "{f'}"']\arrow[dd, "f"'] & FA \arrow[dd, "{Ff = Ff'}"] \\
+			\ \arrow[r, maps to, "F"]& \ \\
+			A' & FA'
+			\end{tikzcd}
+			\] und das impliziert, dass $f = f'$. Betrachte die zwei Diagramme
+			\[
+			\begin{tikzcd} %TODO find solution to only have the equal sign! or make two separate and add equal sign with arrow?
+			A \arrow[d, "f"'] \arrow[r, "{\eta_A}"]
+			& G(FA) \arrow[d, shift left=6, near start, "{G(Ff)}"] \arrow[d, white, "||" marking] \arrow[d, shift right=6, near end, "{G(Ff')}"] \arrow[r, "{\eta_A}"] & A' \arrow[d, "{f'}"]\\
+			A' \arrow[r, "{\eta'_A}"]
+			& G(FA') \arrow[r, "{\eta'_A}"]
+			& A'
+			\end{tikzcd}
+			\]
+			Wenn $Ff = Ff'$ ist, dann ist $G(Ff) = G(Ff')$ und das gesamte Diagramm ist kommutativ also gilt
+			\begin{align*}
+			\eta_A f = G(Ff)\eta'_A = G(Ff')\eta'_A = \eta_A f'
+			\end{align*}
+			Also ist $\eta_A$ ein Isomorphismus und damit existiert $\eta^{-1}_A$ sodass $\eta^{-1}_A \eta_A = 1_A$. Daraus folgt dann $f = f'$.
+			\begin{bemerkung}
+				Analog zeigt man, dass $G: \begin{tikzcd}[cramped, sep=small]
+				\CatA \arrow[r] &\CatA
+				\end{tikzcd}$ treu ist.
+			\end{bemerkung}
+			\item \ul{$F$ ist voll:} Wir müssen Subjektivität auf $\CatB(FA, FA')$ zeigen
+			\[
+			\begin{tikzcd}
+				A \arrow[dd, "f"'] 
+				& FA \arrow[dd, "FG"]\\
+				\arrow[r, maps to, "F"'] & \ \\
+				A' & FA'
+			\end{tikzcd}
+			\] 
+			Sei $g: \begin{tikzcd}[cramped, sep=small]
+			FA \arrow[r] & FA'
+			\end{tikzcd}$ (gesucht ist $g = Ff$). %TODO check if this is right!
+			\[
+			\begin{tikzcd}
+				G(FA) \arrow[r, "{\eta_A}"'] \arrow[d, "{Gg}"']
+				& A \arrow[d, "{f}"', dashed]\\
+				G(FA') \arrow[r, "{\eta'_A}"'] & A'
+			\end{tikzcd}
+			\]
+			Behauptung: $Ff = g$
+			\begin{align*}
+				G(Ff) &= \eta_A f \eta^{-1}_A\\
+				&= \eta_A \eta^{-1}_A Gg \eta_{A'} \inv{\eta_{A'}} \\
+				&= Gg.
+			\end{align*}
+			Also ist $G$ treu und damit ist $Ff = g$ gezeigt.
+		\end{itemize}
+	\item ``$\Leftarrow$'': Sei $F$ treu, voll und gelte auch \eqref{eq:functoraquiv:3_10}. Dabei impliziert \eqref{eq:functoraquiv:3_10}, dass für alle $B \in \Ob(\CatB)$ $\exists X_B \in \Ob(\CatA)$. Also existiert $\mu_B : \begin{tikzcd}[cramped, sep=small]
+		FX_B \arrow[r] & B
+	\end{tikzcd}$ Isomorphismus. Der Functor $G: \begin{tikzcd}[cramped, sep=small]
+		\CatB \arrow[r] & \CatA
+	\end{tikzcd}$ wird definiert mit $\begin{tikzcd}[cramped, sep=small]
+		\Ob(\CatB) \arrow[r] & \Ob(\CatA)
+	\end{tikzcd}: \begin{tikzcd}[cramped, sep=small]
+		B \arrow[r, maps to] & X_B
+	\end{tikzcd}$
+	\[
+		\begin{tikzcd}
+			FX_B \arrow[r, "{\mu_A}"'] \arrow[d, dashed, "{\bar{h}_f}"'] 
+			& B \arrow[d, "f"']\\
+			FX_{B'} \arrow[r, "{\mu_{B'}}"'] 
+			& B'
+		\end{tikzcd} \xRightarrow[\text{voll}]{F \text{ treu}} \exists! h_f: F(h_f) = \bar{h}_f 
+		\begin{tikzcd}
+			X_B \arrow[d, dashed, "{\bar{h}_f =: Gf}"]\\
+			X_{B'}
+		\end{tikzcd} 
+	\]
+	Dabei war $G: \begin{tikzcd}[cramped, sep=small]
+		\CatB(B, B') \arrow[r] 
+		& \CatA(X_B, X_{B'})
+	\end{tikzcd}$ mit
+	$\begin{tikzcd}[cramped, sep=small]
+		f \arrow[r, maps to] &h_f
+	\end{tikzcd}$ ($\nearrow$ SeSt: Functoreigenschaften).\\
+	Es gilt:
+	\[
+	\begin{tikzcd}
+		F(GB) \arrow[r, "{\mu_B}"'] \arrow[d, "{\bar{h}_f}"'] 
+		& B \arrow[d, "f"'] \\
+		F(GB') \arrow[r, "{\mu_{B'}}"']
+		& B'
+	\end{tikzcd}
+	\]
+	d.h. $(\mu_B)$ ist natürliche Äquivalenz \\$\begin{tikzcd}[cramped, sep=small]
+		G;F \arrow[r, Rightarrow] 
+		& \id_{\CatB}
+	\end{tikzcd}$.
+	Da $F$ voll und treu ist, existieren $\lambda_A: \begin{tikzcd}[cramped, sep=small]
+	G(FA) \arrow[r] 
+	& A
+	\end{tikzcd}$ mit $F\lambda_A = \mu_{FA}$ für Objekte $A$ (setze $B:= FA, B' := FA' \und f = Fg$). Damit ist $\lambda = (\lambda_A)$ dann eine natürliche Äquivalenz: $\begin{tikzcd}[cramped, sep=small]
+	F;G \arrow[r, Rightarrow] & \id_{\CatA}
+	\end{tikzcd}$ ($\nearrow$ SeSt, ist nur ein kleiner Schritt zu zeigen.)
+	\end{itemize}
+\end{proof}

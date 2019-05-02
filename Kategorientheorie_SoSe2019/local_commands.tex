@@ -9,10 +9,12 @@
 \newcommand{\CatA}{\mathscr A}        % Kategorie A
 \newcommand{\CatB}{\mathscr B }       % Kategorie B
 \newcommand{\op}{\text{op}} 		  % dual category
+\newcommand{\cat}{Cat}				  % Category property?
 \newcommand{\dual}{\partial}		  % make elements dual in a category
 \newcommand{\aussage}{\mathfrak{A}}   % fraktur Aussage
 \newcommand{\V}{\mathscr V}			  % Kategorie V für vector räume
 \newcommand{\astar}[1]{#1^{\ast}}	  % gesternte Sachen!
+\newcommand{\aastar}[1]{#1^{\ast\ast}}% doppelt gesternte Sachen!
 
 
 \DeclareMathOperator{\Ob}{Ob}         % Objekte
@@ -31,6 +33,10 @@
 \DeclareMathOperator{\Monoid}{Monoid}     % Kategorie der Monoide
 \DeclareMathOperator{\HFunc}{H}			  % Hom-Functor
 \DeclareMathOperator{\El}{El}			  % elements of set
+%\DeclareMathOperator{\inverse}[1]{#1^{-1}} 	  % inverse of something
+\newcommand{\inv}[1]{#1^{-1}} 	  % inverse of something
+\undef{\id}
+\DeclareMathOperator{\id}{Id}			 % Identity
 
 % better emptyset symbol
 \let\oldemptyset\emptyset
@@ -39,3 +45,11 @@
 % left and right ``cosets''
 \newcommand*{\lnkset}[2]{#1 \slash #2}
 \newcommand*{\rnkset}[2]{#1 \backslash #2}
+
+% tikzcd stuff
+\newcommand{\nattrans}[2]{\arrow[#1, #2]} % natural transformation arrow
+%\newcommand{\nattrans}[3]{\arrow[#1, #2 , "#3"]} % natural transformation arrow
+\newcommand{\arr}[2]{\arrow[#1, "#2"}
+%\DeclareMathOperator{\arrtext}[4]{\begin{tikzcd}[cramped, sep=small] % Not working :(
+%		#1 \arrow[#2, #3] & #4
+%\end{tikzcd}}
