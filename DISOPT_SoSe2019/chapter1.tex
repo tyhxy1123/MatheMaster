@@ -586,9 +586,9 @@ Dimension von Polyedern?
 \begin{lemma}
 	Sei $P\subset \R^n$ ein Polyeder. Dann ist $x^* \in P$ genau dann ein relativ innerer Punkt, wenn gilt: die einzige Seitenfläche $F$ mit $x^* \in F$ ist $F=P$.
 \end{lemma}
-\begin{beweis}
+\begin{proof}
 	$\to$ Übung?
-\end{beweis}
+\end{proof}
 
 \begin{satz}
 Sei $P = P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A\in \R^{m \times n}, b\in \R^m$. Dann gelten:
@@ -597,22 +597,22 @@ Sei $P = P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A\in \R^{m \times n
 		\begin{equation*}
 			A_{\eq(P),\cdot}x^* = b_{\eq(P)}, A_{\text{ineq}(P),\cdot}x^* < b_{\text{ineq}(P)}
 		\end{equation*}
-	\item Jeder solcher Punkte $x^*$ ist ein relativ innerer Punkt von $P$. Insbesondere ist $\rint(P)=\noteq \emptyset$. 
+	\item Jeder solcher Punkte $x^*$ ist ein relativ innerer Punkt von $P$. Insbesondere ist $\rint(P)=\neq \emptyset$. 
 	\item $\aff(P) = x^* + \text{kern}(A_{\eq(P),\cdot})$ \\
 		$\dim(P) = \dim(\aff(P)) = \dim (\text{kern}(A_{\eq(P),\cdot}))=n - \text{Rang}(A_{\eq(P)},\cdot)$
 \end{enumerate}
 \end{satz}
-\begin{beweis}
+\begin{proof}
 	\begin{enumerate}[label = (\alph*)]
 	\item Falls $\text{ineq}(P) = \emptyset$, so gilt $\eq(P) = \left\{ 1,\dots ,m \right\}$ und $P=\left\{ x \ |\ Ax=b \right\}$ ist ein affiner Raum. Dann hat jeder Punkt $x^* \in P$ die gewünschte Eigenschaft.\\
-		Falls  $\text{ineq}(P)\noteq\emptyset$, so gibt es für alle $i\in \text{ineq}(P)$ einen Punkt  $x^i \in P$ mit $A_{i,\cdot}x^i <b_{i}$. Definiere $x^* = \frac{1}{|\ineq(P)|}\sum\limits_{i \in I}^{} x^i \in P$. 
+		Falls  $\text{ineq}(P)\neq\emptyset$, so gibt es für alle $i\in \text{ineq}(P)$ einen Punkt  $x^i \in P$ mit $A_{i,\cdot}x^i <b_{i}$. Definiere $x^* = \frac{1}{|\ineq(P)|}\sum\limits_{i \in I}^{} x^i \in P$. 
 		Dann gelten 
 		\begin{align*}
 			A_{\eq(P),\cdot}x^* = b_{\eq(P)}
 		\end{align*}
 		und für alle $i \in I$ gilt
 		\begin{align*}
-			A_{i,\cdot} x^* = \frac{1}{|\ineq(P)|}\left[ \underbrace{A_{i,\cdot}x^i}_{< b_{i}} + \sum\limits_{l \noteq i\substack{l \in I}}^{} \underbrace{A_{i,\cdot}x^l}_{\leq b_{i}} \right] < b.
+			A_{i,\cdot} x^* = \frac{1}{|\ineq(P)|}\left[ \underbrace{A_{i,\cdot}x^i}_{< b_{i}} + \sum\limits_{l \neq i\substack{l \in I}}^{} \underbrace{A_{i,\cdot}x^l}_{\leq b_{i}} \right] < b.
 		\end{align*}
 	\item Sei $F$ eine beliebige Seitenfläche, induziert von $a^{T} x \leq \beta$, mit $x^*\in F$.
 		Wir müssen zeigen, dass $F=P$ folgt.
@@ -637,38 +637,38 @@ Sei $P = P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A\in \R^{m \times n
 		$\implies P =F\implies$ $x^*$ liegt im relativ Inneren.
 	\item Wie in (b) gezeigt gilt:
 		\begin{align*}
-			\left\{ x^* + y \ | \ y \in \text{kern}(A_{\eq(P),\cdot}), \|y\|\leq \varepsilon \right\} \\
+			\left\{ x^* + y \ | \ y \in \text{kern}(A_{\eq(P),\cdot}), \|y\|\leq \varepsilon \right\} 
 			&\subset P\\
 			&\subset  \left\{ x^* +y \ |\ y \in \text{kern}(A_{\eq(P),\cdot}) \right\}
 		\end{align*}
 	$\implies$
 	\begin{align*}
-		\underbrace{\aff \left\{ x^* + y \ | \ y \in \text{kern}(A_{\eq(P),\cdot}), \|y\|\leq \varepsilon  \right\}}_{= x^* + \text{kern}(A_{\eq(P),\cdot})}\\
+		\underbrace{\aff \left\{ x^* + y \ | \ y \in \text{kern}(A_{\eq(P),\cdot}), \|y\|\leq \varepsilon  \right\}}_{= x^* + \text{kern}(A_{\eq(P),\cdot})}
 		&\subset\aff P\\
 		&\subset  \underbrace{\left\{ x^* +y \ |\ y \in \text{kern}(A_{\eq(P),\cdot}) \right\}}_{= x^* + \text{kern}(A_{\eq(P),\cdot}) }	
 	\end{align*}
-	$\implies \aff P = x^* + \texŧ{kern}A_{\eq(P),\cdot}$.
+	$\implies \aff P = x^* + \text{kern}A_{\eq(P),\cdot}$.
 	\end{enumerate}
-\end{beweis}
+\end{proof}
 %TODO add (a) tags
 \begin{satz}
 	Sei $P=P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A \in \R^{m \times n},b \in R^m$. 
 	Sei $F \neq \emptyset$ eine Seitenfläche. Dann gelten:
 	\begin{enumerate}
-		\item $\dim F = \dim \left( \texŧ{kern}A_{\eq(F),\cdot} = n - \text{Rang}A_{\eq(F),\cdot} \right)$ 
+		\item $\dim F = \dim \left( \text{kern}A_{\eq(F),\cdot} = n - \text{Rang}A_{\eq(F),\cdot} \right)$ 
 		\item $F = \fa(\eq(F)) = \left\{ x \in \R^n \ | \ A_{\eq(F),\cdot} x = b_{\eq(F)}, A_{\ineq(F),\cdot} x = b_{\ineq(F)} \right\}$ 
 		\item $\aff F = \left\{ x \in \R^n \ |\ A_{\eq(F),\cdot} x = b_{\eq(F)} \right\}$
 	\end{enumerate}
 \end{satz}
-\begin{beweis}
+\begin{proof}
 	Sei $a^{T} x \leq \beta$ eine gültige Ungleichung, die $F$ induziert, d.h.
 	\begin{align*}
 		F &= \left\{ x \in P \ |\ a^{T} x= \beta \right\}\\
 		  &= \left\{x \in \R^n \ |\ A_{\eq(F),\cdot} x = b_{\eq(F)}, a^{T} x = \beta, A_{\ineq(F),\cdot} x \leq b_{\ineq(F)} \right\}
 	\end{align*}
 	$\implies \dim F ) \dim(\text{kern}(A_{\eq(F),\cdot},a^{T} )^{T} )$.
-	Wir müssen zeigen, dass gilt  $\texŧ{kern}(A_{\eq(F),\cdot}) \subset  \text{kern}(A_{\eq(F),\cdot},a^{T} )^{T}$.
-	Nach dem vorigen Satz gibt es einen relativ inneren Punkt $x^*$ ovn $F$ mit $A_{\eq(F),\cdot}x^* = b_{\eq(F)}, a^{T} x^* =\beta, A_{\ineq(F),\cdot}x^* < b_{\ineq(F)}$.
+	Wir müssen zeigen, dass gilt  $\text{kern}(A_{\eq(F),\cdot}) \subset  \text{kern}(A_{\eq(F),\cdot},a^{T} )^{T}$.
+	Nach dem vorigen Satz gibt es einen relativ inneren Punkt $x^*$ von $F$ mit $A_{\eq(F),\cdot}x^* = b_{\eq(F)}, a^{T} x^* =\beta, A_{\ineq(F),\cdot}x^* < b_{\ineq(F)}$.
 	Angenommen, es gäbe $y^* \subset \text{kern} A_{\eq(F),\cdot}$ mit $a^{T} y^* \neq 0$. Da $\text{kern}(A_{\eq(F),\cdot})$ ein Unterraum ist, können wir oBdA annehmen, dass $a^{T} y^* > 0 $ gilt.
 	Dann gilt für alle $\varepsilon > 0$ klein $x^* + \varepsilon y^* \in P$ aber 
 	\begin{align*}
@@ -682,5 +682,5 @@ Sei $P = P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A\in \R^{m \times n
 \end{equation*}
 $\implies \aff F \subset  \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$ und $\dim F = \dim ( \aff F) = \dim (\text{kern}A_{\eq(F),\cdot})$.\\
 $\implies \aff F = \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$
-\end{beweis}
+\end{proof}
 
