@@ -118,10 +118,9 @@ Why $k-\frac{d}{p}$?
 		\end{lemma}
 		\begin{proof}
 			\begin{align*}
-				\|Iw\|_{L^{q}(\hat{T})} &= \|\sum\limits_{z \in\mathcal{L}(\hat{T})}^{} <w,\hat{\phi}_{z}^*>\hat{\phi}_{z}\|_{L^{q}(\hat{T})}\\
+				\|Iw\|_{L^{q}(\hat{T})} &= \left\|\sum\limits_{z \in\mathcal{L}(\hat{T})}^{} <w,\hat{\phi}_{z}^*>\hat{\phi}_{z}\right\|_{L^{q}(\hat{T})}\\
 										&\leq \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} |<w,\hat{\phi}_{z}^*>| \underbrace{\|\hat{\phi}_{z}\|_{L^{q}(\hat{T})}}_{\text{indep. of} \T,h,w,\text{else}}\\
 										&\leq\approx \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} |<w,\hat{\phi}_{z}^*>|\\
-
 										&= \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} |\int\limits_{\hat{\Omega}}w\cdot\hat{\phi}_{z}^*\diff x |\\
 										&\leq \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \  \int\limits_{\supp(\hat{\phi}_{z}^*)} |w \cdot \hat{\phi}_{z}^*|\diff x \\
 										&\overset{\text{Hölder}}{\leq} \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \ |w|_{L^q(\supp(\hat{\phi}_{z}^*))} |\hat{\phi}_{z}^*|_{L^{q^*}(\supp(\hat{\phi}_{z}^*))}\\
