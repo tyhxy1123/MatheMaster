@@ -1,0 +1,28 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1.5]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% 3d triangle
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (1.75*\h,\h/3) $);
+	\coordinate (D) at ($ (A) + (\h,\h/3) $);
+	\coordinate (E) at ($ (A) + (3*\h/5,2*\h/3) $);
+
+	\filldraw[green!40] (B) -- (D) -- (E) -- cycle;
+
+	\draw (A) -- (B) -- (C) -- (E) -- cycle;
+	\draw (B) -- (E);
+	\draw[dotted] (A) -- (D) -- (C);
+	\draw[dotted] (E) -- (D) -- (B);
+	
+	\draw[green] (B) -- (D) -- (E) -- cycle;
+	\end{tikzpicture}
+	
+	\caption{common facet $H$}
+	\label{ch_2_common_facet}
+	
+\end{figure}

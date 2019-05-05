@@ -1,0 +1,35 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1.5]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% 2d triangle
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (2*\h/3,2*\h/3) $);
+	\coordinate (D) at ($ (A) + (3*\h/2,2*\h/3) $);
+	\coordinate (Mab) at ( $0.5*(A) +0.5*(B) $);
+	\coordinate (Mbc) at ( $0.5*(B) +0.5*(C) $);
+	\coordinate (Mac) at ( $0.5*(A) +0.5*(C) $);
+	\coordinate (Mcd) at ( $0.5*(C) +0.5*(D) $);
+	\coordinate (Mbd) at ( $0.5*(B) +0.5*(D) $);
+
+
+	\draw (A) -- (B) -- (D) -- (C) --cycle;
+	\draw (B) -- (C);
+	\draw[red!40] (Mab) -- (C);
+	\draw[red!40] (Mbc) -- (D);
+
+	\draw[green!40] (Mab) -- (Mac);
+	\draw[green!40] (Mab) -- (Mbc);
+	\draw[green!40] (Mbc) -- (Mbd);
+	\draw[green!40] (Mbc) -- (Mcd);
+	
+	\end{tikzpicture}
+	
+	\caption{2D example}
+	\label{ch_2_uniform_refinement_conforming_grid_2D}
+	
+\end{figure}

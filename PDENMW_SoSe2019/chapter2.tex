@@ -1,0 +1,230 @@
+\chapter{Refinements of triangulations/conformity}
+
+\begin{definition}
+	Let $\T_{0}$ be a conforming triangulation. Then 
+	\begin{equation*}
+		\mathbb{F} = \mathbb{F}[\T_{0}]:= \bigcup_{T_{0} \in \T_{0}} \mathbb{F}(T_{0})
+	\end{equation*}
+	is called \underline{masterforest} of $\T_{0}$.
+
+	A subset $\mathcal{F} \subset \mathbb{F}$ is called \underline{forest}
+  	\begin{enumerate}[label= \arabic*)]
+    	\item $\T_{0} \subset \mathcal{F}$ 
+    	\item All nodes $\mathcal{F} \setminus \T_{0}$ have a father.
+    	\item All nodes have two children or no children at all.
+  	\end{enumerate}
+	Every finite forest $\mathbb{F}(\T_{0})$ corresponds to a triangulation of $\Omega$.\\
+  	These triangulations are not necessarily conforming! 
+\end{definition}
+\begin{example}
+	\underline{2D: easy!} \\
+	Two steps of uniform refinement lead to a conforming grid
+	\input{tikz/chapter2/uniform_refinement_conforming_grid_2D.tex}
+	\underline{3D:}
+	\begin{itemize}
+		\item Let $T_{1},T_{2}$ be neighboring tetrahedra with common side $S$. 
+		\item Let $E_{1},E_{2}$ be the refinement edges of $T_{1}$ and $T_{2}$ respectively.
+    \item If $E_{1}$ and $E_{2}$ are on $S$ but $E_{1}\neq E_{2}$ $\to$ big trouble, nonconformity, that cannot be healed: the new edges intersect each other at a ratio of $\frac{1}{3}$ to $\frac{2}{3}$!
+	\end{itemize}
+	\input{tikz/chapter2/uniform_refinement_conforming_grid_3D.tex}
+\end{example}
+So from now on we assume:\\
+\underline{Condition:} If the two refinement edges of two neighboring simplices are on the common face, then they must be equal. This condition is necessary!\nl
+For $d=3$ the condition is sufficient. (A proven, but not trivial result.)\\
+For $d>3$ it is not known if the condition is sufficient.
+
+So we look for an alternative condition that implies that every uniform refinement is conforming.
+\begin{definition}
+	The reflected element to $T= \left\{ z_{0},\dots ,z_{d} \right\}_{t}$ is
+	\begin{equation*}
+		T_{R}= \left\{ z_{d}, z_{1},\dots ,z_{t},z_{d-1},\dots ,z_{t+1},z_{0} \right\}_{t}
+	\end{equation*}
+	$T \mapsto T_{R}$ is the unique permutation of the vertices that does not change the children.
+\end{definition}
+\begin{definition}
+	Two neighboring elements $T$ and $T'$ are called \underline{reflected neighbors} if and only if the ordered vertices of $T$ or $T_{R}$ match those of $T'$ at all but one places.
+\end{definition}
+\underline{Condition:} (alternative)\\
+A conforming triangulation $\T_{0}$ is called \underline{admissible}, if
+\begin{enumerate}[label = \arabic*)]
+	\item all elements have the same type,
+	\item for all neighboring elements 
+		\begin{equation*}
+			T = \left\{ z_{0},\dots ,z_{d} \right\} \text{ and } T' = \left\{ z_{0}',\dots ,z_{d}' \right\}
+		\end{equation*}
+		with common face $S$ we have 
+		\begin{itemize}
+			\item if  $\overline{z_{0}z_{d}}\subset  S$ or $\overline{z_{0}'z_{d}'}\subset S$ then $T$ and $T'$ are reflected neighbors
+			\item otherwise (i.e. if $\overline{z_{0}z_{d}}\not\subset  S$ and $\overline{z_{0}'z_{d}'}\not\subset S$) the two neighboring children of $T$ and $T'$ are reflected neighbors
+		\end{itemize}
+	\input{tikz/chapter2/reflected_neighbors_numbering_alg.tex}
+\end{enumerate}
+\begin{theorem}
+	Under this condition all uniform refinements are conforming.
+\end{theorem}
+\begin{proof}[Small part of proof]
+	First part:
+	\begin{lemma}
+		Let $T = \left\{ z_{0},\dots ,z_{d} \right\}_{0}$ be a simplex. All uniform refinements of $T$ are conforming.
+	\end{lemma}
+  \begin{proof}[Proof sketch]
+    Consider the $g$-th uniform refinement (with $g < d$).
+		\begin{enumerate}
+      \item One has to show (but we do not show it here): every descendent $T'$ of $T$ with $\gen(T')=g$ has the structure
+				\begin{equation*}
+					T' = \left\{ z_{k_{0}},y_{g},y_{g-1},\dots ,y_{1},\underbrace{z_{k_{1}},\dots, z_{k_{d-g}} }_{\text{from original simplex}} \right\}_{g}
+				\end{equation*}
+				\begin{itemize}
+					\item $z_{k_{0}}, \dots ,z_{k_{d-g}}$ are vertices of $T$. The indices $k_{0},\dots k_{d-g}$ are consecutive (ascending or descending)
+					\item $y_{1},\dots ,y_{g}$ are vertices introduced as edge midpoints
+				\end{itemize}
+			\item Define a non-standard distance on the vertices of $T$:
+				\begin{equation*}
+					d(z_{i},z_{j}) = |i-j|
+				\end{equation*}
+				Distances to a new vertex $y_{k}$ are defined as $0$.
+			\item The \glqq longest\grqq\ edge in $T'$ is $\overline{z_{k_{0}}z_{k_{d-g}}}$ because the indices are consecutive.
+				Furthermore $\overline{z_{k_{0}}z_{k_{d-g}}}$ is the refinement edge!
+		\end{enumerate}
+    $\implies$ the refinement edge of any $T'$ is always the \glqq longest\grqq{} edge!
+		\begin{itemize}
+			\item Let $U,V$ be descendents of $T$ with $\gen(U)=\gen(V)< d$ with common facet 
+				\begin{equation*}
+					H = \left\{ h_{1},\dots ,h_{d} \right\}	
+				\end{equation*}
+				 \input{tikz/chapter2/common_facet.tex}
+			\item Both $U$ and $V$ get bisected along their longest edge.
+				\begin{enumerate}[label = Case \arabic*]
+					\item both longest edges are not in $H$ $\to$ no problem.
+					\item one longest edge is in $H$, the other is not:
+						This cannot happen, because the longest edges are unique and have the same length $|d- \gen(U)|=|d-\gen(V)|$.
+					\item both edges are in $H$ $\implies$ they must be the same. \qedhere
+				\end{enumerate}
+		\end{itemize} 
+  \end{proof}
+  The second part of considering a forest is omitted.
+\end{proof}
+
+\section{Refinement-Algorithm}
+\underline{Goal:} Algorithm that construct a (small) conforming refinement of a given triangulation $\T$ in which all elements of a subset $\mathcal{M} \subset \T$ are refined.
+\begin{enumerate}[label = \alph*)]
+	\item Iterative Refinement
+    \begin{algorithmic}[0]
+      \Function{REFINE\_MARKED}{$\mathcal{T}$, $M$}
+        \For{all $T \in M$}
+        \State $\{T_0, T_1\} = \text{BISECT} (T)$
+          \State $\mathcal{T} := (\mathcal{T} \setminus \{T\}) \cup \{T_0, T_1\}$
+        \EndFor
+        \State \Return $T$
+      \EndFunction
+    \end{algorithmic}
+    This (usually) leads to a nonconforming grid.
+
+		Remedy: Refine elements with hanging nodes.
+    \begin{algorithmic}[0]
+      \Function{REFINE}{$\mathcal{T}$, $M$}
+        \While{$M \neq \emptyset$}
+          \State $\mathcal{T} := \text{REFINE\_MARKED}(\mathcal{T}, M)$
+          \State $M := \{T \in \mathcal{T} \ |\ T \text{ has a hanging node}\}$
+        \EndWhile
+        \State \Return $\mathcal{T}$
+      \EndFunction
+    \end{algorithmic}
+    This seemingly simple algorithm is supposedly difficult to implement.
+		%TODO chenag comments to Pseudocodes
+		\begin{lemma}
+			The algorithm terminates.
+    \end{lemma}
+    \begin{proof}\
+			\begin{itemize}
+				\item Let $\T_{*}$ be the triangulation after the first call to REFINE\_MARKED.
+				\item Let $g$ be the highest generation of an element in $\T_{*}$. 
+				\item The uniform refinement $\T_{g}$ is conforming.
+				\item $\T_{*}\leq \T_{g}$ (i.\,e.\ $\T_{g}$ is a refinement of $T_{*}$).
+        \item REFINE bisects elements with hanging nodes $\implies \T \leq \T_{g}$ for all $\T$ produced by the \glqq while\grqq{} loop. (Somehow here the condition for admissible grids comes in.)
+				\item Either the loop terminates or $\T$ is bigger than its predecessor.
+				\item $T_{g}$ is a upper bound $\to$ the algorithm terminates.
+			\end{itemize}
+		\end{proof}
+		\begin{lemma}
+			The grid produced by REFINE
+			is the \underline{smallest} conforming refinement of $\T_{*}$.
+		\end{lemma}
+		\subsection{Complexity of bisection refinement}
+		Consider the sequence of conforming triangulations 
+		\begin{equation*}
+			\T_{0} \leq \T_{1} \leq \dots \leq \T_{n} \leq \dots 
+		\end{equation*}
+		produced by the following algorithm.
+    \begin{algorithmic}
+      \For{$k \geq 0$}
+    \State select a subset $\mathcal{M}_k \subseteq \mathcal{T}_k$
+        \State $\mathcal{T}_{k + 1} := \text{REFINE}(\mathcal{T}_k, M_k)$
+      \EndFor
+    \end{algorithmic}
+		Hope: There is a constant $\Lambda = \Lambda(\T_{0})$ such that 
+		\begin{equation*}
+      \#\T_{k+1} - \#\T_{k} \leq \Lambda \# \mathcal{M}_{k} \quad \text{for all } k \geq 0
+		\end{equation*}
+		\underline{This does not hold!}
+    \begin{example}[Counterexample] \label{ex:counterexampleRefinementBoundary}
+      The refinement edge is always the edge on the boundary $\implies$ grid is admissible.
+      \input{tikz/chapter2/counterexample_0.tex}
+      \begin{itemize}
+        \item Pick an even number $K \in \N$ 
+        \item Set $\mathcal{M}_{k} := \left\{ T \in \T_{k}: 0 \in T \right\} $ for all $k=0,1,\dots ,K-1$ 
+          \input{tikz/chapter2/counterexample_1-4.tex}
+        \item Set $\mathcal{M}_{K} := \left\{ T \in \T_{K}: \text{gen}(T)=K \text{ and } 0 \not\in T \right\}$ 
+          \input{tikz/chapter2/counterexample_M_K.tex}
+      \end{itemize}
+      For $k < K$ only the marked elements are refined $\implies$ $\#\T_{k+1} - \#\T_{k} = \mathcal{M}_{k} = 2$	
+      \input{tikz/chapter2/counterexample_k=K_1.tex}
+      \input{tikz/chapter2/counterexample_k=K_2.tex}
+      For $k=K$ $\implies$ $\#\T_{k+1} - \#\T_{k} = 4K +2$\\
+      But $K$ can be any large even number $\implies$ Number $4K +2$ cannot be bounded by $\#\mathcal{M}=2$.
+    \end{example} % end example CounterexampleRefinementBoundary:
+		You can bound the average of new elements created by refinements.
+    In our example this is:
+		\begin{align*}
+			\# \T_{K+1} - \# \T_{0} &= \sum\limits_{k=0}^{K} \# \T_{k+1} - \# \T_{k}\\
+									&= 4K + 2 + 2K\\
+									&\leq 3( 2K +2 )\\
+									&= 3 \sum\limits_{k=0}^{K} \#\mathcal{M}_{K} 
+		\end{align*}
+		\begin{theorem}
+			Let $\T_{0}$ be a conforming, admissible triangulation. Then there is a constant $\Lambda = \Lambda(\T_{0})$ such that 
+			\begin{equation*}
+				\# \T_{K} - \# \T_{0} \leq \Lambda \sum\limits_{k=0}^{K} \#\mathcal{M}_{k}
+			\end{equation*}
+		\end{theorem}
+    \begin{proof}[Idea of the proof]
+			Let $\mathcal{M} = \bigcup_{k=0} \mathcal{M}_{k}$ be the set of all elements marked by constructing the sequence
+			 \begin{equation*}
+				\T_{0} \leq \T_{1} \leq \T_{2}\leq \dots .
+			\end{equation*}
+			Define a cost function
+			\begin{equation*}
+				\lambda: \T \times \mathcal{M} \mapsto \R
+			\end{equation*}
+			such that
+			\begin{enumerate}[label = \alph*)]
+				\item 
+					\begin{equation*}
+						\sum\limits_{T \in \T\setminus \T_{0}}^{} \lambda(T,T_{*}) \leq 1 \quad \forall \, T_{*} \subset \mathcal{M}
+					\end{equation*}
+				\item 
+					\begin{equation*}
+						\sum\limits_{T_{*}\in \mathcal{M}}^{} \lambda(T,T_{*}) \geq C_{2} \quad \forall \, T \in \T \setminus \T_{0}
+					\end{equation*}
+			\end{enumerate}
+      Finding such a cost function is highly non-trivial. (Done in Chapter 4.5.) % TODO: good reference
+      But as soon as we have it:
+			\begin{align*}
+				C_{2} \left( \# \T_{K} - \# \T_{0} \right) &= C_{2}\# (\T\setminus \T_{0}) \\
+														   &= \sum\limits_{T \in \T \setminus \T_{0} }^{} \sum\limits_{T_{*} \in \mathcal{M}}^{} \lambda(T,T_{*})\\
+														   &= \sum\limits_{T_{*} \in \mathcal{M}}^{} \sum\limits_{T \in \T \setminus \T_{0} }^{} \lambda(T,T_{*})\\
+														   &\overset{(a)}{\leq} C_{1} \# \mathcal{M}
+			\end{align*}
+		\end{proof}
+\end{enumerate}
+

@@ -1,0 +1,35 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1.5]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	\coordinate (A) at (\xone ,\yone);
+	%  M_{K}
+	\coordinate (A) at ( $(A) + (1.5*\h,0)$ );
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h,\h) $);
+	\coordinate (D) at ($ (A) + (0,\h) $);
+	\coordinate (M) at ($ 0.5*(A) + 0.5*(C) $);
+
+
+	\filldraw[red!40] ( $0.75*(A) + 0.25*(B)$ ) -- ( $0.75*(A) + 0.25*(D)$ ) -- ( $0.75*(A) + 0.25*(C)$ ) -- cycle;
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (A) -- (C);
+	\draw (B) -- (D);
+	\draw ( $0.5*(A) + 0.5*(B)$ ) -- (M);
+	\draw ( $0.5*(A) + 0.5*(D)$ ) -- (M);
+	\draw ( $0.5*(A) + 0.5*(D)$ ) -- ( $0.5*(A) + 0.5*(B)$ );
+
+	\draw ( $0.75*(A) + 0.25*(D)$ ) -- ( $0.75*(A) + 0.25*(C)$ );
+	\draw ( $0.75*(A) + 0.25*(B)$ ) -- ( $0.75*(A) + 0.25*(C)$ );
+	\draw ( $0.75*(A) + 0.25*(B)$ ) -- ( $0.75*(A) + 0.25*(D)$ );
+
+	\end{tikzpicture}
+	
+	\caption{marked elements for refinement $\mathcal{M}_{K}$}
+	\label{ch_2_counterexample_M_K}
+	
+\end{figure}

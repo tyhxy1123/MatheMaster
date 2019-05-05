@@ -1,0 +1,57 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1.5]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% \T_{1} and \T_{2} 
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h,\h) $);
+	\coordinate (D) at ($ (A) + (0,\h) $);
+	\coordinate (M) at ($ 0.5*(A) + 0.5*(C) $);
+
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (A) -- (C);
+	\draw (B) -- (D);
+	\draw[green] ( $0.5*(A) + 0.5*(B)$ ) -- (M);
+	\draw[green] ( $0.5*(A) + 0.5*(D)$ ) -- (M);
+	\draw[red] ( $0.5*(A) + 0.5*(D)$ ) -- ( $0.5*(A) + 0.5*(B)$ );
+
+	\node[green] at ( $0.5*(A) + 0.5*(B) + (0,-0.1*\h)$ ) [below left] {$\T_{1}$};
+	\node[red] at ( $0.5*(A) + 0.5*(B) + (0,-0.1*\h)$ ) [below right] {$\T_{2}$};
+
+	% Arrow
+	\draw[->] ( $0.5*(B) + 0.5*(C) + (0.1*\h,0)$ ) -- ( $0.5*(B) + 0.5*(C) + (0.4*\h,0)$ );
+
+	% \T_{3} and \T_{4} 
+	\coordinate (A) at ( $(A) + (1.5*\h,0)$ );
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h,\h) $);
+	\coordinate (D) at ($ (A) + (0,\h) $);
+	\coordinate (M) at ($ 0.5*(A) + 0.5*(C) $);
+
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (A) -- (C);
+	\draw (B) -- (D);
+	\draw ( $0.5*(A) + 0.5*(B)$ ) -- (M);
+	\draw ( $0.5*(A) + 0.5*(D)$ ) -- (M);
+	\draw ( $0.5*(A) + 0.5*(D)$ ) -- ( $0.5*(A) + 0.5*(B)$ );
+
+	\draw[green] ( $0.75*(A) + 0.25*(D)$ ) -- ( $0.75*(A) + 0.25*(C)$ );
+	\draw[green] ( $0.75*(A) + 0.25*(B)$ ) -- ( $0.75*(A) + 0.25*(C)$ );
+	\draw[red] ( $0.75*(A) + 0.25*(B)$ ) -- ( $0.75*(A) + 0.25*(D)$ );
+
+	\node[green] at ( $0.75*(A) + 0.25*(B) + (0,-0.1*\h)$ ) [below left] {$\T_{3}$};
+	\node[red] at ( $0.75*(A) + 0.25*(B) + (0,-0.1*\h)$ ) [below right] {$\T_{4}$};
+
+
+	\end{tikzpicture}
+	
+	\caption{$\T_{1},\dots ,\T_{4}$}
+	\label{ch_2_counterexample_1-4}
+	
+\end{figure}

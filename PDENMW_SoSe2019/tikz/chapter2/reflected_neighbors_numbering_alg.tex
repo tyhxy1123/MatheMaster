@@ -1,0 +1,101 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% first example
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (2*\h/3,\h) $);
+	\coordinate (C) at ($ (A) + (0,2*\h) $);
+	\coordinate (D) at ($ (A) + (-2*\h/3,\h) $);
+	\coordinate (M) at ($ 0.5*(A) + 0.5*(C) $);
+
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (A) -- (C);
+	\draw[red!40] (B) -- (D);
+	\draw[green!40] ( $0.5*(A) + 0.5*(B) $ ) -- ( $0.5*(C) + 0.5*(D)$ );
+	\draw[green!40] ( $0.5*(C) + 0.5*(B) $ ) -- ( $0.5*(A) + 0.5*(D)$ );
+
+	% right triangle
+	\node at (A) [below right] {0};
+	\node at (B) [right] {1};
+	\node at (C) [above right] {2};
+
+	% left triangle
+	\node at (A) [below left] {0};
+	\node at (D) [left] {1};
+	\node at (C) [above left] {2};
+
+	\node[red!60] at (M) [below left] {1};
+	\node[red!60] at (M) [below right] {1};
+	\node[red!60] at (M) [above left] {1};
+	\node[red!60] at (M) [above right] {1};
+
+	% right triangle
+	\node[red!60] at (A) [right] {0};
+	\node[red!60] at (B) [above] {2};
+	\node[red!60] at (B) [below] {2};
+	\node[red!60] at (C) [right] {0};
+
+	% left triangle
+	\node[red!60] at (A) [left] {0};
+	\node[red!60] at (D) [above] {2};
+	\node[red!60] at (D) [below] {2};
+	\node[red!60] at (C) [left] {0};
+
+	%-- second example --
+	\coordinate (A) at ($ (A) + (2*\h,0) $);
+	\coordinate (B) at ($ (A) + (2*\h/3,\h) $);
+	\coordinate (C) at ($ (A) + (0,2*\h) $);
+	\coordinate (D) at ($ (A) + (-2*\h/3,\h) $);
+	\coordinate (M) at ($ 0.5*(A) + 0.5*(C) $);
+
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (A) -- (C);
+	\draw[red!40] (A) -- ( $0.5*(C) + 0.5*(D)$ );
+	\draw[red!40] (C) -- ( $0.5*(A) + 0.5*(B)$ );
+	\draw[green!40] ( $0.5*(A) + 0.5*(D) $ ) -- ( $0.5*(C) + 0.5*(D)$ );
+	\draw[green!40] ( $0.5*(C) + 0.5*(D) $ ) -- (M);
+	\draw[green!40] ( $0.5*(A) + 0.5*(B) $ ) -- (M);
+	\draw[green!40] ( $0.5*(C) + 0.5*(B) $ ) -- ( $0.5*(A) + 0.5*(B)$ );
+
+	% right triangle
+	\node at (A) [below right] {0};
+	\node at (B) [below right] {2};
+	\node at (C) [above right] {1};
+
+	% left triangle
+	\node at (A) [below left] {1};
+	\node at (D) [below left] {2};
+	\node at (C) [above left] {0};
+
+	% right triangle
+	\node[red!60] at ( $0.5*(A) + 0.5*(B) $ ) [right] {1};
+	\node[red!60] at (B) [above right] {0};
+	\node[red!60] at (C) [right] {2};
+
+	% middle right triangle
+	\node[red!60] at ( $0.5*(A) + 0.5*(B) $ ) [below] {1};
+	\node[red!60] at (A) [right] {0};
+	\node[red!60] at ( $0.3*(A) + 0.7*(C) $ ) [right] {2};
+
+	% middle left triangle
+	\node[red!60] at ( $0.5*(C) + 0.5*(D) $ ) [above] {1};
+	\node[red!60] at (C) [left] {0};
+	\node[red!60] at ( $0.7*(A) + 0.3*(C) $ ) [left] {2};
+
+	% left triangle
+	\node[red!60] at ( $0.5*(C) + 0.5*(D) $ ) [left] {1};
+	\node[red!60] at (A) [left] {2};
+	\node[red!60] at (D) [above left] {0};
+
+	\end{tikzpicture}
+	
+	\caption{2D example for the numbering rule}
+	\label{ch_2_example_numbering_alg}
+	
+\end{figure}

@@ -1,0 +1,30 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1.5]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% 3d triangle
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (1.75*\h,\h/3) $);
+	\coordinate (D) at ($ (A) + (\h,\h/3) $);
+	\coordinate (E) at ($ (A) + (3*\h/5,2*\h/3) $);
+
+	\draw (A) -- (B) -- (C) -- (E) -- cycle;
+	\draw (B) -- (E);
+	\draw[dotted] (A) -- (D) -- (C);
+	\draw[dotted] (E) -- (D) -- (B);
+	\draw[green!40] (B) -- ( $0.5*(D) + 0.5*(E) $ );
+	\draw[red!40] (D) -- ( $0.5*(B) + 0.5*(E) $ );
+	
+	\node at ( $ 0.5*(A) + 0.5*(B) $ ) [above left] {$T_{1}$};
+	\node at ( $ 0.5*(C) + 0.5*(B) $ ) [above left] {$T_{2}$};
+
+	\end{tikzpicture}
+	
+	\caption{3D example causing trouble}
+	\label{ch_2_uniform_refinement_conforming_grid_3D}
+	
+\end{figure}
