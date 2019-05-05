@@ -320,7 +320,7 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 	\end{table}
 	\underline{Modellierung}
   \begin{enumerate}[label={Variante \arabic*.}]
-    \item \label{item:Zuschnittsillymodel} Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wieviele Stäbe der Länge $25,30,35\,$cm daraus geschnitten werden sollen.
+    \item \label{item:Zuschnittsillymodel} Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wie viele Stäbe der Länge 25, 30, 35 cm daraus geschnitten werden sollen.
       \begin{align}
         \implies \forall i~ & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100 \notag\\
                             &
@@ -430,7 +430,8 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 			\begin{equation*}
 				\max_{h} y^{T} h \text{ subject to } 25h_{1} + 30 h_{2} + 35h_{3} \leq 100, h\geq 0 , h \in \Z^3
 			\end{equation*}
-      bestimmen. Damit erhalten wir ein Rucksackproblem mit Gewichten $=$ Stablängen und Werte $=$ duale Variable $y$. Dieses Rucksackproblem ist ganzzahlig, aber recht klein.
+      bestimmen. Damit erhalten wir ein Rucksackproblem mit Gewichten $=$\\ 
+      Stablängen und Werte $=$ duale Variable $y$. Dieses Rucksackproblem ist ganzzahlig, aber recht klein.
 		\item Sei $x_{\alpha} \in \R^n$ eine Lösung des relaxierten Problems.
 			\begin{enumerate}[label = \arabic*. Fall:]
 				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP.
@@ -680,7 +681,9 @@ Sei $P = P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A\in \R^{m \times n
 \begin{equation*}
 	F = \left\{ x \in \R^n \ |\ A_{\eq(F),\cdot} x = b_{\eq(F)}, A_{\ineq(F),\cdot} x \leq b_{\ineq(F)} \right\} = \fa(\eq(F))
 \end{equation*}
-$\implies \aff F \subset  \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$ und $\dim F = \dim ( \aff F) = \dim (\text{kern}A_{\eq(F),\cdot})$.\\
+Somit folgt\\
+$%\implies 
+\aff F \subset  \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$ und $\dim F = \dim ( \aff F) = \dim (\text{kern}A_{\eq(F),\cdot})$.\\
 $\implies \aff F = \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$
 \end{proof}
 
