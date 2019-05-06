@@ -1,0 +1,27 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Multivariate Normalverteilungen}
+
+\begin{definition}\label{def5.1}
+	Sei $X=\klammern{X_1,\ldots,X_d}'$ Zufallsvektor im $\R^d$.
+	Dann definiere:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $X$ heißt \define{zentriert normal(-verteilt)}
+		$\iff\exists k\in\N,\exists Y_1,\ldots,Y_k$ iid $\sim\Nor(0,1)$ und $\exists A\in M(d\times k)$ so, dass
+		\begin{align*}
+			X\overset{\L}{=}A\mal Y,
+			\qquad\text{wobei}\qquad
+			Y:=\klammern{Y_1,\ldots,Y_k}'
+		\end{align*}
+		Die $i$-te Komponente von $A\mal Y$ ist
+		\begin{align*}
+			[A\mal Y]_i=\klammern{\sum\limits_{i=1}^k a_{i,j}\mal Y_j}.
+		\end{align*}				
+		\index{zentriert normalverteilt}
+		\label{item:def5.1_1}
+		\item 
+	\end{enumerate}
+\end{definition}

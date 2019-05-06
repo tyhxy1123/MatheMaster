@@ -1,0 +1,275 @@
+% This work is licensed under the Creative Commons
+% Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy
+% of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
+% send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\section{Charakteristische Funktionen von Zufallsvektoren}
+
+Sind $X,Y$ reelle Zufallsvariablen über $(\Omega,\A,\P)$, so ist die Zufallsvariable $Z:=X+\ii\mal Y$ eine komplexe Zufallsvariable.
+
+\begin{definition}\label{def4.1}
+	Eine Zufallsvariable $Z=X+\ii\mal Y$ heißt \define{integrierbar}, falls $X$ und $Y$ (reell-)-integrierbar sind.
+	In diesem Fall definiere das Integral über $Z$:
+	\begin{align*}
+		\int\limits_\Omega Z\ds\P
+		:=\int\limits_\Omega X\ds\P+\ii\mal\int\limits_\Omega Y\ds\P\in\C
+	\end{align*}
+	Wie im Reellen:
+	\begin{align*}
+		\E\eckigeKlammern{Z}:=\int\limits_\Omega Z\ds\P=\E\eckigeKlammern{X}+\ii\mal\E\eckigeKlammern{Y}
+	\end{align*}
+\end{definition}
+
+\begin{satz}\label{satz4.2}
+	Seien $Z,\tilde{Z}$ komplexe Zufallsvariablen.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $Z,\tilde{Z}$ integrierbar und $a,b\in\C\implies a\mal Z+b\mal\tilde{Z}$ integrierbar und 
+		\begin{align*}
+			\int\limits_\Omega a\mal Z+b\mal\tilde{Z}\ds\P
+			=a\mal\int\limits_\Omega Z\ds\P+b\mal\int\limits_\Omega\tilde{Z}\ds\P
+		\end{align*}
+		\label{item:satz4.2_1}
+		\item $Z$ integrierbar $\implies \conj{Z}:=X-\ii\mal Y$ integrierbar und
+		\begin{align*}
+			\int\limits_\Omega\conj{Z}\ds\P=\conj{\int\limits_\Omega Z\ds\P}
+		\end{align*}
+		\label{item:satz4.2_2}
+		\item Falls $Z$ integrierbar ist, gilt:
+		\begin{align*}
+			\abs{\int\limits_\Omega Z\ds\P}\leq\int\limits_\Omega\abs{Z}\ds\P
+		\end{align*}
+		\label{item:satz4.2_3}
+		\item $Z$ integrierbar $\iff\int\limits_\Omega\abs{Z}\ds\P<\infty$
+		\label{item:satz4.2_4}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\ref{item:satz4.2_1} und \ref{item:satz4.2_2} folgen aus der Linearität in Definition \ref{def4.1} (zur Übung).\nl
+	\betone{Zeige \ref{item:satz4.2_3}:}\\
+	Benutze die Polarkoordinatendarstellung
+	\begin{align}\label{eq:ProofSatz4.2_i}\tag{i}
+		\E\eckigeKlammern{Z}
+		&=r\mal\exp(\ii\mal\theta),\qquad r:=\abs[\big]{\E\eckigeKlammern{Z}}\\
+		\label{eq:ProofSatz4.2_ii}\tag{ii}
+		\Re\klammern[\big]{\exp\klammern{-\ii\mal\theta}\mal Z}
+		&\leq\abs[\big]{\exp\klammern{-\ii\mal\theta}}
+		=\underbrace{\abs[\big]{\exp\klammern{-\ii\mal\theta}}}_{=1}\mal\abs{Z}
+		=\abs{Z}
+	\end{align}
+	Folglich ist $\Re\klammern[\big]{\exp\klammern{-\ii\mal\theta}\mal Z}$ wegen \ref{item:satz4.2_4}.
+	Also folgt
+	\begin{align*}
+		\abs[\big]{\E\eckigeKlammern{Z}}
+		&=\exp\klammern{-\ii\mal\theta}\mal\E\eckigeKlammern{Z}\\
+		\overset{\ref{item:satz4.2_1}}&{=}
+		\underbrace{\E\eckigeKlammern[\big]{\exp\klammern{-\ii\mal\theta}\mal Z}}_{
+			\in\R
+		}\\
+		&=\E\eckigeKlammern[\Big]{\underbrace{\Re\klammern[\big]{\exp\klammern{-\ii\mal\theta}\mal Z}}_{
+			\overset{\ref{item:satz4.2_2}}{\leq}\abs{Z}
+		}}\\
+		\overset{\text{reeller $\E$ ist monoton}}&{\leq}
+		\E\eckigeKlammern[\big]{\abs{Z}}
+	\end{align*}
+	\betone{Zeige \ref{item:satz4.2_4}:}\\
+	Folgt aus
+	\begin{align*}
+		\Re(Z),\Im(Z)\leq\abs{Z}\leq\abs[\big]{\Re(Z)}+\abs[\big]{\Im(Z)}
+	\end{align*}
+\end{proof}
+
+\begin{satz}[Komplexer Fubini]\label{satz4.3KomplexerFubini}\enter
+	Seien $Z_1,\ldots,Z_n$ unabhängige und integrierbare komplexe Zufallsvariablen.\\
+	Dann ist $\prod\limits_{i=1}^n Z_i$ integrierbar und 
+	\begin{align}\label{eq:Satz4.3KomplexerFubini_4.1}\tag{4.1}
+		\E\eckigeKlammern{\prod\limits_{i=1}^n Z_i}
+		=\prod\limits_{i=1}^n\E\eckigeKlammern{Z_i}
+	\end{align}
+\end{satz}
+
+\begin{proof}
+	Beweis durch Induktion: Fall $n=1$ ist nichts zu zeigen.
+	Zeige dies für $n=2$:
+	\begin{align*}
+		\abs{Z_1\mal Z_2}
+		&=\abs{Z_1}\mal\abs{Z_2}\\
+		\E\eckigeKlammern[\big]{\abs{Z_1}\mal\abs{Z_2}}
+		\overset{\text{reeller Fubini}}&{=}
+		\E\eckigeKlammern[\big]{\abs{Z_1}}\mal\E\eckigeKlammern[\big]{\abs{Z_2}}
+	\end{align*}
+	Somit ist $Z_1\mal Z_2$ nach Satz \ref{satz4.2}\ref{item:satz4.2_4} integrierbar.
+	Es gilt:
+	\begin{align*}
+		Z_1\mal Z_2
+		&=\klammern[\big]{\Re(Z_1)+\ii\mal\Im(Z_1)}\mal\klammern[\big]{\Re(Z_2)+\ii\mal\Im(Z_2)}\\
+		&=\Re(Z_1)\mal\Re(Z_2)-\Im(Z_1)\mal\Im(Z_2)+\ii\mal\klammern[\big]{\Re(Z_1)\mal\Im(Z_2)+\Im(Z_1)\mal\Re(Z_2)}
+	\end{align*}
+	Bilden des Erwartungswertes auf beiden Seiten liefert:
+	\begin{align*}
+		\E\eckigeKlammern{Z_1\mal Z_2}
+		&=\E\eckigeKlammern[\big]{\Re(Z_1)\mal\Re(Z_2)-\Im(Z_1)\mal\Im(Z_2)}
+		+\ii\mal\E\eckigeKlammern[\big]{\Re(Z_1)\mal\Im(Z_2)+\Im(Z_1)\mal\Re(Z_2)}\\
+		\overset{\text{reeller Fall + reeller Fubini}}&{=}
+		\E\eckigeKlammern{Z_1}\mal\E\eckigeKlammern{Z_2}
+	\end{align*}
+	Es folgt \eqref{eq:Satz4.3KomplexerFubini_4.1} wegen Linearität \ref{satz4.2}\ref{item:satz4.2_1} und wegen reellem Fubini (und wegen des \undefine{Blockungslemmas}).
+	Somit ist der Fall $n=2$ gezeigt.
+	Jetzt folgt die Behauptung aus vollständiger Induktion.
+\end{proof}
+
+\begin{definition}\label{def4.4}
+	Sei $X=\klammern{X_1,\ldots,X_d}'$ ein Zufallsvektor im $\R^d$.
+	Dann heißt
+	\begin{align*}
+		\varphi_X\colon\R^d\to\C,\qquad
+		\varphi_X(z):=\E\eckigeKlammern[\Big]{\exp\klammern[\big]{\ii\mal\scaProd{z}{X}}}
+		\qquad\forall z\in\R^d
+	\end{align*}
+	\define{charakteristische Funktion von $X$}.
+	\index{charakteristische Funktion}
+\end{definition}
+
+\begin{beispiel}\label{beisp4.5}
+	Sei $X\sim\Nor(0,1)$.
+	Dann gilt:
+	\begin{align*}
+		\varphi_X(z)
+		&=\exp\klammern{-\frac{1}{2}\mal z^2}\qquad\forall z\in\R
+	\end{align*}
+	Die charakteristische Funktion $X$ stimmt also bis auf einen Vorfaktor mit der Dichtefunktion von $X$ überein.
+\end{beispiel}
+
+\begin{satz}\label{satz4.6}
+	Sei $X$ ein Zufallsvektor im $\R^d$.
+	Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\begin{aligned}
+			\varphi_X(0)=1,\qquad\abs[\big]{\varphi_X(z)}\leq 1\qquad\forall z\in\R^d
+		\end{aligned}$
+		\label{item:satz4.6_1}
+		\item $\begin{aligned}
+			\varphi_X(-z)=\conj{\varphi_X(z)}\qquad\forall z\in\R^d
+		\end{aligned}$
+		\label{item:satz4.6_2}
+		\item Mit $\begin{aligned}
+			A\in M(k\times d)
+		\end{aligned}$ und $b\in\R^k$ gilt
+		\begin{align*}
+			\varphi_{A\mal X+b}(z)=\exp\klammern[\big]{\ii\mal\scaProd{z}{b}}\mal\varphi_X\klammern{A'\mal z}\qquad\forall z\in\R^k
+		\end{align*}
+		\label{item:satz4.6_3}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige \ref{item:satz4.6_1}:}
+	\begin{align*}
+		\varphi_X(0)
+		&=\E\eckigeKlammern[\Big]{\underbrace{\exp\klammern[\big]{\ii\mal\underbrace{\scaProd{0}{X}}_{=0}}}_{=1}}
+		=1\\
+		\abs[\big]{\varphi_X(z)}
+		\overset{\ref{satz4.2}\ref{item:satz4.2_3}}&{=}
+		\E\eckigeKlammern[\bigg]{\underbrace{\abs[\Big]{\exp\klammern[\big]{\ii\mal\scaProd{z}{X}}}}_{=1}}=1
+	\end{align*}
+	\betone{Zeige \ref{item:satz4.6_2}:}
+	\begin{align*}
+		\varphi_X(-z)
+		&=\E\eckigeKlammern[\Big]{\exp\klammern[\big]{\ii\mal\scaProd{-z}{X}}}\\
+		&=\E\eckigeKlammern[\Big]{\conj{\exp\klammern[\big]{\ii\mal\scaProd{z}{X}}}}\\
+		\overset{\ref{satz4.2}\ref{item:satz4.2_2}}&{=}
+		\conj{\E\eckigeKlammern[\Big]{\exp\klammern[\big]{\ii\mal\scaProd{z}{X}}}}\\
+		&=\conj{\varphi_X(z)}
+	\end{align*}
+	
+	\betone{Zeige \ref{item:satz4.6_3}:}
+	\begin{align*}
+		\varphi_{A\mal X+b}(z)
+		&=\E\eckigeKlammern[\Big]{\underbrace{\exp\klammern[\big]{\ii\mal\underbrace{\scaProd{z}{A\mal X+b}}_{
+			=\scaProd{z}{A\mal X}+\scaProd{z}{b}
+		}}}_{
+			=\exp\klammern[\big]{\ii\mal\scaProd{z}{A\mal X}}\mal\exp\klammern[\big]{\ii\mal\scaProd{z}{b}}
+		}}\\
+		\overset{\ref{satz4.2}\ref{item:satz4.2_1}}&{=}
+		\exp\klammern[\big]{\ii\mal\scaProd{z}{b}}\mal\E\eckigeKlammern[\Big]{\exp\klammern[\big]{\ii\mal\scaProd{z}{A\mal X}}}
+	\end{align*}
+	Da 
+	\begin{align*}
+		\scaProd{z}{A\mal X}
+		&=\scaProd{A\mal X}{z}
+		=\klammern{A\mal X}'\mal z
+		=X'\mal\klammern{A'\mal z}
+		=\scaProd{X}{A'\mal z}
+		=\scaProd{A'\mal z}{X}
+	\end{align*}
+	folgt die Behauptung:
+	\begin{align*}
+		\varphi_{A\mal X+b}(z)
+		&=\exp\klammern[\big]{\ii\mal\scaProd{z}{b}}\mal\E\eckigeKlammern[\Big]{\exp\klammern[\big]{\ii\mal\scaProd{A'\mal z}{X}}}\\
+		&=\exp\klammern[\big]{\ii\mal\scaProd{z}{b}}\mal\varphi_X\klammern{A'\mal z}.
+	\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma4.7}
+	Seien $X_1,\ldots,X_n$ iid $\sim\Nor(0,1)$ und sei $X:=\klammern{X_1,\ldots,X_n}'$.
+	Dann gilt:
+	\begin{align*}
+		\varphi_X(z)&=\exp\klammern{-\frac{1}{2}\mal\norm{z}^2}\qquad\forall z\in\R^n
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		\varphi_X(z)
+		\overset{\Def}&=
+		\E\eckigeKlammern[\Big]{\exp\klammern[\big]{\ii\mal\scaProd{z}{X}}}\\
+		\overset{\Def}&=
+		\E\eckigeKlammern{\exp\klammern{\ii\mal\sum\limits_{j=1}^n z_j\mal X_j}}\\
+		&=\E\eckigeKlammern{\exp\klammern{\sum\limits_{j=1}^n \ii\mal z_j\mal X_j}}\\
+		&=\E\eckigeKlammern[\Bigg]{\prod\limits_{j=1}^n\underbrace{\exp\klammern{\ii\mal z_j\mal X_j}}_{
+			\text{unab. wg. \undefine{Blockungslemma}}
+		}}\\
+		\overset{\ref{satz4.3KomplexerFubini}}&{=}
+		\prod\limits_{j=1}^n\underbrace{\E\eckigeKlammern[\big]{\exp\klammern{\ii\mal z_j\mal X_j}}}_{
+			=\varphi_{X_j}(z_j)
+			\overset{\ref{beisp4.5}}{=}
+			\exp\klammern{-\frac{1}{2}\mal z_j^2}
+		}\\
+		&=\exp\klammern{-\frac{1}{2}\mal\sum\limits_{j=1}^n z_j^2}\\
+		&=\exp\klammern{-\frac{1}{2}\mal\norm{z}^2}
+	\end{align*}
+\end{proof}
+
+Zum Abschluss der wichtige sogenannte \define{Eindeutigkeitssatz für charakteristische Funktionen}:
+
+\begin{satz}[Eindeutigkeitssatz für charakteristische Funktionen]\label{satz4.8EindeutigkeitssatzCF}\enter
+	Seien $X,Y$ Zufallsvektoren im $\R^d$ mit Verteilungen $\L(X)$ bzw. $\L(Y)$.
+	Dann gilt:
+	\begin{align*}
+		X\overset{\L}{=}Y\defiff		
+		\L(X)=\L(Y)\iff\varphi_X\equiv\varphi_Y\iff\forall z\in\R^d:\varphi_X(z)=\varphi_Y(z)
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Siehe Wahrscheinlichkeitstheorie.
+\end{proof}
+
+\begin{bemerkung}
+	$X$ und $Y$ müssen \betone{nicht} über demselben Wahrscheinlichkeitsraum definiert sein, also z.B. $X\colon(\Omega,\A,\P)\to\R^d$ und $Y\colon\klammern{\tilde{\Omega},\tilde{A},\tilde{P}}\to\R^d$.
+	\begin{align*}
+		X\overset{\L}{=}Y
+		\iff\L(X)
+		\overset{\Def}{=}
+		\P\circ X^{-1}
+		=\tilde{\P}\circ Y^{-1}
+		\overset{\Def}{=}
+		\L(Y)
+	\end{align*}
+\end{bemerkung}
+
+
+
+
+
