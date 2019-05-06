@@ -74,15 +74,15 @@ will do so for the remaining course.
 			$\supp \phi_{z}^* = \supp \phi_{z}$ for all $z \in \mathcal{L}(\T)$.
 		\item Define the quasi-interpolation operator $I$ by
 			\begin{align*}
-				Iv &= \sum\limits_{z \in \mathcal{L}}^{} <v,\phi_{z}^*>\phi_{z}\\
-				   &= \sum\limits_{z \in \mathcal{L}}^{}\quad \int\limits_{\supp \phi_{z}^*} v\phi_{z}^* \diff x\phi_{z}
+				Iv &= \sum\limits_{z \in \mathcal{L}}^{} \langle v,\phi_{z}^* \rangle \phi_{z}\\
+           &= \sum\limits_{z \in \mathcal{L}(\T)} \left(\int\limits_{\supp \phi_{z}^*} v\phi_{z}^* \diff x\right)\phi_{z}
 			\end{align*}
 		\item $I$ really is a projection\\
 			Let $P= \sum\limits_{y}^{} \alpha_{y} \phi_{y} \in S^n$. Then 
 			\begin{align*}
-				Ip &= \sum\limits_{z}^{} <P,\phi_{z}^*>\phi_{z} \\
-				   &= \sum\limits_{z}^{} <\sum\limits_{y}^{} \alpha_{y} \phi_{y},\phi_{z}^*>\phi_{z}\\
-				   &= \sum\limits_{z,y}^{}\alpha_{y} <\phi_{y},\phi_{z}^*>\phi_{z}\\
+				IP &= \sum\limits_{z}^{} \langle P,\phi_{z}^* \rangle \phi_{z} \\
+				   &= \sum\limits_{z}^{} \Big\langle \sum\limits_{y}^{} \alpha_{y} \phi_{y},\phi_{z}^*\Big \rangle \phi_{z}\\
+				   &= \sum\limits_{z,y}^{}\alpha_{y} \langle \phi_{y},\phi_{z}^* \rangle \phi_{z}\\
 				   &= \sum\limits_{y}^{} \alpha_{y} \phi_{y}\\
 				   &= P
 			\end{align*}
