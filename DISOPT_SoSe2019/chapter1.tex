@@ -818,7 +818,244 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 		\end{equation*}
 	\item $P$ kann höchstens $m-|\eq(P)|$ Facetten haben.
 \end{itemize}
-
+\begin{definition}
+	Sei $P = P(A,b) \subset \R^n$ mit $A \in \R^{m \times n}, b \in \R^m$ ein Polyeder.
+	Eine Ungleichung $i^* = \left\{1,\dots ,m \right\}$ heißt \underline{redundant/unwesentlich}, wenn gilt
+	\begin{equation*}
+		P = \left\{ x \in \R^n\ |\ A_{i,\cdot}x \leq b,\ \forall i\in\left\{1,\dots ,m \right\}\backslash \left\{i^* \right\} \right\}
+	\end{equation*}
+	Andernfalls heißt die Ungleichung \underline{wesentlich/nicht redundant}.
+\end{definition}
+\begin{beispiel}
+	\begin{align*}
+		P = \left\{ x \in \R^3\ |\ 
+			\begin{pmatrix}
+				0 & 1 \\
+				0 & -1 \\
+				-1 & 0 \\
+				1 & 0 \\
+				1 & 1 
+			\end{pmatrix}
+			\begin{pmatrix}
+				x_{1}\\
+				x_{2}
+			\end{pmatrix}
+			\leq 
+			\begin{pmatrix}
+				1\\
+				-1\\
+				0\\
+				1\\
+				2
+			\end{pmatrix}
+		 \right\}
+	\end{align*}
+	wesentliche Ungleichungen: 1,2,3\\
+	redundante Ungleichungen: 4,5\\
+	Achtung: $\left\{4,5 \right\}$ ist nicht redundant!
+	\begin{equation*}
+		F = \fa(\left\{4 \right\}) = \fa(\left\{5 \right\}) \quad \text{Facette}
+	\end{equation*}
+\end{beispiel}
+\begin{lemma}
+	Sei $P = P(A,b) \subset \R^n$ ein Polyeder mit $A\in \R^{m \times n}, b \in \R^n$.
+	\begin{enumerate}[label = (\alph*)]
+		\item Gilt für $i^* \in \left\{1,\dots ,m \right\}$ und $F:=\fa(\left\{i^* \right\})$ :
+			\begin{equation*}
+				\dim F \leq \dim P - 2,
+			\end{equation*}
+			dann ist $i^*$ redundant.	
+		\item $i^* \in \ineq(P)$ ist \underline{nicht} redundant, genau dann, wenn es eine echte Seitenfläche $F$ gibt mit 
+			\begin{equation*}
+				\eq(F)= \eq(P)\cup \left\{i^* \right\},
+			\end{equation*}
+			d.h. $F$ ist eine Facette und $i^*$ ist die einzige Ungleichung, die $F$ induziert.
+	\end{enumerate}
+\end{lemma}
+\begin{satz}
+	Sei $P = \left\{ x \in \R^n\ |\ A_{\eq(P),\cdot}x = b_{\eq(P)},\ A_{\ineq(P),\cdot}x \leq b_{\ineq(P)}  \right\}$ ein Polyeder.
+	Genau dann ist keine der Restriktionen in dieser Darstellung redundant, wenn gelten:
+	\begin{enumerate}[label = \alph*.)]
+		\item $\rang A_{\eq(P),\cdot}= |\eq(P)|$ (voller Zeiilenrang)
+		\item $\forall i,j \in \ineq(P):\ \fa(\left\{i \right\})$ ist eine Facette und $\fa(\left\{i \right\}) \neq \fa(\left\{j \right\})$ für $i\neqj$.
+	\end{enumerate}
+\end{satz}
+\subsectin{Alternativer Zugang: Polyeder \glqq von innen\grqq\ beschreiben}
+$P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1},\dots ,d_{q}}$
+\begin{satz}
+	Sei $P \subset \R^{n+k}$ ein Polyeder. 
+	Dann ist  die Projektion von $P$ auf $\R^n$, also 
+	\begin{equation*}
+		Q:= \left\{ x \in \R^n\ |\ \exists y\in \R^k: 
+			\begin{pmatrix}
+				x\\y
+			\end{pmatrix}
+			\in P
+		 \right\}
+	\end{equation*}
+	wieder ein Polyeder.	
+\end{satz}
+\begin{proof}
+	(Beweisidee)\\
+	Fourier-Motzkin-Elimination von $y \in \R$ (also $k=1$)
+	\begin{align*}
+		P &= \left\{ 
+			\begin{pmatrix}
+				x\\y
+			\end{pmatrix}
+			\in \R^{n+1}\ |\ Ax + ay \leq b
+			\right\}\\
+		Q &= \left\{ x \in \R^{n}\ |\ Ax  \leq b - ay \right\}
+	\end{align*}
+	Für $i=1,\dots ,m$ betrachte $A_{i,\cdot}x \leq b_{i} -a_{i}y$
+	\begin{align*}
+		\forall i \in Z := \left\{ i \ |\ a_{i} = 0 \right\} &: A_{i,\cdot} \leq b_{i} \quad \forall y \in \R\\
+		\forall i \in P := \left\{ i \ |\ a_{i} > 0 \right\} &: A_{i,\cdot} \leq b_{i} - a_{i}y \quad(\text{ist $y\to - \infty$ möglich, so ist die Ungleichung redundant})\\
+		\forall i \in N := \left\{ i \ |\ a_{i} < 0 \right\} &: A_{i,\cdot} \leq b_{i} - a_{i}y \quad(\text{ist $y\to - \infty$ möglich, so ist die Ungleichung redundant})\\
+	\end{align*}
+	Im Fall $N=\emptyset$ oder $P = \emptyset$ folgt 
+	\begin{equation*}
+		Q = \left\{ x \in \R^n\ |\ A_{i,\cdot} x \leq b_{i} \quad \forall i \in Z \right\}
+	\end{equation*}
+	Sei nun $N \neq \emptyset$ und $i \in N, j \in P$ 
+	\begin{align*}
+		\implies \forall 
+		\begin{pmatrix}
+			x\\y
+		\end{pmatrix}
+		\in P : a_{j}A_{i,\cdot}x &\leq a_{j}b_{i} + a_{i}a_{j}y\\
+		 + \quad -a_{i}A_{j,\cdot}x &\leq -a_{i}b_{j} + a_{j}a_{i}y\\ \hline
+		 (a_{j}A_{i,\cdot}-a_{i}A_{j,\cdot})x &\leq a_{j}b_{i} - a_{i}b_{j} \quad \forall x \in P\\
+	\end{align*}
+	$\implies Q$ kann mit $|Z| + |N|\cdot |P|$ vielen linearen Ungleichungen beschreiben werden, d.h. $Q$ ist ein Polyeder.
+\end{proof}
+\begin{lemma}
+	\begin{enumerate}[label = (\alph*)]
+		\item Bilder bon Polyedern unter affin-linearen Abbildungen sind Polyeder
+		\item Die Summe von zwei Polyedern ist ein Polyeder.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\begin{enumerate}[label = (\alph*)]
+		\item Sei $P = \left\{ x \ |\ Ax \leq b \right\}$ ein Polyeder und $f(x)= Bx+d$.
+			Dann gilt 
+			\begin{align*}
+				f(P) &= \left\{ y \ |\ \exists x: Ax \leq b \text{ mit } y = Bx +d \right\}\\
+					 &= \left\{ y \ |\ \exists x: \underbrace{
+					 \begin{pmatrix}
+						 A & 0\\
+						 B &-I\\
+						 -b& I
+					 \end{pmatrix}
+					 \begin{pmatrix}
+					 	x\\y
+					 \end{pmatrix}
+					 \leq
+					 \begin{pmatrix}
+					 	b\\
+						-d\\
+						d
+					 \end{pmatrix}
+				 	}_{\texŧ{Polyeder }Q }
+					 \right\}
+			\end{align*}
+			Folglich ist $f(P)$ die Projektion von $Q$ auf die Variable $y$ \\
+			$\implies f(P)$ ist ein Polyeder.
+		\item 
+			\begin{align*}
+				P_{1} &= \left\{ x\ |\ A_{1}x \leq b_{1} \right\}\\
+				P_{2} &=  \left\{ x\ |\ A_{2}x \leq b_{2} \right\}\\
+			\implies P_{1}+P_{2} &=  \left\{ x+y\ |\ x \in P_{1},\ y \in P_{2} \right\}\\
+								 &=\left\{ \underbrace{x+y}_{\text{linear}}\ |\ 
+									\underbrace{
+								 	\begin{pmatrix}
+										 A_{1} & 0 \\
+										 0 & A_{2}
+								 	\end{pmatrix}
+									\begin{pmatrix}
+										x\\y
+									\end{pmatrix}
+									}_{Polyeder}
+									\leq
+									\begin{pmatrix}
+										b_{1}\\
+										b_{2}
+									\end{pmatrix}
+								 	\right\}\\
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+\begin{lemma}
+	Sei $V \in \R^{n \times p}$. Dann sind folgen Mengen Polyeder:
+	\begin{enumerate}[label = (\alph*)]
+		\item lineare Hülle: $\lin V = \left\{ Vc\ |\ c \in \R^p \right\}$ 
+		\item affine Hülle: $\aff V = \left\{ Vc\ |\ e^{T} c =1 \right\}$ 
+		\item konische Hülle: $\cone V = \left\{ Vc\ |\ c \geq 0 \right\}$ 
+		\item konvexe Hülle: $\conv V = \left\{ Vc\ |\ e^{T} c =1,\ c \geq 0  \right\}$ 
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	Definiere die lineare Abbildung $f(c) = Vc$.
+	Dann sind alle Mengen Bilder von Polyedern unter $f$, also wieder Polyeder.
+\end{proof}
+\begin{korollar}
+	Für alle $V \in \R^{n \times p}, D \in \R^{n\times q}$ ist 
+	\begin{equation*}
+		P := \conv V + \cone D
+	\end{equation*}
+	ein Polyeder. (mot $p,q$ endlich, falls $p=0$ oder $q=0$ Matrix $V$ oder $D$ weglassen)
+\end{korollar}
+\begin{definition}
+	Sei $X \subset \R^n$ nichtleer. Dann heißt
+	\begin{equation*}
+		X^°:= \left\{ y \in \R^n\ |\ \forall x \in X:\ x^{T} y \leq 0 \right\}
+	\end{equation*}
+	der \underline{polare Kegel} von $X$.
+\end{definition}
+Nichtlineare Optimierung: $\min f(x)$ so dass $x\in X$ \\
+$x^*$ lokales Minimum 
+\begin{align*}
+	&\implies \nabla f(x^*)^{T} d \geq 0 \forall d \in T_{X}(x^*)\\
+	&\iff - \nabla f(x^*) \in \left( T_{X}(x^*) \right)^°
+\end{align*}
+\begin{lemma}
+	Seien $X,Y \subset \R^n$ :
+	\begin{enumerate}[label = (\alph*)]
+		\item $X^°$ ist ein Kegel
+		\item $X \subset Y \implies Y^° \subset X^°$
+		\item $X \subset  \left( X^° \right)^°=: X^{°°}$ mit Gleichheit, falls $X$ konvex und abgeschlossen
+		\item $\left( X \cup Y \right)^° = X^°\cap Y^°$ (Achtung $\left( X \cap Y \right)^° \neq X^°\cup Y^°$)
+		\item $X^° = (\cone X)^° = \cone(X^°)$
+	\end{enumerate}
+\end{lemma}
+\begin{lemma}
+	(\underline{Farkas})\\
+	%TODO add pictures IMPORTANT 
+	%TODO change ° to something that work that works
+	Für $A \in \R^{m \times n}$ und $b \in \R^m$ gilt entweder
+	\begin{enumerate}[label = (\alph*)]
+		\item $\exists x \geq 0: b= Ax$\\
+			oder (nicht beides)
+		\item  $\exists y: b^{T} y > 0,\ A^{T} y \leq 0$
+	\end{enumerate}
+	Alternative Formulierung:
+	\begin{equation*}
+		\exists x \geq 0 \text{ mit } Ax=b \iff \forall y:\ A^{T} y \leq 0,\ b^{T} y \leq 0
+	\end{equation*}
+\end{lemma}
+\begin{satz}
+	Sei $A\in \R^{n \times m}$,$B \in \R^{n \times p}$
+	 \begin{align*}
+		 P_{1} &= \left\{ x \in \R^n \ |\ A^{T} x \leq 0,\ B^{T} x =0 \right\}\\
+		 P_{2} &= \left\{ y = AZ + B\mu\ |\ Z \geq 0\right\}\\
+	\end{align*}
+	Dann gilt $P_{1}^° = P_{2}$ und $P_{2}^° = P_{1}$.
+\end{satz}
+\begin{proof}
+	OBdA nur für $P_{1} = \left\{ x \ |\ A^{T} x \leq 0 \right\} = P(A,b)$, $P_{2} = \left\{ y = AZ \ |\ Z \geq 0 \right\}= \cone A$.
+	$y\in P_{2} \iff \exists Z \geq 0 : \ y = AZ \overset{\iff}{\text{Farkas}} \forall x$ mit $A^{T} x \leq 0$ gilt $y^{T} x \leq 0$ $\iff y \in P(A,0)^°=P_{1}^°$\\
+	$P_{2}^° = \left( \cone A \right)^° = \left\{ A_{\cdot,1},\dots ,A_{\cdot,m} \right\}^° = \left\{x \ |\ A^{T} x \leq 0 \right\} = P_{1}$
+\end{proof}
 
 
 
