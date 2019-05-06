@@ -101,6 +101,15 @@ Nun können wir also sinnvoll definieren:
 	\P_0(A):=\P(A_1)
 \end{align*}
 
+\betone{Nachtrag:}
+\begin{align*}
+	A_1\symDiff A
+	&=\klammern{A_1\setminus A}\cup\klammern{A\setminus A_1}\\
+	&=\underbrace{\klammern{A_1\cap M_1}}_{\subseteq M_1}\cup\klammern[\big]{\klammern{N_1\setminus A_1}\setminus M_1}_{\subseteq N_1}\\
+	&\subseteq\text{ Nullmenge}
+\end{align*}
+$A_2\Delta A$ analog.
+
 
 
 \section{Lösung von 
@@ -434,7 +443,7 @@ Sei $x_\tau\in\R$ die eindeutige Stetigkeitsstelle, an der der Wert von $F_X$ vo
 		\overset{!}{\neq}\emptyset
 	}
 \end{align*}
-Eindeutigkeit folgt aus Montonie von $F_X$.\\
+Eindeutigkeit folgt aus Monotonie von $F_X$.\\
 Zu $\ast$: Die Gleichheit hier folgt aus der Dichtheit von $S(X)$.
 "$\leq$" folgt aus Monotonie.
 Da $F_X$ nach Definition linksseitig stetig ist, ist $F_X(s_\tau)=1$ (im Falle der rechtsseitigen Stetigkeit wäre $F_X(s_\tau)=1$).
@@ -472,3 +481,36 @@ Aus der Stochastik-Grundvorlesung bekannt:
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:18]{Aufgabe 18}}{}
 }\label{loes:18}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:19]{Aufgabe 19}}{}
+}\label{loes:19}
+
+\betone{Zeige \ref{item:aufg19_i}:}\\
+Schreibe Definition von positiv semidefinit auf und zeige, dass $p_1 K_1+p_2 K_2$ positiv semidefinit ist\nl
+\betone{Zeige \ref{item:aufg19_ii}:}\\
+\betone{Zeige \ref{item:aufg19_iii}:}\\
+\betone{Zeige \ref{item:aufg19_iv}:}\\
+\betone{Zeige \ref{item:aufg19_v}:}\\
+Verwende (iii).
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:20]{Aufgabe 20}}{}
+}\label{loes:20}
+
+\begin{proof}
+	Seien $x_1,\ldots,x_n\in[0,\infty)$.
+	Zu zeigen: $A=\klammern[\big]{\min(x_i,x_j)}_{i,j=1}^n$ ist positiv semidefinit.
+	Wir dürfen annehmen, dass $x_1\leq x_2\leq\ldots\leq x_n$.
+	Dann ist
+	\begin{align*}
+		\det\klammern[\big]{A(x_1,\ldots,x_n)}
+		&=:D_n(x_1,\ldots,x_n)\\
+		&=\begin{vmatrix}
+			x_1 & x_1 & \ldots & x_1\\
+			x_1 & x_2 & \ldots & x_2\\
+			\vdots & \vdots & \ddots & \vdots\\
+			x_1 & x_2 & \ldots & x_n
+		\end{vmatrix}
+	\end{align*}
+\end{proof}

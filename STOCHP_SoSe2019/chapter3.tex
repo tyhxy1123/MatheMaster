@@ -113,7 +113,7 @@
 	\begin{align}\label{eq:satz3.1.4_1}\tag{1}
 		\Big(K\big(x_i,x_j\big)\Big)_{i,j=1}^n
 	\end{align}
-	positive semidefinit ist.
+	positiv semidefinit ist.
 	Dann existiert ein Gauß-Feld auf $T$ mit
 	\begin{align}
 		\E\eckigeKlammern[\big]{Z(x)}&=M(x)
@@ -135,10 +135,162 @@
 	und folglich $Z(x)=M(x)$ fast sicher, wenn $Z$ reell.
 \end{bemerkung}
 
+\begin{erinnerung}
+	$f$ ist die charakteristische Funktion eines $d$-dimensionalen Gauß-verteilten Zufallsvektors
+	\begin{align*}
+		\iff f(t)=\exp\klammern{\ii\mal\scaProd{m}{t}-\frac{1}{2}\mal\scaProd{C\mal t}{t}}\qquad\forall t\in\R^d
+	\end{align*}
+	Hierbei ist $m\in\R^d$ (Erwartungsvektor) beliebig und $C$ eine positiv semidefinite $d\times d$-Matrix (Kovarianzmatrix).
+\end{erinnerung}
+
 \begin{proof}
-	Seien $M$ und $K$ reellwertig uns seien $x_1,\ldots,x_n\in T$.
-	Nach ... existiert eine Gaußverteilung auf $\R^n$  mit Erwartungsvektor
+	\betone{Fall 1: $M$ und $K$ seien reellwertig.}\\
+	Seien $x_1,\ldots,x_n\in T$.
+	Dann existiert eine Gaußverteilung auf $\R^n$ mit Erwartungsvektor
 	$\klammern[\big]{M(x_1),\ldots,M(x_n)}$ und Kovarianzmatrix \eqref{eq:satz3.1.4_1}.
-	Diese Verteilungen erfüllen die Konsistenzbedingungen von Kolmogorov...
+	Diese Verteilungen erfüllen die Konsistenzbedingungen von Kolmogorov 
+	%\ref{bem1.3.8Kolmo} 
+	\ref{satz:1.3.6ExistenzsatzVonKolmo} mithilfe von Aufgabe \ref{aufg:6} (prüfen!).
+	Folglich existiert ein reelles Gauß-Feld mit \eqref{eq:satz3.1.4_2} und \eqref{eq:satz3.1.4_3}.\nl
+	\betone{Fall 2: $M$ und $K$ seien komplexwertig.}
+	Setze
+	\begin{align*}
+		\tilde{T}&:=T\times\set{1,2}\\
+		\tilde{M}&\colon\tilde{T}\to\R^2,\qquad
+		\tilde{M}(x,1):=\Re(M(x)),\qquad
+		\tilde{M}(x,2):=\Im(M(x))\\
+		\hat{K}&\colon\tilde{T}\times\tilde{T}\to\R,~~
+		\begin{array}{l}
+			\tilde{K}\klammern[\big]{(x,1),(y,1)}:=
+			\tilde{K}\klammern[\big]{(x,2),(y,2)}:=
+			\frac{1}{2}\mal\Re\klammern[\big]{K(x,y)}\\
+			\tilde{K}\klammern[\big]{(x,1),(y,2)}:=
+			-\tilde{K}\klammern[\big]{(x,2),(y,1)}:=
+			-\frac{1}{2}\mal\Im\klammern[\big]{K(x,y)}\\
+		\end{array}~~\forall x,y\in T
+	\end{align*}
+	Aus Lemma \ref{lemma3.1.3} folgt, dass $\tilde{K}$ positiv semidefinit auf $\tilde{T}\times\tilde{T}$ ist.
+	Nach dem ersten Fall im Beweis existiert ein reelles Feld $\tilde{Z}$ auf $\tilde{T}$ so, dass \eqref{eq:satz3.1.4_2} und \eqref{eq:satz3.1.4_3} für $\tilde{M}$, $\tilde{K}$, $\tilde{Z}$ erfüllt sind.
+	Wir definieren
+	\begin{align*}
+		Z(x):=\tilde{Z}(x,1)+\ii\mal\tilde{Z}(x,2)\qquad\forall x\in T
+	\end{align*}
+	Dann ist $Z$ ein komplexes Gauß-Feld, da $\tilde{Z}$ ein Gauß-Feld ist.
+	Eine kurze Rechnung zeigt, dass $Z$ die Gleichungen 
+	\eqref{eq:satz3.1.4_2}, \eqref{eq:satz3.1.4_3} sowie \eqref{eq:satz3.1.4_4} erfüllt.
 \end{proof}
 
+Bei Anwendungen / Modellbildung ist es häufig notwendig, eine Korrelationsfunktion anzugeben, die zu den vorhandenen Daten passt.
+Deshalb ist es wichtig, Methoden für die Konstruktion von positiv semidefiniten Kernen zu kennen.
+(Ein \define{Kern} ist einfach eine Funktion von zwei Variablen).
+\index{Kern}
+
+\begin{aufgabenr}[3.1.5, \texorpdfstring{\hyperref[loes:19]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:19}\enter
+	Seien $K,K_1,K_2$ Kovarianzfunktionen auf $T\times T$.
+	Die folgenden Funktionen sind Kovarianzfunktionen auf $T\times T$:
+	\begin{enumerate}[label=(\roman*)]
+		\item $\begin{aligned}
+			p_1\mal K_1+p_2\mal K_2
+		\end{aligned}$ für beliebige $p_1,p_2\geq0$
+		\label{item:aufg19_i}
+		\item $K_1\mal K_2$
+		\label{item:aufg19_ii}
+		\item punktweise Grenzwert von Kovarianzfunktionen auf $T\times T$.
+		\label{item:aufg19_iii}
+		\item $\begin{aligned}
+			(t,s)\mapsto f(t-s)\qquad\forall (t,s)\in T\times T,~T:=\R^d
+		\end{aligned}$\\1
+		wobei $f$ eine charakteristische Funktion ist.
+		Insbesondere sind
+		\begin{align*}
+			\cos\klammern{t-s},\qquad\exp\klammern{-\abs{t-s}^\alpha},\qquad
+			\frac{1}{1+\abs{t-s}^\alpha}
+		\end{align*}
+		für $\alpha\in(0,2]$ $t,s\in\R$ Kovarianzfunktionen.
+		\label{item:aufg19_iv}
+		\item $\varphi(K)$ wenn $\abs{K}<\rho$ wobei $\rho>0$ und 
+		\begin{align*}
+			\varphi(z)=\sum\limits_{n=1}^\infty a_n\mal z^n\qquad\exists a_n\geq 0
+		\end{align*}
+		und die Reihe absolut konvergiert auf $\set{z\in C:\abs{z}<\rho}$.
+		Insbesondere sind 
+		\begin{align*}
+			\exp(K)
+			\qquad\und\qquad
+			\frac{1}{d-K}
+		\end{align*}
+		für beliebige $d\geq \rho$ Kovarianzfunktionen.
+		\label{item:aufg19_v}
+	\end{enumerate}
+\end{aufgabenr}
+
+\begin{lemma}\label{lemma3.1.6}
+	Die Kerne
+	\begin{align*}
+		K_1(x,y)&:=\min\set{x,y} &&\forall x,y\in [0,\infty)\\
+		K_2(x,y)&:=\frac{1}{2}\mal\klammern[\big]{\abs{x}+\abs{y}-\abs{x-y}} &&\forall x,y\in\R
+	\end{align*}
+	sind positiv semidefinit.
+\end{lemma}
+
+%\begin{proof}
+	\begin{aufgabenr}[\texorpdfstring{\hyperref[loes:20]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:20}\enter
+		Der Beweis ist Aufgabe.
+		\betone{Hinweis für $K_1$:}\\
+		Seien $x_1,\ldots,x_n\in[0,\infty)$.
+		Zu zeigen: $A=\klammern[\big]{\min(x_i,x_j)}_{i,j=1}^n$ ist positiv semidefinit.
+		Wir dürfen annehmen, dass $x_1\leq x_2\leq\ldots\leq x_n$.
+		Dann ist
+		\begin{align*}
+			\det\klammern[\big]{A(x_1,\ldots,x_n)}
+			&=:D_n(x_1,\ldots,x_n)\\
+			&=\begin{vmatrix}
+				x_1 & x_1 & \ldots & x_1\\
+				x_1 & x_2 & \ldots & x_2\\
+				\vdots & \vdots & \ddots & \vdots\\
+				x_1 & x_2 & \ldots & x_n
+			\end{vmatrix}\\
+			\overset{}&{=}?
+		\end{align*}
+		\betone{Hinweis für $K_2$:}\\
+		Lässt sich auf $K_1$ zurückführen.
+		Allgemein gilt für positiv semidefinite Matrizen $A,B$, dass auch die Matrix
+		\begin{align*}
+			\begin{bmatrix}
+				A & 0\\
+				0 & B
+			\end{bmatrix}
+		\end{align*}
+		positiv semidefinit ist.
+	\end{aufgabenr}
+%\end{proof}
+
+\begin{satz}\label{satz3.1.7}
+	Auf $T=\R$ existiert ein stetiger  (d.h. die Pfade sind stetig) reeller Gauß-Prozess $X$ mit $\E[X]=0$ und 
+	\begin{align}\label{eq:satz3.1.7_1}\tag{1}
+		\E\eckigeKlammern[\big]{X(t)\mal X(s)}
+		&=\frac{1}{2}\mal\klammern[\big]{\abs{t}+\abs{s}-\abs{t-s}}
+		\qquad\forall s,t\in\R
+	\end{align}
+	Für $s,t\in[0,\infty)$ gilt speziell
+	\begin{align}\label{eq:satz3.1.7_2}\tag{2}
+		\E\eckigeKlammern[\big]{X(t)\mal X(s)}
+		&=\min\set{s,t}\qquad\forall s,t\in[0,\infty)
+	\end{align}
+\end{satz}
+
+\begin{proof}
+	Die Existenz ohne stetige Pfade zu fordern folgt aus Lemma \ref{lemma3.1.6} und aus Satz \ref{satz3.1.4}.
+	Für den Fall der stetigen Pfade:
+	Ziel ist Anwendung des Satzes von Kolmogorov. %\ref{satz:1.3.6ExistenzsatzVonKolmo}
+	Da $X$ ein Gauß-Prozess ist, ist $X_t-X_s$ normalverteilt mit $\E\eckigeKlammern{X_t-X_s}=0$ und 
+	\begin{align*}
+		\Var(X_t-X_s)
+		&=\E\eckigeKlammern{\klammern{X_t-X_s}^2}\\
+		&=\E\eckigeKlammern{X_t^2-2\mal X_t\mal X_s+X_s^2}\\
+		&=\abs{t}-\klammern[\big]{\abs{t}+\abs{s}-\abs{t-s}}+\abs{s}\\
+		&=t-s
+		\qquad\forall s\leq t\\
+		\implies X_t-X_s&\sim\Nor(0,t-s).
+	\end{align*}
+\end{proof}
