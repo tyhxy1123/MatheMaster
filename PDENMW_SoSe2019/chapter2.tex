@@ -98,20 +98,20 @@ will do so for the remaining course.
 			Let $\hat{T}$ be the reference simplex and let $F(\hat{x}):= B\hat{x} + x_{0}$ be an affine bijective map from $\hat{T}$ to $T$.
 			Then for all $v \in W^{t,q}(T)$
 			\begin{align*}
-				\|D^tv\|_{L^{q}(T)} &\leq \approx \|B^{-1} \|^{t} |\det B|^{-\frac{1}{q}} \|D^t \hat{v}\|_{L^{q}(\hat{T})}\\
-									&\leq \approx h^{-(t-\frac{d}{p})} \|D^t \hat{v}\|_{L^{q}(T)}
+				\|D^tv\|_{L^{q}(T)} &\leqC \|B^{-1} \|^{t} |\det B|^{-\frac{1}{q}} \|D^t \hat{v}\|_{L^{q}(\hat{T})}\\
+                            &\leqC h^{-(t-\frac{d}{p})} \|D^t \hat{v}\|_{L^{q}(\hat {T})}
 			\end{align*}
-		\item The space $\P_{n}(\hat{T})$ is finite-dimensional $\implies$ all norms are equivalent. In particular 
+		\item The space $\P_{n}(\hat{T})$ is finite-dimensional $\implies$ all norms are equivalent. In particular
 			\begin{equation*}
-				\forall Q \in \P_{n}(\hat{T}) \quad \|D^t Q\|_{L^{q}(\hat{T})} \leq \|Q\|_{W^{t,q}(\hat{T})} \leq\approx \|Q\|_{L^{q}\hat{T}}. 
+				\forall Q \in \P_{n}(\hat{T}) \quad \|D^t Q\|_{L^{q}(\hat{T})} \leq \|Q\|_{W^{t,q}(\hat{T})} \leq\approx \|Q\|_{L^{q}\hat{T}}.
 			\end{equation*}
-			We want to apply this to 
+			We want to apply this to
 			\begin{align*}
 				\|D^t(v-Iv)\|_{L^{q}(\hat{T})} &\leq \|D^t(v-P)\|_{L^{q}(\hat{T})} + \|D^tI(v-P)\|_{L^{q}(\hat{T})}\\
 											   &\leq\approx \|D^t(v-P)\|_{L^{q}(\hat{T})} \|I(v-P)\|_{L^{q}(\hat{T})}
 			\end{align*}
 		\begin{lemma}
-			For all $w\in L^q$ we have 
+			For all $w\in L^q$ we have
 			\begin{equation*}
 				\|Iw\|_{L^{q}(\hat{T})} \leq \approx \|w\|_{L^{q}(N(\hat{T}))}
 			\end{equation*}
@@ -126,7 +126,7 @@ will do so for the remaining course.
 										&\overset{\text{Hölder}}{\leq} \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \ |w|_{L^q(\supp(\hat{\phi}_{z}^*))} |\hat{\phi}_{z}^*|_{L^{q^*}(\supp(\hat{\phi}_{z}^*))}\\
 										&\leq\approx \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \ |w|_{L^q(\supp(\hat{\phi}_{z}^*))} \\
 										&\leq \sum\limits_{z \in\mathcal{L}(\hat{T})}^{} \ |w|_{L^q(N(\hat{T}))} \\
-										&\leq\approx |w|_{L^q(N(\hat{T}))} 
+										&\leq\approx |w|_{L^q(N(\hat{T}))}
 			\end{align*}
 		\end{proof}
 	\end{itemize}
@@ -137,7 +137,7 @@ will do so for the remaining course.
 									   &\leq\approx \|v-P\|_{W^{s,p}(N(\hat{T}))}
 	\end{align*}
 	Holds for all $P \in \P_{n}$ !( Rellich-Kondrachov theorem holds because\\ $\sob(W^{s,p})>\sob(W^{t,q})$)\\
-	$\implies$ 
+	$\implies$
 	\begin{align*}
 		\|D^t(v-Iv)\|_{L^{q}(\hat{T})} &\leq\approx \inf_{p \in \P_{n}(N(\hat{T}))} \|v\|_{W^{s,p}} \\
 									   &\leq\approx \|v\|_{W^{t,p}(N(\hat{T}))}
