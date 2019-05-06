@@ -1158,3 +1158,128 @@ Für $\mathcal{M}$ schreiben wir auch $\S^\M$ oder sagen $\M$ ist Semiring über
 	ein Semiring-Modul, der sogenannte $N$-freie Semiring-Modul über $\S$.
 \end{beispiel}
 
+\subsection{(linksseitiger) Semiring-Modul}
+$\mathcal{M}=(\M,\S,\scal)$\\
+$\M=(M,+,\sigma)$ vektorieller Bereich\\
+$\S=(S,+,\mal,0,1)$ skalarere Bereich (Semiring)\\
+$\scal\colon\S\to\End(\M)$ Scaling (Morphismus)\\
+rechtsseitiger Semiring-Modul:\\
+$\scal\colon\S\to\End_{\cov}(\M)$ \define{kovariantes Scaling}\\
+skalare Multiplikation:
+\begin{align*}
+	S\times M\to M,\qquad(s,m)\mapsto s m:=\scal(s)m
+\end{align*}
+
+\begin{beispiel}
+	\begin{align*}
+		\Mod(\S,N)&:=\klammern{\S_{\add}^{(N)},\S,\scal}
+	\end{align*}
+	wobei $N$ eine Menge und $\S=(S,+,\mal,0,1)$ ein Semiring ist.
+	Außerdem: ist
+	\begin{align*}
+		\S_{\add}^{(N)}:=\klammern{S^{(N)},+,\vec{0}}
+	\end{align*}
+	die \define{$N$-fache Copotenz von $\S_{\add}$}.
+	\begin{align*}
+		S^{(N)}:=\set{ u\in S^N\mid\supp(u)\text{ endlich}}\\
+		u+w\colon N\to S,\qquad i\mapsto u(i)+w(i)\qquad\forall u,w\in S^{(N)}
+	\end{align*}
+	und
+	\begin{align*}
+		\sigma\colon N\to S,\qquad i\mapsto 0
+	\end{align*}
+	sowie
+	\begin{align*}
+		\scal\colon S\to\End\klammern{\S_{\add}^{(N)}},\qquad s\mapsto \lambda_s
+	\end{align*}
+	wobei
+	\begin{align*}
+		\lambda_s\colon S^{(N)}\to S^{(N)},\qquad
+		u\mapsto su:=\klammern{s\mal u(i)}_{i\in N}
+	\end{align*}
+	
+	$\Mod(\S,N)$ heiße der \define{$N$-freie Standardmodul} über $\S$.
+	Dann heiße
+	\begin{align*}
+		\delta^N&\colon N\to S^{(N)},\qquad i\mapsto\delta_i^N\qquad\text{wobei}\\
+		 \delta_i^N&\colon N\to S,\qquad j\mapsto\left\lbrace\begin{array}{cl}
+		 	1, &\falls j=1\\
+		 	0, & \sonst
+		 \end{array}\right.
+	\end{align*}
+	die \define{Standardbasis} von $\Mod(\S,N)$ (bzgl. $(\S,N)$ ist.
+\end{beispiel}
+
+\subsection{Was ist eine Linearkombination?}
+Sei $\mathcal{M}=\klammern{\M,\S,\scal}$ Semiring-Modul und sei $N$ eine Menge.
+Für $n\in S^{(N)}$ und $\gamma\in M^N$ heiße dann
+\index{Linearkombination}
+\begin{align*}
+	u*\gamma:=\sum\limits_{i\in N} u(i)\mal\gamma(i):=\sum\limits_{i\in\supp(u)} u(i)\mal\gamma(i)\in M
+\end{align*}
+die \define{Linearkombination} von $u$ mit $\gamma$ in $\mathcal{M}$.
+$u$ heißt \define{Koeffizientenfamilie} und $\gamma$ \define{Vektorenfamilie}
+
+\subsubsection{Linearkombinationsabbildung}
+Sei $\mathcal{M}=(\M,\S,\scal)$ Semring-Modul und sei $N$ Menge und $\gamma\in M^N$, d.h. $\gamma=:\big(\gamma(i)\big)_{i\in N}$ Vektorenfamilie in $\mathcal{M}$.
+Dann heiße
+\begin{align*}
+	f_\gamma\colon S^{(N)}\to M,\qquad
+	u\mapsto u*\gamma
+\end{align*}
+die \define{Linearkombinationsabbildung} zu $\gamma$ bzgl. $\mathcal{M}$.
+\index{Linearkombinationsabbildung}
+
+\begin{satz}
+	Es gilt
+	\begin{align*}
+		&f_\gamma\circ\delta^N=\gamma\\
+		&\begin{tikzcd}[ampersand replacement=\&]
+                               \& N \arrow[rd, "\gamma"] \arrow[ld, "\delta^N"'] \&   \\
+S^{(N)} \arrow[rr, "f\gamma"'] \&                                                \& M
+\end{tikzcd}
+	\end{align*}
+\end{satz}
+
+\begin{erinnerung}
+	Seien $V,W$ Vektorräume über Körper $K$.
+	\begin{enumerate}
+		\item Klassische Situation: Ist $f\colon V\to W$ linear Abbildung, so ist
+		\begin{align*}
+			\Kern(f):=\set{v\in V\mid f(v)=0_W}
+		\end{align*}
+		der \define{große Kern}. 
+		Dieser ist Untervektorraum von $V$.
+		\index{großer Kern}
+		\item Allgemeine Situation:
+		Sind $A,B$ Mengen und ist $f\colon A\to B$ Abbildung, so ist
+		\begin{align*}
+			\ker(f):=\set{(a,c)\in A\times S\mid f(a)=f(c)}
+		\end{align*}
+		der \define{kleine Kern.}
+		Dies ist eine Äquivalenzrelation auf $A$.
+		\index{kleiner Kern}
+		\item Es gilt:
+		\begin{align*}
+			\Kern(f)=0_V \ker(f)=:[0_V]\ker(f)
+		\end{align*}
+	\end{enumerate}
+\end{erinnerung}
+
+\begin{definition}\
+	\begin{itemize}
+		\item $\gamma$ \define{unabhängig} (bzgl. $\mathcal{M}$)
+		$
+			\defiff f_\gamma \text{ injektiv}
+			\iff \ker(f_\gamma)=\triangle_{S^{(N)}}
+		$
+		\item $\gamma$  \define{erzeugend} (bzgl. $\mathcal{M}$) $\defiff f_\gamma$ surjektiv
+		\item $\gamma$ \define{Basis} von $\mathcal{M}\defiff f_\gamma$ bijektiv
+	\end{itemize}
+\end{definition}
+
+\begin{beispiel}[Standardbasis ist eine Basis]\enter
+	$\delta^N$ ist Basis von $\Mod\klammern{\S,N}$.
+	Begründung: $f_{\delta^N}=\id_{S^{(N)}}$
+\end{beispiel}
+
