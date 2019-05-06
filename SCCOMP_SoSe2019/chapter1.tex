@@ -25,13 +25,13 @@ Basic relaxation methods are based on a coordinate-wise relaxation/reduction of 
 \[
 \gamma = b- Ax
 .\] 
-In each relaxation step there methodes try to annihilate a component of the residual.
+In each relaxation step these methodes try to annihilate a component of the residual.
 
 The general idea is to transform the linear system into a fixed point problem
 \[
 	x = x + P^{-1}(b-Ax)
 ,\] 
-where $P$ is called a proconditioner (matrix) and should be easy to invert in the sense the $Pe=r$ can be solved easily and $P$ should be an approximation of matrix $A$.
+where $P$ is called a proconditioner (matrix) and should be easy to invert in the sense that $Pe=r$ can be solved easily and $P$ should be an approximation of matrix $A$.
 
 Basic idea to solve a fixed-point problem is a fixed-point iteration
 \[
@@ -77,7 +77,7 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 		\[
 			D = \diag(\frac{4}{h^{2}}) 		
 		\] 
-		and the matrix $L+U$ looking as follows
+		and the matrix $L+U$ looks like the following image.
 		\begin{figure}[H]
 			\begin{center}
 				\includegraphics[width=0.5\textwidth]{pics/chapter1/huebschematrix.png}
@@ -116,7 +116,7 @@ where $G = I-P^{-1}A$ is the iteration matrix and $g = P^{-1}b$.
 		\[
 			\xi _{i}^{(k+1)} = \frac{1}{a_{ii}} \Big( -\sum_{j=1}^{i-1}{a_{ij}\xi _{i}^{(k)}}-\sum_{j=i+1}^{n}{a_{ij}\xi _{j}^{(k+1)}} + \beta _{i} \Big) \qquad i=n, \ldots ,1
 		.\] 
-		\underline{Note} : A relaxation method uses:
+		\underline{Note} : A damped relaxation method uses:
 		\[
 			P_{GS}(\omega ) := \frac{1}{\omega }(D-L) \quad \text{ or } \quad P_{GS'}(\omega ) := \frac{1}{\omega }(D-U)
 		\] 
@@ -668,7 +668,7 @@ The matrix $V_{i}W_{i}^{T}$ is a projector from $\R^{n}$ to a subspace $\mathcal
 
 \subsection*{Projection procedure}
 \begin{itemize}
-	\item extract approximate solution to $Ax=b$ in subspace of $R^{n}$
+	\item extract approximate solution to $Ax=b$ in subspace of $\R^{n}$
 	\item subspace $\mathcal{K}$ is called "search space" / "trial space" and $\dim \mathcal{K} = m$
 	\item $m$ constraints must be imposed to extract such an approximation, i.e.
 		\begin{itemize}
@@ -730,21 +730,21 @@ x^{k+1} = x^{k}+ V_{i}A_{ii}^{-1}W_{i}^{T} r^{k}
 
 \subsection*{Block-Jacobi-Iteration}
 \label{sec:Block-Jacobi-Iteration}
-"additive projection procedure"
+"additive projection procedure"\\
 
-FOR $i=1, \ldots, p$
-	solve $A_{ii}d_{i} = W_{i}^{T}(b-Ax^{k})$
-END FOR
+FOR $i=1, \ldots, p$\\
+\tab	solve $A_{ii}d_{i} = W_{i}^{T}(b-Ax^{k})$\\
+END FOR\\
 $x^{k+1}= x^{k} + \sum_{i=1}^{p}{\color{orange}\omega _{i}\color{black}V_{i}d_{i}}$
 
 \subsection*{Block-Gaus-Seidel-Iteration}
 \label{sec:Block-Jacobi-Iteration}
-"multiplicative projection procedure"
+"multiplicative projection procedure"\\
 
-Let $x^{k+1} = x^{k}$
-FOR $i=1, \ldots, p$
-	$A_{ii}d_{i} = W_{i}^{T}(b-Ax^{k+1})$
-	$x^{k+1} = x^{k+1} +\color{orange}\omega _{i}\color{black} V_{i}d_{i}$
+Let $x^{k+1} = x^{k}$\\
+FOR $i=1, \ldots, p$\\
+\tab 	$A_{ii}d_{i} = W_{i}^{T}(b-Ax^{k+1})$\\
+\tab 	$x^{k+1} = x^{k+1} +\color{orange}\omega _{i}\color{black} V_{i}d_{i}$\\
 END FOR
 
 \subsection*{Multi-Splitting-Parallelization}
@@ -762,11 +762,11 @@ END FOR
 
 Algorithm:
 
-Choose $x_0$ arbitrarily and $\omega $
-FOR $k=1,\ldots $
-	$\overline{x} = x_{i}$
-	FOR $i=1, \ldots, p$
-	Find $D_{k}y_{k}$ where $y_{k}$ satisfies $B_{k}y_{k} = C_{k}\overline{x}+b$
-	END FOR
-	$x_{k+1} = (1-\omega ) x_{k} + \omega \sum_{k}^{}{D_{k}y_{k}}$
+Choose $x_0$ arbitrarily and $\omega $\\
+FOR $k=1,\ldots $ \\
+\tab	$\overline{x} = x_{i}$\\
+\tab	FOR $i=1, \ldots, p$\\
+\tab	Find $D_{k}y_{k}$ where $y_{k}$ satisfies $B_{k}y_{k} = C_{k}\overline{x}+b$\\
+\tab	END FOR\\
+\tab	$x_{k+1} = (1-\omega ) x_{k} + \omega \sum_{k}^{}{D_{k}y_{k}}$\\
 END FOR
