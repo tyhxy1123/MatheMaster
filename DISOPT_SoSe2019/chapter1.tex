@@ -752,7 +752,7 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 	Sei $P \subset \R^n$ ein Polyeder. Dann heißen Seitenflächen $F$ mit $\dim F = 1$ Kanten von $P$.
 	\begin{itemize}
 		\item $F$ ist eine Gerade: Extremalgerade
-		\item $F$ ist eine Haldgerade: Extremalstrahl
+		\item $F$ ist eine Halbgerade: Extremalstrahl
 		\item $F$ ist ein Intervall $[x,y]$ : $F$ verbindet die Eckehn $x,y$. Man nennt $x$ und $y$ adjazent/benachbart.
 	\end{itemize}
 \end{definition}
@@ -989,7 +989,12 @@ $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1
 	Sei $V \in \R^{n \times p}$. Dann sind folgen Mengen Polyeder:
 	\begin{enumerate}[label = (\alph*)]
 		\item lineare Hülle: $\lin V = \left\{ Vc\ |\ c \in \R^p \right\}$ 
-		\item affine Hülle: $\aff V = \left\{ Vc\ |\ e^{T} c =1 \right\}$ 
+		\item affine Hülle: $\aff V = \left\{ Vc\ |\ e^{T} c =1 \right\}$ mit $e  = 
+				\begin{pmatrix}
+					1 \\
+					\vdots \\ 
+					1
+				\end{pmatrix}$
 		\item konische Hülle: $\cone V = \left\{ Vc\ |\ c \geq 0 \right\}$ 
 		\item konvexe Hülle: $\conv V = \left\{ Vc\ |\ e^{T} c =1,\ c \geq 0  \right\}$ 
 	\end{enumerate}
@@ -1008,7 +1013,7 @@ $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1
 \begin{definition}
 	Sei $X \subset \R^n$ nichtleer. Dann heißt
 	\begin{equation*}
-		X^°:= \left\{ y \in \R^n\ |\ \forall x \in X:\ x^{T} y \leq 0 \right\}
+		X^\circ= \left\{ y \in \R^n\ |\ \forall x \in X:\ x^{T} y \leq 0 \right\}
 	\end{equation*}
 	der \underline{polare Kegel} von $X$.
 \end{definition}
@@ -1016,22 +1021,21 @@ Nichtlineare Optimierung: $\min f(x)$ so dass $x\in X$ \\
 $x^*$ lokales Minimum 
 \begin{align*}
 	&\implies \nabla f(x^*)^{T} d \geq 0 \forall d \in T_{X}(x^*)\\
-	&\iff - \nabla f(x^*) \in \left( T_{X}(x^*) \right)^°
+	&\iff - \nabla f(x^*) \in \left( T_{X}(x^*) \right)^\circ
 \end{align*}
 \begin{lemma}
 	Seien $X,Y \subset \R^n$ :
 	\begin{enumerate}[label = (\alph*)]
-		\item $X^°$ ist ein Kegel
-		\item $X \subset Y \implies Y^° \subset X^°$
-		\item $X \subset  \left( X^° \right)^°=: X^{°°}$ mit Gleichheit, falls $X$ konvex und abgeschlossen
-		\item $\left( X \cup Y \right)^° = X^°\cap Y^°$ (Achtung $\left( X \cap Y \right)^° \neq X^°\cup Y^°$)
-		\item $X^° = (\cone X)^° = \cone(X^°)$
+		\item $X^\circ$ ist ein Kegel
+		\item $X \subset Y \implies Y^\circ \subset X^\circ$
+		\item $X \subset  \left( X^\circ \right)^\circ=: X^{\circ\circ}$ mit Gleichheit, falls $X$ konvex und abgeschlossen
+		\item $\left( X \cup Y \right)^\circ = X^\circ \cap Y^\circ$ (Achtung $\left( X \cap Y \right)^\circ \neq X^\circ\cup Y^\circ$)
+		\item $X^\circ = (\cone X)^\circ = \cone(X^\circ)$
 	\end{enumerate}
 \end{lemma}
 \begin{lemma}
 	(\underline{Farkas})\\
 	%TODO add pictures IMPORTANT 
-	%TODO change ° to something that work that works
 	Für $A \in \R^{m \times n}$ und $b \in \R^m$ gilt entweder
 	\begin{enumerate}[label = (\alph*)]
 		\item $\exists x \geq 0: b= Ax$\\
@@ -1049,12 +1053,16 @@ $x^*$ lokales Minimum
 		 P_{1} &= \left\{ x \in \R^n \ |\ A^{T} x \leq 0,\ B^{T} x =0 \right\}\\
 		 P_{2} &= \left\{ y = AZ + B\mu\ |\ Z \geq 0\right\}\\
 	\end{align*}
-	Dann gilt $P_{1}^° = P_{2}$ und $P_{2}^° = P_{1}$.
+	Dann gilt $P_{1}^\circ = P_{2}$ und $P_{2}^\circ = P_{1}$.
 \end{satz}
 \begin{proof}
-	OBdA nur für $P_{1} = \left\{ x \ |\ A^{T} x \leq 0 \right\} = P(A,b)$, $P_{2} = \left\{ y = AZ \ |\ Z \geq 0 \right\}= \cone A$.
-	$y\in P_{2} \iff \exists Z \geq 0 : \ y = AZ \overset{\iff}{\text{Farkas}} \forall x$ mit $A^{T} x \leq 0$ gilt $y^{T} x \leq 0$ $\iff y \in P(A,0)^°=P_{1}^°$\\
-	$P_{2}^° = \left( \cone A \right)^° = \left\{ A_{\cdot,1},\dots ,A_{\cdot,m} \right\}^° = \left\{x \ |\ A^{T} x \leq 0 \right\} = P_{1}$
+	OBdA nur für 
+	\begin{align*}
+		P_{1} &= \left\{ x \ |\ A^{T} x \leq 0 \right\} = P(A,b)\\
+		P_{2} &= \left\{ y = AZ \ |\ Z \geq 0 \right\}= \cone A.
+	\end{align*}
+	$y\in P_{2} \iff \exists Z \geq 0 : \ y = AZ \overset{\text{Farkas}}{\iff} \forall x$ mit $A^{T} x \leq 0$ gilt $y^{T} x \leq 0$ $\iff y \in P(A,0)^\circ=P_{1}^\circ$\\
+	$P_{2}^\circ = \left( \cone A \right)^\circ = \left\{ A_{\cdot,1},\dots ,A_{\cdot,m} \right\}^\circ = \left\{x \ |\ A^{T} x \leq 0 \right\} = P_{1}$
 \end{proof}
 
 
