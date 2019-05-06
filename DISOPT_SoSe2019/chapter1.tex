@@ -320,7 +320,7 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 	\end{table}
 	\underline{Modellierung}
   \begin{enumerate}[label={Variante \arabic*.}]
-    \item \label{item:Zuschnittsillymodel} Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wieviele Stäbe der Länge $25,30,35\,$cm daraus geschnitten werden sollen.
+    \item \label{item:Zuschnittsillymodel} Für jeden Stab $i$ beschreiben $x_{i1},x_{i2},x_{i3} \in \N_{0}$, wieviele Stäbe der Länge 25, 30, 35 cm daraus geschnitten werden sollen.
       \begin{align}
         \implies \forall i~ & 25x_{i1} + 30x_{i2} + 35x_{i3}\leq 100 \notag\\
                             &
@@ -430,7 +430,8 @@ Beim Basisupdate gibt es den neuen Fall $B^+ = B$, $i$ wechselt von $N_{l}$ nach
 			\begin{equation*}
 				\max_{h} y^{T} h \text{ subject to } 25h_{1} + 30 h_{2} + 35h_{3} \leq 100, h\geq 0 , h \in \Z^3
 			\end{equation*}
-      bestimmen. Damit erhalten wir ein Rucksackproblem mit Gewichten $=$ Stablängen und Werte $=$ duale Variable $y$. Dieses Rucksackproblem ist ganzzahlig, aber recht klein.
+      bestimmen. Damit erhalten wir ein Rucksackproblem mit Gewichten = \\
+      Stablängen und Werte = duale Variable $y$. Dieses Rucksackproblem ist ganzzahlig, aber recht klein.
 		\item Sei $x_{\alpha} \in \R^n$ eine Lösung des relaxierten Problems.
 			\begin{enumerate}[label = \arabic*. Fall:]
 				\item $x^* \in \Z^n \implies x^*$ löst auch das ganzzahlige LP.
@@ -680,7 +681,7 @@ Sei $P = P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A\in \R^{m \times n
 \begin{equation*}
 	F = \left\{ x \in \R^n \ |\ A_{\eq(F),\cdot} x = b_{\eq(F)}, A_{\ineq(F),\cdot} x \leq b_{\ineq(F)} \right\} = \fa(\eq(F))
 \end{equation*}
-$\implies \aff F \subset  \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$ und $\dim F = \dim ( \aff F) = \dim (\text{kern}A_{\eq(F),\cdot})$.\\
+$\implies \aff F \subset  \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$ und $\dim F = \dim ( \aff F) = \dim (\text{kern}A_{\eq(F),\cdot})$\\
 $\implies \aff F = \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$
 \end{proof}
 Sei $I \subset \left\{1,\dots ,m \right\}$ beliebig. Dann ist $F:=\fa(I)$ eine Seitenfläche mit $I \subset  I \cup \eq(P) \subset \eq(F) $.\\
@@ -714,15 +715,16 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 		\item Ist $\rang A = k$, so gilt für alle Seitenflächen $F$ $\dim F \geq n-k$ und es gibt mindestens eine Seitenfläche mit Dimension $n-k$.
 	\end{enumerate}
 \end{korollar}
+
 \begin{proof}
 	\begin{enumerate}[label=(\alph*)]
-		\item Für $i=1,2$ gilt $\dim F_{i} = \dim(\kern A_{\eq(F_{i}),\cdot})$.
-			Aus $F_{1} \subset F_{2}$ folgt $\eq(F_{2}) \subset \eq(F_{1})$ und daher $\kern( A_{\eq(F_{1}),\cdot}) \subset  \kern( A_{\eq(F_{2}),\cdot})$.
-			Aus $\dim F_{1} = \dim F_{2}$ folgt daher $\kern A_{\eq(F_{1}),\cdot} = \kern A_{\eq(F_{1}),\cdot} $.
+		\item Für $i=1,2$ gilt $\dim F_{i} = \dim(\Kern A_{\eq(F_{i}),\cdot})$.
+			Aus $F_{1} \subset F_{2}$ folgt $\eq(F_{2}) \subset \eq(F_{1})$ und daher $\Kern( A_{\eq(F_{1}),\cdot}) \subset  \Kern( A_{\eq(F_{2}),\cdot})$.
+			Aus $\dim F_{1} = \dim F_{2}$ folgt daher $\Kern A_{\eq(F_{1}),\cdot} = \Kern A_{\eq(F_{1}),\cdot} $.
 			Für $x^* \in F_{1} \subset  F_{2}$ beliebig gilt dann
 			\begin{align*}
-				F_{1} &= \left\{ x^* + y \in P \ |\ y \in \kern(A_{\eq(F_{1}),\cdot}) \right\} \\
-					  &= \left\{ x^* + y \in P \ |\ y \in \kern(A_{\eq(F_{2}),\cdot}) \right\}\\
+				F_{1} &= \left\{ x^* + y \in P \ |\ y \in \Kern(A_{\eq(F_{1}),\cdot}) \right\} \\
+					  &= \left\{ x^* + y \in P \ |\ y \in \Kern(A_{\eq(F_{2}),\cdot}) \right\}\\
 					  &= F_{2}
 			\end{align*}
 		\item Für alle Seitenflächen $F$ gilt
@@ -745,7 +747,7 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 			 \begin{equation*}
 				  cx + (1-c)y \neq x^*
 			\end{equation*}
-		\item $\rang A_{\eq(\left\{x^* \right\}),\cdot}=n$ (für $P = \left\{x \ |\ Ax \leqb \right\}$)	
+		\item $\rang A_{\eq(\left\{x^* \right\}),\cdot}=n$ (für $P = \left\{x \ |\ Ax \leq b \right\}$)	
 	\end{enumerate}
 \end{lemma}
 \begin{definition}
@@ -782,11 +784,11 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 			\glqq $\rightarrow$ \grqq\ Sei $F$ eine Facette. Dann gilt $\eq(P) \not \subset \eq(F)$. 
 			Angenommen es gilt $\dim F \leq \dim P-2$, d.h. 
 			\begin{equation*}
-				\dim(\kern A_{eq(F),\cdot}) \leq \dim ( \kern A_{\eq(P),\cdot}) -2
+				\dim(\Kern A_{eq(F),\cdot}) \leq \dim ( \Kern A_{\eq(P),\cdot}) -2
 			\end{equation*}
 			Folglich gibt es ein $i \in \eq(F) \backslash \eq(P)$ mit 
 			\begin{equation*}
-				\kern A_{eq(F),\cdot} \not\subset \kern A_{eq(F)\cup \left\{i \right\},\cdot}  \not\subset	\kern A_{eq(P),\cdot}
+				\Kern A_{eq(F),\cdot} \not\subset \Kern A_{eq(F)\cup \left\{i \right\},\cdot}  \not\subset	\Kern A_{eq(P),\cdot}
 			\end{equation*}
 			Betrachte die Seitenfläche 
 			\begin{equation*}
@@ -796,7 +798,7 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 			Wir wollen zeigen $F \neq G$.
 			Dann gibt es einen Vektor $v \neq 0$ mit 
 			\begin{equation*}
-				v \in \kern A_{\eq(P)\cup \left\{i \right\}} \quad \text{aber}\quad v \not\in \kern A_{\eq(F)},
+				v \in \Kern A_{\eq(P)\cup \left\{i \right\}} \quad \text{aber}\quad v \not\in \Kern A_{\eq(F)},
 			\end{equation*}
 			d.h. es gibt $j\in \eq(F)\backslash (\eq(P) \cup \left\{i \right\})$ mit $A_{i,\cdot}v <0$.	
 			Sei $x^*$ ein relativ innerer Punkt von $G$. Dann gilt für alle $c>0$ klein auch $x^* + cv \in G$ (?).
@@ -804,13 +806,13 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 			\begin{equation*}
 				 A_{j,\cdot}\left(x^* +cv \right)= \underbrace{A_{j,\cdot}x^*}_{=b_{j}} + \underbrace{c}_{>0} \underbrace{A_{j,\cdot v}}_{<0},
 			\end{equation*}
-			d.h. $x^* + cv \not \in F$. Dann ist $F \not\subset G$ \lighning $F$ Facette.
+			d.h. $x^* + cv \not \in F$. Dann ist $F \not\subset G \lightning F$ Facette.
 			%TODO why does lightning not work?
 		\item Ist $F$ eine Facette, so ist $F$ eine echte Seitenfläche, d.h. $\eq(P) \not\subset \eq(F)$.
 			Für alle  $i \in \eq(F)\backslash \eq(P)$ ist $G:=\fa(\left\{i \right\})$ eine echte Seitenfläche von $P$ mit $F \subset G$. Folglich ist $F= G = \fa(\left\{i \right\})$.
 	\end{enumerate}
 \end{proof}
-\underline{Folgerungen}:\nl
+\underline{Folgerungen}:
 \begin{itemize}
 	\item Sind $F_{1} \neq F_{2}$ zwei Facetten, so gilt
 		\begin{equation*}
@@ -877,10 +879,11 @@ $P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}
 	Genau dann ist keine der Restriktionen in dieser Darstellung redundant, wenn gelten:
 	\begin{enumerate}[label = \alph*.)]
 		\item $\rang A_{\eq(P),\cdot}= |\eq(P)|$ (voller Zeiilenrang)
-		\item $\forall i,j \in \ineq(P):\ \fa(\left\{i \right\})$ ist eine Facette und $\fa(\left\{i \right\}) \neq \fa(\left\{j \right\})$ für $i\neqj$.
+		\item $\forall i,j \in \ineq(P):\ \fa(\left\{i \right\})$ ist eine Facette und $\fa(\left\{i \right\}) \neq \fa(\left\{j \right\})$ für $i\neq j$.
 	\end{enumerate}
 \end{satz}
-\subsectin{Alternativer Zugang: Polyeder \glqq von innen\grqq\ beschreiben}
+
+\subsection{Alternativer Zugang: Polyeder \glqq von innen\grqq\ beschreiben}
 $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1},\dots ,d_{q}}$
 \begin{satz}
 	Sei $P \subset \R^{n+k}$ ein Polyeder. 
@@ -895,6 +898,7 @@ $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1
 	\end{equation*}
 	wieder ein Polyeder.	
 \end{satz}
+
 \begin{proof}
 	(Beweisidee)\\
 	Fourier-Motzkin-Elimination von $y \in \R$ (also $k=1$)
@@ -910,9 +914,10 @@ $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1
 	Für $i=1,\dots ,m$ betrachte $A_{i,\cdot}x \leq b_{i} -a_{i}y$
 	\begin{align*}
 		\forall i \in Z := \left\{ i \ |\ a_{i} = 0 \right\} &: A_{i,\cdot} \leq b_{i} \quad \forall y \in \R\\
-		\forall i \in P := \left\{ i \ |\ a_{i} > 0 \right\} &: A_{i,\cdot} \leq b_{i} - a_{i}y \quad(\text{ist $y\to - \infty$ möglich, so ist die Ungleichung redundant})\\
-		\forall i \in N := \left\{ i \ |\ a_{i} < 0 \right\} &: A_{i,\cdot} \leq b_{i} - a_{i}y \quad(\text{ist $y\to - \infty$ möglich, so ist die Ungleichung redundant})\\
+		\forall i \in P := \left\{ i \ |\ a_{i} > 0 \right\} &: A_{i,\cdot} \leq b_{i} - a_{i}y \quad(*)\\
+		\forall i \in N := \left\{ i \ |\ a_{i} < 0 \right\} &: A_{i,\cdot} \leq b_{i} - a_{i}y \quad(*)\\
 	\end{align*}
+	(Zu $(*)$: ist $y\to - \infty$ möglich, so ist die Ungleichung redundant)\\
 	Im Fall $N=\emptyset$ oder $P = \emptyset$ folgt 
 	\begin{equation*}
 		Q = \left\{ x \in \R^n\ |\ A_{i,\cdot} x \leq b_{i} \quad \forall i \in Z \right\}
@@ -956,7 +961,7 @@ $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1
 						-d\\
 						d
 					 \end{pmatrix}
-				 	}_{\texŧ{Polyeder }Q }
+				 	}_{\text{Polyeder }Q }
 					 \right\}
 			\end{align*}
 			Folglich ist $f(P)$ die Projektion von $Q$ auf die Variable $y$ \\
