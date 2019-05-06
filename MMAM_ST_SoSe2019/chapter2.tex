@@ -65,7 +65,7 @@ Sei $F \colon \R^{n} \rightarrow \R^{n} $. Dann besteht das \underline{Komplemen
 \[
 	x_{i}^{*} \geq  0,\quad F_{i}({x}^{*}) \geq 0, \qquad x_{i}^{*}F_{i}({x}^{*}) = 0
 .\] 
-Ist $F$ linear, d.h. $F(x) = Mx + q$, so spricht man von einem \underline{linearen Komplementaritätsproblem} LCP($q,M$).
+Ist $F$ linear, d.h. $F(x) = Mx + q$, so spricht man von einem\\ \underline{linearen Komplementaritätsproblem} LCP($q,M$).
 \end{definition}
 
 \begin{beisp}
@@ -260,7 +260,7 @@ Dann gilt $x^{*, i}$ ist die beste Antwort auf $x^{*,-i}$ genau dann, wenn $x^{*
 	\end{itemize}
 \end{proof}
 
-(!!!) WICHTIG FÜR PRÜFUNG:
+(!) WICHTIG FÜR PRÜFUNG:
 Wir brachen für Existenz von Lösungen von VIP($X,F$):
 \begin{itemize}
 	\item $F$ monoton
@@ -425,20 +425,21 @@ Betrachte VIP($X,F$) mit $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n}
 		\item $c \in [0,1]$
 	\end{itemize}
 	Dann gilt
-	\[
-		\left.
+	\begin{align*}
+		&\qquad\left.
 		\begin{array}{r}
 		F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X \\
 		F(\hat{x})^{T}(x-\hat{x}) \geq  0 \quad \forall x \in X \\
 		\end{array}
-	\right\}
-	\implies
-	\left\{
-	\begin{array}{r}
-	F\Big(c{x}^{*}+(1-c)\hat{x}\Big)^{T}\bigg(x-\Big(c{x}^{*}+(1-c)\hat{x}\Big)\bigg) \geq  0 \\ \forall x \in X
-	\end{array}
-	\right.
-	.\] 
+	\right\}\\
+	&\implies
+	%\left\{
+	%\begin{array}{r}
+	F\Big(c{x}^{*}+(1-c)\hat{x}\Big)^{T}\bigg(x-\Big(c{x}^{*}+(1-c)\hat{x}\Big)\bigg) \geq  0 
+		\qquad\forall x \in X
+	%\end{array}
+	%\right.
+	\end{align*}
 	Nach dem Lemma gilt
 	\begin{align*}
 		F(x)^{T}(x-{x}^{*}) &\geq 0 \quad \forall x \in X \qquad/\cdot c \\
@@ -567,7 +568,7 @@ Betrachte VIP($X,F$) mit $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n}
 	.\] 
 	Daraus folgt wiederum, dass das VIP($X,F$) keine Lösung haben kann mit $\norm{{x}^{*}} _{2}\geq  r$.
 
-	Da $X_{r}$ nichtleer, konvex, kompakt und $F$ stetig ist, gibt es eine Lösung ${x}^{*}$ von VIP($X_{r},F$).
+	Da $X_{r}$ nichtleer, konvex, kompakt \& $F$ stetig ist, gibt es eine Lösung ${x}^{*}$ von VIP($X_{r},F$).
 
 	Aus $\overline{x} \in X_{r}$ folgt
 	\[
