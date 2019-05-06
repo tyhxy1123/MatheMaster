@@ -576,3 +576,219 @@ Betrachte VIP($X,F$) mit $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n}
 	.\] 
 	Mit dem Lemma folgt, dass ${x}^{*}$ eine Lösung von VIP($X,F$) ist.
 \end{proof}
+
+\begin{mdframed}
+\subsection*{Wiederholung/Zusammenfassung}
+\label{sec:Wiederholung/Zusammenfassung}
+
+\begin{itemize}
+	\item VIP($X,F$) : Finde ${x}^{*} \in X$ mit $F({x}^{*})^{T}(x-{x}^{*}) \geq  0 \quad \forall x \in X$
+	\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex, $\gamma > 0,~ G \in \R^{n \times n}$ spd, $F \colon X \rightarrow \R^{n} $:
+		\[
+			{x}^{*}\text{ löst VIP}(X,F) \iff {x}^{*} = P_{X,G}({x}^{*}-\gamma G^{-1} F({x}^{*}))
+		.\] 
+	\item $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex, $F \colon X \rightarrow \R^{n} $ stetig, dann
+		\begin{align*}
+			&X \text{ kompakt } &&\implies \text{ mindestens eine Lösung } \\
+			&F \text{ pseudomonoton } &&\implies \text{ Lösungsmenge ist konvex }\\
+			&F \text{ strikt monoton } &&\implies \text{ höchstens eine Lösung von VIP}(X,F) \\
+			&\exists \overline{x} \in X : \lim_{\substack{\norm{x}  \rightarrow \infty \\ x \in X}} \frac{\Big( F_8x) - F(\overline{x}) \Big) ^{T}(x-\overline{x})}{\norm{x-\overline{x}}_{2} } = + \infty && \implies \text{ mindestens eine Lösung }
+		\end{align*}
+\end{itemize}
+	
+\end{mdframed}
+
+\begin{korollar}
+%\label{thm:}
+	Sei $X \subseteq \R^{n}$ nichtleer, abgeschlossen, konvex, $F \colon X \rightarrow \R^{n} $ stetig und \underline{gleichmäßig monoton}. Dann hat das VIP($X,F$) genau eine Lösung.
+\end{korollar}
+
+\begin{proof}
+%\label{thm:}
+	Da $F$ gleichmäßig stetig ist, ist $F$ auch strikt monoton. Damit kann höchstens eine Lösung existieren.
+	Es gilt außerdem
+	\[
+		F \text{ glm. monoton } \iff \exists \mu  > 0~ \forall x,\overline{x} \in X : \Big( F(x) - F(\overline{x}) \Big) ^{T}(x-\overline{x}) \geq  \mu  \norm{x-\overline{x}}_{2} ^2
+	.\] 
+	Sei $\overline{x} \in X$ beliebig. Dann folgt
+	\begin{align*}
+	&\implies \forall x \in X \qquad \frac{\Big( F(x) - F(\overline{x}) \Big) ^{T}(x-\overline{x})}{\norm{x-\overline{x}} _{2}}\geq  \mu \norm{x-\overline{x}} _{2} \\
+	&\implies \lim_{\substack{\norm{x}  \rightarrow \infty \\ x \in X}}  \frac{\Big( F(x) - F(\overline{x}) \Big) ^{T}(x-\overline{x})}{\norm{ x-\overline{x}} _{2}} \geq  \lim_{\substack{\norm{x} \rightarrow \infty \\ x \in X} }  \mu \norm{x -\overline{x}} _{2} = +\infty
+	\end{align*}
+\end{proof}
+
+\begin{mdframed}
+%\label{thm:}
+	\subsection*{Wiederholung}
+	Betrachte ein Spiel mit den Spielerproblemen
+	\[
+		\forall i = 1, \ldots, N : \quad \min\limits_{x^{i}}f_{i}(x^{i}, x^{-i}) \quad \text{ udN }x^{i}\in X_{i}
+	.\] 
+	Falls $X_{i}\subseteq \R^{n_{i}}$ nichtleer, abgeschlossen, konvex, $f_{i}$ stetig diffbar, dann gilt
+	\[
+		{x}^{*} \text{ Nash-GG } \implies {x}^{*} \text{ löst VIP}(X,F)
+	\] 
+	mit
+	\[
+		X = X_1 \times  \ldots \times X_{N}, \qquad F(x) = \begin{pmatrix}
+			\nabla _{x^{1}}f_{1}(x) \\
+			\vdots \\
+			\nabla _{x^{N}}f_{N}(x)
+		\end{pmatrix}
+	.\] 
+	Falls zusätzlich alle $f_{i}$ \underline{pseudokonvex} in $x^{i}$ für alle festen $x^{-i}$ sind, dann gilt
+	\[
+		{x}^{*} \text{ löst VIP}(X,F) \implies {x}^{*} \text{ ist Nash-GG }
+	.\] 
+\end{mdframed}
+
+\begin{satz}
+%\label{thm:}
+	Seien $X_{i}\subseteq \R^{n_{i}}$ nichtleer, abgeschlossen, konvex, $f_{i} \colon \R^{n} \rightarrow \R $ stetig diffbar. Definiere
+	\[
+		X = X_1 \times  \ldots \times X_{N}, \qquad F(x) = \left( \nabla _{x^{i}}f_{i}(x) \right)_{i=1}^{N}  
+	.\] 
+	Dann gelten:
+	\begin{enumerate}[label=(\alph{enumi})]
+		\item Ist $F$ pseudomonoton, so ist die Menge der Nash-GG konvex (evtl. auch leer)
+		\item Ist $F$ strikt monoton, so gibt es höchstens ein Nash-GG (evtl. auch keins)
+		\item Ist $F$ gleichmäßig monoton, so gibt es genau ein Nash-GG
+		\item Sind alle $X_{i}$ kompakt und alle $f_{i}$ pseudokonvex in $x^{i}$, so gibt es mindestens ein Nash-GG
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	\begin{enumerate}[label=(\alph{enumi})]
+		\item
+			\begin{align*}
+				F \text{ pseudomonoton } & \implies \nabla _{x^{i}}f_{i}(x) \text{ pseudomonoton in }{x}^{i} \\
+										 &\implies f_{i}\text{ pseudokonvex in }{x}^{i} \\
+										 &\implies \left\{ \text{ Nash-GG } \right\} = \left\{ \text{ Lösungen von VIP}(X,F) \right\} 	
+			\end{align*}
+		\item ${x}^{*}$ Nash-GG $\implies {x}^{*}$ löst VIP($X,F$) (hat höchstens eine Lösung)
+		\item
+			\begin{align*}
+				F \text{ glm. monoton } &\implies F \text{ pseudomonoton } \\
+										&\implies f_{i} \text{ pseudokonvex in }x^{i} \\
+										&\implies \left\{ \text{ Nash-GG } \right\} = \left\{ \text{ Lösungen von VIP}(X,F) \right\} 	
+			\end{align*}
+		\item
+			\begin{align*}
+				X_{i} \text{ kompakt } &\implies X \text{ kompakt } \\
+									   &\implies \text{ VIP}(X,F) \text{ hat min. eine Lösung } \\
+									   \overset{f \text{ pseudokonvex in } x^{i}}&{\Longrightarrow} \text{ Es gibt min. ein Nash-GG }
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\underline{Achtung} :
+\[
+F \text{ strikt monoton } \Rightarrow f_{i} \text{ strikt konvex in }x^{i}
+,\] 
+aber
+\[
+f_{i} \text{ strikt konvex in }x^{i}\not\Rightarrow F \text{ strikt monoton } 
+.\] 
+
+\section{Existenzsatz von Nihaido-Isoda}%
+\label{sec:Existenzsatz von Nihaido-Isoda}
+	Betrachte ein Spiel mit den Spielerproblemen
+	\[
+		\forall i=1, \ldots, N \qquad \min\limits_{x^{i}}f_{i}(x^{i}, x^{-i}) \quad \text{ udN } x^{i} \in X_{i}
+	.\] 
+	
+	\underline{Beste Antwort} von Spieler $i$
+	\[
+		S_{i}(x^{-i}) = \argmin\limits_{x^{i}}\left\{ f_{i}(x^{i}, x^{-i}) ~|~ x^{i} \in X_{i} \right\} 
+	.\] 
+	\underline{Beste Antwort - Funktionen} :
+	\[
+		S(x) = S_1(x^{-1}) \times \ldots \times S_{N}(x^{-N})
+	.\] 
+	Dann gilt
+	\[
+		{x}^{*} \text{ Nash-GG } \iff {x}^{*} \in S({x}^{*})
+	.\] 
+
+\begin{definition}
+%\label{thm:}
+	Sei $X \subseteq \R^{n}$ und $\mathcal{P}(\R^{m})$ die Potenzmenge von $\R^{m}$.
+	\begin{itemize}
+		\item Dann heißt eine Abbildung $f \colon X \rightarrow \mathcal{P}(\R^{m}) $ eine \underline{mengenwertige Abbildung}. Man schreibt
+			\[
+			f \colon X \rightrightarrows \R^{m} 
+			.\] 
+		\item $f \colon X \rightrightarrows \R^{m}$ heißt \underline{abgeschlossen}, wenn gilt
+			\[
+				\forall (x^{k})_{k} \rightarrow_{X} {x}^{*} \quad \forall y^{k} \in f(x^{k}) : \quad 
+				\text{ Falls } y^{k} \rightarrow {y}^{*} \text{, dann gilt } {y}^{*} \in f({x}^{*})
+			.\] 
+	\end{itemize}
+\end{definition}
+
+\begin{satz}[Fixpunktsatz von Kakutani]
+%\label{thm:}
+	Sei $X\subseteq \R^{n}$ nichtleer, konvex, \underline{kompakt}, $f \colon X \rightrightarrows X $ abgeschlossen und $f(x)$ nichtleer und konvex für alle $x \in X$.
+	Dann hat $f$ mindestens einen Fixpunkt, d.h. es gibt einen Punkt ${x}^{*} \in X$ mit ${x}^{*} \in f({x}^{*})$.
+	
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	Sei $X\subseteq  \R^{n}$ nichtleer, konvex, kompakt, $f \colon X \rightarrow X $ stetig. Definiere
+	\[
+		F \colon X \rightrightarrows X \quad\text{ mit }\quad F(x) := \left\{ f(x) \right\} 
+	.\] 
+	\begin{itemize}
+		\item $X$ nichtleer, konvex, kompakt.
+		\item $F \colon X \rightrightarrows X $, weil $f \colon X \rightarrow X $
+		\item $F(x) \quad \forall x \in X$ nichtleer, konvex, weil $F(x) = \left\{ f(x) \right\} $
+		\item Sei $x^{k}\rightarrow_{X}{x}^{*}$ und $y^{k} \in F(x^{k})$ mit $y^{k} \rightarrow {y}^{*}$
+				\begin{align*}
+					\implies& y^{k}= f(x^{k}) \underset{f \text{ stetig }}{\xrightarrow{x^{k} \rightarrow x^{*}}} f({x}^{*}) \in F({x}^{*}) \\
+					\xRightarrow{\text{ Kakutani }}& \exists {x}^{*} \in X \text{ min } {x}^{*} \in F({x}^{*}) = \left\{ f({x}^{*}) \right\} \\
+					\implies& {x}^{*} = f({x}^{*})
+				\end{align*}
+	\end{itemize}
+\end{proof}
+
+\begin{satz}[Existenzsatz von Nihaido-Isoda]
+%\label{thm:}
+	Seien $X_{i} \subseteq \R^{n_{i}}$ nichtleer, konvex, \underline{kompakt} und $f_{i} \colon \R^{n} \rightarrow \R $ quasikonvex in $x^{i}$ für alle festen $x^{-i}$ und $f_{i}$ stetig in $x$. Dann hat das Spiel $\Gamma = \left\{ X_{i}, f_{i} \right\} _{i=1}^{N}$ mindestens ein Nash-GG.
+\end{satz}
+
+\begin{proof}
+%\label{thm:}
+	Wender den Fixpunktsatz von Kakutani auf die Beste-Antwort-Funktion $S$ an:
+	\begin{itemize}
+		\item $X= X_1 \times  \ldots  \times  X_{N}$ ist nichtleer, konvex, kompakt
+		\item $S \colon X \rightrightarrows X $
+		\item Für alle $x \in X$ gilt $S(x) = S_1(x^{-1}) \times \ldots \times S_{N}(x^{-N})$
+
+			mit $S_{i}(x^{-i}) = \argmin\limits_{x^{i}} \left\{ f_{i}(x^{i}, x^{-i}) ~»~ x^{i} \in X_{i} \right\} $
+			\begin{align*}
+				X_{i} \text{ nichtleer, kompakt, $f_{i}$ stetig } & \implies S_{i}(x^{-i}) \neq \emptyset \\
+				X_{i} \text{ konvex, $f_{i}$ quasikonvex in }x^{i} &\implies S_{i}(x^{-i}) \text{ sind konvex }
+			\end{align*}
+		\item Sei $(x^{k}) _{k} \subseteq X$ eine Folge mit $x^{k}\rightarrow {x}^{*}$ und $y^{k} \in S(x^{k})$ mit $y^{k}\rightarrow{y}^{*}$
+
+			$\implies \forall k \in \N ~ \forall i= 1, \ldots, N :$
+			\[
+				 y^{k,i} \in S_{i}(x^{k,-i}) \iff f_{i}(y^{k,i}, x^{k,-i}) \leq  f_{i}(x^{i}, x^{k,-i}) \quad \forall x^{i} \in X_{i}
+			.\] 
+	\end{itemize}
+	Angenommen ${y}^{*} \not \in S({x}^{*})$, d.h. es gibt einen Spieler $i$ mit $y^{*,i} \not \in S_{i}(x^{*,-i})$. Dies ist genau dann der Fall, wenn gilt
+	\[
+		\exists z^{i} \in X_{i} : \quad f_{i}(z^{i}, x^{*,-i}) < f_{i}(y^{*,i}, x^{*,-i})
+	.\] 
+	Daraus folgt
+	$\forall k \text{ groß gilt, da } f_{i} \text{ stetig in }x$:
+	\[
+		f_{i}(z^{i}, x^{k,-i}) < f_{i}(y^{k,i}, x^{k,-i})
+	.\] 
+	\[
+		\implies {y}^{*} \in S({x}^{*})\text{, d.h. } S \text{ ist abgeschlossen. }
+	\] 
+	und das ist ein Widerspruch zu $y^{k,i} \in S_{i}(x^{k,-i})$.
+\end{proof}
