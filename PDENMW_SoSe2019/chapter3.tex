@@ -1,0 +1,131 @@
+\chapter{A priori discretization error bounds}
+Consider a PDE in a variational formulation.\\
+Find $u \in V$ such that
+\begin{equation*}
+	a(u,v) = l(v) \quad \forall v \in W
+\end{equation*}
+with $V,W$ Hilbert spaces.\nl
+The bilinear form fulfills the \text{inf-sup} condition in $V,W$ if there is a constant $\beta > 0$ such that
+\begin{equation*}
+	\inf_{v\in V}\sup_{w\in W}\frac{a(v,w)}{ \|v\| \|w\|} = \beta
+\end{equation*}
+Let $V_{h}\subset V,W_{h}\subset W$ be FE spaces.
+Suppose $a(\cdot,\cdot)$ fulfills the inf-sup condition for $V_{h},W_{h}$ with a constant $\beta^*> 0$. 
+Then 
+\begin{equation*}\label{bestapprox}
+	\|u - u_{h}\| \leq \frac{ \|a\|}{\beta^*} \min_{v_{h} \in V_{h}} \|u -v_{h}\|_{V} \tag{\text{best approximation}}
+\end{equation*}
+with $ \|a\|$ as the coercivity constant of $a(\cdot,\cdot)$.\nl
+
+We want to investigate the error on grids woth locally varying element size.
+\begin{definition}
+	Let $h:\Omega \to \R$ be the piecewise constant function defined by 
+	\begin{equation*}
+		h(x) := h_{T} := |T|^{\frac{1}{d}}, \quad x \in T \in \T
+	\end{equation*}
+\end{definition}
+\begin{theorem}\label{thrmA}
+	Let $1\leq s \leq n+1$ and $1 \leq p \leq 2$. Let $u \in W^{s,p}(\Omega)$ and $r:= \sob(W^{s,p})- \sob(H^1)$. Then 
+	\begin{equation*}
+		\|\nabla \left( u - v_{h} \right)\|_{L^2(\Omega)} \lesssim \frac{ \|a\|}{\beta^*} \|h^r D^su\|_{L^p(\Omega)}
+	\end{equation*}
+	The hidden constant depends on $d$ and the shape coefficients of $\T$.
+\end{theorem}
+\begin{proof}
+	\begin{align*}
+		\|\nabla \left( u - v_{h} \right)\|^2_{L^2(\Omega)} &\overset{\eqref{bestapprox}}{\leq} \frac{ \|a\|}{\beta*} \|\nabla \left( u - Iu \right)\|^2_{L^2(\Omega)}\\
+															& \lesssim \frac{ \|a\|}{\beta*} \sum\limits_{T \in \T} h_{T}^{2r} \|D^su\|^2_{L^p(N(T))}
+	\end{align*}
+	The last bound is justified by the quasi-interpolation error estimate.\nl
+
+	Use: For any sequence $\left\{c_{i} \right\}_{i\in \N}$ holds
+	\begin{align*}
+	\|c_{i}\|_{l^1} &\leq \|c_{i}\|_{l^q}\\
+	\sum\limits_{i} |c_{i}| &\leq \left( \sum\limits_{i} |c_{i}|^q \right)^{\frac{1}{q}}
+	\end{align*}
+	Use this with $q = \frac{p}{2} \leq 1$.	
+	\begin{align*}
+		\|\nabla \left( u - v_{h} \right)\|^2_{L^2(\Omega)} \ &\lesssim \frac{ \|a\|}{\beta*} \left( \sum\limits_{T \in \T } h^{pr}\  \|D^su\|^p_{L^p(N(T))} \right)^{\frac{2}{p}} \\
+															&\lesssim \frac{ \|a\|}{\beta*} \left( \sum\limits_{T \in \T } \#N(T)\ h^{pr}\ \|D^su\|^p_{L^p(T)} \right)^{\frac{2}{p}} \\
+															&\lesssim \frac{ \|a\|}{\beta*} \left( \max_{T \in \T} \# N(T) \right)^{\frac{2}{p}} \left( \sum\limits_{T \in \T } h^{pr}\ \|D^su\|^p_{L^p(T)} \right)^{\frac{2}{p}} \\
+															&= \frac{ \|a\|}{\beta*} \left( \max_{T \in \T} \# N(T) \right)^{\frac{2}{p}} \|h^rD^su\|^2_{L^p(T)} \\
+	\end{align*}
+\end{proof}
+Uniform refinement leads to quasi uniform grids (i.e. all elements have roughly the same size)
+\begin{definition}
+	\begin{align*}
+		h_{T} &:= |T|^{\frac{1}{d}}\\
+		\overline{h}_{T} &:= \diam T \\
+		\underline{h}_{T} &:= \text{incircle diameter}
+	\end{align*}
+	A sequence of grids $\T_{k}$ is called quasi-uniform, if there is a constant $c$ such that 
+	\begin{equation*}
+		\frac{\max \overline{h}_{T}}{\min \underline{h}_{T}} \leq c \quad \forall k
+	\end{equation*}
+\end{definition}
+\begin{korollar}\label{corollB}
+	Let $1 \leq s \leq n+1$ and $v \in W^{s,2}(\Omega)$.
+	Let $\T_{N}$ be a quasi-uniform grid of $\Omega$ with $N$ elements.
+	Then 
+	\begin{equation*}
+		\|\nabla ( u -u_{n})\|_{L^2(\Omega)} \lesssim \frac{ \|a\|}{\beta^*} \|D^su\|_{L^2(\Omega)} N^{-\frac{s-1}{d}}
+	\end{equation*}
+\end{korollar}
+\begin{proof}
+	$\forall T: \underline{h}_{T} \leq h_{T} \leq \overline{h}_{T}$
+	\begin{itemize}
+		\item 
+			\begin{align*}
+				\max_{T \in \T_{N}} h_{T}^d &\leq \max_{T\in \T_{N}}  \overline{h}^d_{T} \\
+											&\overset{\text{quasi-uniformity}}{\lesssim} \min_{T\in\T_{N}} \underline{h}_{T}^d\\
+											&\leq \frac{1}{N} \sum\limits_{T} \underline{h}_{T}^d\\
+											&\leq \frac{1}{N} \sum\limits_{T} h_{T}^d\\
+											&= \frac{1}{N} \sum\limits_{T} \left( |T|^{\frac{1}{d}} \right)^d\\
+											&= \frac{|\Omega|}{N}
+			\end{align*}
+		\item Use \eqref{thrmA} with $r:= \sob(W^{s,2}) - \sob(H^1) = s-\frac{d}{2} - 1 + \frac{d}{2} = s -1$
+		\item 
+			\begin{align*}
+				\|\nabla(u-u_{h})\|_{L^2(\Omega)} &\lesssim \frac{ \|a\|}{\beta^*} \|h^r\ D^su\|_{L^{2}(\Omega)} \max_{T} \underline{h}^r_{T} |u|_{H^s(\Omega)}\\
+												  &\leq\frac{ \|a\|}{\beta^*} \left( \frac{|\Omega|}{N}^{\frac{r}{d}} \right) |u|_{H^s(\Omega)}\\
+												  &\lesssim N^{-\frac{s-1}{d}} |u|_{H^s}
+			\end{align*}
+	\end{itemize}
+\end{proof}
+For full regularity, i.e. $r \in H^{n+1}(\Omega)$ we get 
+\begin{equation*}
+	\|\nabla(u-u_{h})\|_{L^{2}(\Omega)} \lesssim N^{\frac{r}{d}} |u|_{H^{n+1}}.
+\end{equation*}
+Is this bound sharp if $s < n+1$?
+\begin{example}
+	Dirichlet problem for 
+	\begin{equation*}
+		- \laplace u = f
+	\end{equation*}
+	\begin{itemize}
+		\item solution
+			\begin{equation*}
+				u(r,\theta) = r^{\frac{2}{3}} \sin(\frac{2\theta}{3}) - \frac{r^2}{4}
+			\end{equation*}
+		\item Domain $\Omega$
+			%TODO add picture of domain
+			$u \in H^s(\Omega)$ for all $s < \frac{5}{3}$ 
+		\item \eqref{bestapprox} and \eqref{corollB} also hold for fractional exponents
+		\item With uniform refinement \eqref{corollB} claims, that error behaves like
+			\begin{equation*}
+				N^{-\frac{s-1}{d}} = N^{-\frac{1}{3}} \approx h^{\frac{2}{3}}
+			\end{equation*}
+			independent of the order of the FE space.
+	\end{itemize}
+	$\implies$ It is sharp\nl
+
+	Note: 
+	\begin{itemize}
+		\item $u$ does have second derivatives!
+		\item but they are not square integrable
+		\item but $u \in W^{2,p}(\Omega)$ for all $1\leq p < 3/2$
+	\end{itemize}
+	
+\end{example}
+
+
