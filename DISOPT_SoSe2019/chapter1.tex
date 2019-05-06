@@ -683,4 +683,142 @@ Sei $P = P(A,b) \subset  \R^n$ ein nichtleeres Polyeder mit $A\in \R^{m \times n
 $\implies \aff F \subset  \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$ und $\dim F = \dim ( \aff F) = \dim (\text{kern}A_{\eq(F),\cdot})$.\\
 $\implies \aff F = \left\{ x \in R^n \ |\ A_{\eq(F),\cdot}x = b_{\eq(F)} \right\}$
 \end{proof}
+Sei $I \subset \left\{1,\dots ,m \right\}$ beliebig. Dann ist $F:=\fa(I)$ eine Seitenfläche mit $I \subset  I \cup \eq(P) \subset \eq(F) $.\\
+$x^* \in P$ ist ein relativ innerer Punkt von $P \iff$ einizige Seitenfläche $F$ mit $x^* \in F$ ist $F = P$.\\
+$P \neq \emptyset$ Polyeder $\implies$ $\exists x^* \in P$ mit $A_{\eq(P),\cdot}x^* = b_{\eq(P)}$, $A_{\ineq(P),\cdot}x^* < b_{\ineq(P)}$ und $x^* \in \rint(P)$.
+\begin{satz}
+  Sei $P = P(A,b) \subset  \R^n$ mit $A \in \R^{m \times n},b\in \R^m$ und $F$ eine Seitenfläche.
+  Dann ist $x^* \in F$ genau dann ein relativ innerer Punkt von $F$, wenn 
+  \begin{equation*}
+    \eq(\left\{x^* \right\}) = \eq(F) \iff A_{\ineq(F),\cdot}x^* < b_{\ineq(F)}.
+  \end{equation*} 
+\end{satz}
+\begin{proof}
+	Wir wissen: 
+	\begin{equation*}
+		F = \left\{ x \in \R^n \ |\ A_{\eq(F),\cdot}x^* = b_{\eq(F)},A_{\ineq(F),\cdot}x^* \leq b_{\ineq(F)} \right\}
+	\end{equation*}
+	Sei $x^* \in F $ und $G$ eine Seitenfläche von $F$ mit $x^* \in G$. Dann gelten
+	\begin{equation*}
+		\eq(F) \subset \eq(G) \subset \eq(\left\{x^* \right\}).
+	\end{equation*}
+	Ist $\eq(F) = \eq( \left\{x^* \right\})$, so folgt $\eq(G) = \eq(F)$, also $F = G$.
+	%TODO change \not\subset to \not proper subset
+	Dann ist $x^*$ ein relativ innerer Punkt von $F$.
+	Ist $\eq(F) \not\subset \eq(\left\{x^* \right\})$, so ist $G:=\fa(\eq(\left\{x^* \right\}))$ eine echte Seitenfläche von $F$, d.h. $G \not\subset F$, mit $x^* \in G$, d.h. $x^*$ ist kein relativ innerer Punkt von $F$.
+\end{proof}
+\begin{korollar}
+	Sei $P=P(A,b)\subset \R^n$ ein Polyeder. Dann gelten:
+	\begin{enumerate}[label= (\alph*)]
+		\item Sind $F_{1},F_{2}$ zwei nichtleere Seitenflächen von $P$ mit $F_{1}\subset F_{2}$ und $\dim F_{1} = \dim F_{2}$, so gilt $F_{1} = F_{2}$.
+		\item Ist $\rang A = k$, so gilt für alle Seitenflächen $F$ $\dim F \geq n-k$ und es gibt mindestens eine Seitenfläche mit Dimension $n-k$.
+	\end{enumerate}
+\end{korollar}
+\begin{proof}
+	\begin{enumerate}[label=(\alph*)]
+		\item Für $i=1,2$ gilt $\dim F_{i} = \dim(\kern A_{\eq(F_{i}),\cdot})$.
+			Aus $F_{1} \subset F_{2}$ folgt $\eq(F_{2}) \subset \eq(F_{1})$ und daher $\kern( A_{\eq(F_{1}),\cdot}) \subset  \kern( A_{\eq(F_{2}),\cdot})$.
+			Aus $\dim F_{1} = \dim F_{2}$ folgt daher $\kern A_{\eq(F_{1}),\cdot} = \kern A_{\eq(F_{1}),\cdot} $.
+			Für $x^* \in F_{1} \subset  F_{2}$ beliebig gilt dann
+			\begin{align*}
+				F_{1} &= \left\{ x^* + y \in P \ |\ y \in \kern(A_{\eq(F_{1}),\cdot}) \right\} \\
+					  &= \left\{ x^* + y \in P \ |\ y \in \kern(A_{\eq(F_{2}),\cdot}) \right\}\\
+					  &= F_{2}
+			\end{align*}
+		\item Für alle Seitenflächen $F$ gilt
+			\begin{equation*}
+				\dim F = n - \underbrace{\rang A_{\eq(F),\cdot}}_{\leq \rang A = k} \geq n-k
+			\end{equation*}
+			Wähle $I \subset \left\{1,\dots ,m \right\}$ mit $\rang A_{I,\cdot}=k$. 
+			Dann gilt für $G = \fa(I)$, $I \subset \eq(G) \implies \rang A_{\eq(G),\cdot} \geq A_{I,\cdot} = k$.
+			$\implies \dim G \leq n-k$, also $\dim G = n-k$.
+	\end{enumerate}
+\end{proof}
+\begin{definition}
+	Sei $P \subset \R^n$ ein Polyeder. Dann heißen die Seitenflächen $F$ mit $\dim F = 0$, d.h. $F = \left\{x^* \right\}$, die \underline{Ecken} von $P$.
+\end{definition}
+\begin{lemma}
+	Sei $P = P(A,b) \subset  \R^n$ ein Polyeder und $x^* \in P$. Dann sind äquivalent:
+	\begin{enumerate}[label = (\alph*)]
+		\item $x^*$ ist eine Ecke, d.h. eine Seitenfläche mit Dimension 0.
+		\item $x^*$ ist ein Extrempunkt d.h. $\forall x,y\in P$ mit $x \neq y\ \forall c \in (0,1):$
+			 \begin{equation*}
+				  cx + (1-c)y \neq x^*
+			\end{equation*}
+		\item $\rang A_{\eq(\left\{x^* \right\}),\cdot}=n$ (für $P = \left\{x \ |\ Ax \leqb \right\}$)	
+	\end{enumerate}
+\end{lemma}
+\begin{definition}
+	Sei $P \subset \R^n$ ein Polyeder. Dann heißen Seitenflächen $F$ mit $\dim F = 1$ Kanten von $P$.
+	\begin{itemize}
+		\item $F$ ist eine Gerade: Extremalgerade
+		\item $F$ ist eine Haldgerade: Extremalstrahl
+		\item $F$ ist ein Intervall $[x,y]$ : $F$ verbindet die Eckehn $x,y$. Man nennt $x$ und $y$ adjazent/benachbart.
+	\end{itemize}
+\end{definition}
+\begin{korollar}
+	Sei $P = P(A,b) \subset \R^n$ ein Polyeder. Dann gelten
+	\begin{enumerate}[label = (\alph*)]
+		\item Eine Seitenfläche $F \neq \emptyset$ ist genau dann eine Facette von $P$, wenn gilt
+			\begin{equation*}
+				\dim F = \dim P-1.
+			\end{equation*}
+		\item Ist $F$ eine Facette, so gilt für alle $i \in \eq(F)\backslash \eq(P)$
+			 \begin{equation*}
+				 F = \fa(\left\{i \right\}) = \left\{ x \in P\ |\ A_{i,\cdot}x = b_{i} \right\}
+			\end{equation*}
+	\end{enumerate}
+\end{korollar}
+\begin{proof}
+	Gilt $\ineq(P) = \emptyset$, d.h. $P = \left\{ x\ |\ Ax=b \right\}$, so hat $P$ nur die Seitenflächen $P$ und $\emptyset$, insbesondere keine Facetten.
+	Sei also $\ineq(P)\neq \emptyset$.
+	 \begin{enumerate}[label = (\alph*)]
+		\item \glqq $\leftarrow$\grqq\ Sei $F$ eine Seitenfläche mit $\dim F = \dim P -1$, so ist $F$ eine echte Seitenfläche von $P$.
+			Sei $G$ eine Seitenfläche mit $F \subset G$.
+			Dann gilt $F \subset  G \subset P \implies \dim F \leq \dim G \leq \dim P = \dim F+1$.
+			Folglich gilt entweder $\dim F = \dim G$, also $F= G$, oder $\dim G = \dim P$, also $G=P$.
+			Folglich ist $F$ eine Facette.\nl
+			%TODO change \not \subset to \not proper/real subset
+			\glqq $\rightarrow$ \grqq\ Sei $F$ eine Facette. Dann gilt $\eq(P) \not \subset \eq(F)$. 
+			Angenommen es gilt $\dim F \leq \dim P-2$, d.h. 
+			\begin{equation*}
+				\dim(\kern A_{eq(F),\cdot}) \leq \dim ( \kern A_{\eq(P),\cdot}) -2
+			\end{equation*}
+			Folglich gibt es ein $i \in \eq(F) \backslash \eq(P)$ mit 
+			\begin{equation*}
+				\kern A_{eq(F),\cdot} \not\subset \kern A_{eq(F)\cup \left\{i \right\},\cdot}  \not\subset	\kern A_{eq(P),\cdot}
+			\end{equation*}
+			Betrachte die Seitenfläche 
+			\begin{equation*}
+				G:= \fa\left(\left\{ i \right\} \cup \eq(P) \right)
+			\end{equation*}
+			Dann ist $G$ eine echte Seitenfläche von $P$ wegen $i \not\in \eq(P)$ und es gilt $F \subset  G$.
+			Wir wollen zeigen $F \neq G$.
+			Dann gibt es einen Vektor $v \neq 0$ mit 
+			\begin{equation*}
+				v \in \kern A_{\eq(P)\cup \left\{i \right\}} \quad \text{aber}\quad v \not\in \kern A_{\eq(F)},
+			\end{equation*}
+			d.h. es gibt $j\in \eq(F)\backslash (\eq(P) \cup \left\{i \right\})$ mit $A_{i,\cdot}v <0$.	
+			Sei $x^*$ ein relativ innerer Punkt von $G$. Dann gilt für alle $c>0$ klein auch $x^* + cv \in G$ (?).
+			Für $j$ gilt $j \in \eq(F)$, aber
+			\begin{equation*}
+				 A_{j,\cdot}\left(x^* +cv \right)= \underbrace{A_{j,\cdot}x^*}_{=b_{j}} + \underbrace{c}_{>0} \underbrace{A_{j,\cdot v}}_{<0},
+			\end{equation*}
+			d.h. $x^* + cv \not \in F$. Dann ist $F \not\subset G$ \lighning $F$ Facette.
+			%TODO why does lightning not work?
+		\item Ist $F$ eine Facette, so ist $F$ eine echte Seitenfläche, d.h. $\eq(P) \not\subset \eq(F)$.
+			Für alle  $i \in \eq(F)\backslash \eq(P)$ ist $G:=\fa(\left\{i \right\})$ eine echte Seitenfläche von $P$ mit $F \subset G$. Folglich ist $F= G = \fa(\left\{i \right\})$.
+	\end{enumerate}
+\end{proof}
+\underline{Folgerungen}:\nl
+\begin{itemize}
+	\item Sind $F_{1} \neq F_{2}$ zwei Facetten, so gilt
+		\begin{equation*}
+			\eq(F_{1}) \cap \eq(F_{2}) = \eq(P)
+		\end{equation*}
+	\item $P$ kann höchstens $m-|\eq(P)|$ Facetten haben.
+\end{itemize}
+
+
+
 
