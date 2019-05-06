@@ -485,7 +485,14 @@ Betrachte VIP($X,F$) mit $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n}
 	\[
 	X_{r}:= \left\{ x \in X ~|~ \norm{x} _{2}\leq  r \right\} 
 	.\] 
-	% TODO : Bild
+	\begin{figure}[H]
+		\begin{center}
+			\input{tikz/tikz5.tex}
+		\end{center}
+		\caption{Skizze von $X_{r}$}
+		\label{fig:XR1}
+	\end{figure}
+	
 \end{lemma}
 
 \begin{proof}
@@ -505,7 +512,14 @@ Betrachte VIP($X,F$) mit $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n}
 			\[
 				F({x}^{*})^{T}(x-{x}^{*}) \quad \forall x \in X \text{ mit } \norm{x}_{2}  \leq  r
 			.\] 
-		% TODO : Skizze	
+			\begin{figure}[H]
+				\begin{center}
+					\input{tikz/tikz6.tex}
+				\end{center}
+				\caption{Skizze von Definition von $\hat{x}$}
+				\label{fig:XR2}
+			\end{figure}
+			
 			Sei $x \in X \setminus  X_{r}$ beliebig. Dann gilt wegen $\norm{{x}^{*}}_{2}< r$
 			\[
 				\hat{x} = {x}^{*} + c(x-{x}^{*}) \quad \text{ für }c>0 \text{ klein } \hat{x} \in X_{r}
@@ -534,9 +548,15 @@ Betrachte VIP($X,F$) mit $X \subseteq \R^{n}$ und $F \colon X \rightarrow \R^{n}
 	dann hat das VIP($X,F$) mindestens eine Lösung.
 \end{satz}
 
+\begin{figure}[H]
+	\begin{center}
+		\input{tikz/tikz7.tex}
+	\end{center}
+	\caption{Skizze von $\overline{x}$}
+	\label{fig:XR3}
+\end{figure}
+	
 \begin{proof}
-%\label{thm:}
-	% TODO : Skizze 
 	Wähle $r > \norm{\overline{x}}_{2} $ und $\mu > \norm{F(\overline{x})} _{2}$ mit
 	\[
 		\Big( F(x) - F(\overline{x}) \Big) ^{T}(x-\overline{x}) \geq  \mu  \norm{x -\overline{x}} _{2} \qquad \forall x \in X \text{ mit } \norm{x} _{2} \geq  r
