@@ -49,11 +49,10 @@ Why $k-\frac{d}{p}$?
 \end{definition}
 \begin{theorem}[Local quasi-interpolation error]\enter
 	Let $s$ be a regularity index with $0 \leq s \leq n+1$.
-	Let $p$ be the integrability index ($1 \leq p \leq \infty$)
-	Then there exists an operator $I_{\T}: L^1(\Omega) \to S^n(\T)$ such that for all $T \in \T$ 
-	% TODO change \leq \approx to a proper sign
+	Let $p$ be the integrability index ($1 \leq p \leq \infty$).
+	Then there exists an operator $I_{\T}\colon L^1(\Omega) \to S^n(\T)$ such that for all $T \in \T$
 	\begin{equation*}
-		\|D^t(v - Iv)\|_{L^{q}(T)} (\leq \approx) h_{T}^{\sob(W^{s,p})-\sob(W^{t,q})} \|D^s v\|_{L^{p}(N(T))}
+    \|D^t(v - I_{\T}v)\|_{L^{q}(T)} \leqC h_{T}^{\sob(W^{s,p})-\sob(W^{t,q})} \|D^s v\|_{L^{p}(N(T))}
 	\end{equation*}
 	where $0 \leq t \leq s, 1 \leq q\leq \infty$ and $\sob(W^{s,p}) > \sob(W^{t,q})$.
 	The constant depends on $d$ and the shape coefficients of $\T$.
