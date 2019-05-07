@@ -124,6 +124,42 @@ $A_2\Delta A$ analog.
 	\texorpdfstring{\hyperref[aufg:6]{Aufgabe 6}}{}
 }\label{loes:6}
 
+\begin{align*}
+		f_{t_1,\ldots,t_k}(s_1,\ldots,s_k)
+		&=\int\limits_{\R^d}\cdots\int\limits_{\R^d}\exp\klammern{\ii\mal\scaProd{\begin{pmatrix}
+			s_1\\
+			\vdots\\
+			s_k
+		\end{pmatrix}}{\begin{pmatrix}
+			x_{t_1}\\
+			\vdots\\
+			x_{t_k}
+		\end{pmatrix}}}\ds\mu_{t_1,\ldots,t_k}\klammern{x_{t_1},\ldots,x_{t_k}}\\
+		\overset{\text{Kons}}&{=}
+		=\int\limits_{\R^d}\cdots\int\limits_{\R^d}\exp\prod\limits_{j=1}^k\klammern{\ii\mal s_{\pi(k)}\mal x_{t_{\pi(k)}}}\ds\mu_{t_{\pi(1)},\ldots,t_{\pi(k)}}\klammern{s_{\pi(1)},\ldots,s_{\pi(k)}}\\
+		&=f_{t_{\pi(1)},\ldots,t_{\pi(k)}}\big(s_{\pi(1)},\ldots,s_{\pi(k)}\big)
+\end{align*}
+Zur zweiten Bedingung:
+\begin{align*}
+	&f_{t_1,\ldots,t_k}(s_1,\ldots,s_k)\\
+	&=\underbrace{\int\limits_{\R^d}\cdots\int\limits_{\R^d}}_{
+		(k+n)\text{-mal}
+	}\exp\klammern{\ii\mal\scaProd{\begin{pmatrix}
+		s_1\\
+		\vdots\\
+		s_k\\
+		0\\
+		\vdots\\
+		0
+	\end{pmatrix}}{\begin{pmatrix}
+		x_{t_k}\\
+		x_{t_{k+1}}\\
+		\vdots\\
+		x_{t_{k+n}}
+	\end{pmatrix}}}\ds\mu_{x_1,\ldots,t_k,t_{k+1},\ldots,t_{k+n}}\klammern{s_1,\ldots,s_{k+n}}\\
+	&=f_{t_1,\ldots,t_k,t_{k+1},\ldots,t_{k+n}}\big(s_1,\ldots,s_k,\underbrace{0,\ldots,0}_{n\text{-mal}}\big)
+\end{align*}
+
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:7]{Aufgabe 7}}{}
 }\label{loes:7}
@@ -301,6 +337,7 @@ So ist z.B. $A\sim\Nor(0,1)$ und $B\sim\Exp(0,1)$ möglich.
 	\texorpdfstring{\hyperref[aufg:11]{Aufgabe 11}}{}
 }\label{loes:11}
 
+Die Pfade des Prozesses $X$ sind Geraden durch 0 mit Anstieg $\omega$ und damit stetig.\nl
 Berechnen der Kovarianzfunktion:
 \begin{align*}
 	M(t)
@@ -331,13 +368,39 @@ Damit können wir jetzt die Kovarianzfunktion ausrechnen:
 	&=\frac{t_1\mal t_2}{12}
 \end{align*}
 
-Nun bestimmen wir noch die endlich-dimensionale Verteilung des Prozesses $X$:\\
-Seien $n\in\N$ und $t_1,\ldots,t_n\in T$ beliebig.
-Dann ist die endlich dimensionale (Rand)-verteilung
+Nun bestimmen wir noch die endlich-dimensionale Verteilung des Prozesses $X$:
+%Seien $n\in\N$ und $t_1,\ldots,t_n\in T$ beliebig.
+%Dann ist die endlich dimensionale (Rand)-verteilung
+%\begin{align*}
+%	\mu_{t_1,\ldots,t_n}(B_1\times\ldots\times B_n)
+%	=\lambda\klammern[\Big]{\set[\big]{\omega\in[0,1]:t_1\mal\omega,\ldots,t_n\mal\omega\in B}}
+%	\qquad\forall B\in\B([0,1])
+%\end{align*}
+
+Zunächst die \betone{eindimensionalen Randverteilungen:}
 \begin{align*}
-	\mu_{t_1,\ldots,t_n}(B_1\times\ldots\times B_n)
-	=\lambda\klammern[\Big]{\set[\big]{\omega\in[0,1]:t_1\mal\omega,\ldots,t_n\mal\omega\in B}}
-	\qquad\forall B\in\B([0,1])
+	F_t(x)
+	&=\P\eckigeKlammern{X_t<x}\\
+	\overset{\Def}&{=}
+	\P\klammern{\set{\omega\in\Omega:t\mal\omega<x}}\\
+	&=\lambda\eckigeKlammern{\omega<\frac{x}{t}}\\
+	&=\lambda\klammern{\intervallHO{0}{\frac{x}{t}}\cap\intervall{0}{1}}\\
+	&=\min\set{1,\frac{x}{t}}
+	&\forall x>0
+\end{align*}
+
+\betone{zweidimensionalen Randverteilungen:}
+\begin{align*}
+	F_{t,s}(x_1,x_2)
+	&=\P\eckigeKlammern{X_t<x_1,~X_s<x_2}\\
+	&=...\\
+	&=\lambda\klammern{\intervallHO{0}{\frac{x_1}{t}}\cap\intervallHO{0}{\frac{x_2}{s}}\cap\intervall{0}{1}}\\
+	&=\min\set{1,\frac{x_1}{s},\frac{x_2}{s}}
+\end{align*}
+
+Somit ist der allgemeine Fall (kann man induktiv zeigen):
+\begin{align*}
+	F_{s_1,\ldots,s_n}(x_1,\ldots,x_n)=\min\set{1,\frac{x_1}{s_1},\ldots,\frac{x_n}{s_n}}
 \end{align*}
 
 \section{Lösung von 
@@ -445,7 +508,12 @@ Sei $x_\tau\in\R$ die eindeutige Stetigkeitsstelle, an der der Wert von $F_X$ vo
 \end{align*}
 Eindeutigkeit folgt aus Monotonie von $F_X$.\\
 Zu $\ast$: Die Gleichheit hier folgt aus der Dichtheit von $S(X)$.
-"$\leq$" folgt aus Monotonie.
+"$\leq$" folgt aus Monotonie.\\
+%Angenommen, die Gleichheit ($*$) gilt nicht.
+%Dann existiert ein $z\in\R$ und ein $\varepsilon>0$so, dass
+%\begin{align*}
+%	F(z)
+%\end{align*}
 Da $F_X$ nach Definition linksseitig stetig ist, ist $F_X(s_\tau)=1$ (im Falle der rechtsseitigen Stetigkeit wäre $F_X(s_\tau)=1$).
 Übrigens gilt i.A. $\tau\not\in S(X)$.
 Aber es gibt eine Folge in $S(X)$, die gegen $\tau$ konvergiert.
