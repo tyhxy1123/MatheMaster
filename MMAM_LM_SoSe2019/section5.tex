@@ -22,6 +22,269 @@
 		\end{align*}				
 		\index{zentriert normalverteilt}
 		\label{item:def5.1_1}
-		\item 
+		\item $X$ heißt \define{normal(-verteilt)}
+		\begin{align*}
+			\defiff\exists\mu\in\R^d:X-\mu\text{ zentriert normal, d.h. }
+			X\overset{\L}{=}A\mal Y+\mu
+		\end{align*}
+		\index{normalverteilt}
+		\label{item:def5.1_2}
+		\item Die Verteilungen von (zentrierten) normalen Zufallsvektoren in $\R^d$ heißen \define{(zentrierte) ($d$-dimensionale) Normalverteilungen}
+		\index{Normalverteilung}
+		\index{Multivariate Normalverteilung}
+		%\index{Multivariate Normalverteilung|see{Normalverteilung}} %overfull box
+		\label{item:def5.1_3}
 	\end{enumerate}
 \end{definition}
+
+\begin{beispiel}\label{beisp5.2}
+	Seien $X_1,\ldots,X_n$ unabhängig $X_i\sim\Nor\klammern{\mu_i,\sigma_i^2}$ für alle $i\in\set{1,\ldots,n}$.
+	Setze $X:=\klammern{X_1,\ldots,X_n}$.
+	Dann gilt:
+	\begin{align*}
+		X
+		\overset{}{=}
+		\begin{pmatrix}
+			\sigma_1 & 0 & 0\\
+			0 & \ddots & 0\\
+			0 & 0 & \sigma_n
+		\end{pmatrix}\mal\begin{pmatrix}
+			\frac{X_1-\mu_1}{\sigma_1}\\
+			\vdots\\
+			\frac{X_n-\mu_n}{\sigma_n}
+		\end{pmatrix}
+		+\begin{pmatrix}
+			\mu_1\\
+			\vdots\\
+			\mu_n
+		\end{pmatrix}
+		\implies X\text{ normal}
+	\end{align*}
+	Die Komponenten von $\frac{X_j-\mu_j}{\sigma_j}$ sind i.i.d. $\sim\Nor(0,1)$ für alle $j$.
+\end{beispiel}
+
+\begin{bemerkungnr}\label{bem5.3}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item $X$ zentriert normal $\implies \E\eckigeKlammern{X}
+			=
+			\E\eckigeKlammern{A\mal Y}
+			\overset{\ref{satz3.2}}{=}
+			A\mal\underbrace{\E\eckigeKlammern{Y}}_{=0}
+			=0
+			\implies X\text{ zentriert}
+		$
+		\label{item:bem5.3_1}
+		\item $X$ zentriert normal $\implies Y_1,\ldots,Y_n$ und $Y$ aus Definition \ref{def5.1} sind \betone{nicht} eindeutig bestimmt, z.B.
+		\begin{align*}
+			\tilde{A}:=\klammern{A,0}\in M\klammern{d\times\klammern{k+1}}
+			\qquad\und\qquad
+			\tilde{Y}:=\klammern{Y_1,\ldots,Y_k,Y_{k+1}}
+		\end{align*}
+		tun es auch.
+		Aber betrachte die Kovarianzmatrix von $X$:
+		\begin{align*}
+			\Var(X)
+			&=\Var\klammern{A\mal Y}
+			\overset{\ref{satz3.2}}{=}
+			A\mal\underbrace{\Var(Y)}_{=I_k}\mal A'
+			=A\mal A'
+		\end{align*}
+		d.h. $A\mal A'$ ist durch die Verteilung von $X$, $\L(X)$, eindeutig festgelegt.
+		\label{item:bem5.3_2}
+		\item Sei $X$ eine reelle Zufallsvariable. Es gilt \ref{item:bem5.3.2_a} $\iff$ \ref{item:bem5.3.2_b} 
+		\label{item:bem5.3_3}
+		\begin{enumerate}[label=(\alph*)]
+			\item 
+			$
+				X\sim\Nor\klammern{\mu,\sigma^2}
+			$
+		im Sinne von $X$ hat Dichte
+		\begin{align*}
+			\varphi_{\mu,\sigma^2}(x)
+			&=\frac{1}{\sqrt{2\mal\pi\mal\sigma^2}}\mal\exp\klammern{-\frac{\klammern{x-\mu}^2}{\sigma^2}}
+		\end{align*}
+			\label{item:bem5.3.2_a}
+			\item $X$ normalverteilt im Sinne von Definition \ref{def5.1} (mit $d=1$)
+			\label{item:bem5.3.2_b}
+		\end{enumerate}
+		
+		\begin{proof}
+			\betone{Zeige "$\Longrightarrow$":}\\
+			$X\overset{\L}{=}\sigma\mal Y+\mu$, wobei $Y\sim\Nor(0,1)$.
+			\begin{align*}
+				A=\klammern{\sigma}\in M(1\times 1),\qquad Y=\klammern{Y},\qquad \mu=\klammern{\mu}\qquad\text{ tun's.}
+			\end{align*}
+	
+			\betone{Zeige "$\Longleftarrow$":}\\
+			Also existiert eine Matrix $A=\klammern{a_1,\ldots,a_k}\in M(1\times k)$ und es existieren $Y_1,\ldots,Y_k$ i.i.d. $\sim\Nor(0,1)$, $\mu\in\R^1$ mit
+			\begin{align*}
+				X\overset{\L}{=}A\mal Y+\mu 
+				=\underbrace{\sum\limits_{i=1}^k a_i\mal Y_i}_{
+					\text{normal im Sinne von \ref{item:bem5.3.2_a}}				
+				}+\mu 
+			\end{align*}
+			Hier geht das \undefine{Faltungsgesetz} für Dichten ein: $f_{u+v}=f_u*f_v$ (Summe von Normalverteilten ZG wieder normalverteilt).
+		\end{proof}				
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{satz}\label{satz5.4}
+	Sei $X$ normaler Zufallsvektor in $\R^d$. 
+	Dann gilt:
+	\begin{align*}
+		\varphi_X(z)&=\exp\klammern{\ii\mal\scaProd[\big]{z}{\E\eckigeKlammern{X}}-\frac{1}{2}\mal z'\mal\Var(x)\mal z}
+		\qquad\forall z\in\R^d
+	\end{align*}
+\end{satz}
+
+\begin{proof}
+	Nach Voraussetzung gilt $X\overset{\L}{=}A\mal Y+\mu$ mit $A,Y,\mu$ aus Definition \ref{def5.1}.
+	Es folgt:
+	\begin{align}\label{eq:ProofSatz5.4Stern}\tag{$*$}
+		\E\eckigeKlammern{X}
+		&=\underbrace{\E\eckigeKlammern{A\mal Y}}_{=0}
+		=\mu
+		\qquad\und\\
+		\label{eq:ProofSatz5.4SternStern}\tag{$**$}
+		\varphi_X(z)
+		&=\varphi_{A\mal Y+\mu}(z)
+		\overset{\ref{satz4.6}\ref{item:satz4.6_3}}{=}
+		\exp\klammern[\big]{\ii\mal\scaProd{z}{\mu}}\mal\varphi_Y(A'\mal z)
+	\end{align}
+	Ferner:
+	\begin{align*}
+		\varphi_Y\klammern{A'\mal z}
+		\overset{\ref{lemma4.7}}&{=}
+		\exp\klammern{-\frac{1}{2}\mal\norm{A'\mal z}^2}\\
+		\norm{A'\mal z}^2
+		&=\scaProd{A'\mal z}{A'\mal z}
+		=\klammern{A'\mal z}'\mal A'\mal z
+		=z'\mal A\mal A'\mal z\\
+		\overset{\eqref{eq:ProofSatz5.4Stern},\eqref{eq:ProofSatz5.4SternStern}}{\implies}
+		\varphi_X(z)
+		&=\exp\klammern[\Big]{\ii\mal\scaProd[\big]{z}{\E\eckigeKlammern{X}}}\mal\exp\klammern[\bigg]{-\frac{1}{2}\mal z'\mal\underbrace{A\mal A'}_{
+			\overset{\ref{bem5.3}\ref{item:bem5.3_2}}{=}
+			\Var(X)
+		}\mal z}
+	\end{align*}
+\end{proof}
+
+\begin{korollar}\label{koro5.5.}
+	Die Verteilung $\L(X)$ eines normalen Zufallsvektors ist eindeutig durch den Erwartungsvektor $\E\eckigeKlammern{X}$ und die Kovarianzmatrix $\Var(X)$ bestimmt.
+\end{korollar}
+
+\begin{proof}
+	Folgt aus Satz \ref{satz5.4} und dem Eindeutigkeitssatz \ref{satz4.8EindeutigkeitssatzCF}.
+\end{proof}
+
+\begin{lemma}\label{lemma5.6}
+	Sei $X=\klammern{X_1,\ldots,X_d}'$ ein Zufallsvektor mit $\E\eckigeKlammern{X_i^2}<\infty~\forall i$.
+	Dann ist die Kovarianzmatrix $\Gamma:=\Var(X)$ von $X$ nichtnegativ definit.
+\end{lemma}
+
+\begin{proof}
+	$\Gamma$ ist symmetrisch, da 
+	\begin{align*}
+		\Gamma_{i,j}\overset{\Def}{=}\Cov\klammern{X_i,X_j}\overset{\checkmark}{=}\Cov(X_j,X_i)=\Gamma_{j,i}
+	\end{align*}
+	Ferner gilt:
+	\begin{align*}
+		x'\mal\Gamma\mal x
+		&=x'\mal \Var(X)\mal x
+		\overset{\ref{satz3.2}}{=}
+		\Var\klammern*{\underbrace{x'\mal X}_{
+			\text{reelle ZV}
+		}}\geq 0
+		\qquad\forall x\in\R^d
+	\end{align*}
+\end{proof}
+
+Insbesondere gilt Lemma \ref{lemma5.6} für normale Zufallsvariablen.
+In diesem Fall gilt auch umgekehrt:
+
+\begin{satz}[Existenz der multivariaten Normalverteilung]\label{satz5.7ExistenzMultiNormalVerteilung}\enter
+	Sei $d\in\N$. 
+	Zu jeder Matrix $\Gamma\in M(d\times d)$ nichtnegativ definit und zu jedem $\mu\in\R^d$ existiert ein normaler Zufallsvektor $X$ mit $\Var(X)=\Gamma$ und $\E\eckigeKlammern{X}=\mu$.
+\end{satz}
+
+\begin{proof}[Beweis (durch Konstruktion)]
+	Gemäß Bemerkung \ref{bem2.25} unter Satz \ref{satz2.24} existiert ein $R\in M(d\times d)$ nichtnegativ definit mit $\Gamma=R^2$.
+	Setze $\tilde{X}:=R\mal Y$ mit $Y=\klammern{Y_1,\ldots,Y_d}'$ mit $Y_i\sim\Nor(0,1)$ i.i.d.
+	Dann folgt aus Definition \ref{def5.1}\ref{item:def5.1_1}, dass $\tilde{X}$ zentriert normal ist.
+	Ferner:
+	\begin{align*}
+		\Var\klammern{\tilde{X}}
+		\overset{\ref{satz3.2}}&{=}R\mal\underbrace{\Var\klammern{Y}}_{=I_d}\mal R'
+		=R\mal R'
+		=R^2
+		=\Gamma
+		\implies X
+		:=R\mal Y+\mu\qquad\text{tut's.}
+	\end{align*}
+	$X$ tut's, da 
+	\begin{align*}
+		\E\eckigeKlammern{X}=\mu 
+		\qquad\und\qquad
+		\Var\klammern{X}=\Var\klammern*{\tilde{X}}=\Gamma
+	\end{align*}
+\end{proof}
+
+\begin{bemerkung}
+	Der Beweis liefert die explizite Konstruktion
+	\begin{align*}
+		X=R\mal Y+\mu 
+		\qquad
+		R^2=\Gamma
+	\end{align*}
+\end{bemerkung}
+
+\begin{notation}
+	Sei $\Gamma\in M(d\times d)$ nichtnegativ definit und sei $\mu\in\R^d$.
+	Dann bezeichne
+	\begin{align*}
+		\Nor_d\klammern{\mu,\Gamma}:=:\Nor(\mu,\Gamma)
+	\end{align*}
+	die $d$-dimensionale Normalverteilung mit Erwartungsvektor $\mu$ und Kovarianzmatrix $\Gamma$.\\
+	Beachte: Bemerkung \ref{bem5.3}\ref{item:bem5.3_3} besagt
+	\begin{align*}
+		\Nor_1\klammern{\mu,\sigma^2}=\Nor\klammern{\mu,\sigma^2}
+	\end{align*}
+\end{notation}
+
+\setcounter{satz}{6} % Ferger hat den nachträglich ergänzt
+\begin{satz}\label{satz5.7Einhalb}
+	Sei $X$ eine Zufallsvariable im $\R^d$ und $Y$ eine Zufallsvariable im $\R^k$. Dann gilt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item $X,Y$ sind unabhängig
+		\label{item:satz5.7Einhalb_1}
+		\begin{align*}
+			\iff \varphi_{\klammern{X,Y}}\klammern{z_1,z_2}
+			=\varphi_X(z_1)\mal\varphi_Y(z_2)
+			\qquad\forall (z_1,z_2)\in\R^d\times\R^k\cong \R^{d+k}
+		\end{align*}
+		\item $\begin{aligned}
+			X\sim\Nor_{d_1}\klammern{\mu_1,\Gamma_1},~Y\sim\Nor_{d_2}\klammern{\mu_2,\Gamma_2}
+		\end{aligned}$ unabhängig
+		\begin{align}\label{eq:Satz5.7Einhalb_2Stern}\tag{$*$}
+			\iff
+			\begin{pmatrix}
+				X\\
+				Y
+			\end{pmatrix}
+			\sim\Nor_{d_1+d_2}\klammern{\begin{pmatrix}
+				\mu_1\\
+				\mu_2
+			\end{pmatrix},\begin{pmatrix}
+				\Gamma_1 & 0\\
+				0 & \Gamma_2
+			\end{pmatrix}}
+		\end{align}
+		\label{item:satz5.7Einhalb_2}
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	\betone{Zeige \ref{item:satz5.7Einhalb_1}:}\\
+	\betone{Zeige \ref{item:satz5.7Einhalb_2}:}
+\end{proof}
+
