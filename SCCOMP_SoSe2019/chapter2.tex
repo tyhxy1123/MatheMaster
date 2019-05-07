@@ -1,0 +1,127 @@
+\chapter{Multigrid Methods}%
+\label{cha:Multigrid Methods}
+
+relaxation scheme:
+\[
+	x^{k+1} = x^{k} + P^{-1}(b-A_{h}x^{k})
+.\] 
+Here
+\[
+	P\approx A_{h} \qquad \delta := I-P^{-1}A_{h} \qquad \rho (G) \overset{!}{<} 1 
+.\] 
+Idea:
+\begin{align*}
+	P \overset{\wedge}&{=} A_{H} \\
+	{P}^{-1} &= P_{H}^{h} {A}^{-1}_{H}R_{H}^{h} \\
+	x_{h}^{k+1}&= x_{h}^{k} + P_{H}^{h}A_{H}^{-1}R_{H}^{h}(b_{h} - A_{h}x_{h}^{k})
+\end{align*}
+
+"coarse grid correction scheme"
+
+\begin{lemma}
+%\label{thm:}
+	The coarse grid correction scheme ist not convergent.
+\end{lemma}
+
+\begin{proof}
+%\label{thm:}
+	\[
+		\underbrace{\text{size}(x_{h})}_{n_{h}}> \underbrace{\text{size}(x_{H})}_{n_{H}}  
+	.\] 
+	This implies, that $\ker(R_{H}^{h})$ is non-trivial
+	\[
+		\dim(\ker(R_{H}^{h})) > 1
+	.\] 
+	Let $0 \neq v \in \ker(R_{H}^{h})$ and $w:={A}^{-1}_{h}v \neq 0$
+	\[
+		Gw = w-P_{H}^{h} {A}^{-1}_{H}\underbrace{R_{H}^{h}\underbrace{A_{h}w}_{v} }_{=0 \implies \rho (\delta ) \geq  1} = w
+	.\]
+	$w$ is an eigenvector of $G$ to the eigenvalue $\lambda =1$
+\end{proof}
+
+% TODO : fig
+\begin{figure}[H]
+	\begin{center}
+		%\includegraphics[width=0.5\textwidth]{pics/}
+	\end{center}
+	\caption{injection operator as restriction}
+\end{figure}
+
+\begin{align*}
+	x^{k}- {x}^{*} &= \delta^{k}\underbrace{(x^{0}- {x}^{*})}_{e^{0}} \\
+				   &=\sum_{j=1}^{n}{\delta ^{k}\xi _{j}w_{j}} \\
+				   &= \sum_{j=1}^{n}{\lambda ^{k}_{j}\xi _{j}w_{j}}
+\end{align*}
+with
+\[
+e^{0} = \sum_{j=1}^{n}{\xi _{j}w_{j}}
+,\] 
+where $\lambda _{j} \in \sigma (G)$ and $w_{j}$ corresponding eigenvector of $\lambda _{j}$
+
+\begin{exam} Easy Poisson
+%\label{thm:}
+\[
+	\begin{array}{rl}
+		-u''(x) = f(x) &\quad x \in (0,1) \\
+		u(x) = 0 &\quad x \in \left\{ 0,1 \right\} 
+	\end{array}
+.\] 	
+We use
+\[
+h = \frac{1}{n+1} \quad x_{i}= ih \quad \Omega _{h} = \left\{ x_{i} \right\} 
+.\] 
+What are eigenfunctions of $-\laplace$ in 1D with zero Dirichlet boundary condition on $(0,1)$?
+\[
+	-w''(x) = \lambda w(x)
+,\] 
+with
+\begin{align*}
+	w_{k} = \sin(k \pi x)
+	\lambda _{k} = \ldots 
+\end{align*}
+For
+\[
+A = \begin{bmatrix}
+	2 & -1 \\
+	-1 & 2 \\
+	   && \ddots \\
+	   &&&2 & -1 \\
+	   &&&-1 & 2
+	\end{bmatrix}
+\] 
+we get eigenvectors for inner points
+\[
+w_{k} = \begin{pmatrix}
+	\sin \left( \frac{1k \pi }{n+1} \right) \\
+	\sin \left( \frac{2k \pi }{n+1} \right) \\
+	\vdots \\
+	\sin \left( \frac{nk \pi }{n+1} \right) \\
+\end{pmatrix}
+.\] 
+associated to the eigenvalues
+\[
+	\lambda _{k} =  4\sin^2 \left( \frac{k \pi }{n+1} \right) 
+.\] 
+\end{exam}
+
+Richardson iteration
+\[
+\delta _{R} = I-\omega A
+.\] 
+\[
+	\sigma (\delta _{R}) = \left\{ 1-\omega \lambda _{k} \right\} 
+.\] 
+The error $e^{k}$ now reads
+\[
+	e^{k} = \sum_{j=1}^{n}{\underbrace{(1-\omega \lambda _{j})^{k}}_{1-4 \omega \sin^2 \left( \frac{j \pi }{n+1} \right) } \xi _{j} w_{j}}
+.\] 
+
+% TODO : fig
+\begin{figure}[H]
+	\begin{center}
+		%\includegraphics[width=0.5\textwidth]{pics/}
+	\end{center}
+	\caption{sketch for $\omega = \frac{1}{2}$}
+	\label{fig:}
+\end{figure}
+

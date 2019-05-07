@@ -726,7 +726,7 @@ and thus
 x^{k+1} = x^{k}+ V_{i}A_{ii}^{-1}W_{i}^{T} r^{k}
 .\] 
 
-% TODO : ordentlichen Pseudocode hier
+% TODO : fix minted ordentlichen Pseudocode hier
 
 \subsection*{Block-Jacobi-Iteration}
 \label{sec:Block-Jacobi-Iteration}
@@ -762,11 +762,96 @@ END FOR
 
 Algorithm:
 
+%\begin{minted}{python}
 Choose $x_0$ arbitrarily and $\omega $
 FOR $k=1,\ldots $
 	$\overline{x} = x_{i}$
 	FOR $i=1, \ldots, p$
-	Find $D_{k}y_{k}$ where $y_{k}$ satisfies $B_{k}y_{k} = C_{k}\overline{x}+b$
+		solve $B_{i}y_{i} = C_{i}\overline{x} + b$
 	END FOR
-	$x_{k+1} = (1-\omega ) x_{k} + \omega \sum_{k}^{}{D_{k}y_{k}}$
+	$x_{k+1} = (1-\omega ) x_{k} + \omega \sum_{i}^{}{D_{i}y_{i}}$
 END FOR
+%\end{minted}
+
+
+% TODO: Kannst du evtl den Text hier improven?
+There are several possibilities for block splitting in the Multi-Splitting-Parallelization-Method:
+
+% TODO : horizontales splitting
+% TODO : vertikales splitting
+
+Then there methods of Multi-Splitting with line-relaxation in two different directions. This method is called the Alternating-Direction-Method.
+
+\subsection*{Gauss-Seidel and SOR Parallelization}
+\label{sec:Gauss-Seidel and SOR Parallelization}
+
+% TODO : Red black ordering nochmal einfügen
+Resulting matrix
+\[
+A = \begin{bmatrix}
+\begin{matrix}
+-4\\
+& \ddots \\
+&& -4
+\end{matrix}
+&
+\begin{matrix}
+	E
+\end{matrix}
+\\
+\begin{matrix}
+	E^{T}
+\end{matrix}
+&
+\begin{matrix}
+-4\\
+& \ddots \\
+&& -4
+\end{matrix}
+\end{bmatrix}
+,\] 
+where $E$ describes the dependencies between the red and black nodes.
+After simplifying, this can be denoted by
+\[
+A = \begin{pmatrix}
+	D_{\text{red}} & E \\
+	E^{T} & D_{\text{black}}
+\end{pmatrix}
+.\] 
+With
+\[
+	(D-L) x^{k+1} = Ux^{k}+b \quad \text{ and } \quad (D-L) = \begin{pmatrix}
+	D_{\text{red}} & E \\
+	E^{T} & D_{\text{black}}
+	\end{pmatrix}
+\] 
+we get
+\[
+\begin{pmatrix}
+	D_{\text{red}} & 0 \\
+	E^{T} & D_{\text{black}}
+\end{pmatrix}
+\begin{pmatrix}
+x^{k+1}_{\text{red}} \\
+x^{k+1}_{\text{black}}
+\end{pmatrix}
+=
+\begin{pmatrix}
+	0 & -E \\
+	0 & 0
+\end{pmatrix}
+\begin{pmatrix}
+x^{k}_{\text{red}} \\
+x^{k}_{\text{black}}
+\end{pmatrix}
++
+\begin{pmatrix}
+b_{\text{red}} \\
+b_{\text{black}}
+\end{pmatrix}
+.\] 
+So we basically have abstracted the updated step into two parts, which can be parallelized:
+\begin{align*}
+	D_{\text{red}}x_{\text{red}}^{k+1} &= -E x_{\text{black}}^{k} + b_{\text{red}} \\
+	D_{\text{black}}x_{\text{black}}^{k+1} + E^{T} x_{\text{red}}^{k+1} &= b_{\text{black}}
+\end{align*}

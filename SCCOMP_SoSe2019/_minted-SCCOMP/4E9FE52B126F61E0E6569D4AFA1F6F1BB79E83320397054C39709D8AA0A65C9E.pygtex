@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Choose} \PYG{err}{\PYGZdl{}}\PYG{n}{x\PYGZus{}0}\PYG{err}{\PYGZdl{}} \PYG{n}{arbitrarily} \PYG{o+ow}{and} \PYG{err}{\PYGZdl{}}\PYGZbs{}\PYG{n}{omega} \PYG{err}{\PYGZdl{}}
+\PYG{n}{FOR} \PYG{err}{\PYGZdl{}}\PYG{n}{k}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYGZbs{}\PYG{n}{ldots} \PYG{err}{\PYGZdl{}}
+	\PYG{err}{\PYGZdl{}}\PYGZbs{}\PYG{n}{overline}\PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{\PYGZcb{}} \PYG{o}{=} \PYG{n}{x\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{\PYGZcb{}}\PYG{err}{\PYGZdl{}}
+	\PYG{n}{FOR} \PYG{err}{\PYGZdl{}}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYGZbs{}\PYG{n}{ldots}\PYG{p}{,} \PYG{n}{p}\PYG{err}{\PYGZdl{}}
+		\PYG{n}{solve} \PYG{err}{\PYGZdl{}}\PYG{n}{B\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{\PYGZcb{}}\PYG{n}{y\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{\PYGZcb{}} \PYG{o}{=} \PYG{n}{C\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{\PYGZcb{}}\PYGZbs{}\PYG{n}{overline}\PYG{p}{\PYGZob{}}\PYG{n}{x}\PYG{p}{\PYGZcb{}} \PYG{o}{+} \PYG{n}{b}\PYG{err}{\PYGZdl{}}
+	\PYG{n}{END} \PYG{n}{FOR}
+	\PYG{err}{\PYGZdl{}}\PYG{n}{x\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{}} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYGZbs{}\PYG{n}{omega} \PYG{p}{)} \PYG{n}{x\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{k}\PYG{p}{\PYGZcb{}} \PYG{o}{+} \PYGZbs{}\PYG{n}{omega} \PYGZbs{}\PYG{n}{sum\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{\PYGZcb{}}\PYG{o}{\PYGZca{}}\PYG{p}{\PYGZob{}\PYGZcb{}\PYGZob{}}\PYG{n}{D\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{\PYGZcb{}}\PYG{n}{y\PYGZus{}}\PYG{p}{\PYGZob{}}\PYG{n}{i}\PYG{p}{\PYGZcb{}\PYGZcb{}}\PYG{err}{\PYGZdl{}}
+\PYG{n}{END} \PYG{n}{FOR}
+\end{Verbatim}
