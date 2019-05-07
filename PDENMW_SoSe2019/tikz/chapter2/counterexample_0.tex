@@ -1,0 +1,26 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1.5]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% first example
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h,\h) $);
+	\coordinate (D) at ($ (A) + (0,\h) $);
+	\coordinate (M) at ($ 0.5*(A) + 0.5*(C) $);
+
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (A) -- (C);
+	\draw (B) -- (D);
+
+	\node at (A) [below left] {$0$};
+	\end{tikzpicture}
+	
+	\caption{$\T_{0}$}
+	\label{ch_2_counterexample_0}
+	
+\end{figure}

@@ -891,19 +891,272 @@ Der unbekannte Parameter $\beta\in\R^p$ erfülle die Gleichung
 Gleichung \eqref{eq:3.8} ist eine lineare Nebenbedingung (NB) für $\beta$.
 Gemäß der Methode der kleinsten Quadrate finde $\hat{\beta}_H\in\R^p$ mit
 \begin{align*}
-	\norm{Y-X\mal\hat{\beta}_H}=\min\set{\norm{Y-X\mal\beta}:\beta\in\R^p\AND   H\mal\beta=c},
+	\norm{Y-X\mal\hat{\beta}_H}=\min\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p\AND   H\mal\beta=c},
 \end{align*}
 d.h. 
 \begin{align*}
-	\hat{\beta}_{H,c}:=:\hat{\beta}_H\in\argmin\set{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}
+	\hat{\beta}_{H,c}:=:\hat{\beta}_H\in\argmin\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}
 \end{align*}
 
-Zur  ...
+Zur Berechnung von $\hat{\beta}_H$ wähle $\beta_0\in\R^p$ mit $H\mal\beta_0=c$ (ein solches $\beta_0$ existiert, da Nebenbedingung \eqref{eq:3.8} ja für mindestens den wahren Parameter $\beta\in\R^p$ gelten soll).
+Dann:
+\begin{align}\label{eq:3.9}\tag{3.9}
+	&\min\set{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}\\
+	\nonumber
+	&=\min\set[\big]{\norm*{Y-X\mal\beta_0-X\mal\underbrace{(\beta-\beta_0)}_{
+		=:\gamma
+	}}:\beta\in\R^p\AND H\mal\underbrace{(\beta-\beta_0)}_{
+		=\gamma
+	}=0}\\
+	\nonumber
+	&=\min\set[\Big]{\norm*{Y-X\mal\beta_0-\underbrace{X\mal \gamma}_{
+		=:u
+	}}:\gamma\in\R^p\AND \underbrace{H\mal\gamma}_{
+		=\underbrace{H\mal(X'\mal X)^{-1}\mal X'}_{
+			=:K
+		}\mal \underbrace{X\mal\gamma}_{
+			=u
+		}
+	}=0}\\
+	\label{eq:3.10}\tag{3.10}
+	&=\min\set[\big]{\norm*{\underbrace{Y-X\mal\beta_0}_{
+		=:x
+	}-u}:u\in\underbrace{\Bild(X)\cap\Kern(K)}_{
+		=:U
+	}}
+\end{align}
+Gemäß Satz \ref{satz2.10} ist die Minimalstelle $u_0$ in \eqref{eq:3.10}, d.h.
+\begin{align*}
+	u_0\in\argmin\set{\norm{Y-X\mal\beta_0-u}:u\in U}
+\end{align*}
+\betone{eindeutig} gegeben durch
+\begin{align}\label{eq:3.11}\tag{3.11}
+	u_0=P_U\big(Y-X\mal\beta_0\big)
+\end{align}
 
-\begin{satz}\label{satz3.15}
+Ziel: Bestimme $P_U$ und rechne $u_0$ in die Minimalstelle $\hat{\beta}_H$ in \eqref{eq:3.9} um.
 
+\begin{lemma}\label{lemma3.15}
+	Sei $K:=H\mal(X'\mal X)^{-1}\mal X'\in M(q\times n)$ wie oben.
+	Sei $L:=\Bild(X)$.
+	Dann gilt:
+	\begin{align*}
+		P_U=P_L-K'\mal(K\mal K')^{-1}\mal K
+		\qquad\mit\qquad
+		U:=L\cap\Kern(K)
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Satz \ref{satz2.21} besagt:
+	Für Unterräume $U_1\subseteq U_2$ gilt
+	\begin{align*}
+		P_{U_2}
+		&=P_{U_1}+P_{U_1^\perp\cap U_2}\\
+		\implies
+		P_{U_1}&=P_{U_2}-P_{U_1^\perp\cap U_2}
+	\end{align*}
+	Wegen $U=L\cap\Kern(K)\subseteq L$ (sind geschachtelte Unterräume) folgt aus Satz \ref{satz2.21}:
+	\begin{align*}
+		P_U
+		&=P_L-P_{U^\perp\cap L}
+	\end{align*}
+	Es gilt weiterhin
+	\begin{align*}
+		U^\perp\cap L
+		\overset{\Def}&{=}
+		\klammern[\big]{L\cap\Kern(K)}^\perp\cap L.
+	\end{align*}
+	Satz \ref{satz2.19} besagt:
+	Für $A\in M(m\times n)$ und Unterraum $V\subseteq\R^n$ gilt
+	\begin{align*}
+		\klammern[\big]{V\cap\Kern(A)}^\perp\cap V
+		=\Bild\big(P_V A'\big)
+	\end{align*}
+	Somit:
+	\begin{align*}
+		U^\perp\cap L
+		&=\Bild\klammern{P_L K'}
+	\end{align*}
+	Da $X$ Vollrang hat nach Voraussetzung ist
+	\begin{align*}
+		P_L
+		&=X\mal(X'\mal X)^{-1}\mal X'
+	\end{align*}
+	gemäß Satz \ref{satz3.3}\ref{item:satz3.3(2)}, folgt
+	\begin{align*}
+		P_L K'
+		&=X\mal(X'\mal X)^{-1}\mal\underbrace{ X'\mal X\mal(X'\mal X)^{-1}}_{
+			=I_p
+		}\mal H'
+		=K'
+	\end{align*}
+	und somit
+	\begin{align*}
+		P_{U^\perp\cap L}
+		&=P_{\Bild(K')}
+		\overset{\ref{satz2.22}}{=}
+		K'\mal(K\mal K')^{-1}\mal K
+	\end{align*}
+	gemäß Satz \ref{satz2.22} (mit $A\hat{=}K'$).
+	($P_{\Bild(A)}=A\mal(A'\mal A)\mal A'$)\nl
+	Für die Anwendung von Satz \ref{satz2.22} muss noch gezeigt werden, dass $K'$ vollen Rang hat.
+	Dazu:
+	\begin{align*}
+		K'&\in M(n\times q)
+		\qquad\und\qquad\\
+		q
+		\overset{\ref{satz:2.11}\ref{item:satz2.11(c)}}&{\geq}
+		 \Rg(K')\\
+		 &=\Rg\klammern[\big]{\underbrace{X\mal(X'\mal X)^{-1}}_{
+		 	\in M(n\times p)
+		 }\mal\underbrace{H'}_{
+		 	\in M(p\times q)
+		 }}\\
+		 \overset{\ref{satz:2.11}\ref{item:satz2.11(d)}}&{=}
+		\underbrace{\Rg(\klammern{X\mal(X'\mal X)^{-1}}}_{
+			\overset{\ref{satz:2.11}\ref{item:satz2.11(e)}}{=}
+			\Rg(X)
+			=p
+		}+
+		 \underbrace{\Rg(H')}_{
+		 	\overset{\ref{satz:2.11}\ref{item:satz2.11(b)}}{=}
+		 	\Rg(H)=q
+		 }-p\\
+		 &=q\\
+		 \implies
+		 \Rg(K')&=q
+	\end{align*}
+	Also hat $K'$ Vollrang.
+\end{proof}
+
+Jetzt zur Berechnung von $\hat{\beta}_H$ mittels $u_0$ aus \eqref{eq:3.11}:
+Wegen $u_0\in U\subseteq\Bild(X)$ existiert ein $y\in\R^p$ mit $u_0=X\mal y$.
+Es folgt
+\begin{align}\label{eq:UnderLemma3.15Stern}\tag{$*$}
+	X\mal y
+	&= u_0\\
+	\nonumber
+	\overset{\eqref{eq:3.11}}&{=}
+	P_U\mal\klammern{Y-X\mal\beta_0}\\
+	\nonumber
+	\overset{\ref{lemma3.15}}&{=}
+	\underbrace{P_L\mal Y}_{
+		\overset{\ref{satz3.3}}{=}
+		X\mal\hat{\beta}
+	}-\underbrace{P_L\mal\underbrace{ X\mal\beta_0}_{
+		\in L
+	}}_{
+		\overset{\ref{satz2.5}}{=}
+		X\mal\beta_0
+	}-K'\mal(K\mal K')^{-1}\mal\underbrace{ H\mal(X'\mal X)^{-1}\mal X}_{
+		=K
+	}\\
+	\label{eq:UnderLemma3.15Stern2}\tag{$*$}
+	&=X\mal\klammern{\hat{\beta}-\beta_0}-\underbrace{X\mal(X'\mal X)^{-1}\mal H'}_{
+		=K'
+	}\mal(K\mal K')^{-1}\mal\klammern*{H\mal\hat{\beta}-\underbrace{H\mal\beta_0}_{
+		=0
+	}}
+\end{align}
+Multiplikation von Gleichung \eqref{eq:UnderLemma3.15Stern} mit $(X\mal X')^{-1}\mal X'$ liefert
+\begin{align}\label{eq:UnderLemma3.15SternStern}\tag{$**$}
+	y
+	&=\hat{\beta}-\beta_0-(X'\mal X)^{-1}\mal H'\mal (K\mal K')^{-1}\mal\klammern{H\mal\hat{\beta}-c}
+\end{align}
+Beachte:
+$
+	y
+	\overset{\eqref{eq:UnderLemma3.15Stern}}{=}
+	(X'\mal X)^{-1}\mal u_0
+$
+mit eindeutig bestimmten $u_0$.
+Also ist auch $y$ eindeutig.
+Ferner:
+\begin{align*}
+	H\mal\klammern{y+\beta_0}
+	&=H\mal y+\underbrace{H\mal\beta_0}_{
+		=c
+	}
+	=\underbrace{H\mal\klammern{X'\mal X}^{-1}\mal X'}_{
+		=K
+	}\mal\underbrace{X\mal y}_{
+		=u_0
+	}+c
+	=K\mal\underbrace{ u_0}_{
+		\in U=L\cap\Kern(K)
+	}+c
+	=c
+\end{align*}
+Also gilt
+\begin{align}\label{eq:UnderLemma3.15Kasten}\tag{$\square$}
+	H\mal\klammern{y+\beta_0}=c.
+\end{align}
+
+Damit folgt:
+\begin{align*}
+	M&:=\min\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}\\
+	\overset{\eqref{eq:UnderLemma3.15Kasten}}&{\leq}
+	\norm{Y-X\mal\klammern{y+\beta_0}}\\
+	&=\norm*{Y-X\mal\beta_0-\underbrace{X\mal y}_{
+		=u_0
+	}}\\
+	\overset{\eqref{eq:UnderLemma3.15Stern}}&{=}
+	\norm{Y-X\mal\beta_0-u_0}\\
+	&=\min\set[\big]{\norm{Y-X\mal\beta_0-u}:u\in U}\\
+	&=M
+\end{align*}
+wegen \eqref{eq:3.9} bzw. \eqref{eq:3.10}.
+Also gilt überall Gleichheit!
+\begin{align}\label{eq:UnderLemma3.15SternSternStern}\tag{$***$}
+	y=\beta_0=\hat{\beta}_H
+\end{align}
+
+\begin{satz}\label{satz3.16}
+	Es gelte das lineare Modell $Y=X\mal\beta+\varepsilon$ mit \eqref{eq:3.2}, \eqref{eq:3.3}, \eqref{eq:3.4} und \eqref{eq:3.8}.
+	Besitze $X$ und $H$ Vollrang, dann gilt:
+	\begin{align*}
+		\hat{\beta}_{H}
+		=\hat{\beta}_{H,c}
+		=\beta-\klammern{X'\mal X}^{-1}\mal H'\mal\klammern{H\mal\klammern{X'\mal X}^{-1}\mal H'}^{-1}\mal\klammern{H\mal\hat{\beta}-c}
+	\end{align*}
+	Außerdem ist $\hat{\beta}_H$ eindeutig.
 \end{satz}
 
 \begin{proof}
-	To Do
+	Setze \eqref{eq:UnderLemma3.15SternStern} in \eqref{eq:UnderLemma3.15SternSternStern} ein.
+	Beachte außerdem, dass $y$ eindeutig bestimmt ist.
 \end{proof}
+
+\begin{bemerkung}\label{bem3.17}
+	$\hat{\beta}_H$ ist von einfacher Gestalt, nämlich vom Typ
+	\begin{align}\label{eq:bem3.17Plus}\tag{+}
+		\hat{\beta}_H
+		&=\hat{\beta}-D\mal\klammern{H\mal\hat{\beta}-c}
+		\mit
+		D=\klammern{X'\mal X}^{-1}\mal H'\mal\klammern{H\mal\klammern{X'\mal X}^{-1}\mal H'}^{-1}
+	\end{align}
+	Somit gilt
+	\begin{align*}
+		\E_\beta\eckigeKlammern{\hat{\beta}_{H,c}}
+		\overset{\eqref{eq:bem3.17Plus},\ref{satz3.2}}&{=}
+		\underbrace{\E_\beta\eckigeKlammern{\hat{\beta}}}_{
+			=\beta~\forall\beta
+		}-D\mal\klammern[\Big]{H\mal\underbrace{\E\eckigeKlammern{\hat{\beta}}}_{
+			=\beta~\forall\beta
+		}-c}\\
+		\implies
+		\E_\beta\eckigeKlammern{\hat{\beta}_{H,c}}
+		\overset{\forall\beta}&{=}
+		\beta-D\mal\klammern[\big]{\underbrace{H\mal\beta}_{
+			\overset{\eqref{eq:3.8}}{=}
+			c~\forall\beta
+		}-c}
+		=\beta
+		\qquad\forall\beta\in\R^p
+		\mit\eqref{eq:3.8}
+	\end{align*}
+	Also ist $\hat{\beta}_{H,c}$ erwartungstreuer Schätzer.
+\end{bemerkung}
+
+

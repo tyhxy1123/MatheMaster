@@ -1,0 +1,57 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1.25]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{3};
+
+	% first refinement for M_K 
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h,\h) $);
+	\coordinate (D) at ($ (A) + (0,\h) $);
+	\coordinate (M) at ($ 0.5*(A) + 0.5*(C) $);
+
+
+	\draw (A) -- (B) -- (C) -- (D) --cycle;
+	\draw (A) -- (C);
+	\draw (B) -- (D);
+
+	\draw ( $0.5*(A) + 0.5*(B)$ ) -- (M);
+	\draw ( $0.5*(A) + 0.5*(D)$ ) -- (M);
+	\draw ( $0.5*(A) + 0.5*(D)$ ) -- ( $0.5*(A) + 0.5*(B)$ );
+
+	\draw ( $0.75*(A) + 0.25*(D)$ ) -- ( $0.75*(A) + 0.25*(C)$ );
+	\draw ( $0.75*(A) + 0.25*(B)$ ) -- ( $0.75*(A) + 0.25*(C)$ );
+	\draw ( $0.75*(A) + 0.25*(B)$ ) -- ( $0.75*(A) + 0.25*(D)$ );
+
+	\draw ( $0.875*(A) + 0.125*(C)$ ) -- ( $0.875*(A) + 0.125*(D) + 0.875*(A) + 0.125*(C)$ );
+	\draw ( $0.875*(A) + 0.125*(C)$ ) -- ( $0.875*(A) + 0.125*(B) + 0.875*(A) + 0.125*(C)$ );
+
+	% previously lower red triangle
+	\draw ( $0.625*(A) + 0.375*(B) + 0.875*(A) + 0.125*(D)$ ) -- ( $0.75*(A) + 0.25*(B) + 0.875*(A) + 0.125*(D)$ );
+	\draw ( $0.625*(A) + 0.375*(B) + 0.875*(A) + 0.125*(D)$ ) -- ( $0.625*(A) + 0.375*(B)$ );
+	\draw ( $0.625*(A) + 0.375*(B) + 0.875*(A) + 0.125*(D)$ ) -- ( $0.75*(A) + 0.25*(B)$ );
+
+	% previously upper red triangle
+	\draw ( $0.625*(A) + 0.375*(D) + 0.875*(A) + 0.125*(B)$ ) -- ( $0.75*(A) + 0.25*(D) + 0.875*(A) + 0.125*(B)$ );
+	\draw ( $0.625*(A) + 0.375*(D) + 0.875*(A) + 0.125*(B)$ ) -- ( $0.625*(A) + 0.375*(D)$ );
+	\draw ( $0.625*(A) + 0.375*(D) + 0.875*(A) + 0.125*(B)$ ) -- ( $0.75*(A) + 0.25*(D)$ );
+
+
+	\draw[green] ( $0.625*(A) + 0.375*(D) + 0.875*(A) + 0.125*(B)$ ) -- ( $0.5*(A) + 0.5*(D) + 0.75*(A) + 0.25*(B)$ );
+	\draw[green] ( $0.75*(A) + 0.25*(C)$ ) -- ( $0.5*(A) + 0.5*(D) + 0.75*(A) + 0.25*(B)$ );
+
+	\draw[green] ( $0.625*(A) + 0.375*(B) + 0.875*(A) + 0.125*(D)$ ) -- ( $0.5*(A) + 0.5*(B) + 0.75*(A) + 0.25*(D)$ );
+	\draw[green] ( $0.75*(A) + 0.25*(C)$ ) -- ( $0.5*(A) + 0.5*(B) + 0.75*(A) + 0.25*(D)$ );
+	
+	\node[green] at ( $0.75*(A) + 0.25*(B) + (0,-0.1*\h)$ ) [below right] {$+4$};
+
+	% Somehow this arrow format did not work properly and i decided to just make two files to avoid trouble
+	
+	\end{tikzpicture}
+	
+	\caption{next refinement iteration }
+	\label{ch_2_counterexample_k=K_2}
+	
+\end{figure}
