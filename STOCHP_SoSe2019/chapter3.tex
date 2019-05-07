@@ -29,11 +29,17 @@
 \end{satz}
 
 \begin{erinnerung}
-	 Eine Matrix $A=(a_{i,j})_{i,j=1}^n\in\C^{n\times n}$ heißt \define{positiv semidefinit}
+	 Eine quadratische Matrix $A=(a_{i,j})_{i,j=1}^n\in\C^{n\times n}$ heißt \define{positiv semidefinit}
 	 \index{positiv semidefinit}
 	 \begin{align*}
-	 	\defiff\forall n\in\N:\forall c_1,\ldots,c_n\in\C:\sum\limits_{i,j=1}^n a_{i,j}\mal c_i\mal\overline{c_j}\geq 0
+	 	&\defiff\forall n\in\N:\forall c_1,\ldots,c_n\in\C:\sum\limits_{i,j=1}^n a_{i,j}\mal c_i\mal\overline{c_j}\geq 0\\
+	 	&\iff\forall c\in\C^n:\conj{c}^T\mal 
+	 	%\klammern[\big]{K\klammern{x_i,x_j}}_{i,j=1}^n
+	 	A\mal c\geq 0
 	 \end{align*}
+	 Die Ungleichungen machen nur Sinn, wenn auf den linken Seiten eine reelle Zahl steht.
+	 Die ist genau dann der Fall, wenn die Matrix $A$ hermitesch ist, d. h. $A=\conj{A}^T$.
+	 Insbesondere haben eine hermitische Matrizen reelle Zahlen auf der Hauptdiagonale.
 \end{erinnerung}
 
 \begin{proof}
@@ -199,7 +205,7 @@ Deshalb ist es wichtig, Methoden für die Konstruktion von positiv semidefiniten
 		\label{item:aufg19_iii}
 		\item $\begin{aligned}
 			(t,s)\mapsto f(t-s)\qquad\forall (t,s)\in T\times T,~T:=\R^d
-		\end{aligned}$\\1
+		\end{aligned}$\\
 		wobei $f$ eine charakteristische Funktion ist.
 		Insbesondere sind
 		\begin{align*}

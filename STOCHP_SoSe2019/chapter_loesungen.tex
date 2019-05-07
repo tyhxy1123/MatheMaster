@@ -554,9 +554,57 @@ Aus der Stochastik-Grundvorlesung bekannt:
 	\texorpdfstring{\hyperref[aufg:19]{Aufgabe 19}}{}
 }\label{loes:19}
 
+Wir wissen bereits:
+\begin{align}\label{eq:Lsg19Stern}\tag{$*$}
+	&K\colon T\times T\to\C(\R)\text{ ist Kovarianzfunktion}\\
+	\nonumber
+	\overset{\ref{satz3.1.2}}&{\iff}
+	\klammern[\big]{ K\klammern{x_i,x_j}}_{i,j=1}^n \text{ positiv semidefinit}
+	&&\forall x_1,\ldots,x_n\in T\\
+	\nonumber
+	\overset{\Def}&{\iff}
+	\sum\limits_{i,j=1}^n K\klammern{x_i,x_j}\mal c_i\mal\conj{c_j}\geq 0
+	&&\forall n\in\N,~\forall c_1,\ldots,c_n\in\C,~\forall x_1,\ldots,x_n\in T
+\end{align}
+
 \betone{Zeige \ref{item:aufg19_i}:}\\
-Schreibe Definition von positiv semidefinit auf und zeige, dass $p_1 K_1+p_2 K_2$ positiv semidefinit ist\nl
+Da $K_1$ und $K_2$ nach Voraussetzung Kovarianzfunktionen sind, gilt mit \eqref{eq:Lsg19Stern} 
+für alle $n\in\N$ und alle $c_1,\ldots,c_n\in\C$ und alle $x_1,\ldots,x_n\in T$:
+\begin{align*}
+	&\hspace{10mm}\left\lbrace\begin{array}{l}
+		\sum\limits_{i,j=1}^n K_1\klammern{x_i,x_j}\mal c_i\mal\conj{c_j}\geq 0\\
+		\sum\limits_{i,j=1}^n K_2\klammern{x_i,x_j}\mal c_i\mal\conj{c_j}\geq 0
+	\end{array}\right.\\
+	\overset{\mal p_i\geq0}&{\implies}
+	\left\lbrace\begin{array}{l}
+		\sum\limits_{i,j=1}^n p_1\mal K_1\klammern{x_i,x_j}\mal c_i\mal\conj{c_j}\geq 0\\
+		\sum\limits_{i,j=1}^n p_2\mal K_2\klammern{x_i,x_j}\mal c_i\mal\conj{c_j}\geq 0
+	\end{array}\right.\\
+	\overset{+}&{\implies}
+	\sum\limits_{i,j=1}^n \klammern[\Big]{p_1\mal K_1\klammern{x_i,x_j}+p_2\mal K_2\klammern{x_i,x_j}}\mal c_i\mal\conj{c_j}\geq 0\\
+	\overset{}&{\implies}
+	\sum\limits_{i,j=1}^n \klammern{p_1\mal K_1+p_2\mal K_2}\klammern{x_i,x_j}\mal c_i\mal\conj{c_j}\geq 0\\
+	\overset{\eqref{eq:Lsg19Stern}}&{\implies}
+	p_1\mal K_1+p_2\mal K_2\text{ ist positiv semidefinit}
+\end{align*}
 \betone{Zeige \ref{item:aufg19_ii}:}\\
+Aus \undefine{Schur's Produkt-Theorem} folgt, dass das Hadamard-Produkt
+\begin{align*}
+	(a_{i,j})_{i,j=1}^n*(b_{i,j})_{i,j=1}^n:=(a_{i,j}\mal b_{i,j})_{i,j=1}^n
+\end{align*}
+ (also elementweises Produkt) von zwei Matrizen wieder positiv semidefinit ist.
+Somit folgt die Behauptung mit:
+\begin{align*}
+	&\hspace{10mm}K_1,K_2\text{ sind Kovarianzfunktionen}\\
+	\overset{\eqref{eq:Lsg19Stern}}&{\implies} 
+	\klammern[\big]{K_1(x_1,x_2)}_{i,j=1}^n,~\klammern[\big]{K_2(x_1,x_2)}_{i,j=1}^n\text{ sind positiv semidefinit}
+	&&\forall x_1,\ldots,x_n\in T\\
+	\overset{\text{Schur}}&{\implies}
+	\klammern[\big]{(K_1\mal K_2)(x_1,x_2)}_{i,j=1}^n\text{ ist positiv semidefinit}
+	&&\forall x_1,\ldots,x_n\in T\\
+	\overset{\eqref{eq:Lsg19Stern}}&{\implies} 
+	K_1\mal K_2\text{ ist eine Kovarianzfunktion}
+\end{align*}
 \betone{Zeige \ref{item:aufg19_iii}:}\\
 \betone{Zeige \ref{item:aufg19_iv}:}\\
 \betone{Zeige \ref{item:aufg19_v}:}\\
@@ -569,8 +617,8 @@ Verwende (iii).
 \begin{proof}
 	Seien $x_1,\ldots,x_n\in[0,\infty)$.
 	Zu zeigen: $A=\klammern[\big]{\min(x_i,x_j)}_{i,j=1}^n$ ist positiv semidefinit.
-	Wir dürfen annehmen, dass $x_1\leq x_2\leq\ldots\leq x_n$.
-	Dann ist
+	Wir dürfen o.B.d.A annehmen, dass $x_1\leq x_2\leq\ldots\leq x_n$ (ansonsten Umordnen).\\
+	\textbf{Vorüberlegung:} Es gilt
 	\begin{align*}
 		\det\klammern[\big]{A(x_1,\ldots,x_n)}
 		&=:D_n(x_1,\ldots,x_n)\\
@@ -579,6 +627,79 @@ Verwende (iii).
 			x_1 & x_2 & \ldots & x_2\\
 			\vdots & \vdots & \ddots & \vdots\\
 			x_1 & x_2 & \ldots & x_n
-		\end{vmatrix}
+		\end{vmatrix}\\
+		\overset{\text{Z. 2 bis n minus Z. 1}}&{=}
+		\begin{vmatrix}
+			x_1 & x_1 & \ldots & x_1\\
+			0 & x_2-x_1 & \ldots & x_2-x_1\\
+			\vdots & \vdots & \ddots & \vdots\\
+			0 & x_2-x_1 & \ldots & x_n-x_1
+		\end{vmatrix}\\
+		\overset{\text{Laplace}}&{=}
+		x_1\mal\begin{vmatrix}
+			x_2-x_1 & \ldots & x_2-x_1\\
+			\vdots &  \ddots & \vdots\\
+			x_2-x_1 & \ldots & x_n-x_1
+		\end{vmatrix}\\
+		\overset{\Def}&{=}
+		x_1\mal D_{n-1}\klammern{x_2-x_1,\ldots,x_n-x_1}\\
+		\overset{\text{again}}&{=}
+		x_1\mal\begin{vmatrix}
+			x_2-x_1 & x_2-x_1 & \ldots & x_2-x_1\\
+			0 & (x_3-x_2)-(x_2-x_1) &  \hdots & (x_3-x_2)-(x_2-x_1)\\
+			\vdots & \vdots & \ddots & \vdots\\
+			0 & (x_3-x_2)-(x_2-x_1) & \hdots & (x_n-x_2)-(x_2-x_1)
+		\end{vmatrix}\\
+		&=x_1\mal(x_2-x_1)\mal\begin{vmatrix}
+			x_3-x_2 & \hdots & x_3-x_2\\
+			\vdots & \ddots & \vdots\\
+			x_3-x_2 & \hdots & x_n-x_2
+		\end{vmatrix}\\
+		&=x_1\mal(x_2-x_1)\mal D_{n-2}\klammern{x_3-x_2,\ldots,x_n-x_2}\\
+		&=x_1\mal(x_2-x_1)\mal(x_3-x_2)\mal D_{n-3}\klammern{x_4-x_3,\ldots,x_n-x_3}
 	\end{align*}
+	Diese Vorüberlegung lässt bereits eine Vermutung aufkeimen.
+	Wir zeigen nun mittels vollständiger Induktion die Gleichung
+	\begin{align}\label{eq:Lsg20Indu}\tag{I}
+		D_n\klammern{x_1,\ldots,x_n}
+		=x_1\mal\klammern{x_2-x_1}\mal\ldots\mal\klammern{x_n-x_{n-1}}
+		=x_1\mal\prod\limits_{j=2}^n\klammern{x_j-x_{j-1}}
+	\end{align}
+	\betone{Induktionsanfang $n=1$:}
+	\begin{align*}
+		D_1(x_1)\overset{\Def}{=}\det(x_1)=x_1=x_1\mal\underbrace{\prod\limits_{j=2}^n\klammern{x_j-x_1}}_{=1}
+	\end{align*}
+	\betone{Induktionsvoraussetzung:} Gelte \eqref{eq:Lsg20Indu} für ein beliebiges, aber festes $n\in\N$.\nl
+	\betone{Induktionsschritt:} $n\to n+1$
+	\begin{align*}
+		D_{n+1}\klammern{x_1,\ldots,x_{n+1}}
+		\overset{\text{VÜ}}&{=}
+		x_1\mal D_n\klammern{x_2-x_1,\ldots,x_{n+1}-x_1}\\
+		\overset{\text{IH}}&{=}
+		x_1\mal(x_2-x_1)\mal\prod\limits_{j=2}^n\underbrace{\klammern[\big]{\klammern{x_{j+1}-x_1}-\klammern{x_j-x_1}}}_{
+			=x_{j+1}-x_j
+		}\\
+		&=x_1\mal(x_2-x_1)\mal\prod\limits_{j=3}^{n+1}\klammern{x_j-x_{j-1}}\\
+		&=x_1\mal\prod\limits_{j=2}^{n+1}\klammern{x_j-x_{j-1}}
+	\end{align*}
+	Nach Voraussetzung gilt $x_j-x_{j-1}>0$ (wir hatten die $x_i$'s geordnet) und $x_i\geq0$.
+	Folglich ist die Determinante
+	\begin{align*}
+		\det\klammern[\big]{A\klammern{x_1,\ldots,x_n}}
+		=D_n(x_1,\ldots,x_n)
+		=\underbrace{x_1}_{
+			\overset{\Vor}{\geq}0
+		}\mal\prod\limits_{j=2}^n\underbrace{x_j-x_{j+1}}_{
+			\overset{\Vor}{\geq}0
+		}\geq0
+	\end{align*}
+	Die Behauptung folgt somit aus folgendem Satz:
+	
+	\begin{satz}
+		Ein hermitescher Kern $A\colon T\times T\to\C$ ist genau dann positiv semidefinit, wenn
+		\begin{align*}
+			\det\klammern[\Big]{\klammern[\big]{A\klammern{x_i,x_j}}_{i,j=1}^n}\geq 0
+			\qquad\forall n\in\N,\forall x_1,\ldots,x_n\in T
+		\end{align*}
+	\end{satz}
 \end{proof}
