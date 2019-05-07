@@ -1,3 +1,3 @@
 $pdf_mode = 1;
-@default_files = ('PDENW.tex');
+@default_files = ('PDENMW.tex');
 $out_dir = 'out';

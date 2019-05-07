@@ -1,0 +1,96 @@
+\begin{figure}[H]
+	\center
+	\begin{tikzpicture}[scale=1]
+	\def \xone{0};
+	\def \yone{0};
+	\def \h{5};
+	
+	% blank triangle a
+	\coordinate (A) at (\xone ,\yone);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h/3,\h/3) $);
+	\coordinate (S) at ($ (A) + (2*\h/5,\h/8) $);
+	\draw (A) -- (B) -- (C) --cycle;
+	\node at (S) {$a$};	
+
+	% after first bisection
+	\coordinate (A) at ($(A) + (0, -\h/2 )$);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h/3,\h/3) $);
+	\coordinate (M) at ($ (A) + (\h/2,0) $);
+	\coordinate (S11) at ($ (A) + (\h/4,\h/10) $);
+	\coordinate (S12) at ($ (A) + (3*\h/5,\h/10) $);
+
+	\draw (A) -- (B) -- (C) --cycle;
+	\draw (M) -- (C);
+	\node at (S11) {$b$};	
+	\node at (S12) {$c$};	
+
+	% after second bisection
+	\coordinate (A) at ($(A) + (0, -\h/2 )$);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h/3,\h/3) $);
+	\coordinate (M) at ($ (A) + (\h/2,0) $);
+	\coordinate (M1) at ($ (A) + (\h/6,\h/6) $);
+	\coordinate (M2) at ($ (A) + (2*\h/3,\h/6) $);
+	\coordinate (S21) at ($ (A) + (\h/5,\h/12) $);
+	\coordinate (S22) at ($ (A) + (3*\h/10,\h/6) $);
+	\coordinate (S23) at ($ (A) + (5*\h/10,\h/6) $);
+	\coordinate (S24) at ($ (A) + (7*\h/10,\h/12) $);
+
+
+	\draw (A) -- (B) -- (C) --cycle;
+	\draw (M) -- (C);
+	\draw (M) -- (M1);
+	\draw (M) -- (M2);
+
+	\node at (S21) {$a$};	
+	\node at (S22) {$d$};	
+	\node at (S23) {$d$};	
+	\node at (S24) {$a$};	
+
+	% something is probably off here 
+	% after third bisection
+	\coordinate (A) at ($(A) + (0, -\h/2 )$);
+	\coordinate (B) at ($ (A) + (\h,0) $);
+	\coordinate (C) at ($ (A) + (\h/3,\h/3) $);
+	\coordinate (M) at ($ (A) + (\h/2,0) $);
+	\coordinate (M1) at ($ (A) + (\h/6,\h/6) $);
+	\coordinate (M2) at ($ (A) + (2*\h/3,\h/6) $);
+	\coordinate (M3) at ($ (A) + (\h/4,0) $);
+	\coordinate (M4) at ($ (A) + (5*\h/12,\h/6) $);
+	\coordinate (M5) at ($ (A) + (3*\h/4,0) $);
+  \coordinate (S111) at ($ (A) + (5*\h/33,\h/17) $);
+	\coordinate (S112) at ($ (A) + (13*\h/48,\h/15) $);
+	\coordinate (S121) at ($ (A) + (9*\h/24,\h/9) $);
+	\coordinate (S122) at ($ (A) + (5*\h/16,7*\h/30) $);
+	\coordinate (S211) at ($ (A) + (9*\h/20,7*\h/30) $);
+  \coordinate (S212) at ($ (A) + (16*\h/30,\h/9) $);
+  \coordinate (S221) at ($ (A) + (13*\h/20,\h/13) $);
+  \coordinate (S222) at ($ (A) + (16*\h/20,\h/15) $);
+
+	% draw lines 
+	\draw (A) -- (B) -- (C) --cycle;
+	\draw (M) -- (C);
+	\draw (M) -- (M1);
+	\draw (M) -- (M2);
+	\draw (M1) -- (M3);
+	\draw (M1) -- (M4);
+	\draw (M2) -- (M4);
+	\draw (M2) -- (M5);
+
+	\node at (S111) {$b$};
+	\node at (S112) {$c$};
+	\node at (S121) {$c$};
+	\node at (S122) {$b$};
+  \node at (S211) {$c$};
+  \node at (S212) {$b$};
+  \node at (S221) {$b$};
+  \node at (S222) {$c$};
+
+\end{tikzpicture}
+	
+	\caption{example for iterated refinement}
+	\label{ch_1_example_refined_triangle}
+	
+\end{figure}

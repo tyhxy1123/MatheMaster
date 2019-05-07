@@ -54,6 +54,7 @@
 	\mathop{\raisebox{-.5ex}{\hbox{\huge{$\times$}}}}
 }                                        % Kartesisches Produkt / Kreuzprodukt 
 \DeclareMathOperator{\Bild}{Bild}        % Bild einer Matrix / Funktion
+\newcommand{\conj}[1]{\overline{#1}}     % komplexe Konjugation
 \renewcommand{\d}{\mathrm{d}}            % Differential d ohne Space
 \newcommand{\defiff}{\vcentcolon\Longleftrightarrow} % per Definition genau dann, wenn
 \newcommand{\ds}{~\mathrm{d}}            % Differential d mit Space für Integrale
@@ -91,6 +92,7 @@
 	\newcommand{\spann}{\Span}           % Span / Lineare Hülle
 \DeclareMathOperator{\Spur}{Spur}        % Spur einer Matrix
 \DeclareMathOperator{\supp}{supp}        % Träger
+\newcommand{\symDiff}{\,\triangle\,}        % symmetrische Differenz
 \DeclareMathOperator{\tr}{tr}            % Spur
 
 % Normen, Betrag, Skalarprodukt
@@ -117,12 +119,15 @@
 \xDeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
 \xDeclarePairedDelimiter{\norm}{\Vert}{\Vert}
 \xDeclarePairedDelimiter{\abs}{\vert}{\vert}
+\xDeclarePairedDelimiter{\eckigeKlammern}{[}{]}
 \xDeclarePairedDelimiterBin{\scaProd}{\langle}{\rangle}
 \xDeclarePairedDelimiterBin{\intervall}{[}{]}
 \xDeclarePairedDelimiterBin{\intervallHO}{[}{)}
 \xDeclarePairedDelimiterBin{\intervallOH}{(}{]}
 \xDeclarePairedDelimiterBin{\intervallO}{(}{)}
 \xDeclarePairedDelimiter{\klammern}{(}{)}
+\xDeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\xDeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
 \NewDocumentCommand\normiii{som}{
 	\IfNoValueTF{#2} %falls optionales Argument leer (d.h. kein "\Big")

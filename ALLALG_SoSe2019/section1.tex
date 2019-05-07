@@ -732,6 +732,244 @@ Dann ist
 	\end{align*}
 \end{beispiel}
 
+Wiederholung:
+$V\simeq\F_q^n$, $\L=\L(V)=(L(V),\leq)$ Unterraumverband.
+Hierbei ist "$\leq$" die Untervektorraum-Enthalten-Seins-Relation.
+\begin{align*}
+	L_i&:=\set{U\leq V\mid \dim(U)=i}
+\end{align*}
+Dann ist 
+\begin{align*}
+	\Inz_{i,j}^\L=\big(L_i,L_j,I_{i,j}\big)
+	\qquad\mit\qquad
+	I_{i,j}:=\set{(p,b)\in L_i\times L_j\mid p\leq b}
+\end{align*}
+taktische Konfiguration mit Parametertupel
+\begin{align*}
+	\klammern{
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q,\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}_q,\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix}_q,\begin{pmatrix}
+			j\\
+			i
+		\end{pmatrix}_q
+	}
+\end{align*}
+wobei
+\begin{align*}
+	\begin{pmatrix}
+		n\\
+		1
+	\end{pmatrix}_q
+	=\frac{q^n-1}{q-1}
+\end{align*}
 
+\begin{bemerkungnr}
+	$\begin{pmatrix}
+		n\\
+		i
+	\end{pmatrix}_q$ heißt \define{Gauß-Koeffizient}
+	\index{Gauß-Koeffizient}
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q
+		=\frac{
+			\big(q^n-1\big)\mal\ldots\mal\big(q^{n-ii+1}-1\big)
+		}{
+			(q-1)\mal\ldots\mal\big(q^i-1\big)
+		}
+	\end{align*}
+	Dies folgt aus
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q\mal\begin{pmatrix}
+			n-i\\
+			j-i
+		\end{pmatrix}_q
+		=\begin{pmatrix}
+			n\\
+			j
+		\end{pmatrix}_q\mal\begin{pmatrix}
+			j\\
+			i
+		\end{pmatrix}_q
+	\end{align*}
+	und 
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			1
+		\end{pmatrix}_q=\frac{q^n-1}{q-1}
+	\end{align*}
+	
+	Es gilt irgendwie auch:
+	\begin{align*}
+		\#V&=q^n\\
+		\#\big(V\setminus\set{\vec{0}}\big)&=q^n-1\\
+		\#\F_g v&=q\qquad\forall v\in V\setminus\set{\vec{0}}\\
+		\#\big(\F_q\setminus\set{0}\big)v&=q-1\\
+		\implies (q-1)\mal\begin{pmatrix}
+			n\\
+			1
+		\end{pmatrix}_q&=q^n-1
+	\end{align*}
+\end{bemerkungnr}
 
+\begin{bemerkungnr}
+	Sei $f\colon\N\to\N_+$ Abbildung. 
+	Setze
+	\begin{align*}
+		f!\colon\N\to\N_+,\qquad n\mapsto \prod\limits_{i\in[n]} f(i)=f(1)\mal f(2)\mal\ldots\mal f(n)
+	\end{align*}
+	Beachte $\prod\limits_{i\in\emptyset} f(i)=1$.
+	Für $i,n\in\N$ sei
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		:=\left\lbrace\begin{array}{cl}
+			\frac{(f!)(n)}{(f!)(i)\mal(f!)(n-i)},&\falls i\leq n\\
+			0, &\falls i>n
+		\end{array}\right.
+	\end{align*}
+	Also ist 
+	\begin{align*}
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_f
+		=\frac{
+			f(n)\mal\ldots\mal f(n-i+1)
+		}{
+			f(1)\mal\ldots\mal f(i)
+		}\qquad\forall i\leq n
+	\end{align*}
+	Für eine Abbildung
+	\begin{align*}
+		[~]\colon\N\times\N\to\N,\qquad
+		(i,n)\mapsto\begin{bmatrix}
+			n\\
+			i
+		\end{bmatrix}\\
+		\mit~
+		\supp([~])
+		\overset{\Def}{=}
+		\set{(i,n)\in\N\times\N\mid i\leq n}
+		=\set{(i,n)\in\N\times\N\mid i\leq n}
+	\end{align*}
+	 Link: \url{https://de.wikipedia.org/wiki/Inzidenzalgebra}
+	 Es gilt stets:
+	 \begin{align}\label{eq:24.4Stern}\tag{$*$}
+	 	\begin{bmatrix}
+	 		n\\
+	 		i
+	 	\end{bmatrix}\mal\begin{bmatrix}
+	 		n-i\\
+	 		j-i
+	 	\end{bmatrix}
+	 	=\begin{bmatrix}
+	 		n\\
+	 		j
+	 	\end{bmatrix}\mal\begin{bmatrix}
+	 		j\\
+	 		i
+	 	\end{bmatrix}
+	 	\qquad\forall i\leq j\leq n
+	 \end{align}
+	 Das heißt
+	 \begin{align*}
+	 	\klammern{
+			\begin{bmatrix}
+				n\\
+				i
+			\end{bmatrix},
+			\begin{bmatrix}
+				n-i\\
+				j-i
+			\end{bmatrix};\begin{pmatrix}
+				n\\
+				j
+			\end{pmatrix},\begin{bmatrix}
+				j\\
+				i
+			\end{bmatrix}
+	 	}
+	 \end{align*}
+	 ist formales taktisches Konfigurationsquadrupel.
+\end{bemerkungnr}
 
+Ist umgekehrt $[~]\colon\leq_\N\to\N_+$ mit \eqref{eq:24.4Stern} gegeben, so ist $[~]=(~)_f$ für
+\begin{align*}
+	f\colon\N\to\N_+,\qquad n\mapsto\begin{bmatrix}
+		n\\
+		1
+	\end{bmatrix}
+\end{align*}
+Folglich ist $f(1)=1$.
+
+\begin{bemerkungnr}\
+	\begin{enumerate}[label=(\arabic*)]
+		\item Warnung! Gegenbeispiel:
+	$[~]\colon\leq_\N\to\N_+,~(i,n)\mapsto 2$ erfüllt \eqref{eq:24.4Stern}, aber es existiert \betone{kein} $f\colon\N\to\N_+$ mit $[~]=(~)_f$.
+		\item $[~]\colon\leq_\N\to\N_+,~(i,n)\mapsto1$ erfüllt $[~]=(~)_f$ für $f\colon\N\to\N_+,~ n\mapsto 1$.
+		\item \eqref{eq:24.4Stern} ist ein Beispiel einer Funktionalgleichung.
+	\end{enumerate}
+\end{bemerkungnr}
+
+\begin{beispiel}
+	Weitere "interessanter" taktischer Konfigurationen via freier endlichen Ring Moduln.\nl
+	Sei $\S=\big(S,+,\mal,0,1\big)$ ein \define{Semiring (mit Eins)}, d.h. $\S_{\add}:=\big(S,+,\mal\big)$ ist kommutatives Monoid und $\S_{\mult}:=\big(S,\mal,1\big)$ ist Monoid derart, dass das Distributivgesetz
+	\index{Semiring}
+	\begin{align*}
+		a\mal(b+c)=(a\mal b)+(a\mal c)=:a\mal b+a\mal c\qquad\forall a,b,c\in S
+	\end{align*}
+	gilt.
+	Sind $\S=\big(S,+,\mal,0,1\big)$ und $\S'=\big(S',+',\mal',0',1'\big)$ Semiringe, so heiße eine Abbildung $\varphi\colon S\to S'$ \define{Morphismus}, falls $\varphi$ Morphismus von $\S_{\add}$ nach $\S'_{\add}$ und $\varphi$ Morphismus von $\S_{\mult}$ nach $\S_{\mult}'$ bildet, d.h. es gilt für alle $a,b\in S$:
+	\index{Morphismis}
+	\begin{enumerate}
+		\item $\begin{aligned}
+			\varphi(a+b)&=\varphi(a)+'\varphi(b)
+		\end{aligned}$
+		\item $\begin{aligned}
+			\varphi(a\mal b)=\varphi(a)\mal'\varphi(b)
+		\end{aligned}$
+		\item $\begin{aligned}
+			a\mal 0=0=0\mal a
+		\end{aligned}$
+		\item $\begin{aligned}
+			1\neq 0
+		\end{aligned}$
+		\item $\begin{aligned}
+			\varphi(1)=1'
+		\end{aligned}$
+	\end{enumerate}
+	
+	Ist $\M=(M,+\vec{0)})$ kommutativer Monoid und $\S=(S,+,\mal,0,1)$ Semiring (SR), so heiße 
+	\index{Sclaling}
+	\begin{align*}
+		\scal\colon S\to\End(\M)
+	\end{align*}
+	ein \define{Scaling}, falls
+	\begin{align*}
+		\End(\M):=\big(\End(M),+,\mal,0,\id_M\big)
+	\end{align*}
+	Endomorphismen-Semiring von $\M$.\\
+	$\scal$ Morphismus von $\S$ nach $\End(\M)$.\nl
+	Die Abbildung $S\times M\to M,~(s,m)\mapsto sm:=\big(\scal(s)\big)m$
+	heiße das zugehörige \define{Skalarprodukt}.
+	\index{Skalarprodukt}\\
+	Wir nennen dann $(\M,\S,\scal)$ einen \define{Semiring-Modul} bzw. sagen $\M$ bildet (bzgl. $\scal$) einen Modul über $\S$.
+	\index{Semiring-Modul}
+\end{beispiel}

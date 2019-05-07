@@ -16,17 +16,23 @@
 	{}          % CUSTOM-HEAD-SPEC
 \theoremstyle{mystyle}
 
-% Definitionen der Satz, Lemma... - Umgebungen. Der Zähler von "satz" ist dem "section"-Zähler untergeordnet, alle weiteren Umgebungen bedienen sich des satz-Zählers.
-\newtheorem{satz}{Satz}[section]
-\newtheorem{lemma}[satz]{Lemma}
-\newtheorem{korollar}[satz]{Korollar}
-\newtheorem{proposition}[satz]{Proposition}
-\newtheorem{beispiel}[satz]{Beispiel}
-\newtheorem{definition}[satz]{Definition}
-\newtheorem{bemerkungnr}[satz]{Bemerkung}
-\newtheorem{theorem}[satz]{Theorem}
-\newtheorem{erinnerungnr}[satz]{Erinnerung}
-\newtheorem{vermutung}[satz]{Vermutung}
+% Definitionen der Satz, Lemma... - Umgebungen. Der Zähler von "definition" ist dem "chapter"-Zähler untergeordnet, alle weiteren Umgebungen bedienen sich des definition-Zählers.
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{satz}[definition]{Satz}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{korollar}[definition]{Korollar}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{beispiel}[definition]{Beispiel}
+\newtheorem{bemerkungnr}[definition]{Bemerkung}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{erinnerungnr}[definition]{Erinnerung}
+\newtheorem{vermutung}[definition]{Vermutung}
+\newtheorem{axiom}[definition]{Axiom}
+\newtheorem{notationnr}[definition]{Notation}
+
+\newcounter{aufgabencounter}
+\renewcommand{\theaufgabencounter}{\arabic{chapter}.\arabic{section}.\arabic{aufgabencounter}} 
+\newtheorem{aufgabenr}[aufgabencounter]{Aufgabe}
 
 % Bemerkungen, Erinnerungen und Notationshinweise werden ohne Numerierungen dargestellt.
 \newtheorem*{bemerkung}{Bemerkung.}
@@ -34,9 +40,10 @@
 \newtheorem*{notation}{Notation.}
 \newtheorem*{aufgabe}{Aufgabe.}
 \newtheorem*{lösung}{Lösung.}
-\newtheorem*{beisp}{Beispiel.}  %Beispiel ohne Nummerierung
+\newtheorem*{bsp}{Beispiel.}  %Beispiel ohne Nummerierung
 \newtheorem*{defi}{Definition.} %Definition ohne Nummerierung
 \newtheorem*{lem}{Lemma.}       %Lemma ohne Nummerierung
 \newtheorem*{thm}{Theorem.}     %Theorem ohne Nummerierung
-\newtheorem*{konvention}{Konvention.}  
+\newtheorem*{konvention}{Konvention.}
+\newtheorem*{folg}{Folgerung.} 
 

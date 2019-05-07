@@ -18,7 +18,7 @@
 \input{\directoryPrefix font}
 \input{\directoryPrefix commands}
 \input{\directoryPrefix commands_hen}
-%\input{local_commands} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
+\input{commands_pdenmw} % lokale Commands und packages werden auch ausgelagert. Lokal bedeutet nur diese Vorlesung betreffend.
 
 \makeindex % erstellt Stichwortverzeichnis
 \setlength{\parindent}{0px} % verhindert das Einrücken eines Absatzes bei einer leeren Codezeile.
@@ -26,7 +26,8 @@
 
 \title{
 	Vorlesung\\
-	Numerik mit partiellen Differentialgleichungen – weiterführende Konzepte:\\ 		Adaptive Finite-Elemente-Methoden
+	Numerik mit partiellen Differentialgleichungen – weiterführende Konzepte:\\ 		
+	Adaptive Finite-Elemente-Methoden
 }
 %\subject{Thema}
 \subtitle{Sommersemester 2019}
@@ -45,7 +46,7 @@
   	\makeatother
   	%\end{hack}
   	
-  	%\selectlanguage{english}
+  	\selectlanguage{english}
   	
 	\pagenumbering{gobble}	% disable pagenumbering
 	\maketitle
@@ -58,6 +59,7 @@
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
 	\input{chapter0}
 	\input{chapter1}
+	\input{chapter2}
 	
 	\appendix
 	%\input{anhang}
@@ -66,7 +68,7 @@
 	%\input{chapter_loesungen} % Falls es Übungsaufgaben gibt, sollte man diese miteinbinden
 
 	\printindex % erstellt Stichwortverzeichnis, muss mit "MakeIndex" gebaut werden!
-	%\listoffigures 
+	\listoffigures 
 	%\listoftables
 	%\nocite{*} % erstellt Literaturverzeichnis selbst wenn nie auf die entsprechende Literatur im Dokument verwiesen wird
 	%\bibliography{literatur}

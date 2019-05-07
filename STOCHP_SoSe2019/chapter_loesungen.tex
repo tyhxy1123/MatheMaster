@@ -21,8 +21,8 @@
 	\texorpdfstring{\hyperref[aufg:3]{Aufgabe 3}}{}
 }\label{loes:3}
 
-Wir zeigen, dass $\A_0$ ein $\sigma$-Algebra ist.\\
-$\Omega\in\A_0$, weil $\Omega\subseteq\A$ und somit $\Omega\cup\emptyset\setminus\emptyset\in\A_0$.\nl
+\betone{Zeige \ref{item:aufg3_1}., also, dass $A_0$ eine $\sigma$-Algebra ist:}\\
+$\Omega\in\A_0$, weil $\Omega\in\A$ und somit $\Omega\cup\emptyset\setminus\emptyset\in\A_0$.\nl
 Sei $A_0\in\A_0$. Wir zeigen $A_0^C\in\A_0$.
 Da $A_0\in\A_0$ existieren $A\in\A$ und $\P$-Nullmengen so, dass $A_0=(A\cup N)\setminus M\in\A_0$.
 \begin{align*}
@@ -40,11 +40,68 @@ Da $A_0\in\A_0$ existieren $A\in\A$ und $\P$-Nullmengen so, dass $A_0=(A\cup N)\
 	&=(\tilde{A}\cap\tilde{N})\setminus\tilde{M}\qquad\mit\tilde{A}:=A^C\in\A,~\tilde{N}:=M,~\tilde{M}:=N\cap M^C~\P\text{-Nullmengen}\\
 	&\implies A_0^C\in\A_0
 \end{align*}
-Sei $(A_{0,n})_{n\in\N}\subseteq\A_0$. %TODO
+Zur Vereinigungsstabilität:\\
+Sei $(A_{0,n})_{n\in\N}\subseteq\A_0$. 
+O.B.d.A. ist 
+\begin{align*}
+	(A_{0,n})_{n\in\N}=\Big((A_1\cup N_1)\setminus M_1, A_2\cup N_1)\setminus M_1,\ldots\Big)
+\end{align*}
+Dann gilt
+\begin{align*}
+	\bigcup\limits_{i\in\N} A_{0,i}
+	&=\bigcup\limits_{i\in\N}\big(A_i\cup N_i\big)\setminus M_i\\
+	&=\klammern{\bigcup\limits_{i\in\N}\big(A_i\cup N_i\big)}\setminus\klammern{\bigcup\limits_{i\in\N} M_i}\\
+	&=\klammern[\bigg]{\underbrace{\bigcup\limits_{i\in\N} A_i}_{
+		 \in\A
+	}\cup\underbrace{\bigcup\limits_{i\in\N} N_i}_{
+		\cup\text{ v. Nullmengen ist Nullmenge}
+	}}\setminus\klammern{\bigcup\limits_{i\in\N} M_i}\\
+\end{align*}
+
+\betone{Zeige \ref{item:aufg3_3}., also, dass $P_0$ ein Wahrscheinlichkeitsmaß ist:}
+\begin{align*}
+	\P_0(\Omega)=\P(\Omega)=1
+\end{align*}
+und 
+\begin{align*}
+	\P_0\big(A_0^C\big)
+	=\P\big(A^C\big)
+	=1-\P(A)=1-\P_0(A_0)
+	\qquad\mit A_0=(A\cup N)\setminus M,A\in\A
+\end{align*}
+und zuletzt noch
+\begin{align*}
+	\P_0\klammern{\bigcup\limits_{i=1}^\infty A_{0,i}}
+	=\P\klammern{\bigcup\limits_{i=1}^\infty A_i}
+	=\sum\limits_{i=1}^\infty\P(A_i)
+	=\sum\limits_{i=1}^\infty\P_0(A_{0,i})
+\end{align*}
+
+\betone{Zeige \ref{item:aufg3_2}., also, dass $P_0$ wohldefiniert ist:}\\
+Sei $A_{0,1}=(A_1\cup N_1)\setminus M_1$ und $A_{0,2}=(A_2\cup N_2)\setminus M_2$.
+Sei $A_{0,1}=A_{0,2}$.\\
+Zu zeigen: $\P(A_1)=\P(A_2)$.
+Wenn 
+\begin{align*}
+	(A_1\cup N_1)\setminus M_1
+	&=(A_2\cup N_2)\setminus M_2=:A
+\end{align*}
+dann gilt
+\begin{align*}
+	A_1\symDiff A&\subseteq\text{ Nullmenge}\\
+	A_2\symDiff A&\subseteq\text{ Nullmenge und}\\
+	\underbrace{A_1\symDiff A_2}_{
+		\text{messbar}\implies\text{Nullmenge}
+	} &\subseteq\big(A_1\symDiff A\big)\cup\big(A_2\symDiff A\big)\subseteq\text{ Nullmenge}\\
+	&\implies \P(A_1)=\P(A_2)
+\end{align*}
+
+Nun können wir also sinnvoll definieren:
+\begin{align*}
+	\P_0(A):=\P(A_1)
+\end{align*}
 
 
-Wir zeigen nun die Wohldefiniertheit von $\P_0$:
-%TODO
 
 \section{Lösung von 
 	\texorpdfstring{\hyperref[aufg:4]{Aufgabe 4}}{}
@@ -62,8 +119,356 @@ Wir zeigen nun die Wohldefiniertheit von $\P_0$:
 	\texorpdfstring{\hyperref[aufg:7]{Aufgabe 7}}{}
 }\label{loes:7}
 
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:8]{Aufgabe 8}}{}
+}\label{loes:8}
 
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:9]{Aufgabe 9}}{}
+}\label{loes:9}
 
+\betone{Zeige \ref{item:aufg9(1)}:}\\
+Um Stationärität (im weiteren Sinne) zu prüfen, prüfen wir zuerst, dass $\E[Z(t)]$ nicht von $t$ abhängt:
+\begin{align}\label{eq:loes9}
+	\E\big[Z(t)\big]
+	\overset{\Def}&{=}
+	\E\left[\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal X_j\right]
+	\overset{\Lin}{=}
+	\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal\underbrace{\E[X_j]}_{
+		\overset{\Vor}{=}0
+	}
+	=0=:M\quad\forall t\in\R^d
+\end{align}
 
+Nun müssen wir noch prüfen, dass die Korrelationsfunktion genau von $t_1-t_2$ ($t_1,t_2\in T$) abhängt:
+\begin{align*}
+	\E\big[Z(t_1)\mal\overline{Z(t_2)}\big]
+	\overset{\Def}&{=}
+	\E\left[\klammern{\sum\limits_{j=1}^n\Big(\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal X_j}\mal\overline{\klammern{\sum\limits_{k=1}^n\exp\big(\ii\mal\scaProd{a_k}{t_2}\big)\mal X_k}}\right]\\
+	&=
+	\E\left[\klammern{\sum\limits_{j=1}^n\Big(\exp\big(\ii\mal\scaProd{a_j}{t}\big)\mal X_j}\mal\klammern{\sum\limits_{k=1}^n\exp\big(-\ii\mal\scaProd{a_k}{t_2}\big)\mal \overline{X_k}}\right]\\
+	&=\E\left[\sum\limits_{j=1}^n\sum\limits_{k=1}^n\exp\Big(\ii\mal\big(\scaProd{a_j}{t_1}-\scaProd{a_k}{t_2}\big)\Big)\mal X_j\mal \overline{X_k}\right]\\
+	\overset{\Lin}&{=}
+	\sum\limits_{j=1}^n\sum\limits_{k=1}^n\exp\Big(\ii\mal\big(\scaProd{a_j}{t_1}-\scaProd{a_k}{t_2}\big)\Big)\mal\underbrace{\E\big[ X_j\mal \overline{X_k}\big]}_{=0,~\falls j\neq k}\\
+	&=\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t_1-t_2}\big)\mal\E\big[X_j\mal \overline{X_j}\big]\\
+\end{align*}
+Somit haben wir die Korrelationsfunktion direkt berechnet:
+\begin{align*}
+	C\big(t_1,t_2\big)=C\big(t_1-t_2\big)
+	&=\sum\limits_{j=1}^n\exp\big(\ii\mal\scaProd{a_j}{t_1-t_2}\big)\mal\E\big[X_j\mal \overline{X_j}\big]
+\end{align*}
+Nun berechnen wir noch die Kovarianzfunktion:
+\begin{align*}
+	\sigma\big(t_1,t_2\big)
+	\overset{\Def}&{=}
+	\E\Big[\big(Z(t_1)-\underbrace{M(t_1)}_{
+		\overset{\eqref{eq:loes9}}{=}0
+	}\big)\mal\overline{\big(Z(t_2)-\underbrace{M(t_2)}_{
+		\overset{\eqref{eq:loes9}}{=}0
+	}}\big)\Big]
+	=C\big(t_1,t_2\big)
+	=C\big(t_1-t_2\big)
+\end{align*}
 
+\betone{Zeige \ref{item:aufg9(2)}:}\\
+\betone{Fall 1: $\E[X]\neq0$:}\\
+Wir prüfen wieder, wann $\E[Z(t)]$ nicht von $t$ abhängt:
+\begin{align*}
+	\E\big[Z(t)\big]
+	\overset{\Def}&{=}
+	\E\big[g(t)\mal X\big]
+	\overset{\Lin}{=}
+	g(t)\mal\underbrace{\E[X]}_{
+		\overset{\Vor}{<}\infty,\text{ konstant},\neq0
+	}
+\end{align*}
+Also ist $\E[Z(t)]$ genau dann unabhängig von $t$, wenn $g\colon\R^d\to\C$ eine konstante Funktion ist.\\
+In diesem Fall ist auch die zweite Eigenschaft von Stationärität (im weiteren Sinne) erfüllt:
+\begin{align*}
+	\E\Big[Z(t_1)\mal\overline{T(t_2)}\Big]
+	\overset{\Def}&{=}
+	\E\Big[g(t_1)\mal X\mal\overline{g(t_2)}\mal \overline{X}\Big]
+	\overset{g\equiv\text{konst}}{=}
+	\abs{g}^2\mal\E\big[X\mal\overline{X}\big]
+\end{align*}
+Die Korrelationsfunktion ist also auch konstant.\nl
+\betone{Fall 2: $\E[X]=0$}\\
+Die erste Eigenschaft der Stationarität ist trivialerweise erfüllt:
+\begin{align*}
+	\E\big[Z(t)\big]
+	\overset{\Def}&{=}
+	\E\big[g(t)\mal X\big]
+	\overset{\Lin}{=}
+	g(t)\mal\underbrace{\E[X]}_{
+		\overset{\Vor}{=}0
+	}
+	=0\qquad\forall t\in\R=:T
+\end{align*}
 
+Die zweite Eigenschaft ist schon schwieriger:
+\begin{align*}
+	\E\Big[Z(t_1)\mal\overline{T(t_2)}\Big]
+	\overset{\Def}&{=}
+	\E\Big[g(t_1)\mal X\mal\overline{g(t_2)}\mal \overline{X}\Big]
+	\overset{\Lin}{=}
+	g(t_1)\mal\overline{g(t_2)}\mal\E\big[|X^2|\big]
+\end{align*}
+Somit ist $Z$ genau dann stationär (im weiteren Sinne), wenn 
+\begin{align*}
+	g(t_1)\mal\overline{g(t_2)}=C(t_1-t_2)
+\end{align*}
+für eine Funktion $C\colon\R\to\C$.
+Dies führt auf die \undefine{Cauchy'sche Funktionalgleichung.}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:10]{Aufgabe 10}}{}
+}\label{loes:10}
+
+\betone{Zeige \ref{item:Aufg:10(1)}:}\\
+Um Stationärität (im weiteren Sinne) zu prüfen, prüfen wir zuerst, dass $\E[X(t)]$ nicht von $t$ abhängt:
+
+\begin{align*}
+	\E[X(t)]
+	\overset{\Def}&{=}
+	\E\big[A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\big]
+	\overset{\Lin}{=}
+	\underbrace{\E[A]}_{
+		\overset{\Vor}{=}0
+	}\mal\cos(\alpha\mal t)+\underbrace{\E[B]}_{
+		\overset{\Vor}{=}0
+	}\mal\sin(\alpha\mal t)
+	%=0+0
+	=0
+\end{align*}
+
+Nun müssen wir noch prüfen, dass die Korrelationsfunktion genau von $t_1-t_2$ ($t_1,t_2\in T$) abhängt:
+Seien also $t_1,t_2\in T=\R$ beliebig. 
+
+\begin{align*}
+	&\E\big[X(t_1)\mal X(t_2)\big]\\
+	\overset{\Def}&{=}
+	\E\Big[\big(A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\big)\mal
+	\big(A\mal\cos(\alpha\mal t)+B\mal\sin(\alpha\mal t)\big)\Big]\\
+	&=\E\Big[\underbrace{A^2}_{
+		\overset{\Vor}{=}1
+	}\mal\cos(\alpha\mal t_1)\mal\cos(\alpha\mal t_2)+\underbrace{A\mal B}_{
+		\overset{\Vor}{=}0
+	}\mal\ldots+\underbrace{B\mal A}_{
+		\overset{\Vor}{=}0
+	}\mal\ldots+\underbrace{B^2}_{
+		\overset{\Vor}{=}1
+	}\mal\sin(\alpha\mal t_1)\mal\sin(\alpha\mal t_2)\Big]\\
+	&=\cos(\alpha\mal t_1)\mal\cos(\alpha\mal t_2)+\sin(\alpha\mal t_1)\mal\sin(t\mal t_2)\\
+	\overset{\eqref{eq:Aufg10Additionstheorem}}&{=}
+	\cos(\alpha\mal t_1-\alpha\mal t_2)\\
+	&=\cos\big(\alpha\mal(t_1-t_2)\big)
+\end{align*}
+
+Hierbei wird das Additionstheorem
+\begin{align}\label{eq:Aufg10Additionstheorem}
+	\cos(x-y)=\cos(x)\mal\cos(y)+\sin(x)\mal\sin(y)\qquad\forall x,y\in\R
+\end{align}
+verwendet.
+Damit ist $X$ stationär (im weiteren Sinne).\nl
+\betone{Zeige \ref{item:Aufg:10(2)}:}\\
+Nein, $X$ ist nicht stationär im engeren Sinne. 
+Zumindest nicht für alle $\alpha\in\R$.
+Für $\alpha=0$ ist 
+\begin{align*}
+	X(t)=A\mal\cos(0\mal t)+B\mal\sin(0\mal t)=A\qquad\forall t\in T
+\end{align*}
+natürlich stationär im engeren Sinne, da $X$ \betone{nicht} von $t$ abhängt.
+%Sei nun also o.B.d.A. $\alpha\neq0$.
+Wir zeigen, dass $X$ für $\alpha\neq0$ \betone{nicht} stationär ist:
+Setze $t_1:=0$ und $t_2:=\frac{\pi}{2\mal\alpha}$.
+Dann besitzen die Zufallsgrößen (= einelementige Zufallsvektoren)
+\begin{align*}
+	X(t_1)=A\qquad\und\qquad X(t_2)=B
+\end{align*}
+\betone{nicht} notwendigerweise dieselbe Verteilung, denn es sind keine Voraussetzungen an die Verteilung der Zufallsgrößen $A$ und $B$ gestellt.
+So ist z.B. $A\sim\Nor(0,1)$ und $B\sim\Exp(0,1)$ möglich.
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:11]{Aufgabe 11}}{}
+}\label{loes:11}
+
+Berechnen der Kovarianzfunktion:
+\begin{align*}
+	M(t)
+	\overset{\Def}{=}	
+	\E\big[X_t\big]
+	\overset{\Def}{=}
+	\int\limits_\Omega X_t(\omega)\ds\P(\omega)
+	\overset{\Def}{=}
+	\int\limits_\Omega t\mal\omega\ds\P(\omega)
+	=t\mal\int\limits_0^1\omega \ds\lambda(\omega)
+	=t\mal\left[\frac{\omega^2}{2}\right]_{\omega=0}^1
+	=\frac{t}{2}
+\end{align*}
+
+Damit können wir jetzt die Kovarianzfunktion ausrechnen:
+
+\begin{align*}
+	\sigma(t_1,t_2)
+	\overset{\Def}&{=}
+	\E\Big[\big(X_{t_1}-M(t_1)\big)\mal\overline{\big(X_{t_2}-M(t_2)\big)}\Big]\\
+	&=\int\limits_\Omega\klammern{t_1\mal\omega-\frac{t_1}{2}}\mal\klammern{t_2\mal\omega-\frac{t_2}{2}}\ds\P(\omega)\\
+	&=\int\limits_0^1 t_1\mal\klammern{\omega-\frac{1}{2}}\mal t_2\mal\klammern{\omega-\frac{1}{2}}\ds\lambda(\omega)\\
+	&=t_1\mal t_2\mal \int\limits_0^1 \klammern{\omega-\frac{1}{2}}^2\ds \lambda\\
+	\overset{\text{Subst}}&=
+	t_1\mal t_2\mal\int\limits_{-\frac{1}{2}}^{\frac{1}{2}} \omega^2\ds\lambda(\omega)\\
+	&=t_1\mal t_2\mal\left[\frac{\omega^3}{3}\right]_{\omega=-\frac{1}{2}}^{\frac{1}{2}}\\
+	&=t_1\mal t_2\mal \klammern{\frac{1}{8\mal 3}--\frac{1}{8\mal 3}}\\
+	&=\frac{t_1\mal t_2}{12}
+\end{align*}
+
+Nun bestimmen wir noch die endlich-dimensionale Verteilung des Prozesses $X$:\\
+Seien $n\in\N$ und $t_1,\ldots,t_n\in T$ beliebig.
+Dann ist die endlich dimensionale (Rand)-verteilung
+\begin{align*}
+	\mu_{t_1,\ldots,t_n}(B_1\times\ldots\times B_n)
+	=\lambda\klammern[\Big]{\set[\big]{\omega\in[0,1]:t_1\mal\omega,\ldots,t_n\mal\omega\in B}}
+	\qquad\forall B\in\B([0,1])
+\end{align*}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:12]{Aufgabe 12}}{}
+}\label{loes:12}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:13]{Aufgabe 13}}{}
+}\label{loes:13}
+
+\betone{Zeige \ref{item:aufg13_1}:}
+
+\betone{Zeige \ref{item:aufg13_2}:}
+
+\betone{Zeige \ref{item:aufg13_3}:}
+
+\betone{Zeige \ref{item:aufg13_4}:}
+
+\betone{Zeige \ref{item:aufg13_5}:}
+Folgt direkt aus \ref{item:aufg13_3} und \ref{item:aufg13_4}.
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:14]{Aufgabe 14}}{}
+}\label{loes:14}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:15]{Aufgabe 15}}{}
+}\label{loes:15}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:16]{Aufgabe 16}}{}
+}\label{loes:16}
+Wenn die Verteilungsfunktion einer Zufallsgröße $X$ in ihren Stetigkeitspunkten nur die
+Werte 0 oder 1 annimmt, dann ist X fast sicher konstant.\nl
+Sei $X$ eine Zufallsgröße und $F_X$ die zugehörige Verteilungsfunktion.
+Sei 
+\begin{align*}
+	U(X):=\set{t\in\R:F_X\text{ ist stetig an der Stelle }t}\subseteq\R
+\end{align*}
+die Menge der Unstetigkeitsstellen der Verteilungsfuktion $F_X$.\nl
+\textbf{Zwischenbehauptung 1:} $S(X)$ ist höchstens abzählbar.
+\begin{proof}
+	Sei
+	\begin{align*}
+		U_n(X):=\set[\bigg]{t\in\R:\underbrace{F_X(t)-\lim\limits_{\varepsilon\downarrow0}F_X(t-\varepsilon)}_{
+			>0\text{, da $F_X$ monoton wachsend}
+		}>\frac{1}{n}}\subseteq U
+	\end{align*}
+	die Menge aller Unstetigkeitsstellen mit einer Sprunghöhe $\geq\frac{1}{n}$.
+	Wegen der Monotonie kann $U_n$ maximal $n$ Elemente beinhalten, denn $\Bild(F_X)\subseteq[0,1]$ und das Intervall $[0,1]$ kann höchstens $n$ Sprünge der minimalen Höhe $\frac{1}{n}$ enthalten.
+	Da
+	\begin{align*}
+		U(X)=\bigcup\limits_{n\in\N} U_n(X)
+	\end{align*}
+	und die $U_n(X)$ endlich $(n\in\N)$ ist $U(X)$ höchstens abzählbar.
+\end{proof}
+
+\textbf{Zwischenbehauptung 2:} $S(X):=\big(U(X)\big)^{\mathrm{C}}$ liegt dicht in $\R$.
+\begin{proof}
+	Wir verwenden den \undefine{Baireschen Kategoriensatz:}
+	
+	\begin{definition}\
+		\begin{enumerate}
+			\item $M\subseteq T$ heißt \textbf{nirgends dicht} $\defiff\text{int}(\overline{M})=\emptyset$\\
+			"der Abschluss enthält keine inneren Punkte"
+			\item $M\subseteq T$ heißt \textbf{von 1. Kategorie} $\defiff\exists$ eine Folge $(M_n)_{n\in\N}\subseteq T$ nirgends dichter Mengen so, dass $M=\bigcup\limits_{n\in\N}M_n$
+			\item $M\subseteq T$ heißt \textbf{von 2. Kategorie} $\defiff M$ ist nicht von 1. Kategorie.
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{satz}[Bairescher Kategoriensatz]\label{satzBairescherKategoriensatz}\enter
+		In einem vollständigen metrischen Raum liegt das Komplement einer Menge 1. Kategorie dicht.
+	\end{satz}
+	
+	Nun folgt die Behauptung direkt aus dem Baireschen Kategoriensatz, denn
+	\begin{align*}
+		U(X)
+		\overset{\text{abzählbar}}{=}
+		\bigcup\limits_{n\in\N}\underbrace{\set{u_n}}_{\text{nirgends dicht}}
+	\end{align*}
+	ist offenbar von 1. Kategorie und somit ist $\big(U(X)\big)^{\mathrm{C}}=S(X)$ (= Menge der Stetigkeitsstellen) dicht in $\R$.
+\end{proof}
+
+Jetzt wo wir die Dichtheit der Stetigkeitsstellen haben, können wir die eigentliche Aussage zeigen.\nl
+\betone{Fall 1: $F_X\equiv0$ oder $_X\equiv 1$}
+Dies ist nicht möglich, denn es würde eine fundamentale Eigenschaft der Verteilungsfunktion verletzen, nämlich
+\begin{align*}
+	\lim\limits_{t\downarrow -\infty}F_X(t)=0
+	\qquad\und\qquad
+	\lim\limits_{t\uparrow +\infty}F_X(t)=1.
+\end{align*}
+
+\betone{Fall 2: $F_X\not\equiv c$ für ein $c\in\R$:}
+Oben haben wir gezeigt, dass die Stetigkeitsstellen dicht in $\R$ liegen.
+Insbesondere ist also $S(X)$ nichtleer.
+Sei $x_\tau\in\R$ die eindeutige Stetigkeitsstelle, an der der Wert von $F_X$ von 0 auf 1 springt, d.h.
+\begin{align*}
+	s_\tau:=\sup\underbrace{\set{t\in S(X):F(t)=0}}_{
+		\overset{!}{\neq}\emptyset
+	}
+	\overset{\ast}{=}
+	\inf\underbrace{\set{t\in S(X):F(t)=1}}_{
+		\overset{!}{\neq}\emptyset
+	}
+\end{align*}
+Eindeutigkeit folgt aus Montonie von $F_X$.\\
+Zu $\ast$: Die Gleichheit hier folgt aus der Dichtheit von $S(X)$.
+"$\leq$" folgt aus Monotonie.
+Da $F_X$ nach Definition linksseitig stetig ist, ist $F_X(s_\tau)=1$ (im Falle der rechtsseitigen Stetigkeit wäre $F_X(s_\tau)=1$).
+Übrigens gilt i.A. $\tau\not\in S(X)$.
+Aber es gibt eine Folge in $S(X)$, die gegen $\tau$ konvergiert.
+Da $S(X)$ dicht in $\R$ und $F_T\colon\R\to[0,1]$ monoton, muss $F_X$ die Form
+\begin{align*}
+	F_X(t)=\left\lbrace\begin{array}{cl}
+		0, &\falls t\leq s_\tau\\
+		1, &\falls t> s_\tau
+	\end{array}\right.
+\end{align*}
+haben.
+Aus der Stochastik-Grundvorlesung bekannt:
+\begin{align*}
+	&\P[a\leq X\leq b]
+	\overset{\text{4. Semester}}{=}
+	F(b+0)-F(a)\qquad\forall a,b\in\R\\
+	&\implies
+	\P[s_\tau\leq X\leq s_\tau]
+	=
+	F(s_\tau+0)-F(s_\tau)
+	=\lim\limits_{\varepsilon\downarrow0} F(s_\tau+\varepsilon)-F(s_\tau)
+	=1-0=1\\
+	&\implies
+	1=\P[s_\tau\leq X\leq s-s_\tau]=\P[X=s_\tau]\\
+	&\implies
+	X\text{ ist fast sicher konstant}
+\end{align*}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:17]{Aufgabe 17}}{}
+}\label{loes:17}
+
+\section{Lösung von 
+	\texorpdfstring{\hyperref[aufg:18]{Aufgabe 18}}{}
+}\label{loes:18}

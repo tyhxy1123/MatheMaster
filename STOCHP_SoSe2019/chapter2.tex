@@ -3,6 +3,386 @@
 % of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-\chapter{Allgemeine Eigenschaften von stochastischen Prozessen}
-\section{Section}
+\chapter{Allgemeine Eigenschaften}
+\section{Separabilität und Messbarkeit}
+
+Die Definition eines Prozesses $X$ \ref{def1.3.1} verlangt Messbarkeit von
+\begin{align*}
+	\omega\mapsto X(t,\omega)
+\end{align*}
+für jedes $t\in T$, es wird jedoch keine Bedingung an die Abbildung
+\begin{align*}
+	t\mapsto X(t,\omega)
+\end{align*}
+für festes $\omega\in\Omega$ gestellt.\nl
+Ist zum Beispiel $T:=(a,b)\subseteq\R$ ein Intervall, also \betone{nicht abzählbar}, so hat man gelegentlich auch mit überabzählbar vielen Ereignissen zu tun, was zu Schwierigkeiten führen kann.
+Beispiele:
+\begin{enumerate}
+	\item Die Menge
+	\begin{align*}
+		\set{\omega\in\Omega:X_t(\omega)\geq0~\forall t\in T}
+		=\bigcap\limits_{t\in T}\set{\omega\in\Omega:X_t(\omega)\geq0}
+	\end{align*}
+	ist im Allgemeinen \betone{kein} Ereignis
+	(alle $\omega\in\Omega$ mit nichtnegativer Trajektorie).
+	\item $Y=\sup\limits_{t\in T}X_t$ braucht keine Zufallsvariable zu sein, da die Mengen
+	\begin{align*}
+		[Y\leq y]:=\set{\omega\in\Omega:Y(\omega)\leq y}=\bigcap\limits_{t\in T}\set{\omega\in\Omega:X_t(\omega)\leq y}
+	\end{align*}
+	\betone{nicht} immer Ereignisse sind.
+	\item Man muss auch vorsichtig sein mit Ausdrücken wie
+	\begin{align*}
+		\lim\limits_{s\to t} X_s(\omega)
+		\qquad\oder\qquad
+		\int\limits_c^d X_t(\omega)\ds t,
+	\end{align*}		
+	die zwar für jedes $\omega\in\Omega$ existieren können, aber möglicherweise \betone{keine Zufallsgrößen} sind.
+\end{enumerate}
+
+Diese Schwierigkeiten motivierten die Einführung der Begriffe \undefine{Separabilität} und \undefine{Messbarkeit}.
+
+\begin{definition}\label{def2.1.1}
+	Sei $X$ ein $S$-wertiger Prozess auf $T$, wobei $S$ und $T$ topologische Räume sind.\\
+	$X$ heißt \define{separabel} $\defiff$ eine abzählbare Teilmenge $T_0\subseteq T$ und ein $\P$-Nullereignis $A\in\A$ (d.h. $\P(A)=0$) mit der folgenden Eigenschaft existieren:\index{separabler Prozess}\\
+	Für eine beliebige abgeschossene Menge $F\subseteq S$ und für eine beliebige offene Menge $O\subseteq T$ unterscheiden sich die Mengen
+	\begin{align*}
+		\set[\big]{\omega\in\Omega:X_t\in F~\forall t\in O}
+	\end{align*}
+	und 
+	\begin{align*}
+		\set[\big]{\omega\in\Omega:X_t(\omega)\in F~\forall t\in O\cap T_0}\in\A
+	\end{align*}
+	nur in einer Teilmenge von $A$ (d.h. ihre symmetrische Differenz ist eine Teilmenge von $A$).
+	$T_0$ heißt eine \define{separierende Menge / Separabilitätsmenge} für $X$.
+	\index{separierende Menge}\index{Separabilitätsmenge|see{separierende Menge}}
+\end{definition}
+
+\begin{bemerkungnr}\label{bemerkung2.1.2}
+	Ein kleines Problem bleibt noch:
+	Teilmengen von Nullereignissen sind im Allgemeinen keine Ereignisse.
+	Dieses Problem lässt sich beheben, indem man den Grundraum vervollständigt (Bemerkung \ref{bemerkung1.3.2}\ref{item:bemerkung1.3.2(7)}).
+\end{bemerkungnr}
+
+\begin{aufgabenr}[2.1.3, \texorpdfstring{\hyperref[loes:13]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:13}\enter
+	Der Grundraum $(\Omega,\A,\P)$ sei vollständig, $(X_t)_{t\in T}$ reellwertiger und separabler Prozess, $T\subseteq\R$ ein Intervall und $O\subseteq\R$ eine offene Menge.
+	Zeigen Sie, dass die folgenden Ausdrücke Zufallsgrößen sind $(s,t\in T)$:
+	\begin{enumerate}
+		\item $\begin{aligned}
+			\sup\limits_{t\in T\cap O} X_t(\omega)
+		\end{aligned}$ \label{item:aufg13_1}
+		\item $\begin{aligned}
+			\inf\limits_{t\in T\cap O} X_t(\omega)
+		\end{aligned}$ \label{item:aufg13_2}
+		\item $\begin{aligned}
+			\limsup\limits_{s\to t} X_s(\omega)
+		\end{aligned}$ \label{item:aufg13_3}
+		\item $\begin{aligned}
+			\liminf\limits_{s\to t} X_s(\omega)
+		\end{aligned}$ \label{item:aufg13_4}
+		\item $\begin{aligned}
+			\lim\limits_{s\to t} X_s(\omega)
+		\end{aligned}$ (falls existent) \label{item:aufg13_5}
+	\end{enumerate}
+\end{aufgabenr}
+
+\begin{aufgabenr}[2.1.4, \texorpdfstring{\hyperref[loes:14]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:14}\enter
+	Besitzt $X$ stetige Pfade und ist $T$ separabel (d.h. $T$ enthält abzählbare dichte Teilmenge), so ist auch $X$ separabel.
+	In diesem Fall ist eine beliebige abzählbare dichte Teilmenge $T_0\subseteq T$ eine Separabilitätsmenge für $X$.
+\end{aufgabenr}
+
+
+\begin{aufgabenr}[2.1.5, \texorpdfstring{\hyperref[loes:15]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:15}\enter
+	Wir betrachten den Wahrscheinlichkeitsraum
+	\begin{align*}
+		(\Omega,\A,\P)=\Big([0,1],\B\big([0,1]\big),\lambda|_{[0,1]}\Big)
+	\end{align*}
+	und den definierten Prozess $X$ durch
+	\begin{align*}
+		X_t(\omega):=\delta_t(\omega):=\left\lbrace\begin{array}{cl}
+			1, &\falls t=\omega\\
+			0, &\sonst
+		\end{array}\right.
+		\qquad\forall t,\omega\in T=\Omega=[0,1]
+	\end{align*}
+	Dann ist $X$ \betone{nicht} separabel.\\
+	Der Prozess $Y$ mit
+	\begin{align*}
+		Y_t(\omega):=0\qquad\forall t,\omega\in T=\Omega=[0,1]
+	\end{align*}
+	hingegen ist separabel und es gilt
+	\begin{align*}
+		\P\big[X_t=Y_t\big]=1\qquad\forall t\in T=[0,1].
+	\end{align*}
+\end{aufgabenr}
+
+\setcounter{satz}{5}
+
+\begin{definition}\label{def2.1.6}
+	Wir nennen zwei $S$-wertige Prozesse $X$ und $Y$ auf $T$ (auf denselben Wahrscheinlichkeitsraum) \define{Modifikationen voneinander}
+	\index{Modifikationen}
+	\begin{align*}
+		\defiff \P\big[X_t=Y_t\big]=1\qquad\forall t\in T
+	\end{align*}
+\end{definition}
+
+\begin{bemerkung} %No number
+	Falls $X$ und $Y$ Modifikationen voneinander sind, gilt
+	\begin{align*}
+		\Big(X_{t_1},\ldots,X_{t_n}\Big)=\Big(Y_{t_1},\ldots,Y_{t_n}\Big)\text{ f.s.} \qquad\forall t_1,\ldots,t_n\in T\\
+	\end{align*}
+	und damit besitzen $X$ und $Y$ dieselben endlich-dimensionalen Verteilungen.
+\end{bemerkung}
+
+\begin{satz}\label{satz2.1.7}
+	Seien $S$ und $T$ metrische Räume, wobei $T$ separabel und $S$ kompakt ist.
+	Für jeden $S$-wertigen Prozess $X$ auf $T$ existiert ein \betone{separabler} $S$-wertiger Prozess $Y$ auf $T$ so, dass 
+	\begin{align*}
+		\P\big[X_t=Y_t\big]=1\qquad\forall t\in T
+	\end{align*}
+	Also besitzt $X_t$ dann eine separable Modifikation.
+\end{satz}
+
+\begin{proof}
+	Ziemlich aufwendig, daher ohne Beweis.\\
+	Später betrachten wir oft Prozesse mit stetigen Pfaden, bei denen die Separabilität gegeben ist.
+\end{proof}
+
+\begin{definition}\label{def2.1.8}
+	Sei $X$ ein $S$-wertiger Prozess auf $T$, wobei $(S,d)$ ein metrischer Raum und $T$ ein topologischer Raum ist.
+	$X$ heißt \define{stetig in Wahrscheinlichkeit / stochastisch stetig} in $t_0\in T$
+	\index{stetig in Wahrscheinlichkeit}\index{stochastisch stetig|see{stetig in Wahrscheinlichkeit}}
+	\begin{align*}
+		\defiff\forall\varepsilon>0:\lim\limits_{t\to t_0}\P\Big[d\big(X_t,X_{t_0}\big)>\varepsilon\Big]=0
+	\end{align*}
+	Hierbei ist die Menge 
+	$\set{\omega\in\Omega:d\big(X_t(\omega),X_{t_0}(\omega)\big)>\varepsilon}$ 
+	ein Ereignis, denn $(X_t,X_{t_0})$ ist eine $S\times S$-wertige Zufallsvariable, $d\colon S\times S\to\R$ ist stetig, daher folgt Messbarkeit der Komposition.
+\end{definition}
+
+\begin{satz}\label{satz2.1.9}
+	Sei $X$ ein reell- oder komplexwertiger, in Wahrscheinlichkeit stetiger Prozess auf einem endlichen Intervall $T\subseteq\R$.
+	Dann besitzt $X$ eine separable Modifikation mit den folgenden Eigenschaften:
+	\begin{enumerate}[label=(\roman*)]
+		\item Jede abzählbare, dichte Teilmenge $T_0\subseteq T$ ist eine Separabilitätsmenge für $Y$. %abzählbar + dicht =: total
+		\item Der Prozess $Y$ ist \define{messbar}, d.h. die Abbildung
+		\begin{align*}
+			(t,\omega)\mapsto Y(t,\omega)=Y_t(\omega)
+		\end{align*}
+		ist $\big(\L(T)\times\A,\B(T)\big)$-messbar, wobei $\L(T)$ die $\sigma$-Algebra der Lebesgue-messbaren Teilmengen von $\R$ bezeichnet.
+	\end{enumerate}
+\end{satz}
+
+\begin{proof}
+	Ohne Beweis. Zu technisch und kostet zu viel Zeit.
+	%wird später nicht verwendet
+\end{proof}
+
+\begin{bemerkungnr}\label{bemerkung2.1.10}
+	Sei $X$ ein reellwertiger, messbarer Prozess auf $\R$ und $A\subseteq\R$ eine Lebesgue-messbare Menge.
+	Aus der Maßtheorie bekannt:
+	$t\mapsto X(t,\omega)$ ist für alle $\omega\in\Omega$ Lebesgue-messbar.
+	Gilt Integrierbarkeit bzgl. beider Variablen, d.h.
+	\begin{align*}
+		\int\limits_A\E\big[\abs{X_t}\big]\ds t
+		=\int\limits_A\int\limits_\Omega\abs[\big]{X(t,\omega)}\ds\omega\ds t<\infty,
+	\end{align*}
+	so ist nach dem Satz von Fubini die Abbildung
+	\begin{align*}
+		\omega\mapsto\int\limits_A X(t,\omega)\ds t
+	\end{align*}
+	eine Zufallsgröße.
+\end{bemerkungnr}
+
+\begin{aufgabenr}[2.1.11, \texorpdfstring{\hyperref[loes:16]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:16}\enter
+	Wenn die Verteilungsfunktion einer Zufallsgröße $X$ in ihren Stetigkeitspunkten nur die Werte $0$ oder $1$ annimmt, dann ist $X$ fast sicher konstant.
+\end{aufgabenr}
+
+\begin{aufgabenr}[2.1.12, \texorpdfstring{\hyperref[loes:17]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:17}\enter
+	Ist ein reellwertiger Prozess $X_t$ $(t\in\intervall{0}{1})$ stochastisch stetig und sind die Zufallsgrößen $X_t$ unabhängig, so sind sie fast sicher konstant:
+	\begin{align*}
+		X_t=f(t)\qquad\forall t\in[0,1]\text{ f.s., d.h.}\\
+		\iff \P\Big[\set[\big]{\omega\in\Omega: X_t(\omega)=f(t)}\Big]=0
+	\end{align*}
+	für eine stetigen Funktion $f\colon[0,1]\to\R$.\nl
+	\betone{Hinweis:} Berechnen Sie für jedes $a\in\R$ die Wahrscheinlichkeiten
+	\begin{align*}
+		\P\Big[ X_t>a+\varepsilon,~X_s<a-\varepsilon\Big]
+		+
+		\P\Big[ X_s>a+\varepsilon,~X_t<a-\varepsilon\Big]
+		\leq
+		\P\Big[\big| X_t-X_s\big|>\varepsilon\Big]
+	\end{align*}
+	mit Hilfe der Verteilungsfunktion $F_t$ und $F_s$.
+	Zeigen Sie, dass $F_t$ in den Stetigkeitspunkten nur die Werte $0$ oder $1$ annehmen kann.
+	Dann nutze Aufgabe 2.1.11 (Aufgabe \ref{aufg:16}).
+\end{aufgabenr}
+
+
+\begin{aufgabenr}[2.1.13, \texorpdfstring{\hyperref[loes:18]{Lösung siehe Anhang}}{Lösung siehe Anhang}]\label{aufg:18}\enter
+	Sei $X\in\Nor(0,1)$ und
+	\begin{align*}
+		X_t(\omega)=X(\omega)+t\qquad\forall t\in \R:=T,\forall\omega\in\Omega
+	\end{align*}
+	Dann gilt:
+	\begin{enumerate}[label=(\alph*)]
+		\item Für jede abzählbare (= totale) Teilmenge $T_0=\set{t_1,t_2,\ldots}\subseteq T$ gilt
+		\begin{align*}
+			\P\Big[X_t=0\text{ für mindestens ein }t\in T_0\Big]
+			\overset{\Def}{=}
+			\P\Big[\set[\big]{\omega\in\Omega\mid\exists t\in T_0:X_t(\omega)=0}\Big]=0
+		\end{align*}
+		\item Die Menge
+		\begin{align*}
+			\set[\big]{\omega\in\Omega\mid\exists t\in T_0:X_t(\omega)=0}
+		\end{align*}
+		ist ein Ereignis mit positiver Wahrscheinlichkeit.
+	\end{enumerate}
+\end{aufgabenr}
+
+\section{Stetige Modifikationen} %2.2
+
+\begin{satz}[Kolmogorov]\label{satz2.2.1Kolmo}\enter
+	Sei $X$ ein Prozess auf $T=\R$ oder $T=[0,\infty)$ mit Werten in $\R^d$ oder $\C^d$.
+	Existieren Konstanten $a,b,c>0$ so, dass
+	\begin{align}\label{eq:satz2.1Kolmo_1}\tag{1}
+		\forall t,s\in T:\E\eckigeKlammern{\norm{X_t-X_s}^a}\leq c\mal\abs{t-s}^{1+b}
+	\end{align}
+	dann besitzt $X$ eine Modifikation mit stetigen Pfaden.
+\end{satz}
+
+\begin{proof}
+	\betone{Spezialfall für $[0,1]$:}\\
+	Wir konstruieren zunächst eine stetige Modifkation auf $[0,1]$.
+	Setze
+	\begin{align*}
+		D_n:=\set[\Big]{\frac{k}{2\mal n}:k\in\set{0,\ldots,2^n}}\subseteq[0,1]\qquad\forall n\in\N
+	\end{align*}
+	Dies ist ein gleichmäßige diskrete Zerlegung von $[0,1]$.
+	Wir definieren die Prozesse durch
+	\begin{align*}
+		X_t^n:=\left\lbrace\begin{array}{cl}
+			X_t, &\falls t\in D_n\\
+			\lambda\mal X_{\frac{k}{2^n}}+(1-\lambda)\mal X_{\frac{k-1}{2^n}},&\falls\exists\lambda\in(0,1):t=\lambda\mal\frac{k}{2^n}+(1-\lambda)\mal\frac{k-1}{2^n}
+		\end{array}	\right.		
+	\end{align*}		
+	Dann sind die Pfade von $X_t^n$ stückweise linear und stetig.
+	Weiterhin gilt:
+	\begin{align}\label{eq:ProofSatz2.2.1_2}\tag{2}
+		X_0^n=X_0\qquad\und\qquad X_1^n=X_1\qquad\forall n\in\N
+	\end{align}		
+	Für $s\in D_n$ und $t\in[0,1]$ mit $\abs{t-s}\leq\frac{1}{2^n}$ gilt:
+	\begin{align}\label{eq:ProofSatz2.2.1_3}\tag{3}
+		\norm{X_t^n-X_s}\leq
+		\max\limits_{1\leq k\leq 2^n}
+		\norm{X_{\frac{k}{2^n}}-X_{\frac{k-1}{2^n}}}:=Z_n
+		\qquad\forall n\in\N
+	\end{align}
+	Sei nun $t\in[0,1]$ beliebig und $m\in\N$.
+	Für $j\leq m$ sei $s_j=s_j(t)$ das kleinste Element aus $D_j$, das $\geq t$ ist (existiert immer nach Definition von $D_j$).
+	Dann gelten
+	\begin{align*}
+		0\leq s_j-t<\frac{1}{2^j}
+		\qquad\und\qquad
+		0\leq s_j-s_{j+1}\leq\frac{1}{2^{j+1}}.
+	\end{align*}
+	Wegen \eqref{eq:ProofSatz2.2.1_3} und der Dreiecksungleichung folgt für $n<m$:
+	\begin{align*}
+		\norm{X_t^n-X_t^m}
+		\overset{\text{DU}}&{\leq}
+		\norm{X_t^n-X_{s_n}}+\sum\limits_{j=n}^{m-1}\norm{X_{s_{j+1}}-X_{s_j}}+\norm{X_{s_m}-X_t^m}\\
+		\overset{\eqref{eq:ProofSatz2.2.1_3}}&{\leq }
+		Z_n +\sum\limits_{j=n}^m Z_j\\
+		&\leq2\mal\sum\limits_{j=n}^\infty Z_j
+	\end{align*}
+	Beachte, dass hierbei die rechte Seite unabhängig von $t$ ist!\\
+	Wir zeigen, dass die rechte Seite $\sum\limits_{j=n}^\infty Z_j$ mit $n\to\infty$ fast sicher gegen 0 konvergiert.
+	Dazu genügt es zu zeigen, dass $\sum\limits_{n\in\N}Z_n$ fast sicher konvergiert.
+	Dazu brauchen wir nun die Abschätzung \eqref{eq:satz2.1Kolmo_1}.
+	Sei $\gamma\in\klammern{0,\frac{b}{a}}$ beliebig.
+	Wegen monotoner Konvergenz gilt:
+	\begin{align*}
+		\E\eckigeKlammern[\Bigg]{\sum\limits_{n=0}^\infty
+		{\underbrace{(2^{\gamma\mal n}\mal Z_n)}_{
+			\geq0
+		}}^a}
+		&=\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\E\big[Z_n^a\big]\\
+		&=\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\E\eckigeKlammern{\max\limits_{s\in D_n\setminus\set{0}}\norm{X_s-X_{s-2^{-n}}}^a}\\
+		&\leq\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\sum\limits_{s\in D_n\setminus\set{0}}\E\eckigeKlammern[\big]{\norm{X_s-X_{s-2^{-n}}}^a}\\
+		\overset{\eqref{eq:satz2.1Kolmo_1}}&{\leq }
+		\sum\limits_{n=0}^\infty 2^{\gamma\mal n\mal a}\mal\sum\limits_{s\in D_n\setminus\set{0}}
+		c\mal\underbrace{\abs{s-2^{-n}-s}^{1+b}}_{
+			=2^{-n\mal(1+b)}
+		}\\
+		&=c\mal \sum\limits_{n=0}^\infty 2^{n\mal(\gamma\mal a -b)}\\
+		&<\infty\text{ (nach Wahl von $\gamma$)}
+	\end{align*}
+	Damit: Die Reihe auf der linken Seite konvergiert fast sicher, insbesondere konvergiert $2^{n\mal\gamma}\mal Z_n$ fast sicher gegen 0, woraus die fast sichere Konvergenz von $\sum\limits_{n\in\N} Z_n$ folgt.\\
+	($2^{\gamma\mal n}\mal Z_n\leq 1$ für $n$ groß, $Z_n\leq\frac{1}{2^{\gamma\mal n}}$)\nl
+	Wir haben gezeigt, dass $\set{X^n(\cdot,\omega)}_{n\in\N}$ für fast alle $\omega\in\Omega$ eine Cauchy-Folge in\\ $C\big([0,1],\R^d\big)$ bzw. in  $C\big([0,1],\C^d\big)$ ist, sogar gleichmäßig (Banachraum!).
+	Daher besitzt $(X^n)_{n\in\N}$ einen fast sicheren Grenzwert $Y$ mit stetigen Pfaden.\nl
+	Noch zu zeigen:
+	$Y_t=X_t$ fast sicher für alle $t\in[0,1]$.\\
+	Für $t\in D_m$ und $n\geq m$ gilt $X_t^n=X_t$ und daher $Y_t=X_t$ fast sicher für $t\in\bigcup\limits_{m\in\N}D_m$.
+	Ist nun $t\in[0,1]$ beliebig, so gibt es eine Folge $s_n\in\bigcup\limits_{m\in\N} D_m$ mit $s_n\overset{n\to\infty}{\longrightarrow}t$.\nl
+	Erinnerung: Markovsche Ungleichung:
+	\begin{align}\label{eq:Markov}\tag{Markov}
+		\E\eckigeKlammern{\abs{Z}^a}
+		&=\int\limits_\Omega\abs{Z}^a\ds\P
+		\geq\int\limits_{\abs{Z}\geq\varepsilon}\abs{Z}^a\ds\P
+		\geq\int\limits_{\abs{Z}\geq\varepsilon}\varepsilon^a\ds\P
+		=\varepsilon^a\mal\P\klammern[\big]{\abs{Z}\geq\varepsilon}
+	\end{align}
+	Daher gilt:
+	\begin{align*}
+		\P\eckigeKlammern[\big]{\norm{X_t-X_{s_n}}\geq\varepsilon}
+		\overset{\eqref{eq:Markov}}&{\leq}
+		\varepsilon^{-a}\mal\E\eckigeKlammern[\big]{\norm{X_t-X_{s_n}}^a}
+		\underset{\eqref{eq:satz2.1Kolmo_1}}{\overset{n\to\infty}{\longrightarrow}}
+		0
+	\end{align*}
+	Das heißt: $Y_{s_n}=X_{s_n}\overset{n\to\infty}{\longrightarrow}X_t$ in Wahrscheinlichkeit.
+	Wegen der Pfad-Stetigkeit von $Y$ gilt aber
+	\begin{align*}
+		Y_{s_n}(\omega)\overset{n\to\infty}{\longrightarrow}Y_t(\omega)
+		\qquad\forall\omega\in\Omega,
+	\end{align*}
+	damit auch $Y_{s_n}\overset{n\to\infty}{\longrightarrow}Y_t$ in Wahrscheinlichkeit.
+	Also ist $X_t=Y_t$ fast sicher (da Grenzwert fast sicher eindeutig).\nl
+	\betone{Allgemeiner Fall:}\\
+	Wie auf $[0,1]$ konstruieren wir Modifikation auf den Intervallen $[k,k+1]$ für $k\in\Z$ bzw. $k\in\N$ und verwenden \eqref{eq:ProofSatz2.2.1_2}.
+\end{proof}
+
+In der nächsten Definition fassen wir einige Stetigkeits-Eigenschaften zusammen.
+
+\begin{definition}\label{def2.2.2}
+	Ein reellwertiges Feld $X$ auf einem topologischen Raum $T$ heißt:
+	\begin{enumerate}[label=(\roman*)]
+		\item \define{stetig in Wahrscheinlichkeit / stochastisch stetig} in $t\in T$
+		\index{stetig in Wahrscheinlichkeit}
+		\begin{align*}
+			\defiff\forall\varepsilon>0:\lim\limits_{s\to t}\P\big[\abs{X_t-X_s}>\varepsilon\big]=0
+		\end{align*}
+		\item \define{$L^p$-stetig} in $t\in T$
+		\index{$L^p$-stetig}
+		\begin{align*}
+			\defiff\forall s,t\in T:\E\eckigeKlammern{\abs{X_s}^p}<\infty
+			~\AND~
+			\lim\limits_{s\to t}\E\eckigeKlammern[\big]{\abs{X_s-X_t}^p}=0
+		\end{align*}
+		Spezialfall $p=2$: \define{stetig im quadratischen Mittel}
+		\index{stetig im quadratischen Mittel}
+		\item \define{fast sicher Pfadstetig} in $t\in T$
+		\index{fast sicher Pfadstetig}
+		\begin{align*}
+			\defiff\P\klammern{\set{\omega\in\Omega:\lim\limits_{s\to t}\abs{X_s(\omega)-X_t(\omega)}\neq0}}=0
+		\end{align*}
+		\item \define{fast sicher Pfadstetig}
+		\begin{align*}
+			\defiff\bigcup\limits_{t\in T}\set{\omega\in\Omega:\lim\limits_{s\to t}\abs{X_s(\omega)-X_t(\omega)}\neq 0}\text{ ist Null-Ereignis}
+		\end{align*}
+		(Wir fordern also $A\in\A$ und $\P(A)=0$.)
+		\item \define{Pfad-stetig} $\defiff$ alle Pfade stetig sind.
+		\index{Pfad-stetig}
+	\end{enumerate}
+\end{definition}
 

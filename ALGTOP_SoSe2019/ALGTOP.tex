@@ -11,7 +11,7 @@
 
 \documentclass[]{scrreprt}
 
-\newcommand{\directoryPrefix}{./} 
+\newcommand{\directoryPrefix}{../latex/} 
 \input{\directoryPrefix packages}
 %\input{\directoryPrefix counters} % section counter benutzt römische Zahlen
 \input{\directoryPrefix theoremenvironments_english}
@@ -52,12 +52,15 @@
 	\maketitle
 	%\epigraph{Hier steht eine Lebensweisheit.}{\textit{Der Admin}}
 	%\newpage
-	\doclicenseThis
-	% \tableofcontents
+	%\doclicenseThis
+	%\tableofcontents
 	\pagenumbering{arabic}	% enable pagenumbering
 	
 	%\addchap{Hauptüberschrift} % sinnvoll in Kombination mit Zeile 15
-	{\input{chapter0}}
+	%\input{chapter0}
+	
+	This lecture is a subset of Allen Hatchers "Algebraic Topology", which is freely available under 
+	\url{https://pi.math.cornell.edu/~hatcher/AT/AT.pdf}.
 	
 	\appendix
 	%\input{anhang}

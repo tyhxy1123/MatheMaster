@@ -5,77 +5,182 @@
 % send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \chapter{Geometry of the bisection method}
-In the previous example the function $u$ was known. Thus the grid can be constructed specifically for $u$. For finite element problems the function $u $ is not known! There you use an initial grid and modify it repeatedly.\\
-possible modifications:
+In the previous example the function $u$ was known. Thus the grid can be constructed specifically for $u$. For finite element problems the function $u $ is not known! There you use an initial grid and modify it repeatedly based on error estimations.
+
+Possible modifications include
 \begin{itemize}
-	\item moving vertices (r-refinement)
+  \item moving vertices (r-refinement) (We do not do this here.)
 	\item split elements (h-refinement)
-\end{itemize} 
+\end{itemize}
 There are various ideas to split elements, but most of theory exists for bisection refinement.
 \section{Bisection refinement}
 \input{tikz/chapter1/bisection_refine.tex}
-
 There are two challenges:
 \begin{itemize}
 	\item grid conformity
 	\input{tikz/chapter1/hanging_nodes.tex}
-	\item elements must remain \glqq well shaped\grqq 
+\item elements must remain \enquote{well shaped}
 	\input{tikz/chapter1/shape_regularity.tex}
-\end{itemize} 
-In particular: the constant $c$ in 
+\end{itemize}
+In particular: the constant $c$ in
 \begin{equation*}
-	\|u - u_{N}\|_{H^{1}} \leq c\ h\ |u|_{H^{2}}
-\end{equation*} 
-depends on 
+  \left\|u - u_{N}\right\|_{H^{1}} \leq c\ h\ |u|_{H^{2}}
+\end{equation*}
+depends on
 \begin{equation*}
-	\delta = \max \delta_{T} 
-\end{equation*} 
+  \delta = \max_{T \in \T} \delta_{T}
+\end{equation*}
 with
 \begin{equation*}
-	\delta_{T}= \frac{\text{radius of circum-circle of }T}{\text{radius of incircle of }T}.
-\end{equation*} 
-$\delta_{T}$ is called \glqq shape coefficient\grqq\ or \glqq aspect ratio\grqq.\nl
-Aim: refinement strategies, that keep $\delta_{T}$ bounded.
+	\delta_{T}= \frac{\text{radius of circumcircle of }T}{\text{radius of incircle of }T}.
+\end{equation*}
+$\delta_{T}$ is called \enquote{shape coefficient} or \enquote{aspect ratio}.
 
+Aim: refinement strategies, that keep $\delta_{T}$ bounded.
 \section{Partition of a single simplex}
+From the 70s there are many papers considering different strategies to keep $\delta_T$ bounded. They are tough reading. For example
+\begin{description}
+  \item[Longest edge bisection] This works well in 2D, but not in higher dimensions.
+  \item[Oldest edge bisection]
+  \item[Type bisection] See the following:
+\end{description}
 \begin{definition}
 	We describe a simplex $T$ as a ordered set of its vertices and a type $t\in \N$.
 	\begin{equation*}
-		T = \left\{z_{0}, \dots , z_{d}\right\}_{t}, \qquad t\in \left\{ 0,\dots ,d-1 \right\}
+    T = \{z_{0}, \dots , z_{d}\}_{t}, \qquad t\in \{0,\dots ,d-1\}
 	\end{equation*}
 	The refinement rule is solely based on this information.
 	\begin{enumerate}[label = \arabic*)]
 		\item The refinement edge is $\overline{z_{0}z_{d}}$.
-		\item The new midpoint $\bar{z}= \frac{\overline{z_{0}z_{d}}}{2}$ becomes a new index.
+		\item The new midpoint $\bar{z}= \frac{z_{0} + z_{d}}{2}$ becomes a new index.
 		\item connect $\bar{z}$ to all vertices of $T$ except $z_{0},z_{d}$ \\
-			$\implies$ two new simplices $T_{1},T_{2}$ with common face 
+			$\implies$ two new simplices $T_{1},T_{2}$ are created with common face
 			 \begin{equation*}
-				S = \left\{\overline{z},z_{1},\dots ,z_{d-1} \right\}
-			\end{equation*}
-		\item vertex oredring and type for the children $T_{1},T_{2}$:
+         S = \left\{\overline{z},z_{1},\dots ,z_{d-1} \right\}
+     \end{equation*}
+		\item vertex ordering and type for the children $T_{1},T_{2}$ are defined as:
 			\begin{align*}
-				T_{1}&= \left\{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}} \right\}_{(t+1)\mod d}\\
-				T_{2}&= \left\{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}} \right\}_{(t+1)\mod d}\\
+        T_{1}&= \{ z_{0},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{t+1},\dots ,z_{d-1}}_{{\rightarrow}}\}_{(t+1)\mod d}\\
+				T_{2}&= \{ z_{d},\overline{z},\underbrace{z_{1},\dots ,z_{t}}_{\rightarrow},\underbrace{z_{d-1},\dots ,z_{t+1}}_{{\leftarrow}}\}_{(t+1)\mod d}\\
 			\end{align*}
-		$\rightarrow, \leftarrow$ means increasing or decreasing order.	\\
-		$\underbrace{\left\{z_{d},\dots ,z_{0}\right\} }_{\rightarrow} =\emptyset$		
+		$\rightarrow$ means increasing, $\leftarrow$ means decreasing order.
+
+    Note that $\{\underbrace{z_{d},\dots ,z_{0}}_{\rightarrow}\} := \emptyset$
 	\end{enumerate}
 \end{definition}
 \begin{example}\
 	\begin{itemize}
 		\item $d=2$:
 			\begin{align*}
-				T &= \left\{ z_{0},z_{1},z_{2} \right\}_{0} & \overline{z}&= \frac{1}{2}\left(z_{0} + z_{2} \right)\\
-				T_{1} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}  & T_{2} &= \left\{ z_{0},\overline{z},z_{1} \right\}_{1}
+      T &= \{z_{0},z_{1},z_{2}\}_{0} & \overline{z}&= \frac{1}{2}\left(z_{0} + z_{2} \right)\\
+      T_{1} &= \left\{ z_{0},\overline{z},z_{1}\right\}_{1}  & T_{2} &= \left\{z_{0},\overline{z},z_{1}\right\}_{1}
 			\end{align*}
-			independent of $t$
+			$T_1$ and $T_2$ are independent of $t$!
 			\input{tikz/chapter1/example_numbering_alg.tex}
-		\item $d= 3$: \quad $T = \left\{ z_{0},z_{1},z_{2},z_{3} \right\}_{t}$
-			\begin{align*}
-				t&=0: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{1} & T_{2}&= \left\{ z_{3},\overline{z}, z_{2},z_{1} \right\}_{1}\\
-				t&=1: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{2} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{2}\\
-				t&=2: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{0} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{0}
+		\item $d= 3$: \quad $T = \{ z_{0},z_{1},z_{2},z_{3} \}_{t}$
+      \begin{align*}
+        t&=0: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2}\right\}_{1} & T_{2}&= \left\{z_{3},\overline{z}, z_{2},z_{1}\right\}_{1}\\
+        t&=1: & T_{1}&= \left\{z_{0},\overline{z}, z_{1},z_{2}\right\}_{2} & T_{2}&= \left\{z_{3},\overline{z}, z_{1},z_{2} \right\}_{2}\\
+        t&=2: & T_{1}&= \left\{ z_{0},\overline{z}, z_{1},z_{2} \right\}_{0} & T_{2}&= \left\{ z_{3},\overline{z}, z_{1},z_{2} \right\}_{0}
 			\end{align*}
 	\end{itemize}
 \end{example}
-If you renumber the vertices of $T$ the shape of $T$ does not get modified, but the shapes of the children get modified. You can get up to $\frac{1}{2}\left(d+1 \right)!$ different shapes for the children.
+If you renumber the vertices of $T$ the shape of $T$ does not get modified, but the shapes of the children get modified. You can get up to $\frac{1}{2}\left(d+1 \right)!$ different shapes for the children.\\
+Repeated refinement leads to an infinite binary tree $\mathbb{F}(T_{0})$.
+\begin{definition}
+	The \textit{generation} $g(T)$ of $T \in \mathbb{F}(T_{0})$ is its number of ancestors.
+\end{definition}
+\underline{Question:} Is the set of shape coefficients bounded?\nl
+Let us first look at a particularly regular case:
+\begin{definition}\
+	\begin{enumerate}[label = \Roman*)]
+		\item The Kuhn simplex has the corners
+			\begin{align*}
+				k_{0}&=0 \in \R^d\\
+				k_{1}&=e_{1}, k_{2}=e_1 + e_{2}\\
+				k_{i}&= \sum_{j=1}^{i} e_{j}
+			\end{align*}
+			\input{tikz/chapter1/kuhn_simplex.tex}
+		\item Let $\pi$ be a permutation of $\{1,\dots ,d \}$. The Kuhn-simplex $T_{\pi}$ has vertices
+			\begin{align*}
+				k_{0}&=0 \\
+				k_{i}&= \sum_{j=1}^{d} e_{\pi(j)}
+			\end{align*}		
+      Fun fact: all Kuhn simplices together fill the unit cube.
+	\end{enumerate}
+\end{definition}
+\begin{theorem}\
+	\begin{itemize}
+		\item The $2^g$ descendants in the $g$-th generation of a Kuhn-simplex are all pairwise congruent.
+		\item There are only $d$ different simplex shapes in the entire infinite tree $\mathbb{F}(T_{\pi})$
+		\item All descendants of generation $d$ are similar to $T_{\pi}$ with scaling $\frac{1}{2}$.
+			\input{tikz/chapter1/kuhn_generation_scaling.tex}
+	\end{itemize}
+\end{theorem}
+\begin{proof}[Proof sketch]
+	% (proof sketch)\\
+	We show: all descendants in the $g$-th generation of a Kuhn-simplex of type $0$ ($0 \leq g < d$) are congruent to
+	\begin{equation*}
+    T_{g}= \left\{0, \frac{k_{d-g+1}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g} \right\}_{g}
+	\end{equation*}
+	\underline{Induction over $g$}:
+	\begin{align*}
+		g=0&: & T_{0}= \{0,k_{1},\dots ,k_{d} \}_{0} \text{is the Kuhn simplex}\\
+		g\mapsto g+1&: &\text{bisect } T_{g}\quad ( \text{bisection edge } \overline{0k_{d-g}})\\
+		 && C_{0}= \left\{ 0, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1}\right\}_{g+1}= T_{g+1}\\
+     && C_{1}= \left\{ k_{d-g}, \frac{k_{d-g}}{2},\frac{k_{d-g+1}}{2},\dots , \frac{k_{d}}{2},k_{d-g-1},\dots ,k_{1} \right\}_{g+1} % not obviously equal to T_{g+1}
+	\end{align*}
+	Construct a series of reflection that maps $C_{1}$ onto $T_{g}$ :
+	\begin{enumerate}
+		\item Reflect at the plane perpendicular to $k_{d-g}$ in the point $\frac{k_{d-g}}{2}$
+			\begin{itemize}
+				\item $k_{d-g} \mapsto 0$
+				\item $k_{l} \mapsto k_{d-g}-k_{l}$ ($l < d-g$)
+				\item $k_{l} \mapsto k_{l}$ ($l \geq d-g$)
+			\end{itemize}
+    \item Swap $e_{1}\leftrightarrow e_{d-g-1}$, $e_{2} \leftrightarrow e_{d-g-2},\dots $ (Reflection at diagonals)
+			\begin{itemize}
+				\item $0 \mapsto 0$
+				\item $k_{d-g}-k_{l} \mapsto k_{d-g-l}$ $(l< d-g)$
+				\item $\frac{k_{l}}{2}\mapsto \frac{k_{l}}{2}$ $(l \geq d-g)$
+			\end{itemize}
+	\end{enumerate}
+	Result:
+	\begin{equation*}
+		C'_{1}= \left\{ 0, \frac{k_{d-g}}{2},\dots ,\frac{k_{d}}{2},k_{1},\dots ,k_{d-g-1} \right\}_{g+1} = T_{g+1}
+	\end{equation*}
+	$C_{0}$ and $C_{1}$ are congruent.
+	\begin{equation*}
+		T_{d}= \left\{ 0, \frac{k_{1}}{2},\dots ,\frac{k_{d}}{2} \right\}_{0} \quad \implies \text{ scaled Khun simplex} \qedhere
+	\end{equation*}
+\end{proof}
+Now we consider any simplex by deforming the Kuhn simplex and taking care of the shape coefficients.
+\begin{theorem}
+	Let $T$ be an arbitrary $d$-simplex. Then there is a constant $C(T_{0})$ such that
+	\begin{equation*}
+		\delta_{T} \leq C(T_{0})
+	\end{equation*}
+	for all $T \in \mathbb{F}(T_{0})$.
+\end{theorem}
+\begin{proof_}\
+	\begin{itemize}
+		\item Let $T_{0}$ be of type $0$.
+		\item Let $\hat{T}_{0}$ be the Kuhn simplex of type $0$.
+		\item There is an affine map $F$ with $F(\hat{T}_{0})=T_{0}$ \\
+			$\implies$ For each $T \in \mathbb{F}(T_{0})$ there is a unique $\hat{T} \in \mathbb{F}(\hat{T}_{0})$ such that
+			\begin{equation*}
+				T = F(\hat{T})
+			\end{equation*}
+			%TODO ask if the refinement is correct, because of the step from d to b and c
+			\input{tikz/chapter1/type_refinement.tex}
+	\end{itemize}
+	This does not mean that the recurrent refinement will produce no more than $d$ similarity classes, but the total number remains finite.
+	 \begin{equation*}
+		 \implies \delta_{T} \text{ remains bounded}
+	\end{equation*}
+	If $T_{0}$ has type $>0$: Refine until reaching descendants of type $0$.
+  Until then we only got a finite number of simplices.
+\end{proof_}
+
+
+

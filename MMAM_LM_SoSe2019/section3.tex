@@ -642,21 +642,521 @@ wobei $c\in\R^p$ fest vorgegeben (bekannt).
 \begin{bemerkungnr}\label{bemerkung3.10}\
 	\begin{enumerate}[label=(\arabic*)]
 		\item In Satz \ref{satz3.9GaussMarkovTheorem} wird \betone{nicht} $\Rg(X)=p$ (also Vollrang) gefordert.
+		\label{item:bem3.10_1}
 		\item Sprechweise im Englischen: $c'\mal\hat{\beta}$ is \define{BLUE}
 		 (:= best linear unbiased estimator)\\
 		 "unbiased" wird mit "unverzerrt" übersetzt, was einfach erwartungstreu bedeutet.
+		 \label{item:bem3.10_2}
 		 \item Falls $\Rg(X)=p$ (also Vollrang), dann gilt:
 		 \begin{align*}
 		 	\Var(\hat{\Psi})=\Var\big(c'\mal\hat{\beta}\big)
 		 	\overset{\ref{satz3.2}}{=}
-		 	c'\mal\underbrace{\Var(\hat{\beta}}_{
+		 	c'\mal\underbrace{\Var(\hat{\beta})}_{
 		 		\overset{\ref{def3.6}}{=}\sigma^2\mal\big(X'\mal X\big)^{-1}
 		 	}=\sigma^2\mal c'\mal(X'\mal X)^{-1}\mal c
 		 \end{align*}
+		 \label{item:bem3.10_3}
 		 \item Speziell für $c=e_j$ liefert $\hat{\beta}_j=j$-te Komponente von $\hat{\beta}$ ist der BLUE für $\beta_j$
+		 \label{item:bem3.10_4}
 	\end{enumerate}
 \end{bemerkungnr}
 
+\subsection{Schätzung von \texorpdfstring{$\sigma^2$}{Sigma Quadrat}}
+Wegen \eqref{eq:3.2} und \eqref{eq:3.3} gilt
+\begin{align*}
+	\sigma^2=\Var(\varepsilon_i)=\E[\varepsilon^2]\qquad\forall i\in\set{1,\ldots,n}
+\end{align*}
+Es folgt:
+\begin{align*}
+	\E\eckigeKlammern{\frac{1}{n}\mal\sum\limits_{i=1}^n\varepsilon_i^2}
+	\overset{\Lin}{=}\E[\varepsilon_i^2]=\sigma^2
+\end{align*}
+Aber 
+$
+	\frac{1}{n}\mal\sum\limits_{i=1}^n\varepsilon_i^2
+$
+ist \betone{kein Schätzer} für $\sigma^2$, da der Fehlervektor 
+$
+	\varepsilon=\klammern[\big]{\varepsilon_1,\ldots,\varepsilon_n}
+$\\1
+\betone{nicht beobachtbar}.
+\betone{Idee}:
+Ersetze
+$
+	\varepsilon
+	\overset{\eqref{eq:3.1}}{=}
+	Y-X\mal\beta
+$
+durch \betone{bekanntes}
+\begin{align*}
+	\hat{\varepsilon}:=Y-X\mal\hat{\beta}=Y-\hat{Y},
+\end{align*}
+wobei 
+$	
+	\hat{Y}:=X\mal\hat{\beta}
+$
+das \define{den Daten angepassten (fitted)} $Y$.
+$\hat{\varepsilon}$ heißt Vektor der \define{Residuen} (geschätzte Fehler).
+\index{Residuenvektor}\\
+Erhalte (bis auf Faktor $\frac{1}{n}$):
+\begin{align*}
+	\RSS:=\sum\limits_{i=1}^n\hat{\varepsilon}_i^2
+	=\hat{\varepsilon}'\mal\hat{\varepsilon}
+	=\norm{\hat{\varepsilon}}^2
+\end{align*}
+Das RSS steht für \define{Residual sums of squares} also \define{Residuenquadratsumme}.
+\index{Residuenquadratsumme}
 
+\begin{satz}\label{satz3.11}
+	Sei $\Rg(X)=p<n$. Dann gilt:
+	\begin{align*}
+		\S^2:=\frac{1}{n-p}\mal\RSS>0
+	\end{align*}
+	ist \betone{erwartungstreuer} Schätzer für $\sigma^2$, d.h.
+	\begin{align*}
+		\E_\beta[S^2]=\sigma^2\qquad\forall \beta\in\R^p
+	\end{align*}
+\end{satz}
+
+Zwei Hilfsmittel für den Beweis von Satz \ref{satz3.11}:
+
+\begin{lemma}\label{lemma3.12}
+	Sei $\Rg(X)=p$. 
+	Dann gilt mit $L:=\Bild(X)$:
+	\begin{align*}
+		\Rg\big(I_n-P_L\big)
+		=\Spur\big(I_n-P_L\big)
+		=n-p
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		I_n-P_L
+		\overset{\ref{satz2.9}}&{=}
+		P_{L^\perp}
+	\end{align*}
+	Also ist $I_n-P_L$ symmetrische und idempotente Matrix gemäß Satz \ref{satz2.7} und Satz \ref{satz2.8}.
+	Also ist
+	\begin{align*}
+		\Rg\big(I_n-P_L\big)
+		\overset{\ref{satz2.1}\ref{item:satz2.1(2)}}&{=}
+		\Spur\big(I_n-P_L\big)\\
+		\overset{\Spur\text{ additiv}}&{=}
+		\Spur(I_h)-\Spur(P_L)\\
+		&=n-\Spur(P_L)\\
+		\overset{\ref{satz3.3}\ref{item:satz3.3(2)}}&{=}
+		n-\Spur\Big(X\mal\big(X'\mal X\big)^{-1}\mal X'\Big)\\
+		\overset{\ref{satz2.14}}&{=}
+		n-\Spur(I_p)\\
+		&=n-p
+	\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lemma3.13}
+	Sei $A\in M(n\times n)$ deterministisch und $Z$ ein Zufallsvektor in $\R^n$.
+	Dann gilt für den Erwartungswert der quadratischen Form:
+	\begin{align*}
+		\E\eckigeKlammern[\big]{Z'\mal A\mal Z}
+		=\Spur\klammern[\big]{A\mal\Var(Z)}+
+		\E[Z]'\mal A\mal\E[Z]
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Setze $\theta:=\E[Z]$.
+	Idee: Wir betrachten den zentrierten Vektor.
+	\begin{align}\nonumber
+		\E\eckigeKlammern[\big]{(Z-\theta)'\mal A\mal\underbrace{(Z-\theta)}_{
+			\text{zentriert}
+		}}
+		&=\E\eckigeKlammern{Z'\mal A\mal Z-\theta'\mal A\mal Z-Z'\mal A\mal\theta+\theta'\mal A\mal\theta}\\\nonumber
+		\overset{\ref{satz3.2}}&{=}
+		\E\eckigeKlammern{Z'\mal A\mal Z}-\theta'\mal A\mal\underbrace{\E[Z]}_{=\theta}-\E[Z]'\mal A\mal\theta+\theta'\mal A\mal\theta\\\nonumber
+		&=\E\eckigeKlammern{Z'\mal A\mal Z}-\theta'\mal A\mal\theta\\
+		\implies
+		\E\eckigeKlammern{Z'\mal A\mal Z}
+		&=\underbrace{\E\eckigeKlammern[\big]{(Z-\theta)'\mal A\mal(Z-\theta)}}_{=:\mu}+\theta'\mal A\mal\theta
+		\label{eqProofLemma3.13Stern}\tag{$*$}
+	\end{align}
+	Jetzt rechnen wir $\mu$ aus:
+	\begin{align*}
+		\mu&=\E\eckigeKlammern{\sum\limits_{1\leq i,j\leq n}\big(Z_i-\theta_i\big)\mal A_{i,j}\mal\big(Z_j-\theta_j\big)}\\
+		\overset{\Lin}&{=}
+		\sum\limits_{1\leq i,j\leq n}A_{i,j}\mal\E\eckigeKlammern[\Big]{\big(Z_i-\underbrace{\theta_i}_{=\E[Z_i]}\big)\mal\big(Z_j-\underbrace{\theta_j}_{=\E[Z_j]}\big)}\\
+		&=\sum\limits_{1\leq i,j\leq n}A_{i,j}\mal\Cov\big(Z_i,Z_j\big)\\
+		&=\sum\limits_{1\leq i,j\leq n}A_{i,j}\mal\big(\Var(Z)\big)_{i,j}\\
+		\overset{\text{Symm}}&{=}
+		\sum\limits_{i=1}^n\sum\limits_{j=1}^n A_{i,j}\mal\big(\Var(Z)\big)_{j,i}\\
+		&=\sum\limits_{i=1}^n\klammern{\sum\limits_{j=1}^n A_{i,j}\mal\big(\Var(Z)\big)_{j,i}}\\
+		&=\sum\limits_{i=1}^n\Big(A\mal \Var(Z)\Big)_{i,i}\\
+		&=\Spur\big(A\mal\Var(Z)\big)
+	\end{align*}
+	Aus \eqref{eqProofLemma3.13Stern} folgt die Behauptung.
+\end{proof}
+
+\begin{proof}[Beweis von Satz \ref{satz3.11}]%\enter
+	\begin{align*}
+		\hat{\varepsilon}
+		\overset{\Def}&{=}
+		Y-X\mal\hat{\beta}
+		\overset{\ref{satz3.3}}{=}
+		Y-P_L Y
+		=\big(I_n-P_L\big)Y
+		\overset{\ref{satz2.9}}{=}
+		P_{L^\perp}Y\\
+		\implies
+		(n-p)\mal S^2
+		\overset{\Def}&{=}
+		\RSS\\
+		&=\hat{\varepsilon}'\mal\hat{\varepsilon}\\
+		&=\big(P_{L^\perp} Y\big)'\mal\big(P_{L^\perp} Y\big)\\
+		&=Y'\mal P_{L^\perp}'\mal P_{L^\perp}\mal Y\\
+		\overset{\text{Symm}}&{=}
+		Y'\mal P_{L^\perp}\mal P_{L^\perp}\mal Y\\
+		\overset{\text{Idempotenz}}&{=}
+		Y'\mal P_{L^\perp}\mal Y\\
+		\implies
+		(n-p)\mal\E\big[S^2\big]
+		&=\E\eckigeKlammern{Y'\mal\big(I_n-P_L)\mal Y}\\
+		\overset{\ref{lemma3.13}}&{=}
+		\Spur\klammern[\Big]{\big(I_n-P_L\big)\mal\underbrace{\Var(Y)}_{
+			=\sigma^2\mal I_n		
+		}}+\underbrace{\E[Y]'\mal\underbrace{\big(I_h-P_L\big)}_{
+			=P_{L^\perp}
+		}\underbrace{\mal\E[Y]}_{
+			=X\mal\beta\in L
+		}}_{
+			=0
+		}\\
+		&=\sigma^2\mal\Spur(I_n-P_L)\\
+		\overset{\ref{lemma3.12}}&{=}
+		\sigma^2\mal(n-p)
+	\end{align*}
+	Division durch $(n-p)\overset{\Vor}{>}0$ liefert die Behauptung $\E[S^2]=\sigma^2$.
+\end{proof}
+
+\begin{bemerkung}
+	Es gilt
+	\begin{align*}
+		\E\eckigeKlammern{\frac{1}{n}\mal\RSS}
+		\overset{\Lin}{=}
+		\frac{1}{n}\mal\E\eckigeKlammern{\RSS}
+		\overset{\Def}{=}
+		\frac{1}{n}\mal\E\eckigeKlammern{\sigma^2\mal(n-p)}
+		\overset{\ref{satz3.11}}{=}
+		\frac{n-p}{n}\mal\sigma^2
+	\end{align*}
+	Der Schätzer $\frac{1}{n}\mal\RSS$ ist also \betone{nicht} erwartungstreu, da $\frac{n-p}{n}\neq 0$ für alle $p>0$.
+	Für große $n$ allerdings ist $\frac{n-p}{n}\approx1$.
+	Somit ist der Schätzer $\frac{1}{n}\mal\RSS$ immerhin \define{asymptotisch erwartungstreu}.
+\end{bemerkung}
+
+\begin{beispiel}[Einfache lineare Regression, vgl. Beispiel \ref{beisp3.5einfacheLineareRegression}]\label{beisp3.14einfacheLinareRegression}
+	\begin{align*}
+		Y_i&=a+b\mal x_i+\varepsilon_i &&\forall i\in\set{1,\ldots,n}\\
+		\hat{\varepsilon}_i&=Y_i-a-b\mal x_i&&\forall i\in\set{1,\ldots,n}\\
+		\beta&=\begin{pmatrix}
+			a\\
+			b
+		\end{pmatrix},\qquad \hat{\beta}=\begin{pmatrix}
+			\hat{a}\\
+			\hat{b}
+		\end{pmatrix}
+	\end{align*}
+	Dann gilt:
+	\begin{align*}
+		S^2=\frac{1}{n-2}\mal\sum\limits_{i=1}^n\klammern{Y_i-\hat{a}-\hat{b}\mal x_i}^2
+	\end{align*}
+	wobei $\hat{a},\hat{b}$ in Beispiel \ref{beisp3.5einfacheLineareRegression} berechnet wurden:
+	\begin{align*}
+		\hat{a}&=\overline{Y}-\hat{b}\mal\overline{x},\qquad
+		\hat{b}=\frac{\sum\limits_{i=1}^n\big(x_i-\overline{x}\big)\mal\big(Y_i-\overline{Y}\big)}{\sum\limits_{i=1}^n\big(x_i-\overline{x}\big)^2}
+	\end{align*}
+	
+	\begin{bemerkung}
+		Den Erwartungswert von $S^2$ zu Fuß auszurechnen, erscheint ziemlich schwierig.
+	\end{bemerkung}
+\end{beispiel}
+
+\subsection{Schätzung von \texorpdfstring{$\beta$}{Beta} unter linearen Nebenbedingungen} %3.4
+
+Sei $Y=X\mal\beta+\varepsilon$ lineares Modell (LM) mit \eqref{eq:3.2}, \eqref{eq:3.3} und \eqref{eq:3.4} und $\Rg(X)=p\overset{\eqref{eq:3.3}}{<}n$.
+Ferner sei $H\in M(q\times p)$ \betone{bekannt} mit $\Rg(H)=q\leq p$.
+Sei $c\in\R^q$ ebenfalls \betone{bekannt}.
+Der unbekannte Parameter $\beta\in\R^p$ erfülle die Gleichung
+\begin{align}\label{eq:3.8}\tag{3.8}
+	H\mal\beta=c
+\end{align}
+Gleichung \eqref{eq:3.8} ist eine lineare Nebenbedingung (NB) für $\beta$.
+Gemäß der Methode der kleinsten Quadrate finde $\hat{\beta}_H\in\R^p$ mit
+\begin{align*}
+	\norm{Y-X\mal\hat{\beta}_H}=\min\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p\AND   H\mal\beta=c},
+\end{align*}
+d.h. 
+\begin{align*}
+	\hat{\beta}_{H,c}:=:\hat{\beta}_H\in\argmin\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}
+\end{align*}
+
+Zur Berechnung von $\hat{\beta}_H$ wähle $\beta_0\in\R^p$ mit $H\mal\beta_0=c$ (ein solches $\beta_0$ existiert, da Nebenbedingung \eqref{eq:3.8} ja für mindestens den wahren Parameter $\beta\in\R^p$ gelten soll).
+Dann:
+\begin{align}\label{eq:3.9}\tag{3.9}
+	&\min\set{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}\\
+	\nonumber
+	&=\min\set[\big]{\norm*{Y-X\mal\beta_0-X\mal\underbrace{(\beta-\beta_0)}_{
+		=:\gamma
+	}}:\beta\in\R^p\AND H\mal\underbrace{(\beta-\beta_0)}_{
+		=\gamma
+	}=0}\\
+	\nonumber
+	&=\min\set[\Big]{\norm*{Y-X\mal\beta_0-\underbrace{X\mal \gamma}_{
+		=:u
+	}}:\gamma\in\R^p\AND \underbrace{H\mal\gamma}_{
+		=\underbrace{H\mal(X'\mal X)^{-1}\mal X'}_{
+			=:K
+		}\mal \underbrace{X\mal\gamma}_{
+			=u
+		}
+	}=0}\\
+	\label{eq:3.10}\tag{3.10}
+	&=\min\set[\big]{\norm*{\underbrace{Y-X\mal\beta_0}_{
+		=:x
+	}-u}:u\in\underbrace{\Bild(X)\cap\Kern(K)}_{
+		=:U
+	}}
+\end{align}
+Gemäß Satz \ref{satz2.10} ist die Minimalstelle $u_0$ in \eqref{eq:3.10}, d.h.
+\begin{align*}
+	u_0\in\argmin\set{\norm{Y-X\mal\beta_0-u}:u\in U}
+\end{align*}
+\betone{eindeutig} gegeben durch
+\begin{align}\label{eq:3.11}\tag{3.11}
+	u_0=P_U\big(Y-X\mal\beta_0\big)
+\end{align}
+
+Ziel: Bestimme $P_U$ und rechne $u_0$ in die Minimalstelle $\hat{\beta}_H$ in \eqref{eq:3.9} um.
+
+\begin{lemma}\label{lemma3.15}
+	Sei $K:=H\mal(X'\mal X)^{-1}\mal X'\in M(q\times n)$ wie oben.
+	Sei $L:=\Bild(X)$.
+	Dann gilt:
+	\begin{align*}
+		P_U=P_L-K'\mal(K\mal K')^{-1}\mal K
+		\qquad\mit\qquad
+		U:=L\cap\Kern(K)
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	Satz \ref{satz2.21} besagt:
+	Für Unterräume $U_1\subseteq U_2$ gilt
+	\begin{align*}
+		P_{U_2}
+		&=P_{U_1}+P_{U_1^\perp\cap U_2}\\
+		\implies
+		P_{U_1}&=P_{U_2}-P_{U_1^\perp\cap U_2}
+	\end{align*}
+	Wegen $U=L\cap\Kern(K)\subseteq L$ (sind geschachtelte Unterräume) folgt aus Satz \ref{satz2.21}:
+	\begin{align*}
+		P_U
+		&=P_L-P_{U^\perp\cap L}
+	\end{align*}
+	Es gilt weiterhin
+	\begin{align*}
+		U^\perp\cap L
+		\overset{\Def}&{=}
+		\klammern[\big]{L\cap\Kern(K)}^\perp\cap L.
+	\end{align*}
+	Satz \ref{satz2.19} besagt:
+	Für $A\in M(m\times n)$ und Unterraum $V\subseteq\R^n$ gilt
+	\begin{align*}
+		\klammern[\big]{V\cap\Kern(A)}^\perp\cap V
+		=\Bild\big(P_V A'\big)
+	\end{align*}
+	Somit:
+	\begin{align*}
+		U^\perp\cap L
+		&=\Bild\klammern{P_L K'}
+	\end{align*}
+	Da $X$ Vollrang hat nach Voraussetzung ist
+	\begin{align*}
+		P_L
+		&=X\mal(X'\mal X)^{-1}\mal X'
+	\end{align*}
+	gemäß Satz \ref{satz3.3}\ref{item:satz3.3(2)}, folgt
+	\begin{align*}
+		P_L K'
+		&=X\mal(X'\mal X)^{-1}\mal\underbrace{ X'\mal X\mal(X'\mal X)^{-1}}_{
+			=I_p
+		}\mal H'
+		=K'
+	\end{align*}
+	und somit
+	\begin{align*}
+		P_{U^\perp\cap L}
+		&=P_{\Bild(K')}
+		\overset{\ref{satz2.22}}{=}
+		K'\mal(K\mal K')^{-1}\mal K
+	\end{align*}
+	gemäß Satz \ref{satz2.22} (mit $A\hat{=}K'$).
+	($P_{\Bild(A)}=A\mal(A'\mal A)\mal A'$)\nl
+	Für die Anwendung von Satz \ref{satz2.22} muss noch gezeigt werden, dass $K'$ vollen Rang hat.
+	Dazu:
+	\begin{align*}
+		K'&\in M(n\times q)
+		\qquad\und\qquad\\
+		q
+		\overset{\ref{satz:2.11}\ref{item:satz2.11(c)}}&{\geq}
+		 \Rg(K')\\
+		 &=\Rg\klammern[\big]{\underbrace{X\mal(X'\mal X)^{-1}}_{
+		 	\in M(n\times p)
+		 }\mal\underbrace{H'}_{
+		 	\in M(p\times q)
+		 }}\\
+		 \overset{\ref{satz:2.11}\ref{item:satz2.11(d)}}&{=}
+		\underbrace{\Rg(\klammern{X\mal(X'\mal X)^{-1}}}_{
+			\overset{\ref{satz:2.11}\ref{item:satz2.11(e)}}{=}
+			\Rg(X)
+			=p
+		}+
+		 \underbrace{\Rg(H')}_{
+		 	\overset{\ref{satz:2.11}\ref{item:satz2.11(b)}}{=}
+		 	\Rg(H)=q
+		 }-p\\
+		 &=q\\
+		 \implies
+		 \Rg(K')&=q
+	\end{align*}
+	Also hat $K'$ Vollrang.
+\end{proof}
+
+Jetzt zur Berechnung von $\hat{\beta}_H$ mittels $u_0$ aus \eqref{eq:3.11}:
+Wegen $u_0\in U\subseteq\Bild(X)$ existiert ein $y\in\R^p$ mit $u_0=X\mal y$.
+Es folgt
+\begin{align}\label{eq:UnderLemma3.15Stern}\tag{$*$}
+	X\mal y
+	&= u_0\\
+	\nonumber
+	\overset{\eqref{eq:3.11}}&{=}
+	P_U\mal\klammern{Y-X\mal\beta_0}\\
+	\nonumber
+	\overset{\ref{lemma3.15}}&{=}
+	\underbrace{P_L\mal Y}_{
+		\overset{\ref{satz3.3}}{=}
+		X\mal\hat{\beta}
+	}-\underbrace{P_L\mal\underbrace{ X\mal\beta_0}_{
+		\in L
+	}}_{
+		\overset{\ref{satz2.5}}{=}
+		X\mal\beta_0
+	}-K'\mal(K\mal K')^{-1}\mal\underbrace{ H\mal(X'\mal X)^{-1}\mal X}_{
+		=K
+	}\\
+	\label{eq:UnderLemma3.15Stern2}\tag{$*$}
+	&=X\mal\klammern{\hat{\beta}-\beta_0}-\underbrace{X\mal(X'\mal X)^{-1}\mal H'}_{
+		=K'
+	}\mal(K\mal K')^{-1}\mal\klammern*{H\mal\hat{\beta}-\underbrace{H\mal\beta_0}_{
+		=0
+	}}
+\end{align}
+Multiplikation von Gleichung \eqref{eq:UnderLemma3.15Stern} mit $(X\mal X')^{-1}\mal X'$ liefert
+\begin{align}\label{eq:UnderLemma3.15SternStern}\tag{$**$}
+	y
+	&=\hat{\beta}-\beta_0-(X'\mal X)^{-1}\mal H'\mal (K\mal K')^{-1}\mal\klammern{H\mal\hat{\beta}-c}
+\end{align}
+Beachte:
+$
+	y
+	\overset{\eqref{eq:UnderLemma3.15Stern}}{=}
+	(X'\mal X)^{-1}\mal u_0
+$
+mit eindeutig bestimmten $u_0$.
+Also ist auch $y$ eindeutig.
+Ferner:
+\begin{align*}
+	H\mal\klammern{y+\beta_0}
+	&=H\mal y+\underbrace{H\mal\beta_0}_{
+		=c
+	}
+	=\underbrace{H\mal\klammern{X'\mal X}^{-1}\mal X'}_{
+		=K
+	}\mal\underbrace{X\mal y}_{
+		=u_0
+	}+c
+	=K\mal\underbrace{ u_0}_{
+		\in U=L\cap\Kern(K)
+	}+c
+	=c
+\end{align*}
+Also gilt
+\begin{align}\label{eq:UnderLemma3.15Kasten}\tag{$\square$}
+	H\mal\klammern{y+\beta_0}=c.
+\end{align}
+
+Damit folgt:
+\begin{align*}
+	M&:=\min\set[\big]{\norm{Y-X\mal\beta}:\beta\in\R^p\AND H\mal\beta=c}\\
+	\overset{\eqref{eq:UnderLemma3.15Kasten}}&{\leq}
+	\norm{Y-X\mal\klammern{y+\beta_0}}\\
+	&=\norm*{Y-X\mal\beta_0-\underbrace{X\mal y}_{
+		=u_0
+	}}\\
+	\overset{\eqref{eq:UnderLemma3.15Stern}}&{=}
+	\norm{Y-X\mal\beta_0-u_0}\\
+	&=\min\set[\big]{\norm{Y-X\mal\beta_0-u}:u\in U}\\
+	&=M
+\end{align*}
+wegen \eqref{eq:3.9} bzw. \eqref{eq:3.10}.
+Also gilt überall Gleichheit!
+\begin{align}\label{eq:UnderLemma3.15SternSternStern}\tag{$***$}
+	y=\beta_0=\hat{\beta}_H
+\end{align}
+
+\begin{satz}\label{satz3.16}
+	Es gelte das lineare Modell $Y=X\mal\beta+\varepsilon$ mit \eqref{eq:3.2}, \eqref{eq:3.3}, \eqref{eq:3.4} und \eqref{eq:3.8}.
+	Besitze $X$ und $H$ Vollrang, dann gilt:
+	\begin{align*}
+		\hat{\beta}_{H}
+		=\hat{\beta}_{H,c}
+		=\beta-\klammern{X'\mal X}^{-1}\mal H'\mal\klammern{H\mal\klammern{X'\mal X}^{-1}\mal H'}^{-1}\mal\klammern{H\mal\hat{\beta}-c}
+	\end{align*}
+	Außerdem ist $\hat{\beta}_H$ eindeutig.
+\end{satz}
+
+\begin{proof}
+	Setze \eqref{eq:UnderLemma3.15SternStern} in \eqref{eq:UnderLemma3.15SternSternStern} ein.
+	Beachte außerdem, dass $y$ eindeutig bestimmt ist.
+\end{proof}
+
+\begin{bemerkung}\label{bem3.17}
+	$\hat{\beta}_H$ ist von einfacher Gestalt, nämlich vom Typ
+	\begin{align}\label{eq:bem3.17Plus}\tag{+}
+		\hat{\beta}_H
+		&=\hat{\beta}-D\mal\klammern{H\mal\hat{\beta}-c}
+		\mit
+		D=\klammern{X'\mal X}^{-1}\mal H'\mal\klammern{H\mal\klammern{X'\mal X}^{-1}\mal H'}^{-1}
+	\end{align}
+	Somit gilt
+	\begin{align*}
+		\E_\beta\eckigeKlammern{\hat{\beta}_{H,c}}
+		\overset{\eqref{eq:bem3.17Plus},\ref{satz3.2}}&{=}
+		\underbrace{\E_\beta\eckigeKlammern{\hat{\beta}}}_{
+			=\beta~\forall\beta
+		}-D\mal\klammern[\Big]{H\mal\underbrace{\E\eckigeKlammern{\hat{\beta}}}_{
+			=\beta~\forall\beta
+		}-c}\\
+		\implies
+		\E_\beta\eckigeKlammern{\hat{\beta}_{H,c}}
+		\overset{\forall\beta}&{=}
+		\beta-D\mal\klammern[\big]{\underbrace{H\mal\beta}_{
+			\overset{\eqref{eq:3.8}}{=}
+			c~\forall\beta
+		}-c}
+		=\beta
+		\qquad\forall\beta\in\R^p
+		\mit\eqref{eq:3.8}
+	\end{align*}
+	Also ist $\hat{\beta}_{H,c}$ erwartungstreuer Schätzer.
+\end{bemerkung}
 
 
