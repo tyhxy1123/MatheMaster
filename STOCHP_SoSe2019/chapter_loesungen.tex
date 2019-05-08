@@ -615,6 +615,7 @@ Verwende (iii).
 }\label{loes:20}
 
 \begin{proof}
+	\betone{Zeige, dass $K_1$ positiv semidefinit ist:}\\
 	Seien $x_1,\ldots,x_n\in[0,\infty)$.
 	Zu zeigen: $A=\klammern[\big]{\min(x_i,x_j)}_{i,j=1}^n$ ist positiv semidefinit.
 	Wir dürfen o.B.d.A annehmen, dass $x_1\leq x_2\leq\ldots\leq x_n$ (ansonsten Umordnen).\\
@@ -702,4 +703,61 @@ Verwende (iii).
 			\qquad\forall n\in\N,\forall x_1,\ldots,x_n\in T
 		\end{align*}
 	\end{satz}
+	
+	\betone{Zeige, dass $K_2$ positiv semidefinit ist:}
+	\begin{align*}
+		K_2(x,y)
+		\overset{\Def}&{=}
+		\frac{1}{2}\mal\klammern[\big]{\abs{x}+\abs{y}-\abs{x-y}}\\
+		\overset{}&{=}
+		\frac{1}{2}\mal\left\lbrace
+		\begin{array}{ll}
+			x+y-x+y=2\mal y &\falls x\geq0\AND y\geq0\AND x\geq y\\
+			x+y+x-y=2\mal x &\falls x\geq0\AND y\geq 0\AND x<y\\
+			x-y-x+y=0 &\falls x\geq0\AND y<0~\klammern{\AND x\geq y}\\
+			-x+y+x-y=0 &\falls x<0\AND y\geq0~\klammern{\AND x<y}\\
+			-x-y-x+y=-2\mal x &\falls \AND x<0\AND y<0\AND x\geq y\\
+			-x-y+x-y=-2\mal y &\falls x<0\AND y<0\AND x<y
+		\end{array}\right.\\
+		&=\left\lbrace
+		\begin{array}{cl}
+			 \min\set[\big]{\abs{x},\abs{y}}, &\falls x,y\text{ verschiedene Vorzeichen}\\
+			 0, &\falls x,y\text{ gleiches Vorzeichen}
+		\end{array}\right.\\
+		\overset{\Def}&{=}
+		\left\lbrace
+		\begin{array}{cl}
+			 K_1\klammern[\big]{\abs{x},\abs{y}}, &\falls x,y\text{ verschiedene Vorzeichen}\\
+			 0, &\falls x,y\text{ gleiches Vorzeichen}
+		\end{array}\right.
+	\end{align*}
+	Die Matrix $\klammern[\big]{K_2\klammern{x_i,x_j}}_{i,j=1}^n$ ist also in Diagonal-Form für alle $n\in\N$ und alle $x_1\leq x_2\leq\ldots\leq x_n$ (o.B.d.A. geordnet), denn:
+	Für $x_1\leq\ldots\leq x_k\leq 0< x_{k+1}\leq\ldots\leq x_n$ gilt:
+	\begin{align*}
+		&K_2:=\klammern[\big]{K_2\klammern{x_i,x_j}}_{i,j=1}^n\\
+		&=\begin{pmatrix}
+			K_1(|x_1|,|x_1|) &  \hdots & K_1(|x_1|,|x_k|) & 0 & \hdots & 0\\
+			K_1(|x_2|,|x_1|) & \hdots & K_1(|x_2|,|x_k|) & 0 & \hdots & 0\\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+			K_1(|x_k|,|x_1|) & \hdots & K_1(|x_k|,|x_k|) & 0 & \hdots & 0\\
+			0 & \hdots & 0 & K_1(|x_{k+1}|,|x_{k+1}|) & \hdots & K_1(|x_{k+1}|,|x_{k+1}|)\\
+			\vdots & \ddots & \vdots & \vdots & \ddots & \vdots\\
+			0 & \hdots & 0 & K_1(|x_{n}|,|x_{k+1}|) & \hdots & K_1(|x_{n}|,|x_{n}|)
+		\end{pmatrix}
+	\end{align*}
+	Also hat die Matrix
+	\begin{itemize}
+		\item genau 1 Block, falls alle $x_1,\ldots,x_n$ dasselbe Vorzeichen haben.
+		\item genau 2 Blöcke, falls es in den $x_1,\ldots,x_n$ einen Vorzeichenwechsel gibt.
+	\end{itemize}
+	Allgemein gilt für positiv semidefinite Matrizen $A,B$, dass auch die Blockmatrix
+		\begin{align*}
+			\begin{bmatrix}
+				A & 0\\
+				0 & B
+			\end{bmatrix}
+		\end{align*}
+		positiv semidefinit ist (war als Hinweis gegeben).
+		Somit ist die Matrix $K_2$ positiv semidefinit, da die einzelnen Blöcke wegen Teil 1 (siehe oben) positiv semidefinit sind.
+		Folglich ist $K_2$ als Abbildung positiv semidefinit.
 \end{proof}
