@@ -950,7 +950,7 @@ $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1
 					 \begin{pmatrix}
 						 A & 0\\
 						 B &-I\\
-						 -b& I
+						 -B & I
 					 \end{pmatrix}
 					 \begin{pmatrix}
 					 	x\\y
@@ -1025,7 +1025,7 @@ $P \subset \R^n$ ist ein Polyeder $\iff P=\conv{v_{1},\dots ,v_{p}} + \cone{d_{1
 Nichtlineare Optimierung: $\min f(x)$ so dass $x\in X$ \\
 $x^*$ lokales Minimum 
 \begin{align*}
-	&\implies \nabla f(x^*)^{T} d \geq 0 \forall d \in T_{X}(x^*)\\
+	&\implies \nabla f(x^*)^{T} d \geq 0 \quad \forall d \in T_{X}(x^*)\\
 	&\iff - \nabla f(x^*) \in \left( T_{X}(x^*) \right)^\circ
 \end{align*}
 \begin{lemma}
@@ -1061,7 +1061,7 @@ $x^*$ lokales Minimum
 	Dann gilt $P_{1}^\circ = P_{2}$ und $P_{2}^\circ = P_{1}$.
 \end{satz}
 \begin{proof}
-	OBdA nur für 
+	O.B.d.A. nur für 
 	\begin{align*}
 		P_{1} &= \left\{ x \ |\ A^{T} x \leq 0 \right\} = P(A,b)\\
 		P_{2} &= \left\{ y = AZ \ |\ Z \geq 0 \right\}= \cone A.
