@@ -1273,3 +1273,110 @@ S^{(N)} \arrow[rr, "f\gamma"'] \&                                               
 	Begründung: $f_{\delta^N}=\id_{S^{(N)}}$
 \end{beispiel}
 
+\subsection{Semring-Modul Fortsetzung}
+
+\begin{proposition}
+	Sei $\mathcal{M}=\klammern{\M,\S,\scal}$ Semiring-Modul und seien $K$ und $N$ Mengen.
+	Ferner seien $\chi\in K^N$ und $\lambda\in M^K$ sowie $\gamma\in M^N$ mit
+	\begin{align*}
+		\lambda=\gamma\circ\chi\qquad f_\lambda\circ\delta^K\qquad
+		f_\gamma\circ\delta^N=\gamma\\
+		\begin{tikzcd}[ampersand replacement=\&]
+			\& K \arrow[ld, "\delta^K"'] \arrow[rd, "\lambda"] \arrow[rr, "\chi"] \&   \& N \arrow[rd, "\delta^N"] \arrow[ld, "\gamma"'] \&                                \\
+			S^{(K)} \arrow[rr, "f_\lambda"'] \& \& M \&                                                \& S^{(N)} \arrow[ll, "f_\gamma"]
+		\end{tikzcd}
+	\end{align*}
+
+	\begin{enumerate}[label=(\arabic*)]
+		\item Ist $\lambda$ erzeugend bzgl. $\mathcal{M}$, so ist auch $\gamma$ erzeugend bzgl. $\mathcal{M}$.
+		\label{item:prop1}
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	\betone{Zeige \ref{item:prop1}:}\\
+	Da $\lambda$ erzeugend ist, existiert zu jedem $m\in M$ ein $v\in S^{(K)}$ mit
+	\begin{align*}
+		v*\lambda=f_\lambda(v)=m
+	\end{align*}
+	Für 
+	\begin{align*}
+		u\colon N\to S,\qquad
+		i\mapsto\sum\limits_{k\in\chi^{-1}(i)} vk
+	\end{align*}
+	gilt dann
+	\begin{align*}
+		f_\gamma(u)
+		&=u*\gamma\\
+		&=\sum\limits_{i\in N} u(i)\gamma(i)\\
+		&=\sum\limits_{i\in N}\klammern{\sum\limits_{k\in\chi^{-1}(i)} v(k)}\gamma(i)\\
+		&=\sum\limits_{i\in N}\sum\limits_{k\in\chi^{-1}(i)} v(k)\gamma(i)\\
+		\overset{\chi(k)=1}&{=}
+		\sum\limits_{i\in N}\sum\limits_{k\in\chi^{-1}(i)} v(k)\gamma(\chi(k))\\
+		&=\sum\limits_{k\in K} v(k)\gamma(\chi(k))\\
+		&=v*\lambda\\
+		&=m
+	\end{align*}
+	Also ist auch $f_\gamma$ surjektiv, d.h. $\gamma$ ist erzeugend.\nl
+\end{proof}
+
+\begin{notation}
+	Ist $f\colon A\to B$ Abbildung so sei
+	\begin{align*}
+		f^-\colon B\to\Potenzmenge{A},\qquad
+		b\mapsto\set{a\in A\mid f(a)=b}
+	\end{align*}
+\end{notation}
+
+\betone{Fragen:}
+\begin{enumerate}
+	\item Was passiert, wenn $\chi$ injektiv ist?
+	\item Was passiert, wenn $\chi$ surjektiv ist?
+\end{enumerate}
+
+\betone{Vorbetrachtung:}\\
+Für jedes $v\in S^{(K)}$ erfüllt
+\begin{align*}
+	u\colon N\to S,\qquad
+	i\mapsto\sum\limits_{k\in\chi^-(i)}v(h)
+\end{align*}
+die Gleichung
+\begin{align}\label{eq080519}\tag{$*$}
+	f_\gamma(v_\chi)=v_\chi*\gamma=v*\lambda=f_\lambda(v)
+\end{align}
+
+Zu (a): Sei $\chi$ injektiv.
+Für jedes $v\in S^{(K)}$ und $i\in N$ ist
+\begin{align*}
+	v_\chi(i)=\left\lbrace\begin{array}{cl}
+		v_k, &\falls \exists k\in K:\chi(k)=i,\text{ d.h. }\chi^{-}(i)=\set{k}\\
+		0, &\sonst (\chi^{-}(i)=\emptyset
+	\end{array}\right.
+\end{align*}
+Also ist $v_\chi\circ\chi=v$, da $v_\chi(\chi_k)=v(k)$ für jedes $k\in K$.
+Angenommen $\gamma$ ist unbhängig bzgl. $\mathcal{M}$.
+Dann ist auch $\lambda$ unabhängig bzgl. $\mathcal{M}$.\nl
+\betone{Ergebnis zu (a):} Ist $\chi$ injektiv und $\gamma$ unabhängig bzgl. $\mathcal{M}$, so ist auch $\lambda=\gamma\circ\chi$ unabhängig bzgl. $\mathcal{M}$.\nl
+\betone{Zu (b):} Mit dem Auswahlaxiom erhält man dann eine Abbildung $\eta\colon N\to K$ mit $\chi\circ\gamma=\id_N$.\\
+\betone{Beobachtung:} Aus $\lambda=\gamma\circ\chi$ folgt dann
+\begin{align*}
+	\lambda\circ\eta
+	=\klammern{\gamma\circ\chi}\circ\eta
+	=\gamma\circ\underbrace{\klammern{\chi\circ\eta}}_{=\id_N}=\gamma
+\end{align*}
+Mit (1) folgt nunmehr:\\
+Ergebnis (3): Ist $\chi$ surjektiv und ist $\gamma$ erzeugend bzgl. $\mathcal{M}$, so folgt mit dem Auswahlaxiom, dass auch 
+$\lambda=\gamma\circ\chi$ erzeugend. bzgl. $\mathcal{M}$ ist.\nl
+(4) Anwendunggen:
+\begin{itemize}
+	\item Mit dem Auswahlaxiom gilt:\\
+Ist $\chi$ surjektiv, so ist $\gamma$ erzeugt genau dann, wenn $\lambda$ erzeugt ist.
+	\item Warnung: Ist $\chi$ injektiv und $\lambda$ unabhängig, so kann es sein, dass $\gamma$ nicht unabhängig ist:
+\begin{beispiel}
+	$K=[1]$, $N=[2]$, $\gamma\colon N\to S,~i\mapsto 1$ nicht unabhängig bzgl. $\Mod(\S,K)$ aber $\lambda\colon[1]\to S,~1\mapsto 1$ ($f_\lambda=\id_{S^K}$ bzgl. $\mod(\S,K)$ obwohl $\lambda=\gamma\circ\chi$ ist für $\chi\colon K\to N,~1\mapsto 1$.
+	\end{beispiel}
+	\item Ist $\chi$ bijektiv (dann ist $\chi^{-1}$ bijektiv und es gilt $\gamma=\lambda\circ\chi^{-1}$, so ist $\gamma$ Basis von $\mathcal{M}$ genau dann, wenn $\lambda$ Basis von $\mathcal{M}$ ist.
+\end{itemize}
+
+
+
