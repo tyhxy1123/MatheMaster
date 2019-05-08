@@ -5,15 +5,12 @@
 
 \section{Einführung in algebraische Modellierung}
 
-%Vorlesung vom 02.04.2019 war scheinbar inhaltslos, deshalb lasse ich die mal
-
 Die \define{Strukturmathematik} stellt sich die Aufgabe Strukturen zu modellieren und technisch wie sprachlich zugänglich zu machen, sogenannte \define{Theoriebildung}.
 Dies ist ein evolutionärer Prozess, in dem neue Begriffe entstehen und alte untergehen.
 
 \subsection{Warum Modellierung und Formalisierung?}
-%Natürliche Sprache
 
-\begin{figure}[H] % oder ht!
+\begin{figure}[H]
 	\begin{center}
 		\input{./tikz/natSprache}
 		%\caption{Modellierung}
@@ -46,12 +43,12 @@ Im Gegensatz dazu gibt es auch \define{verbale Makros}, z.B. "reelle Zahlen".
 \index{technisches Makro}
 \index{verbales Makro}
 
-\section{Mengenbasierte Modellierung / strukturelle Modellierung}
+\subsection{Mengenbasierte Modellierung / strukturelle Modellierung}
 
 Strukturelle Modellierung ist eine mengenbasierte Modellierung.
 Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 
-\subsection{\href{https://de.wikipedia.org/wiki/Inzidenzstruktur}{Inzidenzstrukturen}}
+\section{\href{https://de.wikipedia.org/wiki/Inzidenzstruktur}{Inzidenzstrukturen}}
 \begin{definition}
 	Seien $P,B$ disjunkte Mengen und sei $I\subseteq P\times B$.
 	Dann heißt das Tripel $\Inz=(P,B,I)$ \define{Inzidenzstruktur}.
@@ -95,7 +92,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	Hierbei bezeichnet $\#M$ die Anzahl der Elemente der Menge $M$.
 \end{definition}
 
-\begin{satz}[Prinzip der doppelten Abzählung]\enter
+\begin{satz}[Prinzip der doppelten Abzählung]\label{satzDoppelteAbzahlung}\enter
 	Für jede endliche Inzidenzstrukut $\Inz=(P,B,I)$ gilt:
 	\begin{align*}
 		\sum\limits_{p\in P}\# pI=\#I=\sum\limits_{b\in B}\# Ib
@@ -111,7 +108,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{definition}
 
 \begin{lemma}
-	Sei $y$ taktische Konfiguration von $J=(P,B,I)$. Dann gilt:
+	Für jede taktische Konfiguration $\Inz=(P,B,I)$ gilt:
 	\begin{align*}
 		v_\Inz\mal r_\Inz=b_\Inz\mal k_\Inz
 		\qquad\mit\qquad
@@ -120,12 +117,11 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 \end{lemma}
 
 \begin{proof}
-	Doppelte Abzählung: 
+	Folgt aus Satz \ref{satzDoppelteAbzahlung}:
 	\begin{align*}
 		v_\Inz\mal r_\Inz=\sum\limits_{p\in P}\underbrace{\# pI}_{=r_\Inz}=\sum\limits_{b\in B}\underbrace{\#Ib}_{=k_\Inz}=b_\Inz\mal r_\Inz
 	\end{align*}
 \end{proof}
-
 
 \begin{definition}
 	$\big(v_\Inz,r_\Inz;b_\Inz,k_\Inz)$ ist das \define{Parametertupel} von $\Inz$.
@@ -161,7 +157,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{figure}	
 \end{beispiel}
 
-\begin{beispiel}
+\begin{beispiel}\label{beispInzidenz}
 	Berühmte taktische Konfiguation ist $(10,3;10,3)$.\\
 	Sei $[n]:=\set{1,\ldots,n}$ für $n\in\N$ und $\ul{n}:=\set{0,\ldots,n-1}$.
 	Sei $\begin{pmatrix}
@@ -175,7 +171,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	Seien $i,j,n\in\N$ mit $i\leq j\leq n$.
 	Setze
 	\begin{align*}
-		J^n_{(i,j)}&:=\klammern{\begin{pmatrix}
+		\Inz^n_{(i,j)}&:=\klammern{\begin{pmatrix}
 			[n]\\i
 		\end{pmatrix},\begin{pmatrix}
 			[n]\\ j
@@ -186,7 +182,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 			[n]\\j
 		\end{pmatrix}\mid p\subseteq b}
 	\end{align*}
-	Dann ist $J^n_{(i,j)}$ taktische Konfiguration mit dem Parametertupel
+	Dann ist $\Inz^n_{(i,j)}$ taktische Konfiguration mit dem Parametertupel
 	\begin{align*}
 		\klammern{
 		\begin{pmatrix}
@@ -231,7 +227,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{align*}
 \end{definition}
 
-\begin{beispiel}
+\begin{beispiel}[Fortsetzung von Beispiel \ref{beispInzidenz}]
 	\begin{align*}
 		\Big(\Inz_{(i,j)}^n\Big)^\op=(B,P,R^\op)
 		\qquad\mit\qquad
@@ -254,7 +250,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 		\defiff\forall p\in P,\forall b\in B:pIb\implies\varphi(p)I'\psi(b)
 	\end{align*}
 
-	Ein Abbildungspaar $(\varphi,\psi)$ bestehend aus Bijektionen $\varphi\colon P\to P'$ und $\psi\colon B\to B'$ heißt \define{Isomorphismus (Iso)} von $\Inz$ nach $\Inz'$1
+	Ein Abbildungspaar $(\varphi,\psi)$ bestehend aus Bijektionen $\varphi\colon P\to P'$ und $\psi\colon B\to B'$ heißt \define{Isomorphismus (Iso)} von $\Inz$ nach $\Inz'$
 	\begin{align*}
 		\defiff\forall p\in P,\forall b\in B:pIb\iff\varphi(p)I'\psi(b)
 \end{align*}		
@@ -278,7 +274,7 @@ Dies ist ein Gegensatz z.B. zur \textbf{Prozedurale Modellierung}.
 	\end{align*}
 	Wegen $p'I'b'$ gilt für $p:=\varphi^{-1}(p')$ und $b:=\psi^{-1}(b')$ stets $\varphi(p)=p'$ und $sp(b)=b'$, also $\varphi(p)I'\psi(b)$.
 	Also gilt auch $pIb$ d.h. $\varphi^{-1}(p)I\psi^{-1}(b)$.\nl
-	\betone{Zeige \ref{item:lemma1.13_1}:} Total klar.
+	\betone{Zeige \ref{item:lemma1.13_2}:} Total klar.
 \end{proof}
 
 \begin{satz}
@@ -401,12 +397,9 @@ Wann ist $\Inz_{(i,j)}^n$ selbstdual?
 	\begin{itemize}
 		\item Die beiden roten Dreiecke sind zentral perspektiv bzgl. des Zentrums $z$.
 		\item Die drei roten Punkte liegen auf der Geraden $a$.
-		\item Satz: Sind zwei Dreiecke sind zentral perpspektiv, so sind sie auch axial perspektiv und umgekehrt.
 		\item Zeige $\Inz_{(2,3)}^5\simeq$ Desargue Konfiguration
 	\end{itemize}
 \end{beispiel}
-
-% hier könnte was fehlen (15.04.19)
 
 \begin{theorem}[Desargues Theorem]\enter
 	Im \undefine{projektiven Raum} (bzw. in der desargueschen projektiven Ebene) gilt:
@@ -450,9 +443,9 @@ Wann ist $\Inz_{(i,j)}^n$ selbstdual?
 	\index{inverser Morphismus}
 \end{lemma}
 
-\subsection{Taktische Konfoguration via Unterverband eines endlichdimensionalen Vektorraumes}
+\subsection{Taktische Konfiguration via Unterverband eines endlichdimensionalen Vektorraumes}
 
-Sei $V$ $n$-dimensionaler Vektorraum über  $\F_g$ ($q$ Primzahlpotenz, $n\in\N$).
+Sei $V$ $n$-dimensionaler Vektorraum über  $\F_q$ ($q$ Primzahlpotenz, $n\in\N$).
 Für $i,j\in\N$ mit $0\leq i\leq j\leq $n sei dann
 \index{Unterraumverband}
 \begin{align*}
@@ -564,8 +557,6 @@ Genauer:
 	\big(\L(V)\big)(w)=\L(w)
 \end{align*}
 
-Probleme treten oft bei Paradigmenwechsel auf.
-
 \begin{erinnerung}
 	\begin{align*}
 		V/u=w/u=\set{x+u\mid x\in V}\text{ als Vektorraum}
@@ -578,29 +569,26 @@ Probleme treten oft bei Paradigmenwechsel auf.
 		\qquad\text{mittels}\qquad
 		w\mapsto w/u\\
 		\und\qquad
-		\dim(V(u)=\dim(V)-\dim(U)
+		\dim(V/u)=\dim(V)-\dim(U)
 	\end{align*}
 	Für $u\leq_\L w$ sei 
 	\begin{align*}
-		\Delta(u,w):=-\dim(u)+\dim(w)=\dim(w/u)
+		\Delta(u,w):=-\dim(u)+\dim(w)=\dim(w/u)\\
+		\begin{pmatrix}
+			n\\
+			i
+		\end{pmatrix}_q\overset{\dim(V)=n}{=}
+		\begin{pmatrix}
+			\dim(V)\\
+			i
+		\end{pmatrix}:=
+		\#\begin{pmatrix}
+			\L(V)\\
+			i
+		\end{pmatrix}
 	\end{align*}
+	falls $V$ $n$-dimensionaler Vektorraum über $\F_q$.
 \end{satz}
-
-\begin{align*}
-	\begin{pmatrix}
-		n\\
-		i
-	\end{pmatrix}_q\overset{\dim(V)=n}{=}
-	\begin{pmatrix}
-		\dim(V)\\
-		i
-	\end{pmatrix}:=
-	\#\begin{pmatrix}
-		\L(V)\\
-		i
-	\end{pmatrix}
-\end{align*}
-falls $V$ $n$-dimensionaler Vektorraum über $\F_q$.
 
 \begin{figure}[H]
 	\begin{center}
@@ -1072,13 +1060,13 @@ Folglich ist $f(1)=1$.
 Sei $\S=(S,+,\mal,0,1)$ ein Semiring ($\S_{\add}$ kommutatives Monoid und $\S_{\mult}$ Monoid)
 Es gilt also:
 \begin{enumerate}
-	\item $a\mal(b+c)=(a\mal b)+(a\mal c)=:a\mal c+b\mal c$ Distri
-	\item $(a+b)\mal c=a\mal c+b\mal c$ Distri
+	\item $a\mal(b+c)=(a\mal b)+(a\mal c)=:a\mal c+b\mal c$ Distributivgesetz
+	\item $(a+b)\mal c=a\mal c+b\mal c$ Distributivgesetz
 	\item $0\mal a=0=a\mal 0$ Nullabsorption
 	\item $a\neq 0$ Reichhaltigkeit
 \end{enumerate}
 
-\begin{beispiel}
+\begin{beispiel}\
 	\begin{itemize}
 		\item Boolscher Semiring: $\big(\set{0,1},+,\mal,0,1\big)$ mit $1+1=1$
 		\item $\ul{\N}=\big(\N,+,\mal,0,1\big)$ ist der natürliche Semiring
@@ -1219,6 +1207,8 @@ Für $n\in S^{(N)}$ und $\gamma\in M^N$ heiße dann
 \end{align*}
 die \define{Linearkombination} von $u$ mit $\gamma$ in $\mathcal{M}$.
 $u$ heißt \define{Koeffizientenfamilie} und $\gamma$ \define{Vektorenfamilie}
+\index{Koeffizientenfamilie}
+\index{Vektorenfamilie}
 
 \subsubsection{Linearkombinationsabbildung}
 Sei $\mathcal{M}=(\M,\S,\scal)$ Semring-Modul und sei $N$ Menge und $\gamma\in M^N$, d.h. $\gamma=:\big(\gamma(i)\big)_{i\in N}$ Vektorenfamilie in $\mathcal{M}$.
