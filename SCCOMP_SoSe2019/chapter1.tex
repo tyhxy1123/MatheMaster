@@ -726,8 +726,6 @@ and thus
 x^{k+1} = x^{k}+ V_{i}A_{ii}^{-1}W_{i}^{T} r^{k}
 .\] 
 
-% TODO : fix minted ordentlichen Pseudocode hier
-
 \subsection*{Block-Jacobi-Iteration}
 \label{sec:Block-Jacobi-Iteration}
 "additive projection procedure"\\
@@ -782,15 +780,32 @@ Algorithm:
 % TODO: Kannst du evtl den Text hier improven?
 There are several possibilities for block splitting in the Multi-Splitting-Parallelization-Method:
 
-% TODO : horizontales splitting
-% TODO : vertikales splitting
+\begin{figure}[H]
+	\begin{center}
+		\input{tikz/chapter1/horizontal_split.tex}
+	\end{center}
+	\caption{horizontal splitting}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\input{tikz/chapter1/vertical_split.tex}
+	\end{center}
+	\caption{vertical splitting}
+\end{figure}
 
 Then there methods of Multi-Splitting with line-relaxation in two different directions. This method is called the Alternating-Direction-Method.
 
 \subsection*{Gauss-Seidel and SOR Parallelization}
 \label{sec:Gauss-Seidel and SOR Parallelization}
 
-% TODO : Red black ordering nochmal einfügen
+\begin{figure}[H]
+	\begin{center}
+		\input{tikz/chapter1/red-black-ordering.tex}
+	\end{center}
+	\caption{vertical splitting}
+\end{figure}
+
 Resulting matrix
 \[
 A = \begin{bmatrix}
